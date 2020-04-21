@@ -19,6 +19,9 @@ OUTCOMES
 	- A simple hello world in Lua
 	[[helloworld.lua](../week0/helloworld.lua)]
 	- Our version of learnLuainXmin: [[learnluainXmin.lua](../week0/learnluainXmin.lua)]
+- *Logistics.* We're still developing our workflow and troubleshooting but we like using Atom's teletype for collaborating at the same time.
+	- We use a log to track daily work [[log.md](../log.md)]
+	- Our vision statement is here [[vision-statement.md](../week0/vision-statement.md)]
 -  *Runtimes and profilers.* We barely got started on this... maybe dipped our toes. Tabled to week 1.
 - *Lua specifics.* Wrote short scripts and learned some features of Lua... will continue to build on this.
 	- We're still getting comfortable with writing code in Lua and don't feel like we've arrived at the fluency where we can do things the "Lua way".
@@ -33,6 +36,7 @@ OUTCOMES
 GOALS
 
 - *Runtimes and profilers.* Look into different runtimes and profilers.
+- *Lua specifics.* Write a guide and read up on Lua specific features. Write some short programs that utilize these.
 
 
 OUTCOMES

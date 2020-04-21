@@ -1,6 +1,6 @@
 ## Daily Log
 
-### Week 0 -- Intro to Lua
+#### Week 0 -- Intro to Lua
 
 [200414]
 
@@ -76,4 +76,16 @@
 
 - Comparing [Lua to Python](http://lua-users.org/wiki/LuaVersusPython) and comparing [Lua to JS](https://www.mediawiki.org/wiki/User:Sumanah/Lua_vs_Javascript) and [learning Lua v. JS](http://phrogz.net/lua/LearningLua_FromJS.html)
 
-- I think the best way to learn is to write a program (of course this won't be completely in the lua style). It's a start using what I learned in the tutorial from yesterday. I wrote a quick command line tic tac toe game.
+- I think the best way to learn is to write a program (of course this won't be completely in the lua style). It's a start using what I learned in the tutorial from yesterday. I wrote a quick command line tic tac toe game. Here's the [game](../week0/tictactoe.lua)
+
+- Wrote a command line memory word game to familiarize myself with Lua: [Lua memory game](../week0/memory_puzzle.lua). Starting to get more comfortable with the syntax but still unsure of what constitutes the "Lua way" of writing code.
+
+[200421]
+
+- Troubleshooting workflow with teletype
+
+- Profilers
+	- Had a look at some of the profilers available for Lua (see [here](../week1/lua-runtimes-and-profilers.md)).
+		- Investigated the [pepperfish profiler](http://lua-users.org/wiki/PepperfishProfiler). The source code is [here](../week1/pepperfish_profiler.lua).
+	- Seems like most (if not all) of them are time-based (i.e. tells you how much time it takes to execute certain functions). Would be interesting to know if we can also investigate memory usage.
+	- Doesn't seem very hard to write your own profiler. Might be interesting to experiment with.
