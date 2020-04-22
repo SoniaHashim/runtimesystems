@@ -9,5 +9,10 @@ function hello_world()
 end
 
 profiler:start()
+os.execute("sleep 5")
 hello_world()
 profiler:stop()
+
+local outfile = io.open("profile.txt", "w+")
+profiler:report(outfile)
+outfile:close()

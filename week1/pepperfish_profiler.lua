@@ -406,7 +406,7 @@ function _profiler.report( self, outfile, sort_by_total_time )
     local thisfuncname = " " .. self:_pretty_name(func) .. " "
     if string.len( thisfuncname ) < 42 then
       thisfuncname =
-        string.rep( "-", (42 - string.len(thisfuncname))/2 ) .. thisfuncname
+        string.rep( "-", (42 - math.ceil(string.len(thisfuncname)/2))) .. thisfuncname
       thisfuncname =
         thisfuncname .. string.rep( "-", 42 - string.len(thisfuncname) )
     end
