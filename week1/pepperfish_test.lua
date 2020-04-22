@@ -2,15 +2,18 @@
 
 require("pepperfish_profiler")
 
-profiler = newProfiler()
-
-function hello_world()
-  print("Hello World!")
+function loop()
+  for i=1,1000 do
+    for j = 1,1000 do
+      local k = i + j
+    end
+  end
+  return
 end
 
+profiler = newProfiler("time")
 profiler:start()
-os.execute("sleep 5")
-hello_world()
+loop()
 profiler:stop()
 
 local outfile = io.open("profile.txt", "w+")
