@@ -89,3 +89,8 @@
 		- Investigated the [pepperfish profiler](http://lua-users.org/wiki/PepperfishProfiler). The source code is [here](../week1/pepperfish_profiler.lua).
 	- Seems like most (if not all) of them are time-based (i.e. tells you how much time it takes to execute certain functions). Would be interesting to know if we can also investigate memory usage.
 	- Doesn't seem very hard to write your own profiler. Might be interesting to experiment with.
+
+[200423]
+
+- Looked at more profilers (updated the [readme](../readme.md)). Code is no longer maintained and required fixing.
+- Investigated [Luapower](https://luapower.com), which is a distribution for [LuaJIT](https://luajit.org/install.html), [Terra](http://terralang.org/) and [OpenResty](https://openresty.org/en/).

@@ -40,3 +40,11 @@ GOALS
 
 
 OUTCOMES
+
+- *Profilers.*
+	- We looked at three different profilers. In all three cases the code was no longer maintained and needed fixing.
+		- [Pepperfish.](../week1/pepperfish_profiler.lua)
+		- [Profiler in Lua.](../week1/profiler_in_lua.lua)
+		- [Lua Callgrind](../week1/lua-callgrind.lua) (overview available on the [website](https://jan.kneschke.de/projects/misc/profiling-lua-with-kcachegrind)).
+	- The first two profilers are time-based and minimalistic, while the third requires qcachegrind and is able to generate some really awesome visualizations.
+- *Runtimes*.
