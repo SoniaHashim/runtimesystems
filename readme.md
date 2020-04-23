@@ -17,18 +17,18 @@ OUTCOMES
 
 -  *Lua set-up.* Went great!
 	- A simple hello world in Lua
-	[[helloworld.lua](../week0/helloworld.lua)]
-	- Our version of learnLuainXmin: [[learnluainXmin.lua](../week0/learnluainXmin.lua)]
+	[[helloworld.lua](week0/helloworld.lua)]
+	- Our version of learnLuainXmin: [[learnluainXmin.lua](week0/learnluainXmin.lua)]
 - *Logistics.* We're still developing our workflow and troubleshooting but we like using Atom's teletype for collaborating at the same time.
-	- We use a log to track daily work [[log.md](../log.md)]
-	- Our vision statement is here [[vision-statement.md](../week0/vision-statement.md)]
+	- We use a log to track daily work [[log.md](log.md)]
+	- Our vision statement is here [[vision-statement.md](week0/vision-statement.md)]
 -  *Runtimes and profilers.* We barely got started on this... maybe dipped our toes. Tabled to week 1.
 - *Lua specifics.* Wrote short scripts and learned some features of Lua... will continue to build on this.
 	- We're still getting comfortable with writing code in Lua and don't feel like we've arrived at the fluency where we can do things the "Lua way".
 	- We wrote two simple command line games:
-		- Tic Tac Toe [[tictactoe.lua](../week0/tictactoe.lua)]
-		- A UCSB-themed command line memory game: [[memory_puzzle.lua]](../week0/memory_puzzle.lua)]
-	- We started writing out an overview that goes over lua specific features [[lua-specific-features.md](../week1/lua-specific-features.md)]
+		- Tic Tac Toe [[tictactoe.lua](week0/tictactoe.lua)]
+		- A UCSB-themed command line memory game: [[memory_puzzle.lua](week0/memory_puzzle.lua)]
+	- We started writing out an overview that goes over lua specific features [[lua-specific-features.md](week1/lua-specific-features.md)]
 
 
 ### Week 1
@@ -43,8 +43,8 @@ OUTCOMES
 
 - *Profilers.*
 	- We looked at three different profilers. In all three cases the code was no longer maintained and needed fixing.
-		- [Pepperfish.](../week1/pepperfish_profiler.lua)
-		- [Profiler in Lua.](../week1/profiler_in_lua.lua)
-		- [Lua Callgrind](../week1/lua-callgrind.lua) (overview available on the [website](https://jan.kneschke.de/projects/misc/profiling-lua-with-kcachegrind)).
+		- [Pepperfish.](week1/pepperfish_profiler.lua)
+		- [Profiler in Lua.](week1/profiler_in_lua.lua)
+		- [Lua Callgrind](week1/lua-callgrind.lua) (overview available on the [website](https://jan.kneschke.de/projects/misc/profiling-lua-with-kcachegrind)).
 	- The first two profilers are time-based and minimalistic, while the third requires qcachegrind and is able to generate some really awesome visualizations.
 - *Runtimes*.
