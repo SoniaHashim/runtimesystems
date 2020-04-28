@@ -48,3 +48,4 @@ OUTCOMES
 		- [Lua Callgrind](week1/lua-callgrind.lua) (overview available on the [website](https://jan.kneschke.de/projects/misc/profiling-lua-with-kcachegrind)).
 	- The first two profilers are time-based and minimalistic, while the third requires qcachegrind and is able to generate some really awesome visualizations.
 - *Runtimes*.
+	- [LuaJIT](https://luajit.org/install.html) is a just-in-time compiler for Lua. It is available both on its own and as part of the [Luapower distribution](https://luapower.com). Part of what makes LuaJIT interesting is that it is one of the fastest dynamic language implementations out there.
