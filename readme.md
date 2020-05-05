@@ -50,3 +50,10 @@ OUTCOMES
 - *Runtimes*.
 	- [LuaJIT](https://luajit.org/install.html) is a just-in-time compiler for Lua. It is available both on its own and as part of the [Luapower distribution](https://luapower.com). Part of what makes LuaJIT interesting is that it claims to be "one of the fastest dynamic language implementations".
 	- There are several other Lua runtimes and distributions, but it appears that most are no longer maintained. See, for example: [Lua AIO](http://luaaio.luaforge.net/index.html), [murgaLua](http://www.murga-projects.com/murgaLua) and [wxLua](http://wxlua.sourceforge.net).
+
+
+### Week 3
+
+GOALS
+
+- *Understand the Lua interpreter.* Eventual aim is to add a superinstruction.
