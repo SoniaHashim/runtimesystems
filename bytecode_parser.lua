@@ -9,12 +9,23 @@ function file_exists(file)
   return f ~= nil
 end
 
+function get_bytes(input)
+	bytes = {}
+	for i = 1, string.len(input) do
+		bytes[#bytes + 1] = string.format("%02X", input:byte(i))
+	end
+	return bytes
+end
+
 function read_bytecode(file)
 	local bytecode_file = io.open(file, "rb")
 	local bytecode_content = bytecode_file:read "*a" -- *a for the entire file
 	bytecode_file:close()
-	if bytecode_content:sub(1, 4) ~= '\x1bLua' then
+	if bytecode_content:sub(1, 4) ~= "\x1bLua" then
+		-- \xNN escape character: NN is a two-digit hex number
 		print("The file " .. file .. " is not a Lua bytecode file.")
+	else
+		bytes = get_bytes(bytecode_content)
 	end
 end
 
