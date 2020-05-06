@@ -15,7 +15,9 @@ function read_bytecode(file)
 	bytecode_file:close()
 end
 
-if file_exists(arg[1]) then
+if #arg ~= 1 then
+	print("Usage: " .. arg[0] .. " <bytecode_file.luac>")
+elseif file_exists(arg[1]) then
 	read_bytecode(arg[1])
 else
 	print("File " .. arg[1] .. " does not exist.")
