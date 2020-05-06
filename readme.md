@@ -57,3 +57,4 @@ OUTCOMES
 GOALS
 
 - *Understand the Lua interpreter.* Eventual aim is to add a superinstruction.
+- *Understand the bytecode for simple Lua programs.* [Chunkspy](http://luaforge.net/projects/chunkspy) is an _awesome_ tool for this. Note that it requires Lua 5.1 (latest stable version is 5.3, with 5.4 to be released in the near future). Interactive usage: `lua-5.1 ChunkSpy.lua --interact --auto`.
