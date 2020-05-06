@@ -13,6 +13,9 @@ function read_bytecode(file)
 	local bytecode_file = io.open(file, "rb")
 	local bytecode_content = bytecode_file:read "*a" -- *a for the entire file
 	bytecode_file:close()
+	if bytecode_content:sub(1, 4) ~= '\x1bLua' then
+		print("The file " .. file .. " is not a Lua bytecode file.")
+	end
 end
 
 if #arg ~= 1 then
