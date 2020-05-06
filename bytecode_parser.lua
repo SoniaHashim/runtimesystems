@@ -1,33 +1,29 @@
--- A bytecode parser for Lua 5.3
+-- A bytecode parser for Lua 5.1
 -- Usage: lua bytecode.luac
 
-opcode_names = 
-	{"MOVE", "LOADK", "LOADKX", "LOADBOOL", 
-	"LOADNIL", "GETUPVAL", "GETTABUP", "GETTABLE", 
-	"SETTABUP", "SETUPVAL", "SETTABLE", "NEWTABLE", 
-	"SELF", "ADD", "SUB", "MUL", 
-	"MOD", "POW", "DIV", "IDIV", 
-	"BAND", "BOR", "BXOR", "SHL", 
-	"SHR", "UNM", "BNOT", "NOT", 
-	"LEN", "CONCAT", "JMP", "EQ", 
-	"LT", "LE", "TEST", "TESTSET", 
-	"CALL", "TAILCALL", "RETURN", "FORLOOP", 
-	"FORPREP", "TFORCALL", "TFORLOOP", "SETLIST", 
-	"CLOSURE", "VARARG", "EXTRAARG"}
+opcode_names =
+	{"MOVE",     "LOADK",     "LOADBOOL", "LOADNIL",
+    "GETUPVAL", "GETGLOBAL", "GETTABLE", "SETGLOBAL",
+    "SETUPVAL", "SETTABLE",  "NEWTABLE", "SELF",
+    "ADD",      "SUB",       "MUL",      "DIV",
+    "MOD",      "POW",       "UNM",      "NOT",
+    "LEN",      "CONCAT",    "JMP",      "EQ",
+    "LT",       "LE",        "TEST",     "TESTSET",
+    "CALL",     "TAILCALL",  "RETURN",   "FORLOOP",
+    "FORPREP",  "TFORLOOP",  "SETLIST",  "CLOSE",
+    "CLOSURE",  "VARARG"}
 
 opcode_types =
-	{"iABC", "iABx", "iABx", "iABC", 
-	"iABC", "iABC", "iABC", "iABC", 
-	"iABC", "iABC", "iABC", "iABC", 
-	"iABC", "iABC", "iABC", "iABC", 
-	"iABC", "iABC", "iABC", "iABC",
-    "iABC", "iABC", "iABC", "iABC", 
-    "iABC", "iABC", "iABC", "iABC", 
-    "iABC", "iABC", "iAsBx", "iABC", 
-    "iABC", "iABC", "iABC", "iABC", 
-    "iABC", "iABC", "iABC", "iAsBx",
-    "iAsBx", "iABC", "iAsBx", "iABC", 
-    "iABx", "iABC", "iAx"}
+	{"ABC",  "ABx", "ABC",  "ABC",
+    "ABC",  "ABx", "ABC",  "ABx",
+    "ABC",  "ABC", "ABC",  "ABC",
+    "ABC",  "ABC", "ABC",  "ABC",
+    "ABC",  "ABC", "ABC",  "ABC",
+    "ABC",  "ABC", "AsBx", "ABC",
+    "ABC",  "ABC", "ABC",  "ABC",
+    "ABC",  "ABC", "ABC",  "AsBx",
+    "AsBx", "ABC", "ABC", "ABC",
+    "ABx",  "ABC"}
 
 function file_exists(file)
   local f = io.open(file, "rb")
@@ -46,7 +42,16 @@ function get_bytes(input)
 end
 
 function get_header_info(bytes_table)
-	print("The Lua version number is " .. bytes_table[6]:sub(1, 1) .. "." .. bytes_table[6]:sub(2, 2) .. ".")
+	print("The Lua version number is " .. bytes_table[5]:sub(1, 1) .. "." .. bytes_table[5]:sub(2, 2) .. ".")
+	endianness_string = "big" -- 0 represents big endian
+	if tonumber(bytes_table[7], 16) == 1 then
+		endianness_string = "little" -- 1 represents little endian
+	end
+	print("Endianness: " .. endianness_string .. " endian.")
+	print("int: " .. tonumber(bytes_table[8], 16) .. " bytes.")
+	print("size_t: " .. tonumber(bytes_table[9], 16) .. " bytes.")
+	print("Instruction: " .. tonumber(bytes_table[10], 16) .. " bytes.")
+	print("lua_Number: " .. tonumber(bytes_table[11], 16) .. " bytes.")
 end
 
 function read_bytecode(file)
