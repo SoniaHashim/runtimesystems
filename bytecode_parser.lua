@@ -33,6 +33,30 @@ function file_exists(file)
   return f ~= nil
 end
 
+function split_table(table, start_index, end_index)
+	return_table = {}
+	for i = start_index, end_index do
+		return_table[#return_table + 1] = table[i]
+	end
+	return return_table
+end
+
+function get_int(input, int_size) -- construct in reverse order (is this correct?)
+	return_int = ""
+	for i = int_size, 1, -1 do
+		return_int = return_int .. input[i]
+	end
+	return tonumber(return_int, 16)
+end
+
+function get_string(input, string_size)
+	return_string = ""
+	for i = 1, string_size - 1 do -- last character is a 0 (ignore)
+		return_string = return_string .. string.char(tonumber(input[i], 16))
+	end
+	return return_string
+end
+
 function get_bytes(input)
 	bytes = {}
 	for i = 1, string.len(input) do
@@ -41,17 +65,29 @@ function get_bytes(input)
 	return bytes
 end
 
-function get_header_info(bytes_table)
+function decode_header(bytes_table)
 	print("The Lua version number is " .. bytes_table[5]:sub(1, 1) .. "." .. bytes_table[5]:sub(2, 2) .. ".")
 	endianness_string = "big" -- 0 represents big endian
 	if tonumber(bytes_table[7], 16) == 1 then
 		endianness_string = "little" -- 1 represents little endian
 	end
+	endianness = tonumber(bytes_table[7], 16)
+	size_int = tonumber(bytes_table[8], 16)
+	size_t = tonumber(bytes_table[9], 16)
+	size_instruction = tonumber(bytes_table[10], 16)
+	size_lua_number = tonumber(bytes_table[11], 16)
 	print("Endianness: " .. endianness_string .. " endian.")
-	print("int: " .. tonumber(bytes_table[8], 16) .. " bytes.")
-	print("size_t: " .. tonumber(bytes_table[9], 16) .. " bytes.")
-	print("Instruction: " .. tonumber(bytes_table[10], 16) .. " bytes.")
-	print("lua_Number: " .. tonumber(bytes_table[11], 16) .. " bytes.")
+	print("int: " .. size_int .. " bytes.")
+	print("size_t: " .. size_t .. " bytes.")
+	print("Instruction: " .. size_instruction .. " bytes.")
+	print("lua_Number: " .. size_lua_number .. " bytes.")
+	return endianness, size_int, size_t, size_instruction, size_lua_number
+end
+
+function decode_function(bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
+	source_name_size = get_int(split_table(bytes, 13, #bytes), size_int)
+	source_name = get_string(split_table(bytes, 13 + size_int, #bytes), source_name_size)
+	print(source_name)
 end
 
 function read_bytecode(file)
@@ -63,7 +99,8 @@ function read_bytecode(file)
 		print("The file " .. file .. " is not a Lua bytecode file.")
 	else
 		bytes = get_bytes(bytecode_content)
-		get_header_info(bytes)
+		endianness, size_int, size_t, size_instruction, size_lua_number = decode_header(bytes)
+		decode_function(bytes, endianness, size_int, size_t, size_instruction, size_lua_number)	
 	end
 end
 
