@@ -76,6 +76,7 @@ function decode_header(bytes_table)
 	size_t = tonumber(bytes_table[9], 16)
 	size_instruction = tonumber(bytes_table[10], 16)
 	size_lua_number = tonumber(bytes_table[11], 16)
+	-- add integral flag
 	print("Endianness: " .. endianness_string .. " endian.")
 	print("int: " .. size_int .. " bytes.")
 	print("size_t: " .. size_t .. " bytes.")
@@ -102,6 +103,8 @@ function decode_function(bytes, endianness, size_int, size_t, size_instruction, 
 	byte_table_pointer = byte_table_pointer + 1
 	max_stack_size = tonumber(bytes[byte_table_pointer], 16)
 	byte_table_pointer = byte_table_pointer + 1
+	num_instructions = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int)
+	byte_table_pointer = byte_table_pointer + size_int
 	print("Source name: " .. source_name .. ".")
 	print("Line defined: " .. start_line .. ".")
 	print("Last line defined: " .. end_line .. ".")
@@ -109,6 +112,11 @@ function decode_function(bytes, endianness, size_int, size_t, size_instruction, 
 	print("Number of parameters: " .. num_parameters .. ".")
 	print("is_vararg_flag: " .. is_vararg_flag .. ".")
 	print("Maximum stack size: " .. max_stack_size .. ".")
+	print("Number of instructions: " .. num_instructions .. ".")
+	for i = 1, num_instructions do
+		raw_instruction = get_int(split_table(bytes, byte_table_pointer, #bytes), size_instruction)
+		byte_table_pointer = byte_table_pointer + size_instruction
+	end
 end
 
 function read_bytecode(file)
