@@ -85,9 +85,30 @@ function decode_header(bytes_table)
 end
 
 function decode_function(bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
-	source_name_size = get_int(split_table(bytes, 13, #bytes), size_int)
-	source_name = get_string(split_table(bytes, 13 + size_int, #bytes), source_name_size)
-	print(source_name)
+	byte_table_pointer = 13
+	source_name_size = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int)
+	byte_table_pointer = byte_table_pointer + size_int
+	source_name = get_string(split_table(bytes, byte_table_pointer, #bytes), source_name_size)
+	byte_table_pointer = byte_table_pointer + source_name_size + size_int
+	start_line = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int)
+	byte_table_pointer = byte_table_pointer + size_int
+	end_line = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int)
+	byte_table_pointer = byte_table_pointer + size_int
+	num_upvalues = tonumber(bytes[byte_table_pointer], 16)
+	byte_table_pointer = byte_table_pointer + 1
+	num_parameters = tonumber(bytes[byte_table_pointer], 16)
+	byte_table_pointer = byte_table_pointer + 1
+	is_vararg_flag = tonumber(bytes[byte_table_pointer], 16)
+	byte_table_pointer = byte_table_pointer + 1
+	max_stack_size = tonumber(bytes[byte_table_pointer], 16)
+	byte_table_pointer = byte_table_pointer + 1
+	print("Source name: " .. source_name .. ".")
+	print("Line defined: " .. start_line .. ".")
+	print("Last line defined: " .. end_line .. ".")
+	print("Number of upvalues: " .. num_upvalues .. ".")
+	print("Number of parameters: " .. num_parameters .. ".")
+	print("is_vararg_flag: " .. is_vararg_flag .. ".")
+	print("Maximum stack size: " .. max_stack_size .. ".")
 end
 
 function read_bytecode(file)
