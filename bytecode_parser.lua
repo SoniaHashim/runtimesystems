@@ -66,6 +66,9 @@ opcode_descriptions =
     "Assign vararg function arguments to registers.",
 	"ABC"}
 
+constant_types = {"LUA_TNIL", "LUA_TBOOLEAN", "", "LUA_TNUMBER", "LUA_TSTRING"}
+-- add a blank string that should never be reached (idiotic naming convention)
+
 function file_exists(file)
   local f = io.open(file, "rb")
   if f then 
@@ -101,6 +104,14 @@ end
 function get_int(input, int_size) -- construct in reverse order (is this correct?)
 	return_int = ""
 	for i = int_size, 1, -1 do
+		return_int = return_int .. input[i]
+	end
+	return tonumber(return_int, 16)
+end
+
+function get_int_2(input, int_size)
+	return_int = ""
+	for i = 1, int_size do
 		return_int = return_int .. input[i]
 	end
 	return tonumber(return_int, 16)
@@ -188,8 +199,7 @@ function decode_function(bytes, endianness, size_int, size_t, size_instruction, 
 		end
 		print("Binary representation of instruction: " .. binary_instruction)
 		print("Opcode: " .. decimal_opcode)
-		-- +1 for table lookup because instruction numbers start at zero 
-		-- while indexing in lua starts at one
+		-- +1 for table lookup because instruction numbers start at zero
 		print("Instruction name: " .. opcode_names[decimal_opcode + 1])
 		print("Instruction type: " .. instruction_type)
 		print("Instruction description: " .. opcode_descriptions[decimal_opcode + 1])
@@ -198,6 +208,33 @@ function decode_function(bytes, endianness, size_int, size_t, size_instruction, 
 		if C_register_index then
 			print("Index C in R[C]: " .. C_register_index)
 		end
+	end
+	-- moving on to the constants
+	num_constants = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int)
+	byte_table_pointer = byte_table_pointer + size_int
+	print("Number of constants: " .. num_constants)
+	for i = 1, num_constants do
+		-- +1 for table lookup because constant numbers start at zero
+		constant_type = constant_types[tonumber(bytes[byte_table_pointer], 16) + 1]
+		byte_table_pointer = byte_table_pointer + 1
+		print("Constant type: " .. constant_type)
+		if constant_type == "LUA_TBOOLEAN" then
+			-- unsure how large the data is
+			constant_bool_value = tonumber(bytes[byte_table_pointer], 16)
+			byte_table_pointer = byte_table_pointer + 1
+			print("Constant boolean value: " .. constant_bool_value)
+		elseif constant_type  == "LUA_TNUMBER" then
+			--constant_number_value = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number)
+			byte_table_pointer = byte_table_pointer + size_lua_number
+			--print("Constant number value: " .. constant_number_value)
+		elseif constant_type == "LUA_TSTRING" then
+			-- why do I need to use size_lua_number instead of size_int to make this work?
+			constant_string_size = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number)
+			byte_table_pointer = byte_table_pointer + size_lua_number
+			constant_string = get_string(split_table(bytes, byte_table_pointer, #bytes), constant_string_size)
+			byte_table_pointer = byte_table_pointer + constant_string_size
+			print("Constant string value: " .. constant_string)
+		end -- LUA_TNIL has nothing
 	end
 end
 
