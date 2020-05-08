@@ -25,6 +25,47 @@ opcode_types =
     "AsBx", "ABC", "ABC", "ABC",
     "ABx",  "ABC"}
 
+opcode_descriptions =
+	{"Copy a value between registers.",
+	"Load a constant into a register.", 
+	"Load a boolean into a register.",
+	"Load nil values into a range of registers.",
+    "Read an upvalue into a register.",  
+    "Read a global variable into a register.", 
+    "Read a table element into a register.",  
+    "Write a register value into a global variable.",
+    "Write a register value into an upvalue.",
+    "Write a register value into a table element.", 
+    "Create a new table.",  
+    "Prepare an object method for calling.",
+    "Perform an addition.",  
+    "Perform a subtraction.", 
+    "Perform a multiplication.",
+    "Perform a division.",
+    "Perform a remainder operation.",
+    "Perform an exponentiation.", 
+    "Perform a unary minus operation.",  
+    "Perform a logical NOT operation.",
+    "Calculate the length.",  
+    "Concatenate a range of registers.", 
+    "Unconditional jump.", 
+    "Equality test.",
+    "Less than test.",  
+    "Less than or equal to test.", 
+    "Boolean test with conditional jump.",  
+    "Boolean test with conditional jump and assignment.",
+    "Call a closure.",  
+    "Perform a tail call.", 
+    "Return from a function call.",  
+    "Iterate a numeric for loop.",
+    "Initialize a numeric for loop.",
+    "Iterate a generic for loop", 
+    "Set a list of array elements for a table.", 
+    "Close a range of locals being used as upvalues.", 
+    "Create a closure of a function prototype.",
+    "Assign vararg function arguments to registers.",
+	"ABC"}
+
 function file_exists(file)
   local f = io.open(file, "rb")
   if f then 
@@ -151,6 +192,7 @@ function decode_function(bytes, endianness, size_int, size_t, size_instruction, 
 		-- while indexing in lua starts at one
 		print("Instruction name: " .. opcode_names[decimal_opcode + 1])
 		print("Instruction type: " .. instruction_type)
+		print("Instruction description: " .. opcode_descriptions[decimal_opcode + 1])
 		print("Index A in R[A]: " .. A_register_index)
 		print("Index B in R[B]: " .. B_register_index)
 		if C_register_index then
