@@ -4,7 +4,6 @@
 --[[ 
 TODO:
 Figure out how to parse doubles.
-Related: use the endianness for parsing certain numbers.
 Should be able to invoke Lua 5.1 bytecode compiler if the user inputs a source file.
 Would be nice to have an interactive mode for parsing code that the user writes on the command line.
 Code needs serious restructuring.
@@ -96,14 +95,18 @@ function split_table(table, start_index, end_index)
 	return return_table
 end
 
-function convert_to_bits(decimal_num) -- could not find built-in function
+function convert_to_bits(decimal_num, endianness) -- could not find built-in function
     if type(decimal_num) ~= number then
     	decimal_num = tonumber(decimal_num)
     end
     binary_num = ""
     while decimal_num > 0 do
         rest = math.fmod(decimal_num, 2)
-        binary_num = math.floor(rest) .. binary_num
+        if endianness == 0 then
+        	binary_num = binary_num .. math.floor(rest)
+        else
+        	binary_num = math.floor(rest) .. binary_num
+        end
         decimal_num = (decimal_num - rest) / 2
     end
     while #binary_num < 32 do -- add padding to the left of the number
@@ -112,7 +115,7 @@ function convert_to_bits(decimal_num) -- could not find built-in function
     return binary_num -- returns in string format
 end
 
-function get_int(input, int_size, endianness) -- construct in reverse order (is this correct?)
+function get_int(input, int_size, endianness)
 	return_int = ""
 	if not input then
 		return nil
@@ -199,7 +202,7 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 		for i = 1, num_instructions do
 			decimal_instruction = get_int(split_table(bytes, byte_table_pointer, #bytes), size_instruction, endianness)
 			byte_table_pointer = byte_table_pointer + size_instruction
-			binary_instruction = convert_to_bits(decimal_instruction)
+			binary_instruction = convert_to_bits(decimal_instruction, endianness)
 			-- opcodes are the first (least significant) six bits
 			decimal_opcode = tonumber(binary_instruction:sub(27, 32), 2)
 			instruction_type = opcode_types[decimal_opcode + 1]
