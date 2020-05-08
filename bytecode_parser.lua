@@ -137,6 +137,14 @@ function decode_function(bytes, endianness, size_int, size_t, size_instruction, 
 		decimal_opcode = tonumber(binary_instruction:sub(27, 32), 2)
 		instruction_type = opcode_types[decimal_opcode + 1]
 		A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
+		if instruction_type == "ABC" then
+			C_register_index = tonumber(binary_instruction:sub(10, 18), 2)
+			B_register_index = tonumber(binary_instruction:sub(1, 9), 2)
+		elseif instruction_type == "ABx" then
+			B_register_index = tonumber(binary_instruction:sub(1, 18), 2)
+		else
+			B_register_index = tonumber(binary_instruction:sub(1, 18), 2) - 131071
+		end
 		print("Binary representation of instruction: " .. binary_instruction)
 		print("Opcode: " .. decimal_opcode)
 		-- +1 for table lookup because instruction numbers start at zero 
@@ -144,6 +152,10 @@ function decode_function(bytes, endianness, size_int, size_t, size_instruction, 
 		print("Instruction name: " .. opcode_names[decimal_opcode + 1])
 		print("Instruction type: " .. instruction_type)
 		print("Index A in R[A]: " .. A_register_index)
+		print("Index B in R[B]: " .. B_register_index)
+		if C_register_index then
+			print("Index C in R[C]: " .. C_register_index)
+		end
 	end
 end
 
