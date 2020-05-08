@@ -41,6 +41,22 @@ function split_table(table, start_index, end_index)
 	return return_table
 end
 
+function convert_to_bits(decimal_num) -- could not find built-in function
+    if type(decimal_num) ~= number then
+    	decimal_num = tonumber(decimal_num)
+    end
+    binary_num = ""
+    while decimal_num > 0 do
+        rest = math.fmod(decimal_num, 2)
+        binary_num = math.floor(rest) .. binary_num
+        decimal_num = (decimal_num - rest) / 2
+    end
+    while #binary_num < 32 do -- add padding to the left of the number
+    	binary_num = "0" .. binary_num
+    end
+    return binary_num -- returns in string format
+end
+
 function get_int(input, int_size) -- construct in reverse order (is this correct?)
 	return_int = ""
 	for i = int_size, 1, -1 do
@@ -114,8 +130,13 @@ function decode_function(bytes, endianness, size_int, size_t, size_instruction, 
 	print("Maximum stack size: " .. max_stack_size .. ".")
 	print("Number of instructions: " .. num_instructions .. ".")
 	for i = 1, num_instructions do
-		raw_instruction = get_int(split_table(bytes, byte_table_pointer, #bytes), size_instruction)
+		decimal_instruction = get_int(split_table(bytes, byte_table_pointer, #bytes), size_instruction)
 		byte_table_pointer = byte_table_pointer + size_instruction
+		binary_instruction = convert_to_bits(decimal_instruction)
+		-- opcodes are the first (least significant) six bits
+		decimal_opcode = tonumber(binary_instruction:sub(#binary_instruction-5, #binary_instruction), 2)
+		print("Binary representation of instruction: " .. binary_instruction)
+		print("Opcode: " .. decimal_opcode)
 	end
 end
 
