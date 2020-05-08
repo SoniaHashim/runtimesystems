@@ -134,9 +134,16 @@ function decode_function(bytes, endianness, size_int, size_t, size_instruction, 
 		byte_table_pointer = byte_table_pointer + size_instruction
 		binary_instruction = convert_to_bits(decimal_instruction)
 		-- opcodes are the first (least significant) six bits
-		decimal_opcode = tonumber(binary_instruction:sub(#binary_instruction-5, #binary_instruction), 2)
+		decimal_opcode = tonumber(binary_instruction:sub(27, 32), 2)
+		instruction_type = opcode_types[decimal_opcode + 1]
+		A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
 		print("Binary representation of instruction: " .. binary_instruction)
 		print("Opcode: " .. decimal_opcode)
+		-- +1 for table lookup because instruction numbers start at zero 
+		-- while indexing in lua starts at one
+		print("Instruction name: " .. opcode_names[decimal_opcode + 1])
+		print("Instruction type: " .. instruction_type)
+		print("Index A in R[A]: " .. A_register_index)
 	end
 end
 
