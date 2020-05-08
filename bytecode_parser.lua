@@ -1,6 +1,17 @@
 -- A bytecode parser for Lua 5.1
 -- Usage: lua bytecode.luac
 
+--[[ 
+TODO:
+Figure out how to parse doubles.
+Related: use the endianness for parsing certain numbers.
+Should be able to invoke Lua 5.1 bytecode compiler if the user inputs a source file.
+Would be nice to have an interactive mode for parsing code that the user writes on the command line.
+Code needs serious restructuring.
+Output format is terrible.
+Attempt a rewrite for Lua 5.2.
+--]] 
+
 opcode_names =
 	{"MOVE",     "LOADK",     "LOADBOOL", "LOADNIL",
     "GETUPVAL", "GETGLOBAL", "GETTABLE", "SETGLOBAL",
