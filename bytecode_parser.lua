@@ -220,7 +220,7 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 			print("Instruction description: " .. opcode_descriptions[decimal_opcode + 1])
 			print("Index A in R[A]: " .. A_register_index)
 			print("Index B in R[B]: " .. B_register_index)
-			if C_register_index then
+			if instruction_type == "ABC" then
 				print("Index C in R[C]: " .. C_register_index)
 			end
 		end
