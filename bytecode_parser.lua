@@ -103,15 +103,13 @@ end
 
 function get_int(input, int_size) -- construct in reverse order (is this correct?)
 	return_int = ""
-	for i = int_size, 1, -1 do
-		return_int = return_int .. input[i]
+	if not input then
+		return nil
 	end
-	return tonumber(return_int, 16)
-end
-
-function get_int_2(input, int_size)
-	return_int = ""
-	for i = 1, int_size do
+	for i = int_size, 1, -1 do
+		if not input[i] then
+			return nil
+		end
 		return_int = return_int .. input[i]
 	end
 	return tonumber(return_int, 16)
@@ -153,8 +151,7 @@ function decode_header(bytes_table)
 	return endianness, size_int, size_t, size_instruction, size_lua_number
 end
 
-function decode_function(bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
-	byte_table_pointer = 13
+function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
 	source_name_size = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int)
 	byte_table_pointer = byte_table_pointer + size_int
 	source_name = get_string(split_table(bytes, byte_table_pointer, #bytes), source_name_size)
@@ -181,60 +178,69 @@ function decode_function(bytes, endianness, size_int, size_t, size_instruction, 
 	print("is_vararg_flag: " .. is_vararg_flag .. ".")
 	print("Maximum stack size: " .. max_stack_size .. ".")
 	print("Number of instructions: " .. num_instructions .. ".")
-	for i = 1, num_instructions do
-		decimal_instruction = get_int(split_table(bytes, byte_table_pointer, #bytes), size_instruction)
-		byte_table_pointer = byte_table_pointer + size_instruction
-		binary_instruction = convert_to_bits(decimal_instruction)
-		-- opcodes are the first (least significant) six bits
-		decimal_opcode = tonumber(binary_instruction:sub(27, 32), 2)
-		instruction_type = opcode_types[decimal_opcode + 1]
-		A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
-		if instruction_type == "ABC" then
-			C_register_index = tonumber(binary_instruction:sub(10, 18), 2)
-			B_register_index = tonumber(binary_instruction:sub(1, 9), 2)
-		elseif instruction_type == "ABx" then
-			B_register_index = tonumber(binary_instruction:sub(1, 18), 2)
-		else
-			B_register_index = tonumber(binary_instruction:sub(1, 18), 2) - 131071
+	if num_instructions > 0 then
+		for i = 1, num_instructions do
+			decimal_instruction = get_int(split_table(bytes, byte_table_pointer, #bytes), size_instruction)
+			byte_table_pointer = byte_table_pointer + size_instruction
+			binary_instruction = convert_to_bits(decimal_instruction)
+			-- opcodes are the first (least significant) six bits
+			decimal_opcode = tonumber(binary_instruction:sub(27, 32), 2)
+			instruction_type = opcode_types[decimal_opcode + 1]
+			A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
+			if instruction_type == "ABC" then
+				C_register_index = tonumber(binary_instruction:sub(10, 18), 2)
+				B_register_index = tonumber(binary_instruction:sub(1, 9), 2)
+			elseif instruction_type == "ABx" then
+				B_register_index = tonumber(binary_instruction:sub(1, 18), 2)
+			else
+				B_register_index = tonumber(binary_instruction:sub(1, 18), 2) - 131071
+			end
+			print("Binary representation of instruction: " .. binary_instruction)
+			print("Opcode: " .. decimal_opcode)
+			-- +1 for table lookup because instruction numbers start at zero
+			print("Instruction name: " .. opcode_names[decimal_opcode + 1])
+			print("Instruction type: " .. instruction_type)
+			print("Instruction description: " .. opcode_descriptions[decimal_opcode + 1])
+			print("Index A in R[A]: " .. A_register_index)
+			print("Index B in R[B]: " .. B_register_index)
+			if C_register_index then
+				print("Index C in R[C]: " .. C_register_index)
+			end
 		end
-		print("Binary representation of instruction: " .. binary_instruction)
-		print("Opcode: " .. decimal_opcode)
-		-- +1 for table lookup because instruction numbers start at zero
-		print("Instruction name: " .. opcode_names[decimal_opcode + 1])
-		print("Instruction type: " .. instruction_type)
-		print("Instruction description: " .. opcode_descriptions[decimal_opcode + 1])
-		print("Index A in R[A]: " .. A_register_index)
-		print("Index B in R[B]: " .. B_register_index)
-		if C_register_index then
-			print("Index C in R[C]: " .. C_register_index)
-		end
-	end
-	-- moving on to the constants
-	num_constants = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int)
-	byte_table_pointer = byte_table_pointer + size_int
-	print("Number of constants: " .. num_constants)
-	for i = 1, num_constants do
-		-- +1 for table lookup because constant numbers start at zero
-		constant_type = constant_types[tonumber(bytes[byte_table_pointer], 16) + 1]
-		byte_table_pointer = byte_table_pointer + 1
-		print("Constant type: " .. constant_type)
-		if constant_type == "LUA_TBOOLEAN" then
-			-- unsure how large the data is
-			constant_bool_value = tonumber(bytes[byte_table_pointer], 16)
+		-- moving on to the constants
+		num_constants = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int)
+		byte_table_pointer = byte_table_pointer + size_int
+		print("Number of constants: " .. num_constants)
+		for i = 1, num_constants do
+			-- +1 for table lookup because constant numbers start at zero
+			constant_type = constant_types[tonumber(bytes[byte_table_pointer], 16) + 1]
 			byte_table_pointer = byte_table_pointer + 1
-			print("Constant boolean value: " .. constant_bool_value)
-		elseif constant_type  == "LUA_TNUMBER" then
-			--constant_number_value = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number)
-			byte_table_pointer = byte_table_pointer + size_lua_number
-			--print("Constant number value: " .. constant_number_value)
-		elseif constant_type == "LUA_TSTRING" then
-			-- why do I need to use size_lua_number instead of size_int to make this work?
-			constant_string_size = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number)
-			byte_table_pointer = byte_table_pointer + size_lua_number
-			constant_string = get_string(split_table(bytes, byte_table_pointer, #bytes), constant_string_size)
-			byte_table_pointer = byte_table_pointer + constant_string_size
-			print("Constant string value: " .. constant_string)
-		end -- LUA_TNIL has nothing
+			print("Constant type: " .. constant_type)
+			if constant_type == "LUA_TBOOLEAN" then
+				-- unsure how large the data is
+				constant_bool_value = tonumber(bytes[byte_table_pointer], 16)
+				byte_table_pointer = byte_table_pointer + 1
+				print("Constant boolean value: " .. constant_bool_value)
+			elseif constant_type  == "LUA_TNUMBER" then
+				--constant_number_value = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number)
+				byte_table_pointer = byte_table_pointer + size_lua_number
+				--print("Constant number value: " .. constant_number_value)
+			elseif constant_type == "LUA_TSTRING" then
+				-- why do I need to use size_lua_number instead of size_int to make this work?
+				constant_string_size = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number)
+				byte_table_pointer = byte_table_pointer + size_lua_number
+				constant_string = get_string(split_table(bytes, byte_table_pointer, #bytes), constant_string_size)
+				byte_table_pointer = byte_table_pointer + constant_string_size
+				print("Constant string value: " .. constant_string)
+			end -- LUA_TNIL has nothing
+		end
+		-- moving on to the function prototypes
+		num_prototypes = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int)
+		byte_table_pointer = byte_table_pointer + size_int
+		print("Number of function prototypes: " .. num_prototypes)
+		for i = 1, num_constants do
+			decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
+		end
 	end
 end
 
@@ -248,7 +254,7 @@ function read_bytecode(file)
 	else
 		bytes = get_bytes(bytecode_content)
 		endianness, size_int, size_t, size_instruction, size_lua_number = decode_header(bytes)
-		decode_function(bytes, endianness, size_int, size_t, size_instruction, size_lua_number)	
+		decode_function(13, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)	
 	end
 end
 
