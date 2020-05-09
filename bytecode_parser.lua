@@ -3,7 +3,6 @@
 
 --[[ 
 TODO:
-Figure out how to parse doubles.
 Should be able to invoke Lua 5.1 bytecode compiler if the user inputs a source file.
 Would be nice to have an interactive mode for parsing code that the user writes on the command line.
 Code needs serious restructuring.
@@ -141,8 +140,14 @@ function convert_to_bits(decimal_num, num_total_bits) -- could not find built-in
     return binary_num -- returns in string format
 end
 
-function get_double_from_bits(bits, endianness)
-
+function get_double_from_bits(bits) -- assumes string format
+	sign = bits:sub(1, 1)
+	exponent = tonumber(bits:sub(2, 12), 2) - 1023
+	fraction = 1
+	for i = 1, 52 do
+		fraction = fraction + 2^(-i)*tonumber(bits:sub(12+i, 12+i))
+	end
+	return (-1)^sign * fraction * 2^exponent
 end
 
 function get_int(input, int_size, endianness)
@@ -272,12 +277,10 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 				print("Constant boolean value: " .. constant_bool_value)
 			elseif constant_type  == "LUA_TNUMBER" then
 				decimal_constant_number = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number, endianness)
-				-- print(decimal_constant_number)
 				constant_number_bits = convert_to_bits(decimal_constant_number, 64)
-				constant_number_value = get_double_from_bits(constant_number_bits, endianness)
+				constant_number_value = get_double_from_bits(constant_number_bits)
 				byte_table_pointer = byte_table_pointer + size_lua_number
-				-- print(constant_number_bits)
-				-- print("Constant number value: " .. constant_number_value)
+				print("Constant number value: " .. constant_number_value)
 			elseif constant_type == "LUA_TSTRING" then
 				-- why do I need to use size_lua_number instead of size_int to make this work?
 				constant_string_size = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number, endianness)
