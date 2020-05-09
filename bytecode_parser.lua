@@ -95,24 +95,54 @@ function split_table(table, start_index, end_index)
 	return return_table
 end
 
-function convert_to_bits(decimal_num, endianness) -- could not find built-in function
+function convert_to_bits(decimal_num, num_total_bits) -- could not find built-in function
+    -- this should not care about endianness
+    -- we take care of that when reading in the decimal representation
     if type(decimal_num) ~= number then
     	decimal_num = tonumber(decimal_num)
+    end
+    is_signed = false
+    if decimal_num < 0 then
+    	is_signed = true
+    	decimal_num = decimal_num*-1
     end
     binary_num = ""
     while decimal_num > 0 do
         rest = math.fmod(decimal_num, 2)
-        if endianness == 0 then
-        	binary_num = binary_num .. math.floor(rest)
-        else
-        	binary_num = math.floor(rest) .. binary_num
-        end
+        binary_num = math.floor(rest) .. binary_num
         decimal_num = (decimal_num - rest) / 2
     end
-    while #binary_num < 32 do -- add padding to the left of the number
+    -- add padding to the left of the number
+    while #binary_num < num_total_bits do
     	binary_num = "0" .. binary_num
     end
+    if is_signed then
+    	found_one = false
+    	position_one = -1
+    	for i = num_total_bits, 1, -1 do
+    		if binary_num:sub(i, i) == "1" then
+    			found_one = true
+    			position_one = i
+    			break
+    		end
+    	end
+    	new_binary_num = binary_num:sub(position_one, num_total_bits)
+    	if position_one ~= -1 then
+	    	for i = position_one - 1, 1, -1 do
+	    		if binary_num:sub(i, i) == "1" then
+	    			new_binary_num = "0" .. new_binary_num
+	    		else
+	    			new_binary_num = "1" .. new_binary_num
+	    		end
+	    	end
+	    	binary_num = new_binary_num
+	    end
+    end
     return binary_num -- returns in string format
+end
+
+function get_double_from_bits(bits, endianness)
+
 end
 
 function get_int(input, int_size, endianness)
@@ -155,7 +185,7 @@ function decode_header(bytes_table) -- nothing here is affected by endianness
 	-- little-endian: most significant bytes last
 	endianness = tonumber(bytes_table[7], 16)
 	endianness_string = "big" -- 0 represents big-endian
-	if endianneess == 1 then
+	if endianness == 1 then
 		endianness_string = "little" -- 1 represents little-endian
 	end
 	size_int = tonumber(bytes_table[8], 16)
@@ -202,8 +232,8 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 		for i = 1, num_instructions do
 			decimal_instruction = get_int(split_table(bytes, byte_table_pointer, #bytes), size_instruction, endianness)
 			byte_table_pointer = byte_table_pointer + size_instruction
-			binary_instruction = convert_to_bits(decimal_instruction, endianness)
-			-- opcodes are the first (least significant) six bits
+			binary_instruction = convert_to_bits(decimal_instruction, 32)
+			-- opcodes are the least significant six bits
 			decimal_opcode = tonumber(binary_instruction:sub(27, 32), 2)
 			instruction_type = opcode_types[decimal_opcode + 1]
 			A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
@@ -237,14 +267,17 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 			byte_table_pointer = byte_table_pointer + 1
 			print("Constant type: " .. constant_type)
 			if constant_type == "LUA_TBOOLEAN" then
-				-- unsure how large the data is
 				constant_bool_value = tonumber(bytes[byte_table_pointer], 16)
 				byte_table_pointer = byte_table_pointer + 1
 				print("Constant boolean value: " .. constant_bool_value)
 			elseif constant_type  == "LUA_TNUMBER" then
-				--constant_number_value = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number, endianness)
+				decimal_constant_number = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number, endianness)
+				-- print(decimal_constant_number)
+				constant_number_bits = convert_to_bits(decimal_constant_number, 64)
+				constant_number_value = get_double_from_bits(constant_number_bits, endianness)
 				byte_table_pointer = byte_table_pointer + size_lua_number
-				--print("Constant number value: " .. constant_number_value)
+				-- print(constant_number_bits)
+				-- print("Constant number value: " .. constant_number_value)
 			elseif constant_type == "LUA_TSTRING" then
 				-- why do I need to use size_lua_number instead of size_int to make this work?
 				constant_string_size = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number, endianness)
@@ -258,8 +291,10 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 		num_prototypes = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int, endianness)
 		byte_table_pointer = byte_table_pointer + size_int
 		print("Number of function prototypes: " .. num_prototypes)
-		for i = 1, num_constants do
-			decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
+		if num_prototypes > 0 then
+			for i = 1, num_constants do
+				decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
+			end
 		end
 	end
 end
