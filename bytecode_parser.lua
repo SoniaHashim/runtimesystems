@@ -7,24 +7,22 @@ Test extensively and compare output to other bytecode parsers.
 Test on an architecture that uses big endian.
 Should be able to invoke Lua 5.1 bytecode compiler if the user inputs a source file.
 Would be nice to have an interactive mode for parsing code that the user writes on the command line.
-Code needs serious restructuring.
-Output format is terrible.
 Attempt a rewrite for Lua 5.2.
 Attempt to document Lua 5.3 bytecode and rewrite.
 Probably hard: actually produce the source code that the bytecode was constructed from.
 --]] 
 
 opcode_names =
-	{"MOVE",     "LOADK",     "LOADBOOL", "LOADNIL",
+	{"MOVE", "LOADK", "LOADBOOL", "LOADNIL",
     "GETUPVAL", "GETGLOBAL", "GETTABLE", "SETGLOBAL",
-    "SETUPVAL", "SETTABLE",  "NEWTABLE", "SELF",
-    "ADD",      "SUB",       "MUL",      "DIV",
-    "MOD",      "POW",       "UNM",      "NOT",
-    "LEN",      "CONCAT",    "JMP",      "EQ",
-    "LT",       "LE",        "TEST",     "TESTSET",
-    "CALL",     "TAILCALL",  "RETURN",   "FORLOOP",
-    "FORPREP",  "TFORLOOP",  "SETLIST",  "CLOSE",
-    "CLOSURE",  "VARARG"}
+    "SETUPVAL", "SETTABLE", "NEWTABLE", "SELF",
+    "ADD", "SUB", "MUL", "DIV",
+    "MOD", "POW", "UNM", "NOT",
+    "LEN", "CONCAT", "JMP", "EQ",
+    "LT", "LE", "TEST", "TESTSET",
+    "CALL", "TAILCALL", "RETURN", "FORLOOP",
+    "FORPREP", "TFORLOOP", "SETLIST", "CLOSE",
+    "CLOSURE", "VARARG"}
 
 opcode_types =
 	{"ABC",  "ABx", "ABC",  "ABC",
@@ -90,14 +88,6 @@ function file_exists(file)
   return f ~= nil
 end
 
-function split_table(table, start_index, end_index)
-	return_table = {}
-	for i = start_index, end_index do
-		return_table[#return_table + 1] = table[i]
-	end
-	return return_table
-end
-
 function convert_to_bits(decimal_num, num_total_bits) -- could not find built-in function
     -- this should not care about endianness
     -- we take care of that when reading in the decimal representation
@@ -154,33 +144,37 @@ function get_double_from_bits(bits) -- assumes string format
 	return (-1)^sign * fraction * 2^exponent
 end
 
-function get_int(input, int_size, endianness)
+function get_int(input_table, byte_table_pointer, int_size, endianness)
 	return_int = ""
-	if not input then
+	if not input_table then
 		return nil
 	end
 	for i = 1, int_size do
-		if not input[i] then
+		if not input_table[byte_table_pointer+i-1] then
 			return nil
 		end
 		if endianness == 0 then
-			return_int = return_int .. input[i]
+			return_int = return_int .. input_table[byte_table_pointer+i-1]
 		else
-			return_int = input[i] .. return_int
+			return_int = input_table[byte_table_pointer+i-1] .. return_int
 		end
 	end
-	return tonumber(return_int, 16)
+	return tonumber(return_int, 16), byte_table_pointer + int_size
 end
 
-function get_string(input, string_size)
+function get_string(input_table, byte_table_pointer, string_size)
 	return_string = ""
 	for i = 1, string_size - 1 do -- last character is a 0 (ignore)
-		return_string = return_string .. string.char(tonumber(input[i], 16))
+		return_string = return_string .. string.char(tonumber(input_table[byte_table_pointer+i-1], 16))
 	end
-	return return_string
+	return return_string, byte_table_pointer + string_size
 end
 
-function get_bytes(input)
+function get_byte(input_table, byte_table_pointer)
+	return tonumber(bytes[byte_table_pointer], 16), byte_table_pointer + 1
+end
+
+function get_bytecode_as_bytes(input)
 	bytes = {}
 	for i = 1, string.len(input) do
 		bytes[#bytes + 1] = string.format("%02X", input:byte(i))
@@ -189,6 +183,7 @@ function get_bytes(input)
 end
 
 function decode_header(bytes_table) -- nothing here is affected by endianness
+	print("HEADER INFORMATION")
 	print("The Lua version number is " .. bytes_table[5]:sub(1, 1) .. "." .. bytes_table[5]:sub(2, 2) .. ".")
 	-- big-endian: most significant bytes first
 	-- little-endian: most significant bytes last
@@ -201,35 +196,29 @@ function decode_header(bytes_table) -- nothing here is affected by endianness
 	size_t = tonumber(bytes_table[9], 16)
 	size_instruction = tonumber(bytes_table[10], 16)
 	size_lua_number = tonumber(bytes_table[11], 16)
-	-- add integral flag
+	integral_flag = tonumber(bytes_table[12], 16)
 	print("Endianness: " .. endianness_string .. " endian.")
 	print("int: " .. size_int .. " bytes.")
 	print("size_t: " .. size_t .. " bytes.")
 	print("Instruction: " .. size_instruction .. " bytes.")
 	print("lua_Number: " .. size_lua_number .. " bytes.")
+	print("Integral flag: " .. integral_flag .. ".")
 	return endianness, size_int, size_t, size_instruction, size_lua_number
 end
 
 function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
-	source_name_size = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int, endianness)
+	print("----------------------------------------------------------------------------------------")
+	print("CHUNK INFORMATION")
+	source_name_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
+	source_name, byte_table_pointer = get_string(bytes, byte_table_pointer, source_name_size)
 	byte_table_pointer = byte_table_pointer + size_int
-	source_name = get_string(split_table(bytes, byte_table_pointer, #bytes), source_name_size)
-	byte_table_pointer = byte_table_pointer + source_name_size + size_int
-	start_line = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int, endianness)
-	byte_table_pointer = byte_table_pointer + size_int
-	end_line = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int, endianness)
-	byte_table_pointer = byte_table_pointer + size_int
-	num_upvalues = tonumber(bytes[byte_table_pointer], 16)
-	byte_table_pointer = byte_table_pointer + 1
-	num_parameters = tonumber(bytes[byte_table_pointer], 16)
-	byte_table_pointer = byte_table_pointer + 1
-	is_vararg_flag = tonumber(bytes[byte_table_pointer], 16)
-	byte_table_pointer = byte_table_pointer + 1
-	max_stack_size = tonumber(bytes[byte_table_pointer], 16)
-	byte_table_pointer = byte_table_pointer + 1
-	num_instructions = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int, endianness)
-	byte_table_pointer = byte_table_pointer + size_int
-	print("Source name: " .. source_name .. ".")
+	start_line, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
+	end_line, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
+	num_upvalues, byte_table_pointer = get_byte(bytes, byte_table_pointer)
+	num_parameters, byte_table_pointer = get_byte(bytes, byte_table_pointer)
+	is_vararg_flag, byte_table_pointer = get_byte(bytes, byte_table_pointer)
+	max_stack_size, byte_table_pointer = get_byte(bytes, byte_table_pointer)
+	num_instructions, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 	print("Line defined: " .. start_line .. ".")
 	print("Last line defined: " .. end_line .. ".")
 	print("Number of upvalues: " .. num_upvalues .. ".")
@@ -237,10 +226,10 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 	print("is_vararg_flag: " .. is_vararg_flag .. ".")
 	print("Maximum stack size: " .. max_stack_size .. ".")
 	print("Number of instructions: " .. num_instructions .. ".")
+	print("--------------------------------------------------")
 	if num_instructions > 0 then
 		for i = 1, num_instructions do
-			decimal_instruction = get_int(split_table(bytes, byte_table_pointer, #bytes), size_instruction, endianness)
-			byte_table_pointer = byte_table_pointer + size_instruction
+			decimal_instruction, byte_table_pointer = get_int(bytes, byte_table_pointer, size_instruction, endianness)
 			binary_instruction = convert_to_bits(decimal_instruction, 32)
 			-- opcodes are the least significant six bits
 			decimal_opcode = tonumber(binary_instruction:sub(27, 32), 2)
@@ -254,54 +243,43 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 			else
 				B_register_index = tonumber(binary_instruction:sub(1, 18), 2) - 131071
 			end
-			print("Binary representation of instruction: " .. binary_instruction)
-			print("Opcode: " .. decimal_opcode)
-			-- +1 for table lookup because instruction numbers start at zero
-			print("Instruction name: " .. opcode_names[decimal_opcode + 1])
-			print("Instruction type: " .. instruction_type)
-			print("Instruction description: " .. opcode_descriptions[decimal_opcode + 1])
-			print("Index A in R[A]: " .. A_register_index)
-			print("Index B in R[B]: " .. B_register_index)
+			instruction_operands = A_register_index .. " " .. B_register_index
 			if instruction_type == "ABC" then
-				print("Index C in R[C]: " .. C_register_index)
+				instruction_operands = instruction_operands .. " " .. C_register_index
 			end
+			-- +1 for table lookup because instruction numbers start at zero
+			print(opcode_names[decimal_opcode + 1] .. " " .. instruction_operands .. " (" .. instruction_type .. "): \t" .. opcode_descriptions[decimal_opcode + 1]) 
 		end
+		print("--------------------------------------------------")
 		-- moving on to the constants
-		num_constants = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int, endianness)
-		byte_table_pointer = byte_table_pointer + size_int
+		num_constants, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 		print("Number of constants: " .. num_constants)
 		for i = 1, num_constants do
+			constant_type_index, byte_table_pointer = get_byte(bytes, byte_table_pointer)
 			-- +1 for table lookup because constant numbers start at zero
-			constant_type = constant_types[tonumber(bytes[byte_table_pointer], 16) + 1]
-			byte_table_pointer = byte_table_pointer + 1
-			print("Constant type: " .. constant_type)
+			constant_type = constant_types[constant_type_index + 1]
+			constant_data = ""
 			if constant_type == "LUA_TBOOLEAN" then
-				constant_bool_value = tonumber(bytes[byte_table_pointer], 16)
-				byte_table_pointer = byte_table_pointer + 1
-				print("Constant boolean value: " .. constant_bool_value)
+				constant_data, byte_table_pointer = get_byte(bytes, byte_table_pointer)
 			elseif constant_type  == "LUA_TNUMBER" then
-				decimal_constant_number = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number, endianness)
+				decimal_constant_number, byte_table_pointer = get_int(bytes, byte_table_pointer, size_lua_number, endianness)
 				constant_number_bits = convert_to_bits(decimal_constant_number, 64)
-				constant_number_value = get_double_from_bits(constant_number_bits)
-				byte_table_pointer = byte_table_pointer + size_lua_number
-				print("Constant number value: " .. constant_number_value)
+				constant_data = get_double_from_bits(constant_number_bits)
 			elseif constant_type == "LUA_TSTRING" then
 				-- why do I need to use size_lua_number instead of size_int to make this work?
-				constant_string_size = get_int(split_table(bytes, byte_table_pointer, #bytes), size_lua_number, endianness)
-				byte_table_pointer = byte_table_pointer + size_lua_number
-				constant_string = get_string(split_table(bytes, byte_table_pointer, #bytes), constant_string_size)
-				byte_table_pointer = byte_table_pointer + constant_string_size
-				print("Constant string value: " .. constant_string)
-			end -- LUA_TNIL has nothing
+				constant_string_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_lua_number, endianness)
+				constant_data, byte_table_pointer = get_string(bytes, byte_table_pointer, constant_string_size)
+			else
+				constant_data = "" -- LUA_TNIL has nothing
+			end
+			print(constant_type .. " " .. constant_data)
 		end
+		print("--------------------------------------------------")
 		-- moving on to the function prototypes
-		num_prototypes = get_int(split_table(bytes, byte_table_pointer, #bytes), size_int, endianness)
-		byte_table_pointer = byte_table_pointer + size_int
+		num_prototypes, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 		print("Number of function prototypes: " .. num_prototypes)
 		if num_prototypes > 0 then
-			for i = 1, num_constants do
-				decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
-			end
+			decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
 		end
 	end
 end
@@ -314,7 +292,8 @@ function read_bytecode(file)
 		-- \xNN escape character: NN is a two-digit hex number
 		print("The file " .. file .. " is not a Lua bytecode file.")
 	else
-		bytes = get_bytes(bytecode_content)
+		bytes = get_bytecode_as_bytes(bytecode_content)
+		
 		endianness, size_int, size_t, size_instruction, size_lua_number = decode_header(bytes)
 		decode_function(13, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)	
 	end
