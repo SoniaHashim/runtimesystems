@@ -209,9 +209,8 @@ end
 function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
 	print("----------------------------------------------------------------------------------------")
 	print("CHUNK INFORMATION")
-	source_name_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
+	source_name_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_t, endianness)
 	source_name, byte_table_pointer = get_string(bytes, byte_table_pointer, source_name_size)
-	byte_table_pointer = byte_table_pointer + size_int
 	start_line, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 	end_line, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 	num_upvalues, byte_table_pointer = get_byte(bytes, byte_table_pointer)
@@ -266,8 +265,7 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 				constant_number_bits = convert_to_bits(decimal_constant_number, 64)
 				constant_data = get_double_from_bits(constant_number_bits)
 			elseif constant_type == "LUA_TSTRING" then
-				-- why do I need to use size_lua_number instead of size_int to make this work?
-				constant_string_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_lua_number, endianness)
+				constant_string_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_t, endianness)
 				constant_data, byte_table_pointer = get_string(bytes, byte_table_pointer, constant_string_size)
 			else
 				constant_data = "" -- LUA_TNIL has nothing
@@ -279,9 +277,48 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 		num_prototypes, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 		print("Number of function prototypes: " .. num_prototypes)
 		if num_prototypes > 0 then
-			decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
+			byte_table_pointer = decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
 		end
+		print("--------------------------------------------------")
+		-- moving on to the (optional) source line position list
+		print("Optional parts of chunk:")
+		sizelineinfo, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
+		if sizelineinfo then
+			print("Size of source line positions list: " .. sizelineinfo)
+			if sizelineinfo > 0 then
+				for i = 1, sizelineinfo do
+					source_line_position, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
+				end
+			end
+		end
+		-- moving on to the (optional) local variable list
+		sizelocvars, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
+		if sizelocvars then
+			print("Size of locals list: " .. sizelocvars)
+			if sizelocvars > 0 then
+				for i = 1, sizelocvars do
+					varname_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_t, endianness)
+					varname, byte_table_pointer = get_string(bytes, byte_table_pointer, varname_size)
+					startpc, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
+					endpc, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
+				end
+			end
+		end
+		-- moving on to the (optional) upvalues list
+		sizeupvalues, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
+		if sizeupvalues then
+			print("Size of upvalues list: " .. sizeupvalues)
+			if sizeupvalues > 0 then
+				for i = 1, sizeupvalues do
+					upvalue_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_t, endianness)
+					upvalue, byte_table_pointer = get_string(bytes, byte_table_pointer, 3)
+					print(upvalue)
+				end
+			end
+		end
+		print("----------------------------------------------------------------------------------------")
 	end
+	return byte_table_pointer
 end
 
 function read_bytecode(file)
@@ -293,7 +330,6 @@ function read_bytecode(file)
 		print("The file " .. file .. " is not a Lua bytecode file.")
 	else
 		bytes = get_bytecode_as_bytes(bytecode_content)
-		
 		endianness, size_int, size_t, size_instruction, size_lua_number = decode_header(bytes)
 		decode_function(13, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)	
 	end
