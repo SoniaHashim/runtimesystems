@@ -94,3 +94,25 @@
 
 - Looked at more profilers (updated the [readme](readme.md)). Code is no longer maintained and required fixing.
 - Investigated [Luapower](https://luapower.com), which is a distribution for [LuaJIT](https://luajit.org/install.html), [Terra](http://terralang.org/) and [OpenResty](https://openresty.org/en/).
+
+[200515]
+
+- Note: using this is as scratch space
+
+Projects to get source code to analyze from:
+
+[pix2pix](https://github.com/phillipi/pix2pix) by phililipi: Torch implementation of pix2pix.
+
+[koreader](https://github.com/koreader/koreader) by koreader: ebook reader application (note: uses luajit).
+
+[fairseq](https://github.com/facebookresearch/fairseq) by Facebook AI research: sequence-to-sequence learning toolkit for Torch (note: luajit recommended).
+
+[lite](https://github.com/rxi/lite) by rxi: lightweight text editor.
+
+[LuaRocks](https://github.com/luarocks/luarocks) by luarocks: package manager for Lua modules.
+
+[LuaMidi](https://github.com/PedroAlvesV/LuaMidi) by PedroAlvesV: pure Lua lib for reading / writing MIDI files.
+
+[lunamark](https://github.com/jgm/lunamark) by jgm: Lua lib for conversion between markup formats.
+
+[anim8](https://github.com/kikito/anim8) by kikito: Animation library for LÖVE game engine.
