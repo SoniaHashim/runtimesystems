@@ -58,7 +58,7 @@ Proceedings of ACM HOPL III (2007) 2-1–2-26
 - Lua 5.1 source has 17k LOC (the Lua interpreter built with all Lua standard libraries takes 143K on Linux)
 - 1993 Tecgraf (CG Group of the pontifical Catholic University of Rio de Janeiro), market reserve for hardware / software, Tecgraf developed data-entry and configurable report generators for Petrobas (Del and Sol were the precursors to Lua). It's why data description was a motivation for the design of Lua
 - booleans and threads introduced as types in Lua 5.0
-![Fig. 1 Evolution of Lua][../weeks4&5/evolution-of-lua.png]
+![Fig. 1 Evolution of Lua](../weeks4&5/evolution-of-lua.png)
 - VM stack based until Lua 4.0, register based since 5.0 to minimize time in instruction dispatch based on result in [this paper](https://dl.acm.org/doi/10.1145/858570.858575) that register format reduces the number of executed instructions (according to authors first widespread use of register-based virtual machine)
 
 
