@@ -1,0 +1,358 @@
+-- BYTECODE -- readerpaging_spec.lua:6-12
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "ui/uimanager"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; UIManager
+0008    GGET     0   0      ; "require"
+0009    KSTR     1   3      ; "ui/event"
+0010    CALL     0   2   2
+0011    USETV    1   0      ; Event
+0012    GGET     0   0      ; "require"
+0013    KSTR     1   4      ; "document/documentregistry"
+0014    CALL     0   2   2
+0015    USETV    2   0      ; DocumentRegistry
+0016    GGET     0   0      ; "require"
+0017    KSTR     1   5      ; "apps/reader/readerui"
+0018    CALL     0   2   2
+0019    USETV    3   0      ; ReaderUI
+0020    RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:15-20
+0001    UGET     0   1      ; ReaderUI
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "new"
+0004    TDUP     2   2
+0005    UGET     3   2      ; DocumentRegistry
+0006    MOV      4   3
+0007    TGETS    3   3   1  ; "openDocument"
+0008    UGET     5   3      ; sample_pdf
+0009    CALL     3   2   3
+0010    TSETS    3   2   3  ; "document"
+0011    CALL     0   2   3
+0012    USETV    0   0      ; readerui
+0013    UGET     0   0      ; readerui
+0014    TGETS    0   0   4  ; "paging"
+0015    USETV    4   0      ; paging
+0016    RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:25-25
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; readerui
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:31-33
+0001    USETP    0   2      ; called
+0002    RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:22-38
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    UGET     0   0      ; UIManager
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "show"
+0008    UGET     2   1      ; readerui
+0009    CALL     0   1   3
+0010    UGET     0   0      ; UIManager
+0011    MOV      1   0
+0012    TGETS    0   0   2  ; "nextTick"
+0013    FNEW     2   3      ; readerpaging_spec.lua:25
+0014    CALL     0   1   3
+0015    UGET     0   0      ; UIManager
+0016    MOV      1   0
+0017    TGETS    0   0   4  ; "run"
+0018    CALL     0   1   2
+0019    UGET     0   1      ; readerui
+0020    MOV      1   0
+0021    TGETS    0   0   5  ; "handleEvent"
+0022    UGET     2   2      ; Event
+0023    MOV      3   2
+0024    TGETS    2   2   6  ; "new"
+0025    KSTR     4   7      ; "SetScrollMode"
+0026    KPRI     5   1
+0027    CALL     2   0   4
+0028    CALLM    0   1   1
+0029    UGET     0   1      ; readerui
+0030    TGETS    0   0   8  ; "zooming"
+0031    MOV      1   0
+0032    TGETS    0   0   9  ; "setZoomMode"
+0033    KSTR     2  10      ; "pageheight"
+0034    CALL     0   1   3
+0035    UGET     0   3      ; paging
+0036    MOV      1   0
+0037    TGETS    0   0  11  ; "onGotoPage"
+0038    UGET     2   1      ; readerui
+0039    TGETS    2   2  12  ; "document"
+0040    MOV      3   2
+0041    TGETS    2   2  13  ; "getPageCount"
+0042    CALL     2   0   2
+0043    CALLM    0   1   1
+0044    KPRI     0   1
+0045    UGET     1   1      ; readerui
+0046    FNEW     2  15      ; readerpaging_spec.lua:31
+0047    TSETS    2   1  14  ; "onEndOfBook"
+0048    UGET     1   3      ; paging
+0049    MOV      2   1
+0050    TGETS    1   1  16  ; "onGotoViewRel"
+0051    KSHORT   3   1
+0052    CALL     1   1   3
+0053    GGET     1  17      ; "assert"
+0054    TGETS    1   1  18  ; "is"
+0055    TGETS    1   1  19  ; "truthy"
+0056    MOV      2   0
+0057    CALL     1   1   2
+0058    UGET     1   1      ; readerui
+0059    KPRI     2   0
+0060    TSETS    2   1  14  ; "onEndOfBook"
+0061    UGET     1   0      ; UIManager
+0062    MOV      2   1
+0063    TGETS    1   1   0  ; "quit"
+0064    CALL     1   1   2
+0065    UCLO     0 => 0066
+0066 => RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:14-39
+0001    GGET     0   0      ; "setup"
+0002    FNEW     1   1      ; readerpaging_spec.lua:15
+0003    CALL     0   1   2
+0004    GGET     0   2      ; "it"
+0005    KSTR     1   3      ; "should emit EndOfBook event at the end"
+0006    FNEW     2   4      ; readerpaging_spec.lua:22
+0007    CALL     0   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:42-52
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/util"
+0003    CALL     0   2   2
+0004    TGETS    0   0   2  ; "purgeDir"
+0005    GGET     1   0      ; "require"
+0006    KSTR     2   3      ; "docsettings"
+0007    CALL     1   2   2
+0008    MOV      2   0
+0009    MOV      4   1
+0010    TGETS    3   1   4  ; "getSidecarDir"
+0011    UGET     5   0      ; sample_pdf
+0012    CALL     3   0   3
+0013    CALLM    2   1   0
+0014    GGET     2   5      ; "os"
+0015    TGETS    2   2   6  ; "remove"
+0016    MOV      4   1
+0017    TGETS    3   1   7  ; "getHistoryPath"
+0018    UGET     5   0      ; sample_pdf
+0019    CALL     3   0   3
+0020    CALLM    2   1   0
+0021    UGET     2   2      ; ReaderUI
+0022    MOV      3   2
+0023    TGETS    2   2   8  ; "new"
+0024    TDUP     4  10
+0025    UGET     5   3      ; DocumentRegistry
+0026    MOV      6   5
+0027    TGETS    5   5   9  ; "openDocument"
+0028    UGET     7   0      ; sample_pdf
+0029    CALL     5   2   3
+0030    TSETS    5   4  11  ; "document"
+0031    CALL     2   2   3
+0032    USETV    1   2      ; readerui
+0033    UGET     2   1      ; readerui
+0034    TGETS    2   2  12  ; "paging"
+0035    USETV    4   2      ; paging
+0036    RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:57-57
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; readerui
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:64-66
+0001    USETP    0   2      ; called
+0002    RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:54-72
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    UGET     0   0      ; UIManager
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "show"
+0008    UGET     2   1      ; readerui
+0009    CALL     0   1   3
+0010    UGET     0   0      ; UIManager
+0011    MOV      1   0
+0012    TGETS    0   0   2  ; "nextTick"
+0013    FNEW     2   3      ; readerpaging_spec.lua:57
+0014    CALL     0   1   3
+0015    UGET     0   0      ; UIManager
+0016    MOV      1   0
+0017    TGETS    0   0   4  ; "run"
+0018    CALL     0   1   2
+0019    UGET     0   2      ; paging
+0020    TNEW     1   0
+0021    TSETS    1   0   5  ; "page_positions"
+0022    UGET     0   1      ; readerui
+0023    MOV      1   0
+0024    TGETS    0   0   6  ; "handleEvent"
+0025    UGET     2   3      ; Event
+0026    MOV      3   2
+0027    TGETS    2   2   7  ; "new"
+0028    KSTR     4   8      ; "SetScrollMode"
+0029    KPRI     5   2
+0030    CALL     2   0   4
+0031    CALLM    0   1   1
+0032    UGET     0   2      ; paging
+0033    MOV      1   0
+0034    TGETS    0   0   9  ; "onGotoPage"
+0035    UGET     2   1      ; readerui
+0036    TGETS    2   2  10  ; "document"
+0037    MOV      3   2
+0038    TGETS    2   2  11  ; "getPageCount"
+0039    CALL     2   0   2
+0040    CALLM    0   1   1
+0041    UGET     0   1      ; readerui
+0042    TGETS    0   0  12  ; "zooming"
+0043    MOV      1   0
+0044    TGETS    0   0  13  ; "setZoomMode"
+0045    KSTR     2  14      ; "pageheight"
+0046    CALL     0   1   3
+0047    KPRI     0   1
+0048    UGET     1   1      ; readerui
+0049    FNEW     2  16      ; readerpaging_spec.lua:64
+0050    TSETS    2   1  15  ; "onEndOfBook"
+0051    UGET     1   2      ; paging
+0052    MOV      2   1
+0053    TGETS    1   1  17  ; "onGotoViewRel"
+0054    KSHORT   3   1
+0055    CALL     1   1   3
+0056    UGET     1   2      ; paging
+0057    MOV      2   1
+0058    TGETS    1   1  17  ; "onGotoViewRel"
+0059    KSHORT   3   1
+0060    CALL     1   1   3
+0061    GGET     1  18      ; "assert"
+0062    TGETS    1   1  19  ; "is"
+0063    TGETS    1   1  20  ; "truthy"
+0064    MOV      2   0
+0065    CALL     1   1   2
+0066    UGET     1   1      ; readerui
+0067    KPRI     2   0
+0068    TSETS    2   1  15  ; "onEndOfBook"
+0069    UGET     1   0      ; UIManager
+0070    MOV      2   1
+0071    TGETS    1   1   0  ; "quit"
+0072    CALL     1   1   2
+0073    UCLO     0 => 0074
+0074 => RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:74-80
+0001    KSTR     0   0      ; "spec/front/unit/data/djvu3spec.djvu"
+0002    UGET     1   0      ; ReaderUI
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "new"
+0005    TDUP     3   3
+0006    UGET     4   1      ; DocumentRegistry
+0007    MOV      5   4
+0008    TGETS    4   4   2  ; "openDocument"
+0009    MOV      6   0
+0010    CALL     4   2   3
+0011    TSETS    4   3   4  ; "document"
+0012    CALL     1   2   3
+0013    TGETS    2   1   5  ; "paging"
+0014    MOV      3   2
+0015    TGETS    2   2   6  ; "onScrollPanRel"
+0016    KSHORT   4 -100
+0017    CALL     2   1   3
+0018    RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:82-92
+0001    KSTR     0   0      ; "spec/front/unit/data/djvu3spec.djvu"
+0002    UGET     1   0      ; ReaderUI
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "new"
+0005    TDUP     3   3
+0006    UGET     4   1      ; DocumentRegistry
+0007    MOV      5   4
+0008    TGETS    4   4   2  ; "openDocument"
+0009    MOV      6   0
+0010    CALL     4   2   3
+0011    TSETS    4   3   4  ; "document"
+0012    CALL     1   2   3
+0013    TGETS    2   1   5  ; "paging"
+0014    USETV    2   2      ; paging
+0015    UGET     2   2      ; paging
+0016    MOV      3   2
+0017    TGETS    2   2   6  ; "onGotoPage"
+0018    TGETS    4   1   4  ; "document"
+0019    MOV      5   4
+0020    TGETS    4   4   7  ; "getPageCount"
+0021    CALL     4   0   2
+0022    CALLM    2   1   1
+0023    UGET     2   2      ; paging
+0024    MOV      3   2
+0025    TGETS    2   2   8  ; "onScrollPanRel"
+0026    KSHORT   4 120
+0027    CALL     2   1   3
+0028    UGET     2   2      ; paging
+0029    MOV      3   2
+0030    TGETS    2   2   8  ; "onScrollPanRel"
+0031    KSHORT   4  -1
+0032    CALL     2   1   3
+0033    UGET     2   2      ; paging
+0034    MOV      3   2
+0035    TGETS    2   2   8  ; "onScrollPanRel"
+0036    KSHORT   4 120
+0037    CALL     2   1   3
+0038    RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:41-93
+0001    GGET     0   0      ; "setup"
+0002    FNEW     1   1      ; readerpaging_spec.lua:42
+0003    CALL     0   1   2
+0004    GGET     0   2      ; "it"
+0005    KSTR     1   3      ; "should emit EndOfBook event at the end"
+0006    FNEW     2   4      ; readerpaging_spec.lua:54
+0007    CALL     0   1   3
+0008    GGET     0   2      ; "it"
+0009    KSTR     1   5      ; "should scroll backward on the first page"~
+0010    FNEW     2   6      ; readerpaging_spec.lua:74
+0011    CALL     0   1   3
+0012    GGET     0   2      ; "it"
+0013    KSTR     1   7      ; "should scroll forward on the last page w"~
+0014    FNEW     2   8      ; readerpaging_spec.lua:82
+0015    CALL     0   1   3
+0016    RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:1-94
+0001    KSTR     0   0      ; "spec/front/unit/data/sample.pdf"
+0002    KNIL     1   6
+0003    GGET     7   1      ; "setup"
+0004    FNEW     8   2      ; readerpaging_spec.lua:6
+0005    CALL     7   1   2
+0006    GGET     7   3      ; "describe"
+0007    KSTR     8   4      ; "Page mode"
+0008    FNEW     9   5      ; readerpaging_spec.lua:14
+0009    CALL     7   1   3
+0010    GGET     7   3      ; "describe"
+0011    KSTR     8   6      ; "Scroll mode"
+0012    FNEW     9   7      ; readerpaging_spec.lua:41
+0013    CALL     7   1   3
+0014    UCLO     0 => 0015
+0015 => RET0     0   1
+
+-- BYTECODE -- readerpaging_spec.lua:0-95
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "Readerpaging module"
+0003    FNEW     2   2      ; readerpaging_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

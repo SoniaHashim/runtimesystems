@@ -1,0 +1,159 @@
+-- BYTECODE -- filemanagerutil.lua:12-26
+0001    UGET     0   0      ; Device
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "isAndroid"
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0011
+0007    UGET     0   0      ; Device
+0008    TGETS    0   0   1  ; "external_storage"
+0009    CALLT    0   1
+0010    JMP      0 => 0049
+0011 => UGET     0   0      ; Device
+0012    MOV      1   0
+0013    TGETS    0   0   2  ; "isCervantes"
+0014    CALL     0   2   2
+0015    ISF          0
+0016    JMP      1 => 0020
+0017    KSTR     0   3      ; "/mnt/public"
+0018    RET1     0   2
+0019    JMP      0 => 0049
+0020 => UGET     0   0      ; Device
+0021    MOV      1   0
+0022    TGETS    0   0   4  ; "isKindle"
+0023    CALL     0   2   2
+0024    ISF          0
+0025    JMP      1 => 0029
+0026    KSTR     0   5      ; "/mnt/us/documents"
+0027    RET1     0   2
+0028    JMP      0 => 0049
+0029 => UGET     0   0      ; Device
+0030    MOV      1   0
+0031    TGETS    0   0   6  ; "isKobo"
+0032    CALL     0   2   2
+0033    ISF          0
+0034    JMP      1 => 0038
+0035    KSTR     0   7      ; "/mnt/onboard"
+0036    RET1     0   2
+0037    JMP      0 => 0049
+0038 => UGET     0   0      ; Device
+0039    MOV      1   0
+0040    TGETS    0   0   8  ; "isRemarkable"
+0041    CALL     0   2   2
+0042    ISF          0
+0043    JMP      1 => 0047
+0044    KSTR     0   9      ; "/home/root"
+0045    RET1     0   2
+0046    JMP      0 => 0049
+0047 => KSTR     0  10      ; "."
+0048    RET1     0   2
+0049 => RET0     0   1
+
+-- BYTECODE -- filemanagerutil.lua:28-42
+0001    IST          0
+0002    JMP      1 => 0005
+0003    KSTR     1   0      ; ""
+0004    RET1     1   2
+0005 => GGET     1   1      ; "G_reader_settings"
+0006    MOV      2   1
+0007    TGETS    1   1   2  ; "nilOrTrue"
+0008    KSTR     3   3      ; "shorten_home_dir"
+0009    CALL     1   2   3
+0010    ISF          1
+0011    JMP      2 => 0048
+0012    GGET     1   1      ; "G_reader_settings"
+0013    MOV      2   1
+0014    TGETS    1   1   4  ; "readSetting"
+0015    KSTR     3   5      ; "home_dir"
+0016    CALL     1   2   3
+0017    IST          1
+0018    JMP      2 => 0022
+0019    UGET     1   0      ; filemanagerutil
+0020    TGETS    1   1   6  ; "getDefaultDir"
+0021    CALL     1   2   1
+0022 => ISNEV    0   1
+0023    JMP      2 => 0027
+0024    UGET     2   1      ; _
+0025    KSTR     3   7      ; "Home"
+0026    CALLT    2   2
+0027 => MOV      3   1
+0028    TGETS    2   1   8  ; "len"
+0029    CALL     2   2   2
+0030    MOV      4   0
+0031    TGETS    3   0   9  ; "sub"
+0032    KSHORT   5   1
+0033    MOV      6   2
+0034    CALL     3   2   4
+0035    ISNEV    3   1
+0036    JMP      4 => 0048
+0037    MOV      5   0
+0038    TGETS    4   0   9  ; "sub"
+0039    ADDVN    6   2   0  ; 1
+0040    ADDVN    7   2   0  ; 1
+0041    CALL     4   2   4
+0042    ISNES    4  10      ; "/"
+0043    JMP      4 => 0048
+0044    MOV      5   0
+0045    TGETS    4   0   9  ; "sub"
+0046    ADDVN    6   2   1  ; 2
+0047    CALLT    4   3
+0048 => RET1     0   2
+
+-- BYTECODE -- filemanagerutil.lua:45-56
+0001    UGET     1   0      ; util
+0002    TGETS    1   1   0  ; "realpath"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0033
+0007    GGET     2   1      ; "os"
+0008    TGETS    2   2   2  ; "remove"
+0009    UGET     3   1      ; DocSettings
+0010    MOV      4   3
+0011    TGETS    3   3   3  ; "getSidecarFile"
+0012    MOV      5   1
+0013    CALL     3   0   3
+0014    CALLM    2   1   0
+0015    GGET     2   1      ; "os"
+0016    TGETS    2   2   2  ; "remove"
+0017    UGET     3   1      ; DocSettings
+0018    MOV      4   3
+0019    TGETS    3   3   3  ; "getSidecarFile"
+0020    MOV      5   1
+0021    CALL     3   2   3
+0022    KSTR     4   4      ; ".old"
+0023    CAT      3   3   4
+0024    CALL     2   1   2
+0025    GGET     2   1      ; "os"
+0026    TGETS    2   2   2  ; "remove"
+0027    UGET     3   1      ; DocSettings
+0028    MOV      4   3
+0029    TGETS    3   3   5  ; "getSidecarDir"
+0030    MOV      5   1
+0031    CALL     3   0   3
+0032    CALLM    2   1   0
+0033 => RET0     0   1
+
+-- BYTECODE -- filemanagerutil.lua:0-59
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "device"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "docsettings"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ffi/util"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "gettext"
+0012    CALL     3   2   2
+0013    TNEW     4   0
+0014    FNEW     5   6      ; filemanagerutil.lua:12
+0015    TSETS    5   4   5  ; "getDefaultDir"
+0016    FNEW     5   8      ; filemanagerutil.lua:28
+0017    TSETS    5   4   7  ; "abbreviate"
+0018    FNEW     5  10      ; filemanagerutil.lua:45
+0019    TSETS    5   4   9  ; "purgeSettings"
+0020    UCLO     0 => 0021
+0021 => RET1     4   2
+

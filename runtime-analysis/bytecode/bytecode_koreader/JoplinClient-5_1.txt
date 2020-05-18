@@ -1,0 +1,270 @@
+
+main <./plugins/evernote.koplugin/JoplinClient.lua:0,0> (36 instructions, 144 bytes at 0x7feb714068f0)
+0+ params, 5 slots, 0 upvalues, 4 locals, 18 constants, 8 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "json"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "socket.http"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "ltn12"
+	9	[3]	CALL     	2 2 2
+	10	[5]	NEWTABLE 	3 0 3
+	11	[6]	SETTABLE 	3 -5 -6	; "server_ip" "localhost"
+	12	[7]	SETTABLE 	3 -7 -8	; "server_port" 41184
+	13	[8]	SETTABLE 	3 -9 -10	; "auth_token" ""
+	14	[16]	CLOSURE  	4 0	; 0x7feb71406d80
+	15	[11]	SETTABLE 	3 -11 4	; "new" -
+	16	[44]	CLOSURE  	4 1	; 0x7feb714073d0
+	17	[44]	MOVE     	0 0
+	18	[44]	MOVE     	0 2
+	19	[44]	MOVE     	0 1
+	20	[18]	SETTABLE 	3 -12 4	; "_makeRequest" -
+	21	[60]	CLOSURE  	4 2	; 0x7feb71406e00
+	22	[60]	MOVE     	0 1
+	23	[60]	MOVE     	0 2
+	24	[46]	SETTABLE 	3 -13 4	; "ping" -
+	25	[78]	CLOSURE  	4 3	; 0x7feb71407b10
+	26	[63]	SETTABLE 	3 -14 4	; "findNoteByTitle" -
+	27	[93]	CLOSURE  	4 4	; 0x7feb71408130
+	28	[81]	SETTABLE 	3 -15 4	; "findNotebookByTitle" -
+	29	[106]	CLOSURE  	4 5	; 0x7feb71407310
+	30	[96]	SETTABLE 	3 -16 4	; "createNotebook" -
+	31	[121]	CLOSURE  	4 6	; 0x7feb71408a00
+	32	[110]	SETTABLE 	3 -17 4	; "createNote" -
+	33	[134]	CLOSURE  	4 7	; 0x7feb71408c20
+	34	[124]	SETTABLE 	3 -18 4	; "updateNote" -
+	35	[136]	RETURN   	3 2
+	36	[136]	RETURN   	0 1
+
+function <./plugins/evernote.koplugin/JoplinClient.lua:11,16> (11 instructions, 44 bytes at 0x7feb71406d80)
+2 params, 5 slots, 0 upvalues, 2 locals, 2 constants, 0 functions
+	1	[12]	TEST     	1 0 1
+	2	[12]	JMP      	2	; to 5
+	3	[12]	NEWTABLE 	2 0 0
+	4	[12]	MOVE     	1 2
+	5	[13]	SETTABLE 	0 -1 0	; "__index" -
+	6	[14]	GETGLOBAL	2 -2	; setmetatable
+	7	[14]	MOVE     	3 1
+	8	[14]	MOVE     	4 0
+	9	[14]	CALL     	2 3 1
+	10	[15]	RETURN   	1 2
+	11	[16]	RETURN   	0 1
+
+function <./plugins/evernote.koplugin/JoplinClient.lua:18,44> (46 instructions, 184 bytes at 0x7feb714073d0)
+4 params, 11 slots, 3 upvalues, 8 locals, 16 constants, 0 functions
+	1	[19]	NEWTABLE 	4 0 0
+	2	[20]	GETUPVAL 	5 0	; json
+	3	[20]	GETTABLE 	5 5 -1	; "encode"
+	4	[20]	MOVE     	6 3
+	5	[20]	CALL     	5 2 2
+	6	[21]	GETUPVAL 	6 1	; ltn12
+	7	[21]	GETTABLE 	6 6 -2	; "source"
+	8	[21]	GETTABLE 	6 6 -3	; "string"
+	9	[21]	MOVE     	7 5
+	10	[21]	CALL     	6 2 2
+	11	[22]	GETUPVAL 	7 2	; http
+	12	[22]	GETTABLE 	7 7 -4	; "request"
+	13	[22]	NEWTABLE 	8 0 5
+	14	[23]	SETTABLE 	8 -5 1	; "url" -
+	15	[24]	SETTABLE 	8 -6 2	; "method" -
+	16	[25]	GETUPVAL 	9 1	; ltn12
+	17	[25]	GETTABLE 	9 9 -7	; "sink"
+	18	[25]	GETTABLE 	9 9 -8	; "table"
+	19	[25]	MOVE     	10 4
+	20	[25]	CALL     	9 2 2
+	21	[25]	SETTABLE 	8 -7 9	; "sink" -
+	22	[26]	SETTABLE 	8 -2 6	; "source" -
+	23	[27]	NEWTABLE 	9 0 2
+	24	[28]	LEN      	10 5
+	25	[28]	SETTABLE 	9 -10 10	; "Content-Length" -
+	26	[29]	SETTABLE 	9 -11 -12	; "Content-Type" "application/json"
+	27	[30]	SETTABLE 	8 -9 9	; "headers" -
+	28	[22]	CALL     	7 2 1
+	29	[33]	GETTABLE 	7 4 -13	; 1
+	30	[33]	TEST     	7 0 1
+	31	[33]	JMP      	3	; to 35
+	32	[34]	GETGLOBAL	7 -14	; error
+	33	[34]	LOADK    	8 -15	; "No response from Joplin Server"
+	34	[34]	CALL     	7 2 1
+	35	[37]	GETUPVAL 	7 0	; json
+	36	[37]	GETTABLE 	7 7 -16	; "decode"
+	37	[37]	GETTABLE 	8 4 -13	; 1
+	38	[37]	CALL     	7 2 2
+	39	[39]	GETTABLE 	8 7 -14	; "error"
+	40	[39]	TEST     	8 0 0
+	41	[39]	JMP      	3	; to 45
+	42	[40]	GETGLOBAL	8 -14	; error
+	43	[40]	GETTABLE 	9 7 -14	; "error"
+	44	[40]	CALL     	8 2 1
+	45	[43]	RETURN   	7 2
+	46	[44]	RETURN   	0 1
+
+function <./plugins/evernote.koplugin/JoplinClient.lua:46,60> (28 instructions, 112 bytes at 0x7feb71406e00)
+1 param, 9 slots, 2 upvalues, 2 locals, 13 constants, 0 functions
+	1	[47]	NEWTABLE 	1 0 0
+	2	[49]	GETUPVAL 	2 0	; http
+	3	[49]	GETTABLE 	2 2 -1	; "request"
+	4	[49]	NEWTABLE 	3 0 3
+	5	[50]	LOADK    	4 -3	; "http://"
+	6	[50]	GETTABLE 	5 0 -4	; "server_ip"
+	7	[50]	LOADK    	6 -5	; ":"
+	8	[50]	GETTABLE 	7 0 -6	; "server_port"
+	9	[50]	LOADK    	8 -7	; "/ping"
+	10	[50]	CONCAT   	4 4 8
+	11	[50]	SETTABLE 	3 -2 4	; "url" -
+	12	[51]	SETTABLE 	3 -8 -9	; "method" "GET"
+	13	[52]	GETUPVAL 	4 1	; ltn12
+	14	[52]	GETTABLE 	4 4 -10	; "sink"
+	15	[52]	GETTABLE 	4 4 -11	; "table"
+	16	[52]	MOVE     	5 1
+	17	[52]	CALL     	4 2 2
+	18	[52]	SETTABLE 	3 -10 4	; "sink" -
+	19	[49]	CALL     	2 2 1
+	20	[55]	GETTABLE 	2 1 -12	; 1
+	21	[55]	EQ       	0 2 -13	; - "JoplinClipperServer"
+	22	[55]	JMP      	3	; to 26
+	23	[56]	LOADBOOL 	2 1 0
+	24	[56]	RETURN   	2 2
+	25	[56]	JMP      	2	; to 28
+	26	[58]	LOADBOOL 	2 0 0
+	27	[58]	RETURN   	2 2
+	28	[60]	RETURN   	0 1
+
+function <./plugins/evernote.koplugin/JoplinClient.lua:63,78> (32 instructions, 128 bytes at 0x7feb71407b10)
+3 params, 11 slots, 0 upvalues, 10 locals, 15 constants, 0 functions
+	1	[64]	LOADK    	3 -1	; "http://"
+	2	[64]	GETTABLE 	4 0 -2	; "server_ip"
+	3	[64]	LOADK    	5 -3	; ":"
+	4	[64]	GETTABLE 	6 0 -4	; "server_port"
+	5	[64]	LOADK    	7 -5	; "/notes?"
+	6	[64]	LOADK    	8 -6	; "token="
+	7	[64]	GETTABLE 	9 0 -7	; "auth_token"
+	8	[64]	LOADK    	10 -8	; "&fields=id,title,parent_id"
+	9	[64]	CONCAT   	3 3 10
+	10	[66]	SELF     	4 0 -9	; "_makeRequest"
+	11	[66]	MOVE     	6 3
+	12	[66]	LOADK    	7 -10	; "GET"
+	13	[66]	CALL     	4 4 2
+	14	[68]	GETGLOBAL	5 -11	; pairs
+	15	[68]	MOVE     	6 4
+	16	[68]	CALL     	5 2 4
+	17	[68]	JMP      	10	; to 28
+	18	[69]	GETTABLE 	10 9 -12	; "title"
+	19	[69]	EQ       	0 10 1
+	20	[69]	JMP      	7	; to 28
+	21	[70]	EQ       	1 2 -13	; - nil
+	22	[70]	JMP      	3	; to 26
+	23	[70]	GETTABLE 	10 9 -14	; "parent_id"
+	24	[70]	EQ       	0 10 2
+	25	[70]	JMP      	2	; to 28
+	26	[71]	GETTABLE 	10 9 -15	; "id"
+	27	[71]	RETURN   	10 2
+	28	[68]	TFORLOOP 	5 2
+	29	[73]	JMP      	-12	; to 18
+	30	[76]	LOADBOOL 	5 0 0
+	31	[76]	RETURN   	5 2
+	32	[78]	RETURN   	0 1
+
+function <./plugins/evernote.koplugin/JoplinClient.lua:81,93> (29 instructions, 116 bytes at 0x7feb71408130)
+2 params, 12 slots, 0 upvalues, 9 locals, 14 constants, 0 functions
+	1	[82]	LOADK    	2 -1	; "http://"
+	2	[82]	GETTABLE 	3 0 -2	; "server_ip"
+	3	[82]	LOADK    	4 -3	; ":"
+	4	[82]	GETTABLE 	5 0 -4	; "server_port"
+	5	[82]	LOADK    	6 -5	; "/folders?"
+	6	[82]	LOADK    	7 -6	; "token="
+	7	[82]	GETTABLE 	8 0 -7	; "auth_token"
+	8	[82]	LOADK    	9 -8	; "&"
+	9	[82]	LOADK    	10 -9	; "query="
+	10	[82]	MOVE     	11 1
+	11	[82]	CONCAT   	2 2 11
+	12	[84]	SELF     	3 0 -10	; "_makeRequest"
+	13	[84]	MOVE     	5 2
+	14	[84]	LOADK    	6 -11	; "GET"
+	15	[84]	CALL     	3 4 2
+	16	[86]	GETGLOBAL	4 -12	; pairs
+	17	[86]	MOVE     	5 3
+	18	[86]	CALL     	4 2 4
+	19	[86]	JMP      	5	; to 25
+	20	[87]	GETTABLE 	9 8 -13	; "title"
+	21	[87]	EQ       	0 9 1
+	22	[87]	JMP      	2	; to 25
+	23	[88]	GETTABLE 	9 8 -14	; "id"
+	24	[88]	RETURN   	9 2
+	25	[86]	TFORLOOP 	4 2
+	26	[89]	JMP      	-7	; to 20
+	27	[92]	LOADBOOL 	4 0 0
+	28	[92]	RETURN   	4 2
+	29	[93]	RETURN   	0 1
+
+function <./plugins/evernote.koplugin/JoplinClient.lua:96,106> (19 instructions, 76 bytes at 0x7feb71407310)
+3 params, 11 slots, 0 upvalues, 6 locals, 12 constants, 0 functions
+	1	[97]	NEWTABLE 	3 0 2
+	2	[98]	SETTABLE 	3 -1 1	; "title" -
+	3	[99]	SETTABLE 	3 -2 2	; "created_time" -
+	4	[102]	LOADK    	4 -3	; "http://"
+	5	[102]	GETTABLE 	5 0 -4	; "server_ip"
+	6	[102]	LOADK    	6 -5	; ":"
+	7	[102]	GETTABLE 	7 0 -6	; "server_port"
+	8	[102]	LOADK    	8 -7	; "/folders?"
+	9	[102]	LOADK    	9 -8	; "token="
+	10	[102]	GETTABLE 	10 0 -9	; "auth_token"
+	11	[102]	CONCAT   	4 4 10
+	12	[103]	SELF     	5 0 -10	; "_makeRequest"
+	13	[103]	MOVE     	7 4
+	14	[103]	LOADK    	8 -11	; "POST"
+	15	[103]	MOVE     	9 3
+	16	[103]	CALL     	5 5 2
+	17	[105]	GETTABLE 	6 5 -12	; "id"
+	18	[105]	RETURN   	6 2
+	19	[106]	RETURN   	0 1
+
+function <./plugins/evernote.koplugin/JoplinClient.lua:110,121> (21 instructions, 84 bytes at 0x7feb71408a00)
+5 params, 13 slots, 0 upvalues, 8 locals, 14 constants, 0 functions
+	1	[111]	NEWTABLE 	5 0 4
+	2	[112]	SETTABLE 	5 -1 1	; "title" -
+	3	[113]	SETTABLE 	5 -2 2	; "body" -
+	4	[114]	SETTABLE 	5 -3 3	; "parent_id" -
+	5	[115]	SETTABLE 	5 -4 4	; "created_time" -
+	6	[117]	LOADK    	6 -5	; "http://"
+	7	[117]	GETTABLE 	7 0 -6	; "server_ip"
+	8	[117]	LOADK    	8 -7	; ":"
+	9	[117]	GETTABLE 	9 0 -8	; "server_port"
+	10	[117]	LOADK    	10 -9	; "/notes?"
+	11	[117]	LOADK    	11 -10	; "token="
+	12	[117]	GETTABLE 	12 0 -11	; "auth_token"
+	13	[117]	CONCAT   	6 6 12
+	14	[118]	SELF     	7 0 -12	; "_makeRequest"
+	15	[118]	MOVE     	9 6
+	16	[118]	LOADK    	10 -13	; "POST"
+	17	[118]	MOVE     	11 5
+	18	[118]	CALL     	7 5 2
+	19	[120]	GETTABLE 	8 7 -14	; "id"
+	20	[120]	RETURN   	8 2
+	21	[121]	RETURN   	0 1
+
+function <./plugins/evernote.koplugin/JoplinClient.lua:124,134> (21 instructions, 84 bytes at 0x7feb71408c20)
+5 params, 14 slots, 0 upvalues, 8 locals, 13 constants, 0 functions
+	1	[125]	NEWTABLE 	5 0 3
+	2	[126]	SETTABLE 	5 -1 2	; "body" -
+	3	[127]	SETTABLE 	5 -2 3	; "title" -
+	4	[128]	SETTABLE 	5 -3 4	; "parent_id" -
+	5	[131]	LOADK    	6 -4	; "http://"
+	6	[131]	GETTABLE 	7 0 -5	; "server_ip"
+	7	[131]	LOADK    	8 -6	; ":"
+	8	[131]	GETTABLE 	9 0 -7	; "server_port"
+	9	[131]	LOADK    	10 -8	; "/notes/"
+	10	[131]	MOVE     	11 1
+	11	[131]	LOADK    	12 -9	; "?token="
+	12	[131]	GETTABLE 	13 0 -10	; "auth_token"
+	13	[131]	CONCAT   	6 6 13
+	14	[132]	SELF     	7 0 -11	; "_makeRequest"
+	15	[132]	MOVE     	9 6
+	16	[132]	LOADK    	10 -12	; "PUT"
+	17	[132]	MOVE     	11 5
+	18	[132]	CALL     	7 5 2
+	19	[133]	GETTABLE 	8 7 -13	; "id"
+	20	[133]	RETURN   	8 2
+	21	[134]	RETURN   	0 1

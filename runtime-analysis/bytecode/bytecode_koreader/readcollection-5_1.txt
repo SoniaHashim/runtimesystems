@@ -1,0 +1,422 @@
+
+main <./frontend/readcollection.lua:0,0> (64 instructions, 256 bytes at 0x7ff4fc4068c0)
+0+ params, 10 slots, 0 upvalues, 9 locals, 20 constants, 9 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "datastorage"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "luasettings"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "util"
+	9	[3]	CALL     	2 2 2
+	10	[3]	GETTABLE 	2 2 -5	; "getFriendlySize"
+	11	[4]	GETGLOBAL	3 -1	; require
+	12	[4]	LOADK    	4 -6	; "libs/libkoreader-lfs"
+	13	[4]	CALL     	3 2 2
+	14	[5]	GETGLOBAL	4 -1	; require
+	15	[5]	LOADK    	5 -7	; "ffi/util"
+	16	[5]	CALL     	4 2 2
+	17	[5]	GETTABLE 	4 4 -8	; "realpath"
+	18	[6]	GETGLOBAL	5 -1	; require
+	19	[6]	LOADK    	6 -4	; "util"
+	20	[6]	CALL     	5 2 2
+	21	[8]	LOADK    	6 -9	; "favorites"
+	22	[9]	SELF     	7 0 -10	; "getSettingsDir"
+	23	[9]	CALL     	7 2 2
+	24	[9]	LOADK    	8 -11	; "/collection.lua"
+	25	[9]	CONCAT   	7 7 8
+	26	[11]	NEWTABLE 	8 0 0
+	27	[25]	CLOSURE  	9 0	; 0x7ff4fc406c00
+	28	[25]	MOVE     	0 6
+	29	[25]	MOVE     	0 1
+	30	[25]	MOVE     	0 7
+	31	[13]	SETTABLE 	8 -12 9	; "read" -
+	32	[34]	CLOSURE  	9 1	; 0x7ff4fc407420
+	33	[34]	MOVE     	0 1
+	34	[34]	MOVE     	0 7
+	35	[27]	SETTABLE 	8 -13 9	; "readAllCollection" -
+	36	[57]	CLOSURE  	9 2	; 0x7ff4fc407050
+	37	[57]	MOVE     	0 3
+	38	[57]	MOVE     	0 4
+	39	[57]	MOVE     	0 2
+	40	[36]	SETTABLE 	8 -14 9	; "prepareList" -
+	41	[86]	CLOSURE  	9 3	; 0x7ff4fc408680
+	42	[86]	MOVE     	0 5
+	43	[86]	MOVE     	0 1
+	44	[86]	MOVE     	0 7
+	45	[59]	SETTABLE 	8 -15 9	; "removeItemByPath" -
+	46	[116]	CLOSURE  	9 4	; 0x7ff4fc408550
+	47	[116]	MOVE     	0 3
+	48	[116]	MOVE     	0 5
+	49	[116]	MOVE     	0 1
+	50	[116]	MOVE     	0 7
+	51	[88]	SETTABLE 	8 -16 9	; "updateItemByPath" -
+	52	[127]	CLOSURE  	9 5	; 0x7ff4fc4079a0
+	53	[118]	SETTABLE 	8 -17 9	; "removeItem" -
+	54	[134]	CLOSURE  	9 6	; 0x7ff4fc409a90
+	55	[134]	MOVE     	0 6
+	56	[134]	MOVE     	0 1
+	57	[134]	MOVE     	0 7
+	58	[129]	SETTABLE 	8 -18 9	; "writeCollection" -
+	59	[146]	CLOSURE  	9 7	; 0x7ff4fc409c40
+	60	[136]	SETTABLE 	8 -19 9	; "addItem" -
+	61	[156]	CLOSURE  	9 8	; 0x7ff4fc40a260
+	62	[148]	SETTABLE 	8 -20 9	; "checkItemExist" -
+	63	[158]	RETURN   	8 2
+	64	[158]	RETURN   	0 1
+
+function <./frontend/readcollection.lua:13,25> (28 instructions, 112 bytes at 0x7ff4fc406c00)
+2 params, 11 slots, 3 upvalues, 10 locals, 5 constants, 0 functions
+	1	[14]	TEST     	1 0 1
+	2	[14]	JMP      	1	; to 4
+	3	[14]	GETUPVAL 	1 0	; DEFAULT_COLLECTION_NAME
+	4	[15]	GETUPVAL 	2 1	; LuaSettings
+	5	[15]	SELF     	2 2 -1	; "open"
+	6	[15]	GETUPVAL 	4 2	; collection_file
+	7	[15]	CALL     	2 3 2
+	8	[16]	SELF     	3 2 -2	; "readSetting"
+	9	[16]	MOVE     	5 1
+	10	[16]	CALL     	3 3 2
+	11	[16]	TEST     	3 0 1
+	12	[16]	JMP      	1	; to 14
+	13	[16]	NEWTABLE 	3 0 0
+	14	[17]	LOADK    	4 -3	; 0
+	15	[19]	GETGLOBAL	5 -4	; pairs
+	16	[19]	MOVE     	6 3
+	17	[19]	CALL     	5 2 4
+	18	[19]	JMP      	4	; to 23
+	19	[20]	GETTABLE 	10 9 -5	; "order"
+	20	[20]	LT       	0 4 10
+	21	[20]	JMP      	1	; to 23
+	22	[21]	GETTABLE 	4 9 -5	; "order"
+	23	[19]	TFORLOOP 	5 2
+	24	[22]	JMP      	-6	; to 19
+	25	[24]	MOVE     	5 3
+	26	[24]	MOVE     	6 4
+	27	[24]	RETURN   	5 3
+	28	[25]	RETURN   	0 1
+
+function <./frontend/readcollection.lua:27,34> (15 instructions, 60 bytes at 0x7ff4fc407420)
+1 param, 4 slots, 2 upvalues, 2 locals, 2 constants, 0 functions
+	1	[28]	GETUPVAL 	1 0	; LuaSettings
+	2	[28]	SELF     	1 1 -1	; "open"
+	3	[28]	GETUPVAL 	3 1	; collection_file
+	4	[28]	CALL     	1 3 2
+	5	[29]	TEST     	1 0 0
+	6	[29]	JMP      	6	; to 13
+	7	[29]	GETTABLE 	2 1 -2	; "data"
+	8	[29]	TEST     	2 0 0
+	9	[29]	JMP      	3	; to 13
+	10	[30]	GETTABLE 	2 1 -2	; "data"
+	11	[30]	RETURN   	2 2
+	12	[30]	JMP      	2	; to 15
+	13	[32]	NEWTABLE 	2 0 0
+	14	[32]	RETURN   	2 2
+	15	[34]	RETURN   	0 1
+
+function <./frontend/readcollection.lua:36,57> (65 instructions, 260 bytes at 0x7ff4fc407050)
+2 params, 17 slots, 3 upvalues, 10 locals, 18 constants, 2 functions
+	1	[37]	SELF     	2 0 -1	; "read"
+	2	[37]	MOVE     	4 1
+	3	[37]	CALL     	2 3 2
+	4	[38]	NEWTABLE 	3 0 0
+	5	[39]	GETGLOBAL	4 -2	; pairs
+	6	[39]	MOVE     	5 2
+	7	[39]	CALL     	4 2 4
+	8	[39]	JMP      	48	; to 57
+	9	[40]	GETUPVAL 	9 0	; lfs
+	10	[40]	GETTABLE 	9 9 -3	; "attributes"
+	11	[40]	GETTABLE 	10 8 -4	; "file"
+	12	[40]	LOADK    	11 -5	; "mode"
+	13	[40]	CALL     	9 3 2
+	14	[40]	EQ       	1 9 -4	; - "file"
+	15	[40]	JMP      	1	; to 17
+	16	[40]	LOADBOOL 	9 0 1
+	17	[40]	LOADBOOL 	9 1 0
+	18	[41]	GETGLOBAL	10 -6	; table
+	19	[41]	GETTABLE 	10 10 -7	; "insert"
+	20	[41]	MOVE     	11 3
+	21	[41]	NEWTABLE 	12 0 6
+	22	[42]	GETTABLE 	13 8 -8	; "order"
+	23	[42]	SETTABLE 	12 -8 13	; "order" -
+	24	[43]	GETTABLE 	13 8 -4	; "file"
+	25	[43]	SELF     	13 13 -10	; "gsub"
+	26	[43]	LOADK    	15 -11	; ".*/"
+	27	[43]	LOADK    	16 -12	; ""
+	28	[43]	CALL     	13 4 2
+	29	[43]	SETTABLE 	12 -9 13	; "text" -
+	30	[44]	GETUPVAL 	13 1	; realpath
+	31	[44]	GETTABLE 	14 8 -4	; "file"
+	32	[44]	CALL     	13 2 2
+	33	[44]	TEST     	13 0 1
+	34	[44]	JMP      	1	; to 36
+	35	[44]	GETTABLE 	13 8 -4	; "file"
+	36	[44]	SETTABLE 	12 -4 13	; "file" -
+	37	[45]	NOT      	13 9
+	38	[45]	SETTABLE 	12 -13 13	; "dim" -
+	39	[46]	TESTSET  	13 9 0
+	40	[46]	JMP      	10	; to 51
+	41	[46]	GETUPVAL 	13 2	; getFriendlySize
+	42	[46]	GETUPVAL 	14 0	; lfs
+	43	[46]	GETTABLE 	14 14 -3	; "attributes"
+	44	[46]	GETTABLE 	15 8 -4	; "file"
+	45	[46]	LOADK    	16 -15	; "size"
+	46	[46]	CALL     	14 3 2
+	47	[46]	TEST     	14 0 1
+	48	[46]	JMP      	1	; to 50
+	49	[46]	LOADK    	14 -16	; 0
+	50	[46]	CALL     	13 2 2
+	51	[46]	SETTABLE 	12 -14 13	; "mandatory" -
+	52	[50]	CLOSURE  	13 0	; 0x7ff4fc407e20
+	53	[50]	MOVE     	0 8
+	54	[50]	SETTABLE 	12 -17 13	; "callback" -
+	55	[41]	CALL     	10 3 1
+	56	[51]	CLOSE    	7
+	57	[39]	TFORLOOP 	4 2
+	58	[51]	JMP      	-50	; to 9
+	59	[53]	GETGLOBAL	4 -6	; table
+	60	[53]	GETTABLE 	4 4 -18	; "sort"
+	61	[53]	MOVE     	5 3
+	62	[55]	CLOSURE  	6 1	; 0x7ff4fc4083b0
+	63	[53]	CALL     	4 3 1
+	64	[56]	RETURN   	3 2
+	65	[57]	RETURN   	0 1
+
+function <./frontend/readcollection.lua:47,50> (8 instructions, 32 bytes at 0x7ff4fc407e20)
+0 params, 4 slots, 1 upvalue, 1 local, 4 constants, 0 functions
+	1	[48]	GETGLOBAL	0 -1	; require
+	2	[48]	LOADK    	1 -2	; "apps/reader/readerui"
+	3	[48]	CALL     	0 2 2
+	4	[49]	SELF     	1 0 -3	; "showReader"
+	5	[49]	GETUPVAL 	3 0	; v
+	6	[49]	GETTABLE 	3 3 -4	; "file"
+	7	[49]	CALL     	1 3 1
+	8	[50]	RETURN   	0 1
+
+function <./frontend/readcollection.lua:53,55> (8 instructions, 32 bytes at 0x7ff4fc4083b0)
+2 params, 4 slots, 0 upvalues, 2 locals, 1 constant, 0 functions
+	1	[54]	GETTABLE 	2 0 -1	; "order"
+	2	[54]	GETTABLE 	3 1 -1	; "order"
+	3	[54]	LT       	1 2 3
+	4	[54]	JMP      	1	; to 6
+	5	[54]	LOADBOOL 	2 0 1
+	6	[54]	LOADBOOL 	2 1 0
+	7	[54]	RETURN   	2 2
+	8	[55]	RETURN   	0 1
+
+function <./frontend/readcollection.lua:59,86> (59 instructions, 236 bytes at 0x7ff4fc408680)
+3 params, 19 slots, 3 upvalues, 17 locals, 12 constants, 0 functions
+	1	[61]	LOADBOOL 	4 0 0
+	2	[62]	TEST     	2 0 0
+	3	[62]	JMP      	3	; to 7
+	4	[63]	MOVE     	5 1
+	5	[63]	LOADK    	6 -1	; "/"
+	6	[63]	CONCAT   	1 5 6
+	7	[65]	SELF     	5 0 -2	; "readAllCollection"
+	8	[65]	CALL     	5 2 2
+	9	[66]	GETGLOBAL	6 -3	; pairs
+	10	[66]	MOVE     	7 5
+	11	[66]	CALL     	6 2 4
+	12	[66]	JMP      	35	; to 48
+	13	[67]	GETTABLE 	11 5 9
+	14	[68]	LEN      	12 11
+	15	[68]	LOADK    	13 -4	; 1
+	16	[68]	LOADK    	14 -5	; -1
+	17	[68]	FORPREP  	12 29	; to 47
+	18	[69]	TEST     	2 0 1
+	19	[69]	JMP      	11	; to 31
+	20	[69]	GETTABLE 	16 11 15
+	21	[69]	GETTABLE 	16 16 -6	; "file"
+	22	[69]	EQ       	0 16 1
+	23	[69]	JMP      	7	; to 31
+	24	[70]	LOADBOOL 	4 1 0
+	25	[71]	GETGLOBAL	16 -7	; table
+	26	[71]	GETTABLE 	16 16 -8	; "remove"
+	27	[71]	MOVE     	17 11
+	28	[71]	MOVE     	18 15
+	29	[71]	CALL     	16 3 1
+	30	[71]	JMP      	16	; to 47
+	31	[72]	TEST     	2 0 0
+	32	[72]	JMP      	14	; to 47
+	33	[73]	GETUPVAL 	16 0	; util
+	34	[73]	GETTABLE 	16 16 -9	; "splitFilePathName"
+	35	[73]	GETTABLE 	17 11 15
+	36	[73]	GETTABLE 	17 17 -6	; "file"
+	37	[73]	CALL     	16 2 2
+	38	[73]	MOVE     	3 16
+	39	[74]	EQ       	0 3 1
+	40	[74]	JMP      	6	; to 47
+	41	[75]	LOADBOOL 	4 1 0
+	42	[76]	GETGLOBAL	16 -7	; table
+	43	[76]	GETTABLE 	16 16 -8	; "remove"
+	44	[76]	MOVE     	17 11
+	45	[76]	MOVE     	18 15
+	46	[76]	CALL     	16 3 1
+	47	[68]	FORLOOP  	12 -30	; to 18
+	48	[66]	TFORLOOP 	6 2
+	49	[79]	JMP      	-37	; to 13
+	50	[81]	TEST     	4 0 0
+	51	[81]	JMP      	7	; to 59
+	52	[82]	GETUPVAL 	6 1	; LuaSettings
+	53	[82]	SELF     	6 6 -10	; "open"
+	54	[82]	GETUPVAL 	8 2	; collection_file
+	55	[82]	CALL     	6 3 2
+	56	[83]	SETTABLE 	6 -11 5	; "data" -
+	57	[84]	SELF     	7 6 -12	; "flush"
+	58	[84]	CALL     	7 2 1
+	59	[86]	RETURN   	0 1
+
+function <./frontend/readcollection.lua:88,116> (68 instructions, 272 bytes at 0x7ff4fc408550)
+3 params, 23 slots, 4 upvalues, 19 locals, 14 constants, 0 functions
+	1	[89]	LOADBOOL 	3 0 0
+	2	[90]	LOADNIL  	4 5
+	3	[91]	GETUPVAL 	6 0	; lfs
+	4	[91]	GETTABLE 	6 6 -1	; "attributes"
+	5	[91]	MOVE     	7 2
+	6	[91]	LOADK    	8 -2	; "mode"
+	7	[91]	CALL     	6 3 2
+	8	[91]	EQ       	0 6 -3	; - "directory"
+	9	[91]	JMP      	4	; to 14
+	10	[92]	LOADBOOL 	3 1 0
+	11	[93]	MOVE     	6 1
+	12	[93]	LOADK    	7 -4	; "/"
+	13	[93]	CONCAT   	1 6 7
+	14	[95]	LOADBOOL 	6 0 0
+	15	[96]	SELF     	7 0 -5	; "readAllCollection"
+	16	[96]	CALL     	7 2 2
+	17	[97]	GETGLOBAL	8 -6	; pairs
+	18	[97]	MOVE     	9 7
+	19	[97]	CALL     	8 2 4
+	20	[97]	JMP      	36	; to 57
+	21	[98]	GETGLOBAL	13 -6	; pairs
+	22	[98]	MOVE     	14 12
+	23	[98]	CALL     	13 2 4
+	24	[98]	JMP      	30	; to 55
+	25	[99]	TEST     	3 0 1
+	26	[99]	JMP      	8	; to 35
+	27	[99]	GETTABLE 	18 17 -7	; "file"
+	28	[99]	EQ       	0 18 1
+	29	[99]	JMP      	5	; to 35
+	30	[100]	LOADBOOL 	6 1 0
+	31	[101]	GETTABLE 	18 7 11
+	32	[101]	GETTABLE 	18 18 16
+	33	[101]	SETTABLE 	18 -7 2	; "file" -
+	34	[101]	JMP      	20	; to 55
+	35	[102]	TEST     	3 0 0
+	36	[102]	JMP      	18	; to 55
+	37	[103]	GETUPVAL 	18 1	; util
+	38	[103]	GETTABLE 	18 18 -8	; "splitFilePathName"
+	39	[103]	GETTABLE 	19 17 -7	; "file"
+	40	[103]	CALL     	18 2 3
+	41	[103]	MOVE     	5 19
+	42	[103]	MOVE     	4 18
+	43	[104]	EQ       	0 4 1
+	44	[104]	JMP      	10	; to 55
+	45	[105]	LOADBOOL 	6 1 0
+	46	[106]	GETTABLE 	18 7 11
+	47	[106]	GETTABLE 	18 18 16
+	48	[106]	GETGLOBAL	19 -9	; string
+	49	[106]	GETTABLE 	19 19 -10	; "format"
+	50	[106]	LOADK    	20 -11	; "%s/%s"
+	51	[106]	MOVE     	21 2
+	52	[106]	MOVE     	22 5
+	53	[106]	CALL     	19 4 2
+	54	[106]	SETTABLE 	18 -7 19	; "file" -
+	55	[98]	TFORLOOP 	13 2
+	56	[108]	JMP      	-32	; to 25
+	57	[97]	TFORLOOP 	8 2
+	58	[109]	JMP      	-38	; to 21
+	59	[111]	TEST     	6 0 0
+	60	[111]	JMP      	7	; to 68
+	61	[112]	GETUPVAL 	8 2	; LuaSettings
+	62	[112]	SELF     	8 8 -12	; "open"
+	63	[112]	GETUPVAL 	10 3	; collection_file
+	64	[112]	CALL     	8 3 2
+	65	[113]	SETTABLE 	8 -13 7	; "data" -
+	66	[114]	SELF     	9 8 -14	; "flush"
+	67	[114]	CALL     	9 2 1
+	68	[116]	RETURN   	0 1
+
+function <./frontend/readcollection.lua:118,127> (23 instructions, 92 bytes at 0x7ff4fc4079a0)
+3 params, 12 slots, 0 upvalues, 9 locals, 6 constants, 0 functions
+	1	[119]	SELF     	3 0 -1	; "read"
+	2	[119]	MOVE     	5 2
+	3	[119]	CALL     	3 3 2
+	4	[120]	GETGLOBAL	4 -2	; pairs
+	5	[120]	MOVE     	5 3
+	6	[120]	CALL     	4 2 4
+	7	[120]	JMP      	9	; to 17
+	8	[121]	GETTABLE 	9 8 -3	; "file"
+	9	[121]	EQ       	0 9 1
+	10	[121]	JMP      	6	; to 17
+	11	[122]	GETGLOBAL	9 -4	; table
+	12	[122]	GETTABLE 	9 9 -5	; "remove"
+	13	[122]	MOVE     	10 3
+	14	[122]	MOVE     	11 7
+	15	[122]	CALL     	9 3 1
+	16	[123]	JMP      	2	; to 19
+	17	[120]	TFORLOOP 	4 2
+	18	[124]	JMP      	-11	; to 8
+	19	[126]	SELF     	4 0 -6	; "writeCollection"
+	20	[126]	MOVE     	6 3
+	21	[126]	MOVE     	7 2
+	22	[126]	CALL     	4 4 1
+	23	[127]	RETURN   	0 1
+
+function <./frontend/readcollection.lua:129,134> (14 instructions, 56 bytes at 0x7ff4fc409a90)
+3 params, 8 slots, 3 upvalues, 4 locals, 3 constants, 0 functions
+	1	[130]	TEST     	2 0 1
+	2	[130]	JMP      	1	; to 4
+	3	[130]	GETUPVAL 	2 0	; DEFAULT_COLLECTION_NAME
+	4	[131]	GETUPVAL 	3 1	; LuaSettings
+	5	[131]	SELF     	3 3 -1	; "open"
+	6	[131]	GETUPVAL 	5 2	; collection_file
+	7	[131]	CALL     	3 3 2
+	8	[132]	SELF     	4 3 -2	; "saveSetting"
+	9	[132]	MOVE     	6 2
+	10	[132]	MOVE     	7 1
+	11	[132]	CALL     	4 4 1
+	12	[133]	SELF     	4 3 -3	; "flush"
+	13	[133]	CALL     	4 2 1
+	14	[134]	RETURN   	0 1
+
+function <./frontend/readcollection.lua:136,146> (17 instructions, 68 bytes at 0x7ff4fc409c40)
+3 params, 10 slots, 0 upvalues, 6 locals, 7 constants, 0 functions
+	1	[137]	SELF     	3 0 -1	; "read"
+	2	[137]	MOVE     	5 2
+	3	[137]	CALL     	3 3 3
+	4	[138]	ADD      	4 4 -2	; - 1
+	5	[139]	NEWTABLE 	5 0 2
+	6	[141]	SETTABLE 	5 -3 1	; "file" -
+	7	[142]	SETTABLE 	5 -4 4	; "order" -
+	8	[144]	GETGLOBAL	6 -5	; table
+	9	[144]	GETTABLE 	6 6 -6	; "insert"
+	10	[144]	MOVE     	7 3
+	11	[144]	MOVE     	8 5
+	12	[144]	CALL     	6 3 1
+	13	[145]	SELF     	6 0 -7	; "writeCollection"
+	14	[145]	MOVE     	8 3
+	15	[145]	MOVE     	9 2
+	16	[145]	CALL     	6 4 1
+	17	[146]	RETURN   	0 1
+
+function <./frontend/readcollection.lua:148,156> (17 instructions, 68 bytes at 0x7ff4fc40a260)
+3 params, 10 slots, 0 upvalues, 9 locals, 3 constants, 0 functions
+	1	[149]	SELF     	3 0 -1	; "read"
+	2	[149]	MOVE     	5 2
+	3	[149]	CALL     	3 3 2
+	4	[150]	GETGLOBAL	4 -2	; pairs
+	5	[150]	MOVE     	5 3
+	6	[150]	CALL     	4 2 4
+	7	[150]	JMP      	5	; to 13
+	8	[151]	GETTABLE 	9 8 -3	; "file"
+	9	[151]	EQ       	0 9 1
+	10	[151]	JMP      	2	; to 13
+	11	[152]	LOADBOOL 	9 1 0
+	12	[152]	RETURN   	9 2
+	13	[150]	TFORLOOP 	4 2
+	14	[153]	JMP      	-7	; to 8
+	15	[155]	LOADBOOL 	4 0 0
+	16	[155]	RETURN   	4 2
+	17	[156]	RETURN   	0 1

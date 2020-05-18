@@ -1,0 +1,425 @@
+
+main <./spec/unit/autosuspend_spec.lua:0,0> (5 instructions, 20 bytes at 0x7fba28c068d0)
+0+ params, 3 slots, 0 upvalues, 0 locals, 2 constants, 1 function
+	1	[1]	GETGLOBAL	0 -1	; describe
+	2	[1]	LOADK    	1 -2	; "AutoSuspend"
+	3	[120]	CLOSURE  	2 0	; 0x7fba28c06b70
+	4	[1]	CALL     	0 3 1
+	5	[120]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:1,120> (12 instructions, 48 bytes at 0x7fba28c06b70)
+0 params, 3 slots, 0 upvalues, 0 locals, 4 constants, 3 functions
+	1	[2]	GETGLOBAL	0 -1	; setup
+	2	[6]	CLOSURE  	1 0	; 0x7fba28c06cb0
+	3	[2]	CALL     	0 2 1
+	4	[8]	GETGLOBAL	0 -2	; describe
+	5	[8]	LOADK    	1 -3	; "suspend"
+	6	[61]	CLOSURE  	2 1	; 0x7fba28c071b0
+	7	[8]	CALL     	0 3 1
+	8	[63]	GETGLOBAL	0 -2	; describe
+	9	[63]	LOADK    	1 -4	; "shutdown"
+	10	[119]	CLOSURE  	2 2	; 0x7fba28c07110
+	11	[63]	CALL     	0 3 1
+	12	[120]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:2,6> (15 instructions, 60 bytes at 0x7fba28c06cb0)
+0 params, 4 slots, 0 upvalues, 0 locals, 7 constants, 0 functions
+	1	[3]	GETGLOBAL	0 -1	; require
+	2	[3]	LOADK    	1 -2	; "commonrequire"
+	3	[3]	CALL     	0 2 1
+	4	[4]	GETGLOBAL	0 -3	; package
+	5	[4]	GETTABLE 	0 0 -4	; "unloadAll"
+	6	[4]	CALL     	0 1 1
+	7	[5]	GETGLOBAL	0 -1	; require
+	8	[5]	LOADK    	1 -5	; "document/canvascontext"
+	9	[5]	CALL     	0 2 2
+	10	[5]	SELF     	0 0 -6	; "init"
+	11	[5]	GETGLOBAL	2 -1	; require
+	12	[5]	LOADK    	3 -7	; "device"
+	13	[5]	CALL     	2 2 0
+	14	[5]	CALL     	0 0 1
+	15	[6]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:8,61> (15 instructions, 60 bytes at 0x7fba28c071b0)
+0 params, 3 slots, 0 upvalues, 0 locals, 5 constants, 4 functions
+	1	[9]	GETGLOBAL	0 -1	; before_each
+	2	[19]	CLOSURE  	1 0	; 0x7fba28c07320
+	3	[9]	CALL     	0 2 1
+	4	[21]	GETGLOBAL	0 -2	; after_each
+	5	[26]	CLOSURE  	1 1	; 0x7fba28c079e0
+	6	[21]	CALL     	0 2 1
+	7	[28]	GETGLOBAL	0 -3	; it
+	8	[28]	LOADK    	1 -4	; "should be able to execute suspend when timing out"
+	9	[40]	CLOSURE  	2 2	; 0x7fba28c08260
+	10	[28]	CALL     	0 3 1
+	11	[42]	GETGLOBAL	0 -3	; it
+	12	[42]	LOADK    	1 -5	; "should be able to deprecate last task"
+	13	[60]	CLOSURE  	2 3	; 0x7fba28c08800
+	14	[42]	CALL     	0 3 1
+	15	[61]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:9,19> (33 instructions, 132 bytes at 0x7fba28c07320)
+0 params, 6 slots, 0 upvalues, 2 locals, 17 constants, 1 function
+	1	[10]	GETGLOBAL	0 -1	; require
+	2	[10]	LOADK    	1 -2	; "device"
+	3	[10]	CALL     	0 2 2
+	4	[11]	GETGLOBAL	1 -3	; stub
+	5	[11]	MOVE     	2 0
+	6	[11]	LOADK    	3 -4	; "isKobo"
+	7	[11]	CALL     	1 3 1
+	8	[12]	GETTABLE 	1 0 -4	; "isKobo"
+	9	[12]	GETTABLE 	1 1 -5	; "returns"
+	10	[12]	LOADBOOL 	2 1 0
+	11	[12]	CALL     	1 2 1
+	12	[13]	GETTABLE 	1 0 -6	; "input"
+	13	[13]	CLOSURE  	2 0	; 0x7fba28c07570
+	14	[13]	SETTABLE 	1 -7 2	; "waitEvent" -
+	15	[14]	GETGLOBAL	1 -1	; require
+	16	[14]	LOADK    	2 -8	; "ui/uimanager"
+	17	[14]	CALL     	1 2 2
+	18	[15]	GETGLOBAL	2 -3	; stub
+	19	[15]	MOVE     	3 1
+	20	[15]	LOADK    	4 -9	; "suspend"
+	21	[15]	CALL     	2 3 1
+	22	[16]	SETTABLE 	1 -10 -11	; "_run_forever" true
+	23	[17]	GETGLOBAL	2 -12	; G_reader_settings
+	24	[17]	SELF     	2 2 -13	; "saveSetting"
+	25	[17]	LOADK    	4 -14	; "auto_suspend_timeout_seconds"
+	26	[17]	LOADK    	5 -15	; 10
+	27	[17]	CALL     	2 4 1
+	28	[18]	GETGLOBAL	2 -1	; require
+	29	[18]	LOADK    	3 -16	; "mock_time"
+	30	[18]	CALL     	2 2 2
+	31	[18]	SELF     	2 2 -17	; "install"
+	32	[18]	CALL     	2 2 1
+	33	[19]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:13,13> (1 instruction, 4 bytes at 0x7fba28c07570)
+0 params, 2 slots, 0 upvalues, 0 locals, 0 constants, 0 functions
+	1	[13]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:21,26> (22 instructions, 88 bytes at 0x7fba28c079e0)
+0 params, 3 slots, 0 upvalues, 0 locals, 11 constants, 0 functions
+	1	[22]	GETGLOBAL	0 -1	; require
+	2	[22]	LOADK    	1 -2	; "device"
+	3	[22]	CALL     	0 2 2
+	4	[22]	GETTABLE 	0 0 -3	; "isKobo"
+	5	[22]	SELF     	0 0 -4	; "revert"
+	6	[22]	CALL     	0 2 1
+	7	[23]	GETGLOBAL	0 -1	; require
+	8	[23]	LOADK    	1 -5	; "ui/uimanager"
+	9	[23]	CALL     	0 2 2
+	10	[23]	GETTABLE 	0 0 -6	; "suspend"
+	11	[23]	SELF     	0 0 -4	; "revert"
+	12	[23]	CALL     	0 2 1
+	13	[24]	GETGLOBAL	0 -7	; G_reader_settings
+	14	[24]	SELF     	0 0 -8	; "delSetting"
+	15	[24]	LOADK    	2 -9	; "auto_suspend_timeout_seconds"
+	16	[24]	CALL     	0 3 1
+	17	[25]	GETGLOBAL	0 -1	; require
+	18	[25]	LOADK    	1 -10	; "mock_time"
+	19	[25]	CALL     	0 2 2
+	20	[25]	SELF     	0 0 -11	; "uninstall"
+	21	[25]	CALL     	0 2 1
+	22	[26]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:28,40> (40 instructions, 160 bytes at 0x7fba28c08260)
+0 params, 7 slots, 0 upvalues, 4 locals, 18 constants, 0 functions
+	1	[29]	GETGLOBAL	0 -1	; require
+	2	[29]	LOADK    	1 -2	; "mock_time"
+	3	[29]	CALL     	0 2 2
+	4	[30]	GETGLOBAL	1 -3	; dofile
+	5	[30]	LOADK    	2 -4	; "plugins/autosuspend.koplugin/main.lua"
+	6	[30]	CALL     	1 2 2
+	7	[31]	SELF     	2 1 -5	; "new"
+	8	[31]	CALL     	2 2 2
+	9	[32]	GETGLOBAL	3 -1	; require
+	10	[32]	LOADK    	4 -6	; "ui/uimanager"
+	11	[32]	CALL     	3 2 2
+	12	[33]	SELF     	4 0 -7	; "increase"
+	13	[33]	LOADK    	6 -8	; 5
+	14	[33]	CALL     	4 3 1
+	15	[34]	SELF     	4 3 -9	; "handleInput"
+	16	[34]	CALL     	4 2 1
+	17	[35]	GETGLOBAL	4 -10	; assert
+	18	[35]	GETTABLE 	4 4 -11	; "stub"
+	19	[35]	GETTABLE 	5 3 -12	; "suspend"
+	20	[35]	CALL     	4 2 2
+	21	[35]	GETTABLE 	4 4 -13	; "was"
+	22	[35]	GETTABLE 	4 4 -14	; "called"
+	23	[35]	LOADK    	5 -15	; 0
+	24	[35]	CALL     	4 2 1
+	25	[36]	SELF     	4 0 -7	; "increase"
+	26	[36]	LOADK    	6 -16	; 6
+	27	[36]	CALL     	4 3 1
+	28	[37]	SELF     	4 3 -9	; "handleInput"
+	29	[37]	CALL     	4 2 1
+	30	[38]	GETGLOBAL	4 -10	; assert
+	31	[38]	GETTABLE 	4 4 -11	; "stub"
+	32	[38]	GETTABLE 	5 3 -12	; "suspend"
+	33	[38]	CALL     	4 2 2
+	34	[38]	GETTABLE 	4 4 -13	; "was"
+	35	[38]	GETTABLE 	4 4 -14	; "called"
+	36	[38]	LOADK    	5 -17	; 1
+	37	[38]	CALL     	4 2 1
+	38	[39]	SELF     	4 0 -18	; "uninstall"
+	39	[39]	CALL     	4 2 1
+	40	[40]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:42,60> (59 instructions, 236 bytes at 0x7fba28c08800)
+0 params, 7 slots, 0 upvalues, 4 locals, 21 constants, 0 functions
+	1	[43]	GETGLOBAL	0 -1	; require
+	2	[43]	LOADK    	1 -2	; "mock_time"
+	3	[43]	CALL     	0 2 2
+	4	[44]	GETGLOBAL	1 -3	; dofile
+	5	[44]	LOADK    	2 -4	; "plugins/autosuspend.koplugin/main.lua"
+	6	[44]	CALL     	1 2 2
+	7	[45]	SELF     	2 1 -5	; "new"
+	8	[45]	CALL     	2 2 2
+	9	[46]	SELF     	3 0 -6	; "increase"
+	10	[46]	LOADK    	5 -7	; 5
+	11	[46]	CALL     	3 3 1
+	12	[47]	GETGLOBAL	3 -1	; require
+	13	[47]	LOADK    	4 -8	; "ui/uimanager"
+	14	[47]	CALL     	3 2 2
+	15	[48]	SELF     	4 3 -9	; "handleInput"
+	16	[48]	CALL     	4 2 1
+	17	[49]	GETGLOBAL	4 -10	; assert
+	18	[49]	GETTABLE 	4 4 -11	; "stub"
+	19	[49]	GETTABLE 	5 3 -12	; "suspend"
+	20	[49]	CALL     	4 2 2
+	21	[49]	GETTABLE 	4 4 -13	; "was"
+	22	[49]	GETTABLE 	4 4 -14	; "called"
+	23	[49]	LOADK    	5 -15	; 0
+	24	[49]	CALL     	4 2 1
+	25	[50]	SELF     	4 2 -16	; "onInputEvent"
+	26	[50]	CALL     	4 2 1
+	27	[51]	SELF     	4 2 -17	; "onSuspend"
+	28	[51]	CALL     	4 2 1
+	29	[52]	SELF     	4 2 -18	; "onResume"
+	30	[52]	CALL     	4 2 1
+	31	[53]	SELF     	4 0 -6	; "increase"
+	32	[53]	LOADK    	6 -19	; 6
+	33	[53]	CALL     	4 3 1
+	34	[54]	SELF     	4 3 -9	; "handleInput"
+	35	[54]	CALL     	4 2 1
+	36	[55]	GETGLOBAL	4 -10	; assert
+	37	[55]	GETTABLE 	4 4 -11	; "stub"
+	38	[55]	GETTABLE 	5 3 -12	; "suspend"
+	39	[55]	CALL     	4 2 2
+	40	[55]	GETTABLE 	4 4 -13	; "was"
+	41	[55]	GETTABLE 	4 4 -14	; "called"
+	42	[55]	LOADK    	5 -15	; 0
+	43	[55]	CALL     	4 2 1
+	44	[56]	SELF     	4 0 -6	; "increase"
+	45	[56]	LOADK    	6 -7	; 5
+	46	[56]	CALL     	4 3 1
+	47	[57]	SELF     	4 3 -9	; "handleInput"
+	48	[57]	CALL     	4 2 1
+	49	[58]	GETGLOBAL	4 -10	; assert
+	50	[58]	GETTABLE 	4 4 -11	; "stub"
+	51	[58]	GETTABLE 	5 3 -12	; "suspend"
+	52	[58]	CALL     	4 2 2
+	53	[58]	GETTABLE 	4 4 -13	; "was"
+	54	[58]	GETTABLE 	4 4 -14	; "called"
+	55	[58]	LOADK    	5 -20	; 1
+	56	[58]	CALL     	4 2 1
+	57	[59]	SELF     	4 0 -21	; "uninstall"
+	58	[59]	CALL     	4 2 1
+	59	[60]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:63,119> (15 instructions, 60 bytes at 0x7fba28c07110)
+0 params, 3 slots, 0 upvalues, 0 locals, 5 constants, 4 functions
+	1	[65]	GETGLOBAL	0 -1	; before_each
+	2	[77]	CLOSURE  	1 0	; 0x7fba28c09200
+	3	[65]	CALL     	0 2 1
+	4	[79]	GETGLOBAL	0 -2	; after_each
+	5	[84]	CLOSURE  	1 1	; 0x7fba28c09730
+	6	[79]	CALL     	0 2 1
+	7	[86]	GETGLOBAL	0 -3	; it
+	8	[86]	LOADK    	1 -4	; "should be able to execute suspend when timing out"
+	9	[98]	CLOSURE  	2 2	; 0x7fba28c09430
+	10	[86]	CALL     	0 3 1
+	11	[100]	GETGLOBAL	0 -3	; it
+	12	[100]	LOADK    	1 -5	; "should be able to deprecate last task"
+	13	[118]	CLOSURE  	2 3	; 0x7fba28c09b70
+	14	[100]	CALL     	0 3 1
+	15	[119]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:65,77> (41 instructions, 164 bytes at 0x7fba28c09200)
+0 params, 6 slots, 0 upvalues, 2 locals, 18 constants, 1 function
+	1	[66]	GETGLOBAL	0 -1	; require
+	2	[66]	LOADK    	1 -2	; "device"
+	3	[66]	CALL     	0 2 2
+	4	[67]	GETGLOBAL	1 -3	; stub
+	5	[67]	MOVE     	2 0
+	6	[67]	LOADK    	3 -4	; "isKobo"
+	7	[67]	CALL     	1 3 1
+	8	[68]	GETTABLE 	1 0 -4	; "isKobo"
+	9	[68]	GETTABLE 	1 1 -5	; "returns"
+	10	[68]	LOADBOOL 	2 1 0
+	11	[68]	CALL     	1 2 1
+	12	[69]	GETGLOBAL	1 -3	; stub
+	13	[69]	MOVE     	2 0
+	14	[69]	LOADK    	3 -6	; "canPowerOff"
+	15	[69]	CALL     	1 3 1
+	16	[70]	GETTABLE 	1 0 -6	; "canPowerOff"
+	17	[70]	GETTABLE 	1 1 -5	; "returns"
+	18	[70]	LOADBOOL 	2 1 0
+	19	[70]	CALL     	1 2 1
+	20	[71]	GETTABLE 	1 0 -7	; "input"
+	21	[71]	CLOSURE  	2 0	; 0x7fba28c094b0
+	22	[71]	SETTABLE 	1 -8 2	; "waitEvent" -
+	23	[72]	GETGLOBAL	1 -1	; require
+	24	[72]	LOADK    	2 -9	; "ui/uimanager"
+	25	[72]	CALL     	1 2 2
+	26	[73]	GETGLOBAL	2 -3	; stub
+	27	[73]	MOVE     	3 1
+	28	[73]	LOADK    	4 -10	; "poweroff_action"
+	29	[73]	CALL     	2 3 1
+	30	[74]	SETTABLE 	1 -11 -12	; "_run_forever" true
+	31	[75]	GETGLOBAL	2 -13	; G_reader_settings
+	32	[75]	SELF     	2 2 -14	; "saveSetting"
+	33	[75]	LOADK    	4 -15	; "autoshutdown_timeout_seconds"
+	34	[75]	LOADK    	5 -16	; 10
+	35	[75]	CALL     	2 4 1
+	36	[76]	GETGLOBAL	2 -1	; require
+	37	[76]	LOADK    	3 -17	; "mock_time"
+	38	[76]	CALL     	2 2 2
+	39	[76]	SELF     	2 2 -18	; "install"
+	40	[76]	CALL     	2 2 1
+	41	[77]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:71,71> (1 instruction, 4 bytes at 0x7fba28c094b0)
+0 params, 2 slots, 0 upvalues, 0 locals, 0 constants, 0 functions
+	1	[71]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:79,84> (22 instructions, 88 bytes at 0x7fba28c09730)
+0 params, 3 slots, 0 upvalues, 0 locals, 11 constants, 0 functions
+	1	[80]	GETGLOBAL	0 -1	; require
+	2	[80]	LOADK    	1 -2	; "device"
+	3	[80]	CALL     	0 2 2
+	4	[80]	GETTABLE 	0 0 -3	; "isKobo"
+	5	[80]	SELF     	0 0 -4	; "revert"
+	6	[80]	CALL     	0 2 1
+	7	[81]	GETGLOBAL	0 -1	; require
+	8	[81]	LOADK    	1 -5	; "ui/uimanager"
+	9	[81]	CALL     	0 2 2
+	10	[81]	GETTABLE 	0 0 -6	; "poweroff_action"
+	11	[81]	SELF     	0 0 -4	; "revert"
+	12	[81]	CALL     	0 2 1
+	13	[82]	GETGLOBAL	0 -7	; G_reader_settings
+	14	[82]	SELF     	0 0 -8	; "delSetting"
+	15	[82]	LOADK    	2 -9	; "autoshutdown_timeout_seconds"
+	16	[82]	CALL     	0 3 1
+	17	[83]	GETGLOBAL	0 -1	; require
+	18	[83]	LOADK    	1 -10	; "mock_time"
+	19	[83]	CALL     	0 2 2
+	20	[83]	SELF     	0 0 -11	; "uninstall"
+	21	[83]	CALL     	0 2 1
+	22	[84]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:86,98> (40 instructions, 160 bytes at 0x7fba28c09430)
+0 params, 7 slots, 0 upvalues, 4 locals, 18 constants, 0 functions
+	1	[87]	GETGLOBAL	0 -1	; require
+	2	[87]	LOADK    	1 -2	; "mock_time"
+	3	[87]	CALL     	0 2 2
+	4	[88]	GETGLOBAL	1 -3	; dofile
+	5	[88]	LOADK    	2 -4	; "plugins/autosuspend.koplugin/main.lua"
+	6	[88]	CALL     	1 2 2
+	7	[89]	SELF     	2 1 -5	; "new"
+	8	[89]	CALL     	2 2 2
+	9	[90]	GETGLOBAL	3 -1	; require
+	10	[90]	LOADK    	4 -6	; "ui/uimanager"
+	11	[90]	CALL     	3 2 2
+	12	[91]	SELF     	4 0 -7	; "increase"
+	13	[91]	LOADK    	6 -8	; 5
+	14	[91]	CALL     	4 3 1
+	15	[92]	SELF     	4 3 -9	; "handleInput"
+	16	[92]	CALL     	4 2 1
+	17	[93]	GETGLOBAL	4 -10	; assert
+	18	[93]	GETTABLE 	4 4 -11	; "stub"
+	19	[93]	GETTABLE 	5 3 -12	; "poweroff_action"
+	20	[93]	CALL     	4 2 2
+	21	[93]	GETTABLE 	4 4 -13	; "was"
+	22	[93]	GETTABLE 	4 4 -14	; "called"
+	23	[93]	LOADK    	5 -15	; 0
+	24	[93]	CALL     	4 2 1
+	25	[94]	SELF     	4 0 -7	; "increase"
+	26	[94]	LOADK    	6 -16	; 6
+	27	[94]	CALL     	4 3 1
+	28	[95]	SELF     	4 3 -9	; "handleInput"
+	29	[95]	CALL     	4 2 1
+	30	[96]	GETGLOBAL	4 -10	; assert
+	31	[96]	GETTABLE 	4 4 -11	; "stub"
+	32	[96]	GETTABLE 	5 3 -12	; "poweroff_action"
+	33	[96]	CALL     	4 2 2
+	34	[96]	GETTABLE 	4 4 -13	; "was"
+	35	[96]	GETTABLE 	4 4 -14	; "called"
+	36	[96]	LOADK    	5 -17	; 1
+	37	[96]	CALL     	4 2 1
+	38	[97]	SELF     	4 0 -18	; "uninstall"
+	39	[97]	CALL     	4 2 1
+	40	[98]	RETURN   	0 1
+
+function <./spec/unit/autosuspend_spec.lua:100,118> (59 instructions, 236 bytes at 0x7fba28c09b70)
+0 params, 7 slots, 0 upvalues, 4 locals, 21 constants, 0 functions
+	1	[101]	GETGLOBAL	0 -1	; require
+	2	[101]	LOADK    	1 -2	; "mock_time"
+	3	[101]	CALL     	0 2 2
+	4	[102]	GETGLOBAL	1 -3	; dofile
+	5	[102]	LOADK    	2 -4	; "plugins/autosuspend.koplugin/main.lua"
+	6	[102]	CALL     	1 2 2
+	7	[103]	SELF     	2 1 -5	; "new"
+	8	[103]	CALL     	2 2 2
+	9	[104]	SELF     	3 0 -6	; "increase"
+	10	[104]	LOADK    	5 -7	; 5
+	11	[104]	CALL     	3 3 1
+	12	[105]	GETGLOBAL	3 -1	; require
+	13	[105]	LOADK    	4 -8	; "ui/uimanager"
+	14	[105]	CALL     	3 2 2
+	15	[106]	SELF     	4 3 -9	; "handleInput"
+	16	[106]	CALL     	4 2 1
+	17	[107]	GETGLOBAL	4 -10	; assert
+	18	[107]	GETTABLE 	4 4 -11	; "stub"
+	19	[107]	GETTABLE 	5 3 -12	; "poweroff_action"
+	20	[107]	CALL     	4 2 2
+	21	[107]	GETTABLE 	4 4 -13	; "was"
+	22	[107]	GETTABLE 	4 4 -14	; "called"
+	23	[107]	LOADK    	5 -15	; 0
+	24	[107]	CALL     	4 2 1
+	25	[108]	SELF     	4 2 -16	; "onInputEvent"
+	26	[108]	CALL     	4 2 1
+	27	[109]	SELF     	4 2 -17	; "onSuspend"
+	28	[109]	CALL     	4 2 1
+	29	[110]	SELF     	4 2 -18	; "onResume"
+	30	[110]	CALL     	4 2 1
+	31	[111]	SELF     	4 0 -6	; "increase"
+	32	[111]	LOADK    	6 -19	; 6
+	33	[111]	CALL     	4 3 1
+	34	[112]	SELF     	4 3 -9	; "handleInput"
+	35	[112]	CALL     	4 2 1
+	36	[113]	GETGLOBAL	4 -10	; assert
+	37	[113]	GETTABLE 	4 4 -11	; "stub"
+	38	[113]	GETTABLE 	5 3 -12	; "poweroff_action"
+	39	[113]	CALL     	4 2 2
+	40	[113]	GETTABLE 	4 4 -13	; "was"
+	41	[113]	GETTABLE 	4 4 -14	; "called"
+	42	[113]	LOADK    	5 -15	; 0
+	43	[113]	CALL     	4 2 1
+	44	[114]	SELF     	4 0 -6	; "increase"
+	45	[114]	LOADK    	6 -7	; 5
+	46	[114]	CALL     	4 3 1
+	47	[115]	SELF     	4 3 -9	; "handleInput"
+	48	[115]	CALL     	4 2 1
+	49	[116]	GETGLOBAL	4 -10	; assert
+	50	[116]	GETTABLE 	4 4 -11	; "stub"
+	51	[116]	GETTABLE 	5 3 -12	; "poweroff_action"
+	52	[116]	CALL     	4 2 2
+	53	[116]	GETTABLE 	4 4 -13	; "was"
+	54	[116]	GETTABLE 	4 4 -14	; "called"
+	55	[116]	LOADK    	5 -20	; 1
+	56	[116]	CALL     	4 2 1
+	57	[117]	SELF     	4 0 -21	; "uninstall"
+	58	[117]	CALL     	4 2 1
+	59	[118]	RETURN   	0 1

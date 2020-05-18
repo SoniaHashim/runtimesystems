@@ -1,0 +1,271 @@
+
+main <./frontend/device/wakeupmgr.lua:0,0> (41 instructions, 164 bytes at 0x7f95db4068c0)
+0+ params, 4 slots, 0 upvalues, 3 locals, 16 constants, 10 functions
+	1	[14]	GETGLOBAL	0 -1	; require
+	2	[14]	LOADK    	1 -2	; "ffi/rtc"
+	3	[14]	CALL     	0 2 2
+	4	[15]	GETGLOBAL	1 -1	; require
+	5	[15]	LOADK    	2 -3	; "logger"
+	6	[15]	CALL     	1 2 2
+	7	[22]	NEWTABLE 	2 0 2
+	8	[23]	SETTABLE 	2 -4 -5	; "dev_rtc" "/dev/rtc0"
+	9	[24]	NEWTABLE 	3 0 0
+	10	[24]	SETTABLE 	2 -6 3	; "_task_queue" -
+	11	[44]	CLOSURE  	3 0	; 0x7f95db406be0
+	12	[38]	SETTABLE 	2 -7 3	; "new" -
+	13	[75]	CLOSURE  	3 1	; 0x7f95db407090
+	14	[75]	MOVE     	0 0
+	15	[75]	MOVE     	0 1
+	16	[54]	SETTABLE 	2 -8 3	; "addTask" -
+	17	[101]	CLOSURE  	3 2	; 0x7f95db406ce0
+	18	[88]	SETTABLE 	2 -9 3	; "removeTask" -
+	19	[128]	CLOSURE  	3 3	; 0x7f95db407e30
+	20	[113]	SETTABLE 	2 -10 3	; "wakeupAction" -
+	21	[137]	CLOSURE  	3 4	; 0x7f95db4086a0
+	22	[137]	MOVE     	0 0
+	23	[135]	SETTABLE 	2 -11 3	; "setWakeupAlarm" -
+	24	[146]	CLOSURE  	3 5	; 0x7f95db408920
+	25	[146]	MOVE     	0 0
+	26	[144]	SETTABLE 	2 -12 3	; "unsetWakeupAlarm" -
+	27	[155]	CLOSURE  	3 6	; 0x7f95db408a30
+	28	[155]	MOVE     	0 0
+	29	[153]	SETTABLE 	2 -13 3	; "getWakeupAlarm" -
+	30	[164]	CLOSURE  	3 7	; 0x7f95db406da0
+	31	[164]	MOVE     	0 0
+	32	[162]	SETTABLE 	2 -14 3	; "getWakeupAlarmSys" -
+	33	[175]	CLOSURE  	3 8	; 0x7f95db406f20
+	34	[175]	MOVE     	0 0
+	35	[173]	SETTABLE 	2 -15 3	; "validateWakeupAlarmByProximity" -
+	36	[186]	CLOSURE  	3 9	; 0x7f95db407d80
+	37	[186]	MOVE     	0 0
+	38	[186]	MOVE     	0 1
+	39	[182]	SETTABLE 	2 -16 3	; "isWakeupAlarmScheduled" -
+	40	[188]	RETURN   	2 2
+	41	[188]	RETURN   	0 1
+
+function <./frontend/device/wakeupmgr.lua:38,44> (16 instructions, 64 bytes at 0x7f95db406be0)
+2 params, 5 slots, 0 upvalues, 2 locals, 3 constants, 0 functions
+	1	[39]	TEST     	1 0 1
+	2	[39]	JMP      	2	; to 5
+	3	[39]	NEWTABLE 	2 0 0
+	4	[39]	MOVE     	1 2
+	5	[40]	GETGLOBAL	2 -1	; setmetatable
+	6	[40]	MOVE     	3 1
+	7	[40]	MOVE     	4 0
+	8	[40]	CALL     	2 3 1
+	9	[41]	SETTABLE 	0 -2 0	; "__index" -
+	10	[42]	GETTABLE 	2 1 -3	; "init"
+	11	[42]	TEST     	2 0 0
+	12	[42]	JMP      	2	; to 15
+	13	[42]	SELF     	2 1 -3	; "init"
+	14	[42]	CALL     	2 2 1
+	15	[43]	RETURN   	1 2
+	16	[44]	RETURN   	0 1
+
+function <./frontend/device/wakeupmgr.lua:54,75> (54 instructions, 216 bytes at 0x7f95db407090)
+3 params, 9 slots, 2 upvalues, 6 locals, 14 constants, 1 function
+	1	[55]	GETGLOBAL	3 -1	; type
+	2	[55]	MOVE     	4 1
+	3	[55]	CALL     	3 2 2
+	4	[55]	NOT      	3 3
+	5	[55]	EQ       	0 3 -2	; - "number"
+	6	[55]	JMP      	7	; to 14
+	7	[55]	GETGLOBAL	3 -1	; type
+	8	[55]	MOVE     	4 2
+	9	[55]	CALL     	3 2 2
+	10	[55]	NOT      	3 3
+	11	[55]	EQ       	0 3 -3	; - "function"
+	12	[55]	JMP      	1	; to 14
+	13	[55]	RETURN   	0 1
+	14	[57]	GETUPVAL 	3 0	; RTC
+	15	[57]	SELF     	3 3 -4	; "secondsFromNowToEpoch"
+	16	[57]	MOVE     	5 1
+	17	[57]	CALL     	3 3 2
+	18	[58]	GETUPVAL 	4 1	; logger
+	19	[58]	GETTABLE 	4 4 -5	; "info"
+	20	[58]	LOADK    	5 -6	; "WakeupMgr: scheduling wakeup for:"
+	21	[58]	MOVE     	6 1
+	22	[58]	MOVE     	7 3
+	23	[58]	CALL     	4 4 1
+	24	[60]	GETTABLE 	4 0 -7	; "_task_queue"
+	25	[60]	GETTABLE 	4 4 -8	; 1
+	26	[60]	TEST     	4 0 1
+	27	[60]	JMP      	1	; to 29
+	28	[60]	NEWTABLE 	4 0 0
+	29	[60]	GETTABLE 	4 4 -9	; "epoch"
+	30	[62]	GETGLOBAL	5 -10	; table
+	31	[62]	GETTABLE 	5 5 -11	; "insert"
+	32	[62]	GETTABLE 	6 0 -7	; "_task_queue"
+	33	[62]	NEWTABLE 	7 0 2
+	34	[63]	SETTABLE 	7 -9 3	; "epoch" -
+	35	[64]	SETTABLE 	7 -12 2	; "callback" -
+	36	[62]	CALL     	5 3 1
+	37	[68]	GETGLOBAL	5 -10	; table
+	38	[68]	GETTABLE 	5 5 -13	; "sort"
+	39	[68]	GETTABLE 	6 0 -7	; "_task_queue"
+	40	[68]	CLOSURE  	7 0	; 0x7f95db407620
+	41	[68]	CALL     	5 3 1
+	42	[70]	GETTABLE 	5 0 -7	; "_task_queue"
+	43	[70]	GETTABLE 	5 5 -8	; 1
+	44	[70]	GETTABLE 	5 5 -9	; "epoch"
+	45	[72]	TEST     	4 0 0
+	46	[72]	JMP      	2	; to 49
+	47	[72]	LT       	0 5 4
+	48	[72]	JMP      	5	; to 54
+	49	[73]	SELF     	6 0 -14	; "setWakeupAlarm"
+	50	[73]	GETTABLE 	8 0 -7	; "_task_queue"
+	51	[73]	GETTABLE 	8 8 -8	; 1
+	52	[73]	GETTABLE 	8 8 -9	; "epoch"
+	53	[73]	CALL     	6 3 1
+	54	[75]	RETURN   	0 1
+
+function <./frontend/device/wakeupmgr.lua:68,68> (8 instructions, 32 bytes at 0x7f95db407620)
+2 params, 4 slots, 0 upvalues, 2 locals, 1 constant, 0 functions
+	1	[68]	GETTABLE 	2 0 -1	; "epoch"
+	2	[68]	GETTABLE 	3 1 -1	; "epoch"
+	3	[68]	LT       	1 2 3
+	4	[68]	JMP      	1	; to 6
+	5	[68]	LOADBOOL 	2 0 1
+	6	[68]	LOADBOOL 	2 1 0
+	7	[68]	RETURN   	2 2
+	8	[68]	RETURN   	0 1
+
+function <./frontend/device/wakeupmgr.lua:88,101> (46 instructions, 184 bytes at 0x7f95db406ce0)
+4 params, 12 slots, 0 upvalues, 9 locals, 10 constants, 0 functions
+	1	[89]	GETGLOBAL	4 -1	; type
+	2	[89]	MOVE     	5 1
+	3	[89]	CALL     	4 2 2
+	4	[89]	NOT      	4 4
+	5	[89]	EQ       	0 4 -2	; - "number"
+	6	[89]	JMP      	13	; to 20
+	7	[90]	GETGLOBAL	4 -1	; type
+	8	[90]	MOVE     	5 2
+	9	[90]	CALL     	4 2 2
+	10	[90]	NOT      	4 4
+	11	[90]	EQ       	0 4 -2	; - "number"
+	12	[90]	JMP      	7	; to 20
+	13	[91]	GETGLOBAL	4 -1	; type
+	14	[91]	MOVE     	5 3
+	15	[91]	CALL     	4 2 2
+	16	[91]	NOT      	4 4
+	17	[91]	EQ       	0 4 -3	; - "function"
+	18	[91]	JMP      	1	; to 20
+	19	[91]	RETURN   	0 1
+	20	[93]	GETTABLE 	4 0 -4	; "_task_queue"
+	21	[93]	LEN      	4 4
+	22	[93]	LT       	0 4 -5	; - 1
+	23	[93]	JMP      	1	; to 25
+	24	[93]	RETURN   	0 1
+	25	[95]	GETGLOBAL	4 -6	; ipairs
+	26	[95]	GETTABLE 	5 0 -4	; "_task_queue"
+	27	[95]	CALL     	4 2 4
+	28	[95]	JMP      	15	; to 44
+	29	[96]	EQ       	1 7 1
+	30	[96]	JMP      	6	; to 37
+	31	[96]	GETTABLE 	9 8 -7	; "epoch"
+	32	[96]	EQ       	1 2 9
+	33	[96]	JMP      	3	; to 37
+	34	[96]	GETTABLE 	9 8 -8	; "callback"
+	35	[96]	EQ       	0 3 9
+	36	[96]	JMP      	7	; to 44
+	37	[97]	GETGLOBAL	9 -9	; table
+	38	[97]	GETTABLE 	9 9 -10	; "remove"
+	39	[97]	GETTABLE 	10 0 -4	; "_task_queue"
+	40	[97]	MOVE     	11 7
+	41	[97]	CALL     	9 3 1
+	42	[98]	LOADBOOL 	9 1 0
+	43	[98]	RETURN   	9 2
+	44	[95]	TFORLOOP 	4 2
+	45	[99]	JMP      	-17	; to 29
+	46	[101]	RETURN   	0 1
+
+function <./frontend/device/wakeupmgr.lua:113,128> (31 instructions, 124 bytes at 0x7f95db407e30)
+1 param, 5 slots, 0 upvalues, 2 locals, 8 constants, 0 functions
+	1	[114]	GETTABLE 	1 0 -1	; "_task_queue"
+	2	[114]	LEN      	1 1
+	3	[114]	LT       	0 -2 1	; 0 -
+	4	[114]	JMP      	26	; to 31
+	5	[115]	GETTABLE 	1 0 -1	; "_task_queue"
+	6	[115]	GETTABLE 	1 1 -3	; 1
+	7	[116]	SELF     	2 0 -4	; "validateWakeupAlarmByProximity"
+	8	[116]	GETTABLE 	4 1 -5	; "epoch"
+	9	[116]	CALL     	2 3 2
+	10	[116]	TEST     	2 0 0
+	11	[116]	JMP      	17	; to 29
+	12	[117]	GETTABLE 	2 1 -6	; "callback"
+	13	[117]	CALL     	2 1 1
+	14	[118]	SELF     	2 0 -7	; "removeTask"
+	15	[118]	LOADK    	4 -3	; 1
+	16	[118]	CALL     	2 3 1
+	17	[119]	GETTABLE 	2 0 -1	; "_task_queue"
+	18	[119]	GETTABLE 	2 2 -3	; 1
+	19	[119]	TEST     	2 0 0
+	20	[119]	JMP      	5	; to 26
+	21	[121]	SELF     	2 0 -8	; "setWakeupAlarm"
+	22	[121]	GETTABLE 	4 0 -1	; "_task_queue"
+	23	[121]	GETTABLE 	4 4 -3	; 1
+	24	[121]	GETTABLE 	4 4 -5	; "epoch"
+	25	[121]	CALL     	2 3 1
+	26	[123]	LOADBOOL 	2 1 0
+	27	[123]	RETURN   	2 2
+	28	[123]	JMP      	2	; to 31
+	29	[125]	LOADBOOL 	2 0 0
+	30	[125]	RETURN   	2 2
+	31	[128]	RETURN   	0 1
+
+function <./frontend/device/wakeupmgr.lua:135,137> (7 instructions, 28 bytes at 0x7f95db4086a0)
+3 params, 7 slots, 1 upvalue, 3 locals, 1 constant, 0 functions
+	1	[136]	GETUPVAL 	3 0	; RTC
+	2	[136]	SELF     	3 3 -1	; "setWakeupAlarm"
+	3	[136]	MOVE     	5 1
+	4	[136]	MOVE     	6 2
+	5	[136]	TAILCALL 	3 4 0
+	6	[136]	RETURN   	3 0
+	7	[137]	RETURN   	0 1
+
+function <./frontend/device/wakeupmgr.lua:144,146> (5 instructions, 20 bytes at 0x7f95db408920)
+1 param, 3 slots, 1 upvalue, 1 local, 1 constant, 0 functions
+	1	[145]	GETUPVAL 	1 0	; RTC
+	2	[145]	SELF     	1 1 -1	; "unsetWakeupAlarm"
+	3	[145]	TAILCALL 	1 2 0
+	4	[145]	RETURN   	1 0
+	5	[146]	RETURN   	0 1
+
+function <./frontend/device/wakeupmgr.lua:153,155> (5 instructions, 20 bytes at 0x7f95db408a30)
+1 param, 3 slots, 1 upvalue, 1 local, 1 constant, 0 functions
+	1	[154]	GETUPVAL 	1 0	; RTC
+	2	[154]	SELF     	1 1 -1	; "getWakeupAlarm"
+	3	[154]	TAILCALL 	1 2 0
+	4	[154]	RETURN   	1 0
+	5	[155]	RETURN   	0 1
+
+function <./frontend/device/wakeupmgr.lua:162,164> (5 instructions, 20 bytes at 0x7f95db406da0)
+1 param, 3 slots, 1 upvalue, 1 local, 1 constant, 0 functions
+	1	[163]	GETUPVAL 	1 0	; RTC
+	2	[163]	SELF     	1 1 -1	; "getWakeupAlarmSys"
+	3	[163]	TAILCALL 	1 2 0
+	4	[163]	RETURN   	1 0
+	5	[164]	RETURN   	0 1
+
+function <./frontend/device/wakeupmgr.lua:173,175> (7 instructions, 28 bytes at 0x7f95db406f20)
+3 params, 7 slots, 1 upvalue, 3 locals, 1 constant, 0 functions
+	1	[174]	GETUPVAL 	3 0	; RTC
+	2	[174]	SELF     	3 3 -1	; "validateWakeupAlarmByProximity"
+	3	[174]	MOVE     	5 1
+	4	[174]	MOVE     	6 2
+	5	[174]	TAILCALL 	3 4 0
+	6	[174]	RETURN   	3 0
+	7	[175]	RETURN   	0 1
+
+function <./frontend/device/wakeupmgr.lua:182,186> (10 instructions, 40 bytes at 0x7f95db407d80)
+1 param, 5 slots, 2 upvalues, 2 locals, 2 constants, 0 functions
+	1	[183]	GETUPVAL 	1 0	; RTC
+	2	[183]	SELF     	1 1 -1	; "isWakeupAlarmScheduled"
+	3	[183]	CALL     	1 2 2
+	4	[184]	GETUPVAL 	2 1	; logger
+	5	[184]	GETTABLE 	2 2 -2	; "dbg"
+	6	[184]	LOADK    	3 -1	; "isWakeupAlarmScheduled"
+	7	[184]	MOVE     	4 1
+	8	[184]	CALL     	2 3 1
+	9	[185]	RETURN   	1 2
+	10	[186]	RETURN   	0 1

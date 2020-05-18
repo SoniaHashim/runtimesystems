@@ -1,0 +1,173 @@
+-- BYTECODE -- fontlist.lua:81-84
+0001    UGET     1   0      ; CanvasContext
+0002    TGETS    1   1   0  ; "isKindle"
+0003    CALL     1   2   1
+0004    ISF          1
+0005    JMP      2 => 0008
+0006    UGET     1   1      ; kindle_fonts_blacklist
+0007    TGETV    1   1   0
+0008 => RET1     1   2
+
+-- BYTECODE -- fontlist.lua:86-92
+0001    UGET     0   0      ; CanvasContext
+0002    TGETS    0   0   0  ; "isAndroid"
+0003    CALL     0   2   1
+0004    IST          0
+0005    JMP      1 => 0016
+0006    UGET     0   0      ; CanvasContext
+0007    TGETS    0   0   1  ; "isDesktop"
+0008    CALL     0   2   1
+0009    IST          0
+0010    JMP      1 => 0016
+0011    UGET     0   0      ; CanvasContext
+0012    TGETS    0   0   2  ; "isEmulator"
+0013    CALL     0   2   1
+0014    ISF          0
+0015    JMP      1 => 0023
+0016 => GGET     0   3      ; "require"
+0017    KSTR     1   4      ; "frontend/ui/elements/font_settings"
+0018    CALL     0   2   2
+0019    MOV      1   0
+0020    TGETS    0   0   5  ; "getPath"
+0021    CALLT    0   2
+0022    JMP      0 => 0027
+0023 => GGET     0   6      ; "os"
+0024    TGETS    0   0   7  ; "getenv"
+0025    KSTR     1   8      ; "EXT_FONT_DIR"
+0026    CALLT    0   2
+0027 => RET0     0   1
+
+-- BYTECODE -- fontlist.lua:94-114
+0001    GGET     2   0      ; "pcall"
+0002    GGET     3   1      ; "lfs"
+0003    TGETS    3   3   2  ; "dir"
+0004    MOV      4   1
+0005    CALL     2   4   3
+0006    IST          2
+0007    JMP      5 => 0009
+0008    RET0     0   1
+0009 => MOV      5   3
+0010    MOV      6   4
+0011    KPRI     7   0
+0012    JMP      8 => 0079
+0013 => GGET     9   1      ; "lfs"
+0014    TGETS    9   9   3  ; "attributes"
+0015    MOV     10   1
+0016    KSTR    11   4      ; "/"
+0017    MOV     12   8
+0018    CAT     10  10  12
+0019    KSTR    11   5      ; "mode"
+0020    CALL     9   2   3
+0021    ISNES    9   6      ; "directory"
+0022    JMP     10 => 0035
+0023    ISEQS    8   7      ; "."
+0024    JMP     10 => 0035
+0025    ISEQS    8   8      ; ".."
+0026    JMP     10 => 0035
+0027    UGET    10   0      ; _readList
+0028    MOV     11   0
+0029    MOV     12   1
+0030    KSTR    13   4      ; "/"
+0031    MOV     14   8
+0032    CAT     12  12  14
+0033    CALL    10   1   3
+0034    JMP     10 => 0079
+0035 => ISEQS    9   9      ; "file"
+0036    JMP     10 => 0039
+0037    ISNES    9  10      ; "link"
+0038    JMP     10 => 0079
+0039 => GGET    10  11      ; "string"
+0040    TGETS   10  10  12  ; "sub"
+0041    MOV     11   8
+0042    KSHORT  12   1
+0043    KSHORT  13   1
+0044    CALL    10   2   4
+0045    ISEQS   10   7      ; "."
+0046    JMP     10 => 0079
+0047    GGET    10  11      ; "string"
+0048    TGETS   10  10  13  ; "lower"
+0049    GGET    11  11      ; "string"
+0050    TGETS   11  11  14  ; "match"
+0051    MOV     12   8
+0052    KSTR    13  15      ; ".+%.([^.]+)"
+0053    CALL    11   2   3
+0054    IST         11
+0055    JMP     12 => 0057
+0056    KSTR    11  16      ; ""
+0057 => CALL    10   2   2
+0058    ISEQS   10  17      ; "ttf"
+0059    JMP     11 => 0066
+0060    ISEQS   10  18      ; "ttc"
+0061    JMP     11 => 0066
+0062    ISEQS   10  19      ; "cff"
+0063    JMP     11 => 0066
+0064    ISNES   10  20      ; "otf"
+0065    JMP     11 => 0079
+0066 => UGET    11   1      ; isInFontsBlacklist
+0067    MOV     12   8
+0068    CALL    11   2   2
+0069    IST         11
+0070    JMP     11 => 0079
+0071    GGET    11  21      ; "table"
+0072    TGETS   11  11  22  ; "insert"
+0073    MOV     12   0
+0074    MOV     13   1
+0075    KSTR    14   4      ; "/"
+0076    MOV     15   8
+0077    CAT     13  13  15
+0078    CALL    11   1   3
+0079 => ITERC    8   2   3
+0080    ITERL    8 => 0013
+0081    RET0     0   1
+
+-- BYTECODE -- fontlist.lua:116-125
+0001    TGETS    1   0   0  ; "fontlist"
+0002    LEN      1   1
+0003    KSHORT   2   0
+0004    ISGE     2   1
+0005    JMP      1 => 0008
+0006    TGETS    1   0   0  ; "fontlist"
+0007    RET1     1   2
+0008 => UGET     1   0      ; _readList
+0009    TGETS    2   0   0  ; "fontlist"
+0010    TGETS    3   0   1  ; "fontdir"
+0011    CALL     1   1   3
+0012    GGET     1   2      ; "string"
+0013    TGETS    1   1   3  ; "gmatch"
+0014    UGET     2   1      ; getExternalFontDir
+0015    CALL     2   2   1
+0016    IST          2
+0017    JMP      3 => 0019
+0018    KSTR     2   4      ; ""
+0019 => KSTR     3   5      ; "([^;]+)"
+0020    CALL     1   4   3
+0021    JMP      4 => 0026
+0022 => UGET     5   0      ; _readList
+0023    TGETS    6   0   0  ; "fontlist"
+0024    MOV      7   4
+0025    CALL     5   1   3
+0026 => ITERC    4   2   3
+0027    ITERL    4 => 0022
+0028    GGET     1   6      ; "table"
+0029    TGETS    1   1   7  ; "sort"
+0030    TGETS    2   0   0  ; "fontlist"
+0031    CALL     1   1   2
+0032    TGETS    1   0   0  ; "fontlist"
+0033    RET1     1   2
+
+-- BYTECODE -- fontlist.lua:0-128
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "document/canvascontext"
+0003    CALL     0   2   2
+0004    TDUP     1   2
+0005    TNEW     2   0
+0006    TSETS    2   1   3  ; "fontlist"
+0007    TDUP     2   4
+0008    FNEW     3   5      ; fontlist.lua:81
+0009    FNEW     4   6      ; fontlist.lua:86
+0010    FNEW     5   7      ; fontlist.lua:94
+0011    FNEW     6   9      ; fontlist.lua:116
+0012    TSETS    6   1   8  ; "getFontList"
+0013    UCLO     0 => 0014
+0014 => RET1     1   2
+

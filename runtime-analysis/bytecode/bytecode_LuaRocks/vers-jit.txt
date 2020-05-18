@@ -1,0 +1,452 @@
+-- BYTECODE -- vers.lua:26-39
+0001    LEN      2   0
+0002    LEN      3   1
+0003    ISEQV    2   3
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    RET1     2   2
+0007 => KSHORT   2   1
+0008    LEN      3   0
+0009    KSHORT   4   1
+0010    FORI     2 => 0018
+0011 => TGETV    6   0   5
+0012    TGETV    7   1   5
+0013    ISEQV    6   7
+0014    JMP      6 => 0017
+0015    KPRI     6   1
+0016    RET1     6   2
+0017 => FORL     2 => 0011
+0018 => TGETS    2   0   0  ; "revision"
+0019    ISF          2
+0020    JMP      3 => 0032
+0021    TGETS    2   1   0  ; "revision"
+0022    ISF          2
+0023    JMP      3 => 0032
+0024    TGETS    2   0   0  ; "revision"
+0025    TGETS    3   1   0  ; "revision"
+0026    ISEQV    2   3
+0027    JMP      2 => 0030
+0028    KPRI     2   1
+0029    JMP      3 => 0031
+0030 => KPRI     2   2
+0031 => RET1     2   2
+0032 => KPRI     2   2
+0033    RET1     2   2
+
+-- BYTECODE -- vers.lua:47-58
+0001    KSHORT   2   1
+0002    GGET     3   0      ; "math"
+0003    TGETS    3   3   1  ; "max"
+0004    LEN      4   0
+0005    LEN      5   1
+0006    CALL     3   2   3
+0007    KSHORT   4   1
+0008    FORI     2 => 0026
+0009 => TGETV    6   0   5
+0010    IST          6
+0011    JMP      7 => 0013
+0012    KSHORT   6   0
+0013 => TGETV    7   1   5
+0014    IST          7
+0015    JMP      8 => 0017
+0016    KSHORT   7   0
+0017 => ISEQV    6   7
+0018    JMP      8 => 0025
+0019    ISLT     6   7
+0020    JMP      8 => 0023
+0021    KPRI     8   1
+0022    JMP      9 => 0024
+0023 => KPRI     8   2
+0024 => RET1     8   2
+0025 => FORL     2 => 0009
+0026 => TGETS    2   0   2  ; "revision"
+0027    ISF          2
+0028    JMP      3 => 0040
+0029    TGETS    2   1   2  ; "revision"
+0030    ISF          2
+0031    JMP      3 => 0040
+0032    TGETS    2   0   2  ; "revision"
+0033    TGETS    3   1   2  ; "revision"
+0034    ISLT     2   3
+0035    JMP      2 => 0038
+0036    KPRI     2   1
+0037    JMP      3 => 0039
+0038 => KPRI     2   2
+0039 => RET1     2   2
+0040 => KPRI     2   1
+0041    RET1     2   2
+
+-- BYTECODE -- vers.lua:62-64
+0001    ISGE     1   0
+0002    JMP      2 => 0005
+0003    KPRI     2   1
+0004    JMP      3 => 0006
+0005 => KPRI     2   2
+0006 => RET1     2   2
+
+-- BYTECODE -- vers.lua:68-70
+0001    TGETS    1   0   0  ; "string"
+0002    RET1     1   2
+
+-- BYTECODE -- vers.lua:101-104
+0001    UGET     1   0      ; version
+0002    UGET     2   1      ; i
+0003    UGET     3   0      ; version
+0004    UGET     4   1      ; i
+0005    TGETV    3   3   4
+0006    ISF          3
+0007    JMP      4 => 0015
+0008    UGET     3   0      ; version
+0009    UGET     4   1      ; i
+0010    TGETV    3   3   4
+0011    DIVVN    4   0   0  ; 100000
+0012    ADDVV    3   3   4
+0013    IST          3
+0014    JMP      4 => 0016
+0015 => MOV      3   0
+0016 => TSETV    3   1   2
+0017    UGET     1   1      ; i
+0018    ADDVN    1   1   1  ; 1
+0019    USETV    1   1      ; i
+0020    RET0     0   1
+
+-- BYTECODE -- vers.lua:89-135
+0001    IST          0
+0002    JMP      1 => 0005
+0003    KPRI     1   0
+0004    UCLO     0 => 0093
+0005 => GGET     1   0      ; "assert"
+0006    GGET     2   1      ; "type"
+0007    MOV      3   0
+0008    CALL     2   2   2
+0009    ISEQS    2   2      ; "string"
+0010    JMP      2 => 0013
+0011    KPRI     2   1
+0012    JMP      3 => 0014
+0013 => KPRI     2   2
+0014 => CALL     1   1   2
+0015    UGET     1   0      ; version_cache
+0016    TGETV    1   1   0
+0017    ISF          1
+0018    JMP      2 => 0020
+0019    UCLO     0 => 0094
+0020 => TNEW     2   0
+0021    KSHORT   3   1
+0022    FNEW     4   3      ; vers.lua:101
+0023    MOV      6   0
+0024    TGETS    5   0   4  ; "match"
+0025    KSTR     7   5      ; "^%s*(.*)%s*$"
+0026    CALL     5   2   3
+0027    TSETS    5   2   2  ; "string"
+0028    MOV      7   5
+0029    TGETS    6   5   4  ; "match"
+0030    KSTR     8   6      ; "(.*)%-(%d+)$"
+0031    CALL     6   3   3
+0032    ISF          7
+0033    JMP      8 => 0039
+0034    MOV      5   6
+0035    GGET     8   8      ; "tonumber"
+0036    MOV      9   7
+0037    CALL     8   2   2
+0038    TSETS    8   2   7  ; "revision"
+0039 => LEN      8   5
+0040    KSHORT   9   0
+0041    ISGE     9   8
+0042    JMP      8 => 0085
+0043    LOOP     8 => 0085
+0044    MOV      9   5
+0045    TGETS    8   5   4  ; "match"
+0046    KSTR    10   9      ; "^(%d+)[%.%-%_]*(.*)"
+0047    CALL     8   3   3
+0048    ISF          8
+0049    JMP     10 => 0056
+0050    MOV     10   4
+0051    GGET    11   8      ; "tonumber"
+0052    MOV     12   8
+0053    CALL    11   0   2
+0054    CALLM   10   1   0
+0055    JMP     10 => 0083
+0056 => MOV     11   5
+0057    TGETS   10   5   4  ; "match"
+0058    KSTR    12  10      ; "^(%a+)[%.%-%_]*(.*)"
+0059    CALL    10   3   3
+0060    MOV      9  11
+0061    MOV      8  10
+0062    IST          8
+0063    JMP     10 => 0074
+0064    UGET    10   1      ; util
+0065    TGETS   10  10  11  ; "warning"
+0066    KSTR    11  12      ; "version number '"
+0067    MOV     12   5
+0068    KSTR    13  13      ; "' could not be parsed."
+0069    CAT     11  11  13
+0070    CALL    10   1   2
+0071    KSHORT  10   0
+0072    TSETV   10   2   3
+0073    JMP      8 => 0085
+0074 => UGET    10   2      ; deltas
+0075    TGETV   10  10   8
+0076    IST         10
+0077    JMP     11 => 0082
+0078    MOV     11   8
+0079    TGETS   10   8  14  ; "byte"
+0080    CALL    10   2   2
+0081    DIVVN   10  10   0  ; 1000
+0082 => TSETV   10   2   3
+0083 => MOV      5   9
+0084    JMP      8 => 0039
+0085 => GGET     8  15      ; "setmetatable"
+0086    MOV      9   2
+0087    UGET    10   3      ; version_mt
+0088    CALL     8   1   3
+0089    UGET     8   0      ; version_cache
+0090    TSETV    2   8   0
+0091    UCLO     0 => 0092
+0092 => RET1     2   2
+0093 => RET1     1   2
+0094 => RET1     1   2
+
+-- BYTECODE -- vers.lua:141-146
+0001    ISNEV    0   1
+0002    JMP      2 => 0005
+0003    KPRI     2   1
+0004    RET1     2   2
+0005 => UGET     2   0      ; vers
+0006    TGETS    2   2   0  ; "parse_version"
+0007    MOV      3   0
+0008    CALL     2   2   2
+0009    UGET     3   0      ; vers
+0010    TGETS    3   3   0  ; "parse_version"
+0011    MOV      4   1
+0012    CALL     3   2   2
+0013    ISLT     3   2
+0014    JMP      2 => 0017
+0015    KPRI     2   1
+0016    JMP      3 => 0018
+0017 => KPRI     2   2
+0018 => RET1     2   2
+
+-- BYTECODE -- vers.lua:160-176
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "string"
+0006    JMP      3 => 0014
+0007    GGET     3   1      ; "type"
+0008    MOV      4   0
+0009    CALL     3   2   2
+0010    ISEQS    3   3      ; "table"
+0011    JMP      3 => 0014
+0012    KPRI     3   1
+0013    JMP      4 => 0015
+0014 => KPRI     3   2
+0015 => CALL     2   1   2
+0016    GGET     2   0      ; "assert"
+0017    GGET     3   1      ; "type"
+0018    MOV      4   1
+0019    CALL     3   2   2
+0020    ISEQS    3   2      ; "string"
+0021    JMP      3 => 0029
+0022    GGET     3   1      ; "type"
+0023    MOV      4   0
+0024    CALL     3   2   2
+0025    ISEQS    3   3      ; "table"
+0026    JMP      3 => 0029
+0027    KPRI     3   1
+0028    JMP      4 => 0030
+0029 => KPRI     3   2
+0030 => CALL     2   1   2
+0031    GGET     2   1      ; "type"
+0032    MOV      3   0
+0033    CALL     2   2   2
+0034    ISEQS    2   3      ; "table"
+0035    JMP      2 => 0041
+0036    UGET     2   0      ; vers
+0037    TGETS    2   2   4  ; "parse_version"
+0038    MOV      3   0
+0039    CALL     2   2   2
+0040    MOV      0   2
+0041 => GGET     2   1      ; "type"
+0042    MOV      3   1
+0043    CALL     2   2   2
+0044    ISEQS    2   3      ; "table"
+0045    JMP      2 => 0051
+0046    UGET     2   0      ; vers
+0047    TGETS    2   2   4  ; "parse_version"
+0048    MOV      3   1
+0049    CALL     2   2   2
+0050    MOV      1   2
+0051 => ISF          0
+0052    JMP      2 => 0055
+0053    IST          1
+0054    JMP      2 => 0057
+0055 => KPRI     2   1
+0056    RET1     2   2
+0057 => GGET     2   5      ; "ipairs"
+0058    MOV      3   1
+0059    CALL     2   4   2
+0060    JMP      5 => 0069
+0061 => TGETV    7   0   5
+0062    IST          7
+0063    JMP      8 => 0065
+0064    KSHORT   7   0
+0065 => ISEQV    6   7
+0066    JMP      8 => 0069
+0067    KPRI     8   1
+0068    RET1     8   2
+0069 => ITERC    5   3   3
+0070    ITERL    5 => 0061
+0071    TGETS    2   1   6  ; "revision"
+0072    ISF          2
+0073    JMP      3 => 0082
+0074    TGETS    2   1   6  ; "revision"
+0075    TGETS    3   0   6  ; "revision"
+0076    ISEQV    2   3
+0077    JMP      2 => 0080
+0078    KPRI     2   1
+0079    JMP      3 => 0081
+0080 => KPRI     2   2
+0081 => RET1     2   2
+0082 => KPRI     2   2
+0083    RET1     2   2
+
+-- BYTECODE -- vers.lua:183-205
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "table"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => CALL     2   1   2
+0011    GGET     2   0      ; "assert"
+0012    GGET     3   1      ; "type"
+0013    MOV      4   1
+0014    CALL     3   2   2
+0015    ISEQS    3   2      ; "table"
+0016    JMP      3 => 0019
+0017    KPRI     3   1
+0018    JMP      4 => 0020
+0019 => KPRI     3   2
+0020 => CALL     2   1   2
+0021    KPRI     2   2
+0022    GGET     3   3      ; "setmetatable"
+0023    MOV      4   0
+0024    UGET     5   0      ; version_mt
+0025    CALL     3   1   3
+0026    GGET     3   4      ; "pairs"
+0027    MOV      4   1
+0028    CALL     3   4   2
+0029    ISNEXT   6 => 0104
+0030 => GGET     8   1      ; "type"
+0031    TGETS    9   7   5  ; "version"
+0032    CALL     8   2   2
+0033    ISNES    8   6      ; "string"
+0034    JMP      8 => 0040
+0035    UGET     8   1      ; vers
+0036    TGETS    8   8   7  ; "parse_version"
+0037    TGETS    9   7   5  ; "version"
+0038    CALL     8   2   2
+0039    TSETS    8   7   5  ; "version"
+0040 => TGETS    8   7   5  ; "version"
+0041    TGETS    9   7   8  ; "op"
+0042    GGET    10   3      ; "setmetatable"
+0043    MOV     11   8
+0044    UGET    12   0      ; version_mt
+0045    CALL    10   1   3
+0046    ISNES    9   9      ; "=="
+0047    JMP     10 => 0054
+0048    ISEQV    0   8
+0049    JMP     10 => 0052
+0050    KPRI     2   1
+0051    JMP     10 => 0053
+0052 => KPRI     2   2
+0053 => JMP     10 => 0101
+0054 => ISNES    9  10      ; "~="
+0055    JMP     10 => 0062
+0056    ISNEV    0   8
+0057    JMP     10 => 0060
+0058    KPRI     2   1
+0059    JMP     10 => 0061
+0060 => KPRI     2   2
+0061 => JMP     10 => 0101
+0062 => ISNES    9  11      ; ">"
+0063    JMP     10 => 0070
+0064    ISLT     8   0
+0065    JMP     10 => 0068
+0066    KPRI     2   1
+0067    JMP     10 => 0069
+0068 => KPRI     2   2
+0069 => JMP     10 => 0101
+0070 => ISNES    9  12      ; "<"
+0071    JMP     10 => 0078
+0072    ISLT     0   8
+0073    JMP     10 => 0076
+0074    KPRI     2   1
+0075    JMP     10 => 0077
+0076 => KPRI     2   2
+0077 => JMP     10 => 0101
+0078 => ISNES    9  13      ; ">="
+0079    JMP     10 => 0086
+0080    ISLE     8   0
+0081    JMP     10 => 0084
+0082    KPRI     2   1
+0083    JMP     10 => 0085
+0084 => KPRI     2   2
+0085 => JMP     10 => 0101
+0086 => ISNES    9  14      ; "<="
+0087    JMP     10 => 0094
+0088    ISLE     0   8
+0089    JMP     10 => 0092
+0090    KPRI     2   1
+0091    JMP     10 => 0093
+0092 => KPRI     2   2
+0093 => JMP     10 => 0101
+0094 => ISNES    9  15      ; "~>"
+0095    JMP     10 => 0101
+0096    UGET    10   2      ; partial_match
+0097    MOV     11   0
+0098    MOV     12   8
+0099    CALL    10   2   3
+0100    MOV      2  10
+0101 => IST          2
+0102    JMP     10 => 0104
+0103    JMP      3 => 0106
+0104 => ITERN    6   3   3
+0105    ITERL    6 => 0030
+0106 => RET1     2   2
+
+-- BYTECODE -- vers.lua:0-208
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.core.util"
+0004    CALL     1   2   2
+0005    KPRI     2   0
+0006    TDUP     3   2
+0007    TDUP     4   4
+0008    FNEW     5   3      ; vers.lua:26
+0009    TSETS    5   4   5  ; "__eq"
+0010    FNEW     5   6      ; vers.lua:47
+0011    TSETS    5   4   7  ; "__lt"
+0012    FNEW     5   8      ; vers.lua:62
+0013    TSETS    5   4   9  ; "__le"
+0014    FNEW     5  10      ; vers.lua:68
+0015    TSETS    5   4  11  ; "__tostring"
+0016    TNEW     5   0
+0017    GGET     6  12      ; "setmetatable"
+0018    MOV      7   5
+0019    TDUP     8  13
+0020    CALL     6   1   3
+0021    FNEW     6  15      ; vers.lua:89
+0022    TSETS    6   0  14  ; "parse_version"
+0023    FNEW     6  17      ; vers.lua:141
+0024    TSETS    6   0  16  ; "compare_versions"
+0025    FNEW     6  18      ; vers.lua:160
+0026    FNEW     7  20      ; vers.lua:183
+0027    TSETS    7   0  19  ; "match_constraints"
+0028    UCLO     0 => 0029
+0029 => RET1     0   2
+

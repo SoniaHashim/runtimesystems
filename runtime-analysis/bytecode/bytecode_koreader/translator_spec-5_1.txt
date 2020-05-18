@@ -1,0 +1,122 @@
+
+main <./spec/unit/translator_spec.lua:0,0> (9 instructions, 36 bytes at 0x7fd897c068c0)
+0+ params, 5 slots, 0 upvalues, 2 locals, 3 constants, 1 function
+	1	[1]	LOADK    	0 -1	; "Wikipedia is een meertalige encyclopedie, waarvan de inhoud vrij beschikbaar is. Iedereen kan hier kennis toevoegen!"
+	2	[2]	LOADNIL  	1 1
+	3	[4]	GETGLOBAL	2 -2	; describe
+	4	[4]	LOADK    	3 -3	; "Translator module"
+	5	[29]	CLOSURE  	4 0	; 0x7fd897c06dd0
+	6	[29]	MOVE     	0 1
+	7	[29]	MOVE     	0 0
+	8	[4]	CALL     	2 3 1
+	9	[29]	RETURN   	0 1
+
+function <./spec/unit/translator_spec.lua:4,29> (22 instructions, 88 bytes at 0x7fd897c06dd0)
+0 params, 3 slots, 2 upvalues, 0 locals, 5 constants, 4 functions
+	1	[5]	GETGLOBAL	0 -1	; setup
+	2	[8]	CLOSURE  	1 0	; 0x7fd897c06b80
+	3	[8]	GETUPVAL 	0 0	; Translator
+	4	[5]	CALL     	0 2 1
+	5	[9]	GETGLOBAL	0 -2	; it
+	6	[9]	LOADK    	1 -3	; "should return server"
+	7	[16]	CLOSURE  	2 1	; 0x7fd897c07360
+	8	[16]	GETUPVAL 	0 0	; Translator
+	9	[9]	CALL     	0 3 1
+	10	[18]	GETGLOBAL	0 -2	; it
+	11	[18]	LOADK    	1 -4	; "should return translation"
+	12	[24]	CLOSURE  	2 2	; 0x7fd897c07ac0
+	13	[24]	GETUPVAL 	0 0	; Translator
+	14	[24]	GETUPVAL 	0 1	; dutch_wikipedia_text
+	15	[18]	CALL     	0 3 1
+	16	[25]	GETGLOBAL	0 -2	; it
+	17	[25]	LOADK    	1 -5	; "should autodetect language"
+	18	[28]	CLOSURE  	2 3	; 0x7fd897c081a0
+	19	[28]	GETUPVAL 	0 0	; Translator
+	20	[28]	GETUPVAL 	0 1	; dutch_wikipedia_text
+	21	[25]	CALL     	0 3 1
+	22	[29]	RETURN   	0 1
+
+function <./spec/unit/translator_spec.lua:5,8> (8 instructions, 32 bytes at 0x7fd897c06b80)
+0 params, 2 slots, 1 upvalue, 0 locals, 3 constants, 0 functions
+	1	[6]	GETGLOBAL	0 -1	; require
+	2	[6]	LOADK    	1 -2	; "commonrequire"
+	3	[6]	CALL     	0 2 1
+	4	[7]	GETGLOBAL	0 -1	; require
+	5	[7]	LOADK    	1 -3	; "ui/translator"
+	6	[7]	CALL     	0 2 2
+	7	[7]	SETUPVAL 	0 0	; Translator
+	8	[8]	RETURN   	0 1
+
+function <./spec/unit/translator_spec.lua:9,16> (32 instructions, 128 bytes at 0x7fd897c07360)
+0 params, 4 slots, 1 upvalue, 0 locals, 11 constants, 0 functions
+	1	[10]	GETGLOBAL	0 -1	; assert
+	2	[10]	GETTABLE 	0 0 -2	; "is"
+	3	[10]	GETTABLE 	0 0 -3	; "same"
+	4	[10]	LOADK    	1 -4	; "https://translate.googleapis.com/"
+	5	[10]	GETUPVAL 	2 0	; Translator
+	6	[10]	SELF     	2 2 -5	; "getTransServer"
+	7	[10]	CALL     	2 2 0
+	8	[10]	CALL     	0 0 1
+	9	[11]	GETGLOBAL	0 -6	; G_reader_settings
+	10	[11]	SELF     	0 0 -7	; "saveSetting"
+	11	[11]	LOADK    	2 -8	; "trans_server"
+	12	[11]	LOADK    	3 -9	; "http://translate.google.nl"
+	13	[11]	CALL     	0 4 1
+	14	[12]	GETGLOBAL	0 -6	; G_reader_settings
+	15	[12]	SELF     	0 0 -10	; "flush"
+	16	[12]	CALL     	0 2 1
+	17	[13]	GETGLOBAL	0 -1	; assert
+	18	[13]	GETTABLE 	0 0 -2	; "is"
+	19	[13]	GETTABLE 	0 0 -3	; "same"
+	20	[13]	LOADK    	1 -9	; "http://translate.google.nl"
+	21	[13]	GETUPVAL 	2 0	; Translator
+	22	[13]	SELF     	2 2 -5	; "getTransServer"
+	23	[13]	CALL     	2 2 0
+	24	[13]	CALL     	0 0 1
+	25	[14]	GETGLOBAL	0 -6	; G_reader_settings
+	26	[14]	SELF     	0 0 -11	; "delSetting"
+	27	[14]	LOADK    	2 -8	; "trans_server"
+	28	[14]	CALL     	0 3 1
+	29	[15]	GETGLOBAL	0 -6	; G_reader_settings
+	30	[15]	SELF     	0 0 -10	; "flush"
+	31	[15]	CALL     	0 2 1
+	32	[16]	RETURN   	0 1
+
+function <./spec/unit/translator_spec.lua:18,24> (22 instructions, 88 bytes at 0x7fd897c07ac0)
+0 params, 4 slots, 2 upvalues, 1 local, 8 constants, 0 functions
+	1	[19]	GETUPVAL 	0 0	; Translator
+	2	[19]	SELF     	0 0 -1	; "translate"
+	3	[19]	GETUPVAL 	2 1	; dutch_wikipedia_text
+	4	[19]	LOADK    	3 -2	; "en"
+	5	[19]	CALL     	0 4 2
+	6	[20]	GETGLOBAL	1 -3	; assert
+	7	[20]	GETTABLE 	1 1 -4	; "is"
+	8	[20]	GETTABLE 	1 1 -5	; "truthy"
+	9	[20]	MOVE     	2 0
+	10	[20]	CALL     	1 2 1
+	11	[23]	GETGLOBAL	1 -3	; assert
+	12	[23]	GETTABLE 	1 1 -6	; "is_true"
+	13	[23]	LEN      	2 0
+	14	[23]	LT       	0 -7 2	; 50 -
+	15	[23]	JMP      	3	; to 19
+	16	[23]	LEN      	2 0
+	17	[23]	LT       	1 2 -8	; - 200
+	18	[23]	JMP      	1	; to 20
+	19	[23]	LOADBOOL 	2 0 1
+	20	[23]	LOADBOOL 	2 1 0
+	21	[23]	CALL     	1 2 1
+	22	[24]	RETURN   	0 1
+
+function <./spec/unit/translator_spec.lua:25,28> (11 instructions, 44 bytes at 0x7fd897c081a0)
+0 params, 4 slots, 2 upvalues, 1 local, 5 constants, 0 functions
+	1	[26]	GETUPVAL 	0 0	; Translator
+	2	[26]	SELF     	0 0 -1	; "detect"
+	3	[26]	GETUPVAL 	2 1	; dutch_wikipedia_text
+	4	[26]	CALL     	0 3 2
+	5	[27]	GETGLOBAL	1 -2	; assert
+	6	[27]	GETTABLE 	1 1 -3	; "is"
+	7	[27]	GETTABLE 	1 1 -4	; "same"
+	8	[27]	LOADK    	2 -5	; "nl"
+	9	[27]	MOVE     	3 0
+	10	[27]	CALL     	1 3 1
+	11	[28]	RETURN   	0 1

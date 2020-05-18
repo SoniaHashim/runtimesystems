@@ -1,0 +1,930 @@
+-- BYTECODE -- readersearch_spec.lua:6-11
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "document/documentregistry"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; DocumentRegistry
+0008    GGET     0   0      ; "require"
+0009    KSTR     1   3      ; "apps/reader/readerui"
+0010    CALL     0   2   2
+0011    USETV    1   0      ; ReaderUI
+0012    GGET     0   0      ; "require"
+0013    KSTR     1   4      ; "dbg"
+0014    CALL     0   2   2
+0015    USETV    2   0      ; dbg
+0016    RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:15-22
+0001    UGET     0   0      ; ReaderUI
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "new"
+0004    TDUP     2   2
+0005    UGET     3   1      ; DocumentRegistry
+0006    MOV      4   3
+0007    TGETS    3   3   1  ; "openDocument"
+0008    UGET     5   2      ; sample_epub
+0009    CALL     3   2   3
+0010    TSETS    3   2   3  ; "document"
+0011    CALL     0   2   3
+0012    TGETS    1   0   3  ; "document"
+0013    USETV    3   1      ; doc
+0014    TGETS    1   0   4  ; "search"
+0015    USETV    4   1      ; search
+0016    TGETS    1   0   5  ; "rolling"
+0017    USETV    5   1      ; rolling
+0018    RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:23-37
+0001    UGET     0   0      ; rolling
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onGotoPage"
+0004    KSHORT   2  10
+0005    CALL     0   1   3
+0006    GGET     0   1      ; "assert"
+0007    TGETS    0   0   2  ; "truthy"
+0008    UGET     1   1      ; search
+0009    MOV      2   1
+0010    TGETS    1   1   3  ; "searchFromCurrent"
+0011    KSTR     3   4      ; "Verona"
+0012    KSHORT   4   1
+0013    CALL     1   0   4
+0014    CALLM    0   1   0
+0015    KSHORT   0   1
+0016    KSHORT   1 100
+0017    KSHORT   2  10
+0018    FORI     0 => 0052
+0019 => UGET     4   0      ; rolling
+0020    MOV      5   4
+0021    TGETS    4   4   0  ; "onGotoPage"
+0022    MOV      6   3
+0023    CALL     4   1   3
+0024    UGET     4   1      ; search
+0025    MOV      5   4
+0026    TGETS    4   4   3  ; "searchFromCurrent"
+0027    KSTR     6   4      ; "Verona"
+0028    KSHORT   7   1
+0029    CALL     4   2   4
+0030    ISF          4
+0031    JMP      5 => 0051
+0032    GGET     5   5      ; "ipairs"
+0033    MOV      6   4
+0034    CALL     5   4   2
+0035    JMP      8 => 0049
+0036 => UGET    10   2      ; doc
+0037    MOV     11  10
+0038    TGETS   10  10   6  ; "getPageFromXPointer"
+0039    TGETS   12   9   7  ; "start"
+0040    CALL    10   2   3
+0041    GGET    11   1      ; "assert"
+0042    TGETS   11  11   2  ; "truthy"
+0043    ISLE    10   3
+0044    JMP     12 => 0047
+0045    KPRI    12   1
+0046    JMP     13 => 0048
+0047 => KPRI    12   2
+0048 => CALL    11   1   2
+0049 => ITERC    8   3   3
+0050    ITERL    8 => 0036
+0051 => FORL     0 => 0019
+0052 => RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:38-52
+0001    UGET     0   0      ; rolling
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onGotoPage"
+0004    KSHORT   2  10
+0005    CALL     0   1   3
+0006    GGET     0   1      ; "assert"
+0007    TGETS    0   0   2  ; "truthy"
+0008    UGET     1   1      ; search
+0009    MOV      2   1
+0010    TGETS    1   1   3  ; "searchFromCurrent"
+0011    KSTR     3   4      ; "Verona"
+0012    KSHORT   4   0
+0013    CALL     1   0   4
+0014    CALLM    0   1   0
+0015    KSHORT   0   1
+0016    KSHORT   1 100
+0017    KSHORT   2  10
+0018    FORI     0 => 0052
+0019 => UGET     4   0      ; rolling
+0020    MOV      5   4
+0021    TGETS    4   4   0  ; "onGotoPage"
+0022    MOV      6   3
+0023    CALL     4   1   3
+0024    UGET     4   1      ; search
+0025    MOV      5   4
+0026    TGETS    4   4   3  ; "searchFromCurrent"
+0027    KSTR     6   4      ; "Verona"
+0028    KSHORT   7   0
+0029    CALL     4   2   4
+0030    ISF          4
+0031    JMP      5 => 0051
+0032    GGET     5   5      ; "ipairs"
+0033    MOV      6   4
+0034    CALL     5   4   2
+0035    JMP      8 => 0049
+0036 => UGET    10   2      ; doc
+0037    MOV     11  10
+0038    TGETS   10  10   6  ; "getPageFromXPointer"
+0039    TGETS   12   9   7  ; "start"
+0040    CALL    10   2   3
+0041    GGET    11   1      ; "assert"
+0042    TGETS   11  11   2  ; "truthy"
+0043    ISLE     3  10
+0044    JMP     12 => 0047
+0045    KPRI    12   1
+0046    JMP     13 => 0048
+0047 => KPRI    12   2
+0048 => CALL    11   1   2
+0049 => ITERC    8   3   3
+0050    ITERL    8 => 0036
+0051 => FORL     0 => 0019
+0052 => RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:53-66
+0001    KSHORT   0  10
+0002    KSHORT   1 100
+0003    KSHORT   2  10
+0004    FORI     0 => 0035
+0005 => UGET     4   0      ; rolling
+0006    MOV      5   4
+0007    TGETS    4   4   0  ; "onGotoPage"
+0008    MOV      6   3
+0009    CALL     4   1   3
+0010    UGET     4   1      ; search
+0011    MOV      5   4
+0012    TGETS    4   4   1  ; "searchFromStart"
+0013    KSTR     6   2      ; "Verona"
+0014    CALL     4   2   3
+0015    GGET     5   3      ; "assert"
+0016    TGETS    5   5   4  ; "truthy"
+0017    MOV      6   4
+0018    CALL     5   1   2
+0019    UGET     5   2      ; doc
+0020    MOV      6   5
+0021    TGETS    5   5   5  ; "getPageFromXPointer"
+0022    TGETB    7   4   1
+0023    TGETS    7   7   6  ; "start"
+0024    CALL     5   2   3
+0025    GGET     6   3      ; "assert"
+0026    TGETS    6   6   4  ; "truthy"
+0027    KSHORT   7  10
+0028    ISLT     5   7
+0029    JMP      7 => 0032
+0030    KPRI     7   1
+0031    JMP      8 => 0033
+0032 => KPRI     7   2
+0033 => CALL     6   1   2
+0034    FORL     0 => 0005
+0035 => KSHORT   0   1
+0036    KSHORT   1   5
+0037    KSHORT   2   1
+0038    FORI     0 => 0057
+0039 => UGET     4   0      ; rolling
+0040    MOV      5   4
+0041    TGETS    4   4   0  ; "onGotoPage"
+0042    MOV      6   3
+0043    CALL     4   1   3
+0044    UGET     4   1      ; search
+0045    MOV      5   4
+0046    TGETS    4   4   1  ; "searchFromStart"
+0047    KSTR     6   2      ; "Verona"
+0048    CALL     4   2   3
+0049    GGET     5   3      ; "assert"
+0050    ISEQP    4   0
+0051    JMP      6 => 0054
+0052    KPRI     6   1
+0053    JMP      7 => 0055
+0054 => KPRI     6   2
+0055 => CALL     5   1   2
+0056    FORL     0 => 0039
+0057 => RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:67-84
+0001    KSHORT   0 100
+0002    KSHORT   1 180
+0003    KSHORT   2  10
+0004    FORI     0 => 0035
+0005 => UGET     4   0      ; rolling
+0006    MOV      5   4
+0007    TGETS    4   4   0  ; "onGotoPage"
+0008    MOV      6   3
+0009    CALL     4   1   3
+0010    UGET     4   1      ; search
+0011    MOV      5   4
+0012    TGETS    4   4   1  ; "searchFromEnd"
+0013    KSTR     6   2      ; "Verona"
+0014    CALL     4   2   3
+0015    GGET     5   3      ; "assert"
+0016    TGETS    5   5   4  ; "truthy"
+0017    MOV      6   4
+0018    CALL     5   1   2
+0019    UGET     5   2      ; doc
+0020    MOV      6   5
+0021    TGETS    5   5   5  ; "getPageFromXPointer"
+0022    TGETB    7   4   1
+0023    TGETS    7   7   6  ; "start"
+0024    CALL     5   2   3
+0025    GGET     6   3      ; "assert"
+0026    TGETS    6   6   4  ; "truthy"
+0027    KSHORT   7 185
+0028    ISLT     7   5
+0029    JMP      7 => 0032
+0030    KPRI     7   1
+0031    JMP      8 => 0033
+0032 => KPRI     7   2
+0033 => CALL     6   1   2
+0034    FORL     0 => 0005
+0035 => KSHORT   0 290
+0036    KSHORT   1 335
+0037    KSHORT   2   1
+0038    FORI     0 => 0057
+0039 => UGET     4   0      ; rolling
+0040    MOV      5   4
+0041    TGETS    4   4   0  ; "onGotoPage"
+0042    MOV      6   3
+0043    CALL     4   1   3
+0044    UGET     4   1      ; search
+0045    MOV      5   4
+0046    TGETS    4   4   1  ; "searchFromEnd"
+0047    KSTR     6   2      ; "Verona"
+0048    CALL     4   2   3
+0049    GGET     5   3      ; "assert"
+0050    ISEQP    4   0
+0051    JMP      6 => 0054
+0052    KPRI     6   1
+0053    JMP      7 => 0055
+0054 => KPRI     6   2
+0055 => CALL     5   1   2
+0056    FORL     0 => 0039
+0057 => RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:85-114
+0001    KSHORT   0   0
+0002    UGET     1   0      ; rolling
+0003    MOV      2   1
+0004    TGETS    1   1   0  ; "onGotoPage"
+0005    KSHORT   3   1
+0006    CALL     1   1   3
+0007    UGET     1   1      ; doc
+0008    MOV      2   1
+0009    TGETS    1   1   1  ; "getCurrentPage"
+0010    CALL     1   2   2
+0011    UGET     2   2      ; search
+0012    MOV      3   2
+0013    TGETS    2   2   2  ; "searchFromCurrent"
+0014    KSTR     4   3      ; "Verona"
+0015    KSHORT   5   0
+0016    CALL     2   2   4
+0017 => ISF          2
+0018    JMP      3 => 0063
+0019    LOOP     3 => 0063
+0020    KPRI     3   0
+0021    GGET     4   4      ; "ipairs"
+0022    MOV      5   2
+0023    CALL     4   4   2
+0024    JMP      7 => 0045
+0025 => UGET     9   1      ; doc
+0026    MOV     10   9
+0027    TGETS    9   9   5  ; "getPageFromXPointer"
+0028    TGETS   11   8   6  ; "start"
+0029    CALL     9   2   3
+0030    ISEQV    9   1
+0031    JMP     10 => 0045
+0032    IST          3
+0033    JMP     10 => 0042
+0034    MOV      3   9
+0035    ADDVN    0   0   0  ; 1
+0036    UGET    10   1      ; doc
+0037    MOV     11  10
+0038    TGETS   10  10   7  ; "gotoXPointer"
+0039    TGETS   12   8   6  ; "start"
+0040    CALL    10   1   3
+0041    JMP     10 => 0045
+0042 => ISNEV    9   3
+0043    JMP     10 => 0045
+0044    ADDVN    0   0   0  ; 1
+0045 => ITERC    7   3   3
+0046    ITERL    7 => 0025
+0047    IST          3
+0048    JMP      4 => 0050
+0049    JMP      3 => 0063
+0050 => UGET     4   1      ; doc
+0051    MOV      5   4
+0052    TGETS    4   4   1  ; "getCurrentPage"
+0053    CALL     4   2   2
+0054    MOV      1   4
+0055    UGET     4   2      ; search
+0056    MOV      5   4
+0057    TGETS    4   4   8  ; "searchNext"
+0058    KSTR     6   3      ; "Verona"
+0059    KSHORT   7   0
+0060    CALL     4   2   4
+0061    MOV      2   4
+0062    JMP      3 => 0017
+0063 => GGET     3   9      ; "assert"
+0064    TGETS    3   3  10  ; "are"
+0065    TGETS    3   3  11  ; "equal"
+0066    KSHORT   4  13
+0067    MOV      5   0
+0068    CALL     3   1   3
+0069    RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:13-115
+0001    KNIL     0   2
+0002    GGET     3   0      ; "setup"
+0003    FNEW     4   1      ; readersearch_spec.lua:15
+0004    CALL     3   1   2
+0005    GGET     3   2      ; "it"
+0006    KSTR     4   3      ; "should search backward"
+0007    FNEW     5   4      ; readersearch_spec.lua:23
+0008    CALL     3   1   3
+0009    GGET     3   2      ; "it"
+0010    KSTR     4   5      ; "should search forward"
+0011    FNEW     5   6      ; readersearch_spec.lua:38
+0012    CALL     3   1   3
+0013    GGET     3   2      ; "it"
+0014    KSTR     4   7      ; "should find the first occurrence"
+0015    FNEW     5   8      ; readersearch_spec.lua:53
+0016    CALL     3   1   3
+0017    GGET     3   2      ; "it"
+0018    KSTR     4   9      ; "should find the last occurrence"
+0019    FNEW     5  10      ; readersearch_spec.lua:67
+0020    CALL     3   1   3
+0021    GGET     3   2      ; "it"
+0022    KSTR     4  11      ; "should find all occurrences"
+0023    FNEW     5  12      ; readersearch_spec.lua:85
+0024    CALL     3   1   3
+0025    UCLO     0 => 0026
+0026 => RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:119-126
+0001    UGET     0   0      ; ReaderUI
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "new"
+0004    TDUP     2   2
+0005    UGET     3   1      ; DocumentRegistry
+0006    MOV      4   3
+0007    TGETS    3   3   1  ; "openDocument"
+0008    UGET     5   2      ; sample_pdf
+0009    CALL     3   2   3
+0010    TSETS    3   2   3  ; "document"
+0011    CALL     0   2   3
+0012    TGETS    1   0   3  ; "document"
+0013    USETV    3   1      ; doc
+0014    TGETS    1   0   4  ; "search"
+0015    USETV    4   1      ; search
+0016    TGETS    1   0   5  ; "paging"
+0017    USETV    5   1      ; paging
+0018    RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:127-131
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "are"
+0003    TGETS    0   0   2  ; "equal"
+0004    KSHORT   1   9
+0005    UGET     2   0      ; doc
+0006    TGETS    2   2   3  ; "koptinterface"
+0007    MOV      3   2
+0008    TGETS    2   2   4  ; "findAllMatches"
+0009    UGET     4   0      ; doc
+0010    KSTR     5   5      ; "what"
+0011    KPRI     6   2
+0012    KSHORT   7  20
+0013    CALL     2   2   6
+0014    LEN      2   2
+0015    CALL     0   1   3
+0016    GGET     0   0      ; "assert"
+0017    TGETS    0   0   1  ; "are"
+0018    TGETS    0   0   2  ; "equal"
+0019    KSHORT   1  51
+0020    UGET     2   0      ; doc
+0021    TGETS    2   2   3  ; "koptinterface"
+0022    MOV      3   2
+0023    TGETS    2   2   4  ; "findAllMatches"
+0024    UGET     4   0      ; doc
+0025    KSTR     5   6      ; "the"
+0026    KPRI     6   2
+0027    KSHORT   7  20
+0028    CALL     2   2   6
+0029    LEN      2   2
+0030    CALL     0   1   3
+0031    GGET     0   0      ; "assert"
+0032    TGETS    0   0   1  ; "are"
+0033    TGETS    0   0   2  ; "equal"
+0034    KSHORT   1   0
+0035    UGET     2   0      ; doc
+0036    TGETS    2   2   3  ; "koptinterface"
+0037    MOV      3   2
+0038    TGETS    2   2   4  ; "findAllMatches"
+0039    UGET     4   0      ; doc
+0040    KSTR     5   7      ; "xxxx"
+0041    KPRI     6   2
+0042    KSHORT   7  20
+0043    CALL     2   2   6
+0044    LEN      2   2
+0045    CALL     0   1   3
+0046    RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:132-136
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "are"
+0003    TGETS    0   0   2  ; "equal"
+0004    KSHORT   1   7
+0005    UGET     2   0      ; doc
+0006    TGETS    2   2   3  ; "koptinterface"
+0007    MOV      3   2
+0008    TGETS    2   2   4  ; "findAllMatches"
+0009    UGET     4   0      ; doc
+0010    KSTR     5   5      ; "what"
+0011    KPRI     6   1
+0012    KSHORT   7  20
+0013    CALL     2   2   6
+0014    LEN      2   2
+0015    CALL     0   1   3
+0016    GGET     0   0      ; "assert"
+0017    TGETS    0   0   1  ; "are"
+0018    TGETS    0   0   2  ; "equal"
+0019    KSHORT   1  49
+0020    UGET     2   0      ; doc
+0021    TGETS    2   2   3  ; "koptinterface"
+0022    MOV      3   2
+0023    TGETS    2   2   4  ; "findAllMatches"
+0024    UGET     4   0      ; doc
+0025    KSTR     5   6      ; "the"
+0026    KPRI     6   1
+0027    KSHORT   7  20
+0028    CALL     2   2   6
+0029    LEN      2   2
+0030    CALL     0   1   3
+0031    GGET     0   0      ; "assert"
+0032    TGETS    0   0   1  ; "are"
+0033    TGETS    0   0   2  ; "equal"
+0034    KSHORT   1   0
+0035    UGET     2   0      ; doc
+0036    TGETS    2   2   3  ; "koptinterface"
+0037    MOV      3   2
+0038    TGETS    2   2   4  ; "findAllMatches"
+0039    UGET     4   0      ; doc
+0040    KSTR     5   7      ; "xxxx"
+0041    KPRI     6   1
+0042    KSHORT   7  20
+0043    CALL     2   2   6
+0044    LEN      2   2
+0045    CALL     0   1   3
+0046    RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:137-139
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "are"
+0003    TGETS    0   0   2  ; "equal"
+0004    KSHORT   1   4
+0005    UGET     2   0      ; doc
+0006    TGETS    2   2   3  ; "koptinterface"
+0007    MOV      3   2
+0008    TGETS    2   2   4  ; "findAllMatches"
+0009    UGET     4   0      ; doc
+0010    KSTR     5   5      ; "mean that"
+0011    KPRI     6   2
+0012    KSHORT   7  20
+0013    CALL     2   2   6
+0014    LEN      2   2
+0015    CALL     0   1   3
+0016    RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:140-142
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "are"
+0003    TGETS    0   0   2  ; "equal"
+0004    KSHORT   1   3
+0005    UGET     2   0      ; doc
+0006    TGETS    2   2   3  ; "koptinterface"
+0007    MOV      3   2
+0008    TGETS    2   2   4  ; "findAllMatches"
+0009    UGET     4   0      ; doc
+0010    KSTR     5   5      ; "mean that the"
+0011    KPRI     6   2
+0012    KSHORT   7  20
+0013    CALL     2   2   6
+0014    LEN      2   2
+0015    CALL     0   1   3
+0016    RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:143-148
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "are"
+0003    TGETS    0   0   2  ; "equal"
+0004    KSHORT   1   7
+0005    UGET     2   0      ; doc
+0006    TGETS    2   2   3  ; "koptinterface"
+0007    MOV      3   2
+0008    TGETS    2   2   4  ; "findAllMatches"
+0009    UGET     4   0      ; doc
+0010    KSTR     5   5      ; "chapter"
+0011    KPRI     6   2
+0012    KSHORT   7  30
+0013    CALL     2   2   6
+0014    LEN      2   2
+0015    CALL     0   1   3
+0016    GGET     0   0      ; "assert"
+0017    TGETS    0   0   1  ; "are"
+0018    TGETS    0   0   2  ; "equal"
+0019    KSHORT   1   6
+0020    UGET     2   0      ; doc
+0021    TGETS    2   2   3  ; "koptinterface"
+0022    MOV      3   2
+0023    TGETS    2   2   4  ; "findAllMatches"
+0024    UGET     4   0      ; doc
+0025    KSTR     5   6      ; "chapter %d"
+0026    KPRI     6   2
+0027    KSHORT   7  30
+0028    CALL     2   2   6
+0029    LEN      2   2
+0030    CALL     0   1   3
+0031    GGET     0   0      ; "assert"
+0032    TGETS    0   0   1  ; "are"
+0033    TGETS    0   0   2  ; "equal"
+0034    KSHORT   1   4
+0035    UGET     2   0      ; doc
+0036    TGETS    2   2   3  ; "koptinterface"
+0037    MOV      3   2
+0038    TGETS    2   2   4  ; "findAllMatches"
+0039    UGET     4   0      ; doc
+0040    KSTR     5   7      ; "chapter %d%d"
+0041    KPRI     6   2
+0042    KSHORT   7  30
+0043    CALL     2   2   6
+0044    LEN      2   2
+0045    CALL     0   1   3
+0046    GGET     0   0      ; "assert"
+0047    TGETS    0   0   1  ; "are"
+0048    TGETS    0   0   2  ; "equal"
+0049    KSHORT   1   0
+0050    UGET     2   0      ; doc
+0051    TGETS    2   2   3  ; "koptinterface"
+0052    MOV      3   2
+0053    TGETS    2   2   4  ; "findAllMatches"
+0054    UGET     4   0      ; doc
+0055    KSTR     5   8      ; "chapter %d%d%d"
+0056    KPRI     6   2
+0057    KSHORT   7  30
+0058    CALL     2   2   6
+0059    LEN      2   2
+0060    CALL     0   1   3
+0061    RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:149-151
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "are"
+0003    TGETS    0   0   2  ; "equal"
+0004    KSHORT   1   0
+0005    UGET     2   0      ; doc
+0006    TGETS    2   2   3  ; "koptinterface"
+0007    MOV      3   2
+0008    TGETS    2   2   4  ; "findAllMatches"
+0009    UGET     4   0      ; doc
+0010    KSTR     5   5      ; ""
+0011    KPRI     6   2
+0012    KSHORT   7   1
+0013    CALL     2   2   6
+0014    LEN      2   2
+0015    CALL     0   1   3
+0016    RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:152-154
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "are"
+0003    TGETS    0   0   2  ; "equal"
+0004    KSHORT   1   0
+0005    UGET     2   0      ; doc
+0006    TGETS    2   2   3  ; "koptinterface"
+0007    MOV      3   2
+0008    TGETS    2   2   4  ; "findAllMatches"
+0009    UGET     4   0      ; doc
+0010    KSTR     5   5      ; "e"
+0011    KPRI     6   2
+0012    KSHORT   7   1
+0013    CALL     2   2   6
+0014    LEN      2   2
+0015    CALL     0   1   3
+0016    RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:155-166
+0001    UGET     0   0      ; paging
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onGotoPage"
+0004    KSHORT   2  20
+0005    CALL     0   1   3
+0006    GGET     0   1      ; "assert"
+0007    TGETS    0   0   2  ; "truthy"
+0008    UGET     1   1      ; search
+0009    MOV      2   1
+0010    TGETS    1   1   3  ; "searchFromCurrent"
+0011    KSTR     3   4      ; "test"
+0012    KSHORT   4   1
+0013    CALL     1   0   4
+0014    CALLM    0   1   0
+0015    KSHORT   0   1
+0016    KSHORT   1  40
+0017    KSHORT   2  10
+0018    FORI     0 => 0046
+0019 => UGET     4   0      ; paging
+0020    MOV      5   4
+0021    TGETS    4   4   0  ; "onGotoPage"
+0022    MOV      6   3
+0023    CALL     4   1   3
+0024    UGET     4   1      ; search
+0025    MOV      5   4
+0026    TGETS    4   4   3  ; "searchFromCurrent"
+0027    KSTR     6   4      ; "test"
+0028    KSHORT   7   1
+0029    CALL     4   2   4
+0030    ISF          4
+0031    JMP      5 => 0045
+0032    UGET     5   2      ; dbg
+0033    KSTR     6   5      ; "search backward: found at page"
+0034    TGETS    7   4   6  ; "page"
+0035    CALL     5   1   3
+0036    GGET     5   1      ; "assert"
+0037    TGETS    5   5   2  ; "truthy"
+0038    TGETS    6   4   6  ; "page"
+0039    ISLE     6   3
+0040    JMP      6 => 0043
+0041    KPRI     6   1
+0042    JMP      7 => 0044
+0043 => KPRI     6   2
+0044 => CALL     5   1   2
+0045 => FORL     0 => 0019
+0046 => RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:167-178
+0001    UGET     0   0      ; paging
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onGotoPage"
+0004    KSHORT   2  20
+0005    CALL     0   1   3
+0006    GGET     0   1      ; "assert"
+0007    TGETS    0   0   2  ; "truthy"
+0008    UGET     1   1      ; search
+0009    MOV      2   1
+0010    TGETS    1   1   3  ; "searchFromCurrent"
+0011    KSTR     3   4      ; "test"
+0012    KSHORT   4   0
+0013    CALL     1   0   4
+0014    CALLM    0   1   0
+0015    KSHORT   0   1
+0016    KSHORT   1  40
+0017    KSHORT   2  10
+0018    FORI     0 => 0046
+0019 => UGET     4   0      ; paging
+0020    MOV      5   4
+0021    TGETS    4   4   0  ; "onGotoPage"
+0022    MOV      6   3
+0023    CALL     4   1   3
+0024    UGET     4   1      ; search
+0025    MOV      5   4
+0026    TGETS    4   4   3  ; "searchFromCurrent"
+0027    KSTR     6   4      ; "test"
+0028    KSHORT   7   0
+0029    CALL     4   2   4
+0030    ISF          4
+0031    JMP      5 => 0045
+0032    UGET     5   2      ; dbg
+0033    KSTR     6   5      ; "search forward: found at page"
+0034    TGETS    7   4   6  ; "page"
+0035    CALL     5   1   3
+0036    GGET     5   1      ; "assert"
+0037    TGETS    5   5   2  ; "truthy"
+0038    TGETS    6   4   6  ; "page"
+0039    ISLE     3   6
+0040    JMP      6 => 0043
+0041    KPRI     6   1
+0042    JMP      7 => 0044
+0043 => KPRI     6   2
+0044 => CALL     5   1   2
+0045 => FORL     0 => 0019
+0046 => RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:179-191
+0001    KSHORT   0  20
+0002    KSHORT   1  40
+0003    KSHORT   2  10
+0004    FORI     0 => 0026
+0005 => UGET     4   0      ; paging
+0006    MOV      5   4
+0007    TGETS    4   4   0  ; "onGotoPage"
+0008    MOV      6   3
+0009    CALL     4   1   3
+0010    UGET     4   1      ; search
+0011    MOV      5   4
+0012    TGETS    4   4   1  ; "searchFromStart"
+0013    KSTR     6   2      ; "test"
+0014    CALL     4   2   3
+0015    GGET     5   3      ; "assert"
+0016    TGETS    5   5   4  ; "truthy"
+0017    MOV      6   4
+0018    CALL     5   1   2
+0019    GGET     5   3      ; "assert"
+0020    TGETS    5   5   5  ; "are"
+0021    TGETS    5   5   6  ; "equal"
+0022    KSHORT   6  10
+0023    TGETS    7   4   7  ; "page"
+0024    CALL     5   1   3
+0025    FORL     0 => 0005
+0026 => KSHORT   0   1
+0027    KSHORT   1  10
+0028    KSHORT   2   2
+0029    FORI     0 => 0048
+0030 => UGET     4   0      ; paging
+0031    MOV      5   4
+0032    TGETS    4   4   0  ; "onGotoPage"
+0033    MOV      6   3
+0034    CALL     4   1   3
+0035    UGET     4   1      ; search
+0036    MOV      5   4
+0037    TGETS    4   4   1  ; "searchFromStart"
+0038    KSTR     6   2      ; "test"
+0039    CALL     4   2   3
+0040    GGET     5   3      ; "assert"
+0041    ISEQP    4   0
+0042    JMP      6 => 0045
+0043    KPRI     6   1
+0044    JMP      7 => 0046
+0045 => KPRI     6   2
+0046 => CALL     5   1   2
+0047    FORL     0 => 0030
+0048 => RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:192-204
+0001    KSHORT   0  10
+0002    KSHORT   1  30
+0003    KSHORT   2  10
+0004    FORI     0 => 0026
+0005 => UGET     4   0      ; paging
+0006    MOV      5   4
+0007    TGETS    4   4   0  ; "onGotoPage"
+0008    MOV      6   3
+0009    CALL     4   1   3
+0010    UGET     4   1      ; search
+0011    MOV      5   4
+0012    TGETS    4   4   1  ; "searchFromEnd"
+0013    KSTR     6   2      ; "test"
+0014    CALL     4   2   3
+0015    GGET     5   3      ; "assert"
+0016    TGETS    5   5   4  ; "truthy"
+0017    MOV      6   4
+0018    CALL     5   1   2
+0019    GGET     5   3      ; "assert"
+0020    TGETS    5   5   5  ; "are"
+0021    TGETS    5   5   6  ; "equal"
+0022    KSHORT   6  32
+0023    TGETS    7   4   7  ; "page"
+0024    CALL     5   1   3
+0025    FORL     0 => 0005
+0026 => KSHORT   0  40
+0027    KSHORT   1  50
+0028    KSHORT   2   2
+0029    FORI     0 => 0048
+0030 => UGET     4   0      ; paging
+0031    MOV      5   4
+0032    TGETS    4   4   0  ; "onGotoPage"
+0033    MOV      6   3
+0034    CALL     4   1   3
+0035    UGET     4   1      ; search
+0036    MOV      5   4
+0037    TGETS    4   4   1  ; "searchFromEnd"
+0038    KSTR     6   2      ; "test"
+0039    CALL     4   2   3
+0040    GGET     5   3      ; "assert"
+0041    ISEQP    4   0
+0042    JMP      6 => 0045
+0043    KPRI     6   1
+0044    JMP      7 => 0046
+0045 => KPRI     6   2
+0046 => CALL     5   1   2
+0047    FORL     0 => 0030
+0048 => RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:205-216
+0001    KSHORT   0   0
+0002    UGET     1   0      ; paging
+0003    MOV      2   1
+0004    TGETS    1   1   0  ; "onGotoPage"
+0005    KSHORT   3   1
+0006    CALL     1   1   3
+0007    UGET     1   1      ; search
+0008    MOV      2   1
+0009    TGETS    1   1   1  ; "searchFromCurrent"
+0010    KSTR     3   2      ; "test"
+0011    KSHORT   4   0
+0012    CALL     1   2   4
+0013 => ISF          1
+0014    JMP      2 => 0031
+0015    LOOP     2 => 0031
+0016    LEN      2   1
+0017    ADDVV    0   0   2
+0018    UGET     2   0      ; paging
+0019    MOV      3   2
+0020    TGETS    2   2   0  ; "onGotoPage"
+0021    TGETS    4   1   3  ; "page"
+0022    CALL     2   1   3
+0023    UGET     2   1      ; search
+0024    MOV      3   2
+0025    TGETS    2   2   4  ; "searchNext"
+0026    KSTR     4   2      ; "test"
+0027    KSHORT   5   0
+0028    CALL     2   2   4
+0029    MOV      1   2
+0030    JMP      2 => 0013
+0031 => GGET     2   5      ; "assert"
+0032    TGETS    2   2   6  ; "are"
+0033    TGETS    2   2   7  ; "equal"
+0034    KSHORT   3  11
+0035    MOV      4   0
+0036    CALL     2   1   3
+0037    RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:117-217
+0001    KNIL     0   2
+0002    GGET     3   0      ; "setup"
+0003    FNEW     4   1      ; readersearch_spec.lua:119
+0004    CALL     3   1   2
+0005    GGET     3   2      ; "it"
+0006    KSTR     4   3      ; "should match single word with case insen"~
+0007    FNEW     5   4      ; readersearch_spec.lua:127
+0008    CALL     3   1   3
+0009    GGET     3   2      ; "it"
+0010    KSTR     4   5      ; "should match single word with case sensi"~
+0011    FNEW     5   6      ; readersearch_spec.lua:132
+0012    CALL     3   1   3
+0013    GGET     3   2      ; "it"
+0014    KSTR     4   7      ; "should match phrase in one page"
+0015    FNEW     5   8      ; readersearch_spec.lua:137
+0016    CALL     3   1   3
+0017    GGET     3   2      ; "it"
+0018    KSTR     4   9      ; "should match whole phrase in one page"
+0019    FNEW     5  10      ; readersearch_spec.lua:140
+0020    CALL     3   1   3
+0021    GGET     3   2      ; "it"
+0022    KSTR     4  11      ; "should match with lua pattern"
+0023    FNEW     5  12      ; readersearch_spec.lua:143
+0024    CALL     3   1   3
+0025    GGET     3   2      ; "it"
+0026    KSTR     4  13      ; "should not match empty string"
+0027    FNEW     5  14      ; readersearch_spec.lua:149
+0028    CALL     3   1   3
+0029    GGET     3   2      ; "it"
+0030    KSTR     4  15      ; "should not match on page without text la"~
+0031    FNEW     5  16      ; readersearch_spec.lua:152
+0032    CALL     3   1   3
+0033    GGET     3   2      ; "it"
+0034    KSTR     4  17      ; "should search backward"
+0035    FNEW     5  18      ; readersearch_spec.lua:155
+0036    CALL     3   1   3
+0037    GGET     3   2      ; "it"
+0038    KSTR     4  19      ; "should search forward"
+0039    FNEW     5  20      ; readersearch_spec.lua:167
+0040    CALL     3   1   3
+0041    GGET     3   2      ; "it"
+0042    KSTR     4  21      ; "should find the first occurrence"
+0043    FNEW     5  22      ; readersearch_spec.lua:179
+0044    CALL     3   1   3
+0045    GGET     3   2      ; "it"
+0046    KSTR     4  23      ; "should find the last occurrence"
+0047    FNEW     5  24      ; readersearch_spec.lua:192
+0048    CALL     3   1   3
+0049    GGET     3   2      ; "it"
+0050    KSTR     4  25      ; "should find all occurrences"
+0051    FNEW     5  26      ; readersearch_spec.lua:205
+0052    CALL     3   1   3
+0053    UCLO     0 => 0054
+0054 => RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:1-218
+0001    KSTR     0   0      ; "spec/front/unit/data/juliet.epub"
+0002    KSTR     1   1      ; "spec/front/unit/data/sample.pdf"
+0003    KNIL     2   4
+0004    GGET     5   2      ; "setup"
+0005    FNEW     6   3      ; readersearch_spec.lua:6
+0006    CALL     5   1   2
+0007    GGET     5   4      ; "describe"
+0008    KSTR     6   5      ; "search API for EPUB documents"
+0009    FNEW     7   6      ; readersearch_spec.lua:13
+0010    CALL     5   1   3
+0011    GGET     5   4      ; "describe"
+0012    KSTR     6   7      ; "search API for PDF documents"
+0013    FNEW     7   8      ; readersearch_spec.lua:117
+0014    CALL     5   1   3
+0015    UCLO     0 => 0016
+0016 => RET0     0   1
+
+-- BYTECODE -- readersearch_spec.lua:0-219
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "Readersearch module"
+0003    FNEW     2   2      ; readersearch_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

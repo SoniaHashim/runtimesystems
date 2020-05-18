@@ -1,0 +1,412 @@
+-- BYTECODE -- readcollection.lua:13-25
+0001    IST          1
+0002    JMP      2 => 0004
+0003    UGET     1   0      ; DEFAULT_COLLECTION_NAME
+0004 => UGET     2   1      ; LuaSettings
+0005    MOV      3   2
+0006    TGETS    2   2   0  ; "open"
+0007    UGET     4   2      ; collection_file
+0008    CALL     2   2   3
+0009    MOV      4   2
+0010    TGETS    3   2   1  ; "readSetting"
+0011    MOV      5   1
+0012    CALL     3   2   3
+0013    IST          3
+0014    JMP      4 => 0016
+0015    TNEW     3   0
+0016 => KSHORT   4   0
+0017    GGET     5   2      ; "pairs"
+0018    MOV      6   3
+0019    CALL     5   4   2
+0020    ISNEXT   8 => 0025
+0021 => TGETS   10   9   3  ; "order"
+0022    ISGE     4  10
+0023    JMP     10 => 0025
+0024    TGETS    4   9   3  ; "order"
+0025 => ITERN    8   3   3
+0026    ITERL    8 => 0021
+0027    MOV      5   3
+0028    MOV      6   4
+0029    RET      5   3
+
+-- BYTECODE -- readcollection.lua:27-34
+0001    UGET     1   0      ; LuaSettings
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "open"
+0004    UGET     3   1      ; collection_file
+0005    CALL     1   2   3
+0006    ISF          1
+0007    JMP      2 => 0014
+0008    TGETS    2   1   1  ; "data"
+0009    ISF          2
+0010    JMP      3 => 0014
+0011    TGETS    2   1   1  ; "data"
+0012    RET1     2   2
+0013    JMP      2 => 0016
+0014 => TNEW     2   0
+0015    RET1     2   2
+0016 => RET0     0   1
+
+-- BYTECODE -- readcollection.lua:47-50
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "apps/reader/readerui"
+0003    CALL     0   2   2
+0004    MOV      2   0
+0005    TGETS    1   0   2  ; "showReader"
+0006    UGET     3   0      ; v
+0007    TGETS    3   3   3  ; "file"
+0008    CALL     1   1   3
+0009    RET0     0   1
+
+-- BYTECODE -- readcollection.lua:53-55
+0001    TGETS    2   0   0  ; "order"
+0002    TGETS    3   1   0  ; "order"
+0003    ISLT     2   3
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    JMP      3 => 0008
+0007 => KPRI     2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- readcollection.lua:36-57
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "read"
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    TNEW     3   0
+0006    GGET     4   1      ; "pairs"
+0007    MOV      5   2
+0008    CALL     4   4   2
+0009    ISNEXT   7 => 0059
+0010 => UGET     9   0      ; lfs
+0011    TGETS    9   9   2  ; "attributes"
+0012    TGETS   10   8   3  ; "file"
+0013    KSTR    11   4      ; "mode"
+0014    CALL     9   2   3
+0015    ISEQS    9   3      ; "file"
+0016    JMP      9 => 0019
+0017    KPRI     9   1
+0018    JMP     10 => 0020
+0019 => KPRI     9   2
+0020 => GGET    10   5      ; "table"
+0021    TGETS   10  10   6  ; "insert"
+0022    MOV     11   3
+0023    TDUP    12   8
+0024    TGETS   13   8   7  ; "order"
+0025    TSETS   13  12   7  ; "order"
+0026    TGETS   13   8   3  ; "file"
+0027    MOV     14  13
+0028    TGETS   13  13   9  ; "gsub"
+0029    KSTR    15  10      ; ".*/"
+0030    KSTR    16  11      ; ""
+0031    CALL    13   2   4
+0032    TSETS   13  12  12  ; "text"
+0033    UGET    13   1      ; realpath
+0034    TGETS   14   8   3  ; "file"
+0035    CALL    13   2   2
+0036    IST         13
+0037    JMP     14 => 0039
+0038    TGETS   13   8   3  ; "file"
+0039 => TSETS   13  12   3  ; "file"
+0040    NOT     13   9
+0041    TSETS   13  12  13  ; "dim"
+0042    ISFC    13   9
+0043    JMP     13 => 0054
+0044    UGET    13   2      ; getFriendlySize
+0045    UGET    14   0      ; lfs
+0046    TGETS   14  14   2  ; "attributes"
+0047    TGETS   15   8   3  ; "file"
+0048    KSTR    16  14      ; "size"
+0049    CALL    14   2   3
+0050    IST         14
+0051    JMP     15 => 0053
+0052    KSHORT  14   0
+0053 => CALL    13   2   2
+0054 => TSETS   13  12  15  ; "mandatory"
+0055    FNEW    13  16      ; readcollection.lua:47
+0056    TSETS   13  12  17  ; "callback"
+0057    CALL    10   1   3
+0058    UCLO     7 => 0059
+0059 => ITERN    7   3   3
+0060    ITERL    7 => 0010
+0061    GGET     4   5      ; "table"
+0062    TGETS    4   4  18  ; "sort"
+0063    MOV      5   3
+0064    FNEW     6  19      ; readcollection.lua:53
+0065    CALL     4   1   3
+0066    UCLO     0 => 0067
+0067 => RET1     3   2
+
+-- BYTECODE -- readcollection.lua:59-86
+0001    KPRI     3   0
+0002    KPRI     4   1
+0003    ISF          2
+0004    JMP      5 => 0008
+0005    MOV      5   1
+0006    KSTR     6   0      ; "/"
+0007    CAT      1   5   6
+0008 => MOV      6   0
+0009    TGETS    5   0   1  ; "readAllCollection"
+0010    CALL     5   2   2
+0011    GGET     6   2      ; "pairs"
+0012    MOV      7   5
+0013    CALL     6   4   2
+0014    ISNEXT   9 => 0050
+0015 => TGETV   11   5   9
+0016    LEN     12  11
+0017    KSHORT  13   1
+0018    KSHORT  14  -1
+0019    FORI    12 => 0050
+0020 => IST          2
+0021    JMP     16 => 0033
+0022    TGETV   16  11  15
+0023    TGETS   16  16   3  ; "file"
+0024    ISNEV   16   1
+0025    JMP     16 => 0033
+0026    KPRI     4   2
+0027    GGET    16   4      ; "table"
+0028    TGETS   16  16   5  ; "remove"
+0029    MOV     17  11
+0030    MOV     18  15
+0031    CALL    16   1   3
+0032    JMP     16 => 0049
+0033 => ISF          2
+0034    JMP     16 => 0049
+0035    UGET    16   0      ; util
+0036    TGETS   16  16   6  ; "splitFilePathName"
+0037    TGETV   17  11  15
+0038    TGETS   17  17   3  ; "file"
+0039    CALL    16   2   2
+0040    MOV      3  16
+0041    ISNEV    3   1
+0042    JMP     16 => 0049
+0043    KPRI     4   2
+0044    GGET    16   4      ; "table"
+0045    TGETS   16  16   5  ; "remove"
+0046    MOV     17  11
+0047    MOV     18  15
+0048    CALL    16   1   3
+0049 => FORL    12 => 0020
+0050 => ITERN    9   3   3
+0051    ITERL    9 => 0015
+0052    ISF          4
+0053    JMP      6 => 0063
+0054    UGET     6   1      ; LuaSettings
+0055    MOV      7   6
+0056    TGETS    6   6   7  ; "open"
+0057    UGET     8   2      ; collection_file
+0058    CALL     6   2   3
+0059    TSETS    5   6   8  ; "data"
+0060    MOV      8   6
+0061    TGETS    7   6   9  ; "flush"
+0062    CALL     7   1   2
+0063 => RET0     0   1
+
+-- BYTECODE -- readcollection.lua:88-116
+0001    KPRI     3   1
+0002    KNIL     4   5
+0003    UGET     6   0      ; lfs
+0004    TGETS    6   6   0  ; "attributes"
+0005    MOV      7   2
+0006    KSTR     8   1      ; "mode"
+0007    CALL     6   2   3
+0008    ISNES    6   2      ; "directory"
+0009    JMP      6 => 0014
+0010    KPRI     3   2
+0011    MOV      6   1
+0012    KSTR     7   3      ; "/"
+0013    CAT      1   6   7
+0014 => KPRI     6   1
+0015    MOV      8   0
+0016    TGETS    7   0   4  ; "readAllCollection"
+0017    CALL     7   2   2
+0018    GGET     8   5      ; "pairs"
+0019    MOV      9   7
+0020    CALL     8   4   2
+0021    ISNEXT  11 => 0058
+0022 => GGET    13   5      ; "pairs"
+0023    MOV     14  12
+0024    CALL    13   4   2
+0025    ISNEXT  16 => 0056
+0026 => IST          3
+0027    JMP     18 => 0036
+0028    TGETS   18  17   6  ; "file"
+0029    ISNEV   18   1
+0030    JMP     18 => 0036
+0031    KPRI     6   2
+0032    TGETV   18   7  11
+0033    TGETV   18  18  16
+0034    TSETS    2  18   6  ; "file"
+0035    JMP     18 => 0056
+0036 => ISF          3
+0037    JMP     18 => 0056
+0038    UGET    18   1      ; util
+0039    TGETS   18  18   7  ; "splitFilePathName"
+0040    TGETS   19  17   6  ; "file"
+0041    CALL    18   3   2
+0042    MOV      5  19
+0043    MOV      4  18
+0044    ISNEV    4   1
+0045    JMP     18 => 0056
+0046    KPRI     6   2
+0047    TGETV   18   7  11
+0048    TGETV   18  18  16
+0049    GGET    19   8      ; "string"
+0050    TGETS   19  19   9  ; "format"
+0051    KSTR    20  10      ; "%s/%s"
+0052    MOV     21   2
+0053    MOV     22   5
+0054    CALL    19   2   4
+0055    TSETS   19  18   6  ; "file"
+0056 => ITERN   16   3   3
+0057    ITERL   16 => 0026
+0058 => ITERN   11   3   3
+0059    ITERL   11 => 0022
+0060    ISF          6
+0061    JMP      8 => 0071
+0062    UGET     8   2      ; LuaSettings
+0063    MOV      9   8
+0064    TGETS    8   8  11  ; "open"
+0065    UGET    10   3      ; collection_file
+0066    CALL     8   2   3
+0067    TSETS    7   8  12  ; "data"
+0068    MOV     10   8
+0069    TGETS    9   8  13  ; "flush"
+0070    CALL     9   1   2
+0071 => RET0     0   1
+
+-- BYTECODE -- readcollection.lua:118-127
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "read"
+0003    MOV      5   2
+0004    CALL     3   2   3
+0005    GGET     4   1      ; "pairs"
+0006    MOV      5   3
+0007    CALL     4   4   2
+0008    ISNEXT   7 => 0018
+0009 => TGETS    9   8   2  ; "file"
+0010    ISNEV    9   1
+0011    JMP      9 => 0018
+0012    GGET     9   3      ; "table"
+0013    TGETS    9   9   4  ; "remove"
+0014    MOV     10   3
+0015    MOV     11   7
+0016    CALL     9   1   3
+0017    JMP      4 => 0020
+0018 => ITERN    7   3   3
+0019    ITERL    7 => 0009
+0020 => MOV      5   0
+0021    TGETS    4   0   5  ; "writeCollection"
+0022    MOV      6   3
+0023    MOV      7   2
+0024    CALL     4   1   4
+0025    RET0     0   1
+
+-- BYTECODE -- readcollection.lua:129-134
+0001    IST          2
+0002    JMP      3 => 0004
+0003    UGET     2   0      ; DEFAULT_COLLECTION_NAME
+0004 => UGET     3   1      ; LuaSettings
+0005    MOV      4   3
+0006    TGETS    3   3   0  ; "open"
+0007    UGET     5   2      ; collection_file
+0008    CALL     3   2   3
+0009    MOV      5   3
+0010    TGETS    4   3   1  ; "saveSetting"
+0011    MOV      6   2
+0012    MOV      7   1
+0013    CALL     4   1   4
+0014    MOV      5   3
+0015    TGETS    4   3   2  ; "flush"
+0016    CALL     4   1   2
+0017    RET0     0   1
+
+-- BYTECODE -- readcollection.lua:136-146
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "read"
+0003    MOV      5   2
+0004    CALL     3   3   3
+0005    ADDVN    4   4   0  ; 1
+0006    TDUP     5   1
+0007    TSETS    1   5   2  ; "file"
+0008    TSETS    4   5   3  ; "order"
+0009    GGET     6   4      ; "table"
+0010    TGETS    6   6   5  ; "insert"
+0011    MOV      7   3
+0012    MOV      8   5
+0013    CALL     6   1   3
+0014    MOV      7   0
+0015    TGETS    6   0   6  ; "writeCollection"
+0016    MOV      8   3
+0017    MOV      9   2
+0018    CALL     6   1   4
+0019    RET0     0   1
+
+-- BYTECODE -- readcollection.lua:148-156
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "read"
+0003    MOV      5   2
+0004    CALL     3   2   3
+0005    GGET     4   1      ; "pairs"
+0006    MOV      5   3
+0007    CALL     4   4   2
+0008    ISNEXT   7 => 0014
+0009 => TGETS    9   8   2  ; "file"
+0010    ISNEV    9   1
+0011    JMP      9 => 0014
+0012    KPRI     9   2
+0013    RET1     9   2
+0014 => ITERN    7   3   3
+0015    ITERL    7 => 0009
+0016    KPRI     4   1
+0017    RET1     4   2
+
+-- BYTECODE -- readcollection.lua:0-160
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "datastorage"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "luasettings"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "util"
+0009    CALL     2   2   2
+0010    TGETS    2   2   4  ; "getFriendlySize"
+0011    GGET     3   0      ; "require"
+0012    KSTR     4   5      ; "libs/libkoreader-lfs"
+0013    CALL     3   2   2
+0014    GGET     4   0      ; "require"
+0015    KSTR     5   6      ; "ffi/util"
+0016    CALL     4   2   2
+0017    TGETS    4   4   7  ; "realpath"
+0018    GGET     5   0      ; "require"
+0019    KSTR     6   3      ; "util"
+0020    CALL     5   2   2
+0021    KSTR     6   8      ; "favorites"
+0022    MOV      8   0
+0023    TGETS    7   0   9  ; "getSettingsDir"
+0024    CALL     7   2   2
+0025    KSTR     8  10      ; "/collection.lua"
+0026    CAT      7   7   8
+0027    TNEW     8   0
+0028    FNEW     9  12      ; readcollection.lua:13
+0029    TSETS    9   8  11  ; "read"
+0030    FNEW     9  14      ; readcollection.lua:27
+0031    TSETS    9   8  13  ; "readAllCollection"
+0032    FNEW     9  16      ; readcollection.lua:36
+0033    TSETS    9   8  15  ; "prepareList"
+0034    FNEW     9  18      ; readcollection.lua:59
+0035    TSETS    9   8  17  ; "removeItemByPath"
+0036    FNEW     9  20      ; readcollection.lua:88
+0037    TSETS    9   8  19  ; "updateItemByPath"
+0038    FNEW     9  22      ; readcollection.lua:118
+0039    TSETS    9   8  21  ; "removeItem"
+0040    FNEW     9  24      ; readcollection.lua:129
+0041    TSETS    9   8  23  ; "writeCollection"
+0042    FNEW     9  26      ; readcollection.lua:136
+0043    TSETS    9   8  25  ; "addItem"
+0044    FNEW     9  28      ; readcollection.lua:148
+0045    TSETS    9   8  27  ; "checkItemExist"
+0046    UCLO     0 => 0047
+0047 => RET1     8   2
+

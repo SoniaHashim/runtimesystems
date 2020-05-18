@@ -1,0 +1,795 @@
+
+main <./spec/unit/batterystat_spec.lua:0,0> (5 instructions, 20 bytes at 0x7fa25a4068d0)
+0+ params, 3 slots, 0 upvalues, 0 locals, 2 constants, 1 function
+	1	[1]	GETGLOBAL	0 -1	; describe
+	2	[1]	LOADK    	1 -2	; "BatteryState plugin tests #nocov"
+	3	[191]	CLOSURE  	2 0	; 0x7fa25a406bc0
+	4	[1]	CALL     	0 3 1
+	5	[191]	RETURN   	0 1
+
+function <./spec/unit/batterystat_spec.lua:1,191> (39 instructions, 156 bytes at 0x7fa25a406bc0)
+0 params, 6 slots, 0 upvalues, 3 locals, 8 constants, 8 functions
+	1	[6]	CLOSURE  	2 0	; 0x7fa25a406ed0
+	2	[6]	MOVE     	0 1
+	3	[8]	GETGLOBAL	3 -1	; setup
+	4	[14]	CLOSURE  	4 1	; 0x7fa25a406fd0
+	5	[14]	MOVE     	0 0
+	6	[8]	CALL     	3 2 1
+	7	[16]	GETGLOBAL	3 -2	; teardown
+	8	[20]	CLOSURE  	4 2	; 0x7fa25a4074f0
+	9	[20]	MOVE     	0 0
+	10	[16]	CALL     	3 2 1
+	11	[22]	GETGLOBAL	3 -3	; before_each
+	12	[24]	CLOSURE  	4 3	; 0x7fa25a407b00
+	13	[24]	MOVE     	0 1
+	14	[22]	CALL     	3 2 1
+	15	[26]	GETGLOBAL	3 -4	; it
+	16	[26]	LOADK    	4 -5	; "should record charging time"
+	17	[70]	CLOSURE  	5 4	; 0x7fa25a406e50
+	18	[70]	MOVE     	0 2
+	19	[70]	MOVE     	0 0
+	20	[26]	CALL     	3 3 1
+	21	[72]	GETGLOBAL	3 -4	; it
+	22	[72]	LOADK    	4 -6	; "should record suspending time"
+	23	[113]	CLOSURE  	5 5	; 0x7fa25a408b30
+	24	[113]	MOVE     	0 2
+	25	[113]	MOVE     	0 0
+	26	[72]	CALL     	3 3 1
+	27	[115]	GETGLOBAL	3 -4	; it
+	28	[115]	LOADK    	4 -7	; "should not swap the state when several charging events fired"
+	29	[147]	CLOSURE  	5 6	; 0x7fa25a407f70
+	30	[147]	MOVE     	0 2
+	31	[147]	MOVE     	0 0
+	32	[115]	CALL     	3 3 1
+	33	[149]	GETGLOBAL	3 -4	; it
+	34	[149]	LOADK    	4 -8	; "should not swap the state when several suspending events fired"
+	35	[190]	CLOSURE  	5 7	; 0x7fa25a408ab0
+	36	[190]	MOVE     	0 2
+	37	[190]	MOVE     	0 0
+	38	[149]	CALL     	3 3 1
+	39	[191]	RETURN   	0 1
+
+function <./spec/unit/batterystat_spec.lua:4,6> (7 instructions, 28 bytes at 0x7fa25a406ed0)
+0 params, 2 slots, 1 upvalue, 0 locals, 2 constants, 0 functions
+	1	[5]	GETUPVAL 	0 0	; module
+	2	[5]	SELF     	0 0 -1	; "new"
+	3	[5]	CALL     	0 2 2
+	4	[5]	SELF     	0 0 -2	; "stat"
+	5	[5]	TAILCALL 	0 2 0
+	6	[5]	RETURN   	0 0
+	7	[6]	RETURN   	0 1
+
+function <./spec/unit/batterystat_spec.lua:8,14> (22 instructions, 88 bytes at 0x7fa25a406fd0)
+0 params, 4 slots, 1 upvalue, 0 locals, 9 constants, 0 functions
+	1	[9]	GETGLOBAL	0 -1	; require
+	2	[9]	LOADK    	1 -2	; "commonrequire"
+	3	[9]	CALL     	0 2 1
+	4	[10]	GETGLOBAL	0 -3	; package
+	5	[10]	GETTABLE 	0 0 -4	; "unloadAll"
+	6	[10]	CALL     	0 1 1
+	7	[11]	GETGLOBAL	0 -1	; require
+	8	[11]	LOADK    	1 -5	; "document/canvascontext"
+	9	[11]	CALL     	0 2 2
+	10	[11]	SELF     	0 0 -6	; "init"
+	11	[11]	GETGLOBAL	2 -1	; require
+	12	[11]	LOADK    	3 -7	; "device"
+	13	[11]	CALL     	2 2 0
+	14	[11]	CALL     	0 0 1
+	15	[12]	GETGLOBAL	0 -1	; require
+	16	[12]	LOADK    	1 -8	; "mock_time"
+	17	[12]	CALL     	0 2 2
+	18	[12]	SETUPVAL 	0 0	; MockTime
+	19	[13]	GETUPVAL 	0 0	; MockTime
+	20	[13]	SELF     	0 0 -9	; "install"
+	21	[13]	CALL     	0 2 1
+	22	[14]	RETURN   	0 1
+
+function <./spec/unit/batterystat_spec.lua:16,20> (15 instructions, 60 bytes at 0x7fa25a4074f0)
+0 params, 4 slots, 1 upvalue, 0 locals, 7 constants, 0 functions
+	1	[17]	GETUPVAL 	0 0	; MockTime
+	2	[17]	SELF     	0 0 -1	; "uninstall"
+	3	[17]	CALL     	0 2 1
+	4	[18]	GETGLOBAL	0 -2	; package
+	5	[18]	GETTABLE 	0 0 -3	; "unloadAll"
+	6	[18]	CALL     	0 1 1
+	7	[19]	GETGLOBAL	0 -4	; require
+	8	[19]	LOADK    	1 -5	; "document/canvascontext"
+	9	[19]	CALL     	0 2 2
+	10	[19]	SELF     	0 0 -6	; "init"
+	11	[19]	GETGLOBAL	2 -4	; require
+	12	[19]	LOADK    	3 -7	; "device"
+	13	[19]	CALL     	2 2 0
+	14	[19]	CALL     	0 0 1
+	15	[20]	RETURN   	0 1
+
+function <./spec/unit/batterystat_spec.lua:22,24> (5 instructions, 20 bytes at 0x7fa25a407b00)
+0 params, 2 slots, 1 upvalue, 0 locals, 2 constants, 0 functions
+	1	[23]	GETGLOBAL	0 -1	; dofile
+	2	[23]	LOADK    	1 -2	; "plugins/batterystat.koplugin/main.lua"
+	3	[23]	CALL     	0 2 2
+	4	[23]	SETUPVAL 	0 0	; module
+	5	[24]	RETURN   	0 1
+
+function <./spec/unit/batterystat_spec.lua:26,70> (179 instructions, 716 bytes at 0x7fa25a406e50)
+0 params, 4 slots, 2 upvalues, 1 local, 19 constants, 0 functions
+	1	[27]	GETUPVAL 	0 0	; stat
+	2	[27]	CALL     	0 1 2
+	3	[28]	GETGLOBAL	1 -1	; assert
+	4	[28]	GETTABLE 	1 1 -2	; "is_false"
+	5	[28]	GETTABLE 	2 0 -3	; "was_charging"
+	6	[28]	CALL     	1 2 1
+	7	[29]	GETGLOBAL	1 -1	; assert
+	8	[29]	GETTABLE 	1 1 -2	; "is_false"
+	9	[29]	GETTABLE 	2 0 -4	; "was_suspending"
+	10	[29]	CALL     	1 2 1
+	11	[30]	SELF     	1 0 -5	; "resetAll"
+	12	[30]	CALL     	1 2 1
+	13	[31]	GETUPVAL 	1 1	; MockTime
+	14	[31]	SELF     	1 1 -6	; "increase"
+	15	[31]	LOADK    	3 -7	; 1
+	16	[31]	CALL     	1 3 1
+	17	[32]	SELF     	1 0 -8	; "accumulate"
+	18	[32]	CALL     	1 2 1
+	19	[33]	GETGLOBAL	1 -1	; assert
+	20	[33]	GETTABLE 	1 1 -9	; "are"
+	21	[33]	GETTABLE 	1 1 -10	; "equal"
+	22	[33]	LOADK    	2 -7	; 1
+	23	[33]	GETTABLE 	3 0 -11	; "awake"
+	24	[33]	GETTABLE 	3 3 -12	; "time"
+	25	[33]	CALL     	1 3 1
+	26	[34]	GETGLOBAL	1 -1	; assert
+	27	[34]	GETTABLE 	1 1 -9	; "are"
+	28	[34]	GETTABLE 	1 1 -10	; "equal"
+	29	[34]	LOADK    	2 -13	; 0
+	30	[34]	GETTABLE 	3 0 -14	; "sleeping"
+	31	[34]	GETTABLE 	3 3 -12	; "time"
+	32	[34]	CALL     	1 3 1
+	33	[35]	GETGLOBAL	1 -1	; assert
+	34	[35]	GETTABLE 	1 1 -9	; "are"
+	35	[35]	GETTABLE 	1 1 -10	; "equal"
+	36	[35]	LOADK    	2 -7	; 1
+	37	[35]	GETTABLE 	3 0 -15	; "discharging"
+	38	[35]	GETTABLE 	3 3 -12	; "time"
+	39	[35]	CALL     	1 3 1
+	40	[36]	GETGLOBAL	1 -1	; assert
+	41	[36]	GETTABLE 	1 1 -9	; "are"
+	42	[36]	GETTABLE 	1 1 -10	; "equal"
+	43	[36]	LOADK    	2 -13	; 0
+	44	[36]	GETTABLE 	3 0 -16	; "charging"
+	45	[36]	GETTABLE 	3 3 -12	; "time"
+	46	[36]	CALL     	1 3 1
+	47	[38]	SELF     	1 0 -17	; "onCharging"
+	48	[38]	CALL     	1 2 1
+	49	[39]	GETGLOBAL	1 -1	; assert
+	50	[39]	GETTABLE 	1 1 -18	; "is_true"
+	51	[39]	GETTABLE 	2 0 -3	; "was_charging"
+	52	[39]	CALL     	1 2 1
+	53	[40]	GETGLOBAL	1 -1	; assert
+	54	[40]	GETTABLE 	1 1 -2	; "is_false"
+	55	[40]	GETTABLE 	2 0 -4	; "was_suspending"
+	56	[40]	CALL     	1 2 1
+	57	[41]	GETUPVAL 	1 1	; MockTime
+	58	[41]	SELF     	1 1 -6	; "increase"
+	59	[41]	LOADK    	3 -7	; 1
+	60	[41]	CALL     	1 3 1
+	61	[42]	SELF     	1 0 -8	; "accumulate"
+	62	[42]	CALL     	1 2 1
+	63	[44]	GETGLOBAL	1 -1	; assert
+	64	[44]	GETTABLE 	1 1 -9	; "are"
+	65	[44]	GETTABLE 	1 1 -10	; "equal"
+	66	[44]	LOADK    	2 -13	; 0
+	67	[44]	GETTABLE 	3 0 -11	; "awake"
+	68	[44]	GETTABLE 	3 3 -12	; "time"
+	69	[44]	CALL     	1 3 1
+	70	[45]	GETGLOBAL	1 -1	; assert
+	71	[45]	GETTABLE 	1 1 -9	; "are"
+	72	[45]	GETTABLE 	1 1 -10	; "equal"
+	73	[45]	LOADK    	2 -13	; 0
+	74	[45]	GETTABLE 	3 0 -14	; "sleeping"
+	75	[45]	GETTABLE 	3 3 -12	; "time"
+	76	[45]	CALL     	1 3 1
+	77	[46]	GETGLOBAL	1 -1	; assert
+	78	[46]	GETTABLE 	1 1 -9	; "are"
+	79	[46]	GETTABLE 	1 1 -10	; "equal"
+	80	[46]	LOADK    	2 -13	; 0
+	81	[46]	GETTABLE 	3 0 -15	; "discharging"
+	82	[46]	GETTABLE 	3 3 -12	; "time"
+	83	[46]	CALL     	1 3 1
+	84	[47]	GETGLOBAL	1 -1	; assert
+	85	[47]	GETTABLE 	1 1 -9	; "are"
+	86	[47]	GETTABLE 	1 1 -10	; "equal"
+	87	[47]	LOADK    	2 -7	; 1
+	88	[47]	GETTABLE 	3 0 -16	; "charging"
+	89	[47]	GETTABLE 	3 3 -12	; "time"
+	90	[47]	CALL     	1 3 1
+	91	[49]	SELF     	1 0 -19	; "onNotCharging"
+	92	[49]	CALL     	1 2 1
+	93	[50]	GETGLOBAL	1 -1	; assert
+	94	[50]	GETTABLE 	1 1 -2	; "is_false"
+	95	[50]	GETTABLE 	2 0 -3	; "was_charging"
+	96	[50]	CALL     	1 2 1
+	97	[51]	GETGLOBAL	1 -1	; assert
+	98	[51]	GETTABLE 	1 1 -2	; "is_false"
+	99	[51]	GETTABLE 	2 0 -4	; "was_suspending"
+	100	[51]	CALL     	1 2 1
+	101	[52]	GETUPVAL 	1 1	; MockTime
+	102	[52]	SELF     	1 1 -6	; "increase"
+	103	[52]	LOADK    	3 -7	; 1
+	104	[52]	CALL     	1 3 1
+	105	[53]	SELF     	1 0 -8	; "accumulate"
+	106	[53]	CALL     	1 2 1
+	107	[55]	GETGLOBAL	1 -1	; assert
+	108	[55]	GETTABLE 	1 1 -9	; "are"
+	109	[55]	GETTABLE 	1 1 -10	; "equal"
+	110	[55]	LOADK    	2 -7	; 1
+	111	[55]	GETTABLE 	3 0 -11	; "awake"
+	112	[55]	GETTABLE 	3 3 -12	; "time"
+	113	[55]	CALL     	1 3 1
+	114	[56]	GETGLOBAL	1 -1	; assert
+	115	[56]	GETTABLE 	1 1 -9	; "are"
+	116	[56]	GETTABLE 	1 1 -10	; "equal"
+	117	[56]	LOADK    	2 -13	; 0
+	118	[56]	GETTABLE 	3 0 -14	; "sleeping"
+	119	[56]	GETTABLE 	3 3 -12	; "time"
+	120	[56]	CALL     	1 3 1
+	121	[57]	GETGLOBAL	1 -1	; assert
+	122	[57]	GETTABLE 	1 1 -9	; "are"
+	123	[57]	GETTABLE 	1 1 -10	; "equal"
+	124	[57]	LOADK    	2 -7	; 1
+	125	[57]	GETTABLE 	3 0 -15	; "discharging"
+	126	[57]	GETTABLE 	3 3 -12	; "time"
+	127	[57]	CALL     	1 3 1
+	128	[58]	GETGLOBAL	1 -1	; assert
+	129	[58]	GETTABLE 	1 1 -9	; "are"
+	130	[58]	GETTABLE 	1 1 -10	; "equal"
+	131	[58]	LOADK    	2 -7	; 1
+	132	[58]	GETTABLE 	3 0 -16	; "charging"
+	133	[58]	GETTABLE 	3 3 -12	; "time"
+	134	[58]	CALL     	1 3 1
+	135	[60]	SELF     	1 0 -17	; "onCharging"
+	136	[60]	CALL     	1 2 1
+	137	[61]	GETGLOBAL	1 -1	; assert
+	138	[61]	GETTABLE 	1 1 -18	; "is_true"
+	139	[61]	GETTABLE 	2 0 -3	; "was_charging"
+	140	[61]	CALL     	1 2 1
+	141	[62]	GETGLOBAL	1 -1	; assert
+	142	[62]	GETTABLE 	1 1 -2	; "is_false"
+	143	[62]	GETTABLE 	2 0 -4	; "was_suspending"
+	144	[62]	CALL     	1 2 1
+	145	[63]	GETUPVAL 	1 1	; MockTime
+	146	[63]	SELF     	1 1 -6	; "increase"
+	147	[63]	LOADK    	3 -7	; 1
+	148	[63]	CALL     	1 3 1
+	149	[64]	SELF     	1 0 -8	; "accumulate"
+	150	[64]	CALL     	1 2 1
+	151	[66]	GETGLOBAL	1 -1	; assert
+	152	[66]	GETTABLE 	1 1 -9	; "are"
+	153	[66]	GETTABLE 	1 1 -10	; "equal"
+	154	[66]	LOADK    	2 -13	; 0
+	155	[66]	GETTABLE 	3 0 -11	; "awake"
+	156	[66]	GETTABLE 	3 3 -12	; "time"
+	157	[66]	CALL     	1 3 1
+	158	[67]	GETGLOBAL	1 -1	; assert
+	159	[67]	GETTABLE 	1 1 -9	; "are"
+	160	[67]	GETTABLE 	1 1 -10	; "equal"
+	161	[67]	LOADK    	2 -13	; 0
+	162	[67]	GETTABLE 	3 0 -14	; "sleeping"
+	163	[67]	GETTABLE 	3 3 -12	; "time"
+	164	[67]	CALL     	1 3 1
+	165	[68]	GETGLOBAL	1 -1	; assert
+	166	[68]	GETTABLE 	1 1 -9	; "are"
+	167	[68]	GETTABLE 	1 1 -10	; "equal"
+	168	[68]	LOADK    	2 -13	; 0
+	169	[68]	GETTABLE 	3 0 -15	; "discharging"
+	170	[68]	GETTABLE 	3 3 -12	; "time"
+	171	[68]	CALL     	1 3 1
+	172	[69]	GETGLOBAL	1 -1	; assert
+	173	[69]	GETTABLE 	1 1 -9	; "are"
+	174	[69]	GETTABLE 	1 1 -10	; "equal"
+	175	[69]	LOADK    	2 -7	; 1
+	176	[69]	GETTABLE 	3 0 -16	; "charging"
+	177	[69]	GETTABLE 	3 3 -12	; "time"
+	178	[69]	CALL     	1 3 1
+	179	[70]	RETURN   	0 1
+
+function <./spec/unit/batterystat_spec.lua:72,113> (179 instructions, 716 bytes at 0x7fa25a408b30)
+0 params, 4 slots, 2 upvalues, 1 local, 22 constants, 0 functions
+	1	[73]	GETUPVAL 	0 0	; stat
+	2	[73]	CALL     	0 1 2
+	3	[74]	GETGLOBAL	1 -1	; assert
+	4	[74]	GETTABLE 	1 1 -2	; "is_false"
+	5	[74]	GETTABLE 	2 0 -3	; "was_charging"
+	6	[74]	CALL     	1 2 1
+	7	[75]	GETGLOBAL	1 -1	; assert
+	8	[75]	GETTABLE 	1 1 -2	; "is_false"
+	9	[75]	GETTABLE 	2 0 -4	; "was_suspending"
+	10	[75]	CALL     	1 2 1
+	11	[76]	SELF     	1 0 -5	; "resetAll"
+	12	[76]	CALL     	1 2 1
+	13	[77]	GETUPVAL 	1 1	; MockTime
+	14	[77]	SELF     	1 1 -6	; "increase"
+	15	[77]	LOADK    	3 -7	; 1
+	16	[77]	CALL     	1 3 1
+	17	[78]	SELF     	1 0 -8	; "accumulate"
+	18	[78]	CALL     	1 2 1
+	19	[79]	GETGLOBAL	1 -1	; assert
+	20	[79]	GETTABLE 	1 1 -9	; "are"
+	21	[79]	GETTABLE 	1 1 -10	; "equal"
+	22	[79]	LOADK    	2 -7	; 1
+	23	[79]	GETTABLE 	3 0 -11	; "awake"
+	24	[79]	GETTABLE 	3 3 -12	; "time"
+	25	[79]	CALL     	1 3 1
+	26	[80]	GETGLOBAL	1 -1	; assert
+	27	[80]	GETTABLE 	1 1 -9	; "are"
+	28	[80]	GETTABLE 	1 1 -10	; "equal"
+	29	[80]	LOADK    	2 -13	; 0
+	30	[80]	GETTABLE 	3 0 -14	; "sleeping"
+	31	[80]	GETTABLE 	3 3 -12	; "time"
+	32	[80]	CALL     	1 3 1
+	33	[81]	GETGLOBAL	1 -1	; assert
+	34	[81]	GETTABLE 	1 1 -9	; "are"
+	35	[81]	GETTABLE 	1 1 -10	; "equal"
+	36	[81]	LOADK    	2 -7	; 1
+	37	[81]	GETTABLE 	3 0 -15	; "discharging"
+	38	[81]	GETTABLE 	3 3 -12	; "time"
+	39	[81]	CALL     	1 3 1
+	40	[82]	GETGLOBAL	1 -1	; assert
+	41	[82]	GETTABLE 	1 1 -9	; "are"
+	42	[82]	GETTABLE 	1 1 -10	; "equal"
+	43	[82]	LOADK    	2 -13	; 0
+	44	[82]	GETTABLE 	3 0 -16	; "charging"
+	45	[82]	GETTABLE 	3 3 -12	; "time"
+	46	[82]	CALL     	1 3 1
+	47	[84]	SELF     	1 0 -17	; "onSuspend"
+	48	[84]	CALL     	1 2 1
+	49	[85]	GETGLOBAL	1 -1	; assert
+	50	[85]	GETTABLE 	1 1 -2	; "is_false"
+	51	[85]	GETTABLE 	2 0 -3	; "was_charging"
+	52	[85]	CALL     	1 2 1
+	53	[86]	GETGLOBAL	1 -1	; assert
+	54	[86]	GETTABLE 	1 1 -18	; "is_true"
+	55	[86]	GETTABLE 	2 0 -4	; "was_suspending"
+	56	[86]	CALL     	1 2 1
+	57	[87]	GETUPVAL 	1 1	; MockTime
+	58	[87]	SELF     	1 1 -6	; "increase"
+	59	[87]	LOADK    	3 -7	; 1
+	60	[87]	CALL     	1 3 1
+	61	[88]	SELF     	1 0 -8	; "accumulate"
+	62	[88]	CALL     	1 2 1
+	63	[89]	GETGLOBAL	1 -1	; assert
+	64	[89]	GETTABLE 	1 1 -9	; "are"
+	65	[89]	GETTABLE 	1 1 -10	; "equal"
+	66	[89]	LOADK    	2 -7	; 1
+	67	[89]	GETTABLE 	3 0 -11	; "awake"
+	68	[89]	GETTABLE 	3 3 -12	; "time"
+	69	[89]	CALL     	1 3 1
+	70	[90]	GETGLOBAL	1 -1	; assert
+	71	[90]	GETTABLE 	1 1 -9	; "are"
+	72	[90]	GETTABLE 	1 1 -10	; "equal"
+	73	[90]	LOADK    	2 -7	; 1
+	74	[90]	GETTABLE 	3 0 -14	; "sleeping"
+	75	[90]	GETTABLE 	3 3 -12	; "time"
+	76	[90]	CALL     	1 3 1
+	77	[91]	GETGLOBAL	1 -1	; assert
+	78	[91]	GETTABLE 	1 1 -9	; "are"
+	79	[91]	GETTABLE 	1 1 -10	; "equal"
+	80	[91]	LOADK    	2 -19	; 2
+	81	[91]	GETTABLE 	3 0 -15	; "discharging"
+	82	[91]	GETTABLE 	3 3 -12	; "time"
+	83	[91]	CALL     	1 3 1
+	84	[92]	GETGLOBAL	1 -1	; assert
+	85	[92]	GETTABLE 	1 1 -9	; "are"
+	86	[92]	GETTABLE 	1 1 -10	; "equal"
+	87	[92]	LOADK    	2 -13	; 0
+	88	[92]	GETTABLE 	3 0 -16	; "charging"
+	89	[92]	GETTABLE 	3 3 -12	; "time"
+	90	[92]	CALL     	1 3 1
+	91	[94]	SELF     	1 0 -20	; "onResume"
+	92	[94]	CALL     	1 2 1
+	93	[95]	GETGLOBAL	1 -1	; assert
+	94	[95]	GETTABLE 	1 1 -2	; "is_false"
+	95	[95]	GETTABLE 	2 0 -3	; "was_charging"
+	96	[95]	CALL     	1 2 1
+	97	[96]	GETGLOBAL	1 -1	; assert
+	98	[96]	GETTABLE 	1 1 -2	; "is_false"
+	99	[96]	GETTABLE 	2 0 -4	; "was_suspending"
+	100	[96]	CALL     	1 2 1
+	101	[97]	GETUPVAL 	1 1	; MockTime
+	102	[97]	SELF     	1 1 -6	; "increase"
+	103	[97]	LOADK    	3 -7	; 1
+	104	[97]	CALL     	1 3 1
+	105	[98]	SELF     	1 0 -8	; "accumulate"
+	106	[98]	CALL     	1 2 1
+	107	[99]	GETGLOBAL	1 -1	; assert
+	108	[99]	GETTABLE 	1 1 -9	; "are"
+	109	[99]	GETTABLE 	1 1 -10	; "equal"
+	110	[99]	LOADK    	2 -19	; 2
+	111	[99]	GETTABLE 	3 0 -11	; "awake"
+	112	[99]	GETTABLE 	3 3 -12	; "time"
+	113	[99]	CALL     	1 3 1
+	114	[100]	GETGLOBAL	1 -1	; assert
+	115	[100]	GETTABLE 	1 1 -9	; "are"
+	116	[100]	GETTABLE 	1 1 -10	; "equal"
+	117	[100]	LOADK    	2 -7	; 1
+	118	[100]	GETTABLE 	3 0 -14	; "sleeping"
+	119	[100]	GETTABLE 	3 3 -12	; "time"
+	120	[100]	CALL     	1 3 1
+	121	[101]	GETGLOBAL	1 -1	; assert
+	122	[101]	GETTABLE 	1 1 -9	; "are"
+	123	[101]	GETTABLE 	1 1 -10	; "equal"
+	124	[101]	LOADK    	2 -21	; 3
+	125	[101]	GETTABLE 	3 0 -15	; "discharging"
+	126	[101]	GETTABLE 	3 3 -12	; "time"
+	127	[101]	CALL     	1 3 1
+	128	[102]	GETGLOBAL	1 -1	; assert
+	129	[102]	GETTABLE 	1 1 -9	; "are"
+	130	[102]	GETTABLE 	1 1 -10	; "equal"
+	131	[102]	LOADK    	2 -13	; 0
+	132	[102]	GETTABLE 	3 0 -16	; "charging"
+	133	[102]	GETTABLE 	3 3 -12	; "time"
+	134	[102]	CALL     	1 3 1
+	135	[104]	SELF     	1 0 -17	; "onSuspend"
+	136	[104]	CALL     	1 2 1
+	137	[105]	GETGLOBAL	1 -1	; assert
+	138	[105]	GETTABLE 	1 1 -2	; "is_false"
+	139	[105]	GETTABLE 	2 0 -3	; "was_charging"
+	140	[105]	CALL     	1 2 1
+	141	[106]	GETGLOBAL	1 -1	; assert
+	142	[106]	GETTABLE 	1 1 -18	; "is_true"
+	143	[106]	GETTABLE 	2 0 -4	; "was_suspending"
+	144	[106]	CALL     	1 2 1
+	145	[107]	GETUPVAL 	1 1	; MockTime
+	146	[107]	SELF     	1 1 -6	; "increase"
+	147	[107]	LOADK    	3 -7	; 1
+	148	[107]	CALL     	1 3 1
+	149	[108]	SELF     	1 0 -8	; "accumulate"
+	150	[108]	CALL     	1 2 1
+	151	[109]	GETGLOBAL	1 -1	; assert
+	152	[109]	GETTABLE 	1 1 -9	; "are"
+	153	[109]	GETTABLE 	1 1 -10	; "equal"
+	154	[109]	LOADK    	2 -19	; 2
+	155	[109]	GETTABLE 	3 0 -11	; "awake"
+	156	[109]	GETTABLE 	3 3 -12	; "time"
+	157	[109]	CALL     	1 3 1
+	158	[110]	GETGLOBAL	1 -1	; assert
+	159	[110]	GETTABLE 	1 1 -9	; "are"
+	160	[110]	GETTABLE 	1 1 -10	; "equal"
+	161	[110]	LOADK    	2 -19	; 2
+	162	[110]	GETTABLE 	3 0 -14	; "sleeping"
+	163	[110]	GETTABLE 	3 3 -12	; "time"
+	164	[110]	CALL     	1 3 1
+	165	[111]	GETGLOBAL	1 -1	; assert
+	166	[111]	GETTABLE 	1 1 -9	; "are"
+	167	[111]	GETTABLE 	1 1 -10	; "equal"
+	168	[111]	LOADK    	2 -22	; 4
+	169	[111]	GETTABLE 	3 0 -15	; "discharging"
+	170	[111]	GETTABLE 	3 3 -12	; "time"
+	171	[111]	CALL     	1 3 1
+	172	[112]	GETGLOBAL	1 -1	; assert
+	173	[112]	GETTABLE 	1 1 -9	; "are"
+	174	[112]	GETTABLE 	1 1 -10	; "equal"
+	175	[112]	LOADK    	2 -13	; 0
+	176	[112]	GETTABLE 	3 0 -16	; "charging"
+	177	[112]	GETTABLE 	3 3 -12	; "time"
+	178	[112]	CALL     	1 3 1
+	179	[113]	RETURN   	0 1
+
+function <./spec/unit/batterystat_spec.lua:115,147> (135 instructions, 540 bytes at 0x7fa25a407f70)
+0 params, 4 slots, 2 upvalues, 1 local, 19 constants, 0 functions
+	1	[116]	GETUPVAL 	0 0	; stat
+	2	[116]	CALL     	0 1 2
+	3	[117]	GETGLOBAL	1 -1	; assert
+	4	[117]	GETTABLE 	1 1 -2	; "is_false"
+	5	[117]	GETTABLE 	2 0 -3	; "was_charging"
+	6	[117]	CALL     	1 2 1
+	7	[118]	GETGLOBAL	1 -1	; assert
+	8	[118]	GETTABLE 	1 1 -2	; "is_false"
+	9	[118]	GETTABLE 	2 0 -4	; "was_suspending"
+	10	[118]	CALL     	1 2 1
+	11	[119]	SELF     	1 0 -5	; "resetAll"
+	12	[119]	CALL     	1 2 1
+	13	[120]	GETUPVAL 	1 1	; MockTime
+	14	[120]	SELF     	1 1 -6	; "increase"
+	15	[120]	LOADK    	3 -7	; 1
+	16	[120]	CALL     	1 3 1
+	17	[121]	SELF     	1 0 -8	; "accumulate"
+	18	[121]	CALL     	1 2 1
+	19	[122]	GETGLOBAL	1 -1	; assert
+	20	[122]	GETTABLE 	1 1 -9	; "are"
+	21	[122]	GETTABLE 	1 1 -10	; "equal"
+	22	[122]	LOADK    	2 -7	; 1
+	23	[122]	GETTABLE 	3 0 -11	; "awake"
+	24	[122]	GETTABLE 	3 3 -12	; "time"
+	25	[122]	CALL     	1 3 1
+	26	[123]	GETGLOBAL	1 -1	; assert
+	27	[123]	GETTABLE 	1 1 -9	; "are"
+	28	[123]	GETTABLE 	1 1 -10	; "equal"
+	29	[123]	LOADK    	2 -13	; 0
+	30	[123]	GETTABLE 	3 0 -14	; "sleeping"
+	31	[123]	GETTABLE 	3 3 -12	; "time"
+	32	[123]	CALL     	1 3 1
+	33	[124]	GETGLOBAL	1 -1	; assert
+	34	[124]	GETTABLE 	1 1 -9	; "are"
+	35	[124]	GETTABLE 	1 1 -10	; "equal"
+	36	[124]	LOADK    	2 -7	; 1
+	37	[124]	GETTABLE 	3 0 -15	; "discharging"
+	38	[124]	GETTABLE 	3 3 -12	; "time"
+	39	[124]	CALL     	1 3 1
+	40	[125]	GETGLOBAL	1 -1	; assert
+	41	[125]	GETTABLE 	1 1 -9	; "are"
+	42	[125]	GETTABLE 	1 1 -10	; "equal"
+	43	[125]	LOADK    	2 -13	; 0
+	44	[125]	GETTABLE 	3 0 -16	; "charging"
+	45	[125]	GETTABLE 	3 3 -12	; "time"
+	46	[125]	CALL     	1 3 1
+	47	[127]	SELF     	1 0 -17	; "onCharging"
+	48	[127]	CALL     	1 2 1
+	49	[128]	GETGLOBAL	1 -1	; assert
+	50	[128]	GETTABLE 	1 1 -18	; "is_true"
+	51	[128]	GETTABLE 	2 0 -3	; "was_charging"
+	52	[128]	CALL     	1 2 1
+	53	[129]	GETGLOBAL	1 -1	; assert
+	54	[129]	GETTABLE 	1 1 -2	; "is_false"
+	55	[129]	GETTABLE 	2 0 -4	; "was_suspending"
+	56	[129]	CALL     	1 2 1
+	57	[130]	GETUPVAL 	1 1	; MockTime
+	58	[130]	SELF     	1 1 -6	; "increase"
+	59	[130]	LOADK    	3 -7	; 1
+	60	[130]	CALL     	1 3 1
+	61	[131]	SELF     	1 0 -8	; "accumulate"
+	62	[131]	CALL     	1 2 1
+	63	[133]	GETGLOBAL	1 -1	; assert
+	64	[133]	GETTABLE 	1 1 -9	; "are"
+	65	[133]	GETTABLE 	1 1 -10	; "equal"
+	66	[133]	LOADK    	2 -13	; 0
+	67	[133]	GETTABLE 	3 0 -11	; "awake"
+	68	[133]	GETTABLE 	3 3 -12	; "time"
+	69	[133]	CALL     	1 3 1
+	70	[134]	GETGLOBAL	1 -1	; assert
+	71	[134]	GETTABLE 	1 1 -9	; "are"
+	72	[134]	GETTABLE 	1 1 -10	; "equal"
+	73	[134]	LOADK    	2 -13	; 0
+	74	[134]	GETTABLE 	3 0 -14	; "sleeping"
+	75	[134]	GETTABLE 	3 3 -12	; "time"
+	76	[134]	CALL     	1 3 1
+	77	[135]	GETGLOBAL	1 -1	; assert
+	78	[135]	GETTABLE 	1 1 -9	; "are"
+	79	[135]	GETTABLE 	1 1 -10	; "equal"
+	80	[135]	LOADK    	2 -13	; 0
+	81	[135]	GETTABLE 	3 0 -15	; "discharging"
+	82	[135]	GETTABLE 	3 3 -12	; "time"
+	83	[135]	CALL     	1 3 1
+	84	[136]	GETGLOBAL	1 -1	; assert
+	85	[136]	GETTABLE 	1 1 -9	; "are"
+	86	[136]	GETTABLE 	1 1 -10	; "equal"
+	87	[136]	LOADK    	2 -7	; 1
+	88	[136]	GETTABLE 	3 0 -16	; "charging"
+	89	[136]	GETTABLE 	3 3 -12	; "time"
+	90	[136]	CALL     	1 3 1
+	91	[138]	SELF     	1 0 -17	; "onCharging"
+	92	[138]	CALL     	1 2 1
+	93	[139]	GETGLOBAL	1 -1	; assert
+	94	[139]	GETTABLE 	1 1 -18	; "is_true"
+	95	[139]	GETTABLE 	2 0 -3	; "was_charging"
+	96	[139]	CALL     	1 2 1
+	97	[140]	GETGLOBAL	1 -1	; assert
+	98	[140]	GETTABLE 	1 1 -2	; "is_false"
+	99	[140]	GETTABLE 	2 0 -4	; "was_suspending"
+	100	[140]	CALL     	1 2 1
+	101	[141]	GETUPVAL 	1 1	; MockTime
+	102	[141]	SELF     	1 1 -6	; "increase"
+	103	[141]	LOADK    	3 -7	; 1
+	104	[141]	CALL     	1 3 1
+	105	[142]	SELF     	1 0 -8	; "accumulate"
+	106	[142]	CALL     	1 2 1
+	107	[143]	GETGLOBAL	1 -1	; assert
+	108	[143]	GETTABLE 	1 1 -9	; "are"
+	109	[143]	GETTABLE 	1 1 -10	; "equal"
+	110	[143]	LOADK    	2 -13	; 0
+	111	[143]	GETTABLE 	3 0 -11	; "awake"
+	112	[143]	GETTABLE 	3 3 -12	; "time"
+	113	[143]	CALL     	1 3 1
+	114	[144]	GETGLOBAL	1 -1	; assert
+	115	[144]	GETTABLE 	1 1 -9	; "are"
+	116	[144]	GETTABLE 	1 1 -10	; "equal"
+	117	[144]	LOADK    	2 -13	; 0
+	118	[144]	GETTABLE 	3 0 -14	; "sleeping"
+	119	[144]	GETTABLE 	3 3 -12	; "time"
+	120	[144]	CALL     	1 3 1
+	121	[145]	GETGLOBAL	1 -1	; assert
+	122	[145]	GETTABLE 	1 1 -9	; "are"
+	123	[145]	GETTABLE 	1 1 -10	; "equal"
+	124	[145]	LOADK    	2 -13	; 0
+	125	[145]	GETTABLE 	3 0 -15	; "discharging"
+	126	[145]	GETTABLE 	3 3 -12	; "time"
+	127	[145]	CALL     	1 3 1
+	128	[146]	GETGLOBAL	1 -1	; assert
+	129	[146]	GETTABLE 	1 1 -9	; "are"
+	130	[146]	GETTABLE 	1 1 -10	; "equal"
+	131	[146]	LOADK    	2 -19	; 2
+	132	[146]	GETTABLE 	3 0 -16	; "charging"
+	133	[146]	GETTABLE 	3 3 -12	; "time"
+	134	[146]	CALL     	1 3 1
+	135	[147]	RETURN   	0 1
+
+function <./spec/unit/batterystat_spec.lua:149,190> (179 instructions, 716 bytes at 0x7fa25a408ab0)
+0 params, 4 slots, 2 upvalues, 1 local, 21 constants, 0 functions
+	1	[150]	GETUPVAL 	0 0	; stat
+	2	[150]	CALL     	0 1 2
+	3	[151]	GETGLOBAL	1 -1	; assert
+	4	[151]	GETTABLE 	1 1 -2	; "is_false"
+	5	[151]	GETTABLE 	2 0 -3	; "was_charging"
+	6	[151]	CALL     	1 2 1
+	7	[152]	GETGLOBAL	1 -1	; assert
+	8	[152]	GETTABLE 	1 1 -2	; "is_false"
+	9	[152]	GETTABLE 	2 0 -4	; "was_suspending"
+	10	[152]	CALL     	1 2 1
+	11	[153]	SELF     	1 0 -5	; "resetAll"
+	12	[153]	CALL     	1 2 1
+	13	[154]	GETUPVAL 	1 1	; MockTime
+	14	[154]	SELF     	1 1 -6	; "increase"
+	15	[154]	LOADK    	3 -7	; 1
+	16	[154]	CALL     	1 3 1
+	17	[155]	SELF     	1 0 -8	; "accumulate"
+	18	[155]	CALL     	1 2 1
+	19	[156]	GETGLOBAL	1 -1	; assert
+	20	[156]	GETTABLE 	1 1 -9	; "are"
+	21	[156]	GETTABLE 	1 1 -10	; "equal"
+	22	[156]	LOADK    	2 -7	; 1
+	23	[156]	GETTABLE 	3 0 -11	; "awake"
+	24	[156]	GETTABLE 	3 3 -12	; "time"
+	25	[156]	CALL     	1 3 1
+	26	[157]	GETGLOBAL	1 -1	; assert
+	27	[157]	GETTABLE 	1 1 -9	; "are"
+	28	[157]	GETTABLE 	1 1 -10	; "equal"
+	29	[157]	LOADK    	2 -13	; 0
+	30	[157]	GETTABLE 	3 0 -14	; "sleeping"
+	31	[157]	GETTABLE 	3 3 -12	; "time"
+	32	[157]	CALL     	1 3 1
+	33	[158]	GETGLOBAL	1 -1	; assert
+	34	[158]	GETTABLE 	1 1 -9	; "are"
+	35	[158]	GETTABLE 	1 1 -10	; "equal"
+	36	[158]	LOADK    	2 -7	; 1
+	37	[158]	GETTABLE 	3 0 -15	; "discharging"
+	38	[158]	GETTABLE 	3 3 -12	; "time"
+	39	[158]	CALL     	1 3 1
+	40	[159]	GETGLOBAL	1 -1	; assert
+	41	[159]	GETTABLE 	1 1 -9	; "are"
+	42	[159]	GETTABLE 	1 1 -10	; "equal"
+	43	[159]	LOADK    	2 -13	; 0
+	44	[159]	GETTABLE 	3 0 -16	; "charging"
+	45	[159]	GETTABLE 	3 3 -12	; "time"
+	46	[159]	CALL     	1 3 1
+	47	[161]	SELF     	1 0 -17	; "onSuspend"
+	48	[161]	CALL     	1 2 1
+	49	[162]	GETGLOBAL	1 -1	; assert
+	50	[162]	GETTABLE 	1 1 -2	; "is_false"
+	51	[162]	GETTABLE 	2 0 -3	; "was_charging"
+	52	[162]	CALL     	1 2 1
+	53	[163]	GETGLOBAL	1 -1	; assert
+	54	[163]	GETTABLE 	1 1 -18	; "is_true"
+	55	[163]	GETTABLE 	2 0 -4	; "was_suspending"
+	56	[163]	CALL     	1 2 1
+	57	[164]	GETUPVAL 	1 1	; MockTime
+	58	[164]	SELF     	1 1 -6	; "increase"
+	59	[164]	LOADK    	3 -7	; 1
+	60	[164]	CALL     	1 3 1
+	61	[165]	SELF     	1 0 -8	; "accumulate"
+	62	[165]	CALL     	1 2 1
+	63	[166]	GETGLOBAL	1 -1	; assert
+	64	[166]	GETTABLE 	1 1 -9	; "are"
+	65	[166]	GETTABLE 	1 1 -10	; "equal"
+	66	[166]	LOADK    	2 -7	; 1
+	67	[166]	GETTABLE 	3 0 -11	; "awake"
+	68	[166]	GETTABLE 	3 3 -12	; "time"
+	69	[166]	CALL     	1 3 1
+	70	[167]	GETGLOBAL	1 -1	; assert
+	71	[167]	GETTABLE 	1 1 -9	; "are"
+	72	[167]	GETTABLE 	1 1 -10	; "equal"
+	73	[167]	LOADK    	2 -7	; 1
+	74	[167]	GETTABLE 	3 0 -14	; "sleeping"
+	75	[167]	GETTABLE 	3 3 -12	; "time"
+	76	[167]	CALL     	1 3 1
+	77	[168]	GETGLOBAL	1 -1	; assert
+	78	[168]	GETTABLE 	1 1 -9	; "are"
+	79	[168]	GETTABLE 	1 1 -10	; "equal"
+	80	[168]	LOADK    	2 -19	; 2
+	81	[168]	GETTABLE 	3 0 -15	; "discharging"
+	82	[168]	GETTABLE 	3 3 -12	; "time"
+	83	[168]	CALL     	1 3 1
+	84	[169]	GETGLOBAL	1 -1	; assert
+	85	[169]	GETTABLE 	1 1 -9	; "are"
+	86	[169]	GETTABLE 	1 1 -10	; "equal"
+	87	[169]	LOADK    	2 -13	; 0
+	88	[169]	GETTABLE 	3 0 -16	; "charging"
+	89	[169]	GETTABLE 	3 3 -12	; "time"
+	90	[169]	CALL     	1 3 1
+	91	[171]	SELF     	1 0 -17	; "onSuspend"
+	92	[171]	CALL     	1 2 1
+	93	[172]	GETGLOBAL	1 -1	; assert
+	94	[172]	GETTABLE 	1 1 -2	; "is_false"
+	95	[172]	GETTABLE 	2 0 -3	; "was_charging"
+	96	[172]	CALL     	1 2 1
+	97	[173]	GETGLOBAL	1 -1	; assert
+	98	[173]	GETTABLE 	1 1 -18	; "is_true"
+	99	[173]	GETTABLE 	2 0 -4	; "was_suspending"
+	100	[173]	CALL     	1 2 1
+	101	[174]	GETUPVAL 	1 1	; MockTime
+	102	[174]	SELF     	1 1 -6	; "increase"
+	103	[174]	LOADK    	3 -7	; 1
+	104	[174]	CALL     	1 3 1
+	105	[175]	SELF     	1 0 -8	; "accumulate"
+	106	[175]	CALL     	1 2 1
+	107	[176]	GETGLOBAL	1 -1	; assert
+	108	[176]	GETTABLE 	1 1 -9	; "are"
+	109	[176]	GETTABLE 	1 1 -10	; "equal"
+	110	[176]	LOADK    	2 -7	; 1
+	111	[176]	GETTABLE 	3 0 -11	; "awake"
+	112	[176]	GETTABLE 	3 3 -12	; "time"
+	113	[176]	CALL     	1 3 1
+	114	[177]	GETGLOBAL	1 -1	; assert
+	115	[177]	GETTABLE 	1 1 -9	; "are"
+	116	[177]	GETTABLE 	1 1 -10	; "equal"
+	117	[177]	LOADK    	2 -19	; 2
+	118	[177]	GETTABLE 	3 0 -14	; "sleeping"
+	119	[177]	GETTABLE 	3 3 -12	; "time"
+	120	[177]	CALL     	1 3 1
+	121	[178]	GETGLOBAL	1 -1	; assert
+	122	[178]	GETTABLE 	1 1 -9	; "are"
+	123	[178]	GETTABLE 	1 1 -10	; "equal"
+	124	[178]	LOADK    	2 -20	; 3
+	125	[178]	GETTABLE 	3 0 -15	; "discharging"
+	126	[178]	GETTABLE 	3 3 -12	; "time"
+	127	[178]	CALL     	1 3 1
+	128	[179]	GETGLOBAL	1 -1	; assert
+	129	[179]	GETTABLE 	1 1 -9	; "are"
+	130	[179]	GETTABLE 	1 1 -10	; "equal"
+	131	[179]	LOADK    	2 -13	; 0
+	132	[179]	GETTABLE 	3 0 -16	; "charging"
+	133	[179]	GETTABLE 	3 3 -12	; "time"
+	134	[179]	CALL     	1 3 1
+	135	[181]	SELF     	1 0 -17	; "onSuspend"
+	136	[181]	CALL     	1 2 1
+	137	[182]	GETGLOBAL	1 -1	; assert
+	138	[182]	GETTABLE 	1 1 -2	; "is_false"
+	139	[182]	GETTABLE 	2 0 -3	; "was_charging"
+	140	[182]	CALL     	1 2 1
+	141	[183]	GETGLOBAL	1 -1	; assert
+	142	[183]	GETTABLE 	1 1 -18	; "is_true"
+	143	[183]	GETTABLE 	2 0 -4	; "was_suspending"
+	144	[183]	CALL     	1 2 1
+	145	[184]	GETUPVAL 	1 1	; MockTime
+	146	[184]	SELF     	1 1 -6	; "increase"
+	147	[184]	LOADK    	3 -7	; 1
+	148	[184]	CALL     	1 3 1
+	149	[185]	SELF     	1 0 -8	; "accumulate"
+	150	[185]	CALL     	1 2 1
+	151	[186]	GETGLOBAL	1 -1	; assert
+	152	[186]	GETTABLE 	1 1 -9	; "are"
+	153	[186]	GETTABLE 	1 1 -10	; "equal"
+	154	[186]	LOADK    	2 -7	; 1
+	155	[186]	GETTABLE 	3 0 -11	; "awake"
+	156	[186]	GETTABLE 	3 3 -12	; "time"
+	157	[186]	CALL     	1 3 1
+	158	[187]	GETGLOBAL	1 -1	; assert
+	159	[187]	GETTABLE 	1 1 -9	; "are"
+	160	[187]	GETTABLE 	1 1 -10	; "equal"
+	161	[187]	LOADK    	2 -20	; 3
+	162	[187]	GETTABLE 	3 0 -14	; "sleeping"
+	163	[187]	GETTABLE 	3 3 -12	; "time"
+	164	[187]	CALL     	1 3 1
+	165	[188]	GETGLOBAL	1 -1	; assert
+	166	[188]	GETTABLE 	1 1 -9	; "are"
+	167	[188]	GETTABLE 	1 1 -10	; "equal"
+	168	[188]	LOADK    	2 -21	; 4
+	169	[188]	GETTABLE 	3 0 -15	; "discharging"
+	170	[188]	GETTABLE 	3 3 -12	; "time"
+	171	[188]	CALL     	1 3 1
+	172	[189]	GETGLOBAL	1 -1	; assert
+	173	[189]	GETTABLE 	1 1 -9	; "are"
+	174	[189]	GETTABLE 	1 1 -10	; "equal"
+	175	[189]	LOADK    	2 -13	; 0
+	176	[189]	GETTABLE 	3 0 -16	; "charging"
+	177	[189]	GETTABLE 	3 3 -12	; "time"
+	178	[189]	CALL     	1 3 1
+	179	[190]	RETURN   	0 1

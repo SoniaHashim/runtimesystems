@@ -1,0 +1,163 @@
+-- BYTECODE -- quickstart.lua:66-69
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "readSetting"
+0004    KSTR     3   2      ; "quickstart_shown_version"
+0005    CALL     1   2   3
+0006    ISEQP    1   0
+0007    JMP      2 => 0011
+0008    TGETS    2   0   3  ; "quickstart_force_show_version"
+0009    ISLE     2   1
+0010    JMP      2 => 0013
+0011 => KPRI     2   1
+0012    JMP      3 => 0014
+0013 => KPRI     2   2
+0014 => RET1     2   2
+
+-- BYTECODE -- quickstart.lua:79-106
+0001    KSTR     1   0      ; "%s/help"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "format"
+0004    UGET     3   0      ; DataStorage
+0005    MOV      4   3
+0006    TGETS    3   3   2  ; "getDataDir"
+0007    CALL     3   0   2
+0008    CALLM    1   2   1
+0009    UGET     2   1      ; lfs
+0010    TGETS    2   2   3  ; "attributes"
+0011    MOV      3   1
+0012    KSTR     4   4      ; "mode"
+0013    CALL     2   2   3
+0014    ISEQS    2   5      ; "dir"
+0015    JMP      2 => 0020
+0016    UGET     2   1      ; lfs
+0017    TGETS    2   2   6  ; "mkdir"
+0018    MOV      3   1
+0019    CALL     2   1   2
+0020 => KSTR     2   7      ; "%s/quickstart-%s-%s.html"
+0021    MOV      3   2
+0022    TGETS    2   2   1  ; "format"
+0023    MOV      4   1
+0024    UGET     5   2      ; language
+0025    UGET     6   3      ; rev
+0026    CALL     2   2   5
+0027    UGET     3   1      ; lfs
+0028    TGETS    3   3   3  ; "attributes"
+0029    MOV      4   2
+0030    KSTR     5   4      ; "mode"
+0031    CALL     3   2   3
+0032    ISEQS    3   8      ; "file"
+0033    JMP      3 => 0087
+0034    UGET     3   1      ; lfs
+0035    TGETS    3   3   5  ; "dir"
+0036    MOV      4   1
+0037    CALL     3   3   2
+0038    MOV      5   3
+0039    MOV      6   4
+0040    KPRI     7   0
+0041    JMP      8 => 0069
+0042 => MOV     10   8
+0043    TGETS    9   8   9  ; "match"
+0044    KSTR    11  10      ; "quickstart-.*%.html"
+0045    CALL     9   2   3
+0046    ISF          9
+0047    JMP     10 => 0069
+0048    UGET     9   4      ; FFIUtil
+0049    TGETS    9   9  11  ; "realpath"
+0050    KSTR    10  12      ; "%s/%s"
+0051    MOV     11  10
+0052    TGETS   10  10   1  ; "format"
+0053    MOV     12   1
+0054    MOV     13   8
+0055    CALL    10   0   4
+0056    CALLM    9   2   0
+0057    GGET    10  13      ; "os"
+0058    TGETS   10  10  14  ; "remove"
+0059    MOV     11   9
+0060    CALL    10   1   2
+0061    UGET    10   5      ; DocSettings
+0062    MOV     11  10
+0063    TGETS   10  10  15  ; "open"
+0064    MOV     12   9
+0065    CALL    10   2   3
+0066    MOV     11  10
+0067    TGETS   10  10  16  ; "purge"
+0068    CALL    10   1   2
+0069 => ITERC    8   2   3
+0070    ITERL    8 => 0042
+0071    UGET     5   6      ; FileConverter
+0072    MOV      6   5
+0073    TGETS    5   5  17  ; "mdToHtml"
+0074    UGET     7   7      ; quickstart_guide
+0075    UGET     8   8      ; _
+0076    KSTR     9  18      ; "KOReader Quickstart Guide"
+0077    CALL     8   0   2
+0078    CALLM    5   2   2
+0079    ISF          5
+0080    JMP      6 => 0087
+0081    UGET     6   6      ; FileConverter
+0082    MOV      7   6
+0083    TGETS    6   6  19  ; "writeStringToFile"
+0084    MOV      8   5
+0085    MOV      9   2
+0086    CALL     6   1   4
+0087 => TSETS    2   0  20  ; "quickstart_filename"
+0088    GGET     3  21      ; "G_reader_settings"
+0089    MOV      4   3
+0090    TGETS    3   3  22  ; "saveSetting"
+0091    KSTR     5  23      ; "quickstart_shown_version"
+0092    UGET     6   9      ; version
+0093    CALL     3   1   4
+0094    RET1     2   2
+
+-- BYTECODE -- quickstart.lua:0-109
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "datastorage"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "apps/filemanager/filemanagerconverter"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "docsettings"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "version"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ffi/util"
+0015    CALL     4   2   2
+0016    TGETS    5   4   6  ; "template"
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   7      ; "libs/libkoreader-lfs"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   8      ; "gettext"
+0022    CALL     7   2   2
+0023    TDUP     8   9
+0024    GGET     9  10      ; "G_reader_settings"
+0025    MOV     10   9
+0026    TGETS    9   9  11  ; "readSetting"
+0027    KSTR    11  12      ; "language"
+0028    CALL     9   2   3
+0029    IST          9
+0030    JMP     10 => 0032
+0031    KSTR     9  13      ; "en"
+0032 => MOV     11   3
+0033    TGETS   10   3  14  ; "getNormalizedCurrentVersion"
+0034    CALL    10   2   2
+0035    MOV     12   3
+0036    TGETS   11   3  15  ; "getCurrentRevision"
+0037    CALL    11   2   2
+0038    MOV     12   5
+0039    MOV     13   7
+0040    KSTR    14  16      ; "# KOReader Quickstart Guide\n\nWelcome t"~
+0041    CALL    13   2   2
+0042    MOV     14  11
+0043    CALL    12   2   3
+0044    FNEW    13  18      ; quickstart.lua:66
+0045    TSETS   13   8  17  ; "isShown"
+0046    FNEW    13  20      ; quickstart.lua:79
+0047    TSETS   13   8  19  ; "getQuickStart"
+0048    UCLO     0 => 0049
+0049 => RET1     8   2
+

@@ -1,0 +1,212 @@
+-- BYTECODE -- network_manager_spec.lua:8-14
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "auto_restore_wifi"
+0005    KPRI     3   2
+0006    CALL     0   1   4
+0007    USETN    0   0      ; turn_on_wifi_called ; 0
+0008    USETN    1   0      ; turn_off_wifi_called ; 0
+0009    USETN    2   0      ; obtain_ip_called ; 0
+0010    USETN    3   0      ; release_ip_called ; 0
+0011    RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:20-25
+0001    UGET     2   0      ; turn_on_wifi_called
+0002    ADDVN    2   2   0  ; 1
+0003    USETV    0   2      ; turn_on_wifi_called
+0004    ISF          1
+0005    JMP      2 => 0008
+0006    MOV      2   1
+0007    CALL     2   1   1
+0008 => RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:26-31
+0001    UGET     2   0      ; turn_off_wifi_called
+0002    ADDVN    2   2   0  ; 1
+0003    USETV    0   2      ; turn_off_wifi_called
+0004    ISF          1
+0005    JMP      2 => 0008
+0006    MOV      2   1
+0007    CALL     2   1   1
+0008 => RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:32-37
+0001    UGET     2   0      ; obtain_ip_called
+0002    ADDVN    2   2   0  ; 1
+0003    USETV    0   2      ; obtain_ip_called
+0004    ISF          1
+0005    JMP      2 => 0008
+0006    MOV      2   1
+0007    CALL     2   1   1
+0008 => RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:38-43
+0001    UGET     2   0      ; release_ip_called
+0002    ADDVN    2   2   0  ; 1
+0003    USETV    0   2      ; release_ip_called
+0004    ISF          1
+0005    JMP      2 => 0008
+0006    MOV      2   1
+0007    CALL     2   1   1
+0008 => RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:44-47
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "turnOnWifi"
+0003    CALL     1   1   2
+0004    MOV      2   0
+0005    TGETS    1   0   1  ; "obtainIP"
+0006    CALL     1   1   2
+0007    RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:19-48
+0001    FNEW     2   1      ; network_manager_spec.lua:20
+0002    TSETS    2   1   0  ; "turnOnWifi"
+0003    FNEW     2   3      ; network_manager_spec.lua:26
+0004    TSETS    2   1   2  ; "turnOffWifi"
+0005    FNEW     2   5      ; network_manager_spec.lua:32
+0006    TSETS    2   1   4  ; "obtainIP"
+0007    FNEW     2   7      ; network_manager_spec.lua:38
+0008    TSETS    2   1   6  ; "releaseIP"
+0009    FNEW     2   9      ; network_manager_spec.lua:44
+0010    TSETS    2   1   8  ; "restoreWifiAsync"
+0011    RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:16-49
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "device"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; Device
+0008    UGET     0   0      ; Device
+0009    FNEW     1   4      ; network_manager_spec.lua:19
+0010    TSETS    1   0   3  ; "initNetworkManager"
+0011    RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:51-60
+0001    GGET     0   0      ; "package"
+0002    TGETS    0   0   1  ; "loaded"
+0003    KPRI     1   0
+0004    TSETS    1   0   2  ; "ui/network/manager"
+0005    UGET     0   0      ; clearState
+0006    CALL     0   1   1
+0007    GGET     0   3      ; "G_reader_settings"
+0008    MOV      1   0
+0009    TGETS    0   0   4  ; "saveSetting"
+0010    KSTR     2   5      ; "wifi_was_on"
+0011    KPRI     3   2
+0012    CALL     0   1   4
+0013    GGET     0   6      ; "require"
+0014    KSTR     1   2      ; "ui/network/manager"
+0015    CALL     0   2   2
+0016    GGET     1   7      ; "assert"
+0017    TGETS    1   1   8  ; "is"
+0018    TGETS    1   1   9  ; "same"
+0019    UGET     2   1      ; turn_on_wifi_called
+0020    KSHORT   3   1
+0021    CALL     1   1   3
+0022    GGET     1   7      ; "assert"
+0023    TGETS    1   1   8  ; "is"
+0024    TGETS    1   1   9  ; "same"
+0025    UGET     2   2      ; turn_off_wifi_called
+0026    KSHORT   3   0
+0027    CALL     1   1   3
+0028    GGET     1   7      ; "assert"
+0029    TGETS    1   1   8  ; "is"
+0030    TGETS    1   1   9  ; "same"
+0031    UGET     2   3      ; obtain_ip_called
+0032    KSHORT   3   1
+0033    CALL     1   1   3
+0034    GGET     1   7      ; "assert"
+0035    TGETS    1   1   8  ; "is"
+0036    TGETS    1   1   9  ; "same"
+0037    UGET     2   4      ; release_ip_called
+0038    KSHORT   3   0
+0039    CALL     1   1   3
+0040    RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:62-71
+0001    GGET     0   0      ; "package"
+0002    TGETS    0   0   1  ; "loaded"
+0003    KPRI     1   0
+0004    TSETS    1   0   2  ; "ui/network/manager"
+0005    UGET     0   0      ; clearState
+0006    CALL     0   1   1
+0007    GGET     0   3      ; "G_reader_settings"
+0008    MOV      1   0
+0009    TGETS    0   0   4  ; "saveSetting"
+0010    KSTR     2   5      ; "wifi_was_on"
+0011    KPRI     3   1
+0012    CALL     0   1   4
+0013    GGET     0   6      ; "require"
+0014    KSTR     1   2      ; "ui/network/manager"
+0015    CALL     0   2   2
+0016    GGET     1   7      ; "assert"
+0017    TGETS    1   1   8  ; "is"
+0018    TGETS    1   1   9  ; "same"
+0019    UGET     2   1      ; turn_on_wifi_called
+0020    KSHORT   3   0
+0021    CALL     1   1   3
+0022    GGET     1   7      ; "assert"
+0023    TGETS    1   1   8  ; "is"
+0024    TGETS    1   1   9  ; "same"
+0025    UGET     2   2      ; turn_off_wifi_called
+0026    KSHORT   3   0
+0027    CALL     1   1   3
+0028    GGET     1   7      ; "assert"
+0029    TGETS    1   1   8  ; "is"
+0030    TGETS    1   1   9  ; "same"
+0031    UGET     2   3      ; obtain_ip_called
+0032    KSHORT   3   0
+0033    CALL     1   1   3
+0034    GGET     1   7      ; "assert"
+0035    TGETS    1   1   8  ; "is"
+0036    TGETS    1   1   9  ; "same"
+0037    UGET     2   4      ; release_ip_called
+0038    KSHORT   3   0
+0039    CALL     1   1   3
+0040    RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:74-74
+0001    RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:73-76
+0001    UGET     0   0      ; Device
+0002    FNEW     1   1      ; network_manager_spec.lua:74
+0003    TSETS    1   0   0  ; "initNetworkManager"
+0004    GGET     0   2      ; "package"
+0005    TGETS    0   0   3  ; "loaded"
+0006    KPRI     1   0
+0007    TSETS    1   0   4  ; "ui/network/manager"
+0008    RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:1-77
+0001    KNIL     0   4
+0002    FNEW     5   0      ; network_manager_spec.lua:8
+0003    GGET     6   1      ; "setup"
+0004    FNEW     7   2      ; network_manager_spec.lua:16
+0005    CALL     6   1   2
+0006    GGET     6   3      ; "it"
+0007    KSTR     7   4      ; "should restore wifi in init if wifi was "~
+0008    FNEW     8   5      ; network_manager_spec.lua:51
+0009    CALL     6   1   3
+0010    GGET     6   3      ; "it"
+0011    KSTR     7   6      ; "should not restore wifi in init if wifi "~
+0012    FNEW     8   7      ; network_manager_spec.lua:62
+0013    CALL     6   1   3
+0014    GGET     6   8      ; "teardown"
+0015    FNEW     7   9      ; network_manager_spec.lua:73
+0016    CALL     6   1   2
+0017    UCLO     0 => 0018
+0018 => RET0     0   1
+
+-- BYTECODE -- network_manager_spec.lua:0-78
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "network_manager module"
+0003    FNEW     2   2      ; network_manager_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

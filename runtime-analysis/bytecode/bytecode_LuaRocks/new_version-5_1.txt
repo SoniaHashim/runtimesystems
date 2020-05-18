@@ -1,0 +1,475 @@
+
+main <./cmd/new_version.lua:0,0> (47 instructions, 188 bytes at 0x7fef91c068a0)
+0+ params, 12 slots, 0 upvalues, 11 locals, 10 constants, 5 functions
+	1	[4]	NEWTABLE 	0 0 0
+	2	[6]	GETGLOBAL	1 -1	; require
+	3	[6]	LOADK    	2 -2	; "luarocks.util"
+	4	[6]	CALL     	1 2 2
+	5	[7]	GETGLOBAL	2 -1	; require
+	6	[7]	LOADK    	3 -3	; "luarocks.download"
+	7	[7]	CALL     	2 2 2
+	8	[8]	GETGLOBAL	3 -1	; require
+	9	[8]	LOADK    	4 -4	; "luarocks.fetch"
+	10	[8]	CALL     	3 2 2
+	11	[9]	GETGLOBAL	4 -1	; require
+	12	[9]	LOADK    	5 -5	; "luarocks.persist"
+	13	[9]	CALL     	4 2 2
+	14	[10]	GETGLOBAL	5 -1	; require
+	15	[10]	LOADK    	6 -6	; "luarocks.fs"
+	16	[10]	CALL     	5 2 2
+	17	[11]	GETGLOBAL	6 -1	; require
+	18	[11]	LOADK    	7 -7	; "luarocks.dir"
+	19	[11]	CALL     	6 2 2
+	20	[12]	GETGLOBAL	7 -1	; require
+	21	[12]	LOADK    	8 -8	; "luarocks.type.rockspec"
+	22	[12]	CALL     	7 2 2
+	23	[50]	CLOSURE  	8 0	; 0x7fef91c06f60
+	24	[50]	MOVE     	0 1
+	25	[14]	SETTABLE 	0 -9 8	; "add_to_parser" -
+	26	[65]	CLOSURE  	8 1	; 0x7fef91c06c20
+	27	[65]	MOVE     	0 1
+	28	[102]	CLOSURE  	9 2	; 0x7fef91c07af0
+	29	[102]	MOVE     	0 3
+	30	[102]	MOVE     	0 1
+	31	[102]	MOVE     	0 5
+	32	[136]	CLOSURE  	10 3	; 0x7fef91c07d30
+	33	[136]	MOVE     	0 9
+	34	[136]	MOVE     	0 8
+	35	[136]	MOVE     	0 1
+	36	[216]	CLOSURE  	11 4	; 0x7fef91c07060
+	37	[216]	MOVE     	0 1
+	38	[216]	MOVE     	0 3
+	39	[216]	MOVE     	0 2
+	40	[216]	MOVE     	0 6
+	41	[216]	MOVE     	0 4
+	42	[216]	MOVE     	0 10
+	43	[216]	MOVE     	0 5
+	44	[216]	MOVE     	0 7
+	45	[138]	SETTABLE 	0 -10 11	; "command" -
+	46	[218]	RETURN   	0 2
+	47	[218]	RETURN   	0 1
+
+function <./cmd/new_version.lua:14,50> (40 instructions, 160 bytes at 0x7fef91c06f60)
+1 param, 6 slots, 1 upvalue, 2 locals, 19 constants, 0 functions
+	1	[15]	SELF     	1 0 -1	; "command"
+	2	[15]	LOADK    	3 -2	; "new_version"
+	3	[38]	LOADK    	4 -3	; "This is a utility function that writes a new rockspec, updating data from a\nprevious one.\n\nIf a package name is given, it downloads the latest rockspec from the default\nserver. If a rockspec is given, it uses it instead. If no argument is given, it\nlooks for a rockspec same way 'luarocks make' does.\n\nIf the version number is not given and tag is passed using --tag, it is used as\nthe version, with 'v' removed from beginning.  Otherwise, it only increments the\nrevision number of the given (or downloaded) rockspec.\n\nIf a URL is given, it replaces the one from the old rockspec with the given URL.\nIf a URL is not given and a new version is given, it tries to guess the new URL\nby replacing occurrences of the version number in the URL or tag. It also tries\nto download the new URL to determine the new MD5 checksum.\n\nIf a tag is given, it replaces the one from the old rockspec. If there is an old\ntag but no new one passed, it is guessed in the same way URL is.\n\nIf a directory is not given, it defaults to the current directory.\n\nWARNING: it writes the new rockspec to the given directory, overwriting the file\nif it already exists."
+	4	[38]	GETUPVAL 	5 0	; util
+	5	[38]	GETTABLE 	5 5 -4	; "see_also"
+	6	[38]	CALL     	5 1 0
+	7	[15]	CALL     	1 0 2
+	8	[39]	SELF     	1 1 -5	; "summary"
+	9	[39]	LOADK    	3 -6	; "Auto-write a rockspec for a new version of a rock."
+	10	[39]	CALL     	1 3 2
+	11	[41]	SELF     	2 1 -7	; "argument"
+	12	[41]	LOADK    	4 -8	; "rock"
+	13	[41]	LOADK    	5 -9	; "Package name or rockspec."
+	14	[41]	CALL     	2 4 2
+	15	[42]	SELF     	2 2 -10	; "args"
+	16	[42]	LOADK    	4 -11	; "?"
+	17	[42]	CALL     	2 3 1
+	18	[43]	SELF     	2 1 -7	; "argument"
+	19	[43]	LOADK    	4 -2	; "new_version"
+	20	[43]	LOADK    	5 -12	; "New version of the rock."
+	21	[43]	CALL     	2 4 2
+	22	[44]	SELF     	2 2 -10	; "args"
+	23	[44]	LOADK    	4 -11	; "?"
+	24	[44]	CALL     	2 3 1
+	25	[45]	SELF     	2 1 -7	; "argument"
+	26	[45]	LOADK    	4 -13	; "new_url"
+	27	[45]	LOADK    	5 -14	; "New URL of the rock."
+	28	[45]	CALL     	2 4 2
+	29	[46]	SELF     	2 2 -10	; "args"
+	30	[46]	LOADK    	4 -11	; "?"
+	31	[46]	CALL     	2 3 1
+	32	[48]	SELF     	2 1 -15	; "option"
+	33	[48]	LOADK    	4 -16	; "--dir"
+	34	[48]	LOADK    	5 -17	; "Output directory for the new rockspec."
+	35	[48]	CALL     	2 4 1
+	36	[49]	SELF     	2 1 -15	; "option"
+	37	[49]	LOADK    	4 -18	; "--tag"
+	38	[49]	LOADK    	5 -19	; "New SCM tag."
+	39	[49]	CALL     	2 4 1
+	40	[50]	RETURN   	0 1
+
+function <./cmd/new_version.lua:53,65> (27 instructions, 108 bytes at 0x7fef91c06c20)
+4 params, 11 slots, 1 upvalue, 6 locals, 4 constants, 0 functions
+	1	[54]	GETTABLE 	4 0 1
+	2	[54]	TEST     	4 0 1
+	3	[54]	JMP      	2	; to 6
+	4	[55]	LOADBOOL 	4 0 0
+	5	[55]	RETURN   	4 2
+	6	[57]	GETTABLE 	4 0 1
+	7	[58]	GETTABLE 	5 0 1
+	8	[58]	SELF     	5 5 -1	; "gsub"
+	9	[58]	MOVE     	7 2
+	10	[58]	MOVE     	8 3
+	11	[58]	CALL     	5 4 2
+	12	[59]	EQ       	1 5 4
+	13	[59]	JMP      	11	; to 25
+	14	[60]	GETUPVAL 	6 0	; util
+	15	[60]	GETTABLE 	6 6 -2	; "printout"
+	16	[60]	LOADK    	7 -3	; "Guessing new '"
+	17	[60]	MOVE     	8 1
+	18	[60]	LOADK    	9 -4	; "' field as "
+	19	[60]	MOVE     	10 5
+	20	[60]	CONCAT   	7 7 10
+	21	[60]	CALL     	6 2 1
+	22	[61]	SETTABLE 	0 1 5
+	23	[62]	LOADBOOL 	6 1 0
+	24	[62]	RETURN   	6 2
+	25	[64]	LOADBOOL 	6 0 0
+	26	[64]	RETURN   	6 2
+	27	[65]	RETURN   	0 1
+
+function <./cmd/new_version.lua:71,102> (77 instructions, 308 bytes at 0x7fef91c07af0)
+1 param, 10 slots, 3 upvalues, 8 locals, 14 constants, 0 functions
+	1	[72]	GETUPVAL 	1 0	; fetch
+	2	[72]	GETTABLE 	1 1 -1	; "fetch_url_at_temp_dir"
+	3	[72]	GETTABLE 	2 0 -2	; "source"
+	4	[72]	GETTABLE 	2 2 -3	; "url"
+	5	[72]	LOADK    	3 -4	; "luarocks-new-version-"
+	6	[72]	GETTABLE 	4 0 -5	; "package"
+	7	[72]	CONCAT   	3 3 4
+	8	[72]	CALL     	1 3 3
+	9	[73]	TEST     	1 0 1
+	10	[73]	JMP      	9	; to 20
+	11	[74]	GETUPVAL 	3 1	; util
+	12	[74]	GETTABLE 	3 3 -6	; "warning"
+	13	[74]	LOADK    	4 -7	; "invalid URL - "
+	14	[74]	MOVE     	5 2
+	15	[74]	CONCAT   	4 4 5
+	16	[74]	CALL     	3 2 1
+	17	[75]	LOADBOOL 	3 1 0
+	18	[75]	LOADBOOL 	4 0 0
+	19	[75]	RETURN   	3 3
+	20	[78]	GETUPVAL 	3 0	; fetch
+	21	[78]	GETTABLE 	3 3 -8	; "find_base_dir"
+	22	[78]	MOVE     	4 1
+	23	[78]	MOVE     	5 2
+	24	[78]	GETTABLE 	6 0 -2	; "source"
+	25	[78]	GETTABLE 	6 6 -3	; "url"
+	26	[78]	GETTABLE 	7 0 -2	; "source"
+	27	[78]	GETTABLE 	7 7 -9	; "dir"
+	28	[78]	CALL     	3 5 3
+	29	[79]	TEST     	3 0 1
+	30	[79]	JMP      	3	; to 34
+	31	[80]	LOADNIL  	5 5
+	32	[80]	MOVE     	6 4
+	33	[80]	RETURN   	5 3
+	34	[83]	TEST     	4 0 0
+	35	[83]	JMP      	4	; to 40
+	36	[83]	EQ       	1 4 3
+	37	[83]	JMP      	2	; to 40
+	38	[84]	GETTABLE 	5 0 -2	; "source"
+	39	[84]	SETTABLE 	5 -9 4	; "dir" -
+	40	[87]	TEST     	1 0 0
+	41	[87]	JMP      	35	; to 77
+	42	[88]	GETTABLE 	5 0 -2	; "source"
+	43	[88]	GETTABLE 	5 5 -10	; "md5"
+	44	[88]	TEST     	5 0 0
+	45	[88]	JMP      	24	; to 70
+	46	[89]	GETUPVAL 	5 1	; util
+	47	[89]	GETTABLE 	5 5 -11	; "printout"
+	48	[89]	LOADK    	6 -12	; "File successfully downloaded. Updating MD5 checksum..."
+	49	[89]	CALL     	5 2 1
+	50	[90]	GETUPVAL 	5 2	; fs
+	51	[90]	GETTABLE 	5 5 -13	; "get_md5"
+	52	[90]	MOVE     	6 1
+	53	[90]	CALL     	5 2 3
+	54	[91]	TEST     	5 0 1
+	55	[91]	JMP      	3	; to 59
+	56	[92]	LOADNIL  	7 7
+	57	[92]	MOVE     	8 6
+	58	[92]	RETURN   	7 3
+	59	[94]	GETTABLE 	7 0 -2	; "source"
+	60	[94]	GETTABLE 	7 7 -10	; "md5"
+	61	[95]	GETTABLE 	8 0 -2	; "source"
+	62	[95]	SETTABLE 	8 -10 5	; "md5" -
+	63	[96]	LOADBOOL 	8 1 0
+	64	[96]	EQ       	0 5 7
+	65	[96]	JMP      	1	; to 67
+	66	[96]	LOADBOOL 	9 0 1
+	67	[96]	LOADBOOL 	9 1 0
+	68	[96]	RETURN   	8 3
+	69	[96]	JMP      	7	; to 77
+	70	[98]	GETUPVAL 	5 1	; util
+	71	[98]	GETTABLE 	5 5 -11	; "printout"
+	72	[98]	LOADK    	6 -14	; "File successfully downloaded."
+	73	[98]	CALL     	5 2 1
+	74	[99]	LOADBOOL 	5 1 0
+	75	[99]	LOADBOOL 	6 0 0
+	76	[99]	RETURN   	5 3
+	77	[102]	RETURN   	0 1
+
+function <./cmd/new_version.lua:104,136> (77 instructions, 308 bytes at 0x7fef91c07d30)
+5 params, 10 slots, 3 upvalues, 7 locals, 7 constants, 0 functions
+	1	[105]	TEST     	2 0 0
+	2	[105]	JMP      	2	; to 5
+	3	[106]	GETTABLE 	5 0 -1	; "source"
+	4	[106]	SETTABLE 	5 -2 2	; "tag" -
+	5	[108]	TEST     	1 0 0
+	6	[108]	JMP      	6	; to 13
+	7	[109]	GETTABLE 	5 0 -1	; "source"
+	8	[109]	SETTABLE 	5 -3 1	; "url" -
+	9	[110]	GETUPVAL 	5 0	; check_url_and_update_md5
+	10	[110]	MOVE     	6 0
+	11	[110]	TAILCALL 	5 2 0
+	12	[110]	RETURN   	5 0
+	13	[112]	EQ       	0 4 3
+	14	[112]	JMP      	2	; to 17
+	15	[113]	LOADBOOL 	5 1 0
+	16	[113]	RETURN   	5 2
+	17	[115]	GETTABLE 	5 0 -1	; "source"
+	18	[115]	GETTABLE 	5 5 -4	; "dir"
+	19	[115]	TEST     	5 0 0
+	20	[115]	JMP      	6	; to 27
+	21	[116]	GETUPVAL 	5 1	; try_replace
+	22	[116]	GETTABLE 	6 0 -1	; "source"
+	23	[116]	LOADK    	7 -4	; "dir"
+	24	[116]	MOVE     	8 3
+	25	[116]	MOVE     	9 4
+	26	[116]	CALL     	5 5 1
+	27	[118]	GETTABLE 	5 0 -1	; "source"
+	28	[118]	GETTABLE 	5 5 -5	; "file"
+	29	[118]	TEST     	5 0 0
+	30	[118]	JMP      	6	; to 37
+	31	[119]	GETUPVAL 	5 1	; try_replace
+	32	[119]	GETTABLE 	6 0 -1	; "source"
+	33	[119]	LOADK    	7 -5	; "file"
+	34	[119]	MOVE     	8 3
+	35	[119]	MOVE     	9 4
+	36	[119]	CALL     	5 5 1
+	37	[121]	GETUPVAL 	5 1	; try_replace
+	38	[121]	GETTABLE 	6 0 -1	; "source"
+	39	[121]	LOADK    	7 -3	; "url"
+	40	[121]	MOVE     	8 3
+	41	[121]	MOVE     	9 4
+	42	[121]	CALL     	5 5 2
+	43	[121]	TEST     	5 0 0
+	44	[121]	JMP      	4	; to 49
+	45	[122]	GETUPVAL 	5 0	; check_url_and_update_md5
+	46	[122]	MOVE     	6 0
+	47	[122]	TAILCALL 	5 2 0
+	48	[122]	RETURN   	5 0
+	49	[124]	TEST     	2 0 1
+	50	[124]	JMP      	8	; to 59
+	51	[124]	GETUPVAL 	5 1	; try_replace
+	52	[124]	GETTABLE 	6 0 -1	; "source"
+	53	[124]	LOADK    	7 -2	; "tag"
+	54	[124]	MOVE     	8 3
+	55	[124]	MOVE     	9 4
+	56	[124]	CALL     	5 5 2
+	57	[124]	TEST     	5 0 0
+	58	[124]	JMP      	2	; to 61
+	59	[125]	LOADBOOL 	5 1 0
+	60	[125]	RETURN   	5 2
+	61	[128]	GETUPVAL 	5 0	; check_url_and_update_md5
+	62	[128]	MOVE     	6 0
+	63	[128]	CALL     	5 2 3
+	64	[129]	TEST     	5 0 1
+	65	[129]	JMP      	3	; to 69
+	66	[130]	LOADNIL  	7 7
+	67	[130]	MOVE     	8 6
+	68	[130]	RETURN   	7 3
+	69	[132]	TEST     	6 0 0
+	70	[132]	JMP      	4	; to 75
+	71	[133]	GETUPVAL 	7 2	; util
+	72	[133]	GETTABLE 	7 7 -6	; "warning"
+	73	[133]	LOADK    	8 -7	; "URL is the same, but MD5 has changed. Old rockspec is broken."
+	74	[133]	CALL     	7 2 1
+	75	[135]	LOADBOOL 	7 1 0
+	76	[135]	RETURN   	7 2
+	77	[136]	RETURN   	0 1
+
+function <./cmd/new_version.lua:138,216> (189 instructions, 756 bytes at 0x7fef91c07060)
+1 param, 22 slots, 8 upvalues, 20 locals, 37 constants, 0 functions
+	1	[139]	GETTABLE 	1 0 -1	; "rock"
+	2	[139]	TEST     	1 0 1
+	3	[139]	JMP      	12	; to 16
+	4	[140]	LOADNIL  	1 1
+	5	[141]	GETUPVAL 	2 0	; util
+	6	[141]	GETTABLE 	2 2 -2	; "get_default_rockspec"
+	7	[141]	CALL     	2 1 3
+	8	[141]	MOVE     	1 3
+	9	[141]	SETTABLE 	0 -1 2	; "rock" -
+	10	[142]	GETTABLE 	2 0 -1	; "rock"
+	11	[142]	TEST     	2 0 1
+	12	[142]	JMP      	3	; to 16
+	13	[143]	LOADNIL  	2 2
+	14	[143]	MOVE     	3 1
+	15	[143]	RETURN   	2 3
+	16	[147]	LOADNIL  	1 2
+	17	[148]	GETTABLE 	3 0 -1	; "rock"
+	18	[148]	SELF     	3 3 -3	; "match"
+	19	[148]	LOADK    	5 -4	; "rockspec$"
+	20	[148]	CALL     	3 3 2
+	21	[148]	TEST     	3 0 0
+	22	[148]	JMP      	12	; to 35
+	23	[149]	GETUPVAL 	3 1	; fetch
+	24	[149]	GETTABLE 	3 3 -5	; "fetch_url"
+	25	[149]	GETTABLE 	4 0 -1	; "rock"
+	26	[149]	CALL     	3 2 3
+	27	[149]	MOVE     	2 4
+	28	[149]	MOVE     	1 3
+	29	[150]	TEST     	1 0 1
+	30	[150]	JMP      	18	; to 49
+	31	[151]	LOADNIL  	3 3
+	32	[151]	MOVE     	4 2
+	33	[151]	RETURN   	3 3
+	34	[152]	JMP      	14	; to 49
+	35	[154]	GETUPVAL 	3 2	; download
+	36	[154]	GETTABLE 	3 3 -6	; "download"
+	37	[154]	LOADK    	4 -7	; "rockspec"
+	38	[154]	GETTABLE 	5 0 -1	; "rock"
+	39	[154]	SELF     	5 5 -8	; "lower"
+	40	[154]	CALL     	5 2 0
+	41	[154]	CALL     	3 0 3
+	42	[154]	MOVE     	2 4
+	43	[154]	MOVE     	1 3
+	44	[155]	TEST     	1 0 1
+	45	[155]	JMP      	3	; to 49
+	46	[156]	LOADNIL  	3 3
+	47	[156]	MOVE     	4 2
+	48	[156]	RETURN   	3 3
+	49	[160]	GETUPVAL 	3 1	; fetch
+	50	[160]	GETTABLE 	3 3 -9	; "load_rockspec"
+	51	[160]	MOVE     	4 1
+	52	[160]	CALL     	3 2 3
+	53	[161]	TEST     	3 0 1
+	54	[161]	JMP      	3	; to 58
+	55	[162]	LOADNIL  	5 5
+	56	[162]	MOVE     	6 4
+	57	[162]	RETURN   	5 3
+	58	[165]	GETTABLE 	5 3 -10	; "version"
+	59	[165]	SELF     	5 5 -3	; "match"
+	60	[165]	LOADK    	7 -11	; "(.*)%-(%d+)$"
+	61	[165]	CALL     	5 3 3
+	62	[166]	LOADNIL  	7 8
+	63	[168]	GETTABLE 	9 0 -12	; "tag"
+	64	[168]	TEST     	9 0 0
+	65	[168]	JMP      	9	; to 75
+	66	[168]	GETTABLE 	9 0 -13	; "new_version"
+	67	[168]	TEST     	9 0 1
+	68	[168]	JMP      	6	; to 75
+	69	[169]	GETTABLE 	9 0 -12	; "tag"
+	70	[169]	SELF     	9 9 -14	; "gsub"
+	71	[169]	LOADK    	11 -15	; "^v"
+	72	[169]	LOADK    	12 -16	; ""
+	73	[169]	CALL     	9 4 2
+	74	[169]	SETTABLE 	0 -13 9	; "new_version" -
+	75	[172]	LOADNIL  	9 9
+	76	[173]	GETTABLE 	10 0 -17	; "dir"
+	77	[173]	TEST     	10 0 0
+	78	[173]	JMP      	5	; to 84
+	79	[174]	GETUPVAL 	10 3	; dir
+	80	[174]	GETTABLE 	10 10 -18	; "normalize"
+	81	[174]	GETTABLE 	11 0 -17	; "dir"
+	82	[174]	CALL     	10 2 2
+	83	[174]	MOVE     	9 10
+	84	[177]	GETTABLE 	10 0 -13	; "new_version"
+	85	[177]	TEST     	10 0 0
+	86	[177]	JMP      	15	; to 102
+	87	[178]	GETTABLE 	10 0 -13	; "new_version"
+	88	[178]	SELF     	10 10 -3	; "match"
+	89	[178]	LOADK    	12 -11	; "(.*)%-(%d+)$"
+	90	[178]	CALL     	10 3 3
+	91	[178]	MOVE     	8 11
+	92	[178]	MOVE     	7 10
+	93	[179]	GETGLOBAL	10 -19	; tonumber
+	94	[179]	MOVE     	11 8
+	95	[179]	CALL     	10 2 2
+	96	[179]	MOVE     	8 10
+	97	[180]	TEST     	8 0 1
+	98	[180]	JMP      	8	; to 107
+	99	[181]	GETTABLE 	7 0 -13	; "new_version"
+	100	[182]	LOADK    	8 -20	; 1
+	101	[183]	JMP      	5	; to 107
+	102	[185]	MOVE     	7 5
+	103	[186]	GETGLOBAL	10 -19	; tonumber
+	104	[186]	MOVE     	11 6
+	105	[186]	CALL     	10 2 2
+	106	[186]	ADD      	8 10 -20	; - 1
+	107	[188]	SELF     	10 7 -14	; "gsub"
+	108	[188]	LOADK    	12 -21	; "-"
+	109	[188]	LOADK    	13 -16	; ""
+	110	[188]	CALL     	10 4 2
+	111	[190]	GETUPVAL 	11 4	; persist
+	112	[190]	GETTABLE 	11 11 -22	; "load_into_table"
+	113	[190]	MOVE     	12 1
+	114	[190]	CALL     	11 2 3
+	115	[191]	GETTABLE 	13 11 -23	; "package"
+	116	[191]	SELF     	13 13 -8	; "lower"
+	117	[191]	CALL     	13 2 2
+	118	[192]	MOVE     	14 10
+	119	[192]	LOADK    	15 -21	; "-"
+	120	[192]	MOVE     	16 8
+	121	[192]	CONCAT   	14 14 16
+	122	[192]	SETTABLE 	11 -10 14	; "version" -
+	123	[194]	GETUPVAL 	14 5	; update_source_section
+	124	[194]	MOVE     	15 11
+	125	[194]	GETTABLE 	16 0 -24	; "new_url"
+	126	[194]	GETTABLE 	17 0 -12	; "tag"
+	127	[194]	MOVE     	18 5
+	128	[194]	MOVE     	19 7
+	129	[194]	CALL     	14 6 3
+	130	[195]	TEST     	14 0 1
+	131	[195]	JMP      	3	; to 135
+	132	[195]	LOADNIL  	16 16
+	133	[195]	MOVE     	17 15
+	134	[195]	RETURN   	16 3
+	135	[197]	GETTABLE 	16 11 -25	; "build"
+	136	[197]	TEST     	16 0 0
+	137	[197]	JMP      	6	; to 144
+	138	[197]	GETTABLE 	16 11 -25	; "build"
+	139	[197]	GETTABLE 	16 16 -26	; "type"
+	140	[197]	EQ       	0 16 -27	; - "module"
+	141	[197]	JMP      	2	; to 144
+	142	[198]	GETTABLE 	16 11 -25	; "build"
+	143	[198]	SETTABLE 	16 -26 -28	; "type" "builtin"
+	144	[201]	MOVE     	16 13
+	145	[201]	LOADK    	17 -21	; "-"
+	146	[201]	MOVE     	18 10
+	147	[201]	LOADK    	19 -21	; "-"
+	148	[201]	MOVE     	20 8
+	149	[201]	LOADK    	21 -29	; ".rockspec"
+	150	[201]	CONCAT   	16 16 21
+	151	[202]	TEST     	9 0 0
+	152	[202]	JMP      	10	; to 163
+	153	[203]	GETUPVAL 	17 3	; dir
+	154	[203]	GETTABLE 	17 17 -30	; "path"
+	155	[203]	MOVE     	18 9
+	156	[203]	MOVE     	19 16
+	157	[203]	CALL     	17 3 2
+	158	[203]	MOVE     	16 17
+	159	[204]	GETUPVAL 	17 6	; fs
+	160	[204]	GETTABLE 	17 17 -31	; "make_dir"
+	161	[204]	MOVE     	18 9
+	162	[204]	CALL     	17 2 1
+	163	[206]	GETUPVAL 	17 4	; persist
+	164	[206]	GETTABLE 	17 17 -32	; "save_from_table"
+	165	[206]	MOVE     	18 16
+	166	[206]	MOVE     	19 11
+	167	[206]	GETUPVAL 	20 7	; type_rockspec
+	168	[206]	GETTABLE 	20 20 -33	; "order"
+	169	[206]	CALL     	17 4 1
+	170	[208]	GETUPVAL 	17 0	; util
+	171	[208]	GETTABLE 	17 17 -34	; "printout"
+	172	[208]	LOADK    	18 -35	; "Wrote "
+	173	[208]	MOVE     	19 16
+	174	[208]	CONCAT   	18 18 19
+	175	[208]	CALL     	17 2 1
+	176	[210]	GETUPVAL 	17 1	; fetch
+	177	[210]	GETTABLE 	17 17 -36	; "load_local_rockspec"
+	178	[210]	MOVE     	18 16
+	179	[210]	CALL     	17 2 3
+	180	[211]	TEST     	17 0 1
+	181	[211]	JMP      	5	; to 187
+	182	[212]	LOADNIL  	19 19
+	183	[212]	LOADK    	20 -37	; "Failed loading generated rockspec: "
+	184	[212]	MOVE     	21 18
+	185	[212]	CONCAT   	20 20 21
+	186	[212]	RETURN   	19 3
+	187	[215]	LOADBOOL 	19 1 0
+	188	[215]	RETURN   	19 2
+	189	[216]	RETURN   	0 1

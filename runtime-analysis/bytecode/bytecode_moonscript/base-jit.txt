@@ -1,0 +1,339 @@
+-- BYTECODE -- base.lua:20-47
+0001    KPRI     1   0
+0002    TNEW     2   0
+0003    KSHORT   3   1
+0004    UGET     4   0      ; split
+0005    MOV      5   0
+0006    KSTR     6   0      ; ";"
+0007    CALL     4   2   3
+0008    KSHORT   5   1
+0009    LEN      6   4
+0010    KSHORT   7   1
+0011    FORI     5 => 0033
+0012 => KPRI     9   1
+0013    LOOP    10 => 0029
+0014    TGETV   10   4   8
+0015    MOV     12  10
+0016    TGETS   11  10   1  ; "match"
+0017    KSTR    13   2      ; "^(.-)%.lua$"
+0018    CALL    11   2   3
+0019    IST         11
+0020    JMP     12 => 0023
+0021    KPRI     9   2
+0022    JMP     10 => 0029
+0023 => MOV     12  11
+0024    KSTR    13   3      ; ".moon"
+0025    CAT     12  12  13
+0026    TSETV   12   2   3
+0027    ADDVN    3   3   0  ; 1
+0028    KPRI     9   2
+0029 => IST          9
+0030    JMP     10 => 0032
+0031    JMP      5 => 0033
+0032 => FORL     5 => 0012
+0033 => MOV      1   2
+0034    UGET     2   1      ; concat
+0035    MOV      3   1
+0036    KSTR     4   0      ; ";"
+0037    CALLT    2   3
+
+-- BYTECODE -- base.lua:48-65
+0001    ISNEP    1   0
+0002    JMP      2 => 0004
+0003    TNEW     1   0
+0004 => GGET     2   0      ; "type"
+0005    MOV      3   0
+0006    CALL     2   2   2
+0007    ISEQS    2   1      ; "string"
+0008    JMP      2 => 0018
+0009    GGET     2   0      ; "type"
+0010    MOV      3   0
+0011    CALL     2   2   2
+0012    KPRI     3   0
+0013    KSTR     4   2      ; "expecting string (got "
+0014    MOV      5   2
+0015    KSTR     6   3      ; ")"
+0016    CAT      4   4   6
+0017    RET      3   3
+0018 => UGET     2   0      ; parse
+0019    TGETS    2   2   1  ; "string"
+0020    MOV      3   0
+0021    CALL     2   3   2
+0022    IST          2
+0023    JMP      4 => 0027
+0024    KPRI     4   0
+0025    MOV      5   3
+0026    RET      4   3
+0027 => UGET     4   1      ; compile
+0028    TGETS    4   4   4  ; "tree"
+0029    MOV      5   2
+0030    MOV      6   1
+0031    CALL     4   4   3
+0032    IST          4
+0033    JMP      7 => 0042
+0034    KPRI     7   0
+0035    UGET     8   1      ; compile
+0036    TGETS    8   8   5  ; "format_error"
+0037    MOV      9   5
+0038    MOV     10   6
+0039    MOV     11   0
+0040    CALL     8   0   4
+0041    RETM     7   1
+0042 => MOV      7   4
+0043    MOV      8   5
+0044    RET      7   3
+
+-- BYTECODE -- base.lua:66-86
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "gsub"
+0003    KSTR     3   1      ; "%."
+0004    UGET     4   0      ; dirsep
+0005    CALL     1   2   4
+0006    KNIL     2   3
+0007    GGET     4   2      ; "package"
+0008    TGETS    4   4   3  ; "moonpath"
+0009    MOV      5   4
+0010    TGETS    4   4   4  ; "gmatch"
+0011    KSTR     6   5      ; "[^;]+"
+0012    CALL     4   4   3
+0013    JMP      7 => 0028
+0014 => MOV      9   7
+0015    TGETS    8   7   0  ; "gsub"
+0016    KSTR    10   6      ; "?"
+0017    MOV     11   1
+0018    CALL     8   2   4
+0019    MOV      3   8
+0020    GGET     8   7      ; "io"
+0021    TGETS    8   8   8  ; "open"
+0022    MOV      9   3
+0023    CALL     8   2   2
+0024    MOV      2   8
+0025    ISF          2
+0026    JMP      8 => 0028
+0027    JMP      4 => 0030
+0028 => ITERC    7   2   3
+0029    ITERL    7 => 0014
+0030 => ISF          2
+0031    JMP      4 => 0056
+0032    MOV      5   2
+0033    TGETS    4   2   9  ; "read"
+0034    KSTR     6  10      ; "*a"
+0035    CALL     4   2   3
+0036    MOV      6   2
+0037    TGETS    5   2  11  ; "close"
+0038    CALL     5   1   2
+0039    UGET     5   1      ; loadstring
+0040    MOV      6   4
+0041    KSTR     7  12      ; "@"
+0042    GGET     8  13      ; "tostring"
+0043    MOV      9   3
+0044    CALL     8   2   2
+0045    CAT      7   7   8
+0046    CALL     5   3   3
+0047    IST          5
+0048    JMP      7 => 0055
+0049    GGET     7  14      ; "error"
+0050    MOV      8   3
+0051    KSTR     9  15      ; ": "
+0052    MOV     10   6
+0053    CAT      8   8  10
+0054    CALL     7   1   2
+0055 => RET1     5   2
+0056 => KPRI     4   0
+0057    KSTR     5  16      ; "Could not find moon file"
+0058    RET      4   3
+
+-- BYTECODE -- base.lua:87-101
+0001    UGET     0   0      ; get_options
+0002    VARG     1   0   0
+0003    CALLM    0   6   0
+0004    IST          2
+0005    JMP      5 => 0007
+0006    KSTR     2   0      ; "=(moonscript.loadstring)"
+0007 => UGET     5   1      ; to_lua
+0008    MOV      6   1
+0009    MOV      7   0
+0010    CALL     5   3   3
+0011    IST          5
+0012    JMP      7 => 0016
+0013    KPRI     7   0
+0014    MOV      8   6
+0015    RET      7   3
+0016 => ISF          2
+0017    JMP      7 => 0020
+0018    UGET     7   2      ; line_tables
+0019    TSETV    6   7   2
+0020 => UGET     7   3      ; lua
+0021    TGETS    7   7   1  ; "loadstring"
+0022    IST          7
+0023    JMP      8 => 0026
+0024    UGET     7   3      ; lua
+0025    TGETS    7   7   2  ; "load"
+0026 => MOV      8   5
+0027    MOV      9   2
+0028    UGET    10   4      ; unpack
+0029    TNEW    11   3
+0030    TSETB    3  11   1
+0031    TSETB    4  11   2
+0032    CALL    10   0   2
+0033    CALLMT   7   2
+
+-- BYTECODE -- base.lua:102-110
+0001    GGET     1   0      ; "io"
+0002    TGETS    1   1   1  ; "open"
+0003    MOV      2   0
+0004    CALL     1   3   2
+0005    IST          1
+0006    JMP      3 => 0010
+0007    KPRI     3   0
+0008    MOV      4   2
+0009    RET      3   3
+0010 => GGET     3   2      ; "assert"
+0011    MOV      5   1
+0012    TGETS    4   1   3  ; "read"
+0013    KSTR     6   4      ; "*a"
+0014    CALL     4   0   3
+0015    CALLM    3   2   0
+0016    MOV      5   1
+0017    TGETS    4   1   5  ; "close"
+0018    CALL     4   1   2
+0019    UGET     4   0      ; loadstring
+0020    MOV      5   3
+0021    KSTR     6   6      ; "@"
+0022    GGET     7   7      ; "tostring"
+0023    MOV      8   0
+0024    CALL     7   2   2
+0025    CAT      6   6   7
+0026    VARG     7   0   1
+0027    CALLMT   4   2
+
+-- BYTECODE -- base.lua:111-114
+0001    GGET     0   0      ; "assert"
+0002    UGET     1   0      ; loadfile
+0003    VARG     2   0   0
+0004    CALLM    1   0   0
+0005    CALLM    0   2   0
+0006    MOV      1   0
+0007    CALLT    1   1
+
+-- BYTECODE -- base.lua:115-131
+0001    ISNEP    0   0
+0002    JMP      1 => 0004
+0003    KSHORT   0   2
+0004 => GGET     1   0      ; "package"
+0005    TGETS    1   1   1  ; "moonpath"
+0006    IST          1
+0007    JMP      1 => 0014
+0008    GGET     1   0      ; "package"
+0009    UGET     2   0      ; create_moonpath
+0010    GGET     3   0      ; "package"
+0011    TGETS    3   3   2  ; "path"
+0012    CALL     2   2   2
+0013    TSETS    2   1   1  ; "moonpath"
+0014 => GGET     1   0      ; "package"
+0015    TGETS    1   1   3  ; "loaders"
+0016    IST          1
+0017    JMP      2 => 0020
+0018    GGET     1   0      ; "package"
+0019    TGETS    1   1   4  ; "searchers"
+0020 => KSHORT   2   1
+0021    LEN      3   1
+0022    KSHORT   4   1
+0023    FORI     2 => 0031
+0024 => TGETV    6   1   5
+0025    UGET     7   1      ; moon_loader
+0026    ISNEV    6   7
+0027    JMP      7 => 0030
+0028    KPRI     7   1
+0029    RET1     7   2
+0030 => FORL     2 => 0024
+0031 => UGET     2   2      ; insert
+0032    MOV      3   1
+0033    MOV      4   0
+0034    UGET     5   1      ; moon_loader
+0035    CALL     2   1   4
+0036    KPRI     2   2
+0037    RET1     2   2
+
+-- BYTECODE -- base.lua:132-141
+0001    GGET     0   0      ; "package"
+0002    TGETS    0   0   1  ; "loaders"
+0003    IST          0
+0004    JMP      1 => 0007
+0005    GGET     0   0      ; "package"
+0006    TGETS    0   0   2  ; "searchers"
+0007 => GGET     1   3      ; "ipairs"
+0008    MOV      2   0
+0009    CALL     1   4   2
+0010    JMP      4 => 0020
+0011 => UGET     6   0      ; moon_loader
+0012    ISNEV    5   6
+0013    JMP      6 => 0020
+0014    UGET     6   1      ; remove
+0015    MOV      7   0
+0016    MOV      8   4
+0017    CALL     6   1   3
+0018    KPRI     6   2
+0019    RET1     6   2
+0020 => ITERC    4   3   3
+0021    ITERL    4 => 0011
+0022    KPRI     1   1
+0023    RET1     1   2
+
+-- BYTECODE -- base.lua:0-154
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "moonscript.compile"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "moonscript.parse"
+0006    CALL     1   2   2
+0007    KNIL     2   4
+0008    GGET     5   3      ; "table"
+0009    TGETS    6   5   4  ; "concat"
+0010    TGETS    7   5   5  ; "insert"
+0011    TGETS    4   5   6  ; "remove"
+0012    MOV      3   7
+0013    MOV      2   6
+0014    KNIL     5   8
+0015    GGET     9   0      ; "require"
+0016    KSTR    10   7      ; "moonscript.util"
+0017    CALL     9   2   2
+0018    TGETS   10   9   8  ; "split"
+0019    TGETS   11   9   9  ; "dump"
+0020    TGETS   12   9  10  ; "get_options"
+0021    TGETS    8   9  11  ; "unpack"
+0022    MOV      7  12
+0023    MOV      6  11
+0024    MOV      5  10
+0025    TDUP     9  12
+0026    GGET    10  13      ; "loadstring"
+0027    TSETS   10   9  13  ; "loadstring"
+0028    GGET    10  14      ; "load"
+0029    TSETS   10   9  14  ; "load"
+0030    KNIL    10  19
+0031    KSTR    10  15      ; "/"
+0032    GGET    20   0      ; "require"
+0033    KSTR    21  16      ; "moonscript.line_tables"
+0034    CALL    20   2   2
+0035    MOV     11  20
+0036    FNEW    12  17      ; base.lua:20
+0037    FNEW    13  18      ; base.lua:48
+0038    FNEW    14  19      ; base.lua:66
+0039    FNEW    15  20      ; base.lua:87
+0040    FNEW    16  21      ; base.lua:102
+0041    FNEW    17  22      ; base.lua:111
+0042    FNEW    18  23      ; base.lua:115
+0043    FNEW    19  24      ; base.lua:132
+0044    TDUP    20  25
+0045    TSETS   18  20  26  ; "insert_loader"
+0046    TSETS   19  20  27  ; "remove_loader"
+0047    TSETS   13  20  28  ; "to_lua"
+0048    TSETS   14  20  29  ; "moon_loader"
+0049    TSETS   10  20  30  ; "dirsep"
+0050    TSETS   17  20  31  ; "dofile"
+0051    TSETS   16  20  32  ; "loadfile"
+0052    TSETS   15  20  13  ; "loadstring"
+0053    TSETS   12  20  33  ; "create_moonpath"
+0054    UCLO     0 => 0055
+0055 => RET1    20   2
+

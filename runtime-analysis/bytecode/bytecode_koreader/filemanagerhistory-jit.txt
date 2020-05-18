@@ -1,0 +1,473 @@
+-- BYTECODE -- filemanagerhistory.lua:17-19
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "menu"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "registerToMainMenu"
+0005    MOV      3   0
+0006    CALL     1   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:25-27
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onShowHist"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:21-29
+0001    TDUP     2   2
+0002    TGETS    3   0   1  ; "hist_menu_title"
+0003    TSETS    3   2   3  ; "text"
+0004    FNEW     3   4      ; filemanagerhistory.lua:25
+0005    TSETS    3   2   5  ; "callback"
+0006    TSETS    2   1   0  ; "history"
+0007    UCLO     0 => 0008
+0008 => RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:31-39
+0001    KPRI     1   0
+0002    TGETS    2   0   0  ; "hist_menu"
+0003    TGETS    2   2   1  ; "page"
+0004    ISF          2
+0005    JMP      3 => 0017
+0006    TGETS    2   0   0  ; "hist_menu"
+0007    TGETS    2   2   2  ; "perpage"
+0008    ISF          2
+0009    JMP      3 => 0017
+0010    TGETS    2   0   0  ; "hist_menu"
+0011    TGETS    2   2   1  ; "page"
+0012    SUBVN    2   2   0  ; 1
+0013    TGETS    3   0   0  ; "hist_menu"
+0014    TGETS    3   3   2  ; "perpage"
+0015    MULVV    2   2   3
+0016    ADDVN    1   2   0  ; 1
+0017 => TGETS    2   0   0  ; "hist_menu"
+0018    MOV      3   2
+0019    TGETS    2   2   3  ; "switchItemTable"
+0020    TGETS    4   0   4  ; "hist_menu_title"
+0021    GGET     5   5      ; "require"
+0022    KSTR     6   6      ; "readhistory"
+0023    CALL     5   2   2
+0024    TGETS    5   5   7  ; "hist"
+0025    MOV      6   1
+0026    CALL     2   1   5
+0027    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:41-43
+0001    TSETS    1   0   0  ; "dimen"
+0002    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:59-64
+0001    UGET     0   0      ; filemanagerutil
+0002    TGETS    0   0   0  ; "purgeSettings"
+0003    UGET     1   1      ; item
+0004    TGETS    1   1   1  ; "file"
+0005    CALL     0   1   2
+0006    GGET     0   2      ; "require"
+0007    KSTR     1   3      ; "readhistory"
+0008    CALL     0   2   2
+0009    MOV      1   0
+0010    TGETS    0   0   4  ; "fileSettingsPurged"
+0011    UGET     2   1      ; item
+0012    TGETS    2   2   1  ; "file"
+0013    CALL     0   1   3
+0014    UGET     0   2      ; self
+0015    TGETS    0   0   5  ; "_manager"
+0016    MOV      1   0
+0017    TGETS    0   0   6  ; "updateItemTable"
+0018    CALL     0   1   2
+0019    UGET     0   3      ; UIManager
+0020    MOV      1   0
+0021    TGETS    0   0   7  ; "close"
+0022    UGET     2   2      ; self
+0023    TGETS    2   2   8  ; "histfile_dialog"
+0024    CALL     0   1   3
+0025    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:54-66
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/confirmbox"
+0003    CALL     0   2   2
+0004    UGET     1   0      ; UIManager
+0005    MOV      2   1
+0006    TGETS    1   1   2  ; "show"
+0007    MOV      4   0
+0008    TGETS    3   0   3  ; "new"
+0009    TDUP     5   8
+0010    UGET     6   1      ; util
+0011    TGETS    6   6   4  ; "template"
+0012    UGET     7   2      ; _
+0013    KSTR     8   5      ; "Purge .sdr to reset settings for this do"~
+0014    CALL     7   2   2
+0015    UGET     8   3      ; BD
+0016    TGETS    8   8   6  ; "filename"
+0017    UGET     9   4      ; item
+0018    TGETS    9   9   7  ; "text"
+0019    CALL     8   0   2
+0020    CALLM    6   2   1
+0021    TSETS    6   5   7  ; "text"
+0022    UGET     6   2      ; _
+0023    KSTR     7   9      ; "Purge"
+0024    CALL     6   2   2
+0025    TSETS    6   5  10  ; "ok_text"
+0026    FNEW     6  11      ; filemanagerhistory.lua:59
+0027    TSETS    6   5  12  ; "ok_callback"
+0028    CALL     3   0   3
+0029    CALLM    1   1   1
+0030    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:70-74
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "readhistory"
+0003    CALL     0   2   2
+0004    MOV      1   0
+0005    TGETS    0   0   2  ; "removeItem"
+0006    UGET     2   0      ; item
+0007    CALL     0   1   3
+0008    UGET     0   1      ; self
+0009    TGETS    0   0   3  ; "_manager"
+0010    MOV      1   0
+0011    TGETS    0   0   4  ; "updateItemTable"
+0012    CALL     0   1   2
+0013    UGET     0   2      ; UIManager
+0014    MOV      1   0
+0015    TGETS    0   0   5  ; "close"
+0016    UGET     2   1      ; self
+0017    TGETS    2   2   6  ; "histfile_dialog"
+0018    CALL     0   1   3
+0019    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:86-92
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "apps/filemanager/filemanager"
+0003    CALL     0   2   2
+0004    MOV      2   0
+0005    TGETS    1   0   2  ; "deleteFile"
+0006    UGET     3   0      ; item
+0007    TGETS    3   3   3  ; "file"
+0008    CALL     1   1   3
+0009    GGET     1   0      ; "require"
+0010    KSTR     2   4      ; "readhistory"
+0011    CALL     1   2   2
+0012    MOV      2   1
+0013    TGETS    1   1   5  ; "fileDeleted"
+0014    UGET     3   0      ; item
+0015    TGETS    3   3   3  ; "file"
+0016    CALL     1   1   3
+0017    UGET     1   1      ; self
+0018    TGETS    1   1   6  ; "_manager"
+0019    MOV      2   1
+0020    TGETS    1   1   7  ; "updateItemTable"
+0021    CALL     1   1   2
+0022    UGET     1   2      ; UIManager
+0023    MOV      2   1
+0024    TGETS    1   1   8  ; "close"
+0025    UGET     3   1      ; self
+0026    TGETS    3   3   9  ; "histfile_dialog"
+0027    CALL     1   1   3
+0028    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:81-94
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/confirmbox"
+0003    CALL     0   2   2
+0004    UGET     1   0      ; UIManager
+0005    MOV      2   1
+0006    TGETS    1   1   2  ; "show"
+0007    MOV      4   0
+0008    TGETS    3   0   3  ; "new"
+0009    TDUP     5   9
+0010    UGET     6   1      ; _
+0011    KSTR     7   4      ; "Are you sure that you want to delete thi"~
+0012    CALL     6   2   2
+0013    UGET     7   2      ; BD
+0014    TGETS    7   7   5  ; "filepath"
+0015    UGET     8   3      ; item
+0016    TGETS    8   8   6  ; "file"
+0017    CALL     7   2   2
+0018    KSTR     8   7      ; "\n"
+0019    UGET     9   1      ; _
+0020    KSTR    10   8      ; "If you delete a file, it is permanently "~
+0021    CALL     9   2   2
+0022    CAT      6   6   9
+0023    TSETS    6   5  10  ; "text"
+0024    UGET     6   1      ; _
+0025    KSTR     7  11      ; "Delete"
+0026    CALL     6   2   2
+0027    TSETS    6   5  12  ; "ok_text"
+0028    FNEW     6  13      ; filemanagerhistory.lua:86
+0029    TSETS    6   5  14  ; "ok_callback"
+0030    CALL     3   0   3
+0031    CALLM    1   1   1
+0032    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:99-102
+0001    UGET     0   0      ; FileManagerBookInfo
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; item
+0005    TGETS    2   2   1  ; "file"
+0006    CALL     0   1   3
+0007    UGET     0   2      ; UIManager
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "close"
+0010    UGET     2   3      ; self
+0011    TGETS    2   2   3  ; "histfile_dialog"
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:109-113
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "readhistory"
+0003    CALL     0   2   2
+0004    MOV      1   0
+0005    TGETS    0   0   2  ; "clearMissing"
+0006    CALL     0   1   2
+0007    UGET     0   0      ; self
+0008    TGETS    0   0   3  ; "_manager"
+0009    MOV      1   0
+0010    TGETS    0   0   4  ; "updateItemTable"
+0011    CALL     0   1   2
+0012    UGET     0   1      ; UIManager
+0013    MOV      1   0
+0014    TGETS    0   0   5  ; "close"
+0015    UGET     2   0      ; self
+0016    TGETS    2   2   6  ; "histfile_dialog"
+0017    CALL     0   1   3
+0018    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:45-124
+0001    GGET     2   0      ; "require"
+0002    KSTR     3   1      ; "apps/reader/readerui"
+0003    CALL     2   2   2
+0004    MOV      3   2
+0005    TGETS    2   2   2  ; "_getRunningInstance"
+0006    CALL     2   2   2
+0007    ISFC     3   2
+0008    JMP      3 => 0011
+0009    TGETS    3   2   3  ; "document"
+0010    TGETS    3   3   4  ; "file"
+0011 => KPRI     4   0
+0012    TSETS    4   0   5  ; "histfile_dialog"
+0013    TNEW     4   5
+0014    TNEW     5   3
+0015    TDUP     6   7
+0016    UGET     7   0      ; _
+0017    KSTR     8   6      ; "Purge .sdr"
+0018    CALL     7   2   2
+0019    TSETS    7   6   8  ; "text"
+0020    TGETS    7   1   4  ; "file"
+0021    ISEQV    7   3
+0022    JMP      7 => 0032
+0023    UGET     7   1      ; DocSettings
+0024    MOV      8   7
+0025    TGETS    7   7   9  ; "hasSidecarFile"
+0026    UGET     9   2      ; util
+0027    TGETS    9   9  10  ; "realpath"
+0028    TGETS   10   1   4  ; "file"
+0029    CALL     9   0   2
+0030    CALLM    7   2   1
+0031    JMP      8 => 0035
+0032 => KPRI     7   1
+0033    JMP      8 => 0035
+0034    KPRI     7   2
+0035 => TSETS    7   6  11  ; "enabled"
+0036    FNEW     7  12      ; filemanagerhistory.lua:54
+0037    TSETS    7   6  13  ; "callback"
+0038    TSETB    6   5   1
+0039    TDUP     6  15
+0040    UGET     7   0      ; _
+0041    KSTR     8  14      ; "Remove from history"
+0042    CALL     7   2   2
+0043    TSETS    7   6   8  ; "text"
+0044    FNEW     7  16      ; filemanagerhistory.lua:70
+0045    TSETS    7   6  13  ; "callback"
+0046    TSETB    6   5   2
+0047    TSETB    5   4   1
+0048    TNEW     5   3
+0049    TDUP     6  18
+0050    UGET     7   0      ; _
+0051    KSTR     8  17      ; "Delete"
+0052    CALL     7   2   2
+0053    TSETS    7   6   8  ; "text"
+0054    TGETS    7   1   4  ; "file"
+0055    ISEQV    7   3
+0056    JMP      7 => 0066
+0057    GGET     7  19      ; "lfs"
+0058    TGETS    7   7  20  ; "attributes"
+0059    TGETS    8   1   4  ; "file"
+0060    KSTR     9  21      ; "mode"
+0061    CALL     7   2   3
+0062    ISF          7
+0063    JMP      8 => 0066
+0064    KPRI     7   2
+0065    JMP      8 => 0067
+0066 => KPRI     7   1
+0067 => TSETS    7   6  11  ; "enabled"
+0068    FNEW     7  22      ; filemanagerhistory.lua:81
+0069    TSETS    7   6  13  ; "callback"
+0070    TSETB    6   5   1
+0071    TDUP     6  24
+0072    UGET     7   0      ; _
+0073    KSTR     8  23      ; "Book information"
+0074    CALL     7   2   2
+0075    TSETS    7   6   8  ; "text"
+0076    UGET     7   6      ; FileManagerBookInfo
+0077    MOV      8   7
+0078    TGETS    7   7  25  ; "isSupported"
+0079    TGETS    9   1   4  ; "file"
+0080    CALL     7   2   3
+0081    TSETS    7   6  11  ; "enabled"
+0082    FNEW     7  26      ; filemanagerhistory.lua:99
+0083    TSETS    7   6  13  ; "callback"
+0084    TSETB    6   5   2
+0085    TSETB    5   4   2
+0086    TNEW     5   0
+0087    TSETB    5   4   3
+0088    TNEW     5   3
+0089    TDUP     6  28
+0090    UGET     7   0      ; _
+0091    KSTR     8  27      ; "Clear history of deleted files"
+0092    CALL     7   2   2
+0093    TSETS    7   6   8  ; "text"
+0094    FNEW     7  29      ; filemanagerhistory.lua:109
+0095    TSETS    7   6  13  ; "callback"
+0096    TSETB    6   5   1
+0097    TSETB    5   4   4
+0098    UGET     5   7      ; ButtonDialogTitle
+0099    MOV      6   5
+0100    TGETS    5   5  30  ; "new"
+0101    TDUP     7  34
+0102    UGET     8   4      ; BD
+0103    TGETS    8   8  31  ; "filename"
+0104    TGETS    9   1   8  ; "text"
+0105    MOV     10   9
+0106    TGETS    9   9  32  ; "match"
+0107    KSTR    11  33      ; "([^/]+)$"
+0108    CALL     9   0   3
+0109    CALLM    8   2   0
+0110    TSETS    8   7  35  ; "title"
+0111    TSETS    4   7  36  ; "buttons"
+0112    CALL     5   2   3
+0113    TSETS    5   0   5  ; "histfile_dialog"
+0114    UGET     5   3      ; UIManager
+0115    MOV      6   5
+0116    TGETS    5   5  37  ; "show"
+0117    TGETS    7   0   5  ; "histfile_dialog"
+0118    CALL     5   1   3
+0119    KPRI     5   2
+0120    UCLO     0 => 0121
+0121 => RET1     5   2
+
+-- BYTECODE -- filemanagerhistory.lua:142-144
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "hist_menu"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:138-145
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "nextTick"
+0004    FNEW     2   1      ; filemanagerhistory.lua:142
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagerhistory.lua:126-148
+0001    UGET     1   0      ; Menu
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "new"
+0004    TDUP     3   3
+0005    TGETS    4   0   2  ; "ui"
+0006    TSETS    4   3   2  ; "ui"
+0007    UGET     4   1      ; Screen
+0008    MOV      5   4
+0009    TGETS    4   4   4  ; "getWidth"
+0010    CALL     4   2   2
+0011    TSETS    4   3   5  ; "width"
+0012    UGET     4   1      ; Screen
+0013    MOV      5   4
+0014    TGETS    4   4   6  ; "getHeight"
+0015    CALL     4   2   2
+0016    TSETS    4   3   7  ; "height"
+0017    TGETS    4   0   8  ; "onMenuHold"
+0018    TSETS    4   3   8  ; "onMenuHold"
+0019    TSETS    0   3   9  ; "_manager"
+0020    CALL     1   2   3
+0021    TSETS    1   0   0  ; "hist_menu"
+0022    MOV      2   0
+0023    TGETS    1   0  10  ; "updateItemTable"
+0024    CALL     1   1   2
+0025    TGETS    1   0   0  ; "hist_menu"
+0026    FNEW     2  12      ; filemanagerhistory.lua:138
+0027    TSETS    2   1  11  ; "close_callback"
+0028    UGET     1   2      ; UIManager
+0029    MOV      2   1
+0030    TGETS    1   1  13  ; "show"
+0031    TGETS    3   0   0  ; "hist_menu"
+0032    CALL     1   1   3
+0033    KPRI     1   2
+0034    UCLO     0 => 0035
+0035 => RET1     1   2
+
+-- BYTECODE -- filemanagerhistory.lua:0-151
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/buttondialogtitle"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "docsettings"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "apps/filemanager/filemanagerbookinfo"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/container/inputcontainer"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/menu"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/uimanager"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "device"
+0024    CALL     7   2   2
+0025    TGETS    7   7   9  ; "screen"
+0026    GGET     8   0      ; "require"
+0027    KSTR     9  10      ; "apps/filemanager/filemanagerutil"
+0028    CALL     8   2   2
+0029    GGET     9   0      ; "require"
+0030    KSTR    10  11      ; "ffi/util"
+0031    CALL     9   2   2
+0032    GGET    10   0      ; "require"
+0033    KSTR    11  12      ; "gettext"
+0034    CALL    10   2   2
+0035    MOV     12   4
+0036    TGETS   11   4  13  ; "extend"
+0037    TDUP    13  15
+0038    MOV     14  10
+0039    KSTR    15  14      ; "History"
+0040    CALL    14   2   2
+0041    TSETS   14  13  16  ; "hist_menu_title"
+0042    CALL    11   2   3
+0043    FNEW    12  18      ; filemanagerhistory.lua:17
+0044    TSETS   12  11  17  ; "init"
+0045    FNEW    12  20      ; filemanagerhistory.lua:21
+0046    TSETS   12  11  19  ; "addToMainMenu"
+0047    FNEW    12  22      ; filemanagerhistory.lua:31
+0048    TSETS   12  11  21  ; "updateItemTable"
+0049    FNEW    12  24      ; filemanagerhistory.lua:41
+0050    TSETS   12  11  23  ; "onSetDimensions"
+0051    FNEW    12  26      ; filemanagerhistory.lua:45
+0052    TSETS   12  11  25  ; "onMenuHold"
+0053    FNEW    12  28      ; filemanagerhistory.lua:126
+0054    TSETS   12  11  27  ; "onShowHist"
+0055    UCLO     0 => 0056
+0056 => RET1    11   2
+

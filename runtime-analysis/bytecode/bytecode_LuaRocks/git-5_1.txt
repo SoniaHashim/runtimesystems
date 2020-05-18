@@ -1,0 +1,437 @@
+
+main <./fetch/git.lua:0,0> (46 instructions, 184 bytes at 0x7ff95ec068a0)
+0+ params, 14 slots, 0 upvalues, 13 locals, 8 constants, 7 functions
+	1	[3]	NEWTABLE 	0 0 0
+	2	[5]	GETGLOBAL	1 -1	; unpack
+	3	[5]	TEST     	1 0 1
+	4	[5]	JMP      	2	; to 7
+	5	[5]	GETGLOBAL	1 -2	; table
+	6	[5]	GETTABLE 	1 1 -1	; "unpack"
+	7	[7]	GETGLOBAL	2 -3	; require
+	8	[7]	LOADK    	3 -4	; "luarocks.fs"
+	9	[7]	CALL     	2 2 2
+	10	[8]	GETGLOBAL	3 -3	; require
+	11	[8]	LOADK    	4 -5	; "luarocks.dir"
+	12	[8]	CALL     	3 2 2
+	13	[9]	GETGLOBAL	4 -3	; require
+	14	[9]	LOADK    	5 -6	; "luarocks.core.vers"
+	15	[9]	CALL     	4 2 2
+	16	[10]	GETGLOBAL	5 -3	; require
+	17	[10]	LOADK    	6 -7	; "luarocks.util"
+	18	[10]	CALL     	5 2 2
+	19	[12]	LOADNIL  	6 6
+	20	[25]	CLOSURE  	7 0	; 0x7ff95ec06d20
+	21	[25]	MOVE     	0 6
+	22	[25]	MOVE     	0 2
+	23	[25]	MOVE     	0 4
+	24	[33]	CLOSURE  	8 1	; 0x7ff95ec06ba0
+	25	[33]	MOVE     	0 7
+	26	[33]	MOVE     	0 4
+	27	[43]	CLOSURE  	9 2	; 0x7ff95ec074a0
+	28	[43]	MOVE     	0 8
+	29	[51]	CLOSURE  	10 3	; 0x7ff95ec075c0
+	30	[51]	MOVE     	0 8
+	31	[58]	CLOSURE  	11 4	; 0x7ff95ec07ac0
+	32	[58]	MOVE     	0 8
+	33	[77]	CLOSURE  	12 5	; 0x7ff95ec07bd0
+	34	[77]	MOVE     	0 2
+	35	[163]	CLOSURE  	13 6	; 0x7ff95ec07020
+	36	[163]	MOVE     	0 3
+	37	[163]	MOVE     	0 2
+	38	[163]	MOVE     	0 5
+	39	[163]	MOVE     	0 9
+	40	[163]	MOVE     	0 1
+	41	[163]	MOVE     	0 11
+	42	[163]	MOVE     	0 10
+	43	[163]	MOVE     	0 12
+	44	[86]	SETTABLE 	0 -8 13	; "get_sources" -
+	45	[165]	RETURN   	0 2
+	46	[165]	RETURN   	0 1
+
+function <./fetch/git.lua:17,25> (25 instructions, 100 bytes at 0x7ff95ec06d20)
+1 param, 5 slots, 3 upvalues, 3 locals, 8 constants, 0 functions
+	1	[18]	GETUPVAL 	1 0	; cached_git_version
+	2	[18]	TEST     	1 0 1
+	3	[18]	JMP      	19	; to 23
+	4	[19]	GETGLOBAL	1 -1	; io
+	5	[19]	GETTABLE 	1 1 -2	; "popen"
+	6	[19]	GETUPVAL 	2 1	; fs
+	7	[19]	GETTABLE 	2 2 -3	; "Q"
+	8	[19]	MOVE     	3 0
+	9	[19]	CALL     	2 2 2
+	10	[19]	LOADK    	3 -4	; " --version"
+	11	[19]	CONCAT   	2 2 3
+	12	[19]	CALL     	1 2 2
+	13	[19]	SELF     	1 1 -5	; "read"
+	14	[19]	CALL     	1 2 2
+	15	[20]	SELF     	2 1 -6	; "match"
+	16	[20]	LOADK    	4 -7	; "%d-%.%d+%.?%d*"
+	17	[20]	CALL     	2 3 2
+	18	[21]	GETUPVAL 	3 2	; vers
+	19	[21]	GETTABLE 	3 3 -8	; "parse_version"
+	20	[21]	MOVE     	4 2
+	21	[21]	CALL     	3 2 2
+	22	[21]	SETUPVAL 	3 0	; cached_git_version
+	23	[24]	GETUPVAL 	1 0	; cached_git_version
+	24	[24]	RETURN   	1 2
+	25	[25]	RETURN   	0 1
+
+function <./fetch/git.lua:31,33> (13 instructions, 52 bytes at 0x7ff95ec06ba0)
+2 params, 5 slots, 2 upvalues, 2 locals, 1 constant, 0 functions
+	1	[32]	GETUPVAL 	2 0	; git_version
+	2	[32]	MOVE     	3 0
+	3	[32]	CALL     	2 2 2
+	4	[32]	GETUPVAL 	3 1	; vers
+	5	[32]	GETTABLE 	3 3 -1	; "parse_version"
+	6	[32]	MOVE     	4 1
+	7	[32]	CALL     	3 2 2
+	8	[32]	LE       	1 3 2
+	9	[32]	JMP      	1	; to 11
+	10	[32]	LOADBOOL 	2 0 1
+	11	[32]	LOADBOOL 	2 1 0
+	12	[32]	RETURN   	2 2
+	13	[33]	RETURN   	0 1
+
+function <./fetch/git.lua:41,43> (6 instructions, 24 bytes at 0x7ff95ec074a0)
+1 param, 4 slots, 1 upvalue, 1 local, 1 constant, 0 functions
+	1	[42]	GETUPVAL 	1 0	; git_is_at_least
+	2	[42]	MOVE     	2 0
+	3	[42]	LOADK    	3 -1	; "1.7.10"
+	4	[42]	TAILCALL 	1 3 0
+	5	[42]	RETURN   	1 0
+	6	[43]	RETURN   	0 1
+
+function <./fetch/git.lua:49,51> (6 instructions, 24 bytes at 0x7ff95ec075c0)
+1 param, 4 slots, 1 upvalue, 1 local, 1 constant, 0 functions
+	1	[50]	GETUPVAL 	1 0	; git_is_at_least
+	2	[50]	MOVE     	2 0
+	3	[50]	LOADK    	3 -1	; "1.8.4"
+	4	[50]	TAILCALL 	1 3 0
+	5	[50]	RETURN   	1 0
+	6	[51]	RETURN   	0 1
+
+function <./fetch/git.lua:56,58> (6 instructions, 24 bytes at 0x7ff95ec07ac0)
+1 param, 4 slots, 1 upvalue, 1 local, 1 constant, 0 functions
+	1	[57]	GETUPVAL 	1 0	; git_is_at_least
+	2	[57]	MOVE     	2 0
+	3	[57]	LOADK    	3 -1	; "2.10.0"
+	4	[57]	TAILCALL 	1 3 0
+	5	[57]	RETURN   	1 0
+	6	[58]	RETURN   	0 1
+
+function <./fetch/git.lua:60,77> (61 instructions, 244 bytes at 0x7ff95ec07bd0)
+2 params, 13 slots, 1 upvalue, 8 locals, 18 constants, 0 functions
+	1	[61]	SELF     	2 1 -1	; "match"
+	2	[61]	LOADK    	4 -2	; "^dev%-%d+$"
+	3	[61]	CALL     	2 3 2
+	4	[61]	TEST     	2 0 1
+	5	[61]	JMP      	7	; to 13
+	6	[61]	SELF     	2 1 -1	; "match"
+	7	[61]	LOADK    	4 -3	; "^scm%-%d+$"
+	8	[61]	CALL     	2 3 2
+	9	[61]	TEST     	2 0 1
+	10	[61]	JMP      	2	; to 13
+	11	[62]	LOADNIL  	2 2
+	12	[62]	RETURN   	2 2
+	13	[64]	GETGLOBAL	2 -4	; io
+	14	[64]	GETTABLE 	2 2 -5	; "popen"
+	15	[64]	GETUPVAL 	3 0	; fs
+	16	[64]	GETTABLE 	3 3 -6	; "command_at"
+	17	[64]	GETUPVAL 	4 0	; fs
+	18	[64]	GETTABLE 	4 4 -7	; "current_dir"
+	19	[64]	CALL     	4 1 2
+	20	[64]	GETUPVAL 	5 0	; fs
+	21	[64]	GETTABLE 	5 5 -8	; "Q"
+	22	[64]	MOVE     	6 0
+	23	[64]	CALL     	5 2 2
+	24	[64]	LOADK    	6 -9	; " log --pretty=format:%ai_%h -n 1"
+	25	[64]	CONCAT   	5 5 6
+	26	[64]	CALL     	3 3 0
+	27	[64]	CALL     	2 0 2
+	28	[65]	TEST     	2 0 1
+	29	[65]	JMP      	2	; to 32
+	30	[66]	LOADNIL  	3 3
+	31	[66]	RETURN   	3 2
+	32	[68]	SELF     	3 2 -10	; "read"
+	33	[68]	LOADK    	5 -11	; "*l"
+	34	[68]	CALL     	3 3 2
+	35	[69]	SELF     	4 2 -12	; "close"
+	36	[69]	CALL     	4 2 1
+	37	[70]	TEST     	3 0 1
+	38	[70]	JMP      	2	; to 41
+	39	[71]	LOADNIL  	4 4
+	40	[71]	RETURN   	4 2
+	41	[73]	SELF     	4 3 -1	; "match"
+	42	[73]	LOADK    	6 -13	; "([^%s]+) ([^%s]+) ([^%s]+)_([^%s]+)"
+	43	[73]	CALL     	4 3 5
+	44	[74]	SELF     	8 4 -14	; "gsub"
+	45	[74]	LOADK    	10 -15	; "%-"
+	46	[74]	LOADK    	11 -16	; ""
+	47	[74]	CALL     	8 4 2
+	48	[74]	MOVE     	4 8
+	49	[75]	SELF     	8 5 -14	; "gsub"
+	50	[75]	LOADK    	10 -17	; ":"
+	51	[75]	LOADK    	11 -16	; ""
+	52	[75]	CALL     	8 4 2
+	53	[75]	MOVE     	5 8
+	54	[76]	MOVE     	8 4
+	55	[76]	LOADK    	9 -18	; "."
+	56	[76]	MOVE     	10 5
+	57	[76]	LOADK    	11 -18	; "."
+	58	[76]	MOVE     	12 7
+	59	[76]	CONCAT   	8 8 12
+	60	[76]	RETURN   	8 2
+	61	[77]	RETURN   	0 1
+
+function <./fetch/git.lua:86,163> (250 instructions, 1000 bytes at 0x7ff95ec07020)
+4 params, 20 slots, 8 upvalues, 14 locals, 52 constants, 0 functions
+	1	[87]	GETGLOBAL	4 -1	; assert
+	2	[87]	SELF     	5 0 -2	; "type"
+	3	[87]	CALL     	5 2 2
+	4	[87]	EQ       	1 5 -3	; - "rockspec"
+	5	[87]	JMP      	1	; to 7
+	6	[87]	LOADBOOL 	5 0 1
+	7	[87]	LOADBOOL 	5 1 0
+	8	[87]	CALL     	4 2 1
+	9	[88]	GETGLOBAL	4 -1	; assert
+	10	[88]	GETGLOBAL	5 -2	; type
+	11	[88]	MOVE     	6 2
+	12	[88]	CALL     	5 2 2
+	13	[88]	EQ       	1 5 -4	; - "string"
+	14	[88]	JMP      	3	; to 18
+	15	[88]	NOT      	5 2
+	16	[88]	JMP      	2	; to 19
+	17	[88]	LOADBOOL 	5 0 1
+	18	[88]	LOADBOOL 	5 1 0
+	19	[88]	CALL     	4 2 1
+	20	[90]	GETTABLE 	4 0 -5	; "variables"
+	21	[90]	GETTABLE 	4 4 -6	; "GIT"
+	22	[91]	GETTABLE 	5 0 -7	; "name"
+	23	[91]	LOADK    	6 -8	; "-"
+	24	[91]	GETTABLE 	7 0 -9	; "version"
+	25	[91]	CONCAT   	5 5 7
+	26	[92]	GETUPVAL 	6 0	; dir
+	27	[92]	GETTABLE 	6 6 -10	; "base_name"
+	28	[92]	GETTABLE 	7 0 -11	; "source"
+	29	[92]	GETTABLE 	7 7 -12	; "url"
+	30	[92]	CALL     	6 2 2
+	31	[94]	SELF     	7 6 -13	; "gsub"
+	32	[94]	LOADK    	9 -14	; "%.git$"
+	33	[94]	LOADK    	10 -15	; ""
+	34	[94]	CALL     	7 4 2
+	35	[94]	MOVE     	6 7
+	36	[96]	GETUPVAL 	7 1	; fs
+	37	[96]	GETTABLE 	7 7 -16	; "is_tool_available"
+	38	[96]	MOVE     	8 4
+	39	[96]	LOADK    	9 -17	; "Git"
+	40	[96]	CALL     	7 3 3
+	41	[97]	TEST     	7 0 1
+	42	[97]	JMP      	3	; to 46
+	43	[98]	LOADNIL  	9 9
+	44	[98]	MOVE     	10 8
+	45	[98]	RETURN   	9 3
+	46	[101]	LOADNIL  	9 9
+	47	[102]	TEST     	2 0 1
+	48	[102]	JMP      	17	; to 66
+	49	[103]	GETUPVAL 	10 1	; fs
+	50	[103]	GETTABLE 	10 10 -18	; "make_temp_dir"
+	51	[103]	MOVE     	11 5
+	52	[103]	CALL     	10 2 2
+	53	[103]	MOVE     	9 10
+	54	[104]	TEST     	9 0 1
+	55	[104]	JMP      	3	; to 59
+	56	[105]	LOADNIL  	10 10
+	57	[105]	LOADK    	11 -19	; "Failed creating temporary directory."
+	58	[105]	RETURN   	10 3
+	59	[107]	GETUPVAL 	10 2	; util
+	60	[107]	GETTABLE 	10 10 -20	; "schedule_function"
+	61	[107]	GETUPVAL 	11 1	; fs
+	62	[107]	GETTABLE 	11 11 -21	; "delete"
+	63	[107]	MOVE     	12 9
+	64	[107]	CALL     	10 3 1
+	65	[107]	JMP      	1	; to 67
+	66	[109]	MOVE     	9 2
+	67	[111]	GETUPVAL 	10 1	; fs
+	68	[111]	GETTABLE 	10 10 -22	; "absolute_name"
+	69	[111]	MOVE     	11 9
+	70	[111]	CALL     	10 2 2
+	71	[111]	MOVE     	9 10
+	72	[112]	GETUPVAL 	10 1	; fs
+	73	[112]	GETTABLE 	10 10 -23	; "change_dir"
+	74	[112]	MOVE     	11 9
+	75	[112]	CALL     	10 2 3
+	76	[113]	TEST     	10 0 1
+	77	[113]	JMP      	3	; to 81
+	78	[113]	LOADNIL  	12 12
+	79	[113]	MOVE     	13 11
+	80	[113]	RETURN   	12 3
+	81	[115]	NEWTABLE 	12 5 0
+	82	[115]	GETUPVAL 	13 1	; fs
+	83	[115]	GETTABLE 	13 13 -24	; "Q"
+	84	[115]	MOVE     	14 4
+	85	[115]	CALL     	13 2 2
+	86	[115]	LOADK    	14 -25	; "clone"
+	87	[115]	TESTSET  	15 3 1
+	88	[115]	JMP      	1	; to 90
+	89	[115]	LOADK    	15 -26	; "--depth=1"
+	90	[115]	GETTABLE 	16 0 -11	; "source"
+	91	[115]	GETTABLE 	16 16 -12	; "url"
+	92	[115]	MOVE     	17 6
+	93	[115]	SETLIST  	12 5 1	; 1
+	94	[116]	GETTABLE 	13 0 -11	; "source"
+	95	[116]	GETTABLE 	13 13 -27	; "tag"
+	96	[116]	TEST     	13 0 1
+	97	[116]	JMP      	2	; to 100
+	98	[116]	GETTABLE 	13 0 -11	; "source"
+	99	[116]	GETTABLE 	13 13 -28	; "branch"
+	100	[119]	EQ       	0 13 -29	; - "master"
+	101	[119]	JMP      	1	; to 103
+	102	[119]	LOADNIL  	13 13
+	103	[120]	TEST     	13 0 0
+	104	[120]	JMP      	13	; to 118
+	105	[121]	GETUPVAL 	14 3	; git_can_clone_by_tag
+	106	[121]	MOVE     	15 4
+	107	[121]	CALL     	14 2 2
+	108	[121]	TEST     	14 0 0
+	109	[121]	JMP      	8	; to 118
+	110	[124]	GETGLOBAL	14 -30	; table
+	111	[124]	GETTABLE 	14 14 -31	; "insert"
+	112	[124]	MOVE     	15 12
+	113	[124]	LOADK    	16 -32	; 3
+	114	[124]	LOADK    	17 -33	; "--branch="
+	115	[124]	MOVE     	18 13
+	116	[124]	CONCAT   	17 17 18
+	117	[124]	CALL     	14 4 1
+	118	[127]	GETUPVAL 	14 1	; fs
+	119	[127]	GETTABLE 	14 14 -34	; "execute"
+	120	[127]	GETUPVAL 	15 4	; unpack
+	121	[127]	MOVE     	16 12
+	122	[127]	CALL     	15 2 0
+	123	[127]	CALL     	14 0 2
+	124	[127]	TEST     	14 0 1
+	125	[127]	JMP      	3	; to 129
+	126	[128]	LOADNIL  	14 14
+	127	[128]	LOADK    	15 -35	; "Failed cloning git repository."
+	128	[128]	RETURN   	14 3
+	129	[130]	GETUPVAL 	14 1	; fs
+	130	[130]	GETTABLE 	14 14 -23	; "change_dir"
+	131	[130]	MOVE     	15 6
+	132	[130]	CALL     	14 2 3
+	133	[130]	MOVE     	11 15
+	134	[130]	MOVE     	10 14
+	135	[131]	TEST     	10 0 1
+	136	[131]	JMP      	3	; to 140
+	137	[131]	LOADNIL  	14 14
+	138	[131]	MOVE     	15 11
+	139	[131]	RETURN   	14 3
+	140	[132]	TEST     	13 0 0
+	141	[132]	JMP      	21	; to 163
+	142	[132]	GETUPVAL 	14 3	; git_can_clone_by_tag
+	143	[132]	CALL     	14 1 2
+	144	[132]	TEST     	14 0 1
+	145	[132]	JMP      	17	; to 163
+	146	[133]	GETUPVAL 	14 1	; fs
+	147	[133]	GETTABLE 	14 14 -34	; "execute"
+	148	[133]	GETUPVAL 	15 1	; fs
+	149	[133]	GETTABLE 	15 15 -24	; "Q"
+	150	[133]	MOVE     	16 4
+	151	[133]	CALL     	15 2 2
+	152	[133]	LOADK    	16 -36	; "checkout"
+	153	[133]	MOVE     	17 13
+	154	[133]	CALL     	14 4 2
+	155	[133]	TEST     	14 0 1
+	156	[133]	JMP      	6	; to 163
+	157	[134]	LOADNIL  	14 14
+	158	[134]	LOADK    	15 -37	; "Failed to check out the \""
+	159	[134]	MOVE     	16 13
+	160	[134]	LOADK    	17 -38	; "\" tag or branch."
+	161	[134]	CONCAT   	15 15 17
+	162	[134]	RETURN   	14 3
+	163	[139]	SELF     	14 0 -39	; "format_is_at_least"
+	164	[139]	LOADK    	16 -40	; "3.0"
+	165	[139]	CALL     	14 3 2
+	166	[139]	TEST     	14 0 0
+	167	[139]	JMP      	45	; to 213
+	168	[140]	NEWTABLE 	14 5 0
+	169	[140]	GETUPVAL 	15 1	; fs
+	170	[140]	GETTABLE 	15 15 -24	; "Q"
+	171	[140]	MOVE     	16 4
+	172	[140]	CALL     	15 2 2
+	173	[140]	LOADK    	16 -41	; "submodule"
+	174	[140]	LOADK    	17 -42	; "update"
+	175	[140]	LOADK    	18 -43	; "--init"
+	176	[140]	LOADK    	19 -44	; "--recursive"
+	177	[140]	SETLIST  	14 5 1	; 1
+	178	[140]	MOVE     	12 14
+	179	[142]	GETUPVAL 	14 5	; git_supports_shallow_recommendations
+	180	[142]	MOVE     	15 4
+	181	[142]	CALL     	14 2 2
+	182	[142]	TEST     	14 0 0
+	183	[142]	JMP      	7	; to 191
+	184	[143]	GETGLOBAL	14 -30	; table
+	185	[143]	GETTABLE 	14 14 -31	; "insert"
+	186	[143]	MOVE     	15 12
+	187	[143]	LOADK    	16 -45	; 5
+	188	[143]	LOADK    	17 -46	; "--recommend-shallow"
+	189	[143]	CALL     	14 4 1
+	190	[143]	JMP      	11	; to 202
+	191	[144]	GETUPVAL 	14 6	; git_supports_shallow_submodules
+	192	[144]	MOVE     	15 4
+	193	[144]	CALL     	14 2 2
+	194	[144]	TEST     	14 0 0
+	195	[144]	JMP      	6	; to 202
+	196	[146]	GETGLOBAL	14 -30	; table
+	197	[146]	GETTABLE 	14 14 -31	; "insert"
+	198	[146]	MOVE     	15 12
+	199	[146]	LOADK    	16 -45	; 5
+	200	[146]	LOADK    	17 -26	; "--depth=1"
+	201	[146]	CALL     	14 4 1
+	202	[149]	GETUPVAL 	14 1	; fs
+	203	[149]	GETTABLE 	14 14 -34	; "execute"
+	204	[149]	GETUPVAL 	15 4	; unpack
+	205	[149]	MOVE     	16 12
+	206	[149]	CALL     	15 2 0
+	207	[149]	CALL     	14 0 2
+	208	[149]	TEST     	14 0 1
+	209	[149]	JMP      	3	; to 213
+	210	[150]	LOADNIL  	14 14
+	211	[150]	LOADK    	15 -47	; "Failed to fetch submodules."
+	212	[150]	RETURN   	14 3
+	213	[154]	GETTABLE 	14 0 -11	; "source"
+	214	[154]	GETTABLE 	14 14 -27	; "tag"
+	215	[154]	TEST     	14 0 1
+	216	[154]	JMP      	6	; to 223
+	217	[155]	GETTABLE 	14 0 -11	; "source"
+	218	[155]	GETUPVAL 	15 7	; git_identifier
+	219	[155]	MOVE     	16 4
+	220	[155]	GETTABLE 	17 0 -9	; "version"
+	221	[155]	CALL     	15 3 2
+	222	[155]	SETTABLE 	14 -48 15	; "identifier" -
+	223	[158]	GETUPVAL 	14 1	; fs
+	224	[158]	GETTABLE 	14 14 -21	; "delete"
+	225	[158]	GETUPVAL 	15 0	; dir
+	226	[158]	GETTABLE 	15 15 -49	; "path"
+	227	[158]	MOVE     	16 9
+	228	[158]	MOVE     	17 6
+	229	[158]	LOADK    	18 -50	; ".git"
+	230	[158]	CALL     	15 4 0
+	231	[158]	CALL     	14 0 1
+	232	[159]	GETUPVAL 	14 1	; fs
+	233	[159]	GETTABLE 	14 14 -21	; "delete"
+	234	[159]	GETUPVAL 	15 0	; dir
+	235	[159]	GETTABLE 	15 15 -49	; "path"
+	236	[159]	MOVE     	16 9
+	237	[159]	MOVE     	17 6
+	238	[159]	LOADK    	18 -51	; ".gitignore"
+	239	[159]	CALL     	15 4 0
+	240	[159]	CALL     	14 0 1
+	241	[160]	GETUPVAL 	14 1	; fs
+	242	[160]	GETTABLE 	14 14 -52	; "pop_dir"
+	243	[160]	CALL     	14 1 1
+	244	[161]	GETUPVAL 	14 1	; fs
+	245	[161]	GETTABLE 	14 14 -52	; "pop_dir"
+	246	[161]	CALL     	14 1 1
+	247	[162]	MOVE     	14 6
+	248	[162]	MOVE     	15 9
+	249	[162]	RETURN   	14 3
+	250	[163]	RETURN   	0 1

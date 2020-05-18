@@ -1,0 +1,431 @@
+-- BYTECODE -- readerview_spec.lua:4-13
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   2      ; "package"
+0005    TGETS    0   0   3  ; "unloadAll"
+0006    CALL     0   1   1
+0007    GGET     0   0      ; "require"
+0008    KSTR     1   4      ; "document/canvascontext"
+0009    CALL     0   2   2
+0010    MOV      1   0
+0011    TGETS    0   0   5  ; "init"
+0012    GGET     2   0      ; "require"
+0013    KSTR     3   6      ; "device"
+0014    CALL     2   0   2
+0015    CALLM    0   1   1
+0016    GGET     0   0      ; "require"
+0017    KSTR     1   7      ; "document/documentregistry"
+0018    CALL     0   2   2
+0019    USETV    0   0      ; DocumentRegistry
+0020    GGET     0   0      ; "require"
+0021    KSTR     1   8      ; "ffi/blitbuffer"
+0022    CALL     0   2   2
+0023    USETV    1   0      ; Blitbuffer
+0024    GGET     0   0      ; "require"
+0025    KSTR     1   9      ; "apps/reader/readerui"
+0026    CALL     0   2   2
+0027    USETV    2   0      ; ReaderUI
+0028    GGET     0   0      ; "require"
+0029    KSTR     1  10      ; "ui/uimanager"
+0030    CALL     0   2   2
+0031    USETV    3   0      ; UIManager
+0032    GGET     0   0      ; "require"
+0033    KSTR     1  11      ; "ui/event"
+0034    CALL     0   2   2
+0035    USETV    4   0      ; Event
+0036    RET0     0   1
+
+-- BYTECODE -- readerview_spec.lua:15-48
+0001    KSTR     0   0      ; "spec/front/unit/data/leaves.epub"
+0002    UGET     1   0      ; ReaderUI
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "new"
+0005    TDUP     3   3
+0006    UGET     4   1      ; DocumentRegistry
+0007    MOV      5   4
+0008    TGETS    4   4   2  ; "openDocument"
+0009    MOV      6   0
+0010    CALL     4   2   3
+0011    TSETS    4   3   4  ; "document"
+0012    CALL     1   2   3
+0013    UGET     2   2      ; UIManager
+0014    TGETS    2   2   5  ; "_task_queue"
+0015    LEN      2   2
+0016    KSHORT   3   1
+0017    KSHORT   4  -1
+0018    FORI     2 => 0031
+0019 => UGET     6   2      ; UIManager
+0020    TGETS    6   6   5  ; "_task_queue"
+0021    TGETV    6   6   5
+0022    TGETS    7   6   6  ; "action"
+0023    TGETS    8   1   7  ; "view"
+0024    TGETS    8   8   8  ; "emitHintPageEvent"
+0025    ISNEV    7   8
+0026    JMP      7 => 0030
+0027    GGET     7   9      ; "error"
+0028    KSTR     8  10      ; "UIManager's task queue should be emtpy."
+0029    CALL     7   1   2
+0030 => FORL     2 => 0019
+0031 => UGET     2   3      ; Blitbuffer
+0032    TGETS    2   2   1  ; "new"
+0033    KSHORT   3 1000
+0034    KSHORT   4 1000
+0035    CALL     2   2   3
+0036    TGETS    3   1   7  ; "view"
+0037    MOV      4   3
+0038    TGETS    3   3  11  ; "drawSinglePage"
+0039    MOV      5   2
+0040    KSHORT   6   0
+0041    KSHORT   7   0
+0042    CALL     3   1   5
+0043    KPRI     3   1
+0044    UGET     4   2      ; UIManager
+0045    TGETS    4   4   5  ; "_task_queue"
+0046    LEN      4   4
+0047    KSHORT   5   1
+0048    KSHORT   6  -1
+0049    FORI     4 => 0060
+0050 => UGET     8   2      ; UIManager
+0051    TGETS    8   8   5  ; "_task_queue"
+0052    TGETV    8   8   7
+0053    TGETS    9   8   6  ; "action"
+0054    TGETS   10   1   7  ; "view"
+0055    TGETS   10  10   8  ; "emitHintPageEvent"
+0056    ISNEV    9  10
+0057    JMP      9 => 0059
+0058    KPRI     3   2
+0059 => FORL     4 => 0050
+0060 => GGET     4  12      ; "assert"
+0061    TGETS    4   4  13  ; "is"
+0062    TGETS    4   4  14  ; "truthy"
+0063    MOV      5   3
+0064    CALL     4   1   2
+0065    MOV      5   1
+0066    TGETS    4   1  15  ; "onClose"
+0067    CALL     4   1   2
+0068    GGET     4  12      ; "assert"
+0069    TGETS    4   4  13  ; "is"
+0070    TGETS    4   4  16  ; "falsy"
+0071    TGETS    5   1   7  ; "view"
+0072    TGETS    5   5  17  ; "hinting"
+0073    CALL     4   1   2
+0074    UGET     4   2      ; UIManager
+0075    TGETS    4   4   5  ; "_task_queue"
+0076    LEN      4   4
+0077    KSHORT   5   1
+0078    KSHORT   6  -1
+0079    FORI     4 => 0092
+0080 => UGET     8   2      ; UIManager
+0081    TGETS    8   8   5  ; "_task_queue"
+0082    TGETV    8   8   7
+0083    TGETS    9   8   6  ; "action"
+0084    TGETS   10   1   7  ; "view"
+0085    TGETS   10  10   8  ; "emitHintPageEvent"
+0086    ISNEV    9  10
+0087    JMP      9 => 0091
+0088    GGET     9   9      ; "error"
+0089    KSTR    10  10      ; "UIManager's task queue should be emtpy."
+0090    CALL     9   1   2
+0091 => FORL     4 => 0080
+0092 => RET0     0   1
+
+-- BYTECODE -- readerview_spec.lua:50-99
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "reader_footer_mode"
+0005    KSHORT   3   0
+0006    CALL     0   1   4
+0007    KSTR     0   3      ; "spec/front/unit/data/2col.pdf"
+0008    UGET     1   0      ; ReaderUI
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "new"
+0011    TDUP     3   6
+0012    UGET     4   1      ; DocumentRegistry
+0013    MOV      5   4
+0014    TGETS    4   4   5  ; "openDocument"
+0015    MOV      6   0
+0016    CALL     4   2   3
+0017    TSETS    4   3   7  ; "document"
+0018    CALL     1   2   3
+0019    MOV      3   1
+0020    TGETS    2   1   8  ; "handleEvent"
+0021    UGET     4   2      ; Event
+0022    MOV      5   4
+0023    TGETS    4   4   4  ; "new"
+0024    KSTR     6   9      ; "SetScrollMode"
+0025    KPRI     7   1
+0026    CALL     4   0   4
+0027    CALLM    2   1   1
+0028    TGETS    2   1  10  ; "zooming"
+0029    MOV      3   2
+0030    TGETS    2   2  11  ; "setZoomMode"
+0031    KSTR     4  12      ; "page"
+0032    CALL     2   1   3
+0033    TGETS    2   1  13  ; "view"
+0034    MOV      4   2
+0035    TGETS    3   2  14  ; "getViewContext"
+0036    CALL     3   2   2
+0037    TGETB    4   3   1
+0038    TGETS    4   4  15  ; "zoom"
+0039    TGETB    5   3   1
+0040    KPRI     6   0
+0041    TSETS    6   5  15  ; "zoom"
+0042    TNEW     5   4
+0043    TDUP     6  16
+0044    TDUP     7  17
+0045    TSETS    7   6  18  ; "offset"
+0046    TSETB    6   5   1
+0047    TDUP     6  19
+0048    TSETB    6   5   2
+0049    TDUP     6  20
+0050    TSETB    6   5   3
+0051    GGET     6  21      ; "assert"
+0052    TGETS    6   6  22  ; "are"
+0053    TGETS    6   6  23  ; "same"
+0054    MOV      7   5
+0055    MOV      8   3
+0056    CALL     6   1   3
+0057    GGET     6  21      ; "assert"
+0058    TGETS    6   6  24  ; "is"
+0059    TGETS    6   6  25  ; "near"
+0060    KNUM     7   0      ; 0.95011876484561
+0061    MOV      8   4
+0062    KNUM     9   1      ; 0.0001
+0063    CALL     6   1   4
+0064    GGET     6  21      ; "assert"
+0065    TGETS    6   6  24  ; "is"
+0066    TGETS    6   6  23  ; "same"
+0067    TGETS    7   2  26  ; "state"
+0068    TGETS    7   7  12  ; "page"
+0069    KSHORT   8   1
+0070    CALL     6   1   3
+0071    GGET     6  21      ; "assert"
+0072    TGETS    6   6  24  ; "is"
+0073    TGETS    6   6  23  ; "same"
+0074    TGETS    7   2  27  ; "visible_area"
+0075    TGETS    7   7  28  ; "x"
+0076    KSHORT   8   0
+0077    CALL     6   1   3
+0078    GGET     6  21      ; "assert"
+0079    TGETS    6   6  24  ; "is"
+0080    TGETS    6   6  23  ; "same"
+0081    TGETS    7   2  27  ; "visible_area"
+0082    TGETS    7   7  29  ; "y"
+0083    KSHORT   8   0
+0084    CALL     6   1   3
+0085    TGETB    6   5   1
+0086    KSHORT   7   2
+0087    TSETS    7   6  12  ; "page"
+0088    TGETB    6   5   1
+0089    TSETS    4   6  15  ; "zoom"
+0090    TGETB    6   5   2
+0091    KSHORT   7  10
+0092    TSETS    7   6  29  ; "y"
+0093    MOV      7   2
+0094    TGETS    6   2  30  ; "restoreViewContext"
+0095    MOV      8   5
+0096    CALL     6   1   3
+0097    GGET     6  21      ; "assert"
+0098    TGETS    6   6  24  ; "is"
+0099    TGETS    6   6  23  ; "same"
+0100    TGETS    7   2  26  ; "state"
+0101    TGETS    7   7  12  ; "page"
+0102    KSHORT   8   2
+0103    CALL     6   1   3
+0104    GGET     6  21      ; "assert"
+0105    TGETS    6   6  24  ; "is"
+0106    TGETS    6   6  23  ; "same"
+0107    TGETS    7   2  27  ; "visible_area"
+0108    TGETS    7   7  28  ; "x"
+0109    KSHORT   8   0
+0110    CALL     6   1   3
+0111    GGET     6  21      ; "assert"
+0112    TGETS    6   6  24  ; "is"
+0113    TGETS    6   6  23  ; "same"
+0114    TGETS    7   2  27  ; "visible_area"
+0115    TGETS    7   7  29  ; "y"
+0116    KSHORT   8  10
+0117    CALL     6   1   3
+0118    GGET     6   0      ; "G_reader_settings"
+0119    MOV      7   6
+0120    TGETS    6   6  31  ; "delSetting"
+0121    KSTR     8   2      ; "reader_footer_mode"
+0122    CALL     6   1   3
+0123    RET0     0   1
+
+-- BYTECODE -- readerview_spec.lua:101-151
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "reader_footer_mode"
+0005    KSHORT   3   0
+0006    CALL     0   1   4
+0007    KSTR     0   3      ; "spec/front/unit/data/2col.pdf"
+0008    UGET     1   0      ; ReaderUI
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "new"
+0011    TDUP     3   6
+0012    UGET     4   1      ; DocumentRegistry
+0013    MOV      5   4
+0014    TGETS    4   4   5  ; "openDocument"
+0015    MOV      6   0
+0016    CALL     4   2   3
+0017    TSETS    4   3   7  ; "document"
+0018    CALL     1   2   3
+0019    MOV      3   1
+0020    TGETS    2   1   8  ; "handleEvent"
+0021    UGET     4   2      ; Event
+0022    MOV      5   4
+0023    TGETS    4   4   4  ; "new"
+0024    KSTR     6   9      ; "SetScrollMode"
+0025    KPRI     7   2
+0026    CALL     4   0   4
+0027    CALLM    2   1   1
+0028    MOV      3   1
+0029    TGETS    2   1   8  ; "handleEvent"
+0030    UGET     4   2      ; Event
+0031    MOV      5   4
+0032    TGETS    4   4   4  ; "new"
+0033    KSTR     6  10      ; "SetZoomMode"
+0034    KSTR     7  11      ; "page"
+0035    CALL     4   0   4
+0036    CALLM    2   1   1
+0037    TGETS    2   1  12  ; "zooming"
+0038    MOV      3   2
+0039    TGETS    2   2  13  ; "setZoomMode"
+0040    KSTR     4  11      ; "page"
+0041    CALL     2   1   3
+0042    TGETS    2   1  14  ; "view"
+0043    MOV      4   2
+0044    TGETS    3   2  15  ; "getViewContext"
+0045    CALL     3   2   2
+0046    TGETB    4   3   1
+0047    TGETS    4   4  16  ; "zoom"
+0048    TGETB    5   3   1
+0049    KPRI     6   0
+0050    TSETS    6   5  16  ; "zoom"
+0051    TNEW     5   3
+0052    TDUP     6  17
+0053    TDUP     7  18
+0054    TSETS    7   6  19  ; "offset"
+0055    TDUP     7  20
+0056    TSETS    7   6  21  ; "page_area"
+0057    TDUP     7  22
+0058    TSETS    7   6  23  ; "visible_area"
+0059    TSETB    6   5   1
+0060    GGET     6  24      ; "assert"
+0061    TGETS    6   6  25  ; "are"
+0062    TGETS    6   6  26  ; "same"
+0063    MOV      7   5
+0064    MOV      8   3
+0065    CALL     6   1   3
+0066    GGET     6  24      ; "assert"
+0067    TGETS    6   6  27  ; "is"
+0068    TGETS    6   6  28  ; "near"
+0069    KNUM     7   0      ; 0.95011876484561
+0070    MOV      8   4
+0071    KNUM     9   1      ; 0.0001
+0072    CALL     6   1   4
+0073    GGET     6  24      ; "assert"
+0074    TGETS    6   6  27  ; "is"
+0075    TGETS    6   6  26  ; "same"
+0076    TGETS    7   2  29  ; "state"
+0077    TGETS    7   7  11  ; "page"
+0078    KSHORT   8   1
+0079    CALL     6   1   3
+0080    GGET     6  24      ; "assert"
+0081    TGETS    6   6  27  ; "is"
+0082    TGETS    6   6  26  ; "same"
+0083    TGETS    7   2  23  ; "visible_area"
+0084    TGETS    7   7  30  ; "x"
+0085    KSHORT   8   0
+0086    CALL     6   1   3
+0087    GGET     6  24      ; "assert"
+0088    TGETS    6   6  27  ; "is"
+0089    TGETS    6   6  26  ; "same"
+0090    TGETS    7   2  23  ; "visible_area"
+0091    TGETS    7   7  31  ; "y"
+0092    KSHORT   8   0
+0093    CALL     6   1   3
+0094    TGETB    6   5   1
+0095    KSHORT   7   2
+0096    TSETS    7   6  11  ; "page"
+0097    TGETB    6   5   1
+0098    TSETS    4   6  16  ; "zoom"
+0099    TGETB    6   5   1
+0100    TGETS    6   6  23  ; "visible_area"
+0101    KSHORT   7  10
+0102    TSETS    7   6  31  ; "y"
+0103    MOV      7   2
+0104    TGETS    6   2  32  ; "restoreViewContext"
+0105    MOV      8   5
+0106    CALL     6   1   3
+0107    GGET     6  24      ; "assert"
+0108    TGETS    6   6  27  ; "is"
+0109    TGETS    6   6  26  ; "same"
+0110    TGETS    7   2  33  ; "page_states"
+0111    LEN      7   7
+0112    KSHORT   8   1
+0113    CALL     6   1   3
+0114    GGET     6  24      ; "assert"
+0115    TGETS    6   6  27  ; "is"
+0116    TGETS    6   6  26  ; "same"
+0117    TGETS    7   2  33  ; "page_states"
+0118    TGETB    7   7   1
+0119    TGETS    7   7  11  ; "page"
+0120    KSHORT   8   2
+0121    CALL     6   1   3
+0122    GGET     6  24      ; "assert"
+0123    TGETS    6   6  27  ; "is"
+0124    TGETS    6   6  26  ; "same"
+0125    TGETS    7   2  33  ; "page_states"
+0126    TGETB    7   7   1
+0127    TGETS    7   7  23  ; "visible_area"
+0128    TGETS    7   7  30  ; "x"
+0129    KSHORT   8   0
+0130    CALL     6   1   3
+0131    GGET     6  24      ; "assert"
+0132    TGETS    6   6  27  ; "is"
+0133    TGETS    6   6  26  ; "same"
+0134    TGETS    7   2  33  ; "page_states"
+0135    TGETB    7   7   1
+0136    TGETS    7   7  23  ; "visible_area"
+0137    TGETS    7   7  31  ; "y"
+0138    KSHORT   8  10
+0139    CALL     6   1   3
+0140    GGET     6   0      ; "G_reader_settings"
+0141    MOV      7   6
+0142    TGETS    6   6  34  ; "delSetting"
+0143    KSTR     8   2      ; "reader_footer_mode"
+0144    CALL     6   1   3
+0145    RET0     0   1
+
+-- BYTECODE -- readerview_spec.lua:1-152
+0001    KNIL     0   4
+0002    GGET     5   0      ; "setup"
+0003    FNEW     6   1      ; readerview_spec.lua:4
+0004    CALL     5   1   2
+0005    GGET     5   2      ; "it"
+0006    KSTR     6   3      ; "should stop hinting on document close ev"~
+0007    FNEW     7   4      ; readerview_spec.lua:15
+0008    CALL     5   1   3
+0009    GGET     5   2      ; "it"
+0010    KSTR     6   5      ; "should return and restore view context i"~
+0011    FNEW     7   6      ; readerview_spec.lua:50
+0012    CALL     5   1   3
+0013    GGET     5   2      ; "it"
+0014    KSTR     6   7      ; "should return and restore view context i"~
+0015    FNEW     7   8      ; readerview_spec.lua:101
+0016    CALL     5   1   3
+0017    UCLO     0 => 0018
+0018 => RET0     0   1
+
+-- BYTECODE -- readerview_spec.lua:0-153
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "Readerview module"
+0003    FNEW     2   2      ; readerview_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

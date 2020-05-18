@@ -1,0 +1,967 @@
+-- BYTECODE -- show.lua:16-43
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "command"
+0003    KSTR     3   1      ; "show"
+0004    KSTR     4   2      ; "Show information about an installed rock"~
+0005    UGET     5   0      ; util
+0006    TGETS    5   5   3  ; "see_also"
+0007    CALL     5   0   1
+0008    CALLM    1   2   3
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "summary"
+0011    KSTR     3   5      ; "Show information about an installed rock"~
+0012    CALL     1   2   3
+0013    MOV      3   1
+0014    TGETS    2   1   6  ; "argument"
+0015    KSTR     4   7      ; "rock"
+0016    KSTR     5   8      ; "Name of an installed rock."
+0017    CALL     2   2   4
+0018    MOV      3   2
+0019    TGETS    2   2   9  ; "action"
+0020    UGET     4   0      ; util
+0021    TGETS    4   4  10  ; "namespaced_name_action"
+0022    CALL     2   1   3
+0023    MOV      3   1
+0024    TGETS    2   1   6  ; "argument"
+0025    KSTR     4  11      ; "version"
+0026    KSTR     5  12      ; "Rock version."
+0027    CALL     2   2   4
+0028    MOV      3   2
+0029    TGETS    2   2  13  ; "args"
+0030    KSTR     4  14      ; "?"
+0031    CALL     2   1   3
+0032    MOV      3   1
+0033    TGETS    2   1  15  ; "flag"
+0034    KSTR     4  16      ; "--home"
+0035    KSTR     5  17      ; "Show home page of project."
+0036    CALL     2   1   4
+0037    MOV      3   1
+0038    TGETS    2   1  15  ; "flag"
+0039    KSTR     4  18      ; "--modules"
+0040    KSTR     5  19      ; "Show all modules provided by the package"~
+0041    CALL     2   1   4
+0042    MOV      3   1
+0043    TGETS    2   1  15  ; "flag"
+0044    KSTR     4  20      ; "--deps"
+0045    KSTR     5  21      ; "Show packages the package depends on."
+0046    CALL     2   1   4
+0047    MOV      3   1
+0048    TGETS    2   1  15  ; "flag"
+0049    KSTR     4  22      ; "--build-deps"
+0050    KSTR     5  23      ; "Show build-only dependencies for the pac"~
+0051    CALL     2   1   4
+0052    MOV      3   1
+0053    TGETS    2   1  15  ; "flag"
+0054    KSTR     4  24      ; "--test-deps"
+0055    KSTR     5  25      ; "Show dependencies for testing the packag"~
+0056    CALL     2   1   4
+0057    MOV      3   1
+0058    TGETS    2   1  15  ; "flag"
+0059    KSTR     4  26      ; "--rockspec"
+0060    KSTR     5  27      ; "Show the full path of the rockspec file."
+0061    CALL     2   1   4
+0062    MOV      3   1
+0063    TGETS    2   1  15  ; "flag"
+0064    KSTR     4  28      ; "--mversion"
+0065    KSTR     5  29      ; "Show the package version."
+0066    CALL     2   1   4
+0067    MOV      3   1
+0068    TGETS    2   1  15  ; "flag"
+0069    KSTR     4  30      ; "--rock-tree"
+0070    KSTR     5  31      ; "Show local tree where rock is installed."
+0071    CALL     2   1   4
+0072    MOV      3   1
+0073    TGETS    2   1  15  ; "flag"
+0074    KSTR     4  32      ; "--rock-namespace"
+0075    KSTR     5  33      ; "Show rock namespace."
+0076    CALL     2   1   4
+0077    MOV      3   1
+0078    TGETS    2   1  15  ; "flag"
+0079    KSTR     4  34      ; "--rock-dir"
+0080    KSTR     5  35      ; "Show data directory of the installed roc"~
+0081    CALL     2   1   4
+0082    MOV      3   1
+0083    TGETS    2   1  15  ; "flag"
+0084    KSTR     4  36      ; "--rock-license"
+0085    KSTR     5  37      ; "Show rock license."
+0086    CALL     2   1   4
+0087    MOV      3   1
+0088    TGETS    2   1  15  ; "flag"
+0089    KSTR     4  38      ; "--issues"
+0090    KSTR     5  39      ; "Show URL for project's issue tracker."
+0091    CALL     2   1   4
+0092    MOV      3   1
+0093    TGETS    2   1  15  ; "flag"
+0094    KSTR     4  40      ; "--labels"
+0095    KSTR     5  41      ; "List the labels of the rock."
+0096    CALL     2   1   4
+0097    MOV      3   1
+0098    TGETS    2   1  15  ; "flag"
+0099    KSTR     4  42      ; "--porcelain"
+0100    KSTR     5  43      ; "Produce machine-friendly output."
+0101    CALL     2   1   4
+0102    RET0     0   1
+
+-- BYTECODE -- show.lua:97-101
+0001    UGET     2   0      ; util
+0002    TGETS    2   2   0  ; "keys"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    GGET     3   1      ; "table"
+0006    TGETS    3   3   2  ; "sort"
+0007    MOV      4   2
+0008    CALL     3   1   2
+0009    GGET     3   1      ; "table"
+0010    TGETS    3   3   3  ; "concat"
+0011    MOV      4   2
+0012    ISTC     5   1
+0013    JMP      5 => 0015
+0014    KSTR     5   4      ; " "
+0015 => CALLT    3   3
+
+-- BYTECODE -- show.lua:103-116
+0001    GGET     1   0      ; "tonumber"
+0002    GGET     2   1      ; "os"
+0003    TGETS    2   2   2  ; "getenv"
+0004    KSTR     3   3      ; "COLUMNS"
+0005    CALL     2   0   2
+0006    CALLM    1   2   0
+0007    IST          1
+0008    JMP      2 => 0010
+0009    KSHORT   1  80
+0010 => KSHORT   2  80
+0011    ISGE     2   1
+0012    JMP      2 => 0014
+0013    KSHORT   1  80
+0014 => LEN      2   0
+0015    ISGE     1   2
+0016    JMP      2 => 0048
+0017    MOV      2   1
+0018 => KSHORT   3   0
+0019    ISGE     3   2
+0020    JMP      3 => 0031
+0021    MOV      4   0
+0022    TGETS    3   0   4  ; "sub"
+0023    MOV      5   2
+0024    MOV      6   2
+0025    CALL     3   2   4
+0026    ISEQS    3   5      ; " "
+0027    JMP      3 => 0031
+0028    LOOP     3 => 0031
+0029    SUBVN    2   2   0  ; 1
+0030    JMP      3 => 0018
+0031 => KSHORT   3   0
+0032    ISGE     3   2
+0033    JMP      3 => 0048
+0034    MOV      4   0
+0035    TGETS    3   0   4  ; "sub"
+0036    KSHORT   5   1
+0037    SUBVN    6   2   0  ; 1
+0038    CALL     3   2   4
+0039    KSTR     4   6      ; "\n"
+0040    UGET     5   0      ; word_wrap
+0041    MOV      7   0
+0042    TGETS    6   0   4  ; "sub"
+0043    ADDVN    8   2   0  ; 1
+0044    CALL     6   0   3
+0045    CALLM    5   2   0
+0046    CAT      3   3   5
+0047    RET1     3   2
+0048 => RET1     0   2
+
+-- BYTECODE -- show.lua:118-125
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "gsub"
+0003    KSTR     3   1      ; "^%s*"
+0004    KSTR     4   2      ; ""
+0005    CALL     1   2   4
+0006    MOV      2   1
+0007    TGETS    1   1   0  ; "gsub"
+0008    KSTR     3   3      ; "%s$"
+0009    KSTR     4   2      ; ""
+0010    CALL     1   2   4
+0011    MOV      2   1
+0012    TGETS    1   1   0  ; "gsub"
+0013    KSTR     3   4      ; "\n[ \t]+"
+0014    KSTR     4   5      ; "\n"
+0015    CALL     1   2   4
+0016    MOV      2   1
+0017    TGETS    1   1   0  ; "gsub"
+0018    KSTR     3   6      ; "([^\n])\n([^\n])"
+0019    KSTR     4   7      ; "%1 %2"
+0020    CALL     1   2   4
+0021    MOV      0   1
+0022    UGET     1   0      ; util
+0023    TGETS    1   1   8  ; "split_string"
+0024    MOV      2   0
+0025    KSTR     3   9      ; "\n\n"
+0026    CALL     1   2   3
+0027    GGET     2  10      ; "ipairs"
+0028    MOV      3   1
+0029    CALL     2   4   2
+0030    JMP      5 => 0035
+0031 => UGET     7   1      ; word_wrap
+0032    MOV      8   6
+0033    CALL     7   2   2
+0034    TSETV    7   1   5
+0035 => ITERC    5   3   3
+0036    ITERL    5 => 0031
+0037    GGET     2  11      ; "table"
+0038    TGETS    2   2  12  ; "concat"
+0039    MOV      3   1
+0040    KSTR     4   9      ; "\n\n"
+0041    CALL     2   2   3
+0042    MOV      3   2
+0043    TGETS    2   2   0  ; "gsub"
+0044    KSTR     4   3      ; "%s$"
+0045    KSTR     5   2      ; ""
+0046    CALL     2   2   4
+0047    RET1     2   2
+
+-- BYTECODE -- show.lua:127-136
+0001    KNIL     2   3
+0002    UGET     4   0      ; util
+0003    TGETS    4   4   0  ; "get_rocks_provided"
+0004    CALL     4   2   1
+0005    TGETS    5   0   1  ; "name"
+0006    TGETV    5   4   5
+0007    ISF          5
+0008    JMP      6 => 0014
+0009    KPRI     5   2
+0010    TGETS    6   0   1  ; "name"
+0011    TGETV    3   4   6
+0012    MOV      2   5
+0013    JMP      5 => 0021
+0014 => UGET     5   1      ; search
+0015    TGETS    5   5   2  ; "pick_installed_rock"
+0016    MOV      6   0
+0017    MOV      7   1
+0018    CALL     5   3   3
+0019    MOV      3   6
+0020    MOV      2   5
+0021 => ISF          2
+0022    JMP      5 => 0028
+0023    KSTR     5   3      ; "using "
+0024    MOV      6   3
+0025    CAT      5   5   6
+0026    IST          5
+0027    JMP      6 => 0029
+0028 => KSTR     5   4      ; "missing"
+0029 => RET1     5   2
+
+-- BYTECODE -- show.lua:138-158
+0001    TNEW     2   0
+0002    MOV      4   0
+0003    TGETS    3   0   0  ; "gmatch"
+0004    KSTR     5   1      ; "(.)([a-z]*)%s*:([^\n]*)\n"
+0005    CALL     3   4   3
+0006    JMP      6 => 0075
+0007 => MOV     10   8
+0008    TGETS    9   8   2  ; "gsub"
+0009    KSTR    11   3      ; "\t"
+0010    KSTR    12   4      ; "\t"
+0011    CALL     9   2   4
+0012    MOV      8   9
+0013    TGETV    9   1   7
+0014    ISNES    6   5      ; " "
+0015    JMP     10 => 0022
+0016    GGET    10   6      ; "table"
+0017    TGETS   10  10   7  ; "insert"
+0018    MOV     11   2
+0019    MOV     12   8
+0020    CALL    10   1   3
+0021    JMP     10 => 0075
+0022 => ISEQS    6   8      ; "?"
+0023    JMP     10 => 0028
+0024    ISEQS    6   9      ; "*"
+0025    JMP     10 => 0028
+0026    ISNES    6  10      ; "!"
+0027    JMP     10 => 0075
+0028 => ISNES    6  10      ; "!"
+0029    JMP     10 => 0032
+0030    ISEQP    9   0
+0031    JMP     10 => 0049
+0032 => ISEQS    6  10      ; "!"
+0033    JMP     10 => 0075
+0034    GGET    10  11      ; "type"
+0035    MOV     11   9
+0036    CALL    10   2   2
+0037    ISEQS   10  12      ; "string"
+0038    JMP     10 => 0049
+0039    GGET    10  11      ; "type"
+0040    MOV     11   9
+0041    CALL    10   2   2
+0042    ISNES   10   6      ; "table"
+0043    JMP     10 => 0075
+0044    GGET    10  13      ; "next"
+0045    MOV     11   9
+0046    CALL    10   2   2
+0047    ISF         10
+0048    JMP     11 => 0075
+0049 => ISNES    6   9      ; "*"
+0050    JMP     10 => 0054
+0051    LEN     10   9
+0052    IST         10
+0053    JMP     11 => 0055
+0054 => KSHORT  10   1
+0055 => KSHORT  11   1
+0056    MOV     12  10
+0057    KSHORT  13   1
+0058    FORI    11 => 0075
+0059 => ISNES    6   9      ; "*"
+0060    JMP     15 => 0064
+0061    TGETV   15   9  14
+0062    IST         15
+0063    JMP     16 => 0065
+0064 => MOV     15   1
+0065 => GGET    16   6      ; "table"
+0066    TGETS   16  16   7  ; "insert"
+0067    MOV     17   2
+0068    MOV     19   8
+0069    TGETS   18   8   2  ; "gsub"
+0070    KSTR    20  14      ; "${([a-z]+)}"
+0071    MOV     21  15
+0072    CALL    18   2   4
+0073    CALL    16   1   3
+0074    FORL    11 => 0059
+0075 => ITERC    6   4   3
+0076    ITERL    6 => 0007
+0077    GGET     3   6      ; "table"
+0078    TGETS    3   3  15  ; "concat"
+0079    MOV      4   2
+0080    KSTR     5  16      ; "\n"
+0081    CALLT    3   3
+
+-- BYTECODE -- show.lua:160-166
+0001    UGET     5   0      ; dir
+0002    TGETS    5   5   0  ; "path"
+0003    MOV      6   2
+0004    MOV      7   3
+0005    CALL     5   2   3
+0006    MOV      3   5
+0007    UGET     5   1      ; path
+0008    TGETS    5   5   1  ; "versioned_name"
+0009    MOV      6   3
+0010    MOV      7   2
+0011    MOV      8   0
+0012    MOV      9   1
+0013    CALL     5   2   5
+0014    UGET     6   2      ; fs
+0015    TGETS    6   6   2  ; "exists"
+0016    MOV      7   5
+0017    CALL     6   2   2
+0018    ISF          6
+0019    JMP      7 => 0022
+0020    ISTC     6   5
+0021    JMP      6 => 0023
+0022 => MOV      6   3
+0023 => ISTC     7   4
+0024    JMP      7 => 0026
+0025    KSTR     7   3      ; ""
+0026 => CAT      6   6   7
+0027    RET1     6   2
+
+-- BYTECODE -- show.lua:174-179
+0001    GGET     1   0      ; "table"
+0002    TGETS    1   1   1  ; "insert"
+0003    UGET     2   0      ; ret
+0004    TDUP     3   3
+0005    UGET     4   1      ; path
+0006    TGETS    4   4   2  ; "path_to_module"
+0007    MOV      5   0
+0008    CALL     4   2   2
+0009    TSETS    4   3   4  ; "name"
+0010    UGET     4   2      ; adjust_path
+0011    UGET     5   3      ; name
+0012    UGET     6   4      ; version
+0013    UGET     7   5      ; lua_dir
+0014    MOV      8   0
+0015    CALL     4   2   5
+0016    TSETS    4   3   5  ; "file"
+0017    CALL     1   1   3
+0018    RET0     0   1
+
+-- BYTECODE -- show.lua:180-185
+0001    GGET     1   0      ; "table"
+0002    TGETS    1   1   1  ; "insert"
+0003    UGET     2   0      ; ret
+0004    TDUP     3   3
+0005    UGET     4   1      ; path
+0006    TGETS    4   4   2  ; "path_to_module"
+0007    MOV      5   0
+0008    CALL     4   2   2
+0009    TSETS    4   3   4  ; "name"
+0010    UGET     4   2      ; adjust_path
+0011    UGET     5   3      ; name
+0012    UGET     6   4      ; version
+0013    UGET     7   5      ; lib_dir
+0014    MOV      8   0
+0015    CALL     4   2   5
+0016    TSETS    4   3   5  ; "file"
+0017    CALL     1   1   3
+0018    RET0     0   1
+
+-- BYTECODE -- show.lua:186-191
+0001    TGETS    2   0   0  ; "name"
+0002    TGETS    3   1   0  ; "name"
+0003    ISNEV    2   3
+0004    JMP      2 => 0013
+0005    TGETS    2   0   1  ; "file"
+0006    TGETS    3   1   1  ; "file"
+0007    ISLT     2   3
+0008    JMP      2 => 0011
+0009    KPRI     2   1
+0010    JMP      3 => 0012
+0011 => KPRI     2   2
+0012 => RET1     2   2
+0013 => TGETS    2   0   0  ; "name"
+0014    TGETS    3   1   0  ; "name"
+0015    ISLT     2   3
+0016    JMP      2 => 0019
+0017    KPRI     2   1
+0018    JMP      3 => 0020
+0019 => KPRI     2   2
+0020 => RET1     2   2
+
+-- BYTECODE -- show.lua:168-193
+0001    TNEW     3   0
+0002    UGET     4   0      ; manif
+0003    TGETS    4   4   0  ; "load_rock_manifest"
+0004    MOV      5   0
+0005    MOV      6   1
+0006    MOV      7   2
+0007    CALL     4   2   4
+0008    UGET     5   1      ; path
+0009    TGETS    5   5   1  ; "deploy_lua_dir"
+0010    MOV      6   2
+0011    CALL     5   2   2
+0012    UGET     6   1      ; path
+0013    TGETS    6   6   2  ; "deploy_lib_dir"
+0014    MOV      7   2
+0015    CALL     6   2   2
+0016    UGET     7   2      ; repos
+0017    TGETS    7   7   3  ; "recurse_rock_manifest_entry"
+0018    TGETS    8   4   4  ; "lua"
+0019    FNEW     9   5      ; show.lua:174
+0020    CALL     7   1   3
+0021    UGET     7   2      ; repos
+0022    TGETS    7   7   3  ; "recurse_rock_manifest_entry"
+0023    TGETS    8   4   6  ; "lib"
+0024    FNEW     9   7      ; show.lua:180
+0025    CALL     7   1   3
+0026    GGET     7   8      ; "table"
+0027    TGETS    7   7   9  ; "sort"
+0028    MOV      8   3
+0029    FNEW     9  10      ; show.lua:186
+0030    CALL     7   1   3
+0031    UCLO     0 => 0032
+0032 => RET1     3   2
+
+-- BYTECODE -- show.lua:200-206
+0001    UGET     1   0      ; adjust_path
+0002    UGET     2   1      ; name
+0003    UGET     3   2      ; version
+0004    UGET     4   3      ; bin_dir
+0005    MOV      5   0
+0006    CALL     1   2   5
+0007    MOV      0   1
+0008    GGET     1   0      ; "table"
+0009    TGETS    1   1   1  ; "insert"
+0010    UGET     2   4      ; ret
+0011    TDUP     3   2
+0012    TSETS    0   3   3  ; "name"
+0013    UGET     4   0      ; adjust_path
+0014    UGET     5   1      ; name
+0015    UGET     6   2      ; version
+0016    UGET     7   3      ; bin_dir
+0017    MOV      8   0
+0018    UGET     9   5      ; cfg
+0019    TGETS    9   9   4  ; "wrapper_suffix"
+0020    CALL     4   2   6
+0021    TSETS    4   3   5  ; "file"
+0022    CALL     1   1   3
+0023    RET0     0   1
+
+-- BYTECODE -- show.lua:207-212
+0001    TGETS    2   0   0  ; "name"
+0002    TGETS    3   1   0  ; "name"
+0003    ISNEV    2   3
+0004    JMP      2 => 0013
+0005    TGETS    2   0   1  ; "file"
+0006    TGETS    3   1   1  ; "file"
+0007    ISLT     2   3
+0008    JMP      2 => 0011
+0009    KPRI     2   1
+0010    JMP      3 => 0012
+0011 => KPRI     2   2
+0012 => RET1     2   2
+0013 => TGETS    2   0   0  ; "name"
+0014    TGETS    3   1   0  ; "name"
+0015    ISLT     2   3
+0016    JMP      2 => 0019
+0017    KPRI     2   1
+0018    JMP      3 => 0020
+0019 => KPRI     2   2
+0020 => RET1     2   2
+
+-- BYTECODE -- show.lua:195-214
+0001    TNEW     3   0
+0002    UGET     4   0      ; manif
+0003    TGETS    4   4   0  ; "load_rock_manifest"
+0004    MOV      5   0
+0005    MOV      6   1
+0006    MOV      7   2
+0007    CALL     4   2   4
+0008    UGET     5   1      ; path
+0009    TGETS    5   5   1  ; "deploy_bin_dir"
+0010    MOV      6   2
+0011    CALL     5   2   2
+0012    UGET     6   2      ; repos
+0013    TGETS    6   6   2  ; "recurse_rock_manifest_entry"
+0014    TGETS    7   4   3  ; "bin"
+0015    FNEW     8   4      ; show.lua:200
+0016    CALL     6   1   3
+0017    GGET     6   5      ; "table"
+0018    TGETS    6   6   6  ; "sort"
+0019    MOV      7   3
+0020    FNEW     8   7      ; show.lua:207
+0021    CALL     6   1   3
+0022    UCLO     0 => 0023
+0023 => RET1     3   2
+
+-- BYTECODE -- show.lua:216-222
+0001    TNEW     2   0
+0002    GGET     3   0      ; "ipairs"
+0003    ISTC     4   0
+0004    JMP      4 => 0006
+0005    TNEW     4   0
+0006 => CALL     3   4   2
+0007    JMP      6 => 0022
+0008 => GGET     8   1      ; "table"
+0009    TGETS    8   8   2  ; "insert"
+0010    MOV      9   2
+0011    TDUP    10   4
+0012    GGET    11   3      ; "tostring"
+0013    MOV     12   7
+0014    CALL    11   2   2
+0015    TSETS   11  10   5  ; "name"
+0016    UGET    11   0      ; installed_rock_label
+0017    MOV     12   7
+0018    MOV     13   1
+0019    CALL    11   2   3
+0020    TSETS   11  10   6  ; "label"
+0021    CALL     8   1   3
+0022 => ITERC    6   3   3
+0023    ITERL    6 => 0008
+0024    RET1     2   2
+
+-- BYTECODE -- show.lua:224-236
+0001    TNEW     3   0
+0002    TNEW     4   0
+0003    GGET     5   0      ; "ipairs"
+0004    MOV      6   1
+0005    CALL     5   4   2
+0006    JMP      8 => 0009
+0007 => KPRI    10   2
+0008    TSETV   10   4   9
+0009 => ITERC    8   3   3
+0010    ITERL    8 => 0007
+0011    UGET     5   0      ; util
+0012    TGETS    5   5   1  ; "sortedpairs"
+0013    ISTC     6   0
+0014    JMP      6 => 0016
+0015    TNEW     6   0
+0016 => CALL     5   4   2
+0017    JMP      8 => 0038
+0018 => TGETV    9   4   8
+0019    IST          9
+0020    JMP      9 => 0038
+0021    GGET     9   2      ; "table"
+0022    TGETS    9   9   3  ; "insert"
+0023    MOV     10   3
+0024    TDUP    11   5
+0025    GGET    12   4      ; "tostring"
+0026    MOV     13   8
+0027    CALL    12   2   2
+0028    TSETS   12  11   6  ; "name"
+0029    UGET    12   1      ; installed_rock_label
+0030    UGET    13   2      ; queries
+0031    TGETS   13  13   7  ; "new"
+0032    MOV     14   8
+0033    CALL    13   2   2
+0034    MOV     14   2
+0035    CALL    12   2   3
+0036    TSETS   12  11   8  ; "label"
+0037    CALL     9   1   3
+0038 => ITERC    8   2   3
+0039    ITERL    8 => 0018
+0040    RET1     3   2
+
+-- BYTECODE -- show.lua:238-259
+0001    TGETS    8   4   0  ; "description"
+0002    TDUP     9   1
+0003    TSETS    1   9   2  ; "namespace"
+0004    TGETS   10   4   3  ; "package"
+0005    TSETS   10   9   3  ; "package"
+0006    TGETS   10   4   4  ; "version"
+0007    TSETS   10   9   4  ; "version"
+0008    TGETS   10   8   5  ; "summary"
+0009    IST         10
+0010    JMP     11 => 0012
+0011    KSTR    10   6      ; ""
+0012 => TSETS   10   9   5  ; "summary"
+0013    TGETS   10   8   7  ; "detailed"
+0014    ISF         10
+0015    JMP     11 => 0023
+0016    UGET    10   0      ; util
+0017    TGETS   10  10   8  ; "split_string"
+0018    UGET    11   1      ; format_text
+0019    TGETS   12   8   7  ; "detailed"
+0020    CALL    11   2   2
+0021    KSTR    12   9      ; "\n"
+0022    CALL    10   2   3
+0023 => TSETS   10   9   7  ; "detailed"
+0024    TGETS   10   8  10  ; "license"
+0025    TSETS   10   9  10  ; "license"
+0026    TGETS   10   8  11  ; "homepage"
+0027    TSETS   10   9  11  ; "homepage"
+0028    TGETS   10   8  12  ; "issues_url"
+0029    TSETS   10   9  13  ; "issues"
+0030    TGETS   10   8  14  ; "labels"
+0031    ISF         10
+0032    JMP     11 => 0038
+0033    GGET    10  15      ; "table"
+0034    TGETS   10  10  16  ; "concat"
+0035    TGETS   11   8  14  ; "labels"
+0036    KSTR    12  17      ; ", "
+0037    CALL    10   2   3
+0038 => TSETS   10   9  14  ; "labels"
+0039    UGET    10   2      ; path
+0040    TGETS   10  10  18  ; "rocks_tree_to_string"
+0041    MOV     11   5
+0042    CALL    10   2   2
+0043    TSETS   10   9  19  ; "location"
+0044    UGET    10   3      ; commands_to_list
+0045    MOV     11   2
+0046    MOV     12   3
+0047    MOV     13   5
+0048    CALL    10   2   4
+0049    TSETS   10   9  20  ; "commands"
+0050    UGET    10   4      ; modules_to_list
+0051    MOV     11   2
+0052    MOV     12   3
+0053    MOV     13   5
+0054    CALL    10   2   4
+0055    TSETS   10   9  21  ; "modules"
+0056    UGET    10   5      ; deps_to_list
+0057    TGETS   11   4  22  ; "build_dependencies"
+0058    MOV     12   7
+0059    CALL    10   2   3
+0060    TSETS   10   9  23  ; "bdeps"
+0061    UGET    10   5      ; deps_to_list
+0062    TGETS   11   4  24  ; "test_dependencies"
+0063    MOV     12   7
+0064    CALL    10   2   3
+0065    TSETS   10   9  25  ; "tdeps"
+0066    UGET    10   5      ; deps_to_list
+0067    TGETS   11   4  26  ; "dependencies"
+0068    MOV     12   7
+0069    CALL    10   2   3
+0070    TSETS   10   9  27  ; "deps"
+0071    UGET    10   6      ; indirect_deps
+0072    TGETS   11   6  26  ; "dependencies"
+0073    TGETS   12   4  26  ; "dependencies"
+0074    MOV     13   7
+0075    CALL    10   2   4
+0076    TSETS   10   9  28  ; "ideps"
+0077    UGET    10   0      ; util
+0078    TGETS   10  10  29  ; "printout"
+0079    UGET    11   7      ; render
+0080    MOV     12   0
+0081    MOV     13   9
+0082    CALL    11   0   3
+0083    CALLM   10   1   0
+0084    RET0     0   1
+
+-- BYTECODE -- show.lua:263-310
+0001    UGET     1   0      ; queries
+0002    TGETS    1   1   0  ; "new"
+0003    TGETS    2   0   1  ; "rock"
+0004    TGETS    3   0   2  ; "namespace"
+0005    TGETS    4   0   3  ; "version"
+0006    CALL     1   2   4
+0007    UGET     2   1      ; search
+0008    TGETS    2   2   4  ; "pick_installed_rock"
+0009    MOV      3   1
+0010    TGETS    4   0   5  ; "tree"
+0011    CALL     2   5   3
+0012    IST          2
+0013    JMP      6 => 0017
+0014    KPRI     6   0
+0015    MOV      7   3
+0016    RET      6   3
+0017 => UGET     6   2      ; path
+0018    TGETS    6   6   6  ; "rocks_tree_to_string"
+0019    MOV      7   4
+0020    CALL     6   2   2
+0021    UGET     7   2      ; path
+0022    TGETS    7   7   7  ; "install_dir"
+0023    MOV      8   2
+0024    MOV      9   3
+0025    MOV     10   4
+0026    CALL     7   2   4
+0027    UGET     8   2      ; path
+0028    TGETS    8   8   8  ; "read_namespace"
+0029    MOV      9   2
+0030    MOV     10   3
+0031    MOV     11   6
+0032    CALL     8   2   4
+0033    UGET     9   2      ; path
+0034    TGETS    9   9   9  ; "rockspec_file"
+0035    MOV     10   2
+0036    MOV     11   3
+0037    MOV     12   4
+0038    CALL     9   2   4
+0039    UGET    10   3      ; fetch
+0040    TGETS   10  10  10  ; "load_local_rockspec"
+0041    MOV     11   9
+0042    CALL    10   3   2
+0043    IST         10
+0044    JMP     12 => 0048
+0045    KPRI    12   0
+0046    MOV     13  11
+0047    RET     12   3
+0048 => TGETS   12  10  11  ; "description"
+0049    IST         12
+0050    JMP     13 => 0052
+0051    TNEW    12   0
+0052 => UGET    13   4      ; manif
+0053    TGETS   13  13  12  ; "load_manifest"
+0054    MOV     14   5
+0055    CALL    13   3   2
+0056    IST         13
+0057    JMP     15 => 0061
+0058    KPRI    15   0
+0059    MOV     16  14
+0060    RET     15   3
+0061 => TGETS   15  13  13  ; "repository"
+0062    TGETV   15  15   2
+0063    TGETV   15  15   3
+0064    TGETB   15  15   1
+0065    TGETS   16   0  14  ; "rock_tree"
+0066    ISF         16
+0067    JMP     17 => 0073
+0068    UGET    16   5      ; util
+0069    TGETS   16  16  15  ; "printout"
+0070    MOV     17   6
+0071    CALL    16   1   2
+0072    JMP     16 => 0227
+0073 => TGETS   16   0  16  ; "rock_namespace"
+0074    ISF         16
+0075    JMP     17 => 0081
+0076    UGET    16   5      ; util
+0077    TGETS   16  16  15  ; "printout"
+0078    MOV     17   8
+0079    CALL    16   1   2
+0080    JMP     16 => 0227
+0081 => TGETS   16   0  17  ; "rock_dir"
+0082    ISF         16
+0083    JMP     17 => 0089
+0084    UGET    16   5      ; util
+0085    TGETS   16  16  15  ; "printout"
+0086    MOV     17   7
+0087    CALL    16   1   2
+0088    JMP     16 => 0227
+0089 => TGETS   16   0  18  ; "home"
+0090    ISF         16
+0091    JMP     17 => 0097
+0092    UGET    16   5      ; util
+0093    TGETS   16  16  15  ; "printout"
+0094    TGETS   17  12  19  ; "homepage"
+0095    CALL    16   1   2
+0096    JMP     16 => 0227
+0097 => TGETS   16   0  20  ; "rock_license"
+0098    ISF         16
+0099    JMP     17 => 0105
+0100    UGET    16   5      ; util
+0101    TGETS   16  16  15  ; "printout"
+0102    TGETS   17  12  21  ; "license"
+0103    CALL    16   1   2
+0104    JMP     16 => 0227
+0105 => TGETS   16   0  22  ; "issues"
+0106    ISF         16
+0107    JMP     17 => 0113
+0108    UGET    16   5      ; util
+0109    TGETS   16  16  15  ; "printout"
+0110    TGETS   17  12  23  ; "issues_url"
+0111    CALL    16   1   2
+0112    JMP     16 => 0227
+0113 => TGETS   16   0  24  ; "labels"
+0114    ISF         16
+0115    JMP     17 => 0128
+0116    UGET    16   5      ; util
+0117    TGETS   16  16  15  ; "printout"
+0118    TGETS   17  12  24  ; "labels"
+0119    ISF         17
+0120    JMP     18 => 0126
+0121    GGET    17  25      ; "table"
+0122    TGETS   17  17  26  ; "concat"
+0123    TGETS   18  12  24  ; "labels"
+0124    KSTR    19  27      ; "\n"
+0125    CALL    17   2   3
+0126 => CALL    16   1   2
+0127    JMP     16 => 0227
+0128 => TGETS   16   0  28  ; "modules"
+0129    ISF         16
+0130    JMP     17 => 0139
+0131    UGET    16   5      ; util
+0132    TGETS   16  16  15  ; "printout"
+0133    UGET    17   6      ; keys_as_string
+0134    TGETS   18  15  28  ; "modules"
+0135    KSTR    19  27      ; "\n"
+0136    CALL    17   0   3
+0137    CALLM   16   1   0
+0138    JMP     16 => 0227
+0139 => TGETS   16   0  29  ; "deps"
+0140    ISF         16
+0141    JMP     17 => 0155
+0142    GGET    16  30      ; "ipairs"
+0143    TGETS   17  10  31  ; "dependencies"
+0144    CALL    16   4   2
+0145    JMP     19 => 0152
+0146 => UGET    21   5      ; util
+0147    TGETS   21  21  15  ; "printout"
+0148    GGET    22  32      ; "tostring"
+0149    MOV     23  20
+0150    CALL    22   0   2
+0151    CALLM   21   1   0
+0152 => ITERC   19   3   3
+0153    ITERL   19 => 0146
+0154    JMP     16 => 0227
+0155 => TGETS   16   0  33  ; "build_deps"
+0156    ISF         16
+0157    JMP     17 => 0171
+0158    GGET    16  30      ; "ipairs"
+0159    TGETS   17  10  34  ; "build_dependencies"
+0160    CALL    16   4   2
+0161    JMP     19 => 0168
+0162 => UGET    21   5      ; util
+0163    TGETS   21  21  15  ; "printout"
+0164    GGET    22  32      ; "tostring"
+0165    MOV     23  20
+0166    CALL    22   0   2
+0167    CALLM   21   1   0
+0168 => ITERC   19   3   3
+0169    ITERL   19 => 0162
+0170    JMP     16 => 0227
+0171 => TGETS   16   0  35  ; "test_deps"
+0172    ISF         16
+0173    JMP     17 => 0187
+0174    GGET    16  30      ; "ipairs"
+0175    TGETS   17  10  36  ; "test_dependencies"
+0176    CALL    16   4   2
+0177    JMP     19 => 0184
+0178 => UGET    21   5      ; util
+0179    TGETS   21  21  15  ; "printout"
+0180    GGET    22  32      ; "tostring"
+0181    MOV     23  20
+0182    CALL    22   0   2
+0183    CALLM   21   1   0
+0184 => ITERC   19   3   3
+0185    ITERL   19 => 0178
+0186    JMP     16 => 0227
+0187 => TGETS   16   0  37  ; "rockspec"
+0188    ISF         16
+0189    JMP     17 => 0195
+0190    UGET    16   5      ; util
+0191    TGETS   16  16  15  ; "printout"
+0192    MOV     17   9
+0193    CALL    16   1   2
+0194    JMP     16 => 0227
+0195 => TGETS   16   0  38  ; "mversion"
+0196    ISF         16
+0197    JMP     17 => 0203
+0198    UGET    16   5      ; util
+0199    TGETS   16  16  15  ; "printout"
+0200    MOV     17   3
+0201    CALL    16   1   2
+0202    JMP     16 => 0227
+0203 => TGETS   16   0  39  ; "porcelain"
+0204    ISF         16
+0205    JMP     17 => 0217
+0206    UGET    16   7      ; show_rock
+0207    UGET    17   8      ; porcelain_template
+0208    MOV     18   8
+0209    MOV     19   2
+0210    MOV     20   3
+0211    MOV     21  10
+0212    MOV     22   4
+0213    MOV     23  15
+0214    TGETS   24   0   5  ; "tree"
+0215    CALL    16   1   9
+0216    JMP     16 => 0227
+0217 => UGET    16   7      ; show_rock
+0218    UGET    17   9      ; friendly_template
+0219    MOV     18   8
+0220    MOV     19   2
+0221    MOV     20   3
+0222    MOV     21  10
+0223    MOV     22   4
+0224    MOV     23  15
+0225    TGETS   24   0   5  ; "tree"
+0226    CALL    16   1   9
+0227 => KPRI    16   2
+0228    RET1    16   2
+
+-- BYTECODE -- show.lua:0-313
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.queries"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.search"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.core.dir"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.fs"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.core.cfg"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.util"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   7      ; "luarocks.path"
+0022    CALL     7   2   2
+0023    GGET     8   0      ; "require"
+0024    KSTR     9   8      ; "luarocks.fetch"
+0025    CALL     8   2   2
+0026    GGET     9   0      ; "require"
+0027    KSTR    10   9      ; "luarocks.manif"
+0028    CALL     9   2   2
+0029    GGET    10   0      ; "require"
+0030    KSTR    11  10      ; "luarocks.repos"
+0031    CALL    10   2   2
+0032    FNEW    11  12      ; show.lua:16
+0033    TSETS   11   0  11  ; "add_to_parser"
+0034    KSTR    11  13      ; "          :\n?namespace:${namespace}/${p"~
+0035    KSTR    12  14      ; "?namespace:namespace\t${namespace}\n?pac"~
+0036    FNEW    13  15      ; show.lua:97
+0037    FNEW    14  16      ; show.lua:103
+0038    FNEW    15  17      ; show.lua:118
+0039    FNEW    16  18      ; show.lua:127
+0040    FNEW    17  19      ; show.lua:138
+0041    FNEW    18  20      ; show.lua:160
+0042    FNEW    19  21      ; show.lua:168
+0043    FNEW    20  22      ; show.lua:195
+0044    FNEW    21  23      ; show.lua:216
+0045    FNEW    22  24      ; show.lua:224
+0046    FNEW    23  25      ; show.lua:238
+0047    FNEW    24  27      ; show.lua:263
+0048    TSETS   24   0  26  ; "command"
+0049    UCLO     0 => 0050
+0050 => RET1     0   2
+

@@ -1,0 +1,477 @@
+-- BYTECODE -- readerfrontlight.lua:16-70
+0001    UGET     3   0      ; Device
+0002    MOV      4   3
+0003    TGETS    3   3   0  ; "getPowerDevice"
+0004    CALL     3   2   2
+0005    KNIL     4   5
+0006    TGETS    6   1   1  ; "ges"
+0007    ISNES    6   2      ; "two_finger_swipe"
+0008    JMP      6 => 0012
+0009    GGET     6   3      ; "FRONTLIGHT_SENSITIVITY_DECREASE"
+0010    MULVN    5   6   0  ; 0.8
+0011    JMP      6 => 0018
+0012 => TGETS    6   1   1  ; "ges"
+0013    ISNES    6   4      ; "swipe"
+0014    JMP      6 => 0017
+0015    KNUM     5   0      ; 0.8
+0016    JMP      6 => 0018
+0017 => KSHORT   5   1
+0018 => TGETS    6   1   5  ; "direction"
+0019    ISEQS    6   6      ; "south"
+0020    JMP      6 => 0024
+0021    TGETS    6   1   5  ; "direction"
+0022    ISNES    6   7      ; "north"
+0023    JMP      6 => 0030
+0024 => UGET     6   1      ; Screen
+0025    MOV      7   6
+0026    TGETS    6   6   8  ; "getHeight"
+0027    CALL     6   2   2
+0028    MULVV    4   6   5
+0029    JMP      6 => 0057
+0030 => TGETS    6   1   5  ; "direction"
+0031    ISEQS    6   9      ; "west"
+0032    JMP      6 => 0036
+0033    TGETS    6   1   5  ; "direction"
+0034    ISNES    6  10      ; "east"
+0035    JMP      6 => 0042
+0036 => UGET     6   1      ; Screen
+0037    MOV      7   6
+0038    TGETS    6   6  11  ; "getWidth"
+0039    CALL     6   2   2
+0040    MULVV    4   6   5
+0041    JMP      6 => 0057
+0042 => UGET     6   1      ; Screen
+0043    MOV      7   6
+0044    TGETS    6   6  11  ; "getWidth"
+0045    CALL     6   2   2
+0046    UGET     7   1      ; Screen
+0047    MOV      8   7
+0048    TGETS    7   7   8  ; "getHeight"
+0049    CALL     7   2   2
+0050    GGET     8  12      ; "math"
+0051    TGETS    8   8  13  ; "sqrt"
+0052    MULVV    9   6   6
+0053    MULVV   10   7   7
+0054    ADDVV    9   9  10
+0055    CALL     8   2   2
+0056    MULVV    4   8   5
+0057 => TGETS    6   3  14  ; "fl_intensity"
+0058    ISNEP    6   0
+0059    JMP      6 => 0062
+0060    KPRI     6   1
+0061    RET1     6   2
+0062 => TNEW     6   0
+0063    TGETS    7   3  15  ; "fl_max"
+0064    TGETS    8   3  16  ; "fl_min"
+0065    SUBVV    7   7   8
+0066    DIVVN    7   7   1  ; 2
+0067    DIVVN    7   7   2  ; 10.6
+0068    KSHORT   8   1
+0069    TGETS    9   0  17  ; "steps_fl"
+0070    LEN      9   9
+0071    KSHORT  10   1
+0072    FORI     8 => 0081
+0073 => GGET    12  12      ; "math"
+0074    TGETS   12  12  18  ; "ceil"
+0075    TGETS   13   0  17  ; "steps_fl"
+0076    TGETV   13  13  11
+0077    MULVV   13  13   7
+0078    CALL    12   2   2
+0079    TSETV   12   6  11
+0080    FORL     8 => 0073
+0081 => TGETS    8   1  19  ; "distance"
+0082    ISNEP    8   0
+0083    JMP      8 => 0086
+0084    KSHORT   8   1
+0085    TSETS    8   1  19  ; "distance"
+0086 => GGET     8  12      ; "math"
+0087    TGETS    8   8  18  ; "ceil"
+0088    LEN      9   6
+0089    TGETS   10   1  19  ; "distance"
+0090    MULVV    9   9  10
+0091    DIVVV    9   9   4
+0092    CALL     8   2   2
+0093    TGETV    9   6   8
+0094    IST          9
+0095    JMP     10 => 0098
+0096    LEN      9   6
+0097    TGETV    9   6   9
+0098 => ISEQN    2   3      ; -1
+0099    JMP     10 => 0103
+0100    ISEQN    2   4      ; 1
+0101    JMP     10 => 0103
+0102    KSHORT   2   1
+0103 => TGETS   10   3  14  ; "fl_intensity"
+0104    MULVV   11   2   9
+0105    ADDVV   10  10  11
+0106    ISNEP   10   0
+0107    JMP     11 => 0110
+0108    KPRI    11   2
+0109    RET1    11   2
+0110 => KSHORT  11   0
+0111    ISGT    10  11
+0112    JMP     11 => 0117
+0113    MOV     12   3
+0114    TGETS   11   3  20  ; "turnOffFrontlight"
+0115    CALL    11   1   2
+0116    JMP     11 => 0121
+0117 => MOV     12   3
+0118    TGETS   11   3  21  ; "setIntensity"
+0119    MOV     13  10
+0120    CALL    11   1   3
+0121 => MOV     12   0
+0122    TGETS   11   0  22  ; "onShowIntensity"
+0123    CALL    11   1   2
+0124    TGETS   11   0  23  ; "view"
+0125    ISF         11
+0126    JMP     12 => 0142
+0127    TGETS   11   0  23  ; "view"
+0128    TGETS   11  11  24  ; "footer_visible"
+0129    ISF         11
+0130    JMP     12 => 0142
+0131    TGETS   11   0  23  ; "view"
+0132    TGETS   11  11  25  ; "footer"
+0133    TGETS   11  11  26  ; "settings"
+0134    TGETS   11  11  27  ; "frontlight"
+0135    ISF         11
+0136    JMP     12 => 0142
+0137    TGETS   11   0  23  ; "view"
+0138    TGETS   11  11  25  ; "footer"
+0139    MOV     12  11
+0140    TGETS   11  11  28  ; "updateFooter"
+0141    CALL    11   1   2
+0142 => KPRI    11   2
+0143    RET1    11   2
+
+-- BYTECODE -- readerfrontlight.lua:74-135
+0001    UGET     3   0      ; Device
+0002    MOV      4   3
+0003    TGETS    3   3   0  ; "getPowerDevice"
+0004    CALL     3   2   2
+0005    TGETS    4   3   1  ; "fl_warmth"
+0006    ISNEP    4   0
+0007    JMP      4 => 0010
+0008    KPRI     4   1
+0009    RET1     4   2
+0010 => TGETS    4   3   2  ; "auto_warmth"
+0011    ISF          4
+0012    JMP      5 => 0028
+0013    UGET     4   1      ; UIManager
+0014    MOV      5   4
+0015    TGETS    4   4   3  ; "show"
+0016    UGET     6   2      ; Notification
+0017    MOV      7   6
+0018    TGETS    6   6   4  ; "new"
+0019    TDUP     8   6
+0020    UGET     9   3      ; _
+0021    KSTR    10   5      ; "Warmth is handled automatically."
+0022    CALL     9   2   2
+0023    TSETS    9   8   7  ; "text"
+0024    CALL     6   0   3
+0025    CALLM    4   1   1
+0026    KPRI     4   2
+0027    RET1     4   2
+0028 => KNIL     4   5
+0029    TGETS    6   1   8  ; "ges"
+0030    ISNES    6   9      ; "two_finger_swipe"
+0031    JMP      6 => 0035
+0032    GGET     6  10      ; "FRONTLIGHT_SENSITIVITY_DECREASE"
+0033    MULVN    5   6   0  ; 0.8
+0034    JMP      6 => 0041
+0035 => TGETS    6   1   8  ; "ges"
+0036    ISNES    6  11      ; "swipe"
+0037    JMP      6 => 0040
+0038    KNUM     5   0      ; 0.8
+0039    JMP      6 => 0041
+0040 => KSHORT   5   1
+0041 => TGETS    6   1  12  ; "direction"
+0042    ISEQS    6  13      ; "south"
+0043    JMP      6 => 0047
+0044    TGETS    6   1  12  ; "direction"
+0045    ISNES    6  14      ; "north"
+0046    JMP      6 => 0053
+0047 => UGET     6   4      ; Screen
+0048    MOV      7   6
+0049    TGETS    6   6  15  ; "getHeight"
+0050    CALL     6   2   2
+0051    MULVV    4   6   5
+0052    JMP      6 => 0080
+0053 => TGETS    6   1  12  ; "direction"
+0054    ISEQS    6  16      ; "west"
+0055    JMP      6 => 0059
+0056    TGETS    6   1  12  ; "direction"
+0057    ISNES    6  17      ; "east"
+0058    JMP      6 => 0065
+0059 => UGET     6   4      ; Screen
+0060    MOV      7   6
+0061    TGETS    6   6  18  ; "getWidth"
+0062    CALL     6   2   2
+0063    MULVV    4   6   5
+0064    JMP      6 => 0080
+0065 => UGET     6   4      ; Screen
+0066    MOV      7   6
+0067    TGETS    6   6  18  ; "getWidth"
+0068    CALL     6   2   2
+0069    UGET     7   4      ; Screen
+0070    MOV      8   7
+0071    TGETS    7   7  15  ; "getHeight"
+0072    CALL     7   2   2
+0073    GGET     8  19      ; "math"
+0074    TGETS    8   8  20  ; "sqrt"
+0075    MULVV    9   6   6
+0076    MULVV   10   7   7
+0077    ADDVV    9   9  10
+0078    CALL     8   2   2
+0079    MULVV    4   8   5
+0080 => TNEW     6   0
+0081    TGETS    7   3  21  ; "fl_max"
+0082    TGETS    8   3  22  ; "fl_min"
+0083    SUBVV    7   7   8
+0084    DIVVN    7   7   1  ; 2
+0085    DIVVN    7   7   2  ; 10.6
+0086    KSHORT   8   1
+0087    TGETS    9   0  23  ; "steps_fl"
+0088    LEN      9   9
+0089    KSHORT  10   1
+0090    FORI     8 => 0099
+0091 => GGET    12  19      ; "math"
+0092    TGETS   12  12  24  ; "ceil"
+0093    TGETS   13   0  23  ; "steps_fl"
+0094    TGETV   13  13  11
+0095    MULVV   13  13   7
+0096    CALL    12   2   2
+0097    TSETV   12   6  11
+0098    FORL     8 => 0091
+0099 => TGETS    8   1  25  ; "distance"
+0100    ISNEP    8   0
+0101    JMP      8 => 0104
+0102    KSHORT   8   1
+0103    TSETS    8   1  25  ; "distance"
+0104 => GGET     8  19      ; "math"
+0105    TGETS    8   8  24  ; "ceil"
+0106    LEN      9   6
+0107    TGETS   10   1  25  ; "distance"
+0108    MULVV    9   9  10
+0109    DIVVV    9   9   4
+0110    CALL     8   2   2
+0111    TGETV    9   6   8
+0112    IST          9
+0113    JMP     10 => 0116
+0114    LEN      9   6
+0115    TGETV    9   6   9
+0116 => KPRI    10   0
+0117    ISEQN    2   3      ; -1
+0118    JMP     11 => 0122
+0119    ISEQN    2   4      ; 1
+0120    JMP     11 => 0122
+0121    KSHORT   2   1
+0122 => TGETS   11   3   1  ; "fl_warmth"
+0123    MULVV   12   2   9
+0124    ADDVV   10  11  12
+0125    KSHORT  11 100
+0126    ISGE    11  10
+0127    JMP     11 => 0130
+0128    KSHORT  10 100
+0129    JMP     11 => 0134
+0130 => KSHORT  11   0
+0131    ISGE    10  11
+0132    JMP     11 => 0134
+0133    KSHORT  10   0
+0134 => MOV     12   3
+0135    TGETS   11   3  26  ; "setWarmth"
+0136    MOV     13  10
+0137    CALL    11   1   3
+0138    MOV     12   0
+0139    TGETS   11   0  27  ; "onShowWarmth"
+0140    CALL    11   1   2
+0141    KPRI    11   2
+0142    RET1    11   2
+
+-- BYTECODE -- readerfrontlight.lua:138-151
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "getPowerDevice"
+0004    CALL     1   2   2
+0005    KPRI     2   0
+0006    TGETS    3   1   1  ; "is_fl_on"
+0007    ISF          3
+0008    JMP      4 => 0014
+0009    UGET     3   1      ; _
+0010    KSTR     4   2      ; "Frontlight enabled."
+0011    CALL     3   2   2
+0012    MOV      2   3
+0013    JMP      3 => 0018
+0014 => UGET     3   1      ; _
+0015    KSTR     4   3      ; "Frontlight disabled."
+0016    CALL     3   2   2
+0017    MOV      2   3
+0018 => UGET     3   2      ; UIManager
+0019    MOV      4   3
+0020    TGETS    3   3   4  ; "show"
+0021    UGET     5   3      ; Notification
+0022    MOV      6   5
+0023    TGETS    5   5   5  ; "new"
+0024    TDUP     7   6
+0025    TSETS    2   7   7  ; "text"
+0026    CALL     5   0   3
+0027    CALLM    3   1   1
+0028    KPRI     3   2
+0029    RET1     3   2
+
+-- BYTECODE -- readerfrontlight.lua:153-167
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "hasFrontlight"
+0004    CALL     1   2   2
+0005    IST          1
+0006    JMP      1 => 0009
+0007    KPRI     1   2
+0008    RET1     1   2
+0009 => UGET     1   0      ; Device
+0010    MOV      2   1
+0011    TGETS    1   1   1  ; "getPowerDevice"
+0012    CALL     1   2   2
+0013    KPRI     2   0
+0014    MOV      4   1
+0015    TGETS    3   1   2  ; "isFrontlightOff"
+0016    CALL     3   2   2
+0017    ISF          3
+0018    JMP      4 => 0024
+0019    UGET     3   1      ; _
+0020    KSTR     4   3      ; "Frontlight disabled."
+0021    CALL     3   2   2
+0022    MOV      2   3
+0023    JMP      3 => 0033
+0024 => UGET     3   2      ; T
+0025    UGET     4   1      ; _
+0026    KSTR     5   4      ; "Frontlight intensity set to %1."
+0027    CALL     4   2   2
+0028    MOV      6   1
+0029    TGETS    5   1   5  ; "frontlightIntensity"
+0030    CALL     5   0   2
+0031    CALLM    3   2   1
+0032    MOV      2   3
+0033 => UGET     3   3      ; UIManager
+0034    MOV      4   3
+0035    TGETS    3   3   6  ; "show"
+0036    UGET     5   4      ; Notification
+0037    MOV      6   5
+0038    TGETS    5   5   7  ; "new"
+0039    TDUP     7   8
+0040    TSETS    2   7   9  ; "text"
+0041    CALL     5   0   3
+0042    CALLM    3   1   1
+0043    KPRI     3   2
+0044    RET1     3   2
+
+-- BYTECODE -- readerfrontlight.lua:169-178
+0001    UGET     2   0      ; Device
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "getPowerDevice"
+0004    CALL     2   2   2
+0005    TGETS    3   2   1  ; "fl_warmth"
+0006    ISEQP    3   0
+0007    JMP      3 => 0024
+0008    UGET     3   1      ; UIManager
+0009    MOV      4   3
+0010    TGETS    3   3   2  ; "show"
+0011    UGET     5   2      ; Notification
+0012    MOV      6   5
+0013    TGETS    5   5   3  ; "new"
+0014    TDUP     7   5
+0015    UGET     8   3      ; T
+0016    UGET     9   4      ; _
+0017    KSTR    10   4      ; "Warmth set to %1."
+0018    CALL     9   2   2
+0019    TGETS   10   2   1  ; "fl_warmth"
+0020    CALL     8   2   3
+0021    TSETS    8   7   6  ; "text"
+0022    CALL     5   0   3
+0023    CALLM    3   1   1
+0024 => KPRI     3   2
+0025    RET1     3   2
+
+-- BYTECODE -- readerfrontlight.lua:180-185
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "ui/widget/frontlightwidget"
+0003    CALL     1   2   2
+0004    UGET     2   0      ; UIManager
+0005    MOV      3   2
+0006    TGETS    2   2   2  ; "show"
+0007    MOV      5   1
+0008    TGETS    4   1   3  ; "new"
+0009    TDUP     6   5
+0010    UGET     7   1      ; Device
+0011    MOV      8   7
+0012    TGETS    7   7   4  ; "hasLightLevelFallback"
+0013    CALL     7   2   2
+0014    TSETS    7   6   6  ; "use_system_fl"
+0015    CALL     4   0   3
+0016    CALLM    2   1   1
+0017    RET0     0   1
+
+-- BYTECODE -- readerfrontlight.lua:187-190
+0001    TGETS    1   0   0  ; "fl_dialog"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "onClose"
+0004    CALL     1   1   2
+0005    UGET     1   0      ; UIManager
+0006    MOV      2   1
+0007    TGETS    1   1   2  ; "close"
+0008    TGETS    3   0   0  ; "fl_dialog"
+0009    CALL     1   1   3
+0010    RET0     0   1
+
+-- BYTECODE -- readerfrontlight.lua:0-193
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/container/inputcontainer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/notification"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/uimanager"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "device"
+0012    CALL     3   2   2
+0013    TGETS    3   3   5  ; "screen"
+0014    GGET     4   0      ; "require"
+0015    KSTR     5   4      ; "device"
+0016    CALL     4   2   2
+0017    GGET     5   0      ; "require"
+0018    KSTR     6   6      ; "ffi/util"
+0019    CALL     5   2   2
+0020    TGETS    5   5   7  ; "template"
+0021    GGET     6   0      ; "require"
+0022    KSTR     7   8      ; "gettext"
+0023    CALL     6   2   2
+0024    MOV      8   0
+0025    TGETS    7   0   9  ; "new"
+0026    TDUP     9  11
+0027    TDUP    10  10
+0028    TSETS   10   9  12  ; "steps_fl"
+0029    MOV     11   3
+0030    TGETS   10   3  13  ; "getWidth"
+0031    CALL    10   2   2
+0032    GGET    11  14      ; "FRONTLIGHT_SENSITIVITY_DECREASE"
+0033    MULVV   10  10  11
+0034    TSETS   10   9  15  ; "gestureScale"
+0035    CALL     7   2   3
+0036    FNEW     8  17      ; readerfrontlight.lua:16
+0037    TSETS    8   7  16  ; "onChangeFlIntensity"
+0038    FNEW     8  19      ; readerfrontlight.lua:74
+0039    TSETS    8   7  18  ; "onChangeFlWarmth"
+0040    FNEW     8  21      ; readerfrontlight.lua:138
+0041    TSETS    8   7  20  ; "onShowOnOff"
+0042    FNEW     8  23      ; readerfrontlight.lua:153
+0043    TSETS    8   7  22  ; "onShowIntensity"
+0044    FNEW     8  25      ; readerfrontlight.lua:169
+0045    TSETS    8   7  24  ; "onShowWarmth"
+0046    FNEW     8  27      ; readerfrontlight.lua:180
+0047    TSETS    8   7  26  ; "onShowFlDialog"
+0048    FNEW     8  29      ; readerfrontlight.lua:187
+0049    TSETS    8   7  28  ; "close"
+0050    UCLO     0 => 0051
+0051 => RET1     7   2
+

@@ -1,0 +1,594 @@
+
+main <./frontend/ui/widget/footnotewidget.lua:0,0> (136 instructions, 544 bytes at 0x7f9a02c068e0)
+0+ params, 30 slots, 0 upvalues, 24 locals, 51 constants, 6 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "ui/bidi"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "ffi/blitbuffer"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "ui/widget/container/bottomcontainer"
+	9	[3]	CALL     	2 2 2
+	10	[4]	GETGLOBAL	3 -1	; require
+	11	[4]	LOADK    	4 -5	; "ui/widget/container/centercontainer"
+	12	[4]	CALL     	3 2 2
+	13	[5]	GETGLOBAL	4 -1	; require
+	14	[5]	LOADK    	5 -6	; "device"
+	15	[5]	CALL     	4 2 2
+	16	[6]	GETGLOBAL	5 -1	; require
+	17	[6]	LOADK    	6 -7	; "ui/event"
+	18	[6]	CALL     	5 2 2
+	19	[7]	GETGLOBAL	6 -1	; require
+	20	[7]	LOADK    	7 -8	; "ui/widget/container/framecontainer"
+	21	[7]	CALL     	6 2 2
+	22	[8]	GETGLOBAL	7 -1	; require
+	23	[8]	LOADK    	8 -9	; "ui/geometry"
+	24	[8]	CALL     	7 2 2
+	25	[9]	GETGLOBAL	8 -1	; require
+	26	[9]	LOADK    	9 -10	; "ui/gesturerange"
+	27	[9]	CALL     	8 2 2
+	28	[10]	GETGLOBAL	9 -1	; require
+	29	[10]	LOADK    	10 -11	; "ui/widget/horizontalgroup"
+	30	[10]	CALL     	9 2 2
+	31	[11]	GETGLOBAL	10 -1	; require
+	32	[11]	LOADK    	11 -12	; "ui/widget/horizontalspan"
+	33	[11]	CALL     	10 2 2
+	34	[12]	GETGLOBAL	11 -1	; require
+	35	[12]	LOADK    	12 -13	; "ui/widget/container/inputcontainer"
+	36	[12]	CALL     	11 2 2
+	37	[13]	GETGLOBAL	12 -1	; require
+	38	[13]	LOADK    	13 -14	; "ui/widget/linewidget"
+	39	[13]	CALL     	12 2 2
+	40	[14]	GETGLOBAL	13 -1	; require
+	41	[14]	LOADK    	14 -15	; "ui/widget/scrollhtmlwidget"
+	42	[14]	CALL     	13 2 2
+	43	[15]	GETGLOBAL	14 -1	; require
+	44	[15]	LOADK    	15 -16	; "ui/size"
+	45	[15]	CALL     	14 2 2
+	46	[16]	GETGLOBAL	15 -1	; require
+	47	[16]	LOADK    	16 -17	; "ui/uimanager"
+	48	[16]	CALL     	15 2 2
+	49	[17]	GETGLOBAL	16 -1	; require
+	50	[17]	LOADK    	17 -18	; "ui/widget/verticalgroup"
+	51	[17]	CALL     	16 2 2
+	52	[18]	GETGLOBAL	17 -1	; require
+	53	[18]	LOADK    	18 -19	; "ui/widget/verticalspan"
+	54	[18]	CALL     	17 2 2
+	55	[19]	GETGLOBAL	18 -1	; require
+	56	[19]	LOADK    	19 -20	; "gettext"
+	57	[19]	CALL     	18 2 2
+	58	[20]	GETTABLE 	19 4 -21	; "screen"
+	59	[21]	GETGLOBAL	20 -1	; require
+	60	[21]	LOADK    	21 -22	; "ffi/util"
+	61	[21]	CALL     	20 2 2
+	62	[21]	GETTABLE 	20 20 -23	; "template"
+	63	[55]	LOADK    	21 -24	; "@page {\n    margin: %1 %2 %3 %4;\n    font-family: '%5';\n}\n%6\n"
+	64	[111]	LOADK    	22 -25	; "body {\n    margin: 0;                  /* MuPDF: margin: 1em */\n    padding: 0;\n    line-height: 1.3;\n    text-align: justify;\n}\n/* We keep left and right margin the same so it also displays as expected in RTL */\nh1, h2, h3, h4, h5, h6 { margin: 0; } /* MuPDF: margin: XXem 0 , vary with level */\nblockquote { margin: 0 1em; }   /* MuPDF: margin: 1em 40px */\np   { margin: 0; }              /* MuPDF: margin: 1em 0 */\nol  { margin: 0; }              /* MuPDF: margin: 1em 0; padding: 0 0 0 30pt */\nul  { margin: 0; }              /* MuPDF: margin: 1em 0; padding: 0 0 0 30pt */\ndl  { margin: 0; }              /* MuPDF: margin: 1em 0 */\ndd  { margin: 0 1em; }          /* MuPDF: margin: 0 0 0 40px */\npre { margin: 0.5em 0; }        /* MuPDF: margin: 1em 0 */\na   { color: black; }           /* MuPDF: color: #06C; */\n/* MuPDF has no support for text-decoration, so we can't underline links,\n * which is fine as we don't really need to provide link support */\n\n/* MuPDF draws the bullet for a standalone LI outside the margin.\n * Avoid it being displayed if the first node is a LI (in\n * Wikipedia EPUBs, each footnote is a LI */\nbody > li { list-style-type: none; }\n\n/* MuPDF always aligns the last line to the left when text-align: justify,\n * which is wrong with RTL. So cancel justification on RTL elements: they\n * will be correctly aligned to the right */\n*[dir=rtl] { text-align: initial; }\n\n/* Remove any (possibly multiple) backlinks in Wikipedia EPUBs footnotes */\n.noprint { display: none; }\n\n/* Attempt to display FB2 footnotes as expected (as crengine does, putting\n * the footnote number on the same line as the first paragraph via its\n * support of \"display: run-in\" and a possibly added autoBoxing element) */\nbody > section > autoBoxing > *,\nbody > section > autoBoxing > title > *,\nbody > section > title,\nbody > section > title > p,\nbody > section > p {\n    display: inline;\n}\nbody > section > autoBoxing + p,\nbody > section > p + p {\n    display: block;\n}\nbody > section > autoBoxing > title,\nbody > section > title {\n    font-weight: bold;\n}\n"
+	65	[118]	SELF     	23 11 -26	; "new"
+	66	[118]	NEWTABLE 	25 0 9
+	67	[119]	SETTABLE 	25 -27 -28	; "html" nil
+	68	[120]	SETTABLE 	25 -29 -28	; "css" nil
+	69	[122]	SETTABLE 	25 -30 -31	; "font_face" "Noto Sans"
+	70	[125]	SELF     	26 19 -33	; "scaleBySize"
+	71	[125]	LOADK    	28 -34	; 18
+	72	[125]	CALL     	26 3 2
+	73	[125]	SETTABLE 	25 -32 26	; "doc_font_size" -
+	74	[126]	NEWTABLE 	26 0 4
+	75	[127]	SELF     	27 19 -33	; "scaleBySize"
+	76	[127]	LOADK    	29 -37	; 20
+	77	[127]	CALL     	27 3 2
+	78	[127]	SETTABLE 	26 -36 27	; "left" -
+	79	[128]	SELF     	27 19 -33	; "scaleBySize"
+	80	[128]	LOADK    	29 -37	; 20
+	81	[128]	CALL     	27 3 2
+	82	[128]	SETTABLE 	26 -38 27	; "right" -
+	83	[129]	SELF     	27 19 -33	; "scaleBySize"
+	84	[129]	LOADK    	29 -40	; 10
+	85	[129]	CALL     	27 3 2
+	86	[129]	SETTABLE 	26 -39 27	; "top" -
+	87	[130]	SELF     	27 19 -33	; "scaleBySize"
+	88	[130]	LOADK    	29 -40	; 10
+	89	[130]	CALL     	27 3 2
+	90	[130]	SETTABLE 	26 -41 27	; "bottom" -
+	91	[131]	SETTABLE 	25 -35 26	; "doc_margins" -
+	92	[132]	SETTABLE 	25 -42 -28	; "follow_callback" nil
+	93	[133]	SETTABLE 	25 -43 -28	; "on_tap_close_callback" nil
+	94	[134]	SETTABLE 	25 -44 -28	; "close_callback" nil
+	95	[135]	SETTABLE 	25 -45 -28	; "dialog" nil
+	96	[118]	CALL     	23 3 2
+	97	[320]	CLOSURE  	24 0	; 0x7f9a02c077b0
+	98	[320]	MOVE     	0 19
+	99	[320]	MOVE     	0 4
+	100	[320]	MOVE     	0 7
+	101	[320]	MOVE     	0 8
+	102	[320]	MOVE     	0 5
+	103	[320]	MOVE     	0 0
+	104	[320]	MOVE     	0 20
+	105	[320]	MOVE     	0 21
+	106	[320]	MOVE     	0 22
+	107	[320]	MOVE     	0 14
+	108	[320]	MOVE     	0 13
+	109	[320]	MOVE     	0 16
+	110	[320]	MOVE     	0 12
+	111	[320]	MOVE     	0 17
+	112	[320]	MOVE     	0 9
+	113	[320]	MOVE     	0 10
+	114	[320]	MOVE     	0 3
+	115	[320]	MOVE     	0 6
+	116	[320]	MOVE     	0 1
+	117	[320]	MOVE     	0 2
+	118	[138]	SETTABLE 	23 -46 24	; "init" -
+	119	[326]	CLOSURE  	24 1	; 0x7f9a02d047b0
+	120	[326]	MOVE     	0 15
+	121	[322]	SETTABLE 	23 -47 24	; "onShow" -
+	122	[332]	CLOSURE  	24 2	; 0x7f9a02d05430
+	123	[332]	MOVE     	0 15
+	124	[328]	SETTABLE 	23 -48 24	; "onCloseWidget" -
+	125	[340]	CLOSURE  	24 3	; 0x7f9a02d059e0
+	126	[340]	MOVE     	0 15
+	127	[334]	SETTABLE 	23 -49 24	; "onClose" -
+	128	[357]	CLOSURE  	24 4	; 0x7f9a02d05da0
+	129	[357]	MOVE     	0 15
+	130	[342]	SETTABLE 	23 -50 24	; "onTapClose" -
+	131	[389]	CLOSURE  	24 5	; 0x7f9a02d06350
+	132	[389]	MOVE     	0 0
+	133	[389]	MOVE     	0 15
+	134	[359]	SETTABLE 	23 -51 24	; "onSwipeFollow" -
+	135	[391]	RETURN   	23 2
+	136	[391]	RETURN   	0 1
+
+function <./frontend/ui/widget/footnotewidget.lua:138,320> (291 instructions, 1164 bytes at 0x7f9a02c077b0)
+1 param, 26 slots, 20 upvalues, 19 locals, 79 constants, 1 function
+	1	[140]	GETUPVAL 	1 0	; Screen
+	2	[140]	SELF     	1 1 -2	; "getWidth"
+	3	[140]	CALL     	1 2 2
+	4	[140]	SETTABLE 	0 -1 1	; "width" -
+	5	[141]	GETGLOBAL	1 -4	; math
+	6	[141]	GETTABLE 	1 1 -5	; "floor"
+	7	[141]	GETUPVAL 	2 0	; Screen
+	8	[141]	SELF     	2 2 -6	; "getHeight"
+	9	[141]	CALL     	2 2 2
+	10	[141]	MUL      	2 2 -7	; - 1
+	11	[141]	DIV      	2 2 -8	; - 3
+	12	[141]	CALL     	1 2 2
+	13	[141]	SETTABLE 	0 -3 1	; "height" -
+	14	[143]	GETUPVAL 	1 1	; Device
+	15	[143]	SELF     	1 1 -9	; "isTouchDevice"
+	16	[143]	CALL     	1 2 2
+	17	[143]	TEST     	1 0 0
+	18	[143]	JMP      	65	; to 84
+	19	[144]	GETUPVAL 	1 2	; Geom
+	20	[144]	SELF     	1 1 -10	; "new"
+	21	[144]	NEWTABLE 	3 0 4
+	22	[145]	SETTABLE 	3 -11 -12	; "x" 0
+	23	[145]	SETTABLE 	3 -13 -12	; "y" 0
+	24	[146]	GETUPVAL 	4 0	; Screen
+	25	[146]	SELF     	4 4 -2	; "getWidth"
+	26	[146]	CALL     	4 2 2
+	27	[146]	SETTABLE 	3 -14 4	; "w" -
+	28	[147]	GETUPVAL 	4 0	; Screen
+	29	[147]	SELF     	4 4 -6	; "getHeight"
+	30	[147]	CALL     	4 2 2
+	31	[147]	SETTABLE 	3 -15 4	; "h" -
+	32	[144]	CALL     	1 3 2
+	33	[149]	NEWTABLE 	2 0 5
+	34	[150]	NEWTABLE 	3 0 0
+	35	[151]	GETUPVAL 	4 3	; GestureRange
+	36	[151]	SELF     	4 4 -10	; "new"
+	37	[151]	NEWTABLE 	6 0 2
+	38	[152]	SETTABLE 	6 -18 -19	; "ges" "tap"
+	39	[153]	SETTABLE 	6 -20 1	; "range" -
+	40	[151]	CALL     	4 3 0
+	41	[155]	SETLIST  	3 0 1	; 1
+	42	[155]	SETTABLE 	2 -17 3	; "TapClose" -
+	43	[156]	NEWTABLE 	3 0 0
+	44	[157]	GETUPVAL 	4 3	; GestureRange
+	45	[157]	SELF     	4 4 -10	; "new"
+	46	[157]	NEWTABLE 	6 0 2
+	47	[158]	SETTABLE 	6 -18 -22	; "ges" "swipe"
+	48	[159]	SETTABLE 	6 -20 1	; "range" -
+	49	[157]	CALL     	4 3 0
+	50	[161]	SETLIST  	3 0 1	; 1
+	51	[161]	SETTABLE 	2 -21 3	; "SwipeFollow" -
+	52	[162]	NEWTABLE 	3 0 0
+	53	[163]	GETUPVAL 	4 3	; GestureRange
+	54	[163]	SELF     	4 4 -10	; "new"
+	55	[163]	NEWTABLE 	6 0 2
+	56	[164]	SETTABLE 	6 -18 -24	; "ges" "hold"
+	57	[165]	SETTABLE 	6 -20 1	; "range" -
+	58	[163]	CALL     	4 3 0
+	59	[167]	SETLIST  	3 0 1	; 1
+	60	[167]	SETTABLE 	2 -23 3	; "HoldStartText" -
+	61	[168]	NEWTABLE 	3 0 0
+	62	[169]	GETUPVAL 	4 3	; GestureRange
+	63	[169]	SELF     	4 4 -10	; "new"
+	64	[169]	NEWTABLE 	6 0 2
+	65	[170]	SETTABLE 	6 -18 -24	; "ges" "hold"
+	66	[171]	SETTABLE 	6 -20 1	; "range" -
+	67	[169]	CALL     	4 3 0
+	68	[173]	SETLIST  	3 0 1	; 1
+	69	[173]	SETTABLE 	2 -25 3	; "HoldPanText" -
+	70	[174]	NEWTABLE 	3 1 1
+	71	[175]	GETUPVAL 	4 3	; GestureRange
+	72	[175]	SELF     	4 4 -10	; "new"
+	73	[175]	NEWTABLE 	6 0 2
+	74	[176]	SETTABLE 	6 -18 -27	; "ges" "hold_release"
+	75	[177]	SETTABLE 	6 -20 1	; "range" -
+	76	[175]	CALL     	4 3 2
+	77	[187]	CLOSURE  	5 0	; 0x7f9a02c07370
+	78	[187]	MOVE     	0 0
+	79	[187]	GETUPVAL 	0 4	; Event
+	80	[187]	SETTABLE 	3 -28 5	; "args" -
+	81	[188]	SETLIST  	3 1 1	; 1
+	82	[188]	SETTABLE 	2 -26 3	; "HoldReleaseText" -
+	83	[189]	SETTABLE 	0 -16 2	; "ges_events" -
+	84	[191]	GETUPVAL 	1 1	; Device
+	85	[191]	SELF     	1 1 -29	; "hasKeys"
+	86	[191]	CALL     	1 2 2
+	87	[191]	TEST     	1 0 0
+	88	[191]	JMP      	9	; to 98
+	89	[192]	NEWTABLE 	1 0 1
+	90	[193]	NEWTABLE 	2 1 1
+	91	[193]	NEWTABLE 	3 1 0
+	92	[193]	LOADK    	4 -32	; "Back"
+	93	[193]	SETLIST  	3 1 1	; 1
+	94	[193]	SETTABLE 	2 -33 -34	; "doc" "cancel"
+	95	[193]	SETLIST  	2 1 1	; 1
+	96	[193]	SETTABLE 	1 -31 2	; "Close" -
+	97	[194]	SETTABLE 	0 -30 1	; "key_events" -
+	98	[202]	GETTABLE 	1 0 -35	; "html"
+	99	[202]	SELF     	1 1 -36	; "gsub"
+	100	[202]	LOADK    	3 -37	; "<br[^>]*>"
+	101	[202]	LOADK    	4 -38	; "<br/>"
+	102	[202]	CALL     	1 4 2
+	103	[202]	SETTABLE 	0 -35 1	; "html" -
+	104	[207]	GETTABLE 	1 0 -35	; "html"
+	105	[207]	SELF     	1 1 -36	; "gsub"
+	106	[207]	LOADK    	3 -39	; "(<[^>]* )[iI][dD]="
+	107	[207]	LOADK    	4 -40	; "%1disabledID="
+	108	[207]	CALL     	1 4 2
+	109	[207]	SETTABLE 	0 -35 1	; "html" -
+	110	[212]	GETTABLE 	1 0 -41	; "doc_font_size"
+	111	[212]	GETGLOBAL	2 -42	; G_reader_settings
+	112	[212]	SELF     	2 2 -43	; "readSetting"
+	113	[212]	LOADK    	4 -44	; "footnote_popup_relative_font_size"
+	114	[212]	CALL     	2 3 2
+	115	[212]	TEST     	2 0 1
+	116	[212]	JMP      	1	; to 118
+	117	[212]	LOADK    	2 -45	; -2
+	118	[212]	ADD      	1 1 2
+	119	[221]	GETTABLE 	2 0 -46	; "doc_margins"
+	120	[221]	GETTABLE 	2 2 -47	; "left"
+	121	[221]	LOADK    	3 -48	; "px"
+	122	[221]	CONCAT   	2 2 3
+	123	[222]	LOADK    	3 -49	; "0"
+	124	[223]	GETUPVAL 	4 5	; BD
+	125	[223]	GETTABLE 	4 4 -50	; "mirroredUILayout"
+	126	[223]	CALL     	4 1 2
+	127	[223]	TEST     	4 0 0
+	128	[223]	JMP      	3	; to 132
+	129	[224]	MOVE     	4 3
+	130	[224]	MOVE     	3 2
+	131	[224]	MOVE     	2 4
+	132	[226]	GETUPVAL 	4 6	; T
+	133	[226]	GETUPVAL 	5 7	; PAGE_CSS
+	134	[226]	LOADK    	6 -49	; "0"
+	135	[226]	MOVE     	7 3
+	136	[226]	LOADK    	8 -49	; "0"
+	137	[226]	MOVE     	9 2
+	138	[227]	GETTABLE 	10 0 -51	; "font_face"
+	139	[227]	GETUPVAL 	11 8	; DEFAULT_CSS
+	140	[226]	CALL     	4 8 2
+	141	[228]	GETTABLE 	5 0 -52	; "css"
+	142	[228]	TEST     	5 0 0
+	143	[228]	JMP      	4	; to 148
+	144	[229]	MOVE     	5 4
+	145	[229]	LOADK    	6 -53	; "\n"
+	146	[229]	GETTABLE 	7 0 -52	; "css"
+	147	[229]	CONCAT   	4 5 7
+	148	[238]	GETGLOBAL	5 -4	; math
+	149	[238]	GETTABLE 	5 5 -54	; "min"
+	150	[238]	GETGLOBAL	6 -4	; math
+	151	[238]	GETTABLE 	6 6 -55	; "ceil"
+	152	[238]	GETTABLE 	7 0 -46	; "doc_margins"
+	153	[238]	GETTABLE 	7 7 -56	; "right"
+	154	[238]	MUL      	7 7 -57	; - 2
+	155	[238]	DIV      	7 7 -58	; - 5
+	156	[238]	CALL     	6 2 2
+	157	[238]	GETUPVAL 	7 0	; Screen
+	158	[238]	SELF     	7 7 -59	; "scaleBySize"
+	159	[238]	LOADK    	9 -60	; 10
+	160	[238]	CALL     	7 3 0
+	161	[238]	CALL     	5 0 2
+	162	[239]	MOVE     	6 5
+	163	[240]	MOVE     	7 5
+	164	[241]	GETTABLE 	8 0 -46	; "doc_margins"
+	165	[241]	GETTABLE 	8 8 -56	; "right"
+	166	[241]	SUB      	8 8 6
+	167	[241]	SUB      	8 8 7
+	168	[242]	LT       	0 8 7
+	169	[242]	JMP      	3	; to 173
+	170	[245]	MOVE     	9 7
+	171	[245]	MOVE     	7 8
+	172	[245]	MOVE     	8 9
+	173	[247]	GETTABLE 	9 0 -1	; "width"
+	174	[247]	SUB      	9 9 7
+	175	[254]	GETUPVAL 	10 9	; Size
+	176	[254]	GETTABLE 	10 10 -61	; "padding"
+	177	[254]	GETTABLE 	10 10 -62	; "large"
+	178	[255]	GETUPVAL 	11 9	; Size
+	179	[255]	GETTABLE 	11 11 -61	; "padding"
+	180	[255]	GETTABLE 	11 11 -62	; "large"
+	181	[256]	GETTABLE 	12 0 -3	; "height"
+	182	[256]	SUB      	12 12 10
+	183	[256]	SUB      	12 12 11
+	184	[258]	GETUPVAL 	13 10	; ScrollHtmlWidget
+	185	[258]	SELF     	13 13 -10	; "new"
+	186	[258]	NEWTABLE 	15 0 8
+	187	[259]	GETTABLE 	16 0 -35	; "html"
+	188	[259]	SETTABLE 	15 -64 16	; "html_body" -
+	189	[260]	SETTABLE 	15 -52 4	; "css" -
+	190	[261]	SETTABLE 	15 -65 1	; "default_font_size" -
+	191	[262]	SETTABLE 	15 -1 9	; "width" -
+	192	[263]	SETTABLE 	15 -3 12	; "height" -
+	193	[264]	SETTABLE 	15 -66 6	; "scroll_bar_width" -
+	194	[265]	SETTABLE 	15 -67 8	; "text_scroll_span" -
+	195	[266]	GETTABLE 	16 0 -68	; "dialog"
+	196	[266]	SETTABLE 	15 -68 16	; "dialog" -
+	197	[258]	CALL     	13 3 2
+	198	[267]	SETTABLE 	0 -63 13	; "htmlwidget" -
+	199	[270]	GETUPVAL 	13 9	; Size
+	200	[270]	GETTABLE 	13 13 -69	; "line"
+	201	[270]	GETTABLE 	13 13 -70	; "thick"
+	202	[271]	GETUPVAL 	14 11	; VerticalGroup
+	203	[271]	SELF     	14 14 -10	; "new"
+	204	[271]	NEWTABLE 	16 3 0
+	205	[272]	GETUPVAL 	17 12	; LineWidget
+	206	[272]	SELF     	17 17 -10	; "new"
+	207	[272]	NEWTABLE 	19 0 1
+	208	[273]	GETUPVAL 	20 2	; Geom
+	209	[273]	SELF     	20 20 -10	; "new"
+	210	[273]	NEWTABLE 	22 0 2
+	211	[274]	GETTABLE 	23 0 -1	; "width"
+	212	[274]	SETTABLE 	22 -14 23	; "w" -
+	213	[275]	SETTABLE 	22 -15 13	; "h" -
+	214	[273]	CALL     	20 3 2
+	215	[276]	SETTABLE 	19 -71 20	; "dimen" -
+	216	[272]	CALL     	17 3 2
+	217	[278]	GETUPVAL 	18 13	; VerticalSpan
+	218	[278]	SELF     	18 18 -10	; "new"
+	219	[278]	NEWTABLE 	20 0 1
+	220	[278]	SETTABLE 	20 -1 10	; "width" -
+	221	[278]	CALL     	18 3 2
+	222	[279]	GETUPVAL 	19 14	; HorizontalGroup
+	223	[279]	SELF     	19 19 -10	; "new"
+	224	[279]	NEWTABLE 	21 1 0
+	225	[280]	GETTABLE 	22 0 -63	; "htmlwidget"
+	226	[281]	GETUPVAL 	23 15	; HorizontalSpan
+	227	[281]	SELF     	23 23 -10	; "new"
+	228	[281]	NEWTABLE 	25 0 1
+	229	[281]	SETTABLE 	25 -1 7	; "width" -
+	230	[281]	CALL     	23 3 0
+	231	[282]	SETLIST  	21 0 1	; 1
+	232	[279]	CALL     	19 3 2
+	233	[283]	GETUPVAL 	20 13	; VerticalSpan
+	234	[283]	SELF     	20 20 -10	; "new"
+	235	[283]	NEWTABLE 	22 0 1
+	236	[283]	SETTABLE 	22 -1 11	; "width" -
+	237	[283]	CALL     	20 3 0
+	238	[284]	SETLIST  	16 0 1	; 1
+	239	[271]	CALL     	14 3 2
+	240	[289]	GETTABLE 	15 0 -63	; "htmlwidget"
+	241	[289]	SELF     	15 15 -72	; "getSinglePageHeight"
+	242	[289]	CALL     	15 2 2
+	243	[290]	TEST     	15 0 0
+	244	[290]	JMP      	22	; to 267
+	245	[291]	LOADK    	16 -12	; 0
+	246	[295]	ADD      	17 15 13
+	247	[295]	ADD      	17 17 10
+	248	[295]	ADD      	17 17 11
+	249	[295]	ADD      	17 17 16
+	250	[296]	GETUPVAL 	18 16	; CenterContainer
+	251	[296]	SELF     	18 18 -10	; "new"
+	252	[296]	NEWTABLE 	20 1 2
+	253	[297]	GETUPVAL 	21 2	; Geom
+	254	[297]	SELF     	21 21 -10	; "new"
+	255	[297]	NEWTABLE 	23 0 2
+	256	[298]	SETTABLE 	23 -15 17	; "h" -
+	257	[299]	GETTABLE 	24 0 -1	; "width"
+	258	[299]	SETTABLE 	23 -14 24	; "w" -
+	259	[297]	CALL     	21 3 2
+	260	[300]	SETTABLE 	20 -71 21	; "dimen" -
+	261	[301]	SETTABLE 	20 -73 -3	; "ignore" "height"
+	262	[303]	MOVE     	21 14
+	263	[303]	SETLIST  	20 1 1	; 1
+	264	[296]	CALL     	18 3 2
+	265	[303]	MOVE     	14 18
+	266	[304]	SETTABLE 	0 -3 17	; "height" -
+	267	[308]	GETUPVAL 	16 17	; FrameContainer
+	268	[308]	SELF     	16 16 -10	; "new"
+	269	[308]	NEWTABLE 	18 1 4
+	270	[309]	GETUPVAL 	19 18	; Blitbuffer
+	271	[309]	GETTABLE 	19 19 -76	; "COLOR_WHITE"
+	272	[309]	SETTABLE 	18 -75 19	; "background" -
+	273	[310]	SETTABLE 	18 -77 -12	; "bordersize" 0
+	274	[311]	SETTABLE 	18 -78 -12	; "margin" 0
+	275	[312]	SETTABLE 	18 -61 -12	; "padding" 0
+	276	[314]	MOVE     	19 14
+	277	[314]	SETLIST  	18 1 1	; 1
+	278	[308]	CALL     	16 3 2
+	279	[314]	SETTABLE 	0 -74 16	; "container" -
+	280	[316]	GETUPVAL 	16 19	; BottomContainer
+	281	[316]	SELF     	16 16 -10	; "new"
+	282	[316]	NEWTABLE 	18 1 1
+	283	[317]	GETUPVAL 	19 0	; Screen
+	284	[317]	SELF     	19 19 -79	; "getSize"
+	285	[317]	CALL     	19 2 2
+	286	[317]	SETTABLE 	18 -71 19	; "dimen" -
+	287	[319]	GETTABLE 	19 0 -74	; "container"
+	288	[319]	SETLIST  	18 1 1	; 1
+	289	[316]	CALL     	16 3 2
+	290	[319]	SETTABLE 	0 -7 16	; 1 -
+	291	[320]	RETURN   	0 1
+
+function <./frontend/ui/widget/footnotewidget.lua:180,187> (20 instructions, 80 bytes at 0x7f9a02c07370)
+2 params, 9 slots, 2 upvalues, 3 locals, 6 constants, 0 functions
+	1	[181]	GETUPVAL 	2 0	; self
+	2	[181]	GETTABLE 	2 2 -1	; "dialog"
+	3	[181]	TEST     	2 0 0
+	4	[181]	JMP      	15	; to 20
+	5	[182]	LT       	0 1 -2	; - 3
+	6	[182]	JMP      	3	; to 10
+	7	[182]	LOADK    	2 -3	; "LookupWord"
+	8	[182]	TEST     	2 0 1
+	9	[182]	JMP      	1	; to 11
+	10	[182]	LOADK    	2 -4	; "LookupWikipedia"
+	11	[183]	GETUPVAL 	3 0	; self
+	12	[183]	GETTABLE 	3 3 -1	; "dialog"
+	13	[183]	SELF     	3 3 -5	; "handleEvent"
+	14	[184]	GETUPVAL 	5 1	; Event
+	15	[184]	SELF     	5 5 -6	; "new"
+	16	[184]	MOVE     	7 2
+	17	[184]	MOVE     	8 0
+	18	[184]	CALL     	5 4 0
+	19	[183]	CALL     	3 0 1
+	20	[187]	RETURN   	0 1
+
+function <./frontend/ui/widget/footnotewidget.lua:322,326> (7 instructions, 28 bytes at 0x7f9a02d047b0)
+1 param, 5 slots, 1 upvalue, 1 local, 2 constants, 1 function
+	1	[323]	GETUPVAL 	1 0	; UIManager
+	2	[323]	SELF     	1 1 -1	; "setDirty"
+	3	[323]	GETTABLE 	3 0 -2	; "dialog"
+	4	[325]	CLOSURE  	4 0	; 0x7f9a02d05340
+	5	[325]	MOVE     	0 0
+	6	[323]	CALL     	1 4 1
+	7	[326]	RETURN   	0 1
+
+function <./frontend/ui/widget/footnotewidget.lua:323,325> (6 instructions, 24 bytes at 0x7f9a02d05340)
+0 params, 2 slots, 1 upvalue, 0 locals, 3 constants, 0 functions
+	1	[324]	LOADK    	0 -1	; "ui"
+	2	[324]	GETUPVAL 	1 0	; self
+	3	[324]	GETTABLE 	1 1 -2	; "container"
+	4	[324]	GETTABLE 	1 1 -3	; "dimen"
+	5	[324]	RETURN   	0 3
+	6	[325]	RETURN   	0 1
+
+function <./frontend/ui/widget/footnotewidget.lua:328,332> (7 instructions, 28 bytes at 0x7f9a02d05430)
+1 param, 5 slots, 1 upvalue, 1 local, 2 constants, 1 function
+	1	[329]	GETUPVAL 	1 0	; UIManager
+	2	[329]	SELF     	1 1 -1	; "setDirty"
+	3	[329]	GETTABLE 	3 0 -2	; "dialog"
+	4	[331]	CLOSURE  	4 0	; 0x7f9a02d05920
+	5	[331]	MOVE     	0 0
+	6	[329]	CALL     	1 4 1
+	7	[332]	RETURN   	0 1
+
+function <./frontend/ui/widget/footnotewidget.lua:329,331> (6 instructions, 24 bytes at 0x7f9a02d05920)
+0 params, 2 slots, 1 upvalue, 0 locals, 3 constants, 0 functions
+	1	[330]	LOADK    	0 -1	; "partial"
+	2	[330]	GETUPVAL 	1 0	; self
+	3	[330]	GETTABLE 	1 1 -2	; "container"
+	4	[330]	GETTABLE 	1 1 -3	; "dimen"
+	5	[330]	RETURN   	0 3
+	6	[331]	RETURN   	0 1
+
+function <./frontend/ui/widget/footnotewidget.lua:334,340> (13 instructions, 52 bytes at 0x7f9a02d059e0)
+1 param, 4 slots, 1 upvalue, 1 local, 3 constants, 0 functions
+	1	[335]	GETUPVAL 	1 0	; UIManager
+	2	[335]	SELF     	1 1 -1	; "close"
+	3	[335]	MOVE     	3 0
+	4	[335]	CALL     	1 3 1
+	5	[336]	GETTABLE 	1 0 -2	; "close_callback"
+	6	[336]	TEST     	1 0 0
+	7	[336]	JMP      	3	; to 11
+	8	[337]	GETTABLE 	1 0 -2	; "close_callback"
+	9	[337]	GETTABLE 	2 0 -3	; "height"
+	10	[337]	CALL     	1 2 1
+	11	[339]	LOADBOOL 	1 1 0
+	12	[339]	RETURN   	1 2
+	13	[340]	RETURN   	0 1
+
+function <./frontend/ui/widget/footnotewidget.lua:342,357> (31 instructions, 124 bytes at 0x7f9a02d05da0)
+3 params, 7 slots, 1 upvalue, 3 locals, 8 constants, 0 functions
+	1	[343]	GETTABLE 	3 2 -1	; "pos"
+	2	[343]	SELF     	3 3 -2	; "notIntersectWith"
+	3	[343]	GETTABLE 	5 0 -3	; "container"
+	4	[343]	GETTABLE 	5 5 -4	; "dimen"
+	5	[343]	CALL     	3 3 2
+	6	[343]	TEST     	3 0 0
+	7	[343]	JMP      	21	; to 29
+	8	[344]	GETUPVAL 	3 0	; UIManager
+	9	[344]	SELF     	3 3 -5	; "close"
+	10	[344]	MOVE     	5 0
+	11	[344]	CALL     	3 3 1
+	12	[349]	GETTABLE 	3 0 -6	; "on_tap_close_callback"
+	13	[349]	TEST     	3 0 0
+	14	[349]	JMP      	6	; to 21
+	15	[350]	GETTABLE 	3 0 -6	; "on_tap_close_callback"
+	16	[350]	MOVE     	4 1
+	17	[350]	MOVE     	5 2
+	18	[350]	GETTABLE 	6 0 -7	; "height"
+	19	[350]	CALL     	3 4 1
+	20	[350]	JMP      	6	; to 27
+	21	[351]	GETTABLE 	3 0 -8	; "close_callback"
+	22	[351]	TEST     	3 0 0
+	23	[351]	JMP      	3	; to 27
+	24	[352]	GETTABLE 	3 0 -8	; "close_callback"
+	25	[352]	GETTABLE 	4 0 -7	; "height"
+	26	[352]	CALL     	3 2 1
+	27	[354]	LOADBOOL 	3 1 0
+	28	[354]	RETURN   	3 2
+	29	[356]	LOADBOOL 	3 0 0
+	30	[356]	RETURN   	3 2
+	31	[357]	RETURN   	0 1
+
+function <./frontend/ui/widget/footnotewidget.lua:359,389> (47 instructions, 188 bytes at 0x7f9a02d06350)
+3 params, 8 slots, 2 upvalues, 4 locals, 12 constants, 0 functions
+	1	[360]	GETUPVAL 	3 0	; BD
+	2	[360]	GETTABLE 	3 3 -1	; "flipDirectionIfMirroredUILayout"
+	3	[360]	GETTABLE 	4 2 -2	; "direction"
+	4	[360]	CALL     	3 2 2
+	5	[361]	EQ       	0 3 -3	; - "west"
+	6	[361]	JMP      	13	; to 20
+	7	[362]	GETTABLE 	4 0 -4	; "follow_callback"
+	8	[362]	TEST     	4 0 0
+	9	[362]	JMP      	35	; to 45
+	10	[363]	GETTABLE 	4 0 -5	; "close_callback"
+	11	[363]	TEST     	4 0 0
+	12	[363]	JMP      	3	; to 16
+	13	[364]	GETTABLE 	4 0 -5	; "close_callback"
+	14	[364]	GETTABLE 	5 0 -6	; "height"
+	15	[364]	CALL     	4 2 1
+	16	[366]	GETTABLE 	4 0 -4	; "follow_callback"
+	17	[366]	TAILCALL 	4 1 0
+	18	[366]	RETURN   	4 0
+	19	[367]	JMP      	25	; to 45
+	20	[368]	EQ       	1 3 -7	; - "south"
+	21	[368]	JMP      	2	; to 24
+	22	[368]	EQ       	0 3 -8	; - "east"
+	23	[368]	JMP      	13	; to 37
+	24	[369]	GETUPVAL 	4 1	; UIManager
+	25	[369]	SELF     	4 4 -9	; "close"
+	26	[369]	MOVE     	6 0
+	27	[369]	CALL     	4 3 1
+	28	[375]	GETTABLE 	4 0 -5	; "close_callback"
+	29	[375]	TEST     	4 0 0
+	30	[375]	JMP      	3	; to 34
+	31	[376]	GETTABLE 	4 0 -5	; "close_callback"
+	32	[376]	GETTABLE 	5 0 -6	; "height"
+	33	[376]	CALL     	4 2 1
+	34	[378]	LOADBOOL 	4 1 0
+	35	[378]	RETURN   	4 2
+	36	[378]	JMP      	8	; to 45
+	37	[379]	EQ       	0 3 -10	; - "north"
+	38	[379]	JMP      	1	; to 40
+	39	[381]	JMP      	5	; to 45
+	40	[384]	GETUPVAL 	4 1	; UIManager
+	41	[384]	SELF     	4 4 -11	; "setDirty"
+	42	[384]	LOADNIL  	6 6
+	43	[384]	LOADK    	7 -12	; "full"
+	44	[384]	CALL     	4 4 1
+	45	[388]	LOADBOOL 	4 0 0
+	46	[388]	RETURN   	4 2
+	47	[389]	RETURN   	0 1

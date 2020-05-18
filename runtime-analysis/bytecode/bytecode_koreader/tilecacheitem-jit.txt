@@ -1,0 +1,102 @@
+-- BYTECODE -- tilecacheitem.lua:8-13
+0001    TGETS    1   0   0  ; "bb"
+0002    TGETS    1   1   1  ; "free"
+0003    ISF          1
+0004    JMP      2 => 0014
+0005    UGET     1   0      ; logger
+0006    TGETS    1   1   2  ; "dbg"
+0007    KSTR     2   3      ; "free blitbuffer"
+0008    TGETS    3   0   0  ; "bb"
+0009    CALL     1   1   3
+0010    TGETS    1   0   0  ; "bb"
+0011    MOV      2   1
+0012    TGETS    1   1   1  ; "free"
+0013    CALL     1   1   2
+0014 => RET0     0   1
+
+-- BYTECODE -- tilecacheitem.lua:15-20
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "dumping tile cache to"
+0004    MOV      4   1
+0005    TGETS    5   0   2  ; "excerpt"
+0006    CALL     2   1   4
+0007    UGET     2   1      ; serial
+0008    TGETS    2   2   3  ; "dump"
+0009    TGETS    3   0   4  ; "size"
+0010    TGETS    4   0   2  ; "excerpt"
+0011    TGETS    5   0   5  ; "pageno"
+0012    TGETS    6   0   6  ; "bb"
+0013    TGETS    6   6   7  ; "w"
+0014    TGETS    7   0   6  ; "bb"
+0015    TGETS    7   7   8  ; "h"
+0016    TGETS    8   0   6  ; "bb"
+0017    TGETS    8   8   9  ; "pitch"
+0018    TGETS    9   0   6  ; "bb"
+0019    MOV     10   9
+0020    TGETS    9   9  10  ; "getType"
+0021    CALL     9   2   2
+0022    UGET    10   2      ; Blitbuffer
+0023    TGETS   10  10  11  ; "tostring"
+0024    TGETS   11   0   6  ; "bb"
+0025    CALL    10   2   2
+0026    MOV     11   1
+0027    CALLT    2  10
+
+-- BYTECODE -- tilecacheitem.lua:22-28
+0001    KNIL     2   6
+0002    UGET     7   0      ; serial
+0003    TGETS    7   7   3  ; "load"
+0004    MOV      8   1
+0005    CALL     7   9   2
+0006    MOV      6  14
+0007    MOV      5  13
+0008    MOV      4  12
+0009    MOV      3  11
+0010    MOV      2  10
+0011    TSETS    9   0   2  ; "pageno"
+0012    TSETS    8   0   1  ; "excerpt"
+0013    TSETS    7   0   0  ; "size"
+0014    UGET     7   1      ; Blitbuffer
+0015    TGETS    7   7   5  ; "fromstring"
+0016    MOV      8   2
+0017    MOV      9   3
+0018    MOV     10   5
+0019    MOV     11   6
+0020    MOV     12   4
+0021    CALL     7   2   6
+0022    TSETS    7   0   4  ; "bb"
+0023    UGET     7   2      ; logger
+0024    TGETS    7   7   6  ; "dbg"
+0025    KSTR     8   7      ; "loading tile cache from"
+0026    MOV      9   1
+0027    MOV     10   0
+0028    CALL     7   1   4
+0029    RET0     0   1
+
+-- BYTECODE -- tilecacheitem.lua:0-31
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/blitbuffer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "cacheitem"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "serialize"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "logger"
+0012    CALL     3   2   2
+0013    MOV      5   1
+0014    TGETS    4   1   5  ; "new"
+0015    TNEW     6   0
+0016    CALL     4   2   3
+0017    FNEW     5   7      ; tilecacheitem.lua:8
+0018    TSETS    5   4   6  ; "onFree"
+0019    FNEW     5   9      ; tilecacheitem.lua:15
+0020    TSETS    5   4   8  ; "dump"
+0021    FNEW     5  11      ; tilecacheitem.lua:22
+0022    TSETS    5   4  10  ; "load"
+0023    UCLO     0 => 0024
+0024 => RET1     4   2
+

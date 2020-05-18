@@ -1,0 +1,464 @@
+-- BYTECODE -- KOSyncClient.lua:9-15
+0001    ISNEP    1   0
+0002    JMP      2 => 0004
+0003    TNEW     1   0
+0004 => GGET     2   0      ; "setmetatable"
+0005    MOV      3   1
+0006    MOV      4   0
+0007    CALL     2   1   3
+0008    TSETS    0   0   1  ; "__index"
+0009    TGETS    2   1   2  ; "init"
+0010    ISF          2
+0011    JMP      3 => 0015
+0012    MOV      3   1
+0013    TGETS    2   1   2  ; "init"
+0014    CALL     2   1   2
+0015 => RET1     1   2
+
+-- BYTECODE -- KOSyncClient.lua:24-26
+0001    TGETS    2   1   0  ; "headers"
+0002    KSTR     3   2      ; "application/vnd.koreader.v1+json"
+0003    TSETS    3   2   1  ; "accept"
+0004    RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:28-31
+0001    TGETS    2   1   0  ; "headers"
+0002    TGETS    3   0   2  ; "username"
+0003    TSETS    3   2   1  ; "x-auth-user"
+0004    TGETS    2   1   0  ; "headers"
+0005    TGETS    3   0   4  ; "userkey"
+0006    TSETS    3   2   3  ; "x-auth-key"
+0007    RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:42-48
+0001    GGET     1   0      ; "pairs"
+0002    UGET     2   0      ; req
+0003    TGETS    2   2   1  ; "headers"
+0004    CALL     1   4   2
+0005    ISNEXT   4 => 0016
+0006 => GGET     6   2      ; "type"
+0007    MOV      7   4
+0008    CALL     6   2   2
+0009    ISNES    6   3      ; "string"
+0010    JMP      6 => 0016
+0011    MOV      7   0
+0012    TGETS    6   0   4  ; "add"
+0013    MOV      8   4
+0014    MOV      9   5
+0015    CALL     6   1   4
+0016 => ITERN    4   3   3
+0017    ITERL    4 => 0006
+0018    RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:49-55
+0001    USETV    0   0      ; result
+0002    UGET     1   0      ; result
+0003    TGETS    2   0   1  ; "code"
+0004    TSETS    2   1   0  ; "status"
+0005    GGET     1   2      ; "coroutine"
+0006    TGETS    1   1   3  ; "resume"
+0007    UGET     2   1      ; args
+0008    TGETS    2   2   4  ; "thread"
+0009    CALL     1   1   2
+0010    RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:56-56
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "yield"
+0003    UGET     1   0      ; result
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:33-57
+0001    UGET     2   0      ; UIManager
+0002    TGETS    2   2   0  ; "looper"
+0003    IST          2
+0004    JMP      2 => 0006
+0005    UCLO     0 => 0036
+0006 => MOV      3   1
+0007    TGETS    2   1   1  ; "finalize"
+0008    CALL     2   1   2
+0009    KPRI     2   0
+0010    GGET     3   2      ; "require"
+0011    KSTR     4   3      ; "httpclient"
+0012    CALL     3   2   2
+0013    MOV      4   3
+0014    TGETS    3   3   4  ; "new"
+0015    CALL     3   2   2
+0016    MOV      4   3
+0017    TGETS    3   3   5  ; "request"
+0018    TDUP     5   7
+0019    TGETS    6   1   6  ; "url"
+0020    TSETS    6   5   6  ; "url"
+0021    TGETS    6   1   8  ; "method"
+0022    TSETS    6   5   8  ; "method"
+0023    TGETS    6   1   9  ; "env"
+0024    TGETS    6   6  10  ; "spore"
+0025    TGETS    6   6  11  ; "payload"
+0026    TSETS    6   5  12  ; "body"
+0027    FNEW     6  13      ; KOSyncClient.lua:42
+0028    TSETS    6   5  14  ; "on_headers"
+0029    FNEW     6  15      ; KOSyncClient.lua:49
+0030    CALL     3   1   4
+0031    GGET     3  16      ; "coroutine"
+0032    TGETS    3   3  17  ; "create"
+0033    FNEW     4  18      ; KOSyncClient.lua:56
+0034    UCLO     0 => 0035
+0035 => CALLT    3   2
+0036 => RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:17-58
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "socket.http"
+0003    CALL     1   2   2
+0004    KSHORT   2   1
+0005    TSETS    2   1   2  ; "TIMEOUT"
+0006    GGET     1   0      ; "require"
+0007    KSTR     2   3      ; "Spore"
+0008    CALL     1   2   2
+0009    TGETS    2   1   5  ; "new_from_spec"
+0010    TGETS    3   0   6  ; "service_spec"
+0011    TDUP     4   8
+0012    TGETS    5   0   7  ; "custom_url"
+0013    TSETS    5   4   9  ; "base_url"
+0014    CALL     2   2   3
+0015    TSETS    2   0   4  ; "client"
+0016    GGET     2  10      ; "package"
+0017    TGETS    2   2  11  ; "loaded"
+0018    TNEW     3   0
+0019    TSETS    3   2  12  ; "Spore.Middleware.GinClient"
+0020    GGET     2   0      ; "require"
+0021    KSTR     3  12      ; "Spore.Middleware.GinClient"
+0022    CALL     2   2   2
+0023    FNEW     3  14      ; KOSyncClient.lua:24
+0024    TSETS    3   2  13  ; "call"
+0025    GGET     2  10      ; "package"
+0026    TGETS    2   2  11  ; "loaded"
+0027    TNEW     3   0
+0028    TSETS    3   2  15  ; "Spore.Middleware.KOSyncAuth"
+0029    GGET     2   0      ; "require"
+0030    KSTR     3  15      ; "Spore.Middleware.KOSyncAuth"
+0031    CALL     2   2   2
+0032    FNEW     3  16      ; KOSyncClient.lua:28
+0033    TSETS    3   2  13  ; "call"
+0034    GGET     2  10      ; "package"
+0035    TGETS    2   2  11  ; "loaded"
+0036    TNEW     3   0
+0037    TSETS    3   2  17  ; "Spore.Middleware.AsyncHTTP"
+0038    GGET     2   0      ; "require"
+0039    KSTR     3  17      ; "Spore.Middleware.AsyncHTTP"
+0040    CALL     2   2   2
+0041    FNEW     3  18      ; KOSyncClient.lua:33
+0042    TSETS    3   2  13  ; "call"
+0043    RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:64-69
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "client"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "register"
+0005    TDUP     2   2
+0006    UGET     3   1      ; username
+0007    TSETS    3   2   3  ; "username"
+0008    UGET     3   2      ; password
+0009    TSETS    3   2   4  ; "password"
+0010    CALLT    0   3
+
+-- BYTECODE -- KOSyncClient.lua:60-76
+0001    TGETS    3   0   0  ; "client"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "reset_middlewares"
+0004    CALL     3   1   2
+0005    TGETS    3   0   0  ; "client"
+0006    MOV      4   3
+0007    TGETS    3   3   2  ; "enable"
+0008    KSTR     5   3      ; "Format.JSON"
+0009    CALL     3   1   3
+0010    TGETS    3   0   0  ; "client"
+0011    MOV      4   3
+0012    TGETS    3   3   2  ; "enable"
+0013    KSTR     5   4      ; "GinClient"
+0014    CALL     3   1   3
+0015    GGET     3   5      ; "pcall"
+0016    FNEW     4   6      ; KOSyncClient.lua:64
+0017    CALL     3   3   2
+0018    ISF          3
+0019    JMP      5 => 0030
+0020    TGETS    5   4   7  ; "status"
+0021    ISEQN    5   0      ; 201
+0022    JMP      5 => 0025
+0023    KPRI     5   1
+0024    JMP      6 => 0026
+0025 => KPRI     5   2
+0026 => TGETS    6   4   8  ; "body"
+0027    UCLO     0 => 0028
+0028 => RET      5   3
+0029    JMP      5 => 0038
+0030 => UGET     5   0      ; DEBUG
+0031    MOV      6   3
+0032    MOV      7   4
+0033    CALL     5   1   3
+0034    KPRI     5   1
+0035    TGETS    6   4   8  ; "body"
+0036    UCLO     0 => 0037
+0037 => RET      5   3
+0038 => UCLO     0 => 0039
+0039 => RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:86-88
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "client"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "authorize"
+0005    CALLT    0   2
+
+-- BYTECODE -- KOSyncClient.lua:78-95
+0001    TGETS    3   0   0  ; "client"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "reset_middlewares"
+0004    CALL     3   1   2
+0005    TGETS    3   0   0  ; "client"
+0006    MOV      4   3
+0007    TGETS    3   3   2  ; "enable"
+0008    KSTR     5   3      ; "Format.JSON"
+0009    CALL     3   1   3
+0010    TGETS    3   0   0  ; "client"
+0011    MOV      4   3
+0012    TGETS    3   3   2  ; "enable"
+0013    KSTR     5   4      ; "GinClient"
+0014    CALL     3   1   3
+0015    TGETS    3   0   0  ; "client"
+0016    MOV      4   3
+0017    TGETS    3   3   2  ; "enable"
+0018    KSTR     5   5      ; "KOSyncAuth"
+0019    TDUP     6   6
+0020    TSETS    1   6   7  ; "username"
+0021    TSETS    2   6   8  ; "userkey"
+0022    CALL     3   1   4
+0023    GGET     3   9      ; "pcall"
+0024    FNEW     4  10      ; KOSyncClient.lua:86
+0025    CALL     3   3   2
+0026    ISF          3
+0027    JMP      5 => 0038
+0028    TGETS    5   4  11  ; "status"
+0029    ISEQN    5   0      ; 200
+0030    JMP      5 => 0033
+0031    KPRI     5   1
+0032    JMP      6 => 0034
+0033 => KPRI     5   2
+0034 => TGETS    6   4  12  ; "body"
+0035    UCLO     0 => 0036
+0036 => RET      5   3
+0037    JMP      5 => 0046
+0038 => UGET     5   0      ; DEBUG
+0039    KSTR     6  13      ; "err:"
+0040    MOV      7   4
+0041    CALL     5   1   3
+0042    KPRI     5   1
+0043    TGETS    6   4  12  ; "body"
+0044    UCLO     0 => 0045
+0045 => RET      5   3
+0046 => UCLO     0 => 0047
+0047 => RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:114-122
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "client"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "update_progress"
+0005    TDUP     2   2
+0006    UGET     3   1      ; document
+0007    TSETS    3   2   3  ; "document"
+0008    UGET     3   2      ; progress
+0009    TSETS    3   2   4  ; "progress"
+0010    UGET     3   3      ; percentage
+0011    TSETS    3   2   5  ; "percentage"
+0012    UGET     3   4      ; device
+0013    TSETS    3   2   6  ; "device"
+0014    UGET     3   5      ; device_id
+0015    TSETS    3   2   7  ; "device_id"
+0016    CALLT    0   3
+
+-- BYTECODE -- KOSyncClient.lua:113-129
+0001    GGET     0   0      ; "pcall"
+0002    FNEW     1   1      ; KOSyncClient.lua:114
+0003    CALL     0   3   2
+0004    ISF          0
+0005    JMP      2 => 0016
+0006    UGET     2   6      ; callback
+0007    TGETS    3   1   2  ; "status"
+0008    ISEQN    3   0      ; 200
+0009    JMP      3 => 0012
+0010    KPRI     3   1
+0011    JMP      4 => 0013
+0012 => KPRI     3   2
+0013 => TGETS    4   1   3  ; "body"
+0014    CALL     2   1   3
+0015    JMP      2 => 0024
+0016 => UGET     2   7      ; DEBUG
+0017    KSTR     3   4      ; "err:"
+0018    MOV      4   1
+0019    CALL     2   1   3
+0020    UGET     2   6      ; callback
+0021    KPRI     3   1
+0022    TGETS    4   1   3  ; "body"
+0023    CALL     2   1   3
+0024 => RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:97-133
+0001    TGETS    9   0   0  ; "client"
+0002    MOV     10   9
+0003    TGETS    9   9   1  ; "reset_middlewares"
+0004    CALL     9   1   2
+0005    TGETS    9   0   0  ; "client"
+0006    MOV     10   9
+0007    TGETS    9   9   2  ; "enable"
+0008    KSTR    11   3      ; "Format.JSON"
+0009    CALL     9   1   3
+0010    TGETS    9   0   0  ; "client"
+0011    MOV     10   9
+0012    TGETS    9   9   2  ; "enable"
+0013    KSTR    11   4      ; "GinClient"
+0014    CALL     9   1   3
+0015    TGETS    9   0   0  ; "client"
+0016    MOV     10   9
+0017    TGETS    9   9   2  ; "enable"
+0018    KSTR    11   5      ; "KOSyncAuth"
+0019    TDUP    12   6
+0020    TSETS    1  12   7  ; "username"
+0021    TSETS    2  12   8  ; "userkey"
+0022    CALL     9   1   4
+0023    GGET     9   9      ; "coroutine"
+0024    TGETS    9   9  10  ; "create"
+0025    FNEW    10  11      ; KOSyncClient.lua:113
+0026    CALL     9   2   2
+0027    TGETS   10   0   0  ; "client"
+0028    MOV     11  10
+0029    TGETS   10  10   2  ; "enable"
+0030    KSTR    12  12      ; "AsyncHTTP"
+0031    TDUP    13  13
+0032    TSETS    9  13  14  ; "thread"
+0033    CALL    10   1   4
+0034    GGET    10   9      ; "coroutine"
+0035    TGETS   10  10  15  ; "resume"
+0036    MOV     11   9
+0037    CALL    10   1   2
+0038    UGET    10   1      ; UIManager
+0039    TGETS   10  10  16  ; "looper"
+0040    ISF         10
+0041    JMP     11 => 0046
+0042    UGET    10   1      ; UIManager
+0043    MOV     11  10
+0044    TGETS   10  10  17  ; "setInputTimeout"
+0045    CALL    10   1   2
+0046 => UCLO     0 => 0047
+0047 => RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:148-152
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "client"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "get_progress"
+0005    TDUP     2   2
+0006    UGET     3   1      ; document
+0007    TSETS    3   2   3  ; "document"
+0008    CALLT    0   3
+
+-- BYTECODE -- KOSyncClient.lua:147-159
+0001    GGET     0   0      ; "pcall"
+0002    FNEW     1   1      ; KOSyncClient.lua:148
+0003    CALL     0   3   2
+0004    ISF          0
+0005    JMP      2 => 0016
+0006    UGET     2   2      ; callback
+0007    TGETS    3   1   2  ; "status"
+0008    ISEQN    3   0      ; 200
+0009    JMP      3 => 0012
+0010    KPRI     3   1
+0011    JMP      4 => 0013
+0012 => KPRI     3   2
+0013 => TGETS    4   1   3  ; "body"
+0014    CALL     2   1   3
+0015    JMP      2 => 0024
+0016 => UGET     2   3      ; DEBUG
+0017    KSTR     3   4      ; "err:"
+0018    MOV      4   1
+0019    CALL     2   1   3
+0020    UGET     2   2      ; callback
+0021    KPRI     3   1
+0022    TGETS    4   1   3  ; "body"
+0023    CALL     2   1   3
+0024 => RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:135-163
+0001    TGETS    5   0   0  ; "client"
+0002    MOV      6   5
+0003    TGETS    5   5   1  ; "reset_middlewares"
+0004    CALL     5   1   2
+0005    TGETS    5   0   0  ; "client"
+0006    MOV      6   5
+0007    TGETS    5   5   2  ; "enable"
+0008    KSTR     7   3      ; "Format.JSON"
+0009    CALL     5   1   3
+0010    TGETS    5   0   0  ; "client"
+0011    MOV      6   5
+0012    TGETS    5   5   2  ; "enable"
+0013    KSTR     7   4      ; "GinClient"
+0014    CALL     5   1   3
+0015    TGETS    5   0   0  ; "client"
+0016    MOV      6   5
+0017    TGETS    5   5   2  ; "enable"
+0018    KSTR     7   5      ; "KOSyncAuth"
+0019    TDUP     8   6
+0020    TSETS    1   8   7  ; "username"
+0021    TSETS    2   8   8  ; "userkey"
+0022    CALL     5   1   4
+0023    GGET     5   9      ; "coroutine"
+0024    TGETS    5   5  10  ; "create"
+0025    FNEW     6  11      ; KOSyncClient.lua:147
+0026    CALL     5   2   2
+0027    TGETS    6   0   0  ; "client"
+0028    MOV      7   6
+0029    TGETS    6   6   2  ; "enable"
+0030    KSTR     8  12      ; "AsyncHTTP"
+0031    TDUP     9  13
+0032    TSETS    5   9  14  ; "thread"
+0033    CALL     6   1   4
+0034    GGET     6   9      ; "coroutine"
+0035    TGETS    6   6  15  ; "resume"
+0036    MOV      7   5
+0037    CALL     6   1   2
+0038    UGET     6   1      ; UIManager
+0039    TGETS    6   6  16  ; "looper"
+0040    ISF          6
+0041    JMP      7 => 0046
+0042    UGET     6   1      ; UIManager
+0043    MOV      7   6
+0044    TGETS    6   6  17  ; "setInputTimeout"
+0045    CALL     6   1   2
+0046 => UCLO     0 => 0047
+0047 => RET0     0   1
+
+-- BYTECODE -- KOSyncClient.lua:0-166
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/uimanager"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "dbg"
+0006    CALL     1   2   2
+0007    TDUP     2   3
+0008    FNEW     3   5      ; KOSyncClient.lua:9
+0009    TSETS    3   2   4  ; "new"
+0010    FNEW     3   7      ; KOSyncClient.lua:17
+0011    TSETS    3   2   6  ; "init"
+0012    FNEW     3   9      ; KOSyncClient.lua:60
+0013    TSETS    3   2   8  ; "register"
+0014    FNEW     3  11      ; KOSyncClient.lua:78
+0015    TSETS    3   2  10  ; "authorize"
+0016    FNEW     3  13      ; KOSyncClient.lua:97
+0017    TSETS    3   2  12  ; "update_progress"
+0018    FNEW     3  15      ; KOSyncClient.lua:135
+0019    TSETS    3   2  14  ; "get_progress"
+0020    UCLO     0 => 0021
+0021 => RET1     2   2
+

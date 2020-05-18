@@ -1,0 +1,780 @@
+-- BYTECODE -- movablecontainer.lua:51-83
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "isTouchDevice"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0148
+0007    UGET     1   1      ; Geom
+0008    MOV      2   1
+0009    TGETS    1   1   1  ; "new"
+0010    TDUP     3   2
+0011    UGET     4   2      ; Screen
+0012    MOV      5   4
+0013    TGETS    4   4   3  ; "getWidth"
+0014    CALL     4   2   2
+0015    TSETS    4   3   4  ; "w"
+0016    UGET     4   2      ; Screen
+0017    MOV      5   4
+0018    TGETS    4   4   5  ; "getHeight"
+0019    CALL     4   2   2
+0020    TSETS    4   3   6  ; "h"
+0021    CALL     1   2   3
+0022    TNEW     2   0
+0023    TGETS    3   0   7  ; "ignore_events"
+0024    ISF          3
+0025    JMP      4 => 0034
+0026    GGET     3   8      ; "pairs"
+0027    TGETS    4   0   7  ; "ignore_events"
+0028    CALL     3   4   2
+0029    ISNEXT   6 => 0032
+0030 => KPRI     8   2
+0031    TSETV    8   2   7
+0032 => ITERN    6   3   3
+0033    ITERL    6 => 0030
+0034 => TNEW     3   0
+0035    TSETS    3   0   9  ; "ges_events"
+0036    TGETS    3   0   9  ; "ges_events"
+0037    TGETS    4   2  11  ; "touch"
+0038    IST          4
+0039    JMP      4 => 0050
+0040    TNEW     4   3
+0041    UGET     5   3      ; GestureRange
+0042    MOV      6   5
+0043    TGETS    5   5   1  ; "new"
+0044    TDUP     7  12
+0045    TSETS    1   7  13  ; "range"
+0046    CALL     5   0   3
+0047    TSETM    5   0      ; 1
+0048    IST          4
+0049    JMP      5 => 0051
+0050 => KPRI     4   0
+0051 => TSETS    4   3  10  ; "MovableTouch"
+0052    TGETS    3   0   9  ; "ges_events"
+0053    TGETS    4   2  15  ; "swipe"
+0054    IST          4
+0055    JMP      4 => 0066
+0056    TNEW     4   3
+0057    UGET     5   3      ; GestureRange
+0058    MOV      6   5
+0059    TGETS    5   5   1  ; "new"
+0060    TDUP     7  16
+0061    TSETS    1   7  13  ; "range"
+0062    CALL     5   0   3
+0063    TSETM    5   0      ; 1
+0064    IST          4
+0065    JMP      5 => 0067
+0066 => KPRI     4   0
+0067 => TSETS    4   3  14  ; "MovableSwipe"
+0068    TGETS    3   0   9  ; "ges_events"
+0069    TGETS    4   2  18  ; "hold"
+0070    IST          4
+0071    JMP      4 => 0082
+0072    TNEW     4   3
+0073    UGET     5   3      ; GestureRange
+0074    MOV      6   5
+0075    TGETS    5   5   1  ; "new"
+0076    TDUP     7  19
+0077    TSETS    1   7  13  ; "range"
+0078    CALL     5   0   3
+0079    TSETM    5   0      ; 1
+0080    IST          4
+0081    JMP      5 => 0083
+0082 => KPRI     4   0
+0083 => TSETS    4   3  17  ; "MovableHold"
+0084    TGETS    3   0   9  ; "ges_events"
+0085    TGETS    4   2  21  ; "hold_pan"
+0086    IST          4
+0087    JMP      4 => 0098
+0088    TNEW     4   3
+0089    UGET     5   3      ; GestureRange
+0090    MOV      6   5
+0091    TGETS    5   5   1  ; "new"
+0092    TDUP     7  22
+0093    TSETS    1   7  13  ; "range"
+0094    CALL     5   0   3
+0095    TSETM    5   0      ; 1
+0096    IST          4
+0097    JMP      5 => 0099
+0098 => KPRI     4   0
+0099 => TSETS    4   3  20  ; "MovableHoldPan"
+0100    TGETS    3   0   9  ; "ges_events"
+0101    TGETS    4   2  24  ; "hold_release"
+0102    IST          4
+0103    JMP      4 => 0114
+0104    TNEW     4   3
+0105    UGET     5   3      ; GestureRange
+0106    MOV      6   5
+0107    TGETS    5   5   1  ; "new"
+0108    TDUP     7  25
+0109    TSETS    1   7  13  ; "range"
+0110    CALL     5   0   3
+0111    TSETM    5   0      ; 1
+0112    IST          4
+0113    JMP      5 => 0115
+0114 => KPRI     4   0
+0115 => TSETS    4   3  23  ; "MovableHoldRelease"
+0116    TGETS    3   0   9  ; "ges_events"
+0117    TGETS    4   2  27  ; "pan"
+0118    IST          4
+0119    JMP      4 => 0130
+0120    TNEW     4   3
+0121    UGET     5   3      ; GestureRange
+0122    MOV      6   5
+0123    TGETS    5   5   1  ; "new"
+0124    TDUP     7  28
+0125    TSETS    1   7  13  ; "range"
+0126    CALL     5   0   3
+0127    TSETM    5   0      ; 1
+0128    IST          4
+0129    JMP      5 => 0131
+0130 => KPRI     4   0
+0131 => TSETS    4   3  26  ; "MovablePan"
+0132    TGETS    3   0   9  ; "ges_events"
+0133    TGETS    4   2  30  ; "pan_release"
+0134    IST          4
+0135    JMP      4 => 0146
+0136    TNEW     4   3
+0137    UGET     5   3      ; GestureRange
+0138    MOV      6   5
+0139    TGETS    5   5   1  ; "new"
+0140    TDUP     7  31
+0141    TSETS    1   7  13  ; "range"
+0142    CALL     5   0   3
+0143    TSETM    5   0      ; 1
+0144    IST          4
+0145    JMP      5 => 0147
+0146 => KPRI     4   0
+0147 => TSETS    4   3  29  ; "MovablePanRelease"
+0148 => RET0     0   1
+
+-- BYTECODE -- movablecontainer.lua:85-90
+0001    UGET     1   0      ; Geom
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "new"
+0004    TDUP     3   2
+0005    TGETS    4   0   1  ; "_moved_offset_x"
+0006    TSETS    4   3   3  ; "x"
+0007    TGETS    4   0   4  ; "_moved_offset_y"
+0008    TSETS    4   3   5  ; "y"
+0009    CALLT    1   3
+
+-- BYTECODE -- movablecontainer.lua:92-97
+0001    ISF          1
+0002    JMP      2 => 0013
+0003    TGETS    2   1   0  ; "x"
+0004    ISF          2
+0005    JMP      3 => 0013
+0006    TGETS    2   1   1  ; "y"
+0007    ISF          2
+0008    JMP      3 => 0013
+0009    TGETS    2   1   0  ; "x"
+0010    TSETS    2   0   2  ; "_moved_offset_x"
+0011    TGETS    2   1   1  ; "y"
+0012    TSETS    2   0   3  ; "_moved_offset_y"
+0013 => RET0     0   1
+
+-- BYTECODE -- movablecontainer.lua:99-128
+0001    TGETB    4   0   1
+0002    ISNEP    4   0
+0003    JMP      4 => 0005
+0004    RET0     0   1
+0005 => TGETB    4   0   1
+0006    MOV      5   4
+0007    TGETS    4   4   0  ; "getSize"
+0008    CALL     4   2   2
+0009    TGETS    5   0   1  ; "dimen"
+0010    IST          5
+0011    JMP      5 => 0022
+0012    UGET     5   0      ; Geom
+0013    MOV      6   5
+0014    TGETS    5   5   2  ; "new"
+0015    TDUP     7   4
+0016    TGETS    8   4   3  ; "w"
+0017    TSETS    8   7   3  ; "w"
+0018    TGETS    8   4   5  ; "h"
+0019    TSETS    8   7   5  ; "h"
+0020    CALL     5   2   3
+0021    TSETS    5   0   1  ; "dimen"
+0022 => TSETS    2   0   6  ; "_orig_x"
+0023    TSETS    3   0   7  ; "_orig_y"
+0024    TGETS    5   0   1  ; "dimen"
+0025    TGETS    6   0   9  ; "_moved_offset_x"
+0026    ADDVV    6   2   6
+0027    TSETS    6   5   8  ; "x"
+0028    TGETS    5   0   1  ; "dimen"
+0029    TGETS    6   0  11  ; "_moved_offset_y"
+0030    ADDVV    6   3   6
+0031    TSETS    6   5  10  ; "y"
+0032    TGETS    5   0  12  ; "alpha"
+0033    ISF          5
+0034    JMP      6 => 0082
+0035    UGET     5   1      ; BlitBuffer
+0036    TGETS    5   5   2  ; "new"
+0037    MOV      7   1
+0038    TGETS    6   1  13  ; "getWidth"
+0039    CALL     6   2   2
+0040    MOV      8   1
+0041    TGETS    7   1  14  ; "getHeight"
+0042    CALL     7   2   2
+0043    MOV      9   1
+0044    TGETS    8   1  15  ; "getType"
+0045    CALL     8   0   2
+0046    CALLM    5   2   2
+0047    MOV      7   5
+0048    TGETS    6   5  16  ; "fill"
+0049    UGET     8   1      ; BlitBuffer
+0050    TGETS    8   8  17  ; "COLOR_WHITE"
+0051    CALL     6   1   3
+0052    TGETB    6   0   1
+0053    MOV      7   6
+0054    TGETS    6   6  18  ; "paintTo"
+0055    MOV      8   5
+0056    TGETS    9   0   1  ; "dimen"
+0057    TGETS    9   9   8  ; "x"
+0058    TGETS   10   0   1  ; "dimen"
+0059    TGETS   10  10  10  ; "y"
+0060    CALL     6   1   5
+0061    MOV      7   1
+0062    TGETS    6   1  19  ; "addblitFrom"
+0063    MOV      8   5
+0064    TGETS    9   0   1  ; "dimen"
+0065    TGETS    9   9   8  ; "x"
+0066    TGETS   10   0   1  ; "dimen"
+0067    TGETS   10  10  10  ; "y"
+0068    TGETS   11   0   1  ; "dimen"
+0069    TGETS   11  11   8  ; "x"
+0070    TGETS   12   0   1  ; "dimen"
+0071    TGETS   12  12  10  ; "y"
+0072    TGETS   13   0   1  ; "dimen"
+0073    TGETS   13  13   3  ; "w"
+0074    TGETS   14   0   1  ; "dimen"
+0075    TGETS   14  14   5  ; "h"
+0076    TGETS   15   0  12  ; "alpha"
+0077    CALL     6   1  10
+0078    MOV      7   5
+0079    TGETS    6   5  20  ; "free"
+0080    CALL     6   1   2
+0081    JMP      5 => 0091
+0082 => TGETB    5   0   1
+0083    MOV      6   5
+0084    TGETS    5   5  18  ; "paintTo"
+0085    MOV      7   1
+0086    TGETS    8   0   1  ; "dimen"
+0087    TGETS    8   8   8  ; "x"
+0088    TGETS    9   0   1  ; "dimen"
+0089    TGETS    9   9  10  ; "y"
+0090    CALL     5   1   5
+0091 => RET0     0   1
+
+-- BYTECODE -- movablecontainer.lua:183-187
+0001    UGET     0   0      ; orig_dimen
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "combine"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "dimen"
+0006    CALL     0   2   3
+0007    UGET     1   2      ; logger
+0008    TGETS    1   1   2  ; "dbg"
+0009    KSTR     2   3      ; "MovableContainer refresh region"
+0010    MOV      3   0
+0011    CALL     1   1   3
+0012    KSTR     1   4      ; "ui"
+0013    MOV      2   0
+0014    RET      1   3
+
+-- BYTECODE -- movablecontainer.lua:130-188
+0001    UGET     4   0      ; logger
+0002    TGETS    4   4   0  ; "dbg"
+0003    KSTR     5   1      ; "MovableContainer:_moveBy:"
+0004    MOV      6   1
+0005    MOV      7   2
+0006    CALL     4   1   4
+0007    ISF          1
+0008    JMP      4 => 0092
+0009    ISF          2
+0010    JMP      4 => 0092
+0011    TGETS    4   0   2  ; "_moved_offset_x"
+0012    UGET     5   1      ; Math
+0013    TGETS    5   5   3  ; "round"
+0014    MOV      6   1
+0015    CALL     5   2   2
+0016    ADDVV    4   4   5
+0017    TSETS    4   0   2  ; "_moved_offset_x"
+0018    TGETS    4   0   4  ; "_moved_offset_y"
+0019    UGET     5   1      ; Math
+0020    TGETS    5   5   3  ; "round"
+0021    MOV      6   2
+0022    CALL     5   2   2
+0023    ADDVV    4   4   5
+0024    TSETS    4   0   4  ; "_moved_offset_y"
+0025    ISF          3
+0026    JMP      4 => 0081
+0027    UGET     4   2      ; Screen
+0028    MOV      5   4
+0029    TGETS    4   4   5  ; "getWidth"
+0030    CALL     4   2   2
+0031    UGET     5   2      ; Screen
+0032    MOV      6   5
+0033    TGETS    5   5   6  ; "getHeight"
+0034    CALL     5   2   2
+0035    TGETS    6   0   7  ; "_orig_x"
+0036    TGETS    7   0   2  ; "_moved_offset_x"
+0037    ADDVV    6   6   7
+0038    KSHORT   7   0
+0039    ISGE     6   7
+0040    JMP      6 => 0044
+0041    TGETS    6   0   7  ; "_orig_x"
+0042    UNM      6   6
+0043    TSETS    6   0   2  ; "_moved_offset_x"
+0044 => TGETS    6   0   8  ; "_orig_y"
+0045    TGETS    7   0   4  ; "_moved_offset_y"
+0046    ADDVV    6   6   7
+0047    KSHORT   7   0
+0048    ISGE     6   7
+0049    JMP      6 => 0053
+0050    TGETS    6   0   8  ; "_orig_y"
+0051    UNM      6   6
+0052    TSETS    6   0   4  ; "_moved_offset_y"
+0053 => TGETS    6   0   7  ; "_orig_x"
+0054    TGETS    7   0   2  ; "_moved_offset_x"
+0055    ADDVV    6   6   7
+0056    TGETS    7   0   9  ; "dimen"
+0057    TGETS    7   7  10  ; "w"
+0058    ADDVV    6   6   7
+0059    ISGE     4   6
+0060    JMP      6 => 0067
+0061    TGETS    6   0   7  ; "_orig_x"
+0062    SUBVV    6   4   6
+0063    TGETS    7   0   9  ; "dimen"
+0064    TGETS    7   7  10  ; "w"
+0065    SUBVV    6   6   7
+0066    TSETS    6   0   2  ; "_moved_offset_x"
+0067 => TGETS    6   0   8  ; "_orig_y"
+0068    TGETS    7   0   4  ; "_moved_offset_y"
+0069    ADDVV    6   6   7
+0070    TGETS    7   0   9  ; "dimen"
+0071    TGETS    7   7  11  ; "h"
+0072    ADDVV    6   6   7
+0073    ISGE     5   6
+0074    JMP      6 => 0081
+0075    TGETS    6   0   8  ; "_orig_y"
+0076    SUBVV    6   5   6
+0077    TGETS    7   0   9  ; "dimen"
+0078    TGETS    7   7  11  ; "h"
+0079    SUBVV    6   6   7
+0080    TSETS    6   0   4  ; "_moved_offset_y"
+0081 => UGET     4   1      ; Math
+0082    TGETS    4   4   3  ; "round"
+0083    TGETS    5   0   2  ; "_moved_offset_x"
+0084    CALL     4   2   2
+0085    TSETS    4   0   2  ; "_moved_offset_x"
+0086    UGET     4   1      ; Math
+0087    TGETS    4   4   3  ; "round"
+0088    TGETS    5   0   4  ; "_moved_offset_y"
+0089    CALL     4   2   2
+0090    TSETS    4   0   4  ; "_moved_offset_y"
+0091    JMP      4 => 0115
+0092 => TGETS    4   0   2  ; "_moved_offset_x"
+0093    ISNEN    4   0      ; 0
+0094    JMP      4 => 0111
+0095    TGETS    4   0   4  ; "_moved_offset_y"
+0096    ISNEN    4   0      ; 0
+0097    JMP      4 => 0111
+0098    TGETS    4   0  12  ; "alpha"
+0099    ISF          4
+0100    JMP      5 => 0106
+0101    TGETS    4   0  12  ; "alpha"
+0102    TSETS    4   0  13  ; "orig_alpha"
+0103    KPRI     4   0
+0104    TSETS    4   0  12  ; "alpha"
+0105    JMP      4 => 0111
+0106 => TGETS    4   0  13  ; "orig_alpha"
+0107    IST          4
+0108    JMP      5 => 0110
+0109    KNUM     4   1      ; 0.7
+0110 => TSETS    4   0  12  ; "alpha"
+0111 => KSHORT   4   0
+0112    TSETS    4   0   2  ; "_moved_offset_x"
+0113    KSHORT   4   0
+0114    TSETS    4   0   4  ; "_moved_offset_y"
+0115 => TGETS    4   0   9  ; "dimen"
+0116    MOV      5   4
+0117    TGETS    4   4  14  ; "copy"
+0118    CALL     4   2   2
+0119    UGET     5   3      ; UIManager
+0120    MOV      6   5
+0121    TGETS    5   5  15  ; "setDirty"
+0122    KSTR     7  16      ; "all"
+0123    FNEW     8  17      ; movablecontainer.lua:183
+0124    CALL     5   1   4
+0125    UCLO     0 => 0126
+0126 => RET0     0   1
+
+-- BYTECODE -- movablecontainer.lua:190-213
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "dbg"
+0003    KSTR     4   1      ; "MovableContainer:onMovableSwipe"
+0004    MOV      5   2
+0005    CALL     3   1   3
+0006    TGETS    3   2   2  ; "pos"
+0007    MOV      4   3
+0008    TGETS    3   3   3  ; "intersectWith"
+0009    TGETS    5   0   4  ; "dimen"
+0010    CALL     3   2   3
+0011    IST          3
+0012    JMP      3 => 0015
+0013    KPRI     3   1
+0014    RET1     3   2
+0015 => KPRI     3   1
+0016    TSETS    3   0   5  ; "_moving"
+0017    TGETS    3   2   6  ; "direction"
+0018    TGETS    4   2   7  ; "distance"
+0019    GGET     5   8      ; "math"
+0020    TGETS    5   5   9  ; "floor"
+0021    GGET     6   8      ; "math"
+0022    TGETS    6   6  10  ; "sqrt"
+0023    MULVV    7   4   4
+0024    DIVVN    7   7   0  ; 2
+0025    CALL     6   0   2
+0026    CALLM    5   2   0
+0027    ISNES    3  11      ; "north"
+0028    JMP      6 => 0036
+0029    MOV      7   0
+0030    TGETS    6   0  12  ; "_moveBy"
+0031    KSHORT   8   0
+0032    UNM      9   4
+0033    KPRI    10   2
+0034    CALL     6   1   5
+0035    JMP      6 => 0098
+0036 => ISNES    3  13      ; "south"
+0037    JMP      6 => 0045
+0038    MOV      7   0
+0039    TGETS    6   0  12  ; "_moveBy"
+0040    KSHORT   8   0
+0041    MOV      9   4
+0042    KPRI    10   2
+0043    CALL     6   1   5
+0044    JMP      6 => 0098
+0045 => ISNES    3  14      ; "east"
+0046    JMP      6 => 0054
+0047    MOV      7   0
+0048    TGETS    6   0  12  ; "_moveBy"
+0049    MOV      8   4
+0050    KSHORT   9   0
+0051    KPRI    10   2
+0052    CALL     6   1   5
+0053    JMP      6 => 0098
+0054 => ISNES    3  15      ; "west"
+0055    JMP      6 => 0063
+0056    MOV      7   0
+0057    TGETS    6   0  12  ; "_moveBy"
+0058    UNM      8   4
+0059    KSHORT   9   0
+0060    KPRI    10   2
+0061    CALL     6   1   5
+0062    JMP      6 => 0098
+0063 => ISNES    3  16      ; "northeast"
+0064    JMP      6 => 0072
+0065    MOV      7   0
+0066    TGETS    6   0  12  ; "_moveBy"
+0067    MOV      8   5
+0068    UNM      9   5
+0069    KPRI    10   2
+0070    CALL     6   1   5
+0071    JMP      6 => 0098
+0072 => ISNES    3  17      ; "northwest"
+0073    JMP      6 => 0081
+0074    MOV      7   0
+0075    TGETS    6   0  12  ; "_moveBy"
+0076    UNM      8   5
+0077    UNM      9   5
+0078    KPRI    10   2
+0079    CALL     6   1   5
+0080    JMP      6 => 0098
+0081 => ISNES    3  18      ; "southeast"
+0082    JMP      6 => 0090
+0083    MOV      7   0
+0084    TGETS    6   0  12  ; "_moveBy"
+0085    MOV      8   5
+0086    MOV      9   5
+0087    KPRI    10   2
+0088    CALL     6   1   5
+0089    JMP      6 => 0098
+0090 => ISNES    3  19      ; "southwest"
+0091    JMP      6 => 0098
+0092    MOV      7   0
+0093    TGETS    6   0  12  ; "_moveBy"
+0094    UNM      8   5
+0095    MOV      9   5
+0096    KPRI    10   2
+0097    CALL     6   1   5
+0098 => KPRI     6   2
+0099    RET1     6   2
+
+-- BYTECODE -- movablecontainer.lua:215-227
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "dbg"
+0003    KSTR     4   1      ; "MovableContainer:onMovableTouch"
+0004    MOV      5   2
+0005    CALL     3   1   3
+0006    TGETS    3   2   2  ; "pos"
+0007    MOV      4   3
+0008    TGETS    3   3   3  ; "intersectWith"
+0009    TGETS    5   0   4  ; "dimen"
+0010    CALL     3   2   3
+0011    ISF          3
+0012    JMP      4 => 0022
+0013    KPRI     3   2
+0014    TSETS    3   0   5  ; "_touch_pre_pan_was_inside"
+0015    TGETS    3   2   2  ; "pos"
+0016    TGETS    3   3   7  ; "x"
+0017    TSETS    3   0   6  ; "_move_relative_x"
+0018    TGETS    3   2   2  ; "pos"
+0019    TGETS    3   3   9  ; "y"
+0020    TSETS    3   0   8  ; "_move_relative_y"
+0021    JMP      3 => 0024
+0022 => KPRI     3   1
+0023    TSETS    3   0   5  ; "_touch_pre_pan_was_inside"
+0024 => KPRI     3   1
+0025    RET1     3   2
+
+-- BYTECODE -- movablecontainer.lua:229-238
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "dbg"
+0003    KSTR     4   1      ; "MovableContainer:onMovableHold"
+0004    MOV      5   2
+0005    CALL     3   1   3
+0006    TGETS    3   2   2  ; "pos"
+0007    MOV      4   3
+0008    TGETS    3   3   3  ; "intersectWith"
+0009    TGETS    5   0   4  ; "dimen"
+0010    CALL     3   2   3
+0011    ISF          3
+0012    JMP      4 => 0023
+0013    KPRI     3   2
+0014    TSETS    3   0   5  ; "_moving"
+0015    TGETS    3   2   2  ; "pos"
+0016    TGETS    3   3   7  ; "x"
+0017    TSETS    3   0   6  ; "_move_relative_x"
+0018    TGETS    3   2   2  ; "pos"
+0019    TGETS    3   3   9  ; "y"
+0020    TSETS    3   0   8  ; "_move_relative_y"
+0021    KPRI     3   2
+0022    RET1     3   2
+0023 => KPRI     3   1
+0024    RET1     3   2
+
+-- BYTECODE -- movablecontainer.lua:240-249
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "dbg"
+0003    KSTR     4   1      ; "MovableContainer:onMovableHoldPan"
+0004    MOV      5   2
+0005    CALL     3   1   3
+0006    TGETS    3   2   2  ; "pos"
+0007    MOV      4   3
+0008    TGETS    3   3   3  ; "intersectWith"
+0009    TGETS    5   0   4  ; "dimen"
+0010    CALL     3   2   3
+0011    IST          3
+0012    JMP      4 => 0019
+0013    TGETS    3   0   5  ; "_moving"
+0014    IST          3
+0015    JMP      4 => 0019
+0016    TGETS    3   0   6  ; "_touch_pre_pan_was_inside"
+0017    ISF          3
+0018    JMP      4 => 0025
+0019 => KPRI     3   1
+0020    TSETS    3   0   6  ; "_touch_pre_pan_was_inside"
+0021    KPRI     3   2
+0022    TSETS    3   0   5  ; "_moving"
+0023    KPRI     3   2
+0024    RET1     3   2
+0025 => KPRI     3   1
+0026    RET1     3   2
+
+-- BYTECODE -- movablecontainer.lua:251-272
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "dbg"
+0003    KSTR     4   1      ; "MovableContainer:onMovableHoldRelease"
+0004    MOV      5   2
+0005    CALL     3   1   3
+0006    TGETS    3   0   2  ; "_moving"
+0007    IST          3
+0008    JMP      4 => 0012
+0009    TGETS    3   0   3  ; "_touch_pre_pan_was_inside"
+0010    ISF          3
+0011    JMP      4 => 0061
+0012 => KPRI     3   1
+0013    TSETS    3   0   2  ; "_moving"
+0014    TGETS    3   0   4  ; "_move_relative_x"
+0015    ISF          3
+0016    JMP      3 => 0020
+0017    TGETS    3   0   5  ; "_move_relative_y"
+0018    IST          3
+0019    JMP      3 => 0022
+0020 => KPRI     3   1
+0021    RET1     3   2
+0022 => TGETS    3   2   6  ; "pos"
+0023    TGETS    3   3   7  ; "x"
+0024    TGETS    4   0   4  ; "_move_relative_x"
+0025    SUBVV    3   3   4
+0026    TSETS    3   0   4  ; "_move_relative_x"
+0027    TGETS    3   2   6  ; "pos"
+0028    TGETS    3   3   8  ; "y"
+0029    TGETS    4   0   5  ; "_move_relative_y"
+0030    SUBVV    3   3   4
+0031    TSETS    3   0   5  ; "_move_relative_y"
+0032    GGET     3   9      ; "math"
+0033    TGETS    3   3  10  ; "abs"
+0034    TGETS    4   0   4  ; "_move_relative_x"
+0035    CALL     3   2   2
+0036    TGETS    4   0  11  ; "move_threshold"
+0037    ISGE     3   4
+0038    JMP      3 => 0050
+0039    GGET     3   9      ; "math"
+0040    TGETS    3   3  10  ; "abs"
+0041    TGETS    4   0   5  ; "_move_relative_y"
+0042    CALL     3   2   2
+0043    TGETS    4   0  11  ; "move_threshold"
+0044    ISGE     3   4
+0045    JMP      3 => 0050
+0046    MOV      4   0
+0047    TGETS    3   0  12  ; "_moveBy"
+0048    CALL     3   1   2
+0049    JMP      3 => 0059
+0050 => MOV      4   0
+0051    TGETS    3   0  12  ; "_moveBy"
+0052    TGETS    5   0   4  ; "_move_relative_x"
+0053    TGETS    6   0   5  ; "_move_relative_y"
+0054    CALL     3   1   4
+0055    KPRI     3   0
+0056    TSETS    3   0   4  ; "_move_relative_x"
+0057    KPRI     3   0
+0058    TSETS    3   0   5  ; "_move_relative_y"
+0059 => KPRI     3   2
+0060    RET1     3   2
+0061 => KPRI     3   1
+0062    RET1     3   2
+
+-- BYTECODE -- movablecontainer.lua:274-284
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "dbg"
+0003    KSTR     4   1      ; "MovableContainer:onMovablePan"
+0004    MOV      5   2
+0005    CALL     3   1   3
+0006    TGETS    3   2   2  ; "pos"
+0007    MOV      4   3
+0008    TGETS    3   3   3  ; "intersectWith"
+0009    TGETS    5   0   4  ; "dimen"
+0010    CALL     3   2   3
+0011    IST          3
+0012    JMP      4 => 0019
+0013    TGETS    3   0   5  ; "_moving"
+0014    IST          3
+0015    JMP      4 => 0019
+0016    TGETS    3   0   6  ; "_touch_pre_pan_was_inside"
+0017    ISF          3
+0018    JMP      4 => 0031
+0019 => KPRI     3   1
+0020    TSETS    3   0   6  ; "_touch_pre_pan_was_inside"
+0021    KPRI     3   2
+0022    TSETS    3   0   5  ; "_moving"
+0023    TGETS    3   2   8  ; "relative"
+0024    TGETS    3   3   9  ; "x"
+0025    TSETS    3   0   7  ; "_move_relative_x"
+0026    TGETS    3   2   8  ; "relative"
+0027    TGETS    3   3  11  ; "y"
+0028    TSETS    3   0  10  ; "_move_relative_y"
+0029    KPRI     3   2
+0030    RET1     3   2
+0031 => KPRI     3   1
+0032    RET1     3   2
+
+-- BYTECODE -- movablecontainer.lua:286-296
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "dbg"
+0003    KSTR     4   1      ; "MovableContainer:onMovablePanRelease"
+0004    MOV      5   2
+0005    CALL     3   1   3
+0006    TGETS    3   0   2  ; "_moving"
+0007    ISF          3
+0008    JMP      4 => 0022
+0009    MOV      4   0
+0010    TGETS    3   0   3  ; "_moveBy"
+0011    TGETS    5   0   4  ; "_move_relative_x"
+0012    TGETS    6   0   5  ; "_move_relative_y"
+0013    CALL     3   1   4
+0014    KPRI     3   1
+0015    TSETS    3   0   2  ; "_moving"
+0016    KPRI     3   0
+0017    TSETS    3   0   4  ; "_move_relative_x"
+0018    KPRI     3   0
+0019    TSETS    3   0   5  ; "_move_relative_y"
+0020    KPRI     3   2
+0021    RET1     3   2
+0022 => KPRI     3   1
+0023    RET1     3   2
+
+-- BYTECODE -- movablecontainer.lua:0-299
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/blitbuffer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "device"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/geometry"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/gesturerange"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/container/inputcontainer"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "optmath"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/uimanager"
+0021    CALL     6   2   2
+0022    TGETS    7   1   8  ; "screen"
+0023    GGET     8   0      ; "require"
+0024    KSTR     9   9      ; "logger"
+0025    CALL     8   2   2
+0026    MOV     10   4
+0027    TGETS    9   4  10  ; "new"
+0028    TDUP    11  11
+0029    MOV     13   7
+0030    TGETS   12   7  12  ; "scaleBySize"
+0031    KSHORT  14   5
+0032    CALL    12   2   3
+0033    TSETS   12  11  13  ; "move_threshold"
+0034    CALL     9   2   3
+0035    FNEW    10  15      ; movablecontainer.lua:51
+0036    TSETS   10   9  14  ; "init"
+0037    FNEW    10  17      ; movablecontainer.lua:85
+0038    TSETS   10   9  16  ; "getMovedOffset"
+0039    FNEW    10  19      ; movablecontainer.lua:92
+0040    TSETS   10   9  18  ; "setMovedOffset"
+0041    FNEW    10  21      ; movablecontainer.lua:99
+0042    TSETS   10   9  20  ; "paintTo"
+0043    FNEW    10  23      ; movablecontainer.lua:130
+0044    TSETS   10   9  22  ; "_moveBy"
+0045    FNEW    10  25      ; movablecontainer.lua:190
+0046    TSETS   10   9  24  ; "onMovableSwipe"
+0047    FNEW    10  27      ; movablecontainer.lua:215
+0048    TSETS   10   9  26  ; "onMovableTouch"
+0049    FNEW    10  29      ; movablecontainer.lua:229
+0050    TSETS   10   9  28  ; "onMovableHold"
+0051    FNEW    10  31      ; movablecontainer.lua:240
+0052    TSETS   10   9  30  ; "onMovableHoldPan"
+0053    FNEW    10  33      ; movablecontainer.lua:251
+0054    TSETS   10   9  32  ; "onMovableHoldRelease"
+0055    FNEW    10  35      ; movablecontainer.lua:274
+0056    TSETS   10   9  34  ; "onMovablePan"
+0057    FNEW    10  37      ; movablecontainer.lua:286
+0058    TSETS   10   9  36  ; "onMovablePanRelease"
+0059    UCLO     0 => 0060
+0060 => RET1     9   2
+

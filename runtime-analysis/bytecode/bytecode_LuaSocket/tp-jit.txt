@@ -1,0 +1,325 @@
+-- BYTECODE -- tp.lua:27-44
+0001    KNIL     1   3
+0002    MOV      5   0
+0003    TGETS    4   0   0  ; "receive"
+0004    CALL     4   3   2
+0005    MOV      6   4
+0006    ISF          5
+0007    JMP      7 => 0011
+0008    KPRI     7   0
+0009    MOV      8   5
+0010    RET      7   3
+0011 => UGET     7   0      ; socket
+0012    TGETS    7   7   1  ; "skip"
+0013    KSHORT   8   2
+0014    UGET     9   1      ; string
+0015    TGETS    9   9   2  ; "find"
+0016    MOV     10   4
+0017    KSTR    11   3      ; "^(%d%d%d)(.?)"
+0018    CALL     9   0   3
+0019    CALLM    7   3   1
+0020    MOV      3   8
+0021    MOV      1   7
+0022    IST          1
+0023    JMP      7 => 0027
+0024    KPRI     7   0
+0025    KSTR     8   4      ; "invalid server reply"
+0026    RET      7   3
+0027 => ISNES    3   5      ; "-"
+0028    JMP      7 => 0059
+0029 => LOOP     7 => 0059
+0030    MOV      8   0
+0031    TGETS    7   0   0  ; "receive"
+0032    CALL     7   3   2
+0033    MOV      5   8
+0034    MOV      4   7
+0035    ISF          5
+0036    JMP      7 => 0040
+0037    KPRI     7   0
+0038    MOV      8   5
+0039    RET      7   3
+0040 => UGET     7   0      ; socket
+0041    TGETS    7   7   1  ; "skip"
+0042    KSHORT   8   2
+0043    UGET     9   1      ; string
+0044    TGETS    9   9   2  ; "find"
+0045    MOV     10   4
+0046    KSTR    11   3      ; "^(%d%d%d)(.?)"
+0047    CALL     9   0   3
+0048    CALLM    7   3   1
+0049    MOV      3   8
+0050    MOV      2   7
+0051    MOV      7   6
+0052    KSTR     8   6      ; "\n"
+0053    MOV      9   4
+0054    CAT      6   7   9
+0055    ISNEV    1   2
+0056    JMP      7 => 0029
+0057    ISNES    3   7      ; " "
+0058    JMP      7 => 0029
+0059 => MOV      7   1
+0060    MOV      8   6
+0061    RET      7   3
+
+-- BYTECODE -- tp.lua:49-65
+0001    UGET     2   0      ; get_reply
+0002    TGETS    3   0   0  ; "c"
+0003    CALL     2   3   2
+0004    IST          2
+0005    JMP      4 => 0009
+0006    KPRI     4   0
+0007    MOV      5   3
+0008    RET      4   3
+0009 => UGET     4   1      ; base
+0010    TGETS    4   4   1  ; "type"
+0011    MOV      5   1
+0012    CALL     4   2   2
+0013    ISEQS    4   2      ; "function"
+0014    JMP      4 => 0063
+0015    UGET     4   1      ; base
+0016    TGETS    4   4   1  ; "type"
+0017    MOV      5   1
+0018    CALL     4   2   2
+0019    ISNES    4   3      ; "table"
+0020    JMP      4 => 0045
+0021    UGET     4   1      ; base
+0022    TGETS    4   4   4  ; "ipairs"
+0023    MOV      5   1
+0024    CALL     4   4   2
+0025    JMP      7 => 0039
+0026 => UGET     9   2      ; string
+0027    TGETS    9   9   5  ; "find"
+0028    MOV     10   2
+0029    MOV     11   8
+0030    CALL     9   2   3
+0031    ISF          9
+0032    JMP     10 => 0039
+0033    UGET     9   1      ; base
+0034    TGETS    9   9   6  ; "tonumber"
+0035    MOV     10   2
+0036    CALL     9   2   2
+0037    MOV     10   3
+0038    RET      9   3
+0039 => ITERC    7   3   3
+0040    ITERL    7 => 0026
+0041    KPRI     4   0
+0042    MOV      5   3
+0043    RET      4   3
+0044    JMP      4 => 0070
+0045 => UGET     4   2      ; string
+0046    TGETS    4   4   5  ; "find"
+0047    MOV      5   2
+0048    MOV      6   1
+0049    CALL     4   2   3
+0050    ISF          4
+0051    JMP      5 => 0059
+0052    UGET     4   1      ; base
+0053    TGETS    4   4   6  ; "tonumber"
+0054    MOV      5   2
+0055    CALL     4   2   2
+0056    MOV      5   3
+0057    RET      4   3
+0058    JMP      4 => 0070
+0059 => KPRI     4   0
+0060    MOV      5   3
+0061    RET      4   3
+0062    JMP      4 => 0070
+0063 => MOV      4   1
+0064    UGET     5   1      ; base
+0065    TGETS    5   5   6  ; "tonumber"
+0066    MOV      6   2
+0067    CALL     5   2   2
+0068    MOV      6   3
+0069    CALLT    4   3
+0070 => RET0     0   1
+
+-- BYTECODE -- tp.lua:67-74
+0001    UGET     3   0      ; string
+0002    TGETS    3   3   0  ; "upper"
+0003    MOV      4   1
+0004    CALL     3   2   2
+0005    MOV      1   3
+0006    ISF          2
+0007    JMP      3 => 0018
+0008    TGETS    3   0   1  ; "c"
+0009    MOV      4   3
+0010    TGETS    3   3   2  ; "send"
+0011    MOV      5   1
+0012    KSTR     6   3      ; " "
+0013    MOV      7   2
+0014    KSTR     8   4      ; "\r\n"
+0015    CAT      5   5   8
+0016    CALLT    3   3
+0017    JMP      3 => 0025
+0018 => TGETS    3   0   1  ; "c"
+0019    MOV      4   3
+0020    TGETS    3   3   2  ; "send"
+0021    MOV      5   1
+0022    KSTR     6   4      ; "\r\n"
+0023    CAT      5   5   6
+0024    CALLT    3   3
+0025 => RET0     0   1
+
+-- BYTECODE -- tp.lua:76-79
+0001    GGET     3   0      ; "c"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "receive"
+0004    MOV      5   2
+0005    CALL     3   3   3
+0006    MOV      5   1
+0007    MOV      6   3
+0008    MOV      7   4
+0009    CALLT    5   3
+
+-- BYTECODE -- tp.lua:81-83
+0001    TGETS    2   0   0  ; "c"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "send"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- tp.lua:85-87
+0001    TGETS    2   0   0  ; "c"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "receive"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- tp.lua:89-91
+0001    TGETS    1   0   0  ; "c"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getfd"
+0004    CALLT    1   2
+
+-- BYTECODE -- tp.lua:93-95
+0001    TGETS    1   0   0  ; "c"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "dirty"
+0004    CALLT    1   2
+
+-- BYTECODE -- tp.lua:97-99
+0001    TGETS    1   0   0  ; "c"
+0002    RET1     1   2
+
+-- BYTECODE -- tp.lua:101-105
+0001    UGET     3   0      ; socket
+0002    TGETS    3   3   0  ; "sink"
+0003    KSTR     4   1      ; "keep-open"
+0004    TGETS    5   0   2  ; "c"
+0005    CALL     3   2   3
+0006    UGET     4   1      ; ltn12
+0007    TGETS    4   4   3  ; "pump"
+0008    TGETS    4   4   4  ; "all"
+0009    MOV      5   1
+0010    MOV      6   3
+0011    ISTC     7   2
+0012    JMP      7 => 0016
+0013    UGET     7   1      ; ltn12
+0014    TGETS    7   7   3  ; "pump"
+0015    TGETS    7   7   5  ; "step"
+0016 => CALL     4   3   4
+0017    MOV      6   4
+0018    MOV      7   5
+0019    RET      6   3
+
+-- BYTECODE -- tp.lua:108-111
+0001    TGETS    1   0   0  ; "c"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "close"
+0004    CALL     1   1   2
+0005    KSHORT   1   1
+0006    RET1     1   2
+
+-- BYTECODE -- tp.lua:114-124
+0001    ISTC     4   3
+0002    JMP      4 => 0005
+0003    UGET     4   0      ; socket
+0004    TGETS    4   4   0  ; "tcp"
+0005 => CALL     4   3   1
+0006    IST          4
+0007    JMP      6 => 0011
+0008    KPRI     6   0
+0009    MOV      7   5
+0010    RET      6   3
+0011 => MOV      7   4
+0012    TGETS    6   4   1  ; "settimeout"
+0013    ISTC     8   2
+0014    JMP      8 => 0017
+0015    UGET     8   1      ; _M
+0016    TGETS    8   8   2  ; "TIMEOUT"
+0017 => CALL     6   1   3
+0018    MOV      7   4
+0019    TGETS    6   4   3  ; "connect"
+0020    MOV      8   0
+0021    MOV      9   1
+0022    CALL     6   3   4
+0023    IST          6
+0024    JMP      8 => 0031
+0025    MOV      9   4
+0026    TGETS    8   4   4  ; "close"
+0027    CALL     8   1   2
+0028    KPRI     8   0
+0029    MOV      9   7
+0030    RET      8   3
+0031 => UGET     8   2      ; base
+0032    TGETS    8   8   5  ; "setmetatable"
+0033    TDUP     9   6
+0034    TSETS    4   9   7  ; "c"
+0035    UGET    10   3      ; metat
+0036    CALLT    8   3
+
+-- BYTECODE -- tp.lua:0-126
+0001    GGET     0   0      ; "_G"
+0002    GGET     1   1      ; "require"
+0003    KSTR     2   2      ; "string"
+0004    CALL     1   2   2
+0005    GGET     2   1      ; "require"
+0006    KSTR     3   3      ; "socket"
+0007    CALL     2   2   2
+0008    GGET     3   1      ; "require"
+0009    KSTR     4   4      ; "ltn12"
+0010    CALL     3   2   2
+0011    TNEW     4   0
+0012    TSETS    4   2   5  ; "tp"
+0013    TGETS    4   2   5  ; "tp"
+0014    KSHORT   5  60
+0015    TSETS    5   4   6  ; "TIMEOUT"
+0016    FNEW     5   7      ; tp.lua:27
+0017    TDUP     6   8
+0018    TNEW     7   0
+0019    TSETS    7   6   9  ; "__index"
+0020    TGETS    7   6   9  ; "__index"
+0021    FNEW     8  11      ; tp.lua:49
+0022    TSETS    8   7  10  ; "check"
+0023    TGETS    7   6   9  ; "__index"
+0024    FNEW     8  13      ; tp.lua:67
+0025    TSETS    8   7  12  ; "command"
+0026    TGETS    7   6   9  ; "__index"
+0027    FNEW     8  15      ; tp.lua:76
+0028    TSETS    8   7  14  ; "sink"
+0029    TGETS    7   6   9  ; "__index"
+0030    FNEW     8  17      ; tp.lua:81
+0031    TSETS    8   7  16  ; "send"
+0032    TGETS    7   6   9  ; "__index"
+0033    FNEW     8  19      ; tp.lua:85
+0034    TSETS    8   7  18  ; "receive"
+0035    TGETS    7   6   9  ; "__index"
+0036    FNEW     8  21      ; tp.lua:89
+0037    TSETS    8   7  20  ; "getfd"
+0038    TGETS    7   6   9  ; "__index"
+0039    FNEW     8  23      ; tp.lua:93
+0040    TSETS    8   7  22  ; "dirty"
+0041    TGETS    7   6   9  ; "__index"
+0042    FNEW     8  25      ; tp.lua:97
+0043    TSETS    8   7  24  ; "getcontrol"
+0044    TGETS    7   6   9  ; "__index"
+0045    FNEW     8  27      ; tp.lua:101
+0046    TSETS    8   7  26  ; "source"
+0047    TGETS    7   6   9  ; "__index"
+0048    FNEW     8  29      ; tp.lua:108
+0049    TSETS    8   7  28  ; "close"
+0050    FNEW     7  31      ; tp.lua:114
+0051    TSETS    7   4  30  ; "connect"
+0052    UCLO     0 => 0053
+0053 => RET1     4   2
+

@@ -1,0 +1,394 @@
+-- BYTECODE -- webdav.lua:16-18
+0001    UGET     5   0      ; WebDavApi
+0002    MOV      6   5
+0003    TGETS    5   5   0  ; "listFolder"
+0004    MOV      7   1
+0005    MOV      8   2
+0006    MOV      9   3
+0007    MOV     10   4
+0008    CALLT    5   6
+
+-- BYTECODE -- webdav.lua:32-35
+0001    UGET     0   0      ; close
+0002    CALL     0   1   1
+0003    UGET     0   1      ; ReaderUI
+0004    MOV      1   0
+0005    TGETS    0   0   0  ; "showReader"
+0006    UGET     2   2      ; local_path
+0007    CALL     0   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- webdav.lua:20-44
+0001    UGET     7   0      ; WebDavApi
+0002    MOV      8   7
+0003    TGETS    7   7   0  ; "downloadFile"
+0004    MOV      9   2
+0005    UGET    10   0      ; WebDavApi
+0006    MOV     11  10
+0007    TGETS   10  10   1  ; "urlEncode"
+0008    TGETS   12   1   2  ; "url"
+0009    CALL    10   2   3
+0010    CAT      9   9  10
+0011    MOV     10   3
+0012    MOV     11   4
+0013    MOV     12   5
+0014    CALL     7   2   6
+0015    ISNEN    7   0      ; 200
+0016    JMP      8 => 0077
+0017    UGET     8   1      ; util
+0018    TGETS    8   8   3  ; "splitFilePathName"
+0019    MOV      9   5
+0020    CALL     8   3   2
+0021    GGET    10   4      ; "G_reader_settings"
+0022    MOV     11  10
+0023    TGETS   10  10   5  ; "isTrue"
+0024    KSTR    12   6      ; "show_unsupported"
+0025    CALL    10   2   3
+0026    ISF         10
+0027    JMP     11 => 0055
+0028    UGET    10   2      ; DocumentRegistry
+0029    MOV     11  10
+0030    TGETS   10  10   7  ; "hasProvider"
+0031    MOV     12   9
+0032    CALL    10   2   3
+0033    IST         10
+0034    JMP     10 => 0055
+0035    UGET    10   3      ; UIManager
+0036    MOV     11  10
+0037    TGETS   10  10   8  ; "show"
+0038    UGET    12   4      ; InfoMessage
+0039    MOV     13  12
+0040    TGETS   12  12   9  ; "new"
+0041    TDUP    14  12
+0042    UGET    15   5      ; T
+0043    UGET    16   6      ; _
+0044    KSTR    17  10      ; "File saved to:\n%1"
+0045    CALL    16   2   2
+0046    UGET    17   7      ; BD
+0047    TGETS   17  17  11  ; "filepath"
+0048    MOV     18   5
+0049    CALL    17   0   2
+0050    CALLM   15   2   1
+0051    TSETS   15  14  13  ; "text"
+0052    CALL    12   0   3
+0053    CALLM   10   1   1
+0054    JMP     10 => 0096
+0055 => UGET    10   3      ; UIManager
+0056    MOV     11  10
+0057    TGETS   10  10   8  ; "show"
+0058    UGET    12   8      ; ConfirmBox
+0059    MOV     13  12
+0060    TGETS   12  12   9  ; "new"
+0061    TDUP    14  15
+0062    UGET    15   5      ; T
+0063    UGET    16   6      ; _
+0064    KSTR    17  14      ; "File saved to:\n%1\nWould you like to re"~
+0065    CALL    16   2   2
+0066    UGET    17   7      ; BD
+0067    TGETS   17  17  11  ; "filepath"
+0068    MOV     18   5
+0069    CALL    17   0   2
+0070    CALLM   15   2   1
+0071    TSETS   15  14  13  ; "text"
+0072    FNEW    15  16      ; webdav.lua:32
+0073    TSETS   15  14  17  ; "ok_callback"
+0074    CALL    12   0   3
+0075    CALLM   10   1   1
+0076    JMP      8 => 0096
+0077 => UGET     8   3      ; UIManager
+0078    MOV      9   8
+0079    TGETS    8   8   8  ; "show"
+0080    UGET    10   4      ; InfoMessage
+0081    MOV     11  10
+0082    TGETS   10  10   9  ; "new"
+0083    TDUP    12  19
+0084    UGET    13   5      ; T
+0085    UGET    14   6      ; _
+0086    KSTR    15  18      ; "Could not save file to:\n%1"
+0087    CALL    14   2   2
+0088    UGET    15   7      ; BD
+0089    TGETS   15  15  11  ; "filepath"
+0090    MOV     16   5
+0091    CALL    15   0   2
+0092    CALLM   13   2   1
+0093    TSETS   13  12  13  ; "text"
+0094    CALL    10   0   3
+0095    CALLM    8   1   1
+0096 => UCLO     0 => 0097
+0097 => RET0     0   1
+
+-- BYTECODE -- webdav.lua:108-111
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "settings_dialog"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "onClose"
+0005    CALL     0   1   2
+0006    UGET     0   1      ; UIManager
+0007    MOV      1   0
+0008    TGETS    0   0   2  ; "close"
+0009    UGET     2   0      ; self
+0010    TGETS    2   2   0  ; "settings_dialog"
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- webdav.lua:115-117
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; InfoMessage
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   2
+0008    UGET     5   2      ; text_info
+0009    TSETS    5   4   3  ; "text"
+0010    CALL     2   0   3
+0011    CALLM    0   1   1
+0012    RET0     0   1
+
+-- BYTECODE -- webdav.lua:121-138
+0001    UGET     0   0      ; MultiInputDialog
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getFields"
+0004    CALL     0   2   2
+0005    TGETB    1   0   1
+0006    ISEQS    1   1      ; ""
+0007    JMP      1 => 0034
+0008    TGETB    1   0   2
+0009    ISEQS    1   1      ; ""
+0010    JMP      1 => 0034
+0011    UGET     1   1      ; item
+0012    ISF          1
+0013    JMP      2 => 0019
+0014    UGET     1   2      ; callback
+0015    UGET     2   1      ; item
+0016    MOV      3   0
+0017    CALL     1   1   3
+0018    JMP      1 => 0022
+0019 => UGET     1   2      ; callback
+0020    MOV      2   0
+0021    CALL     1   1   2
+0022 => UGET     1   3      ; self
+0023    TGETS    1   1   2  ; "settings_dialog"
+0024    MOV      2   1
+0025    TGETS    1   1   3  ; "onClose"
+0026    CALL     1   1   2
+0027    UGET     1   4      ; UIManager
+0028    MOV      2   1
+0029    TGETS    1   1   4  ; "close"
+0030    UGET     3   3      ; self
+0031    TGETS    3   3   2  ; "settings_dialog"
+0032    CALL     1   1   3
+0033    JMP      1 => 0047
+0034 => UGET     1   4      ; UIManager
+0035    MOV      2   1
+0036    TGETS    1   1   5  ; "show"
+0037    UGET     3   5      ; InfoMessage
+0038    MOV      4   3
+0039    TGETS    3   3   6  ; "new"
+0040    TDUP     5   8
+0041    UGET     6   6      ; _
+0042    KSTR     7   7      ; "Please fill in all fields."
+0043    CALL     6   2   2
+0044    TSETS    6   5   9  ; "text"
+0045    CALL     3   0   3
+0046    CALLM    1   1   1
+0047 => RET0     0   1
+
+-- BYTECODE -- webdav.lua:46-149
+0001    UGET     3   0      ; _
+0002    KSTR     4   0      ; "Server address must be of the form http("~
+0003    CALL     3   2   2
+0004    UGET     4   0      ; _
+0005    KSTR     5   1      ; "Server display name"
+0006    CALL     4   2   2
+0007    KSTR     5   2      ; ""
+0008    UGET     6   0      ; _
+0009    KSTR     7   3      ; "WebDAV address, for example https://exam"~
+0010    CALL     6   2   2
+0011    KSTR     7   2      ; ""
+0012    UGET     8   0      ; _
+0013    KSTR     9   4      ; "Username"
+0014    CALL     8   2   2
+0015    KSTR     9   2      ; ""
+0016    UGET    10   0      ; _
+0017    KSTR    11   5      ; "Password"
+0018    CALL    10   2   2
+0019    KSTR    11   2      ; ""
+0020    UGET    12   0      ; _
+0021    KSTR    13   6      ; "Start folder"
+0022    CALL    12   2   2
+0023    KSTR    13   2      ; ""
+0024    KPRI    14   0
+0025    UGET    15   0      ; _
+0026    KSTR    16   7      ; "Add"
+0027    CALL    15   2   2
+0028    ISF          1
+0029    JMP     16 => 0044
+0030    UGET    16   0      ; _
+0031    KSTR    17   8      ; "Edit WebDAV account"
+0032    CALL    16   2   2
+0033    MOV     14  16
+0034    UGET    16   0      ; _
+0035    KSTR    17   9      ; "Apply"
+0036    CALL    16   2   2
+0037    MOV     15  16
+0038    TGETS    5   1  10  ; "text"
+0039    TGETS    7   1  11  ; "address"
+0040    TGETS    9   1  12  ; "username"
+0041    TGETS   11   1  13  ; "password"
+0042    TGETS   13   1  14  ; "url"
+0043    JMP     16 => 0048
+0044 => UGET    16   0      ; _
+0045    KSTR    17  15      ; "Add WebDAV account"
+0046    CALL    16   2   2
+0047    MOV     14  16
+0048 => UGET    16   1      ; MultiInputDialog
+0049    MOV     17  16
+0050    TGETS   16  16  17  ; "new"
+0051    TDUP    18  18
+0052    TSETS   14  18  19  ; "title"
+0053    TNEW    19   6
+0054    TDUP    20  20
+0055    TSETS    5  20  10  ; "text"
+0056    TSETS    4  20  21  ; "hint"
+0057    TSETB   20  19   1
+0058    TDUP    20  22
+0059    TSETS    7  20  10  ; "text"
+0060    TSETS    6  20  21  ; "hint"
+0061    TSETB   20  19   2
+0062    TDUP    20  23
+0063    TSETS    9  20  10  ; "text"
+0064    TSETS    8  20  21  ; "hint"
+0065    TSETB   20  19   3
+0066    TDUP    20  24
+0067    TSETS   11  20  10  ; "text"
+0068    TSETS   10  20  21  ; "hint"
+0069    TSETB   20  19   4
+0070    TDUP    20  25
+0071    TSETS   13  20  10  ; "text"
+0072    TSETS   12  20  21  ; "hint"
+0073    TSETB   20  19   5
+0074    TSETS   19  18  26  ; "fields"
+0075    TNEW    19   3
+0076    TNEW    20   4
+0077    TDUP    21  28
+0078    UGET    22   0      ; _
+0079    KSTR    23  27      ; "Cancel"
+0080    CALL    22   2   2
+0081    TSETS   22  21  10  ; "text"
+0082    FNEW    22  29      ; webdav.lua:108
+0083    TSETS   22  21  30  ; "callback"
+0084    TSETB   21  20   1
+0085    TDUP    21  32
+0086    UGET    22   0      ; _
+0087    KSTR    23  31      ; "Info"
+0088    CALL    22   2   2
+0089    TSETS   22  21  10  ; "text"
+0090    FNEW    22  33      ; webdav.lua:115
+0091    TSETS   22  21  30  ; "callback"
+0092    TSETB   21  20   2
+0093    TDUP    21  34
+0094    TSETS   15  21  10  ; "text"
+0095    FNEW    22  35      ; webdav.lua:121
+0096    TSETS   22  21  30  ; "callback"
+0097    TSETB   21  20   3
+0098    TSETB   20  19   1
+0099    TSETS   19  18  36  ; "buttons"
+0100    UGET    19   4      ; Screen
+0101    MOV     20  19
+0102    TGETS   19  19  37  ; "getWidth"
+0103    CALL    19   2   2
+0104    MULVN   19  19   0  ; 0.95
+0105    TSETS   19  18  38  ; "width"
+0106    UGET    19   4      ; Screen
+0107    MOV     20  19
+0108    TGETS   19  19  39  ; "getHeight"
+0109    CALL    19   2   2
+0110    MULVN   19  19   1  ; 0.2
+0111    TSETS   19  18  40  ; "height"
+0112    CALL    16   2   3
+0113    TSETS   16   0  16  ; "settings_dialog"
+0114    UGET    16   2      ; UIManager
+0115    MOV     17  16
+0116    TGETS   16  16  41  ; "show"
+0117    TGETS   18   0  16  ; "settings_dialog"
+0118    CALL    16   1   3
+0119    TGETS   16   0  16  ; "settings_dialog"
+0120    MOV     17  16
+0121    TGETS   16  16  42  ; "onShowKeyboard"
+0122    CALL    16   1   2
+0123    UCLO     0 => 0124
+0124 => RET0     0   1
+
+-- BYTECODE -- webdav.lua:151-154
+0001    UGET     2   0      ; T
+0002    UGET     3   1      ; _
+0003    KSTR     4   0      ; "Type: %1\nName: %2\nAddress: %3"
+0004    CALL     3   2   2
+0005    KSTR     4   1      ; "WebDAV"
+0006    TGETS    5   1   2  ; "text"
+0007    TGETS    6   1   3  ; "address"
+0008    CALL     2   2   5
+0009    UGET     3   2      ; UIManager
+0010    MOV      4   3
+0011    TGETS    3   3   4  ; "show"
+0012    UGET     5   3      ; InfoMessage
+0013    MOV      6   5
+0014    TGETS    5   5   5  ; "new"
+0015    TDUP     7   6
+0016    TSETS    2   7   2  ; "text"
+0017    CALL     5   0   3
+0018    CALLM    3   1   1
+0019    RET0     0   1
+
+-- BYTECODE -- webdav.lua:0-157
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/confirmbox"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "document/documentregistry"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/infomessage"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/multiinputdialog"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/uimanager"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "apps/reader/readerui"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "apps/cloudstorage/webdavapi"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "util"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "gettext"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "device"
+0033    CALL    10   2   2
+0034    TGETS   10  10  12  ; "screen"
+0035    GGET    11   0      ; "require"
+0036    KSTR    12  13      ; "ffi/util"
+0037    CALL    11   2   2
+0038    TGETS   11  11  14  ; "template"
+0039    TNEW    12   0
+0040    FNEW    13  16      ; webdav.lua:16
+0041    TSETS   13  12  15  ; "run"
+0042    FNEW    13  18      ; webdav.lua:20
+0043    TSETS   13  12  17  ; "downloadFile"
+0044    FNEW    13  20      ; webdav.lua:46
+0045    TSETS   13  12  19  ; "config"
+0046    FNEW    13  22      ; webdav.lua:151
+0047    TSETS   13  12  21  ; "info"
+0048    UCLO     0 => 0049
+0049 => RET1    12   2
+

@@ -1,0 +1,366 @@
+-- BYTECODE -- loader.lua:58-75
+0001    UGET     2   0      ; temporary_global
+0002    ISF          2
+0003    JMP      3 => 0007
+0004    KPRI     2   0
+0005    GSET     2   0      ; "luarocks"
+0006    USETP    0   1      ; temporary_global
+0007 => UGET     2   1      ; manif
+0008    TGETS    2   2   1  ; "load_rocks_tree_manifests"
+0009    CALL     2   2   1
+0010    IST          2
+0011    JMP      3 => 0014
+0012    KPRI     3   0
+0013    RET1     3   2
+0014 => UGET     3   1      ; manif
+0015    TGETS    3   3   2  ; "scan_dependencies"
+0016    MOV      4   0
+0017    MOV      5   1
+0018    MOV      6   2
+0019    UGET     7   2      ; loader
+0020    TGETS    7   7   3  ; "context"
+0021    CALLT    3   5
+
+-- BYTECODE -- loader.lua:81-83
+0001    TGETS    2   0   0  ; "version"
+0002    TGETS    3   1   0  ; "version"
+0003    ISLT     3   2
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    JMP      3 => 0008
+0007 => KPRI     2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- loader.lua:98-108
+0001    UGET     4   0      ; ipairs
+0002    UGET     5   1      ; loaders
+0003    CALL     4   4   2
+0004    JMP      7 => 0022
+0005 => UGET     9   2      ; loader
+0006    TGETS    9   9   0  ; "luarocks_loader"
+0007    ISEQV    8   9
+0008    JMP      9 => 0022
+0009    TNEW     9   3
+0010    MOV     10   8
+0011    MOV     11   3
+0012    CALL    10   0   2
+0013    TSETM   10   0      ; 1
+0014    UGET    10   3      ; type
+0015    TGETB   11   9   1
+0016    CALL    10   2   2
+0017    ISNES   10   1      ; "function"
+0018    JMP     10 => 0022
+0019    UGET    10   4      ; unpack
+0020    MOV     11   9
+0021    CALLT   10   2
+0022 => ITERC    7   3   3
+0023    ITERL    7 => 0005
+0024    KSTR     4   2      ; "Failed loading module "
+0025    MOV      5   0
+0026    KSTR     6   3      ; " in LuaRocks rock "
+0027    MOV      7   1
+0028    KSTR     8   4      ; " "
+0029    MOV      9   2
+0030    CAT      4   4   9
+0031    RET1     4   2
+
+-- BYTECODE -- loader.lua:110-124
+0001    UGET     5   0      ; ipairs
+0002    MOV      6   1
+0003    CALL     5   4   2
+0004    JMP      8 => 0068
+0005 => MOV     11   9
+0006    TGETS   10   9   0  ; "match"
+0007    KSTR    12   1      ; "^([^/]*)/(.*)$"
+0008    CALL    10   3   3
+0009    TGETS   12   2   2  ; "manifest"
+0010    TGETS   12  12   3  ; "repository"
+0011    TGETV   12  12  10
+0012    TGETV   12  12  11
+0013    TGETB   12  12   1
+0014    TGETS   12  12   4  ; "modules"
+0015    TGETV   12  12   3
+0016    UGET    13   1      ; type
+0017    MOV     14  12
+0018    CALL    13   2   2
+0019    ISEQS   13   5      ; "string"
+0020    JMP     13 => 0037
+0021    UGET    13   2      ; error
+0022    KSTR    14   6      ; "Invalid data in manifest file for module"~
+0023    UGET    15   3      ; tostring
+0024    MOV     16   3
+0025    CALL    15   2   2
+0026    KSTR    16   7      ; " (invalid data for "
+0027    UGET    17   3      ; tostring
+0028    MOV     18  10
+0029    CALL    17   2   2
+0030    KSTR    18   8      ; " "
+0031    UGET    19   3      ; tostring
+0032    MOV     20  11
+0033    CALL    19   2   2
+0034    KSTR    20   9      ; ")"
+0035    CAT     14  14  20
+0036    CALL    13   1   2
+0037 => MOV     13   4
+0038    MOV     14  12
+0039    MOV     15  10
+0040    MOV     16  11
+0041    TGETS   17   2  10  ; "tree"
+0042    MOV     18   8
+0043    CALL    13   2   6
+0044    MOV     12  13
+0045    UGET    13   4      ; loader
+0046    TGETS   13  13  11  ; "context"
+0047    TGETV   13  13  10
+0048    ISNEV   13  11
+0049    JMP     13 => 0054
+0050    MOV     13  10
+0051    MOV     14  11
+0052    MOV     15  12
+0053    RET     13   4
+0054 => UGET    13   5      ; vers
+0055    TGETS   13  13  12  ; "parse_version"
+0056    MOV     14  11
+0057    CALL    13   2   2
+0058    MOV     11  13
+0059    UGET    13   6      ; table
+0060    TGETS   13  13  13  ; "insert"
+0061    MOV     14   0
+0062    TDUP    15  14
+0063    TSETS   10  15  15  ; "name"
+0064    TSETS   11  15  16  ; "version"
+0065    TSETS   12  15  17  ; "module_name"
+0066    TSETS    2  15  10  ; "tree"
+0067    CALL    13   1   3
+0068 => ITERC    8   3   3
+0069    ITERL    8 => 0005
+0070    RET0     0   1
+
+-- BYTECODE -- loader.lua:138-167
+0001    UGET     2   0      ; manif
+0002    TGETS    2   2   0  ; "load_rocks_tree_manifests"
+0003    CALL     2   2   1
+0004    IST          2
+0005    JMP      3 => 0008
+0006    KPRI     3   0
+0007    RET1     3   2
+0008 => TNEW     3   0
+0009    KPRI     4   0
+0010    UGET     5   1      ; ipairs
+0011    MOV      6   2
+0012    CALL     5   4   2
+0013    JMP      8 => 0044
+0014 => TGETS   10   9   1  ; "manifest"
+0015    TGETS   10  10   2  ; "modules"
+0016    TGETV   10  10   0
+0017    ISF         10
+0018    JMP     11 => 0027
+0019    UGET    11   2      ; add_providers
+0020    MOV     12   3
+0021    MOV     13  10
+0022    MOV     14   9
+0023    MOV     15   0
+0024    MOV     16   1
+0025    CALL    11   1   6
+0026    JMP     11 => 0044
+0027 => IST          4
+0028    JMP     11 => 0032
+0029    MOV     11   0
+0030    KSTR    12   3      ; ".init"
+0031    CAT      4  11  12
+0032 => TGETS   11   9   1  ; "manifest"
+0033    TGETS   11  11   2  ; "modules"
+0034    TGETV   10  11   4
+0035    ISF         10
+0036    JMP     11 => 0044
+0037    UGET    11   2      ; add_providers
+0038    MOV     12   3
+0039    MOV     13  10
+0040    MOV     14   9
+0041    MOV     15   4
+0042    MOV     16   1
+0043    CALL    11   1   6
+0044 => ITERC    8   3   3
+0045    ITERL    8 => 0014
+0046    UGET     5   3      ; next
+0047    MOV      6   3
+0048    CALL     5   2   2
+0049    ISF          5
+0050    JMP      6 => 0063
+0051    UGET     5   4      ; table
+0052    TGETS    5   5   4  ; "sort"
+0053    MOV      6   3
+0054    UGET     7   5      ; sort_versions
+0055    CALL     5   1   3
+0056    TGETB    5   3   1
+0057    TGETS    6   5   5  ; "name"
+0058    TGETS    7   5   6  ; "version"
+0059    TGETS    7   7   7  ; "string"
+0060    TGETS    8   5   8  ; "module_name"
+0061    TGETS    9   5   9  ; "tree"
+0062    RET      6   5
+0063 => RET0     0   1
+
+-- BYTECODE -- loader.lua:178-183
+0001    KSHORT   5   1
+0002    ISGE     5   4
+0003    JMP      5 => 0012
+0004    UGET     5   0      ; path
+0005    TGETS    5   5   0  ; "versioned_name"
+0006    MOV      6   0
+0007    KSTR     7   1      ; ""
+0008    MOV      8   1
+0009    MOV      9   2
+0010    CALL     5   2   5
+0011    MOV      0   5
+0012 => UGET     5   0      ; path
+0013    TGETS    5   5   2  ; "path_to_module"
+0014    MOV      6   0
+0015    CALLT    5   2
+
+-- BYTECODE -- loader.lua:176-184
+0001    UGET     1   0      ; select_module
+0002    MOV      2   0
+0003    FNEW     3   0      ; loader.lua:178
+0004    UCLO     0 => 0005
+0005 => CALLT    1   3
+
+-- BYTECODE -- loader.lua:190-193
+0001    UGET     1   0      ; select_module
+0002    MOV      2   0
+0003    UGET     3   1      ; path
+0004    TGETS    3   3   0  ; "which_i"
+0005    CALL     1   4   3
+0006    MOV      4   3
+0007    MOV      5   1
+0008    MOV      6   2
+0009    RET      4   4
+
+-- BYTECODE -- loader.lua:204-212
+0001    UGET     1   0      ; pick_module
+0002    MOV      2   0
+0003    CALL     1   4   2
+0004    IST          1
+0005    JMP      4 => 0011
+0006    KSTR     4   0      ; "No LuaRocks module found for "
+0007    MOV      5   0
+0008    CAT      4   4   5
+0009    RET1     4   2
+0010    JMP      4 => 0022
+0011 => UGET     4   1      ; loader
+0012    TGETS    4   4   1  ; "add_context"
+0013    MOV      5   1
+0014    MOV      6   2
+0015    CALL     4   1   3
+0016    UGET     4   2      ; call_other_loaders
+0017    MOV      5   0
+0018    MOV      6   1
+0019    MOV      7   2
+0020    MOV      8   3
+0021    CALLT    4   5
+0022 => RET0     0   1
+
+-- BYTECODE -- loader.lua:0-225
+0001    GGET     0   0      ; "package"
+0002    TGETS    0   0   1  ; "loaders"
+0003    IST          0
+0004    JMP      1 => 0007
+0005    GGET     0   0      ; "package"
+0006    TGETS    0   0   2  ; "searchers"
+0007 => GGET     1   3      ; "require"
+0008    GGET     2   4      ; "ipairs"
+0009    GGET     3   5      ; "table"
+0010    GGET     4   6      ; "type"
+0011    GGET     5   7      ; "next"
+0012    GGET     6   8      ; "tostring"
+0013    GGET     7   9      ; "error"
+0014    GGET     8  10      ; "unpack"
+0015    IST          8
+0016    JMP      9 => 0018
+0017    TGETS    8   3  10  ; "unpack"
+0018 => TNEW     9   0
+0019    GGET    10   0      ; "package"
+0020    TGETS   10  10  11  ; "loaded"
+0021    TGETS   10  10  12  ; "luarocks.core.cfg"
+0022    NOT     10  10
+0023    MOV     11   1
+0024    KSTR    12  12      ; "luarocks.core.cfg"
+0025    CALL    11   2   2
+0026    TGETS   12  11  13  ; "init"
+0027    CALL    12   3   1
+0028    ISF         12
+0029    JMP     14 => 0032
+0030    TGETS   14  11  14  ; "init_package_paths"
+0031    CALL    14   1   1
+0032 => MOV     14   1
+0033    KSTR    15  15      ; "luarocks.core.path"
+0034    CALL    14   2   2
+0035    MOV     15   1
+0036    KSTR    16  16      ; "luarocks.core.manif"
+0037    CALL    15   2   2
+0038    MOV     16   1
+0039    KSTR    17  17      ; "luarocks.core.vers"
+0040    CALL    16   2   2
+0041    KPRI    17   0
+0042    KPRI    18   1
+0043    GGET    19  18      ; "luarocks"
+0044    ISF         19
+0045    JMP     20 => 0049
+0046    GGET    19  18      ; "luarocks"
+0047    TSETS    9  19  19  ; "loader"
+0048    JMP     19 => 0064
+0049 => GGET    19  20      ; "debug"
+0050    TGETS   19  19  21  ; "getinfo"
+0051    KSHORT  20   2
+0052    KSTR    21  22      ; "nS"
+0053    CALL    19   2   3
+0054    TGETS   20  19  23  ; "what"
+0055    ISNES   20  24      ; "C"
+0056    JMP     20 => 0064
+0057    TGETS   20  19  25  ; "name"
+0058    IST         20
+0059    JMP     20 => 0064
+0060    TDUP    20  26
+0061    TSETS    9  20  19  ; "loader"
+0062    GSET    20  18      ; "luarocks"
+0063    KPRI    18   2
+0064 => TNEW    19   0
+0065    TSETS   19   9  27  ; "context"
+0066    FNEW    19  29      ; loader.lua:58
+0067    TSETS   19   9  28  ; "add_context"
+0068    FNEW    19  30      ; loader.lua:81
+0069    FNEW    20  31      ; loader.lua:98
+0070    FNEW    21  32      ; loader.lua:110
+0071    FNEW    22  33      ; loader.lua:138
+0072    FNEW    23  34      ; loader.lua:176
+0073    FNEW    24  36      ; loader.lua:190
+0074    TSETS   24   9  35  ; "which"
+0075    FNEW    24  38      ; loader.lua:204
+0076    TSETS   24   9  37  ; "luarocks_loader"
+0077    TGETS   24   3  39  ; "insert"
+0078    MOV     25   0
+0079    KSHORT  26   1
+0080    TGETS   27   9  37  ; "luarocks_loader"
+0081    CALL    24   1   4
+0082    ISF         10
+0083    JMP     24 => 0101
+0084    GGET    24  40      ; "pairs"
+0085    GGET    25   0      ; "package"
+0086    TGETS   25  25  11  ; "loaded"
+0087    CALL    24   4   2
+0088    ISNEXT  27 => 0099
+0089 => MOV     30  27
+0090    TGETS   29  27  41  ; "match"
+0091    KSTR    31  42      ; "^luarocks%."
+0092    CALL    29   2   3
+0093    ISF         29
+0094    JMP     30 => 0099
+0095    GGET    29   0      ; "package"
+0096    TGETS   29  29  11  ; "loaded"
+0097    KPRI    30   0
+0098    TSETV   30  29  27
+0099 => ITERN   27   3   3
+0100    ITERL   27 => 0089
+0101 => UCLO     0 => 0102
+0102 => RET1     9   2
+

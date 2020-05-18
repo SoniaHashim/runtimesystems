@@ -1,0 +1,804 @@
+-- BYTECODE -- reader.lua:71-87
+0001    GGET     0   0      ; "print"
+0002    KSTR     1   1      ; "usage: ./reader.lua [OPTION] ... path"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "print"
+0005    KSTR     1   2      ; "Read all the books on your E-Ink reader"
+0006    CALL     0   1   2
+0007    GGET     0   0      ; "print"
+0008    KSTR     1   3      ; ""
+0009    CALL     0   1   2
+0010    GGET     0   0      ; "print"
+0011    KSTR     1   4      ; "-d               start in debug mode"
+0012    CALL     0   1   2
+0013    GGET     0   0      ; "print"
+0014    KSTR     1   5      ; "-v               debug in verbose mode"
+0015    CALL     0   1   2
+0016    GGET     0   0      ; "print"
+0017    KSTR     1   6      ; "-p               enable Lua code profili"~
+0018    CALL     0   1   2
+0019    GGET     0   0      ; "print"
+0020    KSTR     1   7      ; "-h               show this usage help"
+0021    CALL     0   1   2
+0022    GGET     0   0      ; "print"
+0023    KSTR     1   3      ; ""
+0024    CALL     0   1   2
+0025    GGET     0   0      ; "print"
+0026    KSTR     1   8      ; "If you give the name of a directory inst"~
+0027    CALL     0   1   2
+0028    GGET     0   0      ; "print"
+0029    KSTR     1   9      ; "chooser will show up and let you select "~
+0030    CALL     0   1   2
+0031    GGET     0   0      ; "print"
+0032    KSTR     1   3      ; ""
+0033    CALL     0   1   2
+0034    GGET     0   0      ; "print"
+0035    KSTR     1  10      ; "If you don't pass any path, the last vie"~
+0036    CALL     0   1   2
+0037    GGET     0   0      ; "print"
+0038    KSTR     1   3      ; ""
+0039    CALL     0   1   2
+0040    GGET     0   0      ; "print"
+0041    KSTR     1  11      ; "This software is licensed under the AGPL"~
+0042    CALL     0   1   2
+0043    GGET     0   0      ; "print"
+0044    KSTR     1  12      ; "See http://github.com/koreader/koreader "~
+0045    CALL     0   1   2
+0046    RET0     0   1
+
+-- BYTECODE -- reader.lua:191-193
+0001    RET0     0   1
+
+-- BYTECODE -- reader.lua:195-200
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/event"
+0003    CALL     0   2   2
+0004    GGET     1   2      ; "G_reader_settings"
+0005    MOV      2   1
+0006    TGETS    1   1   3  ; "delSetting"
+0007    KSTR     3   4      ; "color_rendering"
+0008    CALL     1   1   3
+0009    UGET     1   0      ; CanvasContext
+0010    MOV      2   1
+0011    TGETS    1   1   5  ; "setColorRenderingEnabled"
+0012    KPRI     3   1
+0013    CALL     1   1   3
+0014    UGET     1   1      ; UIManager
+0015    MOV      2   1
+0016    TGETS    1   1   6  ; "broadcastEvent"
+0017    MOV      4   0
+0018    TGETS    3   0   7  ; "new"
+0019    KSTR     5   8      ; "ColorRenderingUpdate"
+0020    CALL     3   0   3
+0021    CALLM    1   1   1
+0022    RET0     0   1
+
+-- BYTECODE -- reader.lua:214-216
+0001    UGET     0   0      ; ReaderUI
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "showReader"
+0004    UGET     2   1      ; last_file
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- reader.lua:210-220
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "readSetting"
+0004    KSTR     2   2      ; "lastfile"
+0005    CALL     0   2   3
+0006    UGET     1   0      ; lfs
+0007    TGETS    1   1   3  ; "attributes"
+0008    MOV      2   0
+0009    KSTR     3   4      ; "mode"
+0010    CALL     1   2   3
+0011    ISNES    1   5      ; "file"
+0012    JMP      1 => 0022
+0013    GGET     1   6      ; "require"
+0014    KSTR     2   7      ; "apps/reader/readerui"
+0015    CALL     1   2   2
+0016    UGET     2   1      ; UIManager
+0017    MOV      3   2
+0018    TGETS    2   2   8  ; "nextTick"
+0019    FNEW     4   9      ; reader.lua:214
+0020    CALL     2   1   3
+0021    UCLO     1 => 0028
+0022 => UGET     1   1      ; UIManager
+0023    MOV      2   1
+0024    TGETS    1   1  10  ; "show"
+0025    UGET     3   2      ; retryLastFile
+0026    CALL     3   0   1
+0027    CALLM    1   1   1
+0028 => UCLO     0 => 0029
+0029 => RET0     0   1
+
+-- BYTECODE -- reader.lua:206-222
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/confirmbox"
+0003    CALL     0   2   2
+0004    MOV      2   0
+0005    TGETS    1   0   2  ; "new"
+0006    TDUP     3   4
+0007    UGET     4   0      ; _
+0008    KSTR     5   3      ; "Cannot open last file.\nThis could be be"~
+0009    CALL     4   2   2
+0010    TSETS    4   3   5  ; "text"
+0011    FNEW     4   6      ; reader.lua:210
+0012    TSETS    4   3   7  ; "ok_callback"
+0013    UCLO     0 => 0014
+0014 => CALLT    1   3
+
+-- BYTECODE -- reader.lua:225-227
+0001    GGET     1   0      ; "string"
+0002    TGETS    1   1   1  ; "char"
+0003    GGET     2   2      ; "tonumber"
+0004    MOV      3   0
+0005    KSHORT   4  16
+0006    CALL     2   0   3
+0007    CALLMT   1   0
+
+-- BYTECODE -- reader.lua:229-231
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "gsub"
+0003    KSTR     3   1      ; "%%(%x%x)"
+0004    UGET     4   0      ; hexToChar
+0005    CALLT    1   4
+
+-- BYTECODE -- reader.lua:224-238
+0001    FNEW     1   0      ; reader.lua:225
+0002    FNEW     2   1      ; reader.lua:229
+0003    KSTR     3   2      ; "file://"
+0004    MOV      5   0
+0005    TGETS    4   0   3  ; "sub"
+0006    KSHORT   6   1
+0007    LEN      7   3
+0008    CALL     4   2   4
+0009    ISEQV    4   3
+0010    JMP      4 => 0013
+0011    UCLO     0 => 0012
+0012 => RET1     0   2
+0013 => MOV      4   2
+0014    MOV      5   0
+0015    CALL     4   2   2
+0016    MOV      5   4
+0017    TGETS    4   4   3  ; "sub"
+0018    LEN      6   3
+0019    ADDVN    6   6   0  ; 1
+0020    UCLO     0 => 0021
+0021 => CALLT    4   3
+
+-- BYTECODE -- reader.lua:270-272
+0001    UGET     0   0      ; ReaderUI
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "showReader"
+0004    UGET     2   1      ; file
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- reader.lua:279-281
+0001    UGET     0   0      ; FileManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "showFiles"
+0004    UGET     2   1      ; home_dir
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- reader.lua:286-288
+0001    UGET     0   0      ; FileManagerHistory
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onShowHist"
+0004    UGET     2   1      ; last_file
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- reader.lua:291-295
+0001    UGET     0   0      ; FileManagerShortcuts
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "new"
+0004    TDUP     2   2
+0005    UGET     3   1      ; FileManager
+0006    TGETS    3   3   1  ; "instance"
+0007    TSETS    3   2   3  ; "ui"
+0008    CALL     0   2   3
+0009    MOV      1   0
+0010    TGETS    0   0   4  ; "onShowFolderShortcutsDialog"
+0011    CALL     0   1   2
+0012    RET0     0   1
+
+-- BYTECODE -- reader.lua:301-303
+0001    UGET     0   0      ; ReaderUI
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "showReader"
+0004    UGET     2   1      ; last_file
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- reader.lua:310-332
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "apps/reader/modules/readeractivityindica"~
+0003    CALL     0   2   2
+0004    UGET     1   0      ; Device
+0005    MOV      2   1
+0006    TGETS    1   1   2  ; "saveSettings"
+0007    CALL     1   1   2
+0008    GGET     1   3      ; "G_reader_settings"
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "close"
+0011    CALL     1   1   2
+0012    MOV      2   0
+0013    TGETS    1   0   5  ; "coda"
+0014    CALL     1   1   2
+0015    UGET     1   0      ; Device
+0016    MOV      2   1
+0017    TGETS    1   1   6  ; "exit"
+0018    CALL     1   1   2
+0019    UGET     1   1      ; Profiler
+0020    ISF          1
+0021    JMP      2 => 0025
+0022    UGET     1   1      ; Profiler
+0023    TGETS    1   1   7  ; "stop"
+0024    CALL     1   1   1
+0025 => GGET     1   8      ; "type"
+0026    UGET     2   2      ; exit_code
+0027    CALL     1   2   2
+0028    ISNES    1   9      ; "number"
+0029    JMP      1 => 0035
+0030    GGET     1  10      ; "os"
+0031    TGETS    1   1   6  ; "exit"
+0032    UGET     2   2      ; exit_code
+0033    CALL     1   1   2
+0034    JMP      1 => 0039
+0035 => GGET     1  10      ; "os"
+0036    TGETS    1   1   6  ; "exit"
+0037    KSHORT   2   0
+0038    CALL     1   1   2
+0039 => RET0     0   1
+
+-- BYTECODE -- reader.lua:0-335
+0001    GGET     0   0      ; "io"
+0002    TGETS    0   0   1  ; "stdout"
+0003    MOV      1   0
+0004    TGETS    0   0   2  ; "write"
+0005    KSTR     2   3      ; "----------------------------------------"~
+0006    GGET     3   4      ; "os"
+0007    TGETS    3   3   5  ; "date"
+0008    KSTR     4   6      ; "%x-%X"
+0009    CALL     3   2   2
+0010    KSTR     4   7      ; "\n"
+0011    CALL     0   1   5
+0012    GGET     0   0      ; "io"
+0013    TGETS    0   0   1  ; "stdout"
+0014    MOV      1   0
+0015    TGETS    0   0   8  ; "flush"
+0016    CALL     0   1   2
+0017    GGET     0   9      ; "require"
+0018    KSTR     1  10      ; "defaults"
+0019    CALL     0   1   2
+0020    GGET     0   9      ; "require"
+0021    KSTR     1  11      ; "datastorage"
+0022    CALL     0   2   2
+0023    GGET     1  12      ; "pcall"
+0024    GGET     2  13      ; "dofile"
+0025    MOV      4   0
+0026    TGETS    3   0  14  ; "getDataDir"
+0027    CALL     3   2   2
+0028    KSTR     4  15      ; "/defaults.persistent.lua"
+0029    CAT      3   3   4
+0030    CALL     1   1   3
+0031    GGET     1   9      ; "require"
+0032    KSTR     2  16      ; "setupkoenv"
+0033    CALL     1   1   2
+0034    GGET     1   0      ; "io"
+0035    TGETS    1   1   1  ; "stdout"
+0036    MOV      2   1
+0037    TGETS    1   1   2  ; "write"
+0038    KSTR     3  17      ; " [*] Version: "
+0039    GGET     4   9      ; "require"
+0040    KSTR     5  18      ; "version"
+0041    CALL     4   2   2
+0042    MOV      5   4
+0043    TGETS    4   4  19  ; "getCurrentRevision"
+0044    CALL     4   2   2
+0045    KSTR     5  20      ; "\n\n"
+0046    CALL     1   1   5
+0047    GGET     1   0      ; "io"
+0048    TGETS    1   1   1  ; "stdout"
+0049    MOV      2   1
+0050    TGETS    1   1   8  ; "flush"
+0051    CALL     1   1   2
+0052    GGET     1   9      ; "require"
+0053    KSTR     2  21      ; "luasettings"
+0054    CALL     1   2   2
+0055    MOV      2   1
+0056    TGETS    1   1  22  ; "open"
+0057    MOV      4   0
+0058    TGETS    3   0  14  ; "getDataDir"
+0059    CALL     3   2   2
+0060    KSTR     4  23      ; "/settings.reader.lua"
+0061    CAT      3   3   4
+0062    CALL     1   2   3
+0063    GSET     1  24      ; "G_reader_settings"
+0064    GGET     1  24      ; "G_reader_settings"
+0065    MOV      2   1
+0066    TGETS    1   1  25  ; "readSetting"
+0067    KSTR     3  26      ; "language"
+0068    CALL     1   2   3
+0069    GGET     2   4      ; "os"
+0070    TGETS    2   2  27  ; "getenv"
+0071    KSTR     3  28      ; "KO_RTL"
+0072    CALL     2   2   2
+0073    ISF          2
+0074    JMP      3 => 0076
+0075    KSTR     1  29      ; "ar_AA"
+0076 => GGET     2   9      ; "require"
+0077    KSTR     3  30      ; "gettext"
+0078    CALL     2   2   2
+0079    ISF          1
+0080    JMP      3 => 0084
+0081    TGETS    3   2  31  ; "changeLang"
+0082    MOV      4   1
+0083    CALL     3   1   2
+0084 => GGET     3   9      ; "require"
+0085    KSTR     4  32      ; "ffi"
+0086    CALL     3   2   2
+0087    GGET     4   9      ; "require"
+0088    KSTR     5  33      ; "ffi/posix_h"
+0089    CALL     4   2   2
+0090    TGETS    5   3  34  ; "C"
+0091    GGET     6  24      ; "G_reader_settings"
+0092    MOV      7   6
+0093    TGETS    6   6  35  ; "isTrue"
+0094    KSTR     8  36      ; "dev_no_c_blitter"
+0095    CALL     6   2   3
+0096    ISF          6
+0097    JMP      7 => 0111
+0098    TGETS    6   3   4  ; "os"
+0099    ISNES    6  37      ; "Windows"
+0100    JMP      6 => 0105
+0101    TGETS    6   5  38  ; "_putenv"
+0102    KSTR     7  39      ; "KO_NO_CBB=true"
+0103    CALL     6   1   2
+0104    JMP      6 => 0121
+0105 => TGETS    6   5  40  ; "setenv"
+0106    KSTR     7  41      ; "KO_NO_CBB"
+0107    KSTR     8  42      ; "true"
+0108    KSHORT   9   1
+0109    CALL     6   1   4
+0110    JMP      6 => 0121
+0111 => TGETS    6   3   4  ; "os"
+0112    ISNES    6  37      ; "Windows"
+0113    JMP      6 => 0118
+0114    TGETS    6   5  38  ; "_putenv"
+0115    KSTR     7  43      ; "KO_NO_CBB=false"
+0116    CALL     6   1   2
+0117    JMP      6 => 0121
+0118 => TGETS    6   5  44  ; "unsetenv"
+0119    KSTR     7  41      ; "KO_NO_CBB"
+0120    CALL     6   1   2
+0121 => GGET     6   9      ; "require"
+0122    KSTR     7  45      ; "dbg"
+0123    CALL     6   2   2
+0124    GGET     7  24      ; "G_reader_settings"
+0125    MOV      8   7
+0126    TGETS    7   7  35  ; "isTrue"
+0127    KSTR     9  46      ; "debug"
+0128    CALL     7   2   3
+0129    ISF          7
+0130    JMP      8 => 0134
+0131    MOV      8   6
+0132    TGETS    7   6  47  ; "turnOn"
+0133    CALL     7   1   2
+0134 => GGET     7  24      ; "G_reader_settings"
+0135    MOV      8   7
+0136    TGETS    7   7  35  ; "isTrue"
+0137    KSTR     9  46      ; "debug"
+0138    CALL     7   2   3
+0139    ISF          7
+0140    JMP      8 => 0152
+0141    GGET     7  24      ; "G_reader_settings"
+0142    MOV      8   7
+0143    TGETS    7   7  35  ; "isTrue"
+0144    KSTR     9  48      ; "debug_verbose"
+0145    CALL     7   2   3
+0146    ISF          7
+0147    JMP      8 => 0152
+0148    MOV      8   6
+0149    TGETS    7   6  49  ; "setVerbose"
+0150    KPRI     9   2
+0151    CALL     7   1   3
+0152 => TDUP     7  50
+0153    FNEW     8  51      ; reader.lua:71
+0154    KPRI     9   0
+0155    GGET    10  52      ; "arg"
+0156    KSHORT  11   1
+0157 => LEN     12  10
+0158    ISGT    11  12
+0159    JMP     12 => 0215
+0160    LOOP    12 => 0215
+0161    TGETV   12  10  11
+0162    ADDVN   11  11   0  ; 1
+0163    ISNES   12  53      ; "--"
+0164    JMP     13 => 0166
+0165    JMP     12 => 0215
+0166 => MOV     14  12
+0167    TGETS   13  12  54  ; "sub"
+0168    KSHORT  15   1
+0169    KSHORT  16   2
+0170    CALL    13   2   4
+0171    ISNES   13  53      ; "--"
+0172    JMP     13 => 0183
+0173    MOV     14  12
+0174    TGETS   13  12  54  ; "sub"
+0175    KSHORT  15   3
+0176    CALL    13   2   3
+0177    TGETV   13   7  13
+0178    ISEQP   13   0
+0179    JMP     14 => 0183
+0180    KSTR    14  55      ; "-"
+0181    MOV     15  13
+0182    CAT     12  14  15
+0183 => ISNES   12  56      ; "-h"
+0184    JMP     13 => 0189
+0185    MOV     13   8
+0186    UCLO     0 => 0187
+0187 => CALLT   13   1
+0188    JMP     13 => 0157
+0189 => ISNES   12  57      ; "-d"
+0190    JMP     13 => 0195
+0191    MOV     14   6
+0192    TGETS   13   6  47  ; "turnOn"
+0193    CALL    13   1   2
+0194    JMP     13 => 0157
+0195 => ISNES   12  58      ; "-v"
+0196    JMP     13 => 0202
+0197    MOV     14   6
+0198    TGETS   13   6  49  ; "setVerbose"
+0199    KPRI    15   2
+0200    CALL    13   1   3
+0201    JMP     13 => 0157
+0202 => ISNES   12  59      ; "-p"
+0203    JMP     13 => 0212
+0204    GGET    13   9      ; "require"
+0205    KSTR    14  60      ; "jit.p"
+0206    CALL    13   2   2
+0207    MOV      9  13
+0208    TGETS   13   9  61  ; "start"
+0209    KSTR    14  62      ; "la"
+0210    CALL    13   1   2
+0211    JMP     13 => 0157
+0212 => SUBVN   11  11   0  ; 1
+0213    JMP     12 => 0215
+0214    JMP     12 => 0157
+0215 => GGET    12   9      ; "require"
+0216    KSTR    13  63      ; "device"
+0217    CALL    12   2   2
+0218    GGET    13  24      ; "G_reader_settings"
+0219    MOV     14  13
+0220    TGETS   13  13  25  ; "readSetting"
+0221    KSTR    15  64      ; "screen_dpi"
+0222    CALL    13   2   3
+0223    ISEQP   13   0
+0224    JMP     14 => 0229
+0225    MOV     15  12
+0226    TGETS   14  12  65  ; "setScreenDPI"
+0227    MOV     16  13
+0228    CALL    14   1   3
+0229 => GGET    14  24      ; "G_reader_settings"
+0230    MOV     15  14
+0231    TGETS   14  14  35  ; "isTrue"
+0232    KSTR    16  66      ; "night_mode"
+0233    CALL    14   2   3
+0234    ISF         14
+0235    JMP     15 => 0240
+0236    TGETS   14  12  67  ; "screen"
+0237    MOV     15  14
+0238    TGETS   14  14  68  ; "toggleNightMode"
+0239    CALL    14   1   2
+0240 => MOV     15  12
+0241    TGETS   14  12  69  ; "hasEinkScreen"
+0242    CALL    14   2   2
+0243    ISF         14
+0244    JMP     15 => 0279
+0245    TGETS   14  12  67  ; "screen"
+0246    MOV     15  14
+0247    TGETS   14  14  70  ; "setupDithering"
+0248    CALL    14   1   2
+0249    TGETS   14  12  67  ; "screen"
+0250    TGETS   14  14  71  ; "hw_dithering"
+0251    ISF         14
+0252    JMP     15 => 0264
+0253    GGET    14  24      ; "G_reader_settings"
+0254    MOV     15  14
+0255    TGETS   14  14  35  ; "isTrue"
+0256    KSTR    16  72      ; "dev_no_hw_dither"
+0257    CALL    14   2   3
+0258    ISF         14
+0259    JMP     15 => 0264
+0260    TGETS   14  12  67  ; "screen"
+0261    MOV     15  14
+0262    TGETS   14  14  73  ; "toggleHWDithering"
+0263    CALL    14   1   2
+0264 => TGETS   14  12  67  ; "screen"
+0265    TGETS   14  14  74  ; "sw_dithering"
+0266    ISF         14
+0267    JMP     15 => 0279
+0268    GGET    14  24      ; "G_reader_settings"
+0269    MOV     15  14
+0270    TGETS   14  14  35  ; "isTrue"
+0271    KSTR    16  75      ; "dev_no_sw_dither"
+0272    CALL    14   2   3
+0273    ISF         14
+0274    JMP     15 => 0279
+0275    TGETS   14  12  67  ; "screen"
+0276    MOV     15  14
+0277    TGETS   14  14  76  ; "toggleSWDithering"
+0278    CALL    14   1   2
+0279 => GGET    14   9      ; "require"
+0280    KSTR    15  77      ; "ui/data/settings_migration"
+0281    CALL    14   2   2
+0282    MOV     16  14
+0283    TGETS   15  14  78  ; "migrateSettings"
+0284    GGET    17  24      ; "G_reader_settings"
+0285    CALL    15   1   3
+0286    GGET    15   9      ; "require"
+0287    KSTR    16  79      ; "document/canvascontext"
+0288    CALL    15   2   2
+0289    MOV     17  15
+0290    TGETS   16  15  80  ; "init"
+0291    MOV     18  12
+0292    CALL    16   1   3
+0293    MOV     17  12
+0294    TGETS   16  12  81  ; "needsTouchScreenProbe"
+0295    CALL    16   2   2
+0296    ISF         16
+0297    JMP     17 => 0301
+0298    MOV     17  12
+0299    TGETS   16  12  82  ; "touchScreenProbe"
+0300    CALL    16   1   2
+0301 => GGET    16   9      ; "require"
+0302    KSTR    17  83      ; "ui/bidi"
+0303    CALL    16   2   2
+0304    TGETS   17  16  84  ; "setup"
+0305    MOV     18   1
+0306    CALL    17   1   2
+0307    GGET    17  24      ; "G_reader_settings"
+0308    MOV     18  17
+0309    TGETS   17  17  25  ; "readSetting"
+0310    KSTR    19  85      ; "fontmap"
+0311    CALL    17   2   3
+0312    ISEQP   17   0
+0313    JMP     18 => 0325
+0314    GGET    18   9      ; "require"
+0315    KSTR    19  86      ; "ui/font"
+0316    CALL    18   2   2
+0317    GGET    19  87      ; "pairs"
+0318    MOV     20  17
+0319    CALL    19   4   2
+0320    ISNEXT  22 => 0323
+0321 => TGETS   24  18  85  ; "fontmap"
+0322    TSETV   23  24  22
+0323 => ITERN   22   3   3
+0324    ITERL   22 => 0321
+0325 => GGET    18   9      ; "require"
+0326    KSTR    19  88      ; "ui/uimanager"
+0327    CALL    18   2   2
+0328    MOV     20  12
+0329    TGETS   19  12  89  ; "hasColorScreen"
+0330    CALL    19   2   2
+0331    ISF         19
+0332    JMP     20 => 0360
+0333    GGET    19  24      ; "G_reader_settings"
+0334    MOV     20  19
+0335    TGETS   19  19  90  ; "has"
+0336    KSTR    21  91      ; "color_rendering"
+0337    CALL    19   2   3
+0338    IST         19
+0339    JMP     19 => 0360
+0340    GGET    19  24      ; "G_reader_settings"
+0341    MOV     20  19
+0342    TGETS   19  19  92  ; "saveSetting"
+0343    KSTR    21  91      ; "color_rendering"
+0344    KPRI    22   2
+0345    CALL    19   1   4
+0346    GGET    19   9      ; "require"
+0347    KSTR    20  93      ; "ui/widget/infomessage"
+0348    CALL    19   2   2
+0349    MOV     21  18
+0350    TGETS   20  18  94  ; "show"
+0351    MOV     23  19
+0352    TGETS   22  19  95  ; "new"
+0353    TDUP    24  97
+0354    MOV     25   2
+0355    KSTR    26  96      ; "Documents will be rendered in color on t"~
+0356    CALL    25   2   2
+0357    TSETS   25  24  98  ; "text"
+0358    CALL    22   0   3
+0359    CALLM   20   1   1
+0360 => GGET    19  24      ; "G_reader_settings"
+0361    MOV     20  19
+0362    TGETS   19  19  35  ; "isTrue"
+0363    KSTR    21  91      ; "color_rendering"
+0364    CALL    19   2   3
+0365    ISF         19
+0366    JMP     20 => 0398
+0367    MOV     20  12
+0368    TGETS   19  12  89  ; "hasColorScreen"
+0369    CALL    19   2   2
+0370    IST         19
+0371    JMP     19 => 0398
+0372    GGET    19   9      ; "require"
+0373    KSTR    20  99      ; "ui/widget/confirmbox"
+0374    CALL    19   2   2
+0375    MOV     21  18
+0376    TGETS   20  18  94  ; "show"
+0377    MOV     23  19
+0378    TGETS   22  19  95  ; "new"
+0379    TDUP    24 101
+0380    MOV     25   2
+0381    KSTR    26 100      ; "Color rendering is mistakenly enabled on"~
+0382    CALL    25   2   2
+0383    TSETS   25  24  98  ; "text"
+0384    MOV     25   2
+0385    KSTR    26 102      ; "Ignore"
+0386    CALL    25   2   2
+0387    TSETS   25  24 103  ; "cancel_text"
+0388    FNEW    25 104      ; reader.lua:191
+0389    TSETS   25  24 105  ; "cancel_callback"
+0390    MOV     25   2
+0391    KSTR    26 106      ; "Disable"
+0392    CALL    25   2   2
+0393    TSETS   25  24 107  ; "ok_text"
+0394    FNEW    25 108      ; reader.lua:195
+0395    TSETS   25  24 109  ; "ok_callback"
+0396    CALL    22   0   3
+0397    CALLM   20   1   1
+0398 => GGET    19   9      ; "require"
+0399    KSTR    20 110      ; "libs/libkoreader-lfs"
+0400    CALL    19   2   2
+0401    FNEW    20 111      ; reader.lua:206
+0402    FNEW    21 112      ; reader.lua:224
+0403    GGET    22  24      ; "G_reader_settings"
+0404    MOV     23  22
+0405    TGETS   22  22  25  ; "readSetting"
+0406    KSTR    24 113      ; "lastfile"
+0407    CALL    22   2   3
+0408    GGET    23  24      ; "G_reader_settings"
+0409    MOV     24  23
+0410    TGETS   23  23  25  ; "readSetting"
+0411    KSTR    25 114      ; "start_with"
+0412    CALL    23   2   3
+0413    ISEQS   23 115      ; "last"
+0414    JMP     24 => 0417
+0415    KPRI    24   1
+0416    JMP     25 => 0418
+0417 => KPRI    24   2
+0418 => ISF         24
+0419    JMP     25 => 0435
+0420    ISF         22
+0421    JMP     25 => 0435
+0422    TGETS   25  19 116  ; "attributes"
+0423    MOV     26  22
+0424    KSTR    27 117      ; "mode"
+0425    CALL    25   2   3
+0426    ISEQS   25 118      ; "file"
+0427    JMP     25 => 0435
+0428    MOV     26  18
+0429    TGETS   25  18  94  ; "show"
+0430    MOV     27  20
+0431    CALL    27   0   1
+0432    CALLM   25   1   1
+0433    KPRI    22   0
+0434    JMP     25 => 0448
+0435 => GGET    25   9      ; "require"
+0436    KSTR    26 119      ; "ui/quickstart"
+0437    CALL    25   2   2
+0438    MOV     27  25
+0439    TGETS   26  25 120  ; "isShown"
+0440    CALL    26   2   2
+0441    IST         26
+0442    JMP     26 => 0448
+0443    KPRI    24   2
+0444    MOV     27  25
+0445    TGETS   26  25 121  ; "getQuickStart"
+0446    CALL    26   2   2
+0447    MOV     22  26
+0448 => KPRI    25   0
+0449    TGETV   26  10  11
+0450    ISF         26
+0451    JMP     27 => 0525
+0452    TGETV   26  10  11
+0453    ISEQS   26 122      ; ""
+0454    JMP     26 => 0525
+0455    KPRI    26   0
+0456    MOV     27  21
+0457    TGETV   28  10  11
+0458    CALL    27   2   2
+0459    TGETS   28  19 116  ; "attributes"
+0460    MOV     29  27
+0461    KSTR    30 117      ; "mode"
+0462    CALL    28   2   3
+0463    ISNES   28 118      ; "file"
+0464    JMP     28 => 0467
+0465    MOV     26  27
+0466    JMP     28 => 0472
+0467 => ISF         24
+0468    JMP     28 => 0472
+0469    ISF         22
+0470    JMP     28 => 0472
+0471    MOV     26  22
+0472 => ISF         26
+0473    JMP     28 => 0484
+0474    ISEQS   26 122      ; ""
+0475    JMP     28 => 0484
+0476    GGET    28   9      ; "require"
+0477    KSTR    29 123      ; "apps/reader/readerui"
+0478    CALL    28   2   2
+0479    MOV     30  18
+0480    TGETS   29  18 124  ; "nextTick"
+0481    FNEW    31 125      ; reader.lua:270
+0482    CALL    29   1   3
+0483    UCLO    28 => 0520
+0484 => GGET    28   9      ; "require"
+0485    KSTR    29 126      ; "apps/filemanager/filemanager"
+0486    CALL    28   2   2
+0487    GGET    29  24      ; "G_reader_settings"
+0488    MOV     30  29
+0489    TGETS   29  29  25  ; "readSetting"
+0490    KSTR    31 127      ; "home_dir"
+0491    CALL    29   2   3
+0492    IST         29
+0493    JMP     30 => 0495
+0494    TGETV   29  10  11
+0495 => MOV     31  18
+0496    TGETS   30  18 124  ; "nextTick"
+0497    FNEW    32 128      ; reader.lua:279
+0498    CALL    30   1   3
+0499    ISNES   23 129      ; "history"
+0500    JMP     30 => 0509
+0501    GGET    30   9      ; "require"
+0502    KSTR    31 130      ; "apps/filemanager/filemanagerhistory"
+0503    CALL    30   2   2
+0504    MOV     32  18
+0505    TGETS   31  18 124  ; "nextTick"
+0506    FNEW    33 131      ; reader.lua:286
+0507    CALL    31   1   3
+0508    UCLO    30 => 0519
+0509 => ISNES   23 132      ; "folder_shortcuts"
+0510    JMP     30 => 0519
+0511    GGET    30   9      ; "require"
+0512    KSTR    31 133      ; "apps/filemanager/filemanagershortcuts"
+0513    CALL    30   2   2
+0514    MOV     32  18
+0515    TGETS   31  18 124  ; "nextTick"
+0516    FNEW    33 134      ; reader.lua:291
+0517    CALL    31   1   3
+0518    UCLO    30 => 0519
+0519 => UCLO    28 => 0520
+0520 => MOV     29  18
+0521    TGETS   28  18 135  ; "run"
+0522    CALL    28   2   2
+0523    MOV     25  28
+0524    UCLO    26 => 0542
+0525 => ISF         22
+0526    JMP     26 => 0539
+0527    GGET    26   9      ; "require"
+0528    KSTR    27 123      ; "apps/reader/readerui"
+0529    CALL    26   2   2
+0530    MOV     28  18
+0531    TGETS   27  18 124  ; "nextTick"
+0532    FNEW    29 136      ; reader.lua:301
+0533    CALL    27   1   3
+0534    MOV     28  18
+0535    TGETS   27  18 135  ; "run"
+0536    CALL    27   2   2
+0537    MOV     25  27
+0538    UCLO    26 => 0542
+0539 => MOV     26   8
+0540    UCLO     0 => 0541
+0541 => CALLT   26   1
+0542 => FNEW    26 137      ; reader.lua:310
+0543    MOV     27  26
+0544    CALL    27   1   1
+0545    UCLO     0 => 0546
+0546 => RET0     0   1
+

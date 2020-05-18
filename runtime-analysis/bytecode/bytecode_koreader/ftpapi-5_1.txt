@@ -1,0 +1,267 @@
+
+main <./frontend/apps/cloudstorage/ftpapi.lua:0,0> (34 instructions, 136 bytes at 0x7fe172c068e0)
+0+ params, 7 slots, 0 upvalues, 6 locals, 10 constants, 4 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "document/documentregistry"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "socket.ftp"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "ltn12"
+	9	[3]	CALL     	2 2 2
+	10	[4]	GETGLOBAL	3 -1	; require
+	11	[4]	LOADK    	4 -5	; "util"
+	12	[4]	CALL     	3 2 2
+	13	[5]	GETGLOBAL	4 -1	; require
+	14	[5]	LOADK    	5 -6	; "socket.url"
+	15	[5]	CALL     	4 2 2
+	16	[7]	NEWTABLE 	5 0 0
+	17	[21]	CLOSURE  	6 0	; 0x7fe172c07030
+	18	[10]	SETTABLE 	5 -7 6	; "generateUrl" -
+	19	[32]	CLOSURE  	6 1	; 0x7fe172c07540
+	20	[32]	MOVE     	0 4
+	21	[32]	MOVE     	0 3
+	22	[32]	MOVE     	0 2
+	23	[32]	MOVE     	0 1
+	24	[23]	SETTABLE 	5 -8 6	; "ftpGet" -
+	25	[83]	CLOSURE  	6 2	; 0x7fe172c06d30
+	26	[83]	MOVE     	0 0
+	27	[34]	SETTABLE 	5 -9 6	; "listFolder" -
+	28	[93]	CLOSURE  	6 3	; 0x7fe172c08ad0
+	29	[93]	MOVE     	0 4
+	30	[93]	MOVE     	0 3
+	31	[93]	MOVE     	0 1
+	32	[85]	SETTABLE 	5 -10 6	; "delete" -
+	33	[95]	RETURN   	5 2
+	34	[95]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/ftpapi.lua:10,21> (20 instructions, 80 bytes at 0x7fe172c07030)
+4 params, 15 slots, 0 upvalues, 7 locals, 5 constants, 0 functions
+	1	[11]	LOADK    	4 -1	; ""
+	2	[12]	LOADK    	5 -1	; ""
+	3	[13]	EQ       	1 2 -1	; - ""
+	4	[13]	JMP      	1	; to 6
+	5	[14]	LOADK    	5 -2	; "@"
+	6	[16]	EQ       	1 3 -1	; - ""
+	7	[16]	JMP      	1	; to 9
+	8	[17]	LOADK    	4 -3	; ":"
+	9	[19]	LOADK    	6 -4	; "ftp://"
+	10	[19]	MOVE     	7 2
+	11	[19]	MOVE     	8 4
+	12	[19]	MOVE     	9 3
+	13	[19]	MOVE     	10 5
+	14	[19]	SELF     	11 1 -5	; "gsub"
+	15	[19]	LOADK    	13 -4	; "ftp://"
+	16	[19]	LOADK    	14 -1	; ""
+	17	[19]	CALL     	11 4 2
+	18	[19]	CONCAT   	6 6 11
+	19	[20]	RETURN   	6 2
+	20	[21]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/ftpapi.lua:23,32> (35 instructions, 140 bytes at 0x7fe172c07540)
+3 params, 9 slots, 4 upvalues, 7 locals, 9 constants, 0 functions
+	1	[24]	NEWTABLE 	3 0 0
+	2	[25]	GETUPVAL 	4 0	; url
+	3	[25]	GETTABLE 	4 4 -1	; "parse"
+	4	[25]	MOVE     	5 1
+	5	[25]	CALL     	4 2 2
+	6	[26]	GETUPVAL 	5 1	; util
+	7	[26]	GETTABLE 	5 5 -3	; "urlDecode"
+	8	[26]	GETTABLE 	6 4 -2	; "user"
+	9	[26]	CALL     	5 2 2
+	10	[26]	SETTABLE 	4 -2 5	; "user" -
+	11	[27]	GETUPVAL 	5 1	; util
+	12	[27]	GETTABLE 	5 5 -3	; "urlDecode"
+	13	[27]	GETTABLE 	6 4 -4	; "password"
+	14	[27]	CALL     	5 2 2
+	15	[27]	SETTABLE 	4 -4 5	; "password" -
+	16	[28]	SETTABLE 	4 -5 2	; "command" -
+	17	[29]	GETUPVAL 	5 2	; ltn12
+	18	[29]	GETTABLE 	5 5 -6	; "sink"
+	19	[29]	GETTABLE 	5 5 -7	; "table"
+	20	[29]	MOVE     	6 3
+	21	[29]	CALL     	5 2 2
+	22	[29]	SETTABLE 	4 -6 5	; "sink" -
+	23	[30]	GETUPVAL 	5 3	; ftp
+	24	[30]	GETTABLE 	5 5 -8	; "get"
+	25	[30]	MOVE     	6 4
+	26	[30]	CALL     	5 2 3
+	27	[31]	TESTSET  	7 5 0
+	28	[31]	JMP      	4	; to 33
+	29	[31]	GETGLOBAL	7 -7	; table
+	30	[31]	GETTABLE 	7 7 -9	; "concat"
+	31	[31]	MOVE     	8 3
+	32	[31]	CALL     	7 2 2
+	33	[31]	MOVE     	8 6
+	34	[31]	RETURN   	7 3
+	35	[32]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/ftpapi.lua:34,83> (112 instructions, 448 bytes at 0x7fe172c06d30)
+3 params, 20 slots, 1 upvalue, 18 locals, 27 constants, 2 functions
+	1	[35]	NEWTABLE 	3 0 0
+	2	[36]	NEWTABLE 	4 0 0
+	3	[37]	LOADNIL  	5 7
+	4	[40]	SELF     	8 0 -1	; "ftpGet"
+	5	[40]	MOVE     	10 1
+	6	[40]	LOADK    	11 -2	; "nlst"
+	7	[40]	CALL     	8 4 2
+	8	[41]	EQ       	0 8 -3	; - nil
+	9	[41]	JMP      	2	; to 12
+	10	[41]	LOADBOOL 	9 0 0
+	11	[41]	RETURN   	9 2
+	12	[42]	EQ       	0 2 -4	; - "/"
+	13	[42]	JMP      	1	; to 15
+	14	[43]	LOADK    	2 -5	; ""
+	15	[45]	MOVE     	9 8
+	16	[45]	LOADK    	10 -6	; "\n"
+	17	[45]	CONCAT   	9 9 10
+	18	[45]	SELF     	9 9 -7	; "gmatch"
+	19	[45]	LOADK    	11 -8	; "(.-)\r?\n"
+	20	[45]	CALL     	9 3 4
+	21	[45]	JMP      	60	; to 82
+	22	[46]	EQ       	1 12 -5	; - ""
+	23	[46]	JMP      	58	; to 82
+	24	[47]	SELF     	13 12 -9	; "match"
+	25	[47]	LOADK    	15 -10	; "([^/]+)$"
+	26	[47]	CALL     	13 3 2
+	27	[47]	MOVE     	7 13
+	28	[48]	SELF     	13 12 -9	; "match"
+	29	[48]	LOADK    	15 -11	; "^.+(%..+)$"
+	30	[48]	CALL     	13 3 2
+	31	[48]	MOVE     	6 13
+	32	[49]	TEST     	6 0 1
+	33	[49]	JMP      	19	; to 53
+	34	[50]	LOADK    	5 -12	; "folder"
+	35	[51]	GETGLOBAL	13 -13	; table
+	36	[51]	GETTABLE 	13 13 -14	; "insert"
+	37	[51]	MOVE     	14 3
+	38	[51]	NEWTABLE 	15 0 3
+	39	[52]	MOVE     	16 7
+	40	[52]	LOADK    	17 -4	; "/"
+	41	[52]	CONCAT   	16 16 17
+	42	[52]	SETTABLE 	15 -15 16	; "text" -
+	43	[53]	GETGLOBAL	16 -17	; string
+	44	[53]	GETTABLE 	16 16 -18	; "format"
+	45	[53]	LOADK    	17 -19	; "%s/%s"
+	46	[53]	MOVE     	18 2
+	47	[53]	MOVE     	19 7
+	48	[53]	CALL     	16 4 2
+	49	[53]	SETTABLE 	15 -16 16	; "url" -
+	50	[54]	SETTABLE 	15 -20 5	; "type" -
+	51	[51]	CALL     	13 3 1
+	52	[55]	JMP      	29	; to 82
+	53	[57]	TEST     	6 0 0
+	54	[57]	JMP      	27	; to 82
+	55	[57]	GETUPVAL 	13 0	; DocumentRegistry
+	56	[57]	SELF     	13 13 -21	; "hasProvider"
+	57	[57]	MOVE     	15 12
+	58	[57]	CALL     	13 3 2
+	59	[58]	TEST     	13 0 1
+	60	[58]	JMP      	6	; to 67
+	61	[58]	GETGLOBAL	13 -22	; G_reader_settings
+	62	[58]	SELF     	13 13 -23	; "isTrue"
+	63	[58]	LOADK    	15 -24	; "show_unsupported"
+	64	[58]	CALL     	13 3 2
+	65	[58]	TEST     	13 0 0
+	66	[58]	JMP      	15	; to 82
+	67	[59]	LOADK    	5 -25	; "file"
+	68	[60]	GETGLOBAL	13 -13	; table
+	69	[60]	GETTABLE 	13 13 -14	; "insert"
+	70	[60]	MOVE     	14 4
+	71	[60]	NEWTABLE 	15 0 3
+	72	[61]	SETTABLE 	15 -15 7	; "text" -
+	73	[62]	GETGLOBAL	16 -17	; string
+	74	[62]	GETTABLE 	16 16 -18	; "format"
+	75	[62]	LOADK    	17 -19	; "%s/%s"
+	76	[62]	MOVE     	18 2
+	77	[62]	MOVE     	19 7
+	78	[62]	CALL     	16 4 2
+	79	[62]	SETTABLE 	15 -16 16	; "url" -
+	80	[63]	SETTABLE 	15 -20 5	; "type" -
+	81	[60]	CALL     	13 3 1
+	82	[45]	TFORLOOP 	9 1
+	83	[66]	JMP      	-62	; to 22
+	84	[69]	GETGLOBAL	9 -13	; table
+	85	[69]	GETTABLE 	9 9 -26	; "sort"
+	86	[69]	MOVE     	10 3
+	87	[71]	CLOSURE  	11 0	; 0x7fe172c08000
+	88	[69]	CALL     	9 3 1
+	89	[72]	GETGLOBAL	9 -13	; table
+	90	[72]	GETTABLE 	9 9 -26	; "sort"
+	91	[72]	MOVE     	10 4
+	92	[74]	CLOSURE  	11 1	; 0x7fe172c087e0
+	93	[72]	CALL     	9 3 1
+	94	[75]	GETGLOBAL	9 -27	; ipairs
+	95	[75]	MOVE     	10 4
+	96	[75]	CALL     	9 2 4
+	97	[75]	JMP      	11	; to 109
+	98	[76]	GETGLOBAL	14 -13	; table
+	99	[76]	GETTABLE 	14 14 -14	; "insert"
+	100	[76]	MOVE     	15 3
+	101	[76]	NEWTABLE 	16 0 3
+	102	[77]	GETTABLE 	17 13 -15	; "text"
+	103	[77]	SETTABLE 	16 -15 17	; "text" -
+	104	[78]	GETTABLE 	17 13 -16	; "url"
+	105	[78]	SETTABLE 	16 -16 17	; "url" -
+	106	[79]	GETTABLE 	17 13 -20	; "type"
+	107	[79]	SETTABLE 	16 -20 17	; "type" -
+	108	[76]	CALL     	14 3 1
+	109	[75]	TFORLOOP 	9 2
+	110	[80]	JMP      	-13	; to 98
+	111	[82]	RETURN   	3 2
+	112	[83]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/ftpapi.lua:69,71> (8 instructions, 32 bytes at 0x7fe172c08000)
+2 params, 4 slots, 0 upvalues, 2 locals, 1 constant, 0 functions
+	1	[70]	GETTABLE 	2 0 -1	; "text"
+	2	[70]	GETTABLE 	3 1 -1	; "text"
+	3	[70]	LT       	1 2 3
+	4	[70]	JMP      	1	; to 6
+	5	[70]	LOADBOOL 	2 0 1
+	6	[70]	LOADBOOL 	2 1 0
+	7	[70]	RETURN   	2 2
+	8	[71]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/ftpapi.lua:72,74> (8 instructions, 32 bytes at 0x7fe172c087e0)
+2 params, 4 slots, 0 upvalues, 2 locals, 1 constant, 0 functions
+	1	[73]	GETTABLE 	2 0 -1	; "text"
+	2	[73]	GETTABLE 	3 1 -1	; "text"
+	3	[73]	LT       	1 2 3
+	4	[73]	JMP      	1	; to 6
+	5	[73]	LOADBOOL 	2 0 1
+	6	[73]	LOADBOOL 	2 1 0
+	7	[73]	RETURN   	2 2
+	8	[74]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/ftpapi.lua:85,93> (29 instructions, 116 bytes at 0x7fe172c08ad0)
+2 params, 7 slots, 3 upvalues, 3 locals, 14 constants, 0 functions
+	1	[86]	GETUPVAL 	2 0	; url
+	2	[86]	GETTABLE 	2 2 -1	; "parse"
+	3	[86]	MOVE     	3 1
+	4	[86]	CALL     	2 2 2
+	5	[87]	GETUPVAL 	3 1	; util
+	6	[87]	GETTABLE 	3 3 -3	; "urlDecode"
+	7	[87]	GETTABLE 	4 2 -2	; "user"
+	8	[87]	CALL     	3 2 2
+	9	[87]	SETTABLE 	2 -2 3	; "user" -
+	10	[88]	GETUPVAL 	3 1	; util
+	11	[88]	GETTABLE 	3 3 -3	; "urlDecode"
+	12	[88]	GETTABLE 	4 2 -4	; "password"
+	13	[88]	CALL     	3 2 2
+	14	[88]	SETTABLE 	2 -4 3	; "password" -
+	15	[89]	GETGLOBAL	3 -6	; string
+	16	[89]	GETTABLE 	3 3 -7	; "gsub"
+	17	[89]	GETTABLE 	4 2 -8	; "path"
+	18	[89]	LOADK    	5 -9	; "^/"
+	19	[89]	LOADK    	6 -10	; ""
+	20	[89]	CALL     	3 4 2
+	21	[89]	SETTABLE 	2 -5 3	; "argument" -
+	22	[90]	SETTABLE 	2 -11 -12	; "command" "dele"
+	23	[91]	SETTABLE 	2 -13 -14	; "check" 250
+	24	[92]	GETUPVAL 	3 2	; ftp
+	25	[92]	GETTABLE 	3 3 -11	; "command"
+	26	[92]	MOVE     	4 2
+	27	[92]	TAILCALL 	3 2 0
+	28	[92]	RETURN   	3 0
+	29	[93]	RETURN   	0 1

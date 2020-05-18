@@ -1,0 +1,119 @@
+-- BYTECODE -- args.lua:4-23
+0001    KNIL     1   2
+0002    GGET     3   0      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISNES    3   1      ; "table"
+0006    JMP      3 => 0013
+0007    UGET     3   0      ; unpack
+0008    MOV      4   0
+0009    CALL     3   2   2
+0010    MOV      2   0
+0011    MOV      1   3
+0012    JMP      3 => 0016
+0013 => MOV      3   0
+0014    TNEW     2   0
+0015    MOV      1   3
+0016 => GGET     3   2      ; "assert"
+0017    KSTR     4   3      ; "no flags for arguments"
+0018    CALL     3   1   2
+0019    TNEW     3   0
+0020    MOV      5   1
+0021    TGETS    4   1   4  ; "gmatch"
+0022    KSTR     6   5      ; "%w:?"
+0023    CALL     4   4   3
+0024    JMP      7 => 0041
+0025 => MOV      9   7
+0026    TGETS    8   7   6  ; "match"
+0027    KSTR    10   7      ; ":$"
+0028    CALL     8   2   3
+0029    ISF          8
+0030    JMP      9 => 0039
+0031    MOV      9   7
+0032    TGETS    8   7   8  ; "sub"
+0033    KSHORT  10   1
+0034    KSHORT  11   1
+0035    CALL     8   2   4
+0036    TDUP     9   9
+0037    TSETV    9   3   8
+0038    JMP      8 => 0041
+0039 => TNEW     8   0
+0040    TSETV    8   3   7
+0041 => ITERC    7   2   3
+0042    ITERL    7 => 0025
+0043    RET1     3   2
+
+-- BYTECODE -- args.lua:25-65
+0001    UGET     2   0      ; parse_spec
+0002    MOV      3   0
+0003    CALL     2   2   2
+0004    MOV      0   2
+0005    TNEW     2   0
+0006    TNEW     3   0
+0007    KPRI     4   0
+0008    KSHORT   5   1
+0009    LEN      6   1
+0010    KSHORT   7   1
+0011    FORI     5 => 0054
+0012 => KPRI     9   1
+0013    LOOP    10 => 0050
+0014    TGETV   10   1   8
+0015    TNEW    11   0
+0016    ISF          4
+0017    JMP     12 => 0021
+0018    TSETV   10   2   4
+0019    KPRI     9   2
+0020    JMP     10 => 0050
+0021 => MOV     13  10
+0022    TGETS   12  10   0  ; "match"
+0023    KSTR    14   1      ; "-(%w+)"
+0024    CALL    12   2   3
+0025    ISF         12
+0026    JMP     13 => 0044
+0027    TGETV   13   0  12
+0028    ISF         13
+0029    JMP     14 => 0033
+0030    KPRI    14   2
+0031    TSETV   14   2  13
+0032    JMP     14 => 0042
+0033 => MOV     15  12
+0034    TGETS   14  12   2  ; "gmatch"
+0035    KSTR    16   3      ; "."
+0036    CALL    14   4   3
+0037    JMP     17 => 0040
+0038 => KPRI    18   2
+0039    TSETV   18   2  17
+0040 => ITERC   17   2   3
+0041    ITERL   17 => 0038
+0042 => KPRI     9   2
+0043    JMP     10 => 0050
+0044 => GGET    12   4      ; "table"
+0045    TGETS   12  12   5  ; "insert"
+0046    MOV     13   3
+0047    MOV     14  10
+0048    CALL    12   1   3
+0049    KPRI     9   2
+0050 => IST          9
+0051    JMP     10 => 0053
+0052    JMP      5 => 0054
+0053 => FORL     5 => 0012
+0054 => MOV      5   2
+0055    MOV      6   3
+0056    RET      5   3
+
+-- BYTECODE -- args.lua:0-70
+0001    KPRI     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "moonscript.util"
+0004    CALL     1   2   2
+0005    TGETS    0   1   2  ; "unpack"
+0006    KPRI     1   0
+0007    FNEW     1   3      ; args.lua:4
+0008    KPRI     2   0
+0009    FNEW     2   4      ; args.lua:25
+0010    TDUP     3   5
+0011    TSETS    2   3   6  ; "parse_arguments"
+0012    TSETS    1   3   7  ; "parse_spec"
+0013    UCLO     0 => 0014
+0014 => RET1     3   2
+

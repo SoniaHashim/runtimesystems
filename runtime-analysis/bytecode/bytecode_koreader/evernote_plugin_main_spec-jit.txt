@@ -1,0 +1,200 @@
+-- BYTECODE -- evernote_plugin_main_spec.lua:5-68
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "luassert.match"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; match
+0008    GGET     0   0      ; "require"
+0009    KSTR     1   3      ; "apps/reader/readerui"
+0010    CALL     0   2   2
+0011    GGET     1   0      ; "require"
+0012    KSTR     2   4      ; "document/documentregistry"
+0013    CALL     1   2   2
+0014    USETV    1   1      ; DocumentRegistry
+0015    USETS    2   5      ; sample_epub ; "spec/front/unit/data/juliet.epub"
+0016    MOV      2   0
+0017    TGETS    1   0   6  ; "new"
+0018    TDUP     3   8
+0019    UGET     4   1      ; DocumentRegistry
+0020    MOV      5   4
+0021    TGETS    4   4   7  ; "openDocument"
+0022    UGET     6   2      ; sample_epub
+0023    CALL     4   2   3
+0024    TSETS    4   3   9  ; "document"
+0025    CALL     1   2   3
+0026    USETV    3   1      ; readerui
+0027    TDUP     1  15
+0028    TDUP     2  12
+0029    TNEW     3 2048
+0030    TDUP     4  10
+0031    TSETB    4   3   1
+0032    TSETB    3   2   1
+0033    TNEW     3 2048
+0034    TDUP     4  11
+0035    TSETB    4   3   1
+0036    TSETB    3   2   2
+0037    TDUP     3  13
+0038    TSETS    3   2  14  ; "exported"
+0039    TSETS    2   1  16  ; "Title1"
+0040    TDUP     2  21
+0041    TNEW     3 2048
+0042    TDUP     4  17
+0043    TSETB    4   3   1
+0044    TSETB    3   2   1
+0045    TNEW     3 2048
+0046    TDUP     4  18
+0047    TDUP     5  19
+0048    TSETS    5   4  20  ; "image"
+0049    TSETB    4   3   1
+0050    TSETB    3   2   2
+0051    TNEW     3   0
+0052    TSETS    3   2  14  ; "exported"
+0053    TSETS    2   1  22  ; "Title2"
+0054    USETV    4   1      ; sample_clippings
+0055    RET0     0   1
+
+-- BYTECODE -- evernote_plugin_main_spec.lua:72-72
+0001    RET0     0   1
+
+-- BYTECODE -- evernote_plugin_main_spec.lua:73-73
+0001    RET0     0   1
+
+-- BYTECODE -- evernote_plugin_main_spec.lua:77-83
+0001    UGET     2   0      ; readerui
+0002    TGETS    2   2   0  ; "evernote"
+0003    TGETS    2   2   1  ; "text_clipping_file"
+0004    ISNEV    0   2
+0005    JMP      2 => 0009
+0006    UGET     2   1      ; file_mock
+0007    RET1     2   2
+0008    JMP      2 => 0014
+0009 => UGET     2   2      ; old_io
+0010    TGETS    2   2   2  ; "open"
+0011    MOV      3   0
+0012    MOV      4   1
+0013    CALLT    2   3
+0014 => RET0     0   1
+
+-- BYTECODE -- evernote_plugin_main_spec.lua:70-91
+0001    GGET     0   0      ; "mock"
+0002    TDUP     1   2
+0003    FNEW     2   1      ; evernote_plugin_main_spec.lua:72
+0004    TSETS    2   1   3  ; "write"
+0005    FNEW     2   4      ; evernote_plugin_main_spec.lua:73
+0006    TSETS    2   1   5  ; "close"
+0007    CALL     0   2   2
+0008    GGET     1   6      ; "_G"
+0009    TGETS    1   1   7  ; "io"
+0010    GGET     2   6      ; "_G"
+0011    GGET     3   0      ; "mock"
+0012    TDUP     4   9
+0013    FNEW     5   8      ; evernote_plugin_main_spec.lua:77
+0014    TSETS    5   4  10  ; "open"
+0015    CALL     3   2   2
+0016    TSETS    3   2   7  ; "io"
+0017    UGET     2   0      ; readerui
+0018    TGETS    2   2  11  ; "evernote"
+0019    MOV      3   2
+0020    TGETS    2   2  12  ; "exportBooknotesToTXT"
+0021    KSTR     4  13      ; "Title1"
+0022    UGET     5   1      ; sample_clippings
+0023    TGETS    5   5  13  ; "Title1"
+0024    CALL     2   1   4
+0025    GGET     2  14      ; "assert"
+0026    TGETS    2   2  15  ; "spy"
+0027    GGET     3   7      ; "io"
+0028    TGETS    3   3  10  ; "open"
+0029    CALL     2   2   2
+0030    TGETS    2   2  16  ; "was"
+0031    TGETS    2   2  17  ; "called"
+0032    CALL     2   1   1
+0033    GGET     2  14      ; "assert"
+0034    TGETS    2   2  15  ; "spy"
+0035    TGETS    3   0   3  ; "write"
+0036    CALL     2   2   2
+0037    TGETS    2   2  16  ; "was"
+0038    TGETS    2   2  18  ; "called_with"
+0039    UGET     3   2      ; match
+0040    TGETS    3   3  19  ; "is_ref"
+0041    MOV      4   0
+0042    CALL     3   2   2
+0043    KSTR     4  20      ; "Some important stuff 1"
+0044    CALL     2   1   3
+0045    GGET     2   6      ; "_G"
+0046    TSETS    1   2   7  ; "io"
+0047    UCLO     0 => 0048
+0048 => RET0     0   1
+
+-- BYTECODE -- evernote_plugin_main_spec.lua:93-99
+0001    UGET     0   0      ; readerui
+0002    TGETS    0   0   0  ; "evernote"
+0003    KPRI     1   2
+0004    TSETS    1   0   1  ; "html_export"
+0005    GGET     0   2      ; "stub"
+0006    UGET     1   0      ; readerui
+0007    TGETS    1   1   0  ; "evernote"
+0008    KSTR     2   3      ; "exportBooknotesToHTML"
+0009    CALL     0   1   3
+0010    UGET     0   0      ; readerui
+0011    TGETS    0   0   0  ; "evernote"
+0012    MOV      1   0
+0013    TGETS    0   0   4  ; "exportClippings"
+0014    UGET     2   1      ; sample_clippings
+0015    CALL     0   1   3
+0016    GGET     0   5      ; "assert"
+0017    TGETS    0   0   2  ; "stub"
+0018    UGET     1   0      ; readerui
+0019    TGETS    1   1   0  ; "evernote"
+0020    TGETS    1   1   3  ; "exportBooknotesToHTML"
+0021    CALL     0   2   2
+0022    TGETS    0   0   6  ; "was_called_with"
+0023    UGET     1   2      ; match
+0024    TGETS    1   1   7  ; "is_truthy"
+0025    CALL     1   2   1
+0026    KSTR     2   8      ; "Title2"
+0027    UGET     3   2      ; match
+0028    TGETS    3   3   7  ; "is_truthy"
+0029    CALL     3   0   1
+0030    CALLM    0   1   2
+0031    GGET     0   5      ; "assert"
+0032    TGETS    0   0   2  ; "stub"
+0033    UGET     1   0      ; readerui
+0034    TGETS    1   1   0  ; "evernote"
+0035    TGETS    1   1   3  ; "exportBooknotesToHTML"
+0036    CALL     0   2   2
+0037    TGETS    0   0   9  ; "was_not_called_with"
+0038    UGET     1   2      ; match
+0039    TGETS    1   1   7  ; "is_truthy"
+0040    CALL     1   2   1
+0041    KSTR     2  10      ; "Title1"
+0042    UGET     3   2      ; match
+0043    TGETS    3   3   7  ; "is_truthy"
+0044    CALL     3   0   1
+0045    CALLM    0   1   2
+0046    RET0     0   1
+
+-- BYTECODE -- evernote_plugin_main_spec.lua:1-102
+0001    KNIL     0   4
+0002    GGET     5   0      ; "setup"
+0003    FNEW     6   1      ; evernote_plugin_main_spec.lua:5
+0004    CALL     5   1   2
+0005    GGET     5   2      ; "it"
+0006    KSTR     6   3      ; "should write clippings to txt file"
+0007    FNEW     7   4      ; evernote_plugin_main_spec.lua:70
+0008    CALL     5   1   3
+0009    GGET     5   2      ; "it"
+0010    KSTR     6   5      ; "should not export booknotes with exporte"~
+0011    FNEW     7   6      ; evernote_plugin_main_spec.lua:93
+0012    CALL     5   1   3
+0013    UCLO     0 => 0014
+0014 => RET0     0   1
+
+-- BYTECODE -- evernote_plugin_main_spec.lua:0-102
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "Evernote plugin module"
+0003    FNEW     2   2      ; evernote_plugin_main_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

@@ -1,0 +1,218 @@
+-- BYTECODE -- purge.lua:18-35
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "command"
+0003    KSTR     3   1      ; "purge"
+0004    KSTR     4   2      ; "This command removes rocks en masse from"~
+0005    UGET     5   0      ; util
+0006    TGETS    5   5   3  ; "see_also"
+0007    CALL     5   0   1
+0008    CALLM    1   2   3
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "summary"
+0011    KSTR     3   5      ; "Remove all installed rocks from a tree."
+0012    CALL     1   2   3
+0013    MOV      3   1
+0014    TGETS    2   1   6  ; "flag"
+0015    KSTR     4   7      ; "--old-versions"
+0016    KSTR     5   8      ; "Keep the highest-numbered version of eac"~
+0017    KSTR     6   9      ; "rock and remove the other ones. By defau"~
+0018    KSTR     7  10      ; "versions if they are not needed as depen"~
+0019    KSTR     8  11      ; "overridden with the flag --force."
+0020    CAT      5   5   8
+0021    CALL     2   1   4
+0022    MOV      3   1
+0023    TGETS    2   1   6  ; "flag"
+0024    KSTR     4  12      ; "--force"
+0025    KSTR     5  13      ; "If --old-versions is specified, force re"~
+0026    KSTR     6  14      ; "previously installed versions if it woul"~
+0027    CAT      5   5   6
+0028    CALL     2   1   4
+0029    MOV      3   1
+0030    TGETS    2   1   6  ; "flag"
+0031    KSTR     4  15      ; "--force-fast"
+0032    KSTR     5  16      ; "Like --force, but performs a forced remo"~
+0033    KSTR     6  17      ; "without reporting dependency issues."
+0034    CAT      5   5   6
+0035    CALL     2   1   4
+0036    RET0     0   1
+
+-- BYTECODE -- purge.lua:54-54
+0001    UGET     2   0      ; vers
+0002    TGETS    2   2   0  ; "compare_versions"
+0003    MOV      3   1
+0004    MOV      4   0
+0005    CALLT    2   3
+
+-- BYTECODE -- purge.lua:37-78
+0001    TGETS    1   0   0  ; "tree"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   1
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "string"
+0006    JMP      2 => 0015
+0007    KPRI     2   0
+0008    KSTR     3   3      ; "The --tree argument is mandatory. "
+0009    UGET     4   0      ; util
+0010    TGETS    4   4   4  ; "see_help"
+0011    KSTR     5   5      ; "purge"
+0012    CALL     4   2   2
+0013    CAT      3   3   4
+0014    UCLO     0 => 0127
+0015 => TNEW     2   0
+0016    UGET     3   1      ; fs
+0017    TGETS    3   3   6  ; "is_dir"
+0018    MOV      4   1
+0019    CALL     3   2   2
+0020    IST          3
+0021    JMP      3 => 0027
+0022    KPRI     3   0
+0023    KSTR     4   7      ; "Directory not found: "
+0024    MOV      5   1
+0025    CAT      4   4   5
+0026    UCLO     0 => 0128
+0027 => UGET     3   1      ; fs
+0028    TGETS    3   3   8  ; "check_command_permissions"
+0029    MOV      4   0
+0030    CALL     3   3   2
+0031    IST          3
+0032    JMP      5 => 0039
+0033    KPRI     5   0
+0034    MOV      6   4
+0035    UGET     7   2      ; cmd
+0036    TGETS    7   7   9  ; "errorcodes"
+0037    TGETS    7   7  10  ; "PERMISSIONDENIED"
+0038    UCLO     0 => 0129
+0039 => UGET     5   3      ; search
+0040    TGETS    5   5  11  ; "local_manifest_search"
+0041    MOV      6   2
+0042    UGET     7   4      ; path
+0043    TGETS    7   7  12  ; "rocks_dir"
+0044    MOV      8   1
+0045    CALL     7   2   2
+0046    UGET     8   5      ; queries
+0047    TGETS    8   8  13  ; "all"
+0048    CALL     8   0   1
+0049    CALLM    5   1   2
+0050    FNEW     5  14      ; purge.lua:54
+0051    TGETS    6   0  15  ; "old_versions"
+0052    ISF          6
+0053    JMP      7 => 0056
+0054    UGET     6   6      ; vers
+0055    TGETS    5   6  16  ; "compare_versions"
+0056 => UGET     6   0      ; util
+0057    TGETS    6   6  17  ; "sortedpairs"
+0058    MOV      7   2
+0059    CALL     6   4   2
+0060    JMP      9 => 0118
+0061 => UGET    11   0      ; util
+0062    TGETS   11  11  17  ; "sortedpairs"
+0063    MOV     12  10
+0064    MOV     13   5
+0065    CALL    11   4   3
+0066    JMP     14 => 0116
+0067 => TGETS   16   0  15  ; "old_versions"
+0068    ISF         16
+0069    JMP     17 => 0094
+0070    UGET    16   0      ; util
+0071    TGETS   16  16  18  ; "printout"
+0072    KSTR    17  19      ; "Keeping "
+0073    MOV     18   9
+0074    KSTR    19  20      ; " "
+0075    MOV     20  14
+0076    KSTR    21  21      ; "..."
+0077    CAT     17  17  21
+0078    CALL    16   1   2
+0079    UGET    16   7      ; remove
+0080    TGETS   16  16  22  ; "remove_other_versions"
+0081    MOV     17   9
+0082    MOV     18  14
+0083    TGETS   19   0  23  ; "force"
+0084    TGETS   20   0  24  ; "force_fast"
+0085    CALL    16   3   5
+0086    IST         16
+0087    JMP     18 => 0118
+0088    UGET    18   0      ; util
+0089    TGETS   18  18  25  ; "printerr"
+0090    MOV     19  17
+0091    CALL    18   1   2
+0092    JMP     11 => 0118
+0093    JMP     16 => 0116
+0094 => UGET    16   0      ; util
+0095    TGETS   16  16  18  ; "printout"
+0096    KSTR    17  26      ; "Removing "
+0097    MOV     18   9
+0098    KSTR    19  20      ; " "
+0099    MOV     20  14
+0100    KSTR    21  21      ; "..."
+0101    CAT     17  17  21
+0102    CALL    16   1   2
+0103    UGET    16   8      ; repos
+0104    TGETS   16  16  27  ; "delete_version"
+0105    MOV     17   9
+0106    MOV     18  14
+0107    KSTR    19  28      ; "none"
+0108    KPRI    20   2
+0109    CALL    16   3   5
+0110    IST         16
+0111    JMP     18 => 0116
+0112    UGET    18   0      ; util
+0113    TGETS   18  18  25  ; "printerr"
+0114    MOV     19  17
+0115    CALL    18   1   2
+0116 => ITERC   14   3   3
+0117    ITERL   14 => 0067
+0118 => ITERC    9   3   3
+0119    ITERL    9 => 0061
+0120    UGET     6   9      ; writer
+0121    TGETS    6   6  29  ; "make_manifest"
+0122    UGET     7  10      ; cfg
+0123    TGETS    7   7  12  ; "rocks_dir"
+0124    KSTR     8  30      ; "one"
+0125    UCLO     0 => 0126
+0126 => CALLT    6   3
+0127 => RET      2   3
+0128 => RET      3   3
+0129 => RET      5   4
+
+-- BYTECODE -- purge.lua:0-81
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.util"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.fs"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.path"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.search"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.core.vers"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.repos"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   7      ; "luarocks.manif.writer"
+0022    CALL     7   2   2
+0023    GGET     8   0      ; "require"
+0024    KSTR     9   8      ; "luarocks.core.cfg"
+0025    CALL     8   2   2
+0026    GGET     9   0      ; "require"
+0027    KSTR    10   9      ; "luarocks.remove"
+0028    CALL     9   2   2
+0029    GGET    10   0      ; "require"
+0030    KSTR    11  10      ; "luarocks.queries"
+0031    CALL    10   2   2
+0032    GGET    11   0      ; "require"
+0033    KSTR    12  11      ; "luarocks.cmd"
+0034    CALL    11   2   2
+0035    FNEW    12  13      ; purge.lua:18
+0036    TSETS   12   0  12  ; "add_to_parser"
+0037    FNEW    12  15      ; purge.lua:37
+0038    TSETS   12   0  14  ; "command"
+0039    UCLO     0 => 0040
+0040 => RET1     0   2
+

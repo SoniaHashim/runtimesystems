@@ -1,0 +1,114 @@
+
+main <./frontend/apps/reader/modules/readeractivityindicator.lua:0,0> (24 instructions, 96 bytes at 0x7faf78c06920)
+0+ params, 6 slots, 0 upvalues, 4 locals, 9 constants, 4 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "ui/widget/eventlistener"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "device"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "ffi/util"
+	9	[3]	CALL     	2 2 2
+	10	[6]	SELF     	3 0 -5	; "new"
+	11	[6]	NEWTABLE 	5 0 0
+	12	[6]	CALL     	3 3 2
+	13	[15]	CLOSURE  	4 0	; 0x7faf78c06cc0
+	14	[15]	MOVE     	0 1
+	15	[8]	SETTABLE 	3 -6 4	; "init" -
+	16	[32]	CLOSURE  	4 1	; 0x7faf78c06670
+	17	[17]	SETTABLE 	3 -7 4	; "onStartActivityIndicator" -
+	18	[47]	CLOSURE  	4 2	; 0x7faf78c079c0
+	19	[47]	MOVE     	0 2
+	20	[34]	SETTABLE 	3 -8 4	; "onStopActivityIndicator" -
+	21	[53]	CLOSURE  	4 3	; 0x7faf78c06c20
+	22	[49]	SETTABLE 	3 -9 4	; "coda" -
+	23	[55]	RETURN   	3 2
+	24	[55]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readeractivityindicator.lua:8,15> (30 instructions, 120 bytes at 0x7faf78c06cc0)
+1 param, 5 slots, 1 upvalue, 2 locals, 16 constants, 0 functions
+	1	[9]	GETUPVAL 	1 0	; Device
+	2	[9]	GETTABLE 	1 1 -1	; "model"
+	3	[10]	EQ       	1 1 -2	; - "KindlePaperWhite"
+	4	[10]	JMP      	14	; to 19
+	5	[10]	EQ       	1 1 -3	; - "KindlePaperWhite2"
+	6	[10]	JMP      	12	; to 19
+	7	[10]	EQ       	1 1 -4	; - "KindleVoyage"
+	8	[10]	JMP      	10	; to 19
+	9	[10]	EQ       	1 1 -5	; - "KindleBasic"
+	10	[10]	JMP      	8	; to 19
+	11	[10]	EQ       	1 1 -6	; - "KindlePaperWhite3"
+	12	[10]	JMP      	6	; to 19
+	13	[10]	EQ       	1 1 -7	; - "KindleOasis"
+	14	[10]	JMP      	4	; to 19
+	15	[10]	EQ       	1 1 -8	; - "KindleBasic2"
+	16	[10]	JMP      	2	; to 19
+	17	[10]	EQ       	0 1 -9	; - "KindleTouch"
+	18	[10]	JMP      	11	; to 30
+	19	[11]	GETGLOBAL	2 -10	; pcall
+	20	[11]	GETGLOBAL	3 -11	; require
+	21	[11]	LOADK    	4 -12	; "liblipclua"
+	22	[11]	CALL     	2 3 2
+	23	[11]	TEST     	2 0 0
+	24	[11]	JMP      	5	; to 30
+	25	[12]	GETGLOBAL	2 -14	; lipc
+	26	[12]	GETTABLE 	2 2 -15	; "init"
+	27	[12]	LOADK    	3 -16	; "com.github.koreader.activityindicator"
+	28	[12]	CALL     	2 2 2
+	29	[12]	SETTABLE 	0 -13 2	; "lipc_handle" -
+	30	[15]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readeractivityindicator.lua:17,32> (18 instructions, 72 bytes at 0x7faf78c06670)
+1 param, 6 slots, 0 upvalues, 1 local, 11 constants, 0 functions
+	1	[18]	GETTABLE 	1 0 -1	; "lipc_handle"
+	2	[18]	TEST     	1 0 0
+	3	[18]	JMP      	12	; to 16
+	4	[20]	GETTABLE 	1 0 -2	; "document"
+	5	[20]	GETTABLE 	1 1 -3	; "configurable"
+	6	[20]	GETTABLE 	1 1 -4	; "text_wrap"
+	7	[20]	EQ       	0 1 -5	; - 1
+	8	[20]	JMP      	7	; to 16
+	9	[22]	GETTABLE 	1 0 -1	; "lipc_handle"
+	10	[22]	SELF     	1 1 -6	; "set_string_property"
+	11	[23]	LOADK    	3 -7	; "com.lab126.pillow"
+	12	[23]	LOADK    	4 -8	; "activityIndicator"
+	13	[27]	LOADK    	5 -9	; "{\"activityIndicator\":{ \n                    \"action\":\"start\",\"timeout\":10000, \n                    \"clientId\":\"com.github.koreader.activityindicator\", \n                    \"priority\":true}}"
+	14	[22]	CALL     	1 5 1
+	15	[28]	SETTABLE 	0 -10 -11	; "indicator_started" true
+	16	[31]	LOADBOOL 	1 1 0
+	17	[31]	RETURN   	1 2
+	18	[32]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readeractivityindicator.lua:34,47> (20 instructions, 80 bytes at 0x7faf78c079c0)
+1 param, 6 slots, 1 upvalue, 1 local, 9 constants, 0 functions
+	1	[35]	GETTABLE 	1 0 -1	; "lipc_handle"
+	2	[35]	TEST     	1 0 0
+	3	[35]	JMP      	14	; to 18
+	4	[35]	GETTABLE 	1 0 -2	; "indicator_started"
+	5	[35]	TEST     	1 0 0
+	6	[35]	JMP      	11	; to 18
+	7	[37]	GETTABLE 	1 0 -1	; "lipc_handle"
+	8	[37]	SELF     	1 1 -3	; "set_string_property"
+	9	[38]	LOADK    	3 -4	; "com.lab126.pillow"
+	10	[38]	LOADK    	4 -5	; "activityIndicator"
+	11	[42]	LOADK    	5 -6	; "{\"activityIndicator\":{ \n                \"action\":\"stop\",\"timeout\":10000, \n                \"clientId\":\"com.github.koreader.activityindicator\", \n                \"priority\":true}}"
+	12	[37]	CALL     	1 5 1
+	13	[43]	SETTABLE 	0 -2 -7	; "indicator_started" false
+	14	[44]	GETUPVAL 	1 0	; util
+	15	[44]	GETTABLE 	1 1 -8	; "usleep"
+	16	[44]	LOADK    	2 -9	; 1000000
+	17	[44]	CALL     	1 2 1
+	18	[46]	LOADBOOL 	1 1 0
+	19	[46]	RETURN   	1 2
+	20	[47]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readeractivityindicator.lua:49,53> (7 instructions, 28 bytes at 0x7faf78c06c20)
+1 param, 3 slots, 0 upvalues, 1 local, 2 constants, 0 functions
+	1	[50]	GETTABLE 	1 0 -1	; "lipc_handle"
+	2	[50]	TEST     	1 0 0
+	3	[50]	JMP      	3	; to 7
+	4	[51]	GETTABLE 	1 0 -1	; "lipc_handle"
+	5	[51]	SELF     	1 1 -2	; "close"
+	6	[51]	CALL     	1 2 1
+	7	[53]	RETURN   	0 1

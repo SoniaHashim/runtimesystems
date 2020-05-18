@@ -1,0 +1,659 @@
+-- BYTECODE -- readerlink_spec.lua:4-14
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   2      ; "package"
+0005    TGETS    0   0   3  ; "unloadAll"
+0006    CALL     0   1   1
+0007    GGET     0   0      ; "require"
+0008    KSTR     1   4      ; "document/canvascontext"
+0009    CALL     0   2   2
+0010    MOV      1   0
+0011    TGETS    0   0   5  ; "init"
+0012    GGET     2   0      ; "require"
+0013    KSTR     3   6      ; "device"
+0014    CALL     2   0   2
+0015    CALLM    0   1   1
+0016    GGET     0   0      ; "require"
+0017    KSTR     1   7      ; "document/documentregistry"
+0018    CALL     0   2   2
+0019    USETV    0   0      ; DocumentRegistry
+0020    GGET     0   0      ; "require"
+0021    KSTR     1   8      ; "ui/event"
+0022    CALL     0   2   2
+0023    USETV    1   0      ; Event
+0024    GGET     0   0      ; "require"
+0025    KSTR     1   9      ; "apps/reader/readerui"
+0026    CALL     0   2   2
+0027    USETV    2   0      ; ReaderUI
+0028    GGET     0   0      ; "require"
+0029    KSTR     1  10      ; "ui/uimanager"
+0030    CALL     0   2   2
+0031    USETV    3   0      ; UIManager
+0032    USETS    4  11      ; sample_epub ; "spec/front/unit/data/leaves.epub"
+0033    USETS    5  12      ; sample_pdf ; "spec/front/unit/data/paper.pdf"
+0034    RET0     0   1
+
+-- BYTECODE -- readerlink_spec.lua:16-23
+0001    UGET     0   0      ; ReaderUI
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "new"
+0004    TDUP     2   2
+0005    UGET     3   1      ; DocumentRegistry
+0006    MOV      4   3
+0007    TGETS    3   3   1  ; "openDocument"
+0008    UGET     5   2      ; sample_epub
+0009    CALL     3   2   3
+0010    TSETS    3   2   3  ; "document"
+0011    CALL     0   2   3
+0012    TGETS    1   0   4  ; "rolling"
+0013    MOV      2   1
+0014    TGETS    1   1   5  ; "onGotoPage"
+0015    KSHORT   3   5
+0016    CALL     1   1   3
+0017    TGETS    1   0   6  ; "link"
+0018    MOV      2   1
+0019    TGETS    1   1   7  ; "onTap"
+0020    KPRI     3   0
+0021    TDUP     4   9
+0022    TDUP     5   8
+0023    TSETS    5   4  10  ; "pos"
+0024    CALL     1   1   4
+0025    GGET     1  11      ; "assert"
+0026    TGETS    1   1  12  ; "is"
+0027    TGETS    1   1  13  ; "same"
+0028    KSHORT   2  37
+0029    TGETS    3   0   4  ; "rolling"
+0030    TGETS    3   3  14  ; "current_page"
+0031    CALL     1   1   3
+0032    RET0     0   1
+
+-- BYTECODE -- readerlink_spec.lua:25-36
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; ReaderUI
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "new"
+0008    TDUP     2   3
+0009    UGET     3   2      ; DocumentRegistry
+0010    MOV      4   3
+0011    TGETS    3   3   2  ; "openDocument"
+0012    UGET     5   3      ; sample_pdf
+0013    CALL     3   2   3
+0014    TSETS    3   2   4  ; "document"
+0015    CALL     0   2   3
+0016    MOV      2   0
+0017    TGETS    1   0   5  ; "handleEvent"
+0018    UGET     3   4      ; Event
+0019    MOV      4   3
+0020    TGETS    3   3   1  ; "new"
+0021    KSTR     5   6      ; "SetScrollMode"
+0022    KPRI     6   1
+0023    CALL     3   0   4
+0024    CALLM    1   1   1
+0025    MOV      2   0
+0026    TGETS    1   0   5  ; "handleEvent"
+0027    UGET     3   4      ; Event
+0028    MOV      4   3
+0029    TGETS    3   3   1  ; "new"
+0030    KSTR     5   7      ; "SetZoomMode"
+0031    KSTR     6   8      ; "page"
+0032    CALL     3   0   4
+0033    CALLM    1   1   1
+0034    TGETS    1   0   9  ; "paging"
+0035    MOV      2   1
+0036    TGETS    1   1  10  ; "onGotoPage"
+0037    KSHORT   3   1
+0038    CALL     1   1   3
+0039    TGETS    1   0  11  ; "link"
+0040    MOV      2   1
+0041    TGETS    1   1  12  ; "onTap"
+0042    KPRI     3   0
+0043    TDUP     4  14
+0044    TDUP     5  13
+0045    TSETS    5   4  15  ; "pos"
+0046    CALL     1   1   4
+0047    UGET     1   0      ; UIManager
+0048    MOV      2   1
+0049    TGETS    1   1  16  ; "run"
+0050    CALL     1   1   2
+0051    GGET     1  17      ; "assert"
+0052    TGETS    1   1  18  ; "is"
+0053    TGETS    1   1  19  ; "same"
+0054    KSHORT   2  22
+0055    TGETS    3   0   9  ; "paging"
+0056    TGETS    3   3  20  ; "current_page"
+0057    CALL     1   1   3
+0058    RET0     0   1
+
+-- BYTECODE -- readerlink_spec.lua:38-53
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; ReaderUI
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "new"
+0008    TDUP     2   3
+0009    UGET     3   2      ; DocumentRegistry
+0010    MOV      4   3
+0011    TGETS    3   3   2  ; "openDocument"
+0012    UGET     5   3      ; sample_pdf
+0013    CALL     3   2   3
+0014    TSETS    3   2   4  ; "document"
+0015    CALL     0   2   3
+0016    MOV      2   0
+0017    TGETS    1   0   5  ; "handleEvent"
+0018    UGET     3   4      ; Event
+0019    MOV      4   3
+0020    TGETS    3   3   1  ; "new"
+0021    KSTR     5   6      ; "SetScrollMode"
+0022    KPRI     6   2
+0023    CALL     3   0   4
+0024    CALLM    1   1   1
+0025    MOV      2   0
+0026    TGETS    1   0   5  ; "handleEvent"
+0027    UGET     3   4      ; Event
+0028    MOV      4   3
+0029    TGETS    3   3   1  ; "new"
+0030    KSTR     5   7      ; "SetZoomMode"
+0031    KSTR     6   8      ; "page"
+0032    CALL     3   0   4
+0033    CALLM    1   1   1
+0034    TGETS    1   0   9  ; "paging"
+0035    MOV      2   1
+0036    TGETS    1   1  10  ; "onGotoPage"
+0037    KSHORT   3   1
+0038    CALL     1   1   3
+0039    GGET     1  11      ; "assert"
+0040    TGETS    1   1  12  ; "is"
+0041    TGETS    1   1  13  ; "same"
+0042    KSHORT   2   1
+0043    TGETS    3   0   9  ; "paging"
+0044    TGETS    3   3  14  ; "current_page"
+0045    CALL     1   1   3
+0046    TGETS    1   0  15  ; "link"
+0047    MOV      2   1
+0048    TGETS    1   1  16  ; "onTap"
+0049    KPRI     3   0
+0050    TDUP     4  18
+0051    TDUP     5  17
+0052    TSETS    5   4  19  ; "pos"
+0053    CALL     1   1   4
+0054    UGET     1   0      ; UIManager
+0055    MOV      2   1
+0056    TGETS    1   1  20  ; "run"
+0057    CALL     1   1   2
+0058    GGET     1  11      ; "assert"
+0059    TGETS    1   1  21  ; "truthy"
+0060    TGETS    2   0   9  ; "paging"
+0061    TGETS    2   2  14  ; "current_page"
+0062    ISEQN    2   0      ; 21
+0063    JMP      2 => 0070
+0064    TGETS    2   0   9  ; "paging"
+0065    TGETS    2   2  14  ; "current_page"
+0066    ISEQN    2   1      ; 20
+0067    JMP      2 => 0070
+0068    KPRI     2   1
+0069    JMP      3 => 0071
+0070 => KPRI     2   2
+0071 => CALL     1   1   2
+0072    RET0     0   1
+
+-- BYTECODE -- readerlink_spec.lua:55-64
+0001    UGET     0   0      ; ReaderUI
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "new"
+0004    TDUP     2   2
+0005    UGET     3   1      ; DocumentRegistry
+0006    MOV      4   3
+0007    TGETS    3   3   1  ; "openDocument"
+0008    UGET     5   2      ; sample_epub
+0009    CALL     3   2   3
+0010    TSETS    3   2   3  ; "document"
+0011    CALL     0   2   3
+0012    TGETS    1   0   4  ; "rolling"
+0013    MOV      2   1
+0014    TGETS    1   1   5  ; "onGotoPage"
+0015    KSHORT   3   5
+0016    CALL     1   1   3
+0017    TGETS    1   0   6  ; "link"
+0018    MOV      2   1
+0019    TGETS    1   1   7  ; "onTap"
+0020    KPRI     3   0
+0021    TDUP     4   9
+0022    TDUP     5   8
+0023    TSETS    5   4  10  ; "pos"
+0024    CALL     1   1   4
+0025    GGET     1  11      ; "assert"
+0026    TGETS    1   1  12  ; "is"
+0027    TGETS    1   1  13  ; "same"
+0028    KSHORT   2  37
+0029    TGETS    3   0   4  ; "rolling"
+0030    TGETS    3   3  14  ; "current_page"
+0031    CALL     1   1   3
+0032    TGETS    1   0   6  ; "link"
+0033    MOV      2   1
+0034    TGETS    1   1  15  ; "onGoBackLink"
+0035    CALL     1   1   2
+0036    GGET     1  11      ; "assert"
+0037    TGETS    1   1  12  ; "is"
+0038    TGETS    1   1  13  ; "same"
+0039    KSHORT   2   5
+0040    TGETS    3   0   4  ; "rolling"
+0041    TGETS    3   3  14  ; "current_page"
+0042    CALL     1   1   3
+0043    RET0     0   1
+
+-- BYTECODE -- readerlink_spec.lua:66-79
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; ReaderUI
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "new"
+0008    TDUP     2   3
+0009    UGET     3   2      ; DocumentRegistry
+0010    MOV      4   3
+0011    TGETS    3   3   2  ; "openDocument"
+0012    UGET     5   3      ; sample_pdf
+0013    CALL     3   2   3
+0014    TSETS    3   2   4  ; "document"
+0015    CALL     0   2   3
+0016    MOV      2   0
+0017    TGETS    1   0   5  ; "handleEvent"
+0018    UGET     3   4      ; Event
+0019    MOV      4   3
+0020    TGETS    3   3   1  ; "new"
+0021    KSTR     5   6      ; "SetScrollMode"
+0022    KPRI     6   1
+0023    CALL     3   0   4
+0024    CALLM    1   1   1
+0025    MOV      2   0
+0026    TGETS    1   0   5  ; "handleEvent"
+0027    UGET     3   4      ; Event
+0028    MOV      4   3
+0029    TGETS    3   3   1  ; "new"
+0030    KSTR     5   7      ; "SetZoomMode"
+0031    KSTR     6   8      ; "page"
+0032    CALL     3   0   4
+0033    CALLM    1   1   1
+0034    TGETS    1   0   9  ; "paging"
+0035    MOV      2   1
+0036    TGETS    1   1  10  ; "onGotoPage"
+0037    KSHORT   3   1
+0038    CALL     1   1   3
+0039    TGETS    1   0  11  ; "link"
+0040    MOV      2   1
+0041    TGETS    1   1  12  ; "onTap"
+0042    KPRI     3   0
+0043    TDUP     4  14
+0044    TDUP     5  13
+0045    TSETS    5   4  15  ; "pos"
+0046    CALL     1   1   4
+0047    UGET     1   0      ; UIManager
+0048    MOV      2   1
+0049    TGETS    1   1  16  ; "run"
+0050    CALL     1   1   2
+0051    GGET     1  17      ; "assert"
+0052    TGETS    1   1  18  ; "is"
+0053    TGETS    1   1  19  ; "same"
+0054    KSHORT   2  22
+0055    TGETS    3   0   9  ; "paging"
+0056    TGETS    3   3  20  ; "current_page"
+0057    CALL     1   1   3
+0058    TGETS    1   0  11  ; "link"
+0059    MOV      2   1
+0060    TGETS    1   1  21  ; "onGoBackLink"
+0061    CALL     1   1   2
+0062    GGET     1  17      ; "assert"
+0063    TGETS    1   1  18  ; "is"
+0064    TGETS    1   1  19  ; "same"
+0065    KSHORT   2   1
+0066    TGETS    3   0   9  ; "paging"
+0067    TGETS    3   3  20  ; "current_page"
+0068    CALL     1   1   3
+0069    RET0     0   1
+
+-- BYTECODE -- readerlink_spec.lua:81-96
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; ReaderUI
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "new"
+0008    TDUP     2   3
+0009    UGET     3   2      ; DocumentRegistry
+0010    MOV      4   3
+0011    TGETS    3   3   2  ; "openDocument"
+0012    UGET     5   3      ; sample_pdf
+0013    CALL     3   2   3
+0014    TSETS    3   2   4  ; "document"
+0015    CALL     0   2   3
+0016    MOV      2   0
+0017    TGETS    1   0   5  ; "handleEvent"
+0018    UGET     3   4      ; Event
+0019    MOV      4   3
+0020    TGETS    3   3   1  ; "new"
+0021    KSTR     5   6      ; "SetScrollMode"
+0022    KPRI     6   2
+0023    CALL     3   0   4
+0024    CALLM    1   1   1
+0025    MOV      2   0
+0026    TGETS    1   0   5  ; "handleEvent"
+0027    UGET     3   4      ; Event
+0028    MOV      4   3
+0029    TGETS    3   3   1  ; "new"
+0030    KSTR     5   7      ; "SetZoomMode"
+0031    KSTR     6   8      ; "page"
+0032    CALL     3   0   4
+0033    CALLM    1   1   1
+0034    TGETS    1   0   9  ; "paging"
+0035    MOV      2   1
+0036    TGETS    1   1  10  ; "onGotoPage"
+0037    KSHORT   3   1
+0038    CALL     1   1   3
+0039    GGET     1  11      ; "assert"
+0040    TGETS    1   1  12  ; "is"
+0041    TGETS    1   1  13  ; "same"
+0042    KSHORT   2   1
+0043    TGETS    3   0   9  ; "paging"
+0044    TGETS    3   3  14  ; "current_page"
+0045    CALL     1   1   3
+0046    TGETS    1   0  15  ; "link"
+0047    MOV      2   1
+0048    TGETS    1   1  16  ; "onTap"
+0049    KPRI     3   0
+0050    TDUP     4  18
+0051    TDUP     5  17
+0052    TSETS    5   4  19  ; "pos"
+0053    CALL     1   1   4
+0054    UGET     1   0      ; UIManager
+0055    MOV      2   1
+0056    TGETS    1   1  20  ; "run"
+0057    CALL     1   1   2
+0058    GGET     1  11      ; "assert"
+0059    TGETS    1   1  21  ; "truthy"
+0060    TGETS    2   0   9  ; "paging"
+0061    TGETS    2   2  14  ; "current_page"
+0062    ISEQN    2   0      ; 21
+0063    JMP      2 => 0070
+0064    TGETS    2   0   9  ; "paging"
+0065    TGETS    2   2  14  ; "current_page"
+0066    ISEQN    2   1      ; 20
+0067    JMP      2 => 0070
+0068    KPRI     2   1
+0069    JMP      3 => 0071
+0070 => KPRI     2   2
+0071 => CALL     1   1   2
+0072    TGETS    1   0  15  ; "link"
+0073    MOV      2   1
+0074    TGETS    1   1  22  ; "onGoBackLink"
+0075    CALL     1   1   2
+0076    GGET     1  11      ; "assert"
+0077    TGETS    1   1  12  ; "is"
+0078    TGETS    1   1  13  ; "same"
+0079    KSHORT   2   1
+0080    TGETS    3   0   9  ; "paging"
+0081    TGETS    3   3  14  ; "current_page"
+0082    CALL     1   1   3
+0083    RET0     0   1
+
+-- BYTECODE -- readerlink_spec.lua:98-170
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    TNEW     0   3
+0006    TDUP     1   1
+0007    TDUP     2   2
+0008    TSETS    2   1   3  ; "offset"
+0009    TDUP     2   4
+0010    TSETS    2   1   5  ; "page_area"
+0011    TDUP     2   6
+0012    TSETS    2   1   7  ; "visible_area"
+0013    TSETB    1   0   1
+0014    TDUP     1   8
+0015    TDUP     2   9
+0016    TSETS    2   1   3  ; "offset"
+0017    TDUP     2  10
+0018    TSETS    2   1   5  ; "page_area"
+0019    TDUP     2  11
+0020    TSETS    2   1   7  ; "visible_area"
+0021    TSETB    1   0   2
+0022    GGET     1  12      ; "G_reader_settings"
+0023    MOV      2   1
+0024    TGETS    1   1  13  ; "saveSetting"
+0025    KSTR     3  14      ; "reader_footer_mode"
+0026    KSHORT   4   0
+0027    CALL     1   1   4
+0028    GGET     1  15      ; "require"
+0029    KSTR     2  16      ; "docsettings"
+0030    CALL     1   2   2
+0031    MOV      2   1
+0032    TGETS    1   1  17  ; "open"
+0033    UGET     3   1      ; sample_pdf
+0034    CALL     1   2   3
+0035    MOV      2   1
+0036    TGETS    1   1  18  ; "purge"
+0037    CALL     1   1   2
+0038    UGET     1   2      ; ReaderUI
+0039    MOV      2   1
+0040    TGETS    1   1  19  ; "new"
+0041    TDUP     3  21
+0042    UGET     4   3      ; DocumentRegistry
+0043    MOV      5   4
+0044    TGETS    4   4  20  ; "openDocument"
+0045    UGET     6   1      ; sample_pdf
+0046    CALL     4   2   3
+0047    TSETS    4   3  22  ; "document"
+0048    CALL     1   2   3
+0049    MOV      3   1
+0050    TGETS    2   1  23  ; "handleEvent"
+0051    UGET     4   4      ; Event
+0052    MOV      5   4
+0053    TGETS    4   4  19  ; "new"
+0054    KSTR     6  24      ; "SetZoomMode"
+0055    KSTR     7  25      ; "page"
+0056    CALL     4   0   4
+0057    CALLM    2   1   1
+0058    GGET     2  26      ; "assert"
+0059    TGETS    2   2  27  ; "is"
+0060    TGETS    2   2  28  ; "falsy"
+0061    TGETS    3   1  29  ; "view"
+0062    TGETS    3   3  30  ; "footer_visible"
+0063    CALL     2   1   2
+0064    TGETS    2   1  31  ; "paging"
+0065    MOV      3   2
+0066    TGETS    2   2  32  ; "onGotoPage"
+0067    KSHORT   4   1
+0068    CALL     2   1   3
+0069    GGET     2  26      ; "assert"
+0070    TGETS    2   2  27  ; "is"
+0071    TGETS    2   2  33  ; "same"
+0072    KSHORT   3   1
+0073    TGETS    4   1  31  ; "paging"
+0074    TGETS    4   4  34  ; "current_page"
+0075    CALL     2   1   3
+0076    TGETS    2   1  29  ; "view"
+0077    MOV      3   2
+0078    TGETS    2   2  35  ; "onSetScrollMode"
+0079    KPRI     4   2
+0080    CALL     2   1   3
+0081    GGET     2  26      ; "assert"
+0082    TGETS    2   2  27  ; "is"
+0083    TGETS    2   2  33  ; "same"
+0084    KPRI     3   2
+0085    TGETS    4   1  29  ; "view"
+0086    TGETS    4   4  36  ; "page_scroll"
+0087    CALL     2   1   3
+0088    GGET     2  26      ; "assert"
+0089    TGETS    2   2  27  ; "is"
+0090    TGETS    2   2  33  ; "same"
+0091    KSHORT   3   1
+0092    TGETS    4   1  31  ; "paging"
+0093    TGETS    4   4  34  ; "current_page"
+0094    CALL     2   1   3
+0095    TGETS    2   1  31  ; "paging"
+0096    MOV      3   2
+0097    TGETS    2   2  37  ; "onGotoViewRel"
+0098    KSHORT   4   1
+0099    CALL     2   1   3
+0100    GGET     2  26      ; "assert"
+0101    TGETS    2   2  27  ; "is"
+0102    TGETS    2   2  33  ; "same"
+0103    KSHORT   3   2
+0104    TGETS    4   1  31  ; "paging"
+0105    TGETS    4   4  34  ; "current_page"
+0106    CALL     2   1   3
+0107    TGETS    2   1  31  ; "paging"
+0108    MOV      3   2
+0109    TGETS    2   2  37  ; "onGotoViewRel"
+0110    KSHORT   4  -1
+0111    CALL     2   1   3
+0112    GGET     2  26      ; "assert"
+0113    TGETS    2   2  27  ; "is"
+0114    TGETS    2   2  33  ; "same"
+0115    KSHORT   3   1
+0116    TGETS    4   1  31  ; "paging"
+0117    TGETS    4   4  34  ; "current_page"
+0118    CALL     2   1   3
+0119    TGETS    2   1  31  ; "paging"
+0120    MOV      3   2
+0121    TGETS    2   2  37  ; "onGotoViewRel"
+0122    KSHORT   4   1
+0123    CALL     2   1   3
+0124    TGETS    2   1  31  ; "paging"
+0125    MOV      3   2
+0126    TGETS    2   2  37  ; "onGotoViewRel"
+0127    KSHORT   4   1
+0128    CALL     2   1   3
+0129    GGET     2  26      ; "assert"
+0130    TGETS    2   2  27  ; "is"
+0131    TGETS    2   2  33  ; "same"
+0132    KSHORT   3   3
+0133    TGETS    4   1  31  ; "paging"
+0134    TGETS    4   4  34  ; "current_page"
+0135    CALL     2   1   3
+0136    TGETS    2   1  31  ; "paging"
+0137    MOV      3   2
+0138    TGETS    2   2  37  ; "onGotoViewRel"
+0139    KSHORT   4  -1
+0140    CALL     2   1   3
+0141    GGET     2  26      ; "assert"
+0142    TGETS    2   2  27  ; "is"
+0143    TGETS    2   2  33  ; "same"
+0144    KSHORT   3   2
+0145    TGETS    4   1  31  ; "paging"
+0146    TGETS    4   4  34  ; "current_page"
+0147    CALL     2   1   3
+0148    TGETS    2   1  31  ; "paging"
+0149    MOV      3   2
+0150    TGETS    2   2  37  ; "onGotoViewRel"
+0151    KSHORT   4   1
+0152    CALL     2   1   3
+0153    TGETS    2   1  31  ; "paging"
+0154    MOV      3   2
+0155    TGETS    2   2  37  ; "onGotoViewRel"
+0156    KSHORT   4   1
+0157    CALL     2   1   3
+0158    GGET     2  26      ; "assert"
+0159    TGETS    2   2  27  ; "is"
+0160    TGETS    2   2  33  ; "same"
+0161    KSHORT   3   4
+0162    TGETS    4   1  31  ; "paging"
+0163    TGETS    4   4  34  ; "current_page"
+0164    CALL     2   1   3
+0165    GGET     2  26      ; "assert"
+0166    TGETS    2   2  38  ; "are"
+0167    TGETS    2   2  33  ; "same"
+0168    MOV      3   0
+0169    TGETS    4   1  29  ; "view"
+0170    TGETS    4   4  39  ; "page_states"
+0171    CALL     2   1   3
+0172    TGETS    2   1  40  ; "link"
+0173    MOV      3   2
+0174    TGETS    2   2  41  ; "onTap"
+0175    KPRI     4   0
+0176    TDUP     5  43
+0177    TDUP     6  42
+0178    TSETS    6   5  44  ; "pos"
+0179    CALL     2   1   4
+0180    UGET     2   0      ; UIManager
+0181    MOV      3   2
+0182    TGETS    2   2  45  ; "run"
+0183    CALL     2   1   2
+0184    GGET     2  26      ; "assert"
+0185    TGETS    2   2  27  ; "is"
+0186    TGETS    2   2  33  ; "same"
+0187    KSHORT   3  22
+0188    TGETS    4   1  31  ; "paging"
+0189    TGETS    4   4  34  ; "current_page"
+0190    CALL     2   1   3
+0191    TGETS    2   1  40  ; "link"
+0192    MOV      3   2
+0193    TGETS    2   2  46  ; "onGoBackLink"
+0194    CALL     2   1   2
+0195    GGET     2  26      ; "assert"
+0196    TGETS    2   2  27  ; "is"
+0197    TGETS    2   2  33  ; "same"
+0198    KSHORT   3   3
+0199    TGETS    4   1  31  ; "paging"
+0200    TGETS    4   4  34  ; "current_page"
+0201    CALL     2   1   3
+0202    GGET     2  26      ; "assert"
+0203    TGETS    2   2  38  ; "are"
+0204    TGETS    2   2  33  ; "same"
+0205    MOV      3   0
+0206    TGETS    4   1  29  ; "view"
+0207    TGETS    4   4  39  ; "page_states"
+0208    CALL     2   1   3
+0209    RET0     0   1
+
+-- BYTECODE -- readerlink_spec.lua:1-171
+0001    KNIL     0   5
+0002    GGET     6   0      ; "setup"
+0003    FNEW     7   1      ; readerlink_spec.lua:4
+0004    CALL     6   1   2
+0005    GGET     6   2      ; "it"
+0006    KSTR     7   3      ; "should jump to links in epub #nocov"
+0007    FNEW     8   4      ; readerlink_spec.lua:16
+0008    CALL     6   1   3
+0009    GGET     6   2      ; "it"
+0010    KSTR     7   5      ; "should jump to links in pdf page mode"
+0011    FNEW     8   6      ; readerlink_spec.lua:25
+0012    CALL     6   1   3
+0013    GGET     6   2      ; "it"
+0014    KSTR     7   7      ; "should jump to links in pdf scroll mode"
+0015    FNEW     8   8      ; readerlink_spec.lua:38
+0016    CALL     6   1   3
+0017    GGET     6   2      ; "it"
+0018    KSTR     7   9      ; "should be able to go back after link jum"~
+0019    FNEW     8  10      ; readerlink_spec.lua:55
+0020    CALL     6   1   3
+0021    GGET     6   2      ; "it"
+0022    KSTR     7  11      ; "should be able to go back after link jum"~
+0023    FNEW     8  12      ; readerlink_spec.lua:66
+0024    CALL     6   1   3
+0025    GGET     6   2      ; "it"
+0026    KSTR     7  13      ; "should be able to go back after link jum"~
+0027    FNEW     8  14      ; readerlink_spec.lua:81
+0028    CALL     6   1   3
+0029    GGET     6   2      ; "it"
+0030    KSTR     7  15      ; "should be able to go back to the same po"~
+0031    FNEW     8  16      ; readerlink_spec.lua:98
+0032    CALL     6   1   3
+0033    UCLO     0 => 0034
+0034 => RET0     0   1
+
+-- BYTECODE -- readerlink_spec.lua:0-172
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "ReaderLink module"
+0003    FNEW     2   2      ; readerlink_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

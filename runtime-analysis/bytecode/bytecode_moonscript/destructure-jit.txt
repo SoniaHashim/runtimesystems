@@ -1,0 +1,376 @@
+-- BYTECODE -- destructure.lua:15-32
+0001    TNEW     0   0
+0002    KSHORT   1   1
+0003    TNEW     2   3
+0004    VARG     3   0   0
+0005    TSETM    3   0      ; 1
+0006    KSHORT   3   1
+0007    LEN      4   2
+0008    KSHORT   5   1
+0009    FORI     3 => 0020
+0010 => TGETV    7   2   6
+0011    KSHORT   8   1
+0012    LEN      9   7
+0013    KSHORT  10   1
+0014    FORI     8 => 0019
+0015 => TGETV   12   7  11
+0016    TSETV   12   0   1
+0017    ADDVN    1   1   1  ; 1
+0018    FORL     8 => 0015
+0019 => FORL     3 => 0010
+0020 => RET1     0   2
+
+-- BYTECODE -- destructure.lua:34-42
+0001    KSHORT   1   1
+0002    LEN      2   0
+0003    KSHORT   3   1
+0004    FORI     1 => 0014
+0005 => TGETV    5   0   4
+0006    UGET     6   0      ; ntype
+0007    MOV      7   5
+0008    CALL     6   2   2
+0009    ISNES    6   0      ; "table"
+0010    JMP      6 => 0013
+0011    KPRI     6   2
+0012    RET1     6   2
+0013 => FORL     1 => 0005
+0014 => KPRI     1   1
+0015    RET1     1   2
+
+-- BYTECODE -- destructure.lua:44-103
+0001    ISNEP    1   0
+0002    JMP      3 => 0004
+0003    TNEW     1   0
+0004 => ISNEP    2   0
+0005    JMP      3 => 0007
+0006    TNEW     2   0
+0007 => KSHORT   3   1
+0008    TGETB    4   0   2
+0009    KSHORT   5   1
+0010    LEN      6   4
+0011    KSHORT   7   1
+0012    FORI     5 => 0094
+0013 => TGETV    9   4   8
+0014    KNIL    10  11
+0015    LEN     12   9
+0016    ISNEN   12   0      ; 1
+0017    JMP     12 => 0027
+0018    TDUP    12   0
+0019    TDUP    13   1
+0020    TSETB    3  13   2
+0021    TSETB   13  12   2
+0022    ADDVN    3   3   0  ; 1
+0023    TGETB   13   9   1
+0024    MOV     11  12
+0025    MOV     10  13
+0026    JMP     12 => 0052
+0027 => TGETB   12   9   1
+0028    KPRI    13   0
+0029    UGET    14   0      ; ntype
+0030    MOV     15  12
+0031    CALL    14   2   2
+0032    ISNES   14   2      ; "key_literal"
+0033    JMP     14 => 0046
+0034    TGETB   14  12   2
+0035    UGET    15   0      ; ntype
+0036    MOV     16  14
+0037    CALL    15   2   2
+0038    ISNES   15   3      ; "colon"
+0039    JMP     15 => 0042
+0040    MOV     13  14
+0041    JMP     15 => 0049
+0042 => TDUP    15   4
+0043    TSETB   14  15   2
+0044    MOV     13  15
+0045    JMP     14 => 0049
+0046 => TDUP    14   5
+0047    TSETB   12  14   2
+0048    MOV     13  14
+0049 => TGETB   14   9   2
+0050    MOV     11  13
+0051    MOV     10  14
+0052 => UGET    12   1      ; join
+0053    MOV     13   2
+0054    TNEW    14   3
+0055    TSETB   11  14   1
+0056    CALL    12   2   3
+0057    MOV     11  12
+0058    UGET    12   0      ; ntype
+0059    MOV     13  10
+0060    CALL    12   2   2
+0061    ISEQS   12   6      ; "value"
+0062    JMP     13 => 0069
+0063    ISEQS   12   7      ; "ref"
+0064    JMP     13 => 0069
+0065    ISEQS   12   8      ; "chain"
+0066    JMP     13 => 0069
+0067    ISNES   12   9      ; "self"
+0068    JMP     13 => 0076
+0069 => UGET    13   2      ; insert
+0070    MOV     14   1
+0071    TNEW    15   3
+0072    TSETB   10  15   1
+0073    TSETB   11  15   2
+0074    CALL    13   1   3
+0075    JMP     13 => 0093
+0076 => ISNES   12  10      ; "table"
+0077    JMP     13 => 0084
+0078    UGET    13   3      ; extract_assign_names
+0079    MOV     14  10
+0080    MOV     15   1
+0081    MOV     16  11
+0082    CALL    13   1   4
+0083    JMP     13 => 0093
+0084 => UGET    13   4      ; user_error
+0085    KSTR    14  11      ; "Can't destructure value of type: "
+0086    GGET    15  12      ; "tostring"
+0087    UGET    16   0      ; ntype
+0088    MOV     17  10
+0089    CALL    16   0   2
+0090    CALLM   15   2   0
+0091    CAT     14  14  15
+0092    CALL    13   1   2
+0093 => FORL     5 => 0013
+0094 => RET1     1   2
+
+-- BYTECODE -- destructure.lua:105-149
+0001    UGET     3   0      ; extract_assign_names
+0002    MOV      4   1
+0003    CALL     3   2   2
+0004    TNEW     4   0
+0005    TNEW     5   0
+0006    TDUP     6   0
+0007    TSETB    4   6   2
+0008    TSETB    5   6   3
+0009    KPRI     7   0
+0010    MOV      9   0
+0011    TGETS    8   0   1  ; "is_local"
+0012    MOV     10   2
+0013    CALL     8   2   3
+0014    IST          8
+0015    JMP      9 => 0019
+0016    LEN      8   3
+0017    ISNEN    8   0      ; 1
+0018    JMP      8 => 0021
+0019 => MOV      7   2
+0020    JMP      8 => 0040
+0021 => UGET     8   1      ; NameProxy
+0022    KSTR     9   2      ; "obj"
+0023    CALL     8   2   2
+0024    MOV      7   8
+0025    UGET     8   2      ; build
+0026    TGETS    8   8   3  ; "do"
+0027    TNEW     9   3
+0028    UGET    10   2      ; build
+0029    TGETS   10  10   4  ; "assign_one"
+0030    MOV     11   7
+0031    MOV     12   2
+0032    CALL    10   2   3
+0033    TSETB   10   9   1
+0034    TDUP    10   5
+0035    TSETB    4  10   2
+0036    TSETB    5  10   3
+0037    TSETB   10   9   2
+0038    CALL     8   2   2
+0039    MOV      6   8
+0040 => KSHORT   8   1
+0041    LEN      9   3
+0042    KSHORT  10   1
+0043    FORI     8 => 0067
+0044 => TGETV   12   3  11
+0045    UGET    13   3      ; insert
+0046    MOV     14   4
+0047    TGETB   15  12   1
+0048    CALL    13   1   3
+0049    KPRI    13   0
+0050    ISF          7
+0051    JMP     14 => 0061
+0052    UGET    14   1      ; NameProxy
+0053    TGETS   14  14   6  ; "chain"
+0054    MOV     15   7
+0055    UGET    16   4      ; unpack
+0056    TGETB   17  12   2
+0057    CALL    16   0   2
+0058    CALLM   14   2   1
+0059    MOV     13  14
+0060    JMP     14 => 0062
+0061 => KSTR    13   7      ; "nil"
+0062 => UGET    14   3      ; insert
+0063    MOV     15   5
+0064    MOV     16  13
+0065    CALL    14   1   3
+0066    FORL     8 => 0044
+0067 => UGET     8   2      ; build
+0068    TGETS    8   8   8  ; "group"
+0069    TNEW     9   3
+0070    TDUP    10   9
+0071    TSETB    4  10   2
+0072    TSETB   10   9   1
+0073    TSETB    6   9   2
+0074    CALLT    8   2
+
+-- BYTECODE -- destructure.lua:163-171
+0001    TNEW     0   0
+0002    KSHORT   1   1
+0003    UGET     2   0      ; start
+0004    UGET     3   1      ; stop
+0005    KSHORT   4   1
+0006    FORI     2 => 0012
+0007 => UGET     6   2      ; names
+0008    TGETV    6   6   5
+0009    TSETV    6   0   1
+0010    ADDVN    1   1   0  ; 1
+0011    FORL     2 => 0007
+0012 => RET1     0   2
+
+-- BYTECODE -- destructure.lua:172-180
+0001    TNEW     0   0
+0002    KSHORT   1   1
+0003    UGET     2   0      ; start
+0004    UGET     3   1      ; stop
+0005    KSHORT   4   1
+0006    FORI     2 => 0012
+0007 => UGET     6   2      ; values
+0008    TGETV    6   6   5
+0009    TSETV    6   0   1
+0010    ADDVN    1   1   0  ; 1
+0011    FORL     2 => 0007
+0012 => RET1     0   2
+
+-- BYTECODE -- destructure.lua:151-227
+0001    UGET     2   0      ; unpack
+0002    MOV      3   1
+0003    KSHORT   4   2
+0004    CALL     2   3   3
+0005    TNEW     4   0
+0006    LEN      5   2
+0007    LEN      6   3
+0008    KSHORT   7   1
+0009    GGET     8   0      ; "ipairs"
+0010    MOV      9   2
+0011    CALL     8   4   2
+0012    JMP     11 => 0041
+0013 => UGET    13   1      ; ntype
+0014    MOV     14  12
+0015    CALL    13   2   2
+0016    ISNES   13   1      ; "table"
+0017    JMP     13 => 0041
+0018    ISGE     7  11
+0019    JMP     13 => 0032
+0020    SUBVN   13  11   0  ; 1
+0021    UGET    14   2      ; insert
+0022    MOV     15   4
+0023    TDUP    16   2
+0024    FNEW    17   3      ; destructure.lua:163
+0025    CALL    17   2   1
+0026    TSETB   17  16   2
+0027    FNEW    17   4      ; destructure.lua:172
+0028    CALL    17   0   1
+0029    TSETM   17   1      ; 3
+0030    CALL    14   1   3
+0031    UCLO    13 => 0032
+0032 => UGET    13   2      ; insert
+0033    MOV     14   4
+0034    UGET    15   3      ; build_assign
+0035    MOV     16   0
+0036    MOV     17  12
+0037    TGETV   18   3  11
+0038    CALL    15   0   4
+0039    CALLM   13   1   1
+0040    ADDVN    7  11   0  ; 1
+0041 => ITERC   11   3   3
+0042    ITERL   11 => 0013
+0043    ISLE     7   5
+0044    JMP      8 => 0047
+0045    ISGT     7   6
+0046    JMP      8 => 0085
+0047 => KPRI     8   0
+0048    ISGE     5   7
+0049    JMP      9 => 0052
+0050    TDUP     8   5
+0051    JMP      9 => 0063
+0052 => TNEW     9   0
+0053    KSHORT  10   1
+0054    MOV     11   7
+0055    MOV     12   5
+0056    KSHORT  13   1
+0057    FORI    11 => 0062
+0058 => TGETV   15   2  14
+0059    TSETV   15   9  10
+0060    ADDVN   10  10   0  ; 1
+0061    FORL    11 => 0058
+0062 => MOV      8   9
+0063 => KPRI     9   0
+0064    ISGE     6   7
+0065    JMP     10 => 0068
+0066    TDUP     9   6
+0067    JMP     10 => 0079
+0068 => TNEW    10   0
+0069    KSHORT  11   1
+0070    MOV     12   7
+0071    MOV     13   6
+0072    KSHORT  14   1
+0073    FORI    12 => 0078
+0074 => TGETV   16   3  15
+0075    TSETV   16  10  11
+0076    ADDVN   11  11   0  ; 1
+0077    FORL    12 => 0074
+0078 => MOV      9  10
+0079 => UGET    10   2      ; insert
+0080    MOV     11   4
+0081    TDUP    12   7
+0082    TSETB    8  12   2
+0083    TSETB    9  12   3
+0084    CALL    10   1   3
+0085 => UGET     8   4      ; build
+0086    TGETS    8   8   8  ; "group"
+0087    MOV      9   4
+0088    UCLO     0 => 0089
+0089 => CALLT    8   2
+
+-- BYTECODE -- destructure.lua:0-234
+0001    KNIL     0   2
+0002    GGET     3   0      ; "require"
+0003    KSTR     4   1      ; "moonscript.types"
+0004    CALL     3   2   2
+0005    TGETS    4   3   2  ; "ntype"
+0006    TGETS    5   3   3  ; "mtype"
+0007    TGETS    2   3   4  ; "build"
+0008    MOV      1   5
+0009    MOV      0   4
+0010    KPRI     3   0
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   5      ; "moonscript.transform.names"
+0013    CALL     4   2   2
+0014    TGETS    3   4   6  ; "NameProxy"
+0015    KPRI     4   0
+0016    GGET     5   7      ; "table"
+0017    TGETS    4   5   8  ; "insert"
+0018    KPRI     5   0
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   9      ; "moonscript.util"
+0021    CALL     6   2   2
+0022    TGETS    5   6  10  ; "unpack"
+0023    KPRI     6   0
+0024    GGET     7   0      ; "require"
+0025    KSTR     8  11      ; "moonscript.errors"
+0026    CALL     7   2   2
+0027    TGETS    6   7  12  ; "user_error"
+0028    KPRI     7   0
+0029    FNEW     7  13      ; destructure.lua:15
+0030    KPRI     8   0
+0031    FNEW     8  14      ; destructure.lua:34
+0032    KPRI     9   0
+0033    FNEW     9  15      ; destructure.lua:44
+0034    KPRI    10   0
+0035    FNEW    10  16      ; destructure.lua:105
+0036    KPRI    11   0
+0037    FNEW    11  17      ; destructure.lua:151
+0038    TDUP    12  18
+0039    TSETS    8  12  19  ; "has_destructure"
+0040    TSETS   11  12  20  ; "split_assign"
+0041    TSETS   10  12  21  ; "build_assign"
+0042    TSETS    9  12  22  ; "extract_assign_names"
+0043    UCLO     0 => 0044
+0044 => RET1    12   2
+

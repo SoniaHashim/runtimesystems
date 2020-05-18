@@ -1,0 +1,216 @@
+
+main <./frontend/ui/opdsparser.lua:0,0> (32 instructions, 128 bytes at 0x7ff99d4068c0)
+0+ params, 8 slots, 0 upvalues, 7 locals, 18 constants, 3 functions
+	1	[6]	GETGLOBAL	0 -1	; require
+	2	[6]	LOADK    	1 -2	; "util"
+	3	[6]	CALL     	0 2 2
+	4	[7]	GETGLOBAL	1 -1	; require
+	5	[7]	LOADK    	2 -3	; "luxl"
+	6	[7]	CALL     	1 2 2
+	7	[8]	GETGLOBAL	2 -1	; require
+	8	[8]	LOADK    	3 -4	; "ffi"
+	9	[8]	CALL     	2 2 2
+	10	[10]	NEWTABLE 	3 0 0
+	11	[12]	NEWTABLE 	4 0 5
+	12	[13]	SETTABLE 	4 -5 -6	; "lt" "<"
+	13	[14]	SETTABLE 	4 -7 -8	; "gt" ">"
+	14	[15]	SETTABLE 	4 -9 -10	; "amp" "&"
+	15	[16]	SETTABLE 	4 -11 -12	; "quot" "\""
+	16	[17]	SETTABLE 	4 -13 -14	; "apos" "'"
+	17	[20]	GETGLOBAL	5 -15	; string
+	18	[20]	GETTABLE 	5 5 -16	; "gsub"
+	19	[31]	CLOSURE  	6 0	; 0x7ff99d406ee0
+	20	[31]	MOVE     	0 5
+	21	[31]	MOVE     	0 4
+	22	[31]	MOVE     	0 0
+	23	[73]	CLOSURE  	7 1	; 0x7ff99d407420
+	24	[73]	MOVE     	0 2
+	25	[73]	MOVE     	0 1
+	26	[73]	MOVE     	0 6
+	27	[33]	SETTABLE 	3 -17 7	; "createFlatXTable" -
+	28	[91]	CLOSURE  	7 2	; 0x7ff99d407b00
+	29	[91]	MOVE     	0 1
+	30	[75]	SETTABLE 	3 -18 7	; "parse" -
+	31	[93]	RETURN   	3 2
+	32	[93]	RETURN   	0 1
+
+function <./frontend/ui/opdsparser.lua:21,31> (9 instructions, 36 bytes at 0x7ff99d406ee0)
+1 param, 5 slots, 3 upvalues, 1 local, 1 constant, 1 function
+	1	[22]	GETUPVAL 	1 0	; gsub
+	2	[22]	MOVE     	2 0
+	3	[22]	LOADK    	3 -1	; "(&(#?)([%d%a]+);)"
+	4	[30]	CLOSURE  	4 0	; 0x7ff99d4072e0
+	5	[30]	GETUPVAL 	0 1	; unescape_map
+	6	[30]	GETUPVAL 	0 2	; util
+	7	[22]	TAILCALL 	1 4 0
+	8	[30]	RETURN   	1 0
+	9	[31]	RETURN   	0 1
+
+function <./frontend/ui/opdsparser.lua:22,30> (20 instructions, 80 bytes at 0x7ff99d4072e0)
+3 params, 6 slots, 2 upvalues, 3 locals, 3 constants, 0 functions
+	1	[23]	GETUPVAL 	3 0	; unescape_map
+	2	[23]	GETTABLE 	3 3 2
+	3	[23]	TEST     	3 0 0
+	4	[23]	JMP      	4	; to 9
+	5	[24]	GETUPVAL 	3 0	; unescape_map
+	6	[24]	GETTABLE 	3 3 2
+	7	[24]	RETURN   	3 2
+	8	[24]	JMP      	11	; to 20
+	9	[25]	EQ       	0 1 -1	; - "#"
+	10	[25]	JMP      	8	; to 19
+	11	[26]	GETUPVAL 	3 1	; util
+	12	[26]	GETTABLE 	3 3 -2	; "unicodeCodepointToUtf8"
+	13	[26]	GETGLOBAL	4 -3	; tonumber
+	14	[26]	MOVE     	5 2
+	15	[26]	CALL     	4 2 0
+	16	[26]	TAILCALL 	3 0 0
+	17	[26]	RETURN   	3 0
+	18	[26]	JMP      	1	; to 20
+	19	[28]	RETURN   	0 2
+	20	[30]	RETURN   	0 1
+
+function <./frontend/ui/opdsparser.lua:33,73> (86 instructions, 344 bytes at 0x7ff99d407420)
+3 params, 16 slots, 3 upvalues, 13 locals, 18 constants, 0 functions
+	1	[34]	TEST     	2 0 1
+	2	[34]	JMP      	2	; to 5
+	3	[34]	NEWTABLE 	3 0 0
+	4	[34]	MOVE     	2 3
+	5	[36]	LOADNIL  	3 3
+	6	[37]	LOADK    	4 -1	; 0
+	7	[40]	LOADNIL  	5 5
+	8	[41]	SELF     	6 1 -2	; "Lexemes"
+	9	[41]	CALL     	6 2 4
+	10	[41]	JMP      	72	; to 83
+	11	[42]	GETUPVAL 	12 0	; ffi
+	12	[42]	GETTABLE 	12 12 -3	; "string"
+	13	[42]	GETTABLE 	13 1 -4	; "buf"
+	14	[42]	ADD      	13 13 10
+	15	[42]	MOVE     	14 11
+	16	[42]	CALL     	12 3 2
+	17	[42]	MOVE     	5 12
+	18	[43]	GETUPVAL 	12 1	; luxl
+	19	[43]	GETTABLE 	12 12 -5	; "EVENT_START"
+	20	[43]	EQ       	0 9 12
+	21	[43]	JMP      	27	; to 49
+	22	[44]	EQ       	1 5 -6	; - "xml"
+	23	[44]	JMP      	59	; to 83
+	24	[50]	SELF     	12 0 -7	; "createFlatXTable"
+	25	[50]	MOVE     	14 1
+	26	[50]	CALL     	12 3 2
+	27	[51]	EQ       	1 5 -8	; - "entry"
+	28	[51]	JMP      	2	; to 31
+	29	[51]	EQ       	0 5 -9	; - "link"
+	30	[51]	JMP      	11	; to 42
+	31	[52]	GETTABLE 	13 2 5
+	32	[52]	EQ       	0 13 -10	; - nil
+	33	[52]	JMP      	2	; to 36
+	34	[53]	NEWTABLE 	13 0 0
+	35	[53]	SETTABLE 	2 5 13
+	36	[55]	GETGLOBAL	13 -11	; table
+	37	[55]	GETTABLE 	13 13 -12	; "insert"
+	38	[55]	GETTABLE 	14 2 5
+	39	[55]	MOVE     	15 12
+	40	[55]	CALL     	13 3 1
+	41	[55]	JMP      	41	; to 83
+	42	[56]	GETGLOBAL	13 -13	; type
+	43	[56]	MOVE     	14 2
+	44	[56]	CALL     	13 2 2
+	45	[56]	EQ       	0 13 -11	; - "table"
+	46	[56]	JMP      	36	; to 83
+	47	[57]	SETTABLE 	2 5 12
+	48	[59]	JMP      	34	; to 83
+	49	[60]	GETUPVAL 	12 1	; luxl
+	50	[60]	GETTABLE 	12 12 -14	; "EVENT_ATTR_NAME"
+	51	[60]	EQ       	0 9 12
+	52	[60]	JMP      	5	; to 58
+	53	[61]	GETUPVAL 	12 2	; unescape
+	54	[61]	MOVE     	13 5
+	55	[61]	CALL     	12 2 2
+	56	[61]	MOVE     	3 12
+	57	[61]	JMP      	25	; to 83
+	58	[62]	GETUPVAL 	12 1	; luxl
+	59	[62]	GETTABLE 	12 12 -15	; "EVENT_ATTR_VAL"
+	60	[62]	EQ       	0 9 12
+	61	[62]	JMP      	7	; to 69
+	62	[63]	GETUPVAL 	12 2	; unescape
+	63	[63]	MOVE     	13 5
+	64	[63]	CALL     	12 2 2
+	65	[63]	SETTABLE 	2 3 12
+	66	[64]	ADD      	4 4 -16	; - 1
+	67	[65]	LOADNIL  	3 3
+	68	[65]	JMP      	14	; to 83
+	69	[66]	GETUPVAL 	12 1	; luxl
+	70	[66]	GETTABLE 	12 12 -17	; "EVENT_TEXT"
+	71	[66]	EQ       	0 9 12
+	72	[66]	JMP      	5	; to 78
+	73	[67]	GETUPVAL 	12 2	; unescape
+	74	[67]	MOVE     	13 5
+	75	[67]	CALL     	12 2 2
+	76	[67]	MOVE     	2 12
+	77	[67]	JMP      	5	; to 83
+	78	[68]	GETUPVAL 	12 1	; luxl
+	79	[68]	GETTABLE 	12 12 -18	; "EVENT_END"
+	80	[68]	EQ       	0 9 12
+	81	[68]	JMP      	1	; to 83
+	82	[69]	RETURN   	2 2
+	83	[41]	TFORLOOP 	6 3
+	84	[70]	JMP      	-74	; to 11
+	85	[72]	RETURN   	2 2
+	86	[73]	RETURN   	0 1
+
+function <./frontend/ui/opdsparser.lua:75,91> (42 instructions, 168 bytes at 0x7ff99d407b00)
+2 params, 7 slots, 1 upvalue, 3 locals, 13 constants, 1 function
+	1	[77]	SELF     	2 1 -1	; "gsub"
+	2	[77]	LOADK    	4 -2	; "<!--.--->"
+	3	[77]	LOADK    	5 -3	; ""
+	4	[77]	CALL     	2 4 2
+	5	[77]	MOVE     	1 2
+	6	[80]	SELF     	2 1 -1	; "gsub"
+	7	[80]	LOADK    	4 -4	; "<br>"
+	8	[80]	LOADK    	5 -5	; "<br />"
+	9	[80]	CALL     	2 4 2
+	10	[80]	MOVE     	1 2
+	11	[81]	SELF     	2 1 -1	; "gsub"
+	12	[81]	LOADK    	4 -6	; "<br/>"
+	13	[81]	LOADK    	5 -5	; "<br />"
+	14	[81]	CALL     	2 4 2
+	15	[81]	MOVE     	1 2
+	16	[83]	SELF     	2 1 -1	; "gsub"
+	17	[83]	LOADK    	4 -7	; "<hr>"
+	18	[83]	LOADK    	5 -8	; "<hr />"
+	19	[83]	CALL     	2 4 2
+	20	[83]	MOVE     	1 2
+	21	[84]	SELF     	2 1 -1	; "gsub"
+	22	[84]	LOADK    	4 -9	; "<hr/>"
+	23	[84]	LOADK    	5 -8	; "<hr />"
+	24	[84]	CALL     	2 4 2
+	25	[84]	MOVE     	1 2
+	26	[86]	SELF     	2 1 -1	; "gsub"
+	27	[86]	LOADK    	4 -10	; "<!%[CDATA%[(.-)%]%]>"
+	28	[88]	CLOSURE  	5 0	; 0x7ff99d407f20
+	29	[86]	CALL     	2 4 2
+	30	[88]	MOVE     	1 2
+	31	[89]	GETUPVAL 	2 0	; luxl
+	32	[89]	GETTABLE 	2 2 -11	; "new"
+	33	[89]	MOVE     	3 1
+	34	[89]	LEN      	4 1
+	35	[89]	CALL     	2 3 2
+	36	[90]	GETGLOBAL	3 -12	; assert
+	37	[90]	SELF     	4 0 -13	; "createFlatXTable"
+	38	[90]	MOVE     	6 2
+	39	[90]	CALL     	4 3 0
+	40	[90]	TAILCALL 	3 0 0
+	41	[90]	RETURN   	3 0
+	42	[91]	RETURN   	0 1
+
+function <./frontend/ui/opdsparser.lua:86,88> (9 instructions, 36 bytes at 0x7ff99d407f20)
+1 param, 5 slots, 0 upvalues, 1 local, 8 constants, 0 functions
+	1	[87]	SELF     	1 0 -1	; "gsub"
+	2	[87]	LOADK    	3 -2	; "%p"
+	3	[87]	NEWTABLE 	4 0 3
+	4	[87]	SETTABLE 	4 -3 -4	; "&" "&amp;"
+	5	[87]	SETTABLE 	4 -5 -6	; "<" "&lt;"
+	6	[87]	SETTABLE 	4 -7 -8	; ">" "&gt;"
+	7	[87]	TAILCALL 	1 4 0
+	8	[87]	RETURN   	1 0
+	9	[88]	RETURN   	0 1

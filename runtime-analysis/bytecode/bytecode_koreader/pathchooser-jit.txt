@@ -1,0 +1,341 @@
+-- BYTECODE -- pathchooser.lua:42-42
+0001    KPRI     0   1
+0002    RET1     0   2
+
+-- BYTECODE -- pathchooser.lua:30-49
+0001    TGETS    1   0   0  ; "title"
+0002    ISNEP    1   2
+0003    JMP      1 => 0030
+0004    TGETS    1   0   1  ; "select_directory"
+0005    ISF          1
+0006    JMP      2 => 0015
+0007    TGETS    1   0   2  ; "select_file"
+0008    IST          1
+0009    JMP      1 => 0015
+0010    UGET     1   0      ; _
+0011    KSTR     2   3      ; "Long-press to select directory"
+0012    CALL     1   2   2
+0013    TSETS    1   0   0  ; "title"
+0014    JMP      1 => 0030
+0015 => TGETS    1   0   1  ; "select_directory"
+0016    IST          1
+0017    JMP      1 => 0026
+0018    TGETS    1   0   2  ; "select_file"
+0019    ISF          1
+0020    JMP      2 => 0026
+0021    UGET     1   0      ; _
+0022    KSTR     2   4      ; "Long-press to select file"
+0023    CALL     1   2   2
+0024    TSETS    1   0   0  ; "title"
+0025    JMP      1 => 0030
+0026 => UGET     1   0      ; _
+0027    KSTR     2   5      ; "Long-press to select"
+0028    CALL     1   2   2
+0029    TSETS    1   0   0  ; "title"
+0030 => GGET     1   7      ; "G_reader_settings"
+0031    MOV      2   1
+0032    TGETS    1   1   8  ; "readSetting"
+0033    KSTR     3   6      ; "show_hidden"
+0034    CALL     1   2   3
+0035    TSETS    1   0   6  ; "show_hidden"
+0036    TGETS    1   0   9  ; "show_files"
+0037    IST          1
+0038    JMP      1 => 0041
+0039    FNEW     1  11      ; pathchooser.lua:42
+0040    TSETS    1   0  10  ; "file_filter"
+0041 => TGETS    1   0   1  ; "select_directory"
+0042    ISF          1
+0043    JMP      2 => 0046
+0044    KPRI     1   2
+0045    TSETS    1   0  12  ; "show_current_dir_for_hold"
+0046 => UGET     1   1      ; FileChooser
+0047    TGETS    1   1  13  ; "init"
+0048    MOV      2   0
+0049    CALL     1   1   2
+0050    RET0     0   1
+
+-- BYTECODE -- pathchooser.lua:51-81
+0001    TGETS    2   1   0  ; "path"
+0002    MOV      4   2
+0003    TGETS    3   2   1  ; "sub"
+0004    KSHORT   5  -2
+0005    KSHORT   6  -1
+0006    CALL     3   2   4
+0007    ISNES    3   2      ; "/."
+0008    JMP      3 => 0011
+0009    KPRI     3   2
+0010    RET1     3   2
+0011 => UGET     3   0      ; ffiutil
+0012    TGETS    3   3   3  ; "realpath"
+0013    MOV      4   2
+0014    CALL     3   2   2
+0015    MOV      2   3
+0016    IST          2
+0017    JMP      3 => 0024
+0018    MOV      4   0
+0019    TGETS    3   0   4  ; "changeToPath"
+0020    KSTR     5   5      ; "/"
+0021    CALL     3   1   3
+0022    KPRI     3   2
+0023    RET1     3   2
+0024 => UGET     3   1      ; lfs
+0025    TGETS    3   3   6  ; "attributes"
+0026    MOV      4   2
+0027    CALL     3   2   2
+0028    IST          3
+0029    JMP      4 => 0036
+0030    MOV      5   0
+0031    TGETS    4   0   4  ; "changeToPath"
+0032    KSTR     6   5      ; "/"
+0033    CALL     4   1   3
+0034    KPRI     4   2
+0035    RET1     4   2
+0036 => TGETS    4   3   7  ; "mode"
+0037    ISEQS    4   8      ; "directory"
+0038    JMP      4 => 0041
+0039    KPRI     4   2
+0040    RET1     4   2
+0041 => MOV      5   0
+0042    TGETS    4   0   9  ; "genItemTableFromPath"
+0043    MOV      6   2
+0044    CALL     4   2   3
+0045    LEN      5   4
+0046    KSHORT   6   0
+0047    ISGE     6   5
+0048    JMP      5 => 0053
+0049    MOV      6   0
+0050    TGETS    5   0   4  ; "changeToPath"
+0051    MOV      7   2
+0052    CALL     5   1   3
+0053 => KPRI     5   2
+0054    RET1     5   2
+
+-- BYTECODE -- pathchooser.lua:124-126
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "button_dialog"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- pathchooser.lua:130-136
+0001    UGET     0   0      ; onConfirm
+0002    ISF          0
+0003    JMP      1 => 0007
+0004    UGET     0   0      ; onConfirm
+0005    UGET     1   1      ; path
+0006    CALL     0   1   2
+0007 => UGET     0   2      ; UIManager
+0008    MOV      1   0
+0009    TGETS    0   0   0  ; "close"
+0010    UGET     2   3      ; self
+0011    TGETS    2   2   1  ; "button_dialog"
+0012    CALL     0   1   3
+0013    UGET     0   2      ; UIManager
+0014    MOV      1   0
+0015    TGETS    0   0   0  ; "close"
+0016    UGET     2   3      ; self
+0017    CALL     0   1   3
+0018    RET0     0   1
+
+-- BYTECODE -- pathchooser.lua:83-143
+0001    TGETS    2   1   0  ; "path"
+0002    MOV      4   2
+0003    TGETS    3   2   1  ; "sub"
+0004    KSHORT   5  -2
+0005    KSHORT   6  -1
+0006    CALL     3   2   4
+0007    ISNES    3   2      ; "/."
+0008    JMP      3 => 0015
+0009    MOV      4   2
+0010    TGETS    3   2   1  ; "sub"
+0011    KSHORT   5   1
+0012    KSHORT   6  -3
+0013    CALL     3   2   4
+0014    MOV      2   3
+0015 => UGET     3   0      ; ffiutil
+0016    TGETS    3   3   3  ; "realpath"
+0017    MOV      4   2
+0018    CALL     3   2   2
+0019    MOV      2   3
+0020    IST          2
+0021    JMP      3 => 0024
+0022    KPRI     3   2
+0023    UCLO     0 => 0148
+0024 => UGET     3   1      ; lfs
+0025    TGETS    3   3   4  ; "attributes"
+0026    MOV      4   2
+0027    CALL     3   2   2
+0028    IST          3
+0029    JMP      4 => 0032
+0030    KPRI     4   2
+0031    UCLO     0 => 0149
+0032 => TGETS    4   3   5  ; "mode"
+0033    ISNES    4   6      ; "file"
+0034    JMP      4 => 0040
+0035    TGETS    4   0   7  ; "select_file"
+0036    IST          4
+0037    JMP      4 => 0040
+0038    KPRI     4   2
+0039    UCLO     0 => 0150
+0040 => TGETS    4   3   5  ; "mode"
+0041    ISNES    4   8      ; "directory"
+0042    JMP      4 => 0048
+0043    TGETS    4   0   9  ; "select_directory"
+0044    IST          4
+0045    JMP      4 => 0048
+0046    KPRI     4   2
+0047    UCLO     0 => 0151
+0048 => KPRI     4   0
+0049    TGETS    5   3   5  ; "mode"
+0050    ISNES    5   6      ; "file"
+0051    JMP      5 => 0088
+0052    TGETS    5   0  10  ; "detailed_file_info"
+0053    ISF          5
+0054    JMP      6 => 0077
+0055    UGET     5   2      ; util
+0056    TGETS    5   5  11  ; "getFormattedSize"
+0057    TGETS    6   3  12  ; "size"
+0058    CALL     5   2   2
+0059    GGET     6  13      ; "os"
+0060    TGETS    6   6  14  ; "date"
+0061    KSTR     7  15      ; "%Y-%m-%d %H:%M"
+0062    TGETS    8   3  16  ; "modification"
+0063    CALL     6   2   3
+0064    UGET     7   3      ; T
+0065    UGET     8   4      ; _
+0066    KSTR     9  17      ; "Select this file?\n\n%1\n\nFile size: %2"~
+0067    CALL     8   2   2
+0068    UGET     9   5      ; BD
+0069    TGETS    9   9  18  ; "filepath"
+0070    MOV     10   2
+0071    CALL     9   2   2
+0072    MOV     10   5
+0073    MOV     11   6
+0074    CALL     7   2   5
+0075    MOV      4   7
+0076    JMP      5 => 0112
+0077 => UGET     5   3      ; T
+0078    UGET     6   4      ; _
+0079    KSTR     7  19      ; "Select this file?\n\n%1"
+0080    CALL     6   2   2
+0081    UGET     7   5      ; BD
+0082    TGETS    7   7  18  ; "filepath"
+0083    MOV      8   2
+0084    CALL     7   0   2
+0085    CALLM    5   2   1
+0086    MOV      4   5
+0087    JMP      5 => 0112
+0088 => TGETS    5   3   5  ; "mode"
+0089    ISNES    5   8      ; "directory"
+0090    JMP      5 => 0102
+0091    UGET     5   3      ; T
+0092    UGET     6   4      ; _
+0093    KSTR     7  20      ; "Select this directory?\n\n%1"
+0094    CALL     6   2   2
+0095    UGET     7   5      ; BD
+0096    TGETS    7   7  21  ; "dirpath"
+0097    MOV      8   2
+0098    CALL     7   0   2
+0099    CALLM    5   2   1
+0100    MOV      4   5
+0101    JMP      5 => 0112
+0102 => UGET     5   3      ; T
+0103    UGET     6   4      ; _
+0104    KSTR     7  22      ; "Select this path?\n\n%1"
+0105    CALL     6   2   2
+0106    UGET     7   5      ; BD
+0107    TGETS    7   7   0  ; "path"
+0108    MOV      8   2
+0109    CALL     7   0   2
+0110    CALLM    5   2   1
+0111    MOV      4   5
+0112 => TGETS    5   0  23  ; "onConfirm"
+0113    UGET     6   6      ; ButtonDialogTitle
+0114    MOV      7   6
+0115    TGETS    6   6  25  ; "new"
+0116    TDUP     8  26
+0117    TSETS    4   8  27  ; "title"
+0118    TNEW     9   3
+0119    TNEW    10   3
+0120    TDUP    11  29
+0121    UGET    12   4      ; _
+0122    KSTR    13  28      ; "Cancel"
+0123    CALL    12   2   2
+0124    TSETS   12  11  30  ; "text"
+0125    FNEW    12  31      ; pathchooser.lua:124
+0126    TSETS   12  11  32  ; "callback"
+0127    TSETB   11  10   1
+0128    TDUP    11  34
+0129    UGET    12   4      ; _
+0130    KSTR    13  33      ; "Select"
+0131    CALL    12   2   2
+0132    TSETS   12  11  30  ; "text"
+0133    FNEW    12  35      ; pathchooser.lua:130
+0134    TSETS   12  11  32  ; "callback"
+0135    TSETB   11  10   2
+0136    TSETB   10   9   1
+0137    TSETS    9   8  36  ; "buttons"
+0138    CALL     6   2   3
+0139    TSETS    6   0  24  ; "button_dialog"
+0140    UGET     6   7      ; UIManager
+0141    MOV      7   6
+0142    TGETS    6   6  37  ; "show"
+0143    TGETS    8   0  24  ; "button_dialog"
+0144    CALL     6   1   3
+0145    KPRI     6   2
+0146    UCLO     0 => 0147
+0147 => RET1     6   2
+0148 => RET1     3   2
+0149 => RET1     4   2
+0150 => RET1     4   2
+0151 => RET1     4   2
+
+-- BYTECODE -- pathchooser.lua:0-146
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/buttondialogtitle"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/filechooser"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/font"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/uimanager"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ffi/util"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "libs/libkoreader-lfs"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "util"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "gettext"
+0027    CALL     8   2   2
+0028    TGETS    9   5  10  ; "template"
+0029    MOV     11   2
+0030    TGETS   10   2  11  ; "extend"
+0031    TDUP    12  12
+0032    MOV     14   3
+0033    TGETS   13   3  13  ; "getFace"
+0034    KSTR    15  14      ; "smalltfont"
+0035    CALL    13   2   3
+0036    TSETS   13  12  15  ; "tface"
+0037    CALL    10   2   3
+0038    FNEW    11  17      ; pathchooser.lua:30
+0039    TSETS   11  10  16  ; "init"
+0040    FNEW    11  19      ; pathchooser.lua:51
+0041    TSETS   11  10  18  ; "onMenuSelect"
+0042    FNEW    11  21      ; pathchooser.lua:83
+0043    TSETS   11  10  20  ; "onMenuHold"
+0044    UCLO     0 => 0045
+0045 => RET1    10   2
+

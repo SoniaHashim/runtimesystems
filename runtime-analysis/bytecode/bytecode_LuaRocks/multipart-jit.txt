@@ -1,0 +1,273 @@
+-- BYTECODE -- multipart.lua:10-12
+0001    GGET     1   0      ; "string"
+0002    TGETS    1   1   1  ; "format"
+0003    KSTR     2   2      ; "%%%02x"
+0004    GGET     3   0      ; "string"
+0005    TGETS    3   3   3  ; "byte"
+0006    MOV      4   0
+0007    CALL     3   0   2
+0008    CALLMT   1   1
+
+-- BYTECODE -- multipart.lua:9-13
+0001    GGET     1   0      ; "string"
+0002    TGETS    1   1   1  ; "gsub"
+0003    MOV      2   0
+0004    KSTR     3   2      ; "([^A-Za-z0-9_])"
+0005    FNEW     4   3      ; multipart.lua:10
+0006    CALL     1   2   4
+0007    UCLO     0 => 0008
+0008 => RET1     1   2
+
+-- BYTECODE -- multipart.lua:15-24
+0001    TGETS    1   0   0  ; "mimetype"
+0002    IST          1
+0003    JMP      1 => 0019
+0004    GGET     1   1      ; "pcall"
+0005    GGET     2   2      ; "require"
+0006    KSTR     3   3      ; "mimetypes"
+0007    CALL     1   3   3
+0008    ISF          1
+0009    JMP      3 => 0014
+0010    TGETS    3   2   4  ; "guess"
+0011    TGETS    4   0   5  ; "fname"
+0012    CALL     3   2   2
+0013    TSETS    3   0   0  ; "mimetype"
+0014 => TGETS    3   0   0  ; "mimetype"
+0015    IST          3
+0016    JMP      4 => 0018
+0017    KSTR     3   6      ; "application/octet-stream"
+0018 => TSETS    3   0   0  ; "mimetype"
+0019 => TGETS    1   0   0  ; "mimetype"
+0020    RET1     1   2
+
+-- BYTECODE -- multipart.lua:26-34
+0001    GGET     1   0      ; "io"
+0002    TGETS    1   1   1  ; "open"
+0003    TGETS    2   0   2  ; "fname"
+0004    KSTR     3   3      ; "rb"
+0005    CALL     1   2   3
+0006    IST          1
+0007    JMP      2 => 0013
+0008    KPRI     2   0
+0009    KSTR     3   4      ; "Failed to open file: "
+0010    TGETS    4   0   2  ; "fname"
+0011    CAT      3   3   4
+0012    RET      2   3
+0013 => MOV      3   1
+0014    TGETS    2   1   5  ; "read"
+0015    KSTR     4   6      ; "*a"
+0016    CALL     2   2   3
+0017    MOV      4   1
+0018    TGETS    3   1   7  ; "close"
+0019    CALL     3   1   2
+0020    RET1     2   2
+
+-- BYTECODE -- multipart.lua:36-46
+0001    TNEW     1   0
+0002    KSHORT   2   1
+0003    MOV      3   0
+0004    KSHORT   4   1
+0005    FORI     2 => 0020
+0006 => GGET     6   0      ; "math"
+0007    TGETS    6   6   1  ; "random"
+0008    KSHORT   7  97
+0009    KSHORT   8 122
+0010    CALL     6   2   3
+0011    GGET     7   0      ; "math"
+0012    TGETS    7   7   1  ; "random"
+0013    CALL     7   2   1
+0014    KNUM     8   0      ; 0.5
+0015    ISGT     8   7
+0016    JMP      7 => 0018
+0017    SUBVN    6   6   1  ; 32
+0018 => TSETV    6   1   5
+0019    FORL     2 => 0006
+0020 => GGET     2   2      ; "string"
+0021    TGETS    2   2   3  ; "char"
+0022    UGET     3   0      ; unpack
+0023    MOV      4   1
+0024    CALL     3   0   2
+0025    CALLMT   2   0
+
+-- BYTECODE -- multipart.lua:56-97
+0001    TNEW     1   0
+0002    KSHORT   2   1
+0003    LEN      3   0
+0004    KSHORT   4   1
+0005    FORI     2 => 0009
+0006 => TGETV    6   0   5
+0007    TSETV    6   1   5
+0008    FORL     2 => 0006
+0009 => GGET     2   0      ; "pairs"
+0010    MOV      3   0
+0011    CALL     2   4   2
+0012    ISNEXT   5 => 0025
+0013 => GGET     7   1      ; "type"
+0014    MOV      8   5
+0015    CALL     7   2   2
+0016    ISNES    7   2      ; "string"
+0017    JMP      7 => 0025
+0018    GGET     7   3      ; "table"
+0019    TGETS    7   7   4  ; "insert"
+0020    MOV      8   1
+0021    TNEW     9   3
+0022    TSETB    5   9   1
+0023    TSETB    6   9   2
+0024    CALL     7   1   3
+0025 => ITERN    5   3   3
+0026    ITERL    5 => 0013
+0027    TNEW     2   0
+0028    GGET     3   5      ; "ipairs"
+0029    MOV      4   1
+0030    CALL     3   4   2
+0031    JMP      6 => 0101
+0032 => UGET     8   0      ; unpack
+0033    MOV      9   7
+0034    CALL     8   3   2
+0035    UGET    10   1      ; multipart
+0036    TGETS   10  10   6  ; "url_escape"
+0037    MOV     11   8
+0038    CALL    10   2   2
+0039    MOV      8  10
+0040    TNEW    10   3
+0041    KSTR    11   7      ; "Content-Disposition: form-data; name=""
+0042    MOV     12   8
+0043    KSTR    13   8      ; """
+0044    CAT     11  11  13
+0045    TSETB   11  10   1
+0046    KPRI    11   0
+0047    GGET    12   1      ; "type"
+0048    MOV     13   9
+0049    CALL    12   2   2
+0050    ISNES   12   3      ; "table"
+0051    JMP     12 => 0081
+0052    TGETS   12   9   9  ; "__class"
+0053    UGET    13   2      ; File
+0054    ISNEV   12  13
+0055    JMP     12 => 0081
+0056    TGETB   12  10   1
+0057    KSTR    13  10      ; "; filename=""
+0058    TGETS   14   9  11  ; "fname"
+0059    MOV     15  14
+0060    TGETS   14  14  12  ; "gsub"
+0061    KSTR    16  13      ; ".*/"
+0062    KSTR    17  14      ; ""
+0063    CALL    14   2   4
+0064    KSTR    15   8      ; """
+0065    CAT     12  12  15
+0066    TSETB   12  10   1
+0067    GGET    12   3      ; "table"
+0068    TGETS   12  12   4  ; "insert"
+0069    MOV     13  10
+0070    KSTR    14  15      ; "Content-type: "
+0071    MOV     16   9
+0072    TGETS   15   9  16  ; "mime"
+0073    CALL    15   2   2
+0074    CAT     14  14  15
+0075    CALL    12   1   3
+0076    MOV     13   9
+0077    TGETS   12   9  17  ; "content"
+0078    CALL    12   2   2
+0079    MOV     11  12
+0080    JMP     12 => 0082
+0081 => MOV     11   9
+0082 => GGET    12   3      ; "table"
+0083    TGETS   12  12   4  ; "insert"
+0084    MOV     13  10
+0085    KSTR    14  14      ; ""
+0086    CALL    12   1   3
+0087    GGET    12   3      ; "table"
+0088    TGETS   12  12   4  ; "insert"
+0089    MOV     13  10
+0090    MOV     14  11
+0091    CALL    12   1   3
+0092    GGET    12   3      ; "table"
+0093    TGETS   12  12   4  ; "insert"
+0094    MOV     13   2
+0095    GGET    14   3      ; "table"
+0096    TGETS   14  14  18  ; "concat"
+0097    MOV     15  10
+0098    KSTR    16  19      ; "\r\n"
+0099    CALL    14   0   3
+0100    CALLM   12   1   1
+0101 => ITERC    6   3   3
+0102    ITERL    6 => 0032
+0103    KPRI     3   0
+0104 => IST          3
+0105    JMP      4 => 0127
+0106    LOOP     4 => 0127
+0107    KSTR     4  20      ; "Boundary"
+0108    UGET     5   3      ; rand_string
+0109    KSHORT   6  16
+0110    CALL     5   2   2
+0111    CAT      3   4   5
+0112    GGET     4   5      ; "ipairs"
+0113    MOV      5   2
+0114    CALL     4   4   2
+0115    JMP      7 => 0124
+0116 => MOV     10   8
+0117    TGETS    9   8  21  ; "find"
+0118    MOV     11   3
+0119    CALL     9   2   3
+0120    ISF          9
+0121    JMP     10 => 0124
+0122    KPRI     3   0
+0123    JMP      4 => 0104
+0124 => ITERC    7   3   3
+0125    ITERL    7 => 0116
+0126    JMP      4 => 0104
+0127 => KSTR     4  22      ; "\r\n--"
+0128    MOV      5   3
+0129    KSTR     6  19      ; "\r\n"
+0130    CAT      4   4   6
+0131    GGET     5   3      ; "table"
+0132    TGETS    5   5  18  ; "concat"
+0133    TDUP     6  23
+0134    TSETB    3   6   2
+0135    GGET     7   3      ; "table"
+0136    TGETS    7   7  18  ; "concat"
+0137    MOV      8   2
+0138    MOV      9   4
+0139    CALL     7   2   3
+0140    TSETB    7   6   4
+0141    TSETB    3   6   7
+0142    CALL     5   2   2
+0143    MOV      6   3
+0144    RET      5   3
+
+-- BYTECODE -- multipart.lua:99-106
+0001    TNEW     2   0
+0002    GGET     3   0      ; "setmetatable"
+0003    MOV      4   2
+0004    TDUP     5   1
+0005    UGET     6   0      ; File
+0006    TSETS    6   5   2  ; "__index"
+0007    CALL     3   1   3
+0008    UGET     3   0      ; File
+0009    TSETS    3   2   3  ; "__class"
+0010    TSETS    0   2   4  ; "fname"
+0011    TSETS    1   2   5  ; "mimetype"
+0012    RET1     2   2
+
+-- BYTECODE -- multipart.lua:0-110
+0001    TNEW     0   0
+0002    TNEW     1   0
+0003    GGET     2   0      ; "unpack"
+0004    IST          2
+0005    JMP      3 => 0008
+0006    GGET     2   1      ; "table"
+0007    TGETS    2   2   0  ; "unpack"
+0008 => FNEW     3   3      ; multipart.lua:9
+0009    TSETS    3   0   2  ; "url_escape"
+0010    FNEW     3   5      ; multipart.lua:15
+0011    TSETS    3   1   4  ; "mime"
+0012    FNEW     3   7      ; multipart.lua:26
+0013    TSETS    3   1   6  ; "content"
+0014    FNEW     3   8      ; multipart.lua:36
+0015    FNEW     4  10      ; multipart.lua:56
+0016    TSETS    4   0   9  ; "encode"
+0017    FNEW     4  12      ; multipart.lua:99
+0018    TSETS    4   0  11  ; "new_file"
+0019    UCLO     0 => 0020
+0020 => RET1     0   2
+

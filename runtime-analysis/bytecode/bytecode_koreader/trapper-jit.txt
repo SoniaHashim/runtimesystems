@@ -1,0 +1,1013 @@
+-- BYTECODE -- trapper.lua:45-56
+0001    GGET     0   0      ; "xpcall"
+0002    UGET     1   0      ; func
+0003    GGET     2   1      ; "debug"
+0004    TGETS    2   2   2  ; "traceback"
+0005    CALL     0   3   3
+0006    IST          0
+0007    JMP      2 => 0015
+0008    UGET     2   1      ; logger
+0009    TGETS    2   2   3  ; "warn"
+0010    KSTR     3   4      ; "error in wrapped function:"
+0011    MOV      4   1
+0012    CALL     2   1   3
+0013    KPRI     2   1
+0014    RET1     2   2
+0015 => KPRI     2   2
+0016    RET1     2   2
+
+-- BYTECODE -- trapper.lua:42-59
+0001    FNEW     2   0      ; trapper.lua:45
+0002    GGET     3   1      ; "coroutine"
+0003    TGETS    3   3   2  ; "create"
+0004    MOV      4   2
+0005    CALL     3   2   2
+0006    GGET     4   1      ; "coroutine"
+0007    TGETS    4   4   3  ; "resume"
+0008    MOV      5   3
+0009    UCLO     0 => 0010
+0010 => CALLT    4   2
+
+-- BYTECODE -- trapper.lua:64-69
+0001    GGET     1   0      ; "coroutine"
+0002    TGETS    1   1   1  ; "running"
+0003    CALL     1   2   1
+0004    ISF          1
+0005    JMP      2 => 0008
+0006    KPRI     1   2
+0007    RET1     1   2
+0008 => KPRI     1   1
+0009    RET1     1   2
+
+-- BYTECODE -- trapper.lua:72-80
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "isWrapped"
+0003    CALL     1   2   2
+0004    ISF          1
+0005    JMP      2 => 0020
+0006    TGETS    1   0   1  ; "current_widget"
+0007    ISF          1
+0008    JMP      2 => 0020
+0009    UGET     1   0      ; UIManager
+0010    MOV      2   1
+0011    TGETS    1   1   2  ; "close"
+0012    TGETS    3   0   1  ; "current_widget"
+0013    CALL     1   1   3
+0014    UGET     1   0      ; UIManager
+0015    MOV      2   1
+0016    TGETS    1   1   3  ; "forceRePaint"
+0017    CALL     1   1   2
+0018    KPRI     1   0
+0019    TSETS    1   0   1  ; "current_widget"
+0020 => RET0     0   1
+
+-- BYTECODE -- trapper.lua:83-90
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "clear"
+0003    CALL     1   1   2
+0004    KPRI     1   0
+0005    TSETS    1   0   1  ; "paused_text"
+0006    KPRI     1   0
+0007    TSETS    1   0   2  ; "paused_continue_text"
+0008    KPRI     1   0
+0009    TSETS    1   0   3  ; "paused_abort_text"
+0010    KPRI     1   2
+0011    RET1     1   2
+
+-- BYTECODE -- trapper.lua:138-138
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "resume"
+0003    UGET     1   0      ; _coroutine
+0004    KPRI     2   2
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- trapper.lua:160-162
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "resume"
+0003    UGET     1   0      ; _coroutine
+0004    KPRI     2   2
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- trapper.lua:163-165
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "resume"
+0003    UGET     1   0      ; _coroutine
+0004    KPRI     2   1
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- trapper.lua:212-214
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "resume"
+0003    UGET     1   0      ; _coroutine
+0004    KPRI     2   1
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- trapper.lua:122-222
+0001    GGET     3   0      ; "coroutine"
+0002    TGETS    3   3   1  ; "running"
+0003    CALL     3   2   1
+0004    IST          3
+0005    JMP      4 => 0013
+0006    UGET     4   0      ; logger
+0007    TGETS    4   4   2  ; "info"
+0008    KSTR     5   3      ; "unwrapped info:"
+0009    MOV      6   1
+0010    CALL     4   1   3
+0011    KPRI     4   2
+0012    UCLO     0 => 0203
+0013 => TGETS    4   0   4  ; "current_widget"
+0014    ISF          4
+0015    JMP      5 => 0116
+0016    TGETS    4   0   4  ; "current_widget"
+0017    TGETS    4   4   5  ; "is_infomessage"
+0018    ISF          4
+0019    JMP      5 => 0116
+0020    FNEW     4   6      ; trapper.lua:138
+0021    UGET     5   1      ; UIManager
+0022    MOV      6   5
+0023    TGETS    5   5   7  ; "scheduleIn"
+0024    KNUM     7   0      ; 0.1
+0025    MOV      8   4
+0026    CALL     5   1   4
+0027    GGET     5   0      ; "coroutine"
+0028    TGETS    5   5   8  ; "yield"
+0029    CALL     5   2   1
+0030    IST          5
+0031    JMP      6 => 0116
+0032    UGET     6   1      ; UIManager
+0033    MOV      7   6
+0034    TGETS    6   6   9  ; "unschedule"
+0035    MOV      8   4
+0036    CALL     6   1   3
+0037    UGET     6   2      ; ConfirmBox
+0038    MOV      7   6
+0039    TGETS    6   6  10  ; "new"
+0040    TDUP     8  13
+0041    TGETS    9   0  11  ; "paused_text"
+0042    ISF          9
+0043    JMP     10 => 0047
+0044    TGETS    9   0  11  ; "paused_text"
+0045    IST          9
+0046    JMP     10 => 0050
+0047 => UGET     9   3      ; _
+0048    KSTR    10  12      ; "Paused"
+0049    CALL     9   2   2
+0050 => TSETS    9   8  14  ; "text"
+0051    TGETS    9   0  15  ; "paused_continue_text"
+0052    ISF          9
+0053    JMP     10 => 0057
+0054    TGETS    9   0  15  ; "paused_continue_text"
+0055    IST          9
+0056    JMP     10 => 0060
+0057 => UGET     9   3      ; _
+0058    KSTR    10  16      ; "Continue"
+0059    CALL     9   2   2
+0060 => TSETS    9   8  17  ; "cancel_text"
+0061    TGETS    9   0  18  ; "paused_abort_text"
+0062    ISF          9
+0063    JMP     10 => 0067
+0064    TGETS    9   0  18  ; "paused_abort_text"
+0065    IST          9
+0066    JMP     10 => 0070
+0067 => UGET     9   3      ; _
+0068    KSTR    10  19      ; "Abort"
+0069    CALL     9   2   2
+0070 => TSETS    9   8  20  ; "ok_text"
+0071    FNEW     9  21      ; trapper.lua:160
+0072    TSETS    9   8  22  ; "cancel_callback"
+0073    FNEW     9  23      ; trapper.lua:163
+0074    TSETS    9   8  24  ; "ok_callback"
+0075    CALL     6   2   3
+0076    UGET     7   1      ; UIManager
+0077    MOV      8   7
+0078    TGETS    7   7  25  ; "show"
+0079    MOV      9   6
+0080    CALL     7   1   3
+0081    GGET     7   0      ; "coroutine"
+0082    TGETS    7   7   8  ; "yield"
+0083    CALL     7   2   1
+0084    MOV      5   7
+0085    UGET     7   1      ; UIManager
+0086    MOV      8   7
+0087    TGETS    7   7  26  ; "close"
+0088    MOV      9   6
+0089    CALL     7   1   3
+0090    IST          5
+0091    JMP      7 => 0104
+0092    UGET     7   1      ; UIManager
+0093    MOV      8   7
+0094    TGETS    7   7  26  ; "close"
+0095    TGETS    9   0   4  ; "current_widget"
+0096    CALL     7   1   3
+0097    UGET     7   1      ; UIManager
+0098    MOV      8   7
+0099    TGETS    7   7  27  ; "forceRePaint"
+0100    CALL     7   1   2
+0101    KPRI     7   1
+0102    UCLO     0 => 0103
+0103 => RET1     7   2
+0104 => TGETS    7   0   4  ; "current_widget"
+0105    ISF          7
+0106    JMP      8 => 0112
+0107    UGET     7   1      ; UIManager
+0108    MOV      8   7
+0109    TGETS    7   7  25  ; "show"
+0110    TGETS    9   0   4  ; "current_widget"
+0111    CALL     7   1   3
+0112 => UGET     7   1      ; UIManager
+0113    MOV      8   7
+0114    TGETS    7   7  27  ; "forceRePaint"
+0115    CALL     7   1   2
+0116 => ISF          2
+0117    JMP      4 => 0169
+0118    TGETS    4   0   4  ; "current_widget"
+0119    ISF          4
+0120    JMP      5 => 0169
+0121    TGETS    4   0   4  ; "current_widget"
+0122    TGETS    4   4   5  ; "is_infomessage"
+0123    ISF          4
+0124    JMP      5 => 0169
+0125    TGETS    4   0   4  ; "current_widget"
+0126    TGETS    4   4  28  ; "movable"
+0127    MOV      5   4
+0128    TGETS    4   4  29  ; "getMovedOffset"
+0129    CALL     4   2   2
+0130    TGETS    5   0   4  ; "current_widget"
+0131    MOV      6   5
+0132    TGETS    5   5  30  ; "free"
+0133    CALL     5   1   2
+0134    TGETS    5   0   4  ; "current_widget"
+0135    TSETS    1   5  14  ; "text"
+0136    TGETS    5   0   4  ; "current_widget"
+0137    MOV      6   5
+0138    TGETS    5   5  31  ; "init"
+0139    CALL     5   1   2
+0140    TGETS    5   0   4  ; "current_widget"
+0141    TGETS    5   5  28  ; "movable"
+0142    MOV      6   5
+0143    TGETS    5   5  32  ; "setMovedOffset"
+0144    MOV      7   4
+0145    CALL     5   1   3
+0146    GGET     5  33      ; "require"
+0147    KSTR     6  34      ; "device"
+0148    CALL     5   2   2
+0149    TGETS    5   5  35  ; "screen"
+0150    TGETS    6   0   4  ; "current_widget"
+0151    MOV      7   6
+0152    TGETS    6   6  36  ; "paintTo"
+0153    TGETS    8   5  37  ; "bb"
+0154    KSHORT   9   0
+0155    KSHORT  10   0
+0156    CALL     6   1   5
+0157    TGETS    6   0   4  ; "current_widget"
+0158    TGETB    6   6   1
+0159    TGETB    6   6   1
+0160    TGETS    6   6  38  ; "dimen"
+0161    TGETS    7   5  39  ; "refreshUI"
+0162    MOV      8   5
+0163    TGETS    9   6  40  ; "x"
+0164    TGETS   10   6  41  ; "y"
+0165    TGETS   11   6  42  ; "w"
+0166    TGETS   12   6  43  ; "h"
+0167    CALL     7   1   6
+0168    JMP      4 => 0200
+0169 => TGETS    4   0   4  ; "current_widget"
+0170    ISF          4
+0171    JMP      5 => 0177
+0172    UGET     4   1      ; UIManager
+0173    MOV      5   4
+0174    TGETS    4   4  26  ; "close"
+0175    TGETS    6   0   4  ; "current_widget"
+0176    CALL     4   1   3
+0177 => UGET     4   4      ; InfoMessage
+0178    MOV      5   4
+0179    TGETS    4   4  10  ; "new"
+0180    TDUP     6  44
+0181    TSETS    1   6  14  ; "text"
+0182    FNEW     7  45      ; trapper.lua:212
+0183    TSETS    7   6  46  ; "dismiss_callback"
+0184    CALL     4   2   3
+0185    TSETS    4   0   4  ; "current_widget"
+0186    UGET     4   0      ; logger
+0187    TGETS    4   4  47  ; "dbg"
+0188    KSTR     5  48      ; "Showing InfoMessage:"
+0189    MOV      6   1
+0190    CALL     4   1   3
+0191    UGET     4   1      ; UIManager
+0192    MOV      5   4
+0193    TGETS    4   4  25  ; "show"
+0194    TGETS    6   0   4  ; "current_widget"
+0195    CALL     4   1   3
+0196    UGET     4   1      ; UIManager
+0197    MOV      5   4
+0198    TGETS    4   4  27  ; "forceRePaint"
+0199    CALL     4   1   2
+0200 => KPRI     4   2
+0201    UCLO     0 => 0202
+0202 => RET1     4   2
+0203 => RET1     4   2
+
+-- BYTECODE -- trapper.lua:235-241
+0001    MOV      5   0
+0002    TGETS    4   0   0  ; "isWrapped"
+0003    CALL     4   2   2
+0004    ISF          4
+0005    JMP      5 => 0009
+0006    TSETS    1   0   1  ; "paused_text"
+0007    TSETS    2   0   2  ; "paused_abort_text"
+0008    TSETS    3   0   3  ; "paused_continue_text"
+0009 => RET0     0   1
+
+-- BYTECODE -- trapper.lua:284-286
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "resume"
+0003    UGET     1   0      ; _coroutine
+0004    KPRI     2   1
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- trapper.lua:287-289
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "resume"
+0003    UGET     1   0      ; _coroutine
+0004    KPRI     2   2
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- trapper.lua:260-297
+0001    GGET     4   0      ; "coroutine"
+0002    TGETS    4   4   1  ; "running"
+0003    CALL     4   2   1
+0004    IST          4
+0005    JMP      5 => 0013
+0006    UGET     5   0      ; logger
+0007    TGETS    5   5   2  ; "info"
+0008    KSTR     6   3      ; "unwrapped confirm, returning true to:"
+0009    MOV      7   1
+0010    CALL     5   1   3
+0011    KPRI     5   2
+0012    UCLO     0 => 0054
+0013 => TGETS    5   0   4  ; "current_widget"
+0014    ISF          5
+0015    JMP      6 => 0021
+0016    UGET     5   1      ; UIManager
+0017    MOV      6   5
+0018    TGETS    5   5   5  ; "close"
+0019    TGETS    7   0   4  ; "current_widget"
+0020    CALL     5   1   3
+0021 => UGET     5   2      ; ConfirmBox
+0022    MOV      6   5
+0023    TGETS    5   5   6  ; "new"
+0024    TDUP     7   7
+0025    TSETS    1   7   8  ; "text"
+0026    TSETS    3   7   9  ; "ok_text"
+0027    TSETS    2   7  10  ; "cancel_text"
+0028    FNEW     8  11      ; trapper.lua:284
+0029    TSETS    8   7  12  ; "cancel_callback"
+0030    FNEW     8  13      ; trapper.lua:287
+0031    TSETS    8   7  14  ; "ok_callback"
+0032    CALL     5   2   3
+0033    TSETS    5   0   4  ; "current_widget"
+0034    UGET     5   0      ; logger
+0035    TGETS    5   5  15  ; "dbg"
+0036    KSTR     6  16      ; "Showing ConfirmBox and waiting for answe"~
+0037    MOV      7   1
+0038    CALL     5   1   3
+0039    UGET     5   1      ; UIManager
+0040    MOV      6   5
+0041    TGETS    5   5  17  ; "show"
+0042    TGETS    7   0   4  ; "current_widget"
+0043    CALL     5   1   3
+0044    GGET     5   0      ; "coroutine"
+0045    TGETS    5   5  18  ; "yield"
+0046    CALL     5   2   1
+0047    UGET     6   0      ; logger
+0048    TGETS    6   6  15  ; "dbg"
+0049    KSTR     7  19      ; "ConfirmBox answers"
+0050    MOV      8   5
+0051    CALL     6   1   3
+0052    UCLO     0 => 0053
+0053 => RET1     5   2
+0054 => RET1     5   2
+
+-- BYTECODE -- trapper.lua:377-381
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "resume"
+0003    UGET     1   0      ; _coroutine
+0004    KPRI     2   1
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- trapper.lua:405-405
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "resume"
+0003    UGET     1   0      ; _coroutine
+0004    KPRI     2   2
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- trapper.lua:414-423
+0001    UGET     0   0      ; ffiutil
+0002    TGETS    0   0   0  ; "getNonBlockingReadSize"
+0003    UGET     1   1      ; std_out
+0004    CALL     0   2   2
+0005    ISEQN    0   0      ; 0
+0006    JMP      0 => 0021
+0007    UGET     0   1      ; std_out
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "read"
+0010    KSTR     2   2      ; "*all"
+0011    CALL     0   1   3
+0012    UGET     0   1      ; std_out
+0013    MOV      1   0
+0014    TGETS    0   0   3  ; "close"
+0015    CALL     0   1   2
+0016    UGET     0   2      ; logger
+0017    TGETS    0   0   4  ; "dbg"
+0018    KSTR     1   5      ; "collected cancelled cmd output"
+0019    CALL     0   1   2
+0020    JMP      0 => 0031
+0021 => UGET     0   3      ; UIManager
+0022    MOV      1   0
+0023    TGETS    0   0   6  ; "scheduleIn"
+0024    UGET     2   4      ; collect_interval_sec
+0025    UGET     3   5      ; collect_and_clean
+0026    CALL     0   1   4
+0027    UGET     0   2      ; logger
+0028    TGETS    0   0   4  ; "dbg"
+0029    KSTR     1   7      ; "cancelled cmd output not yet collectable"
+0030    CALL     0   1   2
+0031 => RET0     0   1
+
+-- BYTECODE -- trapper.lua:332-449
+0001    GGET     3   0      ; "coroutine"
+0002    TGETS    3   3   1  ; "running"
+0003    CALL     3   2   1
+0004    IST          3
+0005    JMP      4 => 0029
+0006    UGET     4   0      ; logger
+0007    TGETS    4   4   2  ; "warn"
+0008    KSTR     5   3      ; "unwrapped dismissablePopen(), falling ba"~
+0009    CALL     4   1   2
+0010    GGET     4   4      ; "io"
+0011    TGETS    4   4   5  ; "popen"
+0012    MOV      5   1
+0013    KSTR     6   6      ; "r"
+0014    CALL     4   2   3
+0015    ISF          4
+0016    JMP      5 => 0027
+0017    MOV      6   4
+0018    TGETS    5   4   7  ; "read"
+0019    KSTR     7   8      ; "*all"
+0020    CALL     5   2   3
+0021    MOV      7   4
+0022    TGETS    6   4   9  ; "close"
+0023    CALL     6   1   2
+0024    KPRI     6   2
+0025    MOV      7   5
+0026    UCLO     0 => 0168
+0027 => KPRI     5   1
+0028    UCLO     0 => 0169
+0029 => KPRI     4   0
+0030    KPRI     5   1
+0031    KPRI     6   1
+0032    GGET     7  10      ; "type"
+0033    MOV      8   2
+0034    CALL     7   2   2
+0035    ISNES    7  11      ; "table"
+0036    JMP      7 => 0039
+0037    MOV      4   2
+0038    JMP      7 => 0079
+0039 => GGET     7  10      ; "type"
+0040    MOV      8   2
+0041    CALL     7   2   2
+0042    ISNES    7  12      ; "string"
+0043    JMP      7 => 0061
+0044    UGET     7   1      ; TrapWidget
+0045    MOV      8   7
+0046    TGETS    7   7  13  ; "new"
+0047    TDUP     9  14
+0048    TSETS    2   9  15  ; "text"
+0049    CALL     7   2   3
+0050    MOV      4   7
+0051    UGET     7   2      ; UIManager
+0052    MOV      8   7
+0053    TGETS    7   7  16  ; "show"
+0054    MOV      9   4
+0055    CALL     7   1   3
+0056    UGET     7   2      ; UIManager
+0057    MOV      8   7
+0058    TGETS    7   7  17  ; "forceRePaint"
+0059    CALL     7   1   2
+0060    JMP      7 => 0078
+0061 => KPRI     7   2
+0062    ISNEP    2   1
+0063    JMP      8 => 0065
+0064    KPRI     7   1
+0065 => UGET     8   1      ; TrapWidget
+0066    MOV      9   8
+0067    TGETS    8   8  13  ; "new"
+0068    TDUP    10  18
+0069    TSETS    7  10  19  ; "resend_event"
+0070    CALL     8   2   3
+0071    MOV      4   8
+0072    UGET     8   2      ; UIManager
+0073    MOV      9   8
+0074    TGETS    8   8  16  ; "show"
+0075    MOV     10   4
+0076    CALL     8   1   3
+0077    KPRI     6   2
+0078 => KPRI     5   2
+0079 => FNEW     7  21      ; trapper.lua:377
+0080    TSETS    7   4  20  ; "dismiss_callback"
+0081    KSHORT   7   5
+0082    KNUM     8   0      ; 0.125
+0083    KSHORT   9   0
+0084    KPRI    10   1
+0085    KPRI    11   0
+0086    GGET    12   4      ; "io"
+0087    TGETS   12  12   5  ; "popen"
+0088    MOV     13   1
+0089    KSTR    14   6      ; "r"
+0090    CALL    12   2   3
+0091    ISF         12
+0092    JMP     13 => 0151
+0093 => LOOP    13 => 0151
+0094    ADDVN    9   9   1  ; 1
+0095    KSHORT  13   1
+0096    ISGE     8  13
+0097    JMP     13 => 0107
+0098    MODVN   13   9   2  ; 10
+0099    ISNEN   13   3      ; 0
+0100    JMP     13 => 0107
+0101    GGET    13  22      ; "math"
+0102    TGETS   13  13  23  ; "min"
+0103    MULVN   14   8   4  ; 2
+0104    KSHORT  15   1
+0105    CALL    13   2   3
+0106    MOV      8  13
+0107 => FNEW    13  24      ; trapper.lua:405
+0108    UGET    14   2      ; UIManager
+0109    MOV     15  14
+0110    TGETS   14  14  25  ; "scheduleIn"
+0111    MOV     16   8
+0112    MOV     17  13
+0113    CALL    14   1   4
+0114    GGET    14   0      ; "coroutine"
+0115    TGETS   14  14  26  ; "yield"
+0116    CALL    14   2   1
+0117    IST         14
+0118    JMP     15 => 0134
+0119    UGET    15   2      ; UIManager
+0120    MOV     16  15
+0121    TGETS   15  15  27  ; "unschedule"
+0122    MOV     17  13
+0123    CALL    15   1   3
+0124    KPRI    15   0
+0125    FNEW    15  28      ; trapper.lua:414
+0126    UGET    16   2      ; UIManager
+0127    MOV     17  16
+0128    TGETS   16  16  25  ; "scheduleIn"
+0129    MOV     18   7
+0130    MOV     19  15
+0131    CALL    16   1   4
+0132    UCLO    13 => 0151
+0133    UCLO    15 => 0134
+0134 => UGET    15   3      ; ffiutil
+0135    TGETS   15  15  29  ; "getNonBlockingReadSize"
+0136    MOV     16  12
+0137    CALL    15   2   2
+0138    ISEQN   15   3      ; 0
+0139    JMP     15 => 0093
+0140    MOV     16  12
+0141    TGETS   15  12   7  ; "read"
+0142    KSTR    17   8      ; "*all"
+0143    CALL    15   2   3
+0144    MOV     11  15
+0145    MOV     16  12
+0146    TGETS   15  12   9  ; "close"
+0147    CALL    15   1   2
+0148    KPRI    10   2
+0149    JMP     13 => 0151
+0150    JMP     13 => 0093
+0151 => ISF          5
+0152    JMP     13 => 0164
+0153    UGET    13   2      ; UIManager
+0154    MOV     14  13
+0155    TGETS   13  13   9  ; "close"
+0156    MOV     15   4
+0157    CALL    13   1   3
+0158    IST          6
+0159    JMP     13 => 0164
+0160    UGET    13   2      ; UIManager
+0161    MOV     14  13
+0162    TGETS   13  13  17  ; "forceRePaint"
+0163    CALL    13   1   2
+0164 => MOV     13  10
+0165    MOV     14  11
+0166    UCLO     0 => 0167
+0167 => RET     13   3
+0168 => RET      6   3
+0169 => RET1     5   2
+
+-- BYTECODE -- trapper.lua:529-533
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "resume"
+0003    UGET     1   0      ; _coroutine
+0004    KPRI     2   1
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- trapper.lua:542-565
+0001    KSTR     2   0      ; ""
+0002    UGET     3   0      ; task_returns_simple_string
+0003    ISF          3
+0004    JMP      4 => 0022
+0005    UGET     3   1      ; task
+0006    CALL     3   2   1
+0007    GGET     4   1      ; "type"
+0008    MOV      5   3
+0009    CALL     4   2   2
+0010    ISNES    4   2      ; "string"
+0011    JMP      4 => 0014
+0012    MOV      2   3
+0013    JMP      4 => 0032
+0014 => ISEQP    3   0
+0015    JMP      4 => 0032
+0016    UGET     4   2      ; logger
+0017    TGETS    4   4   3  ; "warn"
+0018    KSTR     5   4      ; "returned value from task is not a string"~
+0019    MOV      6   3
+0020    CALL     4   1   3
+0021    JMP      3 => 0032
+0022 => TNEW     3   3
+0023    UGET     4   1      ; task
+0024    CALL     4   0   1
+0025    TSETM    4   0      ; 1
+0026    KSTR     4   5      ; "return "
+0027    UGET     5   3      ; dump
+0028    MOV      6   3
+0029    CALL     5   2   2
+0030    KSTR     6   6      ; "\n"
+0031    CAT      2   4   6
+0032 => UGET     3   4      ; ffiutil
+0033    TGETS    3   3   7  ; "writeToFD"
+0034    MOV      4   1
+0035    MOV      5   2
+0036    KPRI     6   2
+0037    CALL     3   1   4
+0038    RET0     0   1
+
+-- BYTECODE -- trapper.lua:580-580
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "resume"
+0003    UGET     1   0      ; _coroutine
+0004    KPRI     2   2
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- trapper.lua:589-607
+0001    UGET     0   0      ; ffiutil
+0002    TGETS    0   0   0  ; "isSubProcessDone"
+0003    UGET     1   1      ; pid
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0019
+0007    UGET     0   2      ; parent_read_fd
+0008    ISF          0
+0009    JMP      1 => 0014
+0010    UGET     0   0      ; ffiutil
+0011    TGETS    0   0   1  ; "readAllFromFD"
+0012    UGET     1   2      ; parent_read_fd
+0013    CALL     0   1   2
+0014 => UGET     0   3      ; logger
+0015    TGETS    0   0   2  ; "dbg"
+0016    KSTR     1   3      ; "collected previously dismissed subproces"~
+0017    CALL     0   1   2
+0018    JMP      0 => 0043
+0019 => UGET     0   2      ; parent_read_fd
+0020    ISF          0
+0021    JMP      1 => 0033
+0022    UGET     0   0      ; ffiutil
+0023    TGETS    0   0   4  ; "getNonBlockingReadSize"
+0024    UGET     1   2      ; parent_read_fd
+0025    CALL     0   2   2
+0026    ISEQN    0   0      ; 0
+0027    JMP      0 => 0033
+0028    UGET     0   0      ; ffiutil
+0029    TGETS    0   0   1  ; "readAllFromFD"
+0030    UGET     1   2      ; parent_read_fd
+0031    CALL     0   1   2
+0032    USETP    2   0      ; parent_read_fd
+0033 => UGET     0   4      ; UIManager
+0034    MOV      1   0
+0035    TGETS    0   0   5  ; "scheduleIn"
+0036    UGET     2   5      ; collect_interval_sec
+0037    UGET     3   6      ; collect_and_clean
+0038    CALL     0   1   4
+0039    UGET     0   3      ; logger
+0040    TGETS    0   0   2  ; "dbg"
+0041    KSTR     1   6      ; "previously dismissed subprocess not yet "~
+0042    CALL     0   1   2
+0043 => RET0     0   1
+
+-- BYTECODE -- trapper.lua:642-649
+0001    UGET     0   0      ; ffiutil
+0002    TGETS    0   0   0  ; "isSubProcessDone"
+0003    UGET     1   1      ; pid
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0012
+0007    UGET     0   2      ; logger
+0008    TGETS    0   0   1  ; "dbg"
+0009    KSTR     1   2      ; "collected subprocess"
+0010    CALL     0   1   2
+0011    JMP      0 => 0022
+0012 => UGET     0   3      ; UIManager
+0013    MOV      1   0
+0014    TGETS    0   0   3  ; "scheduleIn"
+0015    KSHORT   2   1
+0016    UGET     3   4      ; collect_and_clean
+0017    CALL     0   1   4
+0018    UGET     0   2      ; logger
+0019    TGETS    0   0   1  ; "dbg"
+0020    KSTR     1   4      ; "subprocess not yet collectable"
+0021    CALL     0   1   2
+0022 => RET0     0   1
+
+-- BYTECODE -- trapper.lua:491-673
+0001    GGET     4   0      ; "coroutine"
+0002    TGETS    4   4   1  ; "running"
+0003    CALL     4   2   1
+0004    IST          4
+0005    JMP      5 => 0014
+0006    UGET     5   0      ; logger
+0007    TGETS    5   5   2  ; "warn"
+0008    KSTR     6   3      ; "unwrapped dismissableRunInSubprocess(), "~
+0009    CALL     5   1   2
+0010    KPRI     5   2
+0011    MOV      6   1
+0012    CALL     6   0   1
+0013    UCLO     0 => 0223
+0014 => KPRI     5   0
+0015    KPRI     6   1
+0016    KPRI     7   1
+0017    GGET     8   4      ; "type"
+0018    MOV      9   2
+0019    CALL     8   2   2
+0020    ISNES    8   5      ; "table"
+0021    JMP      8 => 0024
+0022    MOV      5   2
+0023    JMP      8 => 0064
+0024 => GGET     8   4      ; "type"
+0025    MOV      9   2
+0026    CALL     8   2   2
+0027    ISNES    8   6      ; "string"
+0028    JMP      8 => 0046
+0029    UGET     8   1      ; TrapWidget
+0030    MOV      9   8
+0031    TGETS    8   8   7  ; "new"
+0032    TDUP    10   8
+0033    TSETS    2  10   9  ; "text"
+0034    CALL     8   2   3
+0035    MOV      5   8
+0036    UGET     8   2      ; UIManager
+0037    MOV      9   8
+0038    TGETS    8   8  10  ; "show"
+0039    MOV     10   5
+0040    CALL     8   1   3
+0041    UGET     8   2      ; UIManager
+0042    MOV      9   8
+0043    TGETS    8   8  11  ; "forceRePaint"
+0044    CALL     8   1   2
+0045    JMP      8 => 0063
+0046 => KPRI     8   2
+0047    ISNEP    2   1
+0048    JMP      9 => 0050
+0049    KPRI     8   1
+0050 => UGET     9   1      ; TrapWidget
+0051    MOV     10   9
+0052    TGETS    9   9   7  ; "new"
+0053    TDUP    11  12
+0054    TSETS    8  11  13  ; "resend_event"
+0055    CALL     9   2   3
+0056    MOV      5   9
+0057    UGET     9   2      ; UIManager
+0058    MOV     10   9
+0059    TGETS    9   9  10  ; "show"
+0060    MOV     11   5
+0061    CALL     9   1   3
+0062    KPRI     7   2
+0063 => KPRI     6   2
+0064 => FNEW     8  15      ; trapper.lua:529
+0065    TSETS    8   5  14  ; "dismiss_callback"
+0066    KSHORT   8   5
+0067    KNUM     9   0      ; 0.125
+0068    KSHORT  10   0
+0069    KPRI    11   1
+0070    KPRI    12   0
+0071    UGET    13   3      ; ffiutil
+0072    TGETS   13  13  16  ; "runInSubProcess"
+0073    FNEW    14  17      ; trapper.lua:542
+0074    KPRI    15   2
+0075    CALL    13   3   3
+0076    ISF         13
+0077    JMP     15 => 0200
+0078 => LOOP    15 => 0200
+0079    ADDVN   10  10   1  ; 1
+0080    KSHORT  15   1
+0081    ISGE     9  15
+0082    JMP     15 => 0092
+0083    MODVN   15  10   2  ; 10
+0084    ISNEN   15   3      ; 0
+0085    JMP     15 => 0092
+0086    GGET    15  18      ; "math"
+0087    TGETS   15  15  19  ; "min"
+0088    MULVN   16   9   4  ; 2
+0089    KSHORT  17   1
+0090    CALL    15   2   3
+0091    MOV      9  15
+0092 => FNEW    15  20      ; trapper.lua:580
+0093    UGET    16   2      ; UIManager
+0094    MOV     17  16
+0095    TGETS   16  16  21  ; "scheduleIn"
+0096    MOV     18   9
+0097    MOV     19  15
+0098    CALL    16   1   4
+0099    GGET    16   0      ; "coroutine"
+0100    TGETS   16  16  22  ; "yield"
+0101    CALL    16   2   1
+0102    IST         16
+0103    JMP     17 => 0123
+0104    UGET    17   2      ; UIManager
+0105    MOV     18  17
+0106    TGETS   17  17  23  ; "unschedule"
+0107    MOV     19  15
+0108    CALL    17   1   3
+0109    UGET    17   3      ; ffiutil
+0110    TGETS   17  17  24  ; "terminateSubProcess"
+0111    MOV     18  13
+0112    CALL    17   1   2
+0113    KPRI    17   0
+0114    FNEW    17  25      ; trapper.lua:589
+0115    UGET    18   2      ; UIManager
+0116    MOV     19  18
+0117    TGETS   18  18  21  ; "scheduleIn"
+0118    MOV     20   8
+0119    MOV     21  17
+0120    CALL    18   1   4
+0121    UCLO    15 => 0200
+0122    UCLO    17 => 0123
+0123 => UGET    17   3      ; ffiutil
+0124    TGETS   17  17  26  ; "isSubProcessDone"
+0125    MOV     18  13
+0126    CALL    17   2   2
+0127    ISFC    18  14
+0128    JMP     18 => 0138
+0129    UGET    18   3      ; ffiutil
+0130    TGETS   18  18  27  ; "getNonBlockingReadSize"
+0131    MOV     19  14
+0132    CALL    18   2   2
+0133    ISNEN   18   3      ; 0
+0134    JMP     18 => 0137
+0135    KPRI    18   1
+0136    JMP     19 => 0138
+0137 => KPRI    18   2
+0138 => UGET    19   0      ; logger
+0139    TGETS   19  19  28  ; "dbg"
+0140    KSTR    20  29      ; "subprocess_done:"
+0141    MOV     21  17
+0142    KSTR    22  30      ; " stuff_to_read:"
+0143    MOV     23  18
+0144    CALL    19   1   5
+0145    IST         17
+0146    JMP     19 => 0149
+0147    ISF         18
+0148    JMP     19 => 0195
+0149 => KPRI    11   2
+0150    ISF         18
+0151    JMP     19 => 0190
+0152    UGET    19   3      ; ffiutil
+0153    TGETS   19  19  31  ; "readAllFromFD"
+0154    MOV     20  14
+0155    CALL    19   2   2
+0156    ISF          3
+0157    JMP     20 => 0162
+0158    TNEW    20   3
+0159    TSETB   19  20   1
+0160    MOV     12  20
+0161    JMP     20 => 0178
+0162 => GGET    20  32      ; "pcall"
+0163    GGET    21  33      ; "load"
+0164    MOV     22  19
+0165    CALL    21   0   2
+0166    CALLM   20   3   0
+0167    ISF         20
+0168    JMP     22 => 0173
+0169    ISF         21
+0170    JMP     22 => 0173
+0171    MOV     12  21
+0172    JMP     22 => 0178
+0173 => UGET    22   0      ; logger
+0174    TGETS   22  22   2  ; "warn"
+0175    KSTR    23  34      ; "load() failed:"
+0176    MOV     24  21
+0177    CALL    22   1   3
+0178 => IST         17
+0179    JMP     20 => 0200
+0180    KPRI    20   0
+0181    FNEW    20  35      ; trapper.lua:642
+0182    UGET    21   2      ; UIManager
+0183    MOV     22  21
+0184    TGETS   21  21  21  ; "scheduleIn"
+0185    KSHORT  23   1
+0186    MOV     24  20
+0187    CALL    21   1   4
+0188    UCLO    20 => 0189
+0189 => JMP     19 => 0200
+0190 => UGET    19   3      ; ffiutil
+0191    TGETS   19  19  31  ; "readAllFromFD"
+0192    MOV     20  14
+0193    CALL    19   1   2
+0194    JMP     15 => 0200
+0195 => UGET    19   0      ; logger
+0196    TGETS   19  19  28  ; "dbg"
+0197    KSTR    20  36      ; "process not yet done, will check again s"~
+0198    CALL    19   1   2
+0199    JMP     15 => 0078
+0200 => ISF          6
+0201    JMP     15 => 0213
+0202    UGET    15   2      ; UIManager
+0203    MOV     16  15
+0204    TGETS   15  15  37  ; "close"
+0205    MOV     17   5
+0206    CALL    15   1   3
+0207    IST          7
+0208    JMP     15 => 0213
+0209    UGET    15   2      ; UIManager
+0210    MOV     16  15
+0211    TGETS   15  15  11  ; "forceRePaint"
+0212    CALL    15   1   2
+0213 => ISF         12
+0214    JMP     15 => 0221
+0215    MOV     15  11
+0216    GGET    16  38      ; "unpack"
+0217    MOV     17  12
+0218    CALL    16   0   2
+0219    UCLO     0 => 0220
+0220 => RETM    15   1
+0221 => UCLO     0 => 0222
+0222 => RET1    11   2
+0223 => RETM     5   1
+
+-- BYTECODE -- trapper.lua:0-676
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/confirmbox"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/infomessage"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/trapwidget"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/uimanager"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ffi/util"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "dump"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "logger"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "gettext"
+0024    CALL     7   2   2
+0025    TNEW     8   0
+0026    FNEW     9  10      ; trapper.lua:42
+0027    TSETS    9   8   9  ; "wrap"
+0028    FNEW     9  12      ; trapper.lua:64
+0029    TSETS    9   8  11  ; "isWrapped"
+0030    FNEW     9  14      ; trapper.lua:72
+0031    TSETS    9   8  13  ; "clear"
+0032    FNEW     9  16      ; trapper.lua:83
+0033    TSETS    9   8  15  ; "reset"
+0034    FNEW     9  18      ; trapper.lua:122
+0035    TSETS    9   8  17  ; "info"
+0036    FNEW     9  20      ; trapper.lua:235
+0037    TSETS    9   8  19  ; "setPausedText"
+0038    FNEW     9  22      ; trapper.lua:260
+0039    TSETS    9   8  21  ; "confirm"
+0040    FNEW     9  24      ; trapper.lua:332
+0041    TSETS    9   8  23  ; "dismissablePopen"
+0042    FNEW     9  26      ; trapper.lua:491
+0043    TSETS    9   8  25  ; "dismissableRunInSubprocess"
+0044    UCLO     0 => 0045
+0045 => RET1     8   2
+

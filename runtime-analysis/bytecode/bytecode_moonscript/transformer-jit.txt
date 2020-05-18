@@ -1,0 +1,154 @@
+-- BYTECODE -- transformer.lua:7-18
+0001    TGETS    3   0   0  ; "seen_nodes"
+0002    TGETV    3   3   2
+0003    ISF          3
+0004    JMP      4 => 0006
+0005    RET1     2   2
+0006 => TGETS    3   0   0  ; "seen_nodes"
+0007    KPRI     4   2
+0008    TSETV    4   3   2
+0009    TGETS    3   0   1  ; "transformers"
+0010    UGET     4   0      ; ntype
+0011    MOV      5   2
+0012    CALL     4   2   2
+0013    TGETV    3   3   4
+0014    ISF          3
+0015    JMP      4 => 0026
+0016    MOV      4   3
+0017    MOV      5   1
+0018    MOV      6   2
+0019    VARG     7   0   3
+0020    CALLM    4   2   2
+0021    IST          4
+0022    JMP      5 => 0024
+0023    MOV      4   2
+0024 => RET1     4   2
+0025    JMP      4 => 0027
+0026 => RET1     2   2
+0027 => RET0     0   1
+
+-- BYTECODE -- transformer.lua:19-38
+0001    TGETS    3   0   0  ; "seen_nodes"
+0002    TGETV    3   3   2
+0003    ISF          3
+0004    JMP      4 => 0006
+0005    RET1     2   2
+0006 => TGETS    3   0   0  ; "seen_nodes"
+0007    KPRI     4   2
+0008    TSETV    4   3   2
+0009 => LOOP     3 => 0033
+0010    TGETS    3   0   1  ; "transformers"
+0011    UGET     4   0      ; ntype
+0012    MOV      5   2
+0013    CALL     4   2   2
+0014    TGETV    3   3   4
+0015    KPRI     4   0
+0016    ISF          3
+0017    JMP      5 => 0027
+0018    MOV      5   3
+0019    MOV      6   1
+0020    MOV      7   2
+0021    VARG     8   0   3
+0022    CALLM    5   2   2
+0023    ISTC     4   5
+0024    JMP      6 => 0026
+0025    MOV      4   2
+0026 => JMP      5 => 0028
+0027 => MOV      4   2
+0028 => ISNEV    4   2
+0029    JMP      5 => 0031
+0030    RET1     2   2
+0031 => MOV      2   4
+0032    JMP      3 => 0009
+0033 => RET1     2   2
+
+-- BYTECODE -- transformer.lua:40-42
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "transform"
+0004    UGET     2   1      ; scope
+0005    VARG     3   0   0
+0006    CALLMT   0   2
+
+-- BYTECODE -- transformer.lua:39-43
+0001    FNEW     2   0      ; transformer.lua:40
+0002    UCLO     0 => 0003
+0003 => RET1     2   2
+
+-- BYTECODE -- transformer.lua:44-46
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "transform"
+0003    VARG     3   0   1
+0004    CALLMT   1   1
+
+-- BYTECODE -- transformer.lua:47-49
+0001    TGETS    2   0   0  ; "transformers"
+0002    UGET     3   0      ; ntype
+0003    MOV      4   1
+0004    CALL     3   2   2
+0005    TGETV    2   2   3
+0006    ISNEP    2   0
+0007    JMP      2 => 0010
+0008    KPRI     2   1
+0009    JMP      3 => 0011
+0010 => KPRI     2   2
+0011 => RET1     2   2
+
+-- BYTECODE -- transformer.lua:53-58
+0001    TSETS    1   0   0  ; "transformers"
+0002    GGET     2   2      ; "setmetatable"
+0003    TNEW     3   0
+0004    TDUP     4   3
+0005    CALL     2   2   3
+0006    TSETS    2   0   1  ; "seen_nodes"
+0007    RET0     0   1
+
+-- BYTECODE -- transformer.lua:63-67
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    UGET     3   0      ; _base_0
+0004    CALL     1   2   3
+0005    TGETS    2   0   1  ; "__init"
+0006    MOV      3   1
+0007    VARG     4   0   1
+0008    CALLM    2   1   1
+0009    RET1     1   2
+
+-- BYTECODE -- transformer.lua:0-75
+0001    KPRI     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "moonscript.types"
+0004    CALL     1   2   2
+0005    TGETS    0   1   2  ; "ntype"
+0006    KNIL     1   2
+0007    TDUP     3   4
+0008    FNEW     4   3      ; transformer.lua:7
+0009    TSETS    4   3   5  ; "transform_once"
+0010    FNEW     4   6      ; transformer.lua:19
+0011    TSETS    4   3   7  ; "transform"
+0012    FNEW     4   8      ; transformer.lua:39
+0013    TSETS    4   3   9  ; "bind"
+0014    FNEW     4  10      ; transformer.lua:44
+0015    TSETS    4   3  11  ; "__call"
+0016    FNEW     4  12      ; transformer.lua:47
+0017    TSETS    4   3  13  ; "can_transform"
+0018    TSETS    3   3  14  ; "__index"
+0019    GGET     4  15      ; "setmetatable"
+0020    TDUP     5  17
+0021    FNEW     6  16      ; transformer.lua:53
+0022    TSETS    6   5  18  ; "__init"
+0023    TSETS    3   5  19  ; "__base"
+0024    TDUP     6  20
+0025    TSETS    3   6  14  ; "__index"
+0026    FNEW     7  21      ; transformer.lua:63
+0027    TSETS    7   6  11  ; "__call"
+0028    CALL     4   2   3
+0029    MOV      2   4
+0030    TSETS    2   3  22  ; "__class"
+0031    MOV      1   2
+0032    UCLO     2 => 0033
+0033 => TDUP     2  23
+0034    TSETS    1   2  24  ; "Transformer"
+0035    UCLO     0 => 0036
+0036 => RET1     2   2
+

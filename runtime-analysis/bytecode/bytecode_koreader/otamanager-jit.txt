@@ -1,0 +1,1291 @@
+-- BYTECODE -- otamanager.lua:57-61
+0001    UGET     0   0      ; Device
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "saveSettings"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; UIManager
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "quit"
+0008    CALL     0   1   2
+0009    UGET     0   1      ; UIManager
+0010    KSHORT   1  85
+0011    TSETS    1   0   2  ; "_exit_code"
+0012    RET0     0   1
+
+-- BYTECODE -- otamanager.lua:55-74
+0001    KPRI     0   0
+0002    FNEW     1   0      ; otamanager.lua:57
+0003    GGET     2   1      ; "require"
+0004    KSTR     3   2      ; "apps/filemanager/filemanager"
+0005    CALL     2   2   2
+0006    TGETS    3   2   3  ; "instance"
+0007    ISF          3
+0008    JMP      4 => 0011
+0009    TGETS    3   2   3  ; "instance"
+0010    TGETS    0   3   4  ; "menu"
+0011 => GGET     3   1      ; "require"
+0012    KSTR     4   5      ; "apps/reader/readerui"
+0013    CALL     3   2   2
+0014    MOV      5   3
+0015    TGETS    4   3   6  ; "_getRunningInstance"
+0016    CALL     4   2   2
+0017    ISF          4
+0018    JMP      5 => 0020
+0019    TGETS    0   4   4  ; "menu"
+0020 => MOV      6   0
+0021    TGETS    5   0   7  ; "exitOrRestart"
+0022    MOV      7   1
+0023    CALL     5   1   3
+0024    RET0     0   1
+
+-- BYTECODE -- otamanager.lua:51-76
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; ConfirmBox
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   3
+0008    UGET     5   2      ; _
+0009    KSTR     6   2      ; "KOReader will be updated on next restart"~
+0010    CALL     5   2   2
+0011    TSETS    5   4   4  ; "text"
+0012    UGET     5   2      ; _
+0013    KSTR     6   5      ; "Restart"
+0014    CALL     5   2   2
+0015    TSETS    5   4   6  ; "ok_text"
+0016    FNEW     5   7      ; otamanager.lua:55
+0017    TSETS    5   4   8  ; "ok_callback"
+0018    CALL     2   0   3
+0019    CALLM    0   1   1
+0020    RET0     0   1
+
+-- BYTECODE -- otamanager.lua:79-101
+0001    KPRI     1   0
+0002    GGET     2   0      ; "io"
+0003    TGETS    2   2   1  ; "lines"
+0004    KSTR     3   2      ; "/proc/cpuinfo"
+0005    CALL     2   4   2
+0006    JMP      5 => 0018
+0007 => MOV      7   5
+0008    TGETS    6   5   3  ; "find"
+0009    KSTR     8   4      ; "^Hardware"
+0010    CALL     6   2   3
+0011    ISF          6
+0012    JMP      7 => 0018
+0013    MOV      7   5
+0014    TGETS    6   5   5  ; "match"
+0015    KSTR     8   6      ; "^Hardware%s*:%s([%g%s]*)$"
+0016    CALL     6   2   3
+0017    MOV      1   6
+0018 => ITERC    5   2   3
+0019    ITERL    5 => 0007
+0020    ISF          1
+0021    JMP      2 => 0034
+0022    MOV      3   1
+0023    TGETS    2   1   3  ; "find"
+0024    KSTR     4   7      ; "i.MX%s?[6-7]"
+0025    CALL     2   2   3
+0026    ISF          2
+0027    JMP      3 => 0031
+0028    KPRI     2   2
+0029    RET1     2   2
+0030    JMP      2 => 0036
+0031 => KPRI     2   1
+0032    RET1     2   2
+0033    JMP      2 => 0036
+0034 => KPRI     2   1
+0035    RET1     2   2
+0036 => RET0     0   1
+
+-- BYTECODE -- otamanager.lua:106-137
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "isAndroid"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0015
+0007    UGET     1   1      ; arch
+0008    ISNES    1   1      ; "x86"
+0009    JMP      1 => 0012
+0010    KSTR     1   2      ; "android-x86"
+0011    RET1     1   2
+0012 => KSTR     1   3      ; "android"
+0013    RET1     1   2
+0014    JMP      1 => 0101
+0015 => UGET     1   0      ; Device
+0016    MOV      2   1
+0017    TGETS    1   1   4  ; "isSDL"
+0018    CALL     1   2   2
+0019    ISF          1
+0020    JMP      2 => 0024
+0021    KSTR     1   5      ; "appimage"
+0022    RET1     1   2
+0023    JMP      1 => 0101
+0024 => UGET     1   0      ; Device
+0025    MOV      2   1
+0026    TGETS    1   1   6  ; "isCervantes"
+0027    CALL     1   2   2
+0028    ISF          1
+0029    JMP      2 => 0033
+0030    KSTR     1   7      ; "cervantes"
+0031    RET1     1   2
+0032    JMP      1 => 0101
+0033 => UGET     1   0      ; Device
+0034    MOV      2   1
+0035    TGETS    1   1   8  ; "isKindle"
+0036    CALL     1   2   2
+0037    ISF          1
+0038    JMP      2 => 0063
+0039    UGET     1   0      ; Device
+0040    MOV      2   1
+0041    TGETS    1   1   9  ; "isTouchDevice"
+0042    CALL     1   2   2
+0043    IST          1
+0044    JMP      2 => 0049
+0045    UGET     1   0      ; Device
+0046    TGETS    1   1  10  ; "model"
+0047    ISNES    1  11      ; "Kindle4"
+0048    JMP      1 => 0060
+0049 => MOV      2   0
+0050    TGETS    1   0  12  ; "_isKindleWarioOrMore"
+0051    CALL     1   2   2
+0052    ISF          1
+0053    JMP      2 => 0057
+0054    KSTR     1  13      ; "kindlepw2"
+0055    RET1     1   2
+0056    JMP      1 => 0101
+0057 => KSTR     1  14      ; "kindle"
+0058    RET1     1   2
+0059    JMP      1 => 0101
+0060 => KSTR     1  15      ; "kindle-legacy"
+0061    RET1     1   2
+0062    JMP      1 => 0101
+0063 => UGET     1   0      ; Device
+0064    MOV      2   1
+0065    TGETS    1   1  16  ; "isKobo"
+0066    CALL     1   2   2
+0067    ISF          1
+0068    JMP      2 => 0072
+0069    KSTR     1  17      ; "kobo"
+0070    RET1     1   2
+0071    JMP      1 => 0101
+0072 => UGET     1   0      ; Device
+0073    MOV      2   1
+0074    TGETS    1   1  18  ; "isPocketBook"
+0075    CALL     1   2   2
+0076    ISF          1
+0077    JMP      2 => 0081
+0078    KSTR     1  19      ; "pocketbook"
+0079    RET1     1   2
+0080    JMP      1 => 0101
+0081 => UGET     1   0      ; Device
+0082    MOV      2   1
+0083    TGETS    1   1  20  ; "isRemarkable"
+0084    CALL     1   2   2
+0085    ISF          1
+0086    JMP      2 => 0090
+0087    KSTR     1  21      ; "remarkable"
+0088    RET1     1   2
+0089    JMP      1 => 0101
+0090 => UGET     1   0      ; Device
+0091    MOV      2   1
+0092    TGETS    1   1  22  ; "isSonyPRSTUX"
+0093    CALL     1   2   2
+0094    ISF          1
+0095    JMP      2 => 0099
+0096    KSTR     1  23      ; "sony-prstux"
+0097    RET1     1   2
+0098    JMP      1 => 0101
+0099 => KSTR     1  24      ; ""
+0100    RET1     1   2
+0101 => RET0     0   1
+
+-- BYTECODE -- otamanager.lua:139-149
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "getOTAModel"
+0003    CALL     1   2   2
+0004    ISNES    1   1      ; ""
+0005    JMP      2 => 0007
+0006    RET0     0   1
+0007 => MOV      3   1
+0008    TGETS    2   1   2  ; "find"
+0009    KSTR     4   3      ; "android"
+0010    CALL     2   2   3
+0011    IST          2
+0012    JMP      3 => 0019
+0013    MOV      3   1
+0014    TGETS    2   1   2  ; "find"
+0015    KSTR     4   4      ; "appimage"
+0016    CALL     2   2   3
+0017    ISF          2
+0018    JMP      3 => 0021
+0019 => KSTR     2   5      ; "link"
+0020    RET1     2   2
+0021 => KSTR     2   6      ; "ota"
+0022    RET1     2   2
+
+-- BYTECODE -- otamanager.lua:151-153
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "readSetting"
+0004    KSTR     3   2      ; "ota_server"
+0005    CALL     1   2   3
+0006    IST          1
+0007    JMP      2 => 0010
+0008    TGETS    1   0   3  ; "ota_servers"
+0009    TGETB    1   1   1
+0010 => RET1     1   2
+
+-- BYTECODE -- otamanager.lua:155-158
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "Set OTA server:"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    GGET     2   2      ; "G_reader_settings"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "saveSetting"
+0009    KSTR     4   4      ; "ota_server"
+0010    MOV      5   1
+0011    CALL     2   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- otamanager.lua:160-162
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "readSetting"
+0004    KSTR     3   2      ; "ota_channel"
+0005    CALL     1   2   3
+0006    IST          1
+0007    JMP      2 => 0010
+0008    TGETS    1   0   3  ; "ota_channels"
+0009    TGETB    1   1   1
+0010 => RET1     1   2
+
+-- BYTECODE -- otamanager.lua:164-167
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "Set OTA channel:"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    GGET     2   2      ; "G_reader_settings"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "saveSetting"
+0009    KSTR     4   4      ; "ota_channel"
+0010    MOV      5   1
+0011    CALL     2   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- otamanager.lua:169-171
+0001    TGETS    1   0   0  ; "link_template"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "format"
+0004    MOV      4   0
+0005    TGETS    3   0   2  ; "getOTAModel"
+0006    CALL     3   2   2
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "getOTAChannel"
+0009    CALL     4   0   2
+0010    CALLMT   1   2
+
+-- BYTECODE -- otamanager.lua:173-175
+0001    TGETS    1   0   0  ; "zsync_template"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "format"
+0004    MOV      4   0
+0005    TGETS    3   0   2  ; "getOTAModel"
+0006    CALL     3   2   2
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "getOTAChannel"
+0009    CALL     4   0   2
+0010    CALLMT   1   2
+
+-- BYTECODE -- otamanager.lua:215-218
+0001    UGET     0   0      ; Version
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getCurrentRevision"
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0012
+0007    UGET     1   0      ; Version
+0008    MOV      2   1
+0009    TGETS    1   1   1  ; "getNormalizedVersion"
+0010    MOV      3   0
+0011    CALLT    1   3
+0012 => RET0     0   1
+
+-- BYTECODE -- otamanager.lua:219-221
+0001    UGET     0   0      ; Version
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getNormalizedVersion"
+0004    UGET     2   1      ; ota_package
+0005    CALLT    0   3
+
+-- BYTECODE -- otamanager.lua:177-230
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "socket.http"
+0003    CALL     1   2   2
+0004    GGET     2   0      ; "require"
+0005    KSTR     3   2      ; "ltn12"
+0006    CALL     2   2   2
+0007    MOV      4   0
+0008    TGETS    3   0   3  ; "getOTAType"
+0009    CALL     3   2   2
+0010    ISNES    3   4      ; "link"
+0011    JMP      3 => 0017
+0012    MOV      4   0
+0013    TGETS    3   0   5  ; "getLinkFilename"
+0014    CALL     3   2   2
+0015    IST          3
+0016    JMP      4 => 0020
+0017 => MOV      4   0
+0018    TGETS    3   0   6  ; "getZsyncFilename"
+0019    CALL     3   2   2
+0020 => MOV      5   0
+0021    TGETS    4   0   7  ; "getOTAServer"
+0022    CALL     4   2   2
+0023    MOV      5   3
+0024    CAT      4   4   5
+0025    UGET     5   0      ; ota_dir
+0026    MOV      6   3
+0027    CAT      5   5   6
+0028    UGET     6   1      ; logger
+0029    TGETS    6   6   8  ; "dbg"
+0030    KSTR     7   9      ; "downloading update file"
+0031    MOV      8   4
+0032    CALL     6   1   3
+0033    TGETS    6   1  10  ; "request"
+0034    TDUP     7  11
+0035    TSETS    4   7  12  ; "url"
+0036    TGETS    8   2  13  ; "sink"
+0037    TGETS    8   8  14  ; "file"
+0038    GGET     9  15      ; "io"
+0039    TGETS    9   9  16  ; "open"
+0040    MOV     10   5
+0041    KSTR    11  17      ; "w"
+0042    CALL     9   0   3
+0043    CALLM    8   2   0
+0044    TSETS    8   7  13  ; "sink"
+0045    CALL     6   4   2
+0046    ISEQN    7   0      ; 200
+0047    JMP      9 => 0054
+0048    UGET     9   1      ; logger
+0049    TGETS    9   9  18  ; "warn"
+0050    KSTR    10  19      ; "cannot find update file"
+0051    MOV     11   7
+0052    CALL     9   1   3
+0053    UCLO     0 => 0134
+0054 => KNIL     9  10
+0055    GGET    11  15      ; "io"
+0056    TGETS   11  11  16  ; "open"
+0057    MOV     12   5
+0058    KSTR    13  20      ; "r"
+0059    CALL    11   2   3
+0060    ISF         11
+0061    JMP     12 => 0102
+0062    UGET    12   2      ; OTAManager
+0063    MOV     13  12
+0064    TGETS   12  12   3  ; "getOTAType"
+0065    CALL    12   2   2
+0066    ISNES   12   4      ; "link"
+0067    JMP     12 => 0085
+0068    KSHORT  12   0
+0069    MOV     14  11
+0070    TGETS   13  11  21  ; "lines"
+0071    CALL    13   4   2
+0072    JMP     16 => 0082
+0073 => ADDVN   12  12   1  ; 1
+0074    ISNEN   12   1      ; 1
+0075    JMP     17 => 0082
+0076    MOV     10  16
+0077    MOV     18   0
+0078    TGETS   17   0   7  ; "getOTAServer"
+0079    CALL    17   2   2
+0080    MOV     18  10
+0081    CAT      9  17  18
+0082 => ITERC   16   2   3
+0083    ITERL   16 => 0073
+0084    JMP     12 => 0099
+0085 => MOV     13  11
+0086    TGETS   12  11  21  ; "lines"
+0087    CALL    12   4   2
+0088    JMP     15 => 0097
+0089 => MOV     17  15
+0090    TGETS   16  15  22  ; "match"
+0091    KSTR    18  23      ; "^Filename:%s*(.-)%s*$"
+0092    CALL    16   2   3
+0093    MOV     10  16
+0094    ISF         10
+0095    JMP     16 => 0097
+0096    JMP     12 => 0099
+0097 => ITERC   15   2   3
+0098    ITERL   15 => 0089
+0099 => MOV     13  11
+0100    TGETS   12  11  24  ; "close"
+0101    CALL    12   1   2
+0102 => GGET    12  25      ; "pcall"
+0103    FNEW    13  26      ; otamanager.lua:215
+0104    CALL    12   3   2
+0105    GGET    14  25      ; "pcall"
+0106    FNEW    15  27      ; otamanager.lua:219
+0107    CALL    14   3   2
+0108    ISF         12
+0109    JMP     16 => 0125
+0110    ISF         14
+0111    JMP     16 => 0125
+0112    ISF         15
+0113    JMP     16 => 0125
+0114    ISF         13
+0115    JMP     16 => 0125
+0116    ISEQV   15  13
+0117    JMP     16 => 0125
+0118    MOV     16  15
+0119    MOV     17  13
+0120    MOV     18   9
+0121    MOV     19  10
+0122    UCLO     0 => 0123
+0123 => RET     16   5
+0124    JMP     16 => 0132
+0125 => ISF         15
+0126    JMP     16 => 0132
+0127    ISNEV   15  13
+0128    JMP     16 => 0132
+0129    KSHORT  16   0
+0130    UCLO     0 => 0131
+0131 => RET1    16   2
+0132 => UCLO     0 => 0133
+0133 => RET0     0   1
+0134 => RET0     0   1
+
+-- BYTECODE -- otamanager.lua:273-273
+0001    UGET     0   0      ; Device
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "openLink"
+0004    UGET     2   1      ; link
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- otamanager.lua:260-279
+0001    GGET     0   0      ; "pcall"
+0002    GGET     1   1      ; "require"
+0003    KSTR     2   2      ; "android"
+0004    CALL     0   3   3
+0005    ISF          0
+0006    JMP      2 => 0053
+0007    TGETS    2   1   3  ; "download"
+0008    UGET     3   0      ; link
+0009    UGET     4   1      ; ota_package
+0010    CALL     2   2   3
+0011    ISNEN    2   0      ; 1
+0012    JMP      3 => 0022
+0013    TGETS    3   1   4  ; "notification"
+0014    UGET     4   2      ; T
+0015    UGET     5   3      ; _
+0016    KSTR     6   5      ; "The file %1 already exists."
+0017    CALL     5   2   2
+0018    UGET     6   1      ; ota_package
+0019    CALL     4   0   3
+0020    CALLM    3   1   0
+0021    JMP      3 => 0064
+0022 => ISNEN    2   1      ; 0
+0023    JMP      3 => 0033
+0024    TGETS    3   1   4  ; "notification"
+0025    UGET     4   2      ; T
+0026    UGET     5   3      ; _
+0027    KSTR     6   6      ; "Downloading %1"
+0028    CALL     5   2   2
+0029    UGET     6   1      ; ota_package
+0030    CALL     4   0   3
+0031    CALLM    3   1   0
+0032    JMP      3 => 0064
+0033 => UGET     3   4      ; UIManager
+0034    MOV      4   3
+0035    TGETS    3   3   7  ; "show"
+0036    UGET     5   5      ; ConfirmBox
+0037    MOV      6   5
+0038    TGETS    5   5   8  ; "new"
+0039    TDUP     7  10
+0040    UGET     8   3      ; _
+0041    KSTR     9   9      ; "Your device seems to be unable to downlo"~
+0042    CALL     8   2   2
+0043    TSETS    8   7  11  ; "text"
+0044    UGET     8   3      ; _
+0045    KSTR     9  12      ; "Retry"
+0046    CALL     8   2   2
+0047    TSETS    8   7  13  ; "ok_text"
+0048    FNEW     8  14      ; otamanager.lua:273
+0049    TSETS    8   7  15  ; "ok_callback"
+0050    CALL     5   0   3
+0051    CALLM    3   1   1
+0052    JMP      2 => 0064
+0053 => UGET     2   6      ; Device
+0054    MOV      3   2
+0055    TGETS    2   2  16  ; "isSDL"
+0056    CALL     2   2   2
+0057    ISF          2
+0058    JMP      3 => 0064
+0059    UGET     2   6      ; Device
+0060    MOV      3   2
+0061    TGETS    2   2  17  ; "openLink"
+0062    UGET     4   0      ; link
+0063    CALL     2   1   3
+0064 => RET0     0   1
+
+-- BYTECODE -- otamanager.lua:330-332
+0001    GGET     0   0      ; "os"
+0002    TGETS    0   0   1  ; "execute"
+0003    KSTR     1   2      ; "rm -f "
+0004    UGET     2   0      ; ota_dir
+0005    KSTR     3   3      ; "ko*"
+0006    CAT      1   1   3
+0007    CALL     0   1   2
+0008    RET0     0   1
+
+-- BYTECODE -- otamanager.lua:316-335
+0001    UGET     0   0      ; OTAManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "zsync"
+0004    KPRI     2   2
+0005    CALL     0   2   3
+0006    ISNEN    0   0      ; 0
+0007    JMP      0 => 0019
+0008    UGET     0   1      ; showRestartMessage
+0009    CALL     0   1   1
+0010    UGET     0   2      ; self
+0011    TGETS    0   0   1  ; "can_pretty_print"
+0012    ISF          0
+0013    JMP      1 => 0042
+0014    GGET     0   2      ; "os"
+0015    TGETS    0   0   3  ; "execute"
+0016    KSTR     1   4      ; "./fbink -q -y -7 -pm ' '  ' '"
+0017    CALL     0   1   2
+0018    JMP      0 => 0042
+0019 => UGET     0   2      ; self
+0020    TGETS    0   0   1  ; "can_pretty_print"
+0021    ISF          0
+0022    JMP      1 => 0027
+0023    GGET     0   2      ; "os"
+0024    TGETS    0   0   3  ; "execute"
+0025    KSTR     1   4      ; "./fbink -q -y -7 -pm ' '  ' '"
+0026    CALL     0   1   2
+0027 => UGET     0   3      ; UIManager
+0028    MOV      1   0
+0029    TGETS    0   0   5  ; "show"
+0030    UGET     2   4      ; ConfirmBox
+0031    MOV      3   2
+0032    TGETS    2   2   6  ; "new"
+0033    TDUP     4   8
+0034    UGET     5   5      ; _
+0035    KSTR     6   7      ; "Error updating KOReader. Would you like "~
+0036    CALL     5   2   2
+0037    TSETS    5   4   9  ; "text"
+0038    FNEW     5  10      ; otamanager.lua:330
+0039    TSETS    5   4  11  ; "ok_callback"
+0040    CALL     2   0   3
+0041    CALLM    0   1   1
+0042 => RET0     0   1
+
+-- BYTECODE -- otamanager.lua:305-336
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; InfoMessage
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   3
+0008    UGET     5   2      ; _
+0009    KSTR     6   2      ; "Downloading may take several minutes…"
+0010    CALL     5   2   2
+0011    TSETS    5   4   4  ; "text"
+0012    CALL     2   0   3
+0013    CALLM    0   1   1
+0014    GGET     0   5      ; "os"
+0015    TGETS    0   0   6  ; "execute"
+0016    KSTR     1   7      ; "rm -f "
+0017    UGET     2   3      ; self
+0018    TGETS    2   2   8  ; "installed_package"
+0019    CAT      1   1   2
+0020    CALL     0   1   2
+0021    GGET     0   5      ; "os"
+0022    TGETS    0   0   6  ; "execute"
+0023    KSTR     1   7      ; "rm -f "
+0024    UGET     2   3      ; self
+0025    TGETS    2   2   9  ; "updated_package"
+0026    KSTR     3  10      ; "*"
+0027    CAT      1   1   3
+0028    CALL     0   1   2
+0029    GGET     0   5      ; "os"
+0030    TGETS    0   0   6  ; "execute"
+0031    KSTR     1  11      ; "rm -f ./rcksum-*"
+0032    CALL     0   1   2
+0033    UGET     0   0      ; UIManager
+0034    MOV      1   0
+0035    TGETS    0   0  12  ; "scheduleIn"
+0036    KSHORT   2   1
+0037    FNEW     3  13      ; otamanager.lua:316
+0038    CALL     0   1   4
+0039    RET0     0   1
+
+-- BYTECODE -- otamanager.lua:338-342
+0001    GGET     0   0      ; "os"
+0002    TGETS    0   0   1  ; "execute"
+0003    KSTR     1   2      ; "rm -f "
+0004    UGET     2   0      ; ota_dir
+0005    KSTR     3   3      ; "ko*"
+0006    CAT      1   1   3
+0007    CALL     0   1   2
+0008    GGET     0   0      ; "os"
+0009    TGETS    0   0   1  ; "execute"
+0010    KSTR     1   2      ; "rm -f "
+0011    UGET     2   1      ; self
+0012    TGETS    2   2   4  ; "updated_package"
+0013    KSTR     3   5      ; "*"
+0014    CAT      1   1   3
+0015    CALL     0   1   2
+0016    GGET     0   0      ; "os"
+0017    TGETS    0   0   1  ; "execute"
+0018    KSTR     1   6      ; "rm -f ./rcksum-*"
+0019    CALL     0   1   2
+0020    RET0     0   1
+
+-- BYTECODE -- otamanager.lua:290-345
+0001    UGET     0   0      ; OTAManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "zsync"
+0004    CALL     0   2   2
+0005    ISNEN    0   0      ; 0
+0006    JMP      0 => 0018
+0007    UGET     0   1      ; showRestartMessage
+0008    CALL     0   1   1
+0009    UGET     0   2      ; self
+0010    TGETS    0   0   1  ; "can_pretty_print"
+0011    ISF          0
+0012    JMP      1 => 0051
+0013    GGET     0   2      ; "os"
+0014    TGETS    0   0   3  ; "execute"
+0015    KSTR     1   4      ; "./fbink -q -y -7 -pm ' '  ' '"
+0016    CALL     0   1   2
+0017    JMP      0 => 0051
+0018 => UGET     0   2      ; self
+0019    TGETS    0   0   1  ; "can_pretty_print"
+0020    ISF          0
+0021    JMP      1 => 0026
+0022    GGET     0   2      ; "os"
+0023    TGETS    0   0   3  ; "execute"
+0024    KSTR     1   4      ; "./fbink -q -y -7 -pm ' '  ' '"
+0025    CALL     0   1   2
+0026 => UGET     0   3      ; UIManager
+0027    MOV      1   0
+0028    TGETS    0   0   5  ; "show"
+0029    UGET     2   4      ; MultiConfirmBox
+0030    MOV      3   2
+0031    TGETS    2   2   6  ; "new"
+0032    TDUP     4   8
+0033    UGET     5   5      ; _
+0034    KSTR     6   7      ; "Failed to update KOReader.\n\nYou can:\n"~
+0035    CALL     5   2   2
+0036    TSETS    5   4   9  ; "text"
+0037    UGET     5   5      ; _
+0038    KSTR     6  10      ; "Retry"
+0039    CALL     5   2   2
+0040    TSETS    5   4  11  ; "choice1_text"
+0041    FNEW     5  12      ; otamanager.lua:305
+0042    TSETS    5   4  13  ; "choice1_callback"
+0043    UGET     5   5      ; _
+0044    KSTR     6  14      ; "Abort"
+0045    CALL     5   2   2
+0046    TSETS    5   4  15  ; "choice2_text"
+0047    FNEW     5  16      ; otamanager.lua:338
+0048    TSETS    5   4  17  ; "choice2_callback"
+0049    CALL     2   0   3
+0050    CALLM    0   1   1
+0051 => RET0     0   1
+
+-- BYTECODE -- otamanager.lua:285-346
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; InfoMessage
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   3
+0008    UGET     5   2      ; _
+0009    KSTR     6   2      ; "Downloading may take several minutes…"
+0010    CALL     5   2   2
+0011    TSETS    5   4   4  ; "text"
+0012    CALL     2   0   3
+0013    CALLM    0   1   1
+0014    UGET     0   0      ; UIManager
+0015    MOV      1   0
+0016    TGETS    0   0   5  ; "scheduleIn"
+0017    KSHORT   2   1
+0018    FNEW     3   6      ; otamanager.lua:290
+0019    CALL     0   1   4
+0020    RET0     0   1
+
+-- BYTECODE -- otamanager.lua:232-350
+0001    UGET     1   0      ; OTAManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "checkUpdate"
+0004    CALL     1   5   2
+0005    ISNEN    1   0      ; 0
+0006    JMP      5 => 0021
+0007    UGET     5   1      ; UIManager
+0008    MOV      6   5
+0009    TGETS    5   5   1  ; "show"
+0010    UGET     7   2      ; InfoMessage
+0011    MOV      8   7
+0012    TGETS    7   7   2  ; "new"
+0013    TDUP     9   4
+0014    UGET    10   3      ; _
+0015    KSTR    11   3      ; "KOReader is up to date."
+0016    CALL    10   2   2
+0017    TSETS   10   9   5  ; "text"
+0018    CALL     7   0   3
+0019    CALLM    5   1   1
+0020    JMP      5 => 0117
+0021 => ISNEP    1   0
+0022    JMP      5 => 0046
+0023    UGET     5   4      ; ota_channels
+0024    UGET     6   0      ; OTAManager
+0025    MOV      7   6
+0026    TGETS    6   6   6  ; "getOTAChannel"
+0027    CALL     6   2   2
+0028    TGETV    5   5   6
+0029    UGET     6   1      ; UIManager
+0030    MOV      7   6
+0031    TGETS    6   6   1  ; "show"
+0032    UGET     8   2      ; InfoMessage
+0033    MOV      9   8
+0034    TGETS    8   8   2  ; "new"
+0035    TDUP    10   8
+0036    UGET    11   5      ; T
+0037    UGET    12   3      ; _
+0038    KSTR    13   7      ; "Update information not available on %1 c"~
+0039    CALL    12   2   2
+0040    MOV     13   5
+0041    CALL    11   2   3
+0042    TSETS   11  10   5  ; "text"
+0043    CALL     8   0   3
+0044    CALLM    6   1   1
+0045    JMP      5 => 0117
+0046 => ISF          1
+0047    JMP      5 => 0117
+0048    UGET     5   5      ; T
+0049    UGET     6   3      ; _
+0050    KSTR     7   9      ; "Do you want to update?\nInstalled versio"~
+0051    CALL     6   2   2
+0052    UGET     7   6      ; BD
+0053    TGETS    7   7  10  ; "ltr"
+0054    MOV      8   2
+0055    CALL     7   2   2
+0056    UGET     8   6      ; BD
+0057    TGETS    8   8  10  ; "ltr"
+0058    MOV      9   1
+0059    CALL     8   0   2
+0060    CALLM    5   2   2
+0061    UGET     6   3      ; _
+0062    KSTR     7  11      ; "Update"
+0063    CALL     6   2   2
+0064    ISGE     1   2
+0065    JMP      7 => 0084
+0066    UGET     7   5      ; T
+0067    UGET     8   3      ; _
+0068    KSTR     9  12      ; "The currently installed version is newer"~
+0069    CALL     8   2   2
+0070    UGET     9   6      ; BD
+0071    TGETS    9   9  10  ; "ltr"
+0072    MOV     10   2
+0073    CALL     9   2   2
+0074    UGET    10   6      ; BD
+0075    TGETS   10  10  10  ; "ltr"
+0076    MOV     11   1
+0077    CALL    10   0   2
+0078    CALLM    7   2   2
+0079    MOV      5   7
+0080    UGET     7   3      ; _
+0081    KSTR     8  13      ; "Downgrade"
+0082    CALL     7   2   2
+0083    MOV      6   7
+0084 => UGET     7   0      ; OTAManager
+0085    MOV      8   7
+0086    TGETS    7   7  14  ; "getOTAType"
+0087    CALL     7   2   2
+0088    ISNES    7  15      ; "link"
+0089    JMP      7 => 0104
+0090    UGET     7   1      ; UIManager
+0091    MOV      8   7
+0092    TGETS    7   7   1  ; "show"
+0093    UGET     9   7      ; ConfirmBox
+0094    MOV     10   9
+0095    TGETS    9   9   2  ; "new"
+0096    TDUP    11  16
+0097    TSETS    5  11   5  ; "text"
+0098    TSETS    6  11  17  ; "ok_text"
+0099    FNEW    12  18      ; otamanager.lua:260
+0100    TSETS   12  11  19  ; "ok_callback"
+0101    CALL     9   0   3
+0102    CALLM    7   1   1
+0103    JMP      7 => 0117
+0104 => UGET     7   1      ; UIManager
+0105    MOV      8   7
+0106    TGETS    7   7   1  ; "show"
+0107    UGET     9   7      ; ConfirmBox
+0108    MOV     10   9
+0109    TGETS    9   9   2  ; "new"
+0110    TDUP    11  20
+0111    TSETS    5  11   5  ; "text"
+0112    TSETS    6  11  17  ; "ok_text"
+0113    FNEW    12  21      ; otamanager.lua:285
+0114    TSETS   12  11  19  ; "ok_callback"
+0115    CALL     9   0   3
+0116    CALLM    7   1   1
+0117 => UCLO     0 => 0118
+0118 => RET0     0   1
+
+-- BYTECODE -- otamanager.lua:353-397
+0001    TGETS    1   0   0  ; "installed_package"
+0002    UGET     2   0      ; lfs
+0003    TGETS    2   2   1  ; "attributes"
+0004    MOV      3   1
+0005    KSTR     4   2      ; "mode"
+0006    CALL     2   2   3
+0007    ISNES    2   3      ; "file"
+0008    JMP      2 => 0011
+0009    KSHORT   2   0
+0010    RET1     2   2
+0011 => UGET     2   0      ; lfs
+0012    TGETS    2   2   1  ; "attributes"
+0013    TGETS    3   0   4  ; "package_indexfile"
+0014    KSTR     4   2      ; "mode"
+0015    CALL     2   2   3
+0016    ISEQS    2   3      ; "file"
+0017    JMP      2 => 0025
+0018    UGET     2   1      ; logger
+0019    TGETS    2   2   5  ; "err"
+0020    KSTR     3   6      ; "Missing ota metadata:"
+0021    TGETS    4   0   4  ; "package_indexfile"
+0022    CALL     2   1   3
+0023    KPRI     2   0
+0024    RET1     2   2
+0025 => TGETS    2   0   7  ; "can_pretty_print"
+0026    ISF          2
+0027    JMP      3 => 0080
+0028    GGET     2   8      ; "os"
+0029    TGETS    2   2   9  ; "execute"
+0030    KSTR     3  10      ; "./fbink -q -y -7 -pmh 'Preparing local O"~
+0031    CALL     2   1   2
+0032    MOV      3   0
+0033    TGETS    2   0  11  ; "getZsyncFilename"
+0034    CALL     2   2   2
+0035    UGET     3   2      ; ota_dir
+0036    MOV      4   2
+0037    CAT      3   3   4
+0038    KPRI     4   0
+0039    GGET     5  12      ; "io"
+0040    TGETS    5   5  13  ; "open"
+0041    MOV      6   3
+0042    KSTR     7  14      ; "r"
+0043    CALL     5   2   3
+0044    ISF          5
+0045    JMP      6 => 0063
+0046    MOV      7   5
+0047    TGETS    6   5  15  ; "lines"
+0048    CALL     6   4   2
+0049    JMP      9 => 0058
+0050 => MOV     11   9
+0051    TGETS   10   9  16  ; "match"
+0052    KSTR    12  17      ; "^Length: (%d*)$"
+0053    CALL    10   2   3
+0054    MOV      4  10
+0055    ISF          4
+0056    JMP     10 => 0058
+0057    JMP      6 => 0060
+0058 => ITERC    9   2   3
+0059    ITERL    9 => 0050
+0060 => MOV      7   5
+0061    TGETS    6   5  18  ; "close"
+0062    CALL     6   1   2
+0063 => KSHORT   6 6405
+0064    ISF          4
+0065    JMP      7 => 0067
+0066    DIVVN    6   4   0  ; 10240
+0067 => DIVVN    7   6   1  ; 100
+0068    GGET     8   8      ; "os"
+0069    TGETS    8   8   9  ; "execute"
+0070    GGET     9  19      ; "string"
+0071    TGETS    9   9  20  ; "format"
+0072    KSTR    10  21      ; "./tar --no-recursion -cf %s -C .. -T %s "~
+0073    TGETS   11   0   0  ; "installed_package"
+0074    TGETS   12   0   4  ; "package_indexfile"
+0075    MOV     13   7
+0076    MOV     14   7
+0077    CALL     9   0   6
+0078    CALLMT   8   0
+0079    JMP      2 => 0089
+0080 => GGET     2   8      ; "os"
+0081    TGETS    2   2   9  ; "execute"
+0082    GGET     3  19      ; "string"
+0083    TGETS    3   3  20  ; "format"
+0084    KSTR     4  22      ; "./tar --no-recursion -cf %s -C .. -T %s"
+0085    TGETS    5   0   0  ; "installed_package"
+0086    TGETS    6   0   4  ; "package_indexfile"
+0087    CALL     3   0   4
+0088    CALLMT   2   0
+0089 => RET0     0   1
+
+-- BYTECODE -- otamanager.lua:399-437
+0001    IST          1
+0002    JMP      2 => 0008
+0003    MOV      3   0
+0004    TGETS    2   0   0  ; "_buildLocalPackage"
+0005    CALL     2   2   2
+0006    ISNEN    2   0      ; 0
+0007    JMP      2 => 0061
+0008 => KSTR     2   1      ; "zsync2"
+0009    KPRI     3   2
+0010    TGETS    4   0   2  ; "can_pretty_print"
+0011    ISF          4
+0012    JMP      5 => 0023
+0013    KSTR     2   3      ; "spinning_zsync"
+0014    GGET     4   4      ; "os"
+0015    TGETS    4   4   5  ; "execute"
+0016    KSTR     5   6      ; "set -o pipefail 2>/dev/null"
+0017    CALL     4   2   2
+0018    ISEQN    4   0      ; 0
+0019    JMP      4 => 0022
+0020    KPRI     3   1
+0021    JMP      4 => 0023
+0022 => KPRI     3   2
+0023 => ISF          1
+0024    JMP      4 => 0043
+0025    GGET     4   4      ; "os"
+0026    TGETS    4   4   5  ; "execute"
+0027    KSTR     5   7      ; "env WITH_PIPEFAIL='%s' ./%s -o '%s' -u '"~
+0028    MOV      6   5
+0029    TGETS    5   5   8  ; "format"
+0030    MOV      7   3
+0031    MOV      8   2
+0032    TGETS    9   0   9  ; "updated_package"
+0033    MOV     11   0
+0034    TGETS   10   0  10  ; "getOTAServer"
+0035    CALL    10   2   2
+0036    UGET    11   0      ; ota_dir
+0037    MOV     13   0
+0038    TGETS   12   0  11  ; "getZsyncFilename"
+0039    CALL    12   0   2
+0040    CALLM    5   0   6
+0041    CALLMT   4   0
+0042    JMP      4 => 0061
+0043 => GGET     4   4      ; "os"
+0044    TGETS    4   4   5  ; "execute"
+0045    KSTR     5  12      ; "env WITH_PIPEFAIL='%s' ./%s -i '%s' -o '"~
+0046    MOV      6   5
+0047    TGETS    5   5   8  ; "format"
+0048    MOV      7   3
+0049    MOV      8   2
+0050    TGETS    9   0  13  ; "installed_package"
+0051    TGETS   10   0   9  ; "updated_package"
+0052    MOV     12   0
+0053    TGETS   11   0  10  ; "getOTAServer"
+0054    CALL    11   2   2
+0055    UGET    12   0      ; ota_dir
+0056    MOV     14   0
+0057    TGETS   13   0  11  ; "getZsyncFilename"
+0058    CALL    13   0   2
+0059    CALLM    5   0   7
+0060    CALLMT   4   0
+0061 => RET0     0   1
+
+-- BYTECODE -- otamanager.lua:444-444
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getOTAServer"
+0004    CALL     0   2   2
+0005    UGET     1   1      ; server
+0006    ISEQV    0   1
+0007    JMP      0 => 0010
+0008    KPRI     0   1
+0009    JMP      1 => 0011
+0010 => KPRI     0   2
+0011 => RET1     0   2
+
+-- BYTECODE -- otamanager.lua:445-445
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setOTAServer"
+0004    UGET     2   1      ; server
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- otamanager.lua:439-450
+0001    TNEW     1   0
+0002    GGET     2   0      ; "ipairs"
+0003    TGETS    3   0   1  ; "ota_servers"
+0004    CALL     2   4   2
+0005    JMP      5 => 0018
+0006 => TDUP     7   2
+0007    TSETS    6   7   3  ; "text"
+0008    FNEW     8   4      ; otamanager.lua:444
+0009    TSETS    8   7   5  ; "checked_func"
+0010    FNEW     8   6      ; otamanager.lua:445
+0011    TSETS    8   7   7  ; "callback"
+0012    GGET     8   8      ; "table"
+0013    TGETS    8   8   9  ; "insert"
+0014    MOV      9   1
+0015    MOV     10   7
+0016    CALL     8   1   3
+0017    UCLO     5 => 0018
+0018 => ITERC    5   3   3
+0019    ITERL    5 => 0006
+0020    UCLO     0 => 0021
+0021 => RET1     1   2
+
+-- BYTECODE -- otamanager.lua:457-457
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getOTAChannel"
+0004    CALL     0   2   2
+0005    UGET     1   1      ; channel
+0006    ISEQV    0   1
+0007    JMP      0 => 0010
+0008    KPRI     0   1
+0009    JMP      1 => 0011
+0010 => KPRI     0   2
+0011 => RET1     0   2
+
+-- BYTECODE -- otamanager.lua:458-458
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setOTAChannel"
+0004    UGET     2   1      ; channel
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- otamanager.lua:452-463
+0001    TNEW     1   0
+0002    GGET     2   0      ; "ipairs"
+0003    TGETS    3   0   1  ; "ota_channels"
+0004    CALL     2   4   2
+0005    JMP      5 => 0020
+0006 => TDUP     7   2
+0007    UGET     8   0      ; ota_channels
+0008    TGETV    8   8   6
+0009    TSETS    8   7   3  ; "text"
+0010    FNEW     8   4      ; otamanager.lua:457
+0011    TSETS    8   7   5  ; "checked_func"
+0012    FNEW     8   6      ; otamanager.lua:458
+0013    TSETS    8   7   7  ; "callback"
+0014    GGET     8   8      ; "table"
+0015    TGETS    8   8   9  ; "insert"
+0016    MOV      9   1
+0017    MOV     10   7
+0018    CALL     8   1   3
+0019    UCLO     5 => 0020
+0020 => ITERC    5   3   3
+0021    ITERL    5 => 0006
+0022    UCLO     0 => 0023
+0023 => RET1     1   2
+
+-- BYTECODE -- otamanager.lua:468-474
+0001    UGET     0   0      ; NetworkMgr
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "isOnline"
+0004    CALL     0   2   2
+0005    IST          0
+0006    JMP      0 => 0012
+0007    UGET     0   0      ; NetworkMgr
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "promptWifiOn"
+0010    CALL     0   1   2
+0011    JMP      0 => 0016
+0012 => UGET     0   1      ; OTAManager
+0013    MOV      1   0
+0014    TGETS    0   0   2  ; "fetchAndProcessUpdate"
+0015    CALL     0   1   2
+0016 => RET0     0   1
+
+-- BYTECODE -- otamanager.lua:478-484
+0001    UGET     0   0      ; NetworkMgr
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "isOnline"
+0004    CALL     0   2   2
+0005    IST          0
+0006    JMP      0 => 0012
+0007    UGET     0   0      ; NetworkMgr
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "promptWifiOn"
+0010    CALL     0   1   2
+0011    JMP      0 => 0016
+0012 => UGET     0   1      ; OTAManager
+0013    MOV      1   0
+0014    TGETS    0   0   2  ; "fetchAndProcessUpdate"
+0015    CALL     0   1   2
+0016 => RET0     0   1
+
+-- BYTECODE -- otamanager.lua:465-501
+0001    TDUP     1   1
+0002    UGET     2   0      ; _
+0003    KSTR     3   0      ; "Update"
+0004    CALL     2   2   2
+0005    TSETS    2   1   2  ; "text"
+0006    FNEW     2   3      ; otamanager.lua:468
+0007    TSETS    2   1   4  ; "hold_callback"
+0008    TNEW     2   3
+0009    TDUP     3   6
+0010    UGET     4   0      ; _
+0011    KSTR     5   5      ; "Check for update"
+0012    CALL     4   2   2
+0013    TSETS    4   3   2  ; "text"
+0014    FNEW     4   7      ; otamanager.lua:478
+0015    TSETS    4   3   8  ; "callback"
+0016    TSETB    3   2   1
+0017    TDUP     3  10
+0018    UGET     4   0      ; _
+0019    KSTR     5   9      ; "Settings"
+0020    CALL     4   2   2
+0021    TSETS    4   3   2  ; "text"
+0022    TNEW     4   3
+0023    TDUP     5  12
+0024    UGET     6   0      ; _
+0025    KSTR     7  11      ; "Update server"
+0026    CALL     6   2   2
+0027    TSETS    6   5   2  ; "text"
+0028    MOV      7   0
+0029    TGETS    6   0  13  ; "genServerList"
+0030    CALL     6   2   2
+0031    TSETS    6   5  14  ; "sub_item_table"
+0032    TSETB    5   4   1
+0033    TDUP     5  16
+0034    UGET     6   0      ; _
+0035    KSTR     7  15      ; "Update channel"
+0036    CALL     6   2   2
+0037    TSETS    6   5   2  ; "text"
+0038    MOV      7   0
+0039    TGETS    6   0  17  ; "genChannelList"
+0040    CALL     6   2   2
+0041    TSETS    6   5  14  ; "sub_item_table"
+0042    TSETB    5   4   2
+0043    TSETS    4   3  14  ; "sub_item_table"
+0044    TSETB    3   2   2
+0045    TSETS    2   1  14  ; "sub_item_table"
+0046    UCLO     0 => 0047
+0047 => RET1     1   2
+
+-- BYTECODE -- otamanager.lua:0-504
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/confirmbox"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "datastorage"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "device"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/infomessage"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/multiconfirmbox"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/network/manager"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/uimanager"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "version"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "libs/libkoreader-lfs"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "logger"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "gettext"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ffi/util"
+0039    CALL    12   2   2
+0040    TGETS   12  12  14  ; "template"
+0041    MOV     14   2
+0042    TGETS   13   2  15  ; "getDataDir"
+0043    CALL    13   2   2
+0044    KSTR    14  16      ; "/ota/"
+0045    CAT     13  13  14
+0046    TDUP    14  18
+0047    TDUP    15  17
+0048    TSETS   15  14  19  ; "ota_servers"
+0049    TDUP    15  20
+0050    TSETS   15  14  21  ; "ota_channels"
+0051    MOV     15  13
+0052    KSTR    16  22      ; "koreader.installed.tar"
+0053    CAT     15  15  16
+0054    TSETS   15  14  23  ; "installed_package"
+0055    MOV     15  13
+0056    KSTR    16  24      ; "koreader.updated.tar"
+0057    CAT     15  15  16
+0058    TSETS   15  14  25  ; "updated_package"
+0059    TGETS   15   9  26  ; "attributes"
+0060    KSTR    16  27      ; "./fbink"
+0061    KSTR    17  28      ; "mode"
+0062    CALL    15   2   3
+0063    ISNES   15  29      ; "file"
+0064    JMP     15 => 0067
+0065    KPRI    15   2
+0066    JMP     16 => 0068
+0067 => KPRI    15   1
+0068 => TSETS   15  14  30  ; "can_pretty_print"
+0069    TDUP    15  32
+0070    MOV     16  11
+0071    KSTR    17  31      ; "Stable"
+0072    CALL    16   2   2
+0073    TSETS   16  15  33  ; "stable"
+0074    MOV     16  11
+0075    KSTR    17  34      ; "Development"
+0076    CALL    16   2   2
+0077    TSETS   16  15  35  ; "nightly"
+0078    FNEW    16  36      ; otamanager.lua:51
+0079    FNEW    17  38      ; otamanager.lua:79
+0080    TSETS   17  14  37  ; "_isKindleWarioOrMore"
+0081    GGET    17  39      ; "jit"
+0082    TGETS   17  17  40  ; "arch"
+0083    FNEW    18  42      ; otamanager.lua:106
+0084    TSETS   18  14  41  ; "getOTAModel"
+0085    FNEW    18  44      ; otamanager.lua:139
+0086    TSETS   18  14  43  ; "getOTAType"
+0087    FNEW    18  46      ; otamanager.lua:151
+0088    TSETS   18  14  45  ; "getOTAServer"
+0089    FNEW    18  48      ; otamanager.lua:155
+0090    TSETS   18  14  47  ; "setOTAServer"
+0091    FNEW    18  50      ; otamanager.lua:160
+0092    TSETS   18  14  49  ; "getOTAChannel"
+0093    FNEW    18  52      ; otamanager.lua:164
+0094    TSETS   18  14  51  ; "setOTAChannel"
+0095    FNEW    18  54      ; otamanager.lua:169
+0096    TSETS   18  14  53  ; "getLinkFilename"
+0097    FNEW    18  56      ; otamanager.lua:173
+0098    TSETS   18  14  55  ; "getZsyncFilename"
+0099    FNEW    18  58      ; otamanager.lua:177
+0100    TSETS   18  14  57  ; "checkUpdate"
+0101    FNEW    18  60      ; otamanager.lua:232
+0102    TSETS   18  14  59  ; "fetchAndProcessUpdate"
+0103    FNEW    18  62      ; otamanager.lua:353
+0104    TSETS   18  14  61  ; "_buildLocalPackage"
+0105    FNEW    18  64      ; otamanager.lua:399
+0106    TSETS   18  14  63  ; "zsync"
+0107    FNEW    18  66      ; otamanager.lua:439
+0108    TSETS   18  14  65  ; "genServerList"
+0109    FNEW    18  68      ; otamanager.lua:452
+0110    TSETS   18  14  67  ; "genChannelList"
+0111    FNEW    18  70      ; otamanager.lua:465
+0112    TSETS   18  14  69  ; "getOTAMenuTable"
+0113    UCLO     0 => 0114
+0114 => RET1    14   2
+

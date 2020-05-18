@@ -1,0 +1,185 @@
+-- BYTECODE -- deplocks.lua:13-24
+0001    UGET     2   0      ; deptable_mode
+0002    ISEQS    2   0      ; "start"
+0003    JMP      2 => 0005
+0004    RET0     0   1
+0005 => USETS    0   1      ; deptable_mode ; "create"
+0006    UGET     2   1      ; dir
+0007    TGETS    2   2   2  ; "path"
+0008    MOV      3   1
+0009    KSTR     4   3      ; "luarocks.lock"
+0010    CALL     2   2   3
+0011    UGET     3   3      ; fs
+0012    TGETS    3   3   4  ; "absolute_name"
+0013    MOV      4   2
+0014    CALL     3   2   2
+0015    USETV    2   3      ; deplock_abs_filename
+0016    USETV    4   0      ; deplock_root_rock_name
+0017    TNEW     3   0
+0018    USETV    5   3      ; deptable
+0019    RET0     0   1
+
+-- BYTECODE -- deplocks.lua:26-30
+0001    UGET     1   0      ; deplock_root_rock_name
+0002    ISNEV    0   1
+0003    JMP      1 => 0006
+0004    UGET     1   1      ; deplock_abs_filename
+0005    RET1     1   2
+0006 => RET0     0   1
+
+-- BYTECODE -- deplocks.lua:32-55
+0001    UGET     2   0      ; deptable_mode
+0002    ISEQS    2   0      ; "start"
+0003    JMP      2 => 0007
+0004    KPRI     2   2
+0005    KPRI     3   0
+0006    RET      2   3
+0007 => USETS    0   1      ; deptable_mode ; "locked"
+0008    UGET     2   1      ; dir
+0009    TGETS    2   2   2  ; "path"
+0010    MOV      3   1
+0011    KSTR     4   3      ; "luarocks.lock"
+0012    CALL     2   2   3
+0013    UGET     3   2      ; persist
+0014    TGETS    3   3   4  ; "run_file"
+0015    MOV      4   2
+0016    TNEW     5   0
+0017    CALL     3   4   3
+0018    ISEQS    5   5      ; "load"
+0019    JMP      6 => 0022
+0020    ISNES    5   6      ; "run"
+0021    JMP      6 => 0027
+0022 => KNIL     6   7
+0023    KSTR     8   7      ; "Could not read existing lockfile "
+0024    MOV      9   2
+0025    CAT      8   8   9
+0026    RET      6   4
+0027 => ISNES    5   8      ; "open"
+0028    JMP      6 => 0032
+0029    KPRI     6   2
+0030    KPRI     7   0
+0031    RET      6   3
+0032 => UGET     6   4      ; fs
+0033    TGETS    6   6   9  ; "absolute_name"
+0034    MOV      7   2
+0035    CALL     6   2   2
+0036    USETV    3   6      ; deplock_abs_filename
+0037    USETV    5   0      ; deplock_root_rock_name
+0038    USETV    6   4      ; deptable
+0039    KPRI     6   2
+0040    MOV      7   2
+0041    RET      6   3
+
+-- BYTECODE -- deplocks.lua:57-71
+0001    UGET     3   0      ; deptable_mode
+0002    ISNES    3   0      ; "locked"
+0003    JMP      3 => 0005
+0004    RET0     0   1
+0005 => UGET     3   1      ; deptable
+0006    TGETV    3   3   0
+0007    IST          3
+0008    JMP      4 => 0012
+0009    TNEW     3   0
+0010    UGET     4   1      ; deptable
+0011    TSETV    3   4   0
+0012 => TGETV    4   3   1
+0013    IST          4
+0014    JMP      4 => 0016
+0015    TSETV    2   3   1
+0016 => RET0     0   1
+
+-- BYTECODE -- deplocks.lua:73-80
+0001    UGET     2   0      ; deptable
+0002    TGETV    2   2   0
+0003    IST          2
+0004    JMP      3 => 0007
+0005    KPRI     3   0
+0006    RET1     3   2
+0007 => UGET     3   0      ; deptable
+0008    TGETV    3   3   1
+0009    RET1     3   2
+
+-- BYTECODE -- deplocks.lua:82-88
+0001    UGET     0   0      ; deptable_mode
+0002    ISEQS    0   0      ; "create"
+0003    JMP      0 => 0006
+0004    KPRI     0   2
+0005    RET1     0   2
+0006 => UGET     0   1      ; persist
+0007    TGETS    0   0   1  ; "save_as_module"
+0008    UGET     1   2      ; deplock_abs_filename
+0009    UGET     2   3      ; deptable
+0010    CALLT    0   3
+
+-- BYTECODE -- deplocks.lua:93-95
+0001    UGET     2   0      ; deplocks
+0002    TGETS    2   2   0  ; "get"
+0003    UGET     3   1      ; depskey
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- deplocks.lua:96-98
+0001    UGET     3   0      ; deplocks
+0002    TGETS    3   3   0  ; "add"
+0003    UGET     4   1      ; depskey
+0004    MOV      5   1
+0005    MOV      6   2
+0006    CALLT    3   4
+
+-- BYTECODE -- deplocks.lua:91-100
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    TDUP     3   2
+0004    FNEW     4   1      ; deplocks.lua:93
+0005    TSETS    4   3   3  ; "__index"
+0006    FNEW     4   4      ; deplocks.lua:96
+0007    TSETS    4   3   5  ; "__newindex"
+0008    UCLO     0 => 0009
+0009 => CALLT    1   3
+
+-- BYTECODE -- deplocks.lua:102-104
+0001    UGET     1   0      ; util
+0002    TGETS    1   1   0  ; "sortedpairs"
+0003    UGET     2   1      ; deptable
+0004    TGETV    2   2   0
+0005    IST          2
+0006    JMP      3 => 0008
+0007    TNEW     2   0
+0008 => CALLT    1   2
+
+-- BYTECODE -- deplocks.lua:0-107
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.fs"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.dir"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.util"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.persist"
+0013    CALL     4   2   2
+0014    TNEW     5   0
+0015    KSTR     6   5      ; "start"
+0016    KNIL     7   8
+0017    FNEW     9   7      ; deplocks.lua:13
+0018    TSETS    9   0   6  ; "init"
+0019    FNEW     9   9      ; deplocks.lua:26
+0020    TSETS    9   0   8  ; "get_abs_filename"
+0021    FNEW     9  11      ; deplocks.lua:32
+0022    TSETS    9   0  10  ; "load"
+0023    FNEW     9  13      ; deplocks.lua:57
+0024    TSETS    9   0  12  ; "add"
+0025    FNEW     9  15      ; deplocks.lua:73
+0026    TSETS    9   0  14  ; "get"
+0027    FNEW     9  17      ; deplocks.lua:82
+0028    TSETS    9   0  16  ; "write_file"
+0029    FNEW     9  19      ; deplocks.lua:91
+0030    TSETS    9   0  18  ; "proxy"
+0031    FNEW     9  21      ; deplocks.lua:102
+0032    TSETS    9   0  20  ; "each"
+0033    UCLO     0 => 0034
+0034 => RET1     0   2
+

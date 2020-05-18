@@ -1,0 +1,1602 @@
+-- BYTECODE -- imageviewer.lua:90-140
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "hasKeys"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0031
+0007    TDUP     1   4
+0008    TDUP     2   3
+0009    TDUP     3   2
+0010    TSETB    3   2   1
+0011    TSETS    2   1   5  ; "Close"
+0012    TDUP     2   9
+0013    TNEW     3   3
+0014    UGET     4   0      ; Device
+0015    TGETS    4   4   6  ; "input"
+0016    TGETS    4   4   7  ; "group"
+0017    TGETS    4   4   8  ; "PgBack"
+0018    TSETB    4   3   1
+0019    TSETB    3   2   1
+0020    TSETS    2   1  10  ; "ZoomIn"
+0021    TDUP     2  12
+0022    TNEW     3   3
+0023    UGET     4   0      ; Device
+0024    TGETS    4   4   6  ; "input"
+0025    TGETS    4   4   7  ; "group"
+0026    TGETS    4   4  11  ; "PgFwd"
+0027    TSETB    4   3   1
+0028    TSETB    3   2   1
+0029    TSETS    2   1  13  ; "ZoomOut"
+0030    TSETS    1   0   1  ; "key_events"
+0031 => UGET     1   0      ; Device
+0032    MOV      2   1
+0033    TGETS    1   1  14  ; "isTouchDevice"
+0034    CALL     1   2   2
+0035    ISF          1
+0036    JMP      2 => 0126
+0037    UGET     1   1      ; Geom
+0038    MOV      2   1
+0039    TGETS    1   1  15  ; "new"
+0040    TDUP     3  16
+0041    UGET     4   2      ; Screen
+0042    MOV      5   4
+0043    TGETS    4   4  17  ; "getWidth"
+0044    CALL     4   2   2
+0045    TSETS    4   3  18  ; "w"
+0046    UGET     4   2      ; Screen
+0047    MOV      5   4
+0048    TGETS    4   4  19  ; "getHeight"
+0049    CALL     4   2   2
+0050    TSETS    4   3  20  ; "h"
+0051    CALL     1   2   3
+0052    TDUP     2  24
+0053    TNEW     3   3
+0054    UGET     4   3      ; GestureRange
+0055    MOV      5   4
+0056    TGETS    4   4  15  ; "new"
+0057    TDUP     6  22
+0058    TSETS    1   6  23  ; "range"
+0059    CALL     4   0   3
+0060    TSETM    4   0      ; 1
+0061    TSETS    3   2  25  ; "Tap"
+0062    TNEW     3   3
+0063    UGET     4   3      ; GestureRange
+0064    MOV      5   4
+0065    TGETS    4   4  15  ; "new"
+0066    TDUP     6  26
+0067    TSETS    1   6  23  ; "range"
+0068    CALL     4   0   3
+0069    TSETM    4   0      ; 1
+0070    TSETS    3   2  27  ; "Spread"
+0071    TNEW     3   3
+0072    UGET     4   3      ; GestureRange
+0073    MOV      5   4
+0074    TGETS    4   4  15  ; "new"
+0075    TDUP     6  28
+0076    TSETS    1   6  23  ; "range"
+0077    CALL     4   0   3
+0078    TSETM    4   0      ; 1
+0079    TSETS    3   2  29  ; "Pinch"
+0080    TNEW     3   3
+0081    UGET     4   3      ; GestureRange
+0082    MOV      5   4
+0083    TGETS    4   4  15  ; "new"
+0084    TDUP     6  30
+0085    TSETS    1   6  23  ; "range"
+0086    CALL     4   0   3
+0087    TSETM    4   0      ; 1
+0088    TSETS    3   2  31  ; "Hold"
+0089    TNEW     3   3
+0090    UGET     4   3      ; GestureRange
+0091    MOV      5   4
+0092    TGETS    4   4  15  ; "new"
+0093    TDUP     6  32
+0094    TSETS    1   6  23  ; "range"
+0095    CALL     4   0   3
+0096    TSETM    4   0      ; 1
+0097    TSETS    3   2  33  ; "HoldRelease"
+0098    TNEW     3   3
+0099    UGET     4   3      ; GestureRange
+0100    MOV      5   4
+0101    TGETS    4   4  15  ; "new"
+0102    TDUP     6  34
+0103    TSETS    1   6  23  ; "range"
+0104    CALL     4   0   3
+0105    TSETM    4   0      ; 1
+0106    TSETS    3   2  35  ; "Pan"
+0107    TNEW     3   3
+0108    UGET     4   3      ; GestureRange
+0109    MOV      5   4
+0110    TGETS    4   4  15  ; "new"
+0111    TDUP     6  36
+0112    TSETS    1   6  23  ; "range"
+0113    CALL     4   0   3
+0114    TSETM    4   0      ; 1
+0115    TSETS    3   2  37  ; "PanRelease"
+0116    TNEW     3   3
+0117    UGET     4   3      ; GestureRange
+0118    MOV      5   4
+0119    TGETS    4   4  15  ; "new"
+0120    TDUP     6  38
+0121    TSETS    1   6  23  ; "range"
+0122    CALL     4   0   3
+0123    TSETM    4   0      ; 1
+0124    TSETS    3   2  39  ; "Swipe"
+0125    TSETS    2   0  21  ; "ges_events"
+0126 => TGETS    1   0  40  ; "fullscreen"
+0127    ISF          1
+0128    JMP      2 => 0131
+0129    KPRI     1   2
+0130    TSETS    1   0  41  ; "covers_fullscreen"
+0131 => GGET     1  42      ; "type"
+0132    TGETS    2   0  43  ; "image"
+0133    CALL     1   2   2
+0134    ISNES    1  44      ; "table"
+0135    JMP      1 => 0161
+0136    TGETS    1   0  43  ; "image"
+0137    TSETS    1   0  45  ; "_images_list"
+0138    TGETS    1   0  45  ; "_images_list"
+0139    TGETB    1   1   1
+0140    TSETS    1   0  43  ; "image"
+0141    GGET     1  42      ; "type"
+0142    TGETS    2   0  43  ; "image"
+0143    CALL     1   2   2
+0144    ISNES    1  46      ; "function"
+0145    JMP      1 => 0149
+0146    TGETS    1   0  43  ; "image"
+0147    CALL     1   2   1
+0148    TSETS    1   0  43  ; "image"
+0149 => KSHORT   1   1
+0150    TSETS    1   0  47  ; "_images_list_cur"
+0151    TGETS    1   0  45  ; "_images_list"
+0152    LEN      1   1
+0153    TSETS    1   0  48  ; "_images_list_nb"
+0154    TGETS    1   0  50  ; "scale_factor"
+0155    TSETS    1   0  49  ; "_images_orig_scale_factor"
+0156    TGETS    1   0  52  ; "image_disposable"
+0157    TSETS    1   0  51  ; "_images_list_disposable"
+0158    TGETS    1   0  45  ; "_images_list"
+0159    TGETS    1   1  52  ; "image_disposable"
+0160    TSETS    1   0  52  ; "image_disposable"
+0161 => MOV      2   0
+0162    TGETS    1   0  53  ; "update"
+0163    CALL     1   1   2
+0164    RET0     0   1
+
+-- BYTECODE -- imageviewer.lua:142-150
+0001    TGETS    1   0   0  ; "_image_wg"
+0002    ISF          1
+0003    JMP      2 => 0014
+0004    UGET     1   0      ; logger
+0005    TGETS    1   1   1  ; "dbg"
+0006    KSTR     2   2      ; "ImageViewer:_clean_image_wg()"
+0007    CALL     1   1   2
+0008    TGETS    1   0   0  ; "_image_wg"
+0009    MOV      2   1
+0010    TGETS    1   1   3  ; "free"
+0011    CALL     1   1   2
+0012    KPRI     1   0
+0013    TSETS    1   0   0  ; "_image_wg"
+0014 => RET0     0   1
+
+-- BYTECODE -- imageviewer.lua:179-186
+0001    UGET     0   0      ; self
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "_scale_to_fit"
+0004    ISF          1
+0005    JMP      2 => 0008
+0006    KSHORT   1   1
+0007    JMP      2 => 0009
+0008 => KSHORT   1   0
+0009 => TSETS    1   0   0  ; "scale_factor"
+0010    UGET     0   0      ; self
+0011    UGET     1   0      ; self
+0012    TGETS    1   1   1  ; "_scale_to_fit"
+0013    NOT      1   1
+0014    TSETS    1   0   1  ; "_scale_to_fit"
+0015    UGET     0   0      ; self
+0016    KNUM     1   0      ; 0.5
+0017    TSETS    1   0   2  ; "_center_x_ratio"
+0018    UGET     0   0      ; self
+0019    KNUM     1   0      ; 0.5
+0020    TSETS    1   0   3  ; "_center_y_ratio"
+0021    UGET     0   0      ; self
+0022    MOV      1   0
+0023    TGETS    0   0   4  ; "update"
+0024    CALL     0   1   2
+0025    RET0     0   1
+
+-- BYTECODE -- imageviewer.lua:190-193
+0001    UGET     0   0      ; self
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "rotated"
+0004    IST          1
+0005    JMP      1 => 0008
+0006    KPRI     1   2
+0007    JMP      2 => 0009
+0008 => KPRI     1   1
+0009 => TSETS    1   0   0  ; "rotated"
+0010    UGET     0   0      ; self
+0011    MOV      1   0
+0012    TGETS    0   0   1  ; "update"
+0013    CALL     0   1   2
+0014    RET0     0   1
+
+-- BYTECODE -- imageviewer.lua:197-199
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- imageviewer.lua:417-421
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "main_frame"
+0003    TGETS    0   0   1  ; "dimen"
+0004    MOV      1   0
+0005    TGETS    0   0   2  ; "combine"
+0006    UGET     2   1      ; orig_dimen
+0007    CALL     0   2   3
+0008    UGET     1   2      ; logger
+0009    TGETS    1   1   3  ; "dbg"
+0010    KSTR     2   4      ; "update image region"
+0011    MOV      3   0
+0012    CALL     1   1   3
+0013    KSTR     1   5      ; "ui"
+0014    MOV      2   0
+0015    KPRI     3   2
+0016    RET      1   4
+
+-- BYTECODE -- imageviewer.lua:152-422
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "_clean_image_wg"
+0003    CALL     1   1   2
+0004    TGETS    1   0   1  ; "_scale_to_fit"
+0005    ISNEP    1   0
+0006    JMP      1 => 0014
+0007    TGETS    1   0   2  ; "scale_factor"
+0008    ISNEN    1   0      ; 0
+0009    JMP      1 => 0012
+0010    KPRI     1   2
+0011    JMP      2 => 0013
+0012 => KPRI     1   1
+0013 => TSETS    1   0   1  ; "_scale_to_fit"
+0014 => TGETS    1   0   3  ; "main_frame"
+0015    ISF          1
+0016    JMP      2 => 0021
+0017    TGETS    1   0   3  ; "main_frame"
+0018    TGETS    1   1   4  ; "dimen"
+0019    IST          1
+0020    JMP      2 => 0026
+0021 => UGET     1   0      ; Geom
+0022    MOV      2   1
+0023    TGETS    1   1   5  ; "new"
+0024    TNEW     3   0
+0025    CALL     1   2   3
+0026 => KSTR     2   7      ; "center"
+0027    TSETS    2   0   6  ; "align"
+0028    UGET     2   0      ; Geom
+0029    MOV      3   2
+0030    TGETS    2   2   5  ; "new"
+0031    TDUP     4   9
+0032    UGET     5   1      ; Screen
+0033    MOV      6   5
+0034    TGETS    5   5  10  ; "getWidth"
+0035    CALL     5   2   2
+0036    TSETS    5   4  11  ; "w"
+0037    UGET     5   1      ; Screen
+0038    MOV      6   5
+0039    TGETS    5   5  12  ; "getHeight"
+0040    CALL     5   2   2
+0041    TSETS    5   4  13  ; "h"
+0042    CALL     2   2   3
+0043    TSETS    2   0   8  ; "region"
+0044    TGETS    2   0  14  ; "fullscreen"
+0045    ISF          2
+0046    JMP      3 => 0058
+0047    UGET     2   1      ; Screen
+0048    MOV      3   2
+0049    TGETS    2   2  12  ; "getHeight"
+0050    CALL     2   2   2
+0051    TSETS    2   0  15  ; "height"
+0052    UGET     2   1      ; Screen
+0053    MOV      3   2
+0054    TGETS    2   2  10  ; "getWidth"
+0055    CALL     2   2   2
+0056    TSETS    2   0  16  ; "width"
+0057    JMP      2 => 0080
+0058 => UGET     2   1      ; Screen
+0059    MOV      3   2
+0060    TGETS    2   2  12  ; "getHeight"
+0061    CALL     2   2   2
+0062    UGET     3   1      ; Screen
+0063    MOV      4   3
+0064    TGETS    3   3  17  ; "scaleBySize"
+0065    KSHORT   5  40
+0066    CALL     3   2   3
+0067    SUBVV    2   2   3
+0068    TSETS    2   0  15  ; "height"
+0069    UGET     2   1      ; Screen
+0070    MOV      3   2
+0071    TGETS    2   2  10  ; "getWidth"
+0072    CALL     2   2   2
+0073    UGET     3   1      ; Screen
+0074    MOV      4   3
+0075    TGETS    3   3  17  ; "scaleBySize"
+0076    KSHORT   5  40
+0077    CALL     3   2   3
+0078    SUBVV    2   2   3
+0079    TSETS    2   0  16  ; "width"
+0080 => KSHORT   2   0
+0081    KPRI     3   0
+0082    TGETS    4   0  18  ; "buttons_visible"
+0083    ISF          4
+0084    JMP      5 => 0164
+0085    TNEW     4   3
+0086    TNEW     5   4
+0087    TDUP     6  21
+0088    TGETS    7   0   1  ; "_scale_to_fit"
+0089    ISF          7
+0090    JMP      8 => 0096
+0091    UGET     7   2      ; _
+0092    KSTR     8  19      ; "Original size"
+0093    CALL     7   2   2
+0094    IST          7
+0095    JMP      8 => 0099
+0096 => UGET     7   2      ; _
+0097    KSTR     8  20      ; "Scale"
+0098    CALL     7   2   2
+0099 => TSETS    7   6  22  ; "text"
+0100    FNEW     7  23      ; imageviewer.lua:179
+0101    TSETS    7   6  24  ; "callback"
+0102    TSETB    6   5   1
+0103    TDUP     6  28
+0104    TGETS    7   0  25  ; "rotated"
+0105    ISF          7
+0106    JMP      8 => 0112
+0107    UGET     7   2      ; _
+0108    KSTR     8  26      ; "No rotation"
+0109    CALL     7   2   2
+0110    IST          7
+0111    JMP      8 => 0115
+0112 => UGET     7   2      ; _
+0113    KSTR     8  27      ; "Rotate"
+0114    CALL     7   2   2
+0115 => TSETS    7   6  22  ; "text"
+0116    FNEW     7  29      ; imageviewer.lua:190
+0117    TSETS    7   6  24  ; "callback"
+0118    TSETB    6   5   2
+0119    TDUP     6  31
+0120    UGET     7   2      ; _
+0121    KSTR     8  30      ; "Close"
+0122    CALL     7   2   2
+0123    TSETS    7   6  22  ; "text"
+0124    FNEW     7  32      ; imageviewer.lua:197
+0125    TSETS    7   6  24  ; "callback"
+0126    TSETB    6   5   3
+0127    TSETB    5   4   1
+0128    UGET     5   4      ; ButtonTable
+0129    MOV      6   5
+0130    TGETS    5   5   5  ; "new"
+0131    TDUP     7  34
+0132    TGETS    8   0  16  ; "width"
+0133    TGETS    9   0  33  ; "button_padding"
+0134    MULNV    9   9   1  ; 2
+0135    SUBVV    8   8   9
+0136    TSETS    8   7  16  ; "width"
+0137    TSETS    4   7  35  ; "buttons"
+0138    TSETS    0   7  36  ; "show_parent"
+0139    CALL     5   2   3
+0140    UGET     6   5      ; CenterContainer
+0141    MOV      7   6
+0142    TGETS    6   6   5  ; "new"
+0143    TDUP     8  39
+0144    UGET     9   0      ; Geom
+0145    MOV     10   9
+0146    TGETS    9   9   5  ; "new"
+0147    TDUP    11  37
+0148    TGETS   12   0  16  ; "width"
+0149    TSETS   12  11  11  ; "w"
+0150    MOV     13   5
+0151    TGETS   12   5  38  ; "getSize"
+0152    CALL    12   2   2
+0153    TGETS   12  12  13  ; "h"
+0154    TSETS   12  11  13  ; "h"
+0155    CALL     9   2   3
+0156    TSETS    9   8   4  ; "dimen"
+0157    TSETB    5   8   1
+0158    CALL     6   2   3
+0159    MOV      3   6
+0160    MOV      7   5
+0161    TGETS    6   5  38  ; "getSize"
+0162    CALL     6   2   2
+0163    TGETS    2   6  13  ; "h"
+0164 => TGETS    4   0  15  ; "height"
+0165    SUBVV    4   4   2
+0166    KNIL     5   6
+0167    TGETS    7   0  40  ; "with_title_bar"
+0168    ISF          7
+0169    JMP      8 => 0378
+0170    KPRI     7   0
+0171    KSHORT   8   0
+0172    TGETS    9   0  41  ; "caption"
+0173    ISF          9
+0174    JMP     10 => 0209
+0175    KPRI     9   0
+0176    TGETS   10   0  42  ; "caption_visible"
+0177    ISF         10
+0178    JMP     11 => 0181
+0179    KSTR     9  43      ; "▽ "
+0180    JMP     10 => 0182
+0181 => KSTR     9  44      ; "▷ "
+0182 => UGET    10   6      ; FrameContainer
+0183    MOV     11  10
+0184    TGETS   10  10   5  ; "new"
+0185    TDUP    12  45
+0186    TGETS   13   0  46  ; "title_padding"
+0187    TSETS   13  12  47  ; "padding"
+0188    TGETS   13   0  46  ; "title_padding"
+0189    UGET    14   7      ; Size
+0190    TGETS   14  14  47  ; "padding"
+0191    TGETS   14  14  48  ; "small"
+0192    ADDVV   13  13  14
+0193    TSETS   13  12  49  ; "padding_top"
+0194    UGET    13   8      ; TextWidget
+0195    MOV     14  13
+0196    TGETS   13  13   5  ; "new"
+0197    TDUP    15  50
+0198    TSETS    9  15  22  ; "text"
+0199    TGETS   16   0  51  ; "title_face"
+0200    TSETS   16  15  52  ; "face"
+0201    CALL    13   0   3
+0202    TSETM   13   2      ; 1
+0203    CALL    10   2   3
+0204    MOV      7  10
+0205    MOV     11   7
+0206    TGETS   10   7  38  ; "getSize"
+0207    CALL    10   2   2
+0208    TGETS    8  10  11  ; "w"
+0209 => UGET     9   9      ; CloseButton
+0210    MOV     10   9
+0211    TGETS    9   9   5  ; "new"
+0212    TDUP    11  53
+0213    TSETS    0  11  54  ; "window"
+0214    UGET    12   7      ; Size
+0215    TGETS   12  12  47  ; "padding"
+0216    TGETS   12  12  55  ; "tiny"
+0217    TSETS   12  11  49  ; "padding_top"
+0218    CALL     9   2   3
+0219    UGET    10  10      ; TextBoxWidget
+0220    MOV     11  10
+0221    TGETS   10  10   5  ; "new"
+0222    TDUP    12  57
+0223    TGETS   13   0  56  ; "title_text"
+0224    TSETS   13  12  22  ; "text"
+0225    TGETS   13   0  51  ; "title_face"
+0226    TSETS   13  12  52  ; "face"
+0227    TGETS   13   0  16  ; "width"
+0228    TGETS   14   0  46  ; "title_padding"
+0229    MULNV   14  14   1  ; 2
+0230    SUBVV   13  13  14
+0231    TGETS   14   0  58  ; "title_margin"
+0232    MULNV   14  14   1  ; 2
+0233    SUBVV   13  13  14
+0234    MOV     15   9
+0235    TGETS   14   9  38  ; "getSize"
+0236    CALL    14   2   2
+0237    TGETS   14  14  11  ; "w"
+0238    SUBVV   13  13  14
+0239    SUBVV   13  13   8
+0240    TSETS   13  12  16  ; "width"
+0241    CALL    10   2   3
+0242    TGETS   11   0  46  ; "title_padding"
+0243    UGET    12   7      ; Size
+0244    TGETS   12  12  47  ; "padding"
+0245    TGETS   12  12  48  ; "small"
+0246    ADDVV   11  11  12
+0247    TGETS   12   0  41  ; "caption"
+0248    ISF         12
+0249    JMP     13 => 0254
+0250    TGETS   12   0  42  ; "caption_visible"
+0251    ISF         12
+0252    JMP     13 => 0254
+0253    KSHORT  11   0
+0254 => UGET    12   6      ; FrameContainer
+0255    MOV     13  12
+0256    TGETS   12  12   5  ; "new"
+0257    TDUP    14  59
+0258    TGETS   15   0  46  ; "title_padding"
+0259    TSETS   15  14  47  ; "padding"
+0260    TGETS   15   0  46  ; "title_padding"
+0261    UGET    16   7      ; Size
+0262    TGETS   16  16  47  ; "padding"
+0263    TGETS   16  16  48  ; "small"
+0264    ADDVV   15  15  16
+0265    TSETS   15  14  49  ; "padding_top"
+0266    TSETS   11  14  60  ; "padding_bottom"
+0267    ISF          7
+0268    JMP     15 => 0271
+0269    ISTC    15   8
+0270    JMP     15 => 0272
+0271 => TGETS   15   0  46  ; "title_padding"
+0272 => TSETS   15  14  61  ; "padding_left"
+0273    TGETS   15   0  58  ; "title_margin"
+0274    TSETS   15  14  62  ; "margin"
+0275    TSETB   10  14   1
+0276    CALL    12   2   3
+0277    TGETS   13   0  41  ; "caption"
+0278    ISF         13
+0279    JMP     14 => 0281
+0280    TSETS   12   0  63  ; "caption_tap_area"
+0281 => UGET    13  11      ; OverlapGroup
+0282    MOV     14  13
+0283    TGETS   13  13   5  ; "new"
+0284    TDUP    15  65
+0285    TDUP    16  64
+0286    TGETS   17   0  16  ; "width"
+0287    TSETS   17  16  11  ; "w"
+0288    MOV     18  12
+0289    TGETS   17  12  38  ; "getSize"
+0290    CALL    17   2   2
+0291    TGETS   17  17  13  ; "h"
+0292    TSETS   17  16  13  ; "h"
+0293    TSETS   16  15   4  ; "dimen"
+0294    TSETB   12  15   1
+0295    TSETB    9  15   2
+0296    CALL    13   2   3
+0297    MOV      5  13
+0298    ISF          7
+0299    JMP     13 => 0306
+0300    GGET    13  66      ; "table"
+0301    TGETS   13  13  67  ; "insert"
+0302    MOV     14   5
+0303    KSHORT  15   1
+0304    MOV     16   7
+0305    CALL    13   1   4
+0306 => TGETS   13   0  41  ; "caption"
+0307    ISF         13
+0308    JMP     14 => 0350
+0309    TGETS   13   0  42  ; "caption_visible"
+0310    ISF         13
+0311    JMP     14 => 0350
+0312    UGET    13  10      ; TextBoxWidget
+0313    MOV     14  13
+0314    TGETS   13  13   5  ; "new"
+0315    TDUP    15  68
+0316    TGETS   16   0  41  ; "caption"
+0317    TSETS   16  15  22  ; "text"
+0318    TGETS   16   0  69  ; "caption_face"
+0319    TSETS   16  15  52  ; "face"
+0320    TGETS   16   0  16  ; "width"
+0321    TGETS   17   0  46  ; "title_padding"
+0322    MULNV   17  17   1  ; 2
+0323    SUBVV   16  16  17
+0324    TGETS   17   0  58  ; "title_margin"
+0325    MULNV   17  17   1  ; 2
+0326    SUBVV   16  16  17
+0327    TGETS   17   0  70  ; "caption_padding"
+0328    MULNV   17  17   1  ; 2
+0329    SUBVV   16  16  17
+0330    TSETS   16  15  16  ; "width"
+0331    CALL    13   2   3
+0332    UGET    14   6      ; FrameContainer
+0333    MOV     15  14
+0334    TGETS   14  14   5  ; "new"
+0335    TDUP    16  71
+0336    TGETS   17   0  70  ; "caption_padding"
+0337    TSETS   17  16  47  ; "padding"
+0338    TGETS   17   0  58  ; "title_margin"
+0339    TSETS   17  16  62  ; "margin"
+0340    TSETB   13  16   1
+0341    CALL    14   2   3
+0342    UGET    15  12      ; VerticalGroup
+0343    MOV     16  15
+0344    TGETS   15  15   5  ; "new"
+0345    TDUP    17  72
+0346    TSETB    5  17   1
+0347    TSETB   14  17   2
+0348    CALL    15   2   3
+0349    MOV      5  15
+0350 => UGET    13  13      ; LineWidget
+0351    MOV     14  13
+0352    TGETS   13  13   5  ; "new"
+0353    TDUP    15  76
+0354    UGET    16   0      ; Geom
+0355    MOV     17  16
+0356    TGETS   16  16   5  ; "new"
+0357    TDUP    18  73
+0358    TGETS   19   0  16  ; "width"
+0359    TSETS   19  18  11  ; "w"
+0360    UGET    19   7      ; Size
+0361    TGETS   19  19  74  ; "line"
+0362    TGETS   19  19  75  ; "thick"
+0363    TSETS   19  18  13  ; "h"
+0364    CALL    16   2   3
+0365    TSETS   16  15   4  ; "dimen"
+0366    CALL    13   2   3
+0367    MOV      6  13
+0368    MOV     14   5
+0369    TGETS   13   5  38  ; "getSize"
+0370    CALL    13   2   2
+0371    TGETS   13  13  13  ; "h"
+0372    SUBVV   13   4  13
+0373    MOV     15   6
+0374    TGETS   14   6  38  ; "getSize"
+0375    CALL    14   2   2
+0376    TGETS   14  14  13  ; "h"
+0377    SUBVV    4  13  14
+0378 => KPRI     7   0
+0379    TGETS    8   0  77  ; "_images_list"
+0380    ISF          8
+0381    JMP      9 => 0438
+0382    KSHORT   8   1
+0383    TGETS    9   0  78  ; "_images_list_nb"
+0384    KSHORT  10   1
+0385    ISGE    10   9
+0386    JMP      9 => 0392
+0387    TGETS    9   0  79  ; "_images_list_cur"
+0388    SUBVN    9   9   3  ; 1
+0389    TGETS   10   0  78  ; "_images_list_nb"
+0390    SUBVN   10  10   3  ; 1
+0391    DIVVV    8   9  10
+0392 => UGET     9  14      ; ProgressWidget
+0393    MOV     10   9
+0394    TGETS    9   9   5  ; "new"
+0395    TDUP    11  80
+0396    TGETS   12   0  16  ; "width"
+0397    TGETS   13   0  33  ; "button_padding"
+0398    MULNV   13  13   1  ; 2
+0399    SUBVV   12  12  13
+0400    TSETS   12  11  16  ; "width"
+0401    UGET    12   1      ; Screen
+0402    MOV     13  12
+0403    TGETS   12  12  17  ; "scaleBySize"
+0404    KSHORT  14   5
+0405    CALL    12   2   3
+0406    TSETS   12  11  15  ; "height"
+0407    TSETS    8  11  81  ; "percentage"
+0408    CALL     9   2   3
+0409    UGET    10   5      ; CenterContainer
+0410    MOV     11  10
+0411    TGETS   10  10   5  ; "new"
+0412    TDUP    12  83
+0413    UGET    13   0      ; Geom
+0414    MOV     14  13
+0415    TGETS   13  13   5  ; "new"
+0416    TDUP    15  82
+0417    TGETS   16   0  16  ; "width"
+0418    TSETS   16  15  11  ; "w"
+0419    MOV     17   9
+0420    TGETS   16   9  38  ; "getSize"
+0421    CALL    16   2   2
+0422    TGETS   16  16  13  ; "h"
+0423    UGET    17   7      ; Size
+0424    TGETS   17  17  47  ; "padding"
+0425    TGETS   17  17  48  ; "small"
+0426    ADDVV   16  16  17
+0427    TSETS   16  15  13  ; "h"
+0428    CALL    13   2   3
+0429    TSETS   13  12   4  ; "dimen"
+0430    TSETB    9  12   1
+0431    CALL    10   2   3
+0432    MOV      7  10
+0433    MOV     11   7
+0434    TGETS   10   7  38  ; "getSize"
+0435    CALL    10   2   2
+0436    TGETS   10  10  13  ; "h"
+0437    SUBVV    4   4  10
+0438 => MOV      8   4
+0439    TGETS    9   0  16  ; "width"
+0440    TGETS   10   0  18  ; "buttons_visible"
+0441    IST         10
+0442    JMP     11 => 0446
+0443    TGETS   10   0  40  ; "with_title_bar"
+0444    ISF         10
+0445    JMP     11 => 0453
+0446 => TGETS   10   0  84  ; "image_padding"
+0447    MULVN   10  10   1  ; 2
+0448    SUBVV    8   4  10
+0449    TGETS   10   0  16  ; "width"
+0450    TGETS   11   0  84  ; "image_padding"
+0451    MULVN   11  11   1  ; 2
+0452    SUBVV    9  10  11
+0453 => KSHORT  10   0
+0454    TGETS   11   0  25  ; "rotated"
+0455    ISF         11
+0456    JMP     12 => 0474
+0457    GGET    11  85      ; "DLANDSCAPE_CLOCKWISE_ROTATION"
+0458    UGET    12   1      ; Screen
+0459    MOV     13  12
+0460    TGETS   12  12  10  ; "getWidth"
+0461    CALL    12   2   2
+0462    UGET    13   1      ; Screen
+0463    MOV     14  13
+0464    TGETS   13  13  12  ; "getHeight"
+0465    CALL    13   2   2
+0466    ISGE    13  12
+0467    JMP     12 => 0469
+0468    NOT     11  11
+0469 => ISF         11
+0470    JMP     12 => 0473
+0471    KSHORT  10  90
+0472    JMP     12 => 0474
+0473 => KSHORT  10 270
+0474 => UGET    11  15      ; ImageWidget
+0475    MOV     12  11
+0476    TGETS   11  11   5  ; "new"
+0477    TDUP    13  88
+0478    TGETS   14   0  87  ; "file"
+0479    TSETS   14  13  87  ; "file"
+0480    TGETS   14   0  89  ; "image"
+0481    TSETS   14  13  89  ; "image"
+0482    TSETS    9  13  16  ; "width"
+0483    TSETS    8  13  15  ; "height"
+0484    TSETS   10  13  90  ; "rotation_angle"
+0485    TGETS   14   0   2  ; "scale_factor"
+0486    TSETS   14  13   2  ; "scale_factor"
+0487    TGETS   14   0  91  ; "_center_x_ratio"
+0488    TSETS   14  13  92  ; "center_x_ratio"
+0489    TGETS   14   0  93  ; "_center_y_ratio"
+0490    TSETS   14  13  94  ; "center_y_ratio"
+0491    CALL    11   2   3
+0492    TSETS   11   0  86  ; "_image_wg"
+0493    UGET    11   5      ; CenterContainer
+0494    MOV     12  11
+0495    TGETS   11  11   5  ; "new"
+0496    TDUP    13  96
+0497    UGET    14   0      ; Geom
+0498    MOV     15  14
+0499    TGETS   14  14   5  ; "new"
+0500    TDUP    16  95
+0501    TGETS   17   0  16  ; "width"
+0502    TSETS   17  16  11  ; "w"
+0503    TSETS    4  16  13  ; "h"
+0504    CALL    14   2   3
+0505    TSETS   14  13   4  ; "dimen"
+0506    TGETS   14   0  86  ; "_image_wg"
+0507    TSETB   14  13   1
+0508    CALL    11   2   3
+0509    UGET    12  12      ; VerticalGroup
+0510    MOV     13  12
+0511    TGETS   12  12   5  ; "new"
+0512    TDUP    14  97
+0513    CALL    12   2   3
+0514    TGETS   13   0  40  ; "with_title_bar"
+0515    ISF         13
+0516    JMP     14 => 0527
+0517    GGET    13  66      ; "table"
+0518    TGETS   13  13  67  ; "insert"
+0519    MOV     14  12
+0520    MOV     15   5
+0521    CALL    13   1   3
+0522    GGET    13  66      ; "table"
+0523    TGETS   13  13  67  ; "insert"
+0524    MOV     14  12
+0525    MOV     15   6
+0526    CALL    13   1   3
+0527 => GGET    13  66      ; "table"
+0528    TGETS   13  13  67  ; "insert"
+0529    MOV     14  12
+0530    MOV     15  11
+0531    CALL    13   1   3
+0532    ISF          7
+0533    JMP     13 => 0539
+0534    GGET    13  66      ; "table"
+0535    TGETS   13  13  67  ; "insert"
+0536    MOV     14  12
+0537    MOV     15   7
+0538    CALL    13   1   3
+0539 => TGETS   13   0  18  ; "buttons_visible"
+0540    ISF         13
+0541    JMP     14 => 0547
+0542    GGET    13  66      ; "table"
+0543    TGETS   13  13  67  ; "insert"
+0544    MOV     14  12
+0545    MOV     15   3
+0546    CALL    13   1   3
+0547 => UGET    13   6      ; FrameContainer
+0548    MOV     14  13
+0549    TGETS   13  13   5  ; "new"
+0550    TDUP    15  98
+0551    TGETS   16   0  14  ; "fullscreen"
+0552    IST         16
+0553    JMP     16 => 0556
+0554    KSHORT  16   8
+0555    JMP     17 => 0557
+0556 => KPRI    16   0
+0557 => TSETS   16  15  99  ; "radius"
+0558    UGET    16  16      ; Blitbuffer
+0559    TGETS   16  16 100  ; "COLOR_WHITE"
+0560    TSETS   16  15 101  ; "background"
+0561    TSETB   12  15   1
+0562    CALL    13   2   3
+0563    TSETS   13   0   3  ; "main_frame"
+0564    UGET    13  17      ; WidgetContainer
+0565    MOV     14  13
+0566    TGETS   13  13   5  ; "new"
+0567    TDUP    15 102
+0568    TGETS   16   0   6  ; "align"
+0569    TSETS   16  15   6  ; "align"
+0570    TGETS   16   0   8  ; "region"
+0571    TSETS   16  15   4  ; "dimen"
+0572    UGET    16   6      ; FrameContainer
+0573    MOV     17  16
+0574    TGETS   16  16   5  ; "new"
+0575    TDUP    18 103
+0576    UGET    19   7      ; Size
+0577    TGETS   19  19  47  ; "padding"
+0578    TGETS   19  19 104  ; "default"
+0579    TSETS   19  18  47  ; "padding"
+0580    TGETS   19   0   3  ; "main_frame"
+0581    TSETB   19  18   1
+0582    CALL    16   0   3
+0583    TSETM   16   2      ; 1
+0584    CALL    13   2   3
+0585    TSETB   13   0   1
+0586    KPRI    13   2
+0587    TSETS   13   0 105  ; "dithered"
+0588    UGET    13   3      ; UIManager
+0589    MOV     14  13
+0590    TGETS   13  13 106  ; "setDirty"
+0591    MOV     15   0
+0592    FNEW    16 107      ; imageviewer.lua:417
+0593    CALL    13   1   4
+0594    UCLO     0 => 0595
+0595 => RET0     0   1
+
+-- BYTECODE -- imageviewer.lua:426-428
+0001    KSTR     0   0      ; "full"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "main_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    KPRI     2   2
+0006    RET      0   4
+
+-- BYTECODE -- imageviewer.lua:424-430
+0001    KPRI     1   2
+0002    TSETS    1   0   0  ; "dithered"
+0003    UGET     1   0      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "setDirty"
+0006    MOV      3   0
+0007    FNEW     4   2      ; imageviewer.lua:426
+0008    CALL     1   1   4
+0009    KPRI     1   2
+0010    UCLO     0 => 0011
+0011 => RET1     1   2
+
+-- BYTECODE -- imageviewer.lua:432-449
+0001    TGETS    2   0   0  ; "image"
+0002    ISF          2
+0003    JMP      3 => 0021
+0004    TGETS    2   0   1  ; "image_disposable"
+0005    ISF          2
+0006    JMP      3 => 0021
+0007    TGETS    2   0   0  ; "image"
+0008    TGETS    2   2   2  ; "free"
+0009    ISF          2
+0010    JMP      3 => 0021
+0011    UGET     2   0      ; logger
+0012    TGETS    2   2   3  ; "dbg"
+0013    KSTR     3   4      ; "ImageViewer:free(self.image)"
+0014    CALL     2   1   2
+0015    TGETS    2   0   0  ; "image"
+0016    MOV      3   2
+0017    TGETS    2   2   2  ; "free"
+0018    CALL     2   1   2
+0019    KPRI     2   0
+0020    TSETS    2   0   0  ; "image"
+0021 => TGETS    2   0   5  ; "_images_list"
+0022    TGETV    2   2   1
+0023    TSETS    2   0   0  ; "image"
+0024    GGET     2   6      ; "type"
+0025    TGETS    3   0   0  ; "image"
+0026    CALL     2   2   2
+0027    ISNES    2   7      ; "function"
+0028    JMP      2 => 0032
+0029    TGETS    2   0   0  ; "image"
+0030    CALL     2   2   1
+0031    TSETS    2   0   0  ; "image"
+0032 => TSETS    1   0   8  ; "_images_list_cur"
+0033    TGETS    2   0   9  ; "images_keep_pan_and_zoom"
+0034    IST          2
+0035    JMP      2 => 0042
+0036    KNUM     2   0      ; 0.5
+0037    TSETS    2   0  10  ; "_center_x_ratio"
+0038    KNUM     2   0      ; 0.5
+0039    TSETS    2   0  11  ; "_center_y_ratio"
+0040    TGETS    2   0  13  ; "_images_orig_scale_factor"
+0041    TSETS    2   0  12  ; "scale_factor"
+0042 => MOV      3   0
+0043    TGETS    2   0  14  ; "update"
+0044    CALL     2   1   2
+0045    RET0     0   1
+
+-- BYTECODE -- imageviewer.lua:451-489
+0001    TGETS    3   2   0  ; "pos"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "notIntersectWith"
+0004    TGETS    5   0   2  ; "main_frame"
+0005    TGETS    5   5   3  ; "dimen"
+0006    CALL     3   2   3
+0007    ISF          3
+0008    JMP      4 => 0014
+0009    MOV      4   0
+0010    TGETS    3   0   4  ; "onClose"
+0011    CALL     3   1   2
+0012    KPRI     3   2
+0013    RET1     3   2
+0014 => TGETS    3   0   5  ; "caption_tap_area"
+0015    ISF          3
+0016    JMP      4 => 0033
+0017    TGETS    3   2   0  ; "pos"
+0018    MOV      4   3
+0019    TGETS    3   3   6  ; "intersectWith"
+0020    TGETS    5   0   5  ; "caption_tap_area"
+0021    TGETS    5   5   3  ; "dimen"
+0022    CALL     3   2   3
+0023    ISF          3
+0024    JMP      4 => 0033
+0025    TGETS    3   0   7  ; "caption_visible"
+0026    NOT      3   3
+0027    TSETS    3   0   7  ; "caption_visible"
+0028    MOV      4   0
+0029    TGETS    3   0   8  ; "update"
+0030    CALL     3   1   2
+0031    KPRI     3   2
+0032    RET1     3   2
+0033 => TGETS    3   0   9  ; "_images_list"
+0034    ISF          3
+0035    JMP      4 => 0104
+0036    KNIL     3   4
+0037    TGETS    5   2   0  ; "pos"
+0038    TGETS    5   5  10  ; "x"
+0039    UGET     6   0      ; Screen
+0040    MOV      7   6
+0041    TGETS    6   6  11  ; "getWidth"
+0042    CALL     6   2   2
+0043    DIVVN    6   6   0  ; 3
+0044    ISGE     5   6
+0045    JMP      5 => 0055
+0046    UGET     5   1      ; BD
+0047    TGETS    5   5  12  ; "mirroredUILayout"
+0048    CALL     5   2   1
+0049    NOT      3   5
+0050    UGET     5   1      ; BD
+0051    TGETS    5   5  12  ; "mirroredUILayout"
+0052    CALL     5   2   1
+0053    MOV      4   5
+0054    JMP      5 => 0073
+0055 => TGETS    5   2   0  ; "pos"
+0056    TGETS    5   5  10  ; "x"
+0057    UGET     6   0      ; Screen
+0058    MOV      7   6
+0059    TGETS    6   6  11  ; "getWidth"
+0060    CALL     6   2   2
+0061    MULVN    6   6   1  ; 2
+0062    DIVVN    6   6   0  ; 3
+0063    ISGE     6   5
+0064    JMP      5 => 0073
+0065    UGET     5   1      ; BD
+0066    TGETS    5   5  12  ; "mirroredUILayout"
+0067    CALL     5   2   1
+0068    MOV      3   5
+0069    UGET     5   1      ; BD
+0070    TGETS    5   5  12  ; "mirroredUILayout"
+0071    CALL     5   2   1
+0072    NOT      4   5
+0073 => ISF          3
+0074    JMP      5 => 0085
+0075    TGETS    5   0  13  ; "_images_list_cur"
+0076    KSHORT   6   1
+0077    ISGE     6   5
+0078    JMP      5 => 0110
+0079    MOV      6   0
+0080    TGETS    5   0  14  ; "switchToImageNum"
+0081    TGETS    7   0  13  ; "_images_list_cur"
+0082    SUBVN    7   7   2  ; 1
+0083    CALL     5   1   3
+0084    JMP      5 => 0110
+0085 => ISF          4
+0086    JMP      5 => 0097
+0087    TGETS    5   0  13  ; "_images_list_cur"
+0088    TGETS    6   0  15  ; "_images_list_nb"
+0089    ISGE     5   6
+0090    JMP      5 => 0110
+0091    MOV      6   0
+0092    TGETS    5   0  14  ; "switchToImageNum"
+0093    TGETS    7   0  13  ; "_images_list_cur"
+0094    ADDVN    7   7   2  ; 1
+0095    CALL     5   1   3
+0096    JMP      5 => 0110
+0097 => TGETS    5   0  16  ; "buttons_visible"
+0098    NOT      5   5
+0099    TSETS    5   0  16  ; "buttons_visible"
+0100    MOV      6   0
+0101    TGETS    5   0   8  ; "update"
+0102    CALL     5   1   2
+0103    JMP      3 => 0110
+0104 => TGETS    3   0  16  ; "buttons_visible"
+0105    NOT      3   3
+0106    TSETS    3   0  16  ; "buttons_visible"
+0107    MOV      4   0
+0108    TGETS    3   0   8  ; "update"
+0109    CALL     3   1   2
+0110 => KPRI     3   2
+0111    RET1     3   2
+
+-- BYTECODE -- imageviewer.lua:491-497
+0001    TGETS    3   0   0  ; "_image_wg"
+0002    ISF          3
+0003    JMP      4 => 0012
+0004    TGETS    3   0   0  ; "_image_wg"
+0005    MOV      4   3
+0006    TGETS    3   3   3  ; "panBy"
+0007    MOV      5   1
+0008    MOV      6   2
+0009    CALL     3   3   4
+0010    TSETS    4   0   2  ; "_center_y_ratio"
+0011    TSETS    3   0   1  ; "_center_x_ratio"
+0012 => RET0     0   1
+
+-- BYTECODE -- imageviewer.lua:500-542
+0001    TGETS    3   2   0  ; "direction"
+0002    TGETS    4   2   1  ; "distance"
+0003    GGET     5   2      ; "math"
+0004    TGETS    5   5   3  ; "sqrt"
+0005    MULVV    6   4   4
+0006    DIVVN    6   6   0  ; 2
+0007    CALL     5   2   2
+0008    ISNES    3   4      ; "north"
+0009    JMP      6 => 0047
+0010    TGETS    6   2   5  ; "pos"
+0011    TGETS    6   6   6  ; "x"
+0012    UGET     7   0      ; Screen
+0013    MOV      8   7
+0014    TGETS    7   7   7  ; "getWidth"
+0015    CALL     7   2   2
+0016    MULVN    7   7   1  ; 1
+0017    DIVVN    7   7   2  ; 16
+0018    ISLT     6   7
+0019    JMP      6 => 0030
+0020    TGETS    6   2   5  ; "pos"
+0021    TGETS    6   6   6  ; "x"
+0022    UGET     7   0      ; Screen
+0023    MOV      8   7
+0024    TGETS    7   7   7  ; "getWidth"
+0025    CALL     7   2   2
+0026    MULVN    7   7   3  ; 15
+0027    DIVVN    7   7   2  ; 16
+0028    ISGE     7   6
+0029    JMP      6 => 0041
+0030 => TGETS    6   2   1  ; "distance"
+0031    UGET     7   0      ; Screen
+0032    MOV      8   7
+0033    TGETS    7   7   8  ; "getHeight"
+0034    CALL     7   2   2
+0035    DIVVV    6   6   7
+0036    MOV      8   0
+0037    TGETS    7   0   9  ; "onZoomIn"
+0038    MOV      9   6
+0039    CALL     7   1   3
+0040    JMP      6 => 0140
+0041 => MOV      7   0
+0042    TGETS    6   0  10  ; "panBy"
+0043    KSHORT   8   0
+0044    MOV      9   4
+0045    CALL     6   1   4
+0046    JMP      6 => 0140
+0047 => ISNES    3  11      ; "south"
+0048    JMP      6 => 0093
+0049    TGETS    6   2   5  ; "pos"
+0050    TGETS    6   6   6  ; "x"
+0051    UGET     7   0      ; Screen
+0052    MOV      8   7
+0053    TGETS    7   7   7  ; "getWidth"
+0054    CALL     7   2   2
+0055    MULVN    7   7   1  ; 1
+0056    DIVVN    7   7   2  ; 16
+0057    ISLT     6   7
+0058    JMP      6 => 0069
+0059    TGETS    6   2   5  ; "pos"
+0060    TGETS    6   6   6  ; "x"
+0061    UGET     7   0      ; Screen
+0062    MOV      8   7
+0063    TGETS    7   7   7  ; "getWidth"
+0064    CALL     7   2   2
+0065    MULVN    7   7   3  ; 15
+0066    DIVVN    7   7   2  ; 16
+0067    ISGE     7   6
+0068    JMP      6 => 0080
+0069 => TGETS    6   2   1  ; "distance"
+0070    UGET     7   0      ; Screen
+0071    MOV      8   7
+0072    TGETS    7   7   8  ; "getHeight"
+0073    CALL     7   2   2
+0074    DIVVV    6   6   7
+0075    MOV      8   0
+0076    TGETS    7   0  12  ; "onZoomOut"
+0077    MOV      9   6
+0078    CALL     7   1   3
+0079    JMP      6 => 0140
+0080 => TGETS    6   0  13  ; "scale_factor"
+0081    ISNEN    6   4      ; 0
+0082    JMP      6 => 0087
+0083    MOV      7   0
+0084    TGETS    6   0  14  ; "onClose"
+0085    CALL     6   1   2
+0086    JMP      6 => 0140
+0087 => MOV      7   0
+0088    TGETS    6   0  10  ; "panBy"
+0089    KSHORT   8   0
+0090    UNM      9   4
+0091    CALL     6   1   4
+0092    JMP      6 => 0140
+0093 => ISNES    3  15      ; "east"
+0094    JMP      6 => 0101
+0095    MOV      7   0
+0096    TGETS    6   0  10  ; "panBy"
+0097    UNM      8   4
+0098    KSHORT   9   0
+0099    CALL     6   1   4
+0100    JMP      6 => 0140
+0101 => ISNES    3  16      ; "west"
+0102    JMP      6 => 0109
+0103    MOV      7   0
+0104    TGETS    6   0  10  ; "panBy"
+0105    MOV      8   4
+0106    KSHORT   9   0
+0107    CALL     6   1   4
+0108    JMP      6 => 0140
+0109 => ISNES    3  17      ; "northeast"
+0110    JMP      6 => 0117
+0111    MOV      7   0
+0112    TGETS    6   0  10  ; "panBy"
+0113    UNM      8   5
+0114    MOV      9   5
+0115    CALL     6   1   4
+0116    JMP      6 => 0140
+0117 => ISNES    3  18      ; "northwest"
+0118    JMP      6 => 0125
+0119    MOV      7   0
+0120    TGETS    6   0  10  ; "panBy"
+0121    MOV      8   5
+0122    MOV      9   5
+0123    CALL     6   1   4
+0124    JMP      6 => 0140
+0125 => ISNES    3  19      ; "southeast"
+0126    JMP      6 => 0133
+0127    MOV      7   0
+0128    TGETS    6   0  10  ; "panBy"
+0129    UNM      8   5
+0130    UNM      9   5
+0131    CALL     6   1   4
+0132    JMP      6 => 0140
+0133 => ISNES    3  20      ; "southwest"
+0134    JMP      6 => 0140
+0135    MOV      7   0
+0136    TGETS    6   0  10  ; "panBy"
+0137    MOV      8   5
+0138    UNM      9   5
+0139    CALL     6   1   4
+0140 => KPRI     6   2
+0141    RET1     6   2
+
+-- BYTECODE -- imageviewer.lua:544-550
+0001    KPRI     3   2
+0002    TSETS    3   0   0  ; "_panning"
+0003    TGETS    3   2   2  ; "pos"
+0004    TGETS    3   3   3  ; "x"
+0005    TSETS    3   0   1  ; "_pan_relative_x"
+0006    TGETS    3   2   2  ; "pos"
+0007    TGETS    3   3   5  ; "y"
+0008    TSETS    3   0   4  ; "_pan_relative_y"
+0009    KPRI     3   2
+0010    RET1     3   2
+
+-- BYTECODE -- imageviewer.lua:552-567
+0001    TGETS    3   0   0  ; "_panning"
+0002    ISF          3
+0003    JMP      4 => 0048
+0004    KPRI     3   1
+0005    TSETS    3   0   0  ; "_panning"
+0006    TGETS    3   2   2  ; "pos"
+0007    TGETS    3   3   3  ; "x"
+0008    TGETS    4   0   1  ; "_pan_relative_x"
+0009    SUBVV    3   3   4
+0010    TSETS    3   0   1  ; "_pan_relative_x"
+0011    TGETS    3   2   2  ; "pos"
+0012    TGETS    3   3   5  ; "y"
+0013    TGETS    4   0   4  ; "_pan_relative_y"
+0014    SUBVV    3   3   4
+0015    TSETS    3   0   4  ; "_pan_relative_y"
+0016    GGET     3   6      ; "math"
+0017    TGETS    3   3   7  ; "abs"
+0018    TGETS    4   0   1  ; "_pan_relative_x"
+0019    CALL     3   2   2
+0020    TGETS    4   0   8  ; "pan_threshold"
+0021    ISGE     3   4
+0022    JMP      3 => 0041
+0023    GGET     3   6      ; "math"
+0024    TGETS    3   3   7  ; "abs"
+0025    TGETS    4   0   4  ; "_pan_relative_y"
+0026    CALL     3   2   2
+0027    TGETS    4   0   8  ; "pan_threshold"
+0028    ISGE     3   4
+0029    JMP      3 => 0041
+0030    KPRI     3   2
+0031    TSETS    3   0   9  ; "dithered"
+0032    UGET     3   0      ; UIManager
+0033    MOV      4   3
+0034    TGETS    3   3  10  ; "setDirty"
+0035    KPRI     5   0
+0036    KSTR     6  11      ; "full"
+0037    KPRI     7   0
+0038    KPRI     8   2
+0039    CALL     3   1   6
+0040    JMP      3 => 0048
+0041 => MOV      4   0
+0042    TGETS    3   0  12  ; "panBy"
+0043    TGETS    5   0   1  ; "_pan_relative_x"
+0044    UNM      5   5
+0045    TGETS    6   0   4  ; "_pan_relative_y"
+0046    UNM      6   6
+0047    CALL     3   1   4
+0048 => KPRI     3   2
+0049    RET1     3   2
+
+-- BYTECODE -- imageviewer.lua:569-574
+0001    KPRI     3   2
+0002    TSETS    3   0   0  ; "_panning"
+0003    TGETS    3   2   2  ; "relative"
+0004    TGETS    3   3   3  ; "x"
+0005    TSETS    3   0   1  ; "_pan_relative_x"
+0006    TGETS    3   2   2  ; "relative"
+0007    TGETS    3   3   5  ; "y"
+0008    TSETS    3   0   4  ; "_pan_relative_y"
+0009    KPRI     3   2
+0010    RET1     3   2
+
+-- BYTECODE -- imageviewer.lua:576-582
+0001    TGETS    3   0   0  ; "_panning"
+0002    ISF          3
+0003    JMP      4 => 0013
+0004    KPRI     3   1
+0005    TSETS    3   0   0  ; "_panning"
+0006    MOV      4   0
+0007    TGETS    3   0   1  ; "panBy"
+0008    TGETS    5   0   2  ; "_pan_relative_x"
+0009    UNM      5   5
+0010    TGETS    6   0   3  ; "_pan_relative_y"
+0011    UNM      6   6
+0012    CALL     3   1   4
+0013 => KPRI     3   2
+0014    RET1     3   2
+
+-- BYTECODE -- imageviewer.lua:585-596
+0001    TGETS    2   0   0  ; "scale_factor"
+0002    ISNEN    2   0      ; 0
+0003    JMP      2 => 0009
+0004    TGETS    2   0   1  ; "_image_wg"
+0005    MOV      3   2
+0006    TGETS    2   2   2  ; "getScaleFactor"
+0007    CALL     2   2   2
+0008    TSETS    2   0   0  ; "scale_factor"
+0009 => IST          1
+0010    JMP      2 => 0012
+0011    KNUM     1   1      ; 0.2
+0012 => TGETS    2   0   0  ; "scale_factor"
+0013    ADDVV    2   2   1
+0014    KSHORT   3 100
+0015    ISGE     2   3
+0016    JMP      2 => 0023
+0017    TGETS    2   0   0  ; "scale_factor"
+0018    ADDVV    2   2   1
+0019    TSETS    2   0   0  ; "scale_factor"
+0020    MOV      3   0
+0021    TGETS    2   0   3  ; "update"
+0022    CALL     2   1   2
+0023 => KPRI     2   2
+0024    RET1     2   2
+
+-- BYTECODE -- imageviewer.lua:598-609
+0001    TGETS    2   0   0  ; "scale_factor"
+0002    ISNEN    2   0      ; 0
+0003    JMP      2 => 0009
+0004    TGETS    2   0   1  ; "_image_wg"
+0005    MOV      3   2
+0006    TGETS    2   2   2  ; "getScaleFactor"
+0007    CALL     2   2   2
+0008    TSETS    2   0   0  ; "scale_factor"
+0009 => IST          1
+0010    JMP      2 => 0012
+0011    KNUM     1   1      ; 0.2
+0012 => TGETS    2   0   0  ; "scale_factor"
+0013    SUBVV    2   2   1
+0014    KNUM     3   2      ; 0.01
+0015    ISGE     3   2
+0016    JMP      2 => 0023
+0017    TGETS    2   0   0  ; "scale_factor"
+0018    SUBVV    2   2   1
+0019    TSETS    2   0   0  ; "scale_factor"
+0020    MOV      3   0
+0021    TGETS    2   0   3  ; "update"
+0022    CALL     2   1   2
+0023 => KPRI     2   2
+0024    RET1     2   2
+
+-- BYTECODE -- imageviewer.lua:611-622
+0001    TGETS    3   0   0  ; "_image_wg"
+0002    ISF          3
+0003    JMP      4 => 0026
+0004    TGETS    3   0   0  ; "_image_wg"
+0005    MOV      4   3
+0006    TGETS    3   3   3  ; "getPanByCenterRatio"
+0007    TGETS    5   2   4  ; "pos"
+0008    TGETS    5   5   5  ; "x"
+0009    UGET     6   0      ; Screen
+0010    MOV      7   6
+0011    TGETS    6   6   6  ; "getWidth"
+0012    CALL     6   2   2
+0013    DIVVN    6   6   0  ; 2
+0014    SUBVV    5   5   6
+0015    TGETS    6   2   4  ; "pos"
+0016    TGETS    6   6   7  ; "y"
+0017    UGET     7   0      ; Screen
+0018    MOV      8   7
+0019    TGETS    7   7   8  ; "getHeight"
+0020    CALL     7   2   2
+0021    DIVVN    7   7   0  ; 2
+0022    SUBVV    6   6   7
+0023    CALL     3   3   4
+0024    TSETS    4   0   2  ; "_center_y_ratio"
+0025    TSETS    3   0   1  ; "_center_x_ratio"
+0026 => TGETS    3   2   9  ; "distance"
+0027    UGET     4   0      ; Screen
+0028    MOV      5   4
+0029    TGETS    4   4   6  ; "getWidth"
+0030    CALL     4   2   2
+0031    DIVVV    3   3   4
+0032    MOV      5   0
+0033    TGETS    4   0  10  ; "onZoomIn"
+0034    MOV      6   3
+0035    CALL     4   1   3
+0036    KPRI     4   2
+0037    RET1     4   2
+
+-- BYTECODE -- imageviewer.lua:624-630
+0001    TGETS    3   2   0  ; "distance"
+0002    UGET     4   0      ; Screen
+0003    MOV      5   4
+0004    TGETS    4   4   1  ; "getWidth"
+0005    CALL     4   2   2
+0006    DIVVV    3   3   4
+0007    MOV      5   0
+0008    TGETS    4   0   2  ; "onZoomOut"
+0009    MOV      6   3
+0010    CALL     4   1   3
+0011    KPRI     4   2
+0012    RET1     4   2
+
+-- BYTECODE -- imageviewer.lua:632-635
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- imageviewer.lua:637-640
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "onClose"
+0003    CALL     1   1   2
+0004    KPRI     1   2
+0005    RET1     1   2
+
+-- BYTECODE -- imageviewer.lua:655-657
+0001    KSTR     0   0      ; "flashui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "main_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- imageviewer.lua:642-659
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "_clean_image_wg"
+0003    CALL     1   1   2
+0004    TGETS    1   0   1  ; "image"
+0005    ISF          1
+0006    JMP      2 => 0024
+0007    TGETS    1   0   2  ; "image_disposable"
+0008    ISF          1
+0009    JMP      2 => 0024
+0010    TGETS    1   0   1  ; "image"
+0011    TGETS    1   1   3  ; "free"
+0012    ISF          1
+0013    JMP      2 => 0024
+0014    UGET     1   0      ; logger
+0015    TGETS    1   1   4  ; "dbg"
+0016    KSTR     2   5      ; "ImageViewer:free(self.image)"
+0017    CALL     1   1   2
+0018    TGETS    1   0   1  ; "image"
+0019    MOV      2   1
+0020    TGETS    1   1   3  ; "free"
+0021    CALL     1   1   2
+0022    KPRI     1   0
+0023    TSETS    1   0   1  ; "image"
+0024 => TGETS    1   0   6  ; "_images_list"
+0025    ISF          1
+0026    JMP      2 => 0037
+0027    TGETS    1   0   7  ; "_images_list_disposable"
+0028    ISF          1
+0029    JMP      2 => 0037
+0030    TGETS    1   0   6  ; "_images_list"
+0031    TGETS    1   1   3  ; "free"
+0032    ISF          1
+0033    JMP      2 => 0037
+0034    TGETS    1   0   6  ; "_images_list"
+0035    TGETS    1   1   3  ; "free"
+0036    CALL     1   1   1
+0037 => UGET     1   1      ; UIManager
+0038    MOV      2   1
+0039    TGETS    1   1   8  ; "setDirty"
+0040    KPRI     3   0
+0041    FNEW     4   9      ; imageviewer.lua:655
+0042    CALL     1   1   4
+0043    KPRI     1   2
+0044    UCLO     0 => 0045
+0045 => RET1     1   2
+
+-- BYTECODE -- imageviewer.lua:0-662
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/blitbuffer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/buttontable"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/container/centercontainer"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/closebutton"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "device"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/geometry"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/gesturerange"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/font"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/widget/container/framecontainer"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/widget/imagewidget"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/container/inputcontainer"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/linewidget"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/widget/overlapgroup"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/widget/progresswidget"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/size"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "ui/widget/textboxwidget"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/widget/textwidget"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "ui/widget/verticalgroup"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "ui/widget/container/widgetcontainer"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "ui/uimanager"
+0063    CALL    20   2   2
+0064    GGET    21   0      ; "require"
+0065    KSTR    22  22      ; "logger"
+0066    CALL    21   2   2
+0067    GGET    22   0      ; "require"
+0068    KSTR    23  23      ; "gettext"
+0069    CALL    22   2   2
+0070    TGETS   23   5  24  ; "screen"
+0071    MOV     25  11
+0072    TGETS   24  11  25  ; "new"
+0073    TDUP    26  26
+0074    MOV     27  22
+0075    KSTR    28  27      ; "Viewing image"
+0076    CALL    27   2   2
+0077    TSETS   27  26  28  ; "title_text"
+0078    MOV     28   8
+0079    TGETS   27   8  29  ; "getFace"
+0080    KSTR    29  30      ; "x_smalltfont"
+0081    CALL    27   2   3
+0082    TSETS   27  26  31  ; "title_face"
+0083    TGETS   27  15  32  ; "padding"
+0084    TGETS   27  27  33  ; "default"
+0085    TSETS   27  26  34  ; "title_padding"
+0086    TGETS   27  15  35  ; "margin"
+0087    TGETS   27  27  36  ; "title"
+0088    TSETS   27  26  37  ; "title_margin"
+0089    MOV     28   8
+0090    TGETS   27   8  29  ; "getFace"
+0091    KSTR    29  38      ; "xx_smallinfofont"
+0092    CALL    27   2   3
+0093    TSETS   27  26  39  ; "caption_face"
+0094    TGETS   27  15  32  ; "padding"
+0095    TGETS   27  27  40  ; "large"
+0096    TSETS   27  26  41  ; "caption_padding"
+0097    TGETS   27  15  35  ; "margin"
+0098    TGETS   27  27  42  ; "small"
+0099    TSETS   27  26  43  ; "image_padding"
+0100    TGETS   27  15  32  ; "padding"
+0101    TGETS   27  27  33  ; "default"
+0102    TSETS   27  26  44  ; "button_padding"
+0103    MOV     28  23
+0104    TGETS   27  23  45  ; "scaleBySize"
+0105    KSHORT  29   5
+0106    CALL    27   2   3
+0107    TSETS   27  26  46  ; "pan_threshold"
+0108    CALL    24   2   3
+0109    FNEW    25  48      ; imageviewer.lua:90
+0110    TSETS   25  24  47  ; "init"
+0111    FNEW    25  50      ; imageviewer.lua:142
+0112    TSETS   25  24  49  ; "_clean_image_wg"
+0113    FNEW    25  52      ; imageviewer.lua:152
+0114    TSETS   25  24  51  ; "update"
+0115    FNEW    25  54      ; imageviewer.lua:424
+0116    TSETS   25  24  53  ; "onShow"
+0117    FNEW    25  56      ; imageviewer.lua:432
+0118    TSETS   25  24  55  ; "switchToImageNum"
+0119    FNEW    25  58      ; imageviewer.lua:451
+0120    TSETS   25  24  57  ; "onTap"
+0121    FNEW    25  60      ; imageviewer.lua:491
+0122    TSETS   25  24  59  ; "panBy"
+0123    FNEW    25  62      ; imageviewer.lua:500
+0124    TSETS   25  24  61  ; "onSwipe"
+0125    FNEW    25  64      ; imageviewer.lua:544
+0126    TSETS   25  24  63  ; "onHold"
+0127    FNEW    25  66      ; imageviewer.lua:552
+0128    TSETS   25  24  65  ; "onHoldRelease"
+0129    FNEW    25  68      ; imageviewer.lua:569
+0130    TSETS   25  24  67  ; "onPan"
+0131    FNEW    25  70      ; imageviewer.lua:576
+0132    TSETS   25  24  69  ; "onPanRelease"
+0133    FNEW    25  72      ; imageviewer.lua:585
+0134    TSETS   25  24  71  ; "onZoomIn"
+0135    FNEW    25  74      ; imageviewer.lua:598
+0136    TSETS   25  24  73  ; "onZoomOut"
+0137    FNEW    25  76      ; imageviewer.lua:611
+0138    TSETS   25  24  75  ; "onSpread"
+0139    FNEW    25  78      ; imageviewer.lua:624
+0140    TSETS   25  24  77  ; "onPinch"
+0141    FNEW    25  80      ; imageviewer.lua:632
+0142    TSETS   25  24  79  ; "onClose"
+0143    FNEW    25  82      ; imageviewer.lua:637
+0144    TSETS   25  24  81  ; "onAnyKeyPressed"
+0145    FNEW    25  84      ; imageviewer.lua:642
+0146    TSETS   25  24  83  ; "onCloseWidget"
+0147    UCLO     0 => 0148
+0148 => RET1    24   2
+

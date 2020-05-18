@@ -1,0 +1,973 @@
+-- BYTECODE -- http.lua:34-60
+0001    KNIL     2   5
+0002    IST          1
+0003    JMP      6 => 0005
+0004    TNEW     1   0
+0005 => MOV      7   0
+0006    TGETS    6   0   0  ; "receive"
+0007    CALL     6   3   2
+0008    MOV      5   7
+0009    MOV      2   6
+0010    ISF          5
+0011    JMP      6 => 0015
+0012    KPRI     6   0
+0013    MOV      7   5
+0014    RET      6   3
+0015 => ISEQS    2   1      ; ""
+0016    JMP      6 => 0083
+0017    LOOP     6 => 0083
+0018    UGET     6   0      ; socket
+0019    TGETS    6   6   2  ; "skip"
+0020    KSHORT   7   2
+0021    UGET     8   1      ; string
+0022    TGETS    8   8   3  ; "find"
+0023    MOV      9   2
+0024    KSTR    10   4      ; "^(.-):%s*(.*)"
+0025    CALL     8   0   3
+0026    CALLM    6   3   1
+0027    MOV      4   7
+0028    MOV      3   6
+0029    ISF          3
+0030    JMP      6 => 0033
+0031    IST          4
+0032    JMP      6 => 0036
+0033 => KPRI     6   0
+0034    KSTR     7   5      ; "malformed reponse headers"
+0035    RET      6   3
+0036 => UGET     6   1      ; string
+0037    TGETS    6   6   6  ; "lower"
+0038    MOV      7   3
+0039    CALL     6   2   2
+0040    MOV      3   6
+0041    MOV      7   0
+0042    TGETS    6   0   0  ; "receive"
+0043    CALL     6   3   2
+0044    MOV      5   7
+0045    MOV      2   6
+0046    ISF          5
+0047    JMP      6 => 0051
+0048    KPRI     6   0
+0049    MOV      7   5
+0050    RET      6   3
+0051 => UGET     6   1      ; string
+0052    TGETS    6   6   3  ; "find"
+0053    MOV      7   2
+0054    KSTR     8   7      ; "^%s"
+0055    CALL     6   2   3
+0056    ISF          6
+0057    JMP      7 => 0072
+0058    LOOP     6 => 0072
+0059    MOV      6   4
+0060    MOV      7   2
+0061    CAT      4   6   7
+0062    MOV      7   0
+0063    TGETS    6   0   0  ; "receive"
+0064    CALL     6   2   2
+0065    MOV      2   6
+0066    ISF          5
+0067    JMP      6 => 0051
+0068    KPRI     6   0
+0069    MOV      7   5
+0070    RET      6   3
+0071    JMP      6 => 0051
+0072 => TGETV    6   1   3
+0073    ISF          6
+0074    JMP      7 => 0081
+0075    TGETV    6   1   3
+0076    KSTR     7   8      ; ", "
+0077    MOV      8   4
+0078    CAT      6   6   8
+0079    TSETV    6   1   3
+0080    JMP      6 => 0015
+0081 => TSETV    4   1   3
+0082    JMP      6 => 0015
+0083 => RET1     1   2
+
+-- BYTECODE -- http.lua:67-67
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getfd"
+0004    CALLT    0   2
+
+-- BYTECODE -- http.lua:68-68
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "dirty"
+0004    CALLT    0   2
+
+-- BYTECODE -- http.lua:70-87
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "receive"
+0004    CALL     0   3   2
+0005    ISF          1
+0006    JMP      2 => 0010
+0007    KPRI     2   0
+0008    MOV      3   1
+0009    RET      2   3
+0010 => UGET     2   1      ; base
+0011    TGETS    2   2   1  ; "tonumber"
+0012    UGET     3   2      ; string
+0013    TGETS    3   3   2  ; "gsub"
+0014    MOV      4   0
+0015    KSTR     5   3      ; ";.*"
+0016    KSTR     6   4      ; ""
+0017    CALL     3   2   4
+0018    KSHORT   4  16
+0019    CALL     2   2   3
+0020    IST          2
+0021    JMP      3 => 0025
+0022    KPRI     3   0
+0023    KSTR     4   5      ; "invalid chunk size"
+0024    RET      3   3
+0025 => KSHORT   3   0
+0026    ISGE     3   2
+0027    JMP      3 => 0043
+0028    UGET     3   0      ; sock
+0029    MOV      4   3
+0030    TGETS    3   3   0  ; "receive"
+0031    MOV      5   2
+0032    CALL     3   4   3
+0033    ISF          3
+0034    JMP      6 => 0039
+0035    UGET     6   0      ; sock
+0036    MOV      7   6
+0037    TGETS    6   6   0  ; "receive"
+0038    CALL     6   1   2
+0039 => MOV      6   3
+0040    MOV      7   4
+0041    RET      6   3
+0042    JMP      3 => 0055
+0043 => UGET     3   4      ; receiveheaders
+0044    UGET     4   0      ; sock
+0045    UGET     5   3      ; headers
+0046    CALL     3   3   3
+0047    MOV      1   4
+0048    USETV    3   3      ; headers
+0049    UGET     3   3      ; headers
+0050    IST          3
+0051    JMP      3 => 0055
+0052    KPRI     3   0
+0053    MOV      4   1
+0054    RET      3   3
+0055 => RET0     0   1
+
+-- BYTECODE -- http.lua:65-89
+0001    UGET     2   0      ; base
+0002    TGETS    2   2   0  ; "setmetatable"
+0003    TDUP     3   2
+0004    FNEW     4   1      ; http.lua:67
+0005    TSETS    4   3   3  ; "getfd"
+0006    FNEW     4   4      ; http.lua:68
+0007    TSETS    4   3   5  ; "dirty"
+0008    TDUP     4   7
+0009    FNEW     5   6      ; http.lua:70
+0010    TSETS    5   4   8  ; "__call"
+0011    UCLO     0 => 0012
+0012 => CALLT    2   3
+
+-- BYTECODE -- http.lua:93-93
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getfd"
+0004    CALLT    0   2
+
+-- BYTECODE -- http.lua:94-94
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "dirty"
+0004    CALLT    0   2
+
+-- BYTECODE -- http.lua:96-100
+0001    IST          1
+0002    JMP      3 => 0008
+0003    UGET     3   0      ; sock
+0004    MOV      4   3
+0005    TGETS    3   3   0  ; "send"
+0006    KSTR     5   1      ; "0\r\n\r\n"
+0007    CALLT    3   3
+0008 => UGET     3   1      ; string
+0009    TGETS    3   3   2  ; "format"
+0010    KSTR     4   3      ; "%X\r\n"
+0011    UGET     5   1      ; string
+0012    TGETS    5   5   4  ; "len"
+0013    MOV      6   1
+0014    CALL     5   0   2
+0015    CALLM    3   2   1
+0016    UGET     4   0      ; sock
+0017    MOV      5   4
+0018    TGETS    4   4   0  ; "send"
+0019    MOV      6   3
+0020    MOV      7   1
+0021    KSTR     8   5      ; "\r\n"
+0022    CAT      6   6   8
+0023    CALLT    4   3
+
+-- BYTECODE -- http.lua:91-102
+0001    UGET     1   0      ; base
+0002    TGETS    1   1   0  ; "setmetatable"
+0003    TDUP     2   2
+0004    FNEW     3   1      ; http.lua:93
+0005    TSETS    3   2   3  ; "getfd"
+0006    FNEW     3   4      ; http.lua:94
+0007    TSETS    3   2   5  ; "dirty"
+0008    TDUP     3   7
+0009    FNEW     4   6      ; http.lua:96
+0010    TSETS    4   3   8  ; "__call"
+0011    UCLO     0 => 0012
+0012 => CALLT    1   3
+
+-- BYTECODE -- http.lua:114-114
+0001    UGET     0   0      ; h
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- http.lua:109-120
+0001    UGET     3   0      ; socket
+0002    TGETS    3   3   0  ; "try"
+0003    ISTC     4   2
+0004    JMP      4 => 0007
+0005    UGET     4   0      ; socket
+0006    TGETS    4   4   1  ; "tcp"
+0007 => CALL     4   0   1
+0008    CALLM    3   2   0
+0009    UGET     4   1      ; base
+0010    TGETS    4   4   2  ; "setmetatable"
+0011    TDUP     5   3
+0012    TSETS    3   5   4  ; "c"
+0013    UGET     6   2      ; metat
+0014    CALL     4   2   3
+0015    UGET     5   0      ; socket
+0016    TGETS    5   5   5  ; "newtry"
+0017    FNEW     6   6      ; http.lua:114
+0018    CALL     5   2   2
+0019    TSETS    5   4   0  ; "try"
+0020    TGETS    5   4   0  ; "try"
+0021    MOV      7   3
+0022    TGETS    6   3   7  ; "settimeout"
+0023    UGET     8   3      ; _M
+0024    TGETS    8   8   8  ; "TIMEOUT"
+0025    CALL     6   0   3
+0026    CALLM    5   1   0
+0027    TGETS    5   4   0  ; "try"
+0028    MOV      7   3
+0029    TGETS    6   3   9  ; "connect"
+0030    MOV      8   0
+0031    ISTC     9   1
+0032    JMP      9 => 0035
+0033    UGET     9   3      ; _M
+0034    TGETS    9   9  10  ; "PORT"
+0035 => CALL     6   0   4
+0036    CALLM    5   1   0
+0037    UCLO     0 => 0038
+0038 => RET1     4   2
+
+-- BYTECODE -- http.lua:122-125
+0001    UGET     3   0      ; string
+0002    TGETS    3   3   0  ; "format"
+0003    KSTR     4   1      ; "%s %s HTTP/1.1\r\n"
+0004    ISTC     5   1
+0005    JMP      5 => 0007
+0006    KSTR     5   2      ; "GET"
+0007 => MOV      6   2
+0008    CALL     3   2   4
+0009    TGETS    4   0   3  ; "try"
+0010    TGETS    5   0   4  ; "c"
+0011    MOV      6   5
+0012    TGETS    5   5   5  ; "send"
+0013    MOV      7   3
+0014    CALL     5   0   3
+0015    CALLMT   4   0
+
+-- BYTECODE -- http.lua:127-135
+0001    UGET     2   0      ; headers
+0002    TGETS    2   2   0  ; "canonic"
+0003    KSTR     3   1      ; "\r\n"
+0004    UGET     4   1      ; base
+0005    TGETS    4   4   2  ; "pairs"
+0006    MOV      5   1
+0007    CALL     4   4   2
+0008    JMP      7 => 0018
+0009 => TGETV    9   2   7
+0010    IST          9
+0011    JMP     10 => 0013
+0012    MOV      9   7
+0013 => KSTR    10   3      ; ": "
+0014    MOV     11   8
+0015    KSTR    12   1      ; "\r\n"
+0016    MOV     13   3
+0017    CAT      3   9  13
+0018 => ITERC    7   3   3
+0019    ITERL    7 => 0009
+0020    TGETS    4   0   4  ; "try"
+0021    TGETS    5   0   5  ; "c"
+0022    MOV      6   5
+0023    TGETS    5   5   6  ; "send"
+0024    MOV      7   3
+0025    CALL     5   0   3
+0026    CALLM    4   1   0
+0027    KSHORT   4   1
+0028    RET1     4   2
+
+-- BYTECODE -- http.lua:137-144
+0001    IST          2
+0002    JMP      4 => 0008
+0003    UGET     4   0      ; ltn12
+0004    TGETS    4   4   0  ; "source"
+0005    TGETS    4   4   1  ; "empty"
+0006    CALL     4   2   1
+0007    MOV      2   4
+0008 => IST          3
+0009    JMP      4 => 0013
+0010    UGET     4   0      ; ltn12
+0011    TGETS    4   4   2  ; "pump"
+0012    TGETS    3   4   3  ; "step"
+0013 => KSTR     4   4      ; "http-chunked"
+0014    TGETS    5   1   5  ; "content-length"
+0015    ISF          5
+0016    JMP      6 => 0018
+0017    KSTR     4   6      ; "keep-open"
+0018 => TGETS    5   0   7  ; "try"
+0019    UGET     6   0      ; ltn12
+0020    TGETS    6   6   2  ; "pump"
+0021    TGETS    6   6   8  ; "all"
+0022    MOV      7   2
+0023    UGET     8   1      ; socket
+0024    TGETS    8   8   9  ; "sink"
+0025    MOV      9   4
+0026    TGETS   10   0  10  ; "c"
+0027    CALL     8   2   3
+0028    MOV      9   3
+0029    CALL     6   0   4
+0030    CALLMT   5   0
+
+-- BYTECODE -- http.lua:146-155
+0001    TGETS    1   0   0  ; "try"
+0002    TGETS    2   0   1  ; "c"
+0003    MOV      3   2
+0004    TGETS    2   2   2  ; "receive"
+0005    KSHORT   4   5
+0006    CALL     2   0   3
+0007    CALLM    1   2   0
+0008    ISEQS    1   3      ; "HTTP/"
+0009    JMP      2 => 0013
+0010    KPRI     2   0
+0011    MOV      3   1
+0012    RET      2   3
+0013 => TGETS    2   0   0  ; "try"
+0014    TGETS    3   0   1  ; "c"
+0015    MOV      4   3
+0016    TGETS    3   3   2  ; "receive"
+0017    KSTR     5   4      ; "*l"
+0018    MOV      6   1
+0019    CALL     3   0   4
+0020    CALLM    2   2   0
+0021    MOV      1   2
+0022    UGET     2   0      ; socket
+0023    TGETS    2   2   5  ; "skip"
+0024    KSHORT   3   2
+0025    UGET     4   1      ; string
+0026    TGETS    4   4   6  ; "find"
+0027    MOV      5   1
+0028    KSTR     6   7      ; "HTTP/%d*%.%d* (%d%d%d)"
+0029    CALL     4   0   3
+0030    CALLM    2   2   1
+0031    TGETS    3   0   0  ; "try"
+0032    UGET     4   2      ; base
+0033    TGETS    4   4   8  ; "tonumber"
+0034    MOV      5   2
+0035    CALL     4   2   2
+0036    MOV      5   1
+0037    CALLT    3   3
+
+-- BYTECODE -- http.lua:157-159
+0001    TGETS    1   0   0  ; "try"
+0002    UGET     2   0      ; receiveheaders
+0003    TGETS    3   0   1  ; "c"
+0004    CALL     2   0   2
+0005    CALLMT   1   0
+
+-- BYTECODE -- http.lua:161-171
+0001    IST          2
+0002    JMP      4 => 0008
+0003    UGET     4   0      ; ltn12
+0004    TGETS    4   4   0  ; "sink"
+0005    TGETS    4   4   1  ; "null"
+0006    CALL     4   2   1
+0007    MOV      2   4
+0008 => IST          3
+0009    JMP      4 => 0013
+0010    UGET     4   0      ; ltn12
+0011    TGETS    4   4   2  ; "pump"
+0012    TGETS    3   4   3  ; "step"
+0013 => UGET     4   1      ; base
+0014    TGETS    4   4   4  ; "tonumber"
+0015    TGETS    5   1   5  ; "content-length"
+0016    CALL     4   2   2
+0017    TGETS    5   1   6  ; "transfer-encoding"
+0018    KSTR     6   7      ; "default"
+0019    ISF          5
+0020    JMP      7 => 0025
+0021    ISEQS    5   8      ; "identity"
+0022    JMP      7 => 0025
+0023    KSTR     6   9      ; "http-chunked"
+0024    JMP      7 => 0032
+0025 => UGET     7   1      ; base
+0026    TGETS    7   7   4  ; "tonumber"
+0027    TGETS    8   1   5  ; "content-length"
+0028    CALL     7   2   2
+0029    ISF          7
+0030    JMP      8 => 0032
+0031    KSTR     6  10      ; "by-length"
+0032 => TGETS    7   0  11  ; "try"
+0033    UGET     8   0      ; ltn12
+0034    TGETS    8   8   2  ; "pump"
+0035    TGETS    8   8  12  ; "all"
+0036    UGET     9   2      ; socket
+0037    TGETS    9   9  13  ; "source"
+0038    MOV     10   6
+0039    TGETS   11   0  14  ; "c"
+0040    MOV     12   4
+0041    CALL     9   2   4
+0042    MOV     10   2
+0043    MOV     11   3
+0044    CALL     8   0   4
+0045    CALLMT   7   0
+
+-- BYTECODE -- http.lua:173-177
+0001    UGET     4   0      ; ltn12
+0002    TGETS    4   4   0  ; "source"
+0003    TGETS    4   4   1  ; "rewind"
+0004    UGET     5   1      ; socket
+0005    TGETS    5   5   0  ; "source"
+0006    KSTR     6   2      ; "until-closed"
+0007    TGETS    7   0   3  ; "c"
+0008    CALL     5   0   3
+0009    CALLM    4   2   0
+0010    MOV      5   4
+0011    MOV      6   1
+0012    CALL     5   1   2
+0013    TGETS    5   0   4  ; "try"
+0014    UGET     6   0      ; ltn12
+0015    TGETS    6   6   5  ; "pump"
+0016    TGETS    6   6   6  ; "all"
+0017    MOV      7   4
+0018    MOV      8   2
+0019    MOV      9   3
+0020    CALL     6   0   4
+0021    CALLMT   5   0
+
+-- BYTECODE -- http.lua:179-181
+0001    TGETS    1   0   0  ; "c"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "close"
+0004    CALLT    1   2
+
+-- BYTECODE -- http.lua:186-198
+0001    MOV      1   0
+0002    TGETS    2   0   0  ; "proxy"
+0003    IST          2
+0004    JMP      2 => 0022
+0005    GGET     2   1      ; "PROXY"
+0006    IST          2
+0007    JMP      2 => 0022
+0008    TDUP     2   5
+0009    UGET     3   0      ; socket
+0010    TGETS    3   3   2  ; "try"
+0011    TGETS    4   0   3  ; "path"
+0012    KSTR     5   4      ; "invalid path 'nil'"
+0013    CALL     3   2   3
+0014    TSETS    3   2   3  ; "path"
+0015    TGETS    3   0   6  ; "params"
+0016    TSETS    3   2   6  ; "params"
+0017    TGETS    3   0   7  ; "query"
+0018    TSETS    3   2   7  ; "query"
+0019    TGETS    3   0   8  ; "fragment"
+0020    TSETS    3   2   8  ; "fragment"
+0021    MOV      1   2
+0022 => UGET     2   1      ; url
+0023    TGETS    2   2   9  ; "build"
+0024    MOV      3   1
+0025    CALLT    2   2
+
+-- BYTECODE -- http.lua:200-208
+0001    TGETS    1   0   0  ; "proxy"
+0002    IST          1
+0003    JMP      2 => 0005
+0004    GGET     1   1      ; "PROXY"
+0005 => ISF          1
+0006    JMP      2 => 0019
+0007    UGET     2   0      ; url
+0008    TGETS    2   2   2  ; "parse"
+0009    MOV      3   1
+0010    CALL     2   2   2
+0011    MOV      1   2
+0012    TGETS    2   1   3  ; "host"
+0013    TGETS    3   1   4  ; "port"
+0014    IST          3
+0015    JMP      4 => 0017
+0016    KSHORT   3 3128
+0017 => RET      2   3
+0018    JMP      2 => 0022
+0019 => TGETS    2   0   3  ; "host"
+0020    TGETS    3   0   4  ; "port"
+0021    RET      2   3
+0022 => RET0     0   1
+
+-- BYTECODE -- http.lua:210-228
+0001    TDUP     1   1
+0002    UGET     2   0      ; _M
+0003    TGETS    2   2   0  ; "USERAGENT"
+0004    TSETS    2   1   2  ; "user-agent"
+0005    TGETS    2   0   3  ; "host"
+0006    TSETS    2   1   3  ; "host"
+0007    TGETS    2   0   4  ; "user"
+0008    ISF          2
+0009    JMP      3 => 0023
+0010    TGETS    2   0   5  ; "password"
+0011    ISF          2
+0012    JMP      3 => 0023
+0013    KSTR     2   7      ; "Basic "
+0014    UGET     3   1      ; mime
+0015    TGETS    3   3   8  ; "b64"
+0016    TGETS    4   0   4  ; "user"
+0017    KSTR     5   9      ; ":"
+0018    TGETS    6   0   5  ; "password"
+0019    CAT      4   4   6
+0020    CALL     3   2   2
+0021    CAT      2   2   3
+0022    TSETS    2   1   6  ; "authorization"
+0023 => UGET     2   2      ; base
+0024    TGETS    2   2  10  ; "pairs"
+0025    TGETS    3   0  11  ; "headers"
+0026    IST          3
+0027    JMP      4 => 0029
+0028    MOV      3   1
+0029 => CALL     2   4   2
+0030    JMP      5 => 0036
+0031 => UGET     7   3      ; string
+0032    TGETS    7   7  12  ; "lower"
+0033    MOV      8   5
+0034    CALL     7   2   2
+0035    TSETV    6   1   7
+0036 => ITERC    5   3   3
+0037    ITERL    5 => 0031
+0038    RET1     1   2
+
+-- BYTECODE -- http.lua:238-253
+0001    TGETS    1   0   0  ; "url"
+0002    ISF          1
+0003    JMP      2 => 0011
+0004    UGET     1   0      ; url
+0005    TGETS    1   1   1  ; "parse"
+0006    TGETS    2   0   0  ; "url"
+0007    UGET     3   1      ; default
+0008    CALL     1   2   3
+0009    IST          1
+0010    JMP      2 => 0012
+0011 => TNEW     1   0
+0012 => UGET     2   2      ; base
+0013    TGETS    2   2   2  ; "pairs"
+0014    MOV      3   0
+0015    CALL     2   4   2
+0016    JMP      5 => 0018
+0017 => TSETV    6   1   5
+0018 => ITERC    5   3   3
+0019    ITERL    5 => 0017
+0020    TGETS    2   1   3  ; "port"
+0021    ISNES    2   4      ; ""
+0022    JMP      2 => 0025
+0023    KSHORT   2  80
+0024    TSETS    2   1   3  ; "port"
+0025 => UGET     2   3      ; socket
+0026    TGETS    2   2   5  ; "try"
+0027    TGETS    3   1   6  ; "host"
+0028    ISF          3
+0029    JMP      4 => 0036
+0030    TGETS    3   1   6  ; "host"
+0031    ISNES    3   4      ; ""
+0032    JMP      3 => 0035
+0033    KPRI     3   1
+0034    JMP      4 => 0036
+0035 => KPRI     3   2
+0036 => KSTR     4   7      ; "invalid host '"
+0037    UGET     5   2      ; base
+0038    TGETS    5   5   8  ; "tostring"
+0039    TGETS    6   1   6  ; "host"
+0040    CALL     5   2   2
+0041    KSTR     6   9      ; "'"
+0042    CAT      4   4   6
+0043    CALL     2   1   3
+0044    TGETS    2   0  10  ; "uri"
+0045    IST          2
+0046    JMP      3 => 0050
+0047    UGET     2   4      ; adjusturi
+0048    MOV      3   1
+0049    CALL     2   2   2
+0050 => TSETS    2   1  10  ; "uri"
+0051    UGET     2   5      ; adjustproxy
+0052    MOV      3   1
+0053    CALL     2   3   2
+0054    TSETS    3   1   3  ; "port"
+0055    TSETS    2   1   6  ; "host"
+0056    UGET     2   6      ; adjustheaders
+0057    MOV      3   1
+0058    CALL     2   2   2
+0059    TSETS    2   1  11  ; "headers"
+0060    RET1     1   2
+
+-- BYTECODE -- http.lua:255-262
+0001    TGETS    3   2   0  ; "location"
+0002    ISF          3
+0003    JMP      4 => 0042
+0004    UGET     3   0      ; string
+0005    TGETS    3   3   1  ; "gsub"
+0006    TGETS    4   2   0  ; "location"
+0007    KSTR     5   2      ; "%s"
+0008    KSTR     6   3      ; ""
+0009    CALL     3   2   4
+0010    ISEQS    3   3      ; ""
+0011    JMP      3 => 0039
+0012    TGETS    3   0   4  ; "redirect"
+0013    ISEQP    3   1
+0014    JMP      3 => 0039
+0015    ISEQN    1   0      ; 301
+0016    JMP      3 => 0023
+0017    ISEQN    1   1      ; 302
+0018    JMP      3 => 0023
+0019    ISEQN    1   2      ; 303
+0020    JMP      3 => 0023
+0021    ISNEN    1   3      ; 307
+0022    JMP      3 => 0039
+0023 => TGETS    3   0   5  ; "method"
+0024    ISF          3
+0025    JMP      3 => 0032
+0026    TGETS    3   0   5  ; "method"
+0027    ISEQS    3   6      ; "GET"
+0028    JMP      3 => 0032
+0029    TGETS    3   0   5  ; "method"
+0030    ISNES    3   7      ; "HEAD"
+0031    JMP      3 => 0039
+0032 => TGETS    3   0   8  ; "nredirects"
+0033    ISF          3
+0034    JMP      3 => 0041
+0035    TGETS    3   0   8  ; "nredirects"
+0036    KSHORT   4   5
+0037    ISLT     3   4
+0038    JMP      3 => 0041
+0039 => KPRI     3   1
+0040    JMP      4 => 0042
+0041 => KPRI     3   2
+0042 => RET1     3   2
+
+-- BYTECODE -- http.lua:264-269
+0001    TGETS    2   0   0  ; "method"
+0002    ISNES    2   1      ; "HEAD"
+0003    JMP      2 => 0006
+0004    KPRI     2   0
+0005    RET1     2   2
+0006 => ISEQN    1   0      ; 204
+0007    JMP      2 => 0010
+0008    ISNEN    1   1      ; 304
+0009    JMP      2 => 0012
+0010 => KPRI     2   0
+0011    RET1     2   2
+0012 => KSHORT   2 100
+0013    ISGT     2   1
+0014    JMP      2 => 0020
+0015    KSHORT   2 200
+0016    ISGE     1   2
+0017    JMP      2 => 0020
+0018    KPRI     2   0
+0019    RET1     2   2
+0020 => KSHORT   2   1
+0021    RET1     2   2
+
+-- BYTECODE -- http.lua:274-290
+0001    UGET     2   0      ; trequest
+0002    TDUP     3   2
+0003    UGET     4   1      ; url
+0004    TGETS    4   4   0  ; "absolute"
+0005    TGETS    5   0   1  ; "url"
+0006    MOV      6   1
+0007    CALL     4   2   3
+0008    TSETS    4   3   1  ; "url"
+0009    TGETS    4   0   3  ; "source"
+0010    TSETS    4   3   3  ; "source"
+0011    TGETS    4   0   4  ; "sink"
+0012    TSETS    4   3   4  ; "sink"
+0013    TGETS    4   0   5  ; "headers"
+0014    TSETS    4   3   5  ; "headers"
+0015    TGETS    4   0   6  ; "proxy"
+0016    TSETS    4   3   6  ; "proxy"
+0017    TGETS    4   0   7  ; "nredirects"
+0018    IST          4
+0019    JMP      5 => 0021
+0020    KSHORT   4   0
+0021 => ADDVN    4   4   0  ; 1
+0022    TSETS    4   3   7  ; "nredirects"
+0023    TGETS    4   0   8  ; "create"
+0024    TSETS    4   3   8  ; "create"
+0025    CALL     2   5   2
+0026    IST          4
+0027    JMP      6 => 0029
+0028    TNEW     4   0
+0029 => TGETS    6   4   9  ; "location"
+0030    IST          6
+0031    JMP      7 => 0033
+0032    MOV      6   1
+0033 => TSETS    6   4   9  ; "location"
+0034    MOV      6   2
+0035    MOV      7   3
+0036    MOV      8   4
+0037    MOV      9   5
+0038    RET      6   5
+
+-- BYTECODE -- http.lua:292-329
+0001    UGET     1   0      ; adjustrequest
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    UGET     2   1      ; _M
+0005    TGETS    2   2   0  ; "open"
+0006    TGETS    3   1   1  ; "host"
+0007    TGETS    4   1   2  ; "port"
+0008    TGETS    5   1   3  ; "create"
+0009    CALL     2   2   4
+0010    MOV      4   2
+0011    TGETS    3   2   4  ; "sendrequestline"
+0012    TGETS    5   1   5  ; "method"
+0013    TGETS    6   1   6  ; "uri"
+0014    CALL     3   1   4
+0015    MOV      4   2
+0016    TGETS    3   2   7  ; "sendheaders"
+0017    TGETS    5   1   8  ; "headers"
+0018    CALL     3   1   3
+0019    TGETS    3   1   9  ; "source"
+0020    ISF          3
+0021    JMP      4 => 0028
+0022    MOV      4   2
+0023    TGETS    3   2  10  ; "sendbody"
+0024    TGETS    5   1   8  ; "headers"
+0025    TGETS    6   1   9  ; "source"
+0026    TGETS    7   1  11  ; "step"
+0027    CALL     3   1   5
+0028 => MOV      4   2
+0029    TGETS    3   2  12  ; "receivestatusline"
+0030    CALL     3   3   2
+0031    IST          3
+0032    JMP      5 => 0042
+0033    MOV      6   2
+0034    TGETS    5   2  13  ; "receive09body"
+0035    MOV      7   4
+0036    TGETS    8   1  14  ; "sink"
+0037    TGETS    9   1  11  ; "step"
+0038    CALL     5   1   5
+0039    KSHORT   5   1
+0040    KSHORT   6 200
+0041    RET      5   3
+0042 => KPRI     5   0
+0043 => ISNEN    3   0      ; 100
+0044    JMP      6 => 0056
+0045    LOOP     6 => 0056
+0046    MOV      7   2
+0047    TGETS    6   2  15  ; "receiveheaders"
+0048    CALL     6   2   2
+0049    MOV      5   6
+0050    MOV      7   2
+0051    TGETS    6   2  12  ; "receivestatusline"
+0052    CALL     6   3   2
+0053    MOV      4   7
+0054    MOV      3   6
+0055    JMP      6 => 0043
+0056 => MOV      7   2
+0057    TGETS    6   2  15  ; "receiveheaders"
+0058    CALL     6   2   2
+0059    MOV      5   6
+0060    UGET     6   2      ; shouldredirect
+0061    MOV      7   1
+0062    MOV      8   3
+0063    MOV      9   5
+0064    CALL     6   2   4
+0065    ISF          6
+0066    JMP      7 => 0077
+0067    TGETS    6   1   9  ; "source"
+0068    IST          6
+0069    JMP      6 => 0077
+0070    MOV      7   2
+0071    TGETS    6   2  16  ; "close"
+0072    CALL     6   1   2
+0073    UGET     6   3      ; tredirect
+0074    MOV      7   0
+0075    TGETS    8   5  17  ; "location"
+0076    CALLT    6   3
+0077 => UGET     6   4      ; shouldreceivebody
+0078    MOV      7   1
+0079    MOV      8   3
+0080    CALL     6   2   3
+0081    ISF          6
+0082    JMP      7 => 0089
+0083    MOV      7   2
+0084    TGETS    6   2  18  ; "receivebody"
+0085    MOV      8   5
+0086    TGETS    9   1  14  ; "sink"
+0087    TGETS   10   1  11  ; "step"
+0088    CALL     6   1   5
+0089 => MOV      7   2
+0090    TGETS    6   2  16  ; "close"
+0091    CALL     6   1   2
+0092    KSHORT   6   1
+0093    MOV      7   3
+0094    MOV      8   5
+0095    MOV      9   4
+0096    RET      6   5
+
+-- BYTECODE -- http.lua:331-347
+0001    TNEW     2   0
+0002    TDUP     3   0
+0003    TSETS    0   3   1  ; "url"
+0004    UGET     4   0      ; ltn12
+0005    TGETS    4   4   2  ; "sink"
+0006    TGETS    4   4   3  ; "table"
+0007    MOV      5   2
+0008    CALL     4   2   2
+0009    TSETS    4   3   2  ; "sink"
+0010    ISF          1
+0011    JMP      4 => 0027
+0012    UGET     4   0      ; ltn12
+0013    TGETS    4   4   4  ; "source"
+0014    TGETS    4   4   5  ; "string"
+0015    MOV      5   1
+0016    CALL     4   2   2
+0017    TSETS    4   3   4  ; "source"
+0018    TDUP     4   8
+0019    UGET     5   1      ; string
+0020    TGETS    5   5   7  ; "len"
+0021    MOV      6   1
+0022    CALL     5   2   2
+0023    TSETS    5   4   9  ; "content-length"
+0024    TSETS    4   3   6  ; "headers"
+0025    KSTR     4  11      ; "POST"
+0026    TSETS    4   3  10  ; "method"
+0027 => UGET     4   2      ; socket
+0028    TGETS    4   4  12  ; "skip"
+0029    KSHORT   5   1
+0030    UGET     6   3      ; trequest
+0031    MOV      7   3
+0032    CALL     6   0   2
+0033    CALLM    4   4   1
+0034    UGET     7   4      ; table
+0035    TGETS    7   7  13  ; "concat"
+0036    MOV      8   2
+0037    CALL     7   2   2
+0038    MOV      8   4
+0039    MOV      9   5
+0040    MOV     10   6
+0041    RET      7   5
+
+-- BYTECODE -- http.lua:349-352
+0001    UGET     2   0      ; base
+0002    TGETS    2   2   0  ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISNES    2   1      ; "string"
+0006    JMP      2 => 0012
+0007    UGET     2   1      ; srequest
+0008    MOV      3   0
+0009    MOV      4   1
+0010    CALLT    2   3
+0011    JMP      2 => 0015
+0012 => UGET     2   2      ; trequest
+0013    MOV      3   0
+0014    CALLT    2   2
+0015 => RET0     0   1
+
+-- BYTECODE -- http.lua:0-354
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "socket"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "socket.url"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ltn12"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "mime"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "string"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "socket.headers"
+0018    CALL     5   2   2
+0019    GGET     6   7      ; "_G"
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   8      ; "table"
+0022    CALL     7   2   2
+0023    TNEW     8   0
+0024    TSETS    8   0   9  ; "http"
+0025    TGETS    8   0   9  ; "http"
+0026    KSHORT   9  60
+0027    GSET     9  10      ; "TIMEOUT"
+0028    KSHORT   9  80
+0029    TSETS    9   8  11  ; "PORT"
+0030    TGETS    9   0  13  ; "_VERSION"
+0031    TSETS    9   8  12  ; "USERAGENT"
+0032    FNEW     9  14      ; http.lua:34
+0033    TGETS   10   0  15  ; "sourcet"
+0034    FNEW    11  17      ; http.lua:65
+0035    TSETS   11  10  16  ; "http-chunked"
+0036    TGETS   10   0  18  ; "sinkt"
+0037    FNEW    11  19      ; http.lua:91
+0038    TSETS   11  10  16  ; "http-chunked"
+0039    TDUP    10  20
+0040    TNEW    11   0
+0041    TSETS   11  10  21  ; "__index"
+0042    FNEW    11  23      ; http.lua:109
+0043    TSETS   11   8  22  ; "open"
+0044    TGETS   11  10  21  ; "__index"
+0045    FNEW    12  25      ; http.lua:122
+0046    TSETS   12  11  24  ; "sendrequestline"
+0047    TGETS   11  10  21  ; "__index"
+0048    FNEW    12  27      ; http.lua:127
+0049    TSETS   12  11  26  ; "sendheaders"
+0050    TGETS   11  10  21  ; "__index"
+0051    FNEW    12  29      ; http.lua:137
+0052    TSETS   12  11  28  ; "sendbody"
+0053    TGETS   11  10  21  ; "__index"
+0054    FNEW    12  31      ; http.lua:146
+0055    TSETS   12  11  30  ; "receivestatusline"
+0056    TGETS   11  10  21  ; "__index"
+0057    FNEW    12  33      ; http.lua:157
+0058    TSETS   12  11  32  ; "receiveheaders"
+0059    TGETS   11  10  21  ; "__index"
+0060    FNEW    12  35      ; http.lua:161
+0061    TSETS   12  11  34  ; "receivebody"
+0062    TGETS   11  10  21  ; "__index"
+0063    FNEW    12  37      ; http.lua:173
+0064    TSETS   12  11  36  ; "receive09body"
+0065    TGETS   11  10  21  ; "__index"
+0066    FNEW    12  39      ; http.lua:179
+0067    TSETS   12  11  38  ; "close"
+0068    FNEW    11  40      ; http.lua:186
+0069    FNEW    12  41      ; http.lua:200
+0070    FNEW    13  42      ; http.lua:210
+0071    TDUP    14  43
+0072    TGETS   15   8  11  ; "PORT"
+0073    TSETS   15  14  44  ; "port"
+0074    FNEW    15  45      ; http.lua:238
+0075    FNEW    16  46      ; http.lua:255
+0076    FNEW    17  47      ; http.lua:264
+0077    KNIL    18  19
+0078    FNEW    19  48      ; http.lua:274
+0079    FNEW    18  49      ; http.lua:292
+0080    FNEW    20  50      ; http.lua:331
+0081    TGETS   21   0  52  ; "protect"
+0082    FNEW    22  53      ; http.lua:349
+0083    CALL    21   2   2
+0084    TSETS   21   8  51  ; "request"
+0085    UCLO     0 => 0086
+0086 => RET1     8   2
+

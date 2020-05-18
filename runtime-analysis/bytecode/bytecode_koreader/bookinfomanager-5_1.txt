@@ -1,0 +1,1962 @@
+
+main <./plugins/coverbrowser.koplugin/bookinfomanager.lua:0,0> (217 instructions, 868 bytes at 0x7fd9d7c06900)
+0+ params, 41 slots, 0 upvalues, 28 locals, 79 constants, 22 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "ui/bidi"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "ffi/blitbuffer"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "datastorage"
+	9	[3]	CALL     	2 2 2
+	10	[4]	GETGLOBAL	3 -1	; require
+	11	[4]	LOADK    	4 -5	; "device"
+	12	[4]	CALL     	3 2 2
+	13	[5]	GETGLOBAL	4 -1	; require
+	14	[5]	LOADK    	5 -6	; "document/documentregistry"
+	15	[5]	CALL     	4 2 2
+	16	[6]	GETGLOBAL	5 -1	; require
+	17	[6]	LOADK    	6 -7	; "ui/renderimage"
+	18	[6]	CALL     	5 2 2
+	19	[7]	GETGLOBAL	6 -1	; require
+	20	[7]	LOADK    	7 -8	; "lua-ljsqlite3/init"
+	21	[7]	CALL     	6 2 2
+	22	[8]	GETGLOBAL	7 -1	; require
+	23	[8]	LOADK    	8 -9	; "ui/uimanager"
+	24	[8]	CALL     	7 2 2
+	25	[9]	GETGLOBAL	8 -1	; require
+	26	[9]	LOADK    	9 -10	; "libs/libkoreader-lfs"
+	27	[9]	CALL     	8 2 2
+	28	[10]	GETGLOBAL	9 -1	; require
+	29	[10]	LOADK    	10 -11	; "logger"
+	30	[10]	CALL     	9 2 2
+	31	[11]	GETGLOBAL	10 -1	; require
+	32	[11]	LOADK    	11 -12	; "ffi/util"
+	33	[11]	CALL     	10 2 2
+	34	[12]	GETGLOBAL	11 -1	; require
+	35	[12]	LOADK    	12 -13	; "util"
+	36	[12]	CALL     	11 2 2
+	37	[12]	GETTABLE 	11 11 -14	; "splitFilePathName"
+	38	[13]	GETGLOBAL	12 -1	; require
+	39	[13]	LOADK    	13 -15	; "gettext"
+	40	[13]	CALL     	12 2 2
+	41	[14]	GETGLOBAL	13 -1	; require
+	42	[14]	LOADK    	14 -12	; "ffi/util"
+	43	[14]	CALL     	13 2 2
+	44	[14]	GETTABLE 	13 13 -16	; "template"
+	45	[17]	GETGLOBAL	14 -1	; require
+	46	[17]	LOADK    	15 -17	; "xutil"
+	47	[17]	CALL     	14 2 2
+	48	[20]	LOADK    	15 -18	; "2-20170701"
+	49	[72]	LOADK    	16 -19	; "    -- For caching book cover and metadata\n    CREATE TABLE IF NOT EXISTS bookinfo (\n        -- Internal book cache id\n        -- (not to be used to identify a book, it may change for a same book)\n        bcid                INTEGER PRIMARY KEY AUTOINCREMENT,\n\n        -- File location and filename\n        directory           TEXT NOT NULL, -- split by dir/name so we can get all files in a directory\n        filename            TEXT NOT NULL, -- and can implement pruning of no more existing files\n\n        -- Extraction status and result\n        in_progress         INTEGER,  -- 0 (done), >0 : nb of tries (to avoid re-doing extractions that crashed us)\n        unsupported         TEXT,     -- NULL if supported / reason for being unsupported\n        cover_fetched       TEXT,     -- NULL / 'Y' = action of fetching cover was made (whether we got one or not)\n        has_meta            TEXT,     -- NULL / 'Y' = has metadata (title, authors...)\n        has_cover           TEXT,     -- NULL / 'Y' = has cover image (cover_*)\n        cover_sizetag       TEXT,     -- 'M' (Medium, MosaicMenuItem) / 's' (small, ListMenuItem)\n\n        -- Other properties that can be set and returned as is (not used here)\n        -- If user doesn't want to see these (wrong metadata, offending cover...)\n        ignore_meta         TEXT,     -- NULL / 'Y' = ignore these metadata\n        ignore_cover        TEXT,     -- NULL / 'Y' = ignore this cover\n\n        -- Book info\n        pages               INTEGER,\n\n        -- Metadata (only these are returned by the engines)\n        title               TEXT,\n        authors             TEXT,\n        series              TEXT,\n        language            TEXT,\n        keywords            TEXT,\n        description         TEXT,\n\n        -- Cover image\n        cover_w             INTEGER,  -- blitbuffer width\n        cover_h             INTEGER,  -- blitbuffer height\n        cover_btype         INTEGER,  -- blitbuffer type (internal)\n        cover_bpitch        INTEGER,  -- blitbuffer pitch (internal)\n        cover_datalen       INTEGER,  -- blitbuffer uncompressed data length\n        cover_dataz         BLOB      -- blitbuffer data compressed with zlib\n    );\n    CREATE UNIQUE INDEX IF NOT EXISTS dir_filename ON bookinfo(directory, filename);\n\n    -- For keeping track of DB schema version\n    CREATE TABLE IF NOT EXISTS config (\n        key TEXT PRIMARY KEY,\n        value TEXT\n    );\n    -- this will not override previous version value, so we'll get the old one if old schema\n    INSERT OR IGNORE INTO config VALUES ('version', '"
+	50	[72]	MOVE     	17 15
+	51	[74]	LOADK    	18 -20	; "');\n\n"
+	52	[74]	CONCAT   	16 16 18
+	53	[76]	NEWTABLE 	17 20 0
+	54	[77]	LOADK    	18 -21	; "directory"
+	55	[78]	LOADK    	19 -22	; "filename"
+	56	[79]	LOADK    	20 -23	; "in_progress"
+	57	[80]	LOADK    	21 -24	; "unsupported"
+	58	[81]	LOADK    	22 -25	; "cover_fetched"
+	59	[82]	LOADK    	23 -26	; "has_meta"
+	60	[83]	LOADK    	24 -27	; "has_cover"
+	61	[84]	LOADK    	25 -28	; "cover_sizetag"
+	62	[85]	LOADK    	26 -29	; "ignore_meta"
+	63	[86]	LOADK    	27 -30	; "ignore_cover"
+	64	[87]	LOADK    	28 -31	; "pages"
+	65	[88]	LOADK    	29 -32	; "title"
+	66	[89]	LOADK    	30 -33	; "authors"
+	67	[90]	LOADK    	31 -34	; "series"
+	68	[91]	LOADK    	32 -35	; "language"
+	69	[92]	LOADK    	33 -36	; "keywords"
+	70	[93]	LOADK    	34 -37	; "description"
+	71	[94]	LOADK    	35 -38	; "cover_w"
+	72	[95]	LOADK    	36 -39	; "cover_h"
+	73	[96]	LOADK    	37 -40	; "cover_btype"
+	74	[97]	LOADK    	38 -41	; "cover_bpitch"
+	75	[98]	LOADK    	39 -42	; "cover_datalen"
+	76	[100]	LOADK    	40 -43	; "cover_dataz"
+	77	[100]	SETLIST  	17 23 1	; 1
+	78	[102]	NEWTABLE 	18 0 0
+	79	[103]	LOADK    	19 -44	; 1
+	80	[103]	LEN      	20 17
+	81	[103]	LOADK    	21 -44	; 1
+	82	[103]	FORPREP  	19 5	; to 88
+	83	[104]	GETGLOBAL	23 -45	; table
+	84	[104]	GETTABLE 	23 23 -46	; "insert"
+	85	[104]	MOVE     	24 18
+	86	[104]	LOADK    	25 -47	; "?"
+	87	[104]	CALL     	23 3 1
+	88	[103]	FORLOOP  	19 -6	; to 83
+	89	[108]	LOADK    	19 -48	; "INSERT OR REPLACE INTO bookinfo "
+	90	[109]	LOADK    	20 -49	; "("
+	91	[109]	GETGLOBAL	21 -45	; table
+	92	[109]	GETTABLE 	21 21 -50	; "concat"
+	93	[109]	MOVE     	22 17
+	94	[109]	LOADK    	23 -51	; ","
+	95	[109]	CALL     	21 3 2
+	96	[109]	LOADK    	22 -52	; ") "
+	97	[110]	LOADK    	23 -53	; "VALUES ("
+	98	[110]	GETGLOBAL	24 -45	; table
+	99	[110]	GETTABLE 	24 24 -50	; "concat"
+	100	[110]	MOVE     	25 18
+	101	[110]	LOADK    	26 -51	; ","
+	102	[110]	CALL     	24 3 2
+	103	[110]	LOADK    	25 -54	; ")"
+	104	[110]	CONCAT   	19 19 25
+	105	[111]	LOADK    	20 -55	; "SELECT "
+	106	[111]	GETGLOBAL	21 -45	; table
+	107	[111]	GETTABLE 	21 21 -50	; "concat"
+	108	[111]	MOVE     	22 17
+	109	[111]	LOADK    	23 -51	; ","
+	110	[111]	CALL     	21 3 2
+	111	[111]	LOADK    	22 -56	; " FROM bookinfo "
+	112	[112]	LOADK    	23 -57	; "WHERE directory=? and filename=? and in_progress=0"
+	113	[112]	CONCAT   	20 20 23
+	114	[113]	LOADK    	21 -58	; "SELECT in_progress, filename, unsupported FROM bookinfo WHERE directory=? and filename=?"
+	115	[116]	NEWTABLE 	22 0 0
+	116	[133]	CLOSURE  	23 0	; 0x7fd9d7c07b10
+	117	[133]	MOVE     	0 2
+	118	[118]	SETTABLE 	22 -59 23	; "init" -
+	119	[139]	CLOSURE  	23 1	; 0x7fd9d7c08140
+	120	[139]	MOVE     	0 8
+	121	[136]	SETTABLE 	22 -60 23	; "getDbSize" -
+	122	[165]	CLOSURE  	23 2	; 0x7fd9d7c085e0
+	123	[165]	MOVE     	0 6
+	124	[165]	MOVE     	0 3
+	125	[165]	MOVE     	0 16
+	126	[165]	MOVE     	0 15
+	127	[165]	MOVE     	0 9
+	128	[141]	SETTABLE 	22 -61 23	; "createDB" -
+	129	[181]	CLOSURE  	23 3	; 0x7fd9d7c08e80
+	130	[181]	MOVE     	0 6
+	131	[181]	MOVE     	0 14
+	132	[181]	MOVE     	0 19
+	133	[181]	MOVE     	0 20
+	134	[181]	MOVE     	0 21
+	135	[167]	SETTABLE 	22 -62 23	; "openDbConnection" -
+	136	[188]	CLOSURE  	23 4	; 0x7fd9d7c08b60
+	137	[183]	SETTABLE 	22 -63 23	; "closeDbConnection" -
+	138	[194]	CLOSURE  	23 5	; 0x7fd9d7c07580
+	139	[190]	SETTABLE 	22 -64 23	; "deleteDb" -
+	140	[215]	CLOSURE  	23 6	; 0x7fd9d7c07780
+	141	[215]	MOVE     	0 13
+	142	[215]	MOVE     	0 12
+	143	[196]	SETTABLE 	22 -65 23	; "compactDb" -
+	144	[232]	CLOSURE  	23 7	; 0x7fd9d7c09d80
+	145	[232]	MOVE     	0 8
+	146	[218]	SETTABLE 	22 -66 23	; "loadSettings" -
+	147	[239]	CLOSURE  	23 8	; 0x7fd9d7c0a670
+	148	[234]	SETTABLE 	22 -67 23	; "getSetting" -
+	149	[261]	CLOSURE  	23 9	; 0x7fd9d7c08820
+	150	[261]	MOVE     	0 8
+	151	[241]	SETTABLE 	22 -68 23	; "saveSetting" -
+	152	[326]	CLOSURE  	23 10	; 0x7fd9d7c09be0
+	153	[326]	MOVE     	0 11
+	154	[326]	MOVE     	0 8
+	155	[326]	MOVE     	0 4
+	156	[326]	MOVE     	0 17
+	157	[326]	MOVE     	0 14
+	158	[326]	MOVE     	0 1
+	159	[264]	SETTABLE 	22 -69 23	; "getBookInfo" -
+	160	[479]	CLOSURE  	23 11	; 0x7fd9d7c0b020
+	161	[479]	MOVE     	0 11
+	162	[479]	MOVE     	0 9
+	163	[479]	MOVE     	0 12
+	164	[479]	MOVE     	0 17
+	165	[479]	MOVE     	0 4
+	166	[479]	MOVE     	0 5
+	167	[479]	MOVE     	0 1
+	168	[479]	MOVE     	0 14
+	169	[479]	MOVE     	0 6
+	170	[328]	SETTABLE 	22 -70 23	; "extractBookInfo" -
+	171	[499]	CLOSURE  	23 12	; 0x7fd9d7c0c030
+	172	[499]	MOVE     	0 11
+	173	[481]	SETTABLE 	22 -71 23	; "setBookInfoProperties" -
+	174	[509]	CLOSURE  	23 13	; 0x7fd9d7c0c290
+	175	[509]	MOVE     	0 11
+	176	[501]	SETTABLE 	22 -72 23	; "deleteBookInfo" -
+	177	[533]	CLOSURE  	23 14	; 0x7fd9d7c0c8a0
+	178	[533]	MOVE     	0 12
+	179	[533]	MOVE     	0 8
+	180	[533]	MOVE     	0 13
+	181	[511]	SETTABLE 	22 -73 23	; "removeNonExistantEntries" -
+	182	[577]	CLOSURE  	23 15	; 0x7fd9d7c0ccd0
+	183	[577]	MOVE     	0 10
+	184	[577]	MOVE     	0 7
+	185	[577]	MOVE     	0 9
+	186	[536]	SETTABLE 	22 -74 23	; "collectSubprocesses" -
+	187	[584]	CLOSURE  	23 16	; 0x7fd9d7c0cd50
+	188	[584]	MOVE     	0 9
+	189	[584]	MOVE     	0 10
+	190	[579]	SETTABLE 	22 -75 23	; "terminateBackgroundJobs" -
+	191	[588]	CLOSURE  	23 17	; 0x7fd9d7c087a0
+	192	[586]	SETTABLE 	22 -76 23	; "isExtractingInBackground" -
+	193	[637]	CLOSURE  	23 18	; 0x7fd9d7c0d960
+	194	[637]	MOVE     	0 22
+	195	[637]	MOVE     	0 9
+	196	[637]	MOVE     	0 10
+	197	[637]	MOVE     	0 7
+	198	[590]	SETTABLE 	22 -77 23	; "extractInBackground" -
+	199	[651]	CLOSURE  	23 19	; 0x7fd9d7c0e410
+	200	[651]	MOVE     	0 9
+	201	[651]	MOVE     	0 10
+	202	[639]	SETTABLE 	22 -78 23	; "cleanUp" -
+	203	[677]	CLOSURE  	23 20	; 0x7fd9d7c0ee70
+	204	[677]	MOVE     	0 8
+	205	[677]	MOVE     	0 4
+	206	[894]	CLOSURE  	24 21	; 0x7fd9d7c0f280
+	207	[894]	MOVE     	0 12
+	208	[894]	MOVE     	0 7
+	209	[894]	MOVE     	0 10
+	210	[894]	MOVE     	0 23
+	211	[894]	MOVE     	0 13
+	212	[894]	MOVE     	0 0
+	213	[680]	SETTABLE 	22 -79 24	; "extractBooksInDirectory" -
+	214	[896]	SELF     	24 22 -59	; "init"
+	215	[896]	CALL     	24 2 1
+	216	[898]	RETURN   	22 2
+	217	[898]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:118,133> (27 instructions, 108 bytes at 0x7fd9d7c07b10)
+1 param, 4 slots, 1 upvalue, 1 local, 23 constants, 0 functions
+	1	[119]	GETUPVAL 	1 0	; DataStorage
+	2	[119]	SELF     	1 1 -2	; "getSettingsDir"
+	3	[119]	CALL     	1 2 2
+	4	[119]	LOADK    	2 -3	; "/bookinfo_cache.sqlite3"
+	5	[119]	CONCAT   	1 1 2
+	6	[119]	SETTABLE 	0 -1 1	; "db_location" -
+	7	[120]	SETTABLE 	0 -4 -5	; "db_created" false
+	8	[121]	SETTABLE 	0 -6 -7	; "db_conn" nil
+	9	[122]	SETTABLE 	0 -8 -9	; "max_extract_tries" 3
+	10	[123]	SETTABLE 	0 -10 -7	; "subprocesses_collector" nil
+	11	[124]	SETTABLE 	0 -11 -12	; "subprocesses_collect_interval" 10
+	12	[125]	NEWTABLE 	1 0 0
+	13	[125]	SETTABLE 	0 -13 1	; "subprocesses_pids" -
+	14	[126]	SETTABLE 	0 -14 -7	; "subprocesses_last_added_ts" nil
+	15	[127]	SETTABLE 	0 -15 -16	; "subprocesses_killall_timeout_seconds" 300
+	16	[130]	GETGLOBAL	1 -18	; G_reader_settings
+	17	[130]	SELF     	1 1 -19	; "isTrue"
+	18	[130]	LOADK    	3 -20	; "legacy_image_scaling"
+	19	[130]	CALL     	1 3 2
+	20	[130]	SETTABLE 	0 -17 1	; "use_legacy_image_scaling" -
+	21	[132]	GETUPVAL 	1 0	; DataStorage
+	22	[132]	SELF     	1 1 -22	; "getDataDir"
+	23	[132]	CALL     	1 2 2
+	24	[132]	LOADK    	2 -23	; "/cache/tmpcr3cache"
+	25	[132]	CONCAT   	1 1 2
+	26	[132]	SETTABLE 	0 -21 1	; "tmpcr3cache" -
+	27	[133]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:136,139> (16 instructions, 64 bytes at 0x7fd9d7c08140)
+1 param, 4 slots, 1 upvalue, 2 locals, 7 constants, 0 functions
+	1	[137]	GETUPVAL 	1 0	; lfs
+	2	[137]	GETTABLE 	1 1 -1	; "attributes"
+	3	[137]	GETTABLE 	2 0 -2	; "db_location"
+	4	[137]	LOADK    	3 -3	; "size"
+	5	[137]	CALL     	1 3 2
+	6	[137]	TEST     	1 0 1
+	7	[137]	JMP      	1	; to 9
+	8	[137]	LOADK    	1 -4	; 0
+	9	[138]	GETGLOBAL	2 -5	; require
+	10	[138]	LOADK    	3 -6	; "util"
+	11	[138]	CALL     	2 2 2
+	12	[138]	GETTABLE 	2 2 -7	; "getFriendlySize"
+	13	[138]	MOVE     	3 1
+	14	[138]	TAILCALL 	2 2 0
+	15	[138]	RETURN   	2 0
+	16	[139]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:141,165> (59 instructions, 236 bytes at 0x7fd9d7c085e0)
+1 param, 8 slots, 5 upvalues, 3 locals, 18 constants, 0 functions
+	1	[142]	GETUPVAL 	1 0	; SQ3
+	2	[142]	GETTABLE 	1 1 -1	; "open"
+	3	[142]	GETTABLE 	2 0 -2	; "db_location"
+	4	[142]	CALL     	1 2 2
+	5	[144]	GETUPVAL 	2 1	; Device
+	6	[144]	SELF     	2 2 -3	; "canUseWAL"
+	7	[144]	CALL     	2 2 2
+	8	[144]	TEST     	2 0 0
+	9	[144]	JMP      	4	; to 14
+	10	[145]	SELF     	2 1 -4	; "exec"
+	11	[145]	LOADK    	4 -5	; "PRAGMA journal_mode=WAL;"
+	12	[145]	CALL     	2 3 1
+	13	[145]	JMP      	3	; to 17
+	14	[147]	SELF     	2 1 -4	; "exec"
+	15	[147]	LOADK    	4 -6	; "PRAGMA journal_mode=TRUNCATE;"
+	16	[147]	CALL     	2 3 1
+	17	[151]	SELF     	2 1 -4	; "exec"
+	18	[151]	GETUPVAL 	4 2	; BOOKINFO_DB_SCHEMA
+	19	[151]	CALL     	2 3 1
+	20	[153]	SELF     	2 1 -4	; "exec"
+	21	[153]	LOADK    	4 -7	; "SELECT value FROM config where key='version';"
+	22	[153]	CALL     	2 3 2
+	23	[154]	GETTABLE 	3 2 -8	; 1
+	24	[154]	GETTABLE 	3 3 -8	; 1
+	25	[154]	GETUPVAL 	4 3	; BOOKINFO_DB_VERSION
+	26	[154]	EQ       	1 3 4
+	27	[154]	JMP      	28	; to 56
+	28	[155]	GETUPVAL 	3 4	; logger
+	29	[155]	GETTABLE 	3 3 -9	; "warn"
+	30	[155]	LOADK    	4 -10	; "BookInfo cache DB schema updated from version"
+	31	[155]	GETTABLE 	5 2 -8	; 1
+	32	[155]	GETTABLE 	5 5 -8	; 1
+	33	[155]	LOADK    	6 -11	; "to version"
+	34	[155]	GETUPVAL 	7 3	; BOOKINFO_DB_VERSION
+	35	[155]	CALL     	3 5 1
+	36	[156]	GETUPVAL 	3 4	; logger
+	37	[156]	GETTABLE 	3 3 -9	; "warn"
+	38	[156]	LOADK    	4 -12	; "Deleting existing"
+	39	[156]	GETTABLE 	5 0 -2	; "db_location"
+	40	[156]	LOADK    	6 -13	; "to recreate it"
+	41	[156]	CALL     	3 4 1
+	42	[157]	SELF     	3 1 -14	; "close"
+	43	[157]	CALL     	3 2 1
+	44	[158]	GETGLOBAL	3 -15	; os
+	45	[158]	GETTABLE 	3 3 -16	; "remove"
+	46	[158]	GETTABLE 	4 0 -2	; "db_location"
+	47	[158]	CALL     	3 2 1
+	48	[160]	GETUPVAL 	3 0	; SQ3
+	49	[160]	GETTABLE 	3 3 -1	; "open"
+	50	[160]	GETTABLE 	4 0 -2	; "db_location"
+	51	[160]	CALL     	3 2 2
+	52	[160]	MOVE     	1 3
+	53	[161]	SELF     	3 1 -4	; "exec"
+	54	[161]	GETUPVAL 	5 2	; BOOKINFO_DB_SCHEMA
+	55	[161]	CALL     	3 3 1
+	56	[163]	SELF     	3 1 -14	; "close"
+	57	[163]	CALL     	3 2 1
+	58	[164]	SETTABLE 	0 -17 -18	; "db_created" true
+	59	[165]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:167,181> (35 instructions, 140 bytes at 0x7fd9d7c08e80)
+1 param, 4 slots, 5 upvalues, 1 local, 11 constants, 0 functions
+	1	[168]	GETTABLE 	1 0 -1	; "db_conn"
+	2	[168]	TEST     	1 0 0
+	3	[168]	JMP      	1	; to 5
+	4	[169]	RETURN   	0 1
+	5	[171]	GETTABLE 	1 0 -2	; "db_created"
+	6	[171]	TEST     	1 0 1
+	7	[171]	JMP      	2	; to 10
+	8	[172]	SELF     	1 0 -3	; "createDB"
+	9	[172]	CALL     	1 2 1
+	10	[174]	GETUPVAL 	1 0	; SQ3
+	11	[174]	GETTABLE 	1 1 -4	; "open"
+	12	[174]	GETTABLE 	2 0 -5	; "db_location"
+	13	[174]	CALL     	1 2 2
+	14	[174]	SETTABLE 	0 -1 1	; "db_conn" -
+	15	[175]	GETUPVAL 	1 1	; xutil
+	16	[175]	GETTABLE 	1 1 -6	; "sqlite_set_timeout"
+	17	[175]	GETTABLE 	2 0 -1	; "db_conn"
+	18	[175]	LOADK    	3 -7	; 5000
+	19	[175]	CALL     	1 3 1
+	20	[178]	GETTABLE 	1 0 -1	; "db_conn"
+	21	[178]	SELF     	1 1 -9	; "prepare"
+	22	[178]	GETUPVAL 	3 2	; BOOKINFO_INSERT_SQL
+	23	[178]	CALL     	1 3 2
+	24	[178]	SETTABLE 	0 -8 1	; "set_stmt" -
+	25	[179]	GETTABLE 	1 0 -1	; "db_conn"
+	26	[179]	SELF     	1 1 -9	; "prepare"
+	27	[179]	GETUPVAL 	3 3	; BOOKINFO_SELECT_SQL
+	28	[179]	CALL     	1 3 2
+	29	[179]	SETTABLE 	0 -10 1	; "get_stmt" -
+	30	[180]	GETTABLE 	1 0 -1	; "db_conn"
+	31	[180]	SELF     	1 1 -9	; "prepare"
+	32	[180]	GETUPVAL 	3 4	; BOOKINFO_IN_PROGRESS_SQL
+	33	[180]	CALL     	1 3 2
+	34	[180]	SETTABLE 	0 -11 1	; "in_progress_stmt" -
+	35	[181]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:183,188> (8 instructions, 32 bytes at 0x7fd9d7c08b60)
+1 param, 3 slots, 0 upvalues, 1 local, 3 constants, 0 functions
+	1	[184]	GETTABLE 	1 0 -1	; "db_conn"
+	2	[184]	TEST     	1 0 0
+	3	[184]	JMP      	4	; to 8
+	4	[185]	GETTABLE 	1 0 -1	; "db_conn"
+	5	[185]	SELF     	1 1 -2	; "close"
+	6	[185]	CALL     	1 2 1
+	7	[186]	SETTABLE 	0 -1 -3	; "db_conn" nil
+	8	[188]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:190,194> (8 instructions, 32 bytes at 0x7fd9d7c07580)
+1 param, 3 slots, 0 upvalues, 1 local, 6 constants, 0 functions
+	1	[191]	SELF     	1 0 -1	; "closeDbConnection"
+	2	[191]	CALL     	1 2 1
+	3	[192]	GETGLOBAL	1 -2	; os
+	4	[192]	GETTABLE 	1 1 -3	; "remove"
+	5	[192]	GETTABLE 	2 0 -4	; "db_location"
+	6	[192]	CALL     	1 2 1
+	7	[193]	SETTABLE 	0 -5 -6	; "db_created" false
+	8	[194]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:196,215> (36 instructions, 144 bytes at 0x7fd9d7c07780)
+1 param, 9 slots, 2 upvalues, 5 locals, 10 constants, 0 functions
+	1	[203]	SELF     	1 0 -1	; "getDbSize"
+	2	[203]	CALL     	1 2 2
+	3	[204]	SELF     	2 0 -2	; "openDbConnection"
+	4	[204]	CALL     	2 2 1
+	5	[205]	GETTABLE 	2 0 -3	; "db_conn"
+	6	[205]	SELF     	2 2 -4	; "exec"
+	7	[205]	LOADK    	4 -5	; "PRAGMA temp_store = 2"
+	8	[205]	CALL     	2 3 1
+	9	[208]	GETGLOBAL	2 -6	; pcall
+	10	[208]	GETTABLE 	3 0 -3	; "db_conn"
+	11	[208]	GETTABLE 	3 3 -4	; "exec"
+	12	[208]	GETTABLE 	4 0 -3	; "db_conn"
+	13	[208]	LOADK    	5 -7	; "VACUUM"
+	14	[208]	CALL     	2 4 3
+	15	[209]	SELF     	4 0 -8	; "closeDbConnection"
+	16	[209]	CALL     	4 2 1
+	17	[210]	TEST     	2 0 1
+	18	[210]	JMP      	7	; to 26
+	19	[211]	GETUPVAL 	4 0	; T
+	20	[211]	GETUPVAL 	5 1	; _
+	21	[211]	LOADK    	6 -9	; "Failed compacting database: %1"
+	22	[211]	CALL     	5 2 2
+	23	[211]	MOVE     	6 3
+	24	[211]	TAILCALL 	4 3 0
+	25	[211]	RETURN   	4 0
+	26	[213]	SELF     	4 0 -1	; "getDbSize"
+	27	[213]	CALL     	4 2 2
+	28	[214]	GETUPVAL 	5 0	; T
+	29	[214]	GETUPVAL 	6 1	; _
+	30	[214]	LOADK    	7 -10	; "Cache database size reduced from %1 to %2."
+	31	[214]	CALL     	6 2 2
+	32	[214]	MOVE     	7 1
+	33	[214]	MOVE     	8 4
+	34	[214]	TAILCALL 	5 4 0
+	35	[214]	RETURN   	5 0
+	36	[215]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:218,232> (30 instructions, 120 bytes at 0x7fd9d7c09d80)
+1 param, 11 slots, 1 upvalue, 9 locals, 12 constants, 0 functions
+	1	[219]	GETUPVAL 	1 0	; lfs
+	2	[219]	GETTABLE 	1 1 -1	; "attributes"
+	3	[219]	GETTABLE 	2 0 -2	; "db_location"
+	4	[219]	LOADK    	3 -3	; "mode"
+	5	[219]	CALL     	1 3 2
+	6	[219]	EQ       	1 1 -4	; - "file"
+	7	[219]	JMP      	3	; to 11
+	8	[221]	NEWTABLE 	1 0 0
+	9	[221]	SETTABLE 	0 -5 1	; "settings" -
+	10	[222]	RETURN   	0 1
+	11	[224]	NEWTABLE 	1 0 0
+	12	[224]	SETTABLE 	0 -5 1	; "settings" -
+	13	[225]	SELF     	1 0 -6	; "openDbConnection"
+	14	[225]	CALL     	1 2 1
+	15	[226]	GETTABLE 	1 0 -7	; "db_conn"
+	16	[226]	SELF     	1 1 -8	; "exec"
+	17	[226]	LOADK    	3 -9	; "SELECT key, value FROM config"
+	18	[226]	CALL     	1 3 2
+	19	[227]	GETTABLE 	2 1 -10	; 1
+	20	[228]	GETTABLE 	3 1 -11	; 2
+	21	[229]	GETGLOBAL	4 -12	; ipairs
+	22	[229]	MOVE     	5 2
+	23	[229]	CALL     	4 2 4
+	24	[229]	JMP      	3	; to 28
+	25	[230]	GETTABLE 	9 0 -5	; "settings"
+	26	[230]	GETTABLE 	10 3 7
+	27	[230]	SETTABLE 	9 8 10
+	28	[229]	TFORLOOP 	4 2
+	29	[230]	JMP      	-5	; to 25
+	30	[232]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:234,239> (9 instructions, 36 bytes at 0x7fd9d7c0a670)
+2 params, 4 slots, 0 upvalues, 2 locals, 2 constants, 0 functions
+	1	[235]	GETTABLE 	2 0 -1	; "settings"
+	2	[235]	TEST     	2 0 1
+	3	[235]	JMP      	2	; to 6
+	4	[236]	SELF     	2 0 -2	; "loadSettings"
+	5	[236]	CALL     	2 2 1
+	6	[238]	GETTABLE 	2 0 -1	; "settings"
+	7	[238]	GETTABLE 	2 2 1
+	8	[238]	RETURN   	2 2
+	9	[239]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:241,261> (41 instructions, 164 bytes at 0x7fd9d7c08820)
+3 params, 9 slots, 1 upvalue, 5 locals, 17 constants, 0 functions
+	1	[242]	TEST     	2 0 0
+	2	[242]	JMP      	4	; to 7
+	3	[242]	EQ       	1 2 -1	; - false
+	4	[242]	JMP      	2	; to 7
+	5	[242]	EQ       	0 2 -2	; - ""
+	6	[242]	JMP      	8	; to 15
+	7	[243]	GETUPVAL 	3 0	; lfs
+	8	[243]	GETTABLE 	3 3 -3	; "attributes"
+	9	[243]	GETTABLE 	4 0 -4	; "db_location"
+	10	[243]	LOADK    	5 -5	; "mode"
+	11	[243]	CALL     	3 3 2
+	12	[243]	EQ       	1 3 -6	; - "file"
+	13	[243]	JMP      	1	; to 15
+	14	[245]	RETURN   	0 1
+	15	[248]	SELF     	3 0 -7	; "openDbConnection"
+	16	[248]	CALL     	3 2 1
+	17	[249]	LOADK    	3 -8	; "INSERT OR REPLACE INTO config (key, value) VALUES (?, ?)"
+	18	[250]	GETTABLE 	4 0 -9	; "db_conn"
+	19	[250]	SELF     	4 4 -10	; "prepare"
+	20	[250]	MOVE     	6 3
+	21	[250]	CALL     	4 3 2
+	22	[251]	EQ       	0 2 -1	; - false
+	23	[251]	JMP      	2	; to 26
+	24	[252]	LOADNIL  	2 2
+	25	[252]	JMP      	3	; to 29
+	26	[253]	EQ       	0 2 -11	; - true
+	27	[253]	JMP      	1	; to 29
+	28	[254]	LOADK    	2 -12	; "Y"
+	29	[256]	SELF     	5 4 -13	; "bind"
+	30	[256]	MOVE     	7 1
+	31	[256]	MOVE     	8 2
+	32	[256]	CALL     	5 4 1
+	33	[257]	SELF     	5 4 -14	; "step"
+	34	[257]	CALL     	5 2 1
+	35	[258]	SELF     	5 4 -15	; "clearbind"
+	36	[258]	CALL     	5 2 2
+	37	[258]	SELF     	5 5 -16	; "reset"
+	38	[258]	CALL     	5 2 1
+	39	[260]	SELF     	5 0 -17	; "loadSettings"
+	40	[260]	CALL     	5 2 1
+	41	[261]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:264,326> (109 instructions, 436 bytes at 0x7fd9d7c09be0)
+3 params, 20 slots, 6 upvalues, 14 locals, 36 constants, 0 functions
+	1	[265]	GETUPVAL 	3 0	; splitFilePathName
+	2	[265]	MOVE     	4 1
+	3	[265]	CALL     	3 2 3
+	4	[271]	GETUPVAL 	5 1	; lfs
+	5	[271]	GETTABLE 	5 5 -1	; "attributes"
+	6	[271]	MOVE     	6 1
+	7	[271]	LOADK    	7 -2	; "mode"
+	8	[271]	CALL     	5 3 2
+	9	[271]	EQ       	1 5 -3	; - "directory"
+	10	[271]	JMP      	1	; to 12
+	11	[271]	LOADBOOL 	5 0 1
+	12	[271]	LOADBOOL 	5 1 0
+	13	[272]	TEST     	5 0 1
+	14	[272]	JMP      	6	; to 21
+	15	[272]	GETUPVAL 	6 2	; DocumentRegistry
+	16	[272]	SELF     	6 6 -4	; "hasProvider"
+	17	[272]	MOVE     	8 1
+	18	[272]	CALL     	6 3 2
+	19	[272]	TEST     	6 0 1
+	20	[272]	JMP      	12	; to 33
+	21	[273]	NEWTABLE 	6 0 10
+	22	[274]	SETTABLE 	6 -3 3	; "directory" -
+	23	[275]	SETTABLE 	6 -5 4	; "filename" -
+	24	[276]	SETTABLE 	6 -6 -7	; "in_progress" 0
+	25	[277]	SETTABLE 	6 -8 -9	; "cover_fetched" "Y"
+	26	[278]	SETTABLE 	6 -10 -11	; "has_meta" nil
+	27	[279]	SETTABLE 	6 -12 -11	; "has_cover" nil
+	28	[280]	SETTABLE 	6 -13 -9	; "ignore_meta" "Y"
+	29	[281]	SETTABLE 	6 -14 -9	; "ignore_cover" "Y"
+	30	[283]	SETTABLE 	6 -15 5	; "_is_directory" -
+	31	[285]	SETTABLE 	6 -16 -17	; "_no_provider" true
+	32	[286]	RETURN   	6 2
+	33	[289]	SELF     	6 0 -18	; "openDbConnection"
+	34	[289]	CALL     	6 2 1
+	35	[290]	GETTABLE 	6 0 -19	; "get_stmt"
+	36	[290]	SELF     	6 6 -20	; "bind"
+	37	[290]	MOVE     	8 3
+	38	[290]	MOVE     	9 4
+	39	[290]	CALL     	6 4 2
+	40	[290]	SELF     	6 6 -21	; "step"
+	41	[290]	CALL     	6 2 2
+	42	[291]	GETTABLE 	7 0 -19	; "get_stmt"
+	43	[291]	SELF     	7 7 -22	; "clearbind"
+	44	[291]	CALL     	7 2 2
+	45	[291]	SELF     	7 7 -23	; "reset"
+	46	[291]	CALL     	7 2 1
+	47	[293]	TEST     	6 0 1
+	48	[293]	JMP      	2	; to 51
+	49	[294]	LOADNIL  	7 7
+	50	[294]	RETURN   	7 2
+	51	[297]	NEWTABLE 	7 0 0
+	52	[298]	GETGLOBAL	8 -24	; ipairs
+	53	[298]	GETUPVAL 	9 3	; BOOKINFO_COLS_SET
+	54	[298]	CALL     	8 2 4
+	55	[298]	JMP      	50	; to 106
+	56	[299]	EQ       	0 12 -25	; - "pages"
+	57	[299]	JMP      	5	; to 63
+	58	[301]	GETGLOBAL	13 -26	; tonumber
+	59	[301]	GETTABLE 	14 6 11
+	60	[301]	CALL     	13 2 2
+	61	[301]	SETTABLE 	7 12 13
+	62	[301]	JMP      	2	; to 65
+	63	[303]	GETTABLE 	13 6 11
+	64	[303]	SETTABLE 	7 12 13
+	65	[306]	EQ       	0 12 -27	; - "cover_w"
+	66	[306]	JMP      	39	; to 106
+	67	[307]	TEST     	2 0 1
+	68	[307]	JMP      	1	; to 70
+	69	[309]	JMP      	38	; to 108
+	70	[311]	SETTABLE 	7 -28 -11	; "cover_bb" nil
+	71	[312]	GETTABLE 	13 7 -12	; "has_cover"
+	72	[312]	TEST     	13 0 0
+	73	[312]	JMP      	34	; to 108
+	74	[313]	GETGLOBAL	13 -26	; tonumber
+	75	[313]	GETTABLE 	14 6 11
+	76	[313]	CALL     	13 2 2
+	77	[313]	SETTABLE 	7 -27 13	; "cover_w" -
+	78	[314]	GETGLOBAL	13 -26	; tonumber
+	79	[314]	ADD      	14 11 -30	; - 1
+	80	[314]	GETTABLE 	14 6 14
+	81	[314]	CALL     	13 2 2
+	82	[314]	SETTABLE 	7 -29 13	; "cover_h" -
+	83	[315]	GETUPVAL 	13 4	; xutil
+	84	[315]	GETTABLE 	13 13 -31	; "zlib_uncompress"
+	85	[315]	ADD      	14 11 -32	; - 5
+	86	[315]	GETTABLE 	14 6 14
+	87	[315]	ADD      	15 11 -33	; - 4
+	88	[315]	GETTABLE 	15 6 15
+	89	[315]	CALL     	13 3 2
+	90	[316]	ADD      	14 11 -32	; - 5
+	91	[316]	SETTABLE 	6 14 -11	; - nil
+	92	[318]	GETUPVAL 	14 5	; Blitbuffer
+	93	[318]	GETTABLE 	14 14 -34	; "fromstring"
+	94	[318]	GETTABLE 	15 6 11
+	95	[318]	ADD      	16 11 -30	; - 1
+	96	[318]	GETTABLE 	16 6 16
+	97	[318]	ADD      	17 11 -35	; - 2
+	98	[318]	GETTABLE 	17 6 17
+	99	[318]	MOVE     	18 13
+	100	[318]	ADD      	19 11 -36	; - 3
+	101	[318]	GETTABLE 	19 6 19
+	102	[318]	CALL     	14 6 2
+	103	[318]	SETTABLE 	7 -28 14	; "cover_bb" -
+	104	[320]	LOADNIL  	13 13
+	105	[322]	JMP      	2	; to 108
+	106	[298]	TFORLOOP 	8 2
+	107	[323]	JMP      	-52	; to 56
+	108	[325]	RETURN   	7 2
+	109	[326]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:328,479> (319 instructions, 1276 bytes at 0x7fd9d7c0b020)
+3 params, 36 slots, 9 upvalues, 34 locals, 85 constants, 0 functions
+	1	[332]	GETTABLE 	3 0 -1	; "cre_cache_overriden"
+	2	[332]	TEST     	3 0 1
+	3	[332]	JMP      	22	; to 26
+	4	[336]	GETGLOBAL	3 -2	; require
+	5	[336]	LOADK    	4 -3	; "document/credocument"
+	6	[336]	CALL     	3 2 2
+	7	[336]	SELF     	3 3 -4	; "engineInit"
+	8	[336]	CALL     	3 2 1
+	9	[337]	GETGLOBAL	3 -2	; require
+	10	[337]	LOADK    	4 -5	; "libs/libkoreader-cre"
+	11	[337]	CALL     	3 2 2
+	12	[342]	LOADK    	4 -6	; 20
+	13	[343]	GETTABLE 	5 3 -7	; "initCache"
+	14	[343]	GETTABLE 	6 0 -8	; "tmpcr3cache"
+	15	[343]	LOADK    	7 -9	; 0
+	16	[344]	LOADBOOL 	8 1 0
+	17	[344]	GETGLOBAL	9 -10	; G_reader_settings
+	18	[344]	SELF     	9 9 -11	; "readSetting"
+	19	[344]	LOADK    	11 -12	; "cre_storage_size_factor"
+	20	[344]	CALL     	9 3 2
+	21	[344]	TEST     	9 0 1
+	22	[344]	JMP      	1	; to 24
+	23	[344]	MOVE     	9 4
+	24	[343]	CALL     	5 5 1
+	25	[345]	SETTABLE 	0 -1 -13	; "cre_cache_overriden" true
+	26	[348]	GETUPVAL 	3 0	; splitFilePathName
+	27	[348]	MOVE     	4 1
+	28	[348]	CALL     	3 2 3
+	29	[351]	NEWTABLE 	5 0 0
+	30	[356]	SETTABLE 	5 -14 3	; "directory" -
+	31	[357]	SETTABLE 	5 -15 4	; "filename" -
+	32	[364]	LOADBOOL 	6 0 0
+	33	[365]	LOADK    	7 -9	; 0
+	34	[367]	SELF     	8 0 -16	; "openDbConnection"
+	35	[367]	CALL     	8 2 1
+	36	[368]	GETTABLE 	8 0 -17	; "in_progress_stmt"
+	37	[368]	SELF     	8 8 -18	; "bind"
+	38	[368]	MOVE     	10 3
+	39	[368]	MOVE     	11 4
+	40	[368]	CALL     	8 4 1
+	41	[369]	GETTABLE 	8 0 -17	; "in_progress_stmt"
+	42	[369]	SELF     	8 8 -19	; "step"
+	43	[369]	CALL     	8 2 2
+	44	[370]	GETTABLE 	9 0 -17	; "in_progress_stmt"
+	45	[370]	SELF     	9 9 -20	; "clearbind"
+	46	[370]	CALL     	9 2 2
+	47	[370]	SELF     	9 9 -21	; "reset"
+	48	[370]	CALL     	9 2 1
+	49	[371]	TEST     	8 0 0
+	50	[371]	JMP      	4	; to 55
+	51	[372]	GETGLOBAL	9 -22	; tonumber
+	52	[372]	GETTABLE 	10 8 -23	; 1
+	53	[372]	CALL     	9 2 2
+	54	[372]	MOVE     	7 9
+	55	[375]	GETTABLE 	9 0 -24	; "max_extract_tries"
+	56	[375]	LT       	0 7 9
+	57	[375]	JMP      	13	; to 71
+	58	[376]	LT       	0 -9 7	; 0 -
+	59	[376]	JMP      	8	; to 68
+	60	[377]	GETUPVAL 	9 1	; logger
+	61	[377]	GETTABLE 	9 9 -25	; "dbg"
+	62	[377]	LOADK    	10 -26	; "Seen"
+	63	[377]	MOVE     	11 7
+	64	[377]	LOADK    	12 -27	; "previous attempts at info extraction"
+	65	[377]	MOVE     	13 1
+	66	[377]	LOADK    	14 -28	; ", trying again"
+	67	[377]	CALL     	9 6 1
+	68	[379]	ADD      	9 7 -23	; - 1
+	69	[379]	SETTABLE 	5 -29 9	; "in_progress" -
+	70	[379]	JMP      	15	; to 86
+	71	[381]	GETUPVAL 	9 1	; logger
+	72	[381]	GETTABLE 	9 9 -30	; "info"
+	73	[381]	LOADK    	10 -26	; "Seen"
+	74	[381]	MOVE     	11 7
+	75	[381]	LOADK    	12 -27	; "previous attempts at info extraction"
+	76	[381]	MOVE     	13 1
+	77	[381]	LOADK    	14 -31	; ", too many, ignoring it."
+	78	[381]	CALL     	9 6 1
+	79	[382]	LOADBOOL 	6 1 0
+	80	[383]	SETTABLE 	5 -29 -9	; "in_progress" 0
+	81	[384]	GETUPVAL 	9 2	; _
+	82	[384]	LOADK    	10 -33	; "too many interruptions or crashes"
+	83	[384]	CALL     	9 2 2
+	84	[384]	SETTABLE 	5 -32 9	; "unsupported" -
+	85	[385]	SETTABLE 	5 -34 -35	; "cover_fetched" "Y"
+	86	[388]	GETGLOBAL	9 -36	; ipairs
+	87	[388]	GETUPVAL 	10 3	; BOOKINFO_COLS_SET
+	88	[388]	CALL     	9 2 4
+	89	[388]	JMP      	5	; to 95
+	90	[389]	GETTABLE 	14 0 -37	; "set_stmt"
+	91	[389]	SELF     	14 14 -38	; "bind1"
+	92	[389]	MOVE     	16 12
+	93	[389]	GETTABLE 	17 5 13
+	94	[389]	CALL     	14 4 1
+	95	[388]	TFORLOOP 	9 2
+	96	[389]	JMP      	-7	; to 90
+	97	[391]	GETTABLE 	9 0 -37	; "set_stmt"
+	98	[391]	SELF     	9 9 -19	; "step"
+	99	[391]	CALL     	9 2 1
+	100	[392]	GETTABLE 	9 0 -37	; "set_stmt"
+	101	[392]	SELF     	9 9 -20	; "clearbind"
+	102	[392]	CALL     	9 2 2
+	103	[392]	SELF     	9 9 -21	; "reset"
+	104	[392]	CALL     	9 2 1
+	105	[393]	TEST     	6 0 0
+	106	[393]	JMP      	1	; to 108
+	107	[394]	RETURN   	0 1
+	108	[398]	GETUPVAL 	9 4	; DocumentRegistry
+	109	[398]	SELF     	9 9 -39	; "openDocument"
+	110	[398]	MOVE     	11 1
+	111	[398]	CALL     	9 3 2
+	112	[399]	LOADBOOL 	10 1 0
+	113	[400]	TEST     	9 0 0
+	114	[400]	JMP      	175	; to 290
+	115	[401]	LOADNIL  	11 11
+	116	[402]	GETTABLE 	12 9 -40	; "loadDocument"
+	117	[402]	TEST     	12 0 0
+	118	[402]	JMP      	7	; to 126
+	119	[403]	SELF     	12 9 -40	; "loadDocument"
+	120	[403]	LOADBOOL 	14 0 0
+	121	[403]	CALL     	12 3 2
+	122	[403]	TEST     	12 0 1
+	123	[403]	JMP      	5	; to 129
+	124	[405]	LOADBOOL 	10 0 0
+	125	[406]	JMP      	3	; to 129
+	126	[415]	SELF     	12 9 -41	; "getPageCount"
+	127	[415]	CALL     	12 2 2
+	128	[415]	MOVE     	11 12
+	129	[417]	TEST     	10 0 0
+	130	[417]	JMP      	154	; to 285
+	131	[418]	SETTABLE 	5 -42 11	; "pages" -
+	132	[419]	SELF     	12 9 -43	; "getProps"
+	133	[419]	CALL     	12 2 2
+	134	[420]	GETGLOBAL	13 -44	; next
+	135	[420]	MOVE     	14 12
+	136	[420]	CALL     	13 2 2
+	137	[420]	TEST     	13 0 0
+	138	[420]	JMP      	1	; to 140
+	139	[421]	SETTABLE 	5 -45 -35	; "has_meta" "Y"
+	140	[423]	GETTABLE 	13 12 -46	; "title"
+	141	[423]	TEST     	13 0 0
+	142	[423]	JMP      	5	; to 148
+	143	[423]	GETTABLE 	13 12 -46	; "title"
+	144	[423]	EQ       	1 13 -47	; - ""
+	145	[423]	JMP      	2	; to 148
+	146	[423]	GETTABLE 	13 12 -46	; "title"
+	147	[423]	SETTABLE 	5 -46 13	; "title" -
+	148	[424]	GETTABLE 	13 12 -48	; "authors"
+	149	[424]	TEST     	13 0 0
+	150	[424]	JMP      	5	; to 156
+	151	[424]	GETTABLE 	13 12 -48	; "authors"
+	152	[424]	EQ       	1 13 -47	; - ""
+	153	[424]	JMP      	2	; to 156
+	154	[424]	GETTABLE 	13 12 -48	; "authors"
+	155	[424]	SETTABLE 	5 -48 13	; "authors" -
+	156	[425]	GETTABLE 	13 12 -49	; "series"
+	157	[425]	TEST     	13 0 0
+	158	[425]	JMP      	5	; to 164
+	159	[425]	GETTABLE 	13 12 -49	; "series"
+	160	[425]	EQ       	1 13 -47	; - ""
+	161	[425]	JMP      	2	; to 164
+	162	[425]	GETTABLE 	13 12 -49	; "series"
+	163	[425]	SETTABLE 	5 -49 13	; "series" -
+	164	[426]	GETTABLE 	13 12 -50	; "language"
+	165	[426]	TEST     	13 0 0
+	166	[426]	JMP      	5	; to 172
+	167	[426]	GETTABLE 	13 12 -50	; "language"
+	168	[426]	EQ       	1 13 -47	; - ""
+	169	[426]	JMP      	2	; to 172
+	170	[426]	GETTABLE 	13 12 -50	; "language"
+	171	[426]	SETTABLE 	5 -50 13	; "language" -
+	172	[427]	GETTABLE 	13 12 -51	; "keywords"
+	173	[427]	TEST     	13 0 0
+	174	[427]	JMP      	5	; to 180
+	175	[427]	GETTABLE 	13 12 -51	; "keywords"
+	176	[427]	EQ       	1 13 -47	; - ""
+	177	[427]	JMP      	2	; to 180
+	178	[427]	GETTABLE 	13 12 -51	; "keywords"
+	179	[427]	SETTABLE 	5 -51 13	; "keywords" -
+	180	[428]	GETTABLE 	13 12 -52	; "description"
+	181	[428]	TEST     	13 0 0
+	182	[428]	JMP      	5	; to 188
+	183	[428]	GETTABLE 	13 12 -52	; "description"
+	184	[428]	EQ       	1 13 -47	; - ""
+	185	[428]	JMP      	2	; to 188
+	186	[428]	GETTABLE 	13 12 -52	; "description"
+	187	[428]	SETTABLE 	5 -52 13	; "description" -
+	188	[429]	TEST     	2 0 0
+	189	[429]	JMP      	95	; to 285
+	190	[430]	GETTABLE 	13 2 -53	; "sizetag"
+	191	[431]	GETTABLE 	14 2 -54	; "max_cover_w"
+	192	[432]	GETTABLE 	15 2 -55	; "max_cover_h"
+	193	[434]	SETTABLE 	5 -34 -35	; "cover_fetched" "Y"
+	194	[435]	SELF     	16 9 -56	; "getCoverPageImage"
+	195	[435]	CALL     	16 2 2
+	196	[436]	TEST     	16 0 0
+	197	[436]	JMP      	87	; to 285
+	198	[437]	SETTABLE 	5 -57 -35	; "has_cover" "Y"
+	199	[438]	SETTABLE 	5 -58 13	; "cover_sizetag" -
+	200	[440]	SELF     	17 16 -59	; "getWidth"
+	201	[440]	CALL     	17 2 2
+	202	[440]	SELF     	18 16 -60	; "getHeight"
+	203	[440]	CALL     	18 2 2
+	204	[441]	LOADK    	19 -23	; 1
+	205	[442]	LT       	1 14 17
+	206	[442]	JMP      	2	; to 209
+	207	[442]	LT       	0 15 18
+	208	[442]	JMP      	34	; to 243
+	209	[444]	GETGLOBAL	20 -61	; math
+	210	[444]	GETTABLE 	20 20 -62	; "min"
+	211	[444]	DIV      	21 14 17
+	212	[444]	DIV      	22 15 18
+	213	[444]	CALL     	20 3 2
+	214	[444]	MOVE     	19 20
+	215	[445]	GETGLOBAL	20 -61	; math
+	216	[445]	GETTABLE 	20 20 -62	; "min"
+	217	[445]	GETGLOBAL	21 -61	; math
+	218	[445]	GETTABLE 	21 21 -63	; "floor"
+	219	[445]	MUL      	22 17 19
+	220	[445]	CALL     	21 2 2
+	221	[445]	ADD      	21 21 -23	; - 1
+	222	[445]	MOVE     	22 14
+	223	[445]	CALL     	20 3 2
+	224	[445]	MOVE     	17 20
+	225	[446]	GETGLOBAL	20 -61	; math
+	226	[446]	GETTABLE 	20 20 -62	; "min"
+	227	[446]	GETGLOBAL	21 -61	; math
+	228	[446]	GETTABLE 	21 21 -63	; "floor"
+	229	[446]	MUL      	22 18 19
+	230	[446]	CALL     	21 2 2
+	231	[446]	ADD      	21 21 -23	; - 1
+	232	[446]	MOVE     	22 15
+	233	[446]	CALL     	20 3 2
+	234	[446]	MOVE     	18 20
+	235	[447]	GETUPVAL 	20 5	; RenderImage
+	236	[447]	SELF     	20 20 -64	; "scaleBlitBuffer"
+	237	[447]	MOVE     	22 16
+	238	[447]	MOVE     	23 17
+	239	[447]	MOVE     	24 18
+	240	[447]	LOADBOOL 	25 1 0
+	241	[447]	CALL     	20 6 2
+	242	[447]	MOVE     	16 20
+	243	[449]	SETTABLE 	5 -65 17	; "cover_w" -
+	244	[450]	SETTABLE 	5 -66 18	; "cover_h" -
+	245	[451]	SELF     	20 16 -68	; "getType"
+	246	[451]	CALL     	20 2 2
+	247	[451]	SETTABLE 	5 -67 20	; "cover_btype" -
+	248	[452]	GETTABLE 	20 16 -70	; "pitch"
+	249	[452]	SETTABLE 	5 -69 20	; "cover_bpitch" -
+	250	[453]	GETUPVAL 	20 6	; Blitbuffer
+	251	[453]	GETTABLE 	20 20 -71	; "tostring"
+	252	[453]	MOVE     	21 16
+	253	[453]	CALL     	20 2 2
+	254	[454]	SELF     	21 16 -72	; "free"
+	255	[454]	CALL     	21 2 1
+	256	[455]	SELF     	21 20 -74	; "len"
+	257	[455]	CALL     	21 2 2
+	258	[455]	SETTABLE 	5 -73 21	; "cover_datalen" -
+	259	[456]	GETUPVAL 	21 7	; xutil
+	260	[456]	GETTABLE 	21 21 -75	; "zlib_compress"
+	261	[456]	MOVE     	22 20
+	262	[456]	CALL     	21 2 2
+	263	[458]	LOADNIL  	20 20
+	264	[459]	GETUPVAL 	22 8	; SQ3
+	265	[459]	GETTABLE 	22 22 -77	; "blob"
+	266	[459]	MOVE     	23 21
+	267	[459]	CALL     	22 2 2
+	268	[459]	SETTABLE 	5 -76 22	; "cover_dataz" -
+	269	[460]	GETUPVAL 	22 1	; logger
+	270	[460]	GETTABLE 	22 22 -25	; "dbg"
+	271	[460]	LOADK    	23 -78	; "cover for"
+	272	[460]	MOVE     	24 4
+	273	[460]	LOADK    	25 -79	; "scaled by"
+	274	[460]	MOVE     	26 19
+	275	[460]	LOADK    	27 -80	; "=>"
+	276	[460]	MOVE     	28 17
+	277	[460]	LOADK    	29 -81	; "x"
+	278	[460]	MOVE     	30 18
+	279	[460]	LOADK    	31 -82	; ", compressed from"
+	280	[460]	GETTABLE 	32 5 -73	; "cover_datalen"
+	281	[460]	LOADK    	33 -83	; "to"
+	282	[460]	SELF     	34 21 -74	; "len"
+	283	[460]	CALL     	34 2 0
+	284	[460]	CALL     	22 0 1
+	285	[464]	GETUPVAL 	12 4	; DocumentRegistry
+	286	[464]	SELF     	12 12 -84	; "closeDocument"
+	287	[464]	MOVE     	14 1
+	288	[464]	CALL     	12 3 1
+	289	[464]	JMP      	1	; to 291
+	290	[466]	LOADBOOL 	10 0 0
+	291	[468]	TEST     	10 0 1
+	292	[468]	JMP      	5	; to 298
+	293	[469]	GETUPVAL 	11 2	; _
+	294	[469]	LOADK    	12 -85	; "not readable by engine"
+	295	[469]	CALL     	11 2 2
+	296	[469]	SETTABLE 	5 -32 11	; "unsupported" -
+	297	[470]	SETTABLE 	5 -34 -35	; "cover_fetched" "Y"
+	298	[472]	SETTABLE 	5 -29 -9	; "in_progress" 0
+	299	[473]	GETGLOBAL	11 -36	; ipairs
+	300	[473]	GETUPVAL 	12 3	; BOOKINFO_COLS_SET
+	301	[473]	CALL     	11 2 4
+	302	[473]	JMP      	5	; to 308
+	303	[474]	GETTABLE 	16 0 -37	; "set_stmt"
+	304	[474]	SELF     	16 16 -38	; "bind1"
+	305	[474]	MOVE     	18 14
+	306	[474]	GETTABLE 	19 5 15
+	307	[474]	CALL     	16 4 1
+	308	[473]	TFORLOOP 	11 2
+	309	[474]	JMP      	-7	; to 303
+	310	[476]	GETTABLE 	11 0 -37	; "set_stmt"
+	311	[476]	SELF     	11 11 -19	; "step"
+	312	[476]	CALL     	11 2 1
+	313	[477]	GETTABLE 	11 0 -37	; "set_stmt"
+	314	[477]	SELF     	11 11 -20	; "clearbind"
+	315	[477]	CALL     	11 2 2
+	316	[477]	SELF     	11 11 -21	; "reset"
+	317	[477]	CALL     	11 2 1
+	318	[478]	RETURN   	10 2
+	319	[479]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:481,499> (36 instructions, 144 bytes at 0x7fd9d7c0c030)
+3 params, 18 slots, 1 upvalue, 13 locals, 12 constants, 0 functions
+	1	[484]	GETUPVAL 	3 0	; splitFilePathName
+	2	[484]	MOVE     	4 1
+	3	[484]	CALL     	3 2 3
+	4	[485]	SELF     	5 0 -1	; "openDbConnection"
+	5	[485]	CALL     	5 2 1
+	6	[488]	LOADK    	5 -2	; "UPDATE bookinfo SET %s=? WHERE directory=? AND filename=?"
+	7	[489]	GETGLOBAL	6 -3	; pairs
+	8	[489]	MOVE     	7 2
+	9	[489]	CALL     	6 2 4
+	10	[489]	JMP      	23	; to 34
+	11	[490]	GETGLOBAL	11 -4	; string
+	12	[490]	GETTABLE 	11 11 -5	; "format"
+	13	[490]	MOVE     	12 5
+	14	[490]	MOVE     	13 9
+	15	[490]	CALL     	11 3 2
+	16	[491]	GETTABLE 	12 0 -6	; "db_conn"
+	17	[491]	SELF     	12 12 -7	; "prepare"
+	18	[491]	MOVE     	14 11
+	19	[491]	CALL     	12 3 2
+	20	[492]	EQ       	0 10 -8	; - false
+	21	[492]	JMP      	1	; to 23
+	22	[493]	LOADNIL  	10 10
+	23	[495]	SELF     	13 12 -9	; "bind"
+	24	[495]	MOVE     	15 10
+	25	[495]	MOVE     	16 3
+	26	[495]	MOVE     	17 4
+	27	[495]	CALL     	13 5 1
+	28	[496]	SELF     	13 12 -10	; "step"
+	29	[496]	CALL     	13 2 1
+	30	[497]	SELF     	13 12 -11	; "clearbind"
+	31	[497]	CALL     	13 2 2
+	32	[497]	SELF     	13 13 -12	; "reset"
+	33	[497]	CALL     	13 2 1
+	34	[489]	TFORLOOP 	6 2
+	35	[497]	JMP      	-25	; to 11
+	36	[499]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:501,509> (21 instructions, 84 bytes at 0x7fd9d7c0c290)
+2 params, 10 slots, 1 upvalue, 6 locals, 8 constants, 0 functions
+	1	[502]	GETUPVAL 	2 0	; splitFilePathName
+	2	[502]	MOVE     	3 1
+	3	[502]	CALL     	2 2 3
+	4	[503]	SELF     	4 0 -1	; "openDbConnection"
+	5	[503]	CALL     	4 2 1
+	6	[504]	LOADK    	4 -2	; "DELETE FROM bookinfo WHERE directory=? AND filename=?"
+	7	[505]	GETTABLE 	5 0 -3	; "db_conn"
+	8	[505]	SELF     	5 5 -4	; "prepare"
+	9	[505]	MOVE     	7 4
+	10	[505]	CALL     	5 3 2
+	11	[506]	SELF     	6 5 -5	; "bind"
+	12	[506]	MOVE     	8 2
+	13	[506]	MOVE     	9 3
+	14	[506]	CALL     	6 4 1
+	15	[507]	SELF     	6 5 -6	; "step"
+	16	[507]	CALL     	6 2 1
+	17	[508]	SELF     	6 5 -7	; "clearbind"
+	18	[508]	CALL     	6 2 2
+	19	[508]	SELF     	6 6 -8	; "reset"
+	20	[508]	CALL     	6 2 1
+	21	[509]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:511,533> (63 instructions, 252 bytes at 0x7fd9d7c0c8a0)
+1 param, 14 slots, 3 upvalues, 16 locals, 21 constants, 0 functions
+	1	[512]	SELF     	1 0 -1	; "openDbConnection"
+	2	[512]	CALL     	1 2 1
+	3	[513]	GETTABLE 	1 0 -2	; "db_conn"
+	4	[513]	SELF     	1 1 -3	; "exec"
+	5	[513]	LOADK    	3 -4	; "SELECT bcid, directory || filename FROM bookinfo"
+	6	[513]	CALL     	1 3 2
+	7	[514]	TEST     	1 0 1
+	8	[514]	JMP      	4	; to 13
+	9	[515]	GETUPVAL 	2 0	; _
+	10	[515]	LOADK    	3 -5	; "Cache is empty. Nothing to prune."
+	11	[515]	TAILCALL 	2 2 0
+	12	[515]	RETURN   	2 0
+	13	[517]	GETTABLE 	2 1 -6	; 1
+	14	[518]	GETTABLE 	3 1 -7	; 2
+	15	[519]	NEWTABLE 	4 0 0
+	16	[520]	GETGLOBAL	5 -8	; ipairs
+	17	[520]	MOVE     	6 3
+	18	[520]	CALL     	5 2 4
+	19	[520]	JMP      	14	; to 34
+	20	[521]	GETUPVAL 	10 1	; lfs
+	21	[521]	GETTABLE 	10 10 -9	; "attributes"
+	22	[521]	MOVE     	11 9
+	23	[521]	LOADK    	12 -10	; "mode"
+	24	[521]	CALL     	10 3 2
+	25	[521]	EQ       	1 10 -11	; - "file"
+	26	[521]	JMP      	7	; to 34
+	27	[522]	GETGLOBAL	10 -12	; table
+	28	[522]	GETTABLE 	10 10 -13	; "insert"
+	29	[522]	MOVE     	11 4
+	30	[522]	GETGLOBAL	12 -14	; tonumber
+	31	[522]	GETTABLE 	13 2 8
+	32	[522]	CALL     	12 2 0
+	33	[522]	CALL     	10 0 1
+	34	[520]	TFORLOOP 	5 2
+	35	[523]	JMP      	-16	; to 20
+	36	[525]	LOADK    	5 -15	; "DELETE FROM bookinfo WHERE bcid=?"
+	37	[526]	GETTABLE 	6 0 -2	; "db_conn"
+	38	[526]	SELF     	6 6 -16	; "prepare"
+	39	[526]	MOVE     	8 5
+	40	[526]	CALL     	6 3 2
+	41	[527]	LOADK    	7 -6	; 1
+	42	[527]	LEN      	8 4
+	43	[527]	LOADK    	9 -6	; 1
+	44	[527]	FORPREP  	7 9	; to 54
+	45	[528]	SELF     	11 6 -17	; "bind"
+	46	[528]	GETTABLE 	13 4 10
+	47	[528]	CALL     	11 3 1
+	48	[529]	SELF     	11 6 -18	; "step"
+	49	[529]	CALL     	11 2 1
+	50	[530]	SELF     	11 6 -19	; "clearbind"
+	51	[530]	CALL     	11 2 2
+	52	[530]	SELF     	11 11 -20	; "reset"
+	53	[530]	CALL     	11 2 1
+	54	[527]	FORLOOP  	7 -10	; to 45
+	55	[532]	GETUPVAL 	7 2	; T
+	56	[532]	GETUPVAL 	8 0	; _
+	57	[532]	LOADK    	9 -21	; "Removed %1 / %2 entries from cache."
+	58	[532]	CALL     	8 2 2
+	59	[532]	LEN      	9 4
+	60	[532]	LEN      	10 2
+	61	[532]	TAILCALL 	7 4 0
+	62	[532]	RETURN   	7 0
+	63	[533]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:536,577> (59 instructions, 236 bytes at 0x7fd9d7c0ccd0)
+1 param, 6 slots, 3 upvalues, 3 locals, 19 constants, 1 function
+	1	[540]	GETTABLE 	1 0 -1	; "subprocesses_pids"
+	2	[540]	LEN      	1 1
+	3	[540]	LT       	0 -2 1	; 0 -
+	4	[540]	JMP      	54	; to 59
+	5	[541]	LOADK    	1 -3	; 1
+	6	[542]	GETTABLE 	2 0 -1	; "subprocesses_pids"
+	7	[542]	LEN      	2 2
+	8	[542]	LE       	0 1 2
+	9	[542]	JMP      	16	; to 26
+	10	[543]	GETTABLE 	2 0 -1	; "subprocesses_pids"
+	11	[543]	GETTABLE 	2 2 1
+	12	[544]	GETUPVAL 	3 0	; util
+	13	[544]	GETTABLE 	3 3 -4	; "isSubProcessDone"
+	14	[544]	MOVE     	4 2
+	15	[544]	CALL     	3 2 2
+	16	[544]	TEST     	3 0 0
+	17	[544]	JMP      	6	; to 24
+	18	[545]	GETGLOBAL	3 -5	; table
+	19	[545]	GETTABLE 	3 3 -6	; "remove"
+	20	[545]	GETTABLE 	4 0 -1	; "subprocesses_pids"
+	21	[545]	MOVE     	5 1
+	22	[545]	CALL     	3 3 1
+	23	[545]	JMP      	-18	; to 6
+	24	[547]	ADD      	1 1 -3	; - 1
+	25	[548]	JMP      	-20	; to 6
+	26	[550]	GETTABLE 	2 0 -1	; "subprocesses_pids"
+	27	[550]	LEN      	2 2
+	28	[550]	LT       	0 -2 2	; 0 -
+	29	[550]	JMP      	22	; to 52
+	30	[552]	GETUPVAL 	2 1	; UIManager
+	31	[552]	SELF     	2 2 -8	; "scheduleIn"
+	32	[553]	GETTABLE 	4 0 -9	; "subprocesses_collect_interval"
+	33	[555]	CLOSURE  	5 0	; 0x7fd9d7c0d150
+	34	[555]	MOVE     	0 0
+	35	[552]	CALL     	2 4 2
+	36	[556]	SETTABLE 	0 -7 2	; "subprocesses_collector" -
+	37	[562]	GETUPVAL 	2 0	; util
+	38	[562]	GETTABLE 	2 2 -10	; "gettime"
+	39	[562]	CALL     	2 1 2
+	40	[562]	GETTABLE 	3 0 -11	; "subprocesses_last_added_ts"
+	41	[562]	GETTABLE 	4 0 -12	; "subprocesses_killall_timeout_seconds"
+	42	[562]	ADD      	3 3 4
+	43	[562]	LT       	0 3 2
+	44	[562]	JMP      	14	; to 59
+	45	[563]	GETUPVAL 	2 2	; logger
+	46	[563]	GETTABLE 	2 2 -13	; "warn"
+	47	[563]	LOADK    	3 -14	; "Some subprocesses were running for too long, killing them"
+	48	[563]	CALL     	2 2 1
+	49	[564]	SELF     	2 0 -15	; "terminateBackgroundJobs"
+	50	[564]	CALL     	2 2 1
+	51	[566]	JMP      	7	; to 59
+	52	[568]	SETTABLE 	0 -7 -16	; "subprocesses_collector" nil
+	53	[569]	GETTABLE 	2 0 -17	; "delayed_cleanup"
+	54	[569]	TEST     	2 0 0
+	55	[569]	JMP      	3	; to 59
+	56	[570]	SETTABLE 	0 -17 -18	; "delayed_cleanup" false
+	57	[573]	SELF     	2 0 -19	; "cleanUp"
+	58	[573]	CALL     	2 2 1
+	59	[577]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:553,555> (4 instructions, 16 bytes at 0x7fd9d7c0d150)
+0 params, 2 slots, 1 upvalue, 0 locals, 1 constant, 0 functions
+	1	[554]	GETUPVAL 	0 0	; self
+	2	[554]	SELF     	0 0 -1	; "collectSubprocesses"
+	3	[554]	CALL     	0 2 1
+	4	[555]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:579,584> (19 instructions, 76 bytes at 0x7fd9d7c0cd50)
+1 param, 7 slots, 2 upvalues, 5 locals, 6 constants, 0 functions
+	1	[580]	GETUPVAL 	1 0	; logger
+	2	[580]	GETTABLE 	1 1 -1	; "dbg"
+	3	[580]	LOADK    	2 -2	; "terminating"
+	4	[580]	GETTABLE 	3 0 -3	; "subprocesses_pids"
+	5	[580]	LEN      	3 3
+	6	[580]	LOADK    	4 -4	; "subprocesses"
+	7	[580]	CALL     	1 4 1
+	8	[581]	LOADK    	1 -5	; 1
+	9	[581]	GETTABLE 	2 0 -3	; "subprocesses_pids"
+	10	[581]	LEN      	2 2
+	11	[581]	LOADK    	3 -5	; 1
+	12	[581]	FORPREP  	1 5	; to 18
+	13	[582]	GETUPVAL 	5 1	; util
+	14	[582]	GETTABLE 	5 5 -6	; "terminateSubProcess"
+	15	[582]	GETTABLE 	6 0 -3	; "subprocesses_pids"
+	16	[582]	GETTABLE 	6 6 4
+	17	[582]	CALL     	5 2 1
+	18	[581]	FORLOOP  	1 -6	; to 13
+	19	[584]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:586,588> (8 instructions, 32 bytes at 0x7fd9d7c087a0)
+1 param, 2 slots, 0 upvalues, 1 local, 2 constants, 0 functions
+	1	[587]	GETTABLE 	1 0 -1	; "subprocesses_pids"
+	2	[587]	LEN      	1 1
+	3	[587]	LT       	1 -2 1	; 0 -
+	4	[587]	JMP      	1	; to 6
+	5	[587]	LOADBOOL 	1 0 1
+	6	[587]	LOADBOOL 	1 1 0
+	7	[587]	RETURN   	1 2
+	8	[588]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:590,637> (49 instructions, 196 bytes at 0x7fd9d7c0d960)
+2 params, 8 slots, 4 upvalues, 4 locals, 16 constants, 2 functions
+	1	[591]	LEN      	2 1
+	2	[591]	EQ       	0 2 -1	; - 0
+	3	[591]	JMP      	1	; to 5
+	4	[592]	RETURN   	0 1
+	5	[596]	SELF     	2 0 -2	; "terminateBackgroundJobs"
+	6	[596]	CALL     	2 2 1
+	7	[600]	GETUPVAL 	2 0	; BookInfoManager
+	8	[600]	SELF     	2 2 -3	; "closeDbConnection"
+	9	[600]	CALL     	2 2 1
+	10	[613]	CLOSURE  	2 0	; 0x7fd9d7c0e020
+	11	[613]	GETUPVAL 	0 1	; logger
+	12	[613]	MOVE     	0 1
+	13	[613]	MOVE     	0 0
+	14	[613]	GETUPVAL 	0 2	; util
+	15	[615]	SETTABLE 	0 -4 -5	; "cleanup_needed" true
+	16	[618]	GETUPVAL 	3 2	; util
+	17	[618]	GETTABLE 	3 3 -6	; "runInSubProcess"
+	18	[618]	MOVE     	4 2
+	19	[618]	CALL     	3 2 2
+	20	[619]	TEST     	3 0 1
+	21	[619]	JMP      	6	; to 28
+	22	[620]	GETUPVAL 	4 1	; logger
+	23	[620]	GETTABLE 	4 4 -7	; "warn"
+	24	[620]	LOADK    	5 -8	; "Failed lauching background extraction sub-process (fork failed)"
+	25	[620]	CALL     	4 2 1
+	26	[621]	LOADBOOL 	4 0 0
+	27	[621]	RETURN   	4 2
+	28	[623]	GETGLOBAL	4 -9	; table
+	29	[623]	GETTABLE 	4 4 -10	; "insert"
+	30	[623]	GETTABLE 	5 0 -11	; "subprocesses_pids"
+	31	[623]	MOVE     	6 3
+	32	[623]	CALL     	4 3 1
+	33	[624]	GETUPVAL 	4 2	; util
+	34	[624]	GETTABLE 	4 4 -13	; "gettime"
+	35	[624]	CALL     	4 1 2
+	36	[624]	SETTABLE 	0 -12 4	; "subprocesses_last_added_ts" -
+	37	[629]	GETTABLE 	4 0 -14	; "subprocesses_collector"
+	38	[629]	TEST     	4 0 1
+	39	[629]	JMP      	7	; to 47
+	40	[630]	GETUPVAL 	4 3	; UIManager
+	41	[630]	SELF     	4 4 -15	; "scheduleIn"
+	42	[631]	GETTABLE 	6 0 -16	; "subprocesses_collect_interval"
+	43	[633]	CLOSURE  	7 1	; 0x7fd9d7c0e150
+	44	[633]	MOVE     	0 0
+	45	[630]	CALL     	4 4 2
+	46	[634]	SETTABLE 	0 -14 4	; "subprocesses_collector" -
+	47	[636]	LOADBOOL 	4 1 0
+	48	[636]	RETURN   	4 2
+	49	[637]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:603,613> (35 instructions, 140 bytes at 0x7fd9d7c0e020)
+0 params, 10 slots, 4 upvalues, 6 locals, 10 constants, 0 functions
+	1	[604]	GETUPVAL 	0 0	; logger
+	2	[604]	GETTABLE 	0 0 -1	; "dbg"
+	3	[604]	LOADK    	1 -2	; "  BG extraction started"
+	4	[604]	CALL     	0 2 1
+	5	[605]	LOADK    	0 -3	; 1
+	6	[605]	GETUPVAL 	1 1	; files
+	7	[605]	LEN      	1 1
+	8	[605]	LOADK    	2 -3	; 1
+	9	[605]	FORPREP  	0 20	; to 30
+	10	[606]	GETUPVAL 	4 1	; files
+	11	[606]	GETTABLE 	4 4 3
+	12	[606]	GETTABLE 	4 4 -4	; "filepath"
+	13	[607]	GETUPVAL 	5 1	; files
+	14	[607]	GETTABLE 	5 5 3
+	15	[607]	GETTABLE 	5 5 -5	; "cover_specs"
+	16	[608]	GETUPVAL 	6 0	; logger
+	17	[608]	GETTABLE 	6 6 -1	; "dbg"
+	18	[608]	LOADK    	7 -6	; "  BG extracting:"
+	19	[608]	MOVE     	8 4
+	20	[608]	CALL     	6 3 1
+	21	[609]	GETUPVAL 	6 2	; self
+	22	[609]	SELF     	6 6 -7	; "extractBookInfo"
+	23	[609]	MOVE     	8 4
+	24	[609]	MOVE     	9 5
+	25	[609]	CALL     	6 4 1
+	26	[610]	GETUPVAL 	6 3	; util
+	27	[610]	GETTABLE 	6 6 -8	; "usleep"
+	28	[610]	LOADK    	7 -9	; 100000
+	29	[610]	CALL     	6 2 1
+	30	[605]	FORLOOP  	0 -21	; to 10
+	31	[612]	GETUPVAL 	0 0	; logger
+	32	[612]	GETTABLE 	0 0 -1	; "dbg"
+	33	[612]	LOADK    	1 -10	; "  BG extraction done"
+	34	[612]	CALL     	0 2 1
+	35	[613]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:631,633> (4 instructions, 16 bytes at 0x7fd9d7c0e150)
+0 params, 2 slots, 1 upvalue, 0 locals, 1 constant, 0 functions
+	1	[632]	GETUPVAL 	0 0	; self
+	2	[632]	SELF     	0 0 -1	; "collectSubprocesses"
+	3	[632]	CALL     	0 2 1
+	4	[633]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:639,651> (20 instructions, 80 bytes at 0x7fd9d7c0e410)
+1 param, 4 slots, 2 upvalues, 1 local, 10 constants, 0 functions
+	1	[640]	GETTABLE 	1 0 -1	; "subprocesses_pids"
+	2	[640]	LEN      	1 1
+	3	[640]	LT       	0 -2 1	; 0 -
+	4	[640]	JMP      	2	; to 7
+	5	[643]	SETTABLE 	0 -3 -4	; "delayed_cleanup" true
+	6	[644]	RETURN   	0 1
+	7	[646]	GETTABLE 	1 0 -5	; "cleanup_needed"
+	8	[646]	TEST     	1 0 0
+	9	[646]	JMP      	10	; to 20
+	10	[647]	GETUPVAL 	1 0	; logger
+	11	[647]	GETTABLE 	1 1 -6	; "dbg"
+	12	[647]	LOADK    	2 -7	; "Removing directory"
+	13	[647]	GETTABLE 	3 0 -8	; "tmpcr3cache"
+	14	[647]	CALL     	1 3 1
+	15	[648]	GETUPVAL 	1 1	; util
+	16	[648]	GETTABLE 	1 1 -9	; "purgeDir"
+	17	[648]	GETTABLE 	2 0 -8	; "tmpcr3cache"
+	18	[648]	CALL     	1 2 1
+	19	[649]	SETTABLE 	0 -5 -10	; "cleanup_needed" false
+	20	[651]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:653,677> (84 instructions, 336 bytes at 0x7fd9d7c0ee70)
+2 params, 20 slots, 2 upvalues, 17 locals, 20 constants, 0 functions
+	1	[654]	GETGLOBAL	2 -1	; require
+	2	[654]	LOADK    	3 -2	; "util"
+	3	[654]	CALL     	2 2 2
+	4	[654]	GETTABLE 	2 2 -3	; "stringStartsWith"
+	5	[655]	NEWTABLE 	3 1 0
+	6	[655]	MOVE     	4 0
+	7	[655]	SETLIST  	3 1 1	; 1
+	8	[656]	NEWTABLE 	4 0 0
+	9	[657]	LEN      	5 3
+	10	[657]	EQ       	1 5 -4	; - 0
+	11	[657]	JMP      	71	; to 83
+	12	[658]	NEWTABLE 	5 0 0
+	13	[660]	GETGLOBAL	6 -5	; pairs
+	14	[660]	MOVE     	7 3
+	15	[660]	CALL     	6 2 4
+	16	[660]	JMP      	62	; to 79
+	17	[662]	GETUPVAL 	11 0	; lfs
+	18	[662]	GETTABLE 	11 11 -6	; "dir"
+	19	[662]	MOVE     	12 10
+	20	[662]	CALL     	11 2 4
+	21	[662]	JMP      	55	; to 77
+	22	[663]	MOVE     	15 10
+	23	[663]	LOADK    	16 -7	; "/"
+	24	[663]	MOVE     	17 14
+	25	[663]	CONCAT   	15 15 17
+	26	[664]	GETUPVAL 	16 0	; lfs
+	27	[664]	GETTABLE 	16 16 -8	; "attributes"
+	28	[664]	MOVE     	17 15
+	29	[664]	CALL     	16 2 2
+	30	[666]	TEST     	1 0 0
+	31	[666]	JMP      	25	; to 57
+	32	[666]	GETTABLE 	17 16 -9	; "mode"
+	33	[666]	EQ       	0 17 -10	; - "directory"
+	34	[666]	JMP      	22	; to 57
+	35	[666]	EQ       	1 14 -11	; - "."
+	36	[666]	JMP      	20	; to 57
+	37	[666]	EQ       	1 14 -12	; - ".."
+	38	[666]	JMP      	18	; to 57
+	39	[666]	GETGLOBAL	17 -13	; G_reader_settings
+	40	[666]	SELF     	17 17 -14	; "isTrue"
+	41	[666]	LOADK    	19 -15	; "show_hidden"
+	42	[666]	CALL     	17 3 2
+	43	[666]	TEST     	17 0 1
+	44	[666]	JMP      	6	; to 51
+	45	[666]	MOVE     	17 2
+	46	[666]	MOVE     	18 14
+	47	[666]	LOADK    	19 -11	; "."
+	48	[666]	CALL     	17 3 2
+	49	[666]	TEST     	17 0 1
+	50	[666]	JMP      	6	; to 57
+	51	[667]	GETGLOBAL	17 -16	; table
+	52	[667]	GETTABLE 	17 17 -17	; "insert"
+	53	[667]	MOVE     	18 5
+	54	[667]	MOVE     	19 15
+	55	[667]	CALL     	17 3 1
+	56	[667]	JMP      	20	; to 77
+	57	[669]	GETTABLE 	17 16 -9	; "mode"
+	58	[669]	EQ       	0 17 -18	; - "file"
+	59	[669]	JMP      	17	; to 77
+	60	[669]	MOVE     	17 2
+	61	[669]	MOVE     	18 14
+	62	[669]	LOADK    	19 -19	; "._"
+	63	[669]	CALL     	17 3 2
+	64	[669]	TEST     	17 0 1
+	65	[669]	JMP      	11	; to 77
+	66	[669]	GETUPVAL 	17 1	; DocumentRegistry
+	67	[669]	SELF     	17 17 -20	; "hasProvider"
+	68	[669]	MOVE     	19 15
+	69	[669]	CALL     	17 3 2
+	70	[669]	TEST     	17 0 0
+	71	[669]	JMP      	5	; to 77
+	72	[670]	GETGLOBAL	17 -16	; table
+	73	[670]	GETTABLE 	17 17 -17	; "insert"
+	74	[670]	MOVE     	18 4
+	75	[670]	MOVE     	19 15
+	76	[670]	CALL     	17 3 1
+	77	[662]	TFORLOOP 	11 1
+	78	[671]	JMP      	-57	; to 22
+	79	[660]	TFORLOOP 	6 2
+	80	[672]	JMP      	-64	; to 17
+	81	[674]	MOVE     	3 5
+	82	[674]	JMP      	-74	; to 9
+	83	[676]	RETURN   	4 2
+	84	[677]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:680,894> (469 instructions, 1876 bytes at 0x7fd9d7c0f280)
+3 params, 36 slots, 6 upvalues, 30 locals, 63 constants, 5 functions
+	1	[681]	GETGLOBAL	3 -1	; require
+	2	[681]	LOADK    	4 -2	; "ui/geometry"
+	3	[681]	CALL     	3 2 2
+	4	[682]	GETGLOBAL	4 -1	; require
+	5	[682]	LOADK    	5 -3	; "ui/widget/infomessage"
+	6	[682]	CALL     	4 2 2
+	7	[683]	GETGLOBAL	5 -1	; require
+	8	[683]	LOADK    	6 -4	; "ui/widget/container/topcontainer"
+	9	[683]	CALL     	5 2 2
+	10	[684]	GETGLOBAL	6 -1	; require
+	11	[684]	LOADK    	7 -5	; "ui/trapper"
+	12	[684]	CALL     	6 2 2
+	13	[685]	GETGLOBAL	7 -1	; require
+	14	[685]	LOADK    	8 -6	; "device"
+	15	[685]	CALL     	7 2 2
+	16	[685]	GETTABLE 	7 7 -7	; "screen"
+	17	[687]	SELF     	8 6 -8	; "confirm"
+	18	[687]	GETUPVAL 	10 0	; _
+	19	[695]	LOADK    	11 -9	; "This will extract metadata and cover images from books in the current directory.\nOnce extraction has started, you can abort at any moment by tapping on the screen.\n\nCover images will be saved with the adequate size for the current display mode.\nIf you later change display mode, they may need to be extracted again.\n\nThis extraction may take time and use some battery power: you may wish to keep your device plugged in."
+	20	[687]	CALL     	10 2 2
+	21	[695]	GETUPVAL 	11 0	; _
+	22	[695]	LOADK    	12 -10	; "Cancel"
+	23	[695]	CALL     	11 2 2
+	24	[695]	GETUPVAL 	12 0	; _
+	25	[695]	LOADK    	13 -11	; "Continue"
+	26	[695]	CALL     	12 2 0
+	27	[687]	CALL     	8 0 2
+	28	[696]	TEST     	8 0 1
+	29	[696]	JMP      	1	; to 31
+	30	[697]	RETURN   	0 1
+	31	[700]	SELF     	9 6 -8	; "confirm"
+	32	[700]	GETUPVAL 	11 0	; _
+	33	[702]	LOADK    	12 -12	; "Also extract book information from books in subdirectories?"
+	34	[700]	CALL     	11 2 2
+	35	[704]	GETUPVAL 	12 0	; _
+	36	[704]	LOADK    	13 -13	; "Here only"
+	37	[704]	CALL     	12 2 2
+	38	[706]	GETUPVAL 	13 0	; _
+	39	[706]	LOADK    	14 -14	; "Here and under"
+	40	[706]	CALL     	13 2 0
+	41	[700]	CALL     	9 0 2
+	42	[708]	SELF     	10 6 -8	; "confirm"
+	43	[708]	GETUPVAL 	12 0	; _
+	44	[710]	LOADK    	13 -15	; "Do you want to refresh metadata and covers that have already been extracted?"
+	45	[708]	CALL     	12 2 2
+	46	[710]	GETUPVAL 	13 0	; _
+	47	[710]	LOADK    	14 -16	; "Don't refresh"
+	48	[710]	CALL     	13 2 2
+	49	[710]	GETUPVAL 	14 0	; _
+	50	[710]	LOADK    	15 -17	; "Refresh"
+	51	[710]	CALL     	14 2 0
+	52	[708]	CALL     	10 0 2
+	53	[712]	SELF     	11 6 -8	; "confirm"
+	54	[712]	GETUPVAL 	13 0	; _
+	55	[716]	LOADK    	14 -18	; "If you have removed many books, or have renamed some directories, it is good to remove them from the cache database.\n\nDo you want to prune the cache of removed books?"
+	56	[712]	CALL     	13 2 2
+	57	[716]	GETUPVAL 	14 0	; _
+	58	[716]	LOADK    	15 -19	; "Don't prune"
+	59	[716]	CALL     	14 2 2
+	60	[716]	GETUPVAL 	15 0	; _
+	61	[716]	LOADK    	16 -20	; "Prune"
+	62	[716]	CALL     	15 2 0
+	63	[712]	CALL     	11 0 2
+	64	[718]	SELF     	12 6 -21	; "clear"
+	65	[718]	CALL     	12 2 1
+	66	[722]	CLOSURE  	12 0	; 0x7fd9d7c0fe70
+	67	[722]	MOVE     	0 6
+	68	[722]	GETUPVAL 	0 0	; _
+	69	[725]	SELF     	13 0 -22	; "terminateBackgroundJobs"
+	70	[725]	CALL     	13 2 1
+	71	[727]	LOADNIL  	13 14
+	72	[728]	TEST     	11 0 0
+	73	[728]	JMP      	57	; to 131
+	74	[729]	LOADNIL  	15 15
+	75	[731]	SELF     	16 4 -23	; "new"
+	76	[731]	NEWTABLE 	18 0 1
+	77	[731]	GETUPVAL 	19 0	; _
+	78	[731]	LOADK    	20 -25	; "Pruning cache of removed books\226\128\166"
+	79	[731]	CALL     	19 2 2
+	80	[731]	SETTABLE 	18 -24 19	; "text" -
+	81	[731]	CALL     	16 3 2
+	82	[731]	MOVE     	13 16
+	83	[732]	GETUPVAL 	16 1	; UIManager
+	84	[732]	SELF     	16 16 -26	; "show"
+	85	[732]	MOVE     	18 13
+	86	[732]	CALL     	16 3 1
+	87	[733]	GETUPVAL 	16 1	; UIManager
+	88	[733]	SELF     	16 16 -27	; "forceRePaint"
+	89	[733]	CALL     	16 2 1
+	90	[734]	SELF     	16 6 -28	; "dismissableRunInSubprocess"
+	91	[736]	CLOSURE  	18 1	; 0x7fd9d7c10e90
+	92	[736]	MOVE     	0 0
+	93	[736]	MOVE     	19 13
+	94	[734]	CALL     	16 4 3
+	95	[736]	MOVE     	15 17
+	96	[736]	MOVE     	14 16
+	97	[737]	TEST     	14 0 1
+	98	[737]	JMP      	6	; to 105
+	99	[738]	MOVE     	16 12
+	100	[738]	CALL     	16 1 2
+	101	[738]	TEST     	16 0 0
+	102	[738]	JMP      	-28	; to 75
+	103	[739]	RETURN   	0 1
+	104	[740]	JMP      	-30	; to 75
+	105	[742]	GETUPVAL 	16 1	; UIManager
+	106	[742]	SELF     	16 16 -29	; "close"
+	107	[742]	MOVE     	18 13
+	108	[742]	CALL     	16 3 1
+	109	[743]	SELF     	16 4 -23	; "new"
+	110	[743]	NEWTABLE 	18 0 1
+	111	[743]	SETTABLE 	18 -24 15	; "text" -
+	112	[743]	CALL     	16 3 2
+	113	[743]	MOVE     	13 16
+	114	[744]	GETUPVAL 	16 1	; UIManager
+	115	[744]	SELF     	16 16 -26	; "show"
+	116	[744]	MOVE     	18 13
+	117	[744]	CALL     	16 3 1
+	118	[745]	GETUPVAL 	16 1	; UIManager
+	119	[745]	SELF     	16 16 -27	; "forceRePaint"
+	120	[745]	CALL     	16 2 1
+	121	[746]	GETUPVAL 	16 2	; util
+	122	[746]	GETTABLE 	16 16 -30	; "sleep"
+	123	[746]	LOADK    	17 -31	; 2
+	124	[746]	CALL     	16 2 1
+	125	[747]	JMP      	1	; to 127
+	126	[748]	JMP      	-52	; to 75
+	127	[750]	GETUPVAL 	16 1	; UIManager
+	128	[750]	SELF     	16 16 -29	; "close"
+	129	[750]	MOVE     	18 13
+	130	[750]	CALL     	16 3 1
+	131	[753]	LOADNIL  	15 15
+	132	[755]	SELF     	16 4 -23	; "new"
+	133	[755]	NEWTABLE 	18 0 1
+	134	[755]	GETUPVAL 	19 0	; _
+	135	[755]	LOADK    	20 -32	; "Looking for books to index\226\128\166"
+	136	[755]	CALL     	19 2 2
+	137	[755]	SETTABLE 	18 -24 19	; "text" -
+	138	[755]	CALL     	16 3 2
+	139	[755]	MOVE     	13 16
+	140	[756]	GETUPVAL 	16 1	; UIManager
+	141	[756]	SELF     	16 16 -26	; "show"
+	142	[756]	MOVE     	18 13
+	143	[756]	CALL     	16 3 1
+	144	[757]	GETUPVAL 	16 1	; UIManager
+	145	[757]	SELF     	16 16 -27	; "forceRePaint"
+	146	[757]	CALL     	16 2 1
+	147	[758]	SELF     	16 6 -28	; "dismissableRunInSubprocess"
+	148	[762]	CLOSURE  	18 2	; 0x7fd9d7c0fd70
+	149	[762]	GETUPVAL 	0 3	; findFilesInDir
+	150	[762]	MOVE     	0 1
+	151	[762]	MOVE     	0 9
+	152	[762]	MOVE     	19 13
+	153	[758]	CALL     	16 4 3
+	154	[762]	MOVE     	15 17
+	155	[762]	MOVE     	14 16
+	156	[763]	TEST     	14 0 1
+	157	[763]	JMP      	6	; to 164
+	158	[764]	MOVE     	16 12
+	159	[764]	CALL     	16 1 2
+	160	[764]	TEST     	16 0 0
+	161	[764]	JMP      	-30	; to 132
+	162	[765]	RETURN   	0 1
+	163	[766]	JMP      	-32	; to 132
+	164	[767]	TEST     	15 0 0
+	165	[767]	JMP      	3	; to 169
+	166	[767]	LEN      	16 15
+	167	[767]	EQ       	0 16 -33	; - 0
+	168	[767]	JMP      	20	; to 189
+	169	[768]	GETUPVAL 	16 1	; UIManager
+	170	[768]	SELF     	16 16 -29	; "close"
+	171	[768]	MOVE     	18 13
+	172	[768]	CALL     	16 3 1
+	173	[769]	SELF     	16 4 -23	; "new"
+	174	[769]	NEWTABLE 	18 0 1
+	175	[769]	GETUPVAL 	19 0	; _
+	176	[769]	LOADK    	20 -34	; "No books were found."
+	177	[769]	CALL     	19 2 2
+	178	[769]	SETTABLE 	18 -24 19	; "text" -
+	179	[769]	CALL     	16 3 2
+	180	[769]	MOVE     	13 16
+	181	[770]	GETUPVAL 	16 1	; UIManager
+	182	[770]	SELF     	16 16 -26	; "show"
+	183	[770]	MOVE     	18 13
+	184	[770]	CALL     	16 3 1
+	185	[771]	RETURN   	0 1
+	186	[771]	JMP      	-55	; to 132
+	187	[773]	JMP      	1	; to 189
+	188	[774]	JMP      	-57	; to 132
+	189	[776]	GETUPVAL 	16 1	; UIManager
+	190	[776]	SELF     	16 16 -29	; "close"
+	191	[776]	MOVE     	18 13
+	192	[776]	CALL     	16 3 1
+	193	[778]	TEST     	10 0 0
+	194	[778]	JMP      	23	; to 218
+	195	[779]	SELF     	16 4 -23	; "new"
+	196	[779]	NEWTABLE 	18 0 1
+	197	[779]	GETUPVAL 	19 4	; T
+	198	[779]	GETUPVAL 	20 0	; _
+	199	[779]	LOADK    	21 -35	; "Found %1 books to index."
+	200	[779]	CALL     	20 2 2
+	201	[779]	LEN      	21 15
+	202	[779]	CALL     	19 3 2
+	203	[779]	SETTABLE 	18 -24 19	; "text" -
+	204	[779]	CALL     	16 3 2
+	205	[779]	MOVE     	13 16
+	206	[780]	GETUPVAL 	16 1	; UIManager
+	207	[780]	SELF     	16 16 -26	; "show"
+	208	[780]	MOVE     	18 13
+	209	[780]	CALL     	16 3 1
+	210	[781]	GETUPVAL 	16 1	; UIManager
+	211	[781]	SELF     	16 16 -27	; "forceRePaint"
+	212	[781]	CALL     	16 2 1
+	213	[782]	GETUPVAL 	16 2	; util
+	214	[782]	GETTABLE 	16 16 -30	; "sleep"
+	215	[782]	LOADK    	17 -31	; 2
+	216	[782]	CALL     	16 2 1
+	217	[782]	JMP      	93	; to 311
+	218	[784]	MOVE     	16 15
+	219	[786]	SELF     	17 4 -23	; "new"
+	220	[786]	NEWTABLE 	19 0 1
+	221	[786]	GETUPVAL 	20 4	; T
+	222	[786]	GETUPVAL 	21 0	; _
+	223	[786]	LOADK    	22 -36	; "Found %1 books.\nLooking for those not already present in the cache database\226\128\166"
+	224	[786]	CALL     	21 2 2
+	225	[786]	LEN      	22 16
+	226	[786]	CALL     	20 3 2
+	227	[786]	SETTABLE 	19 -24 20	; "text" -
+	228	[786]	CALL     	17 3 2
+	229	[786]	MOVE     	13 17
+	230	[787]	GETUPVAL 	17 1	; UIManager
+	231	[787]	SELF     	17 17 -26	; "show"
+	232	[787]	MOVE     	19 13
+	233	[787]	CALL     	17 3 1
+	234	[788]	GETUPVAL 	17 1	; UIManager
+	235	[788]	SELF     	17 17 -27	; "forceRePaint"
+	236	[788]	CALL     	17 2 1
+	237	[789]	GETUPVAL 	17 2	; util
+	238	[789]	GETTABLE 	17 17 -30	; "sleep"
+	239	[789]	LOADK    	18 -31	; 2
+	240	[789]	CALL     	17 2 1
+	241	[790]	SELF     	17 6 -28	; "dismissableRunInSubprocess"
+	242	[811]	CLOSURE  	19 3	; 0x7fd9d7c11130
+	243	[811]	MOVE     	0 15
+	244	[811]	MOVE     	0 16
+	245	[811]	MOVE     	0 0
+	246	[811]	MOVE     	0 2
+	247	[811]	MOVE     	20 13
+	248	[790]	CALL     	17 4 3
+	249	[811]	MOVE     	15 18
+	250	[811]	MOVE     	14 17
+	251	[812]	TEST     	14 0 1
+	252	[812]	JMP      	6	; to 259
+	253	[813]	MOVE     	17 12
+	254	[813]	CALL     	17 1 2
+	255	[813]	TEST     	17 0 0
+	256	[813]	JMP      	-38	; to 219
+	257	[814]	RETURN   	0 1
+	258	[815]	JMP      	-40	; to 219
+	259	[816]	TEST     	15 0 0
+	260	[816]	JMP      	3	; to 264
+	261	[816]	LEN      	17 15
+	262	[816]	EQ       	0 17 -33	; - 0
+	263	[816]	JMP      	20	; to 284
+	264	[817]	GETUPVAL 	17 1	; UIManager
+	265	[817]	SELF     	17 17 -29	; "close"
+	266	[817]	MOVE     	19 13
+	267	[817]	CALL     	17 3 1
+	268	[818]	SELF     	17 4 -23	; "new"
+	269	[818]	NEWTABLE 	19 0 1
+	270	[818]	GETUPVAL 	20 0	; _
+	271	[818]	LOADK    	21 -37	; "No books were found that need to be indexed."
+	272	[818]	CALL     	20 2 2
+	273	[818]	SETTABLE 	19 -24 20	; "text" -
+	274	[818]	CALL     	17 3 2
+	275	[818]	MOVE     	13 17
+	276	[819]	GETUPVAL 	17 1	; UIManager
+	277	[819]	SELF     	17 17 -26	; "show"
+	278	[819]	MOVE     	19 13
+	279	[819]	CALL     	17 3 1
+	280	[820]	RETURN   	0 1
+	281	[820]	JMP      	-63	; to 219
+	282	[822]	JMP      	1	; to 284
+	283	[823]	JMP      	-65	; to 219
+	284	[825]	GETUPVAL 	17 1	; UIManager
+	285	[825]	SELF     	17 17 -29	; "close"
+	286	[825]	MOVE     	19 13
+	287	[825]	CALL     	17 3 1
+	288	[826]	SELF     	17 4 -23	; "new"
+	289	[826]	NEWTABLE 	19 0 1
+	290	[826]	GETUPVAL 	20 4	; T
+	291	[826]	GETUPVAL 	21 0	; _
+	292	[826]	LOADK    	22 -35	; "Found %1 books to index."
+	293	[826]	CALL     	21 2 2
+	294	[826]	LEN      	22 15
+	295	[826]	CALL     	20 3 2
+	296	[826]	SETTABLE 	19 -24 20	; "text" -
+	297	[826]	CALL     	17 3 2
+	298	[826]	MOVE     	13 17
+	299	[827]	GETUPVAL 	17 1	; UIManager
+	300	[827]	SELF     	17 17 -26	; "show"
+	301	[827]	MOVE     	19 13
+	302	[827]	CALL     	17 3 1
+	303	[828]	GETUPVAL 	17 1	; UIManager
+	304	[828]	SELF     	17 17 -27	; "forceRePaint"
+	305	[828]	CALL     	17 2 1
+	306	[829]	GETUPVAL 	17 2	; util
+	307	[829]	GETTABLE 	17 17 -30	; "sleep"
+	308	[829]	LOADK    	18 -31	; 2
+	309	[829]	CALL     	17 2 1
+	310	[829]	CLOSE    	16
+	311	[831]	GETUPVAL 	16 1	; UIManager
+	312	[831]	SELF     	16 16 -29	; "close"
+	313	[831]	MOVE     	18 13
+	314	[831]	CALL     	16 3 1
+	315	[833]	LEN      	16 15
+	316	[834]	LOADK    	17 -33	; 0
+	317	[835]	LOADK    	18 -33	; 0
+	318	[836]	LOADK    	19 -38	; 1
+	319	[840]	SELF     	20 4 -23	; "new"
+	320	[840]	NEWTABLE 	22 0 1
+	321	[840]	SETTABLE 	22 -24 -39	; "text" "dummy"
+	322	[840]	CALL     	20 3 2
+	323	[840]	MOVE     	13 20
+	324	[841]	GETUPVAL 	20 1	; UIManager
+	325	[841]	SELF     	20 20 -26	; "show"
+	326	[841]	MOVE     	22 13
+	327	[841]	CALL     	20 3 1
+	328	[842]	LOADK    	20 -33	; 0
+	329	[843]	LOADNIL  	21 21
+	330	[845]	LE       	0 19 16
+	331	[845]	JMP      	116	; to 448
+	332	[846]	GETTABLE 	22 15 19
+	333	[847]	GETUPVAL 	23 2	; util
+	334	[847]	GETTABLE 	23 23 -40	; "basename"
+	335	[847]	MOVE     	24 22
+	336	[847]	CALL     	23 2 2
+	337	[849]	GETTABLE 	24 13 -41	; "movable"
+	338	[849]	SELF     	24 24 -42	; "getMovedOffset"
+	339	[849]	CALL     	24 2 2
+	340	[850]	SELF     	25 13 -43	; "free"
+	341	[850]	CALL     	25 2 1
+	342	[851]	GETUPVAL 	25 4	; T
+	343	[851]	GETUPVAL 	26 0	; _
+	344	[851]	LOADK    	27 -44	; "Indexing %1 / %2\226\128\166\n\n%3"
+	345	[851]	CALL     	26 2 2
+	346	[851]	MOVE     	27 19
+	347	[851]	MOVE     	28 16
+	348	[851]	GETUPVAL 	29 5	; BD
+	349	[851]	GETTABLE 	29 29 -45	; "filename"
+	350	[851]	MOVE     	30 23
+	351	[851]	CALL     	29 2 0
+	352	[851]	CALL     	25 0 2
+	353	[851]	SETTABLE 	13 -24 25	; "text" -
+	354	[852]	SELF     	25 13 -46	; "init"
+	355	[852]	CALL     	25 2 1
+	356	[853]	GETGLOBAL	25 -47	; table
+	357	[853]	GETTABLE 	25 25 -48	; "remove"
+	358	[853]	GETTABLE 	26 13 -41	; "movable"
+	359	[853]	GETTABLE 	26 26 -38	; 1
+	360	[853]	GETTABLE 	26 26 -38	; 1
+	361	[853]	LOADK    	27 -49	; 3
+	362	[853]	CALL     	25 3 2
+	363	[854]	SELF     	26 25 -50	; "getSize"
+	364	[854]	CALL     	26 2 2
+	365	[855]	GETTABLE 	27 26 -51	; "h"
+	366	[855]	LT       	0 20 27
+	367	[855]	JMP      	1	; to 369
+	368	[856]	GETTABLE 	20 26 -51	; "h"
+	369	[858]	GETGLOBAL	27 -47	; table
+	370	[858]	GETTABLE 	27 27 -52	; "insert"
+	371	[858]	GETTABLE 	28 13 -41	; "movable"
+	372	[858]	GETTABLE 	28 28 -38	; 1
+	373	[858]	GETTABLE 	28 28 -38	; 1
+	374	[858]	SELF     	29 5 -23	; "new"
+	375	[858]	NEWTABLE 	31 1 1
+	376	[859]	SELF     	32 3 -23	; "new"
+	377	[859]	NEWTABLE 	34 0 2
+	378	[860]	GETTABLE 	35 26 -54	; "w"
+	379	[860]	SETTABLE 	34 -54 35	; "w" -
+	380	[861]	SETTABLE 	34 -51 20	; "h" -
+	381	[859]	CALL     	32 3 2
+	382	[862]	SETTABLE 	31 -53 32	; "dimen" -
+	383	[864]	MOVE     	32 25
+	384	[864]	SETLIST  	31 1 1	; 1
+	385	[858]	CALL     	29 3 0
+	386	[858]	CALL     	27 0 1
+	387	[865]	GETTABLE 	27 13 -41	; "movable"
+	388	[865]	GETTABLE 	27 27 -38	; 1
+	389	[865]	GETTABLE 	27 27 -38	; 1
+	390	[865]	SETTABLE 	27 -55 -56	; "_size" nil
+	391	[866]	GETTABLE 	27 13 -41	; "movable"
+	392	[866]	SELF     	27 27 -57	; "setMovedOffset"
+	393	[866]	MOVE     	29 24
+	394	[866]	CALL     	27 3 1
+	395	[867]	SELF     	27 13 -58	; "paintTo"
+	396	[867]	GETTABLE 	29 7 -59	; "bb"
+	397	[867]	LOADK    	30 -33	; 0
+	398	[867]	LOADK    	31 -33	; 0
+	399	[867]	CALL     	27 5 1
+	400	[868]	GETTABLE 	27 13 -41	; "movable"
+	401	[868]	GETTABLE 	27 27 -38	; 1
+	402	[868]	GETTABLE 	27 27 -53	; "dimen"
+	403	[869]	GETTABLE 	28 7 -60	; "refreshUI"
+	404	[869]	MOVE     	29 7
+	405	[869]	GETTABLE 	30 27 -61	; "x"
+	406	[869]	GETTABLE 	31 27 -62	; "y"
+	407	[869]	GETTABLE 	32 27 -54	; "w"
+	408	[869]	GETTABLE 	33 27 -51	; "h"
+	409	[869]	CALL     	28 6 1
+	410	[871]	SELF     	28 6 -28	; "dismissableRunInSubprocess"
+	411	[873]	CLOSURE  	30 4	; 0x7fd9d7c11510
+	412	[873]	MOVE     	0 0
+	413	[873]	MOVE     	0 22
+	414	[873]	MOVE     	0 2
+	415	[873]	MOVE     	31 13
+	416	[871]	CALL     	28 4 3
+	417	[873]	MOVE     	21 29
+	418	[873]	MOVE     	14 28
+	419	[874]	TEST     	14 0 1
+	420	[874]	JMP      	20	; to 441
+	421	[875]	MOVE     	28 12
+	422	[875]	CALL     	28 1 2
+	423	[875]	TEST     	28 0 0
+	424	[875]	JMP      	2	; to 427
+	425	[876]	CLOSE    	22
+	426	[876]	JMP      	21	; to 448
+	427	[879]	SELF     	28 4 -23	; "new"
+	428	[879]	NEWTABLE 	30 0 1
+	429	[879]	SETTABLE 	30 -24 -39	; "text" "dummy"
+	430	[879]	CALL     	28 3 2
+	431	[879]	MOVE     	13 28
+	432	[880]	GETTABLE 	28 13 -41	; "movable"
+	433	[880]	SELF     	28 28 -57	; "setMovedOffset"
+	434	[880]	MOVE     	30 24
+	435	[880]	CALL     	28 3 1
+	436	[881]	GETUPVAL 	28 1	; UIManager
+	437	[881]	SELF     	28 28 -26	; "show"
+	438	[881]	MOVE     	30 13
+	439	[881]	CALL     	28 3 1
+	440	[881]	JMP      	5	; to 446
+	441	[884]	ADD      	17 17 -38	; - 1
+	442	[885]	TEST     	21 0 0
+	443	[885]	JMP      	1	; to 445
+	444	[886]	ADD      	18 18 -38	; - 1
+	445	[888]	ADD      	19 19 -38	; - 1
+	446	[889]	CLOSE    	22
+	447	[889]	JMP      	-118	; to 330
+	448	[891]	GETUPVAL 	22 1	; UIManager
+	449	[891]	SELF     	22 22 -29	; "close"
+	450	[891]	MOVE     	24 13
+	451	[891]	CALL     	22 3 1
+	452	[892]	SELF     	22 4 -23	; "new"
+	453	[892]	NEWTABLE 	24 0 1
+	454	[892]	GETUPVAL 	25 4	; T
+	455	[892]	GETUPVAL 	26 0	; _
+	456	[892]	LOADK    	27 -63	; "Processed %1 / %2 books.\n%3 extracted successfully."
+	457	[892]	CALL     	26 2 2
+	458	[892]	MOVE     	27 17
+	459	[892]	MOVE     	28 16
+	460	[892]	MOVE     	29 18
+	461	[892]	CALL     	25 5 2
+	462	[892]	SETTABLE 	24 -24 25	; "text" -
+	463	[892]	CALL     	22 3 2
+	464	[892]	MOVE     	13 22
+	465	[893]	GETUPVAL 	22 1	; UIManager
+	466	[893]	SELF     	22 22 -26	; "show"
+	467	[893]	MOVE     	24 13
+	468	[893]	CALL     	22 3 1
+	469	[894]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:720,722> (14 instructions, 56 bytes at 0x7fd9d7c0fe70)
+0 params, 6 slots, 2 upvalues, 0 locals, 4 constants, 0 functions
+	1	[721]	GETUPVAL 	0 0	; Trapper
+	2	[721]	SELF     	0 0 -1	; "confirm"
+	3	[721]	GETUPVAL 	2 1	; _
+	4	[721]	LOADK    	3 -2	; "Do you want to abort extraction?"
+	5	[721]	CALL     	2 2 2
+	6	[721]	GETUPVAL 	3 1	; _
+	7	[721]	LOADK    	4 -3	; "Don't abort"
+	8	[721]	CALL     	3 2 2
+	9	[721]	GETUPVAL 	4 1	; _
+	10	[721]	LOADK    	5 -4	; "Abort"
+	11	[721]	CALL     	4 2 0
+	12	[721]	TAILCALL 	0 0 0
+	13	[721]	RETURN   	0 0
+	14	[722]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:734,736> (5 instructions, 20 bytes at 0x7fd9d7c10e90)
+0 params, 2 slots, 1 upvalue, 0 locals, 1 constant, 0 functions
+	1	[735]	GETUPVAL 	0 0	; self
+	2	[735]	SELF     	0 0 -1	; "removeNonExistantEntries"
+	3	[735]	TAILCALL 	0 2 0
+	4	[735]	RETURN   	0 0
+	5	[736]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:758,762> (10 instructions, 40 bytes at 0x7fd9d7c0fd70)
+0 params, 3 slots, 3 upvalues, 1 local, 2 constants, 0 functions
+	1	[759]	GETUPVAL 	0 0	; findFilesInDir
+	2	[759]	GETUPVAL 	1 1	; path
+	3	[759]	GETUPVAL 	2 2	; recursive
+	4	[759]	CALL     	0 3 2
+	5	[760]	GETGLOBAL	1 -1	; table
+	6	[760]	GETTABLE 	1 1 -2	; "sort"
+	7	[760]	MOVE     	2 0
+	8	[760]	CALL     	1 2 1
+	9	[761]	RETURN   	0 2
+	10	[762]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:790,811> (48 instructions, 192 bytes at 0x7fd9d7c11130)
+0 params, 10 slots, 4 upvalues, 7 locals, 10 constants, 0 functions
+	1	[791]	NEWTABLE 	0 0 0
+	2	[791]	SETUPVAL 	0 0	; files
+	3	[792]	GETGLOBAL	0 -1	; pairs
+	4	[792]	GETUPVAL 	1 1	; all_files
+	5	[792]	CALL     	0 2 4
+	6	[792]	JMP      	37	; to 44
+	7	[793]	GETUPVAL 	5 2	; self
+	8	[793]	SELF     	5 5 -2	; "getBookInfo"
+	9	[793]	MOVE     	7 4
+	10	[793]	CALL     	5 3 2
+	11	[794]	NOT      	6 5
+	12	[795]	TEST     	5 0 0
+	13	[795]	JMP      	23	; to 37
+	14	[795]	GETUPVAL 	7 3	; cover_specs
+	15	[795]	TEST     	7 0 0
+	16	[795]	JMP      	20	; to 37
+	17	[795]	GETTABLE 	7 5 -3	; "ignore_cover"
+	18	[795]	TEST     	7 0 1
+	19	[795]	JMP      	17	; to 37
+	20	[796]	GETTABLE 	7 5 -4	; "cover_fetched"
+	21	[796]	TEST     	7 0 0
+	22	[796]	JMP      	13	; to 36
+	23	[797]	GETTABLE 	7 5 -5	; "has_cover"
+	24	[797]	TEST     	7 0 0
+	25	[797]	JMP      	11	; to 37
+	26	[797]	GETUPVAL 	7 3	; cover_specs
+	27	[797]	GETTABLE 	7 7 -6	; "sizetag"
+	28	[797]	GETTABLE 	8 5 -7	; "cover_sizetag"
+	29	[797]	EQ       	1 7 8
+	30	[797]	JMP      	6	; to 37
+	31	[798]	GETTABLE 	7 5 -7	; "cover_sizetag"
+	32	[798]	EQ       	1 7 -8	; - "M"
+	33	[798]	JMP      	3	; to 37
+	34	[799]	LOADBOOL 	6 1 0
+	35	[801]	JMP      	1	; to 37
+	36	[803]	LOADBOOL 	6 1 0
+	37	[806]	TEST     	6 0 0
+	38	[806]	JMP      	5	; to 44
+	39	[807]	GETGLOBAL	7 -9	; table
+	40	[807]	GETTABLE 	7 7 -10	; "insert"
+	41	[807]	GETUPVAL 	8 0	; files
+	42	[807]	MOVE     	9 4
+	43	[807]	CALL     	7 3 1
+	44	[792]	TFORLOOP 	0 2
+	45	[808]	JMP      	-39	; to 7
+	46	[810]	GETUPVAL 	0 0	; files
+	47	[810]	RETURN   	0 2
+	48	[811]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/bookinfomanager.lua:871,873> (7 instructions, 28 bytes at 0x7fd9d7c11510)
+0 params, 4 slots, 3 upvalues, 0 locals, 1 constant, 0 functions
+	1	[872]	GETUPVAL 	0 0	; self
+	2	[872]	SELF     	0 0 -1	; "extractBookInfo"
+	3	[872]	GETUPVAL 	2 1	; filepath
+	4	[872]	GETUPVAL 	3 2	; cover_specs
+	5	[872]	TAILCALL 	0 4 0
+	6	[872]	RETURN   	0 0
+	7	[873]	RETURN   	0 1

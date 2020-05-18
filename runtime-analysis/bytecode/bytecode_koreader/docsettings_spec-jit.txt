@@ -1,0 +1,876 @@
+-- BYTECODE -- docsettings_spec.lua:4-9
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "docsettings"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; docsettings
+0008    GGET     0   0      ; "require"
+0009    KSTR     1   3      ; "libs/libkoreader-lfs"
+0010    CALL     0   2   2
+0011    USETV    1   0      ; lfs
+0012    GGET     0   0      ; "require"
+0013    KSTR     1   4      ; "ffi/util"
+0014    CALL     0   2   2
+0015    USETV    2   0      ; util
+0016    RET0     0   1
+
+-- BYTECODE -- docsettings_spec.lua:11-15
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "Equals"
+0003    KSTR     1   2      ; "../../foo.sdr"
+0004    UGET     2   0      ; docsettings
+0005    MOV      3   2
+0006    TGETS    2   2   3  ; "getSidecarDir"
+0007    KSTR     4   4      ; "../../foo.pdf"
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    GGET     0   0      ; "assert"
+0011    TGETS    0   0   1  ; "Equals"
+0012    KSTR     1   5      ; "/foo/bar.sdr"
+0013    UGET     2   0      ; docsettings
+0014    MOV      3   2
+0015    TGETS    2   2   3  ; "getSidecarDir"
+0016    KSTR     4   6      ; "/foo/bar.pdf"
+0017    CALL     2   0   3
+0018    CALLM    0   1   1
+0019    GGET     0   0      ; "assert"
+0020    TGETS    0   0   1  ; "Equals"
+0021    KSTR     1   7      ; "baz.sdr"
+0022    UGET     2   0      ; docsettings
+0023    MOV      3   2
+0024    TGETS    2   2   3  ; "getSidecarDir"
+0025    KSTR     4   8      ; "baz.pdf"
+0026    CALL     2   0   3
+0027    CALLM    0   1   1
+0028    RET0     0   1
+
+-- BYTECODE -- docsettings_spec.lua:17-24
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "Equals"
+0003    KSTR     1   2      ; "../../foo.sdr/metadata.pdf.lua"
+0004    UGET     2   0      ; docsettings
+0005    MOV      3   2
+0006    TGETS    2   2   3  ; "getSidecarFile"
+0007    KSTR     4   4      ; "../../foo.pdf"
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    GGET     0   0      ; "assert"
+0011    TGETS    0   0   1  ; "Equals"
+0012    KSTR     1   5      ; "/foo/bar.sdr/metadata.pdf.lua"
+0013    UGET     2   0      ; docsettings
+0014    MOV      3   2
+0015    TGETS    2   2   3  ; "getSidecarFile"
+0016    KSTR     4   6      ; "/foo/bar.pdf"
+0017    CALL     2   0   3
+0018    CALLM    0   1   1
+0019    GGET     0   0      ; "assert"
+0020    TGETS    0   0   1  ; "Equals"
+0021    KSTR     1   7      ; "baz.sdr/metadata.epub.lua"
+0022    UGET     2   0      ; docsettings
+0023    MOV      3   2
+0024    TGETS    2   2   3  ; "getSidecarFile"
+0025    KSTR     4   8      ; "baz.epub"
+0026    CALL     2   0   3
+0027    CALLM    0   1   1
+0028    RET0     0   1
+
+-- BYTECODE -- docsettings_spec.lua:26-58
+0001    KSTR     0   0      ; "file.pdf"
+0002    UGET     1   0      ; docsettings
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "open"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    MOV      3   1
+0008    TGETS    2   1   2  ; "saveSetting"
+0009    KSTR     4   3      ; "a"
+0010    KSTR     5   4      ; "b"
+0011    CALL     2   1   4
+0012    MOV      3   1
+0013    TGETS    2   1   2  ; "saveSetting"
+0014    KSTR     4   5      ; "c"
+0015    KSTR     5   6      ; "d"
+0016    CALL     2   1   4
+0017    MOV      3   1
+0018    TGETS    2   1   7  ; "close"
+0019    CALL     2   1   2
+0020    TDUP     2  11
+0021    TGETS    3   1   8  ; "history_file"
+0022    TSETB    3   2   1
+0023    TGETS    3   1   9  ; "sidecar"
+0024    KSTR     4  10      ; "/file.pdf.lua"
+0025    CAT      3   3   4
+0026    TSETB    3   2   2
+0027    GGET     3  12      ; "pairs"
+0028    MOV      4   2
+0029    CALL     3   4   2
+0030    ISNEXT   6 => 0110
+0031 => GGET     8  13      ; "assert"
+0032    TGETS    8   8  14  ; "False"
+0033    GGET     9  15      ; "os"
+0034    TGETS    9   9  16  ; "rename"
+0035    TGETS   10   1  17  ; "sidecar_file"
+0036    MOV     11   7
+0037    CALL     9   2   3
+0038    ISEQP    9   0
+0039    JMP      9 => 0042
+0040    KPRI     9   1
+0041    JMP     10 => 0043
+0042 => KPRI     9   2
+0043 => CALL     8   1   2
+0044    UGET     8   0      ; docsettings
+0045    MOV      9   8
+0046    TGETS    8   8   1  ; "open"
+0047    MOV     10   0
+0048    CALL     8   2   3
+0049    MOV      1   8
+0050    GGET     8  13      ; "assert"
+0051    TGETS    8   8  18  ; "True"
+0052    GGET     9  15      ; "os"
+0053    TGETS    9   9  19  ; "remove"
+0054    TGETS   10   1  17  ; "sidecar_file"
+0055    CALL     9   2   2
+0056    ISEQP    9   0
+0057    JMP      9 => 0060
+0058    KPRI     9   1
+0059    JMP     10 => 0061
+0060 => KPRI     9   2
+0061 => CALL     8   1   2
+0062    GGET     8  13      ; "assert"
+0063    TGETS    8   8  20  ; "Equals"
+0064    UGET     9   1      ; lfs
+0065    TGETS    9   9  21  ; "attributes"
+0066    MOV     10   7
+0067    KSTR    11  22      ; "mode"
+0068    CALL     9   2   3
+0069    KSTR    10  23      ; "file"
+0070    CALL     8   1   3
+0071    GGET     8  13      ; "assert"
+0072    TGETS    8   8  20  ; "Equals"
+0073    MOV     10   1
+0074    TGETS    9   1  24  ; "readSetting"
+0075    KSTR    11   3      ; "a"
+0076    CALL     9   2   3
+0077    KSTR    10   4      ; "b"
+0078    CALL     8   1   3
+0079    GGET     8  13      ; "assert"
+0080    TGETS    8   8  20  ; "Equals"
+0081    MOV     10   1
+0082    TGETS    9   1  24  ; "readSetting"
+0083    KSTR    11   5      ; "c"
+0084    CALL     9   2   3
+0085    KSTR    10   6      ; "d"
+0086    CALL     8   1   3
+0087    GGET     8  13      ; "assert"
+0088    TGETS    8   8  20  ; "Equals"
+0089    MOV     10   1
+0090    TGETS    9   1  24  ; "readSetting"
+0091    KSTR    11  25      ; "e"
+0092    CALL     9   2   3
+0093    KPRI    10   0
+0094    CALL     8   1   3
+0095    MOV      9   1
+0096    TGETS    8   1   7  ; "close"
+0097    CALL     8   1   2
+0098    GGET     8  13      ; "assert"
+0099    TGETS    8   8  18  ; "True"
+0100    GGET     9  15      ; "os"
+0101    TGETS    9   9  19  ; "remove"
+0102    MOV     10   7
+0103    CALL     9   2   2
+0104    ISEQP    9   0
+0105    JMP      9 => 0108
+0106    KPRI     9   1
+0107    JMP     10 => 0109
+0108 => KPRI     9   2
+0109 => CALL     8   1   2
+0110 => ITERN    6   3   3
+0111    ITERL    6 => 0031
+0112    GGET     3  13      ; "assert"
+0113    TGETS    3   3  14  ; "False"
+0114    GGET     4  15      ; "os"
+0115    TGETS    4   4  19  ; "remove"
+0116    TGETS    5   1  17  ; "sidecar_file"
+0117    CALL     4   2   2
+0118    ISEQP    4   0
+0119    JMP      4 => 0122
+0120    KPRI     4   1
+0121    JMP      5 => 0123
+0122 => KPRI     4   2
+0123 => CALL     3   1   2
+0124    MOV      4   1
+0125    TGETS    3   1  26  ; "purge"
+0126    CALL     3   1   2
+0127    RET0     0   1
+
+-- BYTECODE -- docsettings_spec.lua:60-86
+0001    KSTR     0   0      ; "file.pdf"
+0002    UGET     1   0      ; docsettings
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "open"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    TDUP     2   5
+0008    TGETS    3   1   2  ; "history_file"
+0009    TSETB    3   2   1
+0010    TGETS    3   1   3  ; "sidecar"
+0011    KSTR     4   4      ; "/file.pdf.lua"
+0012    CAT      3   3   4
+0013    TSETB    3   2   2
+0014    GGET     3   6      ; "pairs"
+0015    MOV      4   2
+0016    CALL     3   4   2
+0017    ISNEXT   6 => 0041
+0018 => MOV      9   1
+0019    TGETS    8   1   7  ; "saveSetting"
+0020    KSTR    10   8      ; "a"
+0021    MOV     11   6
+0022    CALL     8   1   4
+0023    MOV      9   1
+0024    TGETS    8   1   9  ; "flush"
+0025    CALL     8   1   2
+0026    GGET     8  10      ; "assert"
+0027    TGETS    8   8  11  ; "False"
+0028    GGET     9  12      ; "os"
+0029    TGETS    9   9  13  ; "rename"
+0030    TGETS   10   1  14  ; "sidecar_file"
+0031    MOV     11   7
+0032    KSTR    12  15      ; "1"
+0033    CAT     11  11  12
+0034    CALL     9   2   3
+0035    ISEQP    9   0
+0036    JMP      9 => 0039
+0037    KPRI     9   1
+0038    JMP     10 => 0040
+0039 => KPRI     9   2
+0040 => CALL     8   1   2
+0041 => ITERN    6   3   3
+0042    ITERL    6 => 0018
+0043    MOV      4   1
+0044    TGETS    3   1  16  ; "close"
+0045    CALL     3   1   2
+0046    GGET     3   6      ; "pairs"
+0047    MOV      4   2
+0048    CALL     3   4   2
+0049    ISNEXT   6 => 0065
+0050 => GGET     8  10      ; "assert"
+0051    TGETS    8   8  11  ; "False"
+0052    GGET     9  12      ; "os"
+0053    TGETS    9   9  13  ; "rename"
+0054    MOV     10   7
+0055    KSTR    11  15      ; "1"
+0056    CAT     10  10  11
+0057    MOV     11   7
+0058    CALL     9   2   3
+0059    ISEQP    9   0
+0060    JMP      9 => 0063
+0061    KPRI     9   1
+0062    JMP     10 => 0064
+0063 => KPRI     9   2
+0064 => CALL     8   1   2
+0065 => ITERN    6   3   3
+0066    ITERL    6 => 0050
+0067    UGET     3   0      ; docsettings
+0068    MOV      4   3
+0069    TGETS    3   3   1  ; "open"
+0070    MOV      5   0
+0071    CALL     3   2   3
+0072    MOV      1   3
+0073    GGET     3  10      ; "assert"
+0074    TGETS    3   3  17  ; "Equals"
+0075    MOV      5   1
+0076    TGETS    4   1  18  ; "readSetting"
+0077    KSTR     6   8      ; "a"
+0078    CALL     4   2   3
+0079    LEN      5   2
+0080    CALL     3   1   3
+0081    MOV      4   1
+0082    TGETS    3   1  16  ; "close"
+0083    CALL     3   1   2
+0084    MOV      4   1
+0085    TGETS    3   1  19  ; "purge"
+0086    CALL     3   1   2
+0087    RET0     0   1
+
+-- BYTECODE -- docsettings_spec.lua:88-94
+0001    KSTR     0   0      ; "/a/b/c--d/c.txt"
+0002    UGET     1   0      ; util
+0003    TGETS    1   1   1  ; "basename"
+0004    UGET     2   1      ; docsettings
+0005    MOV      3   2
+0006    TGETS    2   2   2  ; "getHistoryPath"
+0007    MOV      4   0
+0008    CALL     2   0   3
+0009    CALLM    1   2   0
+0010    UGET     2   1      ; docsettings
+0011    MOV      3   2
+0012    TGETS    2   2   3  ; "getPathFromHistory"
+0013    MOV      4   1
+0014    CALL     2   2   3
+0015    UGET     3   1      ; docsettings
+0016    MOV      4   3
+0017    TGETS    3   3   4  ; "getNameFromHistory"
+0018    MOV      5   1
+0019    CALL     3   2   3
+0020    GGET     4   5      ; "assert"
+0021    TGETS    4   4   6  ; "is"
+0022    TGETS    4   4   7  ; "same"
+0023    MOV      5   0
+0024    MOV      6   2
+0025    KSTR     7   8      ; "/"
+0026    MOV      8   3
+0027    CAT      6   6   8
+0028    CALL     4   1   3
+0029    RET0     0   1
+
+-- BYTECODE -- docsettings_spec.lua:96-151
+0001    KSTR     0   0      ; "file.pdf"
+0002    UGET     1   0      ; docsettings
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "open"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    MOV      3   1
+0008    TGETS    2   1   2  ; "saveSetting"
+0009    KSTR     4   3      ; "a"
+0010    KSTR     5   3      ; "a"
+0011    CALL     2   1   4
+0012    MOV      3   1
+0013    TGETS    2   1   4  ; "flush"
+0014    CALL     2   1   2
+0015    GGET     2   5      ; "assert"
+0016    TGETS    2   2   6  ; "Equals"
+0017    KSTR     3   7      ; "file"
+0018    UGET     4   1      ; lfs
+0019    TGETS    4   4   8  ; "attributes"
+0020    TGETS    5   1   9  ; "sidecar_file"
+0021    KSTR     6  10      ; "mode"
+0022    CALL     4   0   3
+0023    CALLM    2   1   1
+0024    MOV      3   1
+0025    TGETS    2   1   4  ; "flush"
+0026    CALL     2   1   2
+0027    GGET     2   5      ; "assert"
+0028    TGETS    2   2  11  ; "are"
+0029    TGETS    2   2  12  ; "not_equal"
+0030    KSTR     3   7      ; "file"
+0031    UGET     4   1      ; lfs
+0032    TGETS    4   4   8  ; "attributes"
+0033    TGETS    5   1   9  ; "sidecar_file"
+0034    KSTR     6  13      ; ".old"
+0035    CAT      5   5   6
+0036    KSTR     6  10      ; "mode"
+0037    CALL     4   0   3
+0038    CALLM    2   1   1
+0039    GGET     2  14      ; "os"
+0040    TGETS    2   2  15  ; "time"
+0041    CALL     2   2   1
+0042    SUBVN    2   2   0  ; 120
+0043    UGET     3   1      ; lfs
+0044    TGETS    3   3  16  ; "touch"
+0045    TGETS    4   1   9  ; "sidecar_file"
+0046    MOV      5   2
+0047    CALL     3   1   3
+0048    MOV      4   1
+0049    TGETS    3   1  17  ; "close"
+0050    CALL     3   1   2
+0051    GGET     3   5      ; "assert"
+0052    TGETS    3   3   6  ; "Equals"
+0053    KSTR     4   7      ; "file"
+0054    UGET     5   1      ; lfs
+0055    TGETS    5   5   8  ; "attributes"
+0056    TGETS    6   1   9  ; "sidecar_file"
+0057    KSTR     7  10      ; "mode"
+0058    CALL     5   0   3
+0059    CALLM    3   1   1
+0060    GGET     3   5      ; "assert"
+0061    TGETS    3   3   6  ; "Equals"
+0062    KSTR     4   7      ; "file"
+0063    UGET     5   1      ; lfs
+0064    TGETS    5   5   8  ; "attributes"
+0065    TGETS    6   1   9  ; "sidecar_file"
+0066    KSTR     7  13      ; ".old"
+0067    CAT      6   6   7
+0068    KSTR     7  10      ; "mode"
+0069    CALL     5   0   3
+0070    CALLM    3   1   1
+0071    GGET     3  18      ; "io"
+0072    TGETS    3   3   1  ; "open"
+0073    TGETS    4   1   9  ; "sidecar_file"
+0074    KSTR     5  19      ; "w"
+0075    CALL     3   2   3
+0076    MOV      5   3
+0077    TGETS    4   3  20  ; "write"
+0078    KSTR     6  21      ; "bla bla bla"
+0079    CALL     4   1   3
+0080    MOV      5   3
+0081    TGETS    4   3  17  ; "close"
+0082    CALL     4   1   2
+0083    UGET     4   0      ; docsettings
+0084    MOV      5   4
+0085    TGETS    4   4   1  ; "open"
+0086    MOV      6   0
+0087    CALL     4   2   3
+0088    MOV      1   4
+0089    GGET     4   5      ; "assert"
+0090    TGETS    4   4  11  ; "are"
+0091    TGETS    4   4  12  ; "not_equal"
+0092    KSTR     5   7      ; "file"
+0093    UGET     6   1      ; lfs
+0094    TGETS    6   6   8  ; "attributes"
+0095    TGETS    7   1   9  ; "sidecar_file"
+0096    KSTR     8  10      ; "mode"
+0097    CALL     6   0   3
+0098    CALLM    4   1   1
+0099    GGET     4   5      ; "assert"
+0100    TGETS    4   4   6  ; "Equals"
+0101    KSTR     5   7      ; "file"
+0102    UGET     6   1      ; lfs
+0103    TGETS    6   6   8  ; "attributes"
+0104    TGETS    7   1   9  ; "sidecar_file"
+0105    KSTR     8  13      ; ".old"
+0106    CAT      7   7   8
+0107    KSTR     8  10      ; "mode"
+0108    CALL     6   0   3
+0109    CALLM    4   1   1
+0110    GGET     4   5      ; "assert"
+0111    TGETS    4   4   6  ; "Equals"
+0112    KSTR     5   3      ; "a"
+0113    MOV      7   1
+0114    TGETS    6   1  22  ; "readSetting"
+0115    KSTR     8   3      ; "a"
+0116    CALL     6   0   3
+0117    CALLM    4   1   1
+0118    MOV      5   1
+0119    TGETS    4   1   2  ; "saveSetting"
+0120    KSTR     6   3      ; "a"
+0121    KSTR     7  23      ; "b"
+0122    CALL     4   1   4
+0123    MOV      5   1
+0124    TGETS    4   1  17  ; "close"
+0125    CALL     4   1   2
+0126    GGET     4   5      ; "assert"
+0127    TGETS    4   4   6  ; "Equals"
+0128    KSTR     5   7      ; "file"
+0129    UGET     6   1      ; lfs
+0130    TGETS    6   6   8  ; "attributes"
+0131    TGETS    7   1   9  ; "sidecar_file"
+0132    KSTR     8  10      ; "mode"
+0133    CALL     6   0   3
+0134    CALLM    4   1   1
+0135    GGET     4   5      ; "assert"
+0136    TGETS    4   4   6  ; "Equals"
+0137    KSTR     5   7      ; "file"
+0138    UGET     6   1      ; lfs
+0139    TGETS    6   6   8  ; "attributes"
+0140    TGETS    7   1   9  ; "sidecar_file"
+0141    KSTR     8  13      ; ".old"
+0142    CAT      7   7   8
+0143    KSTR     8  10      ; "mode"
+0144    CALL     6   0   3
+0145    CALLM    4   1   1
+0146    UGET     4   0      ; docsettings
+0147    MOV      5   4
+0148    TGETS    4   4   1  ; "open"
+0149    MOV      6   0
+0150    CALL     4   2   3
+0151    MOV      1   4
+0152    GGET     4   5      ; "assert"
+0153    TGETS    4   4   6  ; "Equals"
+0154    KSTR     5  23      ; "b"
+0155    MOV      7   1
+0156    TGETS    6   1  22  ; "readSetting"
+0157    KSTR     8   3      ; "a"
+0158    CALL     6   0   3
+0159    CALLM    4   1   1
+0160    GGET     4  18      ; "io"
+0161    TGETS    4   4   1  ; "open"
+0162    TGETS    5   1   9  ; "sidecar_file"
+0163    KSTR     6  19      ; "w"
+0164    CALL     4   2   3
+0165    MOV      3   4
+0166    MOV      5   3
+0167    TGETS    4   3  20  ; "write"
+0168    KSTR     6  21      ; "bla bla bla"
+0169    CALL     4   1   3
+0170    MOV      5   3
+0171    TGETS    4   3  17  ; "close"
+0172    CALL     4   1   2
+0173    UGET     4   0      ; docsettings
+0174    MOV      5   4
+0175    TGETS    4   4   1  ; "open"
+0176    MOV      6   0
+0177    CALL     4   2   3
+0178    MOV      1   4
+0179    GGET     4   5      ; "assert"
+0180    TGETS    4   4  11  ; "are"
+0181    TGETS    4   4  12  ; "not_equal"
+0182    KSTR     5   7      ; "file"
+0183    UGET     6   1      ; lfs
+0184    TGETS    6   6   8  ; "attributes"
+0185    TGETS    7   1   9  ; "sidecar_file"
+0186    KSTR     8  10      ; "mode"
+0187    CALL     6   0   3
+0188    CALLM    4   1   1
+0189    GGET     4   5      ; "assert"
+0190    TGETS    4   4   6  ; "Equals"
+0191    KSTR     5   7      ; "file"
+0192    UGET     6   1      ; lfs
+0193    TGETS    6   6   8  ; "attributes"
+0194    TGETS    7   1   9  ; "sidecar_file"
+0195    KSTR     8  13      ; ".old"
+0196    CAT      7   7   8
+0197    KSTR     8  10      ; "mode"
+0198    CALL     6   0   3
+0199    CALLM    4   1   1
+0200    GGET     4   5      ; "assert"
+0201    TGETS    4   4   6  ; "Equals"
+0202    KSTR     5   3      ; "a"
+0203    MOV      7   1
+0204    TGETS    6   1  22  ; "readSetting"
+0205    KSTR     8   3      ; "a"
+0206    CALL     6   0   3
+0207    CALLM    4   1   1
+0208    MOV      5   1
+0209    TGETS    4   1  17  ; "close"
+0210    CALL     4   1   2
+0211    GGET     4   5      ; "assert"
+0212    TGETS    4   4   6  ; "Equals"
+0213    KSTR     5   7      ; "file"
+0214    UGET     6   1      ; lfs
+0215    TGETS    6   6   8  ; "attributes"
+0216    TGETS    7   1   9  ; "sidecar_file"
+0217    KSTR     8  10      ; "mode"
+0218    CALL     6   0   3
+0219    CALLM    4   1   1
+0220    GGET     4   5      ; "assert"
+0221    TGETS    4   4   6  ; "Equals"
+0222    KSTR     5   7      ; "file"
+0223    UGET     6   1      ; lfs
+0224    TGETS    6   6   8  ; "attributes"
+0225    TGETS    7   1   9  ; "sidecar_file"
+0226    KSTR     8  13      ; ".old"
+0227    CAT      7   7   8
+0228    KSTR     8  10      ; "mode"
+0229    CALL     6   0   3
+0230    CALLM    4   1   1
+0231    RET0     0   1
+
+-- BYTECODE -- docsettings_spec.lua:154-185
+0001    KSTR     0   0      ; "file.pdf"
+0002    UGET     1   0      ; docsettings
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "open"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    MOV      3   1
+0008    TGETS    2   1   2  ; "saveSetting"
+0009    KSTR     4   3      ; "a"
+0010    KSTR     5   3      ; "a"
+0011    CALL     2   1   4
+0012    MOV      3   1
+0013    TGETS    2   1   4  ; "flush"
+0014    CALL     2   1   2
+0015    GGET     2   5      ; "assert"
+0016    TGETS    2   2   6  ; "Equals"
+0017    KSTR     3   7      ; "file"
+0018    UGET     4   1      ; lfs
+0019    TGETS    4   4   8  ; "attributes"
+0020    TGETS    5   1   9  ; "sidecar_file"
+0021    KSTR     6  10      ; "mode"
+0022    CALL     4   0   3
+0023    CALLM    2   1   1
+0024    GGET     2  11      ; "os"
+0025    TGETS    2   2  12  ; "time"
+0026    CALL     2   2   1
+0027    SUBVN    2   2   0  ; 120
+0028    UGET     3   1      ; lfs
+0029    TGETS    3   3  13  ; "touch"
+0030    TGETS    4   1   9  ; "sidecar_file"
+0031    MOV      5   2
+0032    CALL     3   1   3
+0033    MOV      4   1
+0034    TGETS    3   1  14  ; "close"
+0035    CALL     3   1   2
+0036    GGET     3   5      ; "assert"
+0037    TGETS    3   3   6  ; "Equals"
+0038    KSTR     4   7      ; "file"
+0039    UGET     5   1      ; lfs
+0040    TGETS    5   5   8  ; "attributes"
+0041    TGETS    6   1   9  ; "sidecar_file"
+0042    KSTR     7  10      ; "mode"
+0043    CALL     5   0   3
+0044    CALLM    3   1   1
+0045    GGET     3   5      ; "assert"
+0046    TGETS    3   3   6  ; "Equals"
+0047    KSTR     4   7      ; "file"
+0048    UGET     5   1      ; lfs
+0049    TGETS    5   5   8  ; "attributes"
+0050    TGETS    6   1   9  ; "sidecar_file"
+0051    KSTR     7  15      ; ".old"
+0052    CAT      6   6   7
+0053    KSTR     7  10      ; "mode"
+0054    CALL     5   0   3
+0055    CALLM    3   1   1
+0056    GGET     3  16      ; "io"
+0057    TGETS    3   3   1  ; "open"
+0058    TGETS    4   1   9  ; "sidecar_file"
+0059    KSTR     5  17      ; "w"
+0060    CALL     3   2   3
+0061    MOV      5   3
+0062    TGETS    4   3  14  ; "close"
+0063    CALL     4   1   2
+0064    UGET     4   0      ; docsettings
+0065    MOV      5   4
+0066    TGETS    4   4   1  ; "open"
+0067    MOV      6   0
+0068    CALL     4   2   3
+0069    MOV      1   4
+0070    GGET     4   5      ; "assert"
+0071    TGETS    4   4  18  ; "are"
+0072    TGETS    4   4  19  ; "not_equal"
+0073    KSTR     5   7      ; "file"
+0074    UGET     6   1      ; lfs
+0075    TGETS    6   6   8  ; "attributes"
+0076    TGETS    7   1   9  ; "sidecar_file"
+0077    KSTR     8  10      ; "mode"
+0078    CALL     6   0   3
+0079    CALLM    4   1   1
+0080    GGET     4   5      ; "assert"
+0081    TGETS    4   4   6  ; "Equals"
+0082    KSTR     5   7      ; "file"
+0083    UGET     6   1      ; lfs
+0084    TGETS    6   6   8  ; "attributes"
+0085    TGETS    7   1   9  ; "sidecar_file"
+0086    KSTR     8  15      ; ".old"
+0087    CAT      7   7   8
+0088    KSTR     8  10      ; "mode"
+0089    CALL     6   0   3
+0090    CALLM    4   1   1
+0091    GGET     4   5      ; "assert"
+0092    TGETS    4   4   6  ; "Equals"
+0093    KSTR     5   3      ; "a"
+0094    MOV      7   1
+0095    TGETS    6   1  20  ; "readSetting"
+0096    KSTR     8   3      ; "a"
+0097    CALL     6   0   3
+0098    CALLM    4   1   1
+0099    MOV      5   1
+0100    TGETS    4   1   2  ; "saveSetting"
+0101    KSTR     6   3      ; "a"
+0102    KSTR     7  21      ; "b"
+0103    CALL     4   1   4
+0104    MOV      5   1
+0105    TGETS    4   1  14  ; "close"
+0106    CALL     4   1   2
+0107    GGET     4   5      ; "assert"
+0108    TGETS    4   4   6  ; "Equals"
+0109    KSTR     5   7      ; "file"
+0110    UGET     6   1      ; lfs
+0111    TGETS    6   6   8  ; "attributes"
+0112    TGETS    7   1   9  ; "sidecar_file"
+0113    KSTR     8  10      ; "mode"
+0114    CALL     6   0   3
+0115    CALLM    4   1   1
+0116    GGET     4   5      ; "assert"
+0117    TGETS    4   4   6  ; "Equals"
+0118    KSTR     5   7      ; "file"
+0119    UGET     6   1      ; lfs
+0120    TGETS    6   6   8  ; "attributes"
+0121    TGETS    7   1   9  ; "sidecar_file"
+0122    KSTR     8  15      ; ".old"
+0123    CAT      7   7   8
+0124    KSTR     8  10      ; "mode"
+0125    CALL     6   0   3
+0126    CALLM    4   1   1
+0127    RET0     0   1
+
+-- BYTECODE -- docsettings_spec.lua:187-219
+0001    KSTR     0   0      ; "file.pdf"
+0002    UGET     1   0      ; docsettings
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "open"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    MOV      3   1
+0008    TGETS    2   1   2  ; "saveSetting"
+0009    KSTR     4   3      ; "a"
+0010    KSTR     5   3      ; "a"
+0011    CALL     2   1   4
+0012    MOV      3   1
+0013    TGETS    2   1   4  ; "flush"
+0014    CALL     2   1   2
+0015    GGET     2   5      ; "assert"
+0016    TGETS    2   2   6  ; "Equals"
+0017    KSTR     3   7      ; "file"
+0018    UGET     4   1      ; lfs
+0019    TGETS    4   4   8  ; "attributes"
+0020    TGETS    5   1   9  ; "sidecar_file"
+0021    KSTR     6  10      ; "mode"
+0022    CALL     4   0   3
+0023    CALLM    2   1   1
+0024    GGET     2  11      ; "os"
+0025    TGETS    2   2  12  ; "time"
+0026    CALL     2   2   1
+0027    SUBVN    2   2   0  ; 120
+0028    UGET     3   1      ; lfs
+0029    TGETS    3   3  13  ; "touch"
+0030    TGETS    4   1   9  ; "sidecar_file"
+0031    MOV      5   2
+0032    CALL     3   1   3
+0033    MOV      4   1
+0034    TGETS    3   1  14  ; "close"
+0035    CALL     3   1   2
+0036    GGET     3   5      ; "assert"
+0037    TGETS    3   3   6  ; "Equals"
+0038    KSTR     4   7      ; "file"
+0039    UGET     5   1      ; lfs
+0040    TGETS    5   5   8  ; "attributes"
+0041    TGETS    6   1   9  ; "sidecar_file"
+0042    KSTR     7  10      ; "mode"
+0043    CALL     5   0   3
+0044    CALLM    3   1   1
+0045    GGET     3   5      ; "assert"
+0046    TGETS    3   3   6  ; "Equals"
+0047    KSTR     4   7      ; "file"
+0048    UGET     5   1      ; lfs
+0049    TGETS    5   5   8  ; "attributes"
+0050    TGETS    6   1   9  ; "sidecar_file"
+0051    KSTR     7  15      ; ".old"
+0052    CAT      6   6   7
+0053    KSTR     7  10      ; "mode"
+0054    CALL     5   0   3
+0055    CALLM    3   1   1
+0056    GGET     3  16      ; "io"
+0057    TGETS    3   3   1  ; "open"
+0058    TGETS    4   1   9  ; "sidecar_file"
+0059    KSTR     5  17      ; "w"
+0060    CALL     3   2   3
+0061    MOV      5   3
+0062    TGETS    4   3  18  ; "write"
+0063    KSTR     6  19      ; "{                               }       "~
+0064    CALL     4   1   3
+0065    MOV      5   3
+0066    TGETS    4   3  14  ; "close"
+0067    CALL     4   1   2
+0068    UGET     4   0      ; docsettings
+0069    MOV      5   4
+0070    TGETS    4   4   1  ; "open"
+0071    MOV      6   0
+0072    CALL     4   2   3
+0073    MOV      1   4
+0074    GGET     4   5      ; "assert"
+0075    TGETS    4   4  20  ; "are"
+0076    TGETS    4   4  21  ; "not_equal"
+0077    KSTR     5   7      ; "file"
+0078    UGET     6   1      ; lfs
+0079    TGETS    6   6   8  ; "attributes"
+0080    TGETS    7   1   9  ; "sidecar_file"
+0081    KSTR     8  10      ; "mode"
+0082    CALL     6   0   3
+0083    CALLM    4   1   1
+0084    GGET     4   5      ; "assert"
+0085    TGETS    4   4   6  ; "Equals"
+0086    KSTR     5   7      ; "file"
+0087    UGET     6   1      ; lfs
+0088    TGETS    6   6   8  ; "attributes"
+0089    TGETS    7   1   9  ; "sidecar_file"
+0090    KSTR     8  15      ; ".old"
+0091    CAT      7   7   8
+0092    KSTR     8  10      ; "mode"
+0093    CALL     6   0   3
+0094    CALLM    4   1   1
+0095    GGET     4   5      ; "assert"
+0096    TGETS    4   4   6  ; "Equals"
+0097    KSTR     5   3      ; "a"
+0098    MOV      7   1
+0099    TGETS    6   1  22  ; "readSetting"
+0100    KSTR     8   3      ; "a"
+0101    CALL     6   0   3
+0102    CALLM    4   1   1
+0103    MOV      5   1
+0104    TGETS    4   1   2  ; "saveSetting"
+0105    KSTR     6   3      ; "a"
+0106    KSTR     7  23      ; "b"
+0107    CALL     4   1   4
+0108    MOV      5   1
+0109    TGETS    4   1  14  ; "close"
+0110    CALL     4   1   2
+0111    GGET     4   5      ; "assert"
+0112    TGETS    4   4   6  ; "Equals"
+0113    KSTR     5   7      ; "file"
+0114    UGET     6   1      ; lfs
+0115    TGETS    6   6   8  ; "attributes"
+0116    TGETS    7   1   9  ; "sidecar_file"
+0117    KSTR     8  10      ; "mode"
+0118    CALL     6   0   3
+0119    CALLM    4   1   1
+0120    GGET     4   5      ; "assert"
+0121    TGETS    4   4   6  ; "Equals"
+0122    KSTR     5   7      ; "file"
+0123    UGET     6   1      ; lfs
+0124    TGETS    6   6   8  ; "attributes"
+0125    TGETS    7   1   9  ; "sidecar_file"
+0126    KSTR     8  15      ; ".old"
+0127    CAT      7   7   8
+0128    KSTR     8  10      ; "mode"
+0129    CALL     6   0   3
+0130    CALLM    4   1   1
+0131    RET0     0   1
+
+-- BYTECODE -- docsettings_spec.lua:153-220
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should ignore empty file"
+0003    FNEW     2   2      ; docsettings_spec.lua:154
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should ignore empty table"
+0007    FNEW     2   4      ; docsettings_spec.lua:187
+0008    CALL     0   1   3
+0009    RET0     0   1
+
+-- BYTECODE -- docsettings_spec.lua:1-221
+0001    KNIL     0   2
+0002    GGET     3   0      ; "setup"
+0003    FNEW     4   1      ; docsettings_spec.lua:4
+0004    CALL     3   1   2
+0005    GGET     3   2      ; "it"
+0006    KSTR     4   3      ; "should generate sidecar directory path"
+0007    FNEW     5   4      ; docsettings_spec.lua:11
+0008    CALL     3   1   3
+0009    GGET     3   2      ; "it"
+0010    KSTR     4   5      ; "should generate sidecar metadata file"
+0011    FNEW     5   6      ; docsettings_spec.lua:17
+0012    CALL     3   1   3
+0013    GGET     3   2      ; "it"
+0014    KSTR     4   7      ; "should read legacy history file"
+0015    FNEW     5   8      ; docsettings_spec.lua:26
+0016    CALL     3   1   3
+0017    GGET     3   2      ; "it"
+0018    KSTR     4   9      ; "should respect newest history file"
+0019    FNEW     5  10      ; docsettings_spec.lua:60
+0020    CALL     3   1   3
+0021    GGET     3   2      ; "it"
+0022    KSTR     4  11      ; "should build correct legacy history path"
+0023    FNEW     5  12      ; docsettings_spec.lua:88
+0024    CALL     3   1   3
+0025    GGET     3   2      ; "it"
+0026    KSTR     4  13      ; "should reserve last good file"
+0027    FNEW     5  14      ; docsettings_spec.lua:96
+0028    CALL     3   1   3
+0029    GGET     3  15      ; "describe"
+0030    KSTR     4  16      ; "ignore empty sidecar file"
+0031    FNEW     5  17      ; docsettings_spec.lua:153
+0032    CALL     3   1   3
+0033    UCLO     0 => 0034
+0034 => RET0     0   1
+
+-- BYTECODE -- docsettings_spec.lua:0-222
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "docsettings module"
+0003    FNEW     2   2      ; docsettings_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

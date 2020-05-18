@@ -1,0 +1,429 @@
+-- BYTECODE -- luadata.lua:35-52
+0001    TGETS    1   0   0  ; "index"
+0002    ISF          1
+0003    JMP      2 => 0047
+0004    TGETS    1   0   1  ; "data"
+0005    IST          1
+0006    JMP      1 => 0012
+0007    UGET     1   0      ; new
+0008    TGETS    1   1   1  ; "data"
+0009    TGETS    2   0   0  ; "index"
+0010    KPRI     3   0
+0011    TSETV    3   1   2
+0012 => UGET     1   0      ; new
+0013    TGETS    1   1   1  ; "data"
+0014    TGETS    2   0   0  ; "index"
+0015    UGET     3   0      ; new
+0016    TGETS    3   3   1  ; "data"
+0017    TGETS    4   0   0  ; "index"
+0018    TGETV    3   3   4
+0019    IST          3
+0020    JMP      4 => 0022
+0021    TNEW     3   0
+0022 => TSETV    3   1   2
+0023    UGET     1   1      ; util
+0024    TGETS    1   1   2  ; "tableSize"
+0025    TGETS    2   0   1  ; "data"
+0026    CALL     1   2   2
+0027    ISNEN    1   0      ; 1
+0028    JMP      2 => 0041
+0029    GGET     2   3      ; "pairs"
+0030    TGETS    3   0   1  ; "data"
+0031    CALL     2   4   2
+0032    ISNEXT   5 => 0038
+0033 => UGET     7   0      ; new
+0034    TGETS    7   7   1  ; "data"
+0035    TGETS    8   0   0  ; "index"
+0036    TGETV    7   7   8
+0037    TSETV    6   7   5
+0038 => ITERN    5   3   3
+0039    ITERL    5 => 0033
+0040    JMP      2 => 0049
+0041 => UGET     2   0      ; new
+0042    TGETS    2   2   1  ; "data"
+0043    TGETS    3   0   0  ; "index"
+0044    TGETS    4   0   1  ; "data"
+0045    TSETV    4   2   3
+0046    JMP      1 => 0049
+0047 => UGET     1   0      ; new
+0048    TSETS    0   1   1  ; "data"
+0049 => RET0     0   1
+
+-- BYTECODE -- luadata.lua:17-80
+0001    ISF          2
+0002    JMP      3 => 0022
+0003    GGET     3   0      ; "type"
+0004    MOV      4   2
+0005    CALL     3   2   2
+0006    ISEQS    3   1      ; "table"
+0007    JMP      3 => 0022
+0008    UGET     3   0      ; dbg
+0009    TGETS    3   3   2  ; "is_on"
+0010    ISF          3
+0011    JMP      4 => 0021
+0012    GGET     3   3      ; "error"
+0013    KSTR     4   4      ; "LuaData: got "
+0014    GGET     5   0      ; "type"
+0015    MOV      6   2
+0016    CALL     5   2   2
+0017    KSTR     6   5      ; ", table expected"
+0018    CAT      4   4   6
+0019    CALL     3   1   2
+0020    JMP      3 => 0022
+0021 => TNEW     2   0
+0022 => UGET     3   1      ; LuaData
+0023    MOV      4   3
+0024    TGETS    3   3   6  ; "new"
+0025    MOV      5   2
+0026    CALL     3   2   3
+0027    MOV      0   3
+0028    TDUP     3   7
+0029    TSETS    1   3   8  ; "file"
+0030    TNEW     4   0
+0031    TSETS    4   3   9  ; "data"
+0032    TNEW     4   0
+0033    TSETS    4   4  10  ; "__index"
+0034    GGET     5  11      ; "setmetatable"
+0035    GGET     6  12      ; "_G"
+0036    MOV      7   4
+0037    CALL     5   1   3
+0038    TGETS    5   0  13  ; "name"
+0039    KSTR     6  14      ; "Entry"
+0040    CAT      5   5   6
+0041    FNEW     6  15      ; luadata.lua:35
+0042    TSETV    6   4   5
+0043    KPRI     5   1
+0044    GGET     6  16      ; "lfs"
+0045    TGETS    6   6  17  ; "attributes"
+0046    TGETS    7   3   8  ; "file"
+0047    KSTR     8  18      ; "mode"
+0048    CALL     6   2   3
+0049    ISNES    6   8      ; "file"
+0050    JMP      6 => 0073
+0051    GGET     6  19      ; "pcall"
+0052    GGET     7  20      ; "dofile"
+0053    TGETS    8   3   8  ; "file"
+0054    CALL     6   2   3
+0055    MOV      5   6
+0056    ISF          5
+0057    JMP      6 => 0064
+0058    UGET     6   3      ; logger
+0059    TGETS    6   6  21  ; "dbg"
+0060    KSTR     7  22      ; "data is read from "
+0061    TGETS    8   3   8  ; "file"
+0062    CALL     6   1   3
+0063    JMP      6 => 0073
+0064 => UGET     6   3      ; logger
+0065    TGETS    6   6  21  ; "dbg"
+0066    TGETS    7   3   8  ; "file"
+0067    KSTR     8  23      ; " is invalid, remove."
+0068    CALL     6   1   3
+0069    GGET     6  24      ; "os"
+0070    TGETS    6   6  25  ; "remove"
+0071    TGETS    7   3   8  ; "file"
+0072    CALL     6   1   2
+0073 => IST          5
+0074    JMP      6 => 0113
+0075    KSHORT   6   1
+0076    TGETS    7   0  26  ; "max_backups"
+0077    KSHORT   8   1
+0078    FORI     6 => 0113
+0079 => TGETS   10   3   8  ; "file"
+0080    KSTR    11  27      ; ".old."
+0081    MOV     12   9
+0082    CAT     10  10  12
+0083    GGET    11  16      ; "lfs"
+0084    TGETS   11  11  17  ; "attributes"
+0085    MOV     12  10
+0086    KSTR    13  18      ; "mode"
+0087    CALL    11   2   3
+0088    ISNES   11   8      ; "file"
+0089    JMP     11 => 0112
+0090    GGET    11  19      ; "pcall"
+0091    GGET    12  20      ; "dofile"
+0092    MOV     13  10
+0093    CALL    11   2   3
+0094    ISF         11
+0095    JMP     12 => 0103
+0096    UGET    11   3      ; logger
+0097    TGETS   11  11  21  ; "dbg"
+0098    KSTR    12  22      ; "data is read from "
+0099    MOV     13  10
+0100    CALL    11   1   3
+0101    JMP      6 => 0113
+0102    JMP     11 => 0112
+0103 => UGET    11   3      ; logger
+0104    TGETS   11  11  21  ; "dbg"
+0105    MOV     12  10
+0106    KSTR    13  23      ; " is invalid, remove."
+0107    CALL    11   1   3
+0108    GGET    11  24      ; "os"
+0109    TGETS   11  11  25  ; "remove"
+0110    MOV     12  10
+0111    CALL    11   1   2
+0112 => FORL     6 => 0079
+0113 => GGET     6  11      ; "setmetatable"
+0114    MOV      7   3
+0115    TDUP     8  28
+0116    TSETS    0   8  10  ; "__index"
+0117    UCLO     0 => 0118
+0118 => CALLT    6   3
+
+-- BYTECODE -- luadata.lua:83-90
+0001    TGETS    3   0   0  ; "data"
+0002    TSETV    2   3   1
+0003    MOV      4   0
+0004    TGETS    3   0   1  ; "append"
+0005    TDUP     5   2
+0006    TSETS    1   5   3  ; "index"
+0007    TSETS    2   5   0  ; "data"
+0008    CALL     3   1   3
+0009    RET1     0   2
+
+-- BYTECODE -- luadata.lua:93-99
+0001    TGETS    2   0   0  ; "data"
+0002    KPRI     3   0
+0003    TSETV    3   2   1
+0004    MOV      3   0
+0005    TGETS    2   0   1  ; "append"
+0006    TDUP     4   2
+0007    TSETS    1   4   3  ; "index"
+0008    CALL     2   1   3
+0009    RET1     0   2
+
+-- BYTECODE -- luadata.lua:102-110
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "has"
+0003    MOV      5   1
+0004    CALL     3   2   3
+0005    ISF          3
+0006    JMP      4 => 0013
+0007    MOV      4   0
+0008    TGETS    3   0   1  ; "readSetting"
+0009    MOV      5   1
+0010    CALL     3   2   3
+0011    IST          3
+0012    JMP      4 => 0014
+0013 => TNEW     3   0
+0014 => GGET     4   2      ; "table"
+0015    TGETS    4   4   3  ; "insert"
+0016    MOV      5   3
+0017    MOV      6   2
+0018    CALL     4   1   3
+0019    TGETS    4   0   4  ; "data"
+0020    TSETV    3   4   1
+0021    MOV      5   0
+0022    TGETS    4   0   5  ; "append"
+0023    TDUP     6   6
+0024    TSETS    1   6   7  ; "index"
+0025    TNEW     7 2048
+0026    LEN      8   3
+0027    TSETV    2   7   8
+0028    TSETS    7   6   4  ; "data"
+0029    CALL     4   1   3
+0030    RET0     0   1
+
+-- BYTECODE -- luadata.lua:114-118
+0001    UGET     3   0      ; _orig_removeTableItem
+0002    MOV      4   0
+0003    MOV      5   1
+0004    MOV      6   2
+0005    CALL     3   1   4
+0006    MOV      4   0
+0007    TGETS    3   0   0  ; "flush"
+0008    CALL     3   1   2
+0009    RET1     0   2
+
+-- BYTECODE -- luadata.lua:121-132
+0001    TGETS    2   0   0  ; "file"
+0002    IST          2
+0003    JMP      2 => 0005
+0004    RET0     0   1
+0005 => GGET     2   1      ; "io"
+0006    TGETS    2   2   2  ; "open"
+0007    TGETS    3   0   0  ; "file"
+0008    KSTR     4   3      ; "a"
+0009    CALL     2   2   3
+0010    ISEQP    2   0
+0011    JMP      3 => 0036
+0012    GGET     3   4      ; "os"
+0013    TGETS    3   3   5  ; "setlocale"
+0014    KSTR     4   6      ; "C"
+0015    KSTR     5   7      ; "numeric"
+0016    CALL     3   1   3
+0017    MOV      4   2
+0018    TGETS    3   2   8  ; "write"
+0019    TGETS    5   0   9  ; "name"
+0020    KSTR     6  10      ; "Entry"
+0021    CAT      5   5   6
+0022    CALL     3   1   3
+0023    MOV      4   2
+0024    TGETS    3   2   8  ; "write"
+0025    UGET     5   0      ; dump
+0026    MOV      6   1
+0027    CALL     5   0   2
+0028    CALLM    3   1   1
+0029    MOV      4   2
+0030    TGETS    3   2   8  ; "write"
+0031    KSTR     5  11      ; "\n"
+0032    CALL     3   1   3
+0033    MOV      4   2
+0034    TGETS    3   2  12  ; "close"
+0035    CALL     3   1   2
+0036 => RET1     0   2
+
+-- BYTECODE -- luadata.lua:135-139
+0001    TSETS    1   0   0  ; "data"
+0002    MOV      3   0
+0003    TGETS    2   0   1  ; "flush"
+0004    CALL     2   1   2
+0005    RET1     0   2
+
+-- BYTECODE -- luadata.lua:142-169
+0001    TGETS    1   0   0  ; "file"
+0002    IST          1
+0003    JMP      1 => 0005
+0004    RET0     0   1
+0005 => GGET     1   1      ; "lfs"
+0006    TGETS    1   1   2  ; "attributes"
+0007    TGETS    2   0   0  ; "file"
+0008    KSTR     3   3      ; "mode"
+0009    CALL     1   2   3
+0010    ISNES    1   0      ; "file"
+0011    JMP      1 => 0066
+0012    KSHORT   1   1
+0013    TGETS    2   0   4  ; "max_backups"
+0014    KSHORT   3   1
+0015    FORI     1 => 0050
+0016 => GGET     5   1      ; "lfs"
+0017    TGETS    5   5   2  ; "attributes"
+0018    TGETS    6   0   0  ; "file"
+0019    KSTR     7   5      ; ".old."
+0020    MOV      8   4
+0021    CAT      6   6   8
+0022    KSTR     7   3      ; "mode"
+0023    CALL     5   2   3
+0024    ISNES    5   0      ; "file"
+0025    JMP      5 => 0050
+0026    UGET     5   0      ; logger
+0027    TGETS    5   5   6  ; "dbg"
+0028    KSTR     6   7      ; "LuaData: Rename "
+0029    TGETS    7   0   0  ; "file"
+0030    KSTR     8   5      ; ".old."
+0031    MOV      9   4
+0032    CAT      7   7   9
+0033    KSTR     8   8      ; " to "
+0034    TGETS    9   0   0  ; "file"
+0035    KSTR    10   5      ; ".old."
+0036    ADDVN   11   4   0  ; 1
+0037    CAT      9   9  11
+0038    CALL     5   1   5
+0039    GGET     5   9      ; "os"
+0040    TGETS    5   5  10  ; "rename"
+0041    TGETS    6   0   0  ; "file"
+0042    TGETS    7   0   0  ; "file"
+0043    KSTR     8   5      ; ".old."
+0044    ADDVN    9   4   0  ; 1
+0045    CAT      7   7   9
+0046    CALL     5   1   3
+0047    JMP      5 => 0049
+0048    JMP      1 => 0050
+0049 => FORL     1 => 0016
+0050 => UGET     1   0      ; logger
+0051    TGETS    1   1   6  ; "dbg"
+0052    KSTR     2   7      ; "LuaData: Rename "
+0053    TGETS    3   0   0  ; "file"
+0054    KSTR     4   8      ; " to "
+0055    TGETS    5   0   0  ; "file"
+0056    KSTR     6  11      ; ".old.1"
+0057    CAT      5   5   6
+0058    CALL     1   1   5
+0059    GGET     1   9      ; "os"
+0060    TGETS    1   1  10  ; "rename"
+0061    TGETS    2   0   0  ; "file"
+0062    TGETS    3   0   0  ; "file"
+0063    KSTR     4  11      ; ".old.1"
+0064    CAT      3   3   4
+0065    CALL     1   1   3
+0066 => UGET     1   0      ; logger
+0067    TGETS    1   1   6  ; "dbg"
+0068    KSTR     2  12      ; "LuaData: Write to "
+0069    TGETS    3   0   0  ; "file"
+0070    CALL     1   1   3
+0071    GGET     1  13      ; "io"
+0072    TGETS    1   1  14  ; "open"
+0073    TGETS    2   0   0  ; "file"
+0074    KSTR     3  15      ; "w"
+0075    CALL     1   2   3
+0076    ISEQP    1   0
+0077    JMP      2 => 0106
+0078    GGET     2   9      ; "os"
+0079    TGETS    2   2  16  ; "setlocale"
+0080    KSTR     3  17      ; "C"
+0081    KSTR     4  18      ; "numeric"
+0082    CALL     2   1   3
+0083    MOV      3   1
+0084    TGETS    2   1  19  ; "write"
+0085    KSTR     4  20      ; "-- we can read Lua syntax here!\n"
+0086    CALL     2   1   3
+0087    MOV      3   1
+0088    TGETS    2   1  19  ; "write"
+0089    TGETS    4   0  21  ; "name"
+0090    KSTR     5  22      ; "Entry"
+0091    CAT      4   4   5
+0092    CALL     2   1   3
+0093    MOV      3   1
+0094    TGETS    2   1  19  ; "write"
+0095    UGET     4   1      ; dump
+0096    TGETS    5   0  23  ; "data"
+0097    CALL     4   0   2
+0098    CALLM    2   1   1
+0099    MOV      3   1
+0100    TGETS    2   1  19  ; "write"
+0101    KSTR     4  24      ; "\n"
+0102    CALL     2   1   3
+0103    MOV      3   1
+0104    TGETS    2   1  25  ; "close"
+0105    CALL     2   1   2
+0106 => RET1     0   2
+
+-- BYTECODE -- luadata.lua:0-172
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "luasettings"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "dbg"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "dump"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "logger"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "util"
+0015    CALL     4   2   2
+0016    MOV      6   0
+0017    TGETS    5   0   6  ; "new"
+0018    TDUP     7   7
+0019    CALL     5   2   3
+0020    FNEW     6   9      ; luadata.lua:17
+0021    TSETS    6   5   8  ; "open"
+0022    FNEW     6  11      ; luadata.lua:83
+0023    TSETS    6   5  10  ; "saveSetting"
+0024    FNEW     6  13      ; luadata.lua:93
+0025    TSETS    6   5  12  ; "delSetting"
+0026    FNEW     6  15      ; luadata.lua:102
+0027    TSETS    6   5  14  ; "addTableItem"
+0028    TGETS    6   0  16  ; "removeTableItem"
+0029    FNEW     7  17      ; luadata.lua:114
+0030    TSETS    7   5  16  ; "removeTableItem"
+0031    FNEW     7  19      ; luadata.lua:121
+0032    TSETS    7   5  18  ; "append"
+0033    FNEW     7  21      ; luadata.lua:135
+0034    TSETS    7   5  20  ; "reset"
+0035    FNEW     7  23      ; luadata.lua:142
+0036    TSETS    7   5  22  ; "flush"
+0037    UCLO     0 => 0038
+0038 => RET1     5   2
+

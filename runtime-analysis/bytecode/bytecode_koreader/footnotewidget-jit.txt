@@ -1,0 +1,577 @@
+-- BYTECODE -- footnotewidget.lua:180-187
+0001    UGET     2   0      ; self
+0002    TGETS    2   2   0  ; "dialog"
+0003    ISF          2
+0004    JMP      3 => 0022
+0005    KSHORT   2   3
+0006    ISGE     1   2
+0007    JMP      2 => 0010
+0008    KSTR     2   1      ; "LookupWord"
+0009    JMP      3 => 0011
+0010 => KSTR     2   2      ; "LookupWikipedia"
+0011 => UGET     3   0      ; self
+0012    TGETS    3   3   0  ; "dialog"
+0013    MOV      4   3
+0014    TGETS    3   3   3  ; "handleEvent"
+0015    UGET     5   1      ; Event
+0016    MOV      6   5
+0017    TGETS    5   5   4  ; "new"
+0018    MOV      7   2
+0019    MOV      8   0
+0020    CALL     5   0   4
+0021    CALLM    3   1   1
+0022 => RET0     0   1
+
+-- BYTECODE -- footnotewidget.lua:138-320
+0001    UGET     1   0      ; Screen
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getWidth"
+0004    CALL     1   2   2
+0005    TSETS    1   0   0  ; "width"
+0006    GGET     1   3      ; "math"
+0007    TGETS    1   1   4  ; "floor"
+0008    UGET     2   0      ; Screen
+0009    MOV      3   2
+0010    TGETS    2   2   5  ; "getHeight"
+0011    CALL     2   2   2
+0012    MULVN    2   2   0  ; 1
+0013    DIVVN    2   2   1  ; 3
+0014    CALL     1   2   2
+0015    TSETS    1   0   2  ; "height"
+0016    UGET     1   1      ; Device
+0017    MOV      2   1
+0018    TGETS    1   1   6  ; "isTouchDevice"
+0019    CALL     1   2   2
+0020    ISF          1
+0021    JMP      2 => 0086
+0022    UGET     1   2      ; Geom
+0023    MOV      2   1
+0024    TGETS    1   1   7  ; "new"
+0025    TDUP     3   8
+0026    UGET     4   0      ; Screen
+0027    MOV      5   4
+0028    TGETS    4   4   1  ; "getWidth"
+0029    CALL     4   2   2
+0030    TSETS    4   3   9  ; "w"
+0031    UGET     4   0      ; Screen
+0032    MOV      5   4
+0033    TGETS    4   4   5  ; "getHeight"
+0034    CALL     4   2   2
+0035    TSETS    4   3  10  ; "h"
+0036    CALL     1   2   3
+0037    TDUP     2  14
+0038    TNEW     3   3
+0039    UGET     4   3      ; GestureRange
+0040    MOV      5   4
+0041    TGETS    4   4   7  ; "new"
+0042    TDUP     6  12
+0043    TSETS    1   6  13  ; "range"
+0044    CALL     4   0   3
+0045    TSETM    4   2      ; 1
+0046    TSETS    3   2  15  ; "TapClose"
+0047    TNEW     3   3
+0048    UGET     4   3      ; GestureRange
+0049    MOV      5   4
+0050    TGETS    4   4   7  ; "new"
+0051    TDUP     6  16
+0052    TSETS    1   6  13  ; "range"
+0053    CALL     4   0   3
+0054    TSETM    4   2      ; 1
+0055    TSETS    3   2  17  ; "SwipeFollow"
+0056    TNEW     3   3
+0057    UGET     4   3      ; GestureRange
+0058    MOV      5   4
+0059    TGETS    4   4   7  ; "new"
+0060    TDUP     6  18
+0061    TSETS    1   6  13  ; "range"
+0062    CALL     4   0   3
+0063    TSETM    4   2      ; 1
+0064    TSETS    3   2  19  ; "HoldStartText"
+0065    TNEW     3   3
+0066    UGET     4   3      ; GestureRange
+0067    MOV      5   4
+0068    TGETS    4   4   7  ; "new"
+0069    TDUP     6  20
+0070    TSETS    1   6  13  ; "range"
+0071    CALL     4   0   3
+0072    TSETM    4   2      ; 1
+0073    TSETS    3   2  21  ; "HoldPanText"
+0074    TDUP     3  24
+0075    UGET     4   3      ; GestureRange
+0076    MOV      5   4
+0077    TGETS    4   4   7  ; "new"
+0078    TDUP     6  22
+0079    TSETS    1   6  13  ; "range"
+0080    CALL     4   2   3
+0081    TSETB    4   3   1
+0082    FNEW     4  23      ; footnotewidget.lua:180
+0083    TSETS    4   3  25  ; "args"
+0084    TSETS    3   2  26  ; "HoldReleaseText"
+0085    TSETS    2   0  11  ; "ges_events"
+0086 => UGET     1   1      ; Device
+0087    MOV      2   1
+0088    TGETS    1   1  27  ; "hasKeys"
+0089    CALL     1   2   2
+0090    ISF          1
+0091    JMP      2 => 0098
+0092    TDUP     1  31
+0093    TDUP     2  30
+0094    TDUP     3  29
+0095    TSETB    3   2   1
+0096    TSETS    2   1  32  ; "Close"
+0097    TSETS    1   0  28  ; "key_events"
+0098 => TGETS    1   0  33  ; "html"
+0099    MOV      2   1
+0100    TGETS    1   1  34  ; "gsub"
+0101    KSTR     3  35      ; "<br[^>]*>"
+0102    KSTR     4  36      ; "<br/>"
+0103    CALL     1   2   4
+0104    TSETS    1   0  33  ; "html"
+0105    TGETS    1   0  33  ; "html"
+0106    MOV      2   1
+0107    TGETS    1   1  34  ; "gsub"
+0108    KSTR     3  37      ; "(<[^>]* )[iI][dD]="
+0109    KSTR     4  38      ; "%1disabledID="
+0110    CALL     1   2   4
+0111    TSETS    1   0  33  ; "html"
+0112    TGETS    1   0  39  ; "doc_font_size"
+0113    GGET     2  40      ; "G_reader_settings"
+0114    MOV      3   2
+0115    TGETS    2   2  41  ; "readSetting"
+0116    KSTR     4  42      ; "footnote_popup_relative_font_size"
+0117    CALL     2   2   3
+0118    IST          2
+0119    JMP      3 => 0121
+0120    KSHORT   2  -2
+0121 => ADDVV    1   1   2
+0122    TGETS    2   0  43  ; "doc_margins"
+0123    TGETS    2   2  44  ; "left"
+0124    KSTR     3  45      ; "px"
+0125    CAT      2   2   3
+0126    KSTR     3  46      ; "0"
+0127    UGET     4   5      ; BD
+0128    TGETS    4   4  47  ; "mirroredUILayout"
+0129    CALL     4   2   1
+0130    ISF          4
+0131    JMP      5 => 0135
+0132    MOV      4   3
+0133    MOV      3   2
+0134    MOV      2   4
+0135 => UGET     4   6      ; T
+0136    UGET     5   7      ; PAGE_CSS
+0137    KSTR     6  46      ; "0"
+0138    MOV      7   3
+0139    KSTR     8  46      ; "0"
+0140    MOV      9   2
+0141    TGETS   10   0  48  ; "font_face"
+0142    UGET    11   8      ; DEFAULT_CSS
+0143    CALL     4   2   8
+0144    TGETS    5   0  49  ; "css"
+0145    ISF          5
+0146    JMP      6 => 0151
+0147    MOV      5   4
+0148    KSTR     6  50      ; "\n"
+0149    TGETS    7   0  49  ; "css"
+0150    CAT      4   5   7
+0151 => GGET     5   3      ; "math"
+0152    TGETS    5   5  51  ; "min"
+0153    GGET     6   3      ; "math"
+0154    TGETS    6   6  52  ; "ceil"
+0155    TGETS    7   0  43  ; "doc_margins"
+0156    TGETS    7   7  53  ; "right"
+0157    MULVN    7   7   3  ; 2
+0158    DIVVN    7   7   4  ; 5
+0159    CALL     6   2   2
+0160    UGET     7   0      ; Screen
+0161    MOV      8   7
+0162    TGETS    7   7  54  ; "scaleBySize"
+0163    KSHORT   9  10
+0164    CALL     7   0   3
+0165    CALLM    5   2   1
+0166    MOV      6   5
+0167    MOV      7   5
+0168    TGETS    8   0  43  ; "doc_margins"
+0169    TGETS    8   8  53  ; "right"
+0170    SUBVV    8   8   6
+0171    SUBVV    8   8   7
+0172    ISGE     8   7
+0173    JMP      9 => 0177
+0174    MOV      9   7
+0175    MOV      7   8
+0176    MOV      8   9
+0177 => TGETS    9   0   0  ; "width"
+0178    SUBVV    9   9   7
+0179    UGET    10   9      ; Size
+0180    TGETS   10  10  55  ; "padding"
+0181    TGETS   10  10  56  ; "large"
+0182    UGET    11   9      ; Size
+0183    TGETS   11  11  55  ; "padding"
+0184    TGETS   11  11  56  ; "large"
+0185    TGETS   12   0   2  ; "height"
+0186    SUBVV   12  12  10
+0187    SUBVV   12  12  11
+0188    UGET    13  10      ; ScrollHtmlWidget
+0189    MOV     14  13
+0190    TGETS   13  13   7  ; "new"
+0191    TDUP    15  58
+0192    TGETS   16   0  33  ; "html"
+0193    TSETS   16  15  59  ; "html_body"
+0194    TSETS    4  15  49  ; "css"
+0195    TSETS    1  15  60  ; "default_font_size"
+0196    TSETS    9  15   0  ; "width"
+0197    TSETS   12  15   2  ; "height"
+0198    TSETS    6  15  61  ; "scroll_bar_width"
+0199    TSETS    8  15  62  ; "text_scroll_span"
+0200    TGETS   16   0  63  ; "dialog"
+0201    TSETS   16  15  63  ; "dialog"
+0202    CALL    13   2   3
+0203    TSETS   13   0  57  ; "htmlwidget"
+0204    UGET    13   9      ; Size
+0205    TGETS   13  13  64  ; "line"
+0206    TGETS   13  13  65  ; "thick"
+0207    UGET    14  11      ; VerticalGroup
+0208    MOV     15  14
+0209    TGETS   14  14   7  ; "new"
+0210    TNEW    16   5
+0211    UGET    17  12      ; LineWidget
+0212    MOV     18  17
+0213    TGETS   17  17   7  ; "new"
+0214    TDUP    19  67
+0215    UGET    20   2      ; Geom
+0216    MOV     21  20
+0217    TGETS   20  20   7  ; "new"
+0218    TDUP    22  66
+0219    TGETS   23   0   0  ; "width"
+0220    TSETS   23  22   9  ; "w"
+0221    TSETS   13  22  10  ; "h"
+0222    CALL    20   2   3
+0223    TSETS   20  19  68  ; "dimen"
+0224    CALL    17   2   3
+0225    TSETB   17  16   1
+0226    UGET    17  13      ; VerticalSpan
+0227    MOV     18  17
+0228    TGETS   17  17   7  ; "new"
+0229    TDUP    19  69
+0230    TSETS   10  19   0  ; "width"
+0231    CALL    17   2   3
+0232    TSETB   17  16   2
+0233    UGET    17  14      ; HorizontalGroup
+0234    MOV     18  17
+0235    TGETS   17  17   7  ; "new"
+0236    TNEW    19   3
+0237    TGETS   20   0  57  ; "htmlwidget"
+0238    TSETB   20  19   1
+0239    UGET    20  15      ; HorizontalSpan
+0240    MOV     21  20
+0241    TGETS   20  20   7  ; "new"
+0242    TDUP    22  70
+0243    TSETS    7  22   0  ; "width"
+0244    CALL    20   0   3
+0245    TSETM   20   5      ; 2
+0246    CALL    17   2   3
+0247    TSETB   17  16   3
+0248    UGET    17  13      ; VerticalSpan
+0249    MOV     18  17
+0250    TGETS   17  17   7  ; "new"
+0251    TDUP    19  71
+0252    TSETS   11  19   0  ; "width"
+0253    CALL    17   0   3
+0254    TSETM   17   6      ; 4
+0255    CALL    14   2   3
+0256    TGETS   15   0  57  ; "htmlwidget"
+0257    MOV     16  15
+0258    TGETS   15  15  72  ; "getSinglePageHeight"
+0259    CALL    15   2   2
+0260    ISF         15
+0261    JMP     16 => 0284
+0262    KSHORT  16   0
+0263    ADDVV   17  15  13
+0264    ADDVV   17  17  10
+0265    ADDVV   17  17  11
+0266    ADDVV   17  17  16
+0267    UGET    18  16      ; CenterContainer
+0268    MOV     19  18
+0269    TGETS   18  18   7  ; "new"
+0270    TDUP    20  74
+0271    UGET    21   2      ; Geom
+0272    MOV     22  21
+0273    TGETS   21  21   7  ; "new"
+0274    TDUP    23  73
+0275    TSETS   17  23  10  ; "h"
+0276    TGETS   24   0   0  ; "width"
+0277    TSETS   24  23   9  ; "w"
+0278    CALL    21   2   3
+0279    TSETS   21  20  68  ; "dimen"
+0280    TSETB   14  20   1
+0281    CALL    18   2   3
+0282    MOV     14  18
+0283    TSETS   17   0   2  ; "height"
+0284 => UGET    16  17      ; FrameContainer
+0285    MOV     17  16
+0286    TGETS   16  16   7  ; "new"
+0287    TDUP    18  77
+0288    UGET    19  18      ; Blitbuffer
+0289    TGETS   19  19  76  ; "COLOR_WHITE"
+0290    TSETS   19  18  78  ; "background"
+0291    TSETB   14  18   1
+0292    CALL    16   2   3
+0293    TSETS   16   0  75  ; "container"
+0294    UGET    16  19      ; BottomContainer
+0295    MOV     17  16
+0296    TGETS   16  16   7  ; "new"
+0297    TDUP    18  80
+0298    UGET    19   0      ; Screen
+0299    MOV     20  19
+0300    TGETS   19  19  79  ; "getSize"
+0301    CALL    19   2   2
+0302    TSETS   19  18  68  ; "dimen"
+0303    TGETS   19   0  75  ; "container"
+0304    TSETB   19  18   1
+0305    CALL    16   2   3
+0306    TSETB   16   0   1
+0307    UCLO     0 => 0308
+0308 => RET0     0   1
+
+-- BYTECODE -- footnotewidget.lua:323-325
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "container"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- footnotewidget.lua:322-326
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    TGETS    3   0   1  ; "dialog"
+0005    FNEW     4   2      ; footnotewidget.lua:323
+0006    CALL     1   1   4
+0007    UCLO     0 => 0008
+0008 => RET0     0   1
+
+-- BYTECODE -- footnotewidget.lua:329-331
+0001    KSTR     0   0      ; "partial"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "container"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- footnotewidget.lua:328-332
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    TGETS    3   0   1  ; "dialog"
+0005    FNEW     4   2      ; footnotewidget.lua:329
+0006    CALL     1   1   4
+0007    UCLO     0 => 0008
+0008 => RET0     0   1
+
+-- BYTECODE -- footnotewidget.lua:334-340
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    TGETS    1   0   1  ; "close_callback"
+0007    ISF          1
+0008    JMP      2 => 0012
+0009    TGETS    1   0   1  ; "close_callback"
+0010    TGETS    2   0   2  ; "height"
+0011    CALL     1   1   2
+0012 => KPRI     1   2
+0013    RET1     1   2
+
+-- BYTECODE -- footnotewidget.lua:342-357
+0001    TGETS    3   2   0  ; "pos"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "notIntersectWith"
+0004    TGETS    5   0   2  ; "container"
+0005    TGETS    5   5   3  ; "dimen"
+0006    CALL     3   2   3
+0007    ISF          3
+0008    JMP      4 => 0031
+0009    UGET     3   0      ; UIManager
+0010    MOV      4   3
+0011    TGETS    3   3   4  ; "close"
+0012    MOV      5   0
+0013    CALL     3   1   3
+0014    TGETS    3   0   5  ; "on_tap_close_callback"
+0015    ISF          3
+0016    JMP      4 => 0023
+0017    TGETS    3   0   5  ; "on_tap_close_callback"
+0018    MOV      4   1
+0019    MOV      5   2
+0020    TGETS    6   0   6  ; "height"
+0021    CALL     3   1   4
+0022    JMP      3 => 0029
+0023 => TGETS    3   0   7  ; "close_callback"
+0024    ISF          3
+0025    JMP      4 => 0029
+0026    TGETS    3   0   7  ; "close_callback"
+0027    TGETS    4   0   6  ; "height"
+0028    CALL     3   1   2
+0029 => KPRI     3   2
+0030    RET1     3   2
+0031 => KPRI     3   1
+0032    RET1     3   2
+
+-- BYTECODE -- footnotewidget.lua:359-389
+0001    UGET     3   0      ; BD
+0002    TGETS    3   3   0  ; "flipDirectionIfMirroredUILayout"
+0003    TGETS    4   2   1  ; "direction"
+0004    CALL     3   2   2
+0005    ISNES    3   2      ; "west"
+0006    JMP      4 => 0019
+0007    TGETS    4   0   3  ; "follow_callback"
+0008    ISF          4
+0009    JMP      5 => 0046
+0010    TGETS    4   0   4  ; "close_callback"
+0011    ISF          4
+0012    JMP      5 => 0016
+0013    TGETS    4   0   4  ; "close_callback"
+0014    TGETS    5   0   5  ; "height"
+0015    CALL     4   1   2
+0016 => TGETS    4   0   3  ; "follow_callback"
+0017    CALLT    4   1
+0018    JMP      4 => 0046
+0019 => ISEQS    3   6      ; "south"
+0020    JMP      4 => 0023
+0021    ISNES    3   7      ; "east"
+0022    JMP      4 => 0037
+0023 => UGET     4   1      ; UIManager
+0024    MOV      5   4
+0025    TGETS    4   4   8  ; "close"
+0026    MOV      6   0
+0027    CALL     4   1   3
+0028    TGETS    4   0   4  ; "close_callback"
+0029    ISF          4
+0030    JMP      5 => 0034
+0031    TGETS    4   0   4  ; "close_callback"
+0032    TGETS    5   0   5  ; "height"
+0033    CALL     4   1   2
+0034 => KPRI     4   2
+0035    RET1     4   2
+0036    JMP      4 => 0046
+0037 => ISNES    3   9      ; "north"
+0038    JMP      4 => 0040
+0039    JMP      4 => 0046
+0040 => UGET     4   1      ; UIManager
+0041    MOV      5   4
+0042    TGETS    4   4  10  ; "setDirty"
+0043    KPRI     6   0
+0044    KSTR     7  11      ; "full"
+0045    CALL     4   1   4
+0046 => KPRI     4   1
+0047    RET1     4   2
+
+-- BYTECODE -- footnotewidget.lua:0-392
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/blitbuffer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/container/bottomcontainer"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/container/centercontainer"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "device"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/event"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/container/framecontainer"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/geometry"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/gesturerange"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/widget/horizontalgroup"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/widget/horizontalspan"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/container/inputcontainer"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/linewidget"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/widget/scrollhtmlwidget"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/size"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/uimanager"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "ui/widget/verticalgroup"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/widget/verticalspan"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "gettext"
+0057    CALL    18   2   2
+0058    TGETS   19   4  20  ; "screen"
+0059    GGET    20   0      ; "require"
+0060    KSTR    21  21      ; "ffi/util"
+0061    CALL    20   2   2
+0062    TGETS   20  20  22  ; "template"
+0063    KSTR    21  23      ; "@page {\n    margin: %1 %2 %3 %4;\n    f"~
+0064    KSTR    22  24      ; "body {\n    margin: 0;                  "~
+0065    MOV     24  11
+0066    TGETS   23  11  25  ; "new"
+0067    TDUP    25  26
+0068    MOV     27  19
+0069    TGETS   26  19  27  ; "scaleBySize"
+0070    KSHORT  28  18
+0071    CALL    26   2   3
+0072    TSETS   26  25  28  ; "doc_font_size"
+0073    TDUP    26  29
+0074    MOV     28  19
+0075    TGETS   27  19  27  ; "scaleBySize"
+0076    KSHORT  29  20
+0077    CALL    27   2   3
+0078    TSETS   27  26  30  ; "left"
+0079    MOV     28  19
+0080    TGETS   27  19  27  ; "scaleBySize"
+0081    KSHORT  29  20
+0082    CALL    27   2   3
+0083    TSETS   27  26  31  ; "right"
+0084    MOV     28  19
+0085    TGETS   27  19  27  ; "scaleBySize"
+0086    KSHORT  29  10
+0087    CALL    27   2   3
+0088    TSETS   27  26  32  ; "top"
+0089    MOV     28  19
+0090    TGETS   27  19  27  ; "scaleBySize"
+0091    KSHORT  29  10
+0092    CALL    27   2   3
+0093    TSETS   27  26  33  ; "bottom"
+0094    TSETS   26  25  34  ; "doc_margins"
+0095    CALL    23   2   3
+0096    FNEW    24  36      ; footnotewidget.lua:138
+0097    TSETS   24  23  35  ; "init"
+0098    FNEW    24  38      ; footnotewidget.lua:322
+0099    TSETS   24  23  37  ; "onShow"
+0100    FNEW    24  40      ; footnotewidget.lua:328
+0101    TSETS   24  23  39  ; "onCloseWidget"
+0102    FNEW    24  42      ; footnotewidget.lua:334
+0103    TSETS   24  23  41  ; "onClose"
+0104    FNEW    24  44      ; footnotewidget.lua:342
+0105    TSETS   24  23  43  ; "onTapClose"
+0106    FNEW    24  46      ; footnotewidget.lua:359
+0107    TSETS   24  23  45  ; "onSwipeFollow"
+0108    UCLO     0 => 0109
+0109 => RET1    23   2
+

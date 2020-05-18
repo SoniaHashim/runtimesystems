@@ -1,0 +1,1947 @@
+-- BYTECODE -- gesturedetector.lua:92-98
+0001    IST          1
+0002    JMP      2 => 0004
+0003    TNEW     1   0
+0004 => GGET     2   0      ; "setmetatable"
+0005    MOV      3   1
+0006    MOV      4   0
+0007    CALL     2   1   3
+0008    TSETS    0   0   1  ; "__index"
+0009    TGETS    2   1   2  ; "init"
+0010    ISF          2
+0011    JMP      3 => 0015
+0012    MOV      3   1
+0013    TGETS    2   1   2  ; "init"
+0014    CALL     2   1   2
+0015 => RET1     1   2
+
+-- BYTECODE -- gesturedetector.lua:100-107
+0001    TGETS    1   0   0  ; "screen"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getDPI"
+0004    CALL     1   2   2
+0005    DIVVN    1   1   0  ; 167
+0006    MULNV    2   1   1  ; 20
+0007    TSETS    2   0   2  ; "TWO_FINGER_TAP_REGION"
+0008    MULNV    2   1   2  ; 50
+0009    TSETS    2   0   3  ; "DOUBLE_TAP_DISTANCE"
+0010    TGETS    2   0   3  ; "DOUBLE_TAP_DISTANCE"
+0011    TSETS    2   0   4  ; "PAN_THRESHOLD"
+0012    TGETS    2   0   3  ; "DOUBLE_TAP_DISTANCE"
+0013    TSETS    2   0   5  ; "MULTISWIPE_THRESHOLD"
+0014    RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:112-128
+0001 => LOOP     2 => 0032
+0002    GGET     2   0      ; "table"
+0003    TGETS    2   2   1  ; "remove"
+0004    MOV      3   1
+0005    CALL     2   2   2
+0006    ISF          2
+0007    JMP      3 => 0030
+0008    TGETS    3   2   2  ; "slot"
+0009    TGETS    4   0   3  ; "states"
+0010    TGETV    4   4   3
+0011    IST          4
+0012    JMP      4 => 0017
+0013    MOV      5   0
+0014    TGETS    4   0   4  ; "clearState"
+0015    MOV      6   3
+0016    CALL     4   1   3
+0017 => TGETS    4   0   3  ; "states"
+0018    TGETV    4   4   3
+0019    MOV      5   0
+0020    MOV      6   2
+0021    CALL     4   2   3
+0022    TGETS    5   2   5  ; "id"
+0023    ISEQN    5   0      ; -1
+0024    JMP      5 => 0027
+0025    TGETS    5   0   6  ; "last_tevs"
+0026    TSETV    2   5   3
+0027 => ISF          4
+0028    JMP      5 => 0030
+0029    RET1     4   2
+0030 => ISNEP    2   0
+0031    JMP      3 => 0001
+0032 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:130-141
+0001    TDUP     2   1
+0002    TGETS    3   1   0  ; "x"
+0003    TSETS    3   2   0  ; "x"
+0004    TGETS    3   1   2  ; "y"
+0005    TSETS    3   2   2  ; "y"
+0006    TGETS    3   1   3  ; "id"
+0007    TSETS    3   2   3  ; "id"
+0008    TGETS    3   1   4  ; "slot"
+0009    TSETS    3   2   4  ; "slot"
+0010    UGET     3   0      ; TimeVal
+0011    MOV      4   3
+0012    TGETS    3   3   5  ; "new"
+0013    TDUP     5   8
+0014    TGETS    6   1   6  ; "timev"
+0015    TGETS    6   6   7  ; "sec"
+0016    TSETS    6   5   7  ; "sec"
+0017    TGETS    6   1   6  ; "timev"
+0018    TGETS    6   6   9  ; "usec"
+0019    TSETS    6   5   9  ; "usec"
+0020    CALL     3   2   3
+0021    TSETS    3   2   6  ; "timev"
+0022    RET1     2   2
+
+-- BYTECODE -- gesturedetector.lua:146-153
+0001    TGETS    3   2   0  ; "timev"
+0002    TGETS    4   1   0  ; "timev"
+0003    SUBVV    3   3   4
+0004    GGET     4   1      ; "math"
+0005    TGETS    4   4   2  ; "abs"
+0006    TGETS    5   1   3  ; "x"
+0007    TGETS    6   2   3  ; "x"
+0008    SUBVV    5   5   6
+0009    CALL     4   2   2
+0010    TGETS    5   0   4  ; "DOUBLE_TAP_DISTANCE"
+0011    ISGE     4   5
+0012    JMP      4 => 0029
+0013    GGET     4   1      ; "math"
+0014    TGETS    4   4   2  ; "abs"
+0015    TGETS    5   1   5  ; "y"
+0016    TGETS    6   2   5  ; "y"
+0017    SUBVV    5   5   6
+0018    CALL     4   2   2
+0019    TGETS    5   0   4  ; "DOUBLE_TAP_DISTANCE"
+0020    ISGE     4   5
+0021    JMP      4 => 0029
+0022    TGETS    4   3   6  ; "sec"
+0023    ISNEN    4   0      ; 0
+0024    JMP      4 => 0029
+0025    TGETS    4   3   7  ; "usec"
+0026    UGET     5   0      ; ges_double_tap_interval
+0027    ISLT     4   5
+0028    JMP      4 => 0031
+0029 => KPRI     4   1
+0030    JMP      5 => 0032
+0031 => KPRI     4   2
+0032 => RET1     4   2
+
+-- BYTECODE -- gesturedetector.lua:155-173
+0001    TGETS    1   0   0  ; "last_tevs"
+0002    TGETB    1   1   0
+0003    ISEQP    1   0
+0004    JMP      1 => 0009
+0005    TGETS    1   0   0  ; "last_tevs"
+0006    TGETB    1   1   1
+0007    ISNEP    1   0
+0008    JMP      1 => 0011
+0009 => KPRI     1   1
+0010    RET1     1   2
+0011 => GGET     1   1      ; "math"
+0012    TGETS    1   1   2  ; "abs"
+0013    TGETS    2   0   0  ; "last_tevs"
+0014    TGETB    2   2   0
+0015    TGETS    2   2   3  ; "x"
+0016    TGETS    3   0   4  ; "first_tevs"
+0017    TGETB    3   3   0
+0018    TGETS    3   3   3  ; "x"
+0019    SUBVV    2   2   3
+0020    CALL     1   2   2
+0021    GGET     2   1      ; "math"
+0022    TGETS    2   2   2  ; "abs"
+0023    TGETS    3   0   0  ; "last_tevs"
+0024    TGETB    3   3   1
+0025    TGETS    3   3   3  ; "x"
+0026    TGETS    4   0   4  ; "first_tevs"
+0027    TGETB    4   4   1
+0028    TGETS    4   4   3  ; "x"
+0029    SUBVV    3   3   4
+0030    CALL     2   2   2
+0031    GGET     3   1      ; "math"
+0032    TGETS    3   3   2  ; "abs"
+0033    TGETS    4   0   0  ; "last_tevs"
+0034    TGETB    4   4   0
+0035    TGETS    4   4   5  ; "y"
+0036    TGETS    5   0   4  ; "first_tevs"
+0037    TGETB    5   5   0
+0038    TGETS    5   5   5  ; "y"
+0039    SUBVV    4   4   5
+0040    CALL     3   2   2
+0041    GGET     4   1      ; "math"
+0042    TGETS    4   4   2  ; "abs"
+0043    TGETS    5   0   0  ; "last_tevs"
+0044    TGETB    5   5   1
+0045    TGETS    5   5   5  ; "y"
+0046    TGETS    6   0   4  ; "first_tevs"
+0047    TGETB    6   6   1
+0048    TGETS    6   6   5  ; "y"
+0049    SUBVV    5   5   6
+0050    CALL     4   2   2
+0051    TGETS    5   0   0  ; "last_tevs"
+0052    TGETB    5   5   0
+0053    TGETS    5   5   6  ; "timev"
+0054    TGETS    6   0   4  ; "first_tevs"
+0055    TGETB    6   6   0
+0056    TGETS    6   6   6  ; "timev"
+0057    SUBVV    5   5   6
+0058    TGETS    6   0   0  ; "last_tevs"
+0059    TGETB    6   6   1
+0060    TGETS    6   6   6  ; "timev"
+0061    TGETS    7   0   4  ; "first_tevs"
+0062    TGETB    7   7   1
+0063    TGETS    7   7   6  ; "timev"
+0064    SUBVV    6   6   7
+0065    TGETS    7   0   7  ; "TWO_FINGER_TAP_REGION"
+0066    ISGE     1   7
+0067    JMP      7 => 0091
+0068    TGETS    7   0   7  ; "TWO_FINGER_TAP_REGION"
+0069    ISGE     2   7
+0070    JMP      7 => 0091
+0071    TGETS    7   0   7  ; "TWO_FINGER_TAP_REGION"
+0072    ISGE     3   7
+0073    JMP      7 => 0091
+0074    TGETS    7   0   7  ; "TWO_FINGER_TAP_REGION"
+0075    ISGE     4   7
+0076    JMP      7 => 0091
+0077    TGETS    7   5   8  ; "sec"
+0078    ISNEN    7   0      ; 0
+0079    JMP      7 => 0091
+0080    TGETS    7   5   9  ; "usec"
+0081    UGET     8   0      ; ges_two_finger_tap_duration
+0082    ISGE     7   8
+0083    JMP      7 => 0091
+0084    TGETS    7   6   8  ; "sec"
+0085    ISNEN    7   0      ; 0
+0086    JMP      7 => 0091
+0087    TGETS    7   6   9  ; "usec"
+0088    UGET     8   0      ; ges_two_finger_tap_duration
+0089    ISLT     7   8
+0090    JMP      7 => 0093
+0091 => KPRI     7   1
+0092    JMP      8 => 0094
+0093 => KPRI     7   2
+0094 => RET1     7   2
+
+-- BYTECODE -- gesturedetector.lua:182-205
+0001    IST          4
+0002    JMP      5 => 0004
+0003    TGETS    4   0   0  ; "first_tevs"
+0004 => TGETS    5   0   1  ; "last_tevs"
+0005    TGETV    5   5   1
+0006    TGETS    5   5   2  ; "x"
+0007    TGETV    6   4   1
+0008    TGETS    6   6   2  ; "x"
+0009    SUBVV    5   5   6
+0010    TGETS    6   0   1  ; "last_tevs"
+0011    TGETV    6   6   1
+0012    TGETS    6   6   3  ; "y"
+0013    TGETV    7   4   1
+0014    TGETS    7   7   3  ; "y"
+0015    SUBVV    6   6   7
+0016    KPRI     7   0
+0017    GGET     8   4      ; "math"
+0018    TGETS    8   8   5  ; "sqrt"
+0019    MULVV    9   5   5
+0020    MULVV   10   6   6
+0021    ADDVV    9   9  10
+0022    CALL     8   2   2
+0023    ISNEN    5   0      ; 0
+0024    JMP      9 => 0027
+0025    ISEQN    6   0      ; 0
+0026    JMP      9 => 0084
+0027 => KSHORT   9   0
+0028    ISGE     6   9
+0029    JMP      9 => 0032
+0030    KSTR     9   6      ; "north"
+0031    JMP     10 => 0033
+0032 => KSTR     9   7      ; "south"
+0033 => KSHORT  10   0
+0034    ISGE     5  10
+0035    JMP     10 => 0038
+0036    KSTR    10   8      ; "west"
+0037    JMP     11 => 0039
+0038 => KSTR    10   9      ; "east"
+0039 => IST          2
+0040    JMP     11 => 0063
+0041    GGET    11   4      ; "math"
+0042    TGETS   11  11  10  ; "abs"
+0043    MOV     12   6
+0044    CALL    11   2   2
+0045    GGET    12   4      ; "math"
+0046    TGETS   12  12  10  ; "abs"
+0047    MOV     13   5
+0048    CALL    12   2   2
+0049    MULNV   12  12   1  ; 0.577
+0050    ISGE    12  11
+0051    JMP     11 => 0063
+0052    GGET    11   4      ; "math"
+0053    TGETS   11  11  10  ; "abs"
+0054    MOV     12   6
+0055    CALL    11   2   2
+0056    GGET    12   4      ; "math"
+0057    TGETS   12  12  10  ; "abs"
+0058    MOV     13   5
+0059    CALL    12   2   2
+0060    MULNV   12  12   2  ; 1.732
+0061    ISLT    11  12
+0062    JMP     11 => 0067
+0063 => ISF          2
+0064    JMP     11 => 0071
+0065    ISF          3
+0066    JMP     11 => 0071
+0067 => MOV     11   9
+0068    MOV     12  10
+0069    CAT      7  11  12
+0070    JMP     11 => 0084
+0071 => GGET    11   4      ; "math"
+0072    TGETS   11  11  10  ; "abs"
+0073    MOV     12   5
+0074    CALL    11   2   2
+0075    GGET    12   4      ; "math"
+0076    TGETS   12  12  10  ; "abs"
+0077    MOV     13   6
+0078    CALL    12   2   2
+0079    ISGE    12  11
+0080    JMP     11 => 0083
+0081    MOV      7  10
+0082    JMP     11 => 0084
+0083 => MOV      7   9
+0084 => MOV      9   7
+0085    MOV     10   8
+0086    RET      9   3
+
+-- BYTECODE -- gesturedetector.lua:207-217
+0001    TGETS    2   0   0  ; "first_tevs"
+0002    TGETV    2   2   1
+0003    ISF          2
+0004    JMP      2 => 0009
+0005    TGETS    2   0   1  ; "last_tevs"
+0006    TGETV    2   2   1
+0007    IST          2
+0008    JMP      2 => 0010
+0009 => RET0     0   1
+0010 => TGETS    2   0   1  ; "last_tevs"
+0011    TGETV    2   2   1
+0012    TGETS    2   2   2  ; "timev"
+0013    TGETS    3   0   0  ; "first_tevs"
+0014    TGETV    3   3   1
+0015    TGETS    3   3   2  ; "timev"
+0016    SUBVV    2   2   3
+0017    TGETS    3   2   3  ; "sec"
+0018    ISNEN    3   0      ; 0
+0019    JMP      3 => 0044
+0020    TGETS    3   2   4  ; "usec"
+0021    UGET     4   0      ; ges_swipe_interval
+0022    ISGE     3   4
+0023    JMP      3 => 0044
+0024    TGETS    3   0   1  ; "last_tevs"
+0025    TGETV    3   3   1
+0026    TGETS    3   3   5  ; "x"
+0027    TGETS    4   0   0  ; "first_tevs"
+0028    TGETV    4   4   1
+0029    TGETS    4   4   5  ; "x"
+0030    SUBVV    3   3   4
+0031    TGETS    4   0   1  ; "last_tevs"
+0032    TGETV    4   4   1
+0033    TGETS    4   4   6  ; "y"
+0034    TGETS    5   0   0  ; "first_tevs"
+0035    TGETV    5   5   1
+0036    TGETS    5   5   6  ; "y"
+0037    SUBVV    4   4   5
+0038    ISNEN    3   0      ; 0
+0039    JMP      5 => 0042
+0040    ISEQN    4   0      ; 0
+0041    JMP      5 => 0044
+0042 => KPRI     5   2
+0043    RET1     5   2
+0044 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:219-224
+0001    MOV      5   1
+0002    TGETS    4   1   0  ; "distance"
+0003    MOV      6   2
+0004    CALL     4   2   3
+0005    MOV      6   1
+0006    TGETS    5   1   0  ; "distance"
+0007    MOV      7   3
+0008    CALL     5   2   3
+0009    MOV      7   2
+0010    TGETS    6   2   0  ; "distance"
+0011    MOV      8   3
+0012    CALL     6   2   3
+0013    GGET     7   1      ; "math"
+0014    TGETS    7   7   2  ; "acos"
+0015    MULVV    8   4   4
+0016    MULVV    9   5   5
+0017    ADDVV    8   8   9
+0018    MULVV    9   6   6
+0019    SUBVV    8   8   9
+0020    MULNV    9   4   0  ; 2
+0021    MULVV    9   9   5
+0022    DIVVV    8   8   9
+0023    CALL     7   2   2
+0024    MULVN    7   7   1  ; 180
+0025    GGET     8   1      ; "math"
+0026    TGETS    8   8   3  ; "pi"
+0027    DIVVV    7   7   8
+0028    RET1     7   2
+
+-- BYTECODE -- gesturedetector.lua:230-233
+0001    TGETV    4   0   1
+0002    MOV      5   0
+0003    MOV      6   2
+0004    MOV      7   3
+0005    CALLT    4   4
+
+-- BYTECODE -- gesturedetector.lua:235-242
+0001    TGETS    2   0   0  ; "states"
+0002    TGETS    3   0   1  ; "initialState"
+0003    TSETV    3   2   1
+0004    TGETS    2   0   2  ; "detectings"
+0005    KPRI     3   1
+0006    TSETV    3   2   1
+0007    TGETS    2   0   3  ; "first_tevs"
+0008    KPRI     3   0
+0009    TSETV    3   2   1
+0010    TGETS    2   0   4  ; "last_tevs"
+0011    KPRI     3   0
+0012    TSETV    3   2   1
+0013    TNEW     2   0
+0014    TSETS    2   0   5  ; "multiswipe_directions"
+0015    KPRI     2   0
+0016    TSETS    2   0   6  ; "multiswipe_type"
+0017    RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:244-256
+0001    ISNES    1   0      ; "ges_double_tap_interval"
+0002    JMP      3 => 0005
+0003    USETV    0   2      ; ges_double_tap_interval
+0004    JMP      3 => 0020
+0005 => ISNES    1   1      ; "ges_two_finger_tap_duration"
+0006    JMP      3 => 0009
+0007    USETV    1   2      ; ges_two_finger_tap_duration
+0008    JMP      3 => 0020
+0009 => ISNES    1   2      ; "ges_hold_interval"
+0010    JMP      3 => 0013
+0011    USETV    2   2      ; ges_hold_interval
+0012    JMP      3 => 0020
+0013 => ISNES    1   3      ; "ges_pan_delayed_interval"
+0014    JMP      3 => 0017
+0015    USETV    3   2      ; ges_pan_delayed_interval
+0016    JMP      3 => 0020
+0017 => ISNES    1   4      ; "ges_swipe_interval"
+0018    JMP      3 => 0020
+0019    USETV    4   2      ; ges_swipe_interval
+0020 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:258-270
+0001    ISNES    1   0      ; "ges_double_tap_interval"
+0002    JMP      2 => 0006
+0003    UGET     2   0      ; ges_double_tap_interval
+0004    RET1     2   2
+0005    JMP      2 => 0025
+0006 => ISNES    1   1      ; "ges_two_finger_tap_duration"
+0007    JMP      2 => 0011
+0008    UGET     2   1      ; ges_two_finger_tap_duration
+0009    RET1     2   2
+0010    JMP      2 => 0025
+0011 => ISNES    1   2      ; "ges_hold_interval"
+0012    JMP      2 => 0016
+0013    UGET     2   2      ; ges_hold_interval
+0014    RET1     2   2
+0015    JMP      2 => 0025
+0016 => ISNES    1   3      ; "ges_pan_delayed_interval"
+0017    JMP      2 => 0021
+0018    UGET     2   3      ; ges_pan_delayed_interval
+0019    RET1     2   2
+0020    JMP      2 => 0025
+0021 => ISNES    1   4      ; "ges_swipe_interval"
+0022    JMP      2 => 0025
+0023    UGET     2   4      ; ges_swipe_interval
+0024    RET1     2   2
+0025 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:272-275
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "clearState"
+0003    KSHORT   3   0
+0004    CALL     1   1   3
+0005    MOV      2   0
+0006    TGETS    1   0   0  ; "clearState"
+0007    KSHORT   3   1
+0008    CALL     1   1   3
+0009    RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:277-296
+0001    TGETS    2   1   0  ; "slot"
+0002    TGETS    3   1   1  ; "id"
+0003    ISF          3
+0004    JMP      4 => 0039
+0005    TGETS    3   1   1  ; "id"
+0006    ISNEN    3   0      ; -1
+0007    JMP      3 => 0012
+0008    TGETS    3   0   2  ; "detectings"
+0009    KPRI     4   1
+0010    TSETV    4   3   2
+0011    JMP      3 => 0039
+0012 => TGETS    3   0   3  ; "track_ids"
+0013    TGETS    4   1   1  ; "id"
+0014    TSETV    4   3   2
+0015    TGETS    3   1   4  ; "x"
+0016    ISF          3
+0017    JMP      4 => 0039
+0018    TGETS    3   1   5  ; "y"
+0019    ISF          3
+0020    JMP      4 => 0039
+0021    TGETS    3   0   2  ; "detectings"
+0022    TGETV    3   3   2
+0023    IST          3
+0024    JMP      3 => 0039
+0025    TGETS    3   0   2  ; "detectings"
+0026    KPRI     4   2
+0027    TSETV    4   3   2
+0028    TGETS    3   0   6  ; "first_tevs"
+0029    MOV      5   0
+0030    TGETS    4   0   7  ; "deepCopyEv"
+0031    MOV      6   1
+0032    CALL     4   2   3
+0033    TSETV    4   3   2
+0034    MOV      4   0
+0035    TGETS    3   0   8  ; "switchState"
+0036    KSTR     5   9      ; "tapState"
+0037    MOV      6   1
+0038    CALLT    3   4
+0039 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:301-348
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "in tap state..."
+0004    CALL     2   1   2
+0005    TGETS    2   1   2  ; "slot"
+0006    TGETS    3   1   3  ; "id"
+0007    ISNEN    3   0      ; -1
+0008    JMP      3 => 0104
+0009    TGETS    3   0   4  ; "detectings"
+0010    TGETB    3   3   0
+0011    ISF          3
+0012    JMP      4 => 0076
+0013    TGETS    3   0   4  ; "detectings"
+0014    TGETB    3   3   1
+0015    ISF          3
+0016    JMP      4 => 0076
+0017    MOV      4   0
+0018    TGETS    3   0   5  ; "isTwoFingerTap"
+0019    CALL     3   2   2
+0020    ISF          3
+0021    JMP      4 => 0071
+0022    UGET     3   1      ; Geom
+0023    MOV      4   3
+0024    TGETS    3   3   6  ; "new"
+0025    TDUP     5   9
+0026    TGETS    6   0   7  ; "last_tevs"
+0027    TGETB    6   6   0
+0028    TGETS    6   6   8  ; "x"
+0029    TSETS    6   5   8  ; "x"
+0030    TGETS    6   0   7  ; "last_tevs"
+0031    TGETB    6   6   0
+0032    TGETS    6   6  10  ; "y"
+0033    TSETS    6   5  10  ; "y"
+0034    CALL     3   2   3
+0035    UGET     4   1      ; Geom
+0036    MOV      5   4
+0037    TGETS    4   4   6  ; "new"
+0038    TDUP     6  11
+0039    TGETS    7   0   7  ; "last_tevs"
+0040    TGETB    7   7   1
+0041    TGETS    7   7   8  ; "x"
+0042    TSETS    7   6   8  ; "x"
+0043    TGETS    7   0   7  ; "last_tevs"
+0044    TGETB    7   7   1
+0045    TGETS    7   7  10  ; "y"
+0046    TSETS    7   6  10  ; "y"
+0047    CALL     4   2   3
+0048    MOV      6   3
+0049    TGETS    5   3  12  ; "distance"
+0050    MOV      7   4
+0051    CALL     5   2   3
+0052    UGET     6   0      ; logger
+0053    TGETS    6   6   0  ; "dbg"
+0054    KSTR     7  13      ; "two-finger tap detected with span"
+0055    MOV      8   5
+0056    CALL     6   1   3
+0057    MOV      7   0
+0058    TGETS    6   0  14  ; "clearStates"
+0059    CALL     6   1   2
+0060    TDUP     6  15
+0061    MOV      8   3
+0062    TGETS    7   3  16  ; "midpoint"
+0063    MOV      9   4
+0064    CALL     7   2   3
+0065    TSETS    7   6  17  ; "pos"
+0066    TSETS    5   6  18  ; "span"
+0067    TGETS    7   1  19  ; "timev"
+0068    TSETS    7   6  20  ; "time"
+0069    RET1     6   2
+0070    JMP      3 => 0108
+0071 => MOV      4   0
+0072    TGETS    3   0  21  ; "clearState"
+0073    MOV      5   2
+0074    CALL     3   1   3
+0075    JMP      3 => 0108
+0076 => TGETS    3   0   7  ; "last_tevs"
+0077    TGETV    3   3   2
+0078    ISEQP    3   0
+0079    JMP      3 => 0085
+0080    MOV      4   0
+0081    TGETS    3   0  22  ; "handleDoubleTap"
+0082    MOV      5   1
+0083    CALLT    3   3
+0084    JMP      3 => 0108
+0085 => MOV      4   0
+0086    TGETS    3   0  21  ; "clearState"
+0087    MOV      5   2
+0088    CALL     3   1   3
+0089    TDUP     3  23
+0090    UGET     4   1      ; Geom
+0091    MOV      5   4
+0092    TGETS    4   4   6  ; "new"
+0093    TDUP     6  24
+0094    TGETS    7   1   8  ; "x"
+0095    TSETS    7   6   8  ; "x"
+0096    TGETS    7   1  10  ; "y"
+0097    TSETS    7   6  10  ; "y"
+0098    CALL     4   2   3
+0099    TSETS    4   3  17  ; "pos"
+0100    TGETS    4   1  19  ; "timev"
+0101    TSETS    4   3  20  ; "time"
+0102    RET1     3   2
+0103    JMP      3 => 0108
+0104 => MOV      4   0
+0105    TGETS    3   0  25  ; "handleNonTap"
+0106    MOV      5   1
+0107    CALLT    3   3
+0108 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:388-398
+0001    UGET     0   0      ; logger
+0002    TGETS    0   0   0  ; "dbg"
+0003    KSTR     1   1      ; "in tap timer"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   2  ; "last_taps"
+0006    UGET     3   2      ; slot
+0007    TGETV    2   2   3
+0008    ISNEP    2   0
+0009    JMP      2 => 0012
+0010    KPRI     2   1
+0011    JMP      3 => 0013
+0012 => KPRI     2   2
+0013 => CALL     0   1   3
+0014    UGET     0   1      ; self
+0015    TGETS    0   0   2  ; "last_taps"
+0016    UGET     1   2      ; slot
+0017    TGETV    0   0   1
+0018    ISEQP    0   0
+0019    JMP      0 => 0034
+0020    UGET     0   1      ; self
+0021    TGETS    0   0   2  ; "last_taps"
+0022    UGET     1   2      ; slot
+0023    KPRI     2   0
+0024    TSETV    2   0   1
+0025    UGET     0   0      ; logger
+0026    TGETS    0   0   0  ; "dbg"
+0027    KSTR     1   3      ; "single tap detected in slot"
+0028    UGET     2   2      ; slot
+0029    UGET     3   3      ; ges_ev
+0030    TGETS    3   3   4  ; "pos"
+0031    CALL     0   1   4
+0032    UGET     0   3      ; ges_ev
+0033    RET1     0   2
+0034 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:350-402
+0001    TGETS    2   1   0  ; "slot"
+0002    TDUP     3   1
+0003    UGET     4   0      ; Geom
+0004    MOV      5   4
+0005    TGETS    4   4   2  ; "new"
+0006    TDUP     6   5
+0007    TGETS    7   0   3  ; "last_tevs"
+0008    TGETV    7   7   2
+0009    TGETS    7   7   4  ; "x"
+0010    TSETS    7   6   4  ; "x"
+0011    TGETS    7   0   3  ; "last_tevs"
+0012    TGETV    7   7   2
+0013    TGETS    7   7   6  ; "y"
+0014    TSETS    7   6   6  ; "y"
+0015    CALL     4   2   3
+0016    TSETS    4   3   7  ; "pos"
+0017    TGETS    4   1   8  ; "timev"
+0018    TSETS    4   3   9  ; "time"
+0019    TDUP     4  10
+0020    TGETS    5   1   4  ; "x"
+0021    TSETS    5   4   4  ; "x"
+0022    TGETS    5   1   6  ; "y"
+0023    TSETS    5   4   6  ; "y"
+0024    TGETS    5   1   8  ; "timev"
+0025    TSETS    5   4   8  ; "timev"
+0026    TGETS    5   0  11  ; "input"
+0027    TGETS    5   5  12  ; "disable_double_tap"
+0028    IST          5
+0029    JMP      5 => 0057
+0030    TGETS    5   0  13  ; "last_taps"
+0031    TGETV    5   5   2
+0032    ISEQP    5   0
+0033    JMP      5 => 0057
+0034    MOV      6   0
+0035    TGETS    5   0  14  ; "isDoubleTap"
+0036    TGETS    7   0  13  ; "last_taps"
+0037    TGETV    7   7   2
+0038    MOV      8   4
+0039    CALL     5   2   4
+0040    ISF          5
+0041    JMP      6 => 0057
+0042    MOV      6   0
+0043    TGETS    5   0  15  ; "clearState"
+0044    MOV      7   2
+0045    CALL     5   1   3
+0046    KSTR     5  17      ; "double_tap"
+0047    TSETS    5   3  16  ; "ges"
+0048    TGETS    5   0  13  ; "last_taps"
+0049    KPRI     6   0
+0050    TSETV    6   5   2
+0051    UGET     5   1      ; logger
+0052    TGETS    5   5  18  ; "dbg"
+0053    KSTR     6  19      ; "double tap detected in slot"
+0054    MOV      7   2
+0055    CALL     5   1   3
+0056    UCLO     0 => 0091
+0057 => TGETS    5   0  13  ; "last_taps"
+0058    TSETV    4   5   2
+0059    UGET     5   1      ; logger
+0060    TGETS    5   5  18  ; "dbg"
+0061    KSTR     6  20      ; "set up tap timer"
+0062    CALL     5   1   2
+0063    TGETS    5   4   8  ; "timev"
+0064    UGET     6   2      ; TimeVal
+0065    MOV      7   6
+0066    TGETS    6   6   2  ; "new"
+0067    TDUP     8  21
+0068    TGETS    9   0  11  ; "input"
+0069    TGETS    9   9  12  ; "disable_double_tap"
+0070    IST          9
+0071    JMP      9 => 0075
+0072    UGET     9   3      ; ges_double_tap_interval
+0073    IST          9
+0074    JMP     10 => 0076
+0075 => KSHORT   9   0
+0076 => TSETS    9   8  22  ; "usec"
+0077    CALL     6   2   3
+0078    ADDVV    5   5   6
+0079    TGETS    6   0  11  ; "input"
+0080    MOV      7   6
+0081    TGETS    6   6  23  ; "setTimeout"
+0082    FNEW     8  24      ; gesturedetector.lua:388
+0083    MOV      9   5
+0084    CALL     6   1   4
+0085    MOV      7   0
+0086    TGETS    6   0  15  ; "clearState"
+0087    MOV      8   2
+0088    CALL     6   1   3
+0089    UCLO     0 => 0090
+0090 => RET0     0   1
+0091 => RET1     3   2
+
+-- BYTECODE -- gesturedetector.lua:414-420
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "states"
+0003    UGET     1   1      ; slot
+0004    TGETV    0   0   1
+0005    UGET     1   0      ; self
+0006    TGETS    1   1   1  ; "tapState"
+0007    ISNEV    0   1
+0008    JMP      0 => 0021
+0009    UGET     0   2      ; logger
+0010    TGETS    0   0   2  ; "dbg"
+0011    KSTR     1   3      ; "hold gesture detected in slot"
+0012    UGET     2   1      ; slot
+0013    CALL     0   1   3
+0014    UGET     0   0      ; self
+0015    MOV      1   0
+0016    TGETS    0   0   4  ; "switchState"
+0017    KSTR     2   5      ; "holdState"
+0018    UGET     3   3      ; tev
+0019    KPRI     4   2
+0020    CALLT    0   5
+0021 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:404-440
+0001    TGETS    2   1   0  ; "slot"
+0002    TGETS    3   0   1  ; "states"
+0003    TGETV    3   3   2
+0004    TGETS    4   0   2  ; "tapState"
+0005    ISEQV    3   4
+0006    JMP      3 => 0045
+0007    TGETS    3   0   1  ; "states"
+0008    TGETS    4   0   2  ; "tapState"
+0009    TSETV    4   3   2
+0010    UGET     3   0      ; logger
+0011    TGETS    3   3   3  ; "dbg"
+0012    KSTR     4   4      ; "set up hold timer"
+0013    CALL     3   1   2
+0014    TGETS    3   1   5  ; "timev"
+0015    UGET     4   1      ; TimeVal
+0016    MOV      5   4
+0017    TGETS    4   4   6  ; "new"
+0018    TDUP     6   7
+0019    UGET     7   2      ; ges_hold_interval
+0020    TSETS    7   6   8  ; "usec"
+0021    CALL     4   2   3
+0022    ADDVV    3   3   4
+0023    TGETS    4   0   9  ; "input"
+0024    MOV      5   4
+0025    TGETS    4   4  10  ; "setTimeout"
+0026    FNEW     6  11      ; gesturedetector.lua:414
+0027    MOV      7   3
+0028    CALL     4   1   4
+0029    TDUP     4  12
+0030    UGET     5   3      ; Geom
+0031    MOV      6   5
+0032    TGETS    5   5   6  ; "new"
+0033    TDUP     7  14
+0034    TGETS    8   1  13  ; "x"
+0035    TSETS    8   7  13  ; "x"
+0036    TGETS    8   1  15  ; "y"
+0037    TSETS    8   7  15  ; "y"
+0038    CALL     5   2   3
+0039    TSETS    5   4  16  ; "pos"
+0040    TGETS    5   1   5  ; "timev"
+0041    TSETS    5   4  17  ; "time"
+0042    UCLO     0 => 0043
+0043 => RET1     4   2
+0044    JMP      3 => 0079
+0045 => TGETS    3   1  13  ; "x"
+0046    ISF          3
+0047    JMP      4 => 0059
+0048    GGET     3  18      ; "math"
+0049    TGETS    3   3  19  ; "abs"
+0050    TGETS    4   1  13  ; "x"
+0051    TGETS    5   0  20  ; "first_tevs"
+0052    TGETV    5   5   2
+0053    TGETS    5   5  13  ; "x"
+0054    SUBVV    4   4   5
+0055    CALL     3   2   2
+0056    TGETS    4   0  21  ; "PAN_THRESHOLD"
+0057    ISLE     4   3
+0058    JMP      3 => 0073
+0059 => TGETS    3   1  15  ; "y"
+0060    ISF          3
+0061    JMP      4 => 0079
+0062    GGET     3  18      ; "math"
+0063    TGETS    3   3  19  ; "abs"
+0064    TGETS    4   1  15  ; "y"
+0065    TGETS    5   0  20  ; "first_tevs"
+0066    TGETV    5   5   2
+0067    TGETS    5   5  15  ; "y"
+0068    SUBVV    4   4   5
+0069    CALL     3   2   2
+0070    TGETS    4   0  21  ; "PAN_THRESHOLD"
+0071    ISGT     4   3
+0072    JMP      3 => 0079
+0073 => MOV      4   0
+0074    TGETS    3   0  22  ; "switchState"
+0075    KSTR     5  23      ; "panState"
+0076    MOV      6   1
+0077    UCLO     0 => 0078
+0078 => CALLT    3   4
+0079 => UCLO     0 => 0080
+0080 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:442-474
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "in pan state..."
+0004    CALL     2   1   2
+0005    TGETS    2   1   2  ; "slot"
+0006    TGETS    3   1   3  ; "id"
+0007    ISNEN    3   0      ; -1
+0008    JMP      3 => 0068
+0009    MOV      4   0
+0010    TGETS    3   0   4  ; "isSwipe"
+0011    MOV      5   2
+0012    CALL     3   2   3
+0013    ISF          3
+0014    JMP      4 => 0063
+0015    TGETS    3   0   5  ; "detectings"
+0016    TGETB    3   3   0
+0017    ISF          3
+0018    JMP      4 => 0058
+0019    TGETS    3   0   5  ; "detectings"
+0020    TGETB    3   3   1
+0021    ISF          3
+0022    JMP      4 => 0058
+0023    MOV      4   0
+0024    TGETS    3   0   6  ; "handleTwoFingerPan"
+0025    MOV      5   1
+0026    CALL     3   2   3
+0027    MOV      5   0
+0028    TGETS    4   0   7  ; "clearStates"
+0029    CALL     4   1   2
+0030    ISF          3
+0031    JMP      4 => 0056
+0032    TGETS    4   3   8  ; "ges"
+0033    ISNES    4   9      ; "two_finger_pan"
+0034    JMP      4 => 0038
+0035    KSTR     4  10      ; "two_finger_swipe"
+0036    TSETS    4   3   8  ; "ges"
+0037    JMP      4 => 0049
+0038 => TGETS    4   3   8  ; "ges"
+0039    ISNES    4  11      ; "inward_pan"
+0040    JMP      4 => 0044
+0041    KSTR     4  12      ; "pinch"
+0042    TSETS    4   3   8  ; "ges"
+0043    JMP      4 => 0049
+0044 => TGETS    4   3   8  ; "ges"
+0045    ISNES    4  13      ; "outward_pan"
+0046    JMP      4 => 0049
+0047    KSTR     4  14      ; "spread"
+0048    TSETS    4   3   8  ; "ges"
+0049 => UGET     4   0      ; logger
+0050    TGETS    4   4   0  ; "dbg"
+0051    TGETS    5   3   8  ; "ges"
+0052    TGETS    6   3  15  ; "direction"
+0053    TGETS    7   3  16  ; "distance"
+0054    KSTR     8  17      ; "detected"
+0055    CALL     4   1   5
+0056 => RET1     3   2
+0057    JMP      3 => 0080
+0058 => MOV      4   0
+0059    TGETS    3   0  18  ; "handleSwipe"
+0060    MOV      5   1
+0061    CALLT    3   3
+0062    JMP      3 => 0080
+0063 => MOV      4   0
+0064    TGETS    3   0  19  ; "handlePanRelease"
+0065    MOV      5   1
+0066    CALLT    3   3
+0067    JMP      3 => 0080
+0068 => TGETS    3   0  20  ; "states"
+0069    TGETV    3   3   2
+0070    TGETS    4   0  21  ; "panState"
+0071    ISEQV    3   4
+0072    JMP      3 => 0076
+0073    TGETS    3   0  20  ; "states"
+0074    TGETS    4   0  21  ; "panState"
+0075    TSETV    4   3   2
+0076 => MOV      4   0
+0077    TGETS    3   0  22  ; "handlePan"
+0078    MOV      5   1
+0079    CALLT    3   3
+0080 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:476-517
+0001    TGETS    2   1   0  ; "slot"
+0002    MOV      4   0
+0003    TGETS    3   0   1  ; "getPath"
+0004    MOV      5   2
+0005    CALL     3   3   3
+0006    UGET     5   0      ; Geom
+0007    MOV      6   5
+0008    TGETS    5   5   2  ; "new"
+0009    TDUP     7   5
+0010    TGETS    8   0   3  ; "first_tevs"
+0011    TGETV    8   8   2
+0012    TGETS    8   8   4  ; "x"
+0013    TSETS    8   7   4  ; "x"
+0014    TGETS    8   0   3  ; "first_tevs"
+0015    TGETV    8   8   2
+0016    TGETS    8   8   6  ; "y"
+0017    TSETS    8   7   6  ; "y"
+0018    CALL     5   2   3
+0019    KSTR     6   7      ; "swipe"
+0020    KPRI     7   0
+0021    TGETS    8   0   8  ; "multiswipe_directions"
+0022    LEN      8   8
+0023    KSHORT   9   1
+0024    ISGE     9   8
+0025    JMP      8 => 0048
+0026    KSTR     6   9      ; "multiswipe"
+0027    KSTR     7  10      ; ""
+0028    GGET     8  11      ; "pairs"
+0029    TGETS    9   0   8  ; "multiswipe_directions"
+0030    CALL     8   4   2
+0031    ISNEXT  11 => 0041
+0032 => KSTR    13  10      ; ""
+0033    KSHORT  14   1
+0034    ISGE    14  11
+0035    JMP     14 => 0037
+0036    KSTR    13  12      ; " "
+0037 => MOV     14   7
+0038    MOV     15  13
+0039    TGETB   16  12   1
+0040    CAT      7  14  16
+0041 => ITERN   11   3   3
+0042    ITERL   11 => 0032
+0043    UGET     8   1      ; logger
+0044    TGETS    8   8  13  ; "dbg"
+0045    KSTR     9   9      ; "multiswipe"
+0046    MOV     10   7
+0047    CALL     8   1   3
+0048 => ISNES    3  14      ; "west"
+0049    JMP      8 => 0055
+0050    GGET     8  15      ; "DCHANGE_WEST_SWIPE_TO_EAST"
+0051    ISF          8
+0052    JMP      9 => 0055
+0053    KSTR     3  16      ; "east"
+0054    JMP      8 => 0061
+0055 => ISNES    3  16      ; "east"
+0056    JMP      8 => 0061
+0057    GGET     8  17      ; "DCHANGE_EAST_SWIPE_TO_WEST"
+0058    ISF          8
+0059    JMP      9 => 0061
+0060    KSTR     3  14      ; "west"
+0061 => UGET     8   1      ; logger
+0062    TGETS    8   8  13  ; "dbg"
+0063    KSTR     9   7      ; "swipe"
+0064    MOV     10   3
+0065    MOV     11   4
+0066    KSTR    12  18      ; "detected in slot"
+0067    MOV     13   2
+0068    CALL     8   1   6
+0069    MOV      9   0
+0070    TGETS    8   0  19  ; "clearState"
+0071    MOV     10   2
+0072    CALL     8   1   3
+0073    TDUP     8  20
+0074    TSETS    6   8  21  ; "ges"
+0075    TSETS    5   8  22  ; "pos"
+0076    TSETS    3   8  23  ; "direction"
+0077    TSETS    7   8   8  ; "multiswipe_directions"
+0078    TSETS    4   8  24  ; "distance"
+0079    TGETS    9   1  25  ; "timev"
+0080    TSETS    9   8  26  ; "time"
+0081    RET1     8   2
+
+-- BYTECODE -- gesturedetector.lua:519-618
+0001    TGETS    2   1   0  ; "slot"
+0002    TGETS    3   0   1  ; "detectings"
+0003    TGETB    3   3   0
+0004    ISF          3
+0005    JMP      4 => 0015
+0006    TGETS    3   0   1  ; "detectings"
+0007    TGETB    3   3   1
+0008    ISF          3
+0009    JMP      4 => 0015
+0010    MOV      4   0
+0011    TGETS    3   0   2  ; "handleTwoFingerPan"
+0012    MOV      5   1
+0013    CALLT    3   3
+0014    JMP      3 => 0181
+0015 => MOV      4   0
+0016    TGETS    3   0   3  ; "getPath"
+0017    MOV      5   2
+0018    CALL     3   3   3
+0019    TGETS    5   0   4  ; "last_tevs"
+0020    TGETV    5   5   2
+0021    TGETS    5   5   5  ; "timev"
+0022    TGETS    6   0   6  ; "first_tevs"
+0023    TGETV    6   6   2
+0024    TGETS    6   6   5  ; "timev"
+0025    SUBVV    5   5   6
+0026    TDUP     6   7
+0027    TDUP     7   8
+0028    TSETS    7   6   9  ; "relative"
+0029    TDUP     7  10
+0030    TSETS    7   6  11  ; "relative_delayed"
+0031    TSETS    3   6  12  ; "direction"
+0032    TSETS    4   6  13  ; "distance"
+0033    TGETS    7   1   5  ; "timev"
+0034    TSETS    7   6  14  ; "time"
+0035    TGETS    7   6   9  ; "relative"
+0036    TGETS    8   1  15  ; "x"
+0037    TGETS    9   0   6  ; "first_tevs"
+0038    TGETV    9   9   2
+0039    TGETS    9   9  15  ; "x"
+0040    SUBVV    8   8   9
+0041    TSETS    8   7  15  ; "x"
+0042    TGETS    7   6   9  ; "relative"
+0043    TGETS    8   1  16  ; "y"
+0044    TGETS    9   0   6  ; "first_tevs"
+0045    TGETV    9   9   2
+0046    TGETS    9   9  16  ; "y"
+0047    SUBVV    8   8   9
+0048    TSETS    8   7  16  ; "y"
+0049    TGETS    7   5  17  ; "sec"
+0050    ISNEN    7   0      ; 0
+0051    JMP      7 => 0056
+0052    TGETS    7   5  18  ; "usec"
+0053    UGET     8   0      ; ges_pan_delayed_interval
+0054    ISLT     7   8
+0055    JMP      7 => 0071
+0056 => TGETS    7   6  11  ; "relative_delayed"
+0057    TGETS    8   1  15  ; "x"
+0058    TGETS    9   0   6  ; "first_tevs"
+0059    TGETV    9   9   2
+0060    TGETS    9   9  15  ; "x"
+0061    SUBVV    8   8   9
+0062    TSETS    8   7  15  ; "x"
+0063    TGETS    7   6  11  ; "relative_delayed"
+0064    TGETS    8   1  16  ; "y"
+0065    TGETS    9   0   6  ; "first_tevs"
+0066    TGETV    9   9   2
+0067    TGETS    9   9  16  ; "y"
+0068    SUBVV    8   8   9
+0069    TSETS    8   7  16  ; "y"
+0070    TSETS    4   6  19  ; "distance_delayed"
+0071 => UGET     7   1      ; Geom
+0072    MOV      8   7
+0073    TGETS    7   7  21  ; "new"
+0074    TDUP     9  22
+0075    TGETS   10   0   4  ; "last_tevs"
+0076    TGETV   10  10   2
+0077    TGETS   10  10  15  ; "x"
+0078    TSETS   10   9  15  ; "x"
+0079    TGETS   10   0   4  ; "last_tevs"
+0080    TGETV   10  10   2
+0081    TGETS   10  10  16  ; "y"
+0082    TSETS   10   9  16  ; "y"
+0083    CALL     7   2   3
+0084    TSETS    7   6  20  ; "pos"
+0085    TGETS    7   0  23  ; "multiswipe_directions"
+0086    LEN      7   7
+0087    KSHORT   8   0
+0088    ISGE     8   7
+0089    JMP      8 => 0095
+0090    TGETS    8   0  23  ; "multiswipe_directions"
+0091    TGETV    8   8   7
+0092    TGETB    8   8   1
+0093    IST          8
+0094    JMP      9 => 0096
+0095 => KSTR     8  24      ; ""
+0096 => KNIL     9  10
+0097    ISNEN    7   0      ; 0
+0098    JMP     11 => 0112
+0099    KSTR    11  26      ; "straight"
+0100    TSETS   11   0  25  ; "multiswipe_type"
+0101    ISEQS    3  27      ; "north"
+0102    JMP     11 => 0129
+0103    ISEQS    3  28      ; "south"
+0104    JMP     11 => 0129
+0105    ISEQS    3  29      ; "east"
+0106    JMP     11 => 0129
+0107    ISEQS    3  30      ; "west"
+0108    JMP     11 => 0129
+0109    KSTR    11  31      ; "diagonal"
+0110    TSETS   11   0  25  ; "multiswipe_type"
+0111    JMP     11 => 0129
+0112 => KSHORT  11   0
+0113    ISGE    11   7
+0114    JMP     11 => 0129
+0115    TGETS   11   0  23  ; "multiswipe_directions"
+0116    TGETV   11  11   7
+0117    TGETB    9  11   2
+0118    TNEW    11 2048
+0119    TDUP    12  32
+0120    TGETS   13   9  20  ; "pos"
+0121    TGETS   13  13  15  ; "x"
+0122    TSETS   13  12  15  ; "x"
+0123    TGETS   13   9  20  ; "pos"
+0124    TGETS   13  13  16  ; "y"
+0125    TSETS   13  12  16  ; "y"
+0126    TSETS    2  12   0  ; "slot"
+0127    TSETV   12  11   2
+0128    MOV     10  11
+0129 => KNIL    11  12
+0130    TGETS   13   0  25  ; "multiswipe_type"
+0131    ISNES   13  26      ; "straight"
+0132    JMP     13 => 0143
+0133    MOV     14   0
+0134    TGETS   13   0   3  ; "getPath"
+0135    MOV     15   2
+0136    KPRI    16   2
+0137    KPRI    17   1
+0138    MOV     18  10
+0139    CALL    13   3   6
+0140    MOV     12  14
+0141    MOV     11  13
+0142    JMP     13 => 0152
+0143 => MOV     14   0
+0144    TGETS   13   0   3  ; "getPath"
+0145    MOV     15   2
+0146    KPRI    16   2
+0147    KPRI    17   2
+0148    MOV     18  10
+0149    CALL    13   3   6
+0150    MOV     12  14
+0151    MOV     11  13
+0152 => TGETS   13   0  33  ; "MULTISWIPE_THRESHOLD"
+0153    ISGE    13  12
+0154    JMP     13 => 0180
+0155    MOV     13   6
+0156    TGETS   14   0  34  ; "screen"
+0157    TGETS   14  14  35  ; "cur_rotation_mode"
+0158    KSHORT  15   0
+0159    ISGE    15  14
+0160    JMP     14 => 0166
+0161    UGET    14   2      ; util
+0162    TGETS   14  14  36  ; "tableDeepCopy"
+0163    MOV     15   6
+0164    CALL    14   2   2
+0165    MOV     13  14
+0166 => ISEQV   11   8
+0167    JMP     14 => 0175
+0168    TGETS   14   0  23  ; "multiswipe_directions"
+0169    ADDVN   15   7   1  ; 1
+0170    TNEW    16 2048
+0171    TSETB   11  16   1
+0172    TSETB   13  16   2
+0173    TSETV   16  14  15
+0174    JMP     14 => 0180
+0175 => TGETS   14   0  23  ; "multiswipe_directions"
+0176    TNEW    15 2048
+0177    TSETB   11  15   1
+0178    TSETB   13  15   2
+0179    TSETV   15  14   7
+0180 => RET1     6   2
+0181 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:620-678
+0001    TGETS    2   1   0  ; "slot"
+0002    ISNEN    2   0      ; 1
+0003    JMP      3 => 0006
+0004    KSHORT   3   0
+0005    JMP      4 => 0007
+0006 => KSHORT   3   1
+0007 => MOV      5   0
+0008    TGETS    4   0   1  ; "getPath"
+0009    MOV      6   2
+0010    CALL     4   3   3
+0011    UGET     6   0      ; Geom
+0012    MOV      7   6
+0013    TGETS    6   6   2  ; "new"
+0014    TDUP     8   5
+0015    TGETS    9   0   3  ; "first_tevs"
+0016    TGETV    9   9   2
+0017    TGETS    9   9   4  ; "x"
+0018    TSETS    9   8   4  ; "x"
+0019    TGETS    9   0   3  ; "first_tevs"
+0020    TGETV    9   9   2
+0021    TGETS    9   9   6  ; "y"
+0022    TSETS    9   8   6  ; "y"
+0023    CALL     6   2   3
+0024    UGET     7   0      ; Geom
+0025    MOV      8   7
+0026    TGETS    7   7   2  ; "new"
+0027    TDUP     9   8
+0028    TGETS   10   0   7  ; "last_tevs"
+0029    TGETV   10  10   2
+0030    TGETS   10  10   4  ; "x"
+0031    TSETS   10   9   4  ; "x"
+0032    TGETS   10   0   7  ; "last_tevs"
+0033    TGETV   10  10   2
+0034    TGETS   10  10   6  ; "y"
+0035    TSETS   10   9   6  ; "y"
+0036    CALL     7   2   3
+0037    UGET     8   0      ; Geom
+0038    MOV      9   8
+0039    TGETS    8   8   2  ; "new"
+0040    TDUP    10   9
+0041    TGETS   11   0   3  ; "first_tevs"
+0042    TGETV   11  11   3
+0043    TGETS   11  11   4  ; "x"
+0044    TSETS   11  10   4  ; "x"
+0045    TGETS   11   0   3  ; "first_tevs"
+0046    TGETV   11  11   3
+0047    TGETS   11  11   6  ; "y"
+0048    TSETS   11  10   6  ; "y"
+0049    CALL     8   2   3
+0050    TGETS    9   0  10  ; "states"
+0051    TGETV    9   9   3
+0052    TGETS   10   0  11  ; "panState"
+0053    ISNEV    9  10
+0054    JMP      9 => 0112
+0055    MOV     10   0
+0056    TGETS    9   0   1  ; "getPath"
+0057    MOV     11   3
+0058    CALL     9   3   3
+0059    UGET    11   0      ; Geom
+0060    MOV     12  11
+0061    TGETS   11  11   2  ; "new"
+0062    TDUP    13  12
+0063    TGETS   14   0   7  ; "last_tevs"
+0064    TGETV   14  14   3
+0065    TGETS   14  14   4  ; "x"
+0066    TSETS   14  13   4  ; "x"
+0067    TGETS   14   0   7  ; "last_tevs"
+0068    TGETV   14  14   3
+0069    TGETS   14  14   6  ; "y"
+0070    TSETS   14  13   6  ; "y"
+0071    CALL    11   2   3
+0072    MOV     13   6
+0073    TGETS   12   6  13  ; "distance"
+0074    MOV     14   8
+0075    CALL    12   2   3
+0076    MOV     14   7
+0077    TGETS   13   7  13  ; "distance"
+0078    MOV     15  11
+0079    CALL    13   2   3
+0080    TDUP    14  14
+0081    MOV     16   6
+0082    TGETS   15   6  15  ; "midpoint"
+0083    MOV     17   8
+0084    CALL    15   2   3
+0085    TSETS   15  14  16  ; "pos"
+0086    ADDVV   15   5  10
+0087    TSETS   15  14  13  ; "distance"
+0088    TSETS    4  14  17  ; "direction"
+0089    TGETS   15   1  18  ; "timev"
+0090    TSETS   15  14  19  ; "time"
+0091    ISEQV    4   9
+0092    JMP     15 => 0103
+0093    ISGE    13  12
+0094    JMP     15 => 0098
+0095    KSTR    15  21      ; "inward_pan"
+0096    TSETS   15  14  20  ; "ges"
+0097    JMP     15 => 0100
+0098 => KSTR    15  22      ; "outward_pan"
+0099    TSETS   15  14  20  ; "ges"
+0100 => TGETS   15   0  23  ; "DIRECTION_TABLE"
+0101    TGETV   15  15   4
+0102    TSETS   15  14  17  ; "direction"
+0103 => UGET    15   1      ; logger
+0104    TGETS   15  15  24  ; "dbg"
+0105    TGETS   16  14  20  ; "ges"
+0106    TGETS   17  14  17  ; "direction"
+0107    TGETS   18  14  13  ; "distance"
+0108    KSTR    19  25      ; "detected"
+0109    CALL    15   1   5
+0110    RET1    14   2
+0111    JMP      9 => 0135
+0112 => TGETS    9   0  10  ; "states"
+0113    TGETV    9   9   3
+0114    TGETS   10   0  26  ; "holdState"
+0115    ISNEV    9  10
+0116    JMP      9 => 0135
+0117    MOV     10   0
+0118    TGETS    9   0  27  ; "getRotate"
+0119    MOV     11   8
+0120    MOV     12   6
+0121    MOV     13   7
+0122    CALL     9   2   5
+0123    UGET    10   1      ; logger
+0124    TGETS   10  10  24  ; "dbg"
+0125    KSTR    11  28      ; "rotate"
+0126    MOV     12   9
+0127    KSTR    13  25      ; "detected"
+0128    CALL    10   1   4
+0129    TDUP    10  29
+0130    TSETS    8  10  16  ; "pos"
+0131    TSETS    9  10  30  ; "angle"
+0132    TGETS   11   1  18  ; "timev"
+0133    TSETS   11  10  19  ; "time"
+0134    RET1    10   2
+0135 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:680-701
+0001    TGETS    2   1   0  ; "slot"
+0002    UGET     3   0      ; Geom
+0003    MOV      4   3
+0004    TGETS    3   3   1  ; "new"
+0005    TDUP     5   4
+0006    TGETS    6   0   2  ; "last_tevs"
+0007    TGETV    6   6   2
+0008    TGETS    6   6   3  ; "x"
+0009    TSETS    6   5   3  ; "x"
+0010    TGETS    6   0   2  ; "last_tevs"
+0011    TGETV    6   6   2
+0012    TGETS    6   6   5  ; "y"
+0013    TSETS    6   5   5  ; "y"
+0014    CALL     3   2   3
+0015    TDUP     4   6
+0016    TSETS    3   4   7  ; "pos"
+0017    TGETS    5   1   8  ; "timev"
+0018    TSETS    5   4   9  ; "time"
+0019    TGETS    5   0  10  ; "detectings"
+0020    TGETB    5   5   0
+0021    ISF          5
+0022    JMP      6 => 0037
+0023    TGETS    5   0  10  ; "detectings"
+0024    TGETB    5   5   1
+0025    ISF          5
+0026    JMP      6 => 0037
+0027    UGET     5   1      ; logger
+0028    TGETS    5   5  11  ; "dbg"
+0029    KSTR     6  12      ; "two finger pan release detected"
+0030    CALL     5   1   2
+0031    KSTR     5  14      ; "two_finger_pan_release"
+0032    TSETS    5   4  13  ; "ges"
+0033    MOV      6   0
+0034    TGETS    5   0  15  ; "clearStates"
+0035    CALL     5   1   2
+0036    JMP      5 => 0046
+0037 => UGET     5   1      ; logger
+0038    TGETS    5   5  11  ; "dbg"
+0039    KSTR     6  16      ; "pan release detected in slot"
+0040    MOV      7   2
+0041    CALL     5   1   3
+0042    MOV      6   0
+0043    TGETS    5   0  17  ; "clearState"
+0044    MOV      7   2
+0045    CALL     5   1   3
+0046 => RET1     4   2
+
+-- BYTECODE -- gesturedetector.lua:703-739
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "dbg"
+0003    KSTR     4   1      ; "in hold state..."
+0004    CALL     3   1   2
+0005    TGETS    3   1   2  ; "slot"
+0006    TGETS    4   1   3  ; "id"
+0007    ISEQN    4   0      ; -1
+0008    JMP      4 => 0043
+0009    ISF          2
+0010    JMP      4 => 0043
+0011    TGETS    4   0   4  ; "last_tevs"
+0012    TGETV    4   4   3
+0013    TGETS    4   4   5  ; "x"
+0014    ISF          4
+0015    JMP      5 => 0043
+0016    TGETS    4   0   4  ; "last_tevs"
+0017    TGETV    4   4   3
+0018    TGETS    4   4   6  ; "y"
+0019    ISF          4
+0020    JMP      5 => 0043
+0021    TGETS    4   0   7  ; "states"
+0022    TGETS    5   0   8  ; "holdState"
+0023    TSETV    5   4   3
+0024    TDUP     4   9
+0025    UGET     5   1      ; Geom
+0026    MOV      6   5
+0027    TGETS    5   5  10  ; "new"
+0028    TDUP     7  11
+0029    TGETS    8   0   4  ; "last_tevs"
+0030    TGETV    8   8   3
+0031    TGETS    8   8   5  ; "x"
+0032    TSETS    8   7   5  ; "x"
+0033    TGETS    8   0   4  ; "last_tevs"
+0034    TGETV    8   8   3
+0035    TGETS    8   8   6  ; "y"
+0036    TSETS    8   7   6  ; "y"
+0037    CALL     5   2   3
+0038    TSETS    5   4  12  ; "pos"
+0039    TGETS    5   1  13  ; "timev"
+0040    TSETS    5   4  14  ; "time"
+0041    RET1     4   2
+0042    JMP      4 => 0115
+0043 => TGETS    4   1   3  ; "id"
+0044    ISNEN    4   0      ; -1
+0045    JMP      4 => 0078
+0046    TGETS    4   0   4  ; "last_tevs"
+0047    TGETV    4   4   3
+0048    ISEQP    4   0
+0049    JMP      4 => 0078
+0050    UGET     4   0      ; logger
+0051    TGETS    4   4   0  ; "dbg"
+0052    KSTR     5  15      ; "hold_release detected in slot"
+0053    MOV      6   3
+0054    CALL     4   1   3
+0055    TGETS    4   0   4  ; "last_tevs"
+0056    TGETV    4   4   3
+0057    TGETS    4   4   5  ; "x"
+0058    TGETS    5   0   4  ; "last_tevs"
+0059    TGETV    5   5   3
+0060    TGETS    5   5   6  ; "y"
+0061    MOV      7   0
+0062    TGETS    6   0  16  ; "clearState"
+0063    MOV      8   3
+0064    CALL     6   1   3
+0065    TDUP     6  17
+0066    UGET     7   1      ; Geom
+0067    MOV      8   7
+0068    TGETS    7   7  10  ; "new"
+0069    TDUP     9  18
+0070    TSETS    4   9   5  ; "x"
+0071    TSETS    5   9   6  ; "y"
+0072    CALL     7   2   3
+0073    TSETS    7   6  12  ; "pos"
+0074    TGETS    7   1  13  ; "timev"
+0075    TSETS    7   6  14  ; "time"
+0076    RET1     6   2
+0077    JMP      4 => 0115
+0078 => TGETS    4   1   5  ; "x"
+0079    ISF          4
+0080    JMP      5 => 0092
+0081    GGET     4  19      ; "math"
+0082    TGETS    4   4  20  ; "abs"
+0083    TGETS    5   1   5  ; "x"
+0084    TGETS    6   0  21  ; "first_tevs"
+0085    TGETV    6   6   3
+0086    TGETS    6   6   5  ; "x"
+0087    SUBVV    5   5   6
+0088    CALL     4   2   2
+0089    TGETS    5   0  22  ; "PAN_THRESHOLD"
+0090    ISLE     5   4
+0091    JMP      4 => 0106
+0092 => TGETS    4   1   6  ; "y"
+0093    ISF          4
+0094    JMP      5 => 0115
+0095    GGET     4  19      ; "math"
+0096    TGETS    4   4  20  ; "abs"
+0097    TGETS    5   1   6  ; "y"
+0098    TGETS    6   0  21  ; "first_tevs"
+0099    TGETV    6   6   3
+0100    TGETS    6   6   6  ; "y"
+0101    SUBVV    5   5   6
+0102    CALL     4   2   2
+0103    TGETS    5   0  22  ; "PAN_THRESHOLD"
+0104    ISGT     5   4
+0105    JMP      4 => 0115
+0106 => MOV      5   0
+0107    TGETS    4   0  23  ; "handlePan"
+0108    MOV      6   1
+0109    CALL     4   2   3
+0110    ISEQP    4   0
+0111    JMP      5 => 0114
+0112    KSTR     5  25      ; "hold_pan"
+0113    TSETS    5   4  24  ; "ges"
+0114 => RET1     4   2
+0115 => RET0     0   1
+
+-- BYTECODE -- gesturedetector.lua:771-773
+0001    TGETV    2   1   0
+0002    RET1     2   2
+
+-- BYTECODE -- gesturedetector.lua:774-776
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "gsub"
+0003    KSTR     4   1      ; "%S+"
+0004    MOV      5   1
+0005    CALLT    2   4
+
+-- BYTECODE -- gesturedetector.lua:784-869
+0001    TGETS    2   0   0  ; "screen"
+0002    TGETS    2   2   1  ; "cur_rotation_mode"
+0003    ISNEN    2   0      ; 1
+0004    JMP      2 => 0095
+0005    TGETS    2   1   2  ; "pos"
+0006    ISF          2
+0007    JMP      3 => 0021
+0008    TGETS    2   1   2  ; "pos"
+0009    TGETS    3   1   2  ; "pos"
+0010    TGETS    4   0   0  ; "screen"
+0011    MOV      5   4
+0012    TGETS    4   4   5  ; "getWidth"
+0013    CALL     4   2   2
+0014    TGETS    5   1   2  ; "pos"
+0015    TGETS    5   5   4  ; "y"
+0016    SUBVV    4   4   5
+0017    TGETS    5   1   2  ; "pos"
+0018    TGETS    5   5   3  ; "x"
+0019    TSETS    5   3   4  ; "y"
+0020    TSETS    4   2   3  ; "x"
+0021 => TGETS    2   1   6  ; "ges"
+0022    ISEQS    2   7      ; "swipe"
+0023    JMP      2 => 0036
+0024    TGETS    2   1   6  ; "ges"
+0025    ISEQS    2   8      ; "pan"
+0026    JMP      2 => 0036
+0027    TGETS    2   1   6  ; "ges"
+0028    ISEQS    2   9      ; "multiswipe"
+0029    JMP      2 => 0036
+0030    TGETS    2   1   6  ; "ges"
+0031    ISEQS    2  10      ; "two_finger_swipe"
+0032    JMP      2 => 0036
+0033    TGETS    2   1   6  ; "ges"
+0034    ISNES    2  11      ; "two_finger_pan"
+0035    JMP      2 => 0071
+0036 => UGET     2   0      ; translateGesDirCoordinate
+0037    TGETS    3   1  12  ; "direction"
+0038    UGET     4   1      ; ges_coordinate_translation_270
+0039    CALL     2   2   3
+0040    TSETS    2   1  12  ; "direction"
+0041    TGETS    2   1   6  ; "ges"
+0042    ISNES    2   9      ; "multiswipe"
+0043    JMP      2 => 0049
+0044    UGET     2   2      ; translateMultiswipeGesDirCoordinate
+0045    TGETS    3   1  13  ; "multiswipe_directions"
+0046    UGET     4   1      ; ges_coordinate_translation_270
+0047    CALL     2   2   3
+0048    TSETS    2   1  13  ; "multiswipe_directions"
+0049 => TGETS    2   1  14  ; "relative"
+0050    ISF          2
+0051    JMP      3 => 0289
+0052    TGETS    2   1  14  ; "relative"
+0053    TGETS    3   1  14  ; "relative"
+0054    TGETS    4   1  14  ; "relative"
+0055    TGETS    4   4   4  ; "y"
+0056    UNM      4   4
+0057    TGETS    5   1  14  ; "relative"
+0058    TGETS    5   5   3  ; "x"
+0059    TSETS    5   3   4  ; "y"
+0060    TSETS    4   2   3  ; "x"
+0061    TGETS    2   1  15  ; "relative_delayed"
+0062    TGETS    3   1  15  ; "relative_delayed"
+0063    TGETS    4   1  15  ; "relative_delayed"
+0064    TGETS    4   4   4  ; "y"
+0065    UNM      4   4
+0066    TGETS    5   1  15  ; "relative_delayed"
+0067    TGETS    5   5   3  ; "x"
+0068    TSETS    5   3   4  ; "y"
+0069    TSETS    4   2   3  ; "x"
+0070    JMP      2 => 0289
+0071 => TGETS    2   1   6  ; "ges"
+0072    ISEQS    2  16      ; "pinch"
+0073    JMP      2 => 0083
+0074    TGETS    2   1   6  ; "ges"
+0075    ISEQS    2  17      ; "spread"
+0076    JMP      2 => 0083
+0077    TGETS    2   1   6  ; "ges"
+0078    ISEQS    2  18      ; "inward_pan"
+0079    JMP      2 => 0083
+0080    TGETS    2   1   6  ; "ges"
+0081    ISNES    2  19      ; "outward_pan"
+0082    JMP      2 => 0289
+0083 => TGETS    2   1  12  ; "direction"
+0084    ISNES    2  20      ; "horizontal"
+0085    JMP      2 => 0089
+0086    KSTR     2  21      ; "vertical"
+0087    TSETS    2   1  12  ; "direction"
+0088    JMP      2 => 0289
+0089 => TGETS    2   1  12  ; "direction"
+0090    ISNES    2  21      ; "vertical"
+0091    JMP      2 => 0289
+0092    KSTR     2  20      ; "horizontal"
+0093    TSETS    2   1  12  ; "direction"
+0094    JMP      2 => 0289
+0095 => TGETS    2   0   0  ; "screen"
+0096    TGETS    2   2   1  ; "cur_rotation_mode"
+0097    ISNEN    2   1      ; 3
+0098    JMP      2 => 0189
+0099    TGETS    2   1   2  ; "pos"
+0100    ISF          2
+0101    JMP      3 => 0115
+0102    TGETS    2   1   2  ; "pos"
+0103    TGETS    3   1   2  ; "pos"
+0104    TGETS    4   1   2  ; "pos"
+0105    TGETS    4   4   4  ; "y"
+0106    TGETS    5   0   0  ; "screen"
+0107    MOV      6   5
+0108    TGETS    5   5  22  ; "getHeight"
+0109    CALL     5   2   2
+0110    TGETS    6   1   2  ; "pos"
+0111    TGETS    6   6   3  ; "x"
+0112    SUBVV    5   5   6
+0113    TSETS    5   3   4  ; "y"
+0114    TSETS    4   2   3  ; "x"
+0115 => TGETS    2   1   6  ; "ges"
+0116    ISEQS    2   7      ; "swipe"
+0117    JMP      2 => 0130
+0118    TGETS    2   1   6  ; "ges"
+0119    ISEQS    2   8      ; "pan"
+0120    JMP      2 => 0130
+0121    TGETS    2   1   6  ; "ges"
+0122    ISEQS    2   9      ; "multiswipe"
+0123    JMP      2 => 0130
+0124    TGETS    2   1   6  ; "ges"
+0125    ISEQS    2  10      ; "two_finger_swipe"
+0126    JMP      2 => 0130
+0127    TGETS    2   1   6  ; "ges"
+0128    ISNES    2  11      ; "two_finger_pan"
+0129    JMP      2 => 0165
+0130 => UGET     2   0      ; translateGesDirCoordinate
+0131    TGETS    3   1  12  ; "direction"
+0132    UGET     4   3      ; ges_coordinate_translation_90
+0133    CALL     2   2   3
+0134    TSETS    2   1  12  ; "direction"
+0135    TGETS    2   1   6  ; "ges"
+0136    ISNES    2   9      ; "multiswipe"
+0137    JMP      2 => 0143
+0138    UGET     2   2      ; translateMultiswipeGesDirCoordinate
+0139    TGETS    3   1  13  ; "multiswipe_directions"
+0140    UGET     4   3      ; ges_coordinate_translation_90
+0141    CALL     2   2   3
+0142    TSETS    2   1  13  ; "multiswipe_directions"
+0143 => TGETS    2   1  14  ; "relative"
+0144    ISF          2
+0145    JMP      3 => 0289
+0146    TGETS    2   1  14  ; "relative"
+0147    TGETS    3   1  14  ; "relative"
+0148    TGETS    4   1  14  ; "relative"
+0149    TGETS    4   4   4  ; "y"
+0150    TGETS    5   1  14  ; "relative"
+0151    TGETS    5   5   3  ; "x"
+0152    UNM      5   5
+0153    TSETS    5   3   4  ; "y"
+0154    TSETS    4   2   3  ; "x"
+0155    TGETS    2   1  15  ; "relative_delayed"
+0156    TGETS    3   1  15  ; "relative_delayed"
+0157    TGETS    4   1  15  ; "relative_delayed"
+0158    TGETS    4   4   4  ; "y"
+0159    TGETS    5   1  15  ; "relative_delayed"
+0160    TGETS    5   5   3  ; "x"
+0161    UNM      5   5
+0162    TSETS    5   3   4  ; "y"
+0163    TSETS    4   2   3  ; "x"
+0164    JMP      2 => 0289
+0165 => TGETS    2   1   6  ; "ges"
+0166    ISEQS    2  16      ; "pinch"
+0167    JMP      2 => 0177
+0168    TGETS    2   1   6  ; "ges"
+0169    ISEQS    2  17      ; "spread"
+0170    JMP      2 => 0177
+0171    TGETS    2   1   6  ; "ges"
+0172    ISEQS    2  18      ; "inward_pan"
+0173    JMP      2 => 0177
+0174    TGETS    2   1   6  ; "ges"
+0175    ISNES    2  19      ; "outward_pan"
+0176    JMP      2 => 0289
+0177 => TGETS    2   1  12  ; "direction"
+0178    ISNES    2  20      ; "horizontal"
+0179    JMP      2 => 0183
+0180    KSTR     2  21      ; "vertical"
+0181    TSETS    2   1  12  ; "direction"
+0182    JMP      2 => 0289
+0183 => TGETS    2   1  12  ; "direction"
+0184    ISNES    2  21      ; "vertical"
+0185    JMP      2 => 0289
+0186    KSTR     2  20      ; "horizontal"
+0187    TSETS    2   1  12  ; "direction"
+0188    JMP      2 => 0289
+0189 => TGETS    2   0   0  ; "screen"
+0190    TGETS    2   2   1  ; "cur_rotation_mode"
+0191    ISNEN    2   2      ; 2
+0192    JMP      2 => 0289
+0193    TGETS    2   1   2  ; "pos"
+0194    ISF          2
+0195    JMP      3 => 0214
+0196    TGETS    2   1   2  ; "pos"
+0197    TGETS    3   1   2  ; "pos"
+0198    TGETS    4   0   0  ; "screen"
+0199    MOV      5   4
+0200    TGETS    4   4   5  ; "getWidth"
+0201    CALL     4   2   2
+0202    TGETS    5   1   2  ; "pos"
+0203    TGETS    5   5   3  ; "x"
+0204    SUBVV    4   4   5
+0205    TGETS    5   0   0  ; "screen"
+0206    MOV      6   5
+0207    TGETS    5   5  22  ; "getHeight"
+0208    CALL     5   2   2
+0209    TGETS    6   1   2  ; "pos"
+0210    TGETS    6   6   4  ; "y"
+0211    SUBVV    5   5   6
+0212    TSETS    5   3   4  ; "y"
+0213    TSETS    4   2   3  ; "x"
+0214 => TGETS    2   1   6  ; "ges"
+0215    ISEQS    2   7      ; "swipe"
+0216    JMP      2 => 0229
+0217    TGETS    2   1   6  ; "ges"
+0218    ISEQS    2   8      ; "pan"
+0219    JMP      2 => 0229
+0220    TGETS    2   1   6  ; "ges"
+0221    ISEQS    2   9      ; "multiswipe"
+0222    JMP      2 => 0229
+0223    TGETS    2   1   6  ; "ges"
+0224    ISEQS    2  10      ; "two_finger_swipe"
+0225    JMP      2 => 0229
+0226    TGETS    2   1   6  ; "ges"
+0227    ISNES    2  11      ; "two_finger_pan"
+0228    JMP      2 => 0266
+0229 => UGET     2   0      ; translateGesDirCoordinate
+0230    TGETS    3   1  12  ; "direction"
+0231    UGET     4   4      ; ges_coordinate_translation_180
+0232    CALL     2   2   3
+0233    TSETS    2   1  12  ; "direction"
+0234    TGETS    2   1   6  ; "ges"
+0235    ISNES    2   9      ; "multiswipe"
+0236    JMP      2 => 0242
+0237    UGET     2   2      ; translateMultiswipeGesDirCoordinate
+0238    TGETS    3   1  13  ; "multiswipe_directions"
+0239    UGET     4   4      ; ges_coordinate_translation_180
+0240    CALL     2   2   3
+0241    TSETS    2   1  13  ; "multiswipe_directions"
+0242 => TGETS    2   1  14  ; "relative"
+0243    ISF          2
+0244    JMP      3 => 0289
+0245    TGETS    2   1  14  ; "relative"
+0246    TGETS    3   1  14  ; "relative"
+0247    TGETS    4   1  14  ; "relative"
+0248    TGETS    4   4   3  ; "x"
+0249    UNM      4   4
+0250    TGETS    5   1  14  ; "relative"
+0251    TGETS    5   5   4  ; "y"
+0252    UNM      5   5
+0253    TSETS    5   3   4  ; "y"
+0254    TSETS    4   2   3  ; "x"
+0255    TGETS    2   1  15  ; "relative_delayed"
+0256    TGETS    3   1  15  ; "relative_delayed"
+0257    TGETS    4   1  15  ; "relative_delayed"
+0258    TGETS    4   4   3  ; "x"
+0259    UNM      4   4
+0260    TGETS    5   1  15  ; "relative_delayed"
+0261    TGETS    5   5   4  ; "y"
+0262    UNM      5   5
+0263    TSETS    5   3   4  ; "y"
+0264    TSETS    4   2   3  ; "x"
+0265    JMP      2 => 0289
+0266 => TGETS    2   1   6  ; "ges"
+0267    ISEQS    2  16      ; "pinch"
+0268    JMP      2 => 0278
+0269    TGETS    2   1   6  ; "ges"
+0270    ISEQS    2  17      ; "spread"
+0271    JMP      2 => 0278
+0272    TGETS    2   1   6  ; "ges"
+0273    ISEQS    2  18      ; "inward_pan"
+0274    JMP      2 => 0278
+0275    TGETS    2   1   6  ; "ges"
+0276    ISNES    2  19      ; "outward_pan"
+0277    JMP      2 => 0289
+0278 => TGETS    2   1  12  ; "direction"
+0279    ISNES    2  20      ; "horizontal"
+0280    JMP      2 => 0284
+0281    KSTR     2  20      ; "horizontal"
+0282    TSETS    2   1  12  ; "direction"
+0283    JMP      2 => 0289
+0284 => TGETS    2   1  12  ; "direction"
+0285    ISNES    2  21      ; "vertical"
+0286    JMP      2 => 0289
+0287    KSTR     2  21      ; "vertical"
+0288    TSETS    2   1  12  ; "direction"
+0289 => UGET     2   5      ; logger
+0290    TGETS    2   2  23  ; "dbg"
+0291    KSTR     3  24      ; "adjusted ges:"
+0292    TGETS    4   1   6  ; "ges"
+0293    TGETS    5   1  13  ; "multiswipe_directions"
+0294    IST          5
+0295    JMP      6 => 0297
+0296    TGETS    5   1  12  ; "direction"
+0297 => CALL     2   1   4
+0298    RET1     1   2
+
+-- BYTECODE -- gesturedetector.lua:0-872
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/geometry"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/timeval"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "logger"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "util"
+0012    CALL     3   2   2
+0013    GGET     4   5      ; "G_reader_settings"
+0014    MOV      5   4
+0015    TGETS    4   4   6  ; "readSetting"
+0016    KSTR     6   7      ; "ges_double_tap_interval"
+0017    CALL     4   2   3
+0018    IST          4
+0019    JMP      5 => 0021
+0020    KNUM     4   0      ; 300000
+0021 => GGET     5   5      ; "G_reader_settings"
+0022    MOV      6   5
+0023    TGETS    5   5   6  ; "readSetting"
+0024    KSTR     7   8      ; "ges_two_finger_tap_duration"
+0025    CALL     5   2   3
+0026    IST          5
+0027    JMP      6 => 0029
+0028    KNUM     5   0      ; 300000
+0029 => GGET     6   5      ; "G_reader_settings"
+0030    MOV      7   6
+0031    TGETS    6   6   6  ; "readSetting"
+0032    KSTR     8   9      ; "ges_hold_interval"
+0033    CALL     6   2   3
+0034    IST          6
+0035    JMP      7 => 0037
+0036    KNUM     6   1      ; 500000
+0037 => GGET     7   5      ; "G_reader_settings"
+0038    MOV      8   7
+0039    TGETS    7   7   6  ; "readSetting"
+0040    KSTR     9  10      ; "ges_pan_delayed_interval"
+0041    CALL     7   2   3
+0042    IST          7
+0043    JMP      8 => 0045
+0044    KNUM     7   1      ; 500000
+0045 => GGET     8   5      ; "G_reader_settings"
+0046    MOV      9   8
+0047    TGETS    8   8   6  ; "readSetting"
+0048    KSTR    10  11      ; "ges_swipe_interval"
+0049    CALL     8   2   3
+0050    IST          8
+0051    JMP      9 => 0053
+0052    KNUM     8   2      ; 900000
+0053 => TDUP     9  12
+0054    TDUP    10  13
+0055    TSETS   10   9  14  ; "DIRECTION_TABLE"
+0056    TNEW    10   0
+0057    TSETS   10   9  15  ; "states"
+0058    TNEW    10   0
+0059    TSETS   10   9  16  ; "track_ids"
+0060    TNEW    10   0
+0061    TSETS   10   9  17  ; "tev_stacks"
+0062    TNEW    10   0
+0063    TSETS   10   9  18  ; "last_tevs"
+0064    TNEW    10   0
+0065    TSETS   10   9  19  ; "first_tevs"
+0066    TNEW    10   0
+0067    TSETS   10   9  20  ; "multiswipe_directions"
+0068    TNEW    10   0
+0069    TSETS   10   9  21  ; "detectings"
+0070    TNEW    10   0
+0071    TSETS   10   9  22  ; "last_taps"
+0072    FNEW    10  24      ; gesturedetector.lua:92
+0073    TSETS   10   9  23  ; "new"
+0074    FNEW    10  26      ; gesturedetector.lua:100
+0075    TSETS   10   9  25  ; "init"
+0076    FNEW    10  28      ; gesturedetector.lua:112
+0077    TSETS   10   9  27  ; "feedEvent"
+0078    FNEW    10  30      ; gesturedetector.lua:130
+0079    TSETS   10   9  29  ; "deepCopyEv"
+0080    FNEW    10  32      ; gesturedetector.lua:146
+0081    TSETS   10   9  31  ; "isDoubleTap"
+0082    FNEW    10  34      ; gesturedetector.lua:155
+0083    TSETS   10   9  33  ; "isTwoFingerTap"
+0084    FNEW    10  36      ; gesturedetector.lua:182
+0085    TSETS   10   9  35  ; "getPath"
+0086    FNEW    10  38      ; gesturedetector.lua:207
+0087    TSETS   10   9  37  ; "isSwipe"
+0088    FNEW    10  40      ; gesturedetector.lua:219
+0089    TSETS   10   9  39  ; "getRotate"
+0090    FNEW    10  42      ; gesturedetector.lua:230
+0091    TSETS   10   9  41  ; "switchState"
+0092    FNEW    10  44      ; gesturedetector.lua:235
+0093    TSETS   10   9  43  ; "clearState"
+0094    FNEW    10  46      ; gesturedetector.lua:244
+0095    TSETS   10   9  45  ; "setNewInterval"
+0096    FNEW    10  48      ; gesturedetector.lua:258
+0097    TSETS   10   9  47  ; "getInterval"
+0098    FNEW    10  50      ; gesturedetector.lua:272
+0099    TSETS   10   9  49  ; "clearStates"
+0100    FNEW    10  52      ; gesturedetector.lua:277
+0101    TSETS   10   9  51  ; "initialState"
+0102    FNEW    10  54      ; gesturedetector.lua:301
+0103    TSETS   10   9  53  ; "tapState"
+0104    FNEW    10  56      ; gesturedetector.lua:350
+0105    TSETS   10   9  55  ; "handleDoubleTap"
+0106    FNEW    10  58      ; gesturedetector.lua:404
+0107    TSETS   10   9  57  ; "handleNonTap"
+0108    FNEW    10  60      ; gesturedetector.lua:442
+0109    TSETS   10   9  59  ; "panState"
+0110    FNEW    10  62      ; gesturedetector.lua:476
+0111    TSETS   10   9  61  ; "handleSwipe"
+0112    FNEW    10  64      ; gesturedetector.lua:519
+0113    TSETS   10   9  63  ; "handlePan"
+0114    FNEW    10  66      ; gesturedetector.lua:620
+0115    TSETS   10   9  65  ; "handleTwoFingerPan"
+0116    FNEW    10  68      ; gesturedetector.lua:680
+0117    TSETS   10   9  67  ; "handlePanRelease"
+0118    FNEW    10  70      ; gesturedetector.lua:703
+0119    TSETS   10   9  69  ; "holdState"
+0120    TDUP    10  71
+0121    TDUP    11  72
+0122    TDUP    12  73
+0123    FNEW    13  74      ; gesturedetector.lua:771
+0124    FNEW    14  75      ; gesturedetector.lua:774
+0125    FNEW    15  77      ; gesturedetector.lua:784
+0126    TSETS   15   9  76  ; "adjustGesCoordinate"
+0127    UCLO     0 => 0128
+0128 => RET1     9   2
+

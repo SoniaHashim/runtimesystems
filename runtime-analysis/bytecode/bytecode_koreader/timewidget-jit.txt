@@ -1,0 +1,517 @@
+-- BYTECODE -- timewidget.lua:35-60
+0001    UGET     1   0      ; Font
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getFace"
+0004    KSTR     3   2      ; "ffont"
+0005    CALL     1   2   3
+0006    TSETS    1   0   0  ; "medium_font_face"
+0007    TNEW     1   0
+0008    TSETS    1   0   3  ; "light_bar"
+0009    UGET     1   1      ; Screen
+0010    MOV      2   1
+0011    TGETS    1   1   5  ; "getWidth"
+0012    CALL     1   2   2
+0013    TSETS    1   0   4  ; "screen_width"
+0014    UGET     1   1      ; Screen
+0015    MOV      2   1
+0016    TGETS    1   1   7  ; "getHeight"
+0017    CALL     1   2   2
+0018    TSETS    1   0   6  ; "screen_height"
+0019    TGETS    1   0   4  ; "screen_width"
+0020    MULVN    1   1   0  ; 0.95
+0021    TSETS    1   0   8  ; "width"
+0022    UGET     1   2      ; Device
+0023    MOV      2   1
+0024    TGETS    1   1   9  ; "hasKeys"
+0025    CALL     1   2   2
+0026    ISF          1
+0027    JMP      2 => 0034
+0028    TDUP     1  13
+0029    TDUP     2  12
+0030    TDUP     3  11
+0031    TSETB    3   2   1
+0032    TSETS    2   1  14  ; "Close"
+0033    TSETS    1   0  10  ; "key_events"
+0034 => UGET     1   2      ; Device
+0035    MOV      2   1
+0036    TGETS    1   1  15  ; "isTouchDevice"
+0037    CALL     1   2   2
+0038    ISF          1
+0039    JMP      2 => 0060
+0040    TDUP     1  23
+0041    TNEW     2   3
+0042    UGET     3   3      ; GestureRange
+0043    MOV      4   3
+0044    TGETS    3   3  17  ; "new"
+0045    TDUP     5  18
+0046    UGET     6   4      ; Geom
+0047    MOV      7   6
+0048    TGETS    6   6  17  ; "new"
+0049    TDUP     8  19
+0050    TGETS    9   0   4  ; "screen_width"
+0051    TSETS    9   8  20  ; "w"
+0052    TGETS    9   0   6  ; "screen_height"
+0053    TSETS    9   8  21  ; "h"
+0054    CALL     6   2   3
+0055    TSETS    6   5  22  ; "range"
+0056    CALL     3   0   3
+0057    TSETM    3   1      ; 1
+0058    TSETS    2   1  24  ; "TapClose"
+0059    TSETS    1   0  16  ; "ges_events"
+0060 => MOV      2   0
+0061    TGETS    1   0  25  ; "update"
+0062    CALL     1   1   2
+0063    RET0     0   1
+
+-- BYTECODE -- timewidget.lua:125-127
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onClose"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- timewidget.lua:131-138
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "callback"
+0003    ISF          0
+0004    JMP      1 => 0022
+0005    UGET     0   0      ; self
+0006    UGET     1   1      ; hour_widget
+0007    MOV      2   1
+0008    TGETS    1   1   2  ; "getValue"
+0009    CALL     1   2   2
+0010    TSETS    1   0   1  ; "hour"
+0011    UGET     0   0      ; self
+0012    UGET     1   2      ; min_widget
+0013    MOV      2   1
+0014    TGETS    1   1   2  ; "getValue"
+0015    CALL     1   2   2
+0016    TSETS    1   0   3  ; "min"
+0017    UGET     0   0      ; self
+0018    MOV      1   0
+0019    TGETS    0   0   0  ; "callback"
+0020    UGET     2   0      ; self
+0021    CALL     0   1   3
+0022 => UGET     0   0      ; self
+0023    MOV      1   0
+0024    TGETS    0   0   4  ; "onClose"
+0025    CALL     0   1   2
+0026    RET0     0   1
+
+-- BYTECODE -- timewidget.lua:187-189
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "time_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- timewidget.lua:62-190
+0001    UGET     1   0      ; NumberPickerWidget
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "new"
+0004    TDUP     3   1
+0005    TSETS    0   3   2  ; "show_parent"
+0006    TGETS    4   0   3  ; "screen_width"
+0007    MULVN    4   4   0  ; 0.2
+0008    TSETS    4   3   4  ; "width"
+0009    TGETS    4   0   5  ; "hour"
+0010    TSETS    4   3   6  ; "value"
+0011    TGETS    4   0   7  ; "hour_max"
+0012    TSETS    4   3   8  ; "value_max"
+0013    CALL     1   2   3
+0014    UGET     2   0      ; NumberPickerWidget
+0015    MOV      3   2
+0016    TGETS    2   2   0  ; "new"
+0017    TDUP     4   9
+0018    TSETS    0   4   2  ; "show_parent"
+0019    TGETS    5   0   3  ; "screen_width"
+0020    MULVN    5   5   0  ; 0.2
+0021    TSETS    5   4   4  ; "width"
+0022    TGETS    5   0  10  ; "min"
+0023    TSETS    5   4   6  ; "value"
+0024    CALL     2   2   3
+0025    UGET     3   1      ; TextBoxWidget
+0026    MOV      4   3
+0027    TGETS    3   3   0  ; "new"
+0028    TDUP     5  11
+0029    TGETS    6   0  12  ; "title_face"
+0030    TSETS    6   5  13  ; "face"
+0031    TGETS    6   0   3  ; "screen_width"
+0032    MULVN    6   6   0  ; 0.2
+0033    TSETS    6   5   4  ; "width"
+0034    CALL     3   2   3
+0035    UGET     4   2      ; HorizontalGroup
+0036    MOV      5   4
+0037    TGETS    4   4   0  ; "new"
+0038    TDUP     6  14
+0039    TSETB    1   6   1
+0040    TSETB    3   6   2
+0041    TSETB    2   6   3
+0042    CALL     4   2   3
+0043    UGET     5   3      ; CloseButton
+0044    MOV      6   5
+0045    TGETS    5   5   0  ; "new"
+0046    TDUP     7  15
+0047    TSETS    0   7  16  ; "window"
+0048    UGET     8   4      ; Size
+0049    TGETS    8   8  17  ; "margin"
+0050    TGETS    8   8  18  ; "title"
+0051    TSETS    8   7  19  ; "padding_top"
+0052    CALL     5   2   3
+0053    UGET     6   5      ; FrameContainer
+0054    MOV      7   6
+0055    TGETS    6   6   0  ; "new"
+0056    TDUP     8  22
+0057    UGET     9   4      ; Size
+0058    TGETS    9   9  20  ; "padding"
+0059    TGETS    9   9  21  ; "default"
+0060    TSETS    9   8  20  ; "padding"
+0061    UGET     9   4      ; Size
+0062    TGETS    9   9  17  ; "margin"
+0063    TGETS    9   9  18  ; "title"
+0064    TSETS    9   8  17  ; "margin"
+0065    UGET     9   6      ; TextWidget
+0066    MOV     10   9
+0067    TGETS    9   9   0  ; "new"
+0068    TDUP    11  24
+0069    TGETS   12   0  23  ; "title_text"
+0070    TSETS   12  11  25  ; "text"
+0071    TGETS   12   0  12  ; "title_face"
+0072    TSETS   12  11  13  ; "face"
+0073    TGETS   12   0   3  ; "screen_width"
+0074    MULVN   12  12   1  ; 0.95
+0075    MOV     14   5
+0076    TGETS   13   5  26  ; "getSize"
+0077    CALL    13   2   2
+0078    TGETS   13  13  27  ; "w"
+0079    SUBVV   12  12  13
+0080    TSETS   12  11  28  ; "max_width"
+0081    CALL     9   0   3
+0082    TSETM    9   2      ; 1
+0083    CALL     6   2   3
+0084    UGET     7   7      ; LineWidget
+0085    MOV      8   7
+0086    TGETS    7   7   0  ; "new"
+0087    TDUP     9  33
+0088    UGET    10   8      ; Geom
+0089    MOV     11  10
+0090    TGETS   10  10   0  ; "new"
+0091    TDUP    12  29
+0092    TGETS   13   0   4  ; "width"
+0093    TSETS   13  12  27  ; "w"
+0094    UGET    13   4      ; Size
+0095    TGETS   13  13  30  ; "line"
+0096    TGETS   13  13  31  ; "thick"
+0097    TSETS   13  12  32  ; "h"
+0098    CALL    10   2   3
+0099    TSETS   10   9  34  ; "dimen"
+0100    CALL     7   2   3
+0101    UGET     8   9      ; OverlapGroup
+0102    MOV      9   8
+0103    TGETS    8   8   0  ; "new"
+0104    TDUP    10  36
+0105    TDUP    11  35
+0106    TGETS   12   0   4  ; "width"
+0107    TSETS   12  11  27  ; "w"
+0108    MOV     13   6
+0109    TGETS   12   6  26  ; "getSize"
+0110    CALL    12   2   2
+0111    TGETS   12  12  32  ; "h"
+0112    TSETS   12  11  32  ; "h"
+0113    TSETS   11  10  34  ; "dimen"
+0114    TSETB    6  10   1
+0115    TSETB    5  10   2
+0116    CALL     8   2   3
+0117    TNEW     9   3
+0118    TNEW    10   3
+0119    TDUP    11  38
+0120    TGETS   12   0  37  ; "cancel_text"
+0121    TSETS   12  11  25  ; "text"
+0122    FNEW    12  39      ; timewidget.lua:125
+0123    TSETS   12  11  40  ; "callback"
+0124    TSETB   11  10   1
+0125    TDUP    11  42
+0126    TGETS   12   0  41  ; "ok_text"
+0127    TSETS   12  11  25  ; "text"
+0128    FNEW    12  43      ; timewidget.lua:131
+0129    TSETS   12  11  40  ; "callback"
+0130    TSETB   11  10   2
+0131    TSETB   10   9   1
+0132    UGET    10  10      ; ButtonTable
+0133    MOV     11  10
+0134    TGETS   10  10   0  ; "new"
+0135    TDUP    12  44
+0136    TGETS   13   0   4  ; "width"
+0137    UGET    14   4      ; Size
+0138    TGETS   14  14  20  ; "padding"
+0139    TGETS   14  14  21  ; "default"
+0140    MULNV   14  14   3  ; 2
+0141    SUBVV   13  13  14
+0142    TSETS   13  12   4  ; "width"
+0143    TSETS    9  12  45  ; "buttons"
+0144    TSETS    0  12   2  ; "show_parent"
+0145    CALL    10   2   3
+0146    UGET    11   5      ; FrameContainer
+0147    MOV     12  11
+0148    TGETS   11  11   0  ; "new"
+0149    TDUP    13  48
+0150    UGET    14   4      ; Size
+0151    TGETS   14  14  47  ; "radius"
+0152    TGETS   14  14  16  ; "window"
+0153    TSETS   14  13  47  ; "radius"
+0154    UGET    14  11      ; Blitbuffer
+0155    TGETS   14  14  49  ; "COLOR_WHITE"
+0156    TSETS   14  13  50  ; "background"
+0157    UGET    14  12      ; VerticalGroup
+0158    MOV     15  14
+0159    TGETS   14  14   0  ; "new"
+0160    TDUP    16  51
+0161    TSETB    8  16   1
+0162    TSETB    7  16   2
+0163    UGET    17  13      ; CenterContainer
+0164    MOV     18  17
+0165    TGETS   17  17   0  ; "new"
+0166    TDUP    19  53
+0167    UGET    20   8      ; Geom
+0168    MOV     21  20
+0169    TGETS   20  20   0  ; "new"
+0170    TDUP    22  52
+0171    TGETS   23   0   3  ; "screen_width"
+0172    MULVN   23  23   1  ; 0.95
+0173    TSETS   23  22  27  ; "w"
+0174    MOV     24   4
+0175    TGETS   23   4  26  ; "getSize"
+0176    CALL    23   2   2
+0177    TGETS   23  23  32  ; "h"
+0178    MULVN   23  23   4  ; 1.2
+0179    TSETS   23  22  32  ; "h"
+0180    CALL    20   2   3
+0181    TSETS   20  19  34  ; "dimen"
+0182    TSETB    4  19   1
+0183    CALL    17   2   3
+0184    TSETB   17  16   3
+0185    UGET    17  13      ; CenterContainer
+0186    MOV     18  17
+0187    TGETS   17  17   0  ; "new"
+0188    TDUP    19  55
+0189    UGET    20   8      ; Geom
+0190    MOV     21  20
+0191    TGETS   20  20   0  ; "new"
+0192    TDUP    22  54
+0193    TGETS   23   0   4  ; "width"
+0194    TSETS   23  22  27  ; "w"
+0195    MOV     24  10
+0196    TGETS   23  10  26  ; "getSize"
+0197    CALL    23   2   2
+0198    TGETS   23  23  32  ; "h"
+0199    TSETS   23  22  32  ; "h"
+0200    CALL    20   2   3
+0201    TSETS   20  19  34  ; "dimen"
+0202    TSETB   10  19   1
+0203    CALL    17   0   3
+0204    TSETM   17   5      ; 4
+0205    CALL    14   0   3
+0206    TSETM   14   2      ; 1
+0207    CALL    11   2   3
+0208    TSETS   11   0  46  ; "time_frame"
+0209    UGET    11  14      ; WidgetContainer
+0210    MOV     12  11
+0211    TGETS   11  11   0  ; "new"
+0212    TDUP    13  56
+0213    UGET    14   8      ; Geom
+0214    MOV     15  14
+0215    TGETS   14  14   0  ; "new"
+0216    TDUP    16  57
+0217    TGETS   17   0   3  ; "screen_width"
+0218    TSETS   17  16  27  ; "w"
+0219    TGETS   17   0  58  ; "screen_height"
+0220    TSETS   17  16  32  ; "h"
+0221    CALL    14   2   3
+0222    TSETS   14  13  34  ; "dimen"
+0223    UGET    14   5      ; FrameContainer
+0224    MOV     15  14
+0225    TGETS   14  14   0  ; "new"
+0226    TDUP    16  59
+0227    TGETS   17   0  46  ; "time_frame"
+0228    TSETB   17  16   1
+0229    CALL    14   0   3
+0230    TSETM   14   2      ; 1
+0231    CALL    11   2   3
+0232    TSETB   11   0   1
+0233    UGET    11  15      ; UIManager
+0234    MOV     12  11
+0235    TGETS   11  11  60  ; "setDirty"
+0236    MOV     13   0
+0237    FNEW    14  61      ; timewidget.lua:187
+0238    CALL    11   1   4
+0239    UCLO     0 => 0240
+0240 => RET0     0   1
+
+-- BYTECODE -- timewidget.lua:193-195
+0001    KSTR     0   0      ; "partial"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "time_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- timewidget.lua:192-197
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    KPRI     3   0
+0005    FNEW     4   1      ; timewidget.lua:193
+0006    CALL     1   1   4
+0007    KPRI     1   2
+0008    UCLO     0 => 0009
+0009 => RET1     1   2
+
+-- BYTECODE -- timewidget.lua:200-202
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "time_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- timewidget.lua:199-204
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    MOV      3   0
+0005    FNEW     4   1      ; timewidget.lua:200
+0006    CALL     1   1   4
+0007    KPRI     1   2
+0008    UCLO     0 => 0009
+0009 => RET1     1   2
+
+-- BYTECODE -- timewidget.lua:206-209
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- timewidget.lua:211-216
+0001    TGETS    3   2   0  ; "pos"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "notIntersectWith"
+0004    TGETS    5   0   2  ; "time_frame"
+0005    TGETS    5   5   3  ; "dimen"
+0006    CALL     3   2   3
+0007    ISF          3
+0008    JMP      4 => 0012
+0009    MOV      4   0
+0010    TGETS    3   0   4  ; "onClose"
+0011    CALL     3   1   2
+0012 => KPRI     3   2
+0013    RET1     3   2
+
+-- BYTECODE -- timewidget.lua:218-221
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- timewidget.lua:0-224
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/blitbuffer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/buttontable"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/container/centercontainer"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/closebutton"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "device"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/container/framecontainer"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/geometry"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/gesturerange"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/font"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/widget/horizontalgroup"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/widget/container/inputcontainer"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/linewidget"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/overlapgroup"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/widget/numberpickerwidget"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/size"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/widget/textboxwidget"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "ui/widget/textwidget"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/uimanager"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "ui/widget/verticalgroup"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "ui/widget/container/widgetcontainer"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "gettext"
+0063    CALL    20   2   2
+0064    TGETS   21   4  22  ; "screen"
+0065    MOV     23  10
+0066    TGETS   22  10  23  ; "new"
+0067    TDUP    24  26
+0068    MOV     26   8
+0069    TGETS   25   8  24  ; "getFace"
+0070    KSTR    27  25      ; "x_smalltfont"
+0071    CALL    25   2   3
+0072    TSETS   25  24  27  ; "title_face"
+0073    MOV     25  20
+0074    KSTR    26  28      ; "OK"
+0075    CALL    25   2   2
+0076    TSETS   25  24  29  ; "ok_text"
+0077    MOV     25  20
+0078    KSTR    26  30      ; "Cancel"
+0079    CALL    25   2   2
+0080    TSETS   25  24  31  ; "cancel_text"
+0081    CALL    22   2   3
+0082    FNEW    23  33      ; timewidget.lua:35
+0083    TSETS   23  22  32  ; "init"
+0084    FNEW    23  35      ; timewidget.lua:62
+0085    TSETS   23  22  34  ; "update"
+0086    FNEW    23  37      ; timewidget.lua:192
+0087    TSETS   23  22  36  ; "onCloseWidget"
+0088    FNEW    23  39      ; timewidget.lua:199
+0089    TSETS   23  22  38  ; "onShow"
+0090    FNEW    23  41      ; timewidget.lua:206
+0091    TSETS   23  22  40  ; "onAnyKeyPressed"
+0092    FNEW    23  43      ; timewidget.lua:211
+0093    TSETS   23  22  42  ; "onTapClose"
+0094    FNEW    23  45      ; timewidget.lua:218
+0095    TSETS   23  22  44  ; "onClose"
+0096    UCLO     0 => 0097
+0097 => RET1    22   2
+

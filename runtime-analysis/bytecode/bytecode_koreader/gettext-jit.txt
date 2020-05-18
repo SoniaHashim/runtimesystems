@@ -1,0 +1,756 @@
+-- BYTECODE -- gettext.lua:40-40
+0001    RET1     0   2
+
+-- BYTECODE -- gettext.lua:59-61
+0001    TGETS    2   0   0  ; "translation"
+0002    TGETV    2   2   1
+0003    IST          2
+0004    JMP      3 => 0008
+0005    TGETS    2   0   1  ; "wrapUntranslated"
+0006    MOV      3   1
+0007    CALL     2   2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- gettext.lua:63-76
+0001    ISNES    0   0      ; "\n"
+0002    JMP      1 => 0006
+0003    KSTR     1   1      ; ""
+0004    RET1     1   2
+0005    JMP      1 => 0047
+0006 => ISNES    0   2      ; "a"
+0007    JMP      1 => 0011
+0008    KSTR     1   3      ; "\007"
+0009    RET1     1   2
+0010    JMP      1 => 0047
+0011 => ISNES    0   4      ; "b"
+0012    JMP      1 => 0016
+0013    KSTR     1   5      ; "\008"
+0014    RET1     1   2
+0015    JMP      1 => 0047
+0016 => ISNES    0   6      ; "f"
+0017    JMP      1 => 0021
+0018    KSTR     1   7      ; "\012"
+0019    RET1     1   2
+0020    JMP      1 => 0047
+0021 => ISNES    0   8      ; "n"
+0022    JMP      1 => 0026
+0023    KSTR     1   0      ; "\n"
+0024    RET1     1   2
+0025    JMP      1 => 0047
+0026 => ISNES    0   9      ; "r"
+0027    JMP      1 => 0031
+0028    KSTR     1  10      ; "\r"
+0029    RET1     1   2
+0030    JMP      1 => 0047
+0031 => ISNES    0  11      ; "t"
+0032    JMP      1 => 0036
+0033    KSTR     1  12      ; "\t"
+0034    RET1     1   2
+0035    JMP      1 => 0047
+0036 => ISNES    0  13      ; "v"
+0037    JMP      1 => 0041
+0038    KSTR     1  14      ; "\011"
+0039    RET1     1   2
+0040    JMP      1 => 0047
+0041 => ISNES    0  15      ; "0"
+0042    JMP      1 => 0046
+0043    KSTR     1  16      ; "\000"
+0044    RET1     1   2
+0045    JMP      1 => 0047
+0046 => RET1     0   2
+0047 => RET0     0   1
+
+-- BYTECODE -- gettext.lua:79-84
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "gsub"
+0003    KSTR     3   1      ; "&&"
+0004    KSTR     4   2      ; "and"
+0005    CALL     1   2   4
+0006    MOV      0   1
+0007    MOV      2   0
+0008    TGETS    1   0   0  ; "gsub"
+0009    KSTR     3   3      ; "!="
+0010    KSTR     4   4      ; "~="
+0011    CALL     1   2   4
+0012    MOV      0   1
+0013    MOV      2   0
+0014    TGETS    1   0   0  ; "gsub"
+0015    KSTR     3   5      ; "||"
+0016    KSTR     4   6      ; "or"
+0017    CALL     1   2   4
+0018    MOV      0   1
+0019    RET1     0   2
+
+-- BYTECODE -- gettext.lua:87-93
+0001    ISEQN    0   0      ; 1
+0002    JMP      1 => 0006
+0003    KSHORT   1   1
+0004    RET1     1   2
+0005    JMP      1 => 0008
+0006 => KSHORT   1   0
+0007    RET1     1   2
+0008 => RET0     0   1
+
+-- BYTECODE -- gettext.lua:96-136
+0001    KSTR     3   0      ; "return function(n) if "
+0002    LEN      4   0
+0003    KSHORT   5   1
+0004    ISGE     5   4
+0005    JMP      4 => 0048
+0006    KSHORT   4   1
+0007    LEN      5   0
+0008    KSHORT   6   1
+0009    FORI     4 => 0044
+0010 => TGETV    8   0   7
+0011    UGET     9   0      ; logicalCtoLua
+0012    MOV     10   8
+0013    CALL     9   2   2
+0014    MOV      8   9
+0015    KSHORT   9   1
+0016    ISGE     9   7
+0017    JMP      9 => 0026
+0018    GGET     9   1      ; "tonumber"
+0019    MOV     10   8
+0020    CALL     9   2   2
+0021    ISNEP    9   0
+0022    JMP      9 => 0026
+0023    KSTR     9   2      ; " elseif "
+0024    MOV     10   8
+0025    CAT      8   9  10
+0026 => GGET     9   1      ; "tonumber"
+0027    MOV     10   8
+0028    CALL     9   2   2
+0029    ISEQP    9   0
+0030    JMP      9 => 0034
+0031    KSTR     9   3      ; " else return "
+0032    MOV     10   8
+0033    CAT      8   9  10
+0034 => MOV     10   8
+0035    TGETS    9   8   4  ; "gsub"
+0036    KSTR    11   5      ; "?"
+0037    KSTR    12   6      ; " then return"
+0038    CALL     9   2   4
+0039    MOV      8   9
+0040    MOV      9   3
+0041    MOV     10   8
+0042    CAT      3   9  10
+0043    FORL     4 => 0010
+0044 => MOV      4   3
+0045    KSTR     5   7      ; " end end"
+0046    CAT      3   4   5
+0047    JMP      4 => 0071
+0048 => TGETB    4   0   1
+0049    ISNEV    4   2
+0050    JMP      5 => 0053
+0051    UGET     5   1      ; getDefaultPlural
+0052    RET1     5   2
+0053 => GGET     5   1      ; "tonumber"
+0054    MOV      6   4
+0055    CALL     5   2   2
+0056    ISEQP    5   0
+0057    JMP      5 => 0063
+0058    KSTR     5   8      ; "return function(n) return "
+0059    MOV      6   4
+0060    KSTR     7   9      ; " end"
+0061    CAT      3   5   7
+0062    JMP      5 => 0071
+0063 => UGET     5   0      ; logicalCtoLua
+0064    MOV      6   4
+0065    CALL     5   2   2
+0066    MOV      4   5
+0067    KSTR     5   0      ; "return function(n) if "
+0068    MOV      6   4
+0069    KSTR     7  10      ; " then return 1 else return 0 end end"
+0070    CAT      3   5   7
+0071 => UGET     4   2      ; logger
+0072    TGETS    4   4  11  ; "dbg"
+0073    KSTR     5  12      ; "gettext: plural function"
+0074    MOV      6   3
+0075    CALL     4   1   3
+0076    GGET     4  13      ; "loadstring"
+0077    MOV      5   3
+0078    CALL     4   2   2
+0079    CALLT    4   1
+
+-- BYTECODE -- gettext.lua:138-163
+0001    GGET     4   0      ; "string"
+0002    TGETS    4   4   1  ; "gsub"
+0003    MOV      5   2
+0004    KSTR     6   2      ; "\(.)"
+0005    UGET     7   0      ; c_escape
+0006    CALL     4   2   4
+0007    ISF          0
+0008    JMP      5 => 0054
+0009    ISEQS    0   3      ; ""
+0010    JMP      5 => 0054
+0011    UGET     5   1      ; GetText
+0012    TGETS    5   5   4  ; "context"
+0013    TGETV    5   5   0
+0014    IST          5
+0015    JMP      5 => 0020
+0016    UGET     5   1      ; GetText
+0017    TGETS    5   5   4  ; "context"
+0018    TNEW     6   0
+0019    TSETV    6   5   0
+0020 => ISF          3
+0021    JMP      5 => 0044
+0022    UGET     5   1      ; GetText
+0023    TGETS    5   5   4  ; "context"
+0024    TGETV    5   5   0
+0025    TGETV    5   5   1
+0026    IST          5
+0027    JMP      5 => 0033
+0028    UGET     5   1      ; GetText
+0029    TGETS    5   5   4  ; "context"
+0030    TGETV    5   5   0
+0031    TNEW     6   0
+0032    TSETV    6   5   1
+0033 => UGET     5   1      ; GetText
+0034    TGETS    5   5   4  ; "context"
+0035    TGETV    5   5   0
+0036    TGETV    5   5   1
+0037    ISEQS    4   3      ; ""
+0038    JMP      6 => 0041
+0039    ISTC     6   4
+0040    JMP      6 => 0042
+0041 => KPRI     6   0
+0042 => TSETV    6   5   3
+0043    JMP      5 => 0083
+0044 => UGET     5   1      ; GetText
+0045    TGETS    5   5   4  ; "context"
+0046    TGETV    5   5   0
+0047    ISEQS    4   3      ; ""
+0048    JMP      6 => 0051
+0049    ISTC     6   4
+0050    JMP      6 => 0052
+0051 => KPRI     6   0
+0052 => TSETV    6   5   1
+0053    JMP      5 => 0083
+0054 => ISF          3
+0055    JMP      5 => 0075
+0056    UGET     5   1      ; GetText
+0057    TGETS    5   5   5  ; "translation"
+0058    TGETV    5   5   1
+0059    IST          5
+0060    JMP      5 => 0065
+0061    UGET     5   1      ; GetText
+0062    TGETS    5   5   5  ; "translation"
+0063    TNEW     6   0
+0064    TSETV    6   5   1
+0065 => UGET     5   1      ; GetText
+0066    TGETS    5   5   5  ; "translation"
+0067    TGETV    5   5   1
+0068    ISEQS    4   3      ; ""
+0069    JMP      6 => 0072
+0070    ISTC     6   4
+0071    JMP      6 => 0073
+0072 => KPRI     6   0
+0073 => TSETV    6   5   3
+0074    JMP      5 => 0083
+0075 => UGET     5   1      ; GetText
+0076    TGETS    5   5   5  ; "translation"
+0077    ISEQS    4   3      ; ""
+0078    JMP      6 => 0081
+0079    ISTC     6   4
+0080    JMP      6 => 0082
+0081 => KPRI     6   0
+0082 => TSETV    6   5   1
+0083 => RET0     0   1
+
+-- BYTECODE -- gettext.lua:169-277
+0001    UGET     1   0      ; GetText
+0002    TNEW     2   0
+0003    TSETS    2   1   0  ; "context"
+0004    UGET     1   0      ; GetText
+0005    TNEW     2   0
+0006    TSETS    2   1   1  ; "translation"
+0007    UGET     1   0      ; GetText
+0008    KSTR     2   3      ; "C"
+0009    TSETS    2   1   2  ; "current_lang"
+0010    ISEQS    0   3      ; "C"
+0011    JMP      1 => 0022
+0012    ISEQP    0   0
+0013    JMP      1 => 0022
+0014    ISEQS    0   4      ; ""
+0015    JMP      1 => 0022
+0016    MOV      2   0
+0017    TGETS    1   0   5  ; "match"
+0018    KSTR     3   6      ; "^en_US"
+0019    CALL     1   2   3
+0020    ISNES    1   7      ; "en_US"
+0021    JMP      1 => 0023
+0022 => RET0     0   1
+0023 => MOV      2   0
+0024    TGETS    1   0   8  ; "sub"
+0025    KSHORT   3   1
+0026    MOV      5   0
+0027    TGETS    4   0   9  ; "find"
+0028    KSTR     6  10      ; ".%."
+0029    CALL     4   0   3
+0030    CALLM    1   2   2
+0031    MOV      0   1
+0032    UGET     1   0      ; GetText
+0033    TGETS    1   1  11  ; "dirname"
+0034    KSTR     2  12      ; "/"
+0035    MOV      3   0
+0036    KSTR     4  12      ; "/"
+0037    UGET     5   0      ; GetText
+0038    TGETS    5   5  13  ; "textdomain"
+0039    KSTR     6  14      ; ".po"
+0040    CAT      1   1   6
+0041    GGET     2  15      ; "io"
+0042    TGETS    2   2  16  ; "open"
+0043    MOV      3   1
+0044    KSTR     4  17      ; "r"
+0045    CALL     2   2   3
+0046    IST          2
+0047    JMP      3 => 0055
+0048    UGET     3   1      ; logger
+0049    TGETS    3   3  18  ; "dbg"
+0050    KSTR     4  19      ; "cannot open translation file:"
+0051    MOV      5   1
+0052    CALL     3   1   3
+0053    KPRI     3   1
+0054    RET1     3   2
+0055 => TNEW     3   0
+0056    KPRI     4   1
+0057    KNIL     5   6
+0058 => LOOP     7 => 0243
+0059    MOV      8   2
+0060    TGETS    7   2  20  ; "read"
+0061    KSTR     9  21      ; "*l"
+0062    CALL     7   2   3
+0063    ISEQP    7   0
+0064    JMP      8 => 0067
+0065    ISNES    7   4      ; ""
+0066    JMP      8 => 0188
+0067 => TGETS    8   3  22  ; "msgid"
+0068    ISF          8
+0069    JMP      9 => 0100
+0070    TGETS    8   3  23  ; "msgid_plural"
+0071    ISF          8
+0072    JMP      9 => 0100
+0073    TGETS    8   3  24  ; "msgstr[0]"
+0074    ISF          8
+0075    JMP      9 => 0100
+0076    GGET     8  25      ; "pairs"
+0077    MOV      9   3
+0078    CALL     8   4   2
+0079    ISNEXT  11 => 0097
+0080 => GGET    13  26      ; "tonumber"
+0081    MOV     15  11
+0082    TGETS   14  11   5  ; "match"
+0083    KSTR    16  27      ; "msgstr%[([0-9]+)%]"
+0084    CALL    14   0   3
+0085    CALLM   13   2   0
+0086    MOV     14  12
+0087    ISF         13
+0088    JMP     15 => 0097
+0089    ISF         14
+0090    JMP     15 => 0097
+0091    UGET    15   2      ; addTranslation
+0092    TGETS   16   3  28  ; "msgctxt"
+0093    TGETS   17   3  22  ; "msgid"
+0094    MOV     18  14
+0095    MOV     19  13
+0096    CALL    15   1   5
+0097 => ITERN   11   3   3
+0098    ITERL   11 => 0080
+0099    JMP      8 => 0182
+0100 => TGETS    8   3  22  ; "msgid"
+0101    ISF          8
+0102    JMP      9 => 0182
+0103    TGETS    8   3  29  ; "msgstr"
+0104    ISF          8
+0105    JMP      9 => 0182
+0106    TGETS    8   3  29  ; "msgstr"
+0107    ISEQS    8   4      ; ""
+0108    JMP      8 => 0182
+0109    IST          5
+0110    JMP      8 => 0177
+0111    TGETS    8   3  22  ; "msgid"
+0112    ISNES    8   4      ; ""
+0113    JMP      8 => 0177
+0114    TGETS    5   3  29  ; "msgstr"
+0115    TGETS    8   3  29  ; "msgstr"
+0116    MOV      9   8
+0117    TGETS    8   8   5  ; "match"
+0118    KSTR    10  30      ; "Plural%-Forms: (.*)"
+0119    CALL     8   2   3
+0120    MOV     10   8
+0121    TGETS    9   8   5  ; "match"
+0122    KSTR    11  31      ; "nplurals=([0-9]+);"
+0123    CALL     9   2   3
+0124    IST          9
+0125    JMP     10 => 0127
+0126    KSHORT   9   2
+0127 => MOV     11   8
+0128    TGETS   10   8   5  ; "match"
+0129    KSTR    12  32      ; "plural=%((.*)%);"
+0130    CALL    10   2   3
+0131    ISNES   10  33      ; "n == 1) ? 0 : ((n == 0 || n != 1 && n % "~
+0132    JMP     11 => 0134
+0133    KSTR    10  34      ; "n == 1 ? 0 : (n == 0 || n != 1 && n % 10"~
+0134 => IST         10
+0135    JMP     11 => 0141
+0136    MOV     12   8
+0137    TGETS   11   8   5  ; "match"
+0138    KSTR    13  35      ; "plural=(.*);"
+0139    CALL    11   2   3
+0140    MOV     10  11
+0141 => MOV     12  10
+0142    TGETS   11  10   9  ; "find"
+0143    KSTR    13  36      ; "[^n!=%%<>&:%(%)|?0-9 ]"
+0144    CALL    11   2   3
+0145    ISF         11
+0146    JMP     12 => 0149
+0147    UGET    11   0      ; GetText
+0148    TGETS   10  11  37  ; "plural_default"
+0149 => TNEW    11   0
+0150    MOV     13  10
+0151    TGETS   12  10  38  ; "gmatch"
+0152    KSTR    14  39      ; "[^:]+"
+0153    CALL    12   4   3
+0154    JMP     15 => 0160
+0155 => GGET    16  40      ; "table"
+0156    TGETS   16  16  41  ; "insert"
+0157    MOV     17  11
+0158    MOV     18  15
+0159    CALL    16   1   3
+0160 => ITERC   15   2   3
+0161    ITERL   15 => 0155
+0162    UGET    12   0      ; GetText
+0163    UGET    13   3      ; getPluralFunc
+0164    MOV     14  11
+0165    MOV     15   9
+0166    UGET    16   0      ; GetText
+0167    TGETS   16  16  37  ; "plural_default"
+0168    CALL    13   2   4
+0169    TSETS   13  12  42  ; "getPlural"
+0170    UGET    12   0      ; GetText
+0171    TGETS   12  12  42  ; "getPlural"
+0172    IST         12
+0173    JMP     12 => 0177
+0174    UGET    12   0      ; GetText
+0175    UGET    13   4      ; getDefaultPlural
+0176    TSETS   13  12  42  ; "getPlural"
+0177 => UGET     8   2      ; addTranslation
+0178    TGETS    9   3  28  ; "msgctxt"
+0179    TGETS   10   3  22  ; "msgid"
+0180    TGETS   11   3  29  ; "msgstr"
+0181    CALL     8   1   4
+0182 => ISNEP    7   0
+0183    JMP      8 => 0185
+0184    JMP      7 => 0243
+0185 => TNEW     3   0
+0186    KPRI     6   0
+0187    JMP      8 => 0058
+0188 => MOV      9   7
+0189    TGETS    8   7   5  ; "match"
+0190    KSTR    10  43      ; "^#"
+0191    CALL     8   2   3
+0192    IST          8
+0193    JMP      8 => 0235
+0194    MOV      9   7
+0195    TGETS    8   7   5  ; "match"
+0196    KSTR    10  44      ; "^%s*([%a_%[%]0-9]+)%s+"(.*)"%s*$"
+0197    CALL     8   3   3
+0198    ISF          8
+0199    JMP     10 => 0202
+0200    MOV      6   8
+0201    JMP     10 => 0207
+0202 => MOV     11   7
+0203    TGETS   10   7   5  ; "match"
+0204    KSTR    12  45      ; "^%s*"(.*)"%s*$"
+0205    CALL    10   2   3
+0206    MOV      9  10
+0207 => ISF          6
+0208    JMP     10 => 0233
+0209    ISF          9
+0210    JMP     10 => 0233
+0211    IST          4
+0212    JMP     10 => 0233
+0213    MOV     11   9
+0214    TGETS   10   9  46  ; "gsub"
+0215    KSTR    12  47      ; "\n"
+0216    KSTR    13  48      ; "\n"
+0217    CALL    10   2   4
+0218    MOV      9  10
+0219    MOV     11   9
+0220    TGETS   10   9  46  ; "gsub"
+0221    KSTR    12  49      ; "\""
+0222    KSTR    13  50      ; """
+0223    CALL    10   2   4
+0224    MOV      9  10
+0225    TGETV   10   3   6
+0226    IST         10
+0227    JMP     11 => 0229
+0228    KSTR    10   4      ; ""
+0229 => MOV     11   9
+0230    CAT     10  10  11
+0231    TSETV   10   3   6
+0232    JMP     10 => 0058
+0233 => KPRI     4   1
+0234    JMP      8 => 0058
+0235 => MOV      9   7
+0236    TGETS    8   7   5  ; "match"
+0237    KSTR    10  51      ; "#, fuzzy"
+0238    CALL     8   2   3
+0239    ISF          8
+0240    JMP      9 => 0058
+0241    KPRI     4   2
+0242    JMP      7 => 0058
+0243 => UGET     7   0      ; GetText
+0244    TSETS    0   7   2  ; "current_lang"
+0245    RET0     0   1
+
+-- BYTECODE -- gettext.lua:310-318
+0001    UGET     3   0      ; GetText
+0002    TGETS    3   3   0  ; "getPlural"
+0003    MOV      4   2
+0004    CALL     3   2   2
+0005    ISNEN    3   0      ; 0
+0006    JMP      4 => 0024
+0007    UGET     4   0      ; GetText
+0008    TGETS    4   4   1  ; "translation"
+0009    TGETV    4   4   0
+0010    ISF          4
+0011    JMP      5 => 0018
+0012    UGET     4   0      ; GetText
+0013    TGETS    4   4   1  ; "translation"
+0014    TGETV    4   4   0
+0015    TGETV    4   4   3
+0016    IST          4
+0017    JMP      5 => 0022
+0018 => UGET     4   0      ; GetText
+0019    TGETS    4   4   2  ; "wrapUntranslated"
+0020    MOV      5   0
+0021    CALL     4   2   2
+0022 => RET1     4   2
+0023    JMP      4 => 0040
+0024 => UGET     4   0      ; GetText
+0025    TGETS    4   4   1  ; "translation"
+0026    TGETV    4   4   0
+0027    ISF          4
+0028    JMP      5 => 0035
+0029    UGET     4   0      ; GetText
+0030    TGETS    4   4   1  ; "translation"
+0031    TGETV    4   4   0
+0032    TGETV    4   4   3
+0033    IST          4
+0034    JMP      5 => 0039
+0035 => UGET     4   0      ; GetText
+0036    TGETS    4   4   2  ; "wrapUntranslated"
+0037    MOV      5   1
+0038    CALL     4   2   2
+0039 => RET1     4   2
+0040 => RET0     0   1
+
+-- BYTECODE -- gettext.lua:343-351
+0001    UGET     4   0      ; GetText
+0002    TGETS    4   4   0  ; "getPlural"
+0003    MOV      5   3
+0004    CALL     4   2   2
+0005    ISNEN    4   0      ; 0
+0006    JMP      5 => 0031
+0007    UGET     5   0      ; GetText
+0008    TGETS    5   5   1  ; "context"
+0009    TGETV    5   5   0
+0010    ISF          5
+0011    JMP      6 => 0025
+0012    UGET     5   0      ; GetText
+0013    TGETS    5   5   1  ; "context"
+0014    TGETV    5   5   0
+0015    TGETV    5   5   1
+0016    ISF          5
+0017    JMP      6 => 0025
+0018    UGET     5   0      ; GetText
+0019    TGETS    5   5   1  ; "context"
+0020    TGETV    5   5   0
+0021    TGETV    5   5   1
+0022    TGETV    5   5   4
+0023    IST          5
+0024    JMP      6 => 0029
+0025 => UGET     5   0      ; GetText
+0026    TGETS    5   5   2  ; "wrapUntranslated"
+0027    MOV      6   1
+0028    CALL     5   2   2
+0029 => RET1     5   2
+0030    JMP      5 => 0054
+0031 => UGET     5   0      ; GetText
+0032    TGETS    5   5   1  ; "context"
+0033    TGETV    5   5   0
+0034    ISF          5
+0035    JMP      6 => 0049
+0036    UGET     5   0      ; GetText
+0037    TGETS    5   5   1  ; "context"
+0038    TGETV    5   5   0
+0039    TGETV    5   5   1
+0040    ISF          5
+0041    JMP      6 => 0049
+0042    UGET     5   0      ; GetText
+0043    TGETS    5   5   1  ; "context"
+0044    TGETV    5   5   0
+0045    TGETV    5   5   1
+0046    TGETV    5   5   4
+0047    IST          5
+0048    JMP      6 => 0053
+0049 => UGET     5   0      ; GetText
+0050    TGETS    5   5   2  ; "wrapUntranslated"
+0051    MOV      6   2
+0052    CALL     5   2   2
+0053 => RET1     5   2
+0054 => RET0     0   1
+
+-- BYTECODE -- gettext.lua:379-381
+0001    UGET     2   0      ; GetText
+0002    TGETS    2   2   0  ; "context"
+0003    TGETV    2   2   0
+0004    ISF          2
+0005    JMP      3 => 0012
+0006    UGET     2   0      ; GetText
+0007    TGETS    2   2   0  ; "context"
+0008    TGETV    2   2   0
+0009    TGETV    2   2   1
+0010    IST          2
+0011    JMP      3 => 0016
+0012 => UGET     2   0      ; GetText
+0013    TGETS    2   2   1  ; "wrapUntranslated"
+0014    MOV      3   1
+0015    CALL     2   2   2
+0016 => RET1     2   2
+
+-- BYTECODE -- gettext.lua:0-408
+0001    GGET     0   0      ; "pcall"
+0002    GGET     1   1      ; "require"
+0003    KSTR     2   2      ; "android"
+0004    CALL     0   3   3
+0005    GGET     2   1      ; "require"
+0006    KSTR     3   3      ; "logger"
+0007    CALL     2   2   2
+0008    TDUP     3   4
+0009    TNEW     4   0
+0010    TSETS    4   3   5  ; "translation"
+0011    TDUP     4   6
+0012    TNEW     5   0
+0013    TSETS    5   4   7  ; "__index"
+0014    FNEW     5   9      ; gettext.lua:40
+0015    TSETS    5   3   8  ; "wrapUntranslated_nowrap"
+0016    TGETS    5   3   8  ; "wrapUntranslated_nowrap"
+0017    TSETS    5   3  10  ; "wrapUntranslated"
+0018    FNEW     5  12      ; gettext.lua:59
+0019    TSETS    5   4  11  ; "__call"
+0020    FNEW     5  13      ; gettext.lua:63
+0021    FNEW     6  14      ; gettext.lua:79
+0022    FNEW     7  15      ; gettext.lua:87
+0023    FNEW     8  16      ; gettext.lua:96
+0024    FNEW     9  17      ; gettext.lua:138
+0025    TGETS   10   4   7  ; "__index"
+0026    FNEW    11  19      ; gettext.lua:169
+0027    TSETS   11  10  18  ; "changeLang"
+0028    TGETS   10   4   7  ; "__index"
+0029    TSETS    7  10  20  ; "getPlural"
+0030    TGETS   10   4   7  ; "__index"
+0031    FNEW    11  22      ; gettext.lua:310
+0032    TSETS   11  10  21  ; "ngettext"
+0033    TGETS   10   4   7  ; "__index"
+0034    FNEW    11  24      ; gettext.lua:343
+0035    TSETS   11  10  23  ; "npgettext"
+0036    TGETS   10   4   7  ; "__index"
+0037    FNEW    11  26      ; gettext.lua:379
+0038    TSETS   11  10  25  ; "pgettext"
+0039    GGET    10  27      ; "setmetatable"
+0040    MOV     11   3
+0041    MOV     12   4
+0042    CALL    10   1   3
+0043    GGET    10  28      ; "os"
+0044    TGETS   10  10  29  ; "getenv"
+0045    KSTR    11  30      ; "LANGUAGE"
+0046    CALL    10   2   2
+0047    ISF         10
+0048    JMP     11 => 0056
+0049    TGETS   10   3  18  ; "changeLang"
+0050    GGET    11  28      ; "os"
+0051    TGETS   11  11  29  ; "getenv"
+0052    KSTR    12  30      ; "LANGUAGE"
+0053    CALL    11   0   2
+0054    CALLM   10   1   0
+0055    JMP     10 => 0094
+0056 => GGET    10  28      ; "os"
+0057    TGETS   10  10  29  ; "getenv"
+0058    KSTR    11  31      ; "LC_ALL"
+0059    CALL    10   2   2
+0060    ISF         10
+0061    JMP     11 => 0069
+0062    TGETS   10   3  18  ; "changeLang"
+0063    GGET    11  28      ; "os"
+0064    TGETS   11  11  29  ; "getenv"
+0065    KSTR    12  31      ; "LC_ALL"
+0066    CALL    11   0   2
+0067    CALLM   10   1   0
+0068    JMP     10 => 0094
+0069 => GGET    10  28      ; "os"
+0070    TGETS   10  10  29  ; "getenv"
+0071    KSTR    11  32      ; "LC_MESSAGES"
+0072    CALL    10   2   2
+0073    ISF         10
+0074    JMP     11 => 0082
+0075    TGETS   10   3  18  ; "changeLang"
+0076    GGET    11  28      ; "os"
+0077    TGETS   11  11  29  ; "getenv"
+0078    KSTR    12  32      ; "LC_MESSAGES"
+0079    CALL    11   0   2
+0080    CALLM   10   1   0
+0081    JMP     10 => 0094
+0082 => GGET    10  28      ; "os"
+0083    TGETS   10  10  29  ; "getenv"
+0084    KSTR    11  33      ; "LANG"
+0085    CALL    10   2   2
+0086    ISF         10
+0087    JMP     11 => 0094
+0088    TGETS   10   3  18  ; "changeLang"
+0089    GGET    11  28      ; "os"
+0090    TGETS   11  11  29  ; "getenv"
+0091    KSTR    12  33      ; "LANG"
+0092    CALL    11   0   2
+0093    CALLM   10   1   0
+0094 => ISF          0
+0095    JMP     10 => 0131
+0096    GGET    10   1      ; "require"
+0097    KSTR    11  34      ; "ffi"
+0098    CALL    10   2   2
+0099    TGETS   11  10  35  ; "new"
+0100    KSTR    12  36      ; "char[?]"
+0101    KSHORT  13  16
+0102    CALL    11   2   3
+0103    TGETS   12   1  37  ; "lib"
+0104    TGETS   12  12  38  ; "AConfiguration_getLanguage"
+0105    TGETS   13   1  39  ; "app"
+0106    TGETS   13  13  40  ; "config"
+0107    MOV     14  11
+0108    CALL    12   1   3
+0109    TGETS   12  10  41  ; "string"
+0110    MOV     13  11
+0111    CALL    12   2   2
+0112    TGETS   13   1  37  ; "lib"
+0113    TGETS   13  13  42  ; "AConfiguration_getCountry"
+0114    TGETS   14   1  39  ; "app"
+0115    TGETS   14  14  40  ; "config"
+0116    MOV     15  11
+0117    CALL    13   1   3
+0118    TGETS   13  10  41  ; "string"
+0119    MOV     14  11
+0120    CALL    13   2   2
+0121    ISF         12
+0122    JMP     14 => 0131
+0123    ISF         13
+0124    JMP     14 => 0131
+0125    TGETS   14   3  18  ; "changeLang"
+0126    MOV     15  12
+0127    KSTR    16  43      ; "_"
+0128    MOV     17  13
+0129    CAT     15  15  17
+0130    CALL    14   1   2
+0131 => UCLO     0 => 0132
+0132 => RET1     3   2
+

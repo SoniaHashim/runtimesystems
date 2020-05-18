@@ -1,0 +1,1244 @@
+-- BYTECODE -- md.lua:40-42
+0001    UGET     1   0      ; gmatch
+0002    MOV      2   0
+0003    KSTR     3   0      ; "([^\n\r]*)\r?\n?"
+0004    CALLT    1   3
+
+-- BYTECODE -- md.lua:46-49
+0001    UGET     0   0      ; index
+0002    ADDVN    0   0   0  ; 1
+0003    USETV    0   0      ; index
+0004    UGET     0   1      ; t
+0005    UGET     1   0      ; index
+0006    TGETV    0   0   1
+0007    RET1     0   2
+
+-- BYTECODE -- md.lua:44-50
+0001    KSHORT   1   0
+0002    FNEW     2   0      ; md.lua:46
+0003    UCLO     0 => 0004
+0004 => RET1     2   2
+
+-- BYTECODE -- md.lua:54-57
+0001    UGET     0   1      ; linestream
+0002    CALL     0   2   1
+0003    USETV    0   0      ; bufferedLine
+0004    UGET     0   0      ; bufferedLine
+0005    RET1     0   2
+
+-- BYTECODE -- md.lua:57-59
+0001    UGET     0   0      ; bufferedLine
+0002    RET1     0   2
+
+-- BYTECODE -- md.lua:52-60
+0001    MOV      1   0
+0002    CALL     1   2   1
+0003    FNEW     2   0      ; md.lua:54
+0004    FNEW     3   1      ; md.lua:57
+0005    UCLO     0 => 0006
+0006 => RET      2   3
+
+-- BYTECODE -- md.lua:67-81
+0001    KPRI     3   0
+0002    KNUM     4   0      ; inf
+0003    KNUM     5   0      ; inf
+0004    IST          2
+0005    JMP      6 => 0007
+0006    LEN      2   0
+0007 => KSHORT   6   1
+0008    UGET     7   0      ; lineDelimiters
+0009    LEN      7   7
+0010    KSHORT   8   1
+0011    FORI     6 => 0030
+0012 => UGET    10   1      ; find
+0013    MOV     11   0
+0014    UGET    12   0      ; lineDelimiters
+0015    TGETV   12  12   9
+0016    MOV     13   1
+0017    KPRI    14   2
+0018    CALL    10   3   5
+0019    ISF         10
+0020    JMP     12 => 0029
+0021    ISGE    10   4
+0022    JMP     12 => 0029
+0023    ISGT    10   2
+0024    JMP     12 => 0029
+0025    MOV      4  10
+0026    MOV      5  11
+0027    UGET    12   0      ; lineDelimiters
+0028    TGETV    3  12   9
+0029 => FORL     6 => 0012
+0030 => MOV      6   3
+0031    MOV      7   4
+0032    MOV      8   5
+0033    RET      6   4
+
+-- BYTECODE -- md.lua:83-95
+0001    KPRI     2   2
+0002    UGET     3   0      ; gmatch
+0003    MOV      4   0
+0004    KSTR     5   0      ; "(.*)%[(.*)%](.*)"
+0005    CALL     3   4   3
+0006    JMP      6 => 0042
+0007 => ISF          2
+0008    JMP      9 => 0017
+0009    LEN      9   1
+0010    ADDVN    9   9   0  ; 1
+0011    UGET    10   1      ; match
+0012    MOV     11   6
+0013    KSTR    12   1      ; "^(.-)!?$"
+0014    CALL    10   2   3
+0015    TSETV   10   1   9
+0016    KPRI     2   1
+0017 => UGET     9   2      ; byte
+0018    MOV     10   6
+0019    LEN     11   6
+0020    CALL     9   2   3
+0021    UGET    10   2      ; byte
+0022    KSTR    11   2      ; "!"
+0023    CALL    10   2   2
+0024    ISNEV    9  10
+0025    JMP      9 => 0034
+0026    LEN      9   1
+0027    ADDVN    9   9   0  ; 1
+0028    TDUP    10   3
+0029    TDUP    11   4
+0030    TSETS    7  11   5  ; "alt"
+0031    TSETS   11  10   6  ; "attributes"
+0032    TSETV   10   1   9
+0033    JMP      9 => 0039
+0034 => LEN      9   1
+0035    ADDVN    9   9   0  ; 1
+0036    TDUP    10   7
+0037    TSETB    7  10   1
+0038    TSETV   10   1   9
+0039 => LEN      9   1
+0040    ADDVN    9   9   0  ; 1
+0041    TSETV    8   1   9
+0042 => ITERC    6   4   3
+0043    ITERL    6 => 0007
+0044    ISF          2
+0045    JMP      3 => 0049
+0046    LEN      3   1
+0047    ADDVN    3   3   0  ; 1
+0048    TSETV    0   1   3
+0049 => RET0     0   1
+
+-- BYTECODE -- md.lua:97-112
+0001    KPRI     2   2
+0002    UGET     3   0      ; gmatch
+0003    MOV      4   0
+0004    KSTR     5   0      ; "(.*)%[(.*)%]%((.*)%)(.*)"
+0005    CALL     3   4   3
+0006    JMP      6 => 0047
+0007 => ISF          2
+0008    JMP     10 => 0017
+0009    UGET    10   1      ; externalLinkEscape
+0010    UGET    11   2      ; match
+0011    MOV     12   6
+0012    KSTR    13   1      ; "^(.-)!?$"
+0013    CALL    11   2   3
+0014    MOV     12   1
+0015    CALL    10   1   3
+0016    KPRI     2   1
+0017 => UGET    10   3      ; byte
+0018    MOV     11   6
+0019    LEN     12   6
+0020    CALL    10   2   3
+0021    UGET    11   3      ; byte
+0022    KSTR    12   2      ; "!"
+0023    CALL    11   2   2
+0024    ISNEV   10  11
+0025    JMP     10 => 0035
+0026    LEN     10   1
+0027    ADDVN   10  10   0  ; 1
+0028    TDUP    11   3
+0029    TDUP    12   4
+0030    TSETS    8  12   5  ; "src"
+0031    TSETS    7  12   6  ; "alt"
+0032    TSETS   12  11   7  ; "attributes"
+0033    TSETV   11   1  10
+0034    JMP     10 => 0043
+0035 => LEN     10   1
+0036    ADDVN   10  10   0  ; 1
+0037    TDUP    11   8
+0038    TSETB    7  11   1
+0039    TDUP    12   9
+0040    TSETS    8  12  10  ; "href"
+0041    TSETS   12  11   7  ; "attributes"
+0042    TSETV   11   1  10
+0043 => UGET    10   1      ; externalLinkEscape
+0044    MOV     11   9
+0045    MOV     12   1
+0046    CALL    10   1   3
+0047 => ITERC    6   5   3
+0048    ITERL    6 => 0007
+0049    ISF          2
+0050    JMP      3 => 0055
+0051    UGET     3   1      ; externalLinkEscape
+0052    MOV      4   0
+0053    MOV      5   1
+0054    CALL     3   1   3
+0055 => RET0     0   1
+
+-- BYTECODE -- md.lua:115-149
+0001    ISTC     3   1
+0002    JMP      3 => 0004
+0003    KSHORT   3   1
+0004 => IST          2
+0005    JMP      4 => 0007
+0006    LEN      2   0
+0007 => MOV      1   3
+0008    MOV      3   1
+0009    TNEW     4   0
+0010 => LOOP     5 => 0078
+0011    UGET     5   0      ; findDelim
+0012    MOV      6   0
+0013    MOV      7   3
+0014    MOV      8   2
+0015    CALL     5   4   4
+0016    IST          5
+0017    JMP      8 => 0027
+0018    UGET     8   1      ; linkEscape
+0019    UGET     9   2      ; sub
+0020    MOV     10   0
+0021    MOV     11   3
+0022    MOV     12   2
+0023    CALL     9   2   4
+0024    MOV     10   4
+0025    CALL     8   1   3
+0026    JMP      5 => 0078
+0027 => ISGE     3   6
+0028    JMP      8 => 0037
+0029    UGET     8   1      ; linkEscape
+0030    UGET     9   2      ; sub
+0031    MOV     10   0
+0032    MOV     11   3
+0033    SUBVN   12   6   0  ; 1
+0034    CALL     9   2   4
+0035    MOV     10   4
+0036    CALL     8   1   3
+0037 => UGET     8   3      ; find
+0038    MOV      9   0
+0039    MOV     10   5
+0040    ADDVN   11   7   0  ; 1
+0041    KPRI    12   2
+0042    CALL     8   3   5
+0043    ISF          8
+0044    JMP     10 => 0071
+0045    ISNES    5   0      ; "`"
+0046    JMP     10 => 0058
+0047    LEN     10   4
+0048    ADDVN   10  10   0  ; 1
+0049    TDUP    11   1
+0050    UGET    12   2      ; sub
+0051    MOV     13   0
+0052    ADDVN   14   7   0  ; 1
+0053    SUBVN   15   8   0  ; 1
+0054    CALL    12   2   4
+0055    TSETB   12  11   1
+0056    TSETV   11   4  10
+0057    JMP     10 => 0069
+0058 => UGET    10   4      ; lineRead
+0059    MOV     11   0
+0060    ADDVN   12   7   0  ; 1
+0061    SUBVN   13   8   0  ; 1
+0062    CALL    10   2   4
+0063    UGET    11   5      ; lineDeimiterNames
+0064    TGETV   11  11   5
+0065    TSETS   11  10   2  ; "type"
+0066    LEN     11   4
+0067    ADDVN   11  11   0  ; 1
+0068    TSETV   10   4  11
+0069 => ADDVN    3   9   0  ; 1
+0070    JMP     10 => 0010
+0071 => LEN     10   4
+0072    ADDVN   10  10   0  ; 1
+0073    TNEW    11   3
+0074    TSETB    5  11   1
+0075    TSETV   11   4  10
+0076    ADDVN    3   7   0  ; 1
+0077    JMP      5 => 0010
+0078 => RET1     4   2
+
+-- BYTECODE -- md.lua:151-164
+0001    KSHORT   1   0
+0002    KSHORT   2   1
+0003    LEN      3   0
+0004    KSHORT   4   1
+0005    FORI     2 => 0031
+0006 => UGET     6   0      ; byte
+0007    MOV      7   0
+0008    MOV      8   5
+0009    CALL     6   2   3
+0010    UGET     7   0      ; byte
+0011    KSTR     8   0      ; " "
+0012    CALL     7   2   2
+0013    ISEQV    6   7
+0014    JMP      7 => 0020
+0015    UGET     7   0      ; byte
+0016    KSTR     8   1      ; ">"
+0017    CALL     7   2   2
+0018    ISNEV    6   7
+0019    JMP      7 => 0022
+0020 => ADDVN    1   1   0  ; 1
+0021    JMP      7 => 0030
+0022 => UGET     7   0      ; byte
+0023    KSTR     8   2      ; "\t"
+0024    CALL     7   2   2
+0025    ISNEV    6   7
+0026    JMP      7 => 0031
+0027    ADDVN    1   1   1  ; 4
+0028    JMP      7 => 0030
+0029    JMP      2 => 0031
+0030 => FORL     2 => 0006
+0031 => RET1     1   2
+
+-- BYTECODE -- md.lua:166-184
+0001    KSHORT   3  -1
+0002    KSHORT   4   1
+0003    LEN      5   0
+0004    KSHORT   6   1
+0005    FORI     4 => 0070
+0006 => UGET     8   0      ; byte
+0007    MOV      9   0
+0008    MOV     10   7
+0009    CALL     8   2   3
+0010    UGET     9   0      ; byte
+0011    KSTR    10   0      ; "\t"
+0012    CALL     9   2   2
+0013    ISNEV    8   9
+0014    JMP      8 => 0017
+0015    ADDVN    3   3   0  ; 4
+0016    JMP      8 => 0042
+0017 => UGET     8   0      ; byte
+0018    MOV      9   0
+0019    MOV     10   7
+0020    CALL     8   2   3
+0021    UGET     9   0      ; byte
+0022    KSTR    10   1      ; " "
+0023    CALL     9   2   2
+0024    ISEQV    8   9
+0025    JMP      8 => 0035
+0026    UGET     8   0      ; byte
+0027    MOV      9   0
+0028    MOV     10   7
+0029    CALL     8   2   3
+0030    UGET     9   0      ; byte
+0031    KSTR    10   2      ; ">"
+0032    CALL     9   2   2
+0033    ISNEV    8   9
+0034    JMP      8 => 0037
+0035 => ADDVN    3   3   1  ; 1
+0036    JMP      8 => 0042
+0037 => UGET     8   1      ; sub
+0038    MOV      9   0
+0039    MOV     10   7
+0040    KSHORT  11  -1
+0041    CALLT    8   4
+0042 => ISNEV    3   1
+0043    JMP      8 => 0050
+0044    UGET     8   1      ; sub
+0045    MOV      9   0
+0046    MOV     10   7
+0047    KSHORT  11  -1
+0048    CALLT    8   4
+0049    JMP      8 => 0069
+0050 => ISGE     1   3
+0051    JMP      8 => 0069
+0052    KSTR     8   3      ; ""
+0053    KSHORT   9   1
+0054    SUBVV   10   3   1
+0055    KSHORT  11   1
+0056    FORI     9 => 0061
+0057 => MOV     13   8
+0058    KSTR    14   1      ; " "
+0059    CAT      8  13  14
+0060    FORL     9 => 0057
+0061 => MOV      9   8
+0062    UGET    10   1      ; sub
+0063    MOV     11   0
+0064    MOV     12   7
+0065    KSHORT  13  -1
+0066    CALL    10   2   4
+0067    CAT      9   9  10
+0068    RET1     9   2
+0069 => FORL     4 => 0006
+0070 => RET0     0   1
+
+-- BYTECODE -- md.lua:222-226
+0001    KSHORT   1   1
+0002    UGET     2   0      ; PATTERNS
+0003    LEN      2   2
+0004    KSHORT   3   1
+0005    FORI     1 => 0017
+0006 => UGET     5   1      ; match
+0007    MOV      6   0
+0008    UGET     7   0      ; PATTERNS
+0009    TGETV    7   7   4
+0010    CALL     5   2   3
+0011    ISF          5
+0012    JMP      6 => 0016
+0013    UGET     5   0      ; PATTERNS
+0014    TGETV    5   5   4
+0015    RET1     5   2
+0016 => FORL     1 => 0006
+0017 => RET0     0   1
+
+-- BYTECODE -- md.lua:232-318
+0001    MOV      4   1
+0002    CALL     4   2   1
+0003    IST          4
+0004    JMP      5 => 0006
+0005    RET0     0   1
+0006 => UGET     5   0      ; match
+0007    MOV      6   4
+0008    UGET     7   1      ; PATTERN_EMPTY
+0009    CALL     5   2   3
+0010    IST          5
+0011    JMP      6 => 0018
+0012    UGET     5   0      ; match
+0013    MOV      6   4
+0014    UGET     7   2      ; PATTERN_COMMENT
+0015    CALL     5   2   3
+0016    ISF          5
+0017    JMP      6 => 0020
+0018 => MOV      5   0
+0019    CALLT    5   1
+0020 => UGET     5   0      ; match
+0021    MOV      6   4
+0022    UGET     7   3      ; PATTERN_HEADER
+0023    CALL     5   3   3
+0024    ISF          5
+0025    JMP      7 => 0044
+0026    LEN      7   2
+0027    ADDVN    7   7   0  ; 1
+0028    TDUP     8   1
+0029    UGET     9   4      ; lineRead
+0030    MOV     10   6
+0031    CALL     9   2   2
+0032    TSETB    9   8   1
+0033    KSTR     9   0      ; "h"
+0034    LEN     10   5
+0035    CAT      9   9  10
+0036    TSETS    9   8   2  ; "type"
+0037    TSETV    8   2   7
+0038    LEN      7   2
+0039    ADDVN    7   7   0  ; 1
+0040    UGET     8   5      ; NEWLINE
+0041    TSETV    8   2   7
+0042    MOV      7   0
+0043    CALLT    7   1
+0044 => UGET     7   0      ; match
+0045    MOV      8   4
+0046    UGET     9   6      ; PATTERN_RULE1
+0047    CALL     7   2   3
+0048    IST          7
+0049    JMP      8 => 0062
+0050    UGET     7   0      ; match
+0051    MOV      8   4
+0052    UGET     9   7      ; PATTERN_RULE2
+0053    CALL     7   2   3
+0054    IST          7
+0055    JMP      8 => 0062
+0056    UGET     7   0      ; match
+0057    MOV      8   4
+0058    UGET     9   8      ; PATTERN_RULE3
+0059    CALL     7   2   3
+0060    ISF          7
+0061    JMP      8 => 0072
+0062 => LEN      7   2
+0063    ADDVN    7   7   0  ; 1
+0064    TDUP     8   3
+0065    TSETV    8   2   7
+0066    LEN      7   2
+0067    ADDVN    7   7   0  ; 1
+0068    UGET     8   5      ; NEWLINE
+0069    TSETV    8   2   7
+0070    MOV      7   0
+0071    CALLT    7   1
+0072 => UGET     7   0      ; match
+0073    MOV      8   4
+0074    UGET     9   9      ; PATTERN_CODEBLOCK
+0075    CALL     7   2   3
+0076    ISF          7
+0077    JMP      8 => 0126
+0078    UGET     8  10      ; getIndentLevel
+0079    MOV      9   4
+0080    CALL     8   2   2
+0081    TDUP     9   4
+0082    LEN     10   7
+0083    KSHORT  11   0
+0084    ISGE    11  10
+0085    JMP     10 => 0095
+0086    TDUP    10   7
+0087    UGET    11  11      ; format
+0088    KSTR    12   6      ; "language-%s"
+0089    UGET    13  12      ; lower
+0090    MOV     14   7
+0091    CALL    13   0   2
+0092    CALLM   11   2   1
+0093    TSETS   11  10   8  ; "class"
+0094    TSETS   10   9   5  ; "attributes"
+0095 => TDUP    10   9
+0096    TSETB    9  10   1
+0097    LEN     11   2
+0098    ADDVN   11  11   0  ; 1
+0099    TSETV   10   2  11
+0100 => UGET    11   0      ; match
+0101    MOV     12   0
+0102    CALL    12   2   1
+0103    UGET    13   9      ; PATTERN_CODEBLOCK
+0104    CALL    11   2   3
+0105    ISF         11
+0106    JMP     12 => 0113
+0107    UGET    11  10      ; getIndentLevel
+0108    MOV     12   1
+0109    CALL    12   0   1
+0110    CALLM   11   2   0
+0111    ISEQV   11   8
+0112    JMP     11 => 0124
+0113 => LOOP    11 => 0124
+0114    LEN     11   9
+0115    ADDVN   11  11   0  ; 1
+0116    MOV     12   1
+0117    CALL    12   2   1
+0118    TSETV   12   9  11
+0119    LEN     11   9
+0120    ADDVN   11  11   0  ; 1
+0121    KSTR    12  10      ; "\r\n"
+0122    TSETV   12   9  11
+0123    JMP     11 => 0100
+0124 => MOV     11   0
+0125    CALLT   11   1
+0126 => UGET     8   0      ; match
+0127    MOV      9   4
+0128    UGET    10  13      ; PATTERN_LINKDEF
+0129    CALL     8   3   3
+0130    ISF          8
+0131    JMP     10 => 0138
+0132    UGET    10  12      ; lower
+0133    MOV     11   8
+0134    CALL    10   2   2
+0135    TSETV    9   3  10
+0136    MOV     10   0
+0137    CALLT   10   1
+0138 => MOV     10   0
+0139    CALL    10   2   1
+0140    ISF         10
+0141    JMP     11 => 0159
+0142    UGET    11   0      ; match
+0143    MOV     12  10
+0144    KSTR    13  11      ; "^%s*%=+$"
+0145    CALL    11   2   3
+0146    ISF         11
+0147    JMP     12 => 0159
+0148    LEN     11   2
+0149    ADDVN   11  11   0  ; 1
+0150    TDUP    12  12
+0151    UGET    13   4      ; lineRead
+0152    MOV     14   4
+0153    CALL    13   2   2
+0154    TSETB   13  12   1
+0155    TSETV   12   2  11
+0156    MOV     11   0
+0157    CALLT   11   1
+0158    JMP     11 => 0177
+0159 => ISF         10
+0160    JMP     11 => 0177
+0161    UGET    11   0      ; match
+0162    MOV     12  10
+0163    KSTR    13  13      ; "^%s*%-+$"
+0164    CALL    11   2   3
+0165    ISF         11
+0166    JMP     12 => 0177
+0167    LEN     11   2
+0168    ADDVN   11  11   0  ; 1
+0169    TDUP    12  14
+0170    UGET    13   4      ; lineRead
+0171    MOV     14   4
+0172    CALL    13   2   2
+0173    TSETB   13  12   1
+0174    TSETV   12   2  11
+0175    MOV     11   0
+0176    CALLT   11   1
+0177 => TDUP    11  15
+0178    UGET    12   4      ; lineRead
+0179    MOV     13   4
+0180    CALL    12   2   2
+0181    TSETB   12  11   1
+0182    UGET    12   5      ; NEWLINE
+0183    TSETB   12  11   2
+0184    LEN     12   2
+0185    ADDVN   12  12   0  ; 1
+0186    TSETV   11   2  12
+0187 => ISF         10
+0188    JMP     12 => 0209
+0189    UGET    12  14      ; isSpecialLine
+0190    MOV     13  10
+0191    CALL    12   2   2
+0192    IST         12
+0193    JMP     12 => 0209
+0194    LOOP    12 => 0209
+0195    LEN     12  11
+0196    ADDVN   12  12   0  ; 1
+0197    UGET    13   4      ; lineRead
+0198    MOV     14  10
+0199    CALL    13   2   2
+0200    TSETV   13  11  12
+0201    LEN     12  11
+0202    ADDVN   12  12   0  ; 1
+0203    UGET    13   5      ; NEWLINE
+0204    TSETV   13  11  12
+0205    MOV     12   0
+0206    CALL    12   2   1
+0207    MOV     10  12
+0208    JMP     12 => 0187
+0209 => LEN     12  11
+0210    KPRI    13   0
+0211    TSETV   13  11  12
+0212    LEN     12   2
+0213    ADDVN   12  12   0  ; 1
+0214    UGET    13   5      ; NEWLINE
+0215    TSETV   13   2  12
+0216    MOV     12   1
+0217    CALLT   12   1
+
+-- BYTECODE -- md.lua:326-339
+0001    TNEW     4   0
+0002    MOV      5   1
+0003    CALL     5   2   1
+0004    UGET     6   0      ; getIndentLevel
+0005    MOV      7   5
+0006    CALL     6   2   2
+0007 => LOOP     7 => 0029
+0008    LEN      7   4
+0009    ADDVN    7   7   0  ; 1
+0010    UGET     8   1      ; stripIndent
+0011    MOV      9   5
+0012    MOV     10   6
+0013    CALL     8   2   3
+0014    TSETV    8   4   7
+0015    MOV      7   0
+0016    CALL     7   2   1
+0017    MOV      5   7
+0018    IST          5
+0019    JMP      7 => 0021
+0020    JMP      7 => 0029
+0021 => MOV      7   3
+0022    MOV      8   5
+0023    VARG     9   0   4
+0024    CALLM    7   2   1
+0025    ISF          7
+0026    JMP      8 => 0007
+0027    JMP      7 => 0029
+0028    JMP      7 => 0007
+0029 => TNEW     7   0
+0030    UGET     8   2      ; readLineStream
+0031    UGET     9   3      ; tableLineStream
+0032    MOV     10   4
+0033    CALL     9   2   2
+0034    MOV     10   7
+0035    MOV     11   2
+0036    CALL     8   1   4
+0037    RET1     7   2
+
+-- BYTECODE -- md.lua:344-347
+0001    UGET     1   0      ; isSpecialLine
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISFC     2   1
+0005    JMP      2 => 0012
+0006    UGET     2   1      ; PATTERN_BLOCKQUOTE
+0007    ISNEV    1   2
+0008    JMP      2 => 0011
+0009    KPRI     2   1
+0010    JMP      3 => 0012
+0011 => KPRI     2   2
+0012 => RET1     2   2
+
+-- BYTECODE -- md.lua:341-352
+0001    MOV      4   1
+0002    CALL     4   2   1
+0003    UGET     5   0      ; match
+0004    MOV      6   4
+0005    UGET     7   1      ; PATTERN_BLOCKQUOTE
+0006    CALL     5   2   3
+0007    ISF          5
+0008    JMP      6 => 0023
+0009    UGET     5   2      ; readFragment
+0010    MOV      6   0
+0011    MOV      7   1
+0012    MOV      8   3
+0013    FNEW     9   0      ; md.lua:344
+0014    CALL     5   2   5
+0015    KSTR     6   2      ; "blockquote"
+0016    TSETS    6   5   1  ; "type"
+0017    LEN      6   2
+0018    ADDVN    6   6   0  ; 1
+0019    TSETV    5   2   6
+0020    MOV      6   1
+0021    UCLO     0 => 0022
+0022 => CALLT    6   1
+0023 => RET0     0   1
+
+-- BYTECODE -- md.lua:381-385
+0001    IST          0
+0002    JMP      1 => 0005
+0003    KPRI     1   2
+0004    RET1     1   2
+0005 => UGET     1   0      ; isSpecialLine
+0006    MOV      2   0
+0007    CALL     1   2   2
+0008    UGET     2   1      ; PATTERN_EMPTY
+0009    ISEQV    1   2
+0010    JMP      2 => 0017
+0011    UGET     2   2      ; getIndentLevel
+0012    MOV      3   0
+0013    CALL     2   2   2
+0014    UGET     3   3      ; i
+0015    ISLT     2   3
+0016    JMP      2 => 0019
+0017 => KPRI     2   1
+0018    JMP      3 => 0020
+0019 => KPRI     2   2
+0020 => RET1     2   2
+
+-- BYTECODE -- md.lua:354-396
+0001    MOV      5   1
+0002    CALL     5   2   1
+0003    IST          5
+0004    JMP      5 => 0006
+0005    UCLO     0 => 0126
+0006 => ISF          4
+0007    JMP      5 => 0015
+0008    UGET     5   0      ; getIndentLevel
+0009    MOV      6   1
+0010    CALL     6   0   1
+0011    CALLM    5   2   0
+0012    ISEQV    5   4
+0013    JMP      5 => 0015
+0014    UCLO     0 => 0127
+0015 => UGET     5   1      ; match
+0016    MOV      6   1
+0017    CALL     6   2   1
+0018    UGET     7   2      ; PATTERN_ULIST
+0019    CALL     5   2   3
+0020    ISF          5
+0021    JMP      6 => 0025
+0022    UGET     5   2      ; PATTERN_ULIST
+0023    IST          5
+0024    JMP      6 => 0033
+0025 => UGET     5   1      ; match
+0026    MOV      6   1
+0027    CALL     6   2   1
+0028    UGET     7   3      ; PATTERN_OLIST
+0029    CALL     5   2   3
+0030    ISF          5
+0031    JMP      6 => 0033
+0032    UGET     5   3      ; PATTERN_OLIST
+0033 => IST          5
+0034    JMP      6 => 0036
+0035    UCLO     0 => 0128
+0036 => MOV      6   5
+0037    MOV      7   1
+0038    CALL     7   2   1
+0039    UGET     8   0      ; getIndentLevel
+0040    MOV      9   7
+0041    CALL     8   2   2
+0042    TDUP     9   1
+0043    UGET    10   2      ; PATTERN_ULIST
+0044    ISNEV    5  10
+0045    JMP     10 => 0048
+0046    KSTR    10   0      ; "ul"
+0047    JMP     11 => 0049
+0048 => KSTR    10   2      ; "ol"
+0049 => TSETS   10   9   3  ; "type"
+0050    LEN     10   2
+0051    ADDVN   10  10   0  ; 1
+0052    TSETV    9   2  10
+0053    UGET    10   4      ; NEWLINE
+0054    TSETB   10   9   1
+0055 => ISNEV    6   5
+0056    JMP     10 => 0115
+0057    LOOP    10 => 0115
+0058    LEN     10   9
+0059    ADDVN   10  10   0  ; 1
+0060    TDUP    11   4
+0061    UGET    12   5      ; lineRead
+0062    UGET    13   1      ; match
+0063    MOV     14   7
+0064    MOV     15   6
+0065    CALL    13   0   3
+0066    CALLM   12   2   0
+0067    TSETB   12  11   1
+0068    TSETV   11   9  10
+0069    MOV     10   0
+0070    CALL    10   2   1
+0071    MOV      7  10
+0072    IST          7
+0073    JMP     10 => 0075
+0074    JMP     10 => 0115
+0075 => UGET    10   6      ; isSpecialLine
+0076    MOV     11   7
+0077    CALL    10   2   2
+0078    MOV      6  10
+0079    UGET    10   7      ; PATTERN_EMPTY
+0080    ISEQV    6  10
+0081    JMP     10 => 0055
+0082    LEN     10   9
+0083    ADDVN   10  10   0  ; 1
+0084    UGET    11   4      ; NEWLINE
+0085    TSETV   11   9  10
+0086    UGET    10   0      ; getIndentLevel
+0087    MOV     11   7
+0088    CALL    10   2   2
+0089    ISGE    10   8
+0090    JMP     11 => 0092
+0091    UCLO    10 => 0115
+0092 => ISGE     8  10
+0093    JMP     11 => 0113
+0094    UGET    11   8      ; readFragment
+0095    MOV     12   0
+0096    MOV     13   1
+0097    MOV     14   3
+0098    FNEW    15   5      ; md.lua:381
+0099    CALL    11   2   5
+0100    LEN     12   9
+0101    ADDVN   12  12   0  ; 1
+0102    TSETV   11   9  12
+0103    MOV     12   1
+0104    CALL    12   2   1
+0105    MOV      7  12
+0106    IST          7
+0107    JMP     12 => 0109
+0108    UCLO    10 => 0115
+0109 => UGET    12   6      ; isSpecialLine
+0110    MOV     13   7
+0111    CALL    12   2   2
+0112    MOV      6  12
+0113 => UCLO    10 => 0114
+0114 => JMP     10 => 0055
+0115 => LEN     10   9
+0116    ADDVN   10  10   0  ; 1
+0117    UGET    11   4      ; NEWLINE
+0118    TSETV   11   9  10
+0119    LEN     10   2
+0120    ADDVN   10  10   0  ; 1
+0121    UGET    11   4      ; NEWLINE
+0122    TSETV   11   2  10
+0123    MOV     10   1
+0124    UCLO     0 => 0125
+0125 => CALLT   10   1
+0126 => RET0     0   1
+0127 => RET0     0   1
+0128 => RET0     0   1
+
+-- BYTECODE -- md.lua:398-410
+0001    UGET     3   0      ; bufferStream
+0002    MOV      4   0
+0003    CALL     3   3   2
+0004    IST          1
+0005    JMP      5 => 0007
+0006    TNEW     1   0
+0007 => IST          2
+0008    JMP      5 => 0010
+0009    TNEW     2   0
+0010 => MOV      5   4
+0011    CALL     5   2   1
+0012    ISF          5
+0013    JMP      6 => 0038
+0014    LOOP     5 => 0038
+0015    UGET     5   1      ; readBlockQuote
+0016    MOV      6   3
+0017    MOV      7   4
+0018    MOV      8   1
+0019    MOV      9   2
+0020    CALL     5   2   5
+0021    IST          5
+0022    JMP      5 => 0010
+0023    UGET     5   2      ; readList
+0024    MOV      6   3
+0025    MOV      7   4
+0026    MOV      8   1
+0027    MOV      9   2
+0028    CALL     5   2   5
+0029    IST          5
+0030    JMP      5 => 0010
+0031    UGET     5   3      ; readSimple
+0032    MOV      6   3
+0033    MOV      7   4
+0034    MOV      8   1
+0035    MOV      9   2
+0036    CALL     5   1   5
+0037    JMP      5 => 0010
+0038 => MOV      5   1
+0039    MOV      6   2
+0040    RET      5   3
+
+-- BYTECODE -- md.lua:412-414
+0001    UGET     1   0      ; readLineStream
+0002    UGET     2   1      ; stringLineStream
+0003    MOV      3   0
+0004    CALL     2   0   2
+0005    CALLMT   1   0
+
+-- BYTECODE -- md.lua:420-426
+0001    TNEW     1   0
+0002    GGET     2   0      ; "pairs"
+0003    MOV      3   0
+0004    CALL     2   4   2
+0005    ISNEXT   5 => 0014
+0006 => LEN      7   1
+0007    ADDVN    7   7   0  ; 1
+0008    UGET     8   0      ; format
+0009    KSTR     9   1      ; "%s="%s""
+0010    MOV     10   5
+0011    MOV     11   6
+0012    CALL     8   2   4
+0013    TSETV    8   1   7
+0014 => ITERN    5   3   3
+0015    ITERL    5 => 0006
+0016    UGET     2   1      ; concat
+0017    MOV      3   1
+0018    KSTR     4   2      ; " "
+0019    CALLT    2   3
+
+-- BYTECODE -- md.lua:428-453
+0001    TGETS    3   0   0  ; "type"
+0002    ISF          3
+0003    JMP      4 => 0065
+0004    TGETS    3   0   1  ; "attributes"
+0005    IST          3
+0006    JMP      4 => 0008
+0007    TNEW     3   0
+0008 => TGETS    4   0   0  ; "type"
+0009    ISNES    4   2      ; "a"
+0010    JMP      4 => 0025
+0011    TGETS    4   3   3  ; "href"
+0012    IST          4
+0013    JMP      4 => 0025
+0014    UGET     4   0      ; lower
+0015    TGETB    5   0   1
+0016    IST          5
+0017    JMP      6 => 0019
+0018    KSTR     5   4      ; ""
+0019 => CALL     4   2   2
+0020    TGETV    4   1   4
+0021    IST          4
+0022    JMP      5 => 0024
+0023    KSTR     4   4      ; ""
+0024 => TSETS    4   3   3  ; "href"
+0025 => TGETS    4   0   0  ; "type"
+0026    ISNES    4   5      ; "img"
+0027    JMP      4 => 0042
+0028    TGETS    4   3   6  ; "src"
+0029    IST          4
+0030    JMP      4 => 0042
+0031    UGET     4   0      ; lower
+0032    TGETS    5   3   7  ; "alt"
+0033    IST          5
+0034    JMP      6 => 0036
+0035    KSTR     5   4      ; ""
+0036 => CALL     4   2   2
+0037    TGETV    4   1   4
+0038    IST          4
+0039    JMP      5 => 0041
+0040    KSTR     4   4      ; ""
+0041 => TSETS    4   3   6  ; "src"
+0042 => UGET     4   1      ; renderAttributes
+0043    MOV      5   3
+0044    CALL     4   2   2
+0045    LEN      5   4
+0046    KSHORT   6   0
+0047    ISGE     6   5
+0048    JMP      5 => 0058
+0049    LEN      5   2
+0050    ADDVN    5   5   0  ; 1
+0051    UGET     6   2      ; format
+0052    KSTR     7   8      ; "<%s %s>"
+0053    TGETS    8   0   0  ; "type"
+0054    MOV      9   4
+0055    CALL     6   2   4
+0056    TSETV    6   2   5
+0057    JMP      5 => 0065
+0058 => LEN      5   2
+0059    ADDVN    5   5   0  ; 1
+0060    UGET     6   2      ; format
+0061    KSTR     7   9      ; "<%s>"
+0062    TGETS    8   0   0  ; "type"
+0063    CALL     6   2   3
+0064    TSETV    6   2   5
+0065 => KSHORT   3   1
+0066    LEN      4   0
+0067    KSHORT   5   1
+0068    FORI     3 => 0094
+0069 => TGETV    7   0   6
+0070    UGET     8   3      ; type
+0071    MOV      9   7
+0072    CALL     8   2   2
+0073    ISNES    8  10      ; "string"
+0074    JMP      8 => 0079
+0075    LEN      8   2
+0076    ADDVN    8   8   0  ; 1
+0077    TSETV    7   2   8
+0078    JMP      8 => 0093
+0079 => UGET     8   3      ; type
+0080    MOV      9   7
+0081    CALL     8   2   2
+0082    ISNES    8  11      ; "table"
+0083    JMP      8 => 0090
+0084    UGET     8   4      ; renderTree
+0085    MOV      9   7
+0086    MOV     10   1
+0087    MOV     11   2
+0088    CALL     8   1   4
+0089    JMP      8 => 0093
+0090 => GGET     8  12      ; "error"
+0091    KSTR     9  13      ; "Unexpected node while rendering tree."
+0092    CALL     8   1   2
+0093 => FORL     3 => 0069
+0094 => TGETS    3   0  14  ; "noclose"
+0095    IST          3
+0096    JMP      3 => 0107
+0097    TGETS    3   0   0  ; "type"
+0098    ISF          3
+0099    JMP      4 => 0107
+0100    LEN      3   2
+0101    ADDVN    3   3   0  ; 1
+0102    UGET     4   2      ; format
+0103    KSTR     5  15      ; "</%s>"
+0104    TGETS    6   0   0  ; "type"
+0105    CALL     4   2   3
+0106    TSETV    4   2   3
+0107 => RET0     0   1
+
+-- BYTECODE -- md.lua:455-483
+0001    UGET     2   0      ; readLineStream
+0002    MOV      3   0
+0003    CALL     2   3   2
+0004    TNEW     4   0
+0005    KNIL     5  10
+0006    ISF          1
+0007    JMP     11 => 0048
+0008    GGET    11   0      ; "assert"
+0009    UGET    12   1      ; type
+0010    MOV     13   1
+0011    CALL    12   2   2
+0012    ISEQS   12   1      ; "table"
+0013    JMP     12 => 0016
+0014    KPRI    12   1
+0015    JMP     13 => 0017
+0016 => KPRI    12   2
+0017 => KSTR    13   2      ; "Options argument should be a table."
+0018    CALL    11   1   3
+0019    TGETS   11   1   3  ; "tag"
+0020    ISF         11
+0021    JMP     12 => 0044
+0022    UGET    11   2      ; format
+0023    KSTR    12   4      ; "</%s>"
+0024    TGETS   13   1   3  ; "tag"
+0025    CALL    11   2   3
+0026    MOV      6  11
+0027    TGETS   11   1   5  ; "attributes"
+0028    ISF         11
+0029    JMP     12 => 0039
+0030    UGET    11   2      ; format
+0031    KSTR    12   6      ; "<%s %s>"
+0032    TGETS   13   1   3  ; "tag"
+0033    UGET    14   3      ; renderAttributes
+0034    TGETS   15   1   5  ; "attributes"
+0035    CALL    14   0   2
+0036    CALLM   11   2   2
+0037    MOV      5  11
+0038    JMP     11 => 0044
+0039 => UGET    11   2      ; format
+0040    KSTR    12   7      ; "<%s>"
+0041    TGETS   13   1   3  ; "tag"
+0042    CALL    11   2   3
+0043    MOV      5  11
+0044 => TGETS    7   1   8  ; "insertHead"
+0045    TGETS    8   1   9  ; "insertTail"
+0046    TGETS    9   1  10  ; "prependHead"
+0047    TGETS   10   1  11  ; "appendTail"
+0048 => LEN     11   4
+0049    ADDVN   11  11   0  ; 1
+0050    TSETV    9   4  11
+0051    LEN     11   4
+0052    ADDVN   11  11   0  ; 1
+0053    TSETV    5   4  11
+0054    LEN     11   4
+0055    ADDVN   11  11   0  ; 1
+0056    TSETV    7   4  11
+0057    UGET    11   4      ; renderTree
+0058    MOV     12   2
+0059    MOV     13   3
+0060    MOV     14   4
+0061    CALL    11   1   4
+0062    LEN     11   4
+0063    TGETV   11   4  11
+0064    UGET    12   5      ; NEWLINE
+0065    ISNEV   11  12
+0066    JMP     11 => 0070
+0067    LEN     11   4
+0068    KPRI    12   0
+0069    TSETV   12   4  11
+0070 => LEN     11   4
+0071    ADDVN   11  11   0  ; 1
+0072    TSETV    8   4  11
+0073    LEN     11   4
+0074    ADDVN   11  11   0  ; 1
+0075    TSETV    6   4  11
+0076    LEN     11   4
+0077    ADDVN   11  11   0  ; 1
+0078    TSETV   10   4  11
+0079    UGET    11   6      ; concat
+0080    MOV     12   4
+0081    CALLT   11   2
+
+-- BYTECODE -- md.lua:489-496
+0001    UGET     0   0      ; pcall
+0002    VARG     1   0   0
+0003    CALLM    0   3   0
+0004    ISF          0
+0005    JMP      2 => 0008
+0006    RET1     1   2
+0007    JMP      2 => 0011
+0008 => KPRI     2   0
+0009    MOV      3   1
+0010    RET      2   3
+0011 => RET0     0   1
+
+-- BYTECODE -- md.lua:498-500
+0001    UGET     2   0      ; pwrap
+0002    UGET     3   1      ; renderLinesRaw
+0003    MOV      4   0
+0004    MOV      5   1
+0005    CALLT    2   4
+
+-- BYTECODE -- md.lua:502-504
+0001    UGET     2   0      ; pwrap
+0002    UGET     3   1      ; renderLinesRaw
+0003    UGET     4   2      ; tableLineStream
+0004    MOV      5   0
+0005    CALL     4   2   2
+0006    MOV      5   1
+0007    CALLT    2   4
+
+-- BYTECODE -- md.lua:506-508
+0001    UGET     2   0      ; pwrap
+0002    UGET     3   1      ; renderLinesRaw
+0003    UGET     4   2      ; stringLineStream
+0004    MOV      5   0
+0005    CALL     4   2   2
+0006    MOV      5   1
+0007    CALLT    2   4
+
+-- BYTECODE -- md.lua:516-520
+0001    UGET     2   0      ; renderers
+0002    UGET     3   1      ; type
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    TGETV    2   2   3
+0006    IST          2
+0007    JMP      3 => 0011
+0008    KPRI     3   0
+0009    KSTR     4   0      ; "Source must be a string, table, or funct"~
+0010    RET      3   3
+0011 => MOV      3   2
+0012    MOV      4   0
+0013    MOV      5   1
+0014    CALLT    3   3
+
+-- BYTECODE -- md.lua:528-530
+0001    UGET     1   0      ; render
+0002    VARG     2   0   1
+0003    CALLMT   1   0
+
+-- BYTECODE -- md.lua:0-532
+0001    GGET     0   0      ; "table"
+0002    TGETS    0   0   1  ; "concat"
+0003    GGET     1   2      ; "string"
+0004    TGETS    1   1   3  ; "sub"
+0005    GGET     2   2      ; "string"
+0006    TGETS    2   2   4  ; "match"
+0007    GGET     3   2      ; "string"
+0008    TGETS    3   3   5  ; "format"
+0009    GGET     4   2      ; "string"
+0010    TGETS    4   4   6  ; "gmatch"
+0011    GGET     5   2      ; "string"
+0012    TGETS    5   5   7  ; "byte"
+0013    GGET     6   2      ; "string"
+0014    TGETS    6   6   8  ; "find"
+0015    GGET     7   2      ; "string"
+0016    TGETS    7   7   9  ; "lower"
+0017    GGET     8  10      ; "tonumber"
+0018    GGET     9  11      ; "type"
+0019    GGET    10  12      ; "pcall"
+0020    FNEW    11  13      ; md.lua:40
+0021    FNEW    12  14      ; md.lua:44
+0022    FNEW    13  15      ; md.lua:52
+0023    TDUP    14  16
+0024    FNEW    15  17      ; md.lua:67
+0025    FNEW    16  18      ; md.lua:83
+0026    FNEW    17  19      ; md.lua:97
+0027    TDUP    18  20
+0028    FNEW    19  21      ; md.lua:115
+0029    FNEW    20  22      ; md.lua:151
+0030    FNEW    21  23      ; md.lua:166
+0031    KSTR    22  24      ; "\n"
+0032    KSTR    23  25      ; "^%s*$"
+0033    KSTR    24  26      ; "^%s*<>"
+0034    KSTR    25  27      ; "^%s*(%#+)%s*(.*)%#*$"
+0035    KSTR    26  28      ; "^%s?%s?%s?(-%s*-%s*-[%s-]*)$"
+0036    KSTR    27  29      ; "^%s?%s?%s?(*%s**%s**[%s*]*)$"
+0037    KSTR    28  30      ; "^%s?%s?%s?(_%s*_%s*_[%s_]*)$"
+0038    KSTR    29  31      ; "^%s*%`%`%`(.*)"
+0039    KSTR    30  32      ; "^%s*> (.*)$"
+0040    KSTR    31  33      ; "^%s*[%*%-] (.+)$"
+0041    KSTR    32  34      ; "^%s*%d+%. (.+)$"
+0042    KSTR    33  35      ; "^%s*%[(.*)%]%s*%:%s*(.*)"
+0043    TNEW    34  12
+0044    TSETB   23  34   1
+0045    TSETB   24  34   2
+0046    TSETB   25  34   3
+0047    TSETB   26  34   4
+0048    TSETB   27  34   5
+0049    TSETB   28  34   6
+0050    TSETB   29  34   7
+0051    TSETB   30  34   8
+0052    TSETB   31  34   9
+0053    TSETB   32  34  10
+0054    TSETB   33  34  11
+0055    FNEW    35  36      ; md.lua:222
+0056    FNEW    36  37      ; md.lua:232
+0057    KPRI    37   0
+0058    FNEW    38  38      ; md.lua:326
+0059    FNEW    39  39      ; md.lua:341
+0060    FNEW    40  40      ; md.lua:354
+0061    FNEW    37  41      ; md.lua:398
+0062    FNEW    41  42      ; md.lua:412
+0063    FNEW    42  43      ; md.lua:420
+0064    FNEW    43  44      ; md.lua:428
+0065    FNEW    44  45      ; md.lua:455
+0066    FNEW    45  46      ; md.lua:489
+0067    FNEW    46  47      ; md.lua:498
+0068    FNEW    47  48      ; md.lua:502
+0069    FNEW    48  49      ; md.lua:506
+0070    TDUP    49  50
+0071    TSETS   48  49   2  ; "string"
+0072    TSETS   47  49   0  ; "table"
+0073    TSETS   46  49  51  ; "function"
+0074    FNEW    50  52      ; md.lua:516
+0075    GGET    51  53      ; "setmetatable"
+0076    TDUP    52  54
+0077    TSETS   50  52  55  ; "render"
+0078    TSETS   48  52  56  ; "renderString"
+0079    TSETS   46  52  57  ; "renderLineIterator"
+0080    TSETS   47  52  58  ; "renderTable"
+0081    TDUP    53  60
+0082    FNEW    54  59      ; md.lua:528
+0083    TSETS   54  53  61  ; "__call"
+0084    UCLO     0 => 0085
+0085 => CALLT   51   3
+

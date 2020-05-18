@@ -1,0 +1,535 @@
+-- BYTECODE -- dateparser.lua:13-17
+0001    UGET     2   0      ; pcall
+0002    UGET     3   1      ; time
+0003    MOV      4   0
+0004    CALL     2   3   3
+0005    ISF          2
+0006    JMP      4 => 0009
+0007    IST          3
+0008    JMP      4 => 0016
+0009 => KPRI     4   0
+0010    KSTR     5   0      ; "invalid date. os.time says: "
+0011    ISTC     6   3
+0012    JMP      6 => 0014
+0013    KSTR     6   1      ; "nothing"
+0014 => CAT      5   5   6
+0015    RET      4   3
+0016 => UGET     4   2      ; local_UTC_offset_sec
+0017    SUBVV    4   3   4
+0018    SUBVV    4   4   1
+0019    RET1     4   2
+
+-- BYTECODE -- dateparser.lua:24-39
+0001    UGET     2   0      ; type
+0002    MOV      3   0
+0003    CALL     2   2   2
+0004    ISNES    2   0      ; "string"
+0005    JMP      2 => 0011
+0006    UGET     2   0      ; type
+0007    MOV      3   1
+0008    CALL     2   2   2
+0009    ISEQS    2   1      ; "function"
+0010    JMP      2 => 0014
+0011 => KPRI     2   0
+0012    KSTR     3   2      ; "improper arguments, can't register forma"~
+0013    RET      2   3
+0014 => KPRI     2   0
+0015    UGET     3   1      ; ipairs
+0016    UGET     4   2      ; format_func
+0017    CALL     3   4   2
+0018    JMP      6 => 0023
+0019 => ISNEV    7   1
+0020    JMP      8 => 0023
+0021    KPRI     2   2
+0022    JMP      3 => 0025
+0023 => ITERC    6   3   3
+0024    ITERL    6 => 0019
+0025 => IST          2
+0026    JMP      3 => 0031
+0027    UGET     3   3      ; tinsert
+0028    UGET     4   2      ; format_func
+0029    MOV      5   1
+0030    CALL     3   1   3
+0031 => UGET     3   4      ; formats
+0032    TSETV    1   3   0
+0033    KPRI     3   2
+0034    RET1     3   2
+
+-- BYTECODE -- dateparser.lua:42-45
+0001    UGET     1   0      ; type
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISEQS    1   0      ; "string"
+0005    JMP      1 => 0009
+0006    KPRI     1   0
+0007    KSTR     2   1      ; "format name must be a string"
+0008    RET      1   3
+0009 => UGET     1   1      ; formats
+0010    KPRI     2   0
+0011    TSETV    2   1   0
+0012    RET0     0   1
+
+-- BYTECODE -- dateparser.lua:48-50
+0001    UGET     1   0      ; formats
+0002    TGETV    1   1   0
+0003    IST          1
+0004    JMP      2 => 0006
+0005    KPRI     1   0
+0006 => KSTR     2   0      ; "format %s not registered"
+0007    MOV      3   2
+0008    TGETS    2   2   1  ; "format"
+0009    MOV      4   0
+0010    CALL     2   0   3
+0011    RETM     1   1
+
+-- BYTECODE -- dateparser.lua:56-68
+0001    KNIL     2   4
+0002    ISF          1
+0003    JMP      5 => 0022
+0004    UGET     5   0      ; formats
+0005    TGETV    5   5   1
+0006    IST          5
+0007    JMP      5 => 0014
+0008    KSTR     5   0      ; "unknown date format: "
+0009    UGET     6   1      ; tostring
+0010    MOV      7   1
+0011    CALL     6   2   2
+0012    CAT      5   5   6
+0013    RET1     5   2
+0014 => UGET     5   2      ; pcall
+0015    UGET     6   0      ; formats
+0016    TGETV    6   6   1
+0017    MOV      7   0
+0018    CALL     5   3   3
+0019    MOV      3   6
+0020    MOV      2   5
+0021    JMP      5 => 0039
+0022 => UGET     5   3      ; ipairs
+0023    UGET     6   4      ; format_func
+0024    CALL     5   4   2
+0025    JMP      8 => 0037
+0026 => UGET    10   2      ; pcall
+0027    MOV     11   9
+0028    MOV     12   0
+0029    CALL    10   3   3
+0030    MOV      3  11
+0031    MOV      2  10
+0032    ISF          2
+0033    JMP     10 => 0037
+0034    ISF          3
+0035    JMP     10 => 0037
+0036    RET1     3   2
+0037 => ITERC    8   3   3
+0038    ITERL    8 => 0026
+0039 => ISFC     5   2
+0040    JMP      5 => 0042
+0041    MOV      5   3
+0042 => RET1     5   2
+
+-- BYTECODE -- dateparser.lua:70-124
+0001    KNIL     1  11
+0002    MOV     13   0
+0003    TGETS   12   0   0  ; "match"
+0004    KSTR    14   1      ; "^(%d%d%d%d)%-?(.*)$"
+0005    CALL    12   3   3
+0006    MOV      0  13
+0007    MOV      1  12
+0008    MOV     13   0
+0009    TGETS   12   0   0  ; "match"
+0010    KSTR    14   2      ; "^(%d%d%d)%-?(.*)$"
+0011    CALL    12   3   3
+0012    MOV     11  13
+0013    MOV      2  12
+0014    ISF          2
+0015    JMP     12 => 0017
+0016    MOV      0  11
+0017 => MOV     13   0
+0018    TGETS   12   0   0  ; "match"
+0019    KSTR    14   3      ; "^(%d%d)%-?(.*)$"
+0020    CALL    12   3   3
+0021    MOV      0  13
+0022    MOV      3  12
+0023    MOV     13   0
+0024    TGETS   12   0   0  ; "match"
+0025    KSTR    14   4      ; "^(%d%d)(.*)$"
+0026    CALL    12   3   3
+0027    MOV      0  13
+0028    MOV      4  12
+0029    LEN     12   0
+0030    KSHORT  13   0
+0031    ISGE    13  12
+0032    JMP     12 => 0104
+0033    MOV     13   0
+0034    TGETS   12   0   0  ; "match"
+0035    KSTR    14   5      ; "^T(.*)$"
+0036    CALL    12   2   3
+0037    MOV      0  12
+0038    MOV     13   0
+0039    TGETS   12   0   0  ; "match"
+0040    KSTR    14   6      ; "^([0-2][0-9]):?(.*)$"
+0041    CALL    12   3   3
+0042    MOV      0  13
+0043    MOV      6  12
+0044    MOV     13   0
+0045    TGETS   12   0   0  ; "match"
+0046    KSTR    14   7      ; "^([0-6][0-9]):?(.*)$"
+0047    CALL    12   3   3
+0048    MOV      0  13
+0049    MOV      7  12
+0050    MOV     13   0
+0051    TGETS   12   0   0  ; "match"
+0052    KSTR    14   8      ; "^([0-6][0-9])(.*)$"
+0053    CALL    12   3   3
+0054    MOV      0  13
+0055    MOV      8  12
+0056    MOV     13   0
+0057    TGETS   12   0   0  ; "match"
+0058    KSTR    14   9      ; "^%.(%d+)(.*)$"
+0059    CALL    12   3   3
+0060    MOV     11  13
+0061    MOV      9  12
+0062    ISF          9
+0063    JMP     12 => 0065
+0064    MOV      0  11
+0065 => ISNES    0  10      ; "Z"
+0066    JMP     12 => 0070
+0067    KSTR     0  11      ; ""
+0068    KSHORT  10   0
+0069    JMP     12 => 0098
+0070 => KNIL    12  14
+0071    MOV     16   0
+0072    TGETS   15   0   0  ; "match"
+0073    KSTR    17  12      ; "^([+-])(%d%d)%:?(.*)$"
+0074    CALL    15   4   3
+0075    MOV      0  17
+0076    MOV     13  16
+0077    MOV     12  15
+0078    MOV     16   0
+0079    TGETS   15   0   0  ; "match"
+0080    KSTR    17   4      ; "^(%d%d)(.*)$"
+0081    CALL    15   3   3
+0082    ISF         15
+0083    JMP     17 => 0085
+0084    MOV      0  16
+0085 => UGET    17   0      ; tonumber
+0086    MOV     18  12
+0087    MOV     19  13
+0088    CAT     18  18  19
+0089    CALL    17   2   2
+0090    UGET    18   0      ; tonumber
+0091    MOV     19  15
+0092    CALL    18   2   2
+0093    IST         18
+0094    JMP     19 => 0096
+0095    KSHORT  18   0
+0096 => DIVVN   18  18   0  ; 60
+0097    ADDVV   10  17  18
+0098 => LEN     12   0
+0099    KSHORT  13   0
+0100    ISGE    13  12
+0101    JMP     12 => 0104
+0102    KPRI    12   0
+0103    RET1    12   2
+0104 => UGET    12   0      ; tonumber
+0105    MOV     13   1
+0106    CALL    12   2   2
+0107    MOV      1  12
+0108    TDUP    12  13
+0109    ISFC    13   1
+0110    JMP     13 => 0123
+0111    KSHORT  13 100
+0112    ISGE    13   1
+0113    JMP     13 => 0116
+0114    ISTC    13   1
+0115    JMP     13 => 0123
+0116 => KSHORT  13  50
+0117    ISGE     1  13
+0118    JMP     13 => 0122
+0119    ADDVN   13   1   1  ; 2000
+0120    IST         13
+0121    JMP     14 => 0123
+0122 => ADDVN   13   1   2  ; 1900
+0123 => TSETS   13  12  14  ; "year"
+0124    UGET    13   0      ; tonumber
+0125    MOV     14   3
+0126    CALL    13   2   2
+0127    IST         13
+0128    JMP     14 => 0130
+0129    KSHORT  13   1
+0130 => TSETS   13  12  15  ; "month"
+0131    UGET    13   0      ; tonumber
+0132    MOV     14   4
+0133    CALL    13   2   2
+0134    IST         13
+0135    JMP     14 => 0137
+0136    KSHORT  13   1
+0137 => TSETS   13  12  16  ; "day"
+0138    UGET    13   0      ; tonumber
+0139    MOV     14   6
+0140    CALL    13   2   2
+0141    IST         13
+0142    JMP     14 => 0144
+0143    KSHORT  13   0
+0144 => TSETS   13  12  17  ; "hour"
+0145    UGET    13   0      ; tonumber
+0146    MOV     14   7
+0147    CALL    13   2   2
+0148    IST         13
+0149    JMP     14 => 0151
+0150    KSHORT  13   0
+0151 => TSETS   13  12  18  ; "min"
+0152    UGET    13   0      ; tonumber
+0153    MOV     14   8
+0154    CALL    13   2   2
+0155    IST         13
+0156    JMP     14 => 0158
+0157    KSHORT  13   0
+0158 => TSETS   13  12  19  ; "sec"
+0159    UGET    13   1      ; unix_timestamp
+0160    MOV     14  12
+0161    ISTC    15  10
+0162    JMP     15 => 0164
+0163    KSHORT  15   0
+0164 => MULVN   15  15   3  ; 3600
+0165    CALL    13   2   3
+0166    ISF          9
+0167    JMP     14 => 0176
+0168    UGET    14   0      ; tonumber
+0169    KSTR    15  20      ; "0."
+0170    MOV     16   9
+0171    CAT     15  15  16
+0172    CALL    14   2   2
+0173    ADDVV   14  13  14
+0174    RET1    14   2
+0175    JMP     14 => 0177
+0176 => RET1    13   2
+0177 => RET0     0   1
+
+-- BYTECODE -- dateparser.lua:142-185
+0001    KNIL     1  12
+0002    MOV     14   0
+0003    TGETS   13   0   0  ; "match"
+0004    KSTR    15   1      ; "^(%w%w%w),%s+(.*)$"
+0005    CALL    13   3   3
+0006    MOV     12  14
+0007    MOV      6  13
+0008    ISF          6
+0009    JMP     13 => 0011
+0010    MOV      0  12
+0011 => MOV     14   0
+0012    TGETS   13   0   0  ; "match"
+0013    KSTR    15   2      ; "^(%d%d?)%s+(.*)$"
+0014    CALL    13   3   3
+0015    MOV      0  14
+0016    MOV      3  13
+0017    MOV     14   0
+0018    TGETS   13   0   0  ; "match"
+0019    KSTR    15   3      ; "^(%w%w%w)%s+(.*)$"
+0020    CALL    13   3   3
+0021    MOV      0  14
+0022    MOV      2  13
+0023    UGET    13   0      ; month_val
+0024    TGETV    2  13   2
+0025    MOV     14   0
+0026    TGETS   13   0   0  ; "match"
+0027    KSTR    15   4      ; "^(%d%d%d?%d?)%s+(.*)$"
+0028    CALL    13   3   3
+0029    MOV      0  14
+0030    MOV      1  13
+0031    MOV     14   0
+0032    TGETS   13   0   0  ; "match"
+0033    KSTR    15   5      ; "^(%d%d?):(.*)$"
+0034    CALL    13   3   3
+0035    MOV      0  14
+0036    MOV      7  13
+0037    MOV     14   0
+0038    TGETS   13   0   0  ; "match"
+0039    KSTR    15   6      ; "^(%d%d?)(.*)$"
+0040    CALL    13   3   3
+0041    MOV      0  14
+0042    MOV      8  13
+0043    MOV     14   0
+0044    TGETS   13   0   0  ; "match"
+0045    KSTR    15   7      ; "^:(%d%d)(.*)$"
+0046    CALL    13   3   3
+0047    MOV     12  14
+0048    MOV      9  13
+0049    ISF          9
+0050    JMP     13 => 0052
+0051    MOV      0  12
+0052 => KNIL    13  16
+0053    MOV     18   0
+0054    TGETS   17   0   0  ; "match"
+0055    KSTR    19   8      ; "^%s+(%u+)(.*)$"
+0056    CALL    17   3   3
+0057    MOV     12  18
+0058    MOV     13  17
+0059    ISF         13
+0060    JMP     17 => 0065
+0061    MOV      0  12
+0062    UGET    17   1      ; tz_table
+0063    TGETV   11  17  13
+0064    JMP     17 => 0086
+0065 => MOV     18   0
+0066    TGETS   17   0   0  ; "match"
+0067    KSTR    19   9      ; "^%s+([+-])(%d%d)(%d%d)%s*(.*)$"
+0068    CALL    17   5   3
+0069    MOV      0  20
+0070    MOV     16  19
+0071    MOV     15  18
+0072    MOV     14  17
+0073    UGET    17   2      ; tonumber
+0074    MOV     18  14
+0075    MOV     19  15
+0076    CAT     18  18  19
+0077    CALL    17   2   2
+0078    UGET    18   2      ; tonumber
+0079    MOV     19  16
+0080    CALL    18   2   2
+0081    IST         18
+0082    JMP     19 => 0084
+0083    KSHORT  18   0
+0084 => DIVVN   18  18   0  ; 60
+0085    ADDVV   11  17  18
+0086 => LEN     17   0
+0087    KSHORT  18   0
+0088    ISLT    18  17
+0089    JMP     17 => 0100
+0090    ISF          1
+0091    JMP     17 => 0100
+0092    ISF          3
+0093    JMP     17 => 0100
+0094    ISF          2
+0095    JMP     17 => 0100
+0096    ISF          7
+0097    JMP     17 => 0100
+0098    IST          8
+0099    JMP     17 => 0102
+0100 => KPRI    17   0
+0101    RET1    17   2
+0102 => UGET    17   2      ; tonumber
+0103    MOV     18   1
+0104    CALL    17   2   2
+0105    MOV      1  17
+0106    TDUP    17  10
+0107    ISFC    18   1
+0108    JMP     18 => 0121
+0109    KSHORT  18 100
+0110    ISGE    18   1
+0111    JMP     18 => 0114
+0112    ISTC    18   1
+0113    JMP     18 => 0121
+0114 => KSHORT  18  50
+0115    ISGE     1  18
+0116    JMP     18 => 0120
+0117    ADDVN   18   1   1  ; 2000
+0118    IST         18
+0119    JMP     19 => 0121
+0120 => ADDVN   18   1   2  ; 1900
+0121 => TSETS   18  17  11  ; "year"
+0122    TSETS    2  17  12  ; "month"
+0123    UGET    18   2      ; tonumber
+0124    MOV     19   3
+0125    CALL    18   2   2
+0126    TSETS   18  17  13  ; "day"
+0127    UGET    18   2      ; tonumber
+0128    MOV     19   7
+0129    CALL    18   2   2
+0130    IST         18
+0131    JMP     19 => 0133
+0132    KSHORT  18   0
+0133 => TSETS   18  17  14  ; "hour"
+0134    UGET    18   2      ; tonumber
+0135    MOV     19   8
+0136    CALL    18   2   2
+0137    IST         18
+0138    JMP     19 => 0140
+0139    KSHORT  18   0
+0140 => TSETS   18  17  15  ; "min"
+0141    UGET    18   2      ; tonumber
+0142    MOV     19   9
+0143    CALL    18   2   2
+0144    IST         18
+0145    JMP     19 => 0147
+0146    KSHORT  18   0
+0147 => TSETS   18  17  16  ; "sec"
+0148    UGET    18   3      ; unix_timestamp
+0149    MOV     19  17
+0150    MULVN   20  11   3  ; 3600
+0151    CALLT   18   3
+
+-- BYTECODE -- dateparser.lua:0-192
+0001    GGET     0   0      ; "os"
+0002    TGETS    0   0   1  ; "difftime"
+0003    GGET     1   0      ; "os"
+0004    TGETS    1   1   2  ; "time"
+0005    GGET     2   0      ; "os"
+0006    TGETS    2   2   3  ; "date"
+0007    GGET     3   4      ; "string"
+0008    TGETS    3   3   5  ; "format"
+0009    GGET     4   6      ; "table"
+0010    TGETS    4   4   7  ; "remove"
+0011    GGET     5   6      ; "table"
+0012    TGETS    5   5   8  ; "insert"
+0013    GGET     6   9      ; "pcall"
+0014    GGET     7  10      ; "pairs"
+0015    GGET     8  11      ; "ipairs"
+0016    GGET     9  12      ; "tostring"
+0017    GGET    10  13      ; "tonumber"
+0018    GGET    11  14      ; "type"
+0019    GGET    12  15      ; "setmetatable"
+0020    TNEW    13   0
+0021    KPRI    14   0
+0022    MOV     15   1
+0023    CALL    15   2   1
+0024    MOV     16   0
+0025    MOV     17   1
+0026    MOV     18   2
+0027    KSTR    19  16      ; "!*t"
+0028    MOV     20  15
+0029    CALL    18   0   3
+0030    CALLM   17   2   0
+0031    MOV     18   1
+0032    MOV     19   2
+0033    KSTR    20  17      ; "*t"
+0034    MOV     21  15
+0035    CALL    19   0   3
+0036    CALLM   18   0   0
+0037    CALLM   16   2   1
+0038    FNEW    14  18      ; dateparser.lua:13
+0039    UCLO    15 => 0040
+0040 => TNEW    15   0
+0041    MOV     16  12
+0042    TNEW    17   0
+0043    TDUP    18  19
+0044    CALL    16   2   3
+0045    FNEW    17  21      ; dateparser.lua:24
+0046    TSETS   17  13  20  ; "register_format"
+0047    FNEW    17  23      ; dateparser.lua:42
+0048    TSETS   17  13  22  ; "unregister_format"
+0049    FNEW    17  25      ; dateparser.lua:48
+0050    TSETS   17  13  24  ; "get_format_function"
+0051    FNEW    17  27      ; dateparser.lua:56
+0052    TSETS   17  13  26  ; "parse"
+0053    TGETS   17  13  20  ; "register_format"
+0054    KSTR    18  28      ; "W3CDTF"
+0055    FNEW    19  29      ; dateparser.lua:70
+0056    CALL    17   1   3
+0057    TDUP    17  30
+0058    TDUP    18  31
+0059    TGETS   19  13  20  ; "register_format"
+0060    KSTR    20  32      ; "RFC2822"
+0061    FNEW    21  33      ; dateparser.lua:142
+0062    CALL    19   1   3
+0063    UCLO    17 => 0064
+0064 => TGETS   17  13  20  ; "register_format"
+0065    KSTR    18  34      ; "RFC822"
+0066    TGETS   19  15  32  ; "RFC2822"
+0067    CALL    17   1   3
+0068    TGETS   17  13  20  ; "register_format"
+0069    KSTR    18  35      ; "RFC3339"
+0070    TGETS   19  15  28  ; "W3CDTF"
+0071    CALL    17   1   3
+0072    UCLO     0 => 0073
+0073 => RET1    13   2
+

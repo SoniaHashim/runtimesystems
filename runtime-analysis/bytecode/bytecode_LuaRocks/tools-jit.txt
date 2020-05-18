@@ -1,0 +1,690 @@
+-- BYTECODE -- tools.lua:11-11
+0001    UGET     2   0      ; cfg
+0002    TGETS    2   2   0  ; "variables"
+0003    TGETV    2   2   1
+0004    RET1     2   2
+
+-- BYTECODE -- tools.lua:18-29
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "match"
+0003    KSTR     5   1      ; "^([A-Za-z]:)"
+0004    CALL     3   2   3
+0005    KSTR     4   2      ; " & "
+0006    ISF          2
+0007    JMP      5 => 0009
+0008    KSTR     4   3      ; " && "
+0009 => KSTR     5   4      ; "cd "
+0010    UGET     6   0      ; fs
+0011    TGETS    6   6   5  ; "Q"
+0012    MOV      7   0
+0013    CALL     6   2   2
+0014    MOV      7   4
+0015    MOV      8   1
+0016    CAT      5   5   8
+0017    ISF          3
+0018    JMP      6 => 0023
+0019    MOV      6   3
+0020    KSTR     7   2      ; " & "
+0021    MOV      8   5
+0022    CAT      5   6   8
+0023 => RET1     5   2
+
+-- BYTECODE -- tools.lua:36-44
+0001    GGET     1   0      ; "assert"
+0002    MOV      2   0
+0003    CALL     1   1   2
+0004    UGET     1   0      ; dir
+0005    TGETS    1   1   1  ; "normalize"
+0006    MOV      2   0
+0007    CALL     1   2   2
+0008    MOV      0   1
+0009    UGET     1   1      ; fs
+0010    TGETS    1   1   2  ; "execute_quiet"
+0011    UGET     2   2      ; vars
+0012    TGETS    2   2   3  ; "MKDIR"
+0013    KSTR     3   4      ; " -p "
+0014    CAT      2   2   3
+0015    MOV      3   0
+0016    CALL     1   1   3
+0017    UGET     1   1      ; fs
+0018    TGETS    1   1   5  ; "is_dir"
+0019    MOV      2   0
+0020    CALL     1   2   2
+0021    IST          1
+0022    JMP      1 => 0028
+0023    KPRI     1   1
+0024    KSTR     2   6      ; "failed making directory "
+0025    MOV      3   0
+0026    CAT      2   2   3
+0027    RET      1   3
+0028 => KPRI     1   2
+0029    RET1     1   2
+
+-- BYTECODE -- tools.lua:50-53
+0001    GGET     1   0      ; "assert"
+0002    MOV      2   0
+0003    CALL     1   1   2
+0004    UGET     1   0      ; fs
+0005    TGETS    1   1   1  ; "execute_quiet"
+0006    UGET     2   1      ; vars
+0007    TGETS    2   2   2  ; "RMDIR"
+0008    MOV      3   0
+0009    CALL     1   1   3
+0010    RET0     0   1
+
+-- BYTECODE -- tools.lua:59-62
+0001    GGET     1   0      ; "assert"
+0002    MOV      2   0
+0003    CALL     1   1   2
+0004    UGET     1   0      ; fs
+0005    TGETS    1   1   1  ; "execute_quiet"
+0006    UGET     2   1      ; vars
+0007    TGETS    2   2   2  ; "RMDIR"
+0008    MOV      3   0
+0009    CALL     1   1   3
+0010    RET0     0   1
+
+-- BYTECODE -- tools.lua:69-78
+0001    GGET     2   0      ; "assert"
+0002    ISFC     3   0
+0003    JMP      3 => 0005
+0004    MOV      3   1
+0005 => CALL     2   1   2
+0006    MOV      3   1
+0007    TGETS    2   1   1  ; "match"
+0008    KSTR     4   2      ; "[/\]$"
+0009    CALL     2   2   3
+0010    ISF          2
+0011    JMP      3 => 0018
+0012    MOV      3   1
+0013    TGETS    2   1   3  ; "sub"
+0014    KSHORT   4   1
+0015    KSHORT   5  -2
+0016    CALL     2   2   4
+0017    MOV      1   2
+0018 => UGET     2   0      ; fs
+0019    TGETS    2   2   4  ; "execute"
+0020    UGET     3   1      ; vars
+0021    TGETS    3   3   5  ; "CP"
+0022    MOV      4   0
+0023    MOV      5   1
+0024    CALL     2   2   4
+0025    ISF          2
+0026    JMP      3 => 0030
+0027    KPRI     3   2
+0028    RET1     3   2
+0029    JMP      3 => 0037
+0030 => KPRI     3   1
+0031    KSTR     4   6      ; "Failed copying "
+0032    MOV      5   0
+0033    KSTR     6   7      ; " to "
+0034    MOV      7   1
+0035    CAT      4   4   7
+0036    RET      3   3
+0037 => RET0     0   1
+
+-- BYTECODE -- tools.lua:85-95
+0001    GGET     2   0      ; "assert"
+0002    ISFC     3   0
+0003    JMP      3 => 0005
+0004    MOV      3   1
+0005 => CALL     2   1   2
+0006    UGET     2   0      ; fs
+0007    TGETS    2   2   1  ; "is_dir"
+0008    MOV      3   0
+0009    CALL     2   2   2
+0010    IST          2
+0011    JMP      2 => 0017
+0012    KPRI     2   1
+0013    MOV      3   0
+0014    KSTR     4   2      ; " is not a directory"
+0015    CAT      3   3   4
+0016    RET      2   3
+0017 => UGET     2   0      ; fs
+0018    TGETS    2   2   3  ; "make_dir"
+0019    MOV      3   1
+0020    CALL     2   2   2
+0021    ISF          2
+0022    JMP      3 => 0038
+0023    UGET     2   0      ; fs
+0024    TGETS    2   2   4  ; "execute_quiet"
+0025    UGET     3   1      ; vars
+0026    TGETS    3   3   5  ; "CP"
+0027    KSTR     4   6      ; "-dR"
+0028    MOV      5   0
+0029    KSTR     6   7      ; "\*.*"
+0030    CAT      5   5   6
+0031    MOV      6   1
+0032    CALL     2   2   5
+0033    ISF          2
+0034    JMP      3 => 0038
+0035    KPRI     2   2
+0036    RET1     2   2
+0037    JMP      2 => 0045
+0038 => KPRI     2   1
+0039    KSTR     3   8      ; "Failed copying "
+0040    MOV      4   0
+0041    KSTR     5   9      ; " to "
+0042    MOV      6   1
+0043    CAT      3   3   6
+0044    RET      2   3
+0045 => RET0     0   1
+
+-- BYTECODE -- tools.lua:101-105
+0001    GGET     1   0      ; "assert"
+0002    MOV      2   0
+0003    CALL     1   1   2
+0004    GGET     1   0      ; "assert"
+0005    MOV      3   0
+0006    TGETS    2   0   1  ; "match"
+0007    KSTR     4   2      ; "^[a-zA-Z]?:?[\/]"
+0008    CALL     2   0   3
+0009    CALLM    1   1   0
+0010    UGET     1   0      ; fs
+0011    TGETS    1   1   3  ; "execute_quiet"
+0012    KSTR     2   4      ; "if exist "
+0013    UGET     3   0      ; fs
+0014    TGETS    3   3   5  ; "Q"
+0015    MOV      4   0
+0016    KSTR     5   6      ; "\*"
+0017    CAT      4   4   5
+0018    CALL     3   2   2
+0019    KSTR     4   7      ; " ( RMDIR /S /Q "
+0020    UGET     5   0      ; fs
+0021    TGETS    5   5   5  ; "Q"
+0022    MOV      6   0
+0023    CALL     5   2   2
+0024    KSTR     6   8      ; " ) else ( DEL /Q /F "
+0025    UGET     7   0      ; fs
+0026    TGETS    7   7   5  ; "Q"
+0027    MOV      8   0
+0028    CALL     7   2   2
+0029    KSTR     8   9      ; " )"
+0030    CAT      2   2   8
+0031    CALL     1   1   2
+0032    RET0     0   1
+
+-- BYTECODE -- tools.lua:112-132
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "string"
+0006    JMP      2 => 0011
+0007    NOT      2   0
+0008    JMP      3 => 0012
+0009    KPRI     2   1
+0010    JMP      3 => 0012
+0011 => KPRI     2   2
+0012 => CALL     1   1   2
+0013    IST          0
+0014    JMP      1 => 0019
+0015    UGET     1   0      ; fs
+0016    TGETS    1   1   3  ; "current_dir"
+0017    CALL     1   2   1
+0018    MOV      0   1
+0019 => UGET     1   0      ; fs
+0020    TGETS    1   1   4  ; "is_dir"
+0021    MOV      2   0
+0022    CALL     1   2   2
+0023    IST          1
+0024    JMP      1 => 0027
+0025    TNEW     1   0
+0026    RET1     1   2
+0027 => TNEW     1   0
+0028    GGET     2   5      ; "io"
+0029    TGETS    2   2   6  ; "popen"
+0030    UGET     3   0      ; fs
+0031    TGETS    3   3   7  ; "command_at"
+0032    MOV      4   0
+0033    UGET     5   0      ; fs
+0034    TGETS    5   5   8  ; "quiet_stderr"
+0035    UGET     6   1      ; vars
+0036    TGETS    6   6   9  ; "FIND"
+0037    CALL     5   2   2
+0038    KPRI     6   2
+0039    CALL     3   0   4
+0040    CALLM    2   2   0
+0041    MOV      4   2
+0042    TGETS    3   2  10  ; "lines"
+0043    CALL     3   4   2
+0044    JMP      6 => 0070
+0045 => MOV      8   6
+0046    TGETS    7   6  11  ; "sub"
+0047    KSHORT   9   1
+0048    KSHORT  10   2
+0049    CALL     7   2   4
+0050    ISEQS    7  12      ; ".\"
+0051    JMP      8 => 0054
+0052    ISNES    7  13      ; "./"
+0053    JMP      8 => 0059
+0054 => MOV      9   6
+0055    TGETS    8   6  11  ; "sub"
+0056    KSHORT  10   3
+0057    CALL     8   2   3
+0058    MOV      6   8
+0059 => ISEQS    6  14      ; "."
+0060    JMP      8 => 0070
+0061    GGET     8  15      ; "table"
+0062    TGETS    8   8  16  ; "insert"
+0063    MOV      9   1
+0064    MOV     11   6
+0065    TGETS   10   6  17  ; "gsub"
+0066    KSTR    12  18      ; "\"
+0067    KSTR    13  19      ; "/"
+0068    CALL    10   2   4
+0069    CALL     8   1   3
+0070 => ITERC    6   2   3
+0071    ITERL    6 => 0045
+0072    MOV      4   2
+0073    TGETS    3   2  20  ; "close"
+0074    CALL     3   1   2
+0075    RET1     1   2
+
+-- BYTECODE -- tools.lua:139-145
+0001    UGET     1   0      ; fs
+0002    TGETS    1   1   0  ; "execute_quiet"
+0003    UGET     2   1      ; vars
+0004    TGETS    2   2   1  ; "SEVENZ"
+0005    KSTR     3   2      ; " -aoa a -tzip"
+0006    CAT      2   2   3
+0007    MOV      3   0
+0008    VARG     4   0   1
+0009    CALLM    1   2   2
+0010    ISF          1
+0011    JMP      2 => 0015
+0012    KPRI     1   2
+0013    RET1     1   2
+0014    JMP      1 => 0020
+0015 => KPRI     1   0
+0016    KSTR     2   3      ; "failed compressing "
+0017    MOV      3   0
+0018    CAT      2   2   3
+0019    RET      1   3
+0020 => RET0     0   1
+
+-- BYTECODE -- tools.lua:150-157
+0001    GGET     1   0      ; "assert"
+0002    MOV      2   0
+0003    CALL     1   1   2
+0004    UGET     1   0      ; fs
+0005    TGETS    1   1   1  ; "execute_quiet"
+0006    UGET     2   1      ; vars
+0007    TGETS    2   2   2  ; "SEVENZ"
+0008    KSTR     3   3      ; " -aoa x"
+0009    CAT      2   2   3
+0010    MOV      3   0
+0011    CALL     1   2   3
+0012    ISF          1
+0013    JMP      2 => 0017
+0014    KPRI     1   2
+0015    RET1     1   2
+0016    JMP      1 => 0022
+0017 => KPRI     1   0
+0018    KSTR     2   4      ; "failed extracting "
+0019    MOV      3   0
+0020    CAT      2   2   3
+0021    RET      1   3
+0022 => RET0     0   1
+
+-- BYTECODE -- tools.lua:159-184
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   1
+0004    CALL     4   2   2
+0005    ISEQS    4   2      ; "string"
+0006    JMP      4 => 0009
+0007    KPRI     4   1
+0008    JMP      5 => 0010
+0009 => KPRI     4   2
+0010 => CALL     3   1   2
+0011    GGET     3   0      ; "assert"
+0012    ISEQP    2   0
+0013    JMP      4 => 0021
+0014    GGET     4   1      ; "type"
+0015    MOV      5   2
+0016    CALL     4   2   2
+0017    ISEQS    4   2      ; "string"
+0018    JMP      4 => 0021
+0019    KPRI     4   1
+0020    JMP      5 => 0022
+0021 => KPRI     4   2
+0022 => CALL     3   1   2
+0023    MOV      4   1
+0024    TGETS    3   1   3  ; "gsub"
+0025    KSTR     5   4      ; "%."
+0026    MOV      6   0
+0027    KSTR     7   5      ; "$"
+0028    CAT      5   5   7
+0029    KSTR     6   6      ; ""
+0030    CALL     3   2   4
+0031    UGET     4   0      ; dir
+0032    TGETS    4   4   7  ; "dir_name"
+0033    MOV      5   3
+0034    CALL     4   2   2
+0035    UGET     5   1      ; fs
+0036    TGETS    5   5   8  ; "absolute_name"
+0037    MOV      6   1
+0038    CALL     5   2   2
+0039    MOV      1   5
+0040    UGET     5   2      ; vars
+0041    TGETS    5   5   9  ; "SEVENZ"
+0042    KSTR     6  10      ; " -aoa -t* -o"
+0043    UGET     7   1      ; fs
+0044    TGETS    7   7  11  ; "Q"
+0045    MOV      8   4
+0046    CALL     7   2   2
+0047    KSTR     8  12      ; " x "
+0048    UGET     9   1      ; fs
+0049    TGETS    9   9  11  ; "Q"
+0050    MOV     10   1
+0051    CALL     9   2   2
+0052    CAT      5   5   9
+0053    UGET     6   1      ; fs
+0054    TGETS    6   6  13  ; "execute_quiet"
+0055    MOV      7   5
+0056    CALL     6   3   2
+0057    IST          6
+0058    JMP      8 => 0064
+0059    KPRI     8   0
+0060    KSTR     9  14      ; "failed extracting "
+0061    MOV     10   1
+0062    CAT      9   9  10
+0063    RET      8   3
+0064 => ISF          2
+0065    JMP      8 => 0090
+0066    UGET     8   1      ; fs
+0067    TGETS    8   8   8  ; "absolute_name"
+0068    MOV      9   2
+0069    CALL     8   2   2
+0070    MOV      2   8
+0071    UGET     8   1      ; fs
+0072    TGETS    8   8   8  ; "absolute_name"
+0073    MOV      9   3
+0074    CALL     8   2   2
+0075    MOV      3   8
+0076    GGET     8  15      ; "os"
+0077    TGETS    8   8  16  ; "rename"
+0078    MOV      9   3
+0079    MOV     10   2
+0080    CALL     8   3   3
+0081    MOV      7   9
+0082    MOV      6   8
+0083    IST          6
+0084    JMP      8 => 0090
+0085    KPRI     8   0
+0086    KSTR     9  17      ; "failed creating new file "
+0087    MOV     10   2
+0088    CAT      9   9  10
+0089    RET      8   3
+0090 => KPRI     8   2
+0091    RET1     8   2
+
+-- BYTECODE -- tools.lua:191-193
+0001    UGET     2   0      ; sevenz
+0002    KSTR     3   0      ; "gz"
+0003    MOV      4   0
+0004    MOV      5   1
+0005    CALLT    2   4
+
+-- BYTECODE -- tools.lua:200-202
+0001    UGET     2   0      ; sevenz
+0002    KSTR     3   0      ; "bz2"
+0003    MOV      4   0
+0004    MOV      5   1
+0005    CALLT    2   4
+
+-- BYTECODE -- tools.lua:206-216
+0001    TNEW     0   0
+0002    GGET     1   0      ; "assert"
+0003    GGET     2   1      ; "io"
+0004    TGETS    2   2   2  ; "popen"
+0005    KSTR     3   3      ; "wmic UserAccount get name"
+0006    CALL     2   0   2
+0007    CALLM    1   2   0
+0008    MOV      3   1
+0009    TGETS    2   1   4  ; "lines"
+0010    CALL     2   4   2
+0011    JMP      5 => 0029
+0012 => MOV      7   5
+0013    TGETS    6   5   5  ; "gsub"
+0014    KSTR     8   6      ; "%s+$"
+0015    KSTR     9   7      ; ""
+0016    CALL     6   2   4
+0017    MOV      5   6
+0018    ISEQS    5   7      ; ""
+0019    JMP      6 => 0029
+0020    ISEQS    5   8      ; "Name"
+0021    JMP      6 => 0029
+0022    ISEQS    5   9      ; "Administrator"
+0023    JMP      6 => 0029
+0024    GGET     6  10      ; "table"
+0025    TGETS    6   6  11  ; "insert"
+0026    MOV      7   0
+0027    MOV      8   5
+0028    CALL     6   1   3
+0029 => ITERC    5   2   3
+0030    ITERL    5 => 0012
+0031    RET1     0   2
+
+-- BYTECODE -- tools.lua:224-277
+0001    GGET     3   0      ; "assert"
+0002    ISFC     4   0
+0003    JMP      4 => 0007
+0004    ISFC     4   1
+0005    JMP      4 => 0007
+0006    MOV      4   2
+0007 => CALL     3   1   2
+0008    ISNES    2   1      ; "user"
+0009    JMP      3 => 0090
+0010    KPRI     3   0
+0011    ISNES    1   2      ; "read"
+0012    JMP      4 => 0015
+0013    KSTR     3   3      ; "(R,W,M)"
+0014    JMP      4 => 0018
+0015 => ISNES    1   4      ; "exec"
+0016    JMP      4 => 0018
+0017    KSTR     3   5      ; "(F)"
+0018 => KPRI     4   0
+0019    UGET     5   0      ; fs
+0020    TGETS    5   5   6  ; "execute_quiet"
+0021    KSTR     6   7      ; "takeown /f "
+0022    UGET     7   0      ; fs
+0023    TGETS    7   7   8  ; "Q"
+0024    MOV      8   0
+0025    CALL     7   2   2
+0026    CAT      6   6   7
+0027    CALL     5   2   2
+0028    MOV      4   5
+0029    IST          4
+0030    JMP      5 => 0034
+0031    KPRI     5   1
+0032    KSTR     6   9      ; "Could not take ownership of the given fi"~
+0033    RET      5   3
+0034 => UGET     5   0      ; fs
+0035    TGETS    5   5   6  ; "execute_quiet"
+0036    UGET     6   1      ; vars
+0037    TGETS    6   6  10  ; "ICACLS"
+0038    KSTR     7  11      ; " "
+0039    UGET     8   0      ; fs
+0040    TGETS    8   8   8  ; "Q"
+0041    MOV      9   0
+0042    CALL     8   2   2
+0043    KSTR     9  12      ; " /inheritance:d /grant:r "%USERNAME%":"
+0044    MOV     10   3
+0045    CAT      6   6  10
+0046    CALL     5   2   2
+0047    MOV      4   5
+0048    IST          4
+0049    JMP      5 => 0057
+0050    KPRI     5   1
+0051    KSTR     6  13      ; "Failed setting permission "
+0052    MOV      7   1
+0053    KSTR     8  14      ; " for "
+0054    MOV      9   2
+0055    CAT      6   6   9
+0056    RET      5   3
+0057 => GGET     5  15      ; "pairs"
+0058    UGET     6   2      ; get_system_users
+0059    CALL     6   0   1
+0060    CALLM    5   4   0
+0061    ISNEXT   8 => 0087
+0062 => UGET    10   0      ; fs
+0063    TGETS   10  10   6  ; "execute_quiet"
+0064    UGET    11   1      ; vars
+0065    TGETS   11  11  10  ; "ICACLS"
+0066    KSTR    12  11      ; " "
+0067    UGET    13   0      ; fs
+0068    TGETS   13  13   8  ; "Q"
+0069    MOV     14   0
+0070    CALL    13   2   2
+0071    KSTR    14  16      ; " /remove "
+0072    UGET    15   0      ; fs
+0073    TGETS   15  15   8  ; "Q"
+0074    MOV     16   9
+0075    CALL    15   2   2
+0076    CAT     11  11  15
+0077    CALL    10   2   2
+0078    IST         10
+0079    JMP     11 => 0087
+0080    KPRI    11   1
+0081    KSTR    12  13      ; "Failed setting permission "
+0082    MOV     13   1
+0083    KSTR    14  14      ; " for "
+0084    MOV     15   2
+0085    CAT     12  12  15
+0086    RET     11   3
+0087 => ITERN    8   3   3
+0088    ITERL    8 => 0062
+0089    JMP      3 => 0149
+0090 => ISNES    2  17      ; "all"
+0091    JMP      3 => 0149
+0092    KNIL     3   4
+0093    ISNES    1   2      ; "read"
+0094    JMP      5 => 0098
+0095    KSTR     3   3      ; "(R,W,M)"
+0096    KSTR     4  18      ; "(R)"
+0097    JMP      5 => 0102
+0098 => ISNES    1   4      ; "exec"
+0099    JMP      5 => 0102
+0100    KSTR     3   5      ; "(F)"
+0101    KSTR     4  19      ; "(RX)"
+0102 => KPRI     5   0
+0103    UGET     6   0      ; fs
+0104    TGETS    6   6   6  ; "execute_quiet"
+0105    UGET     7   1      ; vars
+0106    TGETS    7   7  10  ; "ICACLS"
+0107    KSTR     8  11      ; " "
+0108    UGET     9   0      ; fs
+0109    TGETS    9   9   8  ; "Q"
+0110    MOV     10   0
+0111    CALL     9   2   2
+0112    KSTR    10  20      ; " /inheritance:d /grant:r *S-1-1-0:"
+0113    MOV     11   4
+0114    CAT      7   7  11
+0115    CALL     6   2   2
+0116    MOV      5   6
+0117    IST          5
+0118    JMP      6 => 0126
+0119    KPRI     6   1
+0120    KSTR     7  13      ; "Failed setting permission "
+0121    MOV      8   1
+0122    KSTR     9  14      ; " for "
+0123    MOV     10   2
+0124    CAT      7   7  10
+0125    RET      6   3
+0126 => UGET     6   0      ; fs
+0127    TGETS    6   6   6  ; "execute_quiet"
+0128    UGET     7   1      ; vars
+0129    TGETS    7   7  10  ; "ICACLS"
+0130    KSTR     8  11      ; " "
+0131    UGET     9   0      ; fs
+0132    TGETS    9   9   8  ; "Q"
+0133    MOV     10   0
+0134    CALL     9   2   2
+0135    KSTR    10  21      ; " /inheritance:d /grant "%USERNAME%":"
+0136    MOV     11   3
+0137    CAT      7   7  11
+0138    CALL     6   2   2
+0139    MOV      5   6
+0140    IST          5
+0141    JMP      6 => 0149
+0142    KPRI     6   1
+0143    KSTR     7  13      ; "Failed setting permission "
+0144    MOV      8   1
+0145    KSTR     9  14      ; " for "
+0146    MOV     10   2
+0147    CAT      7   7  10
+0148    RET      6   3
+0149 => KPRI     3   2
+0150    RET1     3   2
+
+-- BYTECODE -- tools.lua:279-281
+0001    UGET     1   0      ; fs
+0002    TGETS    1   1   0  ; "execute"
+0003    UGET     2   1      ; cfg
+0004    TGETS    2   2   1  ; "web_browser"
+0005    KSTR     3   2      ; " "Starting docs..." "
+0006    UGET     4   0      ; fs
+0007    TGETS    4   4   3  ; "Q"
+0008    MOV      5   0
+0009    CALL     4   2   2
+0010    CAT      2   2   4
+0011    CALLT    1   2
+
+-- BYTECODE -- tools.lua:288-290
+0001    KPRI     2   2
+0002    RET1     2   2
+
+-- BYTECODE -- tools.lua:0-293
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.fs"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.dir"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.core.cfg"
+0010    CALL     3   2   2
+0011    GGET     4   4      ; "setmetatable"
+0012    TNEW     5   0
+0013    TDUP     6   6
+0014    FNEW     7   5      ; tools.lua:11
+0015    TSETS    7   6   7  ; "__index"
+0016    CALL     4   2   3
+0017    FNEW     5   9      ; tools.lua:18
+0018    TSETS    5   0   8  ; "command_at"
+0019    FNEW     5  11      ; tools.lua:36
+0020    TSETS    5   0  10  ; "make_dir"
+0021    FNEW     5  13      ; tools.lua:50
+0022    TSETS    5   0  12  ; "remove_dir_if_empty"
+0023    FNEW     5  15      ; tools.lua:59
+0024    TSETS    5   0  14  ; "remove_dir_tree_if_empty"
+0025    FNEW     5  17      ; tools.lua:69
+0026    TSETS    5   0  16  ; "copy"
+0027    FNEW     5  19      ; tools.lua:85
+0028    TSETS    5   0  18  ; "copy_contents"
+0029    FNEW     5  21      ; tools.lua:101
+0030    TSETS    5   0  20  ; "delete"
+0031    FNEW     5  23      ; tools.lua:112
+0032    TSETS    5   0  22  ; "find"
+0033    FNEW     5  25      ; tools.lua:139
+0034    TSETS    5   0  24  ; "zip"
+0035    FNEW     5  27      ; tools.lua:150
+0036    TSETS    5   0  26  ; "unzip"
+0037    FNEW     5  28      ; tools.lua:159
+0038    FNEW     6  30      ; tools.lua:191
+0039    TSETS    6   0  29  ; "gunzip"
+0040    FNEW     6  32      ; tools.lua:200
+0041    TSETS    6   0  31  ; "bunzip2"
+0042    FNEW     6  33      ; tools.lua:206
+0043    FNEW     7  35      ; tools.lua:224
+0044    TSETS    7   0  34  ; "set_permissions"
+0045    FNEW     7  37      ; tools.lua:279
+0046    TSETS    7   0  36  ; "browser"
+0047    FNEW     7  39      ; tools.lua:288
+0048    TSETS    7   0  38  ; "set_time"
+0049    UCLO     0 => 0050
+0050 => RET1     0   2
+

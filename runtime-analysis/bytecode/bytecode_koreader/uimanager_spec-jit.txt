@@ -1,0 +1,1340 @@
+-- BYTECODE -- uimanager_spec.lua:4-4
+0001    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:6-10
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "ffi/util"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; util
+0008    GGET     0   0      ; "require"
+0009    KSTR     1   3      ; "ui/uimanager"
+0010    CALL     0   2   2
+0011    USETV    1   0      ; UIManager
+0012    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:12-28
+0001    TNEW     0   3
+0002    UGET     1   1      ; util
+0003    TGETS    1   1   0  ; "gettime"
+0004    CALL     1   0   1
+0005    TSETM    1   0      ; 1
+0006    USETV    0   0      ; now
+0007    TNEW     0   3
+0008    UGET     1   0      ; now
+0009    TGETB    1   1   1
+0010    ADDVN    1   1   1  ; 60000
+0011    TSETB    1   0   1
+0012    UGET     1   0      ; now
+0013    TGETB    1   1   2
+0014    TSETB    1   0   2
+0015    TNEW     1   3
+0016    TGETB    2   0   1
+0017    ADDVN    2   2   2  ; 5
+0018    TSETB    2   1   1
+0019    TGETB    2   0   2
+0020    TSETB    2   1   2
+0021    UGET     2   2      ; UIManager
+0022    MOV      3   2
+0023    TGETS    2   2   1  ; "quit"
+0024    CALL     2   1   2
+0025    UGET     2   2      ; UIManager
+0026    TNEW     3   6
+0027    TDUP     4   3
+0028    TNEW     5   3
+0029    UGET     6   0      ; now
+0030    TGETB    6   6   1
+0031    SUBVN    6   6   3  ; 10
+0032    TSETB    6   5   1
+0033    UGET     6   0      ; now
+0034    TGETB    6   6   2
+0035    TSETB    6   5   2
+0036    TSETS    5   4   4  ; "time"
+0037    UGET     5   3      ; noop
+0038    TSETS    5   4   5  ; "action"
+0039    TSETB    4   3   1
+0040    TDUP     4   6
+0041    TNEW     5   3
+0042    UGET     6   0      ; now
+0043    TGETB    6   6   1
+0044    TSETB    6   5   1
+0045    UGET     6   0      ; now
+0046    TGETB    6   6   2
+0047    SUBVN    6   6   2  ; 5
+0048    TSETB    6   5   2
+0049    TSETS    5   4   4  ; "time"
+0050    UGET     5   3      ; noop
+0051    TSETS    5   4   5  ; "action"
+0052    TSETB    4   3   2
+0053    TDUP     4   7
+0054    UGET     5   0      ; now
+0055    TSETS    5   4   4  ; "time"
+0056    UGET     5   3      ; noop
+0057    TSETS    5   4   5  ; "action"
+0058    TSETB    4   3   3
+0059    TDUP     4   8
+0060    TSETS    0   4   4  ; "time"
+0061    UGET     5   3      ; noop
+0062    TSETS    5   4   5  ; "action"
+0063    TSETB    4   3   4
+0064    TDUP     4   9
+0065    TSETS    1   4   4  ; "time"
+0066    UGET     5   3      ; noop
+0067    TSETS    5   4   5  ; "action"
+0068    TSETB    4   3   5
+0069    TSETS    3   2   2  ; "_task_queue"
+0070    UGET     2   2      ; UIManager
+0071    MOV      3   2
+0072    TGETS    2   2  10  ; "_checkTasks"
+0073    CALL     2   1   2
+0074    GGET     2  11      ; "assert"
+0075    TGETS    2   2  12  ; "are"
+0076    TGETS    2   2  13  ; "same"
+0077    KSHORT   3   2
+0078    UGET     4   2      ; UIManager
+0079    TGETS    4   4   2  ; "_task_queue"
+0080    LEN      4   4
+0081    KSHORT   5   2
+0082    CALL     2   1   4
+0083    GGET     2  11      ; "assert"
+0084    TGETS    2   2  12  ; "are"
+0085    TGETS    2   2  13  ; "same"
+0086    MOV      3   0
+0087    UGET     4   2      ; UIManager
+0088    TGETS    4   4   2  ; "_task_queue"
+0089    TGETB    4   4   1
+0090    TGETS    4   4   4  ; "time"
+0091    CALL     2   1   3
+0092    GGET     2  11      ; "assert"
+0093    TGETS    2   2  12  ; "are"
+0094    TGETS    2   2  13  ; "same"
+0095    MOV      3   1
+0096    UGET     4   2      ; UIManager
+0097    TGETS    4   4   2  ; "_task_queue"
+0098    TGETB    4   4   2
+0099    TGETS    4   4   4  ; "time"
+0100    CALL     2   1   3
+0101    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:30-43
+0001    TNEW     0   3
+0002    UGET     1   1      ; util
+0003    TGETS    1   1   0  ; "gettime"
+0004    CALL     1   0   1
+0005    TSETM    1   0      ; 1
+0006    USETV    0   0      ; now
+0007    TNEW     0   3
+0008    UGET     1   0      ; now
+0009    TGETB    1   1   1
+0010    ADDVN    1   1   1  ; 60000
+0011    TSETB    1   0   1
+0012    UGET     1   0      ; now
+0013    TGETB    1   1   2
+0014    TSETB    1   0   2
+0015    UGET     1   2      ; UIManager
+0016    MOV      2   1
+0017    TGETS    1   1   1  ; "quit"
+0018    CALL     1   1   2
+0019    UGET     1   2      ; UIManager
+0020    TNEW     2   6
+0021    TDUP     3   3
+0022    TNEW     4   3
+0023    UGET     5   0      ; now
+0024    TGETB    5   5   1
+0025    SUBVN    5   5   2  ; 10
+0026    TSETB    5   4   1
+0027    UGET     5   0      ; now
+0028    TGETB    5   5   2
+0029    TSETB    5   4   2
+0030    TSETS    4   3   4  ; "time"
+0031    UGET     4   3      ; noop
+0032    TSETS    4   3   5  ; "action"
+0033    TSETB    3   2   1
+0034    TDUP     3   6
+0035    TNEW     4   3
+0036    UGET     5   0      ; now
+0037    TGETB    5   5   1
+0038    TSETB    5   4   1
+0039    UGET     5   0      ; now
+0040    TGETB    5   5   2
+0041    SUBVN    5   5   3  ; 5
+0042    TSETB    5   4   2
+0043    TSETS    4   3   4  ; "time"
+0044    UGET     4   3      ; noop
+0045    TSETS    4   3   5  ; "action"
+0046    TSETB    3   2   2
+0047    TDUP     3   7
+0048    UGET     4   0      ; now
+0049    TSETS    4   3   4  ; "time"
+0050    UGET     4   3      ; noop
+0051    TSETS    4   3   5  ; "action"
+0052    TSETB    3   2   3
+0053    TDUP     3   8
+0054    TSETS    0   3   4  ; "time"
+0055    UGET     4   3      ; noop
+0056    TSETS    4   3   5  ; "action"
+0057    TSETB    3   2   4
+0058    TDUP     3   9
+0059    TNEW     4   3
+0060    TGETB    5   0   1
+0061    ADDVN    5   5   3  ; 5
+0062    TSETB    5   4   1
+0063    TGETB    5   0   2
+0064    TSETB    5   4   2
+0065    TSETS    4   3   4  ; "time"
+0066    UGET     4   3      ; noop
+0067    TSETS    4   3   5  ; "action"
+0068    TSETB    3   2   5
+0069    TSETS    2   1   2  ; "_task_queue"
+0070    UGET     1   2      ; UIManager
+0071    MOV      2   1
+0072    TGETS    1   1  10  ; "_checkTasks"
+0073    CALL     1   3   2
+0074    USETV    0   2      ; now
+0075    USETV    4   1      ; wait_until
+0076    GGET     1  11      ; "assert"
+0077    TGETS    1   1  12  ; "are"
+0078    TGETS    1   1  13  ; "same"
+0079    MOV      2   0
+0080    UGET     3   4      ; wait_until
+0081    CALL     1   1   3
+0082    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:45-55
+0001    TNEW     0   3
+0002    UGET     1   1      ; util
+0003    TGETS    1   1   0  ; "gettime"
+0004    CALL     1   0   1
+0005    TSETM    1   0      ; 1
+0006    USETV    0   0      ; now
+0007    UGET     0   2      ; UIManager
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "quit"
+0010    CALL     0   1   2
+0011    UGET     0   2      ; UIManager
+0012    TNEW     1   4
+0013    TDUP     2   3
+0014    TNEW     3   3
+0015    UGET     4   0      ; now
+0016    TGETB    4   4   1
+0017    SUBVN    4   4   1  ; 10
+0018    TSETB    4   3   1
+0019    UGET     4   0      ; now
+0020    TGETB    4   4   2
+0021    TSETB    4   3   2
+0022    TSETS    3   2   4  ; "time"
+0023    UGET     3   3      ; noop
+0024    TSETS    3   2   5  ; "action"
+0025    TSETB    2   1   1
+0026    TDUP     2   6
+0027    TNEW     3   3
+0028    UGET     4   0      ; now
+0029    TGETB    4   4   1
+0030    TSETB    4   3   1
+0031    UGET     4   0      ; now
+0032    TGETB    4   4   2
+0033    SUBVN    4   4   2  ; 5
+0034    TSETB    4   3   2
+0035    TSETS    3   2   4  ; "time"
+0036    UGET     3   3      ; noop
+0037    TSETS    3   2   5  ; "action"
+0038    TSETB    2   1   2
+0039    TDUP     2   7
+0040    UGET     3   0      ; now
+0041    TSETS    3   2   4  ; "time"
+0042    UGET     3   3      ; noop
+0043    TSETS    3   2   5  ; "action"
+0044    TSETB    2   1   3
+0045    TSETS    1   0   2  ; "_task_queue"
+0046    UGET     0   2      ; UIManager
+0047    MOV      1   0
+0048    TGETS    0   0   8  ; "_checkTasks"
+0049    CALL     0   3   2
+0050    USETV    0   1      ; now
+0051    USETV    4   0      ; wait_until
+0052    GGET     0   9      ; "assert"
+0053    TGETS    0   0  10  ; "are"
+0054    TGETS    0   0  11  ; "same"
+0055    KPRI     1   0
+0056    UGET     2   4      ; wait_until
+0057    CALL     0   1   3
+0058    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:57-65
+0001    TNEW     0   3
+0002    UGET     1   1      ; util
+0003    TGETS    1   1   0  ; "gettime"
+0004    CALL     1   0   1
+0005    TSETM    1   0      ; 1
+0006    USETV    0   0      ; now
+0007    UGET     0   2      ; UIManager
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "quit"
+0010    CALL     0   1   2
+0011    UGET     0   2      ; UIManager
+0012    TNEW     1   0
+0013    TSETS    1   0   2  ; "_task_queue"
+0014    GGET     0   3      ; "assert"
+0015    TGETS    0   0   4  ; "are"
+0016    TGETS    0   0   5  ; "same"
+0017    KSHORT   1   0
+0018    UGET     2   2      ; UIManager
+0019    TGETS    2   2   2  ; "_task_queue"
+0020    LEN      2   2
+0021    CALL     0   1   3
+0022    UGET     0   2      ; UIManager
+0023    MOV      1   0
+0024    TGETS    0   0   6  ; "scheduleIn"
+0025    KSHORT   2  50
+0026    KSTR     3   7      ; "foo"
+0027    CALL     0   1   4
+0028    GGET     0   3      ; "assert"
+0029    TGETS    0   0   4  ; "are"
+0030    TGETS    0   0   5  ; "same"
+0031    KSHORT   1   1
+0032    UGET     2   2      ; UIManager
+0033    TGETS    2   2   2  ; "_task_queue"
+0034    LEN      2   2
+0035    CALL     0   1   3
+0036    GGET     0   3      ; "assert"
+0037    TGETS    0   0   4  ; "are"
+0038    TGETS    0   0   5  ; "same"
+0039    KSTR     1   7      ; "foo"
+0040    UGET     2   2      ; UIManager
+0041    TGETS    2   2   2  ; "_task_queue"
+0042    TGETB    2   2   1
+0043    TGETS    2   2   8  ; "action"
+0044    CALL     0   1   3
+0045    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:67-90
+0001    TNEW     0   3
+0002    UGET     1   1      ; util
+0003    TGETS    1   1   0  ; "gettime"
+0004    CALL     1   0   1
+0005    TSETM    1   0      ; 1
+0006    USETV    0   0      ; now
+0007    TNEW     0   3
+0008    UGET     1   0      ; now
+0009    TGETB    1   1   1
+0010    ADDVN    1   1   1  ; 10000
+0011    TSETB    1   0   1
+0012    UGET     1   0      ; now
+0013    TGETB    1   1   2
+0014    TSETB    1   0   2
+0015    UGET     1   2      ; UIManager
+0016    MOV      2   1
+0017    TGETS    1   1   1  ; "quit"
+0018    CALL     1   1   2
+0019    UGET     1   2      ; UIManager
+0020    TNEW     2   3
+0021    TDUP     3   3
+0022    TSETS    0   3   4  ; "time"
+0023    TSETB    3   2   1
+0024    TSETS    2   1   2  ; "_task_queue"
+0025    GGET     1   5      ; "assert"
+0026    TGETS    1   1   6  ; "are"
+0027    TGETS    1   1   7  ; "same"
+0028    KSHORT   2   1
+0029    UGET     3   2      ; UIManager
+0030    TGETS    3   3   2  ; "_task_queue"
+0031    LEN      3   3
+0032    CALL     1   1   3
+0033    UGET     1   2      ; UIManager
+0034    MOV      2   1
+0035    TGETS    1   1   8  ; "scheduleIn"
+0036    KSHORT   3 150
+0037    KSTR     4   9      ; "quz"
+0038    CALL     1   1   4
+0039    GGET     1   5      ; "assert"
+0040    TGETS    1   1   6  ; "are"
+0041    TGETS    1   1   7  ; "same"
+0042    KSHORT   2   2
+0043    UGET     3   2      ; UIManager
+0044    TGETS    3   3   2  ; "_task_queue"
+0045    LEN      3   3
+0046    CALL     1   1   3
+0047    GGET     1   5      ; "assert"
+0048    TGETS    1   1   6  ; "are"
+0049    TGETS    1   1   7  ; "same"
+0050    KSTR     2   9      ; "quz"
+0051    UGET     3   2      ; UIManager
+0052    TGETS    3   3   2  ; "_task_queue"
+0053    TGETB    3   3   1
+0054    TGETS    3   3  10  ; "action"
+0055    CALL     1   1   3
+0056    UGET     1   2      ; UIManager
+0057    MOV      2   1
+0058    TGETS    1   1   1  ; "quit"
+0059    CALL     1   1   2
+0060    UGET     1   2      ; UIManager
+0061    TNEW     2   3
+0062    TDUP     3  11
+0063    UGET     4   0      ; now
+0064    TSETS    4   3   4  ; "time"
+0065    TSETB    3   2   1
+0066    TSETS    2   1   2  ; "_task_queue"
+0067    GGET     1   5      ; "assert"
+0068    TGETS    1   1   6  ; "are"
+0069    TGETS    1   1   7  ; "same"
+0070    KSHORT   2   1
+0071    UGET     3   2      ; UIManager
+0072    TGETS    3   3   2  ; "_task_queue"
+0073    LEN      3   3
+0074    CALL     1   1   3
+0075    UGET     1   2      ; UIManager
+0076    MOV      2   1
+0077    TGETS    1   1   8  ; "scheduleIn"
+0078    KSHORT   3 150
+0079    KSTR     4  12      ; "foo"
+0080    CALL     1   1   4
+0081    GGET     1   5      ; "assert"
+0082    TGETS    1   1   6  ; "are"
+0083    TGETS    1   1   7  ; "same"
+0084    KSHORT   2   2
+0085    UGET     3   2      ; UIManager
+0086    TGETS    3   3   2  ; "_task_queue"
+0087    LEN      3   3
+0088    CALL     1   1   3
+0089    GGET     1   5      ; "assert"
+0090    TGETS    1   1   6  ; "are"
+0091    TGETS    1   1   7  ; "same"
+0092    KSTR     2  12      ; "foo"
+0093    UGET     3   2      ; UIManager
+0094    TGETS    3   3   2  ; "_task_queue"
+0095    TGETB    3   3   2
+0096    TGETS    3   3  10  ; "action"
+0097    CALL     1   1   3
+0098    UGET     1   2      ; UIManager
+0099    MOV      2   1
+0100    TGETS    1   1   8  ; "scheduleIn"
+0101    KSHORT   3 155
+0102    KSTR     4  13      ; "bar"
+0103    CALL     1   1   4
+0104    GGET     1   5      ; "assert"
+0105    TGETS    1   1   6  ; "are"
+0106    TGETS    1   1   7  ; "same"
+0107    KSHORT   2   3
+0108    UGET     3   2      ; UIManager
+0109    TGETS    3   3   2  ; "_task_queue"
+0110    LEN      3   3
+0111    CALL     1   1   3
+0112    GGET     1   5      ; "assert"
+0113    TGETS    1   1   6  ; "are"
+0114    TGETS    1   1   7  ; "same"
+0115    KSTR     2  13      ; "bar"
+0116    UGET     3   2      ; UIManager
+0117    TGETS    3   3   2  ; "_task_queue"
+0118    TGETB    3   3   3
+0119    TGETS    3   3  10  ; "action"
+0120    CALL     1   1   3
+0121    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:92-115
+0001    TNEW     0   3
+0002    UGET     1   1      ; util
+0003    TGETS    1   1   0  ; "gettime"
+0004    CALL     1   0   1
+0005    TSETM    1   0      ; 1
+0006    USETV    0   0      ; now
+0007    UGET     0   2      ; UIManager
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "quit"
+0010    CALL     0   1   2
+0011    UGET     0   2      ; UIManager
+0012    TNEW     1   4
+0013    TDUP     2   3
+0014    TNEW     3   3
+0015    UGET     4   0      ; now
+0016    TGETB    4   4   1
+0017    SUBVN    4   4   1  ; 10
+0018    TSETB    4   3   1
+0019    UGET     4   0      ; now
+0020    TGETB    4   4   2
+0021    TSETB    4   3   2
+0022    TSETS    3   2   4  ; "time"
+0023    TSETB    2   1   1
+0024    TDUP     2   5
+0025    TNEW     3   3
+0026    UGET     4   0      ; now
+0027    TGETB    4   4   1
+0028    TSETB    4   3   1
+0029    UGET     4   0      ; now
+0030    TGETB    4   4   2
+0031    SUBVN    4   4   2  ; 5
+0032    TSETB    4   3   2
+0033    TSETS    3   2   4  ; "time"
+0034    TSETB    2   1   2
+0035    TDUP     2   6
+0036    UGET     3   0      ; now
+0037    TSETS    3   2   4  ; "time"
+0038    TSETB    2   1   3
+0039    TSETS    1   0   2  ; "_task_queue"
+0040    UGET     0   2      ; UIManager
+0041    MOV      1   0
+0042    TGETS    0   0   7  ; "scheduleIn"
+0043    KSHORT   2  10
+0044    KSTR     3   8      ; "foo"
+0045    CALL     0   1   4
+0046    GGET     0   9      ; "assert"
+0047    TGETS    0   0  10  ; "are"
+0048    TGETS    0   0  11  ; "same"
+0049    KSTR     1   8      ; "foo"
+0050    UGET     2   2      ; UIManager
+0051    TGETS    2   2   2  ; "_task_queue"
+0052    TGETB    2   2   4
+0053    TGETS    2   2  12  ; "action"
+0054    CALL     0   1   3
+0055    UGET     0   2      ; UIManager
+0056    MOV      1   0
+0057    TGETS    0   0  13  ; "schedule"
+0058    TNEW     2   3
+0059    UGET     3   0      ; now
+0060    TGETB    3   3   1
+0061    SUBVN    3   3   2  ; 5
+0062    TSETB    3   2   1
+0063    UGET     3   0      ; now
+0064    TGETB    3   3   2
+0065    TSETB    3   2   2
+0066    KSTR     3  14      ; "bar"
+0067    CALL     0   1   4
+0068    GGET     0   9      ; "assert"
+0069    TGETS    0   0  10  ; "are"
+0070    TGETS    0   0  11  ; "same"
+0071    KSTR     1  14      ; "bar"
+0072    UGET     2   2      ; UIManager
+0073    TGETS    2   2   2  ; "_task_queue"
+0074    TGETB    2   2   2
+0075    TGETS    2   2  12  ; "action"
+0076    CALL     0   1   3
+0077    UGET     0   2      ; UIManager
+0078    MOV      1   0
+0079    TGETS    0   0  13  ; "schedule"
+0080    TNEW     2   3
+0081    UGET     3   0      ; now
+0082    TGETB    3   3   1
+0083    SUBVN    3   3   3  ; 15
+0084    TSETB    3   2   1
+0085    UGET     3   0      ; now
+0086    TGETB    3   3   2
+0087    TSETB    3   2   2
+0088    KSTR     3  15      ; "baz"
+0089    CALL     0   1   4
+0090    GGET     0   9      ; "assert"
+0091    TGETS    0   0  10  ; "are"
+0092    TGETS    0   0  11  ; "same"
+0093    KSTR     1  15      ; "baz"
+0094    UGET     2   2      ; UIManager
+0095    TGETS    2   2   2  ; "_task_queue"
+0096    TGETB    2   2   1
+0097    TGETS    2   2  12  ; "action"
+0098    CALL     0   1   3
+0099    UGET     0   2      ; UIManager
+0100    MOV      1   0
+0101    TGETS    0   0   7  ; "scheduleIn"
+0102    KSHORT   2   5
+0103    KSTR     3  16      ; "qux"
+0104    CALL     0   1   4
+0105    GGET     0   9      ; "assert"
+0106    TGETS    0   0  10  ; "are"
+0107    TGETS    0   0  11  ; "same"
+0108    KSTR     1  16      ; "qux"
+0109    UGET     2   2      ; UIManager
+0110    TGETS    2   2   2  ; "_task_queue"
+0111    TGETB    2   2   6
+0112    TGETS    2   2  12  ; "action"
+0113    CALL     0   1   3
+0114    UGET     0   2      ; UIManager
+0115    MOV      1   0
+0116    TGETS    0   0  13  ; "schedule"
+0117    TNEW     2   3
+0118    UGET     3   0      ; now
+0119    TGETB    3   3   1
+0120    TSETB    3   2   1
+0121    UGET     3   0      ; now
+0122    TGETB    3   3   2
+0123    SUBVN    3   3   4  ; 1
+0124    TSETB    3   2   2
+0125    KSTR     3  17      ; "quux"
+0126    CALL     0   1   4
+0127    GGET     0   9      ; "assert"
+0128    TGETS    0   0  10  ; "are"
+0129    TGETS    0   0  11  ; "same"
+0130    KSTR     1  17      ; "quux"
+0131    UGET     2   2      ; UIManager
+0132    TGETS    2   2   2  ; "_task_queue"
+0133    TGETB    2   2   5
+0134    TGETS    2   2  12  ; "action"
+0135    CALL     0   1   3
+0136    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:117-133
+0001    TNEW     0   3
+0002    UGET     1   1      ; util
+0003    TGETS    1   1   0  ; "gettime"
+0004    CALL     1   0   1
+0005    TSETM    1   0      ; 1
+0006    USETV    0   0      ; now
+0007    UGET     0   2      ; UIManager
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "quit"
+0010    CALL     0   1   2
+0011    UGET     0   2      ; UIManager
+0012    TNEW     1   6
+0013    TDUP     2   3
+0014    TNEW     3   3
+0015    UGET     4   0      ; now
+0016    TGETB    4   4   1
+0017    SUBVN    4   4   1  ; 15
+0018    TSETB    4   3   1
+0019    UGET     4   0      ; now
+0020    TGETB    4   4   2
+0021    TSETB    4   3   2
+0022    TSETS    3   2   4  ; "time"
+0023    TSETB    2   1   1
+0024    TDUP     2   5
+0025    TNEW     3   3
+0026    UGET     4   0      ; now
+0027    TGETB    4   4   1
+0028    SUBVN    4   4   2  ; 10
+0029    TSETB    4   3   1
+0030    UGET     4   0      ; now
+0031    TGETB    4   4   2
+0032    TSETB    4   3   2
+0033    TSETS    3   2   4  ; "time"
+0034    TSETB    2   1   2
+0035    TDUP     2   6
+0036    TNEW     3   3
+0037    UGET     4   0      ; now
+0038    TGETB    4   4   1
+0039    TSETB    4   3   1
+0040    UGET     4   0      ; now
+0041    TGETB    4   4   2
+0042    SUBVN    4   4   3  ; 6
+0043    TSETB    4   3   2
+0044    TSETS    3   2   4  ; "time"
+0045    TSETB    2   1   3
+0046    TDUP     2   7
+0047    TNEW     3   3
+0048    UGET     4   0      ; now
+0049    TGETB    4   4   1
+0050    TSETB    4   3   1
+0051    UGET     4   0      ; now
+0052    TGETB    4   4   2
+0053    SUBVN    4   4   4  ; 5
+0054    TSETB    4   3   2
+0055    TSETS    3   2   4  ; "time"
+0056    TSETB    2   1   4
+0057    TDUP     2   8
+0058    UGET     3   0      ; now
+0059    TSETS    3   2   4  ; "time"
+0060    TSETB    2   1   5
+0061    TSETS    1   0   2  ; "_task_queue"
+0062    UGET     0   2      ; UIManager
+0063    MOV      1   0
+0064    TGETS    0   0   9  ; "unschedule"
+0065    KSTR     2  10      ; "3"
+0066    CALL     0   1   3
+0067    GGET     0  11      ; "assert"
+0068    TGETS    0   0  12  ; "are"
+0069    TGETS    0   0  13  ; "same"
+0070    TNEW     1   3
+0071    TDUP     2  14
+0072    TNEW     3   3
+0073    UGET     4   0      ; now
+0074    TGETB    4   4   1
+0075    SUBVN    4   4   2  ; 10
+0076    TSETB    4   3   1
+0077    UGET     4   0      ; now
+0078    TGETB    4   4   2
+0079    TSETB    4   3   2
+0080    TSETS    3   2   4  ; "time"
+0081    TSETB    2   1   1
+0082    TDUP     2  15
+0083    TNEW     3   3
+0084    UGET     4   0      ; now
+0085    TGETB    4   4   1
+0086    TSETB    4   3   1
+0087    UGET     4   0      ; now
+0088    TGETB    4   4   2
+0089    SUBVN    4   4   4  ; 5
+0090    TSETB    4   3   2
+0091    TSETS    3   2   4  ; "time"
+0092    TSETB    2   1   2
+0093    UGET     2   2      ; UIManager
+0094    TGETS    2   2   2  ; "_task_queue"
+0095    CALL     0   1   3
+0096    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:138-140
+0001    UGET     0   0      ; run_count
+0002    ADDVN    0   0   0  ; 1
+0003    USETV    0   0      ; run_count
+0004    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:146-149
+0001    UGET     0   0      ; run_count
+0002    ADDVN    0   0   0  ; 1
+0003    USETV    0   0      ; run_count
+0004    UGET     0   1      ; UIManager
+0005    MOV      1   0
+0006    TGETS    0   0   0  ; "unschedule"
+0007    UGET     2   2      ; task_to_remove
+0008    CALL     0   1   3
+0009    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:135-155
+0001    TNEW     0   3
+0002    UGET     1   1      ; util
+0003    TGETS    1   1   0  ; "gettime"
+0004    CALL     1   0   1
+0005    TSETM    1   0      ; 1
+0006    USETV    0   0      ; now
+0007    KSHORT   0   0
+0008    FNEW     1   1      ; uimanager_spec.lua:138
+0009    UGET     2   2      ; UIManager
+0010    MOV      3   2
+0011    TGETS    2   2   2  ; "quit"
+0012    CALL     2   1   2
+0013    UGET     2   2      ; UIManager
+0014    TNEW     3   4
+0015    TDUP     4   4
+0016    TNEW     5   3
+0017    UGET     6   0      ; now
+0018    TGETB    6   6   1
+0019    TSETB    6   5   1
+0020    UGET     6   0      ; now
+0021    TGETB    6   6   2
+0022    SUBVN    6   6   1  ; 5
+0023    TSETB    6   5   2
+0024    TSETS    5   4   5  ; "time"
+0025    TSETS    1   4   6  ; "action"
+0026    TSETB    4   3   1
+0027    TDUP     4   7
+0028    TNEW     5   3
+0029    UGET     6   0      ; now
+0030    TGETB    6   6   1
+0031    SUBVN    6   6   2  ; 10
+0032    TSETB    6   5   1
+0033    UGET     6   0      ; now
+0034    TGETB    6   6   2
+0035    TSETB    6   5   2
+0036    TSETS    5   4   5  ; "time"
+0037    FNEW     5   8      ; uimanager_spec.lua:146
+0038    TSETS    5   4   6  ; "action"
+0039    TSETB    4   3   2
+0040    TDUP     4   9
+0041    UGET     5   0      ; now
+0042    TSETS    5   4   5  ; "time"
+0043    TSETS    1   4   6  ; "action"
+0044    TSETB    4   3   3
+0045    TSETS    3   2   3  ; "_task_queue"
+0046    UGET     2   2      ; UIManager
+0047    MOV      3   2
+0048    TGETS    2   2  10  ; "_checkTasks"
+0049    CALL     2   1   2
+0050    GGET     2  11      ; "assert"
+0051    TGETS    2   2  12  ; "are"
+0052    TGETS    2   2  13  ; "same"
+0053    KSHORT   3   2
+0054    MOV      4   0
+0055    CALL     2   1   3
+0056    UCLO     0 => 0057
+0057 => RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:160-160
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "nextTick"
+0004    UGET     2   1      ; noop
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:157-163
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    GGET     0   1      ; "assert"
+0006    TGETS    0   0   2  ; "is"
+0007    TGETS    0   0   3  ; "not_true"
+0008    UGET     1   0      ; UIManager
+0009    TGETS    1   1   4  ; "_task_queue_dirty"
+0010    CALL     0   1   2
+0011    UGET     0   0      ; UIManager
+0012    MOV      1   0
+0013    TGETS    0   0   5  ; "nextTick"
+0014    FNEW     2   6      ; uimanager_spec.lua:160
+0015    CALL     0   1   3
+0016    UGET     0   0      ; UIManager
+0017    MOV      1   0
+0018    TGETS    0   0   7  ; "_checkTasks"
+0019    CALL     0   1   2
+0020    GGET     0   1      ; "assert"
+0021    TGETS    0   0   8  ; "is_true"
+0022    UGET     1   0      ; UIManager
+0023    TGETS    1   1   4  ; "_task_queue_dirty"
+0024    CALL     0   1   2
+0025    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:171-173
+0001    KPRI     0   2
+0002    RET1     0   2
+
+-- BYTECODE -- uimanager_spec.lua:179-181
+0001    KPRI     0   2
+0002    RET1     0   2
+
+-- BYTECODE -- uimanager_spec.lua:166-186
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    TDUP     2   1
+0005    FNEW     3   2      ; uimanager_spec.lua:171
+0006    TSETS    3   2   3  ; "handleEvent"
+0007    CALL     0   1   3
+0008    UGET     0   0      ; UIManager
+0009    MOV      1   0
+0010    TGETS    0   0   0  ; "show"
+0011    TDUP     2   4
+0012    FNEW     3   5      ; uimanager_spec.lua:179
+0013    TSETS    3   2   3  ; "handleEvent"
+0014    CALL     0   1   3
+0015    GGET     0   6      ; "assert"
+0016    TGETS    0   0   7  ; "equals"
+0017    KSHORT   1   2
+0018    UGET     2   0      ; UIManager
+0019    TGETS    2   2   8  ; "_window_stack"
+0020    TGETB    2   2   1
+0021    TGETS    2   2   9  ; "widget"
+0022    TGETS    2   2  10  ; "x_prefix_test_number"
+0023    CALL     0   1   3
+0024    GGET     0   6      ; "assert"
+0025    TGETS    0   0   7  ; "equals"
+0026    KSHORT   1   1
+0027    UGET     2   0      ; UIManager
+0028    TGETS    2   2   8  ; "_window_stack"
+0029    TGETB    2   2   2
+0030    TGETS    2   2   9  ; "widget"
+0031    TGETS    2   2  10  ; "x_prefix_test_number"
+0032    CALL     0   1   3
+0033    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:191-193
+0001    KPRI     0   2
+0002    RET1     0   2
+
+-- BYTECODE -- uimanager_spec.lua:187-199
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    TDUP     2   1
+0005    FNEW     3   2      ; uimanager_spec.lua:191
+0006    TSETS    3   2   3  ; "handleEvent"
+0007    CALL     0   1   3
+0008    GGET     0   4      ; "assert"
+0009    TGETS    0   0   5  ; "equals"
+0010    KSHORT   1   2
+0011    UGET     2   0      ; UIManager
+0012    TGETS    2   2   6  ; "_window_stack"
+0013    TGETB    2   2   1
+0014    TGETS    2   2   7  ; "widget"
+0015    TGETS    2   2   8  ; "x_prefix_test_number"
+0016    CALL     0   1   3
+0017    GGET     0   4      ; "assert"
+0018    TGETS    0   0   5  ; "equals"
+0019    KSHORT   1   1
+0020    UGET     2   0      ; UIManager
+0021    TGETS    2   2   6  ; "_window_stack"
+0022    TGETB    2   2   2
+0023    TGETS    2   2   7  ; "widget"
+0024    TGETS    2   2   8  ; "x_prefix_test_number"
+0025    CALL     0   1   3
+0026    GGET     0   4      ; "assert"
+0027    TGETS    0   0   5  ; "equals"
+0028    KSHORT   1   3
+0029    UGET     2   0      ; UIManager
+0030    TGETS    2   2   6  ; "_window_stack"
+0031    TGETB    2   2   3
+0032    TGETS    2   2   7  ; "widget"
+0033    TGETS    2   2   8  ; "x_prefix_test_number"
+0034    CALL     0   1   3
+0035    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:165-200
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should insert modal widget on top"
+0003    FNEW     2   2      ; uimanager_spec.lua:166
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should insert second modal widget on top"~
+0007    FNEW     2   4      ; uimanager_spec.lua:187
+0008    CALL     0   1   3
+0009    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:208-211
+0001    UGET     0   0      ; call_signals
+0002    KPRI     1   2
+0003    TSETB    1   0   1
+0004    KPRI     0   2
+0005    RET1     0   2
+
+-- BYTECODE -- uimanager_spec.lua:217-220
+0001    UGET     0   0      ; call_signals
+0002    KPRI     1   2
+0003    TSETB    1   0   2
+0004    KPRI     0   2
+0005    RET1     0   2
+
+-- BYTECODE -- uimanager_spec.lua:226-229
+0001    UGET     0   0      ; call_signals
+0002    KPRI     1   2
+0003    TSETB    1   0   3
+0004    KPRI     0   2
+0005    RET1     0   2
+
+-- BYTECODE -- uimanager_spec.lua:232-232
+0001    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:202-239
+0001    TDUP     0   0
+0002    UGET     1   0      ; UIManager
+0003    TNEW     2   5
+0004    TDUP     3   5
+0005    TDUP     4   2
+0006    FNEW     5   3      ; uimanager_spec.lua:208
+0007    TSETS    5   4   4  ; "handleEvent"
+0008    TSETS    4   3   6  ; "widget"
+0009    TSETB    3   2   1
+0010    TDUP     3   9
+0011    TDUP     4   7
+0012    FNEW     5   8      ; uimanager_spec.lua:217
+0013    TSETS    5   4   4  ; "handleEvent"
+0014    TSETS    4   3   6  ; "widget"
+0015    TSETB    3   2   2
+0016    TDUP     3  12
+0017    TDUP     4  10
+0018    FNEW     5  11      ; uimanager_spec.lua:226
+0019    TSETS    5   4   4  ; "handleEvent"
+0020    TSETS    4   3   6  ; "widget"
+0021    TSETB    3   2   3
+0022    TDUP     3  15
+0023    TDUP     4  14
+0024    FNEW     5  13      ; uimanager_spec.lua:232
+0025    TSETS    5   4   4  ; "handleEvent"
+0026    TSETS    4   3   6  ; "widget"
+0027    TSETB    3   2   4
+0028    TSETS    2   1   1  ; "_window_stack"
+0029    UGET     1   0      ; UIManager
+0030    MOV      2   1
+0031    TGETS    1   1  16  ; "sendEvent"
+0032    KSTR     3  17      ; "foo"
+0033    CALL     1   1   3
+0034    GGET     1  18      ; "assert"
+0035    TGETS    1   1  19  ; "falsy"
+0036    TGETB    2   0   1
+0037    CALL     1   1   2
+0038    GGET     1  18      ; "assert"
+0039    TGETS    1   1  19  ; "falsy"
+0040    TGETB    2   0   2
+0041    CALL     1   1   2
+0042    GGET     1  18      ; "assert"
+0043    TGETS    1   1  20  ; "truthy"
+0044    TGETB    2   0   3
+0045    CALL     1   1   2
+0046    UCLO     0 => 0047
+0047 => RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:248-250
+0001    UGET     0   0      ; call_signals
+0002    UGET     1   0      ; call_signals
+0003    TGETB    1   1   1
+0004    ADDVN    1   1   0  ; 1
+0005    TSETB    1   0   1
+0006    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:256-258
+0001    UGET     0   0      ; call_signals
+0002    UGET     1   0      ; call_signals
+0003    TGETB    1   1   2
+0004    ADDVN    1   1   0  ; 1
+0005    TSETB    1   0   2
+0006    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:264-267
+0001    UGET     0   0      ; call_signals
+0002    UGET     1   0      ; call_signals
+0003    TGETB    1   1   3
+0004    ADDVN    1   1   0  ; 1
+0005    TSETB    1   0   3
+0006    GGET     0   0      ; "table"
+0007    TGETS    0   0   1  ; "remove"
+0008    UGET     1   1      ; UIManager
+0009    TGETS    1   1   2  ; "_window_stack"
+0010    KSHORT   2   2
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:270-270
+0001    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:284-286
+0001    UGET     0   0      ; call_signals
+0002    UGET     1   0      ; call_signals
+0003    TGETB    1   1   1
+0004    ADDVN    1   1   0  ; 1
+0005    TSETB    1   0   1
+0006    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:292-294
+0001    UGET     0   0      ; call_signals
+0002    UGET     1   0      ; call_signals
+0003    TGETB    1   1   2
+0004    ADDVN    1   1   0  ; 1
+0005    TSETB    1   0   2
+0006    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:300-303
+0001    UGET     0   0      ; call_signals
+0002    UGET     1   0      ; call_signals
+0003    TGETB    1   1   3
+0004    ADDVN    1   1   0  ; 1
+0005    TSETB    1   0   3
+0006    GGET     0   0      ; "table"
+0007    TGETS    0   0   1  ; "remove"
+0008    UGET     1   1      ; UIManager
+0009    TGETS    1   1   2  ; "_window_stack"
+0010    KSHORT   2   3
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:241-312
+0001    TDUP     0   0
+0002    UGET     1   0      ; UIManager
+0003    TNEW     2   5
+0004    TDUP     3   5
+0005    TDUP     4   2
+0006    FNEW     5   3      ; uimanager_spec.lua:248
+0007    TSETS    5   4   4  ; "handleEvent"
+0008    TSETS    4   3   6  ; "widget"
+0009    TSETB    3   2   1
+0010    TDUP     3   9
+0011    TDUP     4   7
+0012    FNEW     5   8      ; uimanager_spec.lua:256
+0013    TSETS    5   4   4  ; "handleEvent"
+0014    TSETS    4   3   6  ; "widget"
+0015    TSETB    3   2   2
+0016    TDUP     3  12
+0017    TDUP     4  10
+0018    FNEW     5  11      ; uimanager_spec.lua:264
+0019    TSETS    5   4   4  ; "handleEvent"
+0020    TSETS    4   3   6  ; "widget"
+0021    TSETB    3   2   3
+0022    TDUP     3  15
+0023    TDUP     4  14
+0024    FNEW     5  13      ; uimanager_spec.lua:270
+0025    TSETS    5   4   4  ; "handleEvent"
+0026    TSETS    4   3   6  ; "widget"
+0027    TSETB    3   2   4
+0028    TSETS    2   1   1  ; "_window_stack"
+0029    UGET     1   0      ; UIManager
+0030    MOV      2   1
+0031    TGETS    1   1  16  ; "sendEvent"
+0032    KSTR     3  17      ; "foo"
+0033    CALL     1   1   3
+0034    GGET     1  18      ; "assert"
+0035    TGETS    1   1  19  ; "is"
+0036    TGETS    1   1  20  ; "same"
+0037    TGETB    2   0   1
+0038    KSHORT   3   1
+0039    CALL     1   1   3
+0040    GGET     1  18      ; "assert"
+0041    TGETS    1   1  19  ; "is"
+0042    TGETS    1   1  20  ; "same"
+0043    TGETB    2   0   2
+0044    KSHORT   3   0
+0045    CALL     1   1   3
+0046    GGET     1  18      ; "assert"
+0047    TGETS    1   1  19  ; "is"
+0048    TGETS    1   1  20  ; "same"
+0049    TGETB    2   0   3
+0050    KSHORT   3   1
+0051    CALL     1   1   3
+0052    TDUP     0  21
+0053    UGET     1   0      ; UIManager
+0054    TNEW     2   4
+0055    TDUP     3  24
+0056    TDUP     4  22
+0057    FNEW     5  23      ; uimanager_spec.lua:284
+0058    TSETS    5   4   4  ; "handleEvent"
+0059    TSETS    4   3   6  ; "widget"
+0060    TSETB    3   2   1
+0061    TDUP     3  27
+0062    TDUP     4  25
+0063    FNEW     5  26      ; uimanager_spec.lua:292
+0064    TSETS    5   4   4  ; "handleEvent"
+0065    TSETS    4   3   6  ; "widget"
+0066    TSETB    3   2   2
+0067    TDUP     3  30
+0068    TDUP     4  28
+0069    FNEW     5  29      ; uimanager_spec.lua:300
+0070    TSETS    5   4   4  ; "handleEvent"
+0071    TSETS    4   3   6  ; "widget"
+0072    TSETB    3   2   3
+0073    TSETS    2   1   1  ; "_window_stack"
+0074    UGET     1   0      ; UIManager
+0075    MOV      2   1
+0076    TGETS    1   1  16  ; "sendEvent"
+0077    KSTR     3  17      ; "foo"
+0078    CALL     1   1   3
+0079    GGET     1  18      ; "assert"
+0080    TGETS    1   1  19  ; "is"
+0081    TGETS    1   1  20  ; "same"
+0082    KSHORT   2   1
+0083    TGETB    3   0   1
+0084    CALL     1   1   3
+0085    GGET     1  18      ; "assert"
+0086    TGETS    1   1  19  ; "is"
+0087    TGETS    1   1  20  ; "same"
+0088    KSHORT   2   1
+0089    TGETB    3   0   2
+0090    CALL     1   1   3
+0091    GGET     1  18      ; "assert"
+0092    TGETS    1   1  19  ; "is"
+0093    TGETS    1   1  20  ; "same"
+0094    KSHORT   2   1
+0095    TGETB    3   0   3
+0096    CALL     1   1   3
+0097    UCLO     0 => 0098
+0098 => RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:318-320
+0001    UGET     0   0      ; UIManager
+0002    TGETS    0   0   0  ; "_window_stack"
+0003    KPRI     1   0
+0004    TSETB    1   0   1
+0005    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:330-334
+0001    UGET     0   0      ; UIManager
+0002    TGETS    0   0   0  ; "_window_stack"
+0003    KPRI     1   0
+0004    TSETB    1   0   1
+0005    UGET     0   0      ; UIManager
+0006    TGETS    0   0   0  ; "_window_stack"
+0007    KPRI     1   0
+0008    TSETB    1   0   2
+0009    UGET     0   0      ; UIManager
+0010    TGETS    0   0   0  ; "_window_stack"
+0011    KPRI     1   0
+0012    TSETB    1   0   3
+0013    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:339-341
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "falsy"
+0003    KPRI     1   2
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:346-348
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "falsy"
+0003    KPRI     1   2
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:314-354
+0001    UGET     0   0      ; UIManager
+0002    TNEW     1   3
+0003    TDUP     2   4
+0004    TDUP     3   2
+0005    FNEW     4   1      ; uimanager_spec.lua:318
+0006    TSETS    4   3   3  ; "handleEvent"
+0007    TSETS    3   2   5  ; "widget"
+0008    TSETB    2   1   1
+0009    TSETS    1   0   0  ; "_window_stack"
+0010    UGET     0   0      ; UIManager
+0011    MOV      1   0
+0012    TGETS    0   0   6  ; "broadcastEvent"
+0013    KSTR     2   7      ; "foo"
+0014    CALL     0   1   3
+0015    GGET     0   8      ; "assert"
+0016    TGETS    0   0   9  ; "is"
+0017    TGETS    0   0  10  ; "same"
+0018    UGET     1   0      ; UIManager
+0019    TGETS    1   1   0  ; "_window_stack"
+0020    LEN      1   1
+0021    KSHORT   2   0
+0022    CALL     0   1   3
+0023    UGET     0   0      ; UIManager
+0024    TNEW     1   4
+0025    TDUP     2  13
+0026    TDUP     3  12
+0027    FNEW     4  11      ; uimanager_spec.lua:330
+0028    TSETS    4   3   3  ; "handleEvent"
+0029    TSETS    3   2   5  ; "widget"
+0030    TSETB    2   1   1
+0031    TDUP     2  16
+0032    TDUP     3  15
+0033    FNEW     4  14      ; uimanager_spec.lua:339
+0034    TSETS    4   3   3  ; "handleEvent"
+0035    TSETS    3   2   5  ; "widget"
+0036    TSETB    2   1   2
+0037    TDUP     2  19
+0038    TDUP     3  18
+0039    FNEW     4  17      ; uimanager_spec.lua:346
+0040    TSETS    4   3   3  ; "handleEvent"
+0041    TSETS    3   2   5  ; "widget"
+0042    TSETB    2   1   3
+0043    TSETS    1   0   0  ; "_window_stack"
+0044    UGET     0   0      ; UIManager
+0045    MOV      1   0
+0046    TGETS    0   0   6  ; "broadcastEvent"
+0047    KSTR     2   7      ; "foo"
+0048    CALL     0   1   3
+0049    GGET     0   8      ; "assert"
+0050    TGETS    0   0   9  ; "is"
+0051    TGETS    0   0  10  ; "same"
+0052    KSHORT   1   0
+0053    UGET     2   0      ; UIManager
+0054    TGETS    2   2   0  ; "_window_stack"
+0055    LEN      2   2
+0056    CALL     0   1   3
+0057    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:357-357
+0001    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:359-361
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; widget_1
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:363-363
+0001    RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:356-373
+0001    TDUP     0   1
+0002    FNEW     1   0      ; uimanager_spec.lua:357
+0003    TSETS    1   0   2  ; "handleEvent"
+0004    TDUP     1   4
+0005    FNEW     2   3      ; uimanager_spec.lua:359
+0006    TSETS    2   1   2  ; "handleEvent"
+0007    TDUP     2   6
+0008    FNEW     3   5      ; uimanager_spec.lua:363
+0009    TSETS    3   2   2  ; "handleEvent"
+0010    UGET     3   0      ; UIManager
+0011    TNEW     4   4
+0012    TDUP     5   8
+0013    TSETS    0   5   9  ; "widget"
+0014    TSETB    5   4   1
+0015    TDUP     5  10
+0016    TSETS    1   5   9  ; "widget"
+0017    TSETB    5   4   2
+0018    TDUP     5  11
+0019    TSETS    2   5   9  ; "widget"
+0020    TSETB    5   4   3
+0021    TSETS    4   3   7  ; "_window_stack"
+0022    UGET     3   0      ; UIManager
+0023    MOV      4   3
+0024    TGETS    3   3  12  ; "close"
+0025    MOV      5   1
+0026    CALL     3   1   3
+0027    GGET     3  13      ; "assert"
+0028    TGETS    3   3  14  ; "is"
+0029    TGETS    3   3  15  ; "same"
+0030    KSHORT   4   1
+0031    UGET     5   0      ; UIManager
+0032    TGETS    5   5   7  ; "_window_stack"
+0033    LEN      5   5
+0034    CALL     3   1   3
+0035    GGET     3  13      ; "assert"
+0036    TGETS    3   3  14  ; "is"
+0037    TGETS    3   3  15  ; "same"
+0038    MOV      4   2
+0039    UGET     5   0      ; UIManager
+0040    TGETS    5   5   7  ; "_window_stack"
+0041    TGETB    5   5   1
+0042    TGETS    5   5   9  ; "widget"
+0043    CALL     3   1   3
+0044    UCLO     0 => 0045
+0045 => RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:1-374
+0001    KNIL     0   3
+0002    FNEW     4   0      ; uimanager_spec.lua:4
+0003    GGET     5   1      ; "setup"
+0004    FNEW     6   2      ; uimanager_spec.lua:6
+0005    CALL     5   1   2
+0006    GGET     5   3      ; "it"
+0007    KSTR     6   4      ; "should consume due tasks"
+0008    FNEW     7   5      ; uimanager_spec.lua:12
+0009    CALL     5   1   3
+0010    GGET     5   3      ; "it"
+0011    KSTR     6   6      ; "should calcualte wait_until properly in "~
+0012    FNEW     7   7      ; uimanager_spec.lua:30
+0013    CALL     5   1   3
+0014    GGET     5   3      ; "it"
+0015    KSTR     6   8      ; "should return nil wait_until properly in"~
+0016    FNEW     7   9      ; uimanager_spec.lua:45
+0017    CALL     5   1   3
+0018    GGET     5   3      ; "it"
+0019    KSTR     6  10      ; "should insert new task properly in empty"~
+0020    FNEW     7  11      ; uimanager_spec.lua:57
+0021    CALL     5   1   3
+0022    GGET     5   3      ; "it"
+0023    KSTR     6  12      ; "should insert new task properly in singl"~
+0024    FNEW     7  13      ; uimanager_spec.lua:67
+0025    CALL     5   1   3
+0026    GGET     5   3      ; "it"
+0027    KSTR     6  14      ; "should insert new task in ascendant orde"~
+0028    FNEW     7  15      ; uimanager_spec.lua:92
+0029    CALL     5   1   3
+0030    GGET     5   3      ; "it"
+0031    KSTR     6  16      ; "should unschedule all the tasks with the"~
+0032    FNEW     7  17      ; uimanager_spec.lua:117
+0033    CALL     5   1   3
+0034    GGET     5   3      ; "it"
+0035    KSTR     6  18      ; "should not have race between unschedule "~
+0036    FNEW     7  19      ; uimanager_spec.lua:135
+0037    CALL     5   1   3
+0038    GGET     5   3      ; "it"
+0039    KSTR     6  20      ; "should clear _task_queue_dirty bit befor"~
+0040    FNEW     7  21      ; uimanager_spec.lua:157
+0041    CALL     5   1   3
+0042    GGET     5  22      ; "describe"
+0043    KSTR     6  23      ; "modal widgets"
+0044    FNEW     7  24      ; uimanager_spec.lua:165
+0045    CALL     5   1   3
+0046    GGET     5   3      ; "it"
+0047    KSTR     6  25      ; "should check active widgets in order"
+0048    FNEW     7  26      ; uimanager_spec.lua:202
+0049    CALL     5   1   3
+0050    GGET     5   3      ; "it"
+0051    KSTR     6  27      ; "should handle stack change when checking"~
+0052    FNEW     7  28      ; uimanager_spec.lua:241
+0053    CALL     5   1   3
+0054    GGET     5   3      ; "it"
+0055    KSTR     6  29      ; "should handle stack change when broadcas"~
+0056    FNEW     7  30      ; uimanager_spec.lua:314
+0057    CALL     5   1   3
+0058    GGET     5   3      ; "it"
+0059    KSTR     6  31      ; "should handle stack change when closing "~
+0060    FNEW     7  32      ; uimanager_spec.lua:356
+0061    CALL     5   1   3
+0062    UCLO     0 => 0063
+0063 => RET0     0   1
+
+-- BYTECODE -- uimanager_spec.lua:0-375
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "UIManager spec"
+0003    FNEW     2   2      ; uimanager_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

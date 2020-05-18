@@ -1,0 +1,4040 @@
+-- BYTECODE -- textboxwidget.lua:179-179
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "dimen"
+0003    RET1     0   2
+
+-- BYTECODE -- textboxwidget.lua:107-184
+0001    TGETS    1   0   0  ; "_face_adjusted"
+0002    IST          1
+0003    JMP      1 => 0014
+0004    KPRI     1   2
+0005    TSETS    1   0   0  ; "_face_adjusted"
+0006    UGET     1   0      ; Font
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "getAdjustedFace"
+0009    TGETS    3   0   1  ; "face"
+0010    TGETS    4   0   2  ; "bold"
+0011    CALL     1   3   4
+0012    TSETS    2   0   2  ; "bold"
+0013    TSETS    1   0   1  ; "face"
+0014 => UGET     1   1      ; Math
+0015    TGETS    1   1   5  ; "round"
+0016    TGETS    2   0   6  ; "line_height"
+0017    ADDNV    2   2   0  ; 1
+0018    TGETS    3   0   1  ; "face"
+0019    TGETS    3   3   7  ; "size"
+0020    MULVV    2   2   3
+0021    CALL     1   2   2
+0022    TSETS    1   0   4  ; "line_height_px"
+0023    UGET     1   2      ; LineWidget
+0024    MOV      2   1
+0025    TGETS    1   1   9  ; "new"
+0026    TDUP     3  15
+0027    UGET     4   3      ; Geom
+0028    MOV      5   4
+0029    TGETS    4   4   9  ; "new"
+0030    TDUP     6  12
+0031    UGET     7   4      ; Size
+0032    TGETS    7   7  10  ; "line"
+0033    TGETS    7   7  11  ; "medium"
+0034    TSETS    7   6  13  ; "w"
+0035    TGETS    7   0   4  ; "line_height_px"
+0036    TSETS    7   6  14  ; "h"
+0037    CALL     4   2   3
+0038    TSETS    4   3  16  ; "dimen"
+0039    CALL     1   2   3
+0040    TSETS    1   0   8  ; "cursor_line"
+0041    TGETS    1   0  17  ; "height"
+0042    ISF          1
+0043    JMP      2 => 0061
+0044    TGETS    1   0  17  ; "height"
+0045    TGETS    2   0   4  ; "line_height_px"
+0046    ISGE     1   2
+0047    JMP      1 => 0050
+0048    TGETS    1   0   4  ; "line_height_px"
+0049    TSETS    1   0  17  ; "height"
+0050 => GGET     1  19      ; "math"
+0051    TGETS    1   1  20  ; "floor"
+0052    TGETS    2   0  17  ; "height"
+0053    TGETS    3   0   4  ; "line_height_px"
+0054    DIVVV    2   2   3
+0055    CALL     1   2   2
+0056    TSETS    1   0  18  ; "lines_per_page"
+0057    TGETS    1   0  18  ; "lines_per_page"
+0058    TGETS    2   0   4  ; "line_height_px"
+0059    MULVV    1   1   2
+0060    TSETS    1   0  21  ; "text_height"
+0061 => TGETS    1   0  22  ; "use_xtext"
+0062    ISF          1
+0063    JMP      2 => 0068
+0064    MOV      2   0
+0065    TGETS    1   0  23  ; "_measureWithXText"
+0066    CALL     1   1   2
+0067    JMP      1 => 0071
+0068 => MOV      2   0
+0069    TGETS    1   0  24  ; "_evalCharWidthList"
+0070    CALL     1   1   2
+0071 => MOV      2   0
+0072    TGETS    1   0  25  ; "_splitToLines"
+0073    CALL     1   1   2
+0074    TGETS    1   0  26  ; "charpos"
+0075    ISF          1
+0076    JMP      2 => 0087
+0077    TGETS    1   0  26  ; "charpos"
+0078    TGETS    2   0  27  ; "charlist"
+0079    LEN      2   2
+0080    ADDVN    2   2   0  ; 1
+0081    ISGE     2   1
+0082    JMP      1 => 0087
+0083    TGETS    1   0  27  ; "charlist"
+0084    LEN      1   1
+0085    ADDVN    1   1   0  ; 1
+0086    TSETS    1   0  26  ; "charpos"
+0087 => TGETS    1   0  17  ; "height"
+0088    ISNEP    1   0
+0089    JMP      1 => 0100
+0090    TGETS    1   0  28  ; "vertical_string_list"
+0091    LEN      1   1
+0092    TSETS    1   0  18  ; "lines_per_page"
+0093    TGETS    1   0  18  ; "lines_per_page"
+0094    TGETS    2   0   4  ; "line_height_px"
+0095    MULVV    1   1   2
+0096    TSETS    1   0  21  ; "text_height"
+0097    KSHORT   1   1
+0098    TSETS    1   0  29  ; "virtual_line_num"
+0099    JMP      1 => 0134
+0100 => TGETS    1   0  30  ; "height_overflow_show_ellipsis"
+0101    ISF          1
+0102    JMP      2 => 0110
+0103    TGETS    1   0  28  ; "vertical_string_list"
+0104    LEN      1   1
+0105    TGETS    2   0  18  ; "lines_per_page"
+0106    ISGE     2   1
+0107    JMP      1 => 0110
+0108    TGETS    1   0  18  ; "lines_per_page"
+0109    TSETS    1   0  31  ; "line_with_ellipsis"
+0110 => TGETS    1   0  32  ; "height_adjust"
+0111    ISF          1
+0112    JMP      2 => 0125
+0113    TGETS    1   0  21  ; "text_height"
+0114    TSETS    1   0  17  ; "height"
+0115    TGETS    1   0  28  ; "vertical_string_list"
+0116    LEN      1   1
+0117    TGETS    2   0  18  ; "lines_per_page"
+0118    ISGE     1   2
+0119    JMP      1 => 0125
+0120    TGETS    1   0  28  ; "vertical_string_list"
+0121    LEN      1   1
+0122    TGETS    2   0   4  ; "line_height_px"
+0123    MULVV    1   1   2
+0124    TSETS    1   0  17  ; "height"
+0125 => TGETS    1   0  33  ; "editable"
+0126    ISF          1
+0127    JMP      2 => 0134
+0128    TGETS    1   0  26  ; "charpos"
+0129    ISF          1
+0130    JMP      2 => 0134
+0131    MOV      2   0
+0132    TGETS    1   0  34  ; "scrollViewToCharPos"
+0133    CALL     1   1   2
+0134 => MOV      2   0
+0135    TGETS    1   0  35  ; "_renderText"
+0136    TGETS    3   0  29  ; "virtual_line_num"
+0137    TGETS    4   0  29  ; "virtual_line_num"
+0138    TGETS    5   0  18  ; "lines_per_page"
+0139    ADDVV    4   4   5
+0140    SUBVN    4   4   0  ; 1
+0141    CALL     1   1   4
+0142    TGETS    1   0  33  ; "editable"
+0143    ISF          1
+0144    JMP      2 => 0152
+0145    MOV      2   0
+0146    TGETS    1   0  36  ; "moveCursorToCharPos"
+0147    TGETS    3   0  26  ; "charpos"
+0148    IST          3
+0149    JMP      4 => 0151
+0150    KSHORT   3   1
+0151 => CALL     1   1   3
+0152 => UGET     1   3      ; Geom
+0153    MOV      2   1
+0154    TGETS    1   1   9  ; "new"
+0155    MOV      4   0
+0156    TGETS    3   0  37  ; "getSize"
+0157    CALL     3   0   2
+0158    CALLM    1   2   1
+0159    TSETS    1   0  16  ; "dimen"
+0160    UGET     1   5      ; Device
+0161    MOV      2   1
+0162    TGETS    1   1  38  ; "isTouchDevice"
+0163    CALL     1   2   2
+0164    ISF          1
+0165    JMP      2 => 0178
+0166    TDUP     1  43
+0167    TNEW     2   3
+0168    UGET     3   6      ; GestureRange
+0169    MOV      4   3
+0170    TGETS    3   3   9  ; "new"
+0171    TDUP     5  40
+0172    FNEW     6  41      ; textboxwidget.lua:179
+0173    TSETS    6   5  42  ; "range"
+0174    CALL     3   0   3
+0175    TSETM    3   1      ; 1
+0176    TSETS    2   1  44  ; "TapImage"
+0177    TSETS    1   0  39  ; "ges_events"
+0178 => UCLO     0 => 0179
+0179 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:186-190
+0001    KPRI     1   1
+0002    TSETS    1   0   0  ; "editable"
+0003    MOV      2   0
+0004    TGETS    1   0   1  ; "free"
+0005    CALL     1   1   2
+0006    MOV      2   0
+0007    TGETS    1   0   2  ; "init"
+0008    CALL     1   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:192-196
+0001    KPRI     1   2
+0002    TSETS    1   0   0  ; "editable"
+0003    MOV      2   0
+0004    TGETS    1   0   1  ; "free"
+0005    CALL     1   1   2
+0006    MOV      2   0
+0007    TGETS    1   0   2  ; "init"
+0008    CALL     1   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:199-213
+0001    TGETS    1   0   0  ; "charlist"
+0002    ISNEP    1   0
+0003    JMP      1 => 0009
+0004    UGET     1   0      ; util
+0005    TGETS    1   1   1  ; "splitToChars"
+0006    TGETS    2   0   2  ; "text"
+0007    CALL     1   2   2
+0008    TSETS    1   0   0  ; "charlist"
+0009 => TNEW     1   0
+0010    GGET     2   3      ; "ipairs"
+0011    TGETS    3   0   0  ; "charlist"
+0012    CALL     2   4   2
+0013    JMP      5 => 0032
+0014 => TGETV    7   1   6
+0015    IST          7
+0016    JMP      7 => 0032
+0017    UGET     7   1      ; RenderText
+0018    MOV      8   7
+0019    TGETS    7   7   4  ; "sizeUtf8Text"
+0020    KSHORT   9   0
+0021    UGET    10   2      ; Screen
+0022    MOV     11  10
+0023    TGETS   10  10   5  ; "getWidth"
+0024    CALL    10   2   2
+0025    TGETS   11   0   6  ; "face"
+0026    MOV     12   6
+0027    KPRI    13   2
+0028    TGETS   14   0   7  ; "bold"
+0029    CALL     7   2   8
+0030    TGETS    7   7   8  ; "x"
+0031    TSETV    7   1   6
+0032 => ITERC    5   3   3
+0033    ITERL    5 => 0014
+0034    TSETS    1   0   9  ; "char_width"
+0035    TNEW     2   0
+0036    TSETS    2   0  10  ; "idx_pad"
+0037    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:215-241
+0001    TGETS    1   0   0  ; "_xtext_loaded"
+0002    IST          1
+0003    JMP      1 => 0010
+0004    GGET     1   1      ; "require"
+0005    KSTR     2   2      ; "libs/libkoreader-xtext"
+0006    CALL     1   1   2
+0007    UGET     1   0      ; TextBoxWidget
+0008    KPRI     2   2
+0009    TSETS    2   1   0  ; "_xtext_loaded"
+0010 => GGET     1   3      ; "type"
+0011    TGETS    2   0   4  ; "charlist"
+0012    CALL     1   2   2
+0013    ISNES    1   5      ; "table"
+0014    JMP      1 => 0025
+0015    GGET     1   7      ; "xtext"
+0016    TGETS    1   1   8  ; "new"
+0017    TGETS    2   0   4  ; "charlist"
+0018    TGETS    3   0   9  ; "face"
+0019    TGETS    4   0  10  ; "auto_para_direction"
+0020    TGETS    5   0  11  ; "para_direction_rtl"
+0021    TGETS    6   0  12  ; "lang"
+0022    CALL     1   2   6
+0023    TSETS    1   0   6  ; "_xtext"
+0024    JMP      1 => 0051
+0025 => TGETS    1   0  13  ; "text"
+0026    IST          1
+0027    JMP      1 => 0031
+0028    KSTR     1  14      ; ""
+0029    TSETS    1   0  13  ; "text"
+0030    JMP      1 => 0040
+0031 => GGET     1   3      ; "type"
+0032    TGETS    2   0  13  ; "text"
+0033    CALL     1   2   2
+0034    ISEQS    1  15      ; "string"
+0035    JMP      1 => 0040
+0036    GGET     1  16      ; "tostring"
+0037    TGETS    2   0  13  ; "text"
+0038    CALL     1   2   2
+0039    TSETS    1   0  13  ; "text"
+0040 => GGET     1   7      ; "xtext"
+0041    TGETS    1   1   8  ; "new"
+0042    TGETS    2   0  13  ; "text"
+0043    TGETS    3   0   9  ; "face"
+0044    TGETS    4   0  10  ; "auto_para_direction"
+0045    TGETS    5   0  11  ; "para_direction_rtl"
+0046    TGETS    6   0  12  ; "lang"
+0047    CALL     1   2   6
+0048    TSETS    1   0   6  ; "_xtext"
+0049    TGETS    1   0   6  ; "_xtext"
+0050    TSETS    1   0   4  ; "charlist"
+0051 => TGETS    1   0   6  ; "_xtext"
+0052    MOV      2   1
+0053    TGETS    1   1  17  ; "measure"
+0054    CALL     1   1   2
+0055    TGETS    1   0  18  ; "tabstop_nb_space_width"
+0056    KSHORT   2   0
+0057    ISGE     2   1
+0058    JMP      1 => 0074
+0059    TGETS    1   0  19  ; "_tabstop_width"
+0060    IST          1
+0061    JMP      1 => 0074
+0062    UGET     1   1      ; RenderText
+0063    MOV      2   1
+0064    TGETS    1   1  20  ; "sizeUtf8Text"
+0065    KSHORT   3   0
+0066    KPRI     4   1
+0067    TGETS    5   0   9  ; "face"
+0068    KSTR     6  21      ; " "
+0069    CALL     1   2   6
+0070    TGETS    1   1  22  ; "x"
+0071    TGETS    2   0  18  ; "tabstop_nb_space_width"
+0072    MULVV    2   2   1
+0073    TSETS    2   0  19  ; "_tabstop_width"
+0074 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:244-464
+0001    TNEW     1   0
+0002    TSETS    1   0   0  ; "vertical_string_list"
+0003    KSHORT   1   1
+0004    TGETS    2   0   1  ; "charlist"
+0005    LEN      2   2
+0006    KSHORT   3   1
+0007    KNIL     4   6
+0008    KSHORT   7   0
+0009    TGETS    8   0   2  ; "width"
+0010    KSHORT   9   0
+0011 => ISF          1
+0012    JMP     10 => 0356
+0013    ISGT     1   2
+0014    JMP     10 => 0356
+0015    LOOP    10 => 0356
+0016    TGETS   10   0   3  ; "images"
+0017    ISF         10
+0018    JMP     11 => 0112
+0019    TGETS   10   0   3  ; "images"
+0020    LEN     10  10
+0021    KSHORT  11   0
+0022    ISGE    11  10
+0023    JMP     10 => 0112
+0024    TGETS   10   0   4  ; "line_num_to_image"
+0025    ISNEP   10   0
+0026    JMP     10 => 0029
+0027    TNEW    10   0
+0028    TSETS   10   0   4  ; "line_num_to_image"
+0029 => TGETS   10   0   5  ; "lines_per_page"
+0030    ISF         10
+0031    JMP     11 => 0036
+0032    TGETS   10   0   5  ; "lines_per_page"
+0033    MODVV   10   3  10
+0034    ISEQN   10   0      ; 1
+0035    JMP     10 => 0041
+0036 => TGETS   10   0   5  ; "lines_per_page"
+0037    ISNEP   10   0
+0038    JMP     10 => 0106
+0039    ISNEN    3   0      ; 1
+0040    JMP     10 => 0106
+0041 => ADDVN    7   7   0  ; 1
+0042    TGETS   10   0   3  ; "images"
+0043    LEN     10  10
+0044    ISGT     7  10
+0045    JMP     10 => 0106
+0046    TGETS   10   0   3  ; "images"
+0047    TGETV   10  10   7
+0048    TGETS   11   0   4  ; "line_num_to_image"
+0049    TSETV   10  11   3
+0050    TGETS   11  10   2  ; "width"
+0051    TGETS   12   0   2  ; "width"
+0052    DIVVN   12  12   1  ; 2
+0053    ISGE    12  11
+0054    JMP     11 => 0071
+0055    GGET    11   7      ; "math"
+0056    TGETS   11  11   8  ; "floor"
+0057    TGETS   12  10   6  ; "height"
+0058    TGETS   13   0   2  ; "width"
+0059    DIVVN   13  13   1  ; 2
+0060    TGETS   14  10   2  ; "width"
+0061    DIVVV   13  13  14
+0062    MULVV   12  12  13
+0063    CALL    11   2   2
+0064    TSETS   11  10   6  ; "height"
+0065    GGET    11   7      ; "math"
+0066    TGETS   11  11   8  ; "floor"
+0067    TGETS   12   0   2  ; "width"
+0068    DIVVN   12  12   1  ; 2
+0069    CALL    11   2   2
+0070    TSETS   11  10   2  ; "width"
+0071 => TGETS   11  10   6  ; "height"
+0072    TGETS   12   0   6  ; "height"
+0073    DIVVN   12  12   1  ; 2
+0074    ISGE    12  11
+0075    JMP     11 => 0092
+0076    GGET    11   7      ; "math"
+0077    TGETS   11  11   8  ; "floor"
+0078    TGETS   12  10   2  ; "width"
+0079    TGETS   13   0   6  ; "height"
+0080    DIVVN   13  13   1  ; 2
+0081    TGETS   14  10   6  ; "height"
+0082    DIVVV   13  13  14
+0083    MULVV   12  12  13
+0084    CALL    11   2   2
+0085    TSETS   11  10   2  ; "width"
+0086    GGET    11   7      ; "math"
+0087    TGETS   11  11   8  ; "floor"
+0088    TGETS   12   0   6  ; "height"
+0089    DIVVN   12  12   1  ; 2
+0090    CALL    11   2   2
+0091    TSETS   11  10   6  ; "height"
+0092 => TGETS   11   0   2  ; "width"
+0093    TGETS   12  10   2  ; "width"
+0094    SUBVV   11  11  12
+0095    TGETS   12   0   9  ; "image_padding_left"
+0096    SUBVV    8  11  12
+0097    GGET    11   7      ; "math"
+0098    TGETS   11  11  10  ; "ceil"
+0099    TGETS   12  10   6  ; "height"
+0100    TGETS   13   0  11  ; "image_padding_bottom"
+0101    ADDVV   12  12  13
+0102    TGETS   13   0  12  ; "line_height_px"
+0103    DIVVV   12  12  13
+0104    CALL    11   2   2
+0105    MOV      9  11
+0106 => KSHORT  10   0
+0107    ISGE    10   9
+0108    JMP     10 => 0111
+0109    SUBVN    9   9   0  ; 1
+0110    JMP     10 => 0112
+0111 => TGETS    8   0   2  ; "width"
+0112 => MOV      4   1
+0113    TGETS   10   0  13  ; "use_xtext"
+0114    ISF         10
+0115    JMP     11 => 0158
+0116    TGETS   10   0  14  ; "_xtext"
+0117    MOV     11  10
+0118    TGETS   10  10  15  ; "makeLine"
+0119    MOV     12   4
+0120    MOV     13   8
+0121    KPRI    14   1
+0122    TGETS   15   0  16  ; "_tabstop_width"
+0123    CALL    10   2   6
+0124    TGETS   11  10  17  ; "next_start_offset"
+0125    ISF         11
+0126    JMP     12 => 0135
+0127    TGETS   11  10  17  ; "next_start_offset"
+0128    TGETS   12  10  18  ; "offset"
+0129    ISNEV   11  12
+0130    JMP     11 => 0135
+0131    TGETS   11  10  18  ; "offset"
+0132    ADDVN   11  11   0  ; 1
+0133    TSETS   11  10  17  ; "next_start_offset"
+0134    TSETS    8  10   2  ; "width"
+0135 => TGETS   11   0   0  ; "vertical_string_list"
+0136    TSETV   10  11   3
+0137    TGETS   11  10  19  ; "no_allowed_break_met"
+0138    ISF         11
+0139    JMP     12 => 0142
+0140    KPRI    11   2
+0141    TSETS   11   0  20  ; "has_split_inside_word"
+0142 => TGETS   11  10  21  ; "hard_newline_at_eot"
+0143    ISF         11
+0144    JMP     12 => 0155
+0145    TGETS   11  10  17  ; "next_start_offset"
+0146    IST         11
+0147    JMP     11 => 0155
+0148    TGETS   11   0   0  ; "vertical_string_list"
+0149    ADDVN   12   3   0  ; 1
+0150    TDUP    13  22
+0151    ADDVN   14   2   0  ; 1
+0152    TSETS   14  13  18  ; "offset"
+0153    TSETS    8  13  23  ; "targeted_width"
+0154    TSETV   13  11  12
+0155 => ADDVN    3   3   0  ; 1
+0156    TGETS    1  10  17  ; "next_start_offset"
+0157    JMP     10 => 0011
+0158 => KSHORT   6   0
+0159    KPRI    10   1
+0160 => ISGT     1   2
+0161    JMP     11 => 0180
+0162    LOOP    11 => 0180
+0163    TGETS   11   0   1  ; "charlist"
+0164    TGETV   11  11   1
+0165    ISNES   11  24      ; "\n"
+0166    JMP     11 => 0169
+0167    KPRI    10   2
+0168    JMP     11 => 0180
+0169 => TGETS   11   0  25  ; "char_width"
+0170    TGETS   12   0   1  ; "charlist"
+0171    TGETV   12  12   1
+0172    TGETV   11  11  12
+0173    ADDVV    6   6  11
+0174    ISGE     8   6
+0175    JMP     11 => 0178
+0176    JMP     11 => 0180
+0177    JMP     11 => 0160
+0178 => ADDVN    1   1   0  ; 1
+0179    JMP     11 => 0160
+0180 => ISGT     6   8
+0181    JMP     11 => 0184
+0182    SUBVN    5   1   0  ; 1
+0183    JMP     11 => 0328
+0184 => TGETS   11   0   1  ; "charlist"
+0185    TGETV   11  11   1
+0186    ADDVN   12   1   0  ; 1
+0187    ISGT    12   2
+0188    JMP     12 => 0194
+0189    TGETS   12   0   1  ; "charlist"
+0190    ADDVN   13   1   0  ; 1
+0191    TGETV   12  12  13
+0192    IST         12
+0193    JMP     13 => 0195
+0194 => KPRI    12   1
+0195 => SUBVN   13   1   0  ; 1
+0196    KSHORT  14   1
+0197    ISGT    14  13
+0198    JMP     13 => 0204
+0199    TGETS   13   0   1  ; "charlist"
+0200    SUBVN   14   1   0  ; 1
+0201    TGETV   13  13  14
+0202    IST         13
+0203    JMP     14 => 0205
+0204 => KPRI    13   1
+0205 => MOV     14   1
+0206    MOV     15   6
+0207 => ISGE     4  14
+0208    JMP     16 => 0237
+0209    UGET    16   0      ; util
+0210    TGETS   16  16  26  ; "isSplittable"
+0211    MOV     17  11
+0212    MOV     18  12
+0213    MOV     19  13
+0214    CALL    16   2   4
+0215    IST         16
+0216    JMP     16 => 0237
+0217    LOOP    16 => 0237
+0218    TGETS   16   0  25  ; "char_width"
+0219    TGETS   17   0   1  ; "charlist"
+0220    TGETV   17  17  14
+0221    TGETV   16  16  17
+0222    SUBVV   15  15  16
+0223    SUBVN   14  14   0  ; 1
+0224    MOV     12  11
+0225    MOV     11  13
+0226    SUBVN   16  14   0  ; 1
+0227    KSHORT  17   1
+0228    ISGT    17  16
+0229    JMP     16 => 0235
+0230    TGETS   16   0   1  ; "charlist"
+0231    SUBVN   17  14   0  ; 1
+0232    TGETV   16  16  17
+0233    ISTC    13  16
+0234    JMP     17 => 0236
+0235 => KPRI    13   1
+0236 => JMP     16 => 0207
+0237 => ISEQV   14   4
+0238    JMP     16 => 0241
+0239    ISNEV   14   1
+0240    JMP     16 => 0252
+0241 => ISNEV   14   4
+0242    JMP     16 => 0245
+0243    KPRI    16   2
+0244    TSETS   16   0  20  ; "has_split_inside_word"
+0245 => SUBVN    5   1   0  ; 1
+0246    TGETS   16   0  25  ; "char_width"
+0247    TGETS   17   0   1  ; "charlist"
+0248    TGETV   17  17   1
+0249    TGETV   16  16  17
+0250    SUBVV    6   6  16
+0251    JMP     16 => 0265
+0252 => ISNES   11  27      ; " "
+0253    JMP     16 => 0262
+0254    SUBVN    5  14   0  ; 1
+0255    TGETS   16   0  25  ; "char_width"
+0256    TGETS   17   0   1  ; "charlist"
+0257    TGETV   17  17  14
+0258    TGETV   16  16  17
+0259    SUBVV    6  15  16
+0260    ADDVN    1  14   0  ; 1
+0261    JMP     16 => 0265
+0262 => MOV      5  14
+0263    MOV      6  15
+0264    ADDVN    1  14   0  ; 1
+0265 => TGETS   16   0  28  ; "justified"
+0266    ISF         16
+0267    JMP     17 => 0328
+0268    SUBVV   16   8   6
+0269    KSHORT  17   0
+0270    ISGE    17  16
+0271    JMP     17 => 0328
+0272    KSHORT  17   0
+0273    MOV     18   4
+0274    MOV     19   5
+0275    KSHORT  20   1
+0276    FORI    18 => 0283
+0277 => TGETS   22   0   1  ; "charlist"
+0278    TGETV   22  22  21
+0279    ISNES   22  27      ; " "
+0280    JMP     22 => 0282
+0281    ADDVN   17  17   0  ; 1
+0282 => FORL    18 => 0277
+0283 => KSHORT  18   0
+0284    ISGE    18  17
+0285    JMP     18 => 0314
+0286    GGET    18   7      ; "math"
+0287    TGETS   18  18   8  ; "floor"
+0288    DIVVV   19  16  17
+0289    CALL    18   2   2
+0290    MULVV   19  18  17
+0291    SUBVV   19  16  19
+0292    MOV     20   4
+0293    MOV     21   5
+0294    KSHORT  22   1
+0295    FORI    20 => 0313
+0296 => KPRI    24   0
+0297    TGETS   25   0   1  ; "charlist"
+0298    TGETV   25  25  23
+0299    ISNES   25  27      ; " "
+0300    JMP     25 => 0312
+0301    MOV     24  18
+0302    KSHORT  25   0
+0303    ISGE    25  19
+0304    JMP     25 => 0307
+0305    ADDVN   24  24   0  ; 1
+0306    SUBVN   19  19   0  ; 1
+0307 => KSHORT  25   0
+0308    ISGE    25  24
+0309    JMP     25 => 0312
+0310    TGETS   25   0  29  ; "idx_pad"
+0311    TSETV   24  25  23
+0312 => FORL    20 => 0296
+0313 => JMP     18 => 0328
+0314 => MOV     18   4
+0315    MOV     19   5
+0316    KSHORT  20   1
+0317    FORI    18 => 0328
+0318 => KSHORT  22   0
+0319    ISGE    22  16
+0320    JMP     22 => 0328
+0321    TGETS   22   0  29  ; "idx_pad"
+0322    KSHORT  23   1
+0323    TSETV   23  22  21
+0324    SUBVN   16  16   0  ; 1
+0325    JMP     22 => 0327
+0326    JMP     18 => 0328
+0327 => FORL    18 => 0318
+0328 => KSHORT  11   0
+0329    ISGE     6  11
+0330    JMP     11 => 0332
+0331    JMP     10 => 0356
+0332 => TGETS   11   0   0  ; "vertical_string_list"
+0333    TDUP    12  30
+0334    TSETS    4  12  18  ; "offset"
+0335    TSETS    5  12  31  ; "end_offset"
+0336    TSETS    6  12   2  ; "width"
+0337    TSETV   12  11   3
+0338    ISF         10
+0339    JMP     11 => 0347
+0340    ADDVN    1   1   0  ; 1
+0341    TGETS   11   0   0  ; "vertical_string_list"
+0342    ADDVN   12   3   0  ; 1
+0343    TDUP    13  32
+0344    TSETS    1  13  18  ; "offset"
+0345    TSETV   13  11  12
+0346    JMP     11 => 0354
+0347 => ISGT     1   2
+0348    JMP     11 => 0354
+0349    TGETS   11   0   1  ; "charlist"
+0350    TGETV   11  11   1
+0351    ISNES   11  27      ; " "
+0352    JMP     11 => 0354
+0353    ADDVN    1   1   0  ; 1
+0354 => ADDVN    3   3   0  ; 1
+0355    JMP     10 => 0011
+0356 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:466-469
+0001    TGETS    2   1   0  ; "end_offset"
+0002    IST          2
+0003    JMP      2 => 0006
+0004    KSTR     2   1      ; ""
+0005    RET1     2   2
+0006 => GGET     2   2      ; "table"
+0007    TGETS    2   2   3  ; "concat"
+0008    TGETS    3   0   4  ; "charlist"
+0009    KSTR     4   1      ; ""
+0010    TGETS    5   1   5  ; "offset"
+0011    TGETS    6   1   0  ; "end_offset"
+0012    CALLT    2   5
+
+-- BYTECODE -- textboxwidget.lua:471-478
+0001    TGETS    2   1   0  ; "end_offset"
+0002    IST          2
+0003    JMP      2 => 0005
+0004    RET0     0   1
+0005 => TNEW     2   0
+0006    TGETS    3   1   1  ; "offset"
+0007    TGETS    4   1   0  ; "end_offset"
+0008    KSHORT   5   1
+0009    FORI     3 => 0020
+0010 => GGET     7   2      ; "table"
+0011    TGETS    7   7   3  ; "insert"
+0012    MOV      8   2
+0013    TGETS    9   0   4  ; "idx_pad"
+0014    TGETV    9   9   6
+0015    IST          9
+0016    JMP     10 => 0018
+0017    KSHORT   9   0
+0018 => CALL     7   1   3
+0019    FORL     3 => 0010
+0020 => RET1     2   2
+
+-- BYTECODE -- textboxwidget.lua:481-743
+0001    TGETS    2   1   0  ; "_shaped"
+0002    ISF          2
+0003    JMP      3 => 0005
+0004    RET0     0   1
+0005 => KPRI     2   2
+0006    TSETS    2   1   0  ; "_shaped"
+0007    TGETS    2   1   1  ; "end_offset"
+0008    ISF          2
+0009    JMP      2 => 0014
+0010    TGETS    2   1   1  ; "end_offset"
+0011    TGETS    3   1   2  ; "offset"
+0012    ISGE     2   3
+0013    JMP      2 => 0059
+0014 => TGETS    2   1   2  ; "offset"
+0015    TGETS    3   1   1  ; "end_offset"
+0016    IST          3
+0017    JMP      3 => 0024
+0018    KSHORT   3   1
+0019    ISGE     3   2
+0020    JMP      3 => 0023
+0021    SUBVN    2   2   0  ; 1
+0022    JMP      3 => 0024
+0023 => KPRI     2   0
+0024 => TGETS    3   0   3  ; "_xtext"
+0025    MOV      4   3
+0026    TGETS    3   3   4  ; "getParaDirection"
+0027    MOV      5   2
+0028    CALL     3   3   3
+0029    ISTC     5   3
+0030    JMP      5 => 0032
+0031    MOV      5   4
+0032 => TSETS    5   1   5  ; "para_is_rtl"
+0033    TGETS    5   0   6  ; "alignment"
+0034    TGETS    6   0   7  ; "alignment_strict"
+0035    IST          6
+0036    JMP      6 => 0047
+0037    TGETS    6   1   5  ; "para_is_rtl"
+0038    ISF          6
+0039    JMP      7 => 0047
+0040    ISNES    5   8      ; "left"
+0041    JMP      6 => 0044
+0042    KSTR     5   9      ; "right"
+0043    JMP      6 => 0047
+0044 => ISNES    5   9      ; "right"
+0045    JMP      6 => 0047
+0046    KSTR     5   8      ; "left"
+0047 => KSHORT   6   0
+0048    ISNES    5  10      ; "center"
+0049    JMP      7 => 0053
+0050    TGETS    7   1  11  ; "targeted_width"
+0051    DIVVN    6   7   1  ; 2
+0052    JMP      7 => 0056
+0053 => ISNES    5   9      ; "right"
+0054    JMP      7 => 0056
+0055    TGETS    6   1  11  ; "targeted_width"
+0056 => TSETS    6   1  12  ; "x_start"
+0057    TSETS    6   1  13  ; "x_end"
+0058    RET0     0   1
+0059 => TGETS    2   0   3  ; "_xtext"
+0060    MOV      3   2
+0061    TGETS    2   2  14  ; "shapeLine"
+0062    TGETS    4   1   2  ; "offset"
+0063    TGETS    5   1   1  ; "end_offset"
+0064    TGETS    6   1  15  ; "idx_to_substitute_with_ellipsis"
+0065    CALL     2   2   5
+0066    TGETS    3   0   6  ; "alignment"
+0067    TGETS    4   0   7  ; "alignment_strict"
+0068    IST          4
+0069    JMP      4 => 0080
+0070    TGETS    4   2   5  ; "para_is_rtl"
+0071    ISF          4
+0072    JMP      5 => 0080
+0073    ISNES    3   8      ; "left"
+0074    JMP      4 => 0077
+0075    KSTR     3   9      ; "right"
+0076    JMP      4 => 0080
+0077 => ISNES    3   9      ; "right"
+0078    JMP      4 => 0080
+0079    KSTR     3   8      ; "left"
+0080 => TGETS    4   2  16  ; "has_tabs"
+0081    ISF          4
+0082    JMP      5 => 0218
+0083    TGETS    4   0  17  ; "tabstop_nb_space_width"
+0084    KSHORT   5   0
+0085    ISGE     5   4
+0086    JMP      4 => 0218
+0087    ISNES    3   8      ; "left"
+0088    JMP      4 => 0153
+0089    TGETS    4   2   5  ; "para_is_rtl"
+0090    IST          4
+0091    JMP      4 => 0153
+0092    KSHORT   4   0
+0093    KSHORT   5   0
+0094    KSHORT   6   1
+0095    LEN      7   2
+0096    KSHORT   8   1
+0097    FORI     6 => 0121
+0098 => TGETV   10   2   9
+0099    TGETS   11  10  18  ; "is_tab"
+0100    ISF         11
+0101    JMP     12 => 0118
+0102    MOV      4   9
+0103    GGET    11  19      ; "math"
+0104    TGETS   11  11  20  ; "floor"
+0105    TGETS   12   0  21  ; "_tabstop_width"
+0106    DIVVV   12   5  12
+0107    CALL    11   2   2
+0108    ADDVN   12  11   0  ; 1
+0109    TGETS   13   0  21  ; "_tabstop_width"
+0110    MULVV   12  12  13
+0111    SUBVV   13  12   5
+0112    TGETS   14   2  22  ; "width"
+0113    TGETS   15  10  23  ; "x_advance"
+0114    SUBVV   14  14  15
+0115    ADDVV   14  14  13
+0116    TSETS   14   2  22  ; "width"
+0117    TSETS   13  10  23  ; "x_advance"
+0118 => TGETS   11  10  23  ; "x_advance"
+0119    ADDVV    5   5  11
+0120    FORL     6 => 0098
+0121 => KSHORT   6   0
+0122    ISGE     6   4
+0123    JMP      6 => 0218
+0124    TGETS    6   0  24  ; "justified"
+0125    ISF          6
+0126    JMP      7 => 0218
+0127    TGETS    6   1  25  ; "can_be_justified"
+0128    ISF          6
+0129    JMP      7 => 0218
+0130    KSHORT   6   1
+0131    MOV      7   4
+0132    KSHORT   8   1
+0133    FORI     6 => 0152
+0134 => TGETV   10   2   9
+0135    TGETS   11  10  26  ; "can_extend"
+0136    ISF         11
+0137    JMP     12 => 0143
+0138    KPRI    11   1
+0139    TSETS   11  10  26  ; "can_extend"
+0140    TGETS   11   2  27  ; "nb_can_extend"
+0141    SUBVN   11  11   0  ; 1
+0142    TSETS   11   2  27  ; "nb_can_extend"
+0143 => TGETS   11  10  28  ; "can_extend_fallback"
+0144    ISF         11
+0145    JMP     12 => 0151
+0146    KPRI    11   1
+0147    TSETS   11  10  28  ; "can_extend_fallback"
+0148    TGETS   11   2  29  ; "nb_can_extend_fallback"
+0149    SUBVN   11  11   0  ; 1
+0150    TSETS   11   2  29  ; "nb_can_extend_fallback"
+0151 => FORL     6 => 0134
+0152 => JMP      4 => 0218
+0153 => ISNES    3   9      ; "right"
+0154    JMP      4 => 0218
+0155    TGETS    4   2   5  ; "para_is_rtl"
+0156    ISF          4
+0157    JMP      5 => 0218
+0158    KSHORT   4   0
+0159    KSHORT   5   0
+0160    LEN      6   2
+0161    KSHORT   7   1
+0162    KSHORT   8  -1
+0163    FORI     6 => 0187
+0164 => TGETV   10   2   9
+0165    TGETS   11  10  18  ; "is_tab"
+0166    ISF         11
+0167    JMP     12 => 0184
+0168    MOV      4   9
+0169    GGET    11  19      ; "math"
+0170    TGETS   11  11  20  ; "floor"
+0171    TGETS   12   0  21  ; "_tabstop_width"
+0172    DIVVV   12   5  12
+0173    CALL    11   2   2
+0174    ADDVN   12  11   0  ; 1
+0175    TGETS   13   0  21  ; "_tabstop_width"
+0176    MULVV   12  12  13
+0177    SUBVV   13  12   5
+0178    TGETS   14   2  22  ; "width"
+0179    TGETS   15  10  23  ; "x_advance"
+0180    SUBVV   14  14  15
+0181    ADDVV   14  14  13
+0182    TSETS   14   2  22  ; "width"
+0183    TSETS   13  10  23  ; "x_advance"
+0184 => TGETS   11  10  23  ; "x_advance"
+0185    ADDVV    5   5  11
+0186    FORL     6 => 0164
+0187 => KSHORT   6   0
+0188    ISGE     6   4
+0189    JMP      6 => 0218
+0190    TGETS    6   0  24  ; "justified"
+0191    ISF          6
+0192    JMP      7 => 0218
+0193    TGETS    6   1  25  ; "can_be_justified"
+0194    ISF          6
+0195    JMP      7 => 0218
+0196    LEN      6   2
+0197    MOV      7   4
+0198    KSHORT   8  -1
+0199    FORI     6 => 0218
+0200 => TGETV   10   2   9
+0201    TGETS   11  10  26  ; "can_extend"
+0202    ISF         11
+0203    JMP     12 => 0209
+0204    KPRI    11   1
+0205    TSETS   11  10  26  ; "can_extend"
+0206    TGETS   11   2  27  ; "nb_can_extend"
+0207    SUBVN   11  11   0  ; 1
+0208    TSETS   11   2  27  ; "nb_can_extend"
+0209 => TGETS   11  10  28  ; "can_extend_fallback"
+0210    ISF         11
+0211    JMP     12 => 0217
+0212    KPRI    11   1
+0213    TSETS   11  10  28  ; "can_extend_fallback"
+0214    TGETS   11   2  29  ; "nb_can_extend_fallback"
+0215    SUBVN   11  11   0  ; 1
+0216    TSETS   11   2  29  ; "nb_can_extend_fallback"
+0217 => FORL     6 => 0200
+0218 => KSHORT   4   0
+0219    ISNES    3  10      ; "center"
+0220    JMP      5 => 0229
+0221    TGETS    5   1  11  ; "targeted_width"
+0222    TGETS    6   1  22  ; "width"
+0223    SUBVV    5   5   6
+0224    DIVVN    5   5   1  ; 2
+0225    ISTC     4   5
+0226    JMP      6 => 0228
+0227    KSHORT   4   0
+0228 => JMP      5 => 0234
+0229 => ISNES    3   9      ; "right"
+0230    JMP      5 => 0234
+0231    TGETS    5   1  11  ; "targeted_width"
+0232    TGETS    6   1  22  ; "width"
+0233    SUBVV    4   5   6
+0234 => KSHORT   5   0
+0235    KSHORT   6   0
+0236    KPRI     7   1
+0237    TGETS    8   0  24  ; "justified"
+0238    ISF          8
+0239    JMP      9 => 0284
+0240    TGETS    8   1  25  ; "can_be_justified"
+0241    ISF          8
+0242    JMP      9 => 0284
+0243    TGETS    8   1  11  ; "targeted_width"
+0244    TGETS    9   2  22  ; "width"
+0245    SUBVV    8   8   9
+0246    TGETS    9   2  27  ; "nb_can_extend"
+0247    KSHORT  10   0
+0248    ISGE    10   9
+0249    JMP      9 => 0265
+0250    GGET     9  19      ; "math"
+0251    TGETS    9   9  20  ; "floor"
+0252    TGETS   10   2  27  ; "nb_can_extend"
+0253    DIVVV   10   8  10
+0254    CALL     9   2   2
+0255    MOV      5   9
+0256    TGETS    9   2  27  ; "nb_can_extend"
+0257    MULVV    9   5   9
+0258    SUBVV    6   8   9
+0259    KPRI     9   2
+0260    TSETS    9   1  24  ; "justified"
+0261    TGETS    9   1  11  ; "targeted_width"
+0262    TSETS    9   1  22  ; "width"
+0263    KSHORT   4   0
+0264    JMP      9 => 0284
+0265 => TGETS    9   2  29  ; "nb_can_extend_fallback"
+0266    KSHORT  10   0
+0267    ISGE    10   9
+0268    JMP      9 => 0284
+0269    KPRI     7   2
+0270    GGET     9  19      ; "math"
+0271    TGETS    9   9  20  ; "floor"
+0272    TGETS   10   2  29  ; "nb_can_extend_fallback"
+0273    DIVVV   10   8  10
+0274    CALL     9   2   2
+0275    MOV      5   9
+0276    TGETS    9   2  29  ; "nb_can_extend_fallback"
+0277    MULVV    9   5   9
+0278    SUBVV    6   8   9
+0279    KPRI     9   2
+0280    TSETS    9   1  24  ; "justified"
+0281    TGETS    9   1  11  ; "targeted_width"
+0282    TSETS    9   1  22  ; "width"
+0283    KSHORT   4   0
+0284 => TSETS    4   1  12  ; "x_start"
+0285    KPRI     8   0
+0286    GGET     9  30      ; "ipairs"
+0287    MOV     10   2
+0288    CALL     9   4   2
+0289    JMP     12 => 0332
+0290 => TSETS    4  13  31  ; "x0"
+0291    TGETS   14  13  23  ; "x_advance"
+0292    ADDVV    4   4  14
+0293    TGETS   14  13  26  ; "can_extend"
+0294    IST         14
+0295    JMP     15 => 0301
+0296    ISF          7
+0297    JMP     14 => 0307
+0298    TGETS   14  13  28  ; "can_extend_fallback"
+0299    ISF         14
+0300    JMP     15 => 0307
+0301 => ADDVV    4   4   5
+0302    KSHORT  14   0
+0303    ISGE    14   6
+0304    JMP     14 => 0307
+0305    ADDVN    4   4   0  ; 1
+0306    SUBVN    6   6   0  ; 1
+0307 => TSETS    4  13  32  ; "x1"
+0308    TGETS   14  13  32  ; "x1"
+0309    TGETS   15  13  31  ; "x0"
+0310    SUBVV   14  14  15
+0311    TSETS   14  13  33  ; "w"
+0312    TGETS   14  13  34  ; "is_cluster_start"
+0313    ISF         14
+0314    JMP     15 => 0317
+0315    MOV      8  13
+0316    JMP     14 => 0327
+0317 => TGETS   14  13  32  ; "x1"
+0318    TGETS   15   8  32  ; "x1"
+0319    ISGE    15  14
+0320    JMP     14 => 0327
+0321    TGETS   14  13  32  ; "x1"
+0322    TSETS   14   8  32  ; "x1"
+0323    TGETS   14   8  32  ; "x1"
+0324    TGETS   15   8  31  ; "x0"
+0325    SUBVV   14  14  15
+0326    TSETS   14   8  33  ; "w"
+0327 => TGETS   14  13  18  ; "is_tab"
+0328    ISF         14
+0329    JMP     15 => 0332
+0330    KPRI    14   2
+0331    TSETS   14  13  35  ; "no_drawing"
+0332 => ITERC   12   3   3
+0333    ITERL   12 => 0290
+0334    TSETS    4   1  13  ; "x_end"
+0335    TSETS    2   1  36  ; "xglyphs"
+0336    TGETS    9   1  36  ; "xglyphs"
+0337    TGETS    9   9   5  ; "para_is_rtl"
+0338    TSETS    9   1   5  ; "para_is_rtl"
+0339    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:746-838
+0001    TGETS    3   0   0  ; "face"
+0002    TGETS    3   3   1  ; "size"
+0003    KSHORT   4   1
+0004    ISGE     1   4
+0005    JMP      4 => 0007
+0006    KSHORT   1   1
+0007 => TGETS    4   0   2  ; "vertical_string_list"
+0008    LEN      4   4
+0009    ISGE     4   2
+0010    JMP      4 => 0013
+0011    TGETS    4   0   2  ; "vertical_string_list"
+0012    LEN      2   4
+0013 => ISNEN    2   0      ; 0
+0014    JMP      4 => 0017
+0015    KSHORT   4   1
+0016    JMP      5 => 0019
+0017 => SUBVV    4   2   1
+0018    ADDVN    4   4   1  ; 1
+0019 => TGETS    5   0   3  ; "height"
+0020    IST          5
+0021    JMP      6 => 0024
+0022    TGETS    5   0   4  ; "line_height_px"
+0023    MULVV    5   5   4
+0024 => TGETS    6   0   5  ; "_bb"
+0025    ISF          6
+0026    JMP      7 => 0031
+0027    TGETS    6   0   5  ; "_bb"
+0028    MOV      7   6
+0029    TGETS    6   6   6  ; "free"
+0030    CALL     6   1   2
+0031 => KPRI     6   0
+0032    TGETS    7   0   7  ; "line_num_to_image"
+0033    ISF          7
+0034    JMP      8 => 0051
+0035    TGETS    7   0   7  ; "line_num_to_image"
+0036    TGETV    7   7   1
+0037    ISF          7
+0038    JMP      8 => 0051
+0039    UGET     7   0      ; Screen
+0040    MOV      8   7
+0041    TGETS    7   7   8  ; "isColorEnabled"
+0042    CALL     7   2   2
+0043    ISF          7
+0044    JMP      8 => 0049
+0045    UGET     7   1      ; Blitbuffer
+0046    TGETS    7   7   9  ; "TYPE_BBRGB32"
+0047    ISTC     6   7
+0048    JMP      8 => 0051
+0049 => UGET     7   1      ; Blitbuffer
+0050    TGETS    6   7  10  ; "TYPE_BB8"
+0051 => UGET     7   1      ; Blitbuffer
+0052    TGETS    7   7  11  ; "new"
+0053    TGETS    8   0  12  ; "width"
+0054    MOV      9   5
+0055    MOV     10   6
+0056    CALL     7   2   4
+0057    TSETS    7   0   5  ; "_bb"
+0058    TGETS    7   0   5  ; "_bb"
+0059    MOV      8   7
+0060    TGETS    7   7  13  ; "fill"
+0061    UGET     9   1      ; Blitbuffer
+0062    TGETS    9   9  14  ; "COLOR_WHITE"
+0063    CALL     7   1   3
+0064    MOV      7   3
+0065    TGETS    8   0  15  ; "use_xtext"
+0066    ISF          8
+0067    JMP      9 => 0195
+0068    MOV      8   1
+0069    MOV      9   2
+0070    KSHORT  10   1
+0071    FORI     8 => 0190
+0072 => TGETS   12   0   2  ; "vertical_string_list"
+0073    TGETV   12  12  11
+0074    TGETS   13   0  16  ; "line_with_ellipsis"
+0075    ISF         13
+0076    JMP     14 => 0122
+0077    TGETS   13   0  16  ; "line_with_ellipsis"
+0078    ISNEV   11  13
+0079    JMP     13 => 0122
+0080    TGETS   13  12  17  ; "ellipsis_added"
+0081    IST         13
+0082    JMP     13 => 0122
+0083    UGET    13   2      ; RenderText
+0084    MOV     14  13
+0085    TGETS   13  13  18  ; "getEllipsisWidth"
+0086    TGETS   15   0   0  ; "face"
+0087    CALL    13   2   3
+0088    TGETS   14  12  12  ; "width"
+0089    ADDVV   14  14  13
+0090    TSETS   14  12  12  ; "width"
+0091    TGETS   14  12  12  ; "width"
+0092    TGETS   15  12  19  ; "targeted_width"
+0093    ISGE    15  14
+0094    JMP     14 => 0107
+0095    TGETS   14   0  20  ; "_xtext"
+0096    MOV     15  14
+0097    TGETS   14  14  21  ; "makeLine"
+0098    TGETS   16  12  22  ; "offset"
+0099    TGETS   17  12  19  ; "targeted_width"
+0100    SUBVV   17  17  13
+0101    KPRI    18   1
+0102    TGETS   19   0  23  ; "_tabstop_width"
+0103    CALL    14   2   6
+0104    MOV     12  14
+0105    TGETS   14   0   2  ; "vertical_string_list"
+0106    TSETV   12  14  11
+0107 => TGETS   14  12  24  ; "end_offset"
+0108    ISF         14
+0109    JMP     15 => 0120
+0110    TGETS   14  12  24  ; "end_offset"
+0111    TGETS   15   0  20  ; "_xtext"
+0112    LEN     15  15
+0113    ISGE    14  15
+0114    JMP     14 => 0120
+0115    TGETS   14  12  24  ; "end_offset"
+0116    ADDVN   14  14   1  ; 1
+0117    TSETS   14  12  24  ; "end_offset"
+0118    TGETS   14  12  24  ; "end_offset"
+0119    TSETS   14  12  25  ; "idx_to_substitute_with_ellipsis"
+0120 => KPRI    14   2
+0121    TSETS   14  12  17  ; "ellipsis_added"
+0122 => MOV     14   0
+0123    TGETS   13   0  26  ; "_shapeLine"
+0124    MOV     15  12
+0125    CALL    13   1   3
+0126    TGETS   13  12  27  ; "xglyphs"
+0127    ISF         13
+0128    JMP     14 => 0187
+0129    GGET    13  28      ; "ipairs"
+0130    TGETS   14  12  27  ; "xglyphs"
+0131    CALL    13   4   2
+0132    JMP     16 => 0185
+0133 => TGETS   18  17  29  ; "no_drawing"
+0134    IST         18
+0135    JMP     18 => 0185
+0136    TGETS   18   0   0  ; "face"
+0137    TGETS   18  18  30  ; "getFallbackFont"
+0138    TGETS   19  17  31  ; "font_num"
+0139    CALL    18   2   2
+0140    UGET    19   2      ; RenderText
+0141    MOV     20  19
+0142    TGETS   19  19  32  ; "getGlyphByIndex"
+0143    MOV     21  18
+0144    TGETS   22  17  33  ; "glyph"
+0145    TGETS   23   0  34  ; "bold"
+0146    CALL    19   2   5
+0147    TGETS   20   0  35  ; "fgcolor"
+0148    TGETS   21   0  36  ; "_alt_color_for_rtl"
+0149    ISF         21
+0150    JMP     22 => 0160
+0151    TGETS   21  17  37  ; "is_rtl"
+0152    ISF         21
+0153    JMP     22 => 0158
+0154    UGET    21   1      ; Blitbuffer
+0155    TGETS   21  21  38  ; "COLOR_DARK_GRAY"
+0156    ISTC    20  21
+0157    JMP     22 => 0160
+0158 => UGET    21   1      ; Blitbuffer
+0159    TGETS   20  21  39  ; "COLOR_BLACK"
+0160 => TGETS   21   0   5  ; "_bb"
+0161    MOV     22  21
+0162    TGETS   21  21  40  ; "colorblitFrom"
+0163    TGETS   23  19  41  ; "bb"
+0164    TGETS   24  17  42  ; "x0"
+0165    TGETS   25  19  43  ; "l"
+0166    ADDVV   24  24  25
+0167    TGETS   25  17  44  ; "x_offset"
+0168    ADDVV   24  24  25
+0169    TGETS   25  19  45  ; "t"
+0170    SUBVV   25   7  25
+0171    TGETS   26  17  46  ; "y_offset"
+0172    SUBVV   25  25  26
+0173    KSHORT  26   0
+0174    KSHORT  27   0
+0175    TGETS   28  19  41  ; "bb"
+0176    MOV     29  28
+0177    TGETS   28  28  47  ; "getWidth"
+0178    CALL    28   2   2
+0179    TGETS   29  19  41  ; "bb"
+0180    MOV     30  29
+0181    TGETS   29  29  48  ; "getHeight"
+0182    CALL    29   2   2
+0183    MOV     30  20
+0184    CALL    21   1  10
+0185 => ITERC   16   3   3
+0186    ITERL   16 => 0133
+0187 => TGETS   13   0   4  ; "line_height_px"
+0188    ADDVV    7   7  13
+0189    FORL     8 => 0072
+0190 => MOV      9   0
+0191    TGETS    8   0  49  ; "_renderImage"
+0192    MOV     10   1
+0193    CALL     8   1   3
+0194    RET0     0   1
+0195 => MOV      8   1
+0196    MOV      9   2
+0197    KSHORT  10   1
+0198    FORI     8 => 0274
+0199 => TGETS   12   0   2  ; "vertical_string_list"
+0200    TGETV   12  12  11
+0201    KSHORT  13   0
+0202    TGETS   14   0  50  ; "alignment"
+0203    ISNES   14  51      ; "center"
+0204    JMP     14 => 0213
+0205    TGETS   14   0  12  ; "width"
+0206    TGETS   15  12  12  ; "width"
+0207    SUBVV   14  14  15
+0208    DIVVN   14  14   2  ; 2
+0209    ISTC    13  14
+0210    JMP     15 => 0212
+0211    KSHORT  13   0
+0212 => JMP     14 => 0219
+0213 => TGETS   14   0  50  ; "alignment"
+0214    ISNES   14  52      ; "right"
+0215    JMP     14 => 0219
+0216    TGETS   14   0  12  ; "width"
+0217    TGETS   15  12  12  ; "width"
+0218    SUBVV   13  14  15
+0219 => MOV     15   0
+0220    TGETS   14   0  53  ; "_getLineText"
+0221    MOV     16  12
+0222    CALL    14   2   3
+0223    TGETS   15   0  16  ; "line_with_ellipsis"
+0224    ISF         15
+0225    JMP     16 => 0254
+0226    TGETS   15   0  16  ; "line_with_ellipsis"
+0227    ISNEV   11  15
+0228    JMP     15 => 0254
+0229    UGET    15   2      ; RenderText
+0230    MOV     16  15
+0231    TGETS   15  15  18  ; "getEllipsisWidth"
+0232    TGETS   17   0   0  ; "face"
+0233    TGETS   18   0  34  ; "bold"
+0234    CALL    15   2   4
+0235    TGETS   16  12  12  ; "width"
+0236    ADDVV   16  16  15
+0237    TGETS   17   0  12  ; "width"
+0238    ISGE    17  16
+0239    JMP     16 => 0251
+0240    UGET    16   2      ; RenderText
+0241    MOV     17  16
+0242    TGETS   16  16  54  ; "truncateTextByWidth"
+0243    MOV     18  14
+0244    TGETS   19   0   0  ; "face"
+0245    TGETS   20   0  12  ; "width"
+0246    KPRI    21   2
+0247    TGETS   22   0  34  ; "bold"
+0248    CALL    16   2   7
+0249    MOV     14  16
+0250    JMP     16 => 0254
+0251 => MOV     16  14
+0252    KSTR    17  55      ; "…"
+0253    CAT     14  16  17
+0254 => UGET    15   2      ; RenderText
+0255    MOV     16  15
+0256    TGETS   15  15  56  ; "renderUtf8Text"
+0257    TGETS   17   0   5  ; "_bb"
+0258    MOV     18  13
+0259    MOV     19   7
+0260    TGETS   20   0   0  ; "face"
+0261    MOV     21  14
+0262    KPRI    22   2
+0263    TGETS   23   0  34  ; "bold"
+0264    TGETS   24   0  35  ; "fgcolor"
+0265    KPRI    25   0
+0266    MOV     27   0
+0267    TGETS   26   0  57  ; "_getLinePads"
+0268    MOV     28  12
+0269    CALL    26   0   3
+0270    CALLM   15   1  10
+0271    TGETS   15   0   4  ; "line_height_px"
+0272    ADDVV    7   7  15
+0273    FORL     8 => 0199
+0274 => MOV      9   0
+0275    TGETS    8   0  49  ; "_renderImage"
+0276    MOV     10   1
+0277    CALL     8   1   3
+0278    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:952-963
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; Geom
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "new"
+0005    TDUP     3   5
+0006    UGET     4   1      ; self
+0007    TGETS    4   4   2  ; "dimen"
+0008    TGETS    4   4   3  ; "x"
+0009    UGET     5   1      ; self
+0010    TGETS    5   5   4  ; "width"
+0011    ADDVV    4   4   5
+0012    UGET     5   2      ; image
+0013    TGETS    5   5   4  ; "width"
+0014    SUBVV    4   4   5
+0015    TSETS    4   3   3  ; "x"
+0016    UGET     4   1      ; self
+0017    TGETS    4   4   2  ; "dimen"
+0018    TGETS    4   4   6  ; "y"
+0019    TSETS    4   3   6  ; "y"
+0020    UGET     4   2      ; image
+0021    TGETS    4   4   4  ; "width"
+0022    TSETS    4   3   7  ; "w"
+0023    UGET     4   2      ; image
+0024    TGETS    4   4   8  ; "height"
+0025    TSETS    4   3   9  ; "h"
+0026    CALL     1   0   3
+0027    RETM     0   1
+
+-- BYTECODE -- textboxwidget.lua:948-965
+0001    UGET     0   0      ; scheduled_for_linenum
+0002    UGET     1   1      ; self
+0003    TGETS    1   1   0  ; "virtual_line_num"
+0004    ISNEV    0   1
+0005    JMP      0 => 0021
+0006    UGET     0   1      ; self
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "update"
+0009    KPRI     2   2
+0010    CALL     0   1   3
+0011    UGET     0   2      ; UIManager
+0012    MOV      1   0
+0013    TGETS    0   0   2  ; "setDirty"
+0014    UGET     2   1      ; self
+0015    TGETS    2   2   3  ; "dialog"
+0016    IST          2
+0017    JMP      3 => 0019
+0018    KSTR     2   4      ; "all"
+0019 => FNEW     3   5      ; textboxwidget.lua:952
+0020    CALL     0   1   4
+0021 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:970-981
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; Geom
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "new"
+0005    TDUP     3   5
+0006    UGET     4   1      ; self
+0007    TGETS    4   4   2  ; "dimen"
+0008    TGETS    4   4   3  ; "x"
+0009    UGET     5   1      ; self
+0010    TGETS    5   5   4  ; "width"
+0011    ADDVV    4   4   5
+0012    UGET     5   2      ; image
+0013    TGETS    5   5   4  ; "width"
+0014    SUBVV    4   4   5
+0015    TSETS    4   3   3  ; "x"
+0016    UGET     4   1      ; self
+0017    TGETS    4   4   2  ; "dimen"
+0018    TGETS    4   4   6  ; "y"
+0019    TSETS    4   3   6  ; "y"
+0020    UGET     4   2      ; image
+0021    TGETS    4   4   4  ; "width"
+0022    TSETS    4   3   7  ; "w"
+0023    UGET     4   2      ; image
+0024    TGETS    4   4   8  ; "height"
+0025    TSETS    4   3   9  ; "h"
+0026    CALL     1   0   3
+0027    RETM     0   1
+
+-- BYTECODE -- textboxwidget.lua:938-983
+0001    UGET     0   0      ; self
+0002    KPRI     1   0
+0003    TSETS    1   0   0  ; "image_update_action"
+0004    UGET     0   1      ; scheduled_for_linenum
+0005    UGET     1   0      ; self
+0006    TGETS    1   1   1  ; "virtual_line_num"
+0007    ISEQV    0   1
+0008    JMP      0 => 0010
+0009    UCLO     0 => 0038
+0010 => UGET     0   2      ; image
+0011    TGETS    0   0   2  ; "load_bb_func"
+0012    CALL     0   2   1
+0013    ISF          0
+0014    JMP      1 => 0022
+0015    UGET     1   3      ; UIManager
+0016    MOV      2   1
+0017    TGETS    1   1   3  ; "scheduleIn"
+0018    KNUM     3   0      ; 0.1
+0019    FNEW     4   4      ; textboxwidget.lua:948
+0020    CALL     1   1   4
+0021    JMP      1 => 0037
+0022 => UGET     1   0      ; self
+0023    MOV      2   1
+0024    TGETS    1   1   5  ; "update"
+0025    KPRI     3   2
+0026    CALL     1   1   3
+0027    UGET     1   3      ; UIManager
+0028    MOV      2   1
+0029    TGETS    1   1   6  ; "setDirty"
+0030    UGET     3   0      ; self
+0031    TGETS    3   3   7  ; "dialog"
+0032    IST          3
+0033    JMP      4 => 0035
+0034    KSTR     3   8      ; "all"
+0035 => FNEW     4   9      ; textboxwidget.lua:970
+0036    CALL     1   1   4
+0037 => RET0     0   1
+0038 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:987-987
+0001    UGET     0   0      ; Trapper
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "wrap"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "image_update_action"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:840-989
+0001    TGETS    2   0   0  ; "scheduled_update"
+0002    KPRI     3   0
+0003    TSETS    3   0   0  ; "scheduled_update"
+0004    TGETS    3   0   1  ; "line_num_to_image"
+0005    ISF          3
+0006    JMP      3 => 0011
+0007    TGETS    3   0   1  ; "line_num_to_image"
+0008    TGETV    3   3   1
+0009    IST          3
+0010    JMP      3 => 0012
+0011 => UCLO     0 => 0199
+0012 => TGETS    3   0   1  ; "line_num_to_image"
+0013    TGETV    3   3   1
+0014    KPRI     4   1
+0015    KPRI     5   1
+0016    KPRI     6   1
+0017    KPRI     7   0
+0018    TGETS    8   3   2  ; "title"
+0019    IST          8
+0020    JMP      9 => 0022
+0021    KSTR     8   3      ; ""
+0022 => TGETS    9   3   4  ; "caption"
+0023    ISF          9
+0024    JMP     10 => 0029
+0025    MOV      9   8
+0026    KSTR    10   5      ; "\n"
+0027    TGETS   11   3   4  ; "caption"
+0028    CAT      8   9  11
+0029 => TGETS    9   3   6  ; "bb"
+0030    ISF          9
+0031    JMP     10 => 0043
+0032    ISF          2
+0033    JMP      9 => 0036
+0034    KPRI     5   2
+0035    JMP      9 => 0053
+0036 => TGETS    9   0   7  ; "image_show_alt_text"
+0037    ISF          9
+0038    JMP     10 => 0041
+0039    KPRI     6   2
+0040    JMP      9 => 0053
+0041 => KPRI     5   2
+0042    JMP      9 => 0053
+0043 => KPRI     6   2
+0044    ISF          2
+0045    JMP      9 => 0048
+0046    KSTR     7   8      ; "⚠"
+0047    JMP      9 => 0053
+0048 => TGETS    9   3   9  ; "load_bb_func"
+0049    ISF          9
+0050    JMP     10 => 0053
+0051    KPRI     4   2
+0052    KSTR     7  10      ; "♲"
+0053 => ISF          5
+0054    JMP      9 => 0086
+0055    TGETS    9   3   6  ; "bb"
+0056    MOV     10   9
+0057    TGETS    9   9  11  ; "getType"
+0058    CALL     9   2   2
+0059    UGET    10   0      ; Blitbuffer
+0060    TGETS   10  10  12  ; "TYPE_BB8A"
+0061    ISEQV    9  10
+0062    JMP     10 => 0067
+0063    UGET    10   0      ; Blitbuffer
+0064    TGETS   10  10  13  ; "TYPE_BBRGB32"
+0065    ISNEV    9  10
+0066    JMP     10 => 0077
+0067 => TGETS   10   0  14  ; "_bb"
+0068    MOV     11  10
+0069    TGETS   10  10  15  ; "pmulalphablitFrom"
+0070    TGETS   12   3   6  ; "bb"
+0071    TGETS   13   0  16  ; "width"
+0072    TGETS   14   3  16  ; "width"
+0073    SUBVV   13  13  14
+0074    KSHORT  14   0
+0075    CALL    10   1   5
+0076    JMP     10 => 0086
+0077 => TGETS   10   0  14  ; "_bb"
+0078    MOV     11  10
+0079    TGETS   10  10  17  ; "blitFrom"
+0080    TGETS   12   3   6  ; "bb"
+0081    TGETS   13   0  16  ; "width"
+0082    TGETS   14   3  16  ; "width"
+0083    SUBVV   13  13  14
+0084    KSHORT  14   0
+0085    CALL    10   1   5
+0086 => KSHORT   9   0
+0087    ISF          7
+0088    JMP     10 => 0142
+0089    UGET    10   1      ; TextWidget
+0090    MOV     11  10
+0091    TGETS   10  10  18  ; "new"
+0092    TDUP    12  19
+0093    TSETS    7  12  20  ; "text"
+0094    UGET    13   2      ; Font
+0095    MOV     14  13
+0096    TGETS   13  13  21  ; "getFace"
+0097    KSTR    15  22      ; "cfont"
+0098    KSHORT  16  20
+0099    CALL    13   2   4
+0100    TSETS   13  12  23  ; "face"
+0101    UGET    13   0      ; Blitbuffer
+0102    TGETS   13  13  24  ; "COLOR_DARK_GRAY"
+0103    TSETS   13  12  25  ; "fgcolor"
+0104    CALL    10   2   3
+0105    MOV     12  10
+0106    TGETS   11  10  26  ; "getSize"
+0107    CALL    11   2   2
+0108    TGETS    9  11  27  ; "h"
+0109    UGET    11   3      ; FrameContainer
+0110    MOV     12  11
+0111    TGETS   11  11  18  ; "new"
+0112    TDUP    13  29
+0113    UGET    14   0      ; Blitbuffer
+0114    TGETS   14  14  28  ; "COLOR_WHITE"
+0115    TSETS   14  13  30  ; "background"
+0116    UGET    14   4      ; RightContainer
+0117    MOV     15  14
+0118    TGETS   14  14  18  ; "new"
+0119    TDUP    16  33
+0120    TDUP    17  31
+0121    TGETS   18   3  16  ; "width"
+0122    TSETS   18  17  32  ; "w"
+0123    TSETS    9  17  27  ; "h"
+0124    TSETS   17  16  34  ; "dimen"
+0125    TSETB   10  16   1
+0126    CALL    14   0   3
+0127    TSETM   14   0      ; 1
+0128    CALL    11   2   3
+0129    MOV     10  11
+0130    MOV     12  10
+0131    TGETS   11  10  35  ; "paintTo"
+0132    TGETS   13   0  14  ; "_bb"
+0133    TGETS   14   0  16  ; "width"
+0134    TGETS   15   3  16  ; "width"
+0135    SUBVV   14  14  15
+0136    TGETS   15   3  36  ; "height"
+0137    SUBVV   15  15   9
+0138    CALL    11   1   5
+0139    MOV     12  10
+0140    TGETS   11  10  37  ; "free"
+0141    CALL    11   1   2
+0142 => ISF          6
+0143    JMP     10 => 0174
+0144    UGET    10   5      ; TextBoxWidget
+0145    MOV     11  10
+0146    TGETS   10  10  18  ; "new"
+0147    TDUP    12  38
+0148    TSETS    8  12  20  ; "text"
+0149    TGETS   13   0  39  ; "image_alt_face"
+0150    TSETS   13  12  23  ; "face"
+0151    TGETS   13   0  40  ; "image_alt_fgcolor"
+0152    TSETS   13  12  25  ; "fgcolor"
+0153    TGETS   13   3  16  ; "width"
+0154    TSETS   13  12  16  ; "width"
+0155    GGET    13  41      ; "math"
+0156    TGETS   13  13  42  ; "max"
+0157    KSHORT  14   0
+0158    TGETS   15   3  36  ; "height"
+0159    SUBVV   15  15   9
+0160    CALL    13   2   3
+0161    TSETS   13  12  36  ; "height"
+0162    CALL    10   2   3
+0163    MOV     12  10
+0164    TGETS   11  10  35  ; "paintTo"
+0165    TGETS   13   0  14  ; "_bb"
+0166    TGETS   14   0  16  ; "width"
+0167    TGETS   15   3  16  ; "width"
+0168    SUBVV   14  14  15
+0169    KSHORT  15   0
+0170    CALL    11   1   5
+0171    MOV     12  10
+0172    TGETS   11  10  37  ; "free"
+0173    CALL    11   1   2
+0174 => ISF          4
+0175    JMP     10 => 0197
+0176    TGETS   10   0  43  ; "image_update_action"
+0177    ISF         10
+0178    JMP     11 => 0184
+0179    UGET    10   6      ; UIManager
+0180    MOV     11  10
+0181    TGETS   10  10  44  ; "unschedule"
+0182    TGETS   12   0  43  ; "image_update_action"
+0183    CALL    10   1   3
+0184 => MOV     10   1
+0185    FNEW    11  45      ; textboxwidget.lua:938
+0186    TSETS   11   0  43  ; "image_update_action"
+0187    GGET    11  46      ; "require"
+0188    KSTR    12  47      ; "ui/trapper"
+0189    CALL    11   2   2
+0190    UGET    12   6      ; UIManager
+0191    MOV     13  12
+0192    TGETS   12  12  48  ; "scheduleIn"
+0193    KNUM    14   1      ; 0.1
+0194    FNEW    15  49      ; textboxwidget.lua:987
+0195    CALL    12   1   4
+0196    UCLO    10 => 0197
+0197 => UCLO     0 => 0198
+0198 => RET0     0   1
+0199 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:991-993
+0001    TGETS    2   0   0  ; "char_width"
+0002    TGETS    3   0   1  ; "charlist"
+0003    TGETV    3   3   1
+0004    TGETV    2   2   3
+0005    RET1     2   2
+
+-- BYTECODE -- textboxwidget.lua:995-997
+0001    TGETS    1   0   0  ; "lines_per_page"
+0002    RET1     1   2
+
+-- BYTECODE -- textboxwidget.lua:999-1001
+0001    TGETS    1   0   0  ; "vertical_string_list"
+0002    LEN      1   1
+0003    RET1     1   2
+
+-- BYTECODE -- textboxwidget.lua:1003-1005
+0001    TGETS    1   0   0  ; "text_height"
+0002    RET1     1   2
+
+-- BYTECODE -- textboxwidget.lua:1007-1009
+0001    TGETS    1   0   0  ; "line_height_px"
+0002    RET1     1   2
+
+-- BYTECODE -- textboxwidget.lua:1011-1015
+0001    TGETS    1   0   0  ; "virtual_line_num"
+0002    SUBVN    1   1   0  ; 1
+0003    TGETS    2   0   1  ; "vertical_string_list"
+0004    LEN      2   2
+0005    DIVVV    1   1   2
+0006    TGETS    2   0   0  ; "virtual_line_num"
+0007    SUBVN    2   2   0  ; 1
+0008    TGETS    3   0   2  ; "lines_per_page"
+0009    ADDVV    2   2   3
+0010    TGETS    3   0   1  ; "vertical_string_list"
+0011    LEN      3   3
+0012    DIVVV    2   2   3
+0013    MOV      3   1
+0014    MOV      4   2
+0015    RET      3   3
+
+-- BYTECODE -- textboxwidget.lua:1018-1034
+0001    IST          2
+0002    JMP      4 => 0004
+0003    KSHORT   2   1
+0004 => IST          3
+0005    JMP      4 => 0007
+0006    TGETS    3   0   0  ; "line_height"
+0007 => DIVVV    4   1   2
+0008    ADDNV    5   3   0  ; 1
+0009    DIVVV    4   4   5
+0010    MULVN    5   4   1  ; 1000000
+0011    UGET     6   0      ; Screen
+0012    MOV      7   6
+0013    TGETS    6   6   1  ; "scaleBySize"
+0014    KNUM     8   1      ; 1000000
+0015    CALL     6   2   3
+0016    DIVVV    4   5   6
+0017    GGET     5   2      ; "math"
+0018    TGETS    5   5   3  ; "floor"
+0019    MOV      6   4
+0020    CALLT    5   2
+
+-- BYTECODE -- textboxwidget.lua:1036-1039
+0001    TGETS    1   0   0  ; "charpos"
+0002    TGETS    2   0   1  ; "virtual_line_num"
+0003    RET      1   3
+
+-- BYTECODE -- textboxwidget.lua:1041-1047
+0001    TGETS    1   0   0  ; "width"
+0002    ISF          1
+0003    JMP      2 => 0017
+0004    TGETS    1   0   1  ; "height"
+0005    ISF          1
+0006    JMP      2 => 0017
+0007    UGET     1   0      ; Geom
+0008    MOV      2   1
+0009    TGETS    1   1   2  ; "new"
+0010    TDUP     3   3
+0011    TGETS    4   0   0  ; "width"
+0012    TSETS    4   3   4  ; "w"
+0013    TGETS    4   0   1  ; "height"
+0014    TSETS    4   3   5  ; "h"
+0015    CALLT    1   3
+0016    JMP      1 => 0029
+0017 => UGET     1   0      ; Geom
+0018    MOV      2   1
+0019    TGETS    1   1   2  ; "new"
+0020    TDUP     3   6
+0021    TGETS    4   0   0  ; "width"
+0022    TSETS    4   3   4  ; "w"
+0023    TGETS    4   0   7  ; "_bb"
+0024    MOV      5   4
+0025    TGETS    4   4   8  ; "getHeight"
+0026    CALL     4   2   2
+0027    TSETS    4   3   5  ; "h"
+0028    CALLT    1   3
+0029 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1049-1052
+0001    TGETS    4   0   0  ; "dimen"
+0002    TGETS    5   0   0  ; "dimen"
+0003    MOV      6   2
+0004    TSETS    3   5   2  ; "y"
+0005    TSETS    6   4   1  ; "x"
+0006    MOV      5   1
+0007    TGETS    4   1   3  ; "blitFrom"
+0008    TGETS    6   0   4  ; "_bb"
+0009    MOV      7   2
+0010    MOV      8   3
+0011    KSHORT   9   0
+0012    KSHORT  10   0
+0013    TGETS   11   0   5  ; "width"
+0014    TGETS   12   0   4  ; "_bb"
+0015    MOV     13  12
+0016    TGETS   12  12   6  ; "getHeight"
+0017    CALL    12   0   2
+0018    CALLM    4   1   7
+0019    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1054-1057
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "free"
+0003    CALL     1   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1059-1087
+0001    TGETS    2   0   0  ; "image_update_action"
+0002    ISF          2
+0003    JMP      3 => 0013
+0004    UGET     2   0      ; logger
+0005    TGETS    2   2   1  ; "dbg"
+0006    KSTR     3   2      ; "TextBoxWidget:free: cancelling self.imag"~
+0007    CALL     2   1   2
+0008    UGET     2   1      ; UIManager
+0009    MOV      3   2
+0010    TGETS    2   2   3  ; "unschedule"
+0011    TGETS    4   0   0  ; "image_update_action"
+0012    CALL     2   1   3
+0013 => TGETS    2   0   4  ; "_bb"
+0014    ISF          2
+0015    JMP      3 => 0022
+0016    TGETS    2   0   4  ; "_bb"
+0017    MOV      3   2
+0018    TGETS    2   2   5  ; "free"
+0019    CALL     2   1   2
+0020    KPRI     2   0
+0021    TSETS    2   0   4  ; "_bb"
+0022 => TGETS    2   0   6  ; "cursor_restore_bb"
+0023    ISF          2
+0024    JMP      3 => 0031
+0025    TGETS    2   0   6  ; "cursor_restore_bb"
+0026    MOV      3   2
+0027    TGETS    2   2   5  ; "free"
+0028    CALL     2   1   2
+0029    KPRI     2   0
+0030    TSETS    2   0   6  ; "cursor_restore_bb"
+0031 => ISEQP    1   1
+0032    JMP      2 => 0043
+0033    TGETS    2   0   7  ; "use_xtext"
+0034    ISF          2
+0035    JMP      3 => 0043
+0036    TGETS    2   0   8  ; "_xtext"
+0037    ISF          2
+0038    JMP      3 => 0043
+0039    TGETS    2   0   8  ; "_xtext"
+0040    MOV      3   2
+0041    TGETS    2   2   5  ; "free"
+0042    CALL     2   1   2
+0043 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1089-1096
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "free"
+0003    KPRI     4   1
+0004    CALL     2   1   3
+0005    TSETS    1   0   1  ; "scheduled_update"
+0006    MOV      3   0
+0007    TGETS    2   0   2  ; "_renderText"
+0008    TGETS    4   0   3  ; "virtual_line_num"
+0009    TGETS    5   0   3  ; "virtual_line_num"
+0010    TGETS    6   0   4  ; "lines_per_page"
+0011    ADDVV    5   5   6
+0012    SUBVN    5   5   0  ; 1
+0013    CALL     2   1   4
+0014    KPRI     2   0
+0015    TSETS    2   0   1  ; "scheduled_update"
+0016    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1111-1122
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; Geom
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "new"
+0005    TDUP     3   5
+0006    UGET     4   1      ; self
+0007    TGETS    4   4   2  ; "dimen"
+0008    TGETS    4   4   3  ; "x"
+0009    UGET     5   1      ; self
+0010    TGETS    5   5   4  ; "width"
+0011    ADDVV    4   4   5
+0012    UGET     5   2      ; image
+0013    TGETS    5   5   4  ; "width"
+0014    SUBVV    4   4   5
+0015    TSETS    4   3   3  ; "x"
+0016    UGET     4   1      ; self
+0017    TGETS    4   4   2  ; "dimen"
+0018    TGETS    4   4   6  ; "y"
+0019    TSETS    4   3   6  ; "y"
+0020    UGET     4   2      ; image
+0021    TGETS    4   4   4  ; "width"
+0022    TSETS    4   3   7  ; "w"
+0023    UGET     4   2      ; image
+0024    TGETS    4   4   8  ; "height"
+0025    TSETS    4   3   9  ; "h"
+0026    CALL     1   0   3
+0027    RETM     0   1
+
+-- BYTECODE -- textboxwidget.lua:1098-1127
+0001    TGETS    3   0   0  ; "line_num_to_image"
+0002    ISF          3
+0003    JMP      4 => 0062
+0004    TGETS    3   0   0  ; "line_num_to_image"
+0005    TGETS    4   0   1  ; "virtual_line_num"
+0006    TGETV    3   3   4
+0007    ISF          3
+0008    JMP      4 => 0062
+0009    TGETS    3   0   0  ; "line_num_to_image"
+0010    TGETS    4   0   1  ; "virtual_line_num"
+0011    TGETV    3   3   4
+0012    TGETS    4   2   2  ; "pos"
+0013    TGETS    4   4   3  ; "x"
+0014    TGETS    5   0   4  ; "dimen"
+0015    TGETS    5   5   3  ; "x"
+0016    SUBVV    4   4   5
+0017    TGETS    5   2   2  ; "pos"
+0018    TGETS    5   5   5  ; "y"
+0019    TGETS    6   0   4  ; "dimen"
+0020    TGETS    6   6   5  ; "y"
+0021    SUBVV    5   5   6
+0022    TGETS    6   0   6  ; "width"
+0023    TGETS    7   3   6  ; "width"
+0024    SUBVV    6   6   7
+0025    ISGE     6   4
+0026    JMP      6 => 0061
+0027    TGETS    6   0   6  ; "width"
+0028    ISGE     4   6
+0029    JMP      6 => 0061
+0030    KSHORT   6   0
+0031    ISGE     6   5
+0032    JMP      6 => 0061
+0033    TGETS    6   3   7  ; "height"
+0034    ISGE     5   6
+0035    JMP      6 => 0061
+0036    UGET     6   0      ; logger
+0037    TGETS    6   6   8  ; "dbg"
+0038    KSTR     7   9      ; "tap on image"
+0039    CALL     6   1   2
+0040    TGETS    6   3  10  ; "bb"
+0041    ISF          6
+0042    JMP      7 => 0061
+0043    TGETS    6   0  11  ; "image_show_alt_text"
+0044    NOT      6   6
+0045    TSETS    6   0  11  ; "image_show_alt_text"
+0046    MOV      7   0
+0047    TGETS    6   0  12  ; "update"
+0048    CALL     6   1   2
+0049    UGET     6   1      ; UIManager
+0050    MOV      7   6
+0051    TGETS    6   6  13  ; "setDirty"
+0052    TGETS    8   0  14  ; "dialog"
+0053    IST          8
+0054    JMP      9 => 0056
+0055    KSTR     8  15      ; "all"
+0056 => FNEW     9  16      ; textboxwidget.lua:1111
+0057    CALL     6   1   4
+0058    KPRI     6   2
+0059    UCLO     0 => 0060
+0060 => RET1     6   2
+0061 => UCLO     3 => 0062
+0062 => UCLO     0 => 0063
+0063 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1129-1152
+0001    KPRI     1   0
+0002    TSETS    1   0   0  ; "image_show_alt_text"
+0003    TGETS    1   0   1  ; "virtual_line_num"
+0004    TGETS    2   0   2  ; "lines_per_page"
+0005    ADDVV    1   1   2
+0006    TGETS    2   0   3  ; "vertical_string_list"
+0007    LEN      2   2
+0008    ISGT     1   2
+0009    JMP      1 => 0049
+0010    MOV      2   0
+0011    TGETS    1   0   4  ; "free"
+0012    KPRI     3   1
+0013    CALL     1   1   3
+0014    TGETS    1   0   1  ; "virtual_line_num"
+0015    TGETS    2   0   2  ; "lines_per_page"
+0016    ADDVV    1   1   2
+0017    TSETS    1   0   1  ; "virtual_line_num"
+0018    TGETS    1   0   5  ; "editable"
+0019    ISF          1
+0020    JMP      2 => 0041
+0021    TGETS    1   0   1  ; "virtual_line_num"
+0022    TGETS    2   0   3  ; "vertical_string_list"
+0023    LEN      2   2
+0024    TGETS    3   0   2  ; "lines_per_page"
+0025    SUBVV    2   2   3
+0026    ADDVN    2   2   0  ; 1
+0027    ISGE     2   1
+0028    JMP      1 => 0041
+0029    TGETS    1   0   3  ; "vertical_string_list"
+0030    LEN      1   1
+0031    TGETS    2   0   2  ; "lines_per_page"
+0032    SUBVV    1   1   2
+0033    ADDVN    1   1   0  ; 1
+0034    TSETS    1   0   1  ; "virtual_line_num"
+0035    TGETS    1   0   1  ; "virtual_line_num"
+0036    KSHORT   2   1
+0037    ISGE     1   2
+0038    JMP      1 => 0041
+0039    KSHORT   1   1
+0040    TSETS    1   0   1  ; "virtual_line_num"
+0041 => MOV      2   0
+0042    TGETS    1   0   6  ; "_renderText"
+0043    TGETS    3   0   1  ; "virtual_line_num"
+0044    TGETS    4   0   1  ; "virtual_line_num"
+0045    TGETS    5   0   2  ; "lines_per_page"
+0046    ADDVV    4   4   5
+0047    SUBVN    4   4   0  ; 1
+0048    CALL     1   1   4
+0049 => TGETS    1   0   5  ; "editable"
+0050    ISF          1
+0051    JMP      2 => 0071
+0052    TGETS    1   0   7  ; "height"
+0053    ISNEP    1   0
+0054    JMP      1 => 0057
+0055    KSHORT   1   1
+0056    JMP      2 => 0058
+0057 => TGETS    1   0   1  ; "virtual_line_num"
+0058 => MOV      3   0
+0059    TGETS    2   0   8  ; "moveCursorToCharPos"
+0060    TGETS    4   0   3  ; "vertical_string_list"
+0061    TGETV    4   4   1
+0062    ISF          4
+0063    JMP      5 => 0069
+0064    TGETS    4   0   3  ; "vertical_string_list"
+0065    TGETV    4   4   1
+0066    TGETS    4   4   9  ; "offset"
+0067    IST          4
+0068    JMP      5 => 0070
+0069 => KSHORT   4   1
+0070 => CALL     2   1   3
+0071 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1154-1170
+0001    KPRI     1   0
+0002    TSETS    1   0   0  ; "image_show_alt_text"
+0003    TGETS    1   0   1  ; "virtual_line_num"
+0004    KSHORT   2   1
+0005    ISGE     2   1
+0006    JMP      1 => 0030
+0007    MOV      2   0
+0008    TGETS    1   0   2  ; "free"
+0009    KPRI     3   1
+0010    CALL     1   1   3
+0011    TGETS    1   0   1  ; "virtual_line_num"
+0012    TGETS    2   0   3  ; "lines_per_page"
+0013    ISGT     1   2
+0014    JMP      1 => 0018
+0015    KSHORT   1   1
+0016    TSETS    1   0   1  ; "virtual_line_num"
+0017    JMP      1 => 0022
+0018 => TGETS    1   0   1  ; "virtual_line_num"
+0019    TGETS    2   0   3  ; "lines_per_page"
+0020    SUBVV    1   1   2
+0021    TSETS    1   0   1  ; "virtual_line_num"
+0022 => MOV      2   0
+0023    TGETS    1   0   4  ; "_renderText"
+0024    TGETS    3   0   1  ; "virtual_line_num"
+0025    TGETS    4   0   1  ; "virtual_line_num"
+0026    TGETS    5   0   3  ; "lines_per_page"
+0027    ADDVV    4   4   5
+0028    SUBVN    4   4   0  ; 1
+0029    CALL     1   1   4
+0030 => TGETS    1   0   5  ; "editable"
+0031    ISF          1
+0032    JMP      2 => 0052
+0033    TGETS    1   0   6  ; "height"
+0034    ISNEP    1   0
+0035    JMP      1 => 0038
+0036    KSHORT   1   1
+0037    JMP      2 => 0039
+0038 => TGETS    1   0   1  ; "virtual_line_num"
+0039 => MOV      3   0
+0040    TGETS    2   0   7  ; "moveCursorToCharPos"
+0041    TGETS    4   0   8  ; "vertical_string_list"
+0042    TGETV    4   4   1
+0043    ISF          4
+0044    JMP      5 => 0050
+0045    TGETS    4   0   8  ; "vertical_string_list"
+0046    TGETV    4   4   1
+0047    TGETS    4   4   9  ; "offset"
+0048    IST          4
+0049    JMP      5 => 0051
+0050 => KSHORT   4   1
+0051 => CALL     2   1   3
+0052 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1172-1196
+0001    ISNEN    1   0      ; 0
+0002    JMP      2 => 0004
+0003    RET0     0   1
+0004 => KPRI     2   0
+0005    TSETS    2   0   0  ; "image_show_alt_text"
+0006    TGETS    2   0   1  ; "virtual_line_num"
+0007    ADDVV    2   2   1
+0008    KSHORT   3   1
+0009    ISGE     2   3
+0010    JMP      3 => 0012
+0011    KSHORT   2   1
+0012 => TGETS    3   0   2  ; "vertical_string_list"
+0013    LEN      3   3
+0014    TGETS    4   0   3  ; "lines_per_page"
+0015    SUBVV    3   3   4
+0016    ADDVN    3   3   1  ; 1
+0017    ISGE     3   2
+0018    JMP      3 => 0024
+0019    TGETS    3   0   2  ; "vertical_string_list"
+0020    LEN      3   3
+0021    TGETS    4   0   3  ; "lines_per_page"
+0022    SUBVV    3   3   4
+0023    ADDVN    2   3   1  ; 1
+0024 => TSETS    2   0   1  ; "virtual_line_num"
+0025    MOV      4   0
+0026    TGETS    3   0   4  ; "free"
+0027    KPRI     5   1
+0028    CALL     3   1   3
+0029    MOV      4   0
+0030    TGETS    3   0   5  ; "_renderText"
+0031    TGETS    5   0   1  ; "virtual_line_num"
+0032    TGETS    6   0   1  ; "virtual_line_num"
+0033    TGETS    7   0   3  ; "lines_per_page"
+0034    ADDVV    6   6   7
+0035    SUBVN    6   6   1  ; 1
+0036    CALL     3   1   4
+0037    TGETS    3   0   6  ; "editable"
+0038    ISF          3
+0039    JMP      4 => 0068
+0040    MOV      4   0
+0041    TGETS    3   0   7  ; "_getXYForCharPos"
+0042    CALL     3   3   2
+0043    KSHORT   5   0
+0044    ISLT     4   5
+0045    JMP      5 => 0049
+0046    TGETS    5   0   8  ; "text_height"
+0047    ISGT     5   4
+0048    JMP      5 => 0068
+0049 => TGETS    5   0   9  ; "height"
+0050    ISNEP    5   0
+0051    JMP      5 => 0054
+0052    KSHORT   5   1
+0053    JMP      6 => 0055
+0054 => TGETS    5   0   1  ; "virtual_line_num"
+0055 => MOV      7   0
+0056    TGETS    6   0  10  ; "moveCursorToCharPos"
+0057    TGETS    8   0   2  ; "vertical_string_list"
+0058    TGETV    8   8   5
+0059    ISF          8
+0060    JMP      9 => 0066
+0061    TGETS    8   0   2  ; "vertical_string_list"
+0062    TGETV    8   8   5
+0063    TGETS    8   8  11  ; "offset"
+0064    IST          8
+0065    JMP      9 => 0067
+0066 => KSHORT   8   1
+0067 => CALL     6   1   3
+0068 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1198-1209
+0001    KPRI     1   0
+0002    TSETS    1   0   0  ; "image_show_alt_text"
+0003    TGETS    1   0   1  ; "virtual_line_num"
+0004    KSHORT   2   1
+0005    ISGE     2   1
+0006    JMP      1 => 0021
+0007    MOV      2   0
+0008    TGETS    1   0   2  ; "free"
+0009    KPRI     3   1
+0010    CALL     1   1   3
+0011    KSHORT   1   1
+0012    TSETS    1   0   1  ; "virtual_line_num"
+0013    MOV      2   0
+0014    TGETS    1   0   3  ; "_renderText"
+0015    TGETS    3   0   1  ; "virtual_line_num"
+0016    TGETS    4   0   1  ; "virtual_line_num"
+0017    TGETS    5   0   4  ; "lines_per_page"
+0018    ADDVV    4   4   5
+0019    SUBVN    4   4   0  ; 1
+0020    CALL     1   1   4
+0021 => TGETS    1   0   5  ; "editable"
+0022    ISF          1
+0023    JMP      2 => 0028
+0024    MOV      2   0
+0025    TGETS    1   0   6  ; "moveCursorToCharPos"
+0026    KSHORT   3   1
+0027    CALL     1   1   3
+0028 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1211-1227
+0001    KPRI     1   0
+0002    TSETS    1   0   0  ; "image_show_alt_text"
+0003    TGETS    1   0   1  ; "vertical_string_list"
+0004    LEN      1   1
+0005    TGETS    2   0   2  ; "lines_per_page"
+0006    SUBVV    1   1   2
+0007    ADDVN    1   1   0  ; 1
+0008    KSHORT   2   1
+0009    ISGE     1   2
+0010    JMP      2 => 0012
+0011    KSHORT   1   1
+0012 => TGETS    2   0   3  ; "virtual_line_num"
+0013    ISEQV    2   1
+0014    JMP      2 => 0028
+0015    MOV      3   0
+0016    TGETS    2   0   4  ; "free"
+0017    KPRI     4   1
+0018    CALL     2   1   3
+0019    TSETS    1   0   3  ; "virtual_line_num"
+0020    MOV      3   0
+0021    TGETS    2   0   5  ; "_renderText"
+0022    TGETS    4   0   3  ; "virtual_line_num"
+0023    TGETS    5   0   3  ; "virtual_line_num"
+0024    TGETS    6   0   2  ; "lines_per_page"
+0025    ADDVV    5   5   6
+0026    SUBVN    5   5   0  ; 1
+0027    CALL     2   1   4
+0028 => TGETS    2   0   6  ; "editable"
+0029    ISF          2
+0030    JMP      3 => 0037
+0031    MOV      3   0
+0032    TGETS    2   0   7  ; "moveCursorToCharPos"
+0033    TGETS    4   0   8  ; "charlist"
+0034    LEN      4   4
+0035    ADDVN    4   4   0  ; 1
+0036    CALL     2   1   3
+0037 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1230-1246
+0001    KPRI     2   0
+0002    TSETS    2   0   0  ; "image_show_alt_text"
+0003    GGET     2   1      ; "math"
+0004    TGETS    2   2   2  ; "max"
+0005    KSHORT   3   0
+0006    GGET     4   1      ; "math"
+0007    TGETS    4   4   3  ; "min"
+0008    KSHORT   5   1
+0009    MOV      6   1
+0010    CALL     4   0   3
+0011    CALLM    2   2   1
+0012    MOV      1   2
+0013    GGET     2   1      ; "math"
+0014    TGETS    2   2   4  ; "floor"
+0015    TGETS    3   0   5  ; "vertical_string_list"
+0016    LEN      3   3
+0017    SUBVN    3   3   0  ; 1
+0018    TGETS    4   0   6  ; "lines_per_page"
+0019    DIVVV    3   3   4
+0020    CALL     2   2   2
+0021    ADDNV    2   2   0  ; 1
+0022    UGET     3   0      ; Math
+0023    TGETS    3   3   7  ; "round"
+0024    SUBVN    4   2   0  ; 1
+0025    MULVV    4   4   1
+0026    CALL     3   2   2
+0027    ADDNV    3   3   0  ; 1
+0028    SUBVN    4   3   0  ; 1
+0029    TGETS    5   0   6  ; "lines_per_page"
+0030    MULVV    4   4   5
+0031    ADDNV    4   4   0  ; 1
+0032    TGETS    5   0   8  ; "virtual_line_num"
+0033    ISEQV    4   5
+0034    JMP      5 => 0048
+0035    MOV      6   0
+0036    TGETS    5   0   9  ; "free"
+0037    KPRI     7   1
+0038    CALL     5   1   3
+0039    TSETS    4   0   8  ; "virtual_line_num"
+0040    MOV      6   0
+0041    TGETS    5   0  10  ; "_renderText"
+0042    TGETS    7   0   8  ; "virtual_line_num"
+0043    TGETS    8   0   8  ; "virtual_line_num"
+0044    TGETS    9   0   6  ; "lines_per_page"
+0045    ADDVV    8   8   9
+0046    SUBVN    8   8   0  ; 1
+0047    CALL     5   1   4
+0048 => TGETS    5   0  11  ; "editable"
+0049    ISF          5
+0050    JMP      6 => 0063
+0051    TGETS    5   0  12  ; "height"
+0052    ISNEP    5   0
+0053    JMP      5 => 0056
+0054    KSHORT   5   1
+0055    JMP      6 => 0057
+0056 => TGETS    5   0   8  ; "virtual_line_num"
+0057 => MOV      7   0
+0058    TGETS    6   0  13  ; "moveCursorToCharPos"
+0059    TGETS    8   0   5  ; "vertical_string_list"
+0060    TGETV    8   8   5
+0061    TGETS    8   8  14  ; "offset"
+0062    CALL     6   1   3
+0063 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1253-1349
+0001    IST          1
+0002    JMP      2 => 0004
+0003    TGETS    1   0   0  ; "charpos"
+0004 => TGETS    2   0   1  ; "text"
+0005    ISEQP    2   0
+0006    JMP      2 => 0013
+0007    GGET     2   2      ; "string"
+0008    TGETS    2   2   3  ; "len"
+0009    TGETS    3   0   1  ; "text"
+0010    CALL     2   2   2
+0011    ISNEN    2   0      ; 0
+0012    JMP      2 => 0016
+0013 => KSHORT   2   0
+0014    KSHORT   3   0
+0015    RET      2   3
+0016 => TGETS    2   0   4  ; "height"
+0017    ISNEP    2   0
+0018    JMP      2 => 0021
+0019    KSHORT   2   1
+0020    JMP      3 => 0022
+0021 => TGETS    2   0   5  ; "virtual_line_num"
+0022 => TGETS    3   0   6  ; "vertical_string_list"
+0023    TGETV    3   3   2
+0024    TGETS    3   3   7  ; "offset"
+0025    ISGE     3   1
+0026    JMP      3 => 0043
+0027 => TGETS    3   0   6  ; "vertical_string_list"
+0028    LEN      3   3
+0029    ISGE     2   3
+0030    JMP      3 => 0060
+0031    LOOP     3 => 0042
+0032    TGETS    3   0   6  ; "vertical_string_list"
+0033    ADDVN    4   2   1  ; 1
+0034    TGETV    3   3   4
+0035    TGETS    3   3   7  ; "offset"
+0036    ISGE     1   3
+0037    JMP      3 => 0040
+0038    JMP      3 => 0060
+0039    JMP      3 => 0027
+0040 => ADDVN    2   2   1  ; 1
+0041    JMP      3 => 0027
+0042 => JMP      3 => 0060
+0043 => TGETS    3   0   6  ; "vertical_string_list"
+0044    TGETV    3   3   2
+0045    TGETS    3   3   7  ; "offset"
+0046    ISGE     1   3
+0047    JMP      3 => 0060
+0048 => KSHORT   3   1
+0049    ISGE     3   2
+0050    JMP      3 => 0060
+0051    LOOP     3 => 0060
+0052    SUBVN    2   2   1  ; 1
+0053    TGETS    3   0   6  ; "vertical_string_list"
+0054    TGETV    3   3   2
+0055    TGETS    3   3   7  ; "offset"
+0056    ISGT     3   1
+0057    JMP      3 => 0048
+0058    JMP      3 => 0060
+0059    JMP      3 => 0048
+0060 => TGETS    3   0   5  ; "virtual_line_num"
+0061    SUBVV    3   2   3
+0062    TGETS    4   0   8  ; "line_height_px"
+0063    MULVV    3   3   4
+0064    TGETS    4   0   9  ; "use_xtext"
+0065    ISF          4
+0066    JMP      5 => 0142
+0067    TGETS    4   0   6  ; "vertical_string_list"
+0068    TGETV    4   4   2
+0069    MOV      6   0
+0070    TGETS    5   0  10  ; "_shapeLine"
+0071    MOV      7   4
+0072    CALL     5   1   3
+0073    TGETS    5   4  11  ; "x_start"
+0074    TGETS    6   4  12  ; "xglyphs"
+0075    ISF          6
+0076    JMP      7 => 0139
+0077    TGETS    6   4  13  ; "end_offset"
+0078    ISLT     6   1
+0079    JMP      6 => 0082
+0080    KPRI     6   1
+0081    JMP      7 => 0083
+0082 => KPRI     6   2
+0083 => ISF          6
+0084    JMP      7 => 0086
+0085    TGETS    1   4  13  ; "end_offset"
+0086 => GGET     7  14      ; "ipairs"
+0087    TGETS    8   4  12  ; "xglyphs"
+0088    CALL     7   4   2
+0089    JMP     10 => 0137
+0090 => TGETS   12  11  15  ; "is_cluster_start"
+0091    ISF         12
+0092    JMP     13 => 0137
+0093    TGETS   12  11  16  ; "text_index"
+0094    ISGT    12   1
+0095    JMP     12 => 0136
+0096    TGETS   12  11  16  ; "text_index"
+0097    TGETS   13  11  17  ; "cluster_len"
+0098    ADDVV   12  12  13
+0099    ISGE     1  12
+0100    JMP     12 => 0136
+0101    ISF          6
+0102    JMP     12 => 0110
+0103    TGETS   12  11  18  ; "is_rtl"
+0104    ISF         12
+0105    JMP     13 => 0108
+0106    TGETS    5  11  19  ; "x0"
+0107    JMP     12 => 0139
+0108 => TGETS    5  11  20  ; "x1"
+0109    JMP      7 => 0139
+0110 => TGETS   12  11  18  ; "is_rtl"
+0111    ISF         12
+0112    JMP     13 => 0115
+0113    TGETS    5  11  20  ; "x1"
+0114    JMP     12 => 0116
+0115 => TGETS    5  11  19  ; "x0"
+0116 => TGETS   12  11  17  ; "cluster_len"
+0117    KSHORT  13   1
+0118    ISGE    13  12
+0119    JMP     12 => 0139
+0120    GGET    12  21      ; "math"
+0121    TGETS   12  12  22  ; "floor"
+0122    TGETS   13  11  23  ; "w"
+0123    TGETS   14  11  16  ; "text_index"
+0124    SUBVV   14   1  14
+0125    MULVV   13  13  14
+0126    TGETS   14  11  17  ; "cluster_len"
+0127    DIVVV   13  13  14
+0128    CALL    12   2   2
+0129    TGETS   13  11  18  ; "is_rtl"
+0130    ISF         13
+0131    JMP     14 => 0134
+0132    SUBVV    5   5  12
+0133    JMP     13 => 0139
+0134 => ADDVV    5   5  12
+0135    JMP      7 => 0139
+0136 => TGETS    5  11  20  ; "x1"
+0137 => ITERC   10   3   3
+0138    ITERL   10 => 0090
+0139 => MOV      6   5
+0140    MOV      7   3
+0141    RET      6   3
+0142 => KSHORT   4   0
+0143    TGETS    5   0   6  ; "vertical_string_list"
+0144    TGETV    5   5   2
+0145    TGETS    5   5   7  ; "offset"
+0146    TGETS    6   0  24  ; "charlist"
+0147    LEN      6   6
+0148 => ISGE     5   1
+0149    JMP      7 => 0166
+0150    LOOP     7 => 0166
+0151    ISGT     5   6
+0152    JMP      7 => 0164
+0153    TGETS    7   0  25  ; "char_width"
+0154    TGETS    8   0  24  ; "charlist"
+0155    TGETV    8   8   5
+0156    TGETV    7   7   8
+0157    ADDVV    7   4   7
+0158    TGETS    8   0  26  ; "idx_pad"
+0159    TGETV    8   8   5
+0160    IST          8
+0161    JMP      9 => 0163
+0162    KSHORT   8   0
+0163 => ADDVV    4   7   8
+0164 => ADDVN    5   5   1  ; 1
+0165    JMP      7 => 0148
+0166 => MOV      7   4
+0167    MOV      8   3
+0168    RET      7   3
+
+-- BYTECODE -- textboxwidget.lua:1353-1442
+0001    TGETS    3   0   0  ; "vertical_string_list"
+0002    LEN      3   3
+0003    ISNEN    3   0      ; 0
+0004    JMP      3 => 0007
+0005    KSHORT   3   1
+0006    RET1     3   2
+0007 => TGETS    3   0   1  ; "height"
+0008    ISNEP    3   0
+0009    JMP      3 => 0012
+0010    KSHORT   3   1
+0011    JMP      4 => 0013
+0012 => TGETS    3   0   2  ; "virtual_line_num"
+0013 => GGET     4   3      ; "math"
+0014    TGETS    4   4   4  ; "floor"
+0015    TGETS    5   0   5  ; "line_height_px"
+0016    DIVVV    5   2   5
+0017    CALL     4   2   2
+0018    ADDVV    3   3   4
+0019    KSHORT   4   1
+0020    ISGE     3   4
+0021    JMP      4 => 0025
+0022    KSHORT   4   1
+0023    RET1     4   2
+0024    JMP      4 => 0033
+0025 => TGETS    4   0   0  ; "vertical_string_list"
+0026    LEN      4   4
+0027    ISGE     4   3
+0028    JMP      4 => 0033
+0029    TGETS    4   0   6  ; "charlist"
+0030    LEN      4   4
+0031    ADDVN    4   4   1  ; 1
+0032    RET1     4   2
+0033 => TGETS    4   0   0  ; "vertical_string_list"
+0034    TGETV    4   4   3
+0035    TGETS    4   4   7  ; "offset"
+0036    TGETS    5   0   0  ; "vertical_string_list"
+0037    TGETV    5   5   3
+0038    TGETS    5   5   8  ; "end_offset"
+0039    IST          5
+0040    JMP      6 => 0042
+0041    RET1     4   2
+0042 => TGETS    6   0   9  ; "use_xtext"
+0043    ISF          6
+0044    JMP      7 => 0138
+0045    TGETS    6   0   0  ; "vertical_string_list"
+0046    TGETV    6   6   3
+0047    MOV      8   0
+0048    TGETS    7   0  10  ; "_shapeLine"
+0049    MOV      9   6
+0050    CALL     7   1   3
+0051    TGETS    7   6  11  ; "x_start"
+0052    ISGT     1   7
+0053    JMP      7 => 0070
+0054    TGETS    7   6  12  ; "para_is_rtl"
+0055    ISF          7
+0056    JMP      8 => 0067
+0057    TGETS    7   6   8  ; "end_offset"
+0058    ISF          7
+0059    JMP      8 => 0064
+0060    TGETS    7   6   8  ; "end_offset"
+0061    ADDVN    7   7   1  ; 1
+0062    IST          7
+0063    JMP      8 => 0065
+0064 => TGETS    7   6   7  ; "offset"
+0065 => RET1     7   2
+0066    JMP      7 => 0088
+0067 => TGETS    7   6   7  ; "offset"
+0068    RET1     7   2
+0069    JMP      7 => 0088
+0070 => TGETS    7   6  13  ; "x_end"
+0071    ISGE     7   1
+0072    JMP      7 => 0088
+0073    TGETS    7   6  12  ; "para_is_rtl"
+0074    ISF          7
+0075    JMP      8 => 0079
+0076    TGETS    7   6   7  ; "offset"
+0077    RET1     7   2
+0078    JMP      7 => 0088
+0079 => TGETS    7   6   8  ; "end_offset"
+0080    ISF          7
+0081    JMP      8 => 0086
+0082    TGETS    7   6   8  ; "end_offset"
+0083    ADDVN    7   7   1  ; 1
+0084    IST          7
+0085    JMP      8 => 0087
+0086 => TGETS    7   6   7  ; "offset"
+0087 => RET1     7   2
+0088 => TGETS    7   6  14  ; "xglyphs"
+0089    ISF          7
+0090    JMP      8 => 0136
+0091    GGET     7  15      ; "ipairs"
+0092    TGETS    8   6  14  ; "xglyphs"
+0093    CALL     7   4   2
+0094    JMP     10 => 0134
+0095 => TGETS   12  11  16  ; "is_cluster_start"
+0096    ISF         12
+0097    JMP     13 => 0134
+0098    TGETS   12  11  17  ; "x1"
+0099    ISGE     1  12
+0100    JMP     12 => 0134
+0101    TGETS   12  11  18  ; "cluster_len"
+0102    KSHORT  13   1
+0103    ISGT    12  13
+0104    JMP     12 => 0108
+0105    TGETS   12  11  19  ; "text_index"
+0106    RET1    12   2
+0107    JMP     12 => 0134
+0108 => TGETS   12  11  20  ; "w"
+0109    TGETS   13  11  18  ; "cluster_len"
+0110    DIVVV   12  12  13
+0111    KSHORT  13   1
+0112    TGETS   14  11  18  ; "cluster_len"
+0113    KSHORT  15   1
+0114    FORI    13 => 0134
+0115 => TGETS   17  11  21  ; "x0"
+0116    MULVV   18  16  12
+0117    ADDVV   17  17  18
+0118    ISGE     1  17
+0119    JMP     17 => 0133
+0120    TGETS   17  11  22  ; "is_rtl"
+0121    ISF         17
+0122    JMP     18 => 0129
+0123    TGETS   17  11  19  ; "text_index"
+0124    TGETS   18  11  18  ; "cluster_len"
+0125    ADDVV   17  17  18
+0126    SUBVV   17  17  16
+0127    RET1    17   2
+0128    JMP     17 => 0133
+0129 => TGETS   17  11  19  ; "text_index"
+0130    ADDVV   17  17  16
+0131    SUBVN   17  17   1  ; 1
+0132    RET1    17   2
+0133 => FORL    13 => 0115
+0134 => ITERC   10   3   3
+0135    ITERL   10 => 0095
+0136 => ADDVN    7   5   1  ; 1
+0137    RET1     7   2
+0138 => TGETS    6   0   0  ; "vertical_string_list"
+0139    TGETV    6   6   3
+0140    TGETS    6   6  23  ; "width"
+0141    ISGE     6   1
+0142    JMP      6 => 0154
+0143    TGETS    6   0   0  ; "vertical_string_list"
+0144    TGETV    6   6   3
+0145    TGETS    6   6   8  ; "end_offset"
+0146    IST          6
+0147    JMP      7 => 0152
+0148    TGETS    7   0   0  ; "vertical_string_list"
+0149    TGETV    7   7   3
+0150    TGETS    7   7   7  ; "offset"
+0151    RET1     7   2
+0152 => ADDVN    7   6   1  ; 1
+0153    RET1     7   2
+0154 => KSHORT   6   0
+0155    KPRI     7   0
+0156 => ISGT     4   5
+0157    JMP      8 => 0184
+0158    LOOP     8 => 0184
+0159    MOV      7   6
+0160    TGETS    8   0  24  ; "char_width"
+0161    TGETS    9   0   6  ; "charlist"
+0162    TGETV    9   9   4
+0163    TGETV    8   8   9
+0164    ADDVV    8   6   8
+0165    TGETS    9   0  25  ; "idx_pad"
+0166    TGETV    9   9   4
+0167    IST          9
+0168    JMP     10 => 0170
+0169    KSHORT   9   0
+0170 => ADDVV    6   8   9
+0171    ISGE     1   6
+0172    JMP      8 => 0182
+0173    SUBVV    8   1   7
+0174    SUBVV    9   6   1
+0175    ISGE     8   9
+0176    JMP      8 => 0179
+0177    RET1     4   2
+0178    JMP      8 => 0184
+0179 => ADDVN    8   4   1  ; 1
+0180    RET1     8   2
+0181    JMP      8 => 0184
+0182 => ADDVN    4   4   1  ; 1
+0183    JMP      8 => 0156
+0184 => ADDVN    8   5   1  ; 1
+0185    RET1     8   2
+
+-- BYTECODE -- textboxwidget.lua:1499-1501
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dimen"
+0004    RET      0   3
+
+-- BYTECODE -- textboxwidget.lua:1516-1523
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; Geom
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "new"
+0005    TDUP     3   4
+0006    UGET     4   1      ; self
+0007    TGETS    4   4   2  ; "dimen"
+0008    TGETS    4   4   3  ; "x"
+0009    UGET     5   2      ; restore_x
+0010    ADDVV    4   4   5
+0011    TSETS    4   3   3  ; "x"
+0012    UGET     4   1      ; self
+0013    TGETS    4   4   2  ; "dimen"
+0014    TGETS    4   4   5  ; "y"
+0015    UGET     5   3      ; restore_y
+0016    ADDVV    4   4   5
+0017    TSETS    4   3   5  ; "y"
+0018    UGET     4   1      ; self
+0019    TGETS    4   4   6  ; "cursor_line"
+0020    TGETS    4   4   2  ; "dimen"
+0021    TGETS    4   4   7  ; "w"
+0022    TSETS    4   3   7  ; "w"
+0023    UGET     4   1      ; self
+0024    TGETS    4   4   6  ; "cursor_line"
+0025    TGETS    4   4   2  ; "dimen"
+0026    TGETS    4   4   8  ; "h"
+0027    TSETS    4   3   8  ; "h"
+0028    CALL     1   0   3
+0029    RETM     0   1
+
+-- BYTECODE -- textboxwidget.lua:1535-1552
+0001    UGET     0   0      ; Geom
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "new"
+0004    TDUP     2   3
+0005    UGET     3   1      ; self
+0006    TGETS    3   3   1  ; "dimen"
+0007    TGETS    3   3   2  ; "x"
+0008    UGET     4   2      ; x
+0009    ADDVV    3   3   4
+0010    TSETS    3   2   2  ; "x"
+0011    UGET     3   1      ; self
+0012    TGETS    3   3   1  ; "dimen"
+0013    TGETS    3   3   4  ; "y"
+0014    UGET     4   3      ; y
+0015    ADDVV    3   3   4
+0016    TSETS    3   2   4  ; "y"
+0017    UGET     3   1      ; self
+0018    TGETS    3   3   5  ; "cursor_line"
+0019    TGETS    3   3   1  ; "dimen"
+0020    TGETS    3   3   6  ; "w"
+0021    TSETS    3   2   6  ; "w"
+0022    UGET     3   1      ; self
+0023    TGETS    3   3   5  ; "cursor_line"
+0024    TGETS    3   3   1  ; "dimen"
+0025    TGETS    3   3   7  ; "h"
+0026    TSETS    3   2   7  ; "h"
+0027    CALL     0   2   3
+0028    UGET     1   4      ; CURSOR_COMBINE_REGIONS
+0029    ISF          1
+0030    JMP      2 => 0069
+0031    UGET     1   5      ; restore_x
+0032    ISF          1
+0033    JMP      2 => 0069
+0034    UGET     1   6      ; restore_y
+0035    ISF          1
+0036    JMP      2 => 0069
+0037    UGET     1   0      ; Geom
+0038    MOV      2   1
+0039    TGETS    1   1   0  ; "new"
+0040    TDUP     3   8
+0041    UGET     4   1      ; self
+0042    TGETS    4   4   1  ; "dimen"
+0043    TGETS    4   4   2  ; "x"
+0044    UGET     5   5      ; restore_x
+0045    ADDVV    4   4   5
+0046    TSETS    4   3   2  ; "x"
+0047    UGET     4   1      ; self
+0048    TGETS    4   4   1  ; "dimen"
+0049    TGETS    4   4   4  ; "y"
+0050    UGET     5   6      ; restore_y
+0051    ADDVV    4   4   5
+0052    TSETS    4   3   4  ; "y"
+0053    UGET     4   1      ; self
+0054    TGETS    4   4   5  ; "cursor_line"
+0055    TGETS    4   4   1  ; "dimen"
+0056    TGETS    4   4   6  ; "w"
+0057    TSETS    4   3   6  ; "w"
+0058    UGET     4   1      ; self
+0059    TGETS    4   4   5  ; "cursor_line"
+0060    TGETS    4   4   1  ; "dimen"
+0061    TGETS    4   4   7  ; "h"
+0062    TSETS    4   3   7  ; "h"
+0063    CALL     1   2   3
+0064    MOV      3   0
+0065    TGETS    2   0   9  ; "combine"
+0066    MOV      4   1
+0067    CALL     2   2   3
+0068    MOV      0   2
+0069 => KSTR     1  10      ; "ui"
+0070    MOV      2   0
+0071    RET      1   3
+
+-- BYTECODE -- textboxwidget.lua:1454-1596
+0001    TGETS    2   0   0  ; "editable"
+0002    IST          2
+0003    JMP      2 => 0009
+0004    UGET     2   0      ; logger
+0005    TGETS    2   2   1  ; "warn"
+0006    KSTR     3   2      ; "TextBoxWidget:moveCursorToCharPos called"~
+0007    CALL     2   1   2
+0008    UCLO     0 => 0375
+0009 => TSETS    1   0   3  ; "charpos"
+0010    TGETS    2   0   5  ; "virtual_line_num"
+0011    TSETS    2   0   4  ; "prev_virtual_line_num"
+0012    MOV      3   0
+0013    TGETS    2   0   6  ; "_getXYForCharPos"
+0014    CALL     2   3   2
+0015    KSHORT   4   0
+0016    ISGE     3   4
+0017    JMP      4 => 0036
+0018    GGET     4   7      ; "math"
+0019    TGETS    4   4   8  ; "ceil"
+0020    UNM      5   3
+0021    TGETS    6   0   9  ; "line_height_px"
+0022    DIVVV    5   5   6
+0023    CALL     4   2   2
+0024    TGETS    5   0   5  ; "virtual_line_num"
+0025    SUBVV    5   5   4
+0026    TSETS    5   0   5  ; "virtual_line_num"
+0027    TGETS    5   0   5  ; "virtual_line_num"
+0028    KSHORT   6   1
+0029    ISGE     5   6
+0030    JMP      5 => 0033
+0031    KSHORT   5   1
+0032    TSETS    5   0   5  ; "virtual_line_num"
+0033 => TGETS    5   0   9  ; "line_height_px"
+0034    MULVV    5   4   5
+0035    ADDVV    3   3   5
+0036 => TGETS    4   0  10  ; "text_height"
+0037    ISGT     4   3
+0038    JMP      4 => 0053
+0039    GGET     4   7      ; "math"
+0040    TGETS    4   4  11  ; "floor"
+0041    TGETS    5   0  10  ; "text_height"
+0042    SUBVV    5   3   5
+0043    TGETS    6   0   9  ; "line_height_px"
+0044    DIVVV    5   5   6
+0045    CALL     4   2   2
+0046    ADDVN    4   4   0  ; 1
+0047    TGETS    5   0   5  ; "virtual_line_num"
+0048    ADDVV    5   5   4
+0049    TSETS    5   0   5  ; "virtual_line_num"
+0050    TGETS    5   0   9  ; "line_height_px"
+0051    MULVV    5   4   5
+0052    SUBVV    3   3   5
+0053 => TGETS    4   0  12  ; "width"
+0054    TGETS    5   0  13  ; "cursor_line"
+0055    TGETS    5   5  14  ; "dimen"
+0056    TGETS    5   5  15  ; "w"
+0057    SUBVV    4   4   5
+0058    ISGE     4   2
+0059    JMP      4 => 0065
+0060    TGETS    4   0  12  ; "width"
+0061    TGETS    5   0  13  ; "cursor_line"
+0062    TGETS    5   5  14  ; "dimen"
+0063    TGETS    5   5  15  ; "w"
+0064    SUBVV    2   4   5
+0065 => TGETS    4   0  16  ; "_bb"
+0066    IST          4
+0067    JMP      4 => 0069
+0068    UCLO     0 => 0376
+0069 => TGETS    4   0   5  ; "virtual_line_num"
+0070    TGETS    5   0   4  ; "prev_virtual_line_num"
+0071    ISEQV    4   5
+0072    JMP      4 => 0133
+0073    MOV      5   0
+0074    TGETS    4   0  17  ; "free"
+0075    KPRI     6   1
+0076    CALL     4   1   3
+0077    MOV      5   0
+0078    TGETS    4   0  18  ; "_renderText"
+0079    TGETS    6   0   5  ; "virtual_line_num"
+0080    TGETS    7   0   5  ; "virtual_line_num"
+0081    TGETS    8   0  19  ; "lines_per_page"
+0082    ADDVV    7   7   8
+0083    SUBVN    7   7   0  ; 1
+0084    CALL     4   1   4
+0085    TSETS    2   0  20  ; "cursor_restore_x"
+0086    TSETS    3   0  21  ; "cursor_restore_y"
+0087    UGET     4   1      ; Blitbuffer
+0088    TGETS    4   4  23  ; "new"
+0089    TGETS    5   0  13  ; "cursor_line"
+0090    TGETS    5   5  14  ; "dimen"
+0091    TGETS    5   5  15  ; "w"
+0092    TGETS    6   0  13  ; "cursor_line"
+0093    TGETS    6   6  14  ; "dimen"
+0094    TGETS    6   6  24  ; "h"
+0095    TGETS    7   0  16  ; "_bb"
+0096    MOV      8   7
+0097    TGETS    7   7  25  ; "getType"
+0098    CALL     7   0   2
+0099    CALLM    4   2   2
+0100    TSETS    4   0  22  ; "cursor_restore_bb"
+0101    TGETS    4   0  22  ; "cursor_restore_bb"
+0102    MOV      5   4
+0103    TGETS    4   4  26  ; "blitFrom"
+0104    TGETS    6   0  16  ; "_bb"
+0105    KSHORT   7   0
+0106    KSHORT   8   0
+0107    MOV      9   2
+0108    MOV     10   3
+0109    TGETS   11   0  13  ; "cursor_line"
+0110    TGETS   11  11  14  ; "dimen"
+0111    TGETS   11  11  15  ; "w"
+0112    TGETS   12   0  13  ; "cursor_line"
+0113    TGETS   12  12  14  ; "dimen"
+0114    TGETS   12  12  24  ; "h"
+0115    CALL     4   1   9
+0116    TGETS    4   0  13  ; "cursor_line"
+0117    MOV      5   4
+0118    TGETS    4   4  27  ; "paintTo"
+0119    TGETS    6   0  16  ; "_bb"
+0120    MOV      7   2
+0121    MOV      8   3
+0122    CALL     4   1   5
+0123    UGET     4   2      ; UIManager
+0124    MOV      5   4
+0125    TGETS    4   4  28  ; "setDirty"
+0126    TGETS    6   0  29  ; "dialog"
+0127    IST          6
+0128    JMP      7 => 0130
+0129    KSTR     6  30      ; "all"
+0130 => FNEW     7  31      ; textboxwidget.lua:1499
+0131    CALL     4   1   4
+0132    JMP      4 => 0373
+0133 => TGETS    4   0  16  ; "_bb"
+0134    ISF          4
+0135    JMP      5 => 0373
+0136    UGET     4   3      ; CURSOR_USE_REFRESH_FUNCS
+0137    ISF          4
+0138    JMP      5 => 0226
+0139    KNIL     4   5
+0140    TGETS    6   0  22  ; "cursor_restore_bb"
+0141    ISF          6
+0142    JMP      7 => 0178
+0143    TGETS    6   0  16  ; "_bb"
+0144    MOV      7   6
+0145    TGETS    6   6  26  ; "blitFrom"
+0146    TGETS    8   0  22  ; "cursor_restore_bb"
+0147    TGETS    9   0  20  ; "cursor_restore_x"
+0148    TGETS   10   0  21  ; "cursor_restore_y"
+0149    KSHORT  11   0
+0150    KSHORT  12   0
+0151    TGETS   13   0  13  ; "cursor_line"
+0152    TGETS   13  13  14  ; "dimen"
+0153    TGETS   13  13  15  ; "w"
+0154    TGETS   14   0  13  ; "cursor_line"
+0155    TGETS   14  14  14  ; "dimen"
+0156    TGETS   14  14  24  ; "h"
+0157    CALL     6   1   9
+0158    TGETS    4   0  20  ; "cursor_restore_x"
+0159    TGETS    5   0  21  ; "cursor_restore_y"
+0160    UGET     6   4      ; CURSOR_COMBINE_REGIONS
+0161    IST          6
+0162    JMP      6 => 0172
+0163    UGET     6   2      ; UIManager
+0164    MOV      7   6
+0165    TGETS    6   6  28  ; "setDirty"
+0166    TGETS    8   0  29  ; "dialog"
+0167    IST          8
+0168    JMP      9 => 0170
+0169    KSTR     8  30      ; "all"
+0170 => FNEW     9  32      ; textboxwidget.lua:1516
+0171    CALL     6   1   4
+0172 => TGETS    6   0  22  ; "cursor_restore_bb"
+0173    MOV      7   6
+0174    TGETS    6   6  17  ; "free"
+0175    CALL     6   1   2
+0176    KPRI     6   0
+0177    TSETS    6   0  22  ; "cursor_restore_bb"
+0178 => TSETS    2   0  20  ; "cursor_restore_x"
+0179    TSETS    3   0  21  ; "cursor_restore_y"
+0180    UGET     6   1      ; Blitbuffer
+0181    TGETS    6   6  23  ; "new"
+0182    TGETS    7   0  13  ; "cursor_line"
+0183    TGETS    7   7  14  ; "dimen"
+0184    TGETS    7   7  15  ; "w"
+0185    TGETS    8   0  13  ; "cursor_line"
+0186    TGETS    8   8  14  ; "dimen"
+0187    TGETS    8   8  24  ; "h"
+0188    TGETS    9   0  16  ; "_bb"
+0189    MOV     10   9
+0190    TGETS    9   9  25  ; "getType"
+0191    CALL     9   0   2
+0192    CALLM    6   2   2
+0193    TSETS    6   0  22  ; "cursor_restore_bb"
+0194    TGETS    6   0  22  ; "cursor_restore_bb"
+0195    MOV      7   6
+0196    TGETS    6   6  26  ; "blitFrom"
+0197    TGETS    8   0  16  ; "_bb"
+0198    KSHORT   9   0
+0199    KSHORT  10   0
+0200    MOV     11   2
+0201    MOV     12   3
+0202    TGETS   13   0  13  ; "cursor_line"
+0203    TGETS   13  13  14  ; "dimen"
+0204    TGETS   13  13  15  ; "w"
+0205    TGETS   14   0  13  ; "cursor_line"
+0206    TGETS   14  14  14  ; "dimen"
+0207    TGETS   14  14  24  ; "h"
+0208    CALL     6   1   9
+0209    TGETS    6   0  13  ; "cursor_line"
+0210    MOV      7   6
+0211    TGETS    6   6  27  ; "paintTo"
+0212    TGETS    8   0  16  ; "_bb"
+0213    MOV      9   2
+0214    MOV     10   3
+0215    CALL     6   1   5
+0216    UGET     6   2      ; UIManager
+0217    MOV      7   6
+0218    TGETS    6   6  28  ; "setDirty"
+0219    TGETS    8   0  29  ; "dialog"
+0220    IST          8
+0221    JMP      9 => 0223
+0222    KSTR     8  30      ; "all"
+0223 => FNEW     9  33      ; textboxwidget.lua:1535
+0224    CALL     6   1   4
+0225    UCLO     4 => 0373
+0226 => KPRI     4   0
+0227    TGETS    5   0  22  ; "cursor_restore_bb"
+0228    ISF          5
+0229    JMP      6 => 0291
+0230    TGETS    5   0  16  ; "_bb"
+0231    MOV      6   5
+0232    TGETS    5   5  26  ; "blitFrom"
+0233    TGETS    7   0  22  ; "cursor_restore_bb"
+0234    TGETS    8   0  20  ; "cursor_restore_x"
+0235    TGETS    9   0  21  ; "cursor_restore_y"
+0236    KSHORT  10   0
+0237    KSHORT  11   0
+0238    TGETS   12   0  13  ; "cursor_line"
+0239    TGETS   12  12  14  ; "dimen"
+0240    TGETS   12  12  15  ; "w"
+0241    TGETS   13   0  13  ; "cursor_line"
+0242    TGETS   13  13  14  ; "dimen"
+0243    TGETS   13  13  24  ; "h"
+0244    CALL     5   1   9
+0245    TGETS    5   0  14  ; "dimen"
+0246    ISF          5
+0247    JMP      6 => 0285
+0248    UGET     5   5      ; Geom
+0249    MOV      6   5
+0250    TGETS    5   5  23  ; "new"
+0251    TDUP     7  35
+0252    TGETS    8   0  14  ; "dimen"
+0253    TGETS    8   8  34  ; "x"
+0254    TGETS    9   0  20  ; "cursor_restore_x"
+0255    ADDVV    8   8   9
+0256    TSETS    8   7  34  ; "x"
+0257    TGETS    8   0  14  ; "dimen"
+0258    TGETS    8   8  36  ; "y"
+0259    TGETS    9   0  21  ; "cursor_restore_y"
+0260    ADDVV    8   8   9
+0261    TSETS    8   7  36  ; "y"
+0262    TGETS    8   0  13  ; "cursor_line"
+0263    TGETS    8   8  14  ; "dimen"
+0264    TGETS    8   8  15  ; "w"
+0265    TSETS    8   7  15  ; "w"
+0266    TGETS    8   0  13  ; "cursor_line"
+0267    TGETS    8   8  14  ; "dimen"
+0268    TGETS    8   8  24  ; "h"
+0269    TSETS    8   7  24  ; "h"
+0270    CALL     5   2   3
+0271    MOV      4   5
+0272    UGET     5   4      ; CURSOR_COMBINE_REGIONS
+0273    IST          5
+0274    JMP      5 => 0285
+0275    UGET     5   2      ; UIManager
+0276    MOV      6   5
+0277    TGETS    5   5  28  ; "setDirty"
+0278    TGETS    7   0  29  ; "dialog"
+0279    IST          7
+0280    JMP      8 => 0282
+0281    KSTR     7  30      ; "all"
+0282 => KSTR     8  37      ; "ui"
+0283    MOV      9   4
+0284    CALL     5   1   5
+0285 => TGETS    5   0  22  ; "cursor_restore_bb"
+0286    MOV      6   5
+0287    TGETS    5   5  17  ; "free"
+0288    CALL     5   1   2
+0289    KPRI     5   0
+0290    TSETS    5   0  22  ; "cursor_restore_bb"
+0291 => TSETS    2   0  20  ; "cursor_restore_x"
+0292    TSETS    3   0  21  ; "cursor_restore_y"
+0293    UGET     5   1      ; Blitbuffer
+0294    TGETS    5   5  23  ; "new"
+0295    TGETS    6   0  13  ; "cursor_line"
+0296    TGETS    6   6  14  ; "dimen"
+0297    TGETS    6   6  15  ; "w"
+0298    TGETS    7   0  13  ; "cursor_line"
+0299    TGETS    7   7  14  ; "dimen"
+0300    TGETS    7   7  24  ; "h"
+0301    TGETS    8   0  16  ; "_bb"
+0302    MOV      9   8
+0303    TGETS    8   8  25  ; "getType"
+0304    CALL     8   0   2
+0305    CALLM    5   2   2
+0306    TSETS    5   0  22  ; "cursor_restore_bb"
+0307    TGETS    5   0  22  ; "cursor_restore_bb"
+0308    MOV      6   5
+0309    TGETS    5   5  26  ; "blitFrom"
+0310    TGETS    7   0  16  ; "_bb"
+0311    KSHORT   8   0
+0312    KSHORT   9   0
+0313    MOV     10   2
+0314    MOV     11   3
+0315    TGETS   12   0  13  ; "cursor_line"
+0316    TGETS   12  12  14  ; "dimen"
+0317    TGETS   12  12  15  ; "w"
+0318    TGETS   13   0  13  ; "cursor_line"
+0319    TGETS   13  13  14  ; "dimen"
+0320    TGETS   13  13  24  ; "h"
+0321    CALL     5   1   9
+0322    TGETS    5   0  13  ; "cursor_line"
+0323    MOV      6   5
+0324    TGETS    5   5  27  ; "paintTo"
+0325    TGETS    7   0  16  ; "_bb"
+0326    MOV      8   2
+0327    MOV      9   3
+0328    CALL     5   1   5
+0329    TGETS    5   0  14  ; "dimen"
+0330    ISF          5
+0331    JMP      6 => 0373
+0332    UGET     5   5      ; Geom
+0333    MOV      6   5
+0334    TGETS    5   5  23  ; "new"
+0335    TDUP     7  38
+0336    TGETS    8   0  14  ; "dimen"
+0337    TGETS    8   8  34  ; "x"
+0338    ADDVV    8   8   2
+0339    TSETS    8   7  34  ; "x"
+0340    TGETS    8   0  14  ; "dimen"
+0341    TGETS    8   8  36  ; "y"
+0342    ADDVV    8   8   3
+0343    TSETS    8   7  36  ; "y"
+0344    TGETS    8   0  13  ; "cursor_line"
+0345    TGETS    8   8  14  ; "dimen"
+0346    TGETS    8   8  15  ; "w"
+0347    TSETS    8   7  15  ; "w"
+0348    TGETS    8   0  13  ; "cursor_line"
+0349    TGETS    8   8  14  ; "dimen"
+0350    TGETS    8   8  24  ; "h"
+0351    TSETS    8   7  24  ; "h"
+0352    CALL     5   2   3
+0353    UGET     6   4      ; CURSOR_COMBINE_REGIONS
+0354    ISF          6
+0355    JMP      7 => 0363
+0356    ISF          4
+0357    JMP      6 => 0363
+0358    MOV      7   5
+0359    TGETS    6   5  39  ; "combine"
+0360    MOV      8   4
+0361    CALL     6   2   3
+0362    MOV      5   6
+0363 => UGET     6   2      ; UIManager
+0364    MOV      7   6
+0365    TGETS    6   6  28  ; "setDirty"
+0366    TGETS    8   0  29  ; "dialog"
+0367    IST          8
+0368    JMP      9 => 0370
+0369    KSTR     8  30      ; "all"
+0370 => KSTR     9  37      ; "ui"
+0371    MOV     10   5
+0372    CALL     6   1   5
+0373 => UCLO     0 => 0374
+0374 => RET0     0   1
+0375 => RET0     0   1
+0376 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1598-1611
+0001    ISF          3
+0002    JMP      4 => 0012
+0003    KSHORT   4   0
+0004    ISGE     2   4
+0005    JMP      4 => 0007
+0006    KSHORT   2   0
+0007 => TGETS    4   0   0  ; "text_height"
+0008    ISGT     4   2
+0009    JMP      4 => 0012
+0010    TGETS    4   0   0  ; "text_height"
+0011    SUBVN    2   4   0  ; 1
+0012 => MOV      5   0
+0013    TGETS    4   0   1  ; "getCharPosAtXY"
+0014    MOV      6   1
+0015    MOV      7   2
+0016    CALL     4   2   4
+0017    MOV      6   0
+0018    TGETS    5   0   2  ; "moveCursorToCharPos"
+0019    MOV      7   4
+0020    CALL     5   1   3
+0021    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1614-1652
+0001    TGETS    1   0   0  ; "top_line_num"
+0002    ISF          1
+0003    JMP      2 => 0042
+0004    TGETS    1   0   0  ; "top_line_num"
+0005    TSETS    1   0   1  ; "virtual_line_num"
+0006    TGETS    1   0   1  ; "virtual_line_num"
+0007    KSHORT   2   1
+0008    ISGE     1   2
+0009    JMP      1 => 0012
+0010    KSHORT   1   1
+0011    TSETS    1   0   1  ; "virtual_line_num"
+0012 => TGETS    1   0   1  ; "virtual_line_num"
+0013    TGETS    2   0   2  ; "vertical_string_list"
+0014    LEN      2   2
+0015    ISGE     2   1
+0016    JMP      1 => 0020
+0017    TGETS    1   0   2  ; "vertical_string_list"
+0018    LEN      1   1
+0019    TSETS    1   0   1  ; "virtual_line_num"
+0020 => KSHORT   1   0
+0021    TGETS    2   0   2  ; "vertical_string_list"
+0022    LEN      2   2
+0023    TGETS    3   0   3  ; "lines_per_page"
+0024    SUBVV    2   2   3
+0025    ADDVN    2   2   0  ; 1
+0026    ADDVV    2   2   1
+0027    TGETS    3   0   1  ; "virtual_line_num"
+0028    ISGE     2   3
+0029    JMP      3 => 0037
+0030    TSETS    2   0   1  ; "virtual_line_num"
+0031    TGETS    3   0   1  ; "virtual_line_num"
+0032    KSHORT   4   1
+0033    ISGE     3   4
+0034    JMP      3 => 0037
+0035    KSHORT   3   1
+0036    TSETS    3   0   1  ; "virtual_line_num"
+0037 => MOV      4   0
+0038    TGETS    3   0   4  ; "moveCursorToCharPos"
+0039    TGETS    5   0   5  ; "charpos"
+0040    CALL     3   1   3
+0041    RET0     0   1
+0042 => KSHORT   1   1
+0043 => LOOP     2 => 0063
+0044    TGETS    2   0   3  ; "lines_per_page"
+0045    ADDVV    2   1   2
+0046    SUBVN    2   2   0  ; 1
+0047    TGETS    3   0   2  ; "vertical_string_list"
+0048    LEN      3   3
+0049    ISGT     3   2
+0050    JMP      3 => 0052
+0051    JMP      2 => 0063
+0052 => TGETS    3   0   2  ; "vertical_string_list"
+0053    ADDVN    4   2   0  ; 1
+0054    TGETV    3   3   4
+0055    TGETS    3   3   6  ; "offset"
+0056    TGETS    4   0   5  ; "charpos"
+0057    ISGT     4   3
+0058    JMP      3 => 0060
+0059    JMP      2 => 0063
+0060 => TGETS    3   0   3  ; "lines_per_page"
+0061    ADDVV    1   1   3
+0062    JMP      2 => 0043
+0063 => TSETS    1   0   1  ; "virtual_line_num"
+0064    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1654-1658
+0001    TGETS    1   0   0  ; "charpos"
+0002    KSHORT   2   1
+0003    ISGE     2   1
+0004    JMP      1 => 0010
+0005    MOV      2   0
+0006    TGETS    1   0   1  ; "moveCursorToCharPos"
+0007    TGETS    3   0   0  ; "charpos"
+0008    SUBVN    3   3   0  ; 1
+0009    CALL     1   1   3
+0010 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1660-1664
+0001    TGETS    1   0   0  ; "charpos"
+0002    TGETS    2   0   1  ; "charlist"
+0003    LEN      2   2
+0004    ADDVN    2   2   0  ; 1
+0005    ISGE     1   2
+0006    JMP      1 => 0012
+0007    MOV      2   0
+0008    TGETS    1   0   2  ; "moveCursorToCharPos"
+0009    TGETS    3   0   0  ; "charpos"
+0010    ADDVN    3   3   0  ; 1
+0011    CALL     1   1   3
+0012 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1666-1670
+0001    TGETS    1   0   0  ; "vertical_string_list"
+0002    ISF          1
+0003    JMP      2 => 0010
+0004    TGETS    1   0   0  ; "vertical_string_list"
+0005    LEN      1   1
+0006    KSHORT   2   2
+0007    ISGE     1   2
+0008    JMP      1 => 0010
+0009    RET0     0   1
+0010 => MOV      2   0
+0011    TGETS    1   0   1  ; "_getXYForCharPos"
+0012    CALL     1   3   2
+0013    MOV      4   0
+0014    TGETS    3   0   2  ; "moveCursorToXY"
+0015    MOV      5   1
+0016    TGETS    6   0   3  ; "line_height_px"
+0017    SUBVV    6   2   6
+0018    CALL     3   1   4
+0019    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1672-1676
+0001    TGETS    1   0   0  ; "vertical_string_list"
+0002    ISF          1
+0003    JMP      2 => 0010
+0004    TGETS    1   0   0  ; "vertical_string_list"
+0005    LEN      1   1
+0006    KSHORT   2   2
+0007    ISGE     1   2
+0008    JMP      1 => 0010
+0009    RET0     0   1
+0010 => MOV      2   0
+0011    TGETS    1   0   1  ; "_getXYForCharPos"
+0012    CALL     1   3   2
+0013    MOV      4   0
+0014    TGETS    3   0   2  ; "moveCursorToXY"
+0015    MOV      5   1
+0016    TGETS    6   0   3  ; "line_height_px"
+0017    ADDVV    6   2   6
+0018    CALL     3   1   4
+0019    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1682-1724
+0001    IST          1
+0002    JMP      3 => 0004
+0003    RET0     0   1
+0004 => TGETS    3   2   0  ; "pos"
+0005    TGETS    3   3   1  ; "x"
+0006    TGETS    4   0   2  ; "dimen"
+0007    TGETS    4   4   1  ; "x"
+0008    SUBVV    3   3   4
+0009    TGETS    4   2   0  ; "pos"
+0010    TGETS    4   4   3  ; "y"
+0011    TGETS    5   0   2  ; "dimen"
+0012    TGETS    5   5   3  ; "y"
+0013    SUBVV    4   4   5
+0014    GGET     5   4      ; "math"
+0015    TGETS    5   5   5  ; "ceil"
+0016    TGETS    6   0   6  ; "line_height_px"
+0017    DIVVV    6   4   6
+0018    CALL     5   2   2
+0019    TGETS    6   0   7  ; "virtual_line_num"
+0020    ADDVV    5   5   6
+0021    SUBVN    5   5   0  ; 1
+0022    TGETS    6   0   8  ; "vertical_string_list"
+0023    TGETV    6   6   5
+0024    UGET     7   0      ; logger
+0025    TGETS    7   7   9  ; "dbg"
+0026    KSTR     8  10      ; "holding on line"
+0027    MOV      9   6
+0028    CALL     7   1   3
+0029    ISF          6
+0030    JMP      7 => 0098
+0031    TGETS    7   6  11  ; "offset"
+0032    KPRI     8   0
+0033    TGETS    9   0   8  ; "vertical_string_list"
+0034    LEN      9   9
+0035    ISGT     9   5
+0036    JMP      9 => 0041
+0037    TGETS    9   0  12  ; "charlist"
+0038    LEN      9   9
+0039    ADDVN    8   9   0  ; 1
+0040    JMP      9 => 0045
+0041 => TGETS    9   0   8  ; "vertical_string_list"
+0042    ADDVN   10   5   0  ; 1
+0043    TGETV    9   9  10
+0044    TGETS    8   9  11  ; "offset"
+0045 => KSHORT   9   0
+0046    MOV     10   7
+0047 => ISGE    10   8
+0048    JMP     11 => 0098
+0049    LOOP    11 => 0098
+0050    TGETS   11   0  13  ; "char_width"
+0051    TGETS   12   0  12  ; "charlist"
+0052    TGETV   12  12  10
+0053    TGETV   11  11  12
+0054    ADDVV   11   9  11
+0055    TGETS   12   0  14  ; "idx_pad"
+0056    TGETV   12  12  10
+0057    IST         12
+0058    JMP     13 => 0060
+0059    KSHORT  12   0
+0060 => ADDVV    9  11  12
+0061    ISGE     3   9
+0062    JMP     11 => 0096
+0063    TGETS   11   0  12  ; "charlist"
+0064    TGETV   11  11  10
+0065    ISNES   11  15      ; " "
+0066    JMP     11 => 0068
+0067    JMP     11 => 0098
+0068 => UGET    11   1      ; util
+0069    TGETS   11  11  16  ; "splitToWords"
+0070    MOV     13   0
+0071    TGETS   12   0  17  ; "_getLineText"
+0072    MOV     14   6
+0073    CALL    12   0   3
+0074    CALLM   11   2   0
+0075    MOV     12   7
+0076    GGET    13  18      ; "ipairs"
+0077    MOV     14  11
+0078    CALL    13   4   2
+0079    JMP     16 => 0093
+0080 => UGET    18   1      ; util
+0081    TGETS   18  18  19  ; "splitToChars"
+0082    MOV     19  17
+0083    CALL    18   2   2
+0084    LEN     18  18
+0085    ADDVV   12  12  18
+0086    SUBVN   18  12   0  ; 1
+0087    ISGT    10  18
+0088    JMP     18 => 0093
+0089    MOV     18   1
+0090    MOV     19  17
+0091    CALL    18   1   2
+0092    RET0     0   1
+0093 => ITERC   16   3   3
+0094    ITERL   16 => 0080
+0095    JMP     11 => 0098
+0096 => ADDVN   10  10   0  ; 1
+0097    JMP     11 => 0047
+0098 => RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1733-1747
+0001    TGETS    3   2   1  ; "pos"
+0002    TGETS    3   3   2  ; "x"
+0003    TGETS    4   0   3  ; "dimen"
+0004    TGETS    4   4   2  ; "x"
+0005    SUBVV    3   3   4
+0006    TSETS    3   0   0  ; "hold_start_x"
+0007    TGETS    3   2   1  ; "pos"
+0008    TGETS    3   3   5  ; "y"
+0009    TGETS    4   0   3  ; "dimen"
+0010    TGETS    4   4   5  ; "y"
+0011    SUBVV    3   3   4
+0012    TSETS    3   0   4  ; "hold_start_y"
+0013    TGETS    3   0   0  ; "hold_start_x"
+0014    KSHORT   4   0
+0015    ISLT     3   4
+0016    JMP      3 => 0031
+0017    TGETS    3   0   0  ; "hold_start_x"
+0018    TGETS    4   0   3  ; "dimen"
+0019    TGETS    4   4   6  ; "w"
+0020    ISLT     4   3
+0021    JMP      3 => 0031
+0022    TGETS    3   0   4  ; "hold_start_y"
+0023    KSHORT   4   0
+0024    ISLT     3   4
+0025    JMP      3 => 0031
+0026    TGETS    3   0   4  ; "hold_start_y"
+0027    TGETS    4   0   3  ; "dimen"
+0028    TGETS    4   4   7  ; "h"
+0029    ISGE     4   3
+0030    JMP      3 => 0035
+0031 => KPRI     3   0
+0032    TSETS    3   0   8  ; "hold_start_tv"
+0033    KPRI     3   1
+0034    RET1     3   2
+0035 => UGET     3   0      ; TimeVal
+0036    TGETS    3   3   9  ; "now"
+0037    CALL     3   2   1
+0038    TSETS    3   0   8  ; "hold_start_tv"
+0039    KPRI     3   2
+0040    RET1     3   2
+
+-- BYTECODE -- textboxwidget.lua:1749-1757
+0001    TGETS    3   0   0  ; "hold_start_tv"
+0002    IST          3
+0003    JMP      3 => 0006
+0004    KPRI     3   1
+0005    RET1     3   2
+0006 => KPRI     3   2
+0007    RET1     3   2
+
+-- BYTECODE -- textboxwidget.lua:1789-1805
+0001    UGET     0   0      ; image
+0002    TGETS    0   0   0  ; "hi_bb"
+0003    IST          0
+0004    JMP      0 => 0013
+0005    UGET     0   0      ; image
+0006    TGETS    0   0   1  ; "load_bb_func"
+0007    ISF          0
+0008    JMP      1 => 0013
+0009    UGET     0   0      ; image
+0010    TGETS    0   0   1  ; "load_bb_func"
+0011    KPRI     1   2
+0012    CALL     0   1   2
+0013 => GGET     0   2      ; "require"
+0014    KSTR     1   3      ; "ui/widget/imageviewer"
+0015    CALL     0   2   2
+0016    MOV      2   0
+0017    TGETS    1   0   4  ; "new"
+0018    TDUP     3   6
+0019    UGET     4   0      ; image
+0020    TGETS    4   4   0  ; "hi_bb"
+0021    IST          4
+0022    JMP      5 => 0025
+0023    UGET     4   0      ; image
+0024    TGETS    4   4   5  ; "bb"
+0025 => TSETS    4   3   7  ; "image"
+0026    UGET     4   0      ; image
+0027    TGETS    4   4   8  ; "title"
+0028    TSETS    4   3   9  ; "title_text"
+0029    UGET     4   0      ; image
+0030    TGETS    4   4  10  ; "caption"
+0031    TSETS    4   3  10  ; "caption"
+0032    CALL     1   2   3
+0033    UGET     2   1      ; UIManager
+0034    MOV      3   2
+0035    TGETS    2   2  11  ; "show"
+0036    MOV      4   1
+0037    CALL     2   1   3
+0038    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1809-1809
+0001    UGET     0   0      ; Trapper
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "wrap"
+0004    UGET     2   1      ; load_and_show_image
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- textboxwidget.lua:1759-1893
+0001    IST          1
+0002    JMP      3 => 0004
+0003    UCLO     0 => 0262
+0004 => TGETS    3   2   0  ; "pos"
+0005    TGETS    3   3   1  ; "x"
+0006    TGETS    4   0   2  ; "dimen"
+0007    TGETS    4   4   1  ; "x"
+0008    SUBVV    3   3   4
+0009    TGETS    4   2   0  ; "pos"
+0010    TGETS    4   4   3  ; "y"
+0011    TGETS    5   0   2  ; "dimen"
+0012    TGETS    5   5   3  ; "y"
+0013    SUBVV    4   4   5
+0014    TGETS    5   0   4  ; "hold_start_tv"
+0015    IST          5
+0016    JMP      5 => 0019
+0017    KPRI     5   1
+0018    UCLO     0 => 0263
+0019 => TGETS    5   0   5  ; "hold_start_x"
+0020    KSHORT   6   0
+0021    ISLT     5   6
+0022    JMP      5 => 0051
+0023    KSHORT   5   0
+0024    ISLT     3   5
+0025    JMP      5 => 0051
+0026    TGETS    5   0   5  ; "hold_start_x"
+0027    TGETS    6   0   2  ; "dimen"
+0028    TGETS    6   6   6  ; "w"
+0029    ISLT     6   5
+0030    JMP      5 => 0051
+0031    TGETS    5   0   2  ; "dimen"
+0032    TGETS    5   5   6  ; "w"
+0033    ISLT     5   3
+0034    JMP      5 => 0051
+0035    TGETS    5   0   7  ; "hold_start_y"
+0036    KSHORT   6   0
+0037    ISLT     5   6
+0038    JMP      5 => 0051
+0039    KSHORT   5   0
+0040    ISLT     4   5
+0041    JMP      5 => 0051
+0042    TGETS    5   0   7  ; "hold_start_y"
+0043    TGETS    6   0   2  ; "dimen"
+0044    TGETS    6   6   8  ; "h"
+0045    ISLT     6   5
+0046    JMP      5 => 0051
+0047    TGETS    5   0   2  ; "dimen"
+0048    TGETS    5   5   8  ; "h"
+0049    ISGE     5   4
+0050    JMP      5 => 0053
+0051 => KPRI     5   1
+0052    UCLO     0 => 0264
+0053 => UGET     5   0      ; TimeVal
+0054    TGETS    5   5   9  ; "now"
+0055    CALL     5   2   1
+0056    TGETS    6   0   4  ; "hold_start_tv"
+0057    SUBVV    5   5   6
+0058    TGETS    6   5  10  ; "sec"
+0059    TGETS    7   5  11  ; "usec"
+0060    DIVVN    7   7   0  ; 1000000
+0061    ADDVV    5   6   7
+0062    TGETS    6   0  12  ; "line_num_to_image"
+0063    ISF          6
+0064    JMP      7 => 0103
+0065    TGETS    6   0  12  ; "line_num_to_image"
+0066    TGETS    7   0  13  ; "virtual_line_num"
+0067    TGETV    6   6   7
+0068    ISF          6
+0069    JMP      7 => 0103
+0070    TGETS    6   0  12  ; "line_num_to_image"
+0071    TGETS    7   0  13  ; "virtual_line_num"
+0072    TGETV    6   6   7
+0073    TGETS    7   0  14  ; "width"
+0074    TGETS    8   6  14  ; "width"
+0075    SUBVV    7   7   8
+0076    ISGE     7   3
+0077    JMP      7 => 0102
+0078    TGETS    7   6  15  ; "height"
+0079    ISGE     4   7
+0080    JMP      7 => 0102
+0081    TGETS    7   6  16  ; "bb"
+0082    ISF          7
+0083    JMP      8 => 0102
+0084    UGET     7   1      ; logger
+0085    TGETS    7   7  17  ; "dbg"
+0086    KSTR     8  18      ; "hold on image"
+0087    CALL     7   1   2
+0088    FNEW     7  19      ; textboxwidget.lua:1789
+0089    GGET     8  20      ; "require"
+0090    KSTR     9  21      ; "ui/trapper"
+0091    CALL     8   2   2
+0092    UGET     9   2      ; UIManager
+0093    MOV     10   9
+0094    TGETS    9   9  22  ; "scheduleIn"
+0095    KNUM    11   1      ; 0.1
+0096    FNEW    12  23      ; textboxwidget.lua:1809
+0097    CALL     9   1   4
+0098    KPRI     9   2
+0099    UCLO     0 => 0100
+0100 => RET1     9   2
+0101    UCLO     7 => 0102
+0102 => UCLO     6 => 0103
+0103 => KNIL     6   9
+0104    GGET    10  24      ; "math"
+0105    TGETS   10  10  25  ; "ceil"
+0106    TGETS   11   0   7  ; "hold_start_y"
+0107    TGETS   12   0  26  ; "line_height_px"
+0108    DIVVV   11  11  12
+0109    CALL    10   2   2
+0110    GGET    11  24      ; "math"
+0111    TGETS   11  11  25  ; "ceil"
+0112    TGETS   12   0  26  ; "line_height_px"
+0113    DIVVV   12   4  12
+0114    CALL    11   2   2
+0115    ISGE    10  11
+0116    JMP     12 => 0124
+0117    TGETS   12   0   5  ; "hold_start_x"
+0118    TGETS    7   0   7  ; "hold_start_y"
+0119    MOV      6  12
+0120    MOV     12   3
+0121    MOV      9   4
+0122    MOV      8  12
+0123    JMP     12 => 0149
+0124 => ISGE    11  10
+0125    JMP     12 => 0133
+0126    MOV     12   3
+0127    MOV      7   4
+0128    MOV      6  12
+0129    TGETS   12   0   5  ; "hold_start_x"
+0130    TGETS    9   0   7  ; "hold_start_y"
+0131    MOV      8  12
+0132    JMP     12 => 0149
+0133 => TGETS   12   0   5  ; "hold_start_x"
+0134    ISGT    12   3
+0135    JMP     12 => 0143
+0136    TGETS   12   0   5  ; "hold_start_x"
+0137    TGETS    7   0   7  ; "hold_start_y"
+0138    MOV      6  12
+0139    MOV     12   3
+0140    MOV      9   4
+0141    MOV      8  12
+0142    JMP     12 => 0149
+0143 => MOV     12   3
+0144    MOV      7   4
+0145    MOV      6  12
+0146    TGETS   12   0   5  ; "hold_start_x"
+0147    TGETS    9   0   7  ; "hold_start_y"
+0148    MOV      8  12
+0149 => KPRI    12   0
+0150    TSETS   12   0   5  ; "hold_start_x"
+0151    KPRI    12   0
+0152    TSETS   12   0   7  ; "hold_start_y"
+0153    KPRI    12   0
+0154    TSETS   12   0   4  ; "hold_start_tv"
+0155    TGETS   12   0  27  ; "use_xtext"
+0156    ISF         12
+0157    JMP     13 => 0218
+0158    MOV     13   0
+0159    TGETS   12   0  28  ; "getCharPosAtXY"
+0160    MOV     14   6
+0161    MOV     15   7
+0162    CALL    12   2   4
+0163    MOV     14   0
+0164    TGETS   13   0  28  ; "getCharPosAtXY"
+0165    MOV     15   8
+0166    MOV     16   9
+0167    CALL    13   2   4
+0168    ISF         12
+0169    JMP     14 => 0172
+0170    IST         13
+0171    JMP     14 => 0175
+0172 => KPRI    14   2
+0173    UCLO     0 => 0174
+0174 => RET1    14   2
+0175 => ISGE    13  12
+0176    JMP     14 => 0180
+0177    MOV     14  13
+0178    MOV     13  12
+0179    MOV     12  14
+0180 => TGETS   14   0  29  ; "_xtext"
+0181    LEN     14  14
+0182    ISGE    14  12
+0183    JMP     14 => 0187
+0184    KPRI    14   2
+0185    UCLO     0 => 0186
+0186 => RET1    14   2
+0187 => TGETS   14   0  29  ; "_xtext"
+0188    LEN     14  14
+0189    ISGE    14  13
+0190    JMP     14 => 0193
+0191    TGETS   14   0  29  ; "_xtext"
+0192    LEN     13  14
+0193 => TGETS   14   0  29  ; "_xtext"
+0194    MOV     15  14
+0195    TGETS   14  14  30  ; "getSelectedWords"
+0196    MOV     16  12
+0197    MOV     17  13
+0198    KSHORT  18  50
+0199    CALL    14   2   5
+0200    UGET    15   1      ; logger
+0201    TGETS   15  15  17  ; "dbg"
+0202    KSTR    16  31      ; "onHoldReleaseText (duration:"
+0203    MOV     17   5
+0204    KSTR    18  32      ; ") :"
+0205    MOV     19  12
+0206    KSTR    20  33      ; ">"
+0207    MOV     21  13
+0208    KSTR    22  34      ; "="
+0209    MOV     23  14
+0210    CALL    15   1   9
+0211    MOV     15   1
+0212    MOV     16  14
+0213    MOV     17   5
+0214    CALL    15   1   3
+0215    KPRI    15   2
+0216    UCLO     0 => 0217
+0217 => RET1    15   2
+0218 => MOV     13   0
+0219    TGETS   12   0  35  ; "_findWordEdge"
+0220    MOV     14   6
+0221    MOV     15   7
+0222    UGET    16   3      ; FIND_START
+0223    CALL    12   2   5
+0224    MOV     14   0
+0225    TGETS   13   0  35  ; "_findWordEdge"
+0226    MOV     15   8
+0227    MOV     16   9
+0228    UGET    17   4      ; FIND_END
+0229    CALL    13   2   5
+0230    ISF         12
+0231    JMP     14 => 0234
+0232    IST         13
+0233    JMP     14 => 0237
+0234 => KPRI    14   2
+0235    UCLO     0 => 0236
+0236 => RET1    14   2
+0237 => GGET    14  36      ; "table"
+0238    TGETS   14  14  37  ; "concat"
+0239    TGETS   15   0  38  ; "charlist"
+0240    KSTR    16  39      ; ""
+0241    MOV     17  12
+0242    MOV     18  13
+0243    CALL    14   2   5
+0244    UGET    15   1      ; logger
+0245    TGETS   15  15  17  ; "dbg"
+0246    KSTR    16  31      ; "onHoldReleaseText (duration:"
+0247    MOV     17   5
+0248    KSTR    18  32      ; ") :"
+0249    MOV     19  12
+0250    KSTR    20  33      ; ">"
+0251    MOV     21  13
+0252    KSTR    22  34      ; "="
+0253    MOV     23  14
+0254    CALL    15   1   9
+0255    MOV     15   1
+0256    MOV     16  14
+0257    MOV     17   5
+0258    CALL    15   1   3
+0259    KPRI    15   2
+0260    UCLO     0 => 0261
+0261 => RET1    15   2
+0262 => RET0     0   1
+0263 => RET1     5   2
+0264 => RET1     5   2
+
+-- BYTECODE -- textboxwidget.lua:1895-1945
+0001    UGET     4   0      ; FIND_START
+0002    ISEQV    3   4
+0003    JMP      4 => 0008
+0004    UGET     4   1      ; FIND_END
+0005    ISEQV    3   4
+0006    JMP      4 => 0008
+0007    RET0     0   1
+0008 => GGET     4   0      ; "math"
+0009    TGETS    4   4   1  ; "ceil"
+0010    TGETS    5   0   2  ; "line_height_px"
+0011    DIVVV    5   2   5
+0012    CALL     4   2   2
+0013    TGETS    5   0   3  ; "virtual_line_num"
+0014    ADDVV    4   4   5
+0015    SUBVN    4   4   0  ; 1
+0016    TGETS    5   0   4  ; "vertical_string_list"
+0017    TGETV    5   5   4
+0018    IST          5
+0019    JMP      6 => 0021
+0020    RET0     0   1
+0021 => TGETS    6   5   5  ; "offset"
+0022    KPRI     7   0
+0023    TGETS    8   0   4  ; "vertical_string_list"
+0024    LEN      8   8
+0025    ISGT     8   4
+0026    JMP      8 => 0031
+0027    TGETS    8   0   6  ; "charlist"
+0028    LEN      8   8
+0029    ADDVN    7   8   0  ; 1
+0030    JMP      8 => 0035
+0031 => TGETS    8   0   4  ; "vertical_string_list"
+0032    ADDVN    9   4   0  ; 1
+0033    TGETV    8   8   9
+0034    TGETS    7   8   5  ; "offset"
+0035 => KSHORT   8   0
+0036    MOV      9   6
+0037    KPRI    10   0
+0038 => ISGE     9   7
+0039    JMP     11 => 0093
+0040    LOOP    11 => 0093
+0041    TGETS   11   0   7  ; "char_width"
+0042    TGETS   12   0   6  ; "charlist"
+0043    TGETV   12  12   9
+0044    TGETV   11  11  12
+0045    ADDVV   11   8  11
+0046    TGETS   12   0   8  ; "idx_pad"
+0047    TGETV   12  12   9
+0048    IST         12
+0049    JMP     13 => 0051
+0050    KSHORT  12   0
+0051 => ADDVV    8  11  12
+0052    ISGE     1   8
+0053    JMP     11 => 0091
+0054    UGET    11   2      ; util
+0055    TGETS   11  11   9  ; "splitToWords"
+0056    MOV     13   0
+0057    TGETS   12   0  10  ; "_getLineText"
+0058    MOV     14   5
+0059    CALL    12   0   3
+0060    CALLM   11   2   0
+0061    MOV     12   6
+0062    KPRI    13   0
+0063    GGET    14  11      ; "ipairs"
+0064    MOV     15  11
+0065    CALL    14   4   2
+0066    JMP     17 => 0086
+0067 => UGET    19   2      ; util
+0068    TGETS   19  19  12  ; "splitToChars"
+0069    MOV     20  18
+0070    CALL    19   2   2
+0071    LEN     19  19
+0072    ADDVV   13  12  19
+0073    ISGE     9  13
+0074    JMP     19 => 0085
+0075    UGET    19   0      ; FIND_START
+0076    ISNEV    3  19
+0077    JMP     19 => 0080
+0078    MOV     10  12
+0079    JMP     19 => 0088
+0080 => UGET    19   1      ; FIND_END
+0081    ISNEV    3  19
+0082    JMP     19 => 0088
+0083    SUBVN   10  13   0  ; 1
+0084    JMP     14 => 0088
+0085 => MOV     12  13
+0086 => ITERC   17   3   3
+0087    ITERL   17 => 0067
+0088 => ISF         10
+0089    JMP     14 => 0091
+0090    JMP     11 => 0093
+0091 => ADDVN    9   9   0  ; 1
+0092    JMP     11 => 0038
+0093 => RET1    10   2
+
+-- BYTECODE -- textboxwidget.lua:0-1948
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/blitbuffer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "device"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/font"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/container/framecontainer"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/geometry"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/gesturerange"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/container/inputcontainer"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/widget/linewidget"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/rendertext"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/widget/container/rightcontainer"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/size"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/textwidget"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/timeval"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/uimanager"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "optmath"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "logger"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "util"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18   2      ; "device"
+0054    CALL    17   2   2
+0055    TGETS   17  17  18  ; "screen"
+0056    MOV     19   6
+0057    TGETS   18   6  19  ; "new"
+0058    TDUP    20  20
+0059    TGETS   21   0  21  ; "COLOR_BLACK"
+0060    TSETS   21  20  22  ; "fgcolor"
+0061    MOV     22  17
+0062    TGETS   21  17  23  ; "scaleBySize"
+0063    KSHORT  23 400
+0064    CALL    21   2   3
+0065    TSETS   21  20  24  ; "width"
+0066    MOV     22  17
+0067    TGETS   21  17  23  ; "scaleBySize"
+0068    KSHORT  23  10
+0069    CALL    21   2   3
+0070    TSETS   21  20  25  ; "image_padding_left"
+0071    MOV     22  17
+0072    TGETS   21  17  23  ; "scaleBySize"
+0073    KSHORT  23   3
+0074    CALL    21   2   3
+0075    TSETS   21  20  26  ; "image_padding_bottom"
+0076    MOV     22   2
+0077    TGETS   21   2  27  ; "getFace"
+0078    KSTR    23  28      ; "xx_smallinfofont"
+0079    CALL    21   2   3
+0080    TSETS   21  20  29  ; "image_alt_face"
+0081    TGETS   21   0  21  ; "COLOR_BLACK"
+0082    TSETS   21  20  30  ; "image_alt_fgcolor"
+0083    GGET    21  31      ; "G_reader_settings"
+0084    MOV     22  21
+0085    TGETS   21  21  32  ; "nilOrTrue"
+0086    KSTR    23  33      ; "use_xtext"
+0087    CALL    21   2   3
+0088    TSETS   21  20  33  ; "use_xtext"
+0089    CALL    18   2   3
+0090    FNEW    19  35      ; textboxwidget.lua:107
+0091    TSETS   19  18  34  ; "init"
+0092    FNEW    19  37      ; textboxwidget.lua:186
+0093    TSETS   19  18  36  ; "unfocus"
+0094    FNEW    19  39      ; textboxwidget.lua:192
+0095    TSETS   19  18  38  ; "focus"
+0096    FNEW    19  41      ; textboxwidget.lua:199
+0097    TSETS   19  18  40  ; "_evalCharWidthList"
+0098    FNEW    19  43      ; textboxwidget.lua:215
+0099    TSETS   19  18  42  ; "_measureWithXText"
+0100    FNEW    19  45      ; textboxwidget.lua:244
+0101    TSETS   19  18  44  ; "_splitToLines"
+0102    FNEW    19  47      ; textboxwidget.lua:466
+0103    TSETS   19  18  46  ; "_getLineText"
+0104    FNEW    19  49      ; textboxwidget.lua:471
+0105    TSETS   19  18  48  ; "_getLinePads"
+0106    FNEW    19  51      ; textboxwidget.lua:481
+0107    TSETS   19  18  50  ; "_shapeLine"
+0108    FNEW    19  53      ; textboxwidget.lua:746
+0109    TSETS   19  18  52  ; "_renderText"
+0110    FNEW    19  55      ; textboxwidget.lua:840
+0111    TSETS   19  18  54  ; "_renderImage"
+0112    FNEW    19  57      ; textboxwidget.lua:991
+0113    TSETS   19  18  56  ; "getCharWidth"
+0114    FNEW    19  59      ; textboxwidget.lua:995
+0115    TSETS   19  18  58  ; "getVisLineCount"
+0116    FNEW    19  61      ; textboxwidget.lua:999
+0117    TSETS   19  18  60  ; "getAllLineCount"
+0118    FNEW    19  63      ; textboxwidget.lua:1003
+0119    TSETS   19  18  62  ; "getTextHeight"
+0120    FNEW    19  65      ; textboxwidget.lua:1007
+0121    TSETS   19  18  64  ; "getLineHeight"
+0122    FNEW    19  67      ; textboxwidget.lua:1011
+0123    TSETS   19  18  66  ; "getVisibleHeightRatios"
+0124    FNEW    19  69      ; textboxwidget.lua:1018
+0125    TSETS   19  18  68  ; "getFontSizeToFitHeight"
+0126    FNEW    19  71      ; textboxwidget.lua:1036
+0127    TSETS   19  18  70  ; "getCharPos"
+0128    FNEW    19  73      ; textboxwidget.lua:1041
+0129    TSETS   19  18  72  ; "getSize"
+0130    FNEW    19  75      ; textboxwidget.lua:1049
+0131    TSETS   19  18  74  ; "paintTo"
+0132    FNEW    19  77      ; textboxwidget.lua:1054
+0133    TSETS   19  18  76  ; "onCloseWidget"
+0134    FNEW    19  79      ; textboxwidget.lua:1059
+0135    TSETS   19  18  78  ; "free"
+0136    FNEW    19  81      ; textboxwidget.lua:1089
+0137    TSETS   19  18  80  ; "update"
+0138    FNEW    19  83      ; textboxwidget.lua:1098
+0139    TSETS   19  18  82  ; "onTapImage"
+0140    FNEW    19  85      ; textboxwidget.lua:1129
+0141    TSETS   19  18  84  ; "scrollDown"
+0142    FNEW    19  87      ; textboxwidget.lua:1154
+0143    TSETS   19  18  86  ; "scrollUp"
+0144    FNEW    19  89      ; textboxwidget.lua:1172
+0145    TSETS   19  18  88  ; "scrollLines"
+0146    FNEW    19  91      ; textboxwidget.lua:1198
+0147    TSETS   19  18  90  ; "scrollToTop"
+0148    FNEW    19  93      ; textboxwidget.lua:1211
+0149    TSETS   19  18  92  ; "scrollToBottom"
+0150    FNEW    19  95      ; textboxwidget.lua:1230
+0151    TSETS   19  18  94  ; "scrollToRatio"
+0152    FNEW    19  97      ; textboxwidget.lua:1253
+0153    TSETS   19  18  96  ; "_getXYForCharPos"
+0154    FNEW    19  99      ; textboxwidget.lua:1353
+0155    TSETS   19  18  98  ; "getCharPosAtXY"
+0156    GGET    19  31      ; "G_reader_settings"
+0157    MOV     20  19
+0158    TGETS   19  19  32  ; "nilOrTrue"
+0159    KSTR    21 100      ; "ui_cursor_combine_regions"
+0160    CALL    19   2   3
+0161    GGET    20  31      ; "G_reader_settings"
+0162    MOV     21  20
+0163    TGETS   20  20  32  ; "nilOrTrue"
+0164    KSTR    22 101      ; "ui_cursor_use_refresh_funcs"
+0165    CALL    20   2   3
+0166    FNEW    21 103      ; textboxwidget.lua:1454
+0167    TSETS   21  18 102  ; "moveCursorToCharPos"
+0168    FNEW    21 105      ; textboxwidget.lua:1598
+0169    TSETS   21  18 104  ; "moveCursorToXY"
+0170    FNEW    21 107      ; textboxwidget.lua:1614
+0171    TSETS   21  18 106  ; "scrollViewToCharPos"
+0172    FNEW    21 109      ; textboxwidget.lua:1654
+0173    TSETS   21  18 108  ; "moveCursorLeft"
+0174    FNEW    21 111      ; textboxwidget.lua:1660
+0175    TSETS   21  18 110  ; "moveCursorRight"
+0176    FNEW    21 113      ; textboxwidget.lua:1666
+0177    TSETS   21  18 112  ; "moveCursorUp"
+0178    FNEW    21 115      ; textboxwidget.lua:1672
+0179    TSETS   21  18 114  ; "moveCursorDown"
+0180    FNEW    21 117      ; textboxwidget.lua:1682
+0181    TSETS   21  18 116  ; "onHoldWord"
+0182    KSHORT  21   1
+0183    KSHORT  22   2
+0184    FNEW    23 119      ; textboxwidget.lua:1733
+0185    TSETS   23  18 118  ; "onHoldStartText"
+0186    FNEW    23 121      ; textboxwidget.lua:1749
+0187    TSETS   23  18 120  ; "onHoldPanText"
+0188    FNEW    23 123      ; textboxwidget.lua:1759
+0189    TSETS   23  18 122  ; "onHoldReleaseText"
+0190    FNEW    23 125      ; textboxwidget.lua:1895
+0191    TSETS   23  18 124  ; "_findWordEdge"
+0192    UCLO     0 => 0193
+0193 => RET1    18   2
+

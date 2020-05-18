@@ -1,0 +1,2007 @@
+-- BYTECODE -- cloudstorage.lua:34-49
+0001    MOV      2   0
+0002    TGETS    1   0   1  ; "readSettings"
+0003    CALL     1   2   2
+0004    TSETS    1   0   0  ; "cs_settings"
+0005    TSETS    0   0   2  ; "show_parent"
+0006    TGETS    1   0   3  ; "item"
+0007    ISF          1
+0008    JMP      2 => 0017
+0009    MOV      2   0
+0010    TGETS    1   0   5  ; "genItemTable"
+0011    TGETS    3   0   3  ; "item"
+0012    CALL     1   2   3
+0013    TSETS    1   0   4  ; "item_table"
+0014    KPRI     1   2
+0015    TSETS    1   0   6  ; "choose_folder_mode"
+0016    JMP      1 => 0021
+0017 => MOV      2   0
+0018    TGETS    1   0   7  ; "genItemTableFromRoot"
+0019    CALL     1   2   2
+0020    TSETS    1   0   4  ; "item_table"
+0021 => UGET     1   0      ; Screen
+0022    MOV      2   1
+0023    TGETS    1   1   9  ; "getWidth"
+0024    CALL     1   2   2
+0025    TSETS    1   0   8  ; "width"
+0026    UGET     1   0      ; Screen
+0027    MOV      2   1
+0028    TGETS    1   1  11  ; "getHeight"
+0029    CALL     1   2   2
+0030    TSETS    1   0  10  ; "height"
+0031    UGET     1   1      ; Menu
+0032    TGETS    1   1  12  ; "init"
+0033    MOV      2   0
+0034    CALL     1   1   2
+0035    TGETS    1   0   3  ; "item"
+0036    ISF          1
+0037    JMP      2 => 0042
+0038    TGETS    1   0   4  ; "item_table"
+0039    TGETB    1   1   1
+0040    TGETS    1   1  13  ; "callback"
+0041    CALL     1   1   1
+0042 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:55-57
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "selectCloudType"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:71-77
+0001    UGET     0   0      ; self
+0002    UGET     1   1      ; server
+0003    TGETS    1   1   0  ; "type"
+0004    TSETS    1   0   0  ; "type"
+0005    UGET     0   0      ; self
+0006    UGET     1   1      ; server
+0007    TGETS    1   1   1  ; "password"
+0008    TSETS    1   0   1  ; "password"
+0009    UGET     0   0      ; self
+0010    UGET     1   1      ; server
+0011    TGETS    1   1   2  ; "address"
+0012    TSETS    1   0   2  ; "address"
+0013    UGET     0   0      ; self
+0014    UGET     1   1      ; server
+0015    TGETS    1   1   3  ; "username"
+0016    TSETS    1   0   3  ; "username"
+0017    UGET     0   0      ; self
+0018    MOV      1   0
+0019    TGETS    0   0   4  ; "openCloudServer"
+0020    UGET     2   1      ; server
+0021    TGETS    2   2   5  ; "url"
+0022    CALL     0   1   3
+0023    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:51-81
+0001    TNEW     1   0
+0002    GGET     2   0      ; "table"
+0003    TGETS    2   2   1  ; "insert"
+0004    MOV      3   1
+0005    TDUP     4   3
+0006    UGET     5   0      ; _
+0007    KSTR     6   2      ; "Add new cloud storage"
+0008    CALL     5   2   2
+0009    TSETS    5   4   4  ; "text"
+0010    FNEW     5   5      ; cloudstorage.lua:55
+0011    TSETS    5   4   6  ; "callback"
+0012    CALL     2   1   3
+0013    TGETS    2   0   7  ; "cs_settings"
+0014    MOV      3   2
+0015    TGETS    2   2   8  ; "readSetting"
+0016    KSTR     4   9      ; "cs_servers"
+0017    CALL     2   2   3
+0018    IST          2
+0019    JMP      3 => 0021
+0020    TNEW     2   0
+0021 => GGET     3  10      ; "ipairs"
+0022    MOV      4   2
+0023    CALL     3   4   2
+0024    JMP      6 => 0049
+0025 => GGET     8   0      ; "table"
+0026    TGETS    8   8   1  ; "insert"
+0027    MOV      9   1
+0028    TDUP    10  12
+0029    TGETS   11   7  11  ; "name"
+0030    TSETS   11  10   4  ; "text"
+0031    TGETS   11   7  13  ; "address"
+0032    TSETS   11  10  13  ; "address"
+0033    TGETS   11   7  14  ; "username"
+0034    TSETS   11  10  14  ; "username"
+0035    TGETS   11   7  15  ; "password"
+0036    TSETS   11  10  15  ; "password"
+0037    TGETS   11   7  16  ; "type"
+0038    TSETS   11  10  16  ; "type"
+0039    TGETS   11   7  17  ; "url"
+0040    TSETS   11  10  17  ; "url"
+0041    TGETS   11   7  18  ; "sync_source_folder"
+0042    TSETS   11  10  18  ; "sync_source_folder"
+0043    TGETS   11   7  19  ; "sync_dest_folder"
+0044    TSETS   11  10  19  ; "sync_dest_folder"
+0045    FNEW    11  20      ; cloudstorage.lua:71
+0046    TSETS   11  10   6  ; "callback"
+0047    CALL     8   1   3
+0048    UCLO     6 => 0049
+0049 => ITERC    6   3   3
+0050    ITERL    6 => 0025
+0051    UCLO     0 => 0052
+0052 => RET1     1   2
+
+-- BYTECODE -- cloudstorage.lua:95-101
+0001    UGET     0   0      ; self
+0002    UGET     1   1      ; server
+0003    TGETS    1   1   0  ; "type"
+0004    TSETS    1   0   0  ; "type"
+0005    UGET     0   0      ; self
+0006    UGET     1   1      ; server
+0007    TGETS    1   1   1  ; "password"
+0008    TSETS    1   0   1  ; "password"
+0009    UGET     0   0      ; self
+0010    UGET     1   1      ; server
+0011    TGETS    1   1   2  ; "address"
+0012    TSETS    1   0   2  ; "address"
+0013    UGET     0   0      ; self
+0014    UGET     1   1      ; server
+0015    TGETS    1   1   3  ; "username"
+0016    TSETS    1   0   3  ; "username"
+0017    UGET     0   0      ; self
+0018    MOV      1   0
+0019    TGETS    0   0   4  ; "openCloudServer"
+0020    UGET     2   1      ; server
+0021    TGETS    2   2   5  ; "url"
+0022    CALL     0   1   3
+0023    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:83-106
+0001    TNEW     2   0
+0002    TGETS    3   0   0  ; "cs_settings"
+0003    MOV      4   3
+0004    TGETS    3   3   1  ; "readSetting"
+0005    KSTR     5   2      ; "cs_servers"
+0006    CALL     3   2   3
+0007    IST          3
+0008    JMP      4 => 0010
+0009    TNEW     3   0
+0010 => GGET     4   3      ; "ipairs"
+0011    MOV      5   3
+0012    CALL     4   4   2
+0013    JMP      7 => 0046
+0014 => TGETS    9   8   4  ; "name"
+0015    TGETS   10   1   5  ; "text"
+0016    ISNEV    9  10
+0017    JMP      9 => 0045
+0018    TGETS    9   8   6  ; "password"
+0019    TGETS   10   1   6  ; "password"
+0020    ISNEV    9  10
+0021    JMP      9 => 0045
+0022    TGETS    9   8   7  ; "type"
+0023    TGETS   10   1   7  ; "type"
+0024    ISNEV    9  10
+0025    JMP      9 => 0045
+0026    GGET     9   8      ; "table"
+0027    TGETS    9   9   9  ; "insert"
+0028    MOV     10   2
+0029    TDUP    11  10
+0030    TGETS   12   8   4  ; "name"
+0031    TSETS   12  11   5  ; "text"
+0032    TGETS   12   8  11  ; "address"
+0033    TSETS   12  11  11  ; "address"
+0034    TGETS   12   8  12  ; "username"
+0035    TSETS   12  11  12  ; "username"
+0036    TGETS   12   8   6  ; "password"
+0037    TSETS   12  11   6  ; "password"
+0038    TGETS   12   8   7  ; "type"
+0039    TSETS   12  11   7  ; "type"
+0040    TGETS   12   8  13  ; "url"
+0041    TSETS   12  11  13  ; "url"
+0042    FNEW    12  14      ; cloudstorage.lua:95
+0043    TSETS   12  11  15  ; "callback"
+0044    CALL     9   1   3
+0045 => UCLO     7 => 0046
+0046 => ITERC    7   3   3
+0047    ITERL    7 => 0014
+0048    UCLO     0 => 0049
+0049 => RET1     2   2
+
+-- BYTECODE -- cloudstorage.lua:113-116
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "cloud_dialog"
+0006    CALL     0   1   3
+0007    UGET     0   1      ; self
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "configCloud"
+0010    KSTR     2   3      ; "dropbox"
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:122-125
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "cloud_dialog"
+0006    CALL     0   1   3
+0007    UGET     0   1      ; self
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "configCloud"
+0010    KSTR     2   3      ; "ftp"
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:131-134
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "cloud_dialog"
+0006    CALL     0   1   3
+0007    UGET     0   1      ; self
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "configCloud"
+0010    KSTR     2   3      ; "webdav"
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:108-146
+0001    TNEW     1   4
+0002    TNEW     2   3
+0003    TDUP     3   1
+0004    UGET     4   0      ; _
+0005    KSTR     5   0      ; "Dropbox"
+0006    CALL     4   2   2
+0007    TSETS    4   3   2  ; "text"
+0008    FNEW     4   3      ; cloudstorage.lua:113
+0009    TSETS    4   3   4  ; "callback"
+0010    TSETB    3   2   1
+0011    TSETB    2   1   1
+0012    TNEW     2   3
+0013    TDUP     3   6
+0014    UGET     4   0      ; _
+0015    KSTR     5   5      ; "FTP"
+0016    CALL     4   2   2
+0017    TSETS    4   3   2  ; "text"
+0018    FNEW     4   7      ; cloudstorage.lua:122
+0019    TSETS    4   3   4  ; "callback"
+0020    TSETB    3   2   1
+0021    TSETB    2   1   2
+0022    TNEW     2   3
+0023    TDUP     3   9
+0024    UGET     4   0      ; _
+0025    KSTR     5   8      ; "WebDAV"
+0026    CALL     4   2   2
+0027    TSETS    4   3   2  ; "text"
+0028    FNEW     4  10      ; cloudstorage.lua:131
+0029    TSETS    4   3   4  ; "callback"
+0030    TSETB    3   2   1
+0031    TSETB    2   1   3
+0032    UGET     2   2      ; ButtonDialogTitle
+0033    MOV      3   2
+0034    TGETS    2   2  12  ; "new"
+0035    TDUP     4  14
+0036    UGET     5   0      ; _
+0037    KSTR     6  13      ; "Choose cloud storage type"
+0038    CALL     5   2   2
+0039    TSETS    5   4  15  ; "title"
+0040    TSETS    1   4  16  ; "buttons"
+0041    CALL     2   2   3
+0042    TSETS    2   0  11  ; "cloud_dialog"
+0043    UGET     2   1      ; UIManager
+0044    MOV      3   2
+0045    TGETS    2   2  17  ; "show"
+0046    TGETS    4   0  11  ; "cloud_dialog"
+0047    CALL     2   1   3
+0048    KPRI     2   2
+0049    UCLO     0 => 0050
+0050 => RET1     2   2
+
+-- BYTECODE -- cloudstorage.lua:148-184
+0001    KPRI     2   0
+0002    GGET     3   0      ; "require"
+0003    KSTR     4   1      ; "ui/network/manager"
+0004    CALL     3   2   2
+0005    TGETS    4   0   2  ; "type"
+0006    ISNES    4   3      ; "dropbox"
+0007    JMP      4 => 0026
+0008    MOV      5   3
+0009    TGETS    4   3   4  ; "isOnline"
+0010    CALL     4   2   2
+0011    IST          4
+0012    JMP      4 => 0017
+0013    MOV      5   3
+0014    TGETS    4   3   5  ; "promptWifiOn"
+0015    CALL     4   1   2
+0016    RET0     0   1
+0017 => UGET     4   0      ; DropBox
+0018    MOV      5   4
+0019    TGETS    4   4   6  ; "run"
+0020    MOV      6   1
+0021    TGETS    7   0   7  ; "password"
+0022    TGETS    8   0   8  ; "choose_folder_mode"
+0023    CALL     4   2   5
+0024    MOV      2   4
+0025    JMP      4 => 0069
+0026 => TGETS    4   0   2  ; "type"
+0027    ISNES    4   9      ; "ftp"
+0028    JMP      4 => 0048
+0029    MOV      5   3
+0030    TGETS    4   3  10  ; "isConnected"
+0031    CALL     4   2   2
+0032    IST          4
+0033    JMP      4 => 0038
+0034    MOV      5   3
+0035    TGETS    4   3   5  ; "promptWifiOn"
+0036    CALL     4   1   2
+0037    RET0     0   1
+0038 => UGET     4   1      ; Ftp
+0039    MOV      5   4
+0040    TGETS    4   4   6  ; "run"
+0041    TGETS    6   0  11  ; "address"
+0042    TGETS    7   0  12  ; "username"
+0043    TGETS    8   0   7  ; "password"
+0044    MOV      9   1
+0045    CALL     4   2   6
+0046    MOV      2   4
+0047    JMP      4 => 0069
+0048 => TGETS    4   0   2  ; "type"
+0049    ISNES    4  13      ; "webdav"
+0050    JMP      4 => 0069
+0051    MOV      5   3
+0052    TGETS    4   3  10  ; "isConnected"
+0053    CALL     4   2   2
+0054    IST          4
+0055    JMP      4 => 0060
+0056    MOV      5   3
+0057    TGETS    4   3   5  ; "promptWifiOn"
+0058    CALL     4   1   2
+0059    RET0     0   1
+0060 => UGET     4   2      ; WebDav
+0061    MOV      5   4
+0062    TGETS    4   4   6  ; "run"
+0063    TGETS    6   0  11  ; "address"
+0064    TGETS    7   0  12  ; "username"
+0065    TGETS    8   0   7  ; "password"
+0066    MOV      9   1
+0067    CALL     4   2   6
+0068    MOV      2   4
+0069 => ISF          2
+0070    JMP      4 => 0083
+0071    LEN      4   2
+0072    KSHORT   5   0
+0073    ISGE     5   4
+0074    JMP      4 => 0083
+0075    MOV      5   0
+0076    TGETS    4   0  14  ; "switchItemTable"
+0077    MOV      6   1
+0078    MOV      7   2
+0079    CALL     4   1   4
+0080    KPRI     4   2
+0081    RET1     4   2
+0082    JMP      4 => 0120
+0083 => IST          2
+0084    JMP      4 => 0105
+0085    UGET     4   3      ; UIManager
+0086    MOV      5   4
+0087    TGETS    4   4  15  ; "show"
+0088    UGET     6   4      ; InfoMessage
+0089    MOV      7   6
+0090    TGETS    6   6  16  ; "new"
+0091    TDUP     8  18
+0092    UGET     9   5      ; _
+0093    KSTR    10  17      ; "Cannot fetch list of folder contents\nPl"~
+0094    CALL     9   2   2
+0095    TSETS    9   8  19  ; "text"
+0096    CALL     6   0   3
+0097    CALLM    4   1   1
+0098    GGET     4  20      ; "table"
+0099    TGETS    4   4  21  ; "remove"
+0100    TGETS    5   0  22  ; "paths"
+0101    CALL     4   1   2
+0102    KPRI     4   1
+0103    RET1     4   2
+0104    JMP      4 => 0120
+0105 => UGET     4   3      ; UIManager
+0106    MOV      5   4
+0107    TGETS    4   4  15  ; "show"
+0108    UGET     6   4      ; InfoMessage
+0109    MOV      7   6
+0110    TGETS    6   6  16  ; "new"
+0111    TDUP     8  24
+0112    UGET     9   5      ; _
+0113    KSTR    10  23      ; "Empty folder"
+0114    CALL     9   2   2
+0115    TSETS    9   8  19  ; "text"
+0116    CALL     6   0   3
+0117    CALLM    4   1   1
+0118    KPRI     4   1
+0119    RET1     4   2
+0120 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:186-207
+0001    TGETS    2   1   0  ; "callback"
+0002    ISF          2
+0003    JMP      3 => 0017
+0004    TGETS    2   1   1  ; "url"
+0005    ISEQP    2   0
+0006    JMP      2 => 0014
+0007    GGET     2   2      ; "table"
+0008    TGETS    2   2   3  ; "insert"
+0009    TGETS    3   0   4  ; "paths"
+0010    TDUP     4   5
+0011    TGETS    5   1   1  ; "url"
+0012    TSETS    5   4   1  ; "url"
+0013    CALL     2   1   3
+0014 => TGETS    2   1   0  ; "callback"
+0015    CALL     2   1   1
+0016    JMP      2 => 0048
+0017 => TGETS    2   1   6  ; "type"
+0018    ISNES    2   7      ; "file"
+0019    JMP      2 => 0025
+0020    MOV      3   0
+0021    TGETS    2   0   8  ; "downloadFile"
+0022    MOV      4   1
+0023    CALL     2   1   3
+0024    JMP      2 => 0048
+0025 => TGETS    2   1   6  ; "type"
+0026    ISNES    2   9      ; "other"
+0027    JMP      2 => 0031
+0028    KPRI     2   2
+0029    RET1     2   2
+0030    JMP      2 => 0048
+0031 => GGET     2   2      ; "table"
+0032    TGETS    2   2   3  ; "insert"
+0033    TGETS    3   0   4  ; "paths"
+0034    TDUP     4  10
+0035    TGETS    5   1   1  ; "url"
+0036    TSETS    5   4   1  ; "url"
+0037    CALL     2   1   3
+0038    MOV      3   0
+0039    TGETS    2   0  11  ; "openCloudServer"
+0040    TGETS    4   1   1  ; "url"
+0041    CALL     2   2   3
+0042    IST          2
+0043    JMP      2 => 0048
+0044    GGET     2   2      ; "table"
+0045    TGETS    2   2  12  ; "remove"
+0046    TGETS    3   0   4  ; "paths"
+0047    CALL     2   1   2
+0048 => KPRI     2   2
+0049    RET1     2   2
+
+-- BYTECODE -- cloudstorage.lua:209-215
+0001    GGET     2   0      ; "G_reader_settings"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "readSetting"
+0004    KSTR     4   2      ; "lastdir"
+0005    CALL     2   2   3
+0006    MOV      4   0
+0007    TGETS    3   0   3  ; "readSettings"
+0008    CALL     3   2   2
+0009    MOV      5   3
+0010    TGETS    4   3   1  ; "readSetting"
+0011    KSTR     6   4      ; "download_dir"
+0012    CALL     4   2   3
+0013    IST          4
+0014    JMP      5 => 0016
+0015    MOV      4   2
+0016 => MOV      5   4
+0017    KSTR     6   5      ; "/"
+0018    TGETS    7   1   6  ; "text"
+0019    CAT      5   5   7
+0020    MOV      7   0
+0021    TGETS    6   0   7  ; "cloudFile"
+0022    MOV      8   1
+0023    MOV      9   5
+0024    CALL     6   1   4
+0025    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:220-222
+0001    UGET     0   0      ; DropBox
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "downloadFile"
+0004    UGET     2   1      ; unit_item
+0005    UGET     3   2      ; password
+0006    UGET     4   3      ; path_dir
+0007    UGET     5   4      ; callback_close
+0008    CALL     0   1   6
+0009    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:219-227
+0001    UGET     4   0      ; UIManager
+0002    MOV      5   4
+0003    TGETS    4   4   0  ; "scheduleIn"
+0004    KSHORT   6   1
+0005    FNEW     7   1      ; cloudstorage.lua:220
+0006    CALL     4   1   4
+0007    UGET     4   0      ; UIManager
+0008    MOV      5   4
+0009    TGETS    4   4   2  ; "show"
+0010    UGET     6   2      ; InfoMessage
+0011    MOV      7   6
+0012    TGETS    6   6   3  ; "new"
+0013    TDUP     8   4
+0014    UGET     9   3      ; download_text
+0015    TSETS    9   8   5  ; "text"
+0016    CALL     6   0   3
+0017    CALLM    4   1   1
+0018    UCLO     0 => 0019
+0019 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:230-232
+0001    UGET     0   0      ; Ftp
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "downloadFile"
+0004    UGET     2   1      ; unit_item
+0005    UGET     3   2      ; address
+0006    UGET     4   3      ; username
+0007    UGET     5   4      ; password
+0008    UGET     6   5      ; path_dir
+0009    UGET     7   6      ; callback_close
+0010    CALL     0   1   8
+0011    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:229-237
+0001    UGET     6   0      ; UIManager
+0002    MOV      7   6
+0003    TGETS    6   6   0  ; "scheduleIn"
+0004    KSHORT   8   1
+0005    FNEW     9   1      ; cloudstorage.lua:230
+0006    CALL     6   1   4
+0007    UGET     6   0      ; UIManager
+0008    MOV      7   6
+0009    TGETS    6   6   2  ; "show"
+0010    UGET     8   2      ; InfoMessage
+0011    MOV      9   8
+0012    TGETS    8   8   3  ; "new"
+0013    TDUP    10   4
+0014    UGET    11   3      ; download_text
+0015    TSETS   11  10   5  ; "text"
+0016    CALL     8   0   3
+0017    CALLM    6   1   1
+0018    UCLO     0 => 0019
+0019 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:240-242
+0001    UGET     0   0      ; WebDav
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "downloadFile"
+0004    UGET     2   1      ; unit_item
+0005    UGET     3   2      ; address
+0006    UGET     4   3      ; username
+0007    UGET     5   4      ; password
+0008    UGET     6   5      ; path_dir
+0009    UGET     7   6      ; callback_close
+0010    CALL     0   1   8
+0011    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:239-247
+0001    UGET     6   0      ; UIManager
+0002    MOV      7   6
+0003    TGETS    6   6   0  ; "scheduleIn"
+0004    KSHORT   8   1
+0005    FNEW     9   1      ; cloudstorage.lua:240
+0006    CALL     6   1   4
+0007    UGET     6   0      ; UIManager
+0008    MOV      7   6
+0009    TGETS    6   6   2  ; "show"
+0010    UGET     8   2      ; InfoMessage
+0011    MOV      9   8
+0012    TGETS    8   8   3  ; "new"
+0013    TDUP    10   4
+0014    UGET    11   3      ; download_text
+0015    TSETS   11  10   5  ; "text"
+0016    CALL     8   0   3
+0017    CALLM    6   1   1
+0018    UCLO     0 => 0019
+0019 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:257-259
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onClose"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:264-266
+0001    UGET     0   0      ; dropboxDownloadFile
+0002    UGET     1   1      ; item
+0003    UGET     2   2      ; self
+0004    TGETS    2   2   0  ; "password"
+0005    UGET     3   3      ; path_dir
+0006    UGET     4   4      ; callback_close
+0007    CALL     0   1   5
+0008    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:272-274
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onClose"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:279-281
+0001    UGET     0   0      ; ftpDownloadFile
+0002    UGET     1   1      ; item
+0003    UGET     2   2      ; self
+0004    TGETS    2   2   0  ; "address"
+0005    UGET     3   2      ; self
+0006    TGETS    3   3   1  ; "username"
+0007    UGET     4   2      ; self
+0008    TGETS    4   4   2  ; "password"
+0009    UGET     5   3      ; path_dir
+0010    UGET     6   4      ; callback_close
+0011    CALL     0   1   7
+0012    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:287-289
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onClose"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:294-296
+0001    UGET     0   0      ; webdavDownloadFile
+0002    UGET     1   1      ; item
+0003    UGET     2   2      ; self
+0004    TGETS    2   2   0  ; "address"
+0005    UGET     3   2      ; self
+0006    TGETS    3   3   1  ; "username"
+0007    UGET     4   2      ; self
+0008    TGETS    4   4   2  ; "password"
+0009    UGET     5   3      ; path_dir
+0010    UGET     6   4      ; callback_close
+0011    CALL     0   1   7
+0012    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:255-302
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "type"
+0003    ISNES    0   1      ; "dropbox"
+0004    JMP      0 => 0040
+0005    FNEW     0   2      ; cloudstorage.lua:257
+0006    UGET     1   1      ; UIManager
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "close"
+0009    UGET     3   0      ; self
+0010    TGETS    3   3   4  ; "download_dialog"
+0011    CALL     1   1   3
+0012    UGET     1   2      ; lfs
+0013    TGETS    1   1   5  ; "attributes"
+0014    UGET     2   3      ; path
+0015    CALL     1   2   2
+0016    ISF          1
+0017    JMP      2 => 0032
+0018    UGET     1   1      ; UIManager
+0019    MOV      2   1
+0020    TGETS    1   1   6  ; "show"
+0021    UGET     3   4      ; ConfirmBox
+0022    MOV      4   3
+0023    TGETS    3   3   7  ; "new"
+0024    TDUP     5   8
+0025    UGET     6   5      ; overwrite_text
+0026    TSETS    6   5   9  ; "text"
+0027    FNEW     6  10      ; cloudstorage.lua:264
+0028    TSETS    6   5  11  ; "ok_callback"
+0029    CALL     3   0   3
+0030    CALLM    1   1   1
+0031    JMP      1 => 0039
+0032 => UGET     1   6      ; dropboxDownloadFile
+0033    UGET     2   7      ; item
+0034    UGET     3   0      ; self
+0035    TGETS    3   3  12  ; "password"
+0036    UGET     4   8      ; path_dir
+0037    MOV      5   0
+0038    CALL     1   1   5
+0039 => UCLO     0 => 0126
+0040 => UGET     0   0      ; self
+0041    TGETS    0   0   0  ; "type"
+0042    ISNES    0  13      ; "ftp"
+0043    JMP      0 => 0083
+0044    FNEW     0  14      ; cloudstorage.lua:272
+0045    UGET     1   1      ; UIManager
+0046    MOV      2   1
+0047    TGETS    1   1   3  ; "close"
+0048    UGET     3   0      ; self
+0049    TGETS    3   3   4  ; "download_dialog"
+0050    CALL     1   1   3
+0051    UGET     1   2      ; lfs
+0052    TGETS    1   1   5  ; "attributes"
+0053    UGET     2   3      ; path
+0054    CALL     1   2   2
+0055    ISF          1
+0056    JMP      2 => 0071
+0057    UGET     1   1      ; UIManager
+0058    MOV      2   1
+0059    TGETS    1   1   6  ; "show"
+0060    UGET     3   4      ; ConfirmBox
+0061    MOV      4   3
+0062    TGETS    3   3   7  ; "new"
+0063    TDUP     5  15
+0064    UGET     6   5      ; overwrite_text
+0065    TSETS    6   5   9  ; "text"
+0066    FNEW     6  16      ; cloudstorage.lua:279
+0067    TSETS    6   5  11  ; "ok_callback"
+0068    CALL     3   0   3
+0069    CALLM    1   1   1
+0070    JMP      1 => 0082
+0071 => UGET     1   9      ; ftpDownloadFile
+0072    UGET     2   7      ; item
+0073    UGET     3   0      ; self
+0074    TGETS    3   3  17  ; "address"
+0075    UGET     4   0      ; self
+0076    TGETS    4   4  18  ; "username"
+0077    UGET     5   0      ; self
+0078    TGETS    5   5  12  ; "password"
+0079    UGET     6   8      ; path_dir
+0080    MOV      7   0
+0081    CALL     1   1   7
+0082 => UCLO     0 => 0126
+0083 => UGET     0   0      ; self
+0084    TGETS    0   0   0  ; "type"
+0085    ISNES    0  19      ; "webdav"
+0086    JMP      0 => 0126
+0087    FNEW     0  20      ; cloudstorage.lua:287
+0088    UGET     1   1      ; UIManager
+0089    MOV      2   1
+0090    TGETS    1   1   3  ; "close"
+0091    UGET     3   0      ; self
+0092    TGETS    3   3   4  ; "download_dialog"
+0093    CALL     1   1   3
+0094    UGET     1   2      ; lfs
+0095    TGETS    1   1   5  ; "attributes"
+0096    UGET     2   3      ; path
+0097    CALL     1   2   2
+0098    ISF          1
+0099    JMP      2 => 0114
+0100    UGET     1   1      ; UIManager
+0101    MOV      2   1
+0102    TGETS    1   1   6  ; "show"
+0103    UGET     3   4      ; ConfirmBox
+0104    MOV      4   3
+0105    TGETS    3   3   7  ; "new"
+0106    TDUP     5  21
+0107    UGET     6   5      ; overwrite_text
+0108    TSETS    6   5   9  ; "text"
+0109    FNEW     6  22      ; cloudstorage.lua:294
+0110    TSETS    6   5  11  ; "ok_callback"
+0111    CALL     3   0   3
+0112    CALLM    1   1   1
+0113    JMP      1 => 0125
+0114 => UGET     1  10      ; webdavDownloadFile
+0115    UGET     2   7      ; item
+0116    UGET     3   0      ; self
+0117    TGETS    3   3  17  ; "address"
+0118    UGET     4   0      ; self
+0119    TGETS    4   4  18  ; "username"
+0120    UGET     5   0      ; self
+0121    TGETS    5   5  12  ; "password"
+0122    UGET     6   8      ; path_dir
+0123    MOV      7   0
+0124    CALL     1   1   7
+0125 => UCLO     0 => 0126
+0126 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:311-315
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "cs_settings"
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "saveSetting"
+0005    KSTR     3   2      ; "download_dir"
+0006    MOV      4   0
+0007    CALL     1   1   4
+0008    UGET     1   0      ; self
+0009    TGETS    1   1   0  ; "cs_settings"
+0010    MOV      2   1
+0011    TGETS    1   1   3  ; "flush"
+0012    CALL     1   1   2
+0013    MOV      1   0
+0014    KSTR     2   4      ; "/"
+0015    UGET     3   2      ; item
+0016    TGETS    3   3   5  ; "text"
+0017    CAT      1   1   3
+0018    USETV    1   1      ; path_dir
+0019    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:308-317
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/downloadmgr"
+0003    CALL     0   2   2
+0004    MOV      1   0
+0005    TGETS    0   0   2  ; "new"
+0006    TDUP     2   6
+0007    GGET     3   3      ; "G_reader_settings"
+0008    MOV      4   3
+0009    TGETS    3   3   4  ; "readSetting"
+0010    KSTR     5   5      ; "show_hidden"
+0011    CALL     3   2   3
+0012    TSETS    3   2   5  ; "show_hidden"
+0013    FNEW     3   7      ; cloudstorage.lua:311
+0014    TSETS    3   2   8  ; "onConfirm"
+0015    CALL     0   2   3
+0016    MOV      1   0
+0017    TGETS    0   0   9  ; "chooseDir"
+0018    CALL     0   1   2
+0019    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:217-325
+0001    UGET     3   0      ; _
+0002    KSTR     4   0      ; "Downloading. This might take a moment."
+0003    CALL     3   2   2
+0004    FNEW     4   1      ; cloudstorage.lua:219
+0005    FNEW     5   2      ; cloudstorage.lua:229
+0006    FNEW     6   3      ; cloudstorage.lua:239
+0007    MOV      7   2
+0008    UGET     8   0      ; _
+0009    KSTR     9   4      ; "File already exists. Would you like to o"~
+0010    CALL     8   2   2
+0011    TNEW     9   3
+0012    TNEW    10   3
+0013    TDUP    11   6
+0014    UGET    12   0      ; _
+0015    KSTR    13   5      ; "Download file"
+0016    CALL    12   2   2
+0017    TSETS   12  11   7  ; "text"
+0018    FNEW    12   8      ; cloudstorage.lua:255
+0019    TSETS   12  11   9  ; "callback"
+0020    TSETB   11  10   1
+0021    TSETB   10   9   1
+0022    TNEW    10   3
+0023    TDUP    11  11
+0024    UGET    12   0      ; _
+0025    KSTR    13  10      ; "Choose download directory"
+0026    CALL    12   2   2
+0027    TSETS   12  11   7  ; "text"
+0028    FNEW    12  12      ; cloudstorage.lua:308
+0029    TSETS   12  11   9  ; "callback"
+0030    TSETB   11  10   1
+0031    TSETB   10   9   2
+0032    UGET    10   8      ; ButtonDialog
+0033    MOV     11  10
+0034    TGETS   10  10  14  ; "new"
+0035    TDUP    12  15
+0036    TSETS    9  12  16  ; "buttons"
+0037    CALL    10   2   3
+0038    TSETS   10   0  13  ; "download_dialog"
+0039    UGET    10   1      ; UIManager
+0040    MOV     11  10
+0041    TGETS   10  10  17  ; "show"
+0042    TGETS   12   0  13  ; "download_dialog"
+0043    CALL    10   1   3
+0044    UCLO     0 => 0045
+0045 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:327-343
+0001    MOV      5   0
+0002    TGETS    4   0   0  ; "readSettings"
+0003    CALL     4   2   2
+0004    MOV      6   4
+0005    TGETS    5   4   1  ; "readSetting"
+0006    KSTR     7   2      ; "cs_servers"
+0007    CALL     5   2   3
+0008    IST          5
+0009    JMP      6 => 0011
+0010    TNEW     5   0
+0011 => GGET     6   3      ; "ipairs"
+0012    MOV      7   5
+0013    CALL     6   4   2
+0014    JMP      9 => 0034
+0015 => TGETS   11  10   4  ; "name"
+0016    TGETS   12   1   5  ; "text"
+0017    ISNEV   11  12
+0018    JMP     11 => 0034
+0019    TGETS   11  10   6  ; "password"
+0020    TGETS   12   1   6  ; "password"
+0021    ISNEV   11  12
+0022    JMP     11 => 0034
+0023    TGETS   11  10   7  ; "type"
+0024    TGETS   12   1   7  ; "type"
+0025    ISNEV   11  12
+0026    JMP     11 => 0034
+0027    ISF          2
+0028    JMP     11 => 0030
+0029    TSETS    2  10   8  ; "sync_source_folder"
+0030 => ISF          3
+0031    JMP     11 => 0036
+0032    TSETS    3  10   9  ; "sync_dest_folder"
+0033    JMP      6 => 0036
+0034 => ITERC    9   3   3
+0035    ITERL    9 => 0015
+0036 => MOV      7   4
+0037    TGETS    6   4  10  ; "saveSetting"
+0038    KSTR     8   2      ; "cs_servers"
+0039    MOV      9   5
+0040    CALL     6   1   4
+0041    MOV      7   4
+0042    TGETS    6   4  11  ; "flush"
+0043    CALL     6   1   2
+0044    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:356-358
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; button_dialog
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:362-368
+0001    UGET     0   0      ; onConfirm
+0002    ISF          0
+0003    JMP      1 => 0008
+0004    UGET     0   0      ; onConfirm
+0005    UGET     1   1      ; item
+0006    TGETS    1   1   0  ; "url"
+0007    CALL     0   1   2
+0008 => UGET     0   2      ; UIManager
+0009    MOV      1   0
+0010    TGETS    0   0   1  ; "close"
+0011    UGET     2   3      ; button_dialog
+0012    CALL     0   1   3
+0013    UGET     0   2      ; UIManager
+0014    MOV      1   0
+0015    TGETS    0   0   1  ; "close"
+0016    UGET     2   4      ; self
+0017    CALL     0   1   3
+0018    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:382-385
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; cs_server_dialog
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "infoServer"
+0009    UGET     2   3      ; item
+0010    CALL     0   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:390-394
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; cs_server_dialog
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "editCloudServer"
+0009    UGET     2   3      ; item
+0010    CALL     0   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:399-402
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; cs_server_dialog
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "deleteCloudServer"
+0009    UGET     2   3      ; item
+0010    CALL     0   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:411-414
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; cs_server_dialog
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "synchronizeCloud"
+0009    UGET     2   3      ; item
+0010    CALL     0   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:419-422
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; cs_server_dialog
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "synchronizeSettings"
+0009    UGET     2   3      ; item
+0010    CALL     0   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:345-432
+0001    TGETS    2   1   0  ; "type"
+0002    ISNES    2   1      ; "folder_long_press"
+0003    JMP      2 => 0048
+0004    UGET     2   0      ; T
+0005    UGET     3   1      ; _
+0006    KSTR     4   2      ; "Select this directory?\n\n%1"
+0007    CALL     3   2   2
+0008    UGET     4   2      ; BD
+0009    TGETS    4   4   3  ; "dirpath"
+0010    TGETS    5   1   4  ; "url"
+0011    CALL     4   0   2
+0012    CALLM    2   2   1
+0013    TGETS    3   0   5  ; "onConfirm"
+0014    KPRI     4   0
+0015    UGET     5   3      ; ButtonDialogTitle
+0016    MOV      6   5
+0017    TGETS    5   5   6  ; "new"
+0018    TDUP     7   7
+0019    TSETS    2   7   8  ; "title"
+0020    TNEW     8   3
+0021    TNEW     9   3
+0022    TDUP    10  10
+0023    UGET    11   1      ; _
+0024    KSTR    12   9      ; "Cancel"
+0025    CALL    11   2   2
+0026    TSETS   11  10  11  ; "text"
+0027    FNEW    11  12      ; cloudstorage.lua:356
+0028    TSETS   11  10  13  ; "callback"
+0029    TSETB   10   9   1
+0030    TDUP    10  15
+0031    UGET    11   1      ; _
+0032    KSTR    12  14      ; "Select"
+0033    CALL    11   2   2
+0034    TSETS   11  10  11  ; "text"
+0035    FNEW    11  16      ; cloudstorage.lua:362
+0036    TSETS   11  10  13  ; "callback"
+0037    TSETB   10   9   2
+0038    TSETB    9   8   1
+0039    TSETS    8   7  17  ; "buttons"
+0040    CALL     5   2   3
+0041    MOV      4   5
+0042    UGET     5   4      ; UIManager
+0043    MOV      6   5
+0044    TGETS    5   5  18  ; "show"
+0045    MOV      7   4
+0046    CALL     5   1   3
+0047    UCLO     2 => 0048
+0048 => TGETS    2   1  19  ; "editable"
+0049    ISF          2
+0050    JMP      3 => 0129
+0051    KPRI     2   0
+0052    TNEW     3   3
+0053    TNEW     4   4
+0054    TDUP     5  21
+0055    UGET     6   1      ; _
+0056    KSTR     7  20      ; "Info"
+0057    CALL     6   2   2
+0058    TSETS    6   5  11  ; "text"
+0059    FNEW     6  22      ; cloudstorage.lua:382
+0060    TSETS    6   5  13  ; "callback"
+0061    TSETB    5   4   1
+0062    TDUP     5  24
+0063    UGET     6   1      ; _
+0064    KSTR     7  23      ; "Edit"
+0065    CALL     6   2   2
+0066    TSETS    6   5  11  ; "text"
+0067    FNEW     6  25      ; cloudstorage.lua:390
+0068    TSETS    6   5  13  ; "callback"
+0069    TSETB    5   4   2
+0070    TDUP     5  27
+0071    UGET     6   1      ; _
+0072    KSTR     7  26      ; "Delete"
+0073    CALL     6   2   2
+0074    TSETS    6   5  11  ; "text"
+0075    FNEW     6  28      ; cloudstorage.lua:399
+0076    TSETS    6   5  13  ; "callback"
+0077    TSETB    5   4   3
+0078    TSETB    4   3   1
+0079    TGETS    4   1   0  ; "type"
+0080    ISNES    4  29      ; "dropbox"
+0081    JMP      4 => 0113
+0082    GGET     4  30      ; "table"
+0083    TGETS    4   4  31  ; "insert"
+0084    MOV      5   3
+0085    TNEW     6   3
+0086    TDUP     7  33
+0087    UGET     8   1      ; _
+0088    KSTR     9  32      ; "Synchronize now"
+0089    CALL     8   2   2
+0090    TSETS    8   7  11  ; "text"
+0091    TGETS    8   1  34  ; "sync_source_folder"
+0092    ISEQP    8   0
+0093    JMP      8 => 0097
+0094    TGETS    8   1  35  ; "sync_dest_folder"
+0095    ISNEP    8   0
+0096    JMP      8 => 0099
+0097 => KPRI     8   1
+0098    JMP      9 => 0100
+0099 => KPRI     8   2
+0100 => TSETS    8   7  36  ; "enabled"
+0101    FNEW     8  37      ; cloudstorage.lua:411
+0102    TSETS    8   7  13  ; "callback"
+0103    TSETB    7   6   1
+0104    TDUP     7  39
+0105    UGET     8   1      ; _
+0106    KSTR     9  38      ; "Synchronize settings"
+0107    CALL     8   2   2
+0108    TSETS    8   7  11  ; "text"
+0109    FNEW     8  40      ; cloudstorage.lua:419
+0110    TSETS    8   7  13  ; "callback"
+0111    TSETB    7   6   2
+0112    CALL     4   1   3
+0113 => UGET     4   5      ; ButtonDialog
+0114    MOV      5   4
+0115    TGETS    4   4   6  ; "new"
+0116    TDUP     6  41
+0117    TSETS    3   6  17  ; "buttons"
+0118    CALL     4   2   3
+0119    MOV      2   4
+0120    UGET     4   4      ; UIManager
+0121    MOV      5   4
+0122    TGETS    4   4  18  ; "show"
+0123    MOV      6   2
+0124    CALL     4   1   3
+0125    KPRI     4   2
+0126    UCLO     0 => 0127
+0127 => RET1     4   2
+0128    UCLO     2 => 0129
+0129 => UCLO     0 => 0130
+0130 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:436-461
+0001    UGET     0   0      ; Trapper
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setPausedText"
+0004    KSTR     2   1      ; "Download paused.\nDo you want to continu"~
+0005    CALL     0   1   3
+0006    GGET     0   2      ; "pcall"
+0007    UGET     1   1      ; self
+0008    TGETS    1   1   3  ; "downloadListFiles"
+0009    UGET     2   1      ; self
+0010    UGET     3   2      ; item
+0011    CALL     0   4   4
+0012    ISF          0
+0013    JMP      3 => 0061
+0014    ISF          1
+0015    JMP      3 => 0061
+0016    IST          2
+0017    JMP      3 => 0019
+0018    KSHORT   2   0
+0019 => KPRI     3   0
+0020    ISNEN    1   0      ; 0
+0021    JMP      4 => 0029
+0022    ISNEN    2   0      ; 0
+0023    JMP      4 => 0029
+0024    UGET     4   3      ; _
+0025    KSTR     5   4      ; "No files to download from Dropbox."
+0026    CALL     4   2   2
+0027    MOV      3   4
+0028    JMP      4 => 0050
+0029 => KSHORT   4   0
+0030    ISGE     4   1
+0031    JMP      4 => 0042
+0032    ISNEN    2   0      ; 0
+0033    JMP      4 => 0042
+0034    UGET     4   4      ; T
+0035    UGET     5   3      ; _
+0036    KSTR     6   5      ; "Successfully downloaded %1 files from Dr"~
+0037    CALL     5   2   2
+0038    MOV      6   1
+0039    CALL     4   2   3
+0040    MOV      3   4
+0041    JMP      4 => 0050
+0042 => UGET     4   4      ; T
+0043    UGET     5   3      ; _
+0044    KSTR     6   6      ; "Successfully downloaded %1 files from Dr"~
+0045    CALL     5   2   2
+0046    MOV      6   1
+0047    MOV      7   2
+0048    CALL     4   2   4
+0049    MOV      3   4
+0050 => UGET     4   5      ; UIManager
+0051    MOV      5   4
+0052    TGETS    4   4   7  ; "show"
+0053    UGET     6   6      ; InfoMessage
+0054    MOV      7   6
+0055    TGETS    6   6   8  ; "new"
+0056    TDUP     8   9
+0057    TSETS    3   8  10  ; "text"
+0058    CALL     6   0   3
+0059    CALLM    4   1   1
+0060    JMP      3 => 0078
+0061 => UGET     3   0      ; Trapper
+0062    MOV      4   3
+0063    TGETS    3   3  11  ; "reset"
+0064    CALL     3   1   2
+0065    UGET     3   5      ; UIManager
+0066    MOV      4   3
+0067    TGETS    3   3   7  ; "show"
+0068    UGET     5   6      ; InfoMessage
+0069    MOV      6   5
+0070    TGETS    5   5   8  ; "new"
+0071    TDUP     7  13
+0072    UGET     8   3      ; _
+0073    KSTR     9  12      ; "No files to download from Dropbox.\nPlea"~
+0074    CALL     8   2   2
+0075    TSETS    8   7  10  ; "text"
+0076    CALL     5   0   3
+0077    CALLM    3   1   1
+0078 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:434-462
+0001    GGET     2   0      ; "require"
+0002    KSTR     3   1      ; "ui/trapper"
+0003    CALL     2   2   2
+0004    MOV      4   2
+0005    TGETS    3   2   2  ; "wrap"
+0006    FNEW     5   3      ; cloudstorage.lua:436
+0007    CALL     3   1   3
+0008    UCLO     0 => 0009
+0009 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:464-521
+0001    TNEW     2   0
+0002    TGETS    3   1   0  ; "sync_dest_folder"
+0003    GGET     4   1      ; "require"
+0004    KSTR     5   2      ; "ui/trapper"
+0005    CALL     4   2   2
+0006    MOV      6   4
+0007    TGETS    5   4   3  ; "info"
+0008    UGET     7   0      ; _
+0009    KSTR     8   4      ; "Retrieving files…"
+0010    CALL     7   0   2
+0011    CALLM    5   1   1
+0012    GGET     5   5      ; "pcall"
+0013    UGET     6   1      ; lfs
+0014    TGETS    6   6   6  ; "dir"
+0015    MOV      7   3
+0016    CALL     5   4   3
+0017    ISF          5
+0018    JMP      8 => 0038
+0019    MOV      8   6
+0020    MOV      9   7
+0021    KPRI    10   0
+0022    JMP     11 => 0036
+0023 => MOV     12   3
+0024    KSTR    13   7      ; "/"
+0025    MOV     14  11
+0026    CAT     12  12  14
+0027    UGET    13   1      ; lfs
+0028    TGETS   13  13   8  ; "attributes"
+0029    MOV     14  12
+0030    CALL    13   2   2
+0031    TGETS   14  13   9  ; "mode"
+0032    ISNES   14  10      ; "file"
+0033    JMP     14 => 0036
+0034    TGETS   14  13  11  ; "size"
+0035    TSETV   14   2  11
+0036 => ITERC   11   2   3
+0037    ITERL   11 => 0023
+0038 => UGET     8   2      ; DropBox
+0039    MOV      9   8
+0040    TGETS    8   8  12  ; "showFiles"
+0041    TGETS   10   1  13  ; "sync_source_folder"
+0042    TGETS   11   1  14  ; "password"
+0043    CALL     8   2   4
+0044    LEN      9   8
+0045    ISNEN    9   0      ; 0
+0046    JMP      9 => 0052
+0047    MOV     10   4
+0048    TGETS    9   4  15  ; "clear"
+0049    CALL     9   1   2
+0050    KPRI     9   1
+0051    RET1     9   2
+0052 => KSHORT   9   0
+0053    GGET    10  16      ; "ipairs"
+0054    MOV     11   8
+0055    CALL    10   4   2
+0056    JMP     13 => 0070
+0057 => TGETS   15  14  17  ; "text"
+0058    TGETV   15   2  15
+0059    ISF         15
+0060    JMP     15 => 0066
+0061    TGETS   15  14  17  ; "text"
+0062    TGETV   15   2  15
+0063    TGETS   16  14  11  ; "size"
+0064    ISEQV   15  16
+0065    JMP     15 => 0070
+0066 => ADDVN    9   9   1  ; 1
+0067    TGETV   15   8  13
+0068    KPRI    16   2
+0069    TSETS   16  15  18  ; "download"
+0070 => ITERC   13   3   3
+0071    ITERL   13 => 0057
+0072    ISNEN    9   0      ; 0
+0073    JMP     10 => 0079
+0074    MOV     11   4
+0075    TGETS   10   4  15  ; "clear"
+0076    CALL    10   1   2
+0077    KSHORT  10   0
+0078    RET1    10   2
+0079 => KNIL    10  11
+0080    KSHORT  12   0
+0081    KSHORT  13   0
+0082    KSHORT  14   0
+0083    GGET    15  16      ; "ipairs"
+0084    MOV     16   8
+0085    CALL    15   4   2
+0086    JMP     18 => 0125
+0087 => TGETS   20  19  18  ; "download"
+0088    ISF         20
+0089    JMP     21 => 0125
+0090    ADDVN   12  12   1  ; 1
+0091    GGET    20  19      ; "print"
+0092    TGETS   21  19  20  ; "url"
+0093    CALL    20   1   2
+0094    GGET    20  21      ; "string"
+0095    TGETS   20  20  22  ; "format"
+0096    KSTR    21  23      ; "Downloading file (%d/%d):\n%s"
+0097    MOV     22  12
+0098    MOV     23   9
+0099    TGETS   24  19  17  ; "text"
+0100    CALL    20   2   5
+0101    MOV     22   4
+0102    TGETS   21   4   3  ; "info"
+0103    MOV     23  20
+0104    CALL    21   2   3
+0105    MOV     11  21
+0106    IST         11
+0107    JMP     21 => 0109
+0108    JMP     15 => 0127
+0109 => UGET    21   2      ; DropBox
+0110    MOV     22  21
+0111    TGETS   21  21  24  ; "downloadFileNoUI"
+0112    TGETS   23  19  20  ; "url"
+0113    TGETS   24   1  14  ; "password"
+0114    TGETS   25   1   0  ; "sync_dest_folder"
+0115    KSTR    26   7      ; "/"
+0116    TGETS   27  19  17  ; "text"
+0117    CAT     25  25  27
+0118    CALL    21   2   5
+0119    MOV     10  21
+0120    ISF         10
+0121    JMP     21 => 0124
+0122    ADDVN   13  13   1  ; 1
+0123    JMP     21 => 0125
+0124 => ADDVN   14  14   1  ; 1
+0125 => ITERC   18   3   3
+0126    ITERL   18 => 0087
+0127 => MOV     16   4
+0128    TGETS   15   4  15  ; "clear"
+0129    CALL    15   1   2
+0130    MOV     15  13
+0131    MOV     16  14
+0132    RET     15   3
+
+-- BYTECODE -- cloudstorage.lua:538-542
+0001    UGET     1   0      ; self
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "updateSyncFolder"
+0004    UGET     3   1      ; item
+0005    MOV      4   0
+0006    CALL     1   1   4
+0007    UGET     1   1      ; item
+0008    TSETS    0   1   1  ; "sync_source_folder"
+0009    UGET     1   0      ; self
+0010    MOV      2   1
+0011    TGETS    1   1   2  ; "synchronizeSettings"
+0012    UGET     3   1      ; item
+0013    CALL     1   1   3
+0014    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:534-544
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; syn_dialog
+0005    CALL     0   1   3
+0006    GGET     0   1      ; "require"
+0007    KSTR     1   2      ; "ui/cloudmgr"
+0008    CALL     0   2   2
+0009    MOV      1   0
+0010    TGETS    0   0   3  ; "new"
+0011    TDUP     2   4
+0012    UGET     3   2      ; item
+0013    TSETS    3   2   5  ; "item"
+0014    FNEW     3   6      ; cloudstorage.lua:538
+0015    TSETS    3   2   7  ; "onConfirm"
+0016    CALL     0   2   3
+0017    MOV      1   0
+0018    TGETS    0   0   8  ; "chooseDir"
+0019    CALL     0   1   2
+0020    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:553-557
+0001    UGET     1   0      ; self
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "updateSyncFolder"
+0004    UGET     3   1      ; item
+0005    KPRI     4   0
+0006    MOV      5   0
+0007    CALL     1   1   5
+0008    UGET     1   1      ; item
+0009    TSETS    0   1   1  ; "sync_dest_folder"
+0010    UGET     1   0      ; self
+0011    MOV      2   1
+0012    TGETS    1   1   2  ; "synchronizeSettings"
+0013    UGET     3   1      ; item
+0014    CALL     1   1   3
+0015    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:550-559
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; syn_dialog
+0005    CALL     0   1   3
+0006    GGET     0   1      ; "require"
+0007    KSTR     1   2      ; "ui/downloadmgr"
+0008    CALL     0   2   2
+0009    MOV      1   0
+0010    TGETS    0   0   3  ; "new"
+0011    TDUP     2   5
+0012    FNEW     3   4      ; cloudstorage.lua:553
+0013    TSETS    3   2   6  ; "onConfirm"
+0014    CALL     0   2   3
+0015    MOV      1   0
+0016    TGETS    0   0   7  ; "chooseDir"
+0017    CALL     0   1   2
+0018    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:565-567
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; syn_dialog
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:523-573
+0001    KPRI     2   0
+0002    TGETS    3   1   0  ; "sync_source_folder"
+0003    IST          3
+0004    JMP      4 => 0006
+0005    KSTR     3   1      ; "not set"
+0006 => TGETS    4   1   2  ; "sync_dest_folder"
+0007    IST          4
+0008    JMP      5 => 0010
+0009    KSTR     4   1      ; "not set"
+0010 => UGET     5   0      ; ButtonDialogTitle
+0011    MOV      6   5
+0012    TGETS    5   5   3  ; "new"
+0013    TDUP     7   6
+0014    UGET     8   1      ; T
+0015    UGET     9   2      ; _
+0016    KSTR    10   4      ; "Dropbox folder:\n%1\nLocal folder:\n%2"
+0017    CALL     9   2   2
+0018    UGET    10   3      ; BD
+0019    TGETS   10  10   5  ; "dirpath"
+0020    MOV     11   3
+0021    CALL    10   2   2
+0022    UGET    11   3      ; BD
+0023    TGETS   11  11   5  ; "dirpath"
+0024    MOV     12   4
+0025    CALL    11   0   2
+0026    CALLM    8   2   2
+0027    TSETS    8   7   7  ; "title"
+0028    TNEW     8   4
+0029    TNEW     9   3
+0030    TDUP    10   9
+0031    UGET    11   2      ; _
+0032    KSTR    12   8      ; "Choose Dropbox folder"
+0033    CALL    11   2   2
+0034    TSETS   11  10  10  ; "text"
+0035    FNEW    11  11      ; cloudstorage.lua:534
+0036    TSETS   11  10  12  ; "callback"
+0037    TSETB   10   9   1
+0038    TSETB    9   8   1
+0039    TNEW     9   3
+0040    TDUP    10  14
+0041    UGET    11   2      ; _
+0042    KSTR    12  13      ; "Choose local folder"
+0043    CALL    11   2   2
+0044    TSETS   11  10  10  ; "text"
+0045    FNEW    11  15      ; cloudstorage.lua:550
+0046    TSETS   11  10  12  ; "callback"
+0047    TSETB   10   9   1
+0048    TSETB    9   8   2
+0049    TNEW     9   3
+0050    TDUP    10  17
+0051    UGET    11   2      ; _
+0052    KSTR    12  16      ; "Close"
+0053    CALL    11   2   2
+0054    TSETS   11  10  10  ; "text"
+0055    FNEW    11  18      ; cloudstorage.lua:565
+0056    TSETS   11  10  12  ; "callback"
+0057    TSETB   10   9   1
+0058    TSETB    9   8   3
+0059    TSETS    8   7  19  ; "buttons"
+0060    CALL     5   2   3
+0061    MOV      2   5
+0062    UGET     5   4      ; UIManager
+0063    MOV      6   5
+0064    TGETS    5   5  20  ; "show"
+0065    MOV      7   2
+0066    CALL     5   1   3
+0067    UCLO     0 => 0068
+0068 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:576-608
+0001    UGET     1   0      ; self
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "readSettings"
+0004    CALL     1   2   2
+0005    MOV      3   1
+0006    TGETS    2   1   1  ; "readSetting"
+0007    KSTR     4   2      ; "cs_servers"
+0008    CALL     2   2   3
+0009    IST          2
+0010    JMP      3 => 0012
+0011    TNEW     2   0
+0012 => UGET     3   1      ; type
+0013    ISNES    3   3      ; "dropbox"
+0014    JMP      3 => 0025
+0015    GGET     3   4      ; "table"
+0016    TGETS    3   3   5  ; "insert"
+0017    MOV      4   2
+0018    TDUP     5   6
+0019    TGETB    6   0   1
+0020    TSETS    6   5   7  ; "name"
+0021    TGETB    6   0   2
+0022    TSETS    6   5   8  ; "password"
+0023    CALL     3   1   3
+0024    JMP      3 => 0062
+0025 => UGET     3   1      ; type
+0026    ISNES    3   9      ; "ftp"
+0027    JMP      3 => 0044
+0028    GGET     3   4      ; "table"
+0029    TGETS    3   3   5  ; "insert"
+0030    MOV      4   2
+0031    TDUP     5  10
+0032    TGETB    6   0   1
+0033    TSETS    6   5   7  ; "name"
+0034    TGETB    6   0   2
+0035    TSETS    6   5  11  ; "address"
+0036    TGETB    6   0   3
+0037    TSETS    6   5  12  ; "username"
+0038    TGETB    6   0   4
+0039    TSETS    6   5   8  ; "password"
+0040    TGETB    6   0   5
+0041    TSETS    6   5  13  ; "url"
+0042    CALL     3   1   3
+0043    JMP      3 => 0062
+0044 => UGET     3   1      ; type
+0045    ISNES    3  14      ; "webdav"
+0046    JMP      3 => 0062
+0047    GGET     3   4      ; "table"
+0048    TGETS    3   3   5  ; "insert"
+0049    MOV      4   2
+0050    TDUP     5  15
+0051    TGETB    6   0   1
+0052    TSETS    6   5   7  ; "name"
+0053    TGETB    6   0   2
+0054    TSETS    6   5  11  ; "address"
+0055    TGETB    6   0   3
+0056    TSETS    6   5  12  ; "username"
+0057    TGETB    6   0   4
+0058    TSETS    6   5   8  ; "password"
+0059    TGETB    6   0   5
+0060    TSETS    6   5  13  ; "url"
+0061    CALL     3   1   3
+0062 => MOV      4   1
+0063    TGETS    3   1  16  ; "saveSetting"
+0064    KSTR     5   2      ; "cs_servers"
+0065    MOV      6   2
+0066    CALL     3   1   4
+0067    MOV      4   1
+0068    TGETS    3   1  17  ; "flush"
+0069    CALL     3   1   2
+0070    UGET     3   0      ; self
+0071    MOV      4   3
+0072    TGETS    3   3  18  ; "init"
+0073    CALL     3   1   2
+0074    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:575-618
+0001    FNEW     2   0      ; cloudstorage.lua:576
+0002    ISNES    1   1      ; "dropbox"
+0003    JMP      3 => 0010
+0004    UGET     3   0      ; DropBox
+0005    MOV      4   3
+0006    TGETS    3   3   2  ; "config"
+0007    KPRI     5   0
+0008    MOV      6   2
+0009    CALL     3   1   4
+0010 => ISNES    1   3      ; "ftp"
+0011    JMP      3 => 0018
+0012    UGET     3   1      ; Ftp
+0013    MOV      4   3
+0014    TGETS    3   3   2  ; "config"
+0015    KPRI     5   0
+0016    MOV      6   2
+0017    CALL     3   1   4
+0018 => ISNES    1   4      ; "webdav"
+0019    JMP      3 => 0026
+0020    UGET     3   2      ; WebDav
+0021    MOV      4   3
+0022    TGETS    3   3   2  ; "config"
+0023    KPRI     5   0
+0024    MOV      6   2
+0025    CALL     3   1   4
+0026 => UCLO     0 => 0027
+0027 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:621-661
+0001    UGET     2   0      ; self
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "readSettings"
+0004    CALL     2   2   2
+0005    MOV      4   2
+0006    TGETS    3   2   1  ; "readSetting"
+0007    KSTR     5   2      ; "cs_servers"
+0008    CALL     3   2   3
+0009    IST          3
+0010    JMP      4 => 0012
+0011    TNEW     3   0
+0012 => UGET     4   1      ; item
+0013    TGETS    4   4   3  ; "type"
+0014    ISNES    4   4      ; "dropbox"
+0015    JMP      4 => 0037
+0016    GGET     4   5      ; "ipairs"
+0017    MOV      5   3
+0018    CALL     4   4   2
+0019    JMP      7 => 0034
+0020 => TGETS    9   8   6  ; "name"
+0021    TGETS   10   0   7  ; "text"
+0022    ISNEV    9  10
+0023    JMP      9 => 0034
+0024    TGETS    9   8   8  ; "password"
+0025    TGETS   10   0   8  ; "password"
+0026    ISNEV    9  10
+0027    JMP      9 => 0034
+0028    TGETB    9   1   1
+0029    TSETS    9   8   6  ; "name"
+0030    TGETB    9   1   2
+0031    TSETS    9   8   8  ; "password"
+0032    TSETV    8   3   7
+0033    JMP      4 => 0098
+0034 => ITERC    7   3   3
+0035    ITERL    7 => 0020
+0036    JMP      4 => 0098
+0037 => UGET     4   1      ; item
+0038    TGETS    4   4   3  ; "type"
+0039    ISNES    4   9      ; "ftp"
+0040    JMP      4 => 0068
+0041    GGET     4   5      ; "ipairs"
+0042    MOV      5   3
+0043    CALL     4   4   2
+0044    JMP      7 => 0065
+0045 => TGETS    9   8   6  ; "name"
+0046    TGETS   10   0   7  ; "text"
+0047    ISNEV    9  10
+0048    JMP      9 => 0065
+0049    TGETS    9   8  10  ; "address"
+0050    TGETS   10   0  10  ; "address"
+0051    ISNEV    9  10
+0052    JMP      9 => 0065
+0053    TGETB    9   1   1
+0054    TSETS    9   8   6  ; "name"
+0055    TGETB    9   1   2
+0056    TSETS    9   8  10  ; "address"
+0057    TGETB    9   1   3
+0058    TSETS    9   8  11  ; "username"
+0059    TGETB    9   1   4
+0060    TSETS    9   8   8  ; "password"
+0061    TGETB    9   1   5
+0062    TSETS    9   8  12  ; "url"
+0063    TSETV    8   3   7
+0064    JMP      4 => 0098
+0065 => ITERC    7   3   3
+0066    ITERL    7 => 0045
+0067    JMP      4 => 0098
+0068 => UGET     4   1      ; item
+0069    TGETS    4   4   3  ; "type"
+0070    ISNES    4  13      ; "webdav"
+0071    JMP      4 => 0098
+0072    GGET     4   5      ; "ipairs"
+0073    MOV      5   3
+0074    CALL     4   4   2
+0075    JMP      7 => 0096
+0076 => TGETS    9   8   6  ; "name"
+0077    TGETS   10   0   7  ; "text"
+0078    ISNEV    9  10
+0079    JMP      9 => 0096
+0080    TGETS    9   8  10  ; "address"
+0081    TGETS   10   0  10  ; "address"
+0082    ISNEV    9  10
+0083    JMP      9 => 0096
+0084    TGETB    9   1   1
+0085    TSETS    9   8   6  ; "name"
+0086    TGETB    9   1   2
+0087    TSETS    9   8  10  ; "address"
+0088    TGETB    9   1   3
+0089    TSETS    9   8  11  ; "username"
+0090    TGETB    9   1   4
+0091    TSETS    9   8   8  ; "password"
+0092    TGETB    9   1   5
+0093    TSETS    9   8  12  ; "url"
+0094    TSETV    8   3   7
+0095    JMP      4 => 0098
+0096 => ITERC    7   3   3
+0097    ITERL    7 => 0076
+0098 => MOV      5   2
+0099    TGETS    4   2  14  ; "saveSetting"
+0100    KSTR     6   2      ; "cs_servers"
+0101    MOV      7   3
+0102    CALL     4   1   4
+0103    MOV      5   2
+0104    TGETS    4   2  15  ; "flush"
+0105    CALL     4   1   2
+0106    UGET     4   0      ; self
+0107    MOV      5   4
+0108    TGETS    4   4  16  ; "init"
+0109    CALL     4   1   2
+0110    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:620-669
+0001    FNEW     2   0      ; cloudstorage.lua:621
+0002    TGETS    3   1   1  ; "type"
+0003    ISNES    3   2      ; "dropbox"
+0004    JMP      3 => 0012
+0005    UGET     3   0      ; DropBox
+0006    MOV      4   3
+0007    TGETS    3   3   3  ; "config"
+0008    MOV      5   1
+0009    MOV      6   2
+0010    CALL     3   1   4
+0011    JMP      3 => 0031
+0012 => TGETS    3   1   1  ; "type"
+0013    ISNES    3   4      ; "ftp"
+0014    JMP      3 => 0022
+0015    UGET     3   1      ; Ftp
+0016    MOV      4   3
+0017    TGETS    3   3   3  ; "config"
+0018    MOV      5   1
+0019    MOV      6   2
+0020    CALL     3   1   4
+0021    JMP      3 => 0031
+0022 => TGETS    3   1   1  ; "type"
+0023    ISNES    3   5      ; "webdav"
+0024    JMP      3 => 0031
+0025    UGET     3   2      ; WebDav
+0026    MOV      4   3
+0027    TGETS    3   3   3  ; "config"
+0028    MOV      5   1
+0029    MOV      6   2
+0030    CALL     3   1   4
+0031 => UCLO     0 => 0032
+0032 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:671-683
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "readSettings"
+0003    CALL     2   2   2
+0004    MOV      4   2
+0005    TGETS    3   2   1  ; "readSetting"
+0006    KSTR     5   2      ; "cs_servers"
+0007    CALL     3   2   3
+0008    IST          3
+0009    JMP      4 => 0011
+0010    TNEW     3   0
+0011 => GGET     4   3      ; "ipairs"
+0012    MOV      5   3
+0013    CALL     4   4   2
+0014    JMP      7 => 0033
+0015 => TGETS    9   8   4  ; "name"
+0016    TGETS   10   1   5  ; "text"
+0017    ISNEV    9  10
+0018    JMP      9 => 0033
+0019    TGETS    9   8   6  ; "password"
+0020    TGETS   10   1   6  ; "password"
+0021    ISNEV    9  10
+0022    JMP      9 => 0033
+0023    TGETS    9   8   7  ; "type"
+0024    TGETS   10   1   7  ; "type"
+0025    ISNEV    9  10
+0026    JMP      9 => 0033
+0027    GGET     9   8      ; "table"
+0028    TGETS    9   9   9  ; "remove"
+0029    MOV     10   3
+0030    MOV     11   7
+0031    CALL     9   1   3
+0032    JMP      4 => 0035
+0033 => ITERC    7   3   3
+0034    ITERL    7 => 0015
+0035 => MOV      5   2
+0036    TGETS    4   2  10  ; "saveSetting"
+0037    KSTR     6   2      ; "cs_servers"
+0038    MOV      7   3
+0039    CALL     4   1   4
+0040    MOV      5   2
+0041    TGETS    4   2  11  ; "flush"
+0042    CALL     4   1   2
+0043    MOV      5   0
+0044    TGETS    4   0  12  ; "init"
+0045    CALL     4   1   2
+0046    RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:685-693
+0001    TGETS    2   1   0  ; "type"
+0002    ISNES    2   1      ; "dropbox"
+0003    JMP      2 => 0010
+0004    UGET     2   0      ; DropBox
+0005    MOV      3   2
+0006    TGETS    2   2   2  ; "info"
+0007    TGETS    4   1   3  ; "password"
+0008    CALL     2   1   3
+0009    JMP      2 => 0027
+0010 => TGETS    2   1   0  ; "type"
+0011    ISNES    2   4      ; "ftp"
+0012    JMP      2 => 0019
+0013    UGET     2   1      ; Ftp
+0014    MOV      3   2
+0015    TGETS    2   2   2  ; "info"
+0016    MOV      4   1
+0017    CALL     2   1   3
+0018    JMP      2 => 0027
+0019 => TGETS    2   1   0  ; "type"
+0020    ISNES    2   5      ; "webdav"
+0021    JMP      2 => 0027
+0022    UGET     2   2      ; WebDav
+0023    MOV      3   2
+0024    TGETS    2   2   2  ; "info"
+0025    MOV      4   1
+0026    CALL     2   1   3
+0027 => RET0     0   1
+
+-- BYTECODE -- cloudstorage.lua:695-698
+0001    UGET     1   0      ; LuaSettings
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "open"
+0004    UGET     3   1      ; DataStorage
+0005    MOV      4   3
+0006    TGETS    3   3   2  ; "getSettingsDir"
+0007    CALL     3   2   2
+0008    KSTR     4   3      ; "/cloudstorage.lua"
+0009    CAT      3   3   4
+0010    CALL     1   2   3
+0011    TSETS    1   0   0  ; "cs_settings"
+0012    TGETS    1   0   0  ; "cs_settings"
+0013    RET1     1   2
+
+-- BYTECODE -- cloudstorage.lua:700-713
+0001    TGETS    1   0   0  ; "paths"
+0002    LEN      1   1
+0003    KSHORT   2   0
+0004    ISGE     2   1
+0005    JMP      1 => 0024
+0006    GGET     1   1      ; "table"
+0007    TGETS    1   1   2  ; "remove"
+0008    TGETS    2   0   0  ; "paths"
+0009    CALL     1   1   2
+0010    TGETS    1   0   0  ; "paths"
+0011    TGETS    2   0   0  ; "paths"
+0012    LEN      2   2
+0013    TGETV    1   1   2
+0014    ISF          1
+0015    JMP      2 => 0021
+0016    MOV      3   0
+0017    TGETS    2   0   3  ; "openCloudServer"
+0018    TGETS    4   1   4  ; "url"
+0019    CALL     2   1   3
+0020    JMP      2 => 0024
+0021 => MOV      3   0
+0022    TGETS    2   0   5  ; "init"
+0023    CALL     2   1   2
+0024 => KPRI     1   2
+0025    RET1     1   2
+
+-- BYTECODE -- cloudstorage.lua:0-716
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/buttondialog"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/buttondialogtitle"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/confirmbox"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "datastorage"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "apps/cloudstorage/dropbox"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "apps/cloudstorage/ftp"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/widget/infomessage"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "luasettings"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/widget/menu"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/uimanager"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "apps/cloudstorage/webdav"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "libs/libkoreader-lfs"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ffi/util"
+0042    CALL    13   2   2
+0043    TGETS   13  13  15  ; "template"
+0044    GGET    14   0      ; "require"
+0045    KSTR    15  16      ; "gettext"
+0046    CALL    14   2   2
+0047    GGET    15   0      ; "require"
+0048    KSTR    16  17      ; "device"
+0049    CALL    15   2   2
+0050    TGETS   15  15  18  ; "screen"
+0051    MOV     17   9
+0052    TGETS   16   9  19  ; "extend"
+0053    TDUP    18  25
+0054    TNEW    19   3
+0055    TDUP    20  21
+0056    MOV     21  14
+0057    KSTR    22  20      ; "Add new cloud storage"
+0058    CALL    21   2   2
+0059    TSETS   21  20  22  ; "text"
+0060    MOV     21  14
+0061    KSTR    22  23      ; "Choose cloud type"
+0062    CALL    21   2   2
+0063    TSETS   21  20  24  ; "title"
+0064    TSETB   20  19   1
+0065    TSETS   19  18  26  ; "cloud_servers"
+0066    MOV     19  14
+0067    KSTR    20  27      ; "Cloud storage"
+0068    CALL    19   2   2
+0069    TSETS   19  18  24  ; "title"
+0070    CALL    16   2   3
+0071    FNEW    17  29      ; cloudstorage.lua:34
+0072    TSETS   17  16  28  ; "init"
+0073    FNEW    17  31      ; cloudstorage.lua:51
+0074    TSETS   17  16  30  ; "genItemTableFromRoot"
+0075    FNEW    17  33      ; cloudstorage.lua:83
+0076    TSETS   17  16  32  ; "genItemTable"
+0077    FNEW    17  35      ; cloudstorage.lua:108
+0078    TSETS   17  16  34  ; "selectCloudType"
+0079    FNEW    17  37      ; cloudstorage.lua:148
+0080    TSETS   17  16  36  ; "openCloudServer"
+0081    FNEW    17  39      ; cloudstorage.lua:186
+0082    TSETS   17  16  38  ; "onMenuSelect"
+0083    FNEW    17  41      ; cloudstorage.lua:209
+0084    TSETS   17  16  40  ; "downloadFile"
+0085    FNEW    17  43      ; cloudstorage.lua:217
+0086    TSETS   17  16  42  ; "cloudFile"
+0087    FNEW    17  45      ; cloudstorage.lua:327
+0088    TSETS   17  16  44  ; "updateSyncFolder"
+0089    FNEW    17  47      ; cloudstorage.lua:345
+0090    TSETS   17  16  46  ; "onMenuHold"
+0091    FNEW    17  49      ; cloudstorage.lua:434
+0092    TSETS   17  16  48  ; "synchronizeCloud"
+0093    FNEW    17  51      ; cloudstorage.lua:464
+0094    TSETS   17  16  50  ; "downloadListFiles"
+0095    FNEW    17  53      ; cloudstorage.lua:523
+0096    TSETS   17  16  52  ; "synchronizeSettings"
+0097    FNEW    17  55      ; cloudstorage.lua:575
+0098    TSETS   17  16  54  ; "configCloud"
+0099    FNEW    17  57      ; cloudstorage.lua:620
+0100    TSETS   17  16  56  ; "editCloudServer"
+0101    FNEW    17  59      ; cloudstorage.lua:671
+0102    TSETS   17  16  58  ; "deleteCloudServer"
+0103    FNEW    17  61      ; cloudstorage.lua:685
+0104    TSETS   17  16  60  ; "infoServer"
+0105    FNEW    17  63      ; cloudstorage.lua:695
+0106    TSETS   17  16  62  ; "readSettings"
+0107    FNEW    17  65      ; cloudstorage.lua:700
+0108    TSETS   17  16  64  ; "onReturn"
+0109    UCLO     0 => 0110
+0110 => RET1    16   2
+

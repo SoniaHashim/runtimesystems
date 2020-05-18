@@ -1,0 +1,352 @@
+-- BYTECODE -- focusmanager.lua:33-47
+0001    TGETS    1   0   0  ; "selected"
+0002    IST          1
+0003    JMP      1 => 0006
+0004    TDUP     1   1
+0005    TSETS    1   0   0  ; "selected"
+0006 => UGET     1   0      ; Device
+0007    MOV      2   1
+0008    TGETS    1   1   2  ; "hasDPad"
+0009    CALL     1   2   2
+0010    ISF          1
+0011    JMP      2 => 0038
+0012    TDUP     1   8
+0013    TDUP     2   5
+0014    TDUP     3   4
+0015    TSETB    3   2   1
+0016    TDUP     3   6
+0017    TSETS    3   2   7  ; "args"
+0018    TSETS    2   1   9  ; "FocusUp"
+0019    TDUP     2  11
+0020    TDUP     3  10
+0021    TSETB    3   2   1
+0022    TDUP     3  12
+0023    TSETS    3   2   7  ; "args"
+0024    TSETS    2   1  13  ; "FocusDown"
+0025    TDUP     2  15
+0026    TDUP     3  14
+0027    TSETB    3   2   1
+0028    TDUP     3  16
+0029    TSETS    3   2   7  ; "args"
+0030    TSETS    2   1  17  ; "FocusLeft"
+0031    TDUP     2  19
+0032    TDUP     3  18
+0033    TSETB    3   2   1
+0034    TDUP     3  20
+0035    TSETS    3   2   7  ; "args"
+0036    TSETS    2   1  21  ; "FocusRight"
+0037    TSETS    1   0   3  ; "key_events"
+0038 => RET0     0   1
+
+-- BYTECODE -- focusmanager.lua:49-94
+0001    GGET     2   0      ; "unpack"
+0002    MOV      3   1
+0003    CALL     2   3   2
+0004    ISEQN    2   0      ; 0
+0005    JMP      4 => 0010
+0006    TGETS    4   0   1  ; "movement_allowed"
+0007    TGETS    4   4   2  ; "x"
+0008    ISF          4
+0009    JMP      4 => 0016
+0010 => ISEQN    3   0      ; 0
+0011    JMP      4 => 0018
+0012    TGETS    4   0   1  ; "movement_allowed"
+0013    TGETS    4   4   3  ; "y"
+0014    IST          4
+0015    JMP      4 => 0018
+0016 => KPRI     4   2
+0017    RET1     4   2
+0018 => TGETS    4   0   4  ; "layout"
+0019    ISF          4
+0020    JMP      4 => 0036
+0021    TGETS    4   0   4  ; "layout"
+0022    TGETS    5   0   5  ; "selected"
+0023    TGETS    5   5   3  ; "y"
+0024    TGETV    4   4   5
+0025    ISF          4
+0026    JMP      4 => 0036
+0027    TGETS    4   0   4  ; "layout"
+0028    TGETS    5   0   5  ; "selected"
+0029    TGETS    5   5   3  ; "y"
+0030    TGETV    4   4   5
+0031    TGETS    5   0   5  ; "selected"
+0032    TGETS    5   5   2  ; "x"
+0033    TGETV    4   4   5
+0034    IST          4
+0035    JMP      4 => 0038
+0036 => KPRI     4   2
+0037    RET1     4   2
+0038 => TGETS    4   0   4  ; "layout"
+0039    TGETS    5   0   5  ; "selected"
+0040    TGETS    5   5   3  ; "y"
+0041    TGETV    4   4   5
+0042    TGETS    5   0   5  ; "selected"
+0043    TGETS    5   5   2  ; "x"
+0044    TGETV    4   4   5
+0045 => LOOP     5 => 0165
+0046    TGETS    5   0   4  ; "layout"
+0047    TGETS    6   0   5  ; "selected"
+0048    TGETS    6   6   3  ; "y"
+0049    ADDVV    6   6   3
+0050    TGETV    5   5   6
+0051    IST          5
+0052    JMP      5 => 0061
+0053    MOV      6   0
+0054    TGETS    5   0   6  ; "_wrapAround"
+0055    MOV      7   3
+0056    CALL     5   2   3
+0057    IST          5
+0058    JMP      5 => 0102
+0059    JMP      5 => 0165
+0060    JMP      5 => 0102
+0061 => TGETS    5   0   4  ; "layout"
+0062    TGETS    6   0   5  ; "selected"
+0063    TGETS    6   6   3  ; "y"
+0064    ADDVV    6   6   3
+0065    TGETV    5   5   6
+0066    TGETS    6   0   5  ; "selected"
+0067    TGETS    6   6   2  ; "x"
+0068    TGETV    5   5   6
+0069    IST          5
+0070    JMP      5 => 0079
+0071    MOV      6   0
+0072    TGETS    5   0   7  ; "_verticalStep"
+0073    MOV      7   3
+0074    CALL     5   2   3
+0075    IST          5
+0076    JMP      5 => 0102
+0077    JMP      5 => 0165
+0078    JMP      5 => 0102
+0079 => TGETS    5   0   4  ; "layout"
+0080    TGETS    6   0   5  ; "selected"
+0081    TGETS    6   6   3  ; "y"
+0082    ADDVV    6   6   3
+0083    TGETV    5   5   6
+0084    TGETS    6   0   5  ; "selected"
+0085    TGETS    6   6   2  ; "x"
+0086    ADDVV    6   6   2
+0087    TGETV    5   5   6
+0088    IST          5
+0089    JMP      5 => 0092
+0090    JMP      5 => 0165
+0091    JMP      5 => 0102
+0092 => TGETS    5   0   5  ; "selected"
+0093    TGETS    6   0   5  ; "selected"
+0094    TGETS    6   6   3  ; "y"
+0095    ADDVV    6   6   3
+0096    TSETS    6   5   3  ; "y"
+0097    TGETS    5   0   5  ; "selected"
+0098    TGETS    6   0   5  ; "selected"
+0099    TGETS    6   6   2  ; "x"
+0100    ADDVV    6   6   2
+0101    TSETS    6   5   2  ; "x"
+0102 => UGET     5   0      ; logger
+0103    TGETS    5   5   8  ; "dbg"
+0104    KSTR     6   9      ; "Cursor position : "
+0105    TGETS    7   0   5  ; "selected"
+0106    TGETS    7   7   3  ; "y"
+0107    KSTR     8  10      ; " : "
+0108    TGETS    9   0   5  ; "selected"
+0109    TGETS    9   9   2  ; "x"
+0110    CAT      6   6   9
+0111    CALL     5   1   2
+0112    TGETS    5   0   4  ; "layout"
+0113    TGETS    6   0   5  ; "selected"
+0114    TGETS    6   6   3  ; "y"
+0115    TGETV    5   5   6
+0116    TGETS    6   0   5  ; "selected"
+0117    TGETS    6   6   2  ; "x"
+0118    TGETV    5   5   6
+0119    ISNEV    5   4
+0120    JMP      5 => 0131
+0121    TGETS    5   0   4  ; "layout"
+0122    TGETS    6   0   5  ; "selected"
+0123    TGETS    6   6   3  ; "y"
+0124    TGETV    5   5   6
+0125    TGETS    6   0   5  ; "selected"
+0126    TGETS    6   6   2  ; "x"
+0127    TGETV    5   5   6
+0128    TGETS    5   5  11  ; "is_inactive"
+0129    IST          5
+0130    JMP      5 => 0045
+0131 => MOV      6   4
+0132    TGETS    5   4  12  ; "handleEvent"
+0133    UGET     7   1      ; Event
+0134    MOV      8   7
+0135    TGETS    7   7  13  ; "new"
+0136    KSTR     9  14      ; "Unfocus"
+0137    CALL     7   0   3
+0138    CALLM    5   1   1
+0139    TGETS    5   0   4  ; "layout"
+0140    TGETS    6   0   5  ; "selected"
+0141    TGETS    6   6   3  ; "y"
+0142    TGETV    5   5   6
+0143    TGETS    6   0   5  ; "selected"
+0144    TGETS    6   6   2  ; "x"
+0145    TGETV    5   5   6
+0146    MOV      6   5
+0147    TGETS    5   5  12  ; "handleEvent"
+0148    UGET     7   1      ; Event
+0149    MOV      8   7
+0150    TGETS    7   7  13  ; "new"
+0151    KSTR     9  15      ; "Focus"
+0152    CALL     7   0   3
+0153    CALLM    5   1   1
+0154    UGET     5   2      ; UIManager
+0155    MOV      6   5
+0156    TGETS    5   5  16  ; "setDirty"
+0157    TGETS    7   0  17  ; "show_parent"
+0158    IST          7
+0159    JMP      8 => 0161
+0160    MOV      7   0
+0161 => KSTR     8  18      ; "fast"
+0162    CALL     5   1   4
+0163    JMP      5 => 0165
+0164    JMP      5 => 0045
+0165 => KPRI     5   2
+0166    RET1     5   2
+
+-- BYTECODE -- focusmanager.lua:96-113
+0001    TGETS    2   0   0  ; "selected"
+0002    TGETS    2   2   1  ; "y"
+0003 => TGETS    3   0   2  ; "layout"
+0004    SUBVV    4   2   1
+0005    TGETV    3   3   4
+0006    ISF          3
+0007    JMP      4 => 0011
+0008    LOOP     3 => 0011
+0009    SUBVV    2   2   1
+0010    JMP      3 => 0003
+0011 => TGETS    3   0   0  ; "selected"
+0012    TGETS    3   3   1  ; "y"
+0013    ISEQV    2   3
+0014    JMP      3 => 0033
+0015    TGETS    3   0   0  ; "selected"
+0016    TSETS    2   3   1  ; "y"
+0017    TGETS    3   0   2  ; "layout"
+0018    TGETS    4   0   0  ; "selected"
+0019    TGETS    4   4   1  ; "y"
+0020    TGETV    3   3   4
+0021    TGETS    4   0   0  ; "selected"
+0022    TGETS    4   4   3  ; "x"
+0023    TGETV    3   3   4
+0024    IST          3
+0025    JMP      3 => 0030
+0026    MOV      4   0
+0027    TGETS    3   0   4  ; "_verticalStep"
+0028    KSHORT   5   0
+0029    CALLT    3   3
+0030 => KPRI     3   2
+0031    RET1     3   2
+0032    JMP      3 => 0035
+0033 => KPRI     3   1
+0034    RET1     3   2
+0035 => RET0     0   1
+
+-- BYTECODE -- focusmanager.lua:115-135
+0001    TGETS    2   0   0  ; "selected"
+0002    TGETS    2   2   1  ; "x"
+0003    GGET     3   2      ; "type"
+0004    TGETS    4   0   3  ; "layout"
+0005    TGETS    5   0   0  ; "selected"
+0006    TGETS    5   5   4  ; "y"
+0007    ADDVV    5   5   1
+0008    TGETV    4   4   5
+0009    CALL     3   2   2
+0010    ISNES    3   5      ; "table"
+0011    JMP      3 => 0020
+0012    TGETS    3   0   3  ; "layout"
+0013    TGETS    4   0   0  ; "selected"
+0014    TGETS    4   4   4  ; "y"
+0015    ADDVV    4   4   1
+0016    TGETV    3   3   4
+0017    TNEW     4   0
+0018    ISNEV    3   4
+0019    JMP      3 => 0026
+0020 => UGET     3   0      ; logger
+0021    TGETS    3   3   6  ; "err"
+0022    KSTR     4   7      ; "[FocusManager] : Malformed layout"
+0023    CALL     3   1   2
+0024    KPRI     3   1
+0025    RET1     3   2
+0026 => TGETS    3   0   3  ; "layout"
+0027    TGETS    4   0   0  ; "selected"
+0028    TGETS    4   4   4  ; "y"
+0029    ADDVV    4   4   1
+0030    TGETV    3   3   4
+0031    TGETV    3   3   2
+0032    IST          3
+0033    JMP      3 => 0052
+0034    LOOP     3 => 0052
+0035    SUBVN    2   2   0  ; 1
+0036    ISNEN    2   1      ; 0
+0037    JMP      3 => 0026
+0038    TGETS    3   0   0  ; "selected"
+0039    TGETS    2   3   1  ; "x"
+0040 => TGETS    3   0   3  ; "layout"
+0041    TGETS    4   0   0  ; "selected"
+0042    TGETS    4   4   4  ; "y"
+0043    ADDVV    4   4   1
+0044    TGETV    3   3   4
+0045    TGETV    3   3   2
+0046    IST          3
+0047    JMP      3 => 0026
+0048    LOOP     3 => 0051
+0049    ADDVN    2   2   0  ; 1
+0050    JMP      3 => 0040
+0051 => JMP      3 => 0026
+0052 => TGETS    3   0   0  ; "selected"
+0053    TSETS    2   3   1  ; "x"
+0054    TGETS    3   0   0  ; "selected"
+0055    TGETS    4   0   0  ; "selected"
+0056    TGETS    4   4   4  ; "y"
+0057    ADDVV    4   4   1
+0058    TSETS    4   3   4  ; "y"
+0059    KPRI     3   2
+0060    RET1     3   2
+
+-- BYTECODE -- focusmanager.lua:137-139
+0001    TGETS    1   0   0  ; "layout"
+0002    TGETS    2   0   1  ; "selected"
+0003    TGETS    2   2   2  ; "y"
+0004    TGETV    1   1   2
+0005    TGETS    2   0   1  ; "selected"
+0006    TGETS    2   2   3  ; "x"
+0007    TGETV    1   1   2
+0008    RET1     1   2
+
+-- BYTECODE -- focusmanager.lua:0-142
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "device"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/event"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/container/inputcontainer"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "logger"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/uimanager"
+0015    CALL     4   2   2
+0016    MOV      6   2
+0017    TGETS    5   2   6  ; "new"
+0018    TDUP     7   7
+0019    TDUP     8   8
+0020    TSETS    8   7   9  ; "movement_allowed"
+0021    CALL     5   2   3
+0022    FNEW     6  11      ; focusmanager.lua:33
+0023    TSETS    6   5  10  ; "init"
+0024    FNEW     6  13      ; focusmanager.lua:49
+0025    TSETS    6   5  12  ; "onFocusMove"
+0026    FNEW     6  15      ; focusmanager.lua:96
+0027    TSETS    6   5  14  ; "_wrapAround"
+0028    FNEW     6  17      ; focusmanager.lua:115
+0029    TSETS    6   5  16  ; "_verticalStep"
+0030    FNEW     6  19      ; focusmanager.lua:137
+0031    TSETS    6   5  18  ; "getFocusItem"
+0032    UCLO     0 => 0033
+0033 => RET1     5   2
+

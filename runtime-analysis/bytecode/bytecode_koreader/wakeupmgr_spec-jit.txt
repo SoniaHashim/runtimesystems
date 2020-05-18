@@ -1,0 +1,266 @@
+-- BYTECODE -- wakeupmgr_spec.lua:13-13
+0001    KPRI     0   2
+0002    RET1     0   2
+
+-- BYTECODE -- wakeupmgr_spec.lua:6-18
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   2      ; "package"
+0005    TGETS    0   0   3  ; "unloadAll"
+0006    CALL     0   1   1
+0007    GGET     0   0      ; "require"
+0008    KSTR     1   4      ; "ffi/rtc"
+0009    CALL     0   2   2
+0010    USETV    0   0      ; RTC
+0011    GGET     0   0      ; "require"
+0012    KSTR     1   5      ; "device/wakeupmgr"
+0013    CALL     0   2   2
+0014    USETV    1   0      ; WakeupMgr
+0015    GGET     0   6      ; "stub"
+0016    UGET     1   1      ; WakeupMgr
+0017    KSTR     2   7      ; "setWakeupAlarm"
+0018    CALL     0   1   3
+0019    UGET     0   1      ; WakeupMgr
+0020    GGET     1   9      ; "spy"
+0021    TGETS    1   1  10  ; "new"
+0022    FNEW     2  11      ; wakeupmgr_spec.lua:13
+0023    CALL     1   2   2
+0024    TSETS    1   0   8  ; "validateWakeupAlarmByProximity"
+0025    UGET     0   0      ; RTC
+0026    MOV      1   0
+0027    TGETS    0   0  12  ; "secondsFromNowToEpoch"
+0028    KSHORT   2 1234
+0029    CALL     0   2   3
+0030    USETV    2   0      ; epoch1
+0031    UGET     0   0      ; RTC
+0032    MOV      1   0
+0033    TGETS    0   0  12  ; "secondsFromNowToEpoch"
+0034    KSHORT   2 123
+0035    CALL     0   2   3
+0036    USETV    3   0      ; epoch2
+0037    UGET     0   0      ; RTC
+0038    MOV      1   0
+0039    TGETS    0   0  12  ; "secondsFromNowToEpoch"
+0040    KSHORT   2 9999
+0041    CALL     0   2   3
+0042    USETV    4   0      ; epoch3
+0043    RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:21-21
+0001    RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:20-24
+0001    UGET     0   0      ; WakeupMgr
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "addTask"
+0004    KSHORT   2 1234
+0005    FNEW     3   1      ; wakeupmgr_spec.lua:21
+0006    CALL     0   1   4
+0007    GGET     0   2      ; "assert"
+0008    TGETS    0   0   3  ; "is_equal"
+0009    UGET     1   1      ; epoch1
+0010    UGET     2   0      ; WakeupMgr
+0011    TGETS    2   2   4  ; "_task_queue"
+0012    TGETB    2   2   1
+0013    TGETS    2   2   5  ; "epoch"
+0014    CALL     0   1   3
+0015    GGET     0   2      ; "assert"
+0016    TGETS    0   0   6  ; "stub"
+0017    UGET     1   0      ; WakeupMgr
+0018    TGETS    1   1   7  ; "setWakeupAlarm"
+0019    CALL     0   2   2
+0020    TGETS    0   0   8  ; "was"
+0021    TGETS    0   0   9  ; "called"
+0022    KSHORT   1   1
+0023    CALL     0   1   2
+0024    RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:26-26
+0001    RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:30-30
+0001    RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:25-33
+0001    UGET     0   0      ; WakeupMgr
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "addTask"
+0004    KSHORT   2 9999
+0005    FNEW     3   1      ; wakeupmgr_spec.lua:26
+0006    CALL     0   1   4
+0007    GGET     0   2      ; "assert"
+0008    TGETS    0   0   3  ; "is_equal"
+0009    UGET     1   1      ; epoch1
+0010    UGET     2   0      ; WakeupMgr
+0011    TGETS    2   2   4  ; "_task_queue"
+0012    TGETB    2   2   1
+0013    TGETS    2   2   5  ; "epoch"
+0014    CALL     0   1   3
+0015    GGET     0   2      ; "assert"
+0016    TGETS    0   0   6  ; "stub"
+0017    UGET     1   0      ; WakeupMgr
+0018    TGETS    1   1   7  ; "setWakeupAlarm"
+0019    CALL     0   2   2
+0020    TGETS    0   0   8  ; "was"
+0021    TGETS    0   0   9  ; "called"
+0022    KSHORT   1   1
+0023    CALL     0   1   2
+0024    UGET     0   0      ; WakeupMgr
+0025    MOV      1   0
+0026    TGETS    0   0   0  ; "addTask"
+0027    KSHORT   2 123
+0028    FNEW     3  10      ; wakeupmgr_spec.lua:30
+0029    CALL     0   1   4
+0030    GGET     0   2      ; "assert"
+0031    TGETS    0   0   3  ; "is_equal"
+0032    UGET     1   2      ; epoch2
+0033    UGET     2   0      ; WakeupMgr
+0034    TGETS    2   2   4  ; "_task_queue"
+0035    TGETB    2   2   1
+0036    TGETS    2   2   5  ; "epoch"
+0037    CALL     0   1   3
+0038    GGET     0   2      ; "assert"
+0039    TGETS    0   0   6  ; "stub"
+0040    UGET     1   0      ; WakeupMgr
+0041    TGETS    1   1   7  ; "setWakeupAlarm"
+0042    CALL     0   2   2
+0043    TGETS    0   0   8  ; "was"
+0044    TGETS    0   0   9  ; "called"
+0045    KSHORT   1   2
+0046    CALL     0   1   2
+0047    RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:34-36
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_true"
+0003    UGET     1   0      ; WakeupMgr
+0004    MOV      2   1
+0005    TGETS    1   1   2  ; "wakeupAction"
+0006    CALL     1   0   2
+0007    CALLM    0   1   0
+0008    RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:37-40
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    UGET     1   0      ; epoch1
+0004    UGET     2   1      ; WakeupMgr
+0005    TGETS    2   2   2  ; "_task_queue"
+0006    TGETB    2   2   1
+0007    TGETS    2   2   3  ; "epoch"
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "assert"
+0010    TGETS    0   0   1  ; "is_equal"
+0011    UGET     1   2      ; epoch3
+0012    UGET     2   1      ; WakeupMgr
+0013    TGETS    2   2   2  ; "_task_queue"
+0014    TGETB    2   2   2
+0015    TGETS    2   2   3  ; "epoch"
+0016    CALL     0   1   3
+0017    RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:41-43
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "stub"
+0003    UGET     1   0      ; WakeupMgr
+0004    TGETS    1   1   2  ; "setWakeupAlarm"
+0005    CALL     0   2   2
+0006    TGETS    0   0   3  ; "was"
+0007    TGETS    0   0   4  ; "called"
+0008    KSHORT   1   3
+0009    CALL     0   1   2
+0010    RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:44-48
+0001    UGET     0   0      ; WakeupMgr
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "removeTask"
+0004    KSHORT   2   2
+0005    CALL     0   1   3
+0006    GGET     0   1      ; "assert"
+0007    TGETS    0   0   2  ; "is_equal"
+0008    UGET     1   1      ; epoch1
+0009    UGET     2   0      ; WakeupMgr
+0010    TGETS    2   2   3  ; "_task_queue"
+0011    TGETB    2   2   1
+0012    TGETS    2   2   4  ; "epoch"
+0013    CALL     0   1   3
+0014    GGET     0   1      ; "assert"
+0015    TGETS    0   0   2  ; "is_equal"
+0016    KPRI     1   0
+0017    UGET     2   0      ; WakeupMgr
+0018    TGETS    2   2   3  ; "_task_queue"
+0019    TGETB    2   2   2
+0020    CALL     0   1   3
+0021    RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:49-51
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_true"
+0003    UGET     1   0      ; WakeupMgr
+0004    MOV      2   1
+0005    TGETS    1   1   2  ; "wakeupAction"
+0006    CALL     1   0   2
+0007    CALLM    0   1   0
+0008    RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:52-54
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "stub"
+0003    UGET     1   0      ; WakeupMgr
+0004    TGETS    1   1   2  ; "setWakeupAlarm"
+0005    CALL     0   2   2
+0006    TGETS    0   0   3  ; "was"
+0007    TGETS    0   0   4  ; "called"
+0008    KSHORT   1   3
+0009    CALL     0   1   2
+0010    RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:1-55
+0001    KNIL     0   4
+0002    GGET     5   0      ; "setup"
+0003    FNEW     6   1      ; wakeupmgr_spec.lua:6
+0004    CALL     5   1   2
+0005    GGET     5   2      ; "it"
+0006    KSTR     6   3      ; "should add a task"
+0007    FNEW     7   4      ; wakeupmgr_spec.lua:20
+0008    CALL     5   1   3
+0009    GGET     5   2      ; "it"
+0010    KSTR     6   5      ; "should add a task in order"
+0011    FNEW     7   6      ; wakeupmgr_spec.lua:25
+0012    CALL     5   1   3
+0013    GGET     5   2      ; "it"
+0014    KSTR     6   7      ; "should execute top task"
+0015    FNEW     7   8      ; wakeupmgr_spec.lua:34
+0016    CALL     5   1   3
+0017    GGET     5   2      ; "it"
+0018    KSTR     6   9      ; "should have removed executed task from s"~
+0019    FNEW     7  10      ; wakeupmgr_spec.lua:37
+0020    CALL     5   1   3
+0021    GGET     5   2      ; "it"
+0022    KSTR     6  11      ; "should have scheduled next task after ex"~
+0023    FNEW     7  12      ; wakeupmgr_spec.lua:41
+0024    CALL     5   1   3
+0025    GGET     5   2      ; "it"
+0026    KSTR     6  13      ; "should remove arbitrary task from stack"
+0027    FNEW     7  14      ; wakeupmgr_spec.lua:44
+0028    CALL     5   1   3
+0029    GGET     5   2      ; "it"
+0030    KSTR     6  15      ; "should execute last task"
+0031    FNEW     7  16      ; wakeupmgr_spec.lua:49
+0032    CALL     5   1   3
+0033    GGET     5   2      ; "it"
+0034    KSTR     6  17      ; "should not have scheduled a wakeup witho"~
+0035    FNEW     7  18      ; wakeupmgr_spec.lua:52
+0036    CALL     5   1   3
+0037    UCLO     0 => 0038
+0038 => RET0     0   1
+
+-- BYTECODE -- wakeupmgr_spec.lua:0-56
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "WakeupMgr"
+0003    FNEW     2   2      ; wakeupmgr_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

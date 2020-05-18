@@ -1,0 +1,899 @@
+-- BYTECODE -- win32.lua:18-18
+0001    UGET     1   0      ; _popen
+0002    UGET     2   1      ; _prefix
+0003    MOV      3   0
+0004    CAT      2   2   3
+0005    VARG     3   0   1
+0006    CALLMT   1   1
+
+-- BYTECODE -- win32.lua:19-19
+0001    UGET     1   0      ; _execute
+0002    UGET     2   1      ; _prefix
+0003    MOV      3   0
+0004    CAT      2   2   3
+0005    VARG     3   0   1
+0006    CALLMT   1   1
+
+-- BYTECODE -- win32.lua:24-26
+0001    MOV      1   0
+0002    KSTR     2   0      ; " 2> NUL 1> NUL"
+0003    CAT      1   1   2
+0004    RET1     1   2
+
+-- BYTECODE -- win32.lua:31-33
+0001    MOV      1   0
+0002    KSTR     2   0      ; " 2> NUL"
+0003    CAT      1   1   2
+0004    RET1     1   2
+
+-- BYTECODE -- win32.lua:38-61
+0001    KSTR     1   0      ; ""
+0002    KSTR     2   0      ; ""
+0003    KSTR     3   0      ; ""
+0004    MOV      5   0
+0005    TGETS    4   0   1  ; "match"
+0006    KSTR     6   2      ; "^['"](.*)['"]$"
+0007    CALL     4   2   3
+0008    ISF          4
+0009    JMP      5 => 0011
+0010    MOV      0   4
+0011 => MOV      6   0
+0012    TGETS    5   0   1  ; "match"
+0013    KSTR     7   3      ; "^.:"
+0014    CALL     5   2   3
+0015    ISF          5
+0016    JMP      6 => 0028
+0017    MOV      6   0
+0018    TGETS    5   0   4  ; "sub"
+0019    KSHORT   7   1
+0020    KSHORT   8   2
+0021    CALL     5   2   4
+0022    MOV      1   5
+0023    MOV      6   0
+0024    TGETS    5   0   4  ; "sub"
+0025    KSHORT   7   3
+0026    CALL     5   2   3
+0027    MOV      0   5
+0028 => MOV      6   0
+0029    TGETS    5   0   1  ; "match"
+0030    KSTR     7   5      ; "^[\/]"
+0031    CALL     5   2   3
+0032    ISF          5
+0033    JMP      6 => 0046
+0034    MOV      6   0
+0035    TGETS    5   0   4  ; "sub"
+0036    KSHORT   7   1
+0037    KSHORT   8   1
+0038    CALL     5   2   4
+0039    MOV      2   5
+0040    MOV      6   0
+0041    TGETS    5   0   4  ; "sub"
+0042    KSHORT   7   2
+0043    CALL     5   2   3
+0044    MOV      3   5
+0045    JMP      5 => 0047
+0046 => MOV      3   0
+0047 => MOV      5   1
+0048    MOV      6   2
+0049    MOV      7   3
+0050    RET      5   4
+
+-- BYTECODE -- win32.lua:67-84
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "string"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => CALL     1   1   2
+0011    UGET     1   0      ; split_root
+0012    MOV      2   0
+0013    CALL     1   4   2
+0014    ISEQS    2   3      ; ""
+0015    JMP      4 => 0022
+0016    MOV      5   0
+0017    TGETS    4   0   4  ; "gsub"
+0018    KSTR     6   5      ; "/"
+0019    KSTR     7   6      ; "\"
+0020    CALL     4   2   4
+0021    MOV      0   4
+0022 => ISNES    0   6      ; "\"
+0023    JMP      4 => 0026
+0024    KSTR     4   6      ; "\"
+0025    RET1     4   2
+0026 => MOV      5   0
+0027    TGETS    4   0   4  ; "gsub"
+0028    KSTR     6   7      ; "\(\*)""
+0029    KSTR     7   8      ; "\%1%1""
+0030    CALL     4   2   4
+0031    MOV      0   4
+0032    MOV      5   0
+0033    TGETS    4   0   4  ; "gsub"
+0034    KSTR     6   9      ; "\+$"
+0035    KSTR     7  10      ; "%0%0"
+0036    CALL     4   2   4
+0037    MOV      0   4
+0038    MOV      5   0
+0039    TGETS    4   0   4  ; "gsub"
+0040    KSTR     6  11      ; """
+0041    KSTR     7  12      ; "\""
+0042    CALL     4   2   4
+0043    MOV      0   4
+0044    MOV      5   0
+0045    TGETS    4   0   4  ; "gsub"
+0046    KSTR     6  13      ; "(\*)%%"
+0047    KSTR     7  14      ; "%1%1"%%""
+0048    CALL     4   2   4
+0049    MOV      0   4
+0050    KSTR     4  11      ; """
+0051    MOV      5   0
+0052    KSTR     6  11      ; """
+0053    CAT      4   4   6
+0054    RET1     4   2
+
+-- BYTECODE -- win32.lua:90-107
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "string"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => CALL     1   1   2
+0011    UGET     1   0      ; split_root
+0012    MOV      2   0
+0013    CALL     1   4   2
+0014    ISEQS    2   3      ; ""
+0015    JMP      4 => 0022
+0016    MOV      5   0
+0017    TGETS    4   0   4  ; "gsub"
+0018    KSTR     6   5      ; "/"
+0019    KSTR     7   6      ; "\"
+0020    CALL     4   2   4
+0021    MOV      0   4
+0022 => ISNES    0   6      ; "\"
+0023    JMP      4 => 0026
+0024    KSTR     4   6      ; "\"
+0025    RET1     4   2
+0026 => MOV      5   0
+0027    TGETS    4   0   4  ; "gsub"
+0028    KSTR     6   7      ; "\(\*)""
+0029    KSTR     7   8      ; "\%1%1""
+0030    CALL     4   2   4
+0031    MOV      0   4
+0032    MOV      5   0
+0033    TGETS    4   0   4  ; "gsub"
+0034    KSTR     6   9      ; "\+$"
+0035    KSTR     7  10      ; "%0%0"
+0036    CALL     4   2   4
+0037    MOV      0   4
+0038    MOV      5   0
+0039    TGETS    4   0   4  ; "gsub"
+0040    KSTR     6  11      ; """
+0041    KSTR     7  12      ; "\""
+0042    CALL     4   2   4
+0043    MOV      0   4
+0044    MOV      5   0
+0045    TGETS    4   0   4  ; "gsub"
+0046    KSTR     6  13      ; "%%"
+0047    KSTR     7  14      ; "%%%%"
+0048    CALL     4   2   4
+0049    MOV      0   4
+0050    KSTR     4  11      ; """
+0051    MOV      5   0
+0052    KSTR     6  11      ; """
+0053    CAT      4   4   6
+0054    RET1     4   2
+
+-- BYTECODE -- win32.lua:115-129
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "string"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => CALL     2   1   2
+0011    GGET     2   0      ; "assert"
+0012    GGET     3   1      ; "type"
+0013    MOV      4   1
+0014    CALL     3   2   2
+0015    ISEQS    3   2      ; "string"
+0016    JMP      3 => 0021
+0017    NOT      3   1
+0018    JMP      4 => 0022
+0019    KPRI     3   1
+0020    JMP      4 => 0022
+0021 => KPRI     3   2
+0022 => CALL     2   1   2
+0023    ISTC     2   1
+0024    JMP      2 => 0028
+0025    UGET     2   0      ; fs
+0026    TGETS    2   2   3  ; "current_dir"
+0027    CALL     2   2   1
+0028 => MOV      3   2
+0029    TGETS    2   2   4  ; "gsub"
+0030    KSTR     4   5      ; "[\/]*$"
+0031    KSTR     5   6      ; ""
+0032    CALL     2   2   4
+0033    MOV      1   2
+0034    UGET     2   1      ; split_root
+0035    MOV      3   0
+0036    CALL     2   4   2
+0037    MOV      6   3
+0038    TGETS    5   3   7  ; "match"
+0039    KSTR     7   8      ; "[\/]$"
+0040    CALL     5   2   3
+0041    ISF          5
+0042    JMP      6 => 0049
+0043    MOV      5   2
+0044    MOV      6   3
+0045    MOV      7   4
+0046    CAT      5   5   7
+0047    RET1     5   2
+0048    JMP      5 => 0054
+0049 => MOV      5   1
+0050    KSTR     6   9      ; "/"
+0051    MOV      7   4
+0052    CAT      5   5   7
+0053    RET1     5   2
+0054 => RET0     0   1
+
+-- BYTECODE -- win32.lua:135-138
+0001    UGET     1   0      ; split_root
+0002    UGET     2   1      ; fs
+0003    TGETS    2   2   0  ; "absolute_name"
+0004    MOV      3   0
+0005    CALL     2   0   2
+0006    CALLM    1   4   0
+0007    MOV      4   1
+0008    MOV      5   2
+0009    CAT      4   4   5
+0010    RET1     4   2
+
+-- BYTECODE -- win32.lua:147-196
+0001    GGET     5   0      ; "assert"
+0002    GGET     6   1      ; "type"
+0003    MOV      7   0
+0004    CALL     6   2   2
+0005    ISEQS    6   2      ; "string"
+0006    JMP      6 => 0011
+0007    NOT      6   0
+0008    JMP      7 => 0012
+0009    KPRI     6   1
+0010    JMP      7 => 0012
+0011 => KPRI     6   2
+0012 => CALL     5   1   2
+0013    GGET     5   0      ; "assert"
+0014    GGET     6   1      ; "type"
+0015    MOV      7   1
+0016    CALL     6   2   2
+0017    ISEQS    6   2      ; "string"
+0018    JMP      6 => 0021
+0019    KPRI     6   1
+0020    JMP      7 => 0022
+0021 => KPRI     6   2
+0022 => CALL     5   1   2
+0023    GGET     5   0      ; "assert"
+0024    GGET     6   1      ; "type"
+0025    MOV      7   2
+0026    CALL     6   2   2
+0027    ISEQS    6   2      ; "string"
+0028    JMP      6 => 0031
+0029    KPRI     6   1
+0030    JMP      7 => 0032
+0031 => KPRI     6   2
+0032 => CALL     5   1   2
+0033    GGET     5   0      ; "assert"
+0034    GGET     6   1      ; "type"
+0035    MOV      7   3
+0036    CALL     6   2   2
+0037    ISEQS    6   2      ; "string"
+0038    JMP      6 => 0043
+0039    NOT      6   3
+0040    JMP      7 => 0044
+0041    KPRI     6   1
+0042    JMP      7 => 0044
+0043 => KPRI     6   2
+0044 => CALL     5   1   2
+0045    GGET     5   0      ; "assert"
+0046    GGET     6   1      ; "type"
+0047    MOV      7   4
+0048    CALL     6   2   2
+0049    ISEQS    6   2      ; "string"
+0050    JMP      6 => 0055
+0051    NOT      6   4
+0052    JMP      7 => 0056
+0053    KPRI     6   1
+0054    JMP      7 => 0056
+0055 => KPRI     6   2
+0056 => CALL     5   1   2
+0057    MOV      5   1
+0058    KSTR     6   3      ; ".bat"
+0059    CAT      5   5   6
+0060    GGET     6   4      ; "io"
+0061    TGETS    6   6   5  ; "open"
+0062    MOV      7   5
+0063    KSTR     8   6      ; "wb"
+0064    CALL     6   2   3
+0065    IST          6
+0066    JMP      7 => 0073
+0067    KPRI     7   0
+0068    KSTR     8   7      ; "Could not open "
+0069    MOV      9   5
+0070    KSTR    10   8      ; " for writing."
+0071    CAT      8   8  10
+0072    RET      7   3
+0073 => UGET     7   0      ; path
+0074    TGETS    7   7   9  ; "package_paths"
+0075    MOV      8   2
+0076    CALL     7   3   2
+0077    TNEW     9   3
+0078    KSTR    10  10      ; "package.path="
+0079    UGET    11   1      ; util
+0080    TGETS   11  11  11  ; "LQ"
+0081    MOV     12   7
+0082    KSTR    13  12      ; ";"
+0083    CAT     12  12  13
+0084    CALL    11   2   2
+0085    KSTR    12  13      ; "..package.path"
+0086    CAT     10  10  12
+0087    TSETB   10   9   1
+0088    KSTR    10  14      ; "package.cpath="
+0089    UGET    11   1      ; util
+0090    TGETS   11  11  11  ; "LQ"
+0091    MOV     12   8
+0092    KSTR    13  12      ; ";"
+0093    CAT     12  12  13
+0094    CALL    11   2   2
+0095    KSTR    12  15      ; "..package.cpath"
+0096    CAT     10  10  12
+0097    TSETB   10   9   2
+0098    ISEQS    1  16      ; "luarocks"
+0099    JMP     10 => 0102
+0100    ISNES    1  17      ; "luarocks-admin"
+0101    JMP     10 => 0120
+0102 => TNEW    10   3
+0103    KSTR    11  10      ; "package.path="
+0104    UGET    12   1      ; util
+0105    TGETS   12  12  11  ; "LQ"
+0106    GGET    13  18      ; "package"
+0107    TGETS   13  13  19  ; "path"
+0108    CALL    12   2   2
+0109    CAT     11  11  12
+0110    TSETB   11  10   1
+0111    KSTR    11  14      ; "package.cpath="
+0112    UGET    12   1      ; util
+0113    TGETS   12  12  11  ; "LQ"
+0114    GGET    13  18      ; "package"
+0115    TGETS   13  13  20  ; "cpath"
+0116    CALL    12   2   2
+0117    CAT     11  11  12
+0118    TSETB   11  10   2
+0119    MOV      9  10
+0120 => ISF          3
+0121    JMP     10 => 0136
+0122    ISF          4
+0123    JMP     10 => 0136
+0124    KSTR    10  21      ; "local k,l,_=pcall(require,'luarocks.load"~
+0125    KSTR    11  22      ; "and l.add_context('"
+0126    MOV     12   3
+0127    KSTR    13  23      ; "','"
+0128    MOV     14   4
+0129    KSTR    15  24      ; "')"
+0130    CAT     10  10  15
+0131    GGET    11  25      ; "table"
+0132    TGETS   11  11  26  ; "insert"
+0133    MOV     12   9
+0134    MOV     13  10
+0135    CALL    11   1   3
+0136 => TDUP    10  31
+0137    UGET    11   2      ; fs
+0138    TGETS   11  11  27  ; "Qb"
+0139    UGET    12   3      ; dir
+0140    TGETS   12  12  19  ; "path"
+0141    UGET    13   4      ; cfg
+0142    TGETS   13  13  28  ; "variables"
+0143    TGETS   13  13  29  ; "LUA_BINDIR"
+0144    UGET    14   4      ; cfg
+0145    TGETS   14  14  30  ; "lua_interpreter"
+0146    CALL    12   0   3
+0147    CALLM   11   2   0
+0148    TSETB   11  10   1
+0149    UGET    11   2      ; fs
+0150    TGETS   11  11  27  ; "Qb"
+0151    GGET    12  25      ; "table"
+0152    TGETS   12  12  32  ; "concat"
+0153    MOV     13   9
+0154    KSTR    14  12      ; ";"
+0155    CALL    12   0   3
+0156    CALLM   11   2   0
+0157    TSETB   11  10   3
+0158    ISF          0
+0159    JMP     11 => 0166
+0160    UGET    11   2      ; fs
+0161    TGETS   11  11  27  ; "Qb"
+0162    MOV     12   0
+0163    CALL    11   2   2
+0164    IST         11
+0165    JMP     12 => 0167
+0166 => KSTR    11  33      ; "%I%"
+0167 => TSETB   11  10   4
+0168    VARG    11   0   5
+0169    TSETM   11   0      ; 5
+0170    MOV     12   6
+0171    TGETS   11   6  34  ; "write"
+0172    KSTR    13  35      ; "@echo off\r\n"
+0173    CALL    11   1   3
+0174    MOV     12   6
+0175    TGETS   11   6  34  ; "write"
+0176    KSTR    13  36      ; "setlocal\r\n"
+0177    CALL    11   1   3
+0178    IST          0
+0179    JMP     11 => 0186
+0180    MOV     12   6
+0181    TGETS   11   6  34  ; "write"
+0182    KSTR    13  37      ; "IF "%*"=="" (set I=-i) ELSE (set I=)"
+0183    KSTR    14  38      ; "\r\n"
+0184    CAT     13  13  14
+0185    CALL    11   1   3
+0186 => MOV     12   6
+0187    TGETS   11   6  34  ; "write"
+0188    KSTR    13  39      ; "set "
+0189    UGET    14   2      ; fs
+0190    TGETS   14  14  27  ; "Qb"
+0191    KSTR    15  40      ; "LUAROCKS_SYSCONFDIR="
+0192    UGET    16   4      ; cfg
+0193    TGETS   16  16  41  ; "sysconfdir"
+0194    CAT     15  15  16
+0195    CALL    14   2   2
+0196    KSTR    15  38      ; "\r\n"
+0197    CAT     13  13  15
+0198    CALL    11   1   3
+0199    MOV     12   6
+0200    TGETS   11   6  34  ; "write"
+0201    GGET    13  25      ; "table"
+0202    TGETS   13  13  32  ; "concat"
+0203    MOV     14  10
+0204    KSTR    15  42      ; " "
+0205    CALL    13   2   3
+0206    KSTR    14  43      ; " %*\r\n"
+0207    CAT     13  13  14
+0208    CALL    11   1   3
+0209    MOV     12   6
+0210    TGETS   11   6  34  ; "write"
+0211    KSTR    13  44      ; "exit /b %ERRORLEVEL%\r\n"
+0212    CALL    11   1   3
+0213    MOV     12   6
+0214    TGETS   11   6  45  ; "close"
+0215    CALL    11   1   2
+0216    KPRI    11   2
+0217    RET1    11   2
+
+-- BYTECODE -- win32.lua:198-204
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "lower"
+0003    CALL     1   2   2
+0004    MOV      0   1
+0005    MOV      2   0
+0006    TGETS    1   0   1  ; "match"
+0007    KSTR     3   2      ; "%.bat$"
+0008    CALL     1   2   3
+0009    IST          1
+0010    JMP      2 => 0017
+0011    MOV      2   0
+0012    TGETS    1   0   1  ; "match"
+0013    KSTR     3   3      ; "%.exe$"
+0014    CALL     1   2   3
+0015    ISF          1
+0016    JMP      2 => 0019
+0017 => KPRI     1   2
+0018    RET1     1   2
+0019 => KPRI     1   1
+0020    RET1     1   2
+
+-- BYTECODE -- win32.lua:206-226
+0001    UGET     2   0      ; fs
+0002    TGETS    2   2   0  ; "copy"
+0003    MOV      3   0
+0004    MOV      4   1
+0005    CALL     2   3   3
+0006    IST          2
+0007    JMP      4 => 0011
+0008    KPRI     4   0
+0009    MOV      5   3
+0010    RET      4   3
+0011 => KSTR     4   1      ; "%.[Ee][Xx][Ee]$"
+0012    UGET     5   1      ; dir
+0013    TGETS    5   5   2  ; "base_name"
+0014    MOV      6   0
+0015    CALL     5   2   2
+0016    UGET     6   1      ; dir
+0017    TGETS    6   6   3  ; "dir_name"
+0018    MOV      7   1
+0019    CALL     6   2   2
+0020    MOV      1   6
+0021    MOV      7   5
+0022    TGETS    6   5   4  ; "match"
+0023    MOV      8   4
+0024    CALL     6   2   3
+0025    ISF          6
+0026    JMP      7 => 0079
+0027    MOV      7   5
+0028    TGETS    6   5   5  ; "gsub"
+0029    MOV      8   4
+0030    KSTR     9   6      ; ".lua"
+0031    CALL     6   2   4
+0032    MOV      5   6
+0033    MOV      6   1
+0034    KSTR     7   7      ; "/"
+0035    MOV      8   5
+0036    CAT      6   6   8
+0037    GGET     7   8      ; "io"
+0038    TGETS    7   7   9  ; "open"
+0039    MOV      8   6
+0040    KSTR     9  10      ; "w"
+0041    CALL     7   2   3
+0042    IST          7
+0043    JMP      8 => 0050
+0044    KPRI     8   0
+0045    KSTR     9  11      ; "Could not open "
+0046    MOV     10   6
+0047    KSTR    11  12      ; " for writing."
+0048    CAT      9   9  11
+0049    RET      8   3
+0050 => MOV      9   7
+0051    TGETS    8   7  13  ; "write"
+0052    KSTR    10  14      ; "package.path=""
+0053    GGET    11  15      ; "package"
+0054    TGETS   11  11  16  ; "path"
+0055    MOV     12  11
+0056    TGETS   11  11   5  ; "gsub"
+0057    KSTR    13  17      ; "\"
+0058    KSTR    14  18      ; "\\"
+0059    CALL    11   2   4
+0060    KSTR    12  19      ; ";"..package.path\n"
+0061    CAT     10  10  12
+0062    CALL     8   1   3
+0063    MOV      9   7
+0064    TGETS    8   7  13  ; "write"
+0065    KSTR    10  20      ; "package.cpath=""
+0066    GGET    11  15      ; "package"
+0067    TGETS   11  11  16  ; "path"
+0068    MOV     12  11
+0069    TGETS   11  11   5  ; "gsub"
+0070    KSTR    13  17      ; "\"
+0071    KSTR    14  18      ; "\\"
+0072    CALL    11   2   4
+0073    KSTR    12  21      ; ";"..package.cpath\n"
+0074    CAT     10  10  12
+0075    CALL     8   1   3
+0076    MOV      9   7
+0077    TGETS    8   7  22  ; "close"
+0078    CALL     8   1   2
+0079 => KPRI     6   2
+0080    RET1     6   2
+
+-- BYTECODE -- win32.lua:239-242
+0001    GGET     2   0      ; "os"
+0002    TGETS    2   2   1  ; "remove"
+0003    MOV      3   0
+0004    CALL     2   1   2
+0005    GGET     2   0      ; "os"
+0006    TGETS    2   2   2  ; "rename"
+0007    MOV      3   1
+0008    MOV      4   0
+0009    CALLT    2   3
+
+-- BYTECODE -- win32.lua:244-258
+0001    UGET     1   0      ; fs
+0002    TGETS    1   1   0  ; "absolute_name"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    MOV      0   1
+0006    UGET     1   1      ; dir
+0007    TGETS    1   1   1  ; "normalize"
+0008    MOV      2   0
+0009    CALL     1   2   2
+0010    MOV      0   1
+0011    GGET     1   2      ; "io"
+0012    TGETS    1   1   3  ; "open"
+0013    MOV      2   0
+0014    KSTR     3   4      ; "r"
+0015    CALL     1   4   3
+0016    ISNEN    3   0      ; 13
+0017    JMP      4 => 0032
+0018    GGET     4   2      ; "io"
+0019    TGETS    4   4   3  ; "open"
+0020    MOV      5   0
+0021    KSTR     6   5      ; "\"
+0022    CAT      5   5   6
+0023    KSTR     6   4      ; "r"
+0024    CALL     4   4   3
+0025    MOV      3   6
+0026    MOV      2   5
+0027    MOV      1   4
+0028    ISNEN    3   1      ; 2
+0029    JMP      4 => 0032
+0030    KPRI     4   2
+0031    RET1     4   2
+0032 => ISF          1
+0033    JMP      4 => 0037
+0034    MOV      5   1
+0035    TGETS    4   1   6  ; "close"
+0036    CALL     4   1   2
+0037 => KPRI     4   1
+0038    RET1     4   2
+
+-- BYTECODE -- win32.lua:260-277
+0001    UGET     1   0      ; fs
+0002    TGETS    1   1   0  ; "absolute_name"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    MOV      0   1
+0006    UGET     1   1      ; dir
+0007    TGETS    1   1   1  ; "normalize"
+0008    MOV      2   0
+0009    CALL     1   2   2
+0010    MOV      0   1
+0011    GGET     1   2      ; "io"
+0012    TGETS    1   1   3  ; "open"
+0013    MOV      2   0
+0014    KSTR     3   4      ; "r"
+0015    CALL     1   4   3
+0016    ISNEN    3   0      ; 13
+0017    JMP      4 => 0037
+0018    GGET     4   2      ; "io"
+0019    TGETS    4   4   3  ; "open"
+0020    MOV      5   0
+0021    KSTR     6   5      ; "\"
+0022    CAT      5   5   6
+0023    KSTR     6   4      ; "r"
+0024    CALL     4   4   3
+0025    MOV      3   6
+0026    MOV      2   5
+0027    MOV      1   4
+0028    ISNEN    3   1      ; 2
+0029    JMP      4 => 0033
+0030    KPRI     4   1
+0031    RET1     4   2
+0032    JMP      4 => 0037
+0033 => ISNEN    3   2      ; 22
+0034    JMP      4 => 0037
+0035    KPRI     4   2
+0036    RET1     4   2
+0037 => ISF          1
+0038    JMP      4 => 0044
+0039    MOV      5   1
+0040    TGETS    4   1   6  ; "close"
+0041    CALL     4   1   2
+0042    KPRI     4   2
+0043    RET1     4   2
+0044 => KPRI     4   1
+0045    RET1     4   2
+
+-- BYTECODE -- win32.lua:285-308
+0001    GGET     1   0      ; "assert"
+0002    MOV      2   0
+0003    CALL     1   1   2
+0004    UGET     1   0      ; dir
+0005    TGETS    1   1   1  ; "normalize"
+0006    MOV      2   0
+0007    CALL     1   2   2
+0008    MOV      0   1
+0009    KPRI     1   0
+0010    KSTR     2   2      ; "tmpluarockstestwritable.deleteme"
+0011    UGET     3   1      ; fs
+0012    TGETS    3   3   3  ; "is_dir"
+0013    MOV      4   0
+0014    CALL     3   2   2
+0015    ISF          3
+0016    JMP      4 => 0049
+0017    UGET     3   0      ; dir
+0018    TGETS    3   3   4  ; "path"
+0019    MOV      4   0
+0020    MOV      5   2
+0021    CALL     3   2   3
+0022    GGET     4   5      ; "io"
+0023    TGETS    4   4   6  ; "open"
+0024    MOV      5   3
+0025    KSTR     6   7      ; "wb"
+0026    CALL     4   2   3
+0027    ISNEP    4   0
+0028    JMP      5 => 0031
+0029    KPRI     1   1
+0030    JMP      5 => 0032
+0031 => KPRI     1   2
+0032 => ISF          4
+0033    JMP      5 => 0037
+0034    MOV      6   4
+0035    TGETS    5   4   8  ; "close"
+0036    CALL     5   1   2
+0037 => ISF          1
+0038    JMP      5 => 0044
+0039    UGET     5   1      ; fs
+0040    TGETS    5   5   9  ; "exists"
+0041    MOV      6   3
+0042    CALL     5   2   2
+0043    MOV      1   5
+0044 => GGET     5  10      ; "os"
+0045    TGETS    5   5  11  ; "remove"
+0046    MOV      6   3
+0047    CALL     5   1   2
+0048    JMP      3 => 0064
+0049 => GGET     3   5      ; "io"
+0050    TGETS    3   3   6  ; "open"
+0051    MOV      4   0
+0052    KSTR     5  12      ; "r+b"
+0053    CALL     3   2   3
+0054    ISNEP    3   0
+0055    JMP      4 => 0058
+0056    KPRI     1   1
+0057    JMP      4 => 0059
+0058 => KPRI     1   2
+0059 => ISF          3
+0060    JMP      4 => 0064
+0061    MOV      5   3
+0062    TGETS    4   3   8  ; "close"
+0063    CALL     4   1   2
+0064 => RET1     1   2
+
+-- BYTECODE -- win32.lua:314-325
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "string"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => CALL     1   1   2
+0011    UGET     1   0      ; dir
+0012    TGETS    1   1   3  ; "normalize"
+0013    MOV      2   0
+0014    CALL     1   2   2
+0015    MOV      0   1
+0016    GGET     1   4      ; "os"
+0017    TGETS    1   1   5  ; "getenv"
+0018    KSTR     2   6      ; "TMP"
+0019    CALL     1   2   2
+0020    KSTR     2   7      ; "/luarocks_"
+0021    MOV      4   0
+0022    TGETS    3   0   8  ; "gsub"
+0023    KSTR     5   9      ; "/"
+0024    KSTR     6  10      ; "_"
+0025    CALL     3   2   4
+0026    KSTR     4  11      ; "-"
+0027    GGET     5  12      ; "tostring"
+0028    GGET     6  13      ; "math"
+0029    TGETS    6   6  14  ; "floor"
+0030    GGET     7  13      ; "math"
+0031    TGETS    7   7  15  ; "random"
+0032    CALL     7   2   1
+0033    MULVN    7   7   0  ; 10000
+0034    CALL     6   0   2
+0035    CALLM    5   2   0
+0036    CAT      1   1   5
+0037    UGET     2   1      ; fs
+0038    TGETS    2   2  16  ; "make_dir"
+0039    MOV      3   1
+0040    CALL     2   3   2
+0041    ISF          2
+0042    JMP      4 => 0045
+0043    RET1     1   2
+0044    JMP      4 => 0048
+0045 => KPRI     4   0
+0046    MOV      5   3
+0047    RET      4   3
+0048 => RET0     0   1
+
+-- BYTECODE -- win32.lua:327-329
+0001    GGET     0   0      ; "os"
+0002    TGETS    0   0   1  ; "getenv"
+0003    KSTR     1   2      ; "TMP"
+0004    CALL     0   2   2
+0005    GGET     1   0      ; "os"
+0006    TGETS    1   1   3  ; "tmpname"
+0007    CALL     1   2   1
+0008    CAT      0   0   1
+0009    RET1     0   2
+
+-- BYTECODE -- win32.lua:331-333
+0001    GGET     0   0      ; "os"
+0002    TGETS    0   0   1  ; "getenv"
+0003    KSTR     1   2      ; "USERNAME"
+0004    CALLT    0   2
+
+-- BYTECODE -- win32.lua:335-337
+0001    KSTR     2   0      ; "SET %s=%s"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "format"
+0004    MOV      4   0
+0005    MOV      5   1
+0006    CALLT    2   4
+
+-- BYTECODE -- win32.lua:339-341
+0001    UGET     0   0      ; dir
+0002    TGETS    0   0   0  ; "path"
+0003    UGET     1   1      ; fs
+0004    TGETS    1   1   1  ; "system_temp_dir"
+0005    CALL     1   2   1
+0006    KSTR     2   2      ; "cache"
+0007    CALLT    0   3
+
+-- BYTECODE -- win32.lua:0-344
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.fs"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.core.cfg"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.dir"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.path"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.util"
+0016    CALL     5   2   2
+0017    KSTR     6   6      ; "type NUL && "
+0018    GGET     7   7      ; "io"
+0019    TGETS    7   7   8  ; "popen"
+0020    GGET     8   9      ; "os"
+0021    TGETS    8   8  10  ; "execute"
+0022    GGET     9   7      ; "io"
+0023    FNEW    10  11      ; win32.lua:18
+0024    TSETS   10   9   8  ; "popen"
+0025    GGET     9   9      ; "os"
+0026    FNEW    10  12      ; win32.lua:19
+0027    TSETS   10   9  10  ; "execute"
+0028    FNEW     9  14      ; win32.lua:24
+0029    TSETS    9   0  13  ; "quiet"
+0030    FNEW     9  16      ; win32.lua:31
+0031    TSETS    9   0  15  ; "quiet_stderr"
+0032    FNEW     9  17      ; win32.lua:38
+0033    FNEW    10  19      ; win32.lua:67
+0034    TSETS   10   0  18  ; "Q"
+0035    FNEW    10  21      ; win32.lua:90
+0036    TSETS   10   0  20  ; "Qb"
+0037    FNEW    10  23      ; win32.lua:115
+0038    TSETS   10   0  22  ; "absolute_name"
+0039    FNEW    10  25      ; win32.lua:135
+0040    TSETS   10   0  24  ; "root_of"
+0041    FNEW    10  27      ; win32.lua:147
+0042    TSETS   10   0  26  ; "wrap_script"
+0043    FNEW    10  29      ; win32.lua:198
+0044    TSETS   10   0  28  ; "is_actual_binary"
+0045    FNEW    10  31      ; win32.lua:206
+0046    TSETS   10   0  30  ; "copy_binary"
+0047    FNEW    10  33      ; win32.lua:239
+0048    TSETS   10   0  32  ; "replace_file"
+0049    FNEW    10  35      ; win32.lua:244
+0050    TSETS   10   0  34  ; "is_dir"
+0051    FNEW    10  37      ; win32.lua:260
+0052    TSETS   10   0  36  ; "is_file"
+0053    FNEW    10  39      ; win32.lua:285
+0054    TSETS   10   0  38  ; "is_writable"
+0055    FNEW    10  41      ; win32.lua:314
+0056    TSETS   10   0  40  ; "make_temp_dir"
+0057    FNEW    10  43      ; win32.lua:327
+0058    TSETS   10   0  42  ; "tmpname"
+0059    FNEW    10  45      ; win32.lua:331
+0060    TSETS   10   0  44  ; "current_user"
+0061    FNEW    10  47      ; win32.lua:335
+0062    TSETS   10   0  46  ; "export_cmd"
+0063    FNEW    10  49      ; win32.lua:339
+0064    TSETS   10   0  48  ; "system_cache_dir"
+0065    UCLO     0 => 0066
+0066 => RET1     0   2
+

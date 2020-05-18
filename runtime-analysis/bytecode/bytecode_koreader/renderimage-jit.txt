@@ -1,0 +1,374 @@
+-- BYTECODE -- renderimage.lua:21-30
+0001    GGET     5   0      ; "io"
+0002    TGETS    5   5   1  ; "open"
+0003    MOV      6   1
+0004    KSTR     7   2      ; "rb"
+0005    CALL     5   2   3
+0006    IST          5
+0007    JMP      6 => 0014
+0008    UGET     6   0      ; logger
+0009    TGETS    6   6   3  ; "info"
+0010    KSTR     7   4      ; "could not open image file:"
+0011    MOV      8   1
+0012    CALL     6   1   3
+0013    RET0     0   1
+0014 => MOV      7   5
+0015    TGETS    6   5   5  ; "read"
+0016    KSTR     8   6      ; "*a"
+0017    CALL     6   2   3
+0018    MOV      8   5
+0019    TGETS    7   5   7  ; "close"
+0020    CALL     7   1   2
+0021    UGET     7   1      ; RenderImage
+0022    MOV      8   7
+0023    TGETS    7   7   8  ; "renderImageData"
+0024    MOV      9   6
+0025    LEN     10   6
+0026    MOV     11   2
+0027    MOV     12   3
+0028    MOV     13   4
+0029    CALLT    7   7
+
+-- BYTECODE -- renderimage.lua:41-58
+0001    ISF          1
+0002    JMP      6 => 0007
+0003    ISF          2
+0004    JMP      6 => 0007
+0005    ISNEN    2   0      ; 0
+0006    JMP      6 => 0008
+0007 => RET0     0   1
+0008 => UGET     6   0      ; ffi
+0009    TGETS    6   6   0  ; "cast"
+0010    KSTR     7   1      ; "unsigned char*"
+0011    MOV      8   1
+0012    CALL     6   2   3
+0013    UGET     7   0      ; ffi
+0014    TGETS    7   7   2  ; "string"
+0015    MOV      8   6
+0016    GGET     9   3      ; "math"
+0017    TGETS    9   9   4  ; "min"
+0018    KSHORT  10   4
+0019    MOV     11   2
+0020    CALL     9   0   3
+0021    CALLM    7   2   1
+0022    ISNES    7   5      ; "GIF8"
+0023    JMP      8 => 0039
+0024    UGET     8   1      ; logger
+0025    TGETS    8   8   6  ; "dbg"
+0026    KSTR     9   7      ; "GIF file provided, renderImageData: usin"~
+0027    CALL     8   1   2
+0028    MOV      9   0
+0029    TGETS    8   0   8  ; "renderGifImageDataWithGifLib"
+0030    MOV     10   1
+0031    MOV     11   2
+0032    MOV     12   3
+0033    MOV     13   4
+0034    MOV     14   5
+0035    CALL     8   2   7
+0036    ISF          8
+0037    JMP      9 => 0039
+0038    RET1     8   2
+0039 => UGET     8   1      ; logger
+0040    TGETS    8   8   6  ; "dbg"
+0041    KSTR     9   9      ; "renderImageData: using MuPDF"
+0042    CALL     8   1   2
+0043    MOV      9   0
+0044    TGETS    8   0  10  ; "renderImageDataWithMupdf"
+0045    MOV     10   1
+0046    MOV     11   2
+0047    MOV     12   4
+0048    MOV     13   5
+0049    CALLT    8   6
+
+-- BYTECODE -- renderimage.lua:67-76
+0001    UGET     5   0      ; Mupdf
+0002    IST          5
+0003    JMP      5 => 0008
+0004    GGET     5   0      ; "require"
+0005    KSTR     6   1      ; "ffi/mupdf"
+0006    CALL     5   2   2
+0007    USETV    0   5      ; Mupdf
+0008 => GGET     5   2      ; "pcall"
+0009    UGET     6   0      ; Mupdf
+0010    TGETS    6   6   3  ; "renderImage"
+0011    MOV      7   1
+0012    MOV      8   2
+0013    MOV      9   3
+0014    MOV     10   4
+0015    CALL     5   3   6
+0016    UGET     7   1      ; logger
+0017    TGETS    7   7   4  ; "dbg"
+0018    KSTR     8   5      ; "Mupdf.renderImage"
+0019    MOV      9   5
+0020    MOV     10   6
+0021    CALL     7   1   4
+0022    IST          5
+0023    JMP      7 => 0030
+0024    UGET     7   1      ; logger
+0025    TGETS    7   7   6  ; "info"
+0026    KSTR     8   7      ; "failed rendering image (mupdf):"
+0027    MOV      9   6
+0028    CALL     7   1   3
+0029    RET0     0   1
+0030 => RET1     6   2
+
+-- BYTECODE -- renderimage.lua:109-115
+0001    UGET     0   0      ; gif
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "openPage"
+0004    UGET     2   1      ; i
+0005    CALL     0   2   3
+0006    ISF          0
+0007    JMP      1 => 0018
+0008    TGETS    1   0   1  ; "image_bb"
+0009    ISF          1
+0010    JMP      2 => 0018
+0011    UGET     1   2      ; self
+0012    MOV      2   1
+0013    TGETS    1   1   2  ; "scaleBlitBuffer"
+0014    TGETS    3   0   1  ; "image_bb"
+0015    UGET     4   3      ; width
+0016    UGET     5   4      ; height
+0017    CALLT    1   5
+0018 => RET0     0   1
+
+-- BYTECODE -- renderimage.lua:122-128
+0001    UGET     0   0      ; logger
+0002    TGETS    0   0   0  ; "dbg"
+0003    KSTR     1   1      ; "frames.gc() called, closing GifDocument"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; frames
+0006    TGETS    0   0   2  ; "gif_close_needed"
+0007    ISF          0
+0008    JMP      1 => 0016
+0009    UGET     0   2      ; gif
+0010    MOV      1   0
+0011    TGETS    0   0   3  ; "close"
+0012    CALL     0   1   2
+0013    UGET     0   1      ; frames
+0014    KPRI     1   0
+0015    TSETS    1   0   2  ; "gif_close_needed"
+0016 => RET0     0   1
+
+-- BYTECODE -- renderimage.lua:132-138
+0001    UGET     0   0      ; logger
+0002    TGETS    0   0   0  ; "dbg"
+0003    KSTR     1   1      ; "frames.free() called, closing GifDocumen"~
+0004    CALL     0   1   2
+0005    UGET     0   1      ; frames
+0006    TGETS    0   0   2  ; "gif_close_needed"
+0007    ISF          0
+0008    JMP      1 => 0016
+0009    UGET     0   2      ; gif
+0010    MOV      1   0
+0011    TGETS    0   0   3  ; "close"
+0012    CALL     0   1   2
+0013    UGET     0   1      ; frames
+0014    KPRI     1   0
+0015    TSETS    1   0   2  ; "gif_close_needed"
+0016 => RET0     0   1
+
+-- BYTECODE -- renderimage.lua:86-150
+0001    ISF          1
+0002    JMP      6 => 0007
+0003    ISF          2
+0004    JMP      6 => 0007
+0005    ISNEN    2   0      ; 0
+0006    JMP      6 => 0008
+0007 => UCLO     0 => 0103
+0008 => UGET     6   0      ; Pic
+0009    IST          6
+0010    JMP      6 => 0015
+0011    GGET     6   0      ; "require"
+0012    KSTR     7   1      ; "ffi/pic"
+0013    CALL     6   2   2
+0014    USETV    0   6      ; Pic
+0015 => GGET     6   2      ; "pcall"
+0016    UGET     7   0      ; Pic
+0017    TGETS    7   7   3  ; "openGIFDocumentFromData"
+0018    MOV      8   1
+0019    MOV      9   2
+0020    CALL     6   3   4
+0021    UGET     8   1      ; logger
+0022    TGETS    8   8   4  ; "dbg"
+0023    KSTR     9   5      ; "Pic.openGIFDocumentFromData"
+0024    MOV     10   6
+0025    CALL     8   1   3
+0026    IST          6
+0027    JMP      8 => 0034
+0028    UGET     8   1      ; logger
+0029    TGETS    8   8   6  ; "info"
+0030    KSTR     9   7      ; "failed rendering image (giflib):"
+0031    MOV     10   7
+0032    CALL     8   1   3
+0033    UCLO     0 => 0104
+0034 => MOV      9   7
+0035    TGETS    8   7   8  ; "getPages"
+0036    CALL     8   2   2
+0037    UGET     9   1      ; logger
+0038    TGETS    9   9   4  ; "dbg"
+0039    KSTR    10   9      ; "GifDocument, nb frames:"
+0040    MOV     11   8
+0041    CALL     9   1   3
+0042    ISF          3
+0043    JMP      9 => 0075
+0044    KSHORT   9   1
+0045    ISGE     9   8
+0046    JMP      9 => 0075
+0047    TNEW     9   0
+0048    KPRI    10   2
+0049    TSETS   10   9  10  ; "image_disposable"
+0050    KSHORT  10   1
+0051    MOV     11   8
+0052    KSHORT  12   1
+0053    FORI    10 => 0061
+0054 => GGET    14  11      ; "table"
+0055    TGETS   14  14  12  ; "insert"
+0056    MOV     15   9
+0057    FNEW    16  13      ; renderimage.lua:109
+0058    CALL    14   1   3
+0059    UCLO    13 => 0060
+0060 => FORL    10 => 0054
+0061 => KPRI    10   2
+0062    TSETS   10   9  14  ; "gif_close_needed"
+0063    GGET    10  15      ; "setmetatable"
+0064    MOV     11   9
+0065    TDUP    12  17
+0066    FNEW    13  16      ; renderimage.lua:122
+0067    TSETS   13  12  18  ; "__gc"
+0068    CALL    10   2   3
+0069    MOV      9  10
+0070    FNEW    10  20      ; renderimage.lua:132
+0071    TSETS   10   9  19  ; "free"
+0072    UCLO     0 => 0073
+0073 => RET1     9   2
+0074    UCLO     9 => 0097
+0075 => MOV     10   7
+0076    TGETS    9   7  21  ; "openPage"
+0077    KSHORT  11   1
+0078    CALL     9   2   3
+0079    ISF          9
+0080    JMP     10 => 0094
+0081    TGETS   10   9  22  ; "image_bb"
+0082    ISF         10
+0083    JMP     11 => 0094
+0084    MOV     11   7
+0085    TGETS   10   7  23  ; "close"
+0086    CALL    10   1   2
+0087    MOV     11   0
+0088    TGETS   10   0  24  ; "scaleBlitBuffer"
+0089    TGETS   12   9  22  ; "image_bb"
+0090    MOV     13   4
+0091    MOV     14   5
+0092    UCLO     0 => 0093
+0093 => CALLT   10   5
+0094 => MOV     11   7
+0095    TGETS   10   7  23  ; "close"
+0096    CALL    10   1   2
+0097 => UGET     9   1      ; logger
+0098    TGETS    9   9   6  ; "info"
+0099    KSTR    10  25      ; "failed rendering image (giflib)"
+0100    CALL     9   1   2
+0101    UCLO     0 => 0102
+0102 => RET0     0   1
+0103 => RET0     0   1
+0104 => RET0     0   1
+
+-- BYTECODE -- renderimage.lua:159-185
+0001    ISF          2
+0002    JMP      5 => 0005
+0003    IST          3
+0004    JMP      5 => 0010
+0005 => UGET     5   0      ; logger
+0006    TGETS    5   5   0  ; "dbg"
+0007    KSTR     6   1      ; "RenderImage:scaleBlitBuffer: no need"
+0008    CALL     5   1   2
+0009    RET1     1   2
+0010 => GGET     5   2      ; "math"
+0011    TGETS    5   5   3  ; "floor"
+0012    MOV      6   2
+0013    CALL     5   2   2
+0014    GGET     6   2      ; "math"
+0015    TGETS    6   6   3  ; "floor"
+0016    MOV      7   3
+0017    CALL     6   2   2
+0018    MOV      3   6
+0019    MOV      2   5
+0020    MOV      6   1
+0021    TGETS    5   1   4  ; "getWidth"
+0022    CALL     5   2   2
+0023    ISNEV    5   2
+0024    JMP      5 => 0035
+0025    MOV      6   1
+0026    TGETS    5   1   5  ; "getHeight"
+0027    CALL     5   2   2
+0028    ISNEV    5   3
+0029    JMP      5 => 0035
+0030    UGET     5   0      ; logger
+0031    TGETS    5   5   0  ; "dbg"
+0032    KSTR     6   1      ; "RenderImage:scaleBlitBuffer: no need"
+0033    CALL     5   1   2
+0034    RET1     1   2
+0035 => UGET     5   0      ; logger
+0036    TGETS    5   5   0  ; "dbg"
+0037    KSTR     6   6      ; "RenderImage:scaleBlitBuffer: scaling"
+0038    CALL     5   1   2
+0039    KPRI     5   0
+0040    GGET     6   7      ; "G_reader_settings"
+0041    MOV      7   6
+0042    TGETS    6   6   8  ; "isTrue"
+0043    KSTR     8   9      ; "legacy_image_scaling"
+0044    CALL     6   2   3
+0045    ISF          6
+0046    JMP      7 => 0054
+0047    MOV      7   1
+0048    TGETS    6   1  10  ; "scale"
+0049    MOV      8   2
+0050    MOV      9   3
+0051    CALL     6   2   4
+0052    MOV      5   6
+0053    JMP      6 => 0068
+0054 => UGET     6   1      ; Mupdf
+0055    IST          6
+0056    JMP      6 => 0061
+0057    GGET     6  11      ; "require"
+0058    KSTR     7  12      ; "ffi/mupdf"
+0059    CALL     6   2   2
+0060    USETV    1   6      ; Mupdf
+0061 => UGET     6   1      ; Mupdf
+0062    TGETS    6   6  13  ; "scaleBlitBuffer"
+0063    MOV      7   1
+0064    MOV      8   2
+0065    MOV      9   3
+0066    CALL     6   2   4
+0067    MOV      5   6
+0068 => NOT      6   4
+0069    ISNEP    6   1
+0070    JMP      6 => 0074
+0071    MOV      7   1
+0072    TGETS    6   1  14  ; "free"
+0073    CALL     6   1   2
+0074 => RET1     5   2
+
+-- BYTECODE -- renderimage.lua:0-188
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "logger"
+0006    CALL     1   2   2
+0007    KNIL     2   3
+0008    TNEW     4   0
+0009    FNEW     5   4      ; renderimage.lua:21
+0010    TSETS    5   4   3  ; "renderImageFile"
+0011    FNEW     5   6      ; renderimage.lua:41
+0012    TSETS    5   4   5  ; "renderImageData"
+0013    FNEW     5   8      ; renderimage.lua:67
+0014    TSETS    5   4   7  ; "renderImageDataWithMupdf"
+0015    FNEW     5  10      ; renderimage.lua:86
+0016    TSETS    5   4   9  ; "renderGifImageDataWithGifLib"
+0017    FNEW     5  12      ; renderimage.lua:159
+0018    TSETS    5   4  11  ; "scaleBlitBuffer"
+0019    UCLO     0 => 0020
+0020 => RET1     4   2
+

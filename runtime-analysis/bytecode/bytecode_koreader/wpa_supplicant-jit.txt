@@ -1,0 +1,391 @@
+-- BYTECODE -- wpa_supplicant.lua:17-45
+0001    UGET     1   0      ; WpaClient
+0002    TGETS    1   1   0  ; "new"
+0003    TGETS    2   0   1  ; "wpa_supplicant"
+0004    TGETS    2   2   2  ; "ctrl_interface"
+0005    CALL     1   3   2
+0006    ISNEP    1   0
+0007    JMP      3 => 0014
+0008    KPRI     3   0
+0009    UGET     4   1      ; T
+0010    UGET     5   2      ; CLIENT_INIT_ERR_MSG
+0011    MOV      6   2
+0012    CALL     4   0   3
+0013    RETM     3   1
+0014 => MOV      4   1
+0015    TGETS    3   1   3  ; "scanThenGetResults"
+0016    CALL     3   2   2
+0017    MOV      5   1
+0018    TGETS    4   1   4  ; "close"
+0019    CALL     4   1   2
+0020    MOV      5   0
+0021    TGETS    4   0   5  ; "getAllSavedNetworks"
+0022    CALL     4   2   2
+0023    MOV      6   0
+0024    TGETS    5   0   6  ; "getCurrentNetwork"
+0025    CALL     5   2   2
+0026    GGET     6   7      ; "ipairs"
+0027    MOV      7   3
+0028    CALL     6   4   2
+0029    JMP      9 => 0054
+0030 => MOV     12  10
+0031    TGETS   11  10   9  ; "getSignalQuality"
+0032    CALL    11   2   2
+0033    TSETS   11  10   8  ; "signal_quality"
+0034    MOV     12   4
+0035    TGETS   11   4  10  ; "readSetting"
+0036    TGETS   13  10  11  ; "ssid"
+0037    CALL    11   2   3
+0038    ISF         11
+0039    JMP     12 => 0044
+0040    TGETS   12  11  12  ; "password"
+0041    TSETS   12  10  12  ; "password"
+0042    TGETS   12  11  13  ; "psk"
+0043    TSETS   12  10  13  ; "psk"
+0044 => ISF          5
+0045    JMP     12 => 0054
+0046    TGETS   12   5  11  ; "ssid"
+0047    TGETS   13  10  11  ; "ssid"
+0048    ISNEV   12  13
+0049    JMP     12 => 0054
+0050    KPRI    12   2
+0051    TSETS   12  10  14  ; "connected"
+0052    TGETS   12   5  16  ; "id"
+0053    TSETS   12  10  15  ; "wpa_supplicant_id"
+0054 => ITERC    9   3   3
+0055    ITERL    9 => 0030
+0056    RET1     3   2
+
+-- BYTECODE -- wpa_supplicant.lua:47-57
+0001    GGET     2   0      ; "io"
+0002    TGETS    2   2   1  ; "popen"
+0003    KSTR     3   2      ; "wpa_passphrase %q %q"
+0004    MOV      4   3
+0005    TGETS    3   3   3  ; "format"
+0006    MOV      5   0
+0007    MOV      6   1
+0008    CALL     3   0   4
+0009    CALLM    2   2   0
+0010    MOV      4   2
+0011    TGETS    3   2   4  ; "read"
+0012    KSTR     5   5      ; "*a"
+0013    CALL     3   2   3
+0014    MOV      5   2
+0015    TGETS    4   2   6  ; "close"
+0016    CALL     4   1   2
+0017    GGET     4   7      ; "string"
+0018    TGETS    4   4   8  ; "match"
+0019    MOV      5   3
+0020    KSTR     6   9      ; "psk=([a-f0-9]+)"
+0021    CALLT    4   3
+
+-- BYTECODE -- wpa_supplicant.lua:60-128
+0001    KNIL     2   4
+0002    UGET     5   0      ; WpaClient
+0003    TGETS    5   5   0  ; "new"
+0004    TGETS    6   0   1  ; "wpa_supplicant"
+0005    TGETS    6   6   2  ; "ctrl_interface"
+0006    CALL     5   3   2
+0007    MOV      2   6
+0008    MOV      3   5
+0009    IST          3
+0010    JMP      5 => 0017
+0011    KPRI     5   1
+0012    UGET     6   1      ; T
+0013    UGET     7   2      ; CLIENT_INIT_ERR_MSG
+0014    MOV      8   2
+0015    CALL     6   0   3
+0016    RETM     5   1
+0017 => MOV      6   3
+0018    TGETS    5   3   3  ; "addNetwork"
+0019    CALL     5   3   2
+0020    MOV      2   6
+0021    MOV      4   5
+0022    ISF          2
+0023    JMP      5 => 0027
+0024    KPRI     5   1
+0025    MOV      6   2
+0026    RET      5   3
+0027 => MOV      6   3
+0028    TGETS    5   3   4  ; "setNetwork"
+0029    MOV      7   4
+0030    KSTR     8   5      ; "ssid"
+0031    GGET     9   6      ; "string"
+0032    TGETS    9   9   7  ; "format"
+0033    KSTR    10   8      ; ""%s""
+0034    TGETS   11   1   5  ; "ssid"
+0035    CALL     9   0   3
+0036    CALLM    5   2   3
+0037    ISNES    5   9      ; "FAIL"
+0038    JMP      6 => 0048
+0039    MOV      7   3
+0040    TGETS    6   3  10  ; "removeNetwork"
+0041    MOV      8   4
+0042    CALL     6   1   3
+0043    KPRI     6   1
+0044    UGET     7   3      ; _
+0045    KSTR     8  11      ; "An error occurred while selecting networ"~
+0046    CALL     7   0   2
+0047    RETM     6   1
+0048 => TGETS    6   1  12  ; "psk"
+0049    IST          6
+0050    JMP      6 => 0060
+0051    UGET     6   4      ; calculatePsk
+0052    TGETS    7   1   5  ; "ssid"
+0053    TGETS    8   1  13  ; "password"
+0054    CALL     6   2   3
+0055    TSETS    6   1  12  ; "psk"
+0056    MOV      7   0
+0057    TGETS    6   0  14  ; "saveNetwork"
+0058    MOV      8   1
+0059    CALL     6   1   3
+0060 => MOV      7   3
+0061    TGETS    6   3   4  ; "setNetwork"
+0062    MOV      8   4
+0063    KSTR     9  12      ; "psk"
+0064    TGETS   10   1  12  ; "psk"
+0065    CALL     6   2   5
+0066    MOV      5   6
+0067    ISNES    5   9      ; "FAIL"
+0068    JMP      6 => 0078
+0069    MOV      7   3
+0070    TGETS    6   3  10  ; "removeNetwork"
+0071    MOV      8   4
+0072    CALL     6   1   3
+0073    KPRI     6   1
+0074    UGET     7   3      ; _
+0075    KSTR     8  15      ; "An error occurred while setting password"~
+0076    CALL     7   0   2
+0077    RETM     6   1
+0078 => MOV      7   3
+0079    TGETS    6   3  16  ; "enableNetworkByID"
+0080    MOV      8   4
+0081    CALL     6   1   3
+0082    MOV      7   3
+0083    TGETS    6   3  17  ; "attach"
+0084    CALL     6   1   2
+0085    KSHORT   6   0
+0086    KSHORT   7   0
+0087    KSHORT   8  30
+0088    UGET     9   5      ; InfoMessage
+0089    MOV     10   9
+0090    TGETS    9   9   0  ; "new"
+0091    TDUP    11  19
+0092    UGET    12   3      ; _
+0093    KSTR    13  18      ; "Authenticating…"
+0094    CALL    12   2   2
+0095    TSETS   12  11  20  ; "text"
+0096    CALL     9   2   3
+0097    KPRI    10   0
+0098    UGET    11   6      ; UIManager
+0099    MOV     12  11
+0100    TGETS   11  11  21  ; "show"
+0101    MOV     13   9
+0102    CALL    11   1   3
+0103    UGET    11   6      ; UIManager
+0104    MOV     12  11
+0105    TGETS   11  11  22  ; "forceRePaint"
+0106    CALL    11   1   2
+0107 => ISGE     6   8
+0108    JMP     11 => 0173
+0109    LOOP    11 => 0173
+0110    MOV     12   3
+0111    TGETS   11   3  23  ; "readEvent"
+0112    CALL    11   2   2
+0113    ISEQP   11   0
+0114    JMP     12 => 0168
+0115    MOV     13  11
+0116    TGETS   12  11  24  ; "isScanEvent"
+0117    CALL    12   2   2
+0118    IST         12
+0119    JMP     12 => 0142
+0120    UGET    12   6      ; UIManager
+0121    MOV     13  12
+0122    TGETS   12  12  25  ; "close"
+0123    MOV     14   9
+0124    CALL    12   1   3
+0125    UGET    12   5      ; InfoMessage
+0126    MOV     13  12
+0127    TGETS   12  12   0  ; "new"
+0128    TDUP    14  27
+0129    TGETS   15  11  26  ; "msg"
+0130    TSETS   15  14  20  ; "text"
+0131    CALL    12   2   3
+0132    MOV      9  12
+0133    UGET    12   6      ; UIManager
+0134    MOV     13  12
+0135    TGETS   12  12  21  ; "show"
+0136    MOV     14   9
+0137    CALL    12   1   3
+0138    UGET    12   6      ; UIManager
+0139    MOV     13  12
+0140    TGETS   12  12  22  ; "forceRePaint"
+0141    CALL    12   1   2
+0142 => MOV     13  11
+0143    TGETS   12  11  28  ; "isAuthSuccessful"
+0144    CALL    12   2   2
+0145    ISF         12
+0146    JMP     13 => 0151
+0147    TSETS    4   1  29  ; "wpa_supplicant_id"
+0148    KPRI     5   2
+0149    JMP     11 => 0173
+0150    JMP     12 => 0107
+0151 => MOV     13  11
+0152    TGETS   12  11  30  ; "isAuthFailed"
+0153    CALL    12   2   2
+0154    ISF         12
+0155    JMP     13 => 0107
+0156    ADDVN    7   7   0  ; 1
+0157    KSHORT  12   3
+0158    ISGE    12   7
+0159    JMP     12 => 0107
+0160    KPRI    12   1
+0161    UGET    13   3      ; _
+0162    KSTR    14  31      ; "Failed to authenticate"
+0163    CALL    13   2   2
+0164    MOV     10  13
+0165    MOV      5  12
+0166    JMP     11 => 0173
+0167    JMP     12 => 0107
+0168 => UGET    12   7      ; sleep
+0169    KSHORT  13   1
+0170    CALL    12   1   2
+0171    ADDVN    6   6   0  ; 1
+0172    JMP     11 => 0107
+0173 => ISEQP    5   2
+0174    JMP     11 => 0179
+0175    MOV     12   3
+0176    TGETS   11   3  10  ; "removeNetwork"
+0177    MOV     13   4
+0178    CALL    11   1   3
+0179 => MOV     12   3
+0180    TGETS   11   3  25  ; "close"
+0181    CALL    11   1   2
+0182    UGET    11   6      ; UIManager
+0183    MOV     12  11
+0184    TGETS   11  11  25  ; "close"
+0185    MOV     13   9
+0186    CALL    11   1   3
+0187    UGET    11   6      ; UIManager
+0188    MOV     12  11
+0189    TGETS   11  11  22  ; "forceRePaint"
+0190    CALL    11   1   2
+0191    ISGT     8   6
+0192    JMP     11 => 0199
+0193    KPRI    11   1
+0194    UGET    12   3      ; _
+0195    KSTR    13  32      ; "Timed out"
+0196    CALL    12   2   2
+0197    MOV     10  12
+0198    MOV      5  11
+0199 => MOV     11   5
+0200    MOV     12  10
+0201    RET     11   3
+
+-- BYTECODE -- wpa_supplicant.lua:130-138
+0001    TGETS    2   1   0  ; "wpa_supplicant_id"
+0002    IST          2
+0003    JMP      2 => 0005
+0004    RET0     0   1
+0005 => UGET     2   0      ; WpaClient
+0006    TGETS    2   2   1  ; "new"
+0007    TGETS    3   0   2  ; "wpa_supplicant"
+0008    TGETS    3   3   3  ; "ctrl_interface"
+0009    CALL     2   3   2
+0010    ISNEP    2   0
+0011    JMP      4 => 0018
+0012    KPRI     4   0
+0013    UGET     5   1      ; T
+0014    UGET     6   2      ; CLIENT_INIT_ERR_MSG
+0015    MOV      7   3
+0016    CALL     5   0   3
+0017    RETM     4   1
+0018 => MOV      5   2
+0019    TGETS    4   2   4  ; "removeNetwork"
+0020    TGETS    6   1   0  ; "wpa_supplicant_id"
+0021    CALL     4   1   3
+0022    MOV      5   2
+0023    TGETS    4   2   5  ; "close"
+0024    CALL     4   1   2
+0025    RET0     0   1
+
+-- BYTECODE -- wpa_supplicant.lua:140-148
+0001    UGET     1   0      ; WpaClient
+0002    TGETS    1   1   0  ; "new"
+0003    TGETS    2   0   1  ; "wpa_supplicant"
+0004    TGETS    2   2   2  ; "ctrl_interface"
+0005    CALL     1   3   2
+0006    ISNEP    1   0
+0007    JMP      3 => 0014
+0008    KPRI     3   0
+0009    UGET     4   1      ; T
+0010    UGET     5   2      ; CLIENT_INIT_ERR_MSG
+0011    MOV      6   2
+0012    CALL     4   0   3
+0013    RETM     3   1
+0014 => MOV      4   1
+0015    TGETS    3   1   3  ; "getCurrentNetwork"
+0016    CALL     3   2   2
+0017    MOV      5   1
+0018    TGETS    4   1   4  ; "close"
+0019    CALL     4   1   2
+0020    RET1     3   2
+
+-- BYTECODE -- wpa_supplicant.lua:150-156
+0001    TDUP     2   2
+0002    TGETS    3   1   1  ; "ctrl_interface"
+0003    TSETS    3   2   1  ; "ctrl_interface"
+0004    TSETS    2   0   0  ; "wpa_supplicant"
+0005    UGET     2   0      ; WpaSupplicant
+0006    TGETS    2   2   3  ; "getNetworkList"
+0007    TSETS    2   0   3  ; "getNetworkList"
+0008    UGET     2   0      ; WpaSupplicant
+0009    TGETS    2   2   4  ; "getCurrentNetwork"
+0010    TSETS    2   0   4  ; "getCurrentNetwork"
+0011    UGET     2   0      ; WpaSupplicant
+0012    TGETS    2   2   5  ; "authenticateNetwork"
+0013    TSETS    2   0   5  ; "authenticateNetwork"
+0014    UGET     2   0      ; WpaSupplicant
+0015    TGETS    2   2   6  ; "disconnectNetwork"
+0016    TSETS    2   0   6  ; "disconnectNetwork"
+0017    RET0     0   1
+
+-- BYTECODE -- wpa_supplicant.lua:0-159
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/infomessage"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "lj-wpaclient/wpaclient"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/uimanager"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "gettext"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ffi/util"
+0015    CALL     4   2   2
+0016    TGETS    4   4   6  ; "template"
+0017    GGET     5   0      ; "require"
+0018    KSTR     6   5      ; "ffi/util"
+0019    CALL     5   2   2
+0020    TGETS    5   5   7  ; "sleep"
+0021    MOV      6   3
+0022    KSTR     7   8      ; "Failed to initialize network control cli"~
+0023    CALL     6   2   2
+0024    TNEW     7   0
+0025    FNEW     8  10      ; wpa_supplicant.lua:17
+0026    TSETS    8   7   9  ; "getNetworkList"
+0027    FNEW     8  11      ; wpa_supplicant.lua:47
+0028    FNEW     9  13      ; wpa_supplicant.lua:60
+0029    TSETS    9   7  12  ; "authenticateNetwork"
+0030    FNEW     9  15      ; wpa_supplicant.lua:130
+0031    TSETS    9   7  14  ; "disconnectNetwork"
+0032    FNEW     9  17      ; wpa_supplicant.lua:140
+0033    TSETS    9   7  16  ; "getCurrentNetwork"
+0034    FNEW     9  19      ; wpa_supplicant.lua:150
+0035    TSETS    9   7  18  ; "init"
+0036    UCLO     0 => 0037
+0037 => RET1     7   2
+

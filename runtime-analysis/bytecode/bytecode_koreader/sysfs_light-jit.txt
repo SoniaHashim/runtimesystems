@@ -1,0 +1,371 @@
+-- BYTECODE -- sysfs_light.lua:28-34
+0001    IST          1
+0002    JMP      2 => 0004
+0003    TNEW     1   0
+0004 => GGET     2   0      ; "setmetatable"
+0005    MOV      3   1
+0006    MOV      4   0
+0007    CALL     2   1   3
+0008    TSETS    0   0   1  ; "__index"
+0009    TGETS    2   1   2  ; "init"
+0010    ISF          2
+0011    JMP      3 => 0015
+0012    MOV      3   1
+0013    TGETS    2   1   2  ; "init"
+0014    CALL     2   1   2
+0015 => RET1     1   2
+
+-- BYTECODE -- sysfs_light.lua:36-38
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "setNaturalBrightness"
+0003    MOV      4   1
+0004    KPRI     5   0
+0005    CALL     2   1   4
+0006    RET0     0   1
+
+-- BYTECODE -- sysfs_light.lua:41-44
+0001    GGET     2   0      ; "assert"
+0002    KSHORT   3   0
+0003    ISGT     3   1
+0004    JMP      3 => 0008
+0005    KSHORT   3 100
+0006    ISLE     1   3
+0007    JMP      3 => 0010
+0008 => KPRI     3   1
+0009    JMP      4 => 0011
+0010 => KPRI     3   2
+0011 => KSTR     4   1      ; "Wrong brightness value given!"
+0012    CALL     2   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- sysfs_light.lua:46-48
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "setNaturalBrightness"
+0003    KPRI     4   0
+0004    MOV      5   1
+0005    CALL     2   1   4
+0006    RET0     0   1
+
+-- BYTECODE -- sysfs_light.lua:51-54
+0001    GGET     2   0      ; "assert"
+0002    KSHORT   3   0
+0003    ISGT     3   1
+0004    JMP      3 => 0008
+0005    KSHORT   3 100
+0006    ISLE     1   3
+0007    JMP      3 => 0010
+0008 => KPRI     3   1
+0009    JMP      4 => 0011
+0010 => KPRI     3   2
+0011 => KSTR     4   1      ; "Wrong warmth value given!"
+0012    CALL     2   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- sysfs_light.lua:56-116
+0001    KPRI     3   2
+0002    KPRI     4   2
+0003    IST          1
+0004    JMP      5 => 0007
+0005    KPRI     3   1
+0006    TGETS    1   0   0  ; "current_brightness"
+0007 => IST          2
+0008    JMP      5 => 0011
+0009    KPRI     4   1
+0010    TGETS    2   0   1  ; "current_warmth"
+0011 => TGETS    5   0   2  ; "frontlight_mixer"
+0012    ISF          5
+0013    JMP      6 => 0054
+0014    GGET     5   3      ; "math"
+0015    TGETS    5   5   4  ; "floor"
+0016    TGETS    6   0   5  ; "nl_max"
+0017    DIVVV    6   2   6
+0018    CALL     5   2   2
+0019    MOV      2   5
+0020    ISF          3
+0021    JMP      5 => 0036
+0022    TGETS    5   0   6  ; "frontlight_ioctl"
+0023    ISF          5
+0024    JMP      6 => 0031
+0025    TGETS    5   0   6  ; "frontlight_ioctl"
+0026    MOV      6   5
+0027    TGETS    5   5   7  ; "setBrightness"
+0028    MOV      7   1
+0029    CALL     5   1   3
+0030    JMP      5 => 0036
+0031 => MOV      6   0
+0032    TGETS    5   0   8  ; "_write_value"
+0033    TGETS    7   0   9  ; "frontlight_white"
+0034    MOV      8   1
+0035    CALL     5   1   4
+0036 => ISF          4
+0037    JMP      5 => 0165
+0038    TGETS    5   0  10  ; "nl_inverted"
+0039    ISF          5
+0040    JMP      6 => 0048
+0041    MOV      6   0
+0042    TGETS    5   0   8  ; "_write_value"
+0043    TGETS    7   0   2  ; "frontlight_mixer"
+0044    TGETS    8   0   5  ; "nl_max"
+0045    SUBVV    8   8   2
+0046    CALL     5   1   4
+0047    JMP      5 => 0165
+0048 => MOV      6   0
+0049    TGETS    5   0   8  ; "_write_value"
+0050    TGETS    7   0   2  ; "frontlight_mixer"
+0051    MOV      8   2
+0052    CALL     5   1   4
+0053    JMP      5 => 0165
+0054 => KSHORT   5   0
+0055    KSHORT   6   0
+0056    KSHORT   7   0
+0057    KSHORT   8   0
+0058    ISGE     8   1
+0059    JMP      8 => 0080
+0060    GGET     8   3      ; "math"
+0061    TGETS    8   8  11  ; "min"
+0062    TGETS    9   0  12  ; "white_gain"
+0063    GGET    10   3      ; "math"
+0064    TGETS   10  10  13  ; "pow"
+0065    MOV     11   1
+0066    TGETS   12   0  14  ; "exponent"
+0067    CALL    10   2   3
+0068    MULVV    9   9  10
+0069    GGET    10   3      ; "math"
+0070    TGETS   10  10  13  ; "pow"
+0071    SUBNV   11   2   0  ; 100
+0072    TGETS   12   0  14  ; "exponent"
+0073    CALL    10   2   3
+0074    MULVV    9   9  10
+0075    TGETS   10   0  15  ; "white_offset"
+0076    ADDVV    9   9  10
+0077    KSHORT  10 255
+0078    CALL     8   2   3
+0079    MOV      7   8
+0080 => KSHORT   8   0
+0081    ISGE     8   2
+0082    JMP      8 => 0123
+0083    GGET     8   3      ; "math"
+0084    TGETS    8   8  11  ; "min"
+0085    TGETS    9   0  16  ; "red_gain"
+0086    GGET    10   3      ; "math"
+0087    TGETS   10  10  13  ; "pow"
+0088    MOV     11   1
+0089    TGETS   12   0  14  ; "exponent"
+0090    CALL    10   2   3
+0091    MULVV    9   9  10
+0092    GGET    10   3      ; "math"
+0093    TGETS   10  10  13  ; "pow"
+0094    MOV     11   2
+0095    TGETS   12   0  14  ; "exponent"
+0096    CALL    10   2   3
+0097    MULVV    9   9  10
+0098    TGETS   10   0  17  ; "red_offset"
+0099    ADDVV    9   9  10
+0100    KSHORT  10 255
+0101    CALL     8   2   3
+0102    MOV      5   8
+0103    GGET     8   3      ; "math"
+0104    TGETS    8   8  11  ; "min"
+0105    TGETS    9   0  18  ; "green_gain"
+0106    GGET    10   3      ; "math"
+0107    TGETS   10  10  13  ; "pow"
+0108    MOV     11   1
+0109    TGETS   12   0  14  ; "exponent"
+0110    CALL    10   2   3
+0111    MULVV    9   9  10
+0112    GGET    10   3      ; "math"
+0113    TGETS   10  10  13  ; "pow"
+0114    MOV     11   2
+0115    TGETS   12   0  14  ; "exponent"
+0116    CALL    10   2   3
+0117    MULVV    9   9  10
+0118    TGETS   10   0  19  ; "green_offset"
+0119    ADDVV    9   9  10
+0120    KSHORT  10 255
+0121    CALL     8   2   3
+0122    MOV      6   8
+0123 => GGET     8   3      ; "math"
+0124    TGETS    8   8  20  ; "max"
+0125    MOV      9   7
+0126    KSHORT  10   0
+0127    CALL     8   2   3
+0128    MOV      7   8
+0129    GGET     8   3      ; "math"
+0130    TGETS    8   8  20  ; "max"
+0131    MOV      9   5
+0132    KSHORT  10   0
+0133    CALL     8   2   3
+0134    MOV      5   8
+0135    GGET     8   3      ; "math"
+0136    TGETS    8   8  20  ; "max"
+0137    MOV      9   6
+0138    KSHORT  10   0
+0139    CALL     8   2   3
+0140    MOV      6   8
+0141    MOV      9   0
+0142    TGETS    8   0  21  ; "_set_light_value"
+0143    TGETS   10   0   9  ; "frontlight_white"
+0144    GGET    11   3      ; "math"
+0145    TGETS   11  11   4  ; "floor"
+0146    MOV     12   7
+0147    CALL    11   0   2
+0148    CALLM    8   1   2
+0149    MOV      9   0
+0150    TGETS    8   0  21  ; "_set_light_value"
+0151    TGETS   10   0  22  ; "frontlight_green"
+0152    GGET    11   3      ; "math"
+0153    TGETS   11  11   4  ; "floor"
+0154    MOV     12   6
+0155    CALL    11   0   2
+0156    CALLM    8   1   2
+0157    MOV      9   0
+0158    TGETS    8   0  21  ; "_set_light_value"
+0159    TGETS   10   0  23  ; "frontlight_red"
+0160    GGET    11   3      ; "math"
+0161    TGETS   11  11   4  ; "floor"
+0162    MOV     12   5
+0163    CALL    11   0   2
+0164    CALLM    8   1   2
+0165 => TSETS    1   0   0  ; "current_brightness"
+0166    TSETS    2   0   1  ; "current_warmth"
+0167    RET0     0   1
+
+-- BYTECODE -- sysfs_light.lua:119-124
+0001    GGET     3   0      ; "assert"
+0002    ISEQP    1   0
+0003    JMP      4 => 0012
+0004    KSHORT   4   0
+0005    ISGT     4   1
+0006    JMP      4 => 0010
+0007    KSHORT   4 100
+0008    ISLE     1   4
+0009    JMP      4 => 0012
+0010 => KPRI     4   1
+0011    JMP      5 => 0013
+0012 => KPRI     4   2
+0013 => KSTR     5   1      ; "Wrong brightness value given!"
+0014    CALL     3   1   3
+0015    GGET     3   0      ; "assert"
+0016    ISEQP    2   0
+0017    JMP      4 => 0026
+0018    KSHORT   4   0
+0019    ISGT     4   2
+0020    JMP      4 => 0024
+0021    KSHORT   4 100
+0022    ISLE     2   4
+0023    JMP      4 => 0026
+0024 => KPRI     4   1
+0025    JMP      5 => 0027
+0026 => KPRI     4   2
+0027 => KSTR     5   2      ; "Wrong warmth value given!"
+0028    CALL     3   1   3
+0029    RET0     0   1
+
+-- BYTECODE -- sysfs_light.lua:126-135
+0001    IST          1
+0002    JMP      3 => 0004
+0003    RET0     0   1
+0004 => KSHORT   3   0
+0005    ISGE     3   2
+0006    JMP      3 => 0015
+0007    MOV      4   0
+0008    TGETS    3   0   0  ; "_write_value"
+0009    MOV      5   1
+0010    KSTR     6   1      ; "/bl_power"
+0011    CAT      5   5   6
+0012    KSHORT   6  31
+0013    CALL     3   1   4
+0014    JMP      3 => 0022
+0015 => MOV      4   0
+0016    TGETS    3   0   0  ; "_write_value"
+0017    MOV      5   1
+0018    KSTR     6   1      ; "/bl_power"
+0019    CAT      5   5   6
+0020    KSHORT   6   0
+0021    CALL     3   1   4
+0022 => MOV      4   0
+0023    TGETS    3   0   0  ; "_write_value"
+0024    MOV      5   1
+0025    KSTR     6   2      ; "/brightness"
+0026    CAT      5   5   6
+0027    MOV      6   2
+0028    CALL     3   1   4
+0029    RET0     0   1
+
+-- BYTECODE -- sysfs_light.lua:137-150
+0001    GGET     3   0      ; "io"
+0002    TGETS    3   3   1  ; "open"
+0003    MOV      4   1
+0004    KSTR     5   2      ; "w"
+0005    CALL     3   2   3
+0006    IST          3
+0007    JMP      4 => 0015
+0008    UGET     4   0      ; logger
+0009    TGETS    4   4   3  ; "err"
+0010    KSTR     5   4      ; "Could not open file: "
+0011    MOV      6   1
+0012    CALL     4   1   3
+0013    KPRI     4   1
+0014    RET1     4   2
+0015 => MOV      5   3
+0016    TGETS    4   3   5  ; "write"
+0017    MOV      6   2
+0018    CALL     4   4   3
+0019    GGET     7   0      ; "io"
+0020    TGETS    7   7   6  ; "close"
+0021    MOV      8   3
+0022    CALL     7   1   2
+0023    IST          4
+0024    JMP      7 => 0033
+0025    UGET     7   0      ; logger
+0026    TGETS    7   7   3  ; "err"
+0027    KSTR     8   7      ; "Write error: "
+0028    MOV      9   5
+0029    MOV     10   6
+0030    CALL     7   1   4
+0031    KPRI     7   1
+0032    RET1     7   2
+0033 => KPRI     7   2
+0034    RET1     7   2
+
+-- BYTECODE -- sysfs_light.lua:0-153
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "logger"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "dbg"
+0006    CALL     1   2   2
+0007    TDUP     2   3
+0008    FNEW     3   5      ; sysfs_light.lua:28
+0009    TSETS    3   2   4  ; "new"
+0010    FNEW     3   7      ; sysfs_light.lua:36
+0011    TSETS    3   2   6  ; "setBrightness"
+0012    MOV      4   1
+0013    TGETS    3   1   8  ; "guard"
+0014    MOV      5   2
+0015    KSTR     6   6      ; "setBrightness"
+0016    FNEW     7   9      ; sysfs_light.lua:41
+0017    CALL     3   1   5
+0018    FNEW     3  11      ; sysfs_light.lua:46
+0019    TSETS    3   2  10  ; "setWarmth"
+0020    MOV      4   1
+0021    TGETS    3   1   8  ; "guard"
+0022    MOV      5   2
+0023    KSTR     6  10      ; "setWarmth"
+0024    FNEW     7  12      ; sysfs_light.lua:51
+0025    CALL     3   1   5
+0026    FNEW     3  14      ; sysfs_light.lua:56
+0027    TSETS    3   2  13  ; "setNaturalBrightness"
+0028    MOV      4   1
+0029    TGETS    3   1   8  ; "guard"
+0030    MOV      5   2
+0031    KSTR     6  13      ; "setNaturalBrightness"
+0032    FNEW     7  15      ; sysfs_light.lua:119
+0033    CALL     3   1   5
+0034    FNEW     3  17      ; sysfs_light.lua:126
+0035    TSETS    3   2  16  ; "_set_light_value"
+0036    FNEW     3  19      ; sysfs_light.lua:137
+0037    TSETS    3   2  18  ; "_write_value"
+0038    UCLO     0 => 0039
+0039 => RET1     2   2
+

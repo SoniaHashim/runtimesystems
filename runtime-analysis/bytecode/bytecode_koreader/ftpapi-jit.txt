@@ -1,0 +1,258 @@
+-- BYTECODE -- ftpapi.lua:10-21
+0001    KSTR     4   0      ; ""
+0002    KSTR     5   0      ; ""
+0003    ISEQS    2   0      ; ""
+0004    JMP      6 => 0006
+0005    KSTR     5   1      ; "@"
+0006 => ISEQS    3   0      ; ""
+0007    JMP      6 => 0009
+0008    KSTR     4   2      ; ":"
+0009 => KSTR     6   3      ; "ftp://"
+0010    MOV      7   2
+0011    MOV      8   4
+0012    MOV      9   3
+0013    MOV     10   5
+0014    MOV     12   1
+0015    TGETS   11   1   4  ; "gsub"
+0016    KSTR    13   3      ; "ftp://"
+0017    KSTR    14   0      ; ""
+0018    CALL    11   2   4
+0019    CAT      6   6  11
+0020    RET1     6   2
+
+-- BYTECODE -- ftpapi.lua:23-32
+0001    TNEW     3   0
+0002    UGET     4   0      ; url
+0003    TGETS    4   4   0  ; "parse"
+0004    MOV      5   1
+0005    CALL     4   2   2
+0006    UGET     5   1      ; util
+0007    TGETS    5   5   2  ; "urlDecode"
+0008    TGETS    6   4   1  ; "user"
+0009    CALL     5   2   2
+0010    TSETS    5   4   1  ; "user"
+0011    UGET     5   1      ; util
+0012    TGETS    5   5   2  ; "urlDecode"
+0013    TGETS    6   4   3  ; "password"
+0014    CALL     5   2   2
+0015    TSETS    5   4   3  ; "password"
+0016    TSETS    2   4   4  ; "command"
+0017    UGET     5   2      ; ltn12
+0018    TGETS    5   5   5  ; "sink"
+0019    TGETS    5   5   6  ; "table"
+0020    MOV      6   3
+0021    CALL     5   2   2
+0022    TSETS    5   4   5  ; "sink"
+0023    UGET     5   3      ; ftp
+0024    TGETS    5   5   7  ; "get"
+0025    MOV      6   4
+0026    CALL     5   3   2
+0027    ISFC     7   5
+0028    JMP      7 => 0033
+0029    GGET     7   6      ; "table"
+0030    TGETS    7   7   8  ; "concat"
+0031    MOV      8   3
+0032    CALL     7   2   2
+0033 => MOV      8   6
+0034    RET      7   3
+
+-- BYTECODE -- ftpapi.lua:69-71
+0001    TGETS    2   0   0  ; "text"
+0002    TGETS    3   1   0  ; "text"
+0003    ISLT     2   3
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    JMP      3 => 0008
+0007 => KPRI     2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- ftpapi.lua:72-74
+0001    TGETS    2   0   0  ; "text"
+0002    TGETS    3   1   0  ; "text"
+0003    ISLT     2   3
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    JMP      3 => 0008
+0007 => KPRI     2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- ftpapi.lua:34-83
+0001    TNEW     3   0
+0002    TNEW     4   0
+0003    KNIL     5   7
+0004    MOV      9   0
+0005    TGETS    8   0   0  ; "ftpGet"
+0006    MOV     10   1
+0007    KSTR    11   1      ; "nlst"
+0008    CALL     8   2   4
+0009    ISNEP    8   0
+0010    JMP      9 => 0013
+0011    KPRI     9   1
+0012    UCLO     0 => 0119
+0013 => ISNES    2   2      ; "/"
+0014    JMP      9 => 0016
+0015    KSTR     2   3      ; ""
+0016 => MOV      9   8
+0017    KSTR    10   4      ; "\n"
+0018    CAT      9   9  10
+0019    MOV     10   9
+0020    TGETS    9   9   5  ; "gmatch"
+0021    KSTR    11   6      ; "(.-)\r?\n"
+0022    CALL     9   4   3
+0023    JMP     12 => 0088
+0024 => ISEQS   12   3      ; ""
+0025    JMP     13 => 0088
+0026    MOV     14  12
+0027    TGETS   13  12   7  ; "match"
+0028    KSTR    15   8      ; "([^/]+)$"
+0029    CALL    13   2   3
+0030    MOV      7  13
+0031    MOV     14  12
+0032    TGETS   13  12   7  ; "match"
+0033    KSTR    15   9      ; "^.+(%..+)$"
+0034    CALL    13   2   3
+0035    MOV      6  13
+0036    IST          6
+0037    JMP     13 => 0057
+0038    KSTR     5  10      ; "folder"
+0039    GGET    13  11      ; "table"
+0040    TGETS   13  13  12  ; "insert"
+0041    MOV     14   3
+0042    TDUP    15  13
+0043    MOV     16   7
+0044    KSTR    17   2      ; "/"
+0045    CAT     16  16  17
+0046    TSETS   16  15  14  ; "text"
+0047    GGET    16  15      ; "string"
+0048    TGETS   16  16  16  ; "format"
+0049    KSTR    17  17      ; "%s/%s"
+0050    MOV     18   2
+0051    MOV     19   7
+0052    CALL    16   2   4
+0053    TSETS   16  15  18  ; "url"
+0054    TSETS    5  15  19  ; "type"
+0055    CALL    13   1   3
+0056    JMP     13 => 0088
+0057 => ISF          6
+0058    JMP     13 => 0088
+0059    UGET    13   0      ; DocumentRegistry
+0060    MOV     14  13
+0061    TGETS   13  13  20  ; "hasProvider"
+0062    MOV     15  12
+0063    CALL    13   2   3
+0064    IST         13
+0065    JMP     14 => 0073
+0066    GGET    13  21      ; "G_reader_settings"
+0067    MOV     14  13
+0068    TGETS   13  13  22  ; "isTrue"
+0069    KSTR    15  23      ; "show_unsupported"
+0070    CALL    13   2   3
+0071    ISF         13
+0072    JMP     14 => 0088
+0073 => KSTR     5  24      ; "file"
+0074    GGET    13  11      ; "table"
+0075    TGETS   13  13  12  ; "insert"
+0076    MOV     14   4
+0077    TDUP    15  25
+0078    TSETS    7  15  14  ; "text"
+0079    GGET    16  15      ; "string"
+0080    TGETS   16  16  16  ; "format"
+0081    KSTR    17  17      ; "%s/%s"
+0082    MOV     18   2
+0083    MOV     19   7
+0084    CALL    16   2   4
+0085    TSETS   16  15  18  ; "url"
+0086    TSETS    5  15  19  ; "type"
+0087    CALL    13   1   3
+0088 => ITERC   12   2   3
+0089    ITERL   12 => 0024
+0090    GGET     9  11      ; "table"
+0091    TGETS    9   9  26  ; "sort"
+0092    MOV     10   3
+0093    FNEW    11  27      ; ftpapi.lua:69
+0094    CALL     9   1   3
+0095    GGET     9  11      ; "table"
+0096    TGETS    9   9  26  ; "sort"
+0097    MOV     10   4
+0098    FNEW    11  28      ; ftpapi.lua:72
+0099    CALL     9   1   3
+0100    GGET     9  29      ; "ipairs"
+0101    MOV     10   4
+0102    CALL     9   4   2
+0103    JMP     12 => 0115
+0104 => GGET    14  11      ; "table"
+0105    TGETS   14  14  12  ; "insert"
+0106    MOV     15   3
+0107    TDUP    16  30
+0108    TGETS   17  13  14  ; "text"
+0109    TSETS   17  16  14  ; "text"
+0110    TGETS   17  13  18  ; "url"
+0111    TSETS   17  16  18  ; "url"
+0112    TGETS   17  13  19  ; "type"
+0113    TSETS   17  16  19  ; "type"
+0114    CALL    14   1   3
+0115 => ITERC   12   3   3
+0116    ITERL   12 => 0104
+0117    UCLO     0 => 0118
+0118 => RET1     3   2
+0119 => RET1     9   2
+
+-- BYTECODE -- ftpapi.lua:85-93
+0001    UGET     2   0      ; url
+0002    TGETS    2   2   0  ; "parse"
+0003    MOV      3   1
+0004    CALL     2   2   2
+0005    UGET     3   1      ; util
+0006    TGETS    3   3   2  ; "urlDecode"
+0007    TGETS    4   2   1  ; "user"
+0008    CALL     3   2   2
+0009    TSETS    3   2   1  ; "user"
+0010    UGET     3   1      ; util
+0011    TGETS    3   3   2  ; "urlDecode"
+0012    TGETS    4   2   3  ; "password"
+0013    CALL     3   2   2
+0014    TSETS    3   2   3  ; "password"
+0015    GGET     3   5      ; "string"
+0016    TGETS    3   3   6  ; "gsub"
+0017    TGETS    4   2   7  ; "path"
+0018    KSTR     5   8      ; "^/"
+0019    KSTR     6   9      ; ""
+0020    CALL     3   2   4
+0021    TSETS    3   2   4  ; "argument"
+0022    KSTR     3  11      ; "dele"
+0023    TSETS    3   2  10  ; "command"
+0024    KSHORT   3 250
+0025    TSETS    3   2  12  ; "check"
+0026    UGET     3   2      ; ftp
+0027    TGETS    3   3  10  ; "command"
+0028    MOV      4   2
+0029    CALLT    3   2
+
+-- BYTECODE -- ftpapi.lua:0-96
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "document/documentregistry"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "socket.ftp"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ltn12"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "util"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "socket.url"
+0015    CALL     4   2   2
+0016    TNEW     5   0
+0017    FNEW     6   7      ; ftpapi.lua:10
+0018    TSETS    6   5   6  ; "generateUrl"
+0019    FNEW     6   9      ; ftpapi.lua:23
+0020    TSETS    6   5   8  ; "ftpGet"
+0021    FNEW     6  11      ; ftpapi.lua:34
+0022    TSETS    6   5  10  ; "listFolder"
+0023    FNEW     6  13      ; ftpapi.lua:85
+0024    TSETS    6   5  12  ; "delete"
+0025    UCLO     0 => 0026
+0026 => RET1     5   2
+

@@ -1,0 +1,309 @@
+-- BYTECODE -- spore_spec.lua:36-41
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "Spore"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; Spore
+0008    UGET     0   0      ; Spore
+0009    TGETS    0   0   3  ; "new_from_string"
+0010    UGET     1   2      ; service
+0011    CALL     0   2   2
+0012    USETV    1   0      ; client
+0013    UGET     0   1      ; client
+0014    MOV      1   0
+0015    TGETS    0   0   4  ; "enable"
+0016    KSTR     2   5      ; "Format.JSON"
+0017    CALL     0   1   3
+0018    RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:43-47
+0001    TDUP     0   0
+0002    UGET     1   0      ; client
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "get_info"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    GGET     2   2      ; "assert"
+0008    TGETS    2   2   3  ; "are"
+0009    TGETS    2   2   4  ; "same"
+0010    TGETS    3   1   5  ; "body"
+0011    TGETS    3   3   6  ; "args"
+0012    MOV      4   0
+0013    CALL     2   1   3
+0014    RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:49-53
+0001    TDUP     0   0
+0002    UGET     1   0      ; client
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "post_info"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    GGET     2   2      ; "assert"
+0008    TGETS    2   2   3  ; "are"
+0009    TGETS    2   2   4  ; "same"
+0010    TGETS    3   1   5  ; "body"
+0011    TGETS    3   3   6  ; "json"
+0012    MOV      4   0
+0013    CALL     2   1   3
+0014    RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:34-54
+0001    KNIL     0   1
+0002    GGET     2   0      ; "setup"
+0003    FNEW     3   1      ; spore_spec.lua:36
+0004    CALL     2   1   2
+0005    GGET     2   2      ; "it"
+0006    KSTR     3   3      ; "should complete GET request"
+0007    FNEW     4   4      ; spore_spec.lua:43
+0008    CALL     2   1   3
+0009    GGET     2   2      ; "it"
+0010    KSTR     3   5      ; "should complete POST request"
+0011    FNEW     4   6      ; spore_spec.lua:49
+0012    CALL     2   1   3
+0013    UCLO     0 => 0014
+0014 => RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:74-80
+0001    GGET     1   0      ; "pairs"
+0002    UGET     2   0      ; req
+0003    TGETS    2   2   1  ; "headers"
+0004    CALL     1   4   2
+0005    ISNEXT   4 => 0016
+0006 => GGET     6   2      ; "type"
+0007    MOV      7   4
+0008    CALL     6   2   2
+0009    ISNES    6   3      ; "string"
+0010    JMP      6 => 0016
+0011    MOV      7   0
+0012    TGETS    6   0   4  ; "add"
+0013    MOV      8   4
+0014    MOV      9   5
+0015    CALL     6   1   4
+0016 => ITERN    4   3   3
+0017    ITERL    4 => 0006
+0018    RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:81-88
+0001    USETV    0   0      ; result
+0002    UGET     1   0      ; result
+0003    TGETS    2   0   1  ; "code"
+0004    TSETS    2   1   0  ; "status"
+0005    GGET     1   2      ; "coroutine"
+0006    TGETS    1   1   3  ; "resume"
+0007    UGET     2   1      ; args
+0008    TGETS    2   2   4  ; "thread"
+0009    CALL     1   1   2
+0010    UGET     1   2      ; UIManager
+0011    KSHORT   2 100
+0012    TSETS    2   1   5  ; "INPUT_TIMEOUT"
+0013    RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:89-89
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "yield"
+0003    UGET     1   0      ; result
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:67-90
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "finalize"
+0003    CALL     2   1   2
+0004    KPRI     2   0
+0005    UGET     3   0      ; async_http_client
+0006    MOV      4   3
+0007    TGETS    3   3   1  ; "request"
+0008    TDUP     5   3
+0009    TGETS    6   1   2  ; "url"
+0010    TSETS    6   5   2  ; "url"
+0011    TGETS    6   1   4  ; "method"
+0012    TSETS    6   5   4  ; "method"
+0013    TGETS    6   1   5  ; "env"
+0014    TGETS    6   6   6  ; "spore"
+0015    TGETS    6   6   7  ; "payload"
+0016    TSETS    6   5   8  ; "body"
+0017    FNEW     6   9      ; spore_spec.lua:74
+0018    TSETS    6   5  10  ; "on_headers"
+0019    FNEW     6  11      ; spore_spec.lua:81
+0020    CALL     3   1   4
+0021    GGET     3  12      ; "coroutine"
+0022    TGETS    3   3  13  ; "create"
+0023    FNEW     4  14      ; spore_spec.lua:89
+0024    UCLO     0 => 0025
+0025 => CALLT    3   2
+
+-- BYTECODE -- spore_spec.lua:59-91
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "ui/uimanager"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; UIManager
+0008    GGET     0   0      ; "require"
+0009    KSTR     1   3      ; "httpclient"
+0010    CALL     0   2   2
+0011    GGET     1   0      ; "require"
+0012    KSTR     2   4      ; "Spore"
+0013    CALL     1   2   2
+0014    TGETS    2   1   5  ; "new_from_string"
+0015    UGET     3   2      ; service
+0016    CALL     2   2   2
+0017    USETV    1   2      ; client
+0018    MOV      3   0
+0019    TGETS    2   0   6  ; "new"
+0020    CALL     2   2   2
+0021    GGET     3   7      ; "package"
+0022    TGETS    3   3   8  ; "loaded"
+0023    TNEW     4   0
+0024    TSETS    4   3   9  ; "Spore.Middleware.AsyncHTTP"
+0025    GGET     3   0      ; "require"
+0026    KSTR     4   9      ; "Spore.Middleware.AsyncHTTP"
+0027    CALL     3   2   2
+0028    FNEW     4  11      ; spore_spec.lua:67
+0029    TSETS    4   3  10  ; "call"
+0030    UCLO     0 => 0031
+0031 => RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:95-100
+0001    TDUP     0   0
+0002    UGET     1   0      ; client
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "get_info"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    UGET     2   1      ; UIManager
+0008    MOV      3   2
+0009    TGETS    2   2   2  ; "quit"
+0010    CALL     2   1   2
+0011    GGET     2   3      ; "assert"
+0012    TGETS    2   2   4  ; "are"
+0013    TGETS    2   2   5  ; "same"
+0014    TGETS    3   1   6  ; "body"
+0015    TGETS    3   3   7  ; "args"
+0016    MOV      4   0
+0017    CALL     2   1   3
+0018    RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:93-106
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    GGET     0   1      ; "coroutine"
+0006    TGETS    0   0   2  ; "create"
+0007    FNEW     1   3      ; spore_spec.lua:95
+0008    CALL     0   2   2
+0009    UGET     1   1      ; client
+0010    MOV      2   1
+0011    TGETS    1   1   4  ; "reset_middlewares"
+0012    CALL     1   1   2
+0013    UGET     1   1      ; client
+0014    MOV      2   1
+0015    TGETS    1   1   5  ; "enable"
+0016    KSTR     3   6      ; "Format.JSON"
+0017    CALL     1   1   3
+0018    UGET     1   1      ; client
+0019    MOV      2   1
+0020    TGETS    1   1   5  ; "enable"
+0021    KSTR     3   7      ; "AsyncHTTP"
+0022    TDUP     4   8
+0023    TSETS    0   4   9  ; "thread"
+0024    CALL     1   1   4
+0025    GGET     1   1      ; "coroutine"
+0026    TGETS    1   1  10  ; "resume"
+0027    MOV      2   0
+0028    CALL     1   1   2
+0029    UGET     1   0      ; UIManager
+0030    MOV      2   1
+0031    TGETS    1   1  11  ; "runForever"
+0032    CALL     1   1   2
+0033    RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:110-115
+0001    TDUP     0   0
+0002    UGET     1   0      ; client
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "post_info"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    UGET     2   1      ; UIManager
+0008    MOV      3   2
+0009    TGETS    2   2   2  ; "quit"
+0010    CALL     2   1   2
+0011    GGET     2   3      ; "assert"
+0012    TGETS    2   2   4  ; "are"
+0013    TGETS    2   2   5  ; "same"
+0014    TGETS    3   1   6  ; "body"
+0015    TGETS    3   3   7  ; "json"
+0016    MOV      4   0
+0017    CALL     2   1   3
+0018    RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:108-121
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    GGET     0   1      ; "coroutine"
+0006    TGETS    0   0   2  ; "create"
+0007    FNEW     1   3      ; spore_spec.lua:110
+0008    CALL     0   2   2
+0009    UGET     1   1      ; client
+0010    MOV      2   1
+0011    TGETS    1   1   4  ; "reset_middlewares"
+0012    CALL     1   1   2
+0013    UGET     1   1      ; client
+0014    MOV      2   1
+0015    TGETS    1   1   5  ; "enable"
+0016    KSTR     3   6      ; "Format.JSON"
+0017    CALL     1   1   3
+0018    UGET     1   1      ; client
+0019    MOV      2   1
+0020    TGETS    1   1   5  ; "enable"
+0021    KSTR     3   7      ; "AsyncHTTP"
+0022    TDUP     4   8
+0023    TSETS    0   4   9  ; "thread"
+0024    CALL     1   1   4
+0025    GGET     1   1      ; "coroutine"
+0026    TGETS    1   1  10  ; "resume"
+0027    MOV      2   0
+0028    CALL     1   1   2
+0029    UGET     1   0      ; UIManager
+0030    MOV      2   1
+0031    TGETS    1   1  11  ; "runForever"
+0032    CALL     1   1   2
+0033    RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:56-122
+0001    KNIL     0   1
+0002    GGET     2   0      ; "setup"
+0003    FNEW     3   1      ; spore_spec.lua:59
+0004    CALL     2   1   2
+0005    GGET     2   2      ; "it"
+0006    KSTR     3   3      ; "should complete GET request"
+0007    FNEW     4   4      ; spore_spec.lua:93
+0008    CALL     2   1   3
+0009    GGET     2   2      ; "it"
+0010    KSTR     3   5      ; "should complete POST request"
+0011    FNEW     4   6      ; spore_spec.lua:108
+0012    CALL     2   1   3
+0013    UCLO     0 => 0014
+0014 => RET0     0   1
+
+-- BYTECODE -- spore_spec.lua:0-123
+0001    KSTR     0   0      ; "{\n    "base_url" : "http://httpbin.org""~
+0002    GGET     1   1      ; "describe"
+0003    KSTR     2   2      ; "Lua Spore modules #notest #nocov"
+0004    FNEW     3   3      ; spore_spec.lua:34
+0005    CALL     1   1   3
+0006    GGET     1   1      ; "describe"
+0007    KSTR     2   4      ; "Lua Spore modules with async http reques"~
+0008    FNEW     3   5      ; spore_spec.lua:56
+0009    CALL     1   1   3
+0010    UCLO     0 => 0011
+0011 => RET0     0   1
+

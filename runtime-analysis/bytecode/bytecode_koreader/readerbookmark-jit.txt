@@ -1,0 +1,1893 @@
+-- BYTECODE -- readerbookmark.lua:25-34
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "hasKeyboard"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0013
+0007    TDUP     1   4
+0008    TDUP     2   3
+0009    TDUP     3   2
+0010    TSETB    3   2   1
+0011    TSETS    2   1   5  ; "ShowBookmark"
+0012    TSETS    1   0   1  ; "key_events"
+0013 => TGETS    1   0   6  ; "ui"
+0014    TGETS    1   1   7  ; "menu"
+0015    MOV      2   1
+0016    TGETS    1   1   8  ; "registerToMainMenu"
+0017    MOV      3   0
+0018    CALL     1   1   3
+0019    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:40-42
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onShowBookmark"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:46-46
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "isCurrentPageBookmarked"
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0012
+0007    UGET     0   1      ; _
+0008    KSTR     1   1      ; "Remove bookmark for current page"
+0009    CALL     0   2   2
+0010    IST          0
+0011    JMP      1 => 0015
+0012 => UGET     0   1      ; _
+0013    KSTR     1   2      ; "Bookmark current page"
+0014    CALL     0   2   2
+0015 => RET1     0   2
+
+-- BYTECODE -- readerbookmark.lua:47-49
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onToggleBookmark"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:55-55
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    TGETS    0   0   1  ; "paging"
+0004    TGETS    0   0   2  ; "bookmark_flipping_mode"
+0005    RET1     0   2
+
+-- BYTECODE -- readerbookmark.lua:56-59
+0001    UGET     1   0      ; self
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "enableBookmarkBrowsingMode"
+0004    CALL     1   1   2
+0005    MOV      2   0
+0006    TGETS    1   0   1  ; "closeMenu"
+0007    CALL     1   1   2
+0008    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:36-62
+0001    TDUP     2   2
+0002    TGETS    3   0   1  ; "bm_menu_title"
+0003    TSETS    3   2   3  ; "text"
+0004    FNEW     3   4      ; readerbookmark.lua:40
+0005    TSETS    3   2   5  ; "callback"
+0006    TSETS    2   1   0  ; "bookmarks"
+0007    UGET     2   0      ; Device
+0008    MOV      3   2
+0009    TGETS    2   2   6  ; "isTouchDevice"
+0010    CALL     2   2   2
+0011    IST          2
+0012    JMP      2 => 0019
+0013    TDUP     2   9
+0014    FNEW     3   8      ; readerbookmark.lua:46
+0015    TSETS    3   2  10  ; "text_func"
+0016    FNEW     3  11      ; readerbookmark.lua:47
+0017    TSETS    3   2   5  ; "callback"
+0018    TSETS    2   1   7  ; "toggle_bookmark"
+0019 => TGETS    2   0  12  ; "ui"
+0020    TGETS    2   2  13  ; "document"
+0021    TGETS    2   2  14  ; "info"
+0022    TGETS    2   2  15  ; "has_pages"
+0023    ISF          2
+0024    JMP      3 => 0033
+0025    TDUP     2  18
+0026    TGETS    3   0  17  ; "bbm_menu_title"
+0027    TSETS    3   2   3  ; "text"
+0028    FNEW     3  19      ; readerbookmark.lua:55
+0029    TSETS    3   2  20  ; "checked_func"
+0030    FNEW     3  21      ; readerbookmark.lua:56
+0031    TSETS    3   2   5  ; "callback"
+0032    TSETS    2   1  16  ; "bookmark_browsing_mode"
+0033 => UCLO     0 => 0034
+0034 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:64-66
+0001    TGETS    1   0   0  ; "ui"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "handleEvent"
+0004    UGET     3   0      ; Event
+0005    MOV      4   3
+0006    TGETS    3   3   2  ; "new"
+0007    KSTR     5   3      ; "ToggleBookmarkFlipping"
+0008    CALL     3   0   3
+0009    CALLM    1   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:68-70
+0001    TGETS    3   1   0  ; "datetime"
+0002    TGETS    4   2   0  ; "datetime"
+0003    ISLT     4   3
+0004    JMP      3 => 0007
+0005    KPRI     3   1
+0006    JMP      4 => 0008
+0007 => KPRI     3   2
+0008 => RET1     3   2
+
+-- BYTECODE -- readerbookmark.lua:72-86
+0001    TGETS    3   0   0  ; "ui"
+0002    TGETS    3   3   1  ; "document"
+0003    TGETS    3   3   2  ; "info"
+0004    TGETS    3   3   3  ; "has_pages"
+0005    ISF          3
+0006    JMP      4 => 0022
+0007    TGETS    3   1   4  ; "page"
+0008    TGETS    4   2   4  ; "page"
+0009    ISNEV    3   4
+0010    JMP      3 => 0013
+0011    TGETS    3   1   5  ; "highlighted"
+0012    RET1     3   2
+0013 => TGETS    3   1   4  ; "page"
+0014    TGETS    4   2   4  ; "page"
+0015    ISLT     4   3
+0016    JMP      3 => 0019
+0017    KPRI     3   1
+0018    JMP      4 => 0020
+0019 => KPRI     3   2
+0020 => RET1     3   2
+0021    JMP      3 => 0044
+0022 => TGETS    3   0   0  ; "ui"
+0023    TGETS    3   3   1  ; "document"
+0024    MOV      4   3
+0025    TGETS    3   3   6  ; "getPageFromXPointer"
+0026    TGETS    5   1   4  ; "page"
+0027    CALL     3   2   3
+0028    TGETS    4   0   0  ; "ui"
+0029    TGETS    4   4   1  ; "document"
+0030    MOV      5   4
+0031    TGETS    4   4   6  ; "getPageFromXPointer"
+0032    TGETS    6   2   4  ; "page"
+0033    CALL     4   2   3
+0034    ISNEV    3   4
+0035    JMP      5 => 0038
+0036    TGETS    5   1   5  ; "highlighted"
+0037    RET1     5   2
+0038 => ISLT     4   3
+0039    JMP      5 => 0042
+0040    KPRI     5   1
+0041    JMP      6 => 0043
+0042 => KPRI     5   2
+0043 => RET1     5   2
+0044 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:88-100
+0001    TGETS    3   0   0  ; "ui"
+0002    TGETS    3   3   1  ; "document"
+0003    TGETS    3   3   2  ; "info"
+0004    TGETS    3   3   3  ; "has_pages"
+0005    ISF          3
+0006    JMP      4 => 0016
+0007    TGETS    3   1   4  ; "page"
+0008    TGETS    4   2   4  ; "page"
+0009    ISLT     3   4
+0010    JMP      3 => 0013
+0011    KPRI     3   1
+0012    JMP      4 => 0014
+0013 => KPRI     3   2
+0014 => RET1     3   2
+0015    JMP      3 => 0034
+0016 => TGETS    3   0   0  ; "ui"
+0017    TGETS    3   3   1  ; "document"
+0018    MOV      4   3
+0019    TGETS    3   3   5  ; "getPageFromXPointer"
+0020    TGETS    5   1   4  ; "page"
+0021    CALL     3   2   3
+0022    TGETS    4   0   0  ; "ui"
+0023    TGETS    4   4   1  ; "document"
+0024    MOV      5   4
+0025    TGETS    4   4   5  ; "getPageFromXPointer"
+0026    TGETS    6   2   4  ; "page"
+0027    CALL     4   2   3
+0028    ISLT     3   4
+0029    JMP      5 => 0032
+0030    KPRI     5   1
+0031    JMP      6 => 0033
+0032 => KPRI     5   2
+0033 => RET1     5   2
+0034 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:102-108
+0001    TGETS    3   0   0  ; "ui"
+0002    TGETS    3   3   1  ; "document"
+0003    TGETS    3   3   2  ; "info"
+0004    TGETS    3   3   3  ; "has_pages"
+0005    ISF          3
+0006    JMP      4 => 0015
+0007    TGETS    3   2   4  ; "page"
+0008    ISLT     3   1
+0009    JMP      3 => 0012
+0010    KPRI     3   1
+0011    JMP      4 => 0013
+0012 => KPRI     3   2
+0013 => RET1     3   2
+0014    JMP      3 => 0027
+0015 => TGETS    3   0   0  ; "ui"
+0016    TGETS    3   3   1  ; "document"
+0017    MOV      4   3
+0018    TGETS    3   3   5  ; "getPageFromXPointer"
+0019    TGETS    5   2   4  ; "page"
+0020    CALL     3   2   3
+0021    ISLT     3   1
+0022    JMP      3 => 0025
+0023    KPRI     3   1
+0024    JMP      4 => 0026
+0025 => KPRI     3   2
+0026 => RET1     3   2
+0027 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:110-116
+0001    TGETS    3   0   0  ; "ui"
+0002    TGETS    3   3   1  ; "document"
+0003    TGETS    3   3   2  ; "info"
+0004    TGETS    3   3   3  ; "has_pages"
+0005    ISF          3
+0006    JMP      4 => 0015
+0007    TGETS    3   2   4  ; "page"
+0008    ISLT     1   3
+0009    JMP      3 => 0012
+0010    KPRI     3   1
+0011    JMP      4 => 0013
+0012 => KPRI     3   2
+0013 => RET1     3   2
+0014    JMP      3 => 0027
+0015 => TGETS    3   0   0  ; "ui"
+0016    TGETS    3   3   1  ; "document"
+0017    MOV      4   3
+0018    TGETS    3   3   5  ; "getPageFromXPointer"
+0019    TGETS    5   2   4  ; "page"
+0020    CALL     3   2   3
+0021    ISLT     1   3
+0022    JMP      3 => 0025
+0023    KPRI     3   1
+0024    JMP      4 => 0026
+0025 => KPRI     3   2
+0026 => RET1     3   2
+0027 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:122-124
+0001    UGET     2   0      ; self
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "isBookmarkInPageOrder"
+0004    MOV      4   0
+0005    MOV      5   1
+0006    CALLT    2   4
+
+-- BYTECODE -- readerbookmark.lua:118-126
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "readSetting"
+0003    KSTR     4   1      ; "bookmarks_sorted"
+0004    CALL     2   2   3
+0005    IST          2
+0006    JMP      2 => 0012
+0007    GGET     2   2      ; "table"
+0008    TGETS    2   2   3  ; "sort"
+0009    TGETS    3   0   4  ; "bookmarks"
+0010    FNEW     4   5      ; readerbookmark.lua:122
+0011    CALL     2   1   3
+0012 => UCLO     0 => 0013
+0013 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:128-149
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "readSetting"
+0003    KSTR     4   1      ; "highlight"
+0004    CALL     2   2   3
+0005    IST          2
+0006    JMP      3 => 0008
+0007    TNEW     2   0
+0008 => MOV      4   1
+0009    TGETS    3   1   0  ; "readSetting"
+0010    KSTR     5   2      ; "highlights_imported"
+0011    CALL     3   2   3
+0012    IST          3
+0013    JMP      3 => 0046
+0014    GGET     3   3      ; "pairs"
+0015    MOV      4   2
+0016    CALL     3   4   2
+0017    ISNEXT   6 => 0044
+0018 => GGET     8   4      ; "ipairs"
+0019    MOV      9   7
+0020    CALL     8   4   2
+0021    JMP     11 => 0042
+0022 => TGETS   13   0   5  ; "ui"
+0023    TGETS   13  13   6  ; "document"
+0024    TGETS   13  13   7  ; "info"
+0025    TGETS   13  13   8  ; "has_pages"
+0026    ISF         13
+0027    JMP     14 => 0030
+0028    IST          6
+0029    JMP     13 => 0031
+0030 => TGETS    6  12   9  ; "pos0"
+0031 => ISF          6
+0032    JMP     13 => 0042
+0033    MOV     14   0
+0034    TGETS   13   0  10  ; "addBookmark"
+0035    TDUP    15  11
+0036    TSETS    6  15  12  ; "page"
+0037    TGETS   16  12  13  ; "datetime"
+0038    TSETS   16  15  13  ; "datetime"
+0039    TGETS   16  12  14  ; "text"
+0040    TSETS   16  15  15  ; "notes"
+0041    CALL    13   1   3
+0042 => ITERC   11   3   3
+0043    ITERL   11 => 0022
+0044 => ITERN    6   3   3
+0045    ITERL    6 => 0018
+0046 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:155-158
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "fixBookmarkSort"
+0004    UGET     2   1      ; config
+0005    CALL     0   1   3
+0006    UGET     0   0      ; self
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "importSavedHighlight"
+0009    UGET     2   1      ; config
+0010    CALL     0   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:151-159
+0001    MOV      3   1
+0002    TGETS    2   1   1  ; "readSetting"
+0003    KSTR     4   0      ; "bookmarks"
+0004    CALL     2   2   3
+0005    IST          2
+0006    JMP      3 => 0008
+0007    TNEW     2   0
+0008 => TSETS    2   0   0  ; "bookmarks"
+0009    TGETS    2   0   2  ; "ui"
+0010    MOV      3   2
+0011    TGETS    2   2   3  ; "registerPostInitCallback"
+0012    FNEW     4   4      ; readerbookmark.lua:155
+0013    CALL     2   1   3
+0014    UCLO     0 => 0015
+0015 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:161-165
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "doc_settings"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "saveSetting"
+0005    KSTR     3   3      ; "bookmarks"
+0006    TGETS    4   0   3  ; "bookmarks"
+0007    CALL     1   1   4
+0008    TGETS    1   0   0  ; "ui"
+0009    TGETS    1   1   1  ; "doc_settings"
+0010    MOV      2   1
+0011    TGETS    1   1   2  ; "saveSetting"
+0012    KSTR     3   4      ; "bookmarks_sorted"
+0013    KPRI     4   2
+0014    CALL     1   1   4
+0015    TGETS    1   0   0  ; "ui"
+0016    TGETS    1   1   1  ; "doc_settings"
+0017    MOV      2   1
+0018    TGETS    1   1   2  ; "saveSetting"
+0019    KSTR     3   5      ; "highlights_imported"
+0020    KPRI     4   2
+0021    CALL     1   1   4
+0022    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:167-175
+0001    KPRI     1   0
+0002    TGETS    2   0   0  ; "ui"
+0003    TGETS    2   2   1  ; "document"
+0004    TGETS    2   2   2  ; "info"
+0005    TGETS    2   2   3  ; "has_pages"
+0006    ISF          2
+0007    JMP      3 => 0012
+0008    TGETS    2   0   4  ; "view"
+0009    TGETS    2   2   5  ; "state"
+0010    TGETS    1   2   6  ; "page"
+0011    JMP      2 => 0018
+0012 => TGETS    2   0   0  ; "ui"
+0013    TGETS    2   2   1  ; "document"
+0014    MOV      3   2
+0015    TGETS    2   2   7  ; "getXPointer"
+0016    CALL     2   2   2
+0017    MOV      1   2
+0018 => MOV      3   0
+0019    TGETS    2   0   8  ; "getDogearBookmarkIndex"
+0020    MOV      4   1
+0021    CALL     2   2   3
+0022    ISF          2
+0023    JMP      3 => 0026
+0024    KPRI     2   2
+0025    JMP      3 => 0027
+0026 => KPRI     2   1
+0027 => RET1     2   2
+
+-- BYTECODE -- readerbookmark.lua:177-189
+0001    KPRI     1   0
+0002    TGETS    2   0   0  ; "ui"
+0003    TGETS    2   2   1  ; "document"
+0004    TGETS    2   2   2  ; "info"
+0005    TGETS    2   2   3  ; "has_pages"
+0006    ISF          2
+0007    JMP      3 => 0012
+0008    TGETS    2   0   4  ; "view"
+0009    TGETS    2   2   5  ; "state"
+0010    TGETS    1   2   6  ; "page"
+0011    JMP      2 => 0018
+0012 => TGETS    2   0   0  ; "ui"
+0013    TGETS    2   2   1  ; "document"
+0014    MOV      3   2
+0015    TGETS    2   2   7  ; "getXPointer"
+0016    CALL     2   2   2
+0017    MOV      1   2
+0018 => MOV      3   0
+0019    TGETS    2   0   8  ; "toggleBookmark"
+0020    MOV      4   1
+0021    CALL     2   1   3
+0022    TGETS    2   0   0  ; "ui"
+0023    MOV      3   2
+0024    TGETS    2   2   9  ; "handleEvent"
+0025    UGET     4   0      ; Event
+0026    MOV      5   4
+0027    TGETS    4   4  10  ; "new"
+0028    KSTR     6  11      ; "SetDogearVisibility"
+0029    TGETS    7   0   4  ; "view"
+0030    TGETS    7   7  12  ; "dogear_visible"
+0031    NOT      7   7
+0032    CALL     4   0   4
+0033    CALLM    2   1   1
+0034    UGET     2   1      ; UIManager
+0035    MOV      3   2
+0036    TGETS    2   2  13  ; "setDirty"
+0037    TGETS    4   0   4  ; "view"
+0038    TGETS    4   4  14  ; "dialog"
+0039    KSTR     5   0      ; "ui"
+0040    CALL     2   1   4
+0041    KPRI     2   2
+0042    RET1     2   2
+
+-- BYTECODE -- readerbookmark.lua:191-197
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "getDogearBookmarkIndex"
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISF          2
+0006    JMP      3 => 0018
+0007    TGETS    2   0   1  ; "ui"
+0008    MOV      3   2
+0009    TGETS    2   2   2  ; "handleEvent"
+0010    UGET     4   0      ; Event
+0011    MOV      5   4
+0012    TGETS    4   4   3  ; "new"
+0013    KSTR     6   4      ; "SetDogearVisibility"
+0014    KPRI     7   2
+0015    CALL     4   0   4
+0016    CALLM    2   1   1
+0017    JMP      2 => 0028
+0018 => TGETS    2   0   1  ; "ui"
+0019    MOV      3   2
+0020    TGETS    2   2   2  ; "handleEvent"
+0021    UGET     4   0      ; Event
+0022    MOV      5   4
+0023    TGETS    4   4   3  ; "new"
+0024    KSTR     6   4      ; "SetDogearVisibility"
+0025    KPRI     7   1
+0026    CALL     4   0   4
+0027    CALLM    2   1   1
+0028 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:199-205
+0001    TGETS    2   0   0  ; "ui"
+0002    TGETS    2   2   1  ; "document"
+0003    TGETS    2   2   2  ; "info"
+0004    TGETS    2   2   3  ; "has_pages"
+0005    ISF          2
+0006    JMP      3 => 0012
+0007    MOV      3   0
+0008    TGETS    2   0   4  ; "setDogearVisibility"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    JMP      2 => 0020
+0012 => MOV      3   0
+0013    TGETS    2   0   4  ; "setDogearVisibility"
+0014    TGETS    4   0   0  ; "ui"
+0015    TGETS    4   4   1  ; "document"
+0016    MOV      5   4
+0017    TGETS    4   4   5  ; "getXPointer"
+0018    CALL     4   0   2
+0019    CALLM    2   1   1
+0020 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:207-209
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "setDogearVisibility"
+0003    TGETS    4   0   1  ; "ui"
+0004    TGETS    4   4   2  ; "document"
+0005    MOV      5   4
+0006    TGETS    4   4   3  ; "getXPointer"
+0007    CALL     4   0   2
+0008    CALLM    2   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:211-216
+0001    ISF          1
+0002    JMP      2 => 0022
+0003    TGETS    2   0   0  ; "ui"
+0004    TGETS    2   2   1  ; "document"
+0005    TGETS    2   2   2  ; "info"
+0006    TGETS    2   2   3  ; "has_pages"
+0007    ISF          2
+0008    JMP      3 => 0011
+0009    KSTR     2   4      ; "GotoPage"
+0010    JMP      3 => 0012
+0011 => KSTR     2   5      ; "GotoXPointer"
+0012 => TGETS    3   0   0  ; "ui"
+0013    MOV      4   3
+0014    TGETS    3   3   6  ; "handleEvent"
+0015    UGET     5   0      ; Event
+0016    MOV      6   5
+0017    TGETS    5   5   7  ; "new"
+0018    MOV      7   2
+0019    MOV      8   1
+0020    CALL     5   0   4
+0021    CALLM    3   1   1
+0022 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:266-269
+0001    UGET     2   0      ; bookmark
+0002    TGETS    2   2   0  ; "ui"
+0003    TGETS    2   2   1  ; "link"
+0004    MOV      3   2
+0005    TGETS    2   2   2  ; "addCurrentLocationToStack"
+0006    CALL     2   1   2
+0007    UGET     2   0      ; bookmark
+0008    MOV      3   2
+0009    TGETS    2   2   3  ; "gotoBookmark"
+0010    TGETS    4   1   4  ; "page"
+0011    CALL     2   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:281-284
+0001    UGET     0   0      ; bookmark
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "renameBookmark"
+0004    UGET     2   1      ; item
+0005    CALL     0   1   3
+0006    UGET     0   2      ; UIManager
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "close"
+0009    UGET     2   3      ; self
+0010    TGETS    2   2   2  ; "textviewer"
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:292-294
+0001    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:296-300
+0001    UGET     0   0      ; bookmark
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "removeHighlight"
+0004    UGET     2   1      ; item
+0005    CALL     0   1   3
+0006    UGET     0   2      ; bm_menu
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "switchItemTable"
+0009    KPRI     2   0
+0010    UGET     3   0      ; bookmark
+0011    TGETS    3   3   2  ; "bookmarks"
+0012    KSHORT   4  -1
+0013    CALL     0   1   5
+0014    UGET     0   3      ; UIManager
+0015    MOV      1   0
+0016    TGETS    0   0   3  ; "close"
+0017    UGET     2   4      ; self
+0018    TGETS    2   2   4  ; "textviewer"
+0019    CALL     0   1   3
+0020    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:288-302
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; ConfirmBox
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   3
+0008    UGET     5   2      ; _
+0009    KSTR     6   2      ; "Do you want remove this bookmark?"
+0010    CALL     5   2   2
+0011    TSETS    5   4   4  ; "text"
+0012    UGET     5   2      ; _
+0013    KSTR     6   5      ; "Cancel"
+0014    CALL     5   2   2
+0015    TSETS    5   4   6  ; "cancel_text"
+0016    FNEW     5   7      ; readerbookmark.lua:292
+0017    TSETS    5   4   8  ; "cancel_callback"
+0018    UGET     5   2      ; _
+0019    KSTR     6   9      ; "Remove"
+0020    CALL     5   2   2
+0021    TSETS    5   4  10  ; "ok_text"
+0022    FNEW     5  11      ; readerbookmark.lua:296
+0023    TSETS    5   4  12  ; "ok_callback"
+0024    CALL     2   0   3
+0025    CALLM    0   1   1
+0026    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:309-311
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "textviewer"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:271-318
+0001    UGET     2   0      ; TextViewer
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "new"
+0004    TDUP     4   3
+0005    UGET     5   1      ; _
+0006    KSTR     6   2      ; "Bookmark details"
+0007    CALL     5   2   2
+0008    TSETS    5   4   4  ; "title"
+0009    TGETS    5   1   5  ; "notes"
+0010    TSETS    5   4   6  ; "text"
+0011    TGETS    5   0   7  ; "textviewer_width"
+0012    TSETS    5   4   8  ; "width"
+0013    TGETS    5   0   9  ; "textviewer_height"
+0014    TSETS    5   4  10  ; "height"
+0015    TNEW     5   3
+0016    TNEW     6   3
+0017    TDUP     7  12
+0018    UGET     8   1      ; _
+0019    KSTR     9  11      ; "Rename this bookmark"
+0020    CALL     8   2   2
+0021    TSETS    8   7   6  ; "text"
+0022    FNEW     8  13      ; readerbookmark.lua:281
+0023    TSETS    8   7  14  ; "callback"
+0024    TSETB    7   6   1
+0025    TDUP     7  16
+0026    UGET     8   1      ; _
+0027    KSTR     9  15      ; "Remove this bookmark"
+0028    CALL     8   2   2
+0029    TSETS    8   7   6  ; "text"
+0030    FNEW     8  17      ; readerbookmark.lua:288
+0031    TSETS    8   7  14  ; "callback"
+0032    TSETB    7   6   2
+0033    TSETB    6   5   1
+0034    TNEW     6   3
+0035    TDUP     7  19
+0036    UGET     8   1      ; _
+0037    KSTR     9  18      ; "Close"
+0038    CALL     8   2   2
+0039    TSETS    8   7   6  ; "text"
+0040    FNEW     8  20      ; readerbookmark.lua:309
+0041    TSETS    8   7  14  ; "callback"
+0042    TSETB    7   6   1
+0043    TSETB    6   5   2
+0044    TSETS    5   4  21  ; "buttons_table"
+0045    CALL     2   2   3
+0046    TSETS    2   0   0  ; "textviewer"
+0047    UGET     2   3      ; UIManager
+0048    MOV      3   2
+0049    TGETS    2   2  22  ; "show"
+0050    TGETS    4   0   0  ; "textviewer"
+0051    CALL     2   1   3
+0052    KPRI     2   2
+0053    UCLO     0 => 0054
+0054 => RET1     2   2
+
+-- BYTECODE -- readerbookmark.lua:320-322
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "bookmark_menu"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:325-328
+0001    UGET     0   0      ; bm_menu
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "updateItems"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; self
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "onSaveSettings"
+0008    CALL     0   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:218-332
+0001    GGET     1   0      ; "ipairs"
+0002    TGETS    2   0   1  ; "bookmarks"
+0003    CALL     1   4   2
+0004    JMP      4 => 0054
+0005 => TGETS    6   5   2  ; "page"
+0006    TGETS    7   0   3  ; "ui"
+0007    TGETS    7   7   4  ; "document"
+0008    TGETS    7   7   5  ; "info"
+0009    TGETS    7   7   6  ; "has_pages"
+0010    IST          7
+0011    JMP      7 => 0039
+0012    TGETS    7   0   3  ; "ui"
+0013    TGETS    7   7   7  ; "pagemap"
+0014    ISF          7
+0015    JMP      8 => 0032
+0016    TGETS    7   0   3  ; "ui"
+0017    TGETS    7   7   7  ; "pagemap"
+0018    MOV      8   7
+0019    TGETS    7   7   8  ; "wantsPageLabels"
+0020    CALL     7   2   2
+0021    ISF          7
+0022    JMP      8 => 0032
+0023    TGETS    7   0   3  ; "ui"
+0024    TGETS    7   7   7  ; "pagemap"
+0025    MOV      8   7
+0026    TGETS    7   7   9  ; "getXPointerPageLabel"
+0027    MOV      9   6
+0028    KPRI    10   2
+0029    CALL     7   2   4
+0030    MOV      6   7
+0031    JMP      7 => 0039
+0032 => TGETS    7   0   3  ; "ui"
+0033    TGETS    7   7   4  ; "document"
+0034    MOV      8   7
+0035    TGETS    7   7  10  ; "getPageFromXPointer"
+0036    MOV      9   6
+0037    CALL     7   2   3
+0038    MOV      6   7
+0039 => TGETS    7   5  11  ; "text"
+0040    ISEQP    7   0
+0041    JMP      7 => 0045
+0042    TGETS    7   5  11  ; "text"
+0043    ISNES    7  12      ; ""
+0044    JMP      7 => 0054
+0045 => UGET     7   0      ; T
+0046    UGET     8   1      ; _
+0047    KSTR     9  13      ; "Page %1 %2 @ %3"
+0048    CALL     8   2   2
+0049    MOV      9   6
+0050    TGETS   10   5  14  ; "notes"
+0051    TGETS   11   5  15  ; "datetime"
+0052    CALL     7   2   5
+0053    TSETS    7   5  11  ; "text"
+0054 => ITERC    4   3   3
+0055    ITERL    4 => 0005
+0056    UGET     1   2      ; Menu
+0057    MOV      2   1
+0058    TGETS    1   1  16  ; "new"
+0059    TDUP     3  18
+0060    UGET     4   1      ; _
+0061    KSTR     5  17      ; "Bookmarks"
+0062    CALL     4   2   2
+0063    TSETS    4   3  19  ; "title"
+0064    TGETS    4   0   1  ; "bookmarks"
+0065    TSETS    4   3  20  ; "item_table"
+0066    UGET     4   3      ; Screen
+0067    MOV      5   4
+0068    TGETS    4   4  21  ; "getWidth"
+0069    CALL     4   2   2
+0070    TSETS    4   3  22  ; "width"
+0071    UGET     4   3      ; Screen
+0072    MOV      5   4
+0073    TGETS    4   4  23  ; "getHeight"
+0074    CALL     4   2   2
+0075    TSETS    4   3  24  ; "height"
+0076    UGET     4   4      ; Font
+0077    MOV      5   4
+0078    TGETS    4   4  25  ; "getFace"
+0079    KSTR     6  26      ; "x_smallinfofont"
+0080    CALL     4   2   3
+0081    TSETS    4   3  27  ; "cface"
+0082    GGET     4  28      ; "G_reader_settings"
+0083    MOV      5   4
+0084    TGETS    4   4  29  ; "readSetting"
+0085    KSTR     6  30      ; "items_per_page"
+0086    CALL     4   2   3
+0087    IST          4
+0088    JMP      5 => 0090
+0089    KSHORT   4  14
+0090 => TSETS    4   3  31  ; "perpage"
+0091    GGET     4  32      ; "require"
+0092    KSTR     5  33      ; "ffi/blitbuffer"
+0093    CALL     4   2   2
+0094    TGETS    4   4  34  ; "COLOR_WHITE"
+0095    TSETS    4   3  35  ; "line_color"
+0096    TNEW     4   3
+0097    UGET     5   5      ; GestureRange
+0098    MOV      6   5
+0099    TGETS    5   5  16  ; "new"
+0100    TDUP     7  36
+0101    UGET     8   6      ; Geom
+0102    MOV      9   8
+0103    TGETS    8   8  16  ; "new"
+0104    TDUP    10  37
+0105    UGET    11   3      ; Screen
+0106    MOV     12  11
+0107    TGETS   11  11  21  ; "getWidth"
+0108    CALL    11   2   2
+0109    TSETS   11  10  38  ; "w"
+0110    UGET    11   3      ; Screen
+0111    MOV     12  11
+0112    TGETS   11  11  23  ; "getHeight"
+0113    CALL    11   2   2
+0114    TSETS   11  10  39  ; "h"
+0115    CALL     8   2   3
+0116    TSETS    8   7  40  ; "range"
+0117    UGET     8   7      ; BD
+0118    TGETS    8   8  41  ; "flipDirectionIfMirroredUILayout"
+0119    KSTR     9  42      ; "east"
+0120    CALL     8   2   2
+0121    TSETS    8   7  43  ; "direction"
+0122    CALL     5   0   3
+0123    TSETM    5   0      ; 1
+0124    TSETS    4   3  44  ; "on_close_ges"
+0125    CALL     1   2   3
+0126    UGET     2   8      ; CenterContainer
+0127    MOV      3   2
+0128    TGETS    2   2  16  ; "new"
+0129    TDUP     4  47
+0130    UGET     5   3      ; Screen
+0131    MOV      6   5
+0132    TGETS    5   5  46  ; "getSize"
+0133    CALL     5   2   2
+0134    TSETS    5   4  48  ; "dimen"
+0135    TSETB    1   4   1
+0136    CALL     2   2   3
+0137    TSETS    2   0  45  ; "bookmark_menu"
+0138    MOV      2   0
+0139    FNEW     3  50      ; readerbookmark.lua:266
+0140    TSETS    3   1  49  ; "onMenuChoice"
+0141    FNEW     3  52      ; readerbookmark.lua:271
+0142    TSETS    3   1  51  ; "onMenuHold"
+0143    FNEW     3  54      ; readerbookmark.lua:320
+0144    TSETS    3   1  53  ; "close_callback"
+0145    TGETS    3   0  45  ; "bookmark_menu"
+0146    TSETS    3   1  55  ; "show_parent"
+0147    FNEW     3  57      ; readerbookmark.lua:325
+0148    TSETS    3   0  56  ; "refresh"
+0149    UGET     3  10      ; UIManager
+0150    MOV      4   3
+0151    TGETS    3   3  58  ; "show"
+0152    TGETS    5   0  45  ; "bookmark_menu"
+0153    CALL     3   1   3
+0154    KPRI     3   2
+0155    UCLO     0 => 0156
+0156 => RET1     3   2
+
+-- BYTECODE -- readerbookmark.lua:334-342
+0001    TGETS    3   0   0  ; "ui"
+0002    TGETS    3   3   1  ; "document"
+0003    TGETS    3   3   2  ; "info"
+0004    TGETS    3   3   3  ; "has_pages"
+0005    ISF          3
+0006    JMP      4 => 0015
+0007    TGETS    3   1   4  ; "page"
+0008    ISEQV    3   2
+0009    JMP      3 => 0012
+0010    KPRI     3   1
+0011    JMP      4 => 0013
+0012 => KPRI     3   2
+0013 => RET1     3   2
+0014    JMP      3 => 0021
+0015 => TGETS    3   0   0  ; "ui"
+0016    TGETS    3   3   1  ; "document"
+0017    MOV      4   3
+0018    TGETS    3   3   5  ; "isXPointerInCurrentPage"
+0019    TGETS    5   1   4  ; "page"
+0020    CALLT    3   3
+0021 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:344-358
+0001    KPRI     2   0
+0002    KSHORT   3   1
+0003    TGETS    4   0   0  ; "bookmarks"
+0004    LEN      4   4
+0005 => ISGT     3   4
+0006    JMP      5 => 0040
+0007    LOOP     5 => 0040
+0008    GGET     5   1      ; "math"
+0009    TGETS    5   5   2  ; "floor"
+0010    ADDVV    6   3   4
+0011    DIVVN    6   6   0  ; 2
+0012    CALL     5   2   2
+0013    MOV      2   5
+0014    TGETS    5   0   0  ; "bookmarks"
+0015    TGETV    5   5   2
+0016    TGETS    6   5   3  ; "highlighted"
+0017    IST          6
+0018    JMP      6 => 0028
+0019    MOV      7   0
+0020    TGETS    6   0   4  ; "isBookmarkMatch"
+0021    MOV      8   5
+0022    MOV      9   1
+0023    CALL     6   2   4
+0024    ISF          6
+0025    JMP      7 => 0028
+0026    RET1     2   2
+0027    JMP      6 => 0005
+0028 => MOV      7   0
+0029    TGETS    6   0   5  ; "isBookmarkInPageOrder"
+0030    TDUP     8   6
+0031    TSETS    1   8   7  ; "page"
+0032    MOV      9   5
+0033    CALL     6   2   4
+0034    ISF          6
+0035    JMP      7 => 0038
+0036    SUBVN    4   2   1  ; 1
+0037    JMP      6 => 0005
+0038 => ADDVN    3   2   1  ; 1
+0039    JMP      5 => 0005
+0040 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:360-370
+0001    TGETS    3   1   0  ; "notes"
+0002    TGETS    4   2   0  ; "notes"
+0003    ISEQV    3   4
+0004    JMP      3 => 0007
+0005    KPRI     3   1
+0006    RET1     3   2
+0007 => TGETS    3   0   1  ; "ui"
+0008    TGETS    3   3   2  ; "document"
+0009    TGETS    3   3   3  ; "info"
+0010    TGETS    3   3   4  ; "has_pages"
+0011    ISF          3
+0012    JMP      4 => 0054
+0013    TGETS    3   2   5  ; "pos0"
+0014    ISF          3
+0015    JMP      4 => 0052
+0016    TGETS    3   2   6  ; "pos1"
+0017    ISF          3
+0018    JMP      4 => 0052
+0019    TGETS    3   1   5  ; "pos0"
+0020    TGETS    3   3   7  ; "page"
+0021    TGETS    4   2   5  ; "pos0"
+0022    TGETS    4   4   7  ; "page"
+0023    ISNEV    3   4
+0024    JMP      3 => 0049
+0025    TGETS    3   1   5  ; "pos0"
+0026    TGETS    3   3   8  ; "x"
+0027    TGETS    4   2   5  ; "pos0"
+0028    TGETS    4   4   8  ; "x"
+0029    ISNEV    3   4
+0030    JMP      3 => 0049
+0031    TGETS    3   1   5  ; "pos0"
+0032    TGETS    3   3   9  ; "y"
+0033    TGETS    4   2   5  ; "pos0"
+0034    TGETS    4   4   9  ; "y"
+0035    ISNEV    3   4
+0036    JMP      3 => 0049
+0037    TGETS    3   1   6  ; "pos1"
+0038    TGETS    3   3   8  ; "x"
+0039    TGETS    4   2   6  ; "pos1"
+0040    TGETS    4   4   8  ; "x"
+0041    ISNEV    3   4
+0042    JMP      3 => 0049
+0043    TGETS    3   1   6  ; "pos1"
+0044    TGETS    3   3   9  ; "y"
+0045    TGETS    4   2   6  ; "pos1"
+0046    TGETS    4   4   9  ; "y"
+0047    ISEQV    3   4
+0048    JMP      3 => 0051
+0049 => KPRI     3   1
+0050    JMP      4 => 0052
+0051 => KPRI     3   2
+0052 => RET1     3   2
+0053    JMP      3 => 0070
+0054 => TGETS    3   1   7  ; "page"
+0055    TGETS    4   2   7  ; "page"
+0056    ISNEV    3   4
+0057    JMP      3 => 0066
+0058    TGETS    3   1   5  ; "pos0"
+0059    TGETS    4   2   5  ; "pos0"
+0060    ISNEV    3   4
+0061    JMP      3 => 0066
+0062    TGETS    3   1   6  ; "pos1"
+0063    TGETS    4   2   6  ; "pos1"
+0064    ISEQV    3   4
+0065    JMP      3 => 0068
+0066 => KPRI     3   1
+0067    JMP      4 => 0069
+0068 => KPRI     3   2
+0069 => RET1     3   2
+0070 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:373-389
+0001    KSHORT   2   1
+0002    KSHORT   3   1
+0003    TGETS    4   0   0  ; "bookmarks"
+0004    LEN      4   4
+0005    KSHORT   5   0
+0006 => ISGT     2   4
+0007    JMP      6 => 0044
+0008    LOOP     6 => 0044
+0009    GGET     6   1      ; "math"
+0010    TGETS    6   6   2  ; "floor"
+0011    ADDVV    7   2   4
+0012    DIVVN    7   7   0  ; 2
+0013    CALL     6   2   2
+0014    MOV      3   6
+0015    MOV      7   0
+0016    TGETS    6   0   3  ; "isBookmarkSame"
+0017    MOV      8   1
+0018    TGETS    9   0   0  ; "bookmarks"
+0019    TGETV    9   9   3
+0020    CALL     6   2   4
+0021    ISF          6
+0022    JMP      7 => 0028
+0023    UGET     6   0      ; logger
+0024    TGETS    6   6   4  ; "warn"
+0025    KSTR     7   5      ; "skip adding duplicated bookmark"
+0026    CALL     6   1   2
+0027    RET0     0   1
+0028 => MOV      7   0
+0029    TGETS    6   0   6  ; "isBookmarkInPageOrder"
+0030    MOV      8   1
+0031    TGETS    9   0   0  ; "bookmarks"
+0032    TGETV    9   9   3
+0033    CALL     6   2   4
+0034    ISF          6
+0035    JMP      7 => 0040
+0036    SUBVN    6   3   1  ; 1
+0037    KSHORT   5   0
+0038    MOV      4   6
+0039    JMP      6 => 0006
+0040 => ADDVN    6   3   1  ; 1
+0041    KSHORT   5   1
+0042    MOV      2   6
+0043    JMP      6 => 0006
+0044 => GGET     6   7      ; "table"
+0045    TGETS    6   6   8  ; "insert"
+0046    TGETS    7   0   0  ; "bookmarks"
+0047    ADDVV    8   3   5
+0048    MOV      9   1
+0049    CALL     6   1   4
+0050    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:392-407
+0001    KPRI     2   0
+0002    KSHORT   3   1
+0003    TGETS    4   0   0  ; "bookmarks"
+0004    LEN      4   4
+0005 => ISGT     3   4
+0006    JMP      5 => 0036
+0007    LOOP     5 => 0036
+0008    GGET     5   1      ; "math"
+0009    TGETS    5   5   2  ; "floor"
+0010    ADDVV    6   3   4
+0011    DIVVN    6   6   0  ; 2
+0012    CALL     5   2   2
+0013    MOV      2   5
+0014    MOV      6   0
+0015    TGETS    5   0   3  ; "isBookmarkSame"
+0016    MOV      7   1
+0017    TGETS    8   0   0  ; "bookmarks"
+0018    TGETV    8   8   2
+0019    CALL     5   2   4
+0020    ISF          5
+0021    JMP      6 => 0024
+0022    KPRI     5   2
+0023    RET1     5   2
+0024 => MOV      6   0
+0025    TGETS    5   0   4  ; "isBookmarkInPageOrder"
+0026    MOV      7   1
+0027    TGETS    8   0   0  ; "bookmarks"
+0028    TGETV    8   8   2
+0029    CALL     5   2   4
+0030    ISF          5
+0031    JMP      6 => 0034
+0032    SUBVN    4   2   1  ; 1
+0033    JMP      5 => 0005
+0034 => ADDVN    3   2   1  ; 1
+0035    JMP      5 => 0005
+0036 => KPRI     5   1
+0037    RET1     5   2
+
+-- BYTECODE -- readerbookmark.lua:409-421
+0001    TGETS    2   1   0  ; "pos0"
+0002    ISF          2
+0003    JMP      3 => 0015
+0004    TGETS    2   0   1  ; "ui"
+0005    MOV      3   2
+0006    TGETS    2   2   2  ; "handleEvent"
+0007    UGET     4   0      ; Event
+0008    MOV      5   4
+0009    TGETS    4   4   3  ; "new"
+0010    KSTR     6   4      ; "Unhighlight"
+0011    MOV      7   1
+0012    CALL     4   0   4
+0013    CALLM    2   1   1
+0014    JMP      2 => 0040
+0015 => MOV      3   0
+0016    TGETS    2   0   5  ; "removeBookmark"
+0017    MOV      4   1
+0018    CALL     2   1   3
+0019    TGETS    2   0   1  ; "ui"
+0020    TGETS    2   2   6  ; "document"
+0021    TGETS    2   2   7  ; "info"
+0022    TGETS    2   2   8  ; "has_pages"
+0023    ISF          2
+0024    JMP      3 => 0032
+0025    MOV      3   0
+0026    TGETS    2   0   9  ; "setDogearVisibility"
+0027    TGETS    4   0  10  ; "view"
+0028    TGETS    4   4  11  ; "state"
+0029    TGETS    4   4  12  ; "page"
+0030    CALL     2   1   3
+0031    JMP      2 => 0040
+0032 => MOV      3   0
+0033    TGETS    2   0   9  ; "setDogearVisibility"
+0034    TGETS    4   0   1  ; "ui"
+0035    TGETS    4   4   6  ; "document"
+0036    MOV      5   4
+0037    TGETS    4   4  13  ; "getXPointer"
+0038    CALL     4   0   2
+0039    CALLM    2   1   1
+0040 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:424-450
+0001    KPRI     2   0
+0002    KSHORT   3   1
+0003    TGETS    4   0   0  ; "bookmarks"
+0004    LEN      4   4
+0005 => ISGT     3   4
+0006    JMP      5 => 0041
+0007    LOOP     5 => 0041
+0008    GGET     5   1      ; "math"
+0009    TGETS    5   5   2  ; "floor"
+0010    ADDVV    6   3   4
+0011    DIVVN    6   6   0  ; 2
+0012    CALL     5   2   2
+0013    MOV      2   5
+0014    TGETS    5   0   0  ; "bookmarks"
+0015    TGETV    5   5   2
+0016    TGETS    6   1   3  ; "datetime"
+0017    TGETS    7   5   3  ; "datetime"
+0018    ISNEV    6   7
+0019    JMP      6 => 0030
+0020    TGETS    6   1   4  ; "page"
+0021    TGETS    7   5   4  ; "page"
+0022    ISNEV    6   7
+0023    JMP      6 => 0030
+0024    GGET     6   5      ; "table"
+0025    TGETS    6   6   6  ; "remove"
+0026    TGETS    7   0   0  ; "bookmarks"
+0027    MOV      8   2
+0028    CALLT    6   3
+0029    JMP      6 => 0005
+0030 => MOV      7   0
+0031    TGETS    6   0   7  ; "isBookmarkInPageOrder"
+0032    MOV      8   1
+0033    MOV      9   5
+0034    CALL     6   2   4
+0035    ISF          6
+0036    JMP      7 => 0039
+0037    SUBVN    4   2   1  ; 1
+0038    JMP      6 => 0005
+0039 => ADDVN    3   2   1  ; 1
+0040    JMP      5 => 0005
+0041 => UGET     5   0      ; logger
+0042    TGETS    5   5   8  ; "dbg"
+0043    KSTR     6   9      ; "removeBookmark: binary search didn't fin"~
+0044    CALL     5   1   2
+0045    KSHORT   5   1
+0046    TGETS    6   0   0  ; "bookmarks"
+0047    LEN      6   6
+0048    KSHORT   7   1
+0049    FORI     5 => 0066
+0050 => TGETS    9   0   0  ; "bookmarks"
+0051    TGETV    9   9   8
+0052    TGETS   10   1   3  ; "datetime"
+0053    TGETS   11   9   3  ; "datetime"
+0054    ISNEV   10  11
+0055    JMP     10 => 0065
+0056    TGETS   10   1   4  ; "page"
+0057    TGETS   11   9   4  ; "page"
+0058    ISNEV   10  11
+0059    JMP     10 => 0065
+0060    GGET    10   5      ; "table"
+0061    TGETS   10  10   6  ; "remove"
+0062    TGETS   11   0   0  ; "bookmarks"
+0063    MOV     12   8
+0064    CALLT   10   3
+0065 => FORL     5 => 0050
+0066 => UGET     5   0      ; logger
+0067    TGETS    5   5  10  ; "warn"
+0068    KSTR     6  11      ; "removeBookmark: full scan search didn't "~
+0069    CALL     5   1   2
+0070    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:452-468
+0001    KSHORT   2   1
+0002    TGETS    3   0   0  ; "bookmarks"
+0003    LEN      3   3
+0004    KSHORT   4   1
+0005    FORI     2 => 0068
+0006 => TGETS    6   1   1  ; "datetime"
+0007    TGETS    7   0   0  ; "bookmarks"
+0008    TGETV    7   7   5
+0009    TGETS    7   7   1  ; "datetime"
+0010    ISNEV    6   7
+0011    JMP      6 => 0067
+0012    TGETS    6   1   2  ; "page"
+0013    TGETS    7   0   0  ; "bookmarks"
+0014    TGETV    7   7   5
+0015    TGETS    7   7   2  ; "page"
+0016    ISNEV    6   7
+0017    JMP      6 => 0067
+0018    TGETS    6   0   3  ; "ui"
+0019    TGETS    6   6   4  ; "document"
+0020    MOV      7   6
+0021    TGETS    6   6   5  ; "getPageFromXPointer"
+0022    TGETS    8   1   6  ; "updated_highlight"
+0023    TGETS    8   8   7  ; "pos0"
+0024    CALL     6   2   3
+0025    TGETS    7   1   6  ; "updated_highlight"
+0026    TGETS    7   7   8  ; "text"
+0027    TGETS    8   0   0  ; "bookmarks"
+0028    TGETV    8   8   5
+0029    TGETS    9   1   6  ; "updated_highlight"
+0030    TGETS    9   9   7  ; "pos0"
+0031    TSETS    9   8   2  ; "page"
+0032    TGETS    8   0   0  ; "bookmarks"
+0033    TGETV    8   8   5
+0034    TGETS    9   1   6  ; "updated_highlight"
+0035    TGETS    9   9   7  ; "pos0"
+0036    TSETS    9   8   7  ; "pos0"
+0037    TGETS    8   0   0  ; "bookmarks"
+0038    TGETV    8   8   5
+0039    TGETS    9   1   6  ; "updated_highlight"
+0040    TGETS    9   9   9  ; "pos1"
+0041    TSETS    9   8   9  ; "pos1"
+0042    TGETS    8   0   0  ; "bookmarks"
+0043    TGETV    8   8   5
+0044    TGETS    9   1   6  ; "updated_highlight"
+0045    TGETS    9   9   8  ; "text"
+0046    TSETS    9   8  10  ; "notes"
+0047    TGETS    8   0   0  ; "bookmarks"
+0048    TGETV    8   8   5
+0049    UGET     9   0      ; T
+0050    UGET    10   1      ; _
+0051    KSTR    11  11      ; "Page %1 %2 @ %3"
+0052    CALL    10   2   2
+0053    MOV     11   6
+0054    MOV     12   7
+0055    TGETS   13   1   6  ; "updated_highlight"
+0056    TGETS   13  13   1  ; "datetime"
+0057    CALL     9   2   5
+0058    TSETS    9   8   8  ; "text"
+0059    TGETS    8   0   0  ; "bookmarks"
+0060    TGETV    8   8   5
+0061    TGETS    9   1   6  ; "updated_highlight"
+0062    TGETS    9   9   1  ; "datetime"
+0063    TSETS    9   8   1  ; "datetime"
+0064    MOV      9   0
+0065    TGETS    8   0  12  ; "onSaveSettings"
+0066    CALL     8   1   2
+0067 => FORL     2 => 0006
+0068 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:503-505
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "input"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:509-525
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "input"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "getInputValue"
+0005    CALL     0   2   2
+0006    ISEQS    0   2      ; ""
+0007    JMP      1 => 0064
+0008    KSHORT   1   1
+0009    UGET     2   0      ; self
+0010    TGETS    2   2   3  ; "bookmarks"
+0011    LEN      2   2
+0012    KSHORT   3   1
+0013    FORI     1 => 0064
+0014 => UGET     5   1      ; item
+0015    TGETS    5   5   4  ; "text"
+0016    UGET     6   0      ; self
+0017    TGETS    6   6   3  ; "bookmarks"
+0018    TGETV    6   6   4
+0019    TGETS    6   6   4  ; "text"
+0020    ISNEV    5   6
+0021    JMP      5 => 0063
+0022    UGET     5   1      ; item
+0023    TGETS    5   5   5  ; "pos0"
+0024    UGET     6   0      ; self
+0025    TGETS    6   6   3  ; "bookmarks"
+0026    TGETV    6   6   4
+0027    TGETS    6   6   5  ; "pos0"
+0028    ISNEV    5   6
+0029    JMP      5 => 0063
+0030    UGET     5   1      ; item
+0031    TGETS    5   5   6  ; "pos1"
+0032    UGET     6   0      ; self
+0033    TGETS    6   6   3  ; "bookmarks"
+0034    TGETV    6   6   4
+0035    TGETS    6   6   6  ; "pos1"
+0036    ISNEV    5   6
+0037    JMP      5 => 0063
+0038    UGET     5   1      ; item
+0039    TGETS    5   5   7  ; "page"
+0040    UGET     6   0      ; self
+0041    TGETS    6   6   3  ; "bookmarks"
+0042    TGETV    6   6   4
+0043    TGETS    6   6   7  ; "page"
+0044    ISNEV    5   6
+0045    JMP      5 => 0063
+0046    UGET     5   0      ; self
+0047    TGETS    5   5   3  ; "bookmarks"
+0048    TGETV    5   5   4
+0049    TSETS    0   5   4  ; "text"
+0050    UGET     5   2      ; UIManager
+0051    MOV      6   5
+0052    TGETS    5   5   8  ; "close"
+0053    UGET     7   0      ; self
+0054    TGETS    7   7   0  ; "input"
+0055    CALL     5   1   3
+0056    UGET     5   3      ; from_highlight
+0057    IST          5
+0058    JMP      5 => 0064
+0059    UGET     5   0      ; self
+0060    TGETS    5   5   9  ; "refresh"
+0061    CALL     5   1   1
+0062    JMP      1 => 0064
+0063 => FORL     1 => 0014
+0064 => UGET     1   2      ; UIManager
+0065    MOV      2   1
+0066    TGETS    1   1   8  ; "close"
+0067    UGET     3   0      ; self
+0068    TGETS    3   3   0  ; "input"
+0069    CALL     1   1   3
+0070    RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:470-532
+0001    ISF          2
+0002    JMP      3 => 0057
+0003    KSHORT   3   1
+0004    TGETS    4   0   0  ; "bookmarks"
+0005    LEN      4   4
+0006    KSHORT   5   1
+0007    FORI     3 => 0053
+0008 => TGETS    7   1   1  ; "datetime"
+0009    TGETS    8   0   0  ; "bookmarks"
+0010    TGETV    8   8   6
+0011    TGETS    8   8   1  ; "datetime"
+0012    ISNEV    7   8
+0013    JMP      7 => 0052
+0014    TGETS    7   1   2  ; "page"
+0015    TGETS    8   0   0  ; "bookmarks"
+0016    TGETV    8   8   6
+0017    TGETS    8   8   2  ; "page"
+0018    ISNEV    7   8
+0019    JMP      7 => 0052
+0020    TGETS    7   0   0  ; "bookmarks"
+0021    TGETV    1   7   6
+0022    TGETS    7   1   3  ; "text"
+0023    ISEQP    7   0
+0024    JMP      7 => 0028
+0025    TGETS    7   1   3  ; "text"
+0026    ISNES    7   4      ; ""
+0027    JMP      7 => 0053
+0028 => TGETS    7   1   2  ; "page"
+0029    TGETS    8   0   5  ; "ui"
+0030    TGETS    8   8   6  ; "document"
+0031    TGETS    8   8   7  ; "info"
+0032    TGETS    8   8   8  ; "has_pages"
+0033    IST          8
+0034    JMP      8 => 0042
+0035    TGETS    8   0   5  ; "ui"
+0036    TGETS    8   8   6  ; "document"
+0037    MOV      9   8
+0038    TGETS    8   8   9  ; "getPageFromXPointer"
+0039    MOV     10   7
+0040    CALL     8   2   3
+0041    MOV      7   8
+0042 => UGET     8   0      ; T
+0043    UGET     9   1      ; _
+0044    KSTR    10  10      ; "Page %1 %2 @ %3"
+0045    CALL     9   2   2
+0046    MOV     10   7
+0047    TGETS   11   1  11  ; "notes"
+0048    TGETS   12   1   1  ; "datetime"
+0049    CALL     8   2   5
+0050    TSETS    8   1   3  ; "text"
+0051    JMP      3 => 0053
+0052 => FORL     3 => 0008
+0053 => TGETS    3   1   3  ; "text"
+0054    ISNEP    3   0
+0055    JMP      3 => 0057
+0056    UCLO     0 => 0100
+0057 => UGET     3   2      ; InputDialog
+0058    MOV      4   3
+0059    TGETS    3   3  13  ; "new"
+0060    TDUP     5  15
+0061    UGET     6   1      ; _
+0062    KSTR     7  14      ; "Rename bookmark"
+0063    CALL     6   2   2
+0064    TSETS    6   5  16  ; "title"
+0065    TGETS    6   1   3  ; "text"
+0066    TSETS    6   5  12  ; "input"
+0067    TNEW     6   3
+0068    TNEW     7   3
+0069    TDUP     8  18
+0070    UGET     9   1      ; _
+0071    KSTR    10  17      ; "Cancel"
+0072    CALL     9   2   2
+0073    TSETS    9   8   3  ; "text"
+0074    FNEW     9  19      ; readerbookmark.lua:503
+0075    TSETS    9   8  20  ; "callback"
+0076    TSETB    8   7   1
+0077    TDUP     8  22
+0078    UGET     9   1      ; _
+0079    KSTR    10  21      ; "Rename"
+0080    CALL     9   2   2
+0081    TSETS    9   8   3  ; "text"
+0082    FNEW     9  23      ; readerbookmark.lua:509
+0083    TSETS    9   8  20  ; "callback"
+0084    TSETB    8   7   2
+0085    TSETB    7   6   1
+0086    TSETS    6   5  24  ; "buttons"
+0087    CALL     3   2   3
+0088    TSETS    3   0  12  ; "input"
+0089    UGET     3   3      ; UIManager
+0090    MOV      4   3
+0091    TGETS    3   3  25  ; "show"
+0092    TGETS    5   0  12  ; "input"
+0093    CALL     3   1   3
+0094    TGETS    3   0  12  ; "input"
+0095    MOV      4   3
+0096    TGETS    3   3  26  ; "onShowKeyboard"
+0097    CALL     3   1   2
+0098    UCLO     0 => 0099
+0099 => RET0     0   1
+0100 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:534-550
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "getDogearBookmarkIndex"
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISF          2
+0006    JMP      3 => 0013
+0007    GGET     3   1      ; "table"
+0008    TGETS    3   3   2  ; "remove"
+0009    TGETS    4   0   3  ; "bookmarks"
+0010    MOV      5   2
+0011    CALL     3   1   3
+0012    JMP      3 => 0035
+0013 => TGETS    3   0   4  ; "ui"
+0014    TGETS    3   3   5  ; "toc"
+0015    MOV      4   3
+0016    TGETS    3   3   6  ; "getTocTitleByPage"
+0017    MOV      5   1
+0018    CALL     3   2   3
+0019    ISEQS    3   7      ; ""
+0020    JMP      4 => 0024
+0021    KSTR     4   8      ; "in "
+0022    MOV      5   3
+0023    CAT      3   4   5
+0024 => MOV      5   0
+0025    TGETS    4   0   9  ; "addBookmark"
+0026    TDUP     6  10
+0027    TSETS    1   6  11  ; "page"
+0028    GGET     7  12      ; "os"
+0029    TGETS    7   7  13  ; "date"
+0030    KSTR     8  14      ; "%Y-%m-%d %H:%M:%S"
+0031    CALL     7   2   2
+0032    TSETS    7   6  15  ; "datetime"
+0033    TSETS    3   6  16  ; "notes"
+0034    CALL     4   1   3
+0035 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:552-559
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "go to next bookmark from"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    KSHORT   2   1
+0007    TGETS    3   0   2  ; "bookmarks"
+0008    LEN      3   3
+0009    KSHORT   4   1
+0010    FORI     2 => 0025
+0011 => MOV      7   0
+0012    TGETS    6   0   3  ; "isBookmarkInPageOrder"
+0013    TDUP     8   4
+0014    TSETS    1   8   5  ; "page"
+0015    TGETS    9   0   2  ; "bookmarks"
+0016    TGETV    9   9   5
+0017    CALL     6   2   4
+0018    ISF          6
+0019    JMP      7 => 0024
+0020    TGETS    6   0   2  ; "bookmarks"
+0021    TGETV    6   6   5
+0022    TGETS    6   6   5  ; "page"
+0023    RET1     6   2
+0024 => FORL     2 => 0011
+0025 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:561-568
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "go to next bookmark from"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "bookmarks"
+0007    LEN      2   2
+0008    KSHORT   3   1
+0009    KSHORT   4  -1
+0010    FORI     2 => 0025
+0011 => MOV      7   0
+0012    TGETS    6   0   3  ; "isBookmarkInReversePageOrder"
+0013    TDUP     8   4
+0014    TSETS    1   8   5  ; "page"
+0015    TGETS    9   0   2  ; "bookmarks"
+0016    TGETV    9   9   5
+0017    CALL     6   2   4
+0018    ISF          6
+0019    JMP      7 => 0024
+0020    TGETS    6   0   2  ; "bookmarks"
+0021    TGETV    6   6   5
+0022    TGETS    6   6   5  ; "page"
+0023    RET1     6   2
+0024 => FORL     2 => 0011
+0025 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:570-577
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "go to next bookmark from"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    KSHORT   2   1
+0007    TGETS    3   0   2  ; "bookmarks"
+0008    LEN      3   3
+0009    KSHORT   4   1
+0010    FORI     2 => 0024
+0011 => MOV      7   0
+0012    TGETS    6   0   3  ; "isBookmarkPageInPageOrder"
+0013    MOV      8   1
+0014    TGETS    9   0   2  ; "bookmarks"
+0015    TGETV    9   9   5
+0016    CALL     6   2   4
+0017    ISF          6
+0018    JMP      7 => 0023
+0019    TGETS    6   0   2  ; "bookmarks"
+0020    TGETV    6   6   5
+0021    TGETS    6   6   4  ; "page"
+0022    RET1     6   2
+0023 => FORL     2 => 0011
+0024 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:579-586
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "go to next bookmark from"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "bookmarks"
+0007    LEN      2   2
+0008    KSHORT   3   1
+0009    KSHORT   4  -1
+0010    FORI     2 => 0024
+0011 => MOV      7   0
+0012    TGETS    6   0   3  ; "isBookmarkPageInReversePageOrder"
+0013    MOV      8   1
+0014    TGETS    9   0   2  ; "bookmarks"
+0015    TGETV    9   9   5
+0016    CALL     6   2   4
+0017    ISF          6
+0018    JMP      7 => 0023
+0019    TGETS    6   0   2  ; "bookmarks"
+0020    TGETV    6   6   5
+0021    TGETS    6   6   4  ; "page"
+0022    RET1     6   2
+0023 => FORL     2 => 0011
+0024 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:588-595
+0001    TGETS    2   0   0  ; "bookmarks"
+0002    LEN      2   2
+0003    KSHORT   3   0
+0004    ISGE     3   2
+0005    JMP      2 => 0020
+0006    TGETS    2   0   0  ; "bookmarks"
+0007    LEN      2   2
+0008    MOV      4   0
+0009    TGETS    3   0   1  ; "isBookmarkPageInPageOrder"
+0010    MOV      5   1
+0011    TGETS    6   0   0  ; "bookmarks"
+0012    TGETV    6   6   2
+0013    CALL     3   2   4
+0014    ISF          3
+0015    JMP      4 => 0020
+0016    TGETS    3   0   0  ; "bookmarks"
+0017    TGETV    3   3   2
+0018    TGETS    3   3   2  ; "page"
+0019    RET1     3   2
+0020 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:597-604
+0001    TGETS    2   0   0  ; "bookmarks"
+0002    LEN      2   2
+0003    KSHORT   3   0
+0004    ISGE     3   2
+0005    JMP      2 => 0019
+0006    KSHORT   2   1
+0007    MOV      4   0
+0008    TGETS    3   0   1  ; "isBookmarkPageInReversePageOrder"
+0009    MOV      5   1
+0010    TGETS    6   0   0  ; "bookmarks"
+0011    TGETV    6   6   2
+0012    CALL     3   2   4
+0013    ISF          3
+0014    JMP      4 => 0019
+0015    TGETS    3   0   0  ; "bookmarks"
+0016    TGETV    3   3   2
+0017    TGETS    3   3   2  ; "page"
+0018    RET1     3   2
+0019 => RET0     0   1
+
+-- BYTECODE -- readerbookmark.lua:606-609
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "gotoBookmark"
+0003    MOV      5   0
+0004    TGETS    4   0   1  ; "getPreviousBookmarkedPage"
+0005    MOV      6   1
+0006    CALL     4   0   3
+0007    CALLM    2   1   1
+0008    KPRI     2   2
+0009    RET1     2   2
+
+-- BYTECODE -- readerbookmark.lua:611-614
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "gotoBookmark"
+0003    MOV      5   0
+0004    TGETS    4   0   1  ; "getNextBookmarkedPage"
+0005    MOV      6   1
+0006    CALL     4   0   3
+0007    CALLM    2   1   1
+0008    KPRI     2   2
+0009    RET1     2   2
+
+-- BYTECODE -- readerbookmark.lua:616-619
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "gotoBookmark"
+0003    MOV      4   0
+0004    TGETS    3   0   1  ; "getNextBookmarkedPageFromPage"
+0005    TGETS    5   0   2  ; "ui"
+0006    MOV      6   5
+0007    TGETS    5   5   3  ; "getCurrentPage"
+0008    CALL     5   0   2
+0009    CALLM    3   0   1
+0010    CALLM    1   1   1
+0011    KPRI     1   2
+0012    RET1     1   2
+
+-- BYTECODE -- readerbookmark.lua:621-624
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "gotoBookmark"
+0003    MOV      4   0
+0004    TGETS    3   0   1  ; "getPreviousBookmarkedPageFromPage"
+0005    TGETS    5   0   2  ; "ui"
+0006    MOV      6   5
+0007    TGETS    5   5   3  ; "getCurrentPage"
+0008    CALL     5   0   2
+0009    CALLM    3   0   1
+0010    CALLM    1   1   1
+0011    KPRI     1   2
+0012    RET1     1   2
+
+-- BYTECODE -- readerbookmark.lua:626-636
+0001    KPRI     1   0
+0002    KSTR     2   0      ; "0"
+0003    KSHORT   3   1
+0004    TGETS    4   0   1  ; "bookmarks"
+0005    LEN      4   4
+0006    KSHORT   5   1
+0007    FORI     3 => 0019
+0008 => TGETS    7   0   1  ; "bookmarks"
+0009    TGETV    7   7   6
+0010    TGETS    7   7   2  ; "datetime"
+0011    ISGE     2   7
+0012    JMP      7 => 0018
+0013    TGETS    7   0   1  ; "bookmarks"
+0014    TGETV    7   7   6
+0015    TGETS    2   7   2  ; "datetime"
+0016    TGETS    7   0   1  ; "bookmarks"
+0017    TGETV    1   7   6
+0018 => FORL     3 => 0008
+0019 => RET1     1   2
+
+-- BYTECODE -- readerbookmark.lua:638-640
+0001    TGETS    1   0   0  ; "bookmarks"
+0002    ISF          1
+0003    JMP      2 => 0012
+0004    TGETS    1   0   0  ; "bookmarks"
+0005    LEN      1   1
+0006    KSHORT   2   0
+0007    ISLT     2   1
+0008    JMP      1 => 0011
+0009    KPRI     1   1
+0010    JMP      2 => 0012
+0011 => KPRI     1   2
+0012 => RET1     1   2
+
+-- BYTECODE -- readerbookmark.lua:0-643
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/container/centercontainer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/confirmbox"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "device"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/event"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/font"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/geometry"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/gesturerange"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/widget/container/inputcontainer"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/widget/inputdialog"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/widget/menu"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/textviewer"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/uimanager"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "logger"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "gettext"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16   4      ; "device"
+0048    CALL    15   2   2
+0049    TGETS   15  15  16  ; "screen"
+0050    GGET    16   0      ; "require"
+0051    KSTR    17  17      ; "ffi/util"
+0052    CALL    16   2   2
+0053    TGETS   16  16  18  ; "template"
+0054    MOV     18   8
+0055    TGETS   17   8  19  ; "new"
+0056    TDUP    19  21
+0057    MOV     20  14
+0058    KSTR    21  20      ; "Bookmarks"
+0059    CALL    20   2   2
+0060    TSETS   20  19  22  ; "bm_menu_title"
+0061    MOV     20  14
+0062    KSTR    21  23      ; "Bookmark browsing mode"
+0063    CALL    20   2   2
+0064    TSETS   20  19  24  ; "bbm_menu_title"
+0065    CALL    17   2   3
+0066    FNEW    18  26      ; readerbookmark.lua:25
+0067    TSETS   18  17  25  ; "init"
+0068    FNEW    18  28      ; readerbookmark.lua:36
+0069    TSETS   18  17  27  ; "addToMainMenu"
+0070    FNEW    18  30      ; readerbookmark.lua:64
+0071    TSETS   18  17  29  ; "enableBookmarkBrowsingMode"
+0072    FNEW    18  32      ; readerbookmark.lua:68
+0073    TSETS   18  17  31  ; "isBookmarkInTimeOrder"
+0074    FNEW    18  34      ; readerbookmark.lua:72
+0075    TSETS   18  17  33  ; "isBookmarkInPageOrder"
+0076    FNEW    18  36      ; readerbookmark.lua:88
+0077    TSETS   18  17  35  ; "isBookmarkInReversePageOrder"
+0078    FNEW    18  38      ; readerbookmark.lua:102
+0079    TSETS   18  17  37  ; "isBookmarkPageInPageOrder"
+0080    FNEW    18  40      ; readerbookmark.lua:110
+0081    TSETS   18  17  39  ; "isBookmarkPageInReversePageOrder"
+0082    FNEW    18  42      ; readerbookmark.lua:118
+0083    TSETS   18  17  41  ; "fixBookmarkSort"
+0084    FNEW    18  44      ; readerbookmark.lua:128
+0085    TSETS   18  17  43  ; "importSavedHighlight"
+0086    FNEW    18  46      ; readerbookmark.lua:151
+0087    TSETS   18  17  45  ; "onReadSettings"
+0088    FNEW    18  48      ; readerbookmark.lua:161
+0089    TSETS   18  17  47  ; "onSaveSettings"
+0090    FNEW    18  50      ; readerbookmark.lua:167
+0091    TSETS   18  17  49  ; "isCurrentPageBookmarked"
+0092    FNEW    18  52      ; readerbookmark.lua:177
+0093    TSETS   18  17  51  ; "onToggleBookmark"
+0094    FNEW    18  54      ; readerbookmark.lua:191
+0095    TSETS   18  17  53  ; "setDogearVisibility"
+0096    FNEW    18  56      ; readerbookmark.lua:199
+0097    TSETS   18  17  55  ; "onPageUpdate"
+0098    FNEW    18  58      ; readerbookmark.lua:207
+0099    TSETS   18  17  57  ; "onPosUpdate"
+0100    FNEW    18  60      ; readerbookmark.lua:211
+0101    TSETS   18  17  59  ; "gotoBookmark"
+0102    FNEW    18  62      ; readerbookmark.lua:218
+0103    TSETS   18  17  61  ; "onShowBookmark"
+0104    FNEW    18  64      ; readerbookmark.lua:334
+0105    TSETS   18  17  63  ; "isBookmarkMatch"
+0106    FNEW    18  66      ; readerbookmark.lua:344
+0107    TSETS   18  17  65  ; "getDogearBookmarkIndex"
+0108    FNEW    18  68      ; readerbookmark.lua:360
+0109    TSETS   18  17  67  ; "isBookmarkSame"
+0110    FNEW    18  70      ; readerbookmark.lua:373
+0111    TSETS   18  17  69  ; "addBookmark"
+0112    FNEW    18  72      ; readerbookmark.lua:392
+0113    TSETS   18  17  71  ; "isBookmarkAdded"
+0114    FNEW    18  74      ; readerbookmark.lua:409
+0115    TSETS   18  17  73  ; "removeHighlight"
+0116    FNEW    18  76      ; readerbookmark.lua:424
+0117    TSETS   18  17  75  ; "removeBookmark"
+0118    FNEW    18  78      ; readerbookmark.lua:452
+0119    TSETS   18  17  77  ; "updateBookmark"
+0120    FNEW    18  80      ; readerbookmark.lua:470
+0121    TSETS   18  17  79  ; "renameBookmark"
+0122    FNEW    18  82      ; readerbookmark.lua:534
+0123    TSETS   18  17  81  ; "toggleBookmark"
+0124    FNEW    18  84      ; readerbookmark.lua:552
+0125    TSETS   18  17  83  ; "getPreviousBookmarkedPage"
+0126    FNEW    18  86      ; readerbookmark.lua:561
+0127    TSETS   18  17  85  ; "getNextBookmarkedPage"
+0128    FNEW    18  88      ; readerbookmark.lua:570
+0129    TSETS   18  17  87  ; "getPreviousBookmarkedPageFromPage"
+0130    FNEW    18  90      ; readerbookmark.lua:579
+0131    TSETS   18  17  89  ; "getNextBookmarkedPageFromPage"
+0132    FNEW    18  92      ; readerbookmark.lua:588
+0133    TSETS   18  17  91  ; "getFirstBookmarkedPageFromPage"
+0134    FNEW    18  94      ; readerbookmark.lua:597
+0135    TSETS   18  17  93  ; "getLastBookmarkedPageFromPage"
+0136    FNEW    18  96      ; readerbookmark.lua:606
+0137    TSETS   18  17  95  ; "onGotoPreviousBookmark"
+0138    FNEW    18  98      ; readerbookmark.lua:611
+0139    TSETS   18  17  97  ; "onGotoNextBookmark"
+0140    FNEW    18 100      ; readerbookmark.lua:616
+0141    TSETS   18  17  99  ; "onGotoNextBookmarkFromPage"
+0142    FNEW    18 102      ; readerbookmark.lua:621
+0143    TSETS   18  17 101  ; "onGotoPreviousBookmarkFromPage"
+0144    FNEW    18 104      ; readerbookmark.lua:626
+0145    TSETS   18  17 103  ; "getLatestBookmark"
+0146    FNEW    18 106      ; readerbookmark.lua:638
+0147    TSETS   18  17 105  ; "hasBookmarks"
+0148    UCLO     0 => 0149
+0149 => RET1    17   2
+

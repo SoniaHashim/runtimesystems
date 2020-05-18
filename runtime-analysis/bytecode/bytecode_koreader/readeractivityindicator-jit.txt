@@ -1,0 +1,111 @@
+-- BYTECODE -- readeractivityindicator.lua:8-15
+0001    UGET     1   0      ; Device
+0002    TGETS    1   1   0  ; "model"
+0003    ISEQS    1   1      ; "KindlePaperWhite"
+0004    JMP      2 => 0019
+0005    ISEQS    1   2      ; "KindlePaperWhite2"
+0006    JMP      2 => 0019
+0007    ISEQS    1   3      ; "KindleVoyage"
+0008    JMP      2 => 0019
+0009    ISEQS    1   4      ; "KindleBasic"
+0010    JMP      2 => 0019
+0011    ISEQS    1   5      ; "KindlePaperWhite3"
+0012    JMP      2 => 0019
+0013    ISEQS    1   6      ; "KindleOasis"
+0014    JMP      2 => 0019
+0015    ISEQS    1   7      ; "KindleBasic2"
+0016    JMP      2 => 0019
+0017    ISNES    1   8      ; "KindleTouch"
+0018    JMP      2 => 0030
+0019 => GGET     2   9      ; "pcall"
+0020    GGET     3  10      ; "require"
+0021    KSTR     4  11      ; "liblipclua"
+0022    CALL     2   2   3
+0023    ISF          2
+0024    JMP      3 => 0030
+0025    GGET     2  13      ; "lipc"
+0026    TGETS    2   2  14  ; "init"
+0027    KSTR     3  15      ; "com.github.koreader.activityindicator"
+0028    CALL     2   2   2
+0029    TSETS    2   0  12  ; "lipc_handle"
+0030 => RET0     0   1
+
+-- BYTECODE -- readeractivityindicator.lua:17-32
+0001    TGETS    1   0   0  ; "lipc_handle"
+0002    ISF          1
+0003    JMP      2 => 0018
+0004    TGETS    1   0   1  ; "document"
+0005    TGETS    1   1   2  ; "configurable"
+0006    TGETS    1   1   3  ; "text_wrap"
+0007    ISNEN    1   0      ; 1
+0008    JMP      1 => 0018
+0009    TGETS    1   0   0  ; "lipc_handle"
+0010    MOV      2   1
+0011    TGETS    1   1   4  ; "set_string_property"
+0012    KSTR     3   5      ; "com.lab126.pillow"
+0013    KSTR     4   6      ; "activityIndicator"
+0014    KSTR     5   7      ; "{"activityIndicator":{ \n               "~
+0015    CALL     1   1   5
+0016    KPRI     1   2
+0017    TSETS    1   0   8  ; "indicator_started"
+0018 => KPRI     1   2
+0019    RET1     1   2
+
+-- BYTECODE -- readeractivityindicator.lua:34-47
+0001    TGETS    1   0   0  ; "lipc_handle"
+0002    ISF          1
+0003    JMP      2 => 0020
+0004    TGETS    1   0   1  ; "indicator_started"
+0005    ISF          1
+0006    JMP      2 => 0020
+0007    TGETS    1   0   0  ; "lipc_handle"
+0008    MOV      2   1
+0009    TGETS    1   1   2  ; "set_string_property"
+0010    KSTR     3   3      ; "com.lab126.pillow"
+0011    KSTR     4   4      ; "activityIndicator"
+0012    KSTR     5   5      ; "{"activityIndicator":{ \n               "~
+0013    CALL     1   1   5
+0014    KPRI     1   1
+0015    TSETS    1   0   1  ; "indicator_started"
+0016    UGET     1   0      ; util
+0017    TGETS    1   1   6  ; "usleep"
+0018    KNUM     2   0      ; 1000000
+0019    CALL     1   1   2
+0020 => KPRI     1   2
+0021    RET1     1   2
+
+-- BYTECODE -- readeractivityindicator.lua:49-53
+0001    TGETS    1   0   0  ; "lipc_handle"
+0002    ISF          1
+0003    JMP      2 => 0008
+0004    TGETS    1   0   0  ; "lipc_handle"
+0005    MOV      2   1
+0006    TGETS    1   1   1  ; "close"
+0007    CALL     1   1   2
+0008 => RET0     0   1
+
+-- BYTECODE -- readeractivityindicator.lua:0-56
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/eventlistener"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "device"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ffi/util"
+0009    CALL     2   2   2
+0010    MOV      4   0
+0011    TGETS    3   0   4  ; "new"
+0012    TNEW     5   0
+0013    CALL     3   2   3
+0014    FNEW     4   6      ; readeractivityindicator.lua:8
+0015    TSETS    4   3   5  ; "init"
+0016    FNEW     4   8      ; readeractivityindicator.lua:17
+0017    TSETS    4   3   7  ; "onStartActivityIndicator"
+0018    FNEW     4  10      ; readeractivityindicator.lua:34
+0019    TSETS    4   3   9  ; "onStopActivityIndicator"
+0020    FNEW     4  12      ; readeractivityindicator.lua:49
+0021    TSETS    4   3  11  ; "coda"
+0022    UCLO     0 => 0023
+0023 => RET1     3   2
+

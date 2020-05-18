@@ -1,0 +1,136 @@
+-- BYTECODE -- trace_require.lua:16-47
+0001    UGET     1   0      ; level
+0002    ADDVN    1   1   0  ; 1
+0003    USETV    0   1      ; level
+0004    GGET     1   0      ; "os"
+0005    TGETS    1   1   1  ; "clock"
+0006    CALL     1   2   1
+0007    GGET     2   2      ; "debug"
+0008    TGETS    2   2   3  ; "getinfo"
+0009    KSHORT   3   2
+0010    CALL     2   2   2
+0011    TGETS    3   2   4  ; "short_src"
+0012    ISNES    3   5      ; "[C]"
+0013    JMP      3 => 0019
+0014    GGET     3   2      ; "debug"
+0015    TGETS    3   3   3  ; "getinfo"
+0016    KSHORT   4   3
+0017    CALL     3   2   2
+0018    MOV      2   3
+0019 => UGET     3   1      ; loaded_modules
+0020    TGETV    3   3   0
+0021    IST          3
+0022    JMP      4 => 0038
+0023    GGET     4   6      ; "print"
+0024    GGET     5   7      ; "string"
+0025    TGETS    5   5   8  ; "format"
+0026    KSTR     6   9      ; "%s%s:%s => %s"
+0027    UGET     7   2      ; indent
+0028    MOV      8   7
+0029    TGETS    7   7  10  ; "rep"
+0030    UGET     9   0      ; level
+0031    CALL     7   2   3
+0032    TGETS    8   2   4  ; "short_src"
+0033    TGETS    9   2  11  ; "currentline"
+0034    MOV     10   0
+0035    CALL     5   0   6
+0036    CALLM    4   1   0
+0037    JMP      4 => 0055
+0038 => UGET     4   3      ; trace_loaded
+0039    ISF          4
+0040    JMP      5 => 0055
+0041    GGET     4   6      ; "print"
+0042    GGET     5   7      ; "string"
+0043    TGETS    5   5   8  ; "format"
+0044    KSTR     6  12      ; "%s%s:%s -> %s"
+0045    UGET     7   2      ; indent
+0046    MOV      8   7
+0047    TGETS    7   7  10  ; "rep"
+0048    UGET     9   0      ; level
+0049    CALL     7   2   3
+0050    TGETS    8   2   4  ; "short_src"
+0051    TGETS    9   2  11  ; "currentline"
+0052    MOV     10   0
+0053    CALL     5   0   6
+0054    CALLM    4   1   0
+0055 => GGET     4  13      ; "pcall"
+0056    UGET     5   4      ; _require
+0057    MOV      6   0
+0058    CALL     4   3   3
+0059    IST          4
+0060    JMP      6 => 0067
+0061    UGET     6   0      ; level
+0062    SUBVN    6   6   0  ; 1
+0063    USETV    0   6      ; level
+0064    GGET     6  14      ; "error"
+0065    MOV      7   5
+0066    CALL     6   1   2
+0067 => GGET     6   0      ; "os"
+0068    TGETS    6   6   1  ; "clock"
+0069    CALL     6   2   1
+0070    SUBVV    6   6   1
+0071    UGET     7   5      ; highlight
+0072    MOV      8   7
+0073    TGETS    7   7  10  ; "rep"
+0074    UGET     9   6      ; math
+0075    TGETS    9   9  15  ; "ceil"
+0076    UGET    10   6      ; math
+0077    TGETS   10  10  16  ; "log10"
+0078    UGET    11   7      ; threshold
+0079    DIVVV   11   6  11
+0080    CALL    10   0   2
+0081    CALLM    9   0   0
+0082    CALLM    7   2   1
+0083    IST          7
+0084    JMP      8 => 0086
+0085    KSTR     7  17      ; ""
+0086 => IST          3
+0087    JMP      8 => 0108
+0088    GGET     8   6      ; "print"
+0089    GGET     9   7      ; "string"
+0090    TGETS    9   9   8  ; "format"
+0091    KSTR    10  18      ; "%s%s loading time: %.3f"
+0092    MOV     11   7
+0093    UGET    12   2      ; indent
+0094    MOV     13  12
+0095    TGETS   12  12  10  ; "rep"
+0096    UGET    14   0      ; level
+0097    CALL    12   2   3
+0098    MOV     13  12
+0099    TGETS   12  12  19  ; "sub"
+0100    LEN     14   7
+0101    ADDVN   14  14   0  ; 1
+0102    CALL    12   2   3
+0103    CAT     11  11  12
+0104    MOV     12   0
+0105    MOV     13   6
+0106    CALL     9   0   5
+0107    CALLM    8   1   0
+0108 => UGET     8   1      ; loaded_modules
+0109    KPRI     9   2
+0110    TSETV    9   8   0
+0111    UGET     8   0      ; level
+0112    SUBVN    8   8   0  ; 1
+0113    USETV    0   8      ; level
+0114    RET1     5   2
+
+-- BYTECODE -- trace_require.lua:0-48
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "math"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    TNEW     2   0
+0006    KSTR     3   2      ; "*"
+0007    KNUM     4   0      ; 0.001
+0008    KPRI     5   1
+0009    GGET     6   3      ; "string"
+0010    TGETS    6   6   4  ; "rep"
+0011    KSTR     7   5      ; " "
+0012    KSHORT   8   4
+0013    CALL     6   2   3
+0014    KSHORT   7   0
+0015    FNEW     8   6      ; trace_require.lua:16
+0016    GSET     8   0      ; "require"
+0017    UCLO     0 => 0018
+0018 => RET0     0   1
+

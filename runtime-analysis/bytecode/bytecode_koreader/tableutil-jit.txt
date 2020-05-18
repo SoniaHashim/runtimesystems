@@ -1,0 +1,62 @@
+-- BYTECODE -- tableutil.lua:13-13
+0001    UGET     2   0      ; order
+0002    UGET     3   1      ; t
+0003    MOV      4   0
+0004    MOV      5   1
+0005    CALLT    2   4
+
+-- BYTECODE -- tableutil.lua:20-25
+0001    UGET     0   0      ; i
+0002    ADDVN    0   0   0  ; 1
+0003    USETV    0   0      ; i
+0004    UGET     0   1      ; keys
+0005    UGET     1   0      ; i
+0006    TGETV    0   0   1
+0007    ISF          0
+0008    JMP      1 => 0018
+0009    UGET     0   1      ; keys
+0010    UGET     1   0      ; i
+0011    TGETV    0   0   1
+0012    UGET     1   2      ; t
+0013    UGET     2   1      ; keys
+0014    UGET     3   0      ; i
+0015    TGETV    2   2   3
+0016    TGETV    1   1   2
+0017    RET      0   3
+0018 => RET0     0   1
+
+-- BYTECODE -- tableutil.lua:5-26
+0001    TNEW     2   0
+0002    GGET     3   0      ; "pairs"
+0003    MOV      4   0
+0004    CALL     3   4   2
+0005    ISNEXT   6 => 0009
+0006 => LEN      7   2
+0007    ADDVN    7   7   0  ; 1
+0008    TSETV    6   2   7
+0009 => ITERN    6   2   3
+0010    ITERL    6 => 0006
+0011    ISF          1
+0012    JMP      3 => 0019
+0013    GGET     3   1      ; "table"
+0014    TGETS    3   3   2  ; "sort"
+0015    MOV      4   2
+0016    FNEW     5   3      ; tableutil.lua:13
+0017    CALL     3   1   3
+0018    JMP      3 => 0023
+0019 => GGET     3   1      ; "table"
+0020    TGETS    3   3   2  ; "sort"
+0021    MOV      4   2
+0022    CALL     3   1   2
+0023 => KSHORT   3   0
+0024    FNEW     4   4      ; tableutil.lua:20
+0025    UCLO     0 => 0026
+0026 => RET1     4   2
+
+-- BYTECODE -- tableutil.lua:0-29
+0001    TNEW     0   0
+0002    FNEW     1   1      ; tableutil.lua:5
+0003    TSETS    1   0   0  ; "spairs"
+0004    UCLO     0 => 0005
+0005 => RET1     0   2
+

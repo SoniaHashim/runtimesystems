@@ -1,0 +1,268 @@
+-- BYTECODE -- errors.lua:11-16
+0001    GGET     0   0      ; "error"
+0002    TDUP     1   1
+0003    VARG     2   0   0
+0004    TSETM    2   0      ; 2
+0005    CALLT    0   2
+
+-- BYTECODE -- errors.lua:18-27
+0001    TGETV    3   2   0
+0002    IST          3
+0003    JMP      3 => 0018
+0004    GGET     3   0      ; "assert"
+0005    GGET     4   1      ; "io"
+0006    TGETS    4   4   2  ; "open"
+0007    MOV      5   0
+0008    CALL     4   0   2
+0009    CALLM    3   2   0
+0010    MOV      5   3
+0011    TGETS    4   3   3  ; "read"
+0012    KSTR     6   4      ; "*a"
+0013    CALL     4   2   3
+0014    TSETV    4   2   0
+0015    MOV      5   3
+0016    TGETS    4   3   5  ; "close"
+0017    CALL     4   1   2
+0018 => UGET     3   0      ; pos_to_line
+0019    TGETV    4   2   0
+0020    MOV      5   1
+0021    CALLT    3   3
+
+-- BYTECODE -- errors.lua:29-36
+0001    MOV      4   2
+0002    KSHORT   5   0
+0003    KSHORT   6  -1
+0004    FORI     4 => 0014
+0005 => TGETV    8   1   7
+0006    ISF          8
+0007    JMP      9 => 0013
+0008    UGET     8   0      ; lookup_line
+0009    MOV      9   0
+0010    TGETV   10   1   7
+0011    MOV     11   3
+0012    CALLT    8   4
+0013 => FORL     4 => 0005
+0014 => KSTR     4   0      ; "unknown"
+0015    RET1     4   2
+
+-- BYTECODE -- errors.lua:38-64
+0001    ISNEP    1   0
+0002    JMP      2 => 0004
+0003    KSTR     1   0      ; "moonscript_chunk"
+0004 => UGET     2   0      ; split
+0005    MOV      3   0
+0006    KSTR     4   1      ; "\n"
+0007    CALL     2   2   3
+0008    MOV      0   2
+0009    LEN      2   0
+0010 => KSHORT   3   1
+0011    ISGE     3   2
+0012    JMP      3 => 0024
+0013    LOOP     3 => 0024
+0014    TGETV    3   0   2
+0015    MOV      4   3
+0016    TGETS    3   3   2  ; "match"
+0017    MOV      5   1
+0018    CALL     3   2   3
+0019    ISF          3
+0020    JMP      4 => 0022
+0021    JMP      3 => 0024
+0022 => SUBVN    2   2   0  ; 1
+0023    JMP      3 => 0010
+0024 => TNEW     3   0
+0025    KSHORT   4   1
+0026    MOV      5   2
+0027    KSHORT   6   1
+0028    KSHORT   7   0
+0029    ISGE     5   7
+0030    JMP      7 => 0035
+0031    LEN      7   0
+0032    ADDVV    7   7   5
+0033    IST          7
+0034    JMP      8 => 0036
+0035 => MOV      7   5
+0036 => KSHORT   8   1
+0037    FORI     6 => 0042
+0038 => TGETV   10   0   9
+0039    TSETV   10   3   4
+0040    ADDVN    4   4   0  ; 1
+0041    FORL     6 => 0038
+0042 => MOV      0   3
+0043    KSTR     3   3      ; "function '"
+0044    MOV      4   1
+0045    KSTR     5   4      ; "'"
+0046    CAT      3   3   5
+0047    LEN      4   0
+0048    LEN      5   0
+0049    TGETV    5   0   5
+0050    MOV      6   5
+0051    TGETS    5   5   5  ; "gsub"
+0052    MOV      7   3
+0053    KSTR     8   6      ; "main chunk"
+0054    CALL     5   2   4
+0055    TSETV    5   0   4
+0056    UGET     4   1      ; concat
+0057    MOV      5   0
+0058    KSTR     6   1      ; "\n"
+0059    CALLT    4   3
+
+-- BYTECODE -- errors.lua:80-97
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "match"
+0003    KSTR     3   1      ; "^(.-):(%d+): (.*)$"
+0004    CALL     1   4   3
+0005    UGET     4   0      ; line_tables
+0006    KSTR     5   2      ; "@"
+0007    GGET     6   3      ; "tostring"
+0008    MOV      7   1
+0009    CALL     6   2   2
+0010    CAT      5   5   6
+0011    TGETV    4   4   5
+0012    ISF          1
+0013    JMP      5 => 0030
+0014    ISF          4
+0015    JMP      5 => 0030
+0016    UGET     5   1      ; concat
+0017    TDUP     6   4
+0018    TSETB    1   6   1
+0019    UGET     7   2      ; reverse_line_number
+0020    MOV      8   1
+0021    MOV      9   4
+0022    MOV     10   2
+0023    UGET    11   3      ; cache
+0024    CALL     7   2   5
+0025    TSETB    7   6   3
+0026    TSETB    2   6   6
+0027    TSETB    3   6   8
+0028    CALLT    5   2
+0029    JMP      5 => 0031
+0030 => RET1     0   2
+0031 => RET0     0   1
+
+-- BYTECODE -- errors.lua:66-111
+0001    GGET     2   0      ; "require"
+0002    KSTR     3   1      ; "moonscript.line_tables"
+0003    CALL     2   2   2
+0004    KNIL     3   6
+0005    UGET     7   0      ; lpeg
+0006    TGETS    7   7   2  ; "V"
+0007    UGET     8   0      ; lpeg
+0008    TGETS    8   8   3  ; "S"
+0009    UGET     9   0      ; lpeg
+0010    TGETS    9   9   4  ; "Ct"
+0011    UGET    10   0      ; lpeg
+0012    TGETS    6  10   5  ; "C"
+0013    MOV      5   9
+0014    MOV      4   8
+0015    MOV      3   7
+0016    KSTR     7   6      ; "stack traceback:"
+0017    MOV      8   3
+0018    KSTR     9   7      ; "Header"
+0019    CALL     8   2   2
+0020    MOV      9   3
+0021    KSTR    10   8      ; "Line"
+0022    CALL     9   2   2
+0023    UGET    10   0      ; lpeg
+0024    TGETS   10  10   3  ; "S"
+0025    KSTR    11   9      ; "\n"
+0026    CALL    10   2   2
+0027    UGET    11   0      ; lpeg
+0028    TGETS   11  11  10  ; "P"
+0029    TDUP    12  11
+0030    TSETB    8  12   1
+0031    MULVV   13   7  10
+0032    MOV     14   5
+0033    KSHORT  15   1
+0034    POW     15   9  15
+0035    CALL    14   2   2
+0036    MULVV   13  13  14
+0037    TSETS   13  12   7  ; "Header"
+0038    KSTR    13  12      ; "\t"
+0039    MOV     14   6
+0040    SUBNV   15  10   0  ; 1
+0041    KSHORT  16   0
+0042    POW     15  15  16
+0043    CALL    14   2   2
+0044    MULVV   13  13  14
+0045    ADDVN   14  10   1  ; -1
+0046    MULVV   13  13  14
+0047    TSETS   13  12   8  ; "Line"
+0048    CALL    11   2   2
+0049    TNEW    12   0
+0050    KPRI    13   0
+0051    FNEW    13  13      ; errors.lua:80
+0052    MOV     14  13
+0053    MOV     15   1
+0054    CALL    14   2   2
+0055    MOV      1  14
+0056    MOV     15  11
+0057    TGETS   14  11  14  ; "match"
+0058    MOV     16   0
+0059    CALL    14   2   3
+0060    IST         14
+0061    JMP     15 => 0065
+0062    KPRI    15   0
+0063    UCLO     0 => 0064
+0064 => RET1    15   2
+0065 => GGET    15  15      ; "ipairs"
+0066    MOV     16  14
+0067    CALL    15   4   2
+0068    JMP     18 => 0073
+0069 => MOV     20  13
+0070    MOV     21  19
+0071    CALL    20   2   2
+0072    TSETV   20  14  18
+0073 => ITERC   18   3   3
+0074    ITERL   18 => 0069
+0075    UGET    15   1      ; concat
+0076    TNEW    16   4
+0077    KSTR    17  16      ; "moon: "
+0078    MOV     18   1
+0079    CAT     17  17  18
+0080    TSETB   17  16   1
+0081    TSETB    7  16   2
+0082    KSTR    17  12      ; "\t"
+0083    UGET    18   1      ; concat
+0084    MOV     19  14
+0085    KSTR    20  17      ; "\n\t"
+0086    CALL    18   2   3
+0087    CAT     17  17  18
+0088    TSETB   17  16   3
+0089    KSTR    17   9      ; "\n"
+0090    UCLO     0 => 0091
+0091 => CALLT   15   3
+
+-- BYTECODE -- errors.lua:0-118
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "moonscript.util"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "lpeg"
+0006    CALL     1   2   2
+0007    KNIL     2   3
+0008    GGET     4   3      ; "table"
+0009    TGETS    5   4   4  ; "concat"
+0010    TGETS    3   4   5  ; "insert"
+0011    MOV      2   5
+0012    KNIL     4   5
+0013    TGETS    6   0   6  ; "split"
+0014    TGETS    5   0   7  ; "pos_to_line"
+0015    MOV      4   6
+0016    KPRI     6   0
+0017    FNEW     6   8      ; errors.lua:11
+0018    KPRI     7   0
+0019    FNEW     7   9      ; errors.lua:18
+0020    KPRI     8   0
+0021    FNEW     8  10      ; errors.lua:29
+0022    KPRI     9   0
+0023    FNEW     9  11      ; errors.lua:38
+0024    KPRI    10   0
+0025    FNEW    10  12      ; errors.lua:66
+0026    TDUP    11  13
+0027    TSETS   10  11  14  ; "rewrite_traceback"
+0028    TSETS    9  11  15  ; "truncate_traceback"
+0029    TSETS    6  11  16  ; "user_error"
+0030    TSETS    8  11  17  ; "reverse_line_number"
+0031    UCLO     0 => 0032
+0032 => RET1    11   2
+

@@ -1,0 +1,145 @@
+
+main <./frontend/optmath.lua:0,0> (23 instructions, 92 bytes at 0x7f892f4068a0)
+0+ params, 5 slots, 0 upvalues, 4 locals, 9 constants, 7 functions
+	1	[5]	GETGLOBAL	0 -1	; require
+	2	[5]	LOADK    	1 -2	; "bit"
+	3	[5]	CALL     	0 2 2
+	4	[7]	NEWTABLE 	1 0 0
+	5	[9]	GETTABLE 	2 0 -3	; "band"
+	6	[13]	CLOSURE  	3 0	; 0x7f892f406a60
+	7	[11]	SETTABLE 	1 -4 3	; "roundPercent" -
+	8	[21]	CLOSURE  	3 1	; 0x7f892f407080
+	9	[15]	SETTABLE 	1 -5 3	; "roundAwayFromZero" -
+	10	[25]	CLOSURE  	3 2	; 0x7f892f407260
+	11	[23]	SETTABLE 	1 -6 3	; "round" -
+	12	[33]	CLOSURE  	3 3	; 0x7f892f406b80
+	13	[33]	MOVE     	0 2
+	14	[27]	SETTABLE 	1 -7 3	; "oddEven" -
+	15	[54]	CLOSURE  	3 4	; 0x7f892f407b50
+	16	[66]	CLOSURE  	4 5	; 0x7f892f407fd0
+	17	[66]	MOVE     	0 3
+	18	[64]	SETTABLE 	1 -8 4	; "tmin" -
+	19	[78]	CLOSURE  	4 6	; 0x7f892f407000
+	20	[78]	MOVE     	0 3
+	21	[76]	SETTABLE 	1 -9 4	; "tmax" -
+	22	[80]	RETURN   	1 2
+	23	[80]	RETURN   	0 1
+
+function <./frontend/optmath.lua:11,13> (7 instructions, 28 bytes at 0x7f892f406a60)
+1 param, 3 slots, 0 upvalues, 1 local, 3 constants, 0 functions
+	1	[12]	GETGLOBAL	1 -1	; math
+	2	[12]	GETTABLE 	1 1 -2	; "floor"
+	3	[12]	MUL      	2 0 -3	; - 10000
+	4	[12]	CALL     	1 2 2
+	5	[12]	DIV      	1 1 -3	; - 10000
+	6	[12]	RETURN   	1 2
+	7	[13]	RETURN   	0 1
+
+function <./frontend/optmath.lua:15,21> (14 instructions, 56 bytes at 0x7f892f407080)
+1 param, 3 slots, 0 upvalues, 1 local, 4 constants, 0 functions
+	1	[16]	LT       	0 -1 0	; 0 -
+	2	[16]	JMP      	6	; to 9
+	3	[17]	GETGLOBAL	1 -2	; math
+	4	[17]	GETTABLE 	1 1 -3	; "ceil"
+	5	[17]	MOVE     	2 0
+	6	[17]	TAILCALL 	1 2 0
+	7	[17]	RETURN   	1 0
+	8	[17]	JMP      	5	; to 14
+	9	[19]	GETGLOBAL	1 -2	; math
+	10	[19]	GETTABLE 	1 1 -4	; "floor"
+	11	[19]	MOVE     	2 0
+	12	[19]	TAILCALL 	1 2 0
+	13	[19]	RETURN   	1 0
+	14	[21]	RETURN   	0 1
+
+function <./frontend/optmath.lua:23,25> (6 instructions, 24 bytes at 0x7f892f407260)
+1 param, 3 slots, 0 upvalues, 1 local, 3 constants, 0 functions
+	1	[24]	GETGLOBAL	1 -1	; math
+	2	[24]	GETTABLE 	1 1 -2	; "floor"
+	3	[24]	ADD      	2 0 -3	; - 0.5
+	4	[24]	TAILCALL 	1 2 0
+	5	[24]	RETURN   	1 0
+	6	[25]	RETURN   	0 1
+
+function <./frontend/optmath.lua:27,33> (12 instructions, 48 bytes at 0x7f892f406b80)
+1 param, 4 slots, 1 upvalue, 1 local, 3 constants, 0 functions
+	1	[28]	GETUPVAL 	1 0	; band
+	2	[28]	MOVE     	2 0
+	3	[28]	LOADK    	3 -1	; 1
+	4	[28]	CALL     	1 3 2
+	5	[28]	EQ       	0 1 -1	; - 1
+	6	[28]	JMP      	3	; to 10
+	7	[29]	LOADK    	1 -2	; "odd"
+	8	[29]	RETURN   	1 2
+	9	[29]	JMP      	2	; to 12
+	10	[31]	LOADK    	1 -3	; "even"
+	11	[31]	RETURN   	1 2
+	12	[33]	RETURN   	0 1
+
+function <./frontend/optmath.lua:35,54> (45 instructions, 180 bytes at 0x7f892f407b50)
+3 params, 12 slots, 0 upvalues, 9 locals, 5 constants, 0 functions
+	1	[36]	LEN      	3 0
+	2	[36]	EQ       	0 3 -1	; - 0
+	3	[36]	JMP      	2	; to 6
+	4	[36]	LOADNIL  	3 4
+	5	[36]	RETURN   	3 3
+	6	[37]	LOADK    	3 -2	; 1
+	7	[37]	GETTABLE 	4 0 -2	; 1
+	8	[38]	LOADK    	5 -3	; 2
+	9	[38]	LEN      	6 0
+	10	[38]	LOADK    	7 -2	; 1
+	11	[38]	FORPREP  	5 29	; to 41
+	12	[39]	TEST     	1 0 0
+	13	[39]	JMP      	10	; to 24
+	14	[40]	MOVE     	9 1
+	15	[40]	MOVE     	10 4
+	16	[40]	GETTABLE 	11 0 8
+	17	[40]	CALL     	9 3 2
+	18	[40]	TEST     	9 0 0
+	19	[40]	JMP      	21	; to 41
+	20	[41]	MOVE     	9 8
+	21	[41]	GETTABLE 	4 0 8
+	22	[41]	MOVE     	3 9
+	23	[42]	JMP      	17	; to 41
+	24	[43]	EQ       	0 2 -4	; - "min"
+	25	[43]	JMP      	7	; to 33
+	26	[44]	GETTABLE 	9 0 8
+	27	[44]	LT       	0 9 4
+	28	[44]	JMP      	12	; to 41
+	29	[45]	MOVE     	9 8
+	30	[45]	GETTABLE 	4 0 8
+	31	[45]	MOVE     	3 9
+	32	[46]	JMP      	8	; to 41
+	33	[47]	EQ       	0 2 -5	; - "max"
+	34	[47]	JMP      	6	; to 41
+	35	[48]	GETTABLE 	9 0 8
+	36	[48]	LT       	0 4 9
+	37	[48]	JMP      	3	; to 41
+	38	[49]	MOVE     	9 8
+	39	[49]	GETTABLE 	4 0 8
+	40	[49]	MOVE     	3 9
+	41	[38]	FORLOOP  	5 -30	; to 12
+	42	[53]	MOVE     	5 3
+	43	[53]	MOVE     	6 4
+	44	[53]	RETURN   	5 3
+	45	[54]	RETURN   	0 1
+
+function <./frontend/optmath.lua:64,66> (7 instructions, 28 bytes at 0x7f892f407fd0)
+2 params, 6 slots, 1 upvalue, 2 locals, 1 constant, 0 functions
+	1	[65]	GETUPVAL 	2 0	; tmin_max
+	2	[65]	MOVE     	3 0
+	3	[65]	MOVE     	4 1
+	4	[65]	LOADK    	5 -1	; "min"
+	5	[65]	TAILCALL 	2 4 0
+	6	[65]	RETURN   	2 0
+	7	[66]	RETURN   	0 1
+
+function <./frontend/optmath.lua:76,78> (7 instructions, 28 bytes at 0x7f892f407000)
+2 params, 6 slots, 1 upvalue, 2 locals, 1 constant, 0 functions
+	1	[77]	GETUPVAL 	2 0	; tmin_max
+	2	[77]	MOVE     	3 0
+	3	[77]	MOVE     	4 1
+	4	[77]	LOADK    	5 -1	; "max"
+	5	[77]	TAILCALL 	2 4 0
+	6	[77]	RETURN   	2 0
+	7	[78]	RETURN   	0 1

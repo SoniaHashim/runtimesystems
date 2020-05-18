@@ -1,0 +1,45 @@
+-- BYTECODE -- git_ssh.lua:21-30
+0001    TGETS    3   0   0  ; "source"
+0002    TGETS    4   0   0  ; "source"
+0003    TGETS    4   4   1  ; "url"
+0004    MOV      5   4
+0005    TGETS    4   4   2  ; "gsub"
+0006    KSTR     6   3      ; "^git."
+0007    KSTR     7   4      ; ""
+0008    CALL     4   2   4
+0009    TSETS    4   3   1  ; "url"
+0010    TGETS    3   0   0  ; "source"
+0011    TGETS    3   3   1  ; "url"
+0012    MOV      4   3
+0013    TGETS    3   3   5  ; "match"
+0014    KSTR     5   6      ; "^ssh://[^/]+:[^%d]"
+0015    CALL     3   2   3
+0016    ISF          3
+0017    JMP      4 => 0027
+0018    TGETS    3   0   0  ; "source"
+0019    TGETS    4   0   0  ; "source"
+0020    TGETS    4   4   1  ; "url"
+0021    MOV      5   4
+0022    TGETS    4   4   2  ; "gsub"
+0023    KSTR     6   7      ; "^ssh://"
+0024    KSTR     7   4      ; ""
+0025    CALL     4   2   4
+0026    TSETS    4   3   1  ; "url"
+0027 => UGET     3   0      ; git
+0028    TGETS    3   3   8  ; "get_sources"
+0029    MOV      4   0
+0030    MOV      5   1
+0031    MOV      6   2
+0032    KSTR     7   9      ; "--"
+0033    CALLT    3   5
+
+-- BYTECODE -- git_ssh.lua:0-33
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.fetch.git"
+0004    CALL     1   2   2
+0005    FNEW     2   3      ; git_ssh.lua:21
+0006    TSETS    2   0   2  ; "get_sources"
+0007    UCLO     0 => 0008
+0008 => RET1     0   2
+

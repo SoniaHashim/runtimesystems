@@ -1,0 +1,895 @@
+-- BYTECODE -- sysdetect.lua:10-12
+0001    GGET     1   0      ; "string"
+0002    TGETS    1   1   1  ; "char"
+0003    GGET     2   2      ; "tonumber"
+0004    MOV      3   0
+0005    KSHORT   4  16
+0006    CALL     2   0   3
+0007    CALLMT   1   0
+
+-- BYTECODE -- sysdetect.lua:9-13
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "gsub"
+0003    KSTR     3   1      ; "$(..)"
+0004    FNEW     4   2      ; sysdetect.lua:10
+0005    UCLO     0 => 0006
+0006 => CALLT    1   4
+
+-- BYTECODE -- sysdetect.lua:15-25
+0001    GGET     1   0      ; "io"
+0002    TGETS    1   1   1  ; "type"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    ISNES    1   2      ; "closed file"
+0006    JMP      1 => 0009
+0007    KPRI     1   0
+0008    RET1     1   2
+0009 => MOV      2   0
+0010    TGETS    1   0   3  ; "read"
+0011    KSHORT   3   1
+0012    CALL     1   2   3
+0013    IST          1
+0014    JMP      2 => 0020
+0015    MOV      3   0
+0016    TGETS    2   0   4  ; "close"
+0017    CALL     2   1   2
+0018    KPRI     2   0
+0019    RET1     2   2
+0020 => MOV      3   1
+0021    TGETS    2   1   5  ; "byte"
+0022    CALLT    2   2
+
+-- BYTECODE -- sysdetect.lua:30-42
+0001    KSHORT   2   0
+0002    UGET     3   0      ; LITTLE
+0003    ISNEV    1   3
+0004    JMP      3 => 0018
+0005    LEN      3   0
+0006    KSHORT   4   1
+0007    KSHORT   5  -1
+0008    FORI     3 => 0017
+0009 => MULVN    7   2   0  ; 256
+0010    MOV      9   0
+0011    TGETS    8   0   0  ; "byte"
+0012    MOV     10   6
+0013    MOV     11   6
+0014    CALL     8   2   4
+0015    ADDVV    2   7   8
+0016    FORL     3 => 0009
+0017 => JMP      3 => 0030
+0018 => KSHORT   3   1
+0019    LEN      4   0
+0020    KSHORT   5   1
+0021    FORI     3 => 0030
+0022 => MULVN    7   2   0  ; 256
+0023    MOV      9   0
+0024    TGETS    8   0   0  ; "byte"
+0025    MOV     10   6
+0026    MOV     11   6
+0027    CALL     8   2   4
+0028    ADDVV    2   7   8
+0029    FORL     3 => 0022
+0030 => RET1     2   2
+
+-- BYTECODE -- sysdetect.lua:44-54
+0001    GGET     3   0      ; "io"
+0002    TGETS    3   3   1  ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISNES    3   2      ; "closed file"
+0006    JMP      3 => 0009
+0007    KPRI     3   0
+0008    RET1     3   2
+0009 => MOV      4   0
+0010    TGETS    3   0   3  ; "read"
+0011    MOV      5   1
+0012    CALL     3   2   3
+0013    IST          3
+0014    JMP      4 => 0020
+0015    MOV      5   0
+0016    TGETS    4   0   4  ; "close"
+0017    CALL     4   1   2
+0018    KPRI     4   0
+0019    RET1     4   2
+0020 => UGET     4   0      ; bytes2number
+0021    MOV      5   3
+0022    MOV      6   2
+0023    CALLT    4   3
+
+-- BYTECODE -- sysdetect.lua:56-58
+0001    UGET     1   0      ; read
+0002    MOV      2   0
+0003    KSHORT   3   4
+0004    UGET     4   1      ; LITTLE
+0005    CALLT    1   4
+
+-- BYTECODE -- sysdetect.lua:99-136
+0001    TGETS    2   1   0  ; "endian"
+0002    TGETS    3   1   1  ; "word"
+0003    KPRI     4   0
+0004    TNEW     5   0
+0005    KSHORT   6   0
+0006    TGETS    7   1   2  ; "e_shnum"
+0007    SUBVN    7   7   0  ; 1
+0008    KSHORT   8   1
+0009    FORI     6 => 0120
+0010 => MOV     11   0
+0011    TGETS   10   0   3  ; "seek"
+0012    KSTR    12   4      ; "set"
+0013    TGETS   13   1   5  ; "e_shoff"
+0014    TGETS   14   1   6  ; "e_shentsize"
+0015    MULVV   14   9  14
+0016    ADDVV   13  13  14
+0017    CALL    10   1   4
+0018    TNEW    10   0
+0019    UGET    11   0      ; read
+0020    MOV     12   0
+0021    KSHORT  13   4
+0022    MOV     14   2
+0023    CALL    11   2   4
+0024    TSETS   11  10   7  ; "sh_name_off"
+0025    UGET    11   0      ; read
+0026    MOV     12   0
+0027    KSHORT  13   4
+0028    MOV     14   2
+0029    CALL    11   2   4
+0030    TSETS   11  10   8  ; "sh_type"
+0031    UGET    11   0      ; read
+0032    MOV     12   0
+0033    MOV     13   3
+0034    MOV     14   2
+0035    CALL    11   2   4
+0036    TSETS   11  10   9  ; "sh_flags"
+0037    UGET    11   0      ; read
+0038    MOV     12   0
+0039    MOV     13   3
+0040    MOV     14   2
+0041    CALL    11   2   4
+0042    TSETS   11  10  10  ; "sh_addr"
+0043    UGET    11   0      ; read
+0044    MOV     12   0
+0045    MOV     13   3
+0046    MOV     14   2
+0047    CALL    11   2   4
+0048    TSETS   11  10  11  ; "sh_offset"
+0049    UGET    11   0      ; read
+0050    MOV     12   0
+0051    MOV     13   3
+0052    MOV     14   2
+0053    CALL    11   2   4
+0054    TSETS   11  10  12  ; "sh_size"
+0055    UGET    11   0      ; read
+0056    MOV     12   0
+0057    KSHORT  13   4
+0058    MOV     14   2
+0059    CALL    11   2   4
+0060    TSETS   11  10  13  ; "sh_link"
+0061    UGET    11   0      ; read
+0062    MOV     12   0
+0063    KSHORT  13   4
+0064    MOV     14   2
+0065    CALL    11   2   4
+0066    TSETS   11  10  14  ; "sh_info"
+0067    TGETS   11  10   8  ; "sh_type"
+0068    UGET    12   1      ; SHT_NOTE
+0069    ISNEV   11  12
+0070    JMP     11 => 0110
+0071    MOV     12   0
+0072    TGETS   11   0   3  ; "seek"
+0073    KSTR    13   4      ; "set"
+0074    TGETS   14  10  11  ; "sh_offset"
+0075    CALL    11   1   4
+0076    UGET    11   0      ; read
+0077    MOV     12   0
+0078    KSHORT  13   4
+0079    MOV     14   2
+0080    CALL    11   2   4
+0081    TSETS   11  10  15  ; "namesz"
+0082    UGET    11   0      ; read
+0083    MOV     12   0
+0084    KSHORT  13   4
+0085    MOV     14   2
+0086    CALL    11   2   4
+0087    TSETS   11  10  16  ; "descsz"
+0088    UGET    11   0      ; read
+0089    MOV     12   0
+0090    KSHORT  13   4
+0091    MOV     14   2
+0092    CALL    11   2   4
+0093    TSETS   11  10  17  ; "type"
+0094    MOV     12   0
+0095    TGETS   11   0  19  ; "read"
+0096    TGETS   13  10  15  ; "namesz"
+0097    CALL    11   2   3
+0098    MOV     12  11
+0099    TGETS   11  11  20  ; "gsub"
+0100    KSTR    13  21      ; "%z.*"
+0101    KSTR    14  22      ; ""
+0102    CALL    11   2   4
+0103    TSETS   11  10  18  ; "namedata"
+0104    MOV     12   0
+0105    TGETS   11   0  19  ; "read"
+0106    TGETS   13  10  16  ; "descsz"
+0107    CALL    11   2   3
+0108    TSETS   11  10  23  ; "descdata"
+0109    JMP     11 => 0114
+0110 => TGETS   11   1  24  ; "e_shstrndx"
+0111    ISNEV    9  11
+0112    JMP     11 => 0114
+0113    TGETS    4  10  11  ; "sh_offset"
+0114 => GGET    11  25      ; "table"
+0115    TGETS   11  11  26  ; "insert"
+0116    MOV     12   5
+0117    MOV     13  10
+0118    CALL    11   1   3
+0119    FORL     6 => 0010
+0120 => ISF          4
+0121    JMP      6 => 0146
+0122    GGET     6  27      ; "ipairs"
+0123    MOV      7   5
+0124    CALL     6   4   2
+0125    JMP      9 => 0144
+0126 => MOV     12   0
+0127    TGETS   11   0   3  ; "seek"
+0128    KSTR    13   4      ; "set"
+0129    TGETS   14  10   7  ; "sh_name_off"
+0130    ADDVV   14   4  14
+0131    CALL    11   1   4
+0132    MOV     12   0
+0133    TGETS   11   0  19  ; "read"
+0134    KSHORT  13  32
+0135    CALL    11   2   3
+0136    MOV     12  11
+0137    TGETS   11  11  20  ; "gsub"
+0138    KSTR    13  21      ; "%z.*"
+0139    KSTR    14  22      ; ""
+0140    CALL    11   2   4
+0141    TSETS   11  10  28  ; "name"
+0142    TGETS   11  10  28  ; "name"
+0143    TSETV   10   5  11
+0144 => ITERC    9   3   3
+0145    ITERL    9 => 0126
+0146 => RET1     5   2
+
+-- BYTECODE -- sysdetect.lua:138-195
+0001    UGET     3   0      ; e_osabi
+0002    TGETS    4   1   0  ; "osabi"
+0003    TGETV    3   3   4
+0004    TGETS    4   1   1  ; "endian"
+0005    ISNES    3   2      ; "sysv"
+0006    JMP      5 => 0137
+0007    TGETS    5   2   3  ; ".note.ABI-tag"
+0008    ISF          5
+0009    JMP      6 => 0027
+0010    TGETS    6   5   4  ; "namedata"
+0011    ISNES    6   5      ; "GNU"
+0012    JMP      6 => 0047
+0013    TGETS    6   5   6  ; "type"
+0014    ISNEN    6   0      ; 1
+0015    JMP      6 => 0047
+0016    TGETS    6   5   7  ; "descdata"
+0017    MOV      7   6
+0018    TGETS    6   6   8  ; "sub"
+0019    KSHORT   8   0
+0020    KSHORT   9   4
+0021    CALL     6   2   4
+0022    ISNES    6   9      ; "\000\000\000\000"
+0023    JMP      6 => 0047
+0024    KSTR     6  10      ; "linux"
+0025    RET1     6   2
+0026    JMP      6 => 0047
+0027 => TGETS    6   2  11  ; ".SUNW_version"
+0028    IST          6
+0029    JMP      7 => 0033
+0030    TGETS    6   2  12  ; ".SUNW_signature"
+0031    ISF          6
+0032    JMP      7 => 0036
+0033 => KSTR     6  13      ; "solaris"
+0034    RET1     6   2
+0035    JMP      6 => 0047
+0036 => TGETS    6   2  14  ; ".note.netbsd.ident"
+0037    ISF          6
+0038    JMP      7 => 0042
+0039    KSTR     6  15      ; "netbsd"
+0040    RET1     6   2
+0041    JMP      6 => 0047
+0042 => TGETS    6   2  16  ; ".note.openbsd.ident"
+0043    ISF          6
+0044    JMP      7 => 0047
+0045    KSTR     6  17      ; "openbsd"
+0046    RET1     6   2
+0047 => TGETS    6   2  18  ; ".gnu.version_r"
+0048    ISF          6
+0049    JMP      7 => 0120
+0050    TGETS    7   2  19  ; ".dynstr"
+0051    TGETS    7   7  20  ; "sh_offset"
+0052    KSHORT   8   0
+0053    KSHORT   9   0
+0054    TGETS   10   6  21  ; "sh_info"
+0055    SUBVN   10  10   0  ; 1
+0056    KSHORT  11   1
+0057    FORI     9 => 0120
+0058 => MOV     14   0
+0059    TGETS   13   0  22  ; "seek"
+0060    KSTR    15  23      ; "set"
+0061    TGETS   16   6  20  ; "sh_offset"
+0062    ADDVV   16  16   8
+0063    CALL    13   1   4
+0064    GGET    13  24      ; "assert"
+0065    UGET    14   1      ; read
+0066    MOV     15   0
+0067    KSHORT  16   2
+0068    MOV     17   4
+0069    CALL    14   0   4
+0070    CALLM   13   1   0
+0071    UGET    13   1      ; read
+0072    MOV     14   0
+0073    KSHORT  15   2
+0074    MOV     16   4
+0075    CALL    13   2   4
+0076    UGET    14   1      ; read
+0077    MOV     15   0
+0078    KSHORT  16   4
+0079    MOV     17   4
+0080    CALL    14   2   4
+0081    UGET    15   1      ; read
+0082    MOV     16   0
+0083    KSHORT  17   2
+0084    MOV     18   4
+0085    CALL    15   2   4
+0086    MOV     17   0
+0087    TGETS   16   0  22  ; "seek"
+0088    KSTR    18  23      ; "set"
+0089    ADDVV   19   7  14
+0090    CALL    16   1   4
+0091    MOV     17   0
+0092    TGETS   16   0  25  ; "read"
+0093    KSHORT  18  64
+0094    CALL    16   2   3
+0095    MOV     17  16
+0096    TGETS   16  16  26  ; "gsub"
+0097    KSTR    18  27      ; "%z.*"
+0098    KSTR    19  28      ; ""
+0099    CALL    16   2   4
+0100    TGETS   17   1  29  ; "e_type"
+0101    ISNEN   17   1      ; 3
+0102    JMP     17 => 0108
+0103    ISNES   16  30      ; "libroot.so"
+0104    JMP     17 => 0108
+0105    KSTR    17  31      ; "haiku"
+0106    RET1    17   2
+0107    JMP     17 => 0116
+0108 => MOV     18  16
+0109    TGETS   17  16  32  ; "match"
+0110    KSTR    19  10      ; "linux"
+0111    CALL    17   2   3
+0112    ISF         17
+0113    JMP     18 => 0116
+0114    KSTR    17  10      ; "linux"
+0115    RET1    17   2
+0116 => ADDVN   17  13   0  ; 1
+0117    MULVV   17  15  17
+0118    ADDVV    8   8  17
+0119    FORL     9 => 0058
+0120 => GGET     7  33      ; "io"
+0121    TGETS    7   7  34  ; "open"
+0122    KSTR     8  35      ; "/proc/sys/kernel/ostype"
+0123    CALL     7   2   2
+0124    ISF          7
+0125    JMP      8 => 0137
+0126    MOV      9   7
+0127    TGETS    8   7  25  ; "read"
+0128    KSHORT  10   6
+0129    CALL     8   2   3
+0130    MOV     10   7
+0131    TGETS    9   7  36  ; "close"
+0132    CALL     9   1   2
+0133    ISNES    8  37      ; "Linux\n"
+0134    JMP      9 => 0137
+0135    KSTR     9  10      ; "linux"
+0136    RET1     9   2
+0137 => RET1     3   2
+
+-- BYTECODE -- sysdetect.lua:197-240
+0001    TNEW     1   0
+0002    UGET     2   0      ; read_int8
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    TSETS    2   1   0  ; "bits"
+0006    UGET     2   0      ; read_int8
+0007    MOV      3   0
+0008    CALL     2   2   2
+0009    TSETS    2   1   1  ; "endian"
+0010    UGET     2   0      ; read_int8
+0011    MOV      3   0
+0012    CALL     2   2   2
+0013    TSETS    2   1   2  ; "elf_version"
+0014    TGETS    2   1   2  ; "elf_version"
+0015    ISEQN    2   0      ; 1
+0016    JMP      2 => 0019
+0017    KPRI     2   0
+0018    RET1     2   2
+0019 => UGET     2   0      ; read_int8
+0020    MOV      3   0
+0021    CALL     2   2   2
+0022    TSETS    2   1   3  ; "osabi"
+0023    TGETS    2   1   3  ; "osabi"
+0024    IST          2
+0025    JMP      2 => 0028
+0026    KPRI     2   0
+0027    RET1     2   2
+0028 => TGETS    2   1   1  ; "endian"
+0029    MOV      4   0
+0030    TGETS    3   0   4  ; "seek"
+0031    KSTR     5   5      ; "set"
+0032    KSHORT   6  16
+0033    CALL     3   1   4
+0034    UGET     3   1      ; read
+0035    MOV      4   0
+0036    KSHORT   5   2
+0037    MOV      6   2
+0038    CALL     3   2   4
+0039    TSETS    3   1   6  ; "e_type"
+0040    UGET     3   1      ; read
+0041    MOV      4   0
+0042    KSHORT   5   2
+0043    MOV      6   2
+0044    CALL     3   2   4
+0045    UGET     4   2      ; e_machines
+0046    TGETV    4   4   3
+0047    IST          4
+0048    JMP      5 => 0050
+0049    KSTR     4   7      ; "unknown"
+0050 => ISNEN    2   0      ; 1
+0051    JMP      5 => 0055
+0052    ISNES    4   8      ; "ppc64"
+0053    JMP      5 => 0055
+0054    KSTR     4   9      ; "ppc64le"
+0055 => UGET     5   1      ; read
+0056    MOV      6   0
+0057    KSHORT   7   4
+0058    MOV      8   2
+0059    CALL     5   2   4
+0060    ISEQN    5   0      ; 1
+0061    JMP      6 => 0064
+0062    KPRI     6   0
+0063    RET1     6   2
+0064 => TGETS    6   1   0  ; "bits"
+0065    ISNEN    6   0      ; 1
+0066    JMP      6 => 0069
+0067    KSHORT   6   4
+0068    JMP      7 => 0070
+0069 => KSHORT   6   8
+0070 => TSETS    6   1  10  ; "word"
+0071    UGET     7   1      ; read
+0072    MOV      8   0
+0073    MOV      9   6
+0074    MOV     10   2
+0075    CALL     7   2   4
+0076    TSETS    7   1  11  ; "e_entry"
+0077    UGET     7   1      ; read
+0078    MOV      8   0
+0079    MOV      9   6
+0080    MOV     10   2
+0081    CALL     7   2   4
+0082    TSETS    7   1  12  ; "e_phoff"
+0083    UGET     7   1      ; read
+0084    MOV      8   0
+0085    MOV      9   6
+0086    MOV     10   2
+0087    CALL     7   2   4
+0088    TSETS    7   1  13  ; "e_shoff"
+0089    UGET     7   1      ; read
+0090    MOV      8   0
+0091    KSHORT   9   4
+0092    MOV     10   2
+0093    CALL     7   2   4
+0094    TSETS    7   1  14  ; "e_flags"
+0095    UGET     7   1      ; read
+0096    MOV      8   0
+0097    KSHORT   9   2
+0098    MOV     10   2
+0099    CALL     7   2   4
+0100    TSETS    7   1  15  ; "e_ehsize"
+0101    UGET     7   1      ; read
+0102    MOV      8   0
+0103    KSHORT   9   2
+0104    MOV     10   2
+0105    CALL     7   2   4
+0106    TSETS    7   1  16  ; "e_phentsize"
+0107    UGET     7   1      ; read
+0108    MOV      8   0
+0109    KSHORT   9   2
+0110    MOV     10   2
+0111    CALL     7   2   4
+0112    TSETS    7   1  17  ; "e_phnum"
+0113    UGET     7   1      ; read
+0114    MOV      8   0
+0115    KSHORT   9   2
+0116    MOV     10   2
+0117    CALL     7   2   4
+0118    TSETS    7   1  18  ; "e_shentsize"
+0119    UGET     7   1      ; read
+0120    MOV      8   0
+0121    KSHORT   9   2
+0122    MOV     10   2
+0123    CALL     7   2   4
+0124    TSETS    7   1  19  ; "e_shnum"
+0125    UGET     7   1      ; read
+0126    MOV      8   0
+0127    KSHORT   9   2
+0128    MOV     10   2
+0129    CALL     7   2   4
+0130    TSETS    7   1  20  ; "e_shstrndx"
+0131    MOV      7   1
+0132    MOV      8   4
+0133    RET      7   3
+
+-- BYTECODE -- sysdetect.lua:242-250
+0001    UGET     1   0      ; read_elf_header
+0002    MOV      2   0
+0003    CALL     1   3   2
+0004    IST          1
+0005    JMP      3 => 0008
+0006    KPRI     3   0
+0007    RET1     3   2
+0008 => UGET     3   1      ; read_elf_section_headers
+0009    MOV      4   0
+0010    MOV      5   1
+0011    CALL     3   2   3
+0012    UGET     4   2      ; detect_elf_system
+0013    MOV      5   0
+0014    MOV      6   1
+0015    MOV      7   3
+0016    CALL     4   2   4
+0017    MOV      5   4
+0018    MOV      6   2
+0019    RET      5   3
+
+-- BYTECODE -- sysdetect.lua:274-302
+0001    IST          0
+0002    JMP      2 => 0005
+0003    KPRI     2   0
+0004    RET1     2   2
+0005 => UGET     2   0      ; hex
+0006    KSTR     3   0      ; "$CA$FE$BA$BE"
+0007    CALL     2   2   2
+0008    ISNEV    0   2
+0009    JMP      2 => 0036
+0010    MOV      3   1
+0011    TGETS    2   1   1  ; "seek"
+0012    KSTR     4   2      ; "set"
+0013    KSHORT   5  18
+0014    CALL     2   1   4
+0015    UGET     2   1      ; read_int8
+0016    MOV      3   1
+0017    CALL     2   2   2
+0018    IST          2
+0019    JMP      3 => 0022
+0020    KPRI     3   0
+0021    RET1     3   2
+0022 => MOV      4   1
+0023    TGETS    3   1   1  ; "seek"
+0024    KSTR     5   2      ; "set"
+0025    MULVN    6   2   0  ; 256
+0026    CALL     3   1   4
+0027    MOV      4   1
+0028    TGETS    3   1   3  ; "read"
+0029    KSHORT   5   4
+0030    CALL     3   2   3
+0031    MOV      0   3
+0032    UGET     3   2      ; detect_mach
+0033    MOV      4   0
+0034    MOV      5   1
+0035    CALLT    3   3
+0036 => UGET     2   1      ; read_int8
+0037    MOV      3   1
+0038    CALL     2   2   2
+0039    UGET     3   0      ; hex
+0040    KSTR     4   4      ; "$CF$FA$ED$FE"
+0041    CALL     3   2   2
+0042    ISNEV    0   3
+0043    JMP      3 => 0052
+0044    KSTR     3   5      ; "macosx"
+0045    UGET     4   3      ; mach_l64
+0046    TGETV    4   4   2
+0047    IST          4
+0048    JMP      5 => 0050
+0049    KSTR     4   6      ; "unknown"
+0050 => RET      3   3
+0051    JMP      3 => 0090
+0052 => UGET     3   0      ; hex
+0053    KSTR     4   7      ; "$FE$ED$CF$FA"
+0054    CALL     3   2   2
+0055    ISNEV    0   3
+0056    JMP      3 => 0065
+0057    KSTR     3   5      ; "macosx"
+0058    UGET     4   4      ; mach_b64
+0059    TGETV    4   4   2
+0060    IST          4
+0061    JMP      5 => 0063
+0062    KSTR     4   6      ; "unknown"
+0063 => RET      3   3
+0064    JMP      3 => 0090
+0065 => UGET     3   0      ; hex
+0066    KSTR     4   8      ; "$CE$FA$ED$FE"
+0067    CALL     3   2   2
+0068    ISNEV    0   3
+0069    JMP      3 => 0078
+0070    KSTR     3   5      ; "macosx"
+0071    UGET     4   5      ; mach_l32
+0072    TGETV    4   4   2
+0073    IST          4
+0074    JMP      5 => 0076
+0075    KSTR     4   6      ; "unknown"
+0076 => RET      3   3
+0077    JMP      3 => 0090
+0078 => UGET     3   0      ; hex
+0079    KSTR     4   9      ; "$FE$ED$FA$CE"
+0080    CALL     3   2   2
+0081    ISNEV    0   3
+0082    JMP      3 => 0090
+0083    KSTR     3   5      ; "macosx"
+0084    UGET     4   6      ; mach_b32
+0085    TGETV    4   4   2
+0086    IST          4
+0087    JMP      5 => 0089
+0088    KSTR     4   6      ; "unknown"
+0089 => RET      3   3
+0090 => RET0     0   1
+
+-- BYTECODE -- sysdetect.lua:316-338
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "seek"
+0003    KSTR     3   1      ; "set"
+0004    KSHORT   4  60
+0005    CALL     1   1   4
+0006    UGET     1   0      ; read_int32le
+0007    MOV      2   0
+0008    CALL     1   2   2
+0009    IST          1
+0010    JMP      2 => 0013
+0011    KPRI     2   0
+0012    RET1     2   2
+0013 => KSTR     2   2      ; "windows"
+0014    MOV      4   0
+0015    TGETS    3   0   0  ; "seek"
+0016    KSTR     5   1      ; "set"
+0017    ADDVN    6   1   0  ; 4
+0018    CALL     3   1   4
+0019    UGET     3   1      ; read
+0020    MOV      4   0
+0021    KSHORT   5   2
+0022    UGET     6   2      ; LITTLE
+0023    CALL     3   2   4
+0024    UGET     4   3      ; pe_machine
+0025    TGETV    4   4   3
+0026    MOV      6   0
+0027    TGETS    5   0   3  ; "read"
+0028    KSHORT   7 736
+0029    CALL     5   2   3
+0030    MOV      6   5
+0031    TGETS    5   5   4  ; "match"
+0032    KSTR     7   5      ; ".rdata%z%z............(....)"
+0033    CALL     5   2   3
+0034    ISF          5
+0035    JMP      6 => 0057
+0036    UGET     6   4      ; bytes2number
+0037    MOV      7   5
+0038    UGET     8   2      ; LITTLE
+0039    CALL     6   2   3
+0040    MOV      5   6
+0041    MOV      7   0
+0042    TGETS    6   0   0  ; "seek"
+0043    KSTR     8   1      ; "set"
+0044    MOV      9   5
+0045    CALL     6   1   4
+0046    MOV      7   0
+0047    TGETS    6   0   3  ; "read"
+0048    KSHORT   8 512
+0049    CALL     6   2   3
+0050    MOV      8   6
+0051    TGETS    7   6   4  ; "match"
+0052    KSTR     9   6      ; "cyggcc"
+0053    CALL     7   2   3
+0054    ISF          7
+0055    JMP      8 => 0057
+0056    KSTR     2   7      ; "cygwin"
+0057 => MOV      6   2
+0058    ISTC     7   4
+0059    JMP      7 => 0061
+0060    KSTR     7   8      ; "unknown"
+0061 => RET      6   3
+
+-- BYTECODE -- sysdetect.lua:344-358
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "string"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => CALL     1   1   2
+0011    GGET     1   3      ; "io"
+0012    TGETS    1   1   4  ; "open"
+0013    MOV      2   0
+0014    KSTR     3   5      ; "rb"
+0015    CALL     1   2   3
+0016    IST          1
+0017    JMP      2 => 0020
+0018    KPRI     2   0
+0019    RET1     2   2
+0020 => MOV      3   1
+0021    TGETS    2   1   6  ; "read"
+0022    KSHORT   4   4
+0023    CALL     2   2   3
+0024    UGET     3   0      ; hex
+0025    KSTR     4   7      ; "$7FELF"
+0026    CALL     3   2   2
+0027    ISNEV    2   3
+0028    JMP      3 => 0032
+0029    UGET     3   1      ; detect_elf
+0030    MOV      4   1
+0031    CALLT    3   2
+0032 => UGET     3   0      ; hex
+0033    KSTR     4   8      ; "MZ$90$00"
+0034    CALL     3   2   2
+0035    ISNEV    2   3
+0036    JMP      3 => 0040
+0037    UGET     3   2      ; detect_pe
+0038    MOV      4   1
+0039    CALLT    3   2
+0040 => UGET     3   3      ; detect_mach
+0041    MOV      4   2
+0042    MOV      5   1
+0043    CALLT    3   3
+
+-- BYTECODE -- sysdetect.lua:363-414
+0001    GGET     1   0      ; "package"
+0002    TGETS    1   1   1  ; "config"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "sub"
+0005    KSHORT   3   1
+0006    KSHORT   4   1
+0007    CALL     1   2   4
+0008    KPRI     2   0
+0009    ISF          0
+0010    JMP      3 => 0015
+0011    TNEW     3   3
+0012    TSETB    0   3   1
+0013    MOV      2   3
+0014    JMP      3 => 0098
+0015 => UGET     3   0      ; cache_system
+0016    ISF          3
+0017    JMP      4 => 0021
+0018    UGET     3   0      ; cache_system
+0019    UGET     4   1      ; cache_processor
+0020    RET      3   3
+0021 => KPRI     3   0
+0022    GGET     4   3      ; "arg"
+0023    ISF          4
+0024    JMP      5 => 0028
+0025    GGET     4   3      ; "arg"
+0026    KSHORT   5  -1
+0027    TGETV    4   4   5
+0028 => ISNES    1   4      ; "/"
+0029    JMP      5 => 0033
+0030    TDUP     2   5
+0031    KSTR     3   6      ; ":"
+0032    JMP      5 => 0062
+0033 => GGET     5   7      ; "os"
+0034    TGETS    5   5   8  ; "getenv"
+0035    KSTR     6   9      ; "SystemRoot"
+0036    CALL     5   2   2
+0037    TNEW     6   3
+0038    MOV      7   5
+0039    KSTR     8  10      ; "\system32\notepad.exe"
+0040    CAT      7   7   8
+0041    TSETB    7   6   1
+0042    MOV      7   5
+0043    KSTR     8  11      ; "\explorer.exe"
+0044    CAT      7   7   8
+0045    TSETB    7   6   2
+0046    MOV      2   6
+0047    ISF          4
+0048    JMP      6 => 0061
+0049    MOV      7   4
+0050    TGETS    6   4  12  ; "lower"
+0051    CALL     6   2   2
+0052    MOV      7   6
+0053    TGETS    6   6  13  ; "match"
+0054    KSTR     8  14      ; "exe$"
+0055    CALL     6   2   3
+0056    IST          6
+0057    JMP      6 => 0061
+0058    MOV      6   4
+0059    KSTR     7  15      ; ".exe"
+0060    CAT      4   6   7
+0061 => KSTR     3  16      ; ";"
+0062 => ISF          4
+0063    JMP      5 => 0098
+0064    MOV      6   4
+0065    TGETS    5   4  13  ; "match"
+0066    MOV      7   1
+0067    CALL     5   2   3
+0068    ISF          5
+0069    JMP      6 => 0076
+0070    GGET     5  17      ; "table"
+0071    TGETS    5   5  18  ; "insert"
+0072    MOV      6   2
+0073    MOV      7   4
+0074    CALL     5   1   3
+0075    JMP      5 => 0098
+0076 => GGET     5   7      ; "os"
+0077    TGETS    5   5   8  ; "getenv"
+0078    KSTR     6  19      ; "PATH"
+0079    CALL     5   2   2
+0080    MOV      6   5
+0081    TGETS    5   5  20  ; "gmatch"
+0082    KSTR     7  21      ; "[^"
+0083    MOV      8   3
+0084    KSTR     9  22      ; "]+"
+0085    CAT      7   7   9
+0086    CALL     5   4   3
+0087    JMP      8 => 0096
+0088 => GGET     9  17      ; "table"
+0089    TGETS    9   9  18  ; "insert"
+0090    MOV     10   2
+0091    MOV     11   8
+0092    MOV     12   1
+0093    MOV     13   4
+0094    CAT     11  11  13
+0095    CALL     9   1   3
+0096 => ITERC    8   2   3
+0097    ITERL    8 => 0088
+0098 => GGET     3  23      ; "ipairs"
+0099    MOV      4   2
+0100    CALL     3   4   2
+0101    JMP      6 => 0113
+0102 => UGET     8   2      ; sysdetect
+0103    TGETS    8   8  24  ; "detect_file"
+0104    MOV      9   7
+0105    CALL     8   3   2
+0106    ISF          8
+0107    JMP     10 => 0113
+0108    USETV    0   8      ; cache_system
+0109    USETV    1   9      ; cache_processor
+0110    MOV     10   8
+0111    MOV     11   9
+0112    RET     10   3
+0113 => ITERC    6   3   3
+0114    ITERL    6 => 0102
+0115    RET0     0   1
+
+-- BYTECODE -- sysdetect.lua:0-417
+0001    TNEW     0   0
+0002    FNEW     1   0      ; sysdetect.lua:9
+0003    FNEW     2   1      ; sysdetect.lua:15
+0004    KSHORT   3   1
+0005    FNEW     4   2      ; sysdetect.lua:30
+0006    FNEW     5   3      ; sysdetect.lua:44
+0007    FNEW     6   4      ; sysdetect.lua:56
+0008    TDUP     7   5
+0009    TDUP     8   6
+0010    KSHORT   9   7
+0011    FNEW    10   7      ; sysdetect.lua:99
+0012    FNEW    11   8      ; sysdetect.lua:138
+0013    FNEW    12   9      ; sysdetect.lua:197
+0014    FNEW    13  10      ; sysdetect.lua:242
+0015    TDUP    14  11
+0016    TDUP    15  12
+0017    TDUP    16  13
+0018    TDUP    17  14
+0019    FNEW    18  15      ; sysdetect.lua:274
+0020    TDUP    19  16
+0021    FNEW    20  17      ; sysdetect.lua:316
+0022    FNEW    21  19      ; sysdetect.lua:344
+0023    TSETS   21   0  18  ; "detect_file"
+0024    KNIL    21  22
+0025    FNEW    23  21      ; sysdetect.lua:363
+0026    TSETS   23   0  20  ; "detect"
+0027    UCLO     0 => 0028
+0028 => RET1     0   2
+

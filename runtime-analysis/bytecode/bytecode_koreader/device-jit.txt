@@ -1,0 +1,1279 @@
+-- BYTECODE -- device.lua:9-9
+0001    KPRI     0   2
+0002    RET1     0   2
+
+-- BYTECODE -- device.lua:10-10
+0001    KPRI     0   1
+0002    RET1     0   2
+
+-- BYTECODE -- device.lua:12-20
+0001    ISNEN    0   0      ; 1
+0002    JMP      1 => 0012
+0003    UGET     1   0      ; logger
+0004    TGETS    1   1   0  ; "info"
+0005    KSTR     2   1      ; "Kobo WiFi: enabling WiFi"
+0006    CALL     1   1   2
+0007    GGET     1   2      ; "os"
+0008    TGETS    1   1   3  ; "execute"
+0009    KSTR     2   4      ; "./enable-wifi.sh"
+0010    CALL     1   1   2
+0011    JMP      1 => 0020
+0012 => UGET     1   0      ; logger
+0013    TGETS    1   1   0  ; "info"
+0014    KSTR     2   5      ; "Kobo WiFi: disabling WiFi"
+0015    CALL     1   1   2
+0016    GGET     1   2      ; "os"
+0017    TGETS    1   1   3  ; "execute"
+0018    KSTR     2   6      ; "./disable-wifi.sh"
+0019    CALL     1   1   2
+0020 => RET0     0   1
+
+-- BYTECODE -- device.lua:270-272
+0001    UGET     2   0      ; TimeVal
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "now"
+0004    CALL     2   2   2
+0005    TSETS    2   1   0  ; "time"
+0006    RET0     0   1
+
+-- BYTECODE -- device.lua:276-276
+0001    RET0     0   1
+
+-- BYTECODE -- device.lua:264-278
+0001    UGET     2   0      ; TimeVal
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "now"
+0004    CALL     2   2   2
+0005    TGETS    3   1   1  ; "time"
+0006    TGETS    3   3   2  ; "sec"
+0007    TGETS    4   2   2  ; "sec"
+0008    SUBVN    4   4   0  ; 600
+0009    ISGT     3   4
+0010    JMP      3 => 0015
+0011    FNEW     3   3      ; device.lua:270
+0012    USETV    1   3      ; probeEvEpochTime
+0013    TSETS    2   1   1  ; "time"
+0014    JMP      3 => 0017
+0015 => FNEW     3   4      ; device.lua:276
+0016    USETV    1   3      ; probeEvEpochTime
+0017 => RET0     0   1
+
+-- BYTECODE -- device.lua:281-297
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "ffi"
+0003    CALL     1   2   2
+0004    GGET     2   0      ; "require"
+0005    KSTR     3   2      ; "ffi/posix_h"
+0006    CALL     2   2   2
+0007    TGETS    3   1   3  ; "C"
+0008    MOV      5   0
+0009    TGETS    4   0   4  ; "canUseCBB"
+0010    CALL     4   2   2
+0011    ISF          4
+0012    JMP      4 => 0018
+0013    MOV      5   0
+0014    TGETS    4   0   5  ; "canHWInvert"
+0015    CALL     4   2   2
+0016    IST          4
+0017    JMP      4 => 0040
+0018 => UGET     4   0      ; logger
+0019    TGETS    4   4   6  ; "info"
+0020    KSTR     5   7      ; "Blacklisting the C BB on this device"
+0021    CALL     4   1   2
+0022    TGETS    4   1   8  ; "os"
+0023    ISNES    4   9      ; "Windows"
+0024    JMP      4 => 0029
+0025    TGETS    4   3  10  ; "_putenv"
+0026    KSTR     5  11      ; "KO_NO_CBB=true"
+0027    CALL     4   1   2
+0028    JMP      4 => 0034
+0029 => TGETS    4   3  12  ; "setenv"
+0030    KSTR     5  13      ; "KO_NO_CBB"
+0031    KSTR     6  14      ; "true"
+0032    KSHORT   7   1
+0033    CALL     4   1   4
+0034 => GGET     4  15      ; "G_reader_settings"
+0035    MOV      5   4
+0036    TGETS    4   4  16  ; "saveSetting"
+0037    KSTR     6  17      ; "dev_no_c_blitter"
+0038    KPRI     7   2
+0039    CALL     4   1   4
+0040 => RET0     0   1
+
+-- BYTECODE -- device.lua:328-334
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "input"
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "isEvKeyPress"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    ISF          1
+0008    JMP      2 => 0012
+0009    KSTR     1   2      ; "SleepCoverClosed"
+0010    RET1     1   2
+0011    JMP      1 => 0022
+0012 => UGET     1   0      ; self
+0013    TGETS    1   1   0  ; "input"
+0014    MOV      2   1
+0015    TGETS    1   1   3  ; "isEvKeyRelease"
+0016    MOV      3   0
+0017    CALL     1   2   3
+0018    ISF          1
+0019    JMP      2 => 0022
+0020    KSTR     1   4      ; "SleepCoverOpened"
+0021    RET1     1   2
+0022 => RET0     0   1
+
+-- BYTECODE -- device.lua:335-339
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "input"
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "isEvKeyRelease"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    ISF          1
+0008    JMP      2 => 0011
+0009    KSTR     1   2      ; "Light"
+0010    RET1     1   2
+0011 => RET0     0   1
+
+-- BYTECODE -- device.lua:361-363
+0001    UGET     2   0      ; probeEvEpochTime
+0002    MOV      3   0
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    RET0     0   1
+
+-- BYTECODE -- device.lua:367-383
+0001    GGET     0   0      ; "KOBO_TOUCH_MIRRORED"
+0002    ISNEP    0   0
+0003    JMP      0 => 0035
+0004    GGET     0   1      ; "G_reader_settings"
+0005    MOV      1   0
+0006    TGETS    0   0   2  ; "readSetting"
+0007    KSTR     2   3      ; "kobo_touch_switch_xy"
+0008    CALL     0   2   3
+0009    ISNEP    0   0
+0010    JMP      1 => 0033
+0011    GGET     1   4      ; "require"
+0012    KSTR     2   5      ; "tools/kobo_touch_probe"
+0013    CALL     1   2   2
+0014    GGET     2   4      ; "require"
+0015    KSTR     3   6      ; "ui/uimanager"
+0016    CALL     2   2   2
+0017    MOV      4   2
+0018    TGETS    3   2   7  ; "show"
+0019    MOV      6   1
+0020    TGETS    5   1   8  ; "new"
+0021    TNEW     7   0
+0022    CALL     5   0   3
+0023    CALLM    3   1   1
+0024    MOV      4   2
+0025    TGETS    3   2   9  ; "run"
+0026    CALL     3   1   2
+0027    GGET     3   1      ; "G_reader_settings"
+0028    MOV      4   3
+0029    TGETS    3   3   2  ; "readSetting"
+0030    KSTR     5   3      ; "kobo_touch_switch_xy"
+0031    CALL     3   2   3
+0032    MOV      0   3
+0033 => UGET     1   0      ; self
+0034    TSETS    0   1  10  ; "touch_switch_xy"
+0035 => UGET     0   0      ; self
+0036    MOV      1   0
+0037    TGETS    0   0  11  ; "initEventAdjustHooks"
+0038    CALL     0   1   2
+0039    RET0     0   1
+
+-- BYTECODE -- device.lua:299-385
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "blacklistCBB"
+0003    CALL     1   1   2
+0004    GGET     1   2      ; "require"
+0005    KSTR     2   3      ; "ffi/framebuffer_mxcfb"
+0006    CALL     1   2   2
+0007    MOV      2   1
+0008    TGETS    1   1   4  ; "new"
+0009    TDUP     3   5
+0010    TSETS    0   3   6  ; "device"
+0011    UGET     4   0      ; logger
+0012    TGETS    4   4   7  ; "dbg"
+0013    TSETS    4   3   8  ; "debug"
+0014    CALL     1   2   3
+0015    TSETS    1   0   1  ; "screen"
+0016    TGETS    1   0   1  ; "screen"
+0017    TGETS    1   1   9  ; "fb_bpp"
+0018    ISNEN    1   0      ; 32
+0019    JMP      1 => 0026
+0020    UGET     1   0      ; logger
+0021    TGETS    1   1  10  ; "info"
+0022    KSTR     2  11      ; "Enabling Kobo @ 32bpp BGR tweaks"
+0023    CALL     1   1   2
+0024    UGET     1   1      ; yes
+0025    TSETS    1   0  12  ; "hasBGRFrameBuffer"
+0026 => MOV      2   0
+0027    TGETS    1   0  13  ; "hasNaturalLight"
+0028    CALL     1   2   2
+0029    ISF          1
+0030    JMP      2 => 0040
+0031    TGETS    1   0  14  ; "frontlight_settings"
+0032    ISF          1
+0033    JMP      2 => 0040
+0034    TGETS    1   0  14  ; "frontlight_settings"
+0035    TGETS    1   1  15  ; "frontlight_mixer"
+0036    ISF          1
+0037    JMP      2 => 0040
+0038    UGET     1   1      ; yes
+0039    TSETS    1   0  16  ; "hasNaturalLightMixer"
+0040 => GGET     1   2      ; "require"
+0041    KSTR     2  18      ; "device/kobo/powerd"
+0042    CALL     1   2   2
+0043    MOV      2   1
+0044    TGETS    1   1   4  ; "new"
+0045    TDUP     3  19
+0046    TSETS    0   3   6  ; "device"
+0047    CALL     1   2   3
+0048    TSETS    1   0  17  ; "powerd"
+0049    GGET     1   2      ; "require"
+0050    KSTR     2  21      ; "device/input"
+0051    CALL     1   2   2
+0052    MOV      2   1
+0053    TGETS    1   1   4  ; "new"
+0054    TDUP     3  22
+0055    TSETS    0   3   6  ; "device"
+0056    TDUP     4  23
+0057    TSETS    4   3  24  ; "event_map"
+0058    TDUP     4  26
+0059    FNEW     5  25      ; device.lua:328
+0060    TSETS    5   4  27  ; "SleepCover"
+0061    FNEW     5  28      ; device.lua:335
+0062    TSETS    5   4  29  ; "LightButton"
+0063    TSETS    4   3  30  ; "event_map_adapter"
+0064    CALL     1   2   3
+0065    TSETS    1   0  20  ; "input"
+0066    UGET     1   2      ; WakeupMgr
+0067    MOV      2   1
+0068    TGETS    1   1   4  ; "new"
+0069    CALL     1   2   2
+0070    TSETS    1   0  31  ; "wakeup_mgr"
+0071    UGET     1   3      ; Generic
+0072    TGETS    1   1  32  ; "init"
+0073    MOV      2   0
+0074    CALL     1   1   2
+0075    TGETS    1   0  20  ; "input"
+0076    TGETS    1   1  33  ; "open"
+0077    KSTR     2  34      ; "/dev/input/event0"
+0078    CALL     1   1   2
+0079    TGETS    1   0  20  ; "input"
+0080    TGETS    1   1  33  ; "open"
+0081    KSTR     2  35      ; "/dev/input/event1"
+0082    CALL     1   1   2
+0083    TGETS    1   0  20  ; "input"
+0084    TGETS    1   1  33  ; "open"
+0085    KSTR     2  36      ; "fake_events"
+0086    CALL     1   1   2
+0087    TGETS    1   0  37  ; "needsTouchScreenProbe"
+0088    CALL     1   2   1
+0089    IST          1
+0090    JMP      1 => 0095
+0091    MOV      2   0
+0092    TGETS    1   0  38  ; "initEventAdjustHooks"
+0093    CALL     1   1   2
+0094    JMP      1 => 0107
+0095 => TGETS    1   0  39  ; "touch_probe_ev_epoch_time"
+0096    ISF          1
+0097    JMP      2 => 0105
+0098    TGETS    1   0  20  ; "input"
+0099    MOV      2   1
+0100    TGETS    1   1  40  ; "registerEventAdjustHook"
+0101    FNEW     3  41      ; device.lua:361
+0102    CALL     1   1   3
+0103    KPRI     1   0
+0104    TSETS    1   0  39  ; "touch_probe_ev_epoch_time"
+0105 => FNEW     1  43      ; device.lua:367
+0106    TSETS    1   0  42  ; "touchScreenProbe"
+0107 => UCLO     0 => 0108
+0108 => RET0     0   1
+
+-- BYTECODE -- device.lua:387-401
+0001    ISEQP    4   0
+0002    JMP      7 => 0005
+0003    ISNEP    5   0
+0004    JMP      7 => 0007
+0005 => KPRI     7   2
+0006    RET1     7   2
+0007 => KPRI     7   0
+0008    ISF          1
+0009    JMP      8 => 0026
+0010    ISF          2
+0011    JMP      8 => 0026
+0012    ISF          3
+0013    JMP      8 => 0026
+0014    GGET     8   0      ; "string"
+0015    TGETS    8   8   1  ; "format"
+0016    KSTR     9   2      ; "date -s '%d-%d-%d %d:%d:%d'"
+0017    MOV     10   1
+0018    MOV     11   2
+0019    MOV     12   3
+0020    MOV     13   4
+0021    MOV     14   5
+0022    MOV     15   6
+0023    CALL     8   2   8
+0024    MOV      7   8
+0025    JMP      8 => 0033
+0026 => GGET     8   0      ; "string"
+0027    TGETS    8   8   1  ; "format"
+0028    KSTR     9   3      ; "date -s '%d:%d'"
+0029    MOV     10   4
+0030    MOV     11   5
+0031    CALL     8   2   4
+0032    MOV      7   8
+0033 => GGET     8   4      ; "os"
+0034    TGETS    8   8   5  ; "execute"
+0035    MOV      9   7
+0036    CALL     8   2   2
+0037    ISNEN    8   0      ; 0
+0038    JMP      8 => 0046
+0039    GGET     8   4      ; "os"
+0040    TGETS    8   8   5  ; "execute"
+0041    KSTR     9   6      ; "hwclock -u -w"
+0042    CALL     8   1   2
+0043    KPRI     8   2
+0044    RET1     8   2
+0045    JMP      8 => 0048
+0046 => KPRI     8   1
+0047    RET1     8   2
+0048 => RET0     0   1
+
+-- BYTECODE -- device.lua:404-409
+0001    UGET     2   0      ; koboEnableWifi
+0002    KSHORT   3   0
+0003    CALL     2   1   2
+0004    ISF          1
+0005    JMP      2 => 0008
+0006    MOV      2   1
+0007    CALL     2   1   1
+0008 => RET0     0   1
+
+-- BYTECODE -- device.lua:411-414
+0001    UGET     2   0      ; koboEnableWifi
+0002    KSHORT   3   1
+0003    CALL     2   1   2
+0004    MOV      3   0
+0005    TGETS    2   0   0  ; "showNetworkMenu"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- device.lua:423-425
+0001    GGET     1   0      ; "os"
+0002    TGETS    1   1   1  ; "execute"
+0003    KSTR     2   2      ; "./obtain-ip.sh"
+0004    CALL     1   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- device.lua:427-429
+0001    GGET     1   0      ; "os"
+0002    TGETS    1   1   1  ; "execute"
+0003    KSTR     2   2      ; "./release-ip.sh"
+0004    CALL     1   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- device.lua:431-433
+0001    GGET     1   0      ; "os"
+0002    TGETS    1   1   1  ; "execute"
+0003    KSTR     2   2      ; "./restore-wifi-async.sh"
+0004    CALL     1   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- device.lua:437-454
+0001    GGET     1   0      ; "io"
+0002    TGETS    1   1   1  ; "open"
+0003    KSTR     2   2      ; "/proc/modules"
+0004    KSTR     3   3      ; "r"
+0005    CALL     1   2   3
+0006    ISF          1
+0007    JMP      2 => 0036
+0008    MOV      3   1
+0009    TGETS    2   1   4  ; "read"
+0010    KSTR     4   5      ; "*all"
+0011    CALL     2   2   3
+0012    MOV      4   1
+0013    TGETS    3   1   6  ; "close"
+0014    CALL     3   1   2
+0015    MOV      4   2
+0016    TGETS    3   2   7  ; "len"
+0017    CALL     3   2   2
+0018    KSHORT   4   0
+0019    ISGE     4   3
+0020    JMP      3 => 0036
+0021    GGET     3   8      ; "os"
+0022    TGETS    3   3   9  ; "getenv"
+0023    KSTR     4  10      ; "WIFI_MODULE"
+0024    CALL     3   2   2
+0025    IST          3
+0026    JMP      4 => 0028
+0027    KSTR     3  11      ; "sdio_wifi_pwr"
+0028 => MOV      5   2
+0029    TGETS    4   2  12  ; "find"
+0030    MOV      6   3
+0031    CALL     4   2   3
+0032    ISF          4
+0033    JMP      5 => 0036
+0034    KPRI     4   2
+0035    RET1     4   2
+0036 => KPRI     2   1
+0037    RET1     2   2
+
+-- BYTECODE -- device.lua:403-455
+0001    FNEW     2   1      ; device.lua:404
+0002    TSETS    2   1   0  ; "turnOffWifi"
+0003    FNEW     2   3      ; device.lua:411
+0004    TSETS    2   1   2  ; "turnOnWifi"
+0005    GGET     2   4      ; "os"
+0006    TGETS    2   2   5  ; "getenv"
+0007    KSTR     3   6      ; "INTERFACE"
+0008    CALL     2   2   2
+0009    IST          2
+0010    JMP      3 => 0012
+0011    KSTR     2   7      ; "eth0"
+0012 => MOV      4   1
+0013    TGETS    3   1   8  ; "setWirelessBackend"
+0014    KSTR     5   9      ; "wpa_supplicant"
+0015    TDUP     6  11
+0016    KSTR     7  10      ; "/var/run/wpa_supplicant/"
+0017    MOV      8   2
+0018    CAT      7   7   8
+0019    TSETS    7   6  12  ; "ctrl_interface"
+0020    CALL     3   1   4
+0021    FNEW     3  14      ; device.lua:423
+0022    TSETS    3   1  13  ; "obtainIP"
+0023    FNEW     3  16      ; device.lua:427
+0024    TSETS    3   1  15  ; "releaseIP"
+0025    FNEW     3  18      ; device.lua:431
+0026    TSETS    3   1  17  ; "restoreWifiAsync"
+0027    FNEW     3  20      ; device.lua:437
+0028    TSETS    3   1  19  ; "isWifiOn"
+0029    RET0     0   1
+
+-- BYTECODE -- device.lua:457-457
+0001    KPRI     1   2
+0002    RET1     1   2
+
+-- BYTECODE -- device.lua:461-466
+0001    UGET     2   0      ; TimeVal
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "now"
+0004    CALL     2   2   2
+0005    TSETS    2   1   0  ; "time"
+0006    TGETS    2   1   2  ; "type"
+0007    UGET     3   1      ; EV_ABS
+0008    ISNEV    2   3
+0009    JMP      2 => 0017
+0010    TGETS    2   1   3  ; "code"
+0011    UGET     3   2      ; ABS_MT_TRACKING_ID
+0012    ISNEV    2   3
+0013    JMP      2 => 0017
+0014    TGETS    2   1   4  ; "value"
+0015    SUBVN    2   2   0  ; 1
+0016    TSETS    2   1   4  ; "value"
+0017 => RET0     0   1
+
+-- BYTECODE -- device.lua:496-498
+0001    UGET     2   0      ; probeEvEpochTime
+0002    MOV      3   0
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    RET0     0   1
+
+-- BYTECODE -- device.lua:468-514
+0001    TGETS    1   0   0  ; "touch_switch_xy"
+0002    ISF          1
+0003    JMP      2 => 0007
+0004    GGET     1   1      ; "KOBO_TOUCH_MIRRORED"
+0005    ISF          1
+0006    JMP      1 => 0013
+0007 => TGETS    1   0   0  ; "touch_switch_xy"
+0008    IST          1
+0009    JMP      1 => 0019
+0010    GGET     1   1      ; "KOBO_TOUCH_MIRRORED"
+0011    ISF          1
+0012    JMP      2 => 0019
+0013 => TGETS    1   0   2  ; "input"
+0014    MOV      2   1
+0015    TGETS    1   1   3  ; "registerEventAdjustHook"
+0016    TGETS    3   0   2  ; "input"
+0017    TGETS    3   3   4  ; "adjustTouchSwitchXY"
+0018    CALL     1   1   3
+0019 => TGETS    1   0   5  ; "touch_mirrored_x"
+0020    ISF          1
+0021    JMP      2 => 0032
+0022    TGETS    1   0   2  ; "input"
+0023    MOV      2   1
+0024    TGETS    1   1   3  ; "registerEventAdjustHook"
+0025    TGETS    3   0   2  ; "input"
+0026    TGETS    3   3   6  ; "adjustTouchMirrorX"
+0027    TGETS    4   0   7  ; "screen"
+0028    MOV      5   4
+0029    TGETS    4   4   8  ; "getWidth"
+0030    CALL     4   0   2
+0031    CALLM    1   1   2
+0032 => TGETS    1   0   9  ; "touch_alyssum_protocol"
+0033    ISF          1
+0034    JMP      2 => 0040
+0035    TGETS    1   0   2  ; "input"
+0036    MOV      2   1
+0037    TGETS    1   1   3  ; "registerEventAdjustHook"
+0038    UGET     3   0      ; adjustTouchAlyssum
+0039    CALL     1   1   3
+0040 => TGETS    1   0  10  ; "touch_snow_protocol"
+0041    ISF          1
+0042    JMP      2 => 0046
+0043    TGETS    1   0   2  ; "input"
+0044    KPRI     2   2
+0045    TSETS    2   1  11  ; "snow_protocol"
+0046 => TGETS    1   0  12  ; "touch_probe_ev_epoch_time"
+0047    ISF          1
+0048    JMP      2 => 0054
+0049    TGETS    1   0   2  ; "input"
+0050    MOV      2   1
+0051    TGETS    1   1   3  ; "registerEventAdjustHook"
+0052    FNEW     3  13      ; device.lua:496
+0053    CALL     1   1   3
+0054 => TGETS    1   0  14  ; "touch_phoenix_protocol"
+0055    ISF          1
+0056    JMP      2 => 0061
+0057    TGETS    1   0   2  ; "input"
+0058    TGETS    2   0   2  ; "input"
+0059    TGETS    2   2  16  ; "handleTouchEvPhoenix"
+0060    TSETS    2   1  15  ; "handleTouchEv"
+0061 => TGETS    1   0  17  ; "misc_ntx_gsensor_protocol"
+0062    ISF          1
+0063    JMP      2 => 0082
+0064    GGET     1  18      ; "G_reader_settings"
+0065    MOV      2   1
+0066    TGETS    1   1  19  ; "isTrue"
+0067    KSTR     3  20      ; "input_ignore_gsensor"
+0068    CALL     1   2   3
+0069    ISF          1
+0070    JMP      2 => 0075
+0071    TGETS    1   0   2  ; "input"
+0072    KPRI     2   1
+0073    TSETS    2   1  21  ; "isNTXAccelHooked"
+0074    JMP      1 => 0082
+0075 => TGETS    1   0   2  ; "input"
+0076    TGETS    2   0   2  ; "input"
+0077    TGETS    2   2  23  ; "handleMiscEvNTX"
+0078    TSETS    2   1  22  ; "handleMiscEv"
+0079    TGETS    1   0   2  ; "input"
+0080    KPRI     2   2
+0081    TSETS    2   1  21  ; "isNTXAccelHooked"
+0082 => RET0     0   1
+
+-- BYTECODE -- device.lua:516-526
+0001    GGET     1   0      ; "os"
+0002    TGETS    1   1   1  ; "getenv"
+0003    KSTR     2   2      ; "PRODUCT"
+0004    CALL     1   2   2
+0005    IST          1
+0006    JMP      2 => 0019
+0007    GGET     2   3      ; "io"
+0008    TGETS    2   2   4  ; "popen"
+0009    KSTR     3   5      ; "/bin/kobo_config.sh 2>/dev/null"
+0010    KSTR     4   6      ; "r"
+0011    CALL     2   2   3
+0012    MOV      4   2
+0013    TGETS    3   2   7  ; "read"
+0014    CALL     3   2   2
+0015    MOV      1   3
+0016    MOV      4   2
+0017    TGETS    3   2   8  ; "close"
+0018    CALL     3   1   2
+0019 => RET1     1   2
+
+-- BYTECODE -- device.lua:528-543
+0001    GGET     1   0      ; "io"
+0002    TGETS    1   1   1  ; "open"
+0003    KSTR     2   2      ; "/mnt/onboard/.kobo/version"
+0004    KSTR     3   3      ; "r"
+0005    CALL     1   2   3
+0006    IST          1
+0007    JMP      2 => 0010
+0008    KSTR     2   5      ; "none"
+0009    TSETS    2   0   4  ; "firmware_rev"
+0010 => MOV      3   1
+0011    TGETS    2   1   6  ; "read"
+0012    CALL     2   2   2
+0013    MOV      4   1
+0014    TGETS    3   1   7  ; "close"
+0015    CALL     3   1   2
+0016    KSHORT   3   0
+0017    UGET     4   0      ; util
+0018    TGETS    4   4   8  ; "gsplit"
+0019    MOV      5   2
+0020    KSTR     6   9      ; ","
+0021    KPRI     7   1
+0022    KPRI     8   1
+0023    CALL     4   4   5
+0024    JMP      7 => 0029
+0025 => ADDVN    3   3   0  ; 1
+0026    ISNEN    3   1      ; 3
+0027    JMP      8 => 0029
+0028    TSETS    7   0   4  ; "firmware_rev"
+0029 => ITERC    7   2   3
+0030    ITERL    7 => 0025
+0031    RET0     0   1
+
+-- BYTECODE -- device.lua:545-561
+0001    GGET     0   0      ; "os"
+0002    TGETS    0   0   1  ; "getenv"
+0003    KSTR     1   2      ; "MODEL_NUMBER"
+0004    CALL     0   2   2
+0005    IST          0
+0006    JMP      1 => 0029
+0007    GGET     1   3      ; "io"
+0008    TGETS    1   1   4  ; "open"
+0009    KSTR     2   5      ; "/mnt/onboard/.kobo/version"
+0010    KSTR     3   6      ; "r"
+0011    CALL     1   2   3
+0012    IST          1
+0013    JMP      2 => 0016
+0014    KSTR     2   7      ; "000"
+0015    RET1     2   2
+0016 => MOV      3   1
+0017    TGETS    2   1   8  ; "read"
+0018    CALL     2   2   2
+0019    MOV      4   1
+0020    TGETS    3   1   9  ; "close"
+0021    CALL     3   1   2
+0022    GGET     3  10      ; "string"
+0023    TGETS    3   3  11  ; "sub"
+0024    MOV      4   2
+0025    KSHORT   5  -3
+0026    KSHORT   6  -1
+0027    CALL     3   2   4
+0028    MOV      0   3
+0029 => RET1     0   2
+
+-- BYTECODE -- device.lua:564-593
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/uimanager"
+0003    CALL     0   2   2
+0004    MOV      2   0
+0005    TGETS    1   0   2  ; "unschedule"
+0006    UGET     3   0      ; Kobo
+0007    TGETS    3   3   3  ; "suspend"
+0008    CALL     1   1   3
+0009    UGET     1   1      ; WakeupMgr
+0010    MOV      2   1
+0011    TGETS    1   1   4  ; "isWakeupAlarmScheduled"
+0012    CALL     1   2   2
+0013    ISF          1
+0014    JMP      2 => 0046
+0015    UGET     1   1      ; WakeupMgr
+0016    MOV      2   1
+0017    TGETS    1   1   5  ; "validateWakeupAlarmByProximity"
+0018    CALL     1   2   2
+0019    ISF          1
+0020    JMP      2 => 0046
+0021    UGET     1   2      ; logger
+0022    TGETS    1   1   6  ; "info"
+0023    KSTR     2   7      ; "Kobo suspend: scheduled wakeup."
+0024    CALL     1   1   2
+0025    UGET     1   1      ; WakeupMgr
+0026    MOV      2   1
+0027    TGETS    1   1   8  ; "wakeupAction"
+0028    CALL     1   2   2
+0029    IST          1
+0030    JMP      2 => 0035
+0031    UGET     2   2      ; logger
+0032    TGETS    2   2   9  ; "err"
+0033    KSTR     3  10      ; "Kobo suspend: wakeup action failed."
+0034    CALL     2   1   2
+0035 => UGET     2   2      ; logger
+0036    TGETS    2   2   6  ; "info"
+0037    KSTR     3  11      ; "Kobo suspend: putting device back to sle"~
+0038    CALL     2   1   2
+0039    MOV      3   0
+0040    TGETS    2   0  12  ; "scheduleIn"
+0041    KSHORT   4  30
+0042    UGET     5   0      ; Kobo
+0043    TGETS    5   5   3  ; "suspend"
+0044    CALL     2   1   4
+0045    JMP      1 => 0067
+0046 => UGET     1   2      ; logger
+0047    TGETS    1   1  13  ; "dbg"
+0048    KSTR     2  14      ; "Kobo suspend: checking unexpected wakeup"~
+0049    UGET     3   3      ; unexpected_wakeup_count
+0050    CALL     1   1   3
+0051    UGET     1   3      ; unexpected_wakeup_count
+0052    ISEQN    1   0      ; 0
+0053    JMP      1 => 0058
+0054    UGET     1   3      ; unexpected_wakeup_count
+0055    KSHORT   2  20
+0056    ISGE     2   1
+0057    JMP      1 => 0059
+0058 => RET0     0   1
+0059 => UGET     1   2      ; logger
+0060    TGETS    1   1   9  ; "err"
+0061    KSTR     2  15      ; "Kobo suspend: putting device back to sle"~
+0062    UGET     3   3      ; unexpected_wakeup_count
+0063    CALL     1   1   3
+0064    UGET     1   0      ; Kobo
+0065    TGETS    1   1   3  ; "suspend"
+0066    CALL     1   1   1
+0067 => RET0     0   1
+
+-- BYTECODE -- device.lua:595-595
+0001    UGET     1   0      ; unexpected_wakeup_count
+0002    RET1     1   2
+
+-- BYTECODE -- device.lua:597-729
+0001    UGET     1   0      ; logger
+0002    TGETS    1   1   0  ; "info"
+0003    KSTR     2   1      ; "Kobo suspend: going to sleep . . ."
+0004    CALL     1   1   2
+0005    GGET     1   2      ; "require"
+0006    KSTR     2   3      ; "ui/uimanager"
+0007    CALL     1   2   2
+0008    MOV      3   1
+0009    TGETS    2   1   4  ; "unschedule"
+0010    UGET     4   1      ; check_unexpected_wakeup
+0011    CALL     2   1   3
+0012    KNIL     2   5
+0013    GGET     6   5      ; "io"
+0014    TGETS    6   6   6  ; "open"
+0015    KSTR     7   7      ; "/sys/power/state-extended"
+0016    KSTR     8   8      ; "w"
+0017    CALL     6   2   3
+0018    MOV      2   6
+0019    IST          2
+0020    JMP      6 => 0027
+0021    UGET     6   0      ; logger
+0022    TGETS    6   6   9  ; "err"
+0023    KSTR     7  10      ; "Cannot open /sys/power/state-extended fo"~
+0024    CALL     6   1   2
+0025    KPRI     6   1
+0026    RET1     6   2
+0027 => MOV      7   2
+0028    TGETS    6   2  11  ; "write"
+0029    KSTR     8  12      ; "1\n"
+0030    CALL     6   4   3
+0031    MOV      5   8
+0032    MOV      4   7
+0033    MOV      3   6
+0034    GGET     6   5      ; "io"
+0035    TGETS    6   6  13  ; "close"
+0036    MOV      7   2
+0037    CALL     6   1   2
+0038    UGET     6   0      ; logger
+0039    TGETS    6   6   0  ; "info"
+0040    KSTR     7  14      ; "Kobo suspend: asked the kernel to put su"~
+0041    MOV      8   3
+0042    CALL     6   1   3
+0043    IST          3
+0044    JMP      6 => 0051
+0045    UGET     6   0      ; logger
+0046    TGETS    6   6   9  ; "err"
+0047    KSTR     7  15      ; "write error: "
+0048    MOV      8   4
+0049    MOV      9   5
+0050    CALL     6   1   4
+0051 => UGET     6   2      ; util
+0052    TGETS    6   6  16  ; "sleep"
+0053    KSHORT   7   2
+0054    CALL     6   1   2
+0055    UGET     6   0      ; logger
+0056    TGETS    6   6   0  ; "info"
+0057    KSTR     7  17      ; "Kobo suspend: waited for 2s because of r"~
+0058    CALL     6   1   2
+0059    GGET     6  18      ; "os"
+0060    TGETS    6   6  19  ; "execute"
+0061    KSTR     7  20      ; "sync"
+0062    CALL     6   1   2
+0063    UGET     6   0      ; logger
+0064    TGETS    6   6   0  ; "info"
+0065    KSTR     7  21      ; "Kobo suspend: synced FS"
+0066    CALL     6   1   2
+0067    UGET     6   0      ; logger
+0068    TGETS    6   6   0  ; "info"
+0069    KSTR     7  22      ; "Kobo suspend: asking for a suspend to RA"~
+0070    CALL     6   1   2
+0071    GGET     6   5      ; "io"
+0072    TGETS    6   6   6  ; "open"
+0073    KSTR     7  23      ; "/sys/power/state"
+0074    KSTR     8   8      ; "w"
+0075    CALL     6   2   3
+0076    MOV      2   6
+0077    IST          2
+0078    JMP      6 => 0101
+0079    GGET     6   5      ; "io"
+0080    TGETS    6   6   6  ; "open"
+0081    KSTR     7   7      ; "/sys/power/state-extended"
+0082    KSTR     8   8      ; "w"
+0083    CALL     6   2   3
+0084    IST          6
+0085    JMP      7 => 0091
+0086    UGET     7   0      ; logger
+0087    TGETS    7   7   9  ; "err"
+0088    KSTR     8  24      ; "cannot open /sys/power/state-extended fo"~
+0089    CALL     7   1   2
+0090    JMP      7 => 0099
+0091 => MOV      8   6
+0092    TGETS    7   6  11  ; "write"
+0093    KSTR     9  25      ; "0\n"
+0094    CALL     7   1   3
+0095    GGET     7   5      ; "io"
+0096    TGETS    7   7  13  ; "close"
+0097    MOV      8   6
+0098    CALL     7   1   2
+0099 => KPRI     7   1
+0100    RET1     7   2
+0101 => MOV      7   2
+0102    TGETS    6   2  11  ; "write"
+0103    KSTR     8  26      ; "mem\n"
+0104    CALL     6   4   3
+0105    MOV      5   8
+0106    MOV      4   7
+0107    MOV      3   6
+0108    UGET     6   0      ; logger
+0109    TGETS    6   6   0  ; "info"
+0110    KSTR     7  27      ; "Kobo suspend: ZzZ ZzZ ZzZ? Write syscall"~
+0111    MOV      8   3
+0112    CALL     6   1   3
+0113    IST          3
+0114    JMP      6 => 0121
+0115    UGET     6   0      ; logger
+0116    TGETS    6   6   9  ; "err"
+0117    KSTR     7  15      ; "write error: "
+0118    MOV      8   4
+0119    MOV      9   5
+0120    CALL     6   1   4
+0121 => GGET     6   5      ; "io"
+0122    TGETS    6   6  13  ; "close"
+0123    MOV      7   2
+0124    CALL     6   1   2
+0125    UGET     6   0      ; logger
+0126    TGETS    6   6   0  ; "info"
+0127    KSTR     7  28      ; "Kobo suspend: woke up!"
+0128    CALL     6   1   2
+0129    UGET     6   3      ; unexpected_wakeup_count
+0130    ADDVN    6   6   0  ; 1
+0131    USETV    3   6      ; unexpected_wakeup_count
+0132    UGET     6   0      ; logger
+0133    TGETS    6   6  29  ; "dbg"
+0134    KSTR     7  30      ; "Kobo suspend: scheduling unexpected wake"~
+0135    CALL     6   1   2
+0136    MOV      7   1
+0137    TGETS    6   1  31  ; "scheduleIn"
+0138    KSHORT   8  15
+0139    UGET     9   1      ; check_unexpected_wakeup
+0140    CALL     6   1   4
+0141    RET0     0   1
+
+-- BYTECODE -- device.lua:731-762
+0001    UGET     1   0      ; logger
+0002    TGETS    1   1   0  ; "info"
+0003    KSTR     2   1      ; "Kobo resume: clean up after wakeup"
+0004    CALL     1   1   2
+0005    USETN    1   0      ; unexpected_wakeup_count ; 0
+0006    GGET     1   2      ; "require"
+0007    KSTR     2   3      ; "ui/uimanager"
+0008    CALL     1   2   2
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "unschedule"
+0011    UGET     3   2      ; check_unexpected_wakeup
+0012    CALL     1   1   3
+0013    GGET     1   5      ; "io"
+0014    TGETS    1   1   6  ; "open"
+0015    KSTR     2   7      ; "/sys/power/state-extended"
+0016    KSTR     3   8      ; "w"
+0017    CALL     1   2   3
+0018    IST          1
+0019    JMP      2 => 0026
+0020    UGET     2   0      ; logger
+0021    TGETS    2   2   9  ; "err"
+0022    KSTR     3  10      ; "cannot open /sys/power/state-extended fo"~
+0023    CALL     2   1   2
+0024    KPRI     2   1
+0025    RET1     2   2
+0026 => MOV      3   1
+0027    TGETS    2   1  11  ; "write"
+0028    KSTR     4  12      ; "0\n"
+0029    CALL     2   4   3
+0030    GGET     5   5      ; "io"
+0031    TGETS    5   5  13  ; "close"
+0032    MOV      6   1
+0033    CALL     5   1   2
+0034    UGET     5   0      ; logger
+0035    TGETS    5   5   0  ; "info"
+0036    KSTR     6  14      ; "Kobo resume: unflagged kernel subsystems"~
+0037    MOV      7   2
+0038    CALL     5   1   3
+0039    IST          2
+0040    JMP      5 => 0047
+0041    UGET     5   0      ; logger
+0042    TGETS    5   5   9  ; "err"
+0043    KSTR     6  15      ; "write error: "
+0044    MOV      7   3
+0045    MOV      8   4
+0046    CALL     5   1   4
+0047 => UGET     5   3      ; util
+0048    TGETS    5   5  16  ; "usleep"
+0049    KNUM     6   1      ; 100000
+0050    CALL     5   1   2
+0051    GGET     5   5      ; "io"
+0052    TGETS    5   5   6  ; "open"
+0053    KSTR     6  17      ; "/sys/devices/virtual/input/input1/neocmd"
+0054    KSTR     7   8      ; "w"
+0055    CALL     5   2   3
+0056    MOV      1   5
+0057    ISEQP    1   0
+0058    JMP      5 => 0067
+0059    MOV      6   1
+0060    TGETS    5   1  11  ; "write"
+0061    KSTR     7  18      ; "a\n"
+0062    CALL     5   1   3
+0063    GGET     5   5      ; "io"
+0064    TGETS    5   5  13  ; "close"
+0065    MOV      6   1
+0066    CALL     5   1   2
+0067 => RET0     0   1
+
+-- BYTECODE -- device.lua:764-767
+0001    TGETS    1   0   0  ; "powerd"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "saveSettings"
+0004    CALL     1   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- device.lua:769-771
+0001    GGET     1   0      ; "os"
+0002    TGETS    1   1   1  ; "execute"
+0003    KSTR     2   2      ; "poweroff -f"
+0004    CALL     1   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- device.lua:773-775
+0001    GGET     1   0      ; "os"
+0002    TGETS    1   1   1  ; "execute"
+0003    KSTR     2   2      ; "reboot"
+0004    CALL     1   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- device.lua:777-784
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "canToggleGSensor"
+0003    CALL     2   2   2
+0004    ISF          2
+0005    JMP      3 => 0017
+0006    TGETS    2   0   1  ; "input"
+0007    ISF          2
+0008    JMP      3 => 0017
+0009    TGETS    2   0   2  ; "misc_ntx_gsensor_protocol"
+0010    ISF          2
+0011    JMP      3 => 0017
+0012    TGETS    2   0   1  ; "input"
+0013    MOV      3   2
+0014    TGETS    2   2   3  ; "toggleMiscEvNTX"
+0015    MOV      4   1
+0016    CALL     2   1   3
+0017 => RET0     0   1
+
+-- BYTECODE -- device.lua:0-826
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "device/generic/device"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/geometry"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/timeval"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "device/wakeupmgr"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "logger"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ffi/util"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "gettext"
+0021    CALL     6   2   2
+0022    FNEW     7   8      ; device.lua:9
+0023    FNEW     8   9      ; device.lua:10
+0024    FNEW     9  10      ; device.lua:12
+0025    MOV     11   0
+0026    TGETS   10   0  11  ; "new"
+0027    TDUP    12  12
+0028    TSETS    7  12  13  ; "isKobo"
+0029    TSETS    7  12  14  ; "isTouchDevice"
+0030    TSETS    7  12  15  ; "hasOTAUpdates"
+0031    TSETS    7  12  16  ; "hasWifiManager"
+0032    TSETS    7  12  17  ; "canReboot"
+0033    TSETS    7  12  18  ; "canPowerOff"
+0034    TSETS    7  12  19  ; "isAlwaysPortrait"
+0035    TSETS    8  12  20  ; "needsScreenRefreshAfterResume"
+0036    TSETS    8  12  21  ; "hasNaturalLight"
+0037    TSETS    8  12  22  ; "hasNaturalLightMixer"
+0038    TSETS    7  12  23  ; "canHWInvert"
+0039    CALL    10   2   3
+0040    MOV     12  10
+0041    TGETS   11  10  11  ; "new"
+0042    TDUP    13  24
+0043    TSETS    7  13  25  ; "needsTouchScreenProbe"
+0044    TSETS    7  13  26  ; "hasKeys"
+0045    TSETS    8  13  27  ; "hasMultitouch"
+0046    CALL    11   2   3
+0047    MOV     13  10
+0048    TGETS   12  10  11  ; "new"
+0049    TDUP    14  28
+0050    TSETS    8  14  27  ; "hasMultitouch"
+0051    MOV     16   1
+0052    TGETS   15   1  11  ; "new"
+0053    TDUP    17  29
+0054    CALL    15   2   3
+0055    TSETS   15  14  30  ; "viewport"
+0056    CALL    12   2   3
+0057    MOV     14  10
+0058    TGETS   13  10  11  ; "new"
+0059    TDUP    15  31
+0060    TSETS    7  15  32  ; "hasFrontlight"
+0061    TSETS    7  15  21  ; "hasNaturalLight"
+0062    TDUP    16  33
+0063    TSETS   16  15  34  ; "frontlight_settings"
+0064    CALL    13   2   3
+0065    MOV     15  10
+0066    TGETS   14  10  11  ; "new"
+0067    TDUP    16  35
+0068    TSETS    7  16  32  ; "hasFrontlight"
+0069    TSETS    8  16  27  ; "hasMultitouch"
+0070    MOV     18   1
+0071    TGETS   17   1  11  ; "new"
+0072    TDUP    19  36
+0073    CALL    17   2   3
+0074    TSETS   17  16  30  ; "viewport"
+0075    CALL    14   2   3
+0076    MOV     16  10
+0077    TGETS   15  10  11  ; "new"
+0078    TDUP    17  37
+0079    TSETS    7  17  32  ; "hasFrontlight"
+0080    TSETS    8  17  27  ; "hasMultitouch"
+0081    CALL    15   2   3
+0082    MOV     17  10
+0083    TGETS   16  10  11  ; "new"
+0084    TDUP    18  38
+0085    TSETS    7  18  32  ; "hasFrontlight"
+0086    TSETS    8  18  27  ; "hasMultitouch"
+0087    CALL    16   2   3
+0088    MOV     18  10
+0089    TGETS   17  10  11  ; "new"
+0090    TDUP    19  39
+0091    TSETS    7  19  32  ; "hasFrontlight"
+0092    MOV     21   1
+0093    TGETS   20   1  11  ; "new"
+0094    TDUP    22  40
+0095    CALL    20   2   3
+0096    TSETS   20  19  30  ; "viewport"
+0097    TSETS    8  19  23  ; "canHWInvert"
+0098    CALL    17   2   3
+0099    MOV     19  10
+0100    TGETS   18  10  11  ; "new"
+0101    TDUP    20  41
+0102    TSETS    7  20  32  ; "hasFrontlight"
+0103    TSETS    7  20  21  ; "hasNaturalLight"
+0104    TDUP    21  42
+0105    TSETS   21  20  34  ; "frontlight_settings"
+0106    CALL    18   2   3
+0107    MOV     20  10
+0108    TGETS   19  10  11  ; "new"
+0109    TDUP    21  43
+0110    TSETS    7  21  32  ; "hasFrontlight"
+0111    TSETS    7  21  21  ; "hasNaturalLight"
+0112    TDUP    22  44
+0113    TSETS   22  21  34  ; "frontlight_settings"
+0114    CALL    19   2   3
+0115    MOV     21  10
+0116    TGETS   20  10  11  ; "new"
+0117    TDUP    22  45
+0118    TSETS    7  22  32  ; "hasFrontlight"
+0119    CALL    20   2   3
+0120    MOV     22  10
+0121    TGETS   21  10  11  ; "new"
+0122    TDUP    23  46
+0123    TSETS    7  23  32  ; "hasFrontlight"
+0124    CALL    21   2   3
+0125    MOV     23  10
+0126    TGETS   22  10  11  ; "new"
+0127    TDUP    24  47
+0128    TSETS    7  24  32  ; "hasFrontlight"
+0129    CALL    22   2   3
+0130    MOV     24  10
+0131    TGETS   23  10  11  ; "new"
+0132    TDUP    25  48
+0133    CALL    23   2   3
+0134    MOV     25  10
+0135    TGETS   24  10  11  ; "new"
+0136    TDUP    26  49
+0137    TSETS    7  26  32  ; "hasFrontlight"
+0138    TSETS    7  26  21  ; "hasNaturalLight"
+0139    TDUP    27  50
+0140    TSETS   27  26  34  ; "frontlight_settings"
+0141    CALL    24   2   3
+0142    MOV     26  10
+0143    TGETS   25  10  11  ; "new"
+0144    TDUP    27  51
+0145    TSETS    7  27  32  ; "hasFrontlight"
+0146    TSETS    7  27  26  ; "hasKeys"
+0147    TSETS    7  27  52  ; "canToggleGSensor"
+0148    TSETS    7  27  21  ; "hasNaturalLight"
+0149    TDUP    28  53
+0150    TSETS   28  27  34  ; "frontlight_settings"
+0151    CALL    25   2   3
+0152    MOV     27  10
+0153    TGETS   26  10  11  ; "new"
+0154    TDUP    28  54
+0155    TSETS    7  28  32  ; "hasFrontlight"
+0156    TSETS    7  28  26  ; "hasKeys"
+0157    TSETS    7  28  52  ; "canToggleGSensor"
+0158    TSETS    7  28  21  ; "hasNaturalLight"
+0159    TDUP    29  55
+0160    TSETS   29  28  34  ; "frontlight_settings"
+0161    CALL    26   2   3
+0162    KPRI    27   0
+0163    FNEW    27  56      ; device.lua:264
+0164    FNEW    28  58      ; device.lua:281
+0165    TSETS   28  10  57  ; "blacklistCBB"
+0166    FNEW    28  60      ; device.lua:299
+0167    TSETS   28  10  59  ; "init"
+0168    FNEW    28  62      ; device.lua:387
+0169    TSETS   28  10  61  ; "setDateTime"
+0170    FNEW    28  64      ; device.lua:403
+0171    TSETS   28  10  63  ; "initNetworkManager"
+0172    FNEW    28  66      ; device.lua:457
+0173    TSETS   28  10  65  ; "supportsScreensaver"
+0174    KSHORT  28  57
+0175    KSHORT  29   3
+0176    FNEW    30  67      ; device.lua:461
+0177    FNEW    31  69      ; device.lua:468
+0178    TSETS   31  10  68  ; "initEventAdjustHooks"
+0179    FNEW    31  71      ; device.lua:516
+0180    TSETS   31  10  70  ; "getCodeName"
+0181    FNEW    31  73      ; device.lua:528
+0182    TSETS   31  10  72  ; "getFirmwareVersion"
+0183    FNEW    31  74      ; device.lua:545
+0184    KSHORT  32   0
+0185    FNEW    33  75      ; device.lua:564
+0186    FNEW    34  77      ; device.lua:595
+0187    TSETS   34  10  76  ; "getUnexpectedWakeup"
+0188    FNEW    34  79      ; device.lua:597
+0189    TSETS   34  10  78  ; "suspend"
+0190    FNEW    34  81      ; device.lua:731
+0191    TSETS   34  10  80  ; "resume"
+0192    FNEW    34  83      ; device.lua:764
+0193    TSETS   34  10  82  ; "saveSettings"
+0194    FNEW    34  85      ; device.lua:769
+0195    TSETS   34  10  84  ; "powerOff"
+0196    FNEW    34  87      ; device.lua:773
+0197    TSETS   34  10  86  ; "reboot"
+0198    FNEW    34  89      ; device.lua:777
+0199    TSETS   34  10  88  ; "toggleGSensor"
+0200    MOV     35  10
+0201    TGETS   34  10  70  ; "getCodeName"
+0202    CALL    34   2   2
+0203    MOV     35  31
+0204    CALL    35   2   1
+0205    ISNES   34  90      ; "dahlia"
+0206    JMP     36 => 0210
+0207    UCLO     0 => 0208
+0208 => RET1    14   2
+0209    JMP     36 => 0294
+0210 => ISNES   34  91      ; "dragon"
+0211    JMP     36 => 0215
+0212    UCLO     0 => 0213
+0213 => RET1    15   2
+0214    JMP     36 => 0294
+0215 => ISNES   34  92      ; "kraken"
+0216    JMP     36 => 0220
+0217    UCLO     0 => 0218
+0218 => RET1    16   2
+0219    JMP     36 => 0294
+0220 => ISNES   34  93      ; "phoenix"
+0221    JMP     36 => 0225
+0222    UCLO     0 => 0223
+0223 => RET1    17   2
+0224    JMP     36 => 0294
+0225 => ISNES   34  94      ; "trilogy"
+0226    JMP     36 => 0230
+0227    UCLO     0 => 0228
+0228 => RET1    11   2
+0229    JMP     36 => 0294
+0230 => ISNES   34  95      ; "pixie"
+0231    JMP     36 => 0235
+0232    UCLO     0 => 0233
+0233 => RET1    12   2
+0234    JMP     36 => 0294
+0235 => ISNES   34  96      ; "alyssum"
+0236    JMP     36 => 0240
+0237    UCLO     0 => 0238
+0238 => RET1    22   2
+0239    JMP     36 => 0294
+0240 => ISNES   34  97      ; "pika"
+0241    JMP     36 => 0245
+0242    UCLO     0 => 0243
+0243 => RET1    23   2
+0244    JMP     36 => 0294
+0245 => ISNES   34  98      ; "star"
+0246    JMP     36 => 0252
+0247    ISNES   35  99      ; "379"
+0248    JMP     36 => 0252
+0249    UCLO     0 => 0250
+0250 => RET1    21   2
+0251    JMP     36 => 0294
+0252 => ISNES   34  98      ; "star"
+0253    JMP     36 => 0257
+0254    UCLO     0 => 0255
+0255 => RET1    20   2
+0256    JMP     36 => 0294
+0257 => ISNES   34 100      ; "daylight"
+0258    JMP     36 => 0262
+0259    UCLO     0 => 0260
+0260 => RET1    13   2
+0261    JMP     36 => 0294
+0262 => ISNES   34 101      ; "snow"
+0263    JMP     36 => 0269
+0264    ISNES   35 102      ; "378"
+0265    JMP     36 => 0269
+0266    UCLO     0 => 0267
+0267 => RET1    19   2
+0268    JMP     36 => 0294
+0269 => ISNES   34 101      ; "snow"
+0270    JMP     36 => 0274
+0271    UCLO     0 => 0272
+0272 => RET1    18   2
+0273    JMP     36 => 0294
+0274 => ISNES   34 103      ; "nova"
+0275    JMP     36 => 0279
+0276    UCLO     0 => 0277
+0277 => RET1    24   2
+0278    JMP     36 => 0294
+0279 => ISNES   34 104      ; "frost"
+0280    JMP     36 => 0284
+0281    UCLO     0 => 0282
+0282 => RET1    25   2
+0283    JMP     36 => 0294
+0284 => ISNES   34 105      ; "storm"
+0285    JMP     36 => 0289
+0286    UCLO     0 => 0287
+0287 => RET1    26   2
+0288    JMP     36 => 0294
+0289 => GGET    36 106      ; "error"
+0290    KSTR    37 107      ; "unrecognized Kobo model "
+0291    MOV     38  34
+0292    CAT     37  37  38
+0293    CALL    36   1   2
+0294 => UCLO     0 => 0295
+0295 => RET0     0   1
+

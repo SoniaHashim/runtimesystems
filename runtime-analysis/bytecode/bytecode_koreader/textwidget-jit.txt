@@ -1,0 +1,673 @@
+-- BYTECODE -- textwidget.lua:62-80
+0001    IST          3
+0002    JMP      4 => 0004
+0003    TGETS    3   0   0  ; "padding"
+0004 => MOV      4   2
+0005 => LOOP     5 => 0029
+0006    SUBVN    4   4   0  ; 1
+0007    KSHORT   5   1
+0008    ISGT     4   5
+0009    JMP      5 => 0011
+0010    JMP      5 => 0029
+0011 => UGET     5   0      ; Font
+0012    MOV      6   5
+0013    TGETS    5   5   1  ; "getFace"
+0014    MOV      7   1
+0015    MOV      8   4
+0016    CALL     5   2   4
+0017    TGETS    6   5   2  ; "ftface"
+0018    MOV      7   6
+0019    TGETS    6   6   3  ; "getHeightAndAscender"
+0020    CALL     6   2   2
+0021    GGET     7   4      ; "math"
+0022    TGETS    7   7   5  ; "ceil"
+0023    MOV      8   6
+0024    CALL     7   2   2
+0025    MULNV    8   3   1  ; 2
+0026    ADDVV    6   7   8
+0027    ISGT     6   2
+0028    JMP      7 => 0005
+0029 => RET1     4   2
+
+-- BYTECODE -- textwidget.lua:82-168
+0001    TGETS    1   0   0  ; "_updated"
+0002    ISF          1
+0003    JMP      2 => 0005
+0004    RET0     0   1
+0005 => KPRI     1   2
+0006    TSETS    1   0   0  ; "_updated"
+0007    TGETS    1   0   1  ; "_face_adjusted"
+0008    IST          1
+0009    JMP      1 => 0020
+0010    KPRI     1   2
+0011    TSETS    1   0   1  ; "_face_adjusted"
+0012    UGET     1   0      ; Font
+0013    MOV      2   1
+0014    TGETS    1   1   4  ; "getAdjustedFace"
+0015    TGETS    3   0   2  ; "face"
+0016    TGETS    4   0   3  ; "bold"
+0017    CALL     1   3   4
+0018    TSETS    2   0   3  ; "bold"
+0019    TSETS    1   0   2  ; "face"
+0020 => TGETS    1   0   2  ; "face"
+0021    TGETS    1   1   5  ; "ftface"
+0022    MOV      2   1
+0023    TGETS    1   1   6  ; "getHeightAndAscender"
+0024    CALL     1   3   2
+0025    GGET     3   8      ; "math"
+0026    TGETS    3   3   9  ; "ceil"
+0027    MOV      4   1
+0028    CALL     3   2   2
+0029    TGETS    4   0  10  ; "padding"
+0030    MULNV    4   4   0  ; 2
+0031    ADDVV    3   3   4
+0032    TSETS    3   0   7  ; "_height"
+0033    UGET     3   1      ; Math
+0034    TGETS    3   3  12  ; "round"
+0035    MOV      4   2
+0036    CALL     3   2   2
+0037    TGETS    4   0  10  ; "padding"
+0038    ADDVV    3   3   4
+0039    TSETS    3   0  11  ; "_baseline_h"
+0040    TGETS    3   0  13  ; "text"
+0041    ISF          3
+0042    JMP      4 => 0052
+0043    GGET     3  14      ; "type"
+0044    TGETS    4   0  13  ; "text"
+0045    CALL     3   2   2
+0046    ISEQS    3  15      ; "string"
+0047    JMP      3 => 0052
+0048    GGET     3  16      ; "tostring"
+0049    TGETS    4   0  13  ; "text"
+0050    CALL     3   2   2
+0051    TSETS    3   0  13  ; "text"
+0052 => KPRI     3   1
+0053    TSETS    3   0  17  ; "_is_empty"
+0054    TGETS    3   0  13  ; "text"
+0055    ISF          3
+0056    JMP      3 => 0061
+0057    TGETS    3   0  13  ; "text"
+0058    LEN      3   3
+0059    ISNEN    3   1      ; 0
+0060    JMP      3 => 0066
+0061 => KPRI     3   2
+0062    TSETS    3   0  17  ; "_is_empty"
+0063    KSHORT   3   0
+0064    TSETS    3   0  18  ; "_length"
+0065    RET0     0   1
+0066 => TGETS    3   0  19  ; "use_xtext"
+0067    ISF          3
+0068    JMP      4 => 0073
+0069    MOV      4   0
+0070    TGETS    3   0  20  ; "_measureWithXText"
+0071    CALL     3   1   2
+0072    RET0     0   1
+0073 => TGETS    3   0  13  ; "text"
+0074    TSETS    3   0  21  ; "_text_to_draw"
+0075    UGET     3   2      ; RenderText
+0076    MOV      4   3
+0077    TGETS    3   3  22  ; "sizeUtf8Text"
+0078    KSHORT   5   0
+0079    UGET     6   3      ; Screen
+0080    MOV      7   6
+0081    TGETS    6   6  23  ; "getWidth"
+0082    CALL     6   2   2
+0083    TGETS    7   0   2  ; "face"
+0084    TGETS    8   0  21  ; "_text_to_draw"
+0085    KPRI     9   2
+0086    TGETS   10   0   3  ; "bold"
+0087    CALL     3   2   8
+0088    GGET     4   8      ; "math"
+0089    TGETS    4   4  24  ; "floor"
+0090    TGETS    5   3  25  ; "x"
+0091    CALL     4   2   2
+0092    TSETS    4   0  18  ; "_length"
+0093    TGETS    4   0  26  ; "max_width"
+0094    ISF          4
+0095    JMP      5 => 0166
+0096    TGETS    4   0  18  ; "_length"
+0097    TGETS    5   0  26  ; "max_width"
+0098    ISGE     5   4
+0099    JMP      4 => 0166
+0100    TGETS    4   0  27  ; "truncate_left"
+0101    ISF          4
+0102    JMP      5 => 0137
+0103    UGET     4   4      ; util
+0104    TGETS    4   4  28  ; "utf8Reverse"
+0105    TGETS    5   0  21  ; "_text_to_draw"
+0106    CALL     4   2   2
+0107    TGETS    5   0  29  ; "truncate_with_ellipsis"
+0108    ISF          5
+0109    JMP      6 => 0121
+0110    UGET     5   2      ; RenderText
+0111    MOV      6   5
+0112    TGETS    5   5  30  ; "truncateTextByWidth"
+0113    MOV      7   4
+0114    TGETS    8   0   2  ; "face"
+0115    TGETS    9   0  26  ; "max_width"
+0116    KPRI    10   1
+0117    TGETS   11   0   3  ; "bold"
+0118    CALL     5   2   7
+0119    MOV      4   5
+0120    JMP      5 => 0131
+0121 => UGET     5   2      ; RenderText
+0122    MOV      6   5
+0123    TGETS    5   5  31  ; "getSubTextByWidth"
+0124    MOV      7   4
+0125    TGETS    8   0   2  ; "face"
+0126    TGETS    9   0  26  ; "max_width"
+0127    KPRI    10   1
+0128    TGETS   11   0   3  ; "bold"
+0129    CALL     5   2   7
+0130    MOV      4   5
+0131 => UGET     5   4      ; util
+0132    TGETS    5   5  28  ; "utf8Reverse"
+0133    MOV      6   4
+0134    CALL     5   2   2
+0135    TSETS    5   0  21  ; "_text_to_draw"
+0136    JMP      4 => 0150
+0137 => TGETS    4   0  29  ; "truncate_with_ellipsis"
+0138    ISF          4
+0139    JMP      5 => 0150
+0140    UGET     4   2      ; RenderText
+0141    MOV      5   4
+0142    TGETS    4   4  30  ; "truncateTextByWidth"
+0143    TGETS    6   0  21  ; "_text_to_draw"
+0144    TGETS    7   0   2  ; "face"
+0145    TGETS    8   0  26  ; "max_width"
+0146    KPRI     9   2
+0147    TGETS   10   0   3  ; "bold"
+0148    CALL     4   2   7
+0149    TSETS    4   0  21  ; "_text_to_draw"
+0150 => UGET     4   2      ; RenderText
+0151    MOV      5   4
+0152    TGETS    4   4  22  ; "sizeUtf8Text"
+0153    KSHORT   6   0
+0154    TGETS    7   0  26  ; "max_width"
+0155    TGETS    8   0   2  ; "face"
+0156    TGETS    9   0  21  ; "_text_to_draw"
+0157    KPRI    10   2
+0158    TGETS   11   0   3  ; "bold"
+0159    CALL     4   2   8
+0160    MOV      3   4
+0161    GGET     4   8      ; "math"
+0162    TGETS    4   4  24  ; "floor"
+0163    TGETS    5   3  25  ; "x"
+0164    CALL     4   2   2
+0165    TSETS    4   0  18  ; "_length"
+0166 => RET0     0   1
+
+-- BYTECODE -- textwidget.lua:170-173
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    TGETS    3   0   2  ; "text"
+0004    CALL     2   2   2
+0005    ISEQS    2   3      ; "string"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => KSTR     3   4      ; "Wrong text type (expected string)"
+0011    CALL     1   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- textwidget.lua:175-225
+0001    TGETS    1   0   0  ; "_xtext_loaded"
+0002    IST          1
+0003    JMP      1 => 0010
+0004    GGET     1   1      ; "require"
+0005    KSTR     2   2      ; "libs/libkoreader-xtext"
+0006    CALL     1   1   2
+0007    UGET     1   0      ; TextWidget
+0008    KPRI     2   2
+0009    TSETS    2   1   0  ; "_xtext_loaded"
+0010 => GGET     1   4      ; "xtext"
+0011    TGETS    1   1   5  ; "new"
+0012    TGETS    2   0   6  ; "text"
+0013    TGETS    3   0   7  ; "face"
+0014    TGETS    4   0   8  ; "auto_para_direction"
+0015    TGETS    5   0   9  ; "para_direction_rtl"
+0016    TGETS    6   0  10  ; "lang"
+0017    CALL     1   2   6
+0018    TSETS    1   0   3  ; "_xtext"
+0019    TGETS    1   0   3  ; "_xtext"
+0020    MOV      2   1
+0021    TGETS    1   1  11  ; "measure"
+0022    CALL     1   1   2
+0023    TGETS    1   0   3  ; "_xtext"
+0024    MOV      2   1
+0025    TGETS    1   1  13  ; "getWidth"
+0026    CALL     1   2   2
+0027    TSETS    1   0  12  ; "_length"
+0028    KPRI     1   0
+0029    TSETS    1   0  14  ; "_xshaping"
+0030    KSHORT   1   1
+0031    TSETS    1   0  15  ; "_shape_start"
+0032    TGETS    1   0   3  ; "_xtext"
+0033    LEN      1   1
+0034    TSETS    1   0  16  ; "_shape_end"
+0035    KPRI     1   0
+0036    TSETS    1   0  17  ; "_shape_idx_to_substitute_with_ellipsis"
+0037    TGETS    1   0  18  ; "max_width"
+0038    ISF          1
+0039    JMP      2 => 0106
+0040    TGETS    1   0  12  ; "_length"
+0041    TGETS    2   0  18  ; "max_width"
+0042    ISGE     2   1
+0043    JMP      1 => 0106
+0044    KSHORT   1   1
+0045    KSHORT   2   0
+0046    TGETS    3   0  19  ; "truncate_with_ellipsis"
+0047    ISF          3
+0048    JMP      4 => 0055
+0049    UGET     3   1      ; RenderText
+0050    MOV      4   3
+0051    TGETS    3   3  20  ; "getEllipsisWidth"
+0052    TGETS    5   0   7  ; "face"
+0053    CALL     3   2   3
+0054    MOV      2   3
+0055 => TGETS    3   0  18  ; "max_width"
+0056    SUBVV    3   3   2
+0057    TGETS    4   0  21  ; "truncate_left"
+0058    ISF          4
+0059    JMP      5 => 0066
+0060    TGETS    4   0   3  ; "_xtext"
+0061    MOV      5   4
+0062    TGETS    4   4  22  ; "getSegmentFromEnd"
+0063    MOV      6   3
+0064    CALL     4   2   3
+0065    MOV      1   4
+0066 => TGETS    4   0   3  ; "_xtext"
+0067    MOV      5   4
+0068    TGETS    4   4  23  ; "makeLine"
+0069    MOV      6   1
+0070    MOV      7   3
+0071    KPRI     8   2
+0072    CALL     4   2   5
+0073    TGETS    5   4  24  ; "offset"
+0074    TSETS    5   0  15  ; "_shape_start"
+0075    TGETS    5   4  25  ; "end_offset"
+0076    TSETS    5   0  16  ; "_shape_end"
+0077    TGETS    5   4  26  ; "width"
+0078    ADDVV    5   5   2
+0079    TSETS    5   0  12  ; "_length"
+0080    TGETS    5   0  19  ; "truncate_with_ellipsis"
+0081    ISF          5
+0082    JMP      6 => 0106
+0083    TGETS    5   0  21  ; "truncate_left"
+0084    ISF          5
+0085    JMP      6 => 0096
+0086    TGETS    5   0  15  ; "_shape_start"
+0087    KSHORT   6   1
+0088    ISGE     6   5
+0089    JMP      5 => 0096
+0090    TGETS    5   0  15  ; "_shape_start"
+0091    SUBVN    5   5   0  ; 1
+0092    TSETS    5   0  15  ; "_shape_start"
+0093    TGETS    5   0  15  ; "_shape_start"
+0094    TSETS    5   0  17  ; "_shape_idx_to_substitute_with_ellipsis"
+0095    JMP      5 => 0106
+0096 => TGETS    5   0  16  ; "_shape_end"
+0097    TGETS    6   0   3  ; "_xtext"
+0098    LEN      6   6
+0099    ISGE     5   6
+0100    JMP      5 => 0106
+0101    TGETS    5   0  16  ; "_shape_end"
+0102    ADDVN    5   5   0  ; 1
+0103    TSETS    5   0  16  ; "_shape_end"
+0104    TGETS    5   0  16  ; "_shape_end"
+0105    TSETS    5   0  17  ; "_shape_idx_to_substitute_with_ellipsis"
+0106 => RET0     0   1
+
+-- BYTECODE -- textwidget.lua:234-276
+0001    TGETS    1   0   0  ; "max_width"
+0002    IST          1
+0003    JMP      1 => 0007
+0004    TGETS    1   0   1  ; "text"
+0005    KPRI     2   0
+0006    RET      1   3
+0007 => MOV      2   0
+0008    TGETS    1   0   2  ; "updateSize"
+0009    CALL     1   1   2
+0010    TGETS    1   0   3  ; "_is_empty"
+0011    ISF          1
+0012    JMP      2 => 0016
+0013    KSTR     1   4      ; ""
+0014    KPRI     2   0
+0015    RET      1   3
+0016 => TGETS    1   0   5  ; "use_xtext"
+0017    IST          1
+0018    JMP      1 => 0051
+0019    TGETS    1   0   6  ; "_text_to_draw"
+0020    TGETS    2   0   1  ; "text"
+0021    ISNEV    1   2
+0022    JMP      1 => 0026
+0023    TGETS    1   0   1  ; "text"
+0024    KPRI     2   0
+0025    RET      1   3
+0026 => TGETS    1   0   7  ; "truncate_with_ellipsis"
+0027    IST          1
+0028    JMP      1 => 0032
+0029    TGETS    1   0   6  ; "_text_to_draw"
+0030    KPRI     2   1
+0031    RET      1   3
+0032 => TGETS    1   0   8  ; "truncate_left"
+0033    ISF          1
+0034    JMP      2 => 0043
+0035    TGETS    1   0   6  ; "_text_to_draw"
+0036    MOV      2   1
+0037    TGETS    1   1   9  ; "sub"
+0038    KSHORT   3   3
+0039    CALL     1   2   3
+0040    KPRI     2   2
+0041    RET      1   3
+0042    JMP      1 => 0051
+0043 => TGETS    1   0   6  ; "_text_to_draw"
+0044    MOV      2   1
+0045    TGETS    1   1   9  ; "sub"
+0046    KSHORT   3   1
+0047    KSHORT   4  -4
+0048    CALL     1   2   4
+0049    KPRI     2   2
+0050    RET      1   3
+0051 => TGETS    1   0  10  ; "_shape_start"
+0052    ISNEN    1   0      ; 1
+0053    JMP      1 => 0062
+0054    TGETS    1   0  11  ; "_shape_end"
+0055    TGETS    2   0   1  ; "text"
+0056    LEN      2   2
+0057    ISNEV    1   2
+0058    JMP      1 => 0062
+0059    TGETS    1   0   1  ; "text"
+0060    KPRI     2   0
+0061    RET      1   3
+0062 => KPRI     1   1
+0063    TGETS    2   0  10  ; "_shape_start"
+0064    TGETS    3   0  11  ; "_shape_end"
+0065    TGETS    4   0  12  ; "_shape_idx_to_substitute_with_ellipsis"
+0066    ISF          4
+0067    JMP      5 => 0075
+0068    KPRI     1   2
+0069    TGETS    4   0   8  ; "truncate_left"
+0070    ISF          4
+0071    JMP      5 => 0074
+0072    ADDVN    2   2   0  ; 1
+0073    JMP      4 => 0075
+0074 => SUBVN    3   3   0  ; 1
+0075 => TGETS    4   0  13  ; "_xtext"
+0076    MOV      5   4
+0077    TGETS    4   4  14  ; "getText"
+0078    MOV      6   2
+0079    MOV      7   3
+0080    CALL     4   2   4
+0081    MOV      5   4
+0082    MOV      6   1
+0083    RET      5   3
+
+-- BYTECODE -- textwidget.lua:278-284
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "updateSize"
+0003    CALL     1   1   2
+0004    UGET     1   0      ; Geom
+0005    MOV      2   1
+0006    TGETS    1   1   1  ; "new"
+0007    TDUP     3   3
+0008    TGETS    4   0   2  ; "_length"
+0009    TSETS    4   3   4  ; "w"
+0010    TGETS    4   0   5  ; "_height"
+0011    TSETS    4   3   6  ; "h"
+0012    CALLT    1   3
+
+-- BYTECODE -- textwidget.lua:286-289
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "updateSize"
+0003    CALL     1   1   2
+0004    TGETS    1   0   1  ; "_length"
+0005    RET1     1   2
+
+-- BYTECODE -- textwidget.lua:291-294
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "updateSize"
+0003    CALL     1   1   2
+0004    TGETS    1   0   1  ; "_baseline_h"
+0005    RET1     1   2
+
+-- BYTECODE -- textwidget.lua:296-302
+0001    TGETS    2   0   0  ; "text"
+0002    ISEQV    1   2
+0003    JMP      2 => 0010
+0004    TSETS    1   0   0  ; "text"
+0005    KPRI     2   1
+0006    TSETS    2   0   1  ; "_updated"
+0007    MOV      3   0
+0008    TGETS    2   0   2  ; "free"
+0009    CALL     2   1   2
+0010 => RET0     0   1
+
+-- BYTECODE -- textwidget.lua:304-307
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   1
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "string"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => KSTR     4   3      ; "Wrong text type (expected string)"
+0011    CALL     2   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- textwidget.lua:309-315
+0001    TGETS    2   0   0  ; "max_width"
+0002    ISEQV    1   2
+0003    JMP      2 => 0010
+0004    TSETS    1   0   0  ; "max_width"
+0005    KPRI     2   1
+0006    TSETS    2   0   1  ; "_updated"
+0007    MOV      3   0
+0008    TGETS    2   0   2  ; "free"
+0009    CALL     2   1   2
+0010 => RET0     0   1
+
+-- BYTECODE -- textwidget.lua:317-357
+0001    MOV      5   0
+0002    TGETS    4   0   0  ; "updateSize"
+0003    CALL     4   1   2
+0004    TGETS    4   0   1  ; "_is_empty"
+0005    ISF          4
+0006    JMP      5 => 0008
+0007    RET0     0   1
+0008 => TGETS    4   0   2  ; "use_xtext"
+0009    IST          4
+0010    JMP      4 => 0026
+0011    UGET     4   0      ; RenderText
+0012    MOV      5   4
+0013    TGETS    4   4   3  ; "renderUtf8Text"
+0014    MOV      6   1
+0015    MOV      7   2
+0016    TGETS    8   0   4  ; "_baseline_h"
+0017    ADDVV    8   3   8
+0018    TGETS    9   0   5  ; "face"
+0019    TGETS   10   0   6  ; "_text_to_draw"
+0020    KPRI    11   2
+0021    TGETS   12   0   7  ; "bold"
+0022    TGETS   13   0   8  ; "fgcolor"
+0023    TGETS   14   0   9  ; "_length"
+0024    CALL     4   1  11
+0025    RET0     0   1
+0026 => TGETS    4   0  10  ; "_xshaping"
+0027    IST          4
+0028    JMP      4 => 0037
+0029    TGETS    4   0  11  ; "_xtext"
+0030    MOV      5   4
+0031    TGETS    4   4  12  ; "shapeLine"
+0032    TGETS    6   0  13  ; "_shape_start"
+0033    TGETS    7   0  14  ; "_shape_end"
+0034    TGETS    8   0  15  ; "_shape_idx_to_substitute_with_ellipsis"
+0035    CALL     4   2   5
+0036    TSETS    4   0  10  ; "_xshaping"
+0037 => MOV      5   1
+0038    TGETS    4   1  16  ; "getWidth"
+0039    CALL     4   2   2
+0040    SUBVV    4   4   2
+0041    TGETS    5   0  17  ; "max_width"
+0042    ISF          5
+0043    JMP      6 => 0048
+0044    TGETS    5   0  17  ; "max_width"
+0045    ISGE     5   4
+0046    JMP      5 => 0048
+0047    TGETS    4   0  17  ; "max_width"
+0048 => KSHORT   5   0
+0049    TGETS    6   0   4  ; "_baseline_h"
+0050    GGET     7  18      ; "ipairs"
+0051    TGETS    8   0  10  ; "_xshaping"
+0052    CALL     7   4   2
+0053    JMP     10 => 0095
+0054 => ISGT     4   5
+0055    JMP     12 => 0057
+0056    JMP      7 => 0097
+0057 => TGETS   12   0   5  ; "face"
+0058    TGETS   12  12  19  ; "getFallbackFont"
+0059    TGETS   13  11  20  ; "font_num"
+0060    CALL    12   2   2
+0061    UGET    13   0      ; RenderText
+0062    MOV     14  13
+0063    TGETS   13  13  21  ; "getGlyphByIndex"
+0064    MOV     15  12
+0065    TGETS   16  11  22  ; "glyph"
+0066    TGETS   17   0   7  ; "bold"
+0067    CALL    13   2   5
+0068    MOV     15   1
+0069    TGETS   14   1  23  ; "colorblitFrom"
+0070    TGETS   16  13  24  ; "bb"
+0071    ADDVV   17   2   5
+0072    TGETS   18  13  25  ; "l"
+0073    ADDVV   17  17  18
+0074    TGETS   18  11  26  ; "x_offset"
+0075    ADDVV   17  17  18
+0076    ADDVV   18   3   6
+0077    TGETS   19  13  27  ; "t"
+0078    SUBVV   18  18  19
+0079    TGETS   19  11  28  ; "y_offset"
+0080    SUBVV   18  18  19
+0081    KSHORT  19   0
+0082    KSHORT  20   0
+0083    TGETS   21  13  24  ; "bb"
+0084    MOV     22  21
+0085    TGETS   21  21  16  ; "getWidth"
+0086    CALL    21   2   2
+0087    TGETS   22  13  24  ; "bb"
+0088    MOV     23  22
+0089    TGETS   22  22  29  ; "getHeight"
+0090    CALL    22   2   2
+0091    TGETS   23   0   8  ; "fgcolor"
+0092    CALL    14   1  10
+0093    TGETS   14  11  30  ; "x_advance"
+0094    ADDVV    5   5  14
+0095 => ITERC   10   3   3
+0096    ITERL   10 => 0054
+0097 => RET0     0   1
+
+-- BYTECODE -- textwidget.lua:359-364
+0001    TGETS    1   0   0  ; "_xtext"
+0002    ISF          1
+0003    JMP      2 => 0008
+0004    TGETS    1   0   0  ; "_xtext"
+0005    MOV      2   1
+0006    TGETS    1   1   1  ; "free"
+0007    CALL     1   1   2
+0008 => RET0     0   1
+
+-- BYTECODE -- textwidget.lua:366-370
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "free"
+0003    CALL     1   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- textwidget.lua:0-373
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/blitbuffer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/font"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/geometry"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "optmath"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/rendertext"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/size"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/widget"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "device"
+0024    CALL     7   2   2
+0025    TGETS    7   7   9  ; "screen"
+0026    GGET     8   0      ; "require"
+0027    KSTR     9  10      ; "dbg"
+0028    CALL     8   2   2
+0029    GGET     9   0      ; "require"
+0030    KSTR    10  11      ; "util"
+0031    CALL     9   2   2
+0032    MOV     11   6
+0033    TGETS   10   6  12  ; "new"
+0034    TDUP    12  13
+0035    TGETS   13   0  14  ; "COLOR_BLACK"
+0036    TSETS   13  12  15  ; "fgcolor"
+0037    TGETS   13   5  16  ; "padding"
+0038    TGETS   13  13  17  ; "small"
+0039    TSETS   13  12  16  ; "padding"
+0040    GGET    13  18      ; "G_reader_settings"
+0041    MOV     14  13
+0042    TGETS   13  13  19  ; "nilOrTrue"
+0043    KSTR    15  20      ; "use_xtext"
+0044    CALL    13   2   3
+0045    TSETS   13  12  20  ; "use_xtext"
+0046    CALL    10   2   3
+0047    FNEW    11  22      ; textwidget.lua:62
+0048    TSETS   11  10  21  ; "getFontSizeToFitHeight"
+0049    FNEW    11  24      ; textwidget.lua:82
+0050    TSETS   11  10  23  ; "updateSize"
+0051    MOV     12   8
+0052    TGETS   11   8  25  ; "guard"
+0053    MOV     13  10
+0054    KSTR    14  23      ; "updateSize"
+0055    FNEW    15  26      ; textwidget.lua:170
+0056    CALL    11   1   5
+0057    FNEW    11  28      ; textwidget.lua:175
+0058    TSETS   11  10  27  ; "_measureWithXText"
+0059    FNEW    11  30      ; textwidget.lua:234
+0060    TSETS   11  10  29  ; "getFittedText"
+0061    FNEW    11  32      ; textwidget.lua:278
+0062    TSETS   11  10  31  ; "getSize"
+0063    FNEW    11  34      ; textwidget.lua:286
+0064    TSETS   11  10  33  ; "getWidth"
+0065    FNEW    11  36      ; textwidget.lua:291
+0066    TSETS   11  10  35  ; "getBaseline"
+0067    FNEW    11  38      ; textwidget.lua:296
+0068    TSETS   11  10  37  ; "setText"
+0069    MOV     12   8
+0070    TGETS   11   8  25  ; "guard"
+0071    MOV     13  10
+0072    KSTR    14  37      ; "setText"
+0073    FNEW    15  39      ; textwidget.lua:304
+0074    CALL    11   1   5
+0075    FNEW    11  41      ; textwidget.lua:309
+0076    TSETS   11  10  40  ; "setMaxWidth"
+0077    FNEW    11  43      ; textwidget.lua:317
+0078    TSETS   11  10  42  ; "paintTo"
+0079    FNEW    11  45      ; textwidget.lua:359
+0080    TSETS   11  10  44  ; "free"
+0081    FNEW    11  47      ; textwidget.lua:366
+0082    TSETS   11  10  46  ; "onCloseWidget"
+0083    UCLO     0 => 0084
+0084 => RET1    10   2
+

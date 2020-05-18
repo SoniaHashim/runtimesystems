@@ -1,0 +1,330 @@
+-- BYTECODE -- fun.lua:7-17
+0001    TNEW     2   0
+0002    LEN      3   0
+0003    KSHORT   4   1
+0004    MOV      5   3
+0005    KSHORT   6   1
+0006    FORI     4 => 0010
+0007 => TGETV    8   0   7
+0008    TSETV    8   2   7
+0009    FORL     4 => 0007
+0010 => KSHORT   4   1
+0011    LEN      5   1
+0012    KSHORT   6   1
+0013    FORI     4 => 0018
+0014 => ADDVV    8   7   3
+0015    TGETV    9   1   7
+0016    TSETV    9   2   8
+0017    FORL     4 => 0014
+0018 => RET1     2   2
+
+-- BYTECODE -- fun.lua:19-26
+0001    GGET     2   0      ; "ipairs"
+0002    MOV      3   0
+0003    CALL     2   4   2
+0004    JMP      5 => 0009
+0005 => ISNEV    1   6
+0006    JMP      7 => 0009
+0007    KPRI     7   2
+0008    RET1     7   2
+0009 => ITERC    5   3   3
+0010    ITERL    5 => 0005
+0011    KPRI     2   1
+0012    RET1     2   2
+
+-- BYTECODE -- fun.lua:28-34
+0001    TNEW     2   0
+0002    KSHORT   3   1
+0003    LEN      4   0
+0004    KSHORT   5   1
+0005    FORI     3 => 0011
+0006 => MOV      7   1
+0007    TGETV    8   0   6
+0008    CALL     7   2   2
+0009    TSETV    7   2   6
+0010    FORL     3 => 0006
+0011 => RET1     2   2
+
+-- BYTECODE -- fun.lua:36-45
+0001    TNEW     2   0
+0002    KSHORT   3   1
+0003    LEN      4   0
+0004    KSHORT   5   1
+0005    FORI     3 => 0016
+0006 => TGETV    7   0   6
+0007    MOV      8   1
+0008    MOV      9   7
+0009    CALL     8   2   2
+0010    ISF          8
+0011    JMP      9 => 0015
+0012    LEN      8   2
+0013    ADDVN    8   8   0  ; 1
+0014    TSETV    7   2   8
+0015 => FORL     3 => 0006
+0016 => RET1     2   2
+
+-- BYTECODE -- fun.lua:48-50
+0001    GGET     1   0      ; "type"
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISNES    1   1      ; "table"
+0005    JMP      1 => 0013
+0006    UGET     1   0      ; fun
+0007    TGETS    1   1   2  ; "traverse"
+0008    MOV      2   0
+0009    UGET     3   1      ; f
+0010    CALL     1   2   3
+0011    IST          1
+0012    JMP      2 => 0016
+0013 => UGET     1   1      ; f
+0014    MOV      2   0
+0015    CALL     1   2   2
+0016 => RET1     1   2
+
+-- BYTECODE -- fun.lua:47-51
+0001    UGET     2   0      ; fun
+0002    TGETS    2   2   0  ; "map"
+0003    MOV      3   0
+0004    FNEW     4   1      ; fun.lua:48
+0005    UCLO     0 => 0006
+0006 => CALLT    2   3
+
+-- BYTECODE -- fun.lua:53-61
+0001    KSHORT   1   1
+0002    GGET     2   0      ; "math"
+0003    TGETS    2   2   1  ; "floor"
+0004    LEN      3   0
+0005    DIVVN    3   3   0  ; 2
+0006    CALL     2   2   2
+0007    KSHORT   3   1
+0008    FORI     1 => 0018
+0009 => MOV      5   4
+0010    LEN      6   0
+0011    SUBVV    6   6   4
+0012    ADDVN    6   6   1  ; 1
+0013    TGETV    7   0   5
+0014    TGETV    8   0   6
+0015    TSETV    8   0   5
+0016    TSETV    7   0   6
+0017    FORL     1 => 0009
+0018 => RET1     0   2
+
+-- BYTECODE -- fun.lua:63-66
+0001    GGET     2   0      ; "table"
+0002    TGETS    2   2   1  ; "sort"
+0003    MOV      3   0
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    RET1     0   2
+
+-- BYTECODE -- fun.lua:69-71
+0001    UGET     2   0      ; f
+0002    MOV      3   1
+0003    MOV      4   0
+0004    CALLT    2   3
+
+-- BYTECODE -- fun.lua:68-72
+0001    FNEW     1   0      ; fun.lua:69
+0002    UCLO     0 => 0003
+0003 => RET1     1   2
+
+-- BYTECODE -- fun.lua:74-90
+0001    GGET     2   0      ; "type"
+0002    MOV      3   0
+0003    CALL     2   2   2
+0004    ISNES    2   1      ; "function"
+0005    JMP      2 => 0018
+0006    MOV      2   0
+0007    KNIL     3   4
+0008    JMP      5 => 0015
+0009 => MOV      6   1
+0010    MOV      7   5
+0011    CALL     6   2   2
+0012    ISF          6
+0013    JMP      7 => 0015
+0014    RET1     6   2
+0015 => ITERC    5   2   3
+0016    ITERL    5 => 0009
+0017    JMP      2 => 0035
+0018 => GGET     2   0      ; "type"
+0019    MOV      3   0
+0020    CALL     2   2   2
+0021    ISNES    2   2      ; "table"
+0022    JMP      2 => 0035
+0023    GGET     2   3      ; "ipairs"
+0024    MOV      3   0
+0025    CALL     2   4   2
+0026    JMP      5 => 0033
+0027 => MOV      7   1
+0028    MOV      8   6
+0029    CALL     7   2   2
+0030    ISF          7
+0031    JMP      8 => 0033
+0032    RET1     7   2
+0033 => ITERC    5   3   3
+0034    ITERL    5 => 0027
+0035 => RET0     0   1
+
+-- BYTECODE -- fun.lua:96-98
+0001    UGET     0   0      ; f
+0002    UGET     1   1      ; a
+0003    VARG     2   0   0
+0004    CALLMT   0   1
+
+-- BYTECODE -- fun.lua:101-103
+0001    UGET     0   0      ; f
+0002    UGET     1   1      ; a
+0003    UGET     2   2      ; b
+0004    VARG     3   0   0
+0005    CALLMT   0   2
+
+-- BYTECODE -- fun.lua:106-118
+0001    GGET     0   0      ; "select"
+0002    KSTR     1   1      ; "#"
+0003    VARG     2   0   0
+0004    CALLM    0   2   1
+0005    TNEW     1   3
+0006    VARG     2   0   0
+0007    TSETM    2   0      ; 1
+0008    TNEW     2   0
+0009    KSHORT   3   1
+0010    UGET     4   0      ; n
+0011    KSHORT   5   1
+0012    FORI     3 => 0017
+0013 => UGET     7   1      ; pargs
+0014    TGETV    7   7   6
+0015    TSETV    7   2   6
+0016    FORL     3 => 0013
+0017 => KSHORT   3   1
+0018    MOV      4   0
+0019    KSHORT   5   1
+0020    FORI     3 => 0026
+0021 => UGET     7   0      ; n
+0022    ADDVV    7   6   7
+0023    TGETV    8   1   6
+0024    TSETV    8   2   7
+0025    FORL     3 => 0021
+0026 => UGET     3   2      ; unpack
+0027    IST          3
+0028    JMP      4 => 0031
+0029    GGET     3   2      ; "table"
+0030    TGETS    3   3   3  ; "unpack"
+0031 => UGET     4   3      ; f
+0032    MOV      5   3
+0033    MOV      6   2
+0034    KSHORT   7   1
+0035    UGET     8   0      ; n
+0036    ADDVV    8   8   0
+0037    CALL     5   0   4
+0038    CALLMT   4   0
+
+-- BYTECODE -- fun.lua:92-120
+0001    GGET     1   0      ; "select"
+0002    KSTR     2   1      ; "#"
+0003    VARG     3   0   1
+0004    CALLM    1   2   1
+0005    ISNEN    1   0      ; 1
+0006    JMP      2 => 0012
+0007    VARG     2   2   1
+0008    FNEW     3   2      ; fun.lua:96
+0009    UCLO     0 => 0010
+0010 => RET1     3   2
+0011    UCLO     2 => 0027
+0012 => ISNEN    1   1      ; 2
+0013    JMP      2 => 0019
+0014    VARG     2   3   1
+0015    FNEW     4   3      ; fun.lua:101
+0016    UCLO     0 => 0017
+0017 => RET1     4   2
+0018    UCLO     2 => 0027
+0019 => TDUP     2   4
+0020    TSETS    1   2   5  ; "n"
+0021    VARG     3   0   1
+0022    TSETM    3   2      ; 1
+0023    FNEW     3   6      ; fun.lua:106
+0024    UCLO     0 => 0025
+0025 => RET1     3   2
+0026    UCLO     2 => 0027
+0027 => UCLO     0 => 0028
+0028 => RET0     0   1
+
+-- BYTECODE -- fun.lua:126-141
+0001    UGET     1   0      ; memory
+0002    TGETV    1   1   0
+0003    ISF          1
+0004    JMP      2 => 0017
+0005    UGET     1   0      ; memory
+0006    TGETV    1   1   0
+0007    UGET     2   1      ; NIL
+0008    ISNEV    1   2
+0009    JMP      1 => 0014
+0010    KPRI     1   0
+0011    UGET     2   2      ; errors
+0012    TGETV    2   2   0
+0013    RET      1   3
+0014 => UGET     1   0      ; memory
+0015    TGETV    1   1   0
+0016    RET1     1   2
+0017 => UGET     1   3      ; fn
+0018    MOV      2   0
+0019    CALL     1   3   2
+0020    ISEQP    1   0
+0021    JMP      3 => 0025
+0022    UGET     3   0      ; memory
+0023    TSETV    1   3   0
+0024    JMP      3 => 0030
+0025 => UGET     3   0      ; memory
+0026    UGET     4   1      ; NIL
+0027    TSETV    4   3   0
+0028    UGET     3   2      ; errors
+0029    TSETV    2   3   0
+0030 => MOV      3   1
+0031    MOV      4   2
+0032    RET      3   3
+
+-- BYTECODE -- fun.lua:122-142
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    TDUP     3   1
+0004    CALL     1   2   3
+0005    GGET     2   0      ; "setmetatable"
+0006    TNEW     3   0
+0007    TDUP     4   2
+0008    CALL     2   2   3
+0009    TNEW     3   0
+0010    FNEW     4   3      ; fun.lua:126
+0011    UCLO     0 => 0012
+0012 => RET1     4   2
+
+-- BYTECODE -- fun.lua:0-145
+0001    TNEW     0   0
+0002    GGET     1   0      ; "table"
+0003    TGETS    1   1   1  ; "unpack"
+0004    IST          1
+0005    JMP      2 => 0007
+0006    GGET     1   1      ; "unpack"
+0007 => FNEW     2   3      ; fun.lua:7
+0008    TSETS    2   0   2  ; "concat"
+0009    FNEW     2   5      ; fun.lua:19
+0010    TSETS    2   0   4  ; "contains"
+0011    FNEW     2   7      ; fun.lua:28
+0012    TSETS    2   0   6  ; "map"
+0013    FNEW     2   9      ; fun.lua:36
+0014    TSETS    2   0   8  ; "filter"
+0015    FNEW     2  11      ; fun.lua:47
+0016    TSETS    2   0  10  ; "traverse"
+0017    FNEW     2  13      ; fun.lua:53
+0018    TSETS    2   0  12  ; "reverse_in"
+0019    FNEW     2  15      ; fun.lua:63
+0020    TSETS    2   0  14  ; "sort_in"
+0021    FNEW     2  17      ; fun.lua:68
+0022    TSETS    2   0  16  ; "flip"
+0023    FNEW     2  19      ; fun.lua:74
+0024    TSETS    2   0  18  ; "find"
+0025    FNEW     2  21      ; fun.lua:92
+0026    TSETS    2   0  20  ; "partial"
+0027    FNEW     2  23      ; fun.lua:122
+0028    TSETS    2   0  22  ; "memoize"
+0029    UCLO     0 => 0030
+0030 => RET1     0   2
+

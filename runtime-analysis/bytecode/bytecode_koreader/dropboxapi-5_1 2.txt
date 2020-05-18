@@ -1,0 +1,449 @@
+
+main <./frontend/apps/cloudstorage/dropboxapi.lua:0,0> (62 instructions, 248 bytes at 0x7fc865c068f0)
+0+ params, 13 slots, 0 upvalues, 12 locals, 17 constants, 5 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "document/documentregistry"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "json"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "socket.http"
+	9	[3]	CALL     	2 2 2
+	10	[4]	GETGLOBAL	3 -1	; require
+	11	[4]	LOADK    	4 -5	; "ssl.https"
+	12	[4]	CALL     	3 2 2
+	13	[5]	GETGLOBAL	4 -1	; require
+	14	[5]	LOADK    	5 -6	; "ltn12"
+	15	[5]	CALL     	4 2 2
+	16	[6]	GETGLOBAL	5 -1	; require
+	17	[6]	LOADK    	6 -7	; "socket"
+	18	[6]	CALL     	5 2 2
+	19	[7]	GETGLOBAL	6 -1	; require
+	20	[7]	LOADK    	7 -8	; "socket.url"
+	21	[7]	CALL     	6 2 2
+	22	[8]	GETGLOBAL	7 -1	; require
+	23	[8]	LOADK    	8 -9	; "gettext"
+	24	[8]	CALL     	7 2 2
+	25	[10]	NEWTABLE 	8 0 0
+	26	[13]	LOADK    	9 -10	; "https://api.dropboxapi.com/2/users/get_current_account"
+	27	[14]	LOADK    	10 -11	; "https://api.dropboxapi.com/2/files/list_folder"
+	28	[15]	LOADK    	11 -12	; "https://content.dropboxapi.com/2/files/download"
+	29	[39]	CLOSURE  	12 0	; 0x7fc865c06f70
+	30	[39]	MOVE     	0 6
+	31	[39]	MOVE     	0 9
+	32	[39]	MOVE     	0 4
+	33	[39]	MOVE     	0 2
+	34	[39]	MOVE     	0 3
+	35	[39]	MOVE     	0 5
+	36	[39]	MOVE     	0 1
+	37	[17]	SETTABLE 	8 -13 12	; "fetchInfo" -
+	38	[73]	CLOSURE  	12 1	; 0x7fc865c07000
+	39	[73]	MOVE     	0 6
+	40	[73]	MOVE     	0 10
+	41	[73]	MOVE     	0 4
+	42	[73]	MOVE     	0 2
+	43	[73]	MOVE     	0 3
+	44	[73]	MOVE     	0 5
+	45	[73]	MOVE     	0 1
+	46	[41]	SETTABLE 	8 -14 12	; "fetchListFolders" -
+	47	[91]	CLOSURE  	12 2	; 0x7fc865c07af0
+	48	[91]	MOVE     	0 6
+	49	[91]	MOVE     	0 11
+	50	[91]	MOVE     	0 2
+	51	[91]	MOVE     	0 3
+	52	[91]	MOVE     	0 4
+	53	[75]	SETTABLE 	8 -15 12	; "downloadFile" -
+	54	[145]	CLOSURE  	12 3	; 0x7fc865c087c0
+	55	[145]	MOVE     	0 0
+	56	[145]	MOVE     	0 7
+	57	[95]	SETTABLE 	8 -16 12	; "listFolder" -
+	58	[164]	CLOSURE  	12 4	; 0x7fc865c09be0
+	59	[164]	MOVE     	0 0
+	60	[147]	SETTABLE 	8 -17 12	; "showFiles" -
+	61	[166]	RETURN   	8 2
+	62	[166]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/dropboxapi.lua:17,39> (61 instructions, 244 bytes at 0x7fc865c06f70)
+2 params, 12 slots, 7 upvalues, 11 locals, 21 constants, 0 functions
+	1	[18]	NEWTABLE 	2 0 0
+	2	[18]	NEWTABLE 	3 0 0
+	3	[19]	GETUPVAL 	4 0	; url
+	4	[19]	GETTABLE 	4 4 -1	; "parse"
+	5	[19]	GETUPVAL 	5 1	; API_URL_INFO
+	6	[19]	CALL     	4 2 2
+	7	[20]	GETUPVAL 	5 1	; API_URL_INFO
+	8	[20]	SETTABLE 	2 -2 5	; "url" -
+	9	[21]	SETTABLE 	2 -3 -4	; "method" "POST"
+	10	[22]	NEWTABLE 	5 0 1
+	11	[22]	LOADK    	6 -6	; "Bearer "
+	12	[22]	MOVE     	7 1
+	13	[22]	CONCAT   	6 6 7
+	14	[22]	SETTABLE 	5 -5 6	; "Authorization" -
+	15	[23]	SETTABLE 	2 -7 5	; "headers" -
+	16	[24]	GETUPVAL 	6 2	; ltn12
+	17	[24]	GETTABLE 	6 6 -8	; "sink"
+	18	[24]	GETTABLE 	6 6 -9	; "table"
+	19	[24]	MOVE     	7 3
+	20	[24]	CALL     	6 2 2
+	21	[24]	SETTABLE 	2 -8 6	; "sink" -
+	22	[25]	GETUPVAL 	6 3	; http
+	23	[25]	SETTABLE 	6 -10 -11	; "TIMEOUT" 5
+	24	[26]	GETUPVAL 	6 4	; https
+	25	[26]	SETTABLE 	6 -10 -11	; "TIMEOUT" 5
+	26	[27]	GETTABLE 	6 4 -12	; "scheme"
+	27	[27]	EQ       	0 6 -13	; - "http"
+	28	[27]	JMP      	4	; to 33
+	29	[27]	GETUPVAL 	6 3	; http
+	30	[27]	GETTABLE 	6 6 -14	; "request"
+	31	[27]	TEST     	6 0 1
+	32	[27]	JMP      	2	; to 35
+	33	[27]	GETUPVAL 	6 4	; https
+	34	[27]	GETTABLE 	6 6 -14	; "request"
+	35	[28]	GETUPVAL 	7 5	; socket
+	36	[28]	GETTABLE 	7 7 -15	; "skip"
+	37	[28]	LOADK    	8 -16	; 1
+	38	[28]	MOVE     	9 6
+	39	[28]	MOVE     	10 2
+	40	[28]	CALL     	9 2 0
+	41	[28]	CALL     	7 0 2
+	42	[29]	GETGLOBAL	8 -9	; table
+	43	[29]	GETTABLE 	8 8 -17	; "concat"
+	44	[29]	MOVE     	9 3
+	45	[29]	CALL     	8 2 2
+	46	[30]	EQ       	0 7 -18	; - nil
+	47	[30]	JMP      	2	; to 50
+	48	[31]	LOADNIL  	9 9
+	49	[31]	RETURN   	9 2
+	50	[33]	EQ       	1 8 -19	; - ""
+	51	[33]	JMP      	7	; to 59
+	52	[34]	GETGLOBAL	9 -20	; pcall
+	53	[34]	GETUPVAL 	10 6	; JSON
+	54	[34]	GETTABLE 	10 10 -21	; "decode"
+	55	[34]	MOVE     	11 8
+	56	[34]	CALL     	9 3 3
+	57	[35]	RETURN   	10 2
+	58	[35]	JMP      	2	; to 61
+	59	[37]	LOADNIL  	9 9
+	60	[37]	RETURN   	9 2
+	61	[39]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/dropboxapi.lua:41,73> (85 instructions, 340 bytes at 0x7fc865c07000)
+3 params, 14 slots, 7 upvalues, 13 locals, 30 constants, 0 functions
+	1	[42]	NEWTABLE 	3 0 0
+	2	[42]	NEWTABLE 	4 0 0
+	3	[43]	EQ       	1 1 -1	; - nil
+	4	[43]	JMP      	2	; to 7
+	5	[43]	EQ       	0 1 -2	; - "/"
+	6	[43]	JMP      	1	; to 8
+	7	[43]	LOADK    	1 -3	; ""
+	8	[44]	GETUPVAL 	5 0	; url
+	9	[44]	GETTABLE 	5 5 -4	; "parse"
+	10	[44]	GETUPVAL 	6 1	; API_LIST_FOLDER
+	11	[44]	CALL     	5 2 2
+	12	[45]	GETUPVAL 	6 1	; API_LIST_FOLDER
+	13	[45]	SETTABLE 	3 -5 6	; "url" -
+	14	[46]	SETTABLE 	3 -6 -7	; "method" "POST"
+	15	[47]	LOADK    	6 -8	; "{\"path\": \""
+	16	[47]	MOVE     	7 1
+	17	[47]	LOADK    	8 -9	; "\",\"recursive\": false,\"include_media_info\": false,"
+	18	[48]	LOADK    	9 -10	; "\"include_deleted\": false,\"include_has_explicit_shared_members\": false}"
+	19	[48]	CONCAT   	6 6 9
+	20	[49]	NEWTABLE 	7 0 3
+	21	[49]	LOADK    	8 -12	; "Bearer "
+	22	[49]	MOVE     	9 2
+	23	[49]	CONCAT   	8 8 9
+	24	[49]	SETTABLE 	7 -11 8	; "Authorization" -
+	25	[50]	SETTABLE 	7 -13 -14	; "Content-Type" "application/json"
+	26	[51]	LEN      	8 6
+	27	[51]	SETTABLE 	7 -15 8	; "Content-Length" -
+	28	[52]	SETTABLE 	3 -16 7	; "headers" -
+	29	[53]	GETUPVAL 	8 2	; ltn12
+	30	[53]	GETTABLE 	8 8 -17	; "source"
+	31	[53]	GETTABLE 	8 8 -18	; "string"
+	32	[53]	MOVE     	9 6
+	33	[53]	CALL     	8 2 2
+	34	[53]	SETTABLE 	3 -17 8	; "source" -
+	35	[54]	GETUPVAL 	8 2	; ltn12
+	36	[54]	GETTABLE 	8 8 -19	; "sink"
+	37	[54]	GETTABLE 	8 8 -20	; "table"
+	38	[54]	MOVE     	9 4
+	39	[54]	CALL     	8 2 2
+	40	[54]	SETTABLE 	3 -19 8	; "sink" -
+	41	[55]	GETUPVAL 	8 3	; http
+	42	[55]	SETTABLE 	8 -21 -22	; "TIMEOUT" 5
+	43	[56]	GETUPVAL 	8 4	; https
+	44	[56]	SETTABLE 	8 -21 -22	; "TIMEOUT" 5
+	45	[57]	GETTABLE 	8 5 -23	; "scheme"
+	46	[57]	EQ       	0 8 -24	; - "http"
+	47	[57]	JMP      	4	; to 52
+	48	[57]	GETUPVAL 	8 3	; http
+	49	[57]	GETTABLE 	8 8 -25	; "request"
+	50	[57]	TEST     	8 0 1
+	51	[57]	JMP      	2	; to 54
+	52	[57]	GETUPVAL 	8 4	; https
+	53	[57]	GETTABLE 	8 8 -25	; "request"
+	54	[58]	GETUPVAL 	9 5	; socket
+	55	[58]	GETTABLE 	9 9 -26	; "skip"
+	56	[58]	LOADK    	10 -27	; 1
+	57	[58]	MOVE     	11 8
+	58	[58]	MOVE     	12 3
+	59	[58]	CALL     	11 2 0
+	60	[58]	CALL     	9 0 2
+	61	[59]	EQ       	0 9 -1	; - nil
+	62	[59]	JMP      	2	; to 65
+	63	[60]	LOADNIL  	10 10
+	64	[60]	RETURN   	10 2
+	65	[62]	GETGLOBAL	10 -20	; table
+	66	[62]	GETTABLE 	10 10 -28	; "concat"
+	67	[62]	MOVE     	11 4
+	68	[62]	CALL     	10 2 2
+	69	[63]	EQ       	1 10 -3	; - ""
+	70	[63]	JMP      	12	; to 83
+	71	[64]	GETGLOBAL	11 -29	; pcall
+	72	[64]	GETUPVAL 	12 6	; JSON
+	73	[64]	GETTABLE 	12 12 -30	; "decode"
+	74	[64]	MOVE     	13 10
+	75	[64]	CALL     	11 3 3
+	76	[65]	TEST     	11 0 0
+	77	[65]	JMP      	2	; to 80
+	78	[66]	RETURN   	12 2
+	79	[66]	JMP      	5	; to 85
+	80	[68]	LOADNIL  	13 13
+	81	[68]	RETURN   	13 2
+	82	[69]	JMP      	2	; to 85
+	83	[71]	LOADNIL  	11 11
+	84	[71]	RETURN   	11 2
+	85	[73]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/dropboxapi.lua:75,91> (46 instructions, 184 bytes at 0x7fc865c07af0)
+4 params, 15 slots, 5 upvalues, 12 locals, 20 constants, 0 functions
+	1	[76]	GETUPVAL 	4 0	; url
+	2	[76]	GETTABLE 	4 4 -1	; "parse"
+	3	[76]	GETUPVAL 	5 1	; API_DOWNLOAD_FILE
+	4	[76]	CALL     	4 2 2
+	5	[77]	GETUPVAL 	5 1	; API_DOWNLOAD_FILE
+	6	[78]	LOADK    	6 -2	; "{\"path\": \""
+	7	[78]	MOVE     	7 1
+	8	[78]	LOADK    	8 -3	; "\"}"
+	9	[78]	CONCAT   	6 6 8
+	10	[79]	NEWTABLE 	7 0 2
+	11	[79]	LOADK    	8 -5	; "Bearer "
+	12	[79]	MOVE     	9 2
+	13	[79]	CONCAT   	8 8 9
+	14	[79]	SETTABLE 	7 -4 8	; "Authorization" -
+	15	[80]	SETTABLE 	7 -6 6	; "Dropbox-API-Arg" -
+	16	[81]	GETUPVAL 	8 2	; http
+	17	[81]	SETTABLE 	8 -7 -8	; "TIMEOUT" 5
+	18	[82]	GETUPVAL 	8 3	; https
+	19	[82]	SETTABLE 	8 -7 -8	; "TIMEOUT" 5
+	20	[83]	GETTABLE 	8 4 -9	; "scheme"
+	21	[83]	EQ       	0 8 -10	; - "http"
+	22	[83]	JMP      	4	; to 27
+	23	[83]	GETUPVAL 	8 2	; http
+	24	[83]	GETTABLE 	8 8 -11	; "request"
+	25	[83]	TEST     	8 0 1
+	26	[83]	JMP      	2	; to 29
+	27	[83]	GETUPVAL 	8 3	; https
+	28	[83]	GETTABLE 	8 8 -11	; "request"
+	29	[84]	MOVE     	9 8
+	30	[84]	NEWTABLE 	10 0 4
+	31	[85]	SETTABLE 	10 -12 5	; "url" -
+	32	[86]	SETTABLE 	10 -13 -14	; "method" "GET"
+	33	[87]	SETTABLE 	10 -15 7	; "headers" -
+	34	[88]	GETUPVAL 	11 4	; ltn12
+	35	[88]	GETTABLE 	11 11 -16	; "sink"
+	36	[88]	GETTABLE 	11 11 -17	; "file"
+	37	[88]	GETGLOBAL	12 -18	; io
+	38	[88]	GETTABLE 	12 12 -19	; "open"
+	39	[88]	MOVE     	13 3
+	40	[88]	LOADK    	14 -20	; "w"
+	41	[88]	CALL     	12 3 0
+	42	[88]	CALL     	11 0 2
+	43	[88]	SETTABLE 	10 -16 11	; "sink" -
+	44	[84]	CALL     	9 2 4
+	45	[90]	RETURN   	10 2
+	46	[91]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/dropboxapi.lua:95,145> (108 instructions, 432 bytes at 0x7fc865c087c0)
+4 params, 18 slots, 2 upvalues, 19 locals, 23 constants, 2 functions
+	1	[96]	NEWTABLE 	4 0 0
+	2	[97]	NEWTABLE 	5 0 0
+	3	[98]	LOADNIL  	6 7
+	4	[99]	SELF     	8 0 -1	; "fetchListFolders"
+	5	[99]	MOVE     	10 1
+	6	[99]	MOVE     	11 2
+	7	[99]	CALL     	8 4 2
+	8	[100]	EQ       	1 8 -2	; - nil
+	9	[100]	JMP      	3	; to 13
+	10	[100]	GETTABLE 	9 8 -3	; "entries"
+	11	[100]	EQ       	0 9 -2	; - nil
+	12	[100]	JMP      	2	; to 15
+	13	[100]	LOADBOOL 	9 0 0
+	14	[100]	RETURN   	9 2
+	15	[101]	GETGLOBAL	9 -4	; ipairs
+	16	[101]	GETTABLE 	10 8 -3	; "entries"
+	17	[101]	CALL     	9 2 4
+	18	[101]	JMP      	45	; to 64
+	19	[102]	GETTABLE 	7 13 -5	; "name"
+	20	[103]	GETTABLE 	6 13 -6	; ".tag"
+	21	[104]	EQ       	0 6 -7	; - "folder"
+	22	[104]	JMP      	16	; to 39
+	23	[105]	MOVE     	14 7
+	24	[105]	LOADK    	15 -8	; "/"
+	25	[105]	CONCAT   	7 14 15
+	26	[106]	TEST     	3 0 0
+	27	[106]	JMP      	1	; to 29
+	28	[106]	LOADK    	6 -9	; "folder_long_press"
+	29	[107]	GETGLOBAL	14 -10	; table
+	30	[107]	GETTABLE 	14 14 -11	; "insert"
+	31	[107]	MOVE     	15 4
+	32	[107]	NEWTABLE 	16 0 3
+	33	[108]	SETTABLE 	16 -12 7	; "text" -
+	34	[109]	GETTABLE 	17 13 -14	; "path_display"
+	35	[109]	SETTABLE 	16 -13 17	; "url" -
+	36	[110]	SETTABLE 	16 -15 6	; "type" -
+	37	[107]	CALL     	14 3 1
+	38	[111]	JMP      	25	; to 64
+	39	[113]	EQ       	0 6 -16	; - "file"
+	40	[113]	JMP      	23	; to 64
+	41	[113]	GETUPVAL 	14 0	; DocumentRegistry
+	42	[113]	SELF     	14 14 -17	; "hasProvider"
+	43	[113]	MOVE     	16 7
+	44	[113]	CALL     	14 3 2
+	45	[114]	TEST     	14 0 1
+	46	[114]	JMP      	6	; to 53
+	47	[114]	GETGLOBAL	14 -18	; G_reader_settings
+	48	[114]	SELF     	14 14 -19	; "isTrue"
+	49	[114]	LOADK    	16 -20	; "show_unsupported"
+	50	[114]	CALL     	14 3 2
+	51	[114]	TEST     	14 0 0
+	52	[114]	JMP      	11	; to 64
+	53	[114]	TEST     	3 0 1
+	54	[114]	JMP      	9	; to 64
+	55	[115]	GETGLOBAL	14 -10	; table
+	56	[115]	GETTABLE 	14 14 -11	; "insert"
+	57	[115]	MOVE     	15 5
+	58	[115]	NEWTABLE 	16 0 3
+	59	[116]	SETTABLE 	16 -12 7	; "text" -
+	60	[117]	GETTABLE 	17 13 -14	; "path_display"
+	61	[117]	SETTABLE 	16 -13 17	; "url" -
+	62	[118]	SETTABLE 	16 -15 6	; "type" -
+	63	[115]	CALL     	14 3 1
+	64	[101]	TFORLOOP 	9 2
+	65	[120]	JMP      	-47	; to 19
+	66	[123]	GETGLOBAL	9 -10	; table
+	67	[123]	GETTABLE 	9 9 -21	; "sort"
+	68	[123]	MOVE     	10 4
+	69	[125]	CLOSURE  	11 0	; 0x7fc865c09000
+	70	[123]	CALL     	9 3 1
+	71	[126]	GETGLOBAL	9 -10	; table
+	72	[126]	GETTABLE 	9 9 -21	; "sort"
+	73	[126]	MOVE     	10 5
+	74	[128]	CLOSURE  	11 1	; 0x7fc865c09290
+	75	[126]	CALL     	9 3 1
+	76	[130]	TEST     	3 0 0
+	77	[130]	JMP      	12	; to 90
+	78	[131]	GETGLOBAL	9 -10	; table
+	79	[131]	GETTABLE 	9 9 -11	; "insert"
+	80	[131]	MOVE     	10 4
+	81	[131]	LOADK    	11 -22	; 1
+	82	[131]	NEWTABLE 	12 0 3
+	83	[132]	GETUPVAL 	13 1	; _
+	84	[132]	LOADK    	14 -23	; "Long-press to select current directory"
+	85	[132]	CALL     	13 2 2
+	86	[132]	SETTABLE 	12 -12 13	; "text" -
+	87	[133]	SETTABLE 	12 -13 1	; "url" -
+	88	[134]	SETTABLE 	12 -15 -9	; "type" "folder_long_press"
+	89	[131]	CALL     	9 4 1
+	90	[137]	GETGLOBAL	9 -4	; ipairs
+	91	[137]	MOVE     	10 5
+	92	[137]	CALL     	9 2 4
+	93	[137]	JMP      	11	; to 105
+	94	[138]	GETGLOBAL	14 -10	; table
+	95	[138]	GETTABLE 	14 14 -11	; "insert"
+	96	[138]	MOVE     	15 4
+	97	[138]	NEWTABLE 	16 0 3
+	98	[139]	GETTABLE 	17 13 -12	; "text"
+	99	[139]	SETTABLE 	16 -12 17	; "text" -
+	100	[140]	GETTABLE 	17 13 -13	; "url"
+	101	[140]	SETTABLE 	16 -13 17	; "url" -
+	102	[141]	GETTABLE 	17 13 -15	; "type"
+	103	[141]	SETTABLE 	16 -15 17	; "type" -
+	104	[138]	CALL     	14 3 1
+	105	[137]	TFORLOOP 	9 2
+	106	[142]	JMP      	-13	; to 94
+	107	[144]	RETURN   	4 2
+	108	[145]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/dropboxapi.lua:123,125> (8 instructions, 32 bytes at 0x7fc865c09000)
+2 params, 4 slots, 0 upvalues, 2 locals, 1 constant, 0 functions
+	1	[124]	GETTABLE 	2 0 -1	; "text"
+	2	[124]	GETTABLE 	3 1 -1	; "text"
+	3	[124]	LT       	1 2 3
+	4	[124]	JMP      	1	; to 6
+	5	[124]	LOADBOOL 	2 0 1
+	6	[124]	LOADBOOL 	2 1 0
+	7	[124]	RETURN   	2 2
+	8	[125]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/dropboxapi.lua:126,128> (8 instructions, 32 bytes at 0x7fc865c09290)
+2 params, 4 slots, 0 upvalues, 2 locals, 1 constant, 0 functions
+	1	[127]	GETTABLE 	2 0 -1	; "text"
+	2	[127]	GETTABLE 	3 1 -1	; "text"
+	3	[127]	LT       	1 2 3
+	4	[127]	JMP      	1	; to 6
+	5	[127]	LOADBOOL 	2 0 1
+	6	[127]	LOADBOOL 	2 1 0
+	7	[127]	RETURN   	2 2
+	8	[128]	RETURN   	0 1
+
+function <./frontend/apps/cloudstorage/dropboxapi.lua:147,164> (47 instructions, 188 bytes at 0x7fc865c09be0)
+3 params, 16 slots, 1 upvalue, 12 locals, 17 constants, 0 functions
+	1	[148]	NEWTABLE 	3 0 0
+	2	[149]	LOADNIL  	4 5
+	3	[150]	SELF     	6 0 -1	; "fetchListFolders"
+	4	[150]	MOVE     	8 1
+	5	[150]	MOVE     	9 2
+	6	[150]	CALL     	6 4 2
+	7	[151]	EQ       	1 6 -2	; - nil
+	8	[151]	JMP      	3	; to 12
+	9	[151]	GETTABLE 	7 6 -3	; "entries"
+	10	[151]	EQ       	0 7 -2	; - nil
+	11	[151]	JMP      	2	; to 14
+	12	[151]	LOADBOOL 	7 0 0
+	13	[151]	RETURN   	7 2
+	14	[152]	GETGLOBAL	7 -4	; ipairs
+	15	[152]	GETTABLE 	8 6 -3	; "entries"
+	16	[152]	CALL     	7 2 4
+	17	[152]	JMP      	26	; to 44
+	18	[153]	GETTABLE 	5 11 -5	; "name"
+	19	[154]	GETTABLE 	4 11 -6	; ".tag"
+	20	[155]	EQ       	0 4 -7	; - "file"
+	21	[155]	JMP      	22	; to 44
+	22	[155]	GETUPVAL 	12 0	; DocumentRegistry
+	23	[155]	SELF     	12 12 -8	; "hasProvider"
+	24	[155]	MOVE     	14 5
+	25	[155]	CALL     	12 3 2
+	26	[155]	TEST     	12 0 1
+	27	[155]	JMP      	6	; to 34
+	28	[155]	GETGLOBAL	12 -9	; G_reader_settings
+	29	[155]	SELF     	12 12 -10	; "isTrue"
+	30	[155]	LOADK    	14 -11	; "show_unsupported"
+	31	[155]	CALL     	12 3 2
+	32	[155]	TEST     	12 0 0
+	33	[155]	JMP      	10	; to 44
+	34	[156]	GETGLOBAL	12 -12	; table
+	35	[156]	GETTABLE 	12 12 -13	; "insert"
+	36	[156]	MOVE     	13 3
+	37	[156]	NEWTABLE 	14 0 3
+	38	[157]	SETTABLE 	14 -14 5	; "text" -
+	39	[158]	GETTABLE 	15 11 -16	; "path_display"
+	40	[158]	SETTABLE 	14 -15 15	; "url" -
+	41	[159]	GETTABLE 	15 11 -17	; "size"
+	42	[159]	SETTABLE 	14 -17 15	; "size" -
+	43	[156]	CALL     	12 3 1
+	44	[152]	TFORLOOP 	7 2
+	45	[161]	JMP      	-28	; to 18
+	46	[163]	RETURN   	3 2
+	47	[164]	RETURN   	0 1

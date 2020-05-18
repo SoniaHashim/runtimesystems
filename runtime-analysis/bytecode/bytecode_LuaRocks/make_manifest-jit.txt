@@ -1,0 +1,134 @@
+-- BYTECODE -- make_manifest.lua:14-23
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "command"
+0003    KSTR     3   1      ; "make_manifest"
+0004    KSTR     4   2      ; "Compile a manifest file for a repository"~
+0005    UGET     5   0      ; util
+0006    TGETS    5   5   3  ; "see_also"
+0007    CALL     5   0   1
+0008    CALLM    1   2   3
+0009    MOV      3   1
+0010    TGETS    2   1   4  ; "argument"
+0011    KSTR     4   5      ; "repository"
+0012    KSTR     5   6      ; "Local repository pathname."
+0013    CALL     2   2   4
+0014    MOV      3   2
+0015    TGETS    2   2   7  ; "args"
+0016    KSTR     4   8      ; "?"
+0017    CALL     2   1   3
+0018    MOV      3   1
+0019    TGETS    2   1   9  ; "flag"
+0020    KSTR     4  10      ; "--local-tree"
+0021    KSTR     5  11      ; "If given, do not write versioned version"~
+0022    KSTR     6  12      ; "Use this when rebuilding the manifest of"~
+0023    CAT      5   5   6
+0024    CALL     2   1   4
+0025    UGET     2   0      ; util
+0026    TGETS    2   2  13  ; "deps_mode_option"
+0027    MOV      3   1
+0028    CALL     2   1   2
+0029    RET0     0   1
+
+-- BYTECODE -- make_manifest.lua:28-48
+0001    TGETS    1   0   0  ; "repository"
+0002    IST          1
+0003    JMP      2 => 0006
+0004    UGET     1   0      ; cfg
+0005    TGETS    1   1   1  ; "rocks_dir"
+0006 => UGET     2   1      ; util
+0007    TGETS    2   2   2  ; "printout"
+0008    KSTR     3   3      ; "Making manifest for "
+0009    MOV      4   1
+0010    CAT      3   3   4
+0011    CALL     2   1   2
+0012    MOV      3   1
+0013    TGETS    2   1   4  ; "match"
+0014    KSTR     4   5      ; "/lib/luarocks"
+0015    CALL     2   2   3
+0016    ISF          2
+0017    JMP      3 => 0025
+0018    TGETS    2   0   6  ; "local_tree"
+0019    IST          2
+0020    JMP      2 => 0025
+0021    UGET     2   1      ; util
+0022    TGETS    2   2   7  ; "warning"
+0023    KSTR     3   8      ; "This looks like a local rocks tree, but "~
+0024    CALL     2   1   2
+0025 => UGET     2   2      ; writer
+0026    TGETS    2   2   9  ; "make_manifest"
+0027    MOV      3   1
+0028    UGET     4   3      ; deps
+0029    TGETS    4   4  10  ; "get_deps_mode"
+0030    MOV      5   0
+0031    CALL     4   2   2
+0032    TGETS    5   0   6  ; "local_tree"
+0033    NOT      5   5
+0034    CALL     2   3   4
+0035    ISF          2
+0036    JMP      4 => 0050
+0037    TGETS    4   0   6  ; "local_tree"
+0038    IST          4
+0039    JMP      4 => 0050
+0040    UGET     4   1      ; util
+0041    TGETS    4   4   2  ; "printout"
+0042    KSTR     5  11      ; "Generating index.html for "
+0043    MOV      6   1
+0044    CAT      5   5   6
+0045    CALL     4   1   2
+0046    UGET     4   4      ; index
+0047    TGETS    4   4  12  ; "make_index"
+0048    MOV      5   1
+0049    CALL     4   1   2
+0050 => TGETS    4   0   6  ; "local_tree"
+0051    ISF          4
+0052    JMP      5 => 0069
+0053    UGET     4   1      ; util
+0054    TGETS    4   4  13  ; "lua_versions"
+0055    CALL     4   4   1
+0056    JMP      7 => 0067
+0057 => UGET     8   5      ; fs
+0058    TGETS    8   8  14  ; "delete"
+0059    UGET     9   6      ; dir
+0060    TGETS    9   9  15  ; "path"
+0061    MOV     10   1
+0062    KSTR    11  16      ; "manifest-"
+0063    MOV     12   7
+0064    CAT     11  11  12
+0065    CALL     9   0   3
+0066    CALLM    8   1   0
+0067 => ITERC    7   2   3
+0068    ITERL    7 => 0057
+0069 => MOV      4   2
+0070    MOV      5   3
+0071    RET      4   3
+
+-- BYTECODE -- make_manifest.lua:0-51
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.manif.writer"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.admin.index"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.core.cfg"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.util"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.deps"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.fs"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   7      ; "luarocks.dir"
+0022    CALL     7   2   2
+0023    FNEW     8   9      ; make_manifest.lua:14
+0024    TSETS    8   0   8  ; "add_to_parser"
+0025    FNEW     8  11      ; make_manifest.lua:28
+0026    TSETS    8   0  10  ; "command"
+0027    UCLO     0 => 0028
+0028 => RET1     0   2
+

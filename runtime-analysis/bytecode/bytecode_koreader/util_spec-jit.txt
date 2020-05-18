@@ -1,0 +1,1801 @@
+-- BYTECODE -- util_spec.lua:3-7
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "datastorage"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; DataStorage
+0008    GGET     0   0      ; "require"
+0009    KSTR     1   3      ; "util"
+0010    CALL     0   2   2
+0011    USETV    1   0      ; util
+0012    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:9-17
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "hello world"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "stripPunctuation"
+0006    KSTR     3   4      ; ""hello world""
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    GGET     0   0      ; "assert"
+0010    TGETS    0   0   1  ; "is_equal"
+0011    KSTR     1   2      ; "hello world"
+0012    UGET     2   0      ; util
+0013    TGETS    2   2   3  ; "stripPunctuation"
+0014    KSTR     3   5      ; ""hello world?""
+0015    CALL     2   0   2
+0016    CALLM    0   1   1
+0017    GGET     0   0      ; "assert"
+0018    TGETS    0   0   1  ; "is_equal"
+0019    KSTR     1   6      ; "hello, world"
+0020    UGET     2   0      ; util
+0021    TGETS    2   2   3  ; "stripPunctuation"
+0022    KSTR     3   7      ; ""hello, world?""
+0023    CALL     2   0   2
+0024    CALLM    0   1   1
+0025    GGET     0   0      ; "assert"
+0026    TGETS    0   0   1  ; "is_equal"
+0027    KSTR     1   8      ; "你好"
+0028    UGET     2   0      ; util
+0029    TGETS    2   2   3  ; "stripPunctuation"
+0030    KSTR     3   9      ; "“你好“"
+0031    CALL     2   0   2
+0032    CALLM    0   1   1
+0033    GGET     0   0      ; "assert"
+0034    TGETS    0   0   1  ; "is_equal"
+0035    KSTR     1   8      ; "你好"
+0036    UGET     2   0      ; util
+0037    TGETS    2   2   3  ; "stripPunctuation"
+0038    KSTR     3  10      ; "“你好?“"
+0039    CALL     2   0   2
+0040    CALLM    0   1   1
+0041    GGET     0   0      ; "assert"
+0042    TGETS    0   0   1  ; "is_equal"
+0043    KSTR     1  11      ; ""
+0044    UGET     2   0      ; util
+0045    TGETS    2   2   3  ; "stripPunctuation"
+0046    KSTR     3  11      ; ""
+0047    CALL     2   0   2
+0048    CALLM    0   1   1
+0049    GGET     0   0      ; "assert"
+0050    TGETS    0   0  12  ; "is_nil"
+0051    UGET     1   0      ; util
+0052    TGETS    1   1   3  ; "stripPunctuation"
+0053    KPRI     2   0
+0054    CALL     1   0   2
+0055    CALLM    0   1   0
+0056    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:20-27
+0001    KSTR     0   0      ; "Hello world, welcome to KOReader!"
+0002    TNEW     1   0
+0003    UGET     2   0      ; util
+0004    TGETS    2   2   1  ; "gsplit"
+0005    MOV      3   0
+0006    KSTR     4   2      ; "%s+"
+0007    KPRI     5   1
+0008    CALL     2   4   4
+0009    JMP      5 => 0015
+0010 => GGET     6   3      ; "table"
+0011    TGETS    6   6   4  ; "insert"
+0012    MOV      7   1
+0013    MOV      8   5
+0014    CALL     6   1   3
+0015 => ITERC    5   2   3
+0016    ITERL    5 => 0010
+0017    GGET     2   5      ; "assert"
+0018    TGETS    2   2   6  ; "are_same"
+0019    TDUP     3   7
+0020    MOV      4   1
+0021    CALL     2   1   3
+0022    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:28-42
+0001    KSTR     0   0      ; "./sdcv -nj "words" "a lot" 'more or less"~
+0002    TNEW     1   0
+0003    UGET     2   0      ; util
+0004    TGETS    2   2   1  ; "gsplit"
+0005    MOV      3   0
+0006    KSTR     4   2      ; "["'].-["']"
+0007    KPRI     5   2
+0008    CALL     2   4   4
+0009    JMP      5 => 0040
+0010 => UGET     6   0      ; util
+0011    TGETS    6   6   1  ; "gsplit"
+0012    MOV      7   5
+0013    KSTR     8   3      ; "^[^"'].-%s+"
+0014    KPRI     9   2
+0015    CALL     6   4   4
+0016    JMP      9 => 0038
+0017 => UGET    10   0      ; util
+0018    TGETS   10  10   1  ; "gsplit"
+0019    MOV     11   9
+0020    KSTR    12   4      ; "["']"
+0021    KPRI    13   1
+0022    CALL    10   4   4
+0023    JMP     13 => 0036
+0024 => MOV     15  13
+0025    TGETS   14  13   5  ; "gsub"
+0026    KSTR    16   6      ; "^%s*(.-)%s*$"
+0027    KSTR    17   7      ; "%1"
+0028    CALL    14   2   4
+0029    ISEQS   14   8      ; ""
+0030    JMP     15 => 0036
+0031    GGET    15   9      ; "table"
+0032    TGETS   15  15  10  ; "insert"
+0033    MOV     16   1
+0034    MOV     17  14
+0035    CALL    15   1   3
+0036 => ITERC   13   2   3
+0037    ITERL   13 => 0024
+0038 => ITERC    9   2   3
+0039    ITERL    9 => 0017
+0040 => ITERC    5   2   3
+0041    ITERL    5 => 0010
+0042    GGET     2  11      ; "assert"
+0043    TGETS    2   2  12  ; "are_same"
+0044    TDUP     3  13
+0045    MOV      4   1
+0046    CALL     2   1   3
+0047    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:43-49
+0001    TNEW     0   0
+0002    UGET     1   0      ; util
+0003    TGETS    1   1   0  ; "gsplit"
+0004    KSTR     2   1      ; "a-b-c-d"
+0005    KSTR     3   2      ; "-"
+0006    KPRI     4   1
+0007    CALL     1   4   4
+0008    JMP      4 => 0014
+0009 => GGET     5   3      ; "table"
+0010    TGETS    5   5   4  ; "insert"
+0011    MOV      6   0
+0012    MOV      7   4
+0013    CALL     5   1   3
+0014 => ITERC    4   2   3
+0015    ITERL    4 => 0009
+0016    GGET     1   5      ; "assert"
+0017    TGETS    1   1   6  ; "are_same"
+0018    TDUP     2   7
+0019    MOV      3   0
+0020    CALL     1   1   3
+0021    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:50-56
+0001    TNEW     0   0
+0002    UGET     1   0      ; util
+0003    TGETS    1   1   0  ; "gsplit"
+0004    KSTR     2   1      ; "a-b-c-d-"
+0005    KSTR     3   2      ; "-"
+0006    KPRI     4   1
+0007    CALL     1   4   4
+0008    JMP      4 => 0014
+0009 => GGET     5   3      ; "table"
+0010    TGETS    5   5   4  ; "insert"
+0011    MOV      6   0
+0012    MOV      7   4
+0013    CALL     5   1   3
+0014 => ITERC    4   2   3
+0015    ITERL    4 => 0009
+0016    GGET     1   5      ; "assert"
+0017    TGETS    1   1   6  ; "are_same"
+0018    TDUP     2   7
+0019    MOV      3   0
+0020    CALL     1   1   3
+0021    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:19-57
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should split string with patterns"
+0003    FNEW     2   2      ; util_spec.lua:20
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should split command line arguments with"~
+0007    FNEW     2   4      ; util_spec.lua:28
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should split string with dashes"
+0011    FNEW     2   6      ; util_spec.lua:43
+0012    CALL     0   1   3
+0013    GGET     0   0      ; "it"
+0014    KSTR     1   7      ; "should split string with dashes with fin"~
+0015    FNEW     2   8      ; util_spec.lua:50
+0016    CALL     0   1   3
+0017    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:60-73
+0001    UGET     0   0      ; util
+0002    TGETS    0   0   0  ; "splitToWords"
+0003    KSTR     1   1      ; "one two,three  four . five"
+0004    CALL     0   2   2
+0005    GGET     1   2      ; "assert"
+0006    TGETS    1   1   3  ; "are_same"
+0007    TDUP     2   4
+0008    MOV      3   0
+0009    CALL     1   1   3
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:74-84
+0001    UGET     0   0      ; util
+0002    TGETS    0   0   0  ; "splitToWords"
+0003    KSTR     1   1      ; "Λαρισαῖος Λευκοθέα Λ"~
+0004    CALL     0   2   2
+0005    GGET     1   2      ; "assert"
+0006    TGETS    1   1   3  ; "are_same"
+0007    TDUP     2   4
+0008    MOV      3   0
+0009    CALL     1   1   3
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:85-90
+0001    UGET     0   0      ; util
+0002    TGETS    0   0   0  ; "splitToWords"
+0003    KSTR     1   1      ; "彩虹是通过太阳光的折射引起�"~
+0004    CALL     0   2   2
+0005    GGET     1   2      ; "assert"
+0006    TGETS    1   1   3  ; "are_same"
+0007    TDUP     2   4
+0008    MOV      3   0
+0009    CALL     1   1   3
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:91-94
+0001    UGET     0   0      ; util
+0002    TGETS    0   0   0  ; "splitToWords"
+0003    KSTR     1   1      ; "BBC纪录片"
+0004    CALL     0   2   2
+0005    GGET     1   2      ; "assert"
+0006    TGETS    1   1   3  ; "are_same"
+0007    TDUP     2   4
+0008    MOV      3   0
+0009    CALL     1   1   3
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:59-95
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should split line into words"
+0003    FNEW     2   2      ; util_spec.lua:60
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should split ancient greek words"
+0007    FNEW     2   4      ; util_spec.lua:74
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should split Chinese words"
+0011    FNEW     2   6      ; util_spec.lua:85
+0012    CALL     0   1   3
+0013    GGET     0   0      ; "it"
+0014    KSTR     1   7      ; "should split words of multilingual text"
+0015    FNEW     2   8      ; util_spec.lua:91
+0016    CALL     0   1   3
+0017    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:98-123
+0001    KSTR     0   0      ; "Pójdźże, chmurność glück schließe"~
+0002    KSTR     1   1      ; ""
+0003    TNEW     2   0
+0004    KPRI     3   0
+0005    UGET     4   0      ; util
+0006    TGETS    4   4   2  ; "splitToChars"
+0007    MOV      5   0
+0008    CALL     4   2   2
+0009    KSHORT   5   1
+0010    LEN      6   4
+0011    KSHORT   7   1
+0012    FORI     5 => 0038
+0013 => TGETV    3   4   8
+0014    MOV      9   1
+0015    MOV     10   3
+0016    CAT      1   9  10
+0017    UGET     9   0      ; util
+0018    TGETS    9   9   3  ; "isSplittable"
+0019    MOV     10   3
+0020    CALL     9   2   2
+0021    ISF          9
+0022    JMP     10 => 0029
+0023    GGET     9   4      ; "table"
+0024    TGETS    9   9   5  ; "insert"
+0025    MOV     10   2
+0026    MOV     11   1
+0027    CALL     9   1   3
+0028    KSTR     1   1      ; ""
+0029 => LEN      9   4
+0030    ISNEV    8   9
+0031    JMP      9 => 0037
+0032    GGET     9   4      ; "table"
+0033    TGETS    9   9   5  ; "insert"
+0034    MOV     10   2
+0035    MOV     11   1
+0036    CALL     9   1   3
+0037 => FORL     5 => 0013
+0038 => GGET     5   6      ; "assert"
+0039    TGETS    5   5   7  ; "are_same"
+0040    TDUP     6   8
+0041    MOV      7   2
+0042    CALL     5   1   3
+0043    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:124-142
+0001    KSTR     0   0      ; "彩虹是通过太阳光的折射引起�"~
+0002    KSTR     1   1      ; ""
+0003    TNEW     2   0
+0004    KPRI     3   0
+0005    UGET     4   0      ; util
+0006    TGETS    4   4   2  ; "splitToChars"
+0007    MOV      5   0
+0008    CALL     4   2   2
+0009    KSHORT   5   1
+0010    LEN      6   4
+0011    KSHORT   7   1
+0012    FORI     5 => 0038
+0013 => TGETV    3   4   8
+0014    MOV      9   1
+0015    MOV     10   3
+0016    CAT      1   9  10
+0017    UGET     9   0      ; util
+0018    TGETS    9   9   3  ; "isSplittable"
+0019    MOV     10   3
+0020    CALL     9   2   2
+0021    ISF          9
+0022    JMP     10 => 0029
+0023    GGET     9   4      ; "table"
+0024    TGETS    9   9   5  ; "insert"
+0025    MOV     10   2
+0026    MOV     11   1
+0027    CALL     9   1   3
+0028    KSTR     1   1      ; ""
+0029 => LEN      9   4
+0030    ISNEV    8   9
+0031    JMP      9 => 0037
+0032    GGET     9   4      ; "table"
+0033    TGETS    9   9   5  ; "insert"
+0034    MOV     10   2
+0035    MOV     11   1
+0036    CALL     9   1   3
+0037 => FORL     5 => 0013
+0038 => GGET     5   6      ; "assert"
+0039    TGETS    5   5   7  ; "are_same"
+0040    TDUP     6   8
+0041    MOV      7   2
+0042    CALL     5   1   3
+0043    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:143-174
+0001    KSTR     0   0      ; "Ce test : 1) est très simple ; 2 ) simp"~
+0002    KSTR     1   1      ; ""
+0003    TNEW     2   0
+0004    KNIL     3   4
+0005    UGET     5   0      ; util
+0006    TGETS    5   5   2  ; "splitToChars"
+0007    MOV      6   0
+0008    CALL     5   2   2
+0009    KSHORT   6   1
+0010    LEN      7   5
+0011    KSHORT   8   1
+0012    FORI     6 => 0047
+0013 => TGETV    3   5   9
+0014    LEN     10   5
+0015    ISGE     9  10
+0016    JMP     10 => 0021
+0017    ADDVN   10   9   0  ; 1
+0018    TGETV   10   5  10
+0019    ISTC     4  10
+0020    JMP     11 => 0022
+0021 => KPRI     4   0
+0022 => MOV     10   1
+0023    MOV     11   3
+0024    CAT      1  10  11
+0025    UGET    10   0      ; util
+0026    TGETS   10  10   3  ; "isSplittable"
+0027    MOV     11   3
+0028    MOV     12   4
+0029    CALL    10   2   3
+0030    ISF         10
+0031    JMP     11 => 0038
+0032    GGET    10   4      ; "table"
+0033    TGETS   10  10   5  ; "insert"
+0034    MOV     11   2
+0035    MOV     12   1
+0036    CALL    10   1   3
+0037    KSTR     1   1      ; ""
+0038 => LEN     10   5
+0039    ISNEV    9  10
+0040    JMP     10 => 0046
+0041    GGET    10   4      ; "table"
+0042    TGETS   10  10   5  ; "insert"
+0043    MOV     11   2
+0044    MOV     12   1
+0045    CALL    10   1   3
+0046 => FORL     6 => 0013
+0047 => GGET     6   6      ; "assert"
+0048    TGETS    6   6   7  ; "are_same"
+0049    TDUP     7   8
+0050    MOV      8   2
+0051    CALL     6   1   3
+0052    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:175-205
+0001    KSTR     0   0      ; "Ce test : 1) est « très simple » ; 2 "~
+0002    KSTR     1   1      ; ""
+0003    TNEW     2   0
+0004    KNIL     3   5
+0005    UGET     6   0      ; util
+0006    TGETS    6   6   2  ; "splitToChars"
+0007    MOV      7   0
+0008    CALL     6   2   2
+0009    KSHORT   7   1
+0010    LEN      8   6
+0011    KSHORT   9   1
+0012    FORI     7 => 0056
+0013 => TGETV    3   6  10
+0014    LEN     11   6
+0015    ISGE    10  11
+0016    JMP     11 => 0021
+0017    ADDVN   11  10   0  ; 1
+0018    TGETV   11   6  11
+0019    ISTC     4  11
+0020    JMP     12 => 0022
+0021 => KPRI     4   0
+0022 => KSHORT  11   1
+0023    ISGE    11  10
+0024    JMP     11 => 0029
+0025    SUBVN   11  10   0  ; 1
+0026    TGETV   11   6  11
+0027    ISTC     5  11
+0028    JMP     12 => 0030
+0029 => KPRI     5   0
+0030 => MOV     11   1
+0031    MOV     12   3
+0032    CAT      1  11  12
+0033    UGET    11   0      ; util
+0034    TGETS   11  11   3  ; "isSplittable"
+0035    MOV     12   3
+0036    MOV     13   4
+0037    MOV     14   5
+0038    CALL    11   2   4
+0039    ISF         11
+0040    JMP     12 => 0047
+0041    GGET    11   4      ; "table"
+0042    TGETS   11  11   5  ; "insert"
+0043    MOV     12   2
+0044    MOV     13   1
+0045    CALL    11   1   3
+0046    KSTR     1   1      ; ""
+0047 => LEN     11   6
+0048    ISNEV   10  11
+0049    JMP     11 => 0055
+0050    GGET    11   4      ; "table"
+0051    TGETS   11  11   5  ; "insert"
+0052    MOV     12   2
+0053    MOV     13   1
+0054    CALL    11   1   3
+0055 => FORL     7 => 0013
+0056 => GGET     7   6      ; "assert"
+0057    TGETS    7   7   7  ; "are_same"
+0058    TDUP     8   8
+0059    MOV      9   2
+0060    CALL     7   1   3
+0061    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:97-206
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should split text to line - unicode"
+0003    FNEW     2   2      ; util_spec.lua:98
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should split text to line - CJK"
+0007    FNEW     2   4      ; util_spec.lua:124
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should split text to line with next_c - "~
+0011    FNEW     2   6      ; util_spec.lua:143
+0012    CALL     0   1   3
+0013    GGET     0   0      ; "it"
+0014    KSTR     1   7      ; "should split text to line with next_c an"~
+0015    FNEW     2   8      ; util_spec.lua:175
+0016    CALL     0   1   3
+0017    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:209-213
+0001    UGET     3   0      ; util
+0002    TGETS    3   3   0  ; "splitFilePathName"
+0003    MOV      4   0
+0004    CALL     3   3   2
+0005    GGET     5   1      ; "assert"
+0006    TGETS    5   5   2  ; "are_same"
+0007    MOV      6   3
+0008    MOV      7   1
+0009    CALL     5   1   3
+0010    GGET     5   1      ; "assert"
+0011    TGETS    5   5   2  ; "are_same"
+0012    MOV      6   4
+0013    MOV      7   2
+0014    CALL     5   1   3
+0015    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:208-223
+0001    FNEW     0   0      ; util_spec.lua:209
+0002    MOV      1   0
+0003    KSTR     2   1      ; "/a/b/c.txt"
+0004    KSTR     3   2      ; "/a/b/"
+0005    KSTR     4   3      ; "c.txt"
+0006    CALL     1   1   4
+0007    MOV      1   0
+0008    KSTR     2   4      ; "/a/b////c.txt"
+0009    KSTR     3   5      ; "/a/b////"
+0010    KSTR     4   3      ; "c.txt"
+0011    CALL     1   1   4
+0012    MOV      1   0
+0013    KSTR     2   2      ; "/a/b/"
+0014    KSTR     3   2      ; "/a/b/"
+0015    KSTR     4   6      ; ""
+0016    CALL     1   1   4
+0017    MOV      1   0
+0018    KSTR     2   3      ; "c.txt"
+0019    KSTR     3   6      ; ""
+0020    KSTR     4   3      ; "c.txt"
+0021    CALL     1   1   4
+0022    MOV      1   0
+0023    KSTR     2   6      ; ""
+0024    KSTR     3   6      ; ""
+0025    KSTR     4   6      ; ""
+0026    CALL     1   1   4
+0027    MOV      1   0
+0028    KPRI     2   0
+0029    KSTR     3   6      ; ""
+0030    KSTR     4   6      ; ""
+0031    CALL     1   1   4
+0032    MOV      1   0
+0033    KSTR     2   7      ; "a/b"
+0034    KSTR     3   8      ; "a/"
+0035    KSTR     4   9      ; "b"
+0036    CALL     1   1   4
+0037    MOV      1   0
+0038    KSTR     2  10      ; "/b"
+0039    KSTR     3  11      ; "/"
+0040    KSTR     4   9      ; "b"
+0041    CALL     1   1   4
+0042    GGET     1  12      ; "assert"
+0043    TGETS    1   1  13  ; "are_same"
+0044    KSTR     2   2      ; "/a/b/"
+0045    UGET     3   0      ; util
+0046    TGETS    3   3  14  ; "splitFilePathName"
+0047    KSTR     4   1      ; "/a/b/c.txt"
+0048    CALL     3   0   2
+0049    CALLM    1   1   1
+0050    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:226-230
+0001    UGET     3   0      ; util
+0002    TGETS    3   3   0  ; "splitFileNameSuffix"
+0003    MOV      4   0
+0004    CALL     3   3   2
+0005    GGET     5   1      ; "assert"
+0006    TGETS    5   5   2  ; "are_same"
+0007    MOV      6   3
+0008    MOV      7   1
+0009    CALL     5   1   3
+0010    GGET     5   1      ; "assert"
+0011    TGETS    5   5   2  ; "are_same"
+0012    MOV      6   4
+0013    MOV      7   2
+0014    CALL     5   1   3
+0015    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:225-240
+0001    FNEW     0   0      ; util_spec.lua:226
+0002    MOV      1   0
+0003    KSTR     2   1      ; "a.txt"
+0004    KSTR     3   2      ; "a"
+0005    KSTR     4   3      ; "txt"
+0006    CALL     1   1   4
+0007    MOV      1   0
+0008    KSTR     2   4      ; "/a/b.txt"
+0009    KSTR     3   5      ; "/a/b"
+0010    KSTR     4   3      ; "txt"
+0011    CALL     1   1   4
+0012    MOV      1   0
+0013    KSTR     2   2      ; "a"
+0014    KSTR     3   2      ; "a"
+0015    KSTR     4   6      ; ""
+0016    CALL     1   1   4
+0017    MOV      1   0
+0018    KSTR     2   5      ; "/a/b"
+0019    KSTR     3   5      ; "/a/b"
+0020    KSTR     4   6      ; ""
+0021    CALL     1   1   4
+0022    MOV      1   0
+0023    KSTR     2   7      ; "/a/"
+0024    KSTR     3   7      ; "/a/"
+0025    KSTR     4   6      ; ""
+0026    CALL     1   1   4
+0027    MOV      1   0
+0028    KSTR     2   8      ; "/a/.txt"
+0029    KSTR     3   7      ; "/a/"
+0030    KSTR     4   3      ; "txt"
+0031    CALL     1   1   4
+0032    MOV      1   0
+0033    KPRI     2   0
+0034    KSTR     3   6      ; ""
+0035    KSTR     4   6      ; ""
+0036    CALL     1   1   4
+0037    MOV      1   0
+0038    KSTR     2   6      ; ""
+0039    KSTR     3   6      ; ""
+0040    KSTR     4   6      ; ""
+0041    CALL     1   1   4
+0042    GGET     1   9      ; "assert"
+0043    TGETS    1   1  10  ; "are_same"
+0044    KSTR     2   2      ; "a"
+0045    UGET     3   0      ; util
+0046    TGETS    3   3  11  ; "splitFileNameSuffix"
+0047    KSTR     4   1      ; "a.txt"
+0048    CALL     3   0   2
+0049    CALLM    1   1   1
+0050    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:243-245
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "___"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getSafeFilename"
+0006    KSTR     3   4      ; "|||"
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:246-248
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"~
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getSafeFilename"
+0006    KSTR     3   4      ; "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"~
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:249-251
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"~
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getSafeFilename"
+0006    KSTR     3   4      ; "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"~
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:252-254
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "lalala"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getSafeFilename"
+0006    KSTR     3   4      ; "<span>lalala</span>"
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:242-255
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should replace unsafe characters"
+0003    FNEW     2   2      ; util_spec.lua:243
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should truncate any characters beyond th"~
+0007    FNEW     2   4      ; util_spec.lua:246
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should truncate extension beyond the lim"~
+0011    FNEW     2   6      ; util_spec.lua:249
+0012    CALL     0   1   3
+0013    GGET     0   0      ; "it"
+0014    KSTR     1   7      ; "should strip HTML from the filename"
+0015    FNEW     2   8      ; util_spec.lua:252
+0016    CALL     0   1   3
+0017    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:258-260
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "\127 _ _\127 "
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "fixUtf8"
+0006    KSTR     3   4      ; "\127 � �\127 "
+0007    KSTR     4   5      ; "_"
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:262-264
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "\127 __ __\127 "
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "fixUtf8"
+0006    KSTR     3   4      ; "\127 � �\127 "
+0007    KSTR     4   5      ; "__"
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:266-268
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "\127  \127 "
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "fixUtf8"
+0006    KSTR     3   4      ; "\127 � �\127 "
+0007    KSTR     4   5      ; ""
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:270-272
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "�valid � char �"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "fixUtf8"
+0006    KSTR     3   2      ; "�valid � char �"
+0007    KSTR     4   4      ; "__"
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:274-276
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "c 􁂾"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "fixUtf8"
+0006    KSTR     3   2      ; "c 􁂾"
+0007    KSTR     4   4      ; "_"
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:278-280
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "Pójdźże źółć"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "fixUtf8"
+0006    KSTR     3   2      ; "Pójdźże źółć"
+0007    KSTR     4   4      ; "_"
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:282-284
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "glück schließen"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "fixUtf8"
+0006    KSTR     3   2      ; "glück schließen"
+0007    KSTR     4   4      ; "_"
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:257-285
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should replace invalid UTF-8 characters "~
+0003    FNEW     2   2      ; util_spec.lua:258
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should replace invalid UTF-8 characters "~
+0007    FNEW     2   4      ; util_spec.lua:262
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should replace invalid UTF-8 characters "~
+0011    FNEW     2   6      ; util_spec.lua:266
+0012    CALL     0   1   3
+0013    GGET     0   0      ; "it"
+0014    KSTR     1   7      ; "should not replace valid UTF-8 � chara"~
+0015    FNEW     2   8      ; util_spec.lua:270
+0016    CALL     0   1   3
+0017    GGET     0   0      ; "it"
+0018    KSTR     1   9      ; "should not replace valid UTF-8 character"~
+0019    FNEW     2  10      ; util_spec.lua:274
+0020    CALL     0   1   3
+0021    GGET     0   0      ; "it"
+0022    KSTR     1  11      ; "should not replace valid UTF-8 character"~
+0023    FNEW     2  12      ; util_spec.lua:278
+0024    CALL     0   1   3
+0025    GGET     0   0      ; "it"
+0026    KSTR     1  13      ; "should not replace valid UTF-8 character"~
+0027    FNEW     2  14      ; util_spec.lua:282
+0028    CALL     0   1   3
+0029    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:288-291
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "are_same"
+0003    TDUP     1   2
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "splitToArray"
+0006    KSTR     3   4      ; "100\tabc\t\tdef\tghi200\t"
+0007    KSTR     4   5      ; "\t"
+0008    KPRI     5   2
+0009    CALL     2   0   4
+0010    CALLM    0   1   1
+0011    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:293-296
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "are_same"
+0003    TDUP     1   2
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "splitToArray"
+0006    KSTR     3   4      ; "abcabcabcabca"
+0007    KSTR     4   5      ; "a"
+0008    KPRI     5   2
+0009    CALL     2   0   4
+0010    CALLM    0   1   1
+0011    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:298-301
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "are_same"
+0003    TDUP     1   2
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "splitToArray"
+0006    KSTR     3   4      ; "100  abc   def ghi200  "
+0007    KSTR     4   5      ; " "
+0008    KPRI     5   1
+0009    CALL     2   0   4
+0010    CALLM    0   1   1
+0011    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:287-302
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should split input to array"
+0003    FNEW     2   2      ; util_spec.lua:288
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should also split input to array"
+0007    FNEW     2   4      ; util_spec.lua:293
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should split input to array without empt"~
+0011    FNEW     2   6      ; util_spec.lua:298
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:305-308
+0001    KSTR     0   0      ; "if (i < 0 && j < 0) j = i&amp;"
+0002    GGET     1   1      ; "assert"
+0003    TGETS    1   1   2  ; "is_equal"
+0004    MOV      2   0
+0005    UGET     3   0      ; util
+0006    TGETS    3   3   3  ; "htmlToPlainTextIfHtml"
+0007    MOV      4   0
+0008    CALL     3   0   2
+0009    CALLM    1   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:309-312
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "Making unit tests is fun & nécéssaire"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "htmlToPlainTextIfHtml"
+0006    KSTR     3   4      ; "<div> <br> Making <b>unit&nbsp;tests</b>"~
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:313-316
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "Deux parties.\nPrologue.Désespérée, e"~
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "htmlToPlainTextIfHtml"
+0006    KSTR     3   4      ; "Deux parties.&lt;br&gt;Prologue.Désesp�"~
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:304-317
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should guess it is not HTML and let is a"~
+0003    FNEW     2   2      ; util_spec.lua:305
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should guess it is HTML and convert it t"~
+0007    FNEW     2   4      ; util_spec.lua:309
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should guess it is double encoded HTML a"~
+0011    FNEW     2   6      ; util_spec.lua:313
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:320-322
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_true"
+0003    UGET     1   0      ; util
+0004    TGETS    1   1   2  ; "isEmptyDir"
+0005    UGET     2   1      ; DataStorage
+0006    MOV      3   2
+0007    TGETS    2   2   3  ; "getDataDir"
+0008    CALL     2   2   2
+0009    KSTR     3   4      ; "/data/dict"
+0010    CAT      2   2   3
+0011    CALL     1   0   2
+0012    CALLM    0   1   0
+0013    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:323-325
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_false"
+0003    UGET     1   0      ; util
+0004    TGETS    1   1   2  ; "isEmptyDir"
+0005    UGET     2   1      ; DataStorage
+0006    MOV      3   2
+0007    TGETS    2   2   3  ; "getDataDir"
+0008    CALL     2   0   2
+0009    CALLM    1   0   0
+0010    CALLM    0   1   0
+0011    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:326-328
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_nil"
+0003    UGET     1   0      ; util
+0004    TGETS    1   1   2  ; "isEmptyDir"
+0005    KSTR     2   3      ; "/this/is/just/some/nonsense/really/this/"~
+0006    CALL     1   0   2
+0007    CALLM    0   1   0
+0008    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:319-329
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should return true on empty dir"
+0003    FNEW     2   2      ; util_spec.lua:320
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should return false on non-empty dir"
+0007    FNEW     2   4      ; util_spec.lua:323
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should return nil on non-existent dir"
+0011    FNEW     2   6      ; util_spec.lua:326
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:333-336
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "100.0 GB"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getFriendlySize"
+0006    KNUM     3   0      ; 107374182400
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:337-340
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "1.0 GB"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getFriendlySize"
+0006    KNUM     3   0      ; 1073741825
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:341-344
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "1.0 MB"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getFriendlySize"
+0006    KNUM     3   0      ; 1048577
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:345-348
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "1.0 KB"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getFriendlySize"
+0006    KSHORT   3 1025
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:349-352
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "10 B"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getFriendlySize"
+0006    KSHORT   3  10
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:353-356
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; " 100.0 GB"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getFriendlySize"
+0006    KNUM     3   0      ; 107374182400
+0007    KPRI     4   2
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:357-360
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "   1.0 GB"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getFriendlySize"
+0006    KNUM     3   0      ; 1073741825
+0007    KPRI     4   2
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:361-364
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "   1.0 MB"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getFriendlySize"
+0006    KNUM     3   0      ; 1048577
+0007    KPRI     4   2
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:365-368
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "   1.0 KB"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getFriendlySize"
+0006    KSHORT   3 1025
+0007    KPRI     4   2
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:369-372
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "    10 B"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "getFriendlySize"
+0006    KSHORT   3  10
+0007    KPRI     4   2
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:332-373
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "to 100.0 GB"
+0003    FNEW     2   2      ; util_spec.lua:333
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "to 1.0 GB"
+0007    FNEW     2   4      ; util_spec.lua:337
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "to 1.0 MB"
+0011    FNEW     2   6      ; util_spec.lua:341
+0012    CALL     0   1   3
+0013    GGET     0   0      ; "it"
+0014    KSTR     1   7      ; "to 1.0 KB"
+0015    FNEW     2   8      ; util_spec.lua:345
+0016    CALL     0   1   3
+0017    GGET     0   0      ; "it"
+0018    KSTR     1   9      ; "to B"
+0019    FNEW     2  10      ; util_spec.lua:349
+0020    CALL     0   1   3
+0021    GGET     0   0      ; "it"
+0022    KSTR     1  11      ; "to 100.0 GB with minimum field width ali"~
+0023    FNEW     2  12      ; util_spec.lua:353
+0024    CALL     0   1   3
+0025    GGET     0   0      ; "it"
+0026    KSTR     1  13      ; "to 1.0 GB with minimum field width align"~
+0027    FNEW     2  14      ; util_spec.lua:357
+0028    CALL     0   1   3
+0029    GGET     0   0      ; "it"
+0030    KSTR     1  15      ; "to 1.0 MB with minimum field width align"~
+0031    FNEW     2  16      ; util_spec.lua:361
+0032    CALL     0   1   3
+0033    GGET     0   0      ; "it"
+0034    KSTR     1  17      ; "to 1.0 KB with minimum field width align"~
+0035    FNEW     2  18      ; util_spec.lua:365
+0036    CALL     0   1   3
+0037    GGET     0   0      ; "it"
+0038    KSTR     1  19      ; "to B with minimum field width alignment"
+0039    FNEW     2  20      ; util_spec.lua:369
+0040    CALL     0   1   3
+0041    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:374-377
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_nil"
+0003    UGET     1   0      ; util
+0004    TGETS    1   1   2  ; "getFriendlySize"
+0005    KPRI     2   0
+0006    CALL     1   0   2
+0007    CALLM    0   1   0
+0008    GGET     0   0      ; "assert"
+0009    TGETS    0   0   1  ; "is_nil"
+0010    UGET     1   0      ; util
+0011    TGETS    1   1   2  ; "getFriendlySize"
+0012    KPRI     2   1
+0013    CALL     1   0   2
+0014    CALLM    0   1   0
+0015    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:378-380
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_nil"
+0003    UGET     1   0      ; util
+0004    TGETS    1   1   2  ; "getFriendlySize"
+0005    KSTR     2   3      ; "a string"
+0006    CALL     1   0   2
+0007    CALLM    0   1   0
+0008    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:331-381
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "should convert bytes to friendly size as"~
+0003    FNEW     2   2      ; util_spec.lua:332
+0004    CALL     0   1   3
+0005    GGET     0   3      ; "it"
+0006    KSTR     1   4      ; "should return nil when input is nil or f"~
+0007    FNEW     2   5      ; util_spec.lua:374
+0008    CALL     0   1   3
+0009    GGET     0   3      ; "it"
+0010    KSTR     1   6      ; "should return nil when input is not a nu"~
+0011    FNEW     2   7      ; util_spec.lua:378
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:384-389
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "00:00"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "secondsToClock"
+0006    KSHORT   3   0
+0007    KPRI     4   2
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    GGET     0   0      ; "assert"
+0011    TGETS    0   0   1  ; "is_equal"
+0012    KSTR     1   4      ; "00:01"
+0013    UGET     2   0      ; util
+0014    TGETS    2   2   3  ; "secondsToClock"
+0015    KSHORT   3  60
+0016    KPRI     4   2
+0017    CALL     2   0   3
+0018    CALLM    0   1   1
+0019    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:390-407
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "00:01"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "secondsToClock"
+0006    KSHORT   3  89
+0007    KPRI     4   2
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    GGET     0   0      ; "assert"
+0011    TGETS    0   0   1  ; "is_equal"
+0012    KSTR     1   4      ; "00:02"
+0013    UGET     2   0      ; util
+0014    TGETS    2   2   3  ; "secondsToClock"
+0015    KSHORT   3  90
+0016    KPRI     4   2
+0017    CALL     2   0   3
+0018    CALLM    0   1   1
+0019    GGET     0   0      ; "assert"
+0020    TGETS    0   0   1  ; "is_equal"
+0021    KSTR     1   4      ; "00:02"
+0022    UGET     2   0      ; util
+0023    TGETS    2   2   3  ; "secondsToClock"
+0024    KSHORT   3 110
+0025    KPRI     4   2
+0026    CALL     2   0   3
+0027    CALLM    0   1   1
+0028    GGET     0   0      ; "assert"
+0029    TGETS    0   0   1  ; "is_equal"
+0030    KSTR     1   4      ; "00:02"
+0031    UGET     2   0      ; util
+0032    TGETS    2   2   3  ; "secondsToClock"
+0033    KSHORT   3 120
+0034    KPRI     4   2
+0035    CALL     2   0   3
+0036    CALLM    0   1   1
+0037    GGET     0   0      ; "assert"
+0038    TGETS    0   0   1  ; "is_equal"
+0039    KSTR     1   5      ; "01:00"
+0040    UGET     2   0      ; util
+0041    TGETS    2   2   3  ; "secondsToClock"
+0042    KSHORT   3 3600
+0043    KPRI     4   2
+0044    CALL     2   0   3
+0045    CALLM    0   1   1
+0046    GGET     0   0      ; "assert"
+0047    TGETS    0   0   1  ; "is_equal"
+0048    KSTR     1   5      ; "01:00"
+0049    UGET     2   0      ; util
+0050    TGETS    2   2   3  ; "secondsToClock"
+0051    KSHORT   3 3599
+0052    KPRI     4   2
+0053    CALL     2   0   3
+0054    CALLM    0   1   1
+0055    GGET     0   0      ; "assert"
+0056    TGETS    0   0   1  ; "is_equal"
+0057    KSTR     1   5      ; "01:00"
+0058    UGET     2   0      ; util
+0059    TGETS    2   2   3  ; "secondsToClock"
+0060    KSHORT   3 3570
+0061    KPRI     4   2
+0062    CALL     2   0   3
+0063    CALLM    0   1   1
+0064    GGET     0   0      ; "assert"
+0065    TGETS    0   0   1  ; "is_equal"
+0066    KSTR     1   6      ; "00:59"
+0067    UGET     2   0      ; util
+0068    TGETS    2   2   3  ; "secondsToClock"
+0069    KSHORT   3 3569
+0070    KPRI     4   2
+0071    CALL     2   0   3
+0072    CALLM    0   1   1
+0073    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:408-421
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "00:00:00"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "secondsToClock"
+0006    KSHORT   3   0
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    GGET     0   0      ; "assert"
+0010    TGETS    0   0   1  ; "is_equal"
+0011    KSTR     1   4      ; "00:01:00"
+0012    UGET     2   0      ; util
+0013    TGETS    2   2   3  ; "secondsToClock"
+0014    KSHORT   3  60
+0015    CALL     2   0   2
+0016    CALLM    0   1   1
+0017    GGET     0   0      ; "assert"
+0018    TGETS    0   0   1  ; "is_equal"
+0019    KSTR     1   5      ; "00:01:29"
+0020    UGET     2   0      ; util
+0021    TGETS    2   2   3  ; "secondsToClock"
+0022    KSHORT   3  89
+0023    CALL     2   0   2
+0024    CALLM    0   1   1
+0025    GGET     0   0      ; "assert"
+0026    TGETS    0   0   1  ; "is_equal"
+0027    KSTR     1   6      ; "00:01:30"
+0028    UGET     2   0      ; util
+0029    TGETS    2   2   3  ; "secondsToClock"
+0030    KSHORT   3  90
+0031    CALL     2   0   2
+0032    CALLM    0   1   1
+0033    GGET     0   0      ; "assert"
+0034    TGETS    0   0   1  ; "is_equal"
+0035    KSTR     1   7      ; "00:01:50"
+0036    UGET     2   0      ; util
+0037    TGETS    2   2   3  ; "secondsToClock"
+0038    KSHORT   3 110
+0039    CALL     2   0   2
+0040    CALLM    0   1   1
+0041    GGET     0   0      ; "assert"
+0042    TGETS    0   0   1  ; "is_equal"
+0043    KSTR     1   8      ; "00:02:00"
+0044    UGET     2   0      ; util
+0045    TGETS    2   2   3  ; "secondsToClock"
+0046    KSHORT   3 120
+0047    CALL     2   0   2
+0048    CALLM    0   1   1
+0049    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:383-422
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should convert seconds to 00:00 format"
+0003    FNEW     2   2      ; util_spec.lua:384
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should round seconds to minutes in 00:00"~
+0007    FNEW     2   4      ; util_spec.lua:390
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should convert seconds to 00:00:00 forma"~
+0011    FNEW     2   6      ; util_spec.lua:408
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:425-432
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "0'"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "secondsToHClock"
+0006    KSHORT   3   0
+0007    KPRI     4   2
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    GGET     0   0      ; "assert"
+0011    TGETS    0   0   1  ; "is_equal"
+0012    KSTR     1   2      ; "0'"
+0013    UGET     2   0      ; util
+0014    TGETS    2   2   3  ; "secondsToHClock"
+0015    KSHORT   3  29
+0016    KPRI     4   2
+0017    CALL     2   0   3
+0018    CALLM    0   1   1
+0019    GGET     0   0      ; "assert"
+0020    TGETS    0   0   1  ; "is_equal"
+0021    KSTR     1   4      ; "1'"
+0022    UGET     2   0      ; util
+0023    TGETS    2   2   3  ; "secondsToHClock"
+0024    KSHORT   3  60
+0025    KPRI     4   2
+0026    CALL     2   0   3
+0027    CALLM    0   1   1
+0028    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:433-452
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "1'"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "secondsToHClock"
+0006    KSHORT   3  89
+0007    KPRI     4   2
+0008    CALL     2   0   3
+0009    CALLM    0   1   1
+0010    GGET     0   0      ; "assert"
+0011    TGETS    0   0   1  ; "is_equal"
+0012    KSTR     1   4      ; "2'"
+0013    UGET     2   0      ; util
+0014    TGETS    2   2   3  ; "secondsToHClock"
+0015    KSHORT   3  90
+0016    KPRI     4   2
+0017    CALL     2   0   3
+0018    CALLM    0   1   1
+0019    GGET     0   0      ; "assert"
+0020    TGETS    0   0   1  ; "is_equal"
+0021    KSTR     1   4      ; "2'"
+0022    UGET     2   0      ; util
+0023    TGETS    2   2   3  ; "secondsToHClock"
+0024    KSHORT   3 110
+0025    KPRI     4   2
+0026    CALL     2   0   3
+0027    CALLM    0   1   1
+0028    GGET     0   0      ; "assert"
+0029    TGETS    0   0   1  ; "is_equal"
+0030    KSTR     1   4      ; "2'"
+0031    UGET     2   0      ; util
+0032    TGETS    2   2   3  ; "secondsToHClock"
+0033    KSHORT   3 120
+0034    KPRI     4   2
+0035    CALL     2   0   3
+0036    CALLM    0   1   1
+0037    GGET     0   0      ; "assert"
+0038    TGETS    0   0   1  ; "is_equal"
+0039    KSTR     1   5      ; "1h00"
+0040    UGET     2   0      ; util
+0041    TGETS    2   2   3  ; "secondsToHClock"
+0042    KSHORT   3 3600
+0043    KPRI     4   2
+0044    CALL     2   0   3
+0045    CALLM    0   1   1
+0046    GGET     0   0      ; "assert"
+0047    TGETS    0   0   1  ; "is_equal"
+0048    KSTR     1   5      ; "1h00"
+0049    UGET     2   0      ; util
+0050    TGETS    2   2   3  ; "secondsToHClock"
+0051    KSHORT   3 3599
+0052    KPRI     4   2
+0053    CALL     2   0   3
+0054    CALLM    0   1   1
+0055    GGET     0   0      ; "assert"
+0056    TGETS    0   0   1  ; "is_equal"
+0057    KSTR     1   5      ; "1h00"
+0058    UGET     2   0      ; util
+0059    TGETS    2   2   3  ; "secondsToHClock"
+0060    KSHORT   3 3570
+0061    KPRI     4   2
+0062    CALL     2   0   3
+0063    CALLM    0   1   1
+0064    GGET     0   0      ; "assert"
+0065    TGETS    0   0   1  ; "is_equal"
+0066    KSTR     1   6      ; "59'"
+0067    UGET     2   0      ; util
+0068    TGETS    2   2   3  ; "secondsToHClock"
+0069    KSHORT   3 3569
+0070    KPRI     4   2
+0071    CALL     2   0   3
+0072    CALLM    0   1   1
+0073    GGET     0   0      ; "assert"
+0074    TGETS    0   0   1  ; "is_equal"
+0075    KSTR     1   7      ; "10h01"
+0076    UGET     2   0      ; util
+0077    TGETS    2   2   3  ; "secondsToHClock"
+0078    KNUM     3   0      ; 36060
+0079    KPRI     4   2
+0080    CALL     2   0   3
+0081    CALLM    0   1   1
+0082    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:453-468
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "1m"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "secondsToHClock"
+0006    KSHORT   3  89
+0007    KPRI     4   2
+0008    KPRI     5   2
+0009    CALL     2   0   4
+0010    CALLM    0   1   1
+0011    GGET     0   0      ; "assert"
+0012    TGETS    0   0   1  ; "is_equal"
+0013    KSTR     1   4      ; "2m"
+0014    UGET     2   0      ; util
+0015    TGETS    2   2   3  ; "secondsToHClock"
+0016    KSHORT   3  90
+0017    KPRI     4   2
+0018    KPRI     5   2
+0019    CALL     2   0   4
+0020    CALLM    0   1   1
+0021    GGET     0   0      ; "assert"
+0022    TGETS    0   0   1  ; "is_equal"
+0023    KSTR     1   4      ; "2m"
+0024    UGET     2   0      ; util
+0025    TGETS    2   2   3  ; "secondsToHClock"
+0026    KSHORT   3 110
+0027    KPRI     4   2
+0028    KPRI     5   2
+0029    CALL     2   0   4
+0030    CALLM    0   1   1
+0031    GGET     0   0      ; "assert"
+0032    TGETS    0   0   1  ; "is_equal"
+0033    KSTR     1   5      ; "1h00"
+0034    UGET     2   0      ; util
+0035    TGETS    2   2   3  ; "secondsToHClock"
+0036    KSHORT   3 3600
+0037    KPRI     4   2
+0038    KPRI     5   2
+0039    CALL     2   0   4
+0040    CALLM    0   1   1
+0041    GGET     0   0      ; "assert"
+0042    TGETS    0   0   1  ; "is_equal"
+0043    KSTR     1   5      ; "1h00"
+0044    UGET     2   0      ; util
+0045    TGETS    2   2   3  ; "secondsToHClock"
+0046    KSHORT   3 3599
+0047    KPRI     4   2
+0048    KPRI     5   2
+0049    CALL     2   0   4
+0050    CALLM    0   1   1
+0051    GGET     0   0      ; "assert"
+0052    TGETS    0   0   1  ; "is_equal"
+0053    KSTR     1   6      ; "59m"
+0054    UGET     2   0      ; util
+0055    TGETS    2   2   3  ; "secondsToHClock"
+0056    KSHORT   3 3569
+0057    KPRI     4   2
+0058    KPRI     5   2
+0059    CALL     2   0   4
+0060    CALLM    0   1   1
+0061    GGET     0   0      ; "assert"
+0062    TGETS    0   0   1  ; "is_equal"
+0063    KSTR     1   7      ; "10h01"
+0064    UGET     2   0      ; util
+0065    TGETS    2   2   3  ; "secondsToHClock"
+0066    KNUM     3   0      ; 36060
+0067    KPRI     4   2
+0068    KPRI     5   2
+0069    CALL     2   0   4
+0070    CALLM    0   1   1
+0071    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:469-482
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "0''"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "secondsToHClock"
+0006    KSHORT   3   0
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    GGET     0   0      ; "assert"
+0010    TGETS    0   0   1  ; "is_equal"
+0011    KSTR     1   4      ; "1'00''"
+0012    UGET     2   0      ; util
+0013    TGETS    2   2   3  ; "secondsToHClock"
+0014    KSHORT   3  60
+0015    CALL     2   0   2
+0016    CALLM    0   1   1
+0017    GGET     0   0      ; "assert"
+0018    TGETS    0   0   1  ; "is_equal"
+0019    KSTR     1   5      ; "1'29''"
+0020    UGET     2   0      ; util
+0021    TGETS    2   2   3  ; "secondsToHClock"
+0022    KSHORT   3  89
+0023    CALL     2   0   2
+0024    CALLM    0   1   1
+0025    GGET     0   0      ; "assert"
+0026    TGETS    0   0   1  ; "is_equal"
+0027    KSTR     1   6      ; "1'30''"
+0028    UGET     2   0      ; util
+0029    TGETS    2   2   3  ; "secondsToHClock"
+0030    KSHORT   3  90
+0031    CALL     2   0   2
+0032    CALLM    0   1   1
+0033    GGET     0   0      ; "assert"
+0034    TGETS    0   0   1  ; "is_equal"
+0035    KSTR     1   7      ; "1'50''"
+0036    UGET     2   0      ; util
+0037    TGETS    2   2   3  ; "secondsToHClock"
+0038    KSHORT   3 110
+0039    CALL     2   0   2
+0040    CALLM    0   1   1
+0041    GGET     0   0      ; "assert"
+0042    TGETS    0   0   1  ; "is_equal"
+0043    KSTR     1   8      ; "2'00''"
+0044    UGET     2   0      ; util
+0045    TGETS    2   2   3  ; "secondsToHClock"
+0046    KSHORT   3 120
+0047    CALL     2   0   2
+0048    CALLM    0   1   1
+0049    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:424-483
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should convert seconds to 0'00'' format"
+0003    FNEW     2   2      ; util_spec.lua:425
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should round seconds to minutes in 0h00'"~
+0007    FNEW     2   4      ; util_spec.lua:433
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should round seconds to minutes in 0h00m"~
+0011    FNEW     2   6      ; util_spec.lua:453
+0012    CALL     0   1   3
+0013    GGET     0   0      ; "it"
+0014    KSTR     1   7      ; "should convert seconds to 0h00'00'' form"~
+0015    FNEW     2   8      ; util_spec.lua:469
+0016    CALL     0   1   3
+0017    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:486-492
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "Secret_Password123"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "urlEncode"
+0006    KSTR     3   2      ; "Secret_Password123"
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    GGET     0   0      ; "assert"
+0010    TGETS    0   0   1  ; "is_equal"
+0011    KSTR     1   4      ; "Secret%20Password123"
+0012    UGET     2   0      ; util
+0013    TGETS    2   2   3  ; "urlEncode"
+0014    KSTR     3   5      ; "Secret Password123"
+0015    CALL     2   0   2
+0016    CALLM    0   1   1
+0017    GGET     0   0      ; "assert"
+0018    TGETS    0   0   1  ; "is_equal"
+0019    KSTR     1   6      ; "S*cret%3DP%40%24%24word*!%23%3F"
+0020    UGET     2   0      ; util
+0021    TGETS    2   2   3  ; "urlEncode"
+0022    KSTR     3   7      ; "S*cret=P@$$word*!#?"
+0023    CALL     2   0   2
+0024    CALLM    0   1   1
+0025    GGET     0   0      ; "assert"
+0026    TGETS    0   0   1  ; "is_equal"
+0027    KSTR     1   8      ; "~%5E-_%5C%25!*'()%3B%3A%40%26%3D%2B%24%2"~
+0028    UGET     2   0      ; util
+0029    TGETS    2   2   3  ; "urlEncode"
+0030    KSTR     3   9      ; "~^-_\%!*'();:@&=+$,/?#[]"
+0031    CALL     2   0   2
+0032    CALLM    0   1   1
+0033    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:493-499
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "Secret_Password123"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "urlDecode"
+0006    KSTR     3   2      ; "Secret_Password123"
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    GGET     0   0      ; "assert"
+0010    TGETS    0   0   1  ; "is_equal"
+0011    KSTR     1   4      ; "Secret Password123"
+0012    UGET     2   0      ; util
+0013    TGETS    2   2   3  ; "urlDecode"
+0014    KSTR     3   5      ; "Secret%20Password123"
+0015    CALL     2   0   2
+0016    CALLM    0   1   1
+0017    GGET     0   0      ; "assert"
+0018    TGETS    0   0   1  ; "is_equal"
+0019    KSTR     1   6      ; "S*cret=P@$$word*!#?"
+0020    UGET     2   0      ; util
+0021    TGETS    2   2   3  ; "urlDecode"
+0022    KSTR     3   7      ; "S*cret%3DP%40%24%24word*!%23%3F"
+0023    CALL     2   0   2
+0024    CALLM    0   1   1
+0025    GGET     0   0      ; "assert"
+0026    TGETS    0   0   1  ; "is_equal"
+0027    KSTR     1   8      ; "~^-_\%!*'();:@&=+$,/?#[]"
+0028    UGET     2   0      ; util
+0029    TGETS    2   2   3  ; "urlDecode"
+0030    KSTR     3   9      ; "~%5E-_%5C%25!*'()%3B%3A%40%26%3D%2B%24%2"~
+0031    CALL     2   0   2
+0032    CALLM    0   1   1
+0033    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:500-509
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_equal"
+0003    KSTR     1   2      ; "Secret_Password123"
+0004    UGET     2   0      ; util
+0005    TGETS    2   2   3  ; "urlDecode"
+0006    UGET     3   0      ; util
+0007    TGETS    3   3   4  ; "urlEncode"
+0008    KSTR     4   2      ; "Secret_Password123"
+0009    CALL     3   0   2
+0010    CALLM    2   0   0
+0011    CALLM    0   1   1
+0012    GGET     0   0      ; "assert"
+0013    TGETS    0   0   1  ; "is_equal"
+0014    KSTR     1   5      ; "Secret Password123"
+0015    UGET     2   0      ; util
+0016    TGETS    2   2   3  ; "urlDecode"
+0017    UGET     3   0      ; util
+0018    TGETS    3   3   4  ; "urlEncode"
+0019    KSTR     4   5      ; "Secret Password123"
+0020    CALL     3   0   2
+0021    CALLM    2   0   0
+0022    CALLM    0   1   1
+0023    GGET     0   0      ; "assert"
+0024    TGETS    0   0   1  ; "is_equal"
+0025    KSTR     1   6      ; "S*cret=P@$$word*!#?"
+0026    UGET     2   0      ; util
+0027    TGETS    2   2   3  ; "urlDecode"
+0028    UGET     3   0      ; util
+0029    TGETS    3   3   4  ; "urlEncode"
+0030    KSTR     4   6      ; "S*cret=P@$$word*!#?"
+0031    CALL     3   0   2
+0032    CALLM    2   0   0
+0033    CALLM    0   1   1
+0034    GGET     0   0      ; "assert"
+0035    TGETS    0   0   1  ; "is_equal"
+0036    KSTR     1   7      ; "~^-_%!*'();:@&=+$,/?#[]"
+0037    UGET     2   0      ; util
+0038    TGETS    2   2   3  ; "urlDecode"
+0039    UGET     3   0      ; util
+0040    TGETS    3   3   4  ; "urlEncode"
+0041    KSTR     4   7      ; "~^-_%!*'();:@&=+$,/?#[]"
+0042    CALL     3   0   2
+0043    CALLM    2   0   0
+0044    CALLM    0   1   1
+0045    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:485-510
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should encode string"
+0003    FNEW     2   2      ; util_spec.lua:486
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should decode string"
+0007    FNEW     2   4      ; util_spec.lua:493
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should encode and back decode string"
+0011    FNEW     2   6      ; util_spec.lua:500
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- util_spec.lua:1-511
+0001    KNIL     0   1
+0002    GGET     2   0      ; "setup"
+0003    FNEW     3   1      ; util_spec.lua:3
+0004    CALL     2   1   2
+0005    GGET     2   2      ; "it"
+0006    KSTR     3   3      ; "should strip punctuation marks around wo"~
+0007    FNEW     4   4      ; util_spec.lua:9
+0008    CALL     2   1   3
+0009    GGET     2   5      ; "describe"
+0010    KSTR     3   6      ; "gsplit()"
+0011    FNEW     4   7      ; util_spec.lua:19
+0012    CALL     2   1   3
+0013    GGET     2   5      ; "describe"
+0014    KSTR     3   8      ; "splitToWords()"
+0015    FNEW     4   9      ; util_spec.lua:59
+0016    CALL     2   1   3
+0017    GGET     2   5      ; "describe"
+0018    KSTR     3  10      ; "splitToChars()"
+0019    FNEW     4  11      ; util_spec.lua:97
+0020    CALL     2   1   3
+0021    GGET     2   2      ; "it"
+0022    KSTR     3  12      ; "should split file path and name"
+0023    FNEW     4  13      ; util_spec.lua:208
+0024    CALL     2   1   3
+0025    GGET     2   2      ; "it"
+0026    KSTR     3  14      ; "should split file name and suffix"
+0027    FNEW     4  15      ; util_spec.lua:225
+0028    CALL     2   1   3
+0029    GGET     2   5      ; "describe"
+0030    KSTR     3  16      ; "getSafeFileName()"
+0031    FNEW     4  17      ; util_spec.lua:242
+0032    CALL     2   1   3
+0033    GGET     2   5      ; "describe"
+0034    KSTR     3  18      ; "fixUtf8()"
+0035    FNEW     4  19      ; util_spec.lua:257
+0036    CALL     2   1   3
+0037    GGET     2   5      ; "describe"
+0038    KSTR     3  20      ; "splitToArray()"
+0039    FNEW     4  21      ; util_spec.lua:287
+0040    CALL     2   1   3
+0041    GGET     2   5      ; "describe"
+0042    KSTR     3  22      ; "htmlToPlainTextIfHtml()"
+0043    FNEW     4  23      ; util_spec.lua:304
+0044    CALL     2   1   3
+0045    GGET     2   5      ; "describe"
+0046    KSTR     3  24      ; "isEmptyDir()"
+0047    FNEW     4  25      ; util_spec.lua:319
+0048    CALL     2   1   3
+0049    GGET     2   5      ; "describe"
+0050    KSTR     3  26      ; "getFriendlySize()"
+0051    FNEW     4  27      ; util_spec.lua:331
+0052    CALL     2   1   3
+0053    GGET     2   5      ; "describe"
+0054    KSTR     3  28      ; "secondsToClock()"
+0055    FNEW     4  29      ; util_spec.lua:383
+0056    CALL     2   1   3
+0057    GGET     2   5      ; "describe"
+0058    KSTR     3  30      ; "secondsToHClock()"
+0059    FNEW     4  31      ; util_spec.lua:424
+0060    CALL     2   1   3
+0061    GGET     2   5      ; "describe"
+0062    KSTR     3  32      ; "urlEncode() and urlDecode"
+0063    FNEW     4  33      ; util_spec.lua:485
+0064    CALL     2   1   3
+0065    UCLO     0 => 0066
+0066 => RET0     0   1
+
+-- BYTECODE -- util_spec.lua:0-512
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "util module"
+0003    FNEW     2   2      ; util_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

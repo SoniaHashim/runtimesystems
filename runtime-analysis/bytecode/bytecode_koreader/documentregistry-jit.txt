@@ -1,0 +1,520 @@
+-- BYTECODE -- documentregistry.lua:15-24
+0001    GGET     5   0      ; "string"
+0002    TGETS    5   5   1  ; "lower"
+0003    MOV      6   1
+0004    CALL     5   2   2
+0005    MOV      1   5
+0006    GGET     5   2      ; "table"
+0007    TGETS    5   5   3  ; "insert"
+0008    TGETS    6   0   4  ; "providers"
+0009    TDUP     7   5
+0010    TSETS    1   7   6  ; "extension"
+0011    TSETS    2   7   7  ; "mimetype"
+0012    TSETS    3   7   8  ; "provider"
+0013    ISTC     8   4
+0014    JMP      8 => 0016
+0015    KSHORT   8 100
+0016 => TSETS    8   7   9  ; "weight"
+0017    CALL     5   1   3
+0018    TGETS    5   0  10  ; "filetype_provider"
+0019    KPRI     6   2
+0020    TSETV    6   5   1
+0021    RET0     0   1
+
+-- BYTECODE -- documentregistry.lua:26-51
+0001    GGET     4   0      ; "require"
+0002    KSTR     5   1      ; "docsettings"
+0003    CALL     4   2   2
+0004    GGET     5   2      ; "string"
+0005    TGETS    5   5   3  ; "sub"
+0006    MOV      6   1
+0007    GGET     7   2      ; "string"
+0008    TGETS    7   7   4  ; "len"
+0009    MOV      8   1
+0010    CALL     7   0   2
+0011    CALLM    5   2   1
+0012    ISEQS    5   5      ; "/"
+0013    JMP      5 => 0017
+0014    MOV      5   1
+0015    KSTR     6   5      ; "/"
+0016    CAT      1   5   6
+0017 => TNEW     5   0
+0018    KSHORT   6   0
+0019    GGET     7   6      ; "pcall"
+0020    UGET     8   0      ; lfs
+0021    TGETS    8   8   7  ; "dir"
+0022    MOV      9   1
+0023    CALL     7   4   3
+0024    ISF          7
+0025    JMP     10 => 0075
+0026    MOV     10   8
+0027    MOV     11   9
+0028    KPRI    12   0
+0029    JMP     13 => 0068
+0030 => UGET    14   0      ; lfs
+0031    TGETS   14  14   8  ; "attributes"
+0032    MOV     15   1
+0033    MOV     16  13
+0034    CAT     15  15  16
+0035    KSTR    16   9      ; "mode"
+0036    CALL    14   2   3
+0037    ISNES   14  10      ; "file"
+0038    JMP     14 => 0068
+0039    MOV     15   0
+0040    TGETS   14   0  11  ; "hasProvider"
+0041    MOV     16   1
+0042    MOV     17  13
+0043    CAT     16  16  17
+0044    CALL    14   2   3
+0045    ISF         14
+0046    JMP     15 => 0068
+0047    ISEQP    2   0
+0048    JMP     14 => 0057
+0049    MOV     15   4
+0050    TGETS   14   4  12  ; "hasSidecarFile"
+0051    MOV     16   1
+0052    MOV     17  13
+0053    CAT     16  16  17
+0054    CALL    14   2   3
+0055    ISNEV   14   2
+0056    JMP     14 => 0068
+0057 => ISEQP    3   0
+0058    JMP     14 => 0066
+0059    UGET    14   1      ; util
+0060    TGETS   14  14  13  ; "getFileNameSuffix"
+0061    MOV     15  13
+0062    CALL    14   2   2
+0063    TGETV   14   3  14
+0064    ISF         14
+0065    JMP     15 => 0068
+0066 => ADDVN    6   6   0  ; 1
+0067    TSETV   13   5   6
+0068 => ITERC   13   2   3
+0069    ITERL   13 => 0030
+0070    ISNEN    6   1      ; 0
+0071    JMP     10 => 0077
+0072    KPRI    10   0
+0073    RET1    10   2
+0074    JMP     10 => 0077
+0075 => KPRI    10   0
+0076    RET1    10   2
+0077 => GGET    10  14      ; "math"
+0078    TGETS   10  10  15  ; "randomseed"
+0079    GGET    11  16      ; "os"
+0080    TGETS   11  11  17  ; "time"
+0081    CALL    11   0   1
+0082    CALLM   10   1   0
+0083    MOV     10   1
+0084    GGET    11  14      ; "math"
+0085    TGETS   11  11  18  ; "random"
+0086    MOV     12   6
+0087    CALL    11   2   2
+0088    TGETV   11   5  11
+0089    CAT     10  10  11
+0090    RET1    10   2
+
+-- BYTECODE -- documentregistry.lua:56-71
+0001    GGET     2   0      ; "string"
+0002    TGETS    2   2   1  ; "lower"
+0003    UGET     3   0      ; util
+0004    TGETS    3   3   2  ; "getFileNameSuffix"
+0005    MOV      4   1
+0006    CALL     3   0   2
+0007    CALLM    2   2   0
+0008    GGET     3   3      ; "G_reader_settings"
+0009    MOV      4   3
+0010    TGETS    3   3   4  ; "readSetting"
+0011    KSTR     5   5      ; "provider"
+0012    CALL     3   2   3
+0013    IST          3
+0014    JMP      4 => 0016
+0015    TNEW     3   0
+0016 => TGETS    4   0   6  ; "filetype_provider"
+0017    TGETV    4   4   2
+0018    IST          4
+0019    JMP      5 => 0023
+0020    TGETV    4   3   2
+0021    ISF          4
+0022    JMP      5 => 0025
+0023 => KPRI     4   2
+0024    RET1     4   2
+0025 => GGET     4   7      ; "require"
+0026    KSTR     5   8      ; "docsettings"
+0027    CALL     4   2   2
+0028    MOV      6   4
+0029    TGETS    5   4   9  ; "hasSidecarFile"
+0030    MOV      7   1
+0031    CALL     5   2   3
+0032    ISF          5
+0033    JMP      6 => 0046
+0034    MOV      6   4
+0035    TGETS    5   4  10  ; "open"
+0036    MOV      7   1
+0037    CALL     5   2   3
+0038    MOV      6   5
+0039    TGETS    5   5   4  ; "readSetting"
+0040    KSTR     7   5      ; "provider"
+0041    CALL     5   2   3
+0042    ISF          5
+0043    JMP      6 => 0046
+0044    KPRI     6   2
+0045    RET1     6   2
+0046 => KPRI     5   1
+0047    RET1     5   2
+
+-- BYTECODE -- documentregistry.lua:76-114
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "getProviders"
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISF          2
+0006    JMP      3 => 0069
+0007    GGET     3   1      ; "require"
+0008    KSTR     4   2      ; "docsettings"
+0009    CALL     3   2   2
+0010    MOV      5   3
+0011    TGETS    4   3   3  ; "hasSidecarFile"
+0012    MOV      6   1
+0013    CALL     4   2   3
+0014    ISF          4
+0015    JMP      5 => 0038
+0016    MOV      5   3
+0017    TGETS    4   3   4  ; "open"
+0018    MOV      6   1
+0019    CALL     4   2   3
+0020    MOV      5   4
+0021    TGETS    4   4   5  ; "readSetting"
+0022    KSTR     6   6      ; "provider"
+0023    CALL     4   2   3
+0024    ISF          4
+0025    JMP      5 => 0038
+0026    GGET     5   7      ; "ipairs"
+0027    MOV      6   2
+0028    CALL     5   4   2
+0029    JMP      8 => 0036
+0030 => TGETS   10   9   6  ; "provider"
+0031    TGETS   10  10   6  ; "provider"
+0032    ISNEV   10   4
+0033    JMP     10 => 0036
+0034    TGETS   10   9   6  ; "provider"
+0035    RET1    10   2
+0036 => ITERC    8   3   3
+0037    ITERL    8 => 0030
+0038 => UGET     4   0      ; util
+0039    TGETS    4   4   8  ; "getFileNameSuffix"
+0040    MOV      5   1
+0041    CALL     4   2   2
+0042    GGET     5   9      ; "G_reader_settings"
+0043    MOV      6   5
+0044    TGETS    5   5   5  ; "readSetting"
+0045    KSTR     7   6      ; "provider"
+0046    CALL     5   2   3
+0047    ISF          5
+0048    JMP      6 => 0065
+0049    TGETV    6   5   4
+0050    ISF          6
+0051    JMP      7 => 0065
+0052    GGET     6   7      ; "ipairs"
+0053    MOV      7   2
+0054    CALL     6   4   2
+0055    JMP      9 => 0063
+0056 => TGETS   11  10   6  ; "provider"
+0057    TGETS   11  11   6  ; "provider"
+0058    TGETV   12   5   4
+0059    ISNEV   11  12
+0060    JMP     11 => 0063
+0061    TGETS   11  10   6  ; "provider"
+0062    RET1    11   2
+0063 => ITERC    9   3   3
+0064    ITERL    9 => 0056
+0065 => TGETB    6   2   1
+0066    TGETS    6   6   6  ; "provider"
+0067    RET1     6   2
+0068    JMP      3 => 0080
+0069 => GGET     3   7      ; "ipairs"
+0070    TGETS    4   0  10  ; "providers"
+0071    CALL     3   4   2
+0072    JMP      6 => 0078
+0073 => TGETS    8   7  11  ; "extension"
+0074    ISNES    8  12      ; "txt"
+0075    JMP      8 => 0078
+0076    TGETS    8   7   6  ; "provider"
+0077    RET1     8   2
+0078 => ITERC    6   3   3
+0079    ITERL    6 => 0073
+0080 => RET0     0   1
+
+-- BYTECODE -- documentregistry.lua:119-149
+0001    TNEW     2   0
+0002    GGET     3   0      ; "ipairs"
+0003    TGETS    4   0   1  ; "providers"
+0004    CALL     3   4   2
+0005    JMP      6 => 0072
+0006 => KPRI     8   1
+0007    GGET     9   2      ; "string"
+0008    TGETS    9   9   3  ; "sub"
+0009    MOV     10   1
+0010    GGET    11   2      ; "string"
+0011    TGETS   11  11   4  ; "len"
+0012    TGETS   12   7   5  ; "extension"
+0013    CALL    11   2   2
+0014    UNM     11  11
+0015    SUBVN   11  11   0  ; 1
+0016    CALL     9   2   3
+0017    GGET    10   2      ; "string"
+0018    TGETS   10  10   6  ; "lower"
+0019    MOV     11   9
+0020    CALL    10   2   2
+0021    KSTR    11   7      ; "."
+0022    TGETS   12   7   5  ; "extension"
+0023    CAT     11  11  12
+0024    ISNEV   10  11
+0025    JMP     10 => 0072
+0026    GGET    10   0      ; "ipairs"
+0027    MOV     11   2
+0028    CALL    10   4   2
+0029    JMP     13 => 0045
+0030 => TGETS   15  14   8  ; "provider"
+0031    TGETS   16   7   8  ; "provider"
+0032    ISNEV   15  16
+0033    JMP     15 => 0045
+0034    TGETS   15  14   9  ; "weight"
+0035    TGETS   16   7   9  ; "weight"
+0036    ISGT    16  15
+0037    JMP     15 => 0040
+0038    KPRI     8   2
+0039    JMP     15 => 0045
+0040 => GGET    15  10      ; "table"
+0041    TGETS   15  15  11  ; "remove"
+0042    MOV     16   2
+0043    MOV     17  13
+0044    CALL    15   1   3
+0045 => ITERC   13   3   3
+0046    ITERL   13 => 0030
+0047    IST          8
+0048    JMP     10 => 0065
+0049    LEN     10   2
+0050    KSHORT  11   1
+0051    ISGT    11  10
+0052    JMP     10 => 0065
+0053    TGETS   10   7   9  ; "weight"
+0054    TGETB   11   2   1
+0055    TGETS   11  11   9  ; "weight"
+0056    ISGE    11  10
+0057    JMP     10 => 0065
+0058    GGET    10  10      ; "table"
+0059    TGETS   10  10  12  ; "insert"
+0060    MOV     11   2
+0061    KSHORT  12   1
+0062    MOV     13   7
+0063    CALL    10   1   4
+0064    JMP     10 => 0072
+0065 => IST          8
+0066    JMP     10 => 0072
+0067    GGET    10  10      ; "table"
+0068    TGETS   10  10  12  ; "insert"
+0069    MOV     11   2
+0070    MOV     12   7
+0071    CALL    10   1   3
+0072 => ITERC    6   3   3
+0073    ITERL    6 => 0006
+0074    LEN      3   2
+0075    KSHORT   4   1
+0076    ISGT     4   3
+0077    JMP      3 => 0079
+0078    RET1     2   2
+0079 => RET0     0   1
+
+-- BYTECODE -- documentregistry.lua:154-168
+0001    UGET     4   0      ; util
+0002    TGETS    4   4   0  ; "splitFileNameSuffix"
+0003    MOV      5   1
+0004    CALL     4   3   2
+0005    IST          3
+0006    JMP      6 => 0023
+0007    GGET     6   1      ; "require"
+0008    KSTR     7   2      ; "docsettings"
+0009    CALL     6   2   2
+0010    MOV      7   6
+0011    TGETS    6   6   3  ; "open"
+0012    MOV      8   1
+0013    CALL     6   2   3
+0014    MOV      8   6
+0015    TGETS    7   6   4  ; "saveSetting"
+0016    KSTR     9   5      ; "provider"
+0017    TGETS   10   2   5  ; "provider"
+0018    CALL     7   1   4
+0019    MOV      8   6
+0020    TGETS    7   6   6  ; "flush"
+0021    CALL     7   1   2
+0022    JMP      6 => 0039
+0023 => GGET     6   7      ; "G_reader_settings"
+0024    MOV      7   6
+0025    TGETS    6   6   8  ; "readSetting"
+0026    KSTR     8   5      ; "provider"
+0027    CALL     6   2   3
+0028    IST          6
+0029    JMP      7 => 0031
+0030    TNEW     6   0
+0031 => TGETS    7   2   5  ; "provider"
+0032    TSETV    7   6   5
+0033    GGET     7   7      ; "G_reader_settings"
+0034    MOV      8   7
+0035    TGETS    7   7   4  ; "saveSetting"
+0036    KSTR     9   5      ; "provider"
+0037    MOV     10   6
+0038    CALL     7   1   4
+0039 => RET0     0   1
+
+-- BYTECODE -- documentregistry.lua:170-196
+0001    GGET     3   0      ; "collectgarbage"
+0002    CALL     3   1   1
+0003    GGET     3   0      ; "collectgarbage"
+0004    CALL     3   1   1
+0005    TGETS    3   0   1  ; "registry"
+0006    TGETV    3   3   1
+0007    IST          3
+0008    JMP      3 => 0038
+0009    IST          2
+0010    JMP      3 => 0016
+0011    MOV      4   0
+0012    TGETS    3   0   2  ; "getProvider"
+0013    MOV      5   1
+0014    CALL     3   2   3
+0015    MOV      2   3
+0016 => ISEQP    2   0
+0017    JMP      3 => 0045
+0018    GGET     3   3      ; "pcall"
+0019    TGETS    4   2   4  ; "new"
+0020    MOV      5   2
+0021    TDUP     6   5
+0022    TSETS    1   6   6  ; "file"
+0023    CALL     3   3   4
+0024    ISF          3
+0025    JMP      5 => 0031
+0026    TGETS    5   0   1  ; "registry"
+0027    TDUP     6   7
+0028    TSETS    4   6   8  ; "doc"
+0029    TSETV    6   5   1
+0030    JMP      5 => 0045
+0031 => UGET     5   0      ; logger
+0032    TGETS    5   5   9  ; "warn"
+0033    KSTR     6  10      ; "cannot open document"
+0034    MOV      7   1
+0035    MOV      8   4
+0036    CALL     5   1   4
+0037    JMP      3 => 0045
+0038 => TGETS    3   0   1  ; "registry"
+0039    TGETV    3   3   1
+0040    TGETS    4   0   1  ; "registry"
+0041    TGETV    4   4   1
+0042    TGETS    4   4  11  ; "refs"
+0043    ADDVN    4   4   0  ; 1
+0044    TSETS    4   3  11  ; "refs"
+0045 => TGETS    3   0   1  ; "registry"
+0046    TGETV    3   3   1
+0047    ISF          3
+0048    JMP      4 => 0053
+0049    TGETS    3   0   1  ; "registry"
+0050    TGETV    3   3   1
+0051    TGETS    3   3   8  ; "doc"
+0052    RET1     3   2
+0053 => RET0     0   1
+
+-- BYTECODE -- documentregistry.lua:198-210
+0001    TGETS    2   0   0  ; "registry"
+0002    TGETV    2   2   1
+0003    ISF          2
+0004    JMP      3 => 0028
+0005    TGETS    2   0   0  ; "registry"
+0006    TGETV    2   2   1
+0007    TGETS    3   0   0  ; "registry"
+0008    TGETV    3   3   1
+0009    TGETS    3   3   1  ; "refs"
+0010    SUBVN    3   3   0  ; 1
+0011    TSETS    3   2   1  ; "refs"
+0012    TGETS    2   0   0  ; "registry"
+0013    TGETV    2   2   1
+0014    TGETS    2   2   1  ; "refs"
+0015    ISNEN    2   1      ; 0
+0016    JMP      2 => 0023
+0017    TGETS    2   0   0  ; "registry"
+0018    KPRI     3   0
+0019    TSETV    3   2   1
+0020    KSHORT   2   0
+0021    RET1     2   2
+0022    JMP      2 => 0031
+0023 => TGETS    2   0   0  ; "registry"
+0024    TGETV    2   2   1
+0025    TGETS    2   2   1  ; "refs"
+0026    RET1     2   2
+0027    JMP      2 => 0031
+0028 => GGET     2   2      ; "error"
+0029    KSTR     3   3      ; "Try to close unregistered file."
+0030    CALL     2   1   2
+0031 => RET0     0   1
+
+-- BYTECODE -- documentregistry.lua:0-220
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "logger"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "libs/libkoreader-lfs"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "util"
+0009    CALL     2   2   2
+0010    TDUP     3   4
+0011    TNEW     4   0
+0012    TSETS    4   3   5  ; "registry"
+0013    TNEW     4   0
+0014    TSETS    4   3   6  ; "providers"
+0015    TNEW     4   0
+0016    TSETS    4   3   7  ; "filetype_provider"
+0017    FNEW     4   9      ; documentregistry.lua:15
+0018    TSETS    4   3   8  ; "addProvider"
+0019    FNEW     4  11      ; documentregistry.lua:26
+0020    TSETS    4   3  10  ; "getRandomFile"
+0021    FNEW     4  13      ; documentregistry.lua:56
+0022    TSETS    4   3  12  ; "hasProvider"
+0023    FNEW     4  15      ; documentregistry.lua:76
+0024    TSETS    4   3  14  ; "getProvider"
+0025    FNEW     4  17      ; documentregistry.lua:119
+0026    TSETS    4   3  16  ; "getProviders"
+0027    FNEW     4  19      ; documentregistry.lua:154
+0028    TSETS    4   3  18  ; "setProvider"
+0029    FNEW     4  21      ; documentregistry.lua:170
+0030    TSETS    4   3  20  ; "openDocument"
+0031    FNEW     4  23      ; documentregistry.lua:198
+0032    TSETS    4   3  22  ; "closeDocument"
+0033    GGET     4   0      ; "require"
+0034    KSTR     5  24      ; "document/credocument"
+0035    CALL     4   2   2
+0036    MOV      5   4
+0037    TGETS    4   4  25  ; "register"
+0038    MOV      6   3
+0039    CALL     4   1   3
+0040    GGET     4   0      ; "require"
+0041    KSTR     5  26      ; "document/pdfdocument"
+0042    CALL     4   2   2
+0043    MOV      5   4
+0044    TGETS    4   4  25  ; "register"
+0045    MOV      6   3
+0046    CALL     4   1   3
+0047    GGET     4   0      ; "require"
+0048    KSTR     5  27      ; "document/djvudocument"
+0049    CALL     4   2   2
+0050    MOV      5   4
+0051    TGETS    4   4  25  ; "register"
+0052    MOV      6   3
+0053    CALL     4   1   3
+0054    GGET     4   0      ; "require"
+0055    KSTR     5  28      ; "document/picdocument"
+0056    CALL     4   2   2
+0057    MOV      5   4
+0058    TGETS    4   4  25  ; "register"
+0059    MOV      6   3
+0060    CALL     4   1   3
+0061    UCLO     0 => 0062
+0062 => RET1     3   2
+

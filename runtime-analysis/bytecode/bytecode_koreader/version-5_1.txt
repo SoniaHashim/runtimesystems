@@ -1,0 +1,105 @@
+
+main <./frontend/version.lua:0,0> (9 instructions, 36 bytes at 0x7fe2e24068a0)
+0+ params, 2 slots, 0 upvalues, 1 local, 3 constants, 3 functions
+	1	[5]	NEWTABLE 	0 0 0
+	2	[22]	CLOSURE  	1 0	; 0x7fe2e2406b40
+	3	[9]	SETTABLE 	0 -1 1	; "getCurrentRevision" -
+	4	[40]	CLOSURE  	1 1	; 0x7fe2e2406d50
+	5	[28]	SETTABLE 	0 -2 1	; "getNormalizedVersion" -
+	6	[51]	CLOSURE  	1 2	; 0x7fe2e2406640
+	7	[46]	SETTABLE 	0 -3 1	; "getNormalizedCurrentVersion" -
+	8	[53]	RETURN   	0 2
+	9	[53]	RETURN   	0 1
+
+function <./frontend/version.lua:9,22> (22 instructions, 88 bytes at 0x7fe2e2406b40)
+1 param, 4 slots, 0 upvalues, 2 locals, 9 constants, 0 functions
+	1	[10]	GETTABLE 	1 0 -1	; "rev"
+	2	[10]	TEST     	1 0 1
+	3	[10]	JMP      	16	; to 20
+	4	[11]	GETGLOBAL	1 -2	; io
+	5	[11]	GETTABLE 	1 1 -3	; "open"
+	6	[11]	LOADK    	2 -4	; "git-rev"
+	7	[11]	LOADK    	3 -5	; "r"
+	8	[11]	CALL     	1 3 2
+	9	[12]	TEST     	1 0 0
+	10	[12]	JMP      	5	; to 16
+	11	[13]	SELF     	2 1 -6	; "read"
+	12	[13]	CALL     	2 2 2
+	13	[13]	SETTABLE 	0 -1 2	; "rev" -
+	14	[14]	SELF     	2 1 -7	; "close"
+	15	[14]	CALL     	2 2 1
+	16	[17]	GETTABLE 	2 0 -1	; "rev"
+	17	[17]	EQ       	0 2 -8	; - "fatal: No names found, cannot describe anything."
+	18	[17]	JMP      	1	; to 20
+	19	[18]	SETTABLE 	0 -1 -9	; "rev" nil
+	20	[21]	GETTABLE 	1 0 -1	; "rev"
+	21	[21]	RETURN   	1 2
+	22	[22]	RETURN   	0 1
+
+function <./frontend/version.lua:28,40> (46 instructions, 184 bytes at 0x7fe2e2406d50)
+2 params, 9 slots, 0 upvalues, 7 locals, 8 constants, 0 functions
+	1	[29]	TEST     	1 0 1
+	2	[29]	JMP      	1	; to 4
+	3	[29]	RETURN   	0 1
+	4	[30]	SELF     	2 1 -1	; "match"
+	5	[30]	LOADK    	4 -2	; "v(%d%d%d%d)%.(%d%d)%.?(%d?%d?)-?(%d*)"
+	6	[30]	CALL     	2 3 5
+	7	[32]	GETGLOBAL	6 -3	; tonumber
+	8	[32]	MOVE     	7 2
+	9	[32]	CALL     	6 2 2
+	10	[32]	MOVE     	2 6
+	11	[33]	GETGLOBAL	6 -3	; tonumber
+	12	[33]	MOVE     	7 3
+	13	[33]	CALL     	6 2 2
+	14	[33]	MOVE     	3 6
+	15	[34]	GETGLOBAL	6 -3	; tonumber
+	16	[34]	MOVE     	7 4
+	17	[34]	CALL     	6 2 2
+	18	[34]	MOVE     	4 6
+	19	[35]	GETGLOBAL	6 -3	; tonumber
+	20	[35]	MOVE     	7 5
+	21	[35]	CALL     	6 2 2
+	22	[35]	MOVE     	5 6
+	23	[37]	SELF     	6 1 -1	; "match"
+	24	[37]	LOADK    	8 -4	; "-%d*-g(%x*)[%d_%-]*"
+	25	[37]	CALL     	6 3 2
+	26	[39]	TESTSET  	7 2 1
+	27	[39]	JMP      	1	; to 29
+	28	[39]	LOADK    	7 -5	; 0
+	29	[39]	MUL      	7 7 -6	; - 100
+	30	[39]	TESTSET  	8 3 1
+	31	[39]	JMP      	1	; to 33
+	32	[39]	LOADK    	8 -5	; 0
+	33	[39]	ADD      	7 7 8
+	34	[39]	MUL      	7 7 -7	; - 1000000
+	35	[39]	TESTSET  	8 4 1
+	36	[39]	JMP      	1	; to 38
+	37	[39]	LOADK    	8 -5	; 0
+	38	[39]	MUL      	8 8 -8	; - 10000
+	39	[39]	ADD      	7 7 8
+	40	[39]	TESTSET  	8 5 1
+	41	[39]	JMP      	1	; to 43
+	42	[39]	LOADK    	8 -5	; 0
+	43	[39]	ADD      	7 7 8
+	44	[39]	MOVE     	8 6
+	45	[39]	RETURN   	7 3
+	46	[40]	RETURN   	0 1
+
+function <./frontend/version.lua:46,51> (16 instructions, 64 bytes at 0x7fe2e2406640)
+1 param, 5 slots, 0 upvalues, 1 local, 4 constants, 0 functions
+	1	[47]	GETTABLE 	1 0 -1	; "version"
+	2	[47]	TEST     	1 0 0
+	3	[47]	JMP      	3	; to 7
+	4	[47]	GETTABLE 	1 0 -2	; "commit"
+	5	[47]	TEST     	1 0 1
+	6	[47]	JMP      	6	; to 13
+	7	[48]	SELF     	1 0 -3	; "getNormalizedVersion"
+	8	[48]	SELF     	3 0 -4	; "getCurrentRevision"
+	9	[48]	CALL     	3 2 0
+	10	[48]	CALL     	1 0 3
+	11	[48]	SETTABLE 	0 -2 2	; "commit" -
+	12	[48]	SETTABLE 	0 -1 1	; "version" -
+	13	[50]	GETTABLE 	1 0 -1	; "version"
+	14	[50]	GETTABLE 	2 0 -2	; "commit"
+	15	[50]	RETURN   	1 3
+	16	[51]	RETURN   	0 1

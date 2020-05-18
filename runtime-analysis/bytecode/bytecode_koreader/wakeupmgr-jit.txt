@@ -1,0 +1,251 @@
+-- BYTECODE -- wakeupmgr.lua:38-44
+0001    IST          1
+0002    JMP      2 => 0004
+0003    TNEW     1   0
+0004 => GGET     2   0      ; "setmetatable"
+0005    MOV      3   1
+0006    MOV      4   0
+0007    CALL     2   1   3
+0008    TSETS    0   0   1  ; "__index"
+0009    TGETS    2   1   2  ; "init"
+0010    ISF          2
+0011    JMP      3 => 0015
+0012    MOV      3   1
+0013    TGETS    2   1   2  ; "init"
+0014    CALL     2   1   2
+0015 => RET1     1   2
+
+-- BYTECODE -- wakeupmgr.lua:68-68
+0001    TGETS    2   0   0  ; "epoch"
+0002    TGETS    3   1   0  ; "epoch"
+0003    ISLT     2   3
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    JMP      3 => 0008
+0007 => KPRI     2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- wakeupmgr.lua:54-75
+0001    GGET     3   0      ; "type"
+0002    MOV      4   1
+0003    CALL     3   2   2
+0004    NOT      3   3
+0005    ISNES    3   1      ; "number"
+0006    JMP      3 => 0014
+0007    GGET     3   0      ; "type"
+0008    MOV      4   2
+0009    CALL     3   2   2
+0010    NOT      3   3
+0011    ISNES    3   2      ; "function"
+0012    JMP      3 => 0014
+0013    UCLO     0 => 0057
+0014 => UGET     3   0      ; RTC
+0015    MOV      4   3
+0016    TGETS    3   3   3  ; "secondsFromNowToEpoch"
+0017    MOV      5   1
+0018    CALL     3   2   3
+0019    UGET     4   1      ; logger
+0020    TGETS    4   4   4  ; "info"
+0021    KSTR     5   5      ; "WakeupMgr: scheduling wakeup for:"
+0022    MOV      6   1
+0023    MOV      7   3
+0024    CALL     4   1   4
+0025    TGETS    4   0   6  ; "_task_queue"
+0026    TGETB    4   4   1
+0027    IST          4
+0028    JMP      5 => 0030
+0029    TNEW     4   0
+0030 => TGETS    4   4   7  ; "epoch"
+0031    GGET     5   8      ; "table"
+0032    TGETS    5   5   9  ; "insert"
+0033    TGETS    6   0   6  ; "_task_queue"
+0034    TDUP     7  10
+0035    TSETS    3   7   7  ; "epoch"
+0036    TSETS    2   7  11  ; "callback"
+0037    CALL     5   1   3
+0038    GGET     5   8      ; "table"
+0039    TGETS    5   5  12  ; "sort"
+0040    TGETS    6   0   6  ; "_task_queue"
+0041    FNEW     7  13      ; wakeupmgr.lua:68
+0042    CALL     5   1   3
+0043    TGETS    5   0   6  ; "_task_queue"
+0044    TGETB    5   5   1
+0045    TGETS    5   5   7  ; "epoch"
+0046    ISF          4
+0047    JMP      6 => 0050
+0048    ISGE     5   4
+0049    JMP      6 => 0056
+0050 => MOV      7   0
+0051    TGETS    6   0  14  ; "setWakeupAlarm"
+0052    TGETS    8   0   6  ; "_task_queue"
+0053    TGETB    8   8   1
+0054    TGETS    8   8   7  ; "epoch"
+0055    CALL     6   1   3
+0056 => RET0     0   1
+0057 => RET0     0   1
+
+-- BYTECODE -- wakeupmgr.lua:88-101
+0001    GGET     4   0      ; "type"
+0002    MOV      5   1
+0003    CALL     4   2   2
+0004    NOT      4   4
+0005    ISNES    4   1      ; "number"
+0006    JMP      4 => 0020
+0007    GGET     4   0      ; "type"
+0008    MOV      5   2
+0009    CALL     4   2   2
+0010    NOT      4   4
+0011    ISNES    4   1      ; "number"
+0012    JMP      4 => 0020
+0013    GGET     4   0      ; "type"
+0014    MOV      5   3
+0015    CALL     4   2   2
+0016    NOT      4   4
+0017    ISNES    4   2      ; "function"
+0018    JMP      4 => 0020
+0019    RET0     0   1
+0020 => TGETS    4   0   3  ; "_task_queue"
+0021    LEN      4   4
+0022    KSHORT   5   1
+0023    ISGE     4   5
+0024    JMP      4 => 0026
+0025    RET0     0   1
+0026 => GGET     4   4      ; "ipairs"
+0027    TGETS    5   0   3  ; "_task_queue"
+0028    CALL     4   4   2
+0029    JMP      7 => 0045
+0030 => ISEQV    7   1
+0031    JMP      9 => 0038
+0032    TGETS    9   8   5  ; "epoch"
+0033    ISEQV    2   9
+0034    JMP      9 => 0038
+0035    TGETS    9   8   6  ; "callback"
+0036    ISNEV    3   9
+0037    JMP      9 => 0045
+0038 => GGET     9   7      ; "table"
+0039    TGETS    9   9   8  ; "remove"
+0040    TGETS   10   0   3  ; "_task_queue"
+0041    MOV     11   7
+0042    CALL     9   1   3
+0043    KPRI     9   2
+0044    RET1     9   2
+0045 => ITERC    7   3   3
+0046    ITERL    7 => 0030
+0047    RET0     0   1
+
+-- BYTECODE -- wakeupmgr.lua:113-128
+0001    TGETS    1   0   0  ; "_task_queue"
+0002    LEN      1   1
+0003    KSHORT   2   0
+0004    ISGE     2   1
+0005    JMP      1 => 0035
+0006    TGETS    1   0   0  ; "_task_queue"
+0007    TGETB    1   1   1
+0008    MOV      3   0
+0009    TGETS    2   0   1  ; "validateWakeupAlarmByProximity"
+0010    TGETS    4   1   2  ; "epoch"
+0011    CALL     2   2   3
+0012    ISF          2
+0013    JMP      3 => 0033
+0014    TGETS    2   1   3  ; "callback"
+0015    CALL     2   1   1
+0016    MOV      3   0
+0017    TGETS    2   0   4  ; "removeTask"
+0018    KSHORT   4   1
+0019    CALL     2   1   3
+0020    TGETS    2   0   0  ; "_task_queue"
+0021    TGETB    2   2   1
+0022    ISF          2
+0023    JMP      3 => 0030
+0024    MOV      3   0
+0025    TGETS    2   0   5  ; "setWakeupAlarm"
+0026    TGETS    4   0   0  ; "_task_queue"
+0027    TGETB    4   4   1
+0028    TGETS    4   4   2  ; "epoch"
+0029    CALL     2   1   3
+0030 => KPRI     2   2
+0031    RET1     2   2
+0032    JMP      2 => 0035
+0033 => KPRI     2   1
+0034    RET1     2   2
+0035 => RET0     0   1
+
+-- BYTECODE -- wakeupmgr.lua:135-137
+0001    UGET     3   0      ; RTC
+0002    MOV      4   3
+0003    TGETS    3   3   0  ; "setWakeupAlarm"
+0004    MOV      5   1
+0005    MOV      6   2
+0006    CALLT    3   4
+
+-- BYTECODE -- wakeupmgr.lua:144-146
+0001    UGET     1   0      ; RTC
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "unsetWakeupAlarm"
+0004    CALLT    1   2
+
+-- BYTECODE -- wakeupmgr.lua:153-155
+0001    UGET     1   0      ; RTC
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "getWakeupAlarm"
+0004    CALLT    1   2
+
+-- BYTECODE -- wakeupmgr.lua:162-164
+0001    UGET     1   0      ; RTC
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "getWakeupAlarmSys"
+0004    CALLT    1   2
+
+-- BYTECODE -- wakeupmgr.lua:173-175
+0001    UGET     3   0      ; RTC
+0002    MOV      4   3
+0003    TGETS    3   3   0  ; "validateWakeupAlarmByProximity"
+0004    MOV      5   1
+0005    MOV      6   2
+0006    CALLT    3   4
+
+-- BYTECODE -- wakeupmgr.lua:182-186
+0001    UGET     1   0      ; RTC
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "isWakeupAlarmScheduled"
+0004    CALL     1   2   2
+0005    UGET     2   1      ; logger
+0006    TGETS    2   2   1  ; "dbg"
+0007    KSTR     3   0      ; "isWakeupAlarmScheduled"
+0008    MOV      4   1
+0009    CALL     2   1   3
+0010    RET1     1   2
+
+-- BYTECODE -- wakeupmgr.lua:0-189
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/rtc"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "logger"
+0006    CALL     1   2   2
+0007    TDUP     2   3
+0008    TNEW     3   0
+0009    TSETS    3   2   4  ; "_task_queue"
+0010    FNEW     3   6      ; wakeupmgr.lua:38
+0011    TSETS    3   2   5  ; "new"
+0012    FNEW     3   8      ; wakeupmgr.lua:54
+0013    TSETS    3   2   7  ; "addTask"
+0014    FNEW     3  10      ; wakeupmgr.lua:88
+0015    TSETS    3   2   9  ; "removeTask"
+0016    FNEW     3  12      ; wakeupmgr.lua:113
+0017    TSETS    3   2  11  ; "wakeupAction"
+0018    FNEW     3  14      ; wakeupmgr.lua:135
+0019    TSETS    3   2  13  ; "setWakeupAlarm"
+0020    FNEW     3  16      ; wakeupmgr.lua:144
+0021    TSETS    3   2  15  ; "unsetWakeupAlarm"
+0022    FNEW     3  18      ; wakeupmgr.lua:153
+0023    TSETS    3   2  17  ; "getWakeupAlarm"
+0024    FNEW     3  20      ; wakeupmgr.lua:162
+0025    TSETS    3   2  19  ; "getWakeupAlarmSys"
+0026    FNEW     3  22      ; wakeupmgr.lua:173
+0027    TSETS    3   2  21  ; "validateWakeupAlarmByProximity"
+0028    FNEW     3  24      ; wakeupmgr.lua:182
+0029    TSETS    3   2  23  ; "isWakeupAlarmScheduled"
+0030    UCLO     0 => 0031
+0031 => RET1     2   2
+

@@ -1,0 +1,278 @@
+-- BYTECODE -- list.lua:13-24
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "command"
+0003    KSTR     3   1      ; "list"
+0004    KSTR     4   2      ; "List currently installed rocks."
+0005    UGET     5   0      ; util
+0006    TGETS    5   5   3  ; "see_also"
+0007    CALL     5   0   1
+0008    CALLM    1   2   3
+0009    MOV      3   1
+0010    TGETS    2   1   4  ; "argument"
+0011    KSTR     4   5      ; "filter"
+0012    KSTR     5   6      ; "A substring of a rock name to filter by."
+0013    CALL     2   2   4
+0014    MOV      3   2
+0015    TGETS    2   2   7  ; "args"
+0016    KSTR     4   8      ; "?"
+0017    CALL     2   1   3
+0018    MOV      3   1
+0019    TGETS    2   1   4  ; "argument"
+0020    KSTR     4   9      ; "version"
+0021    KSTR     5  10      ; "Rock version to filter by."
+0022    CALL     2   2   4
+0023    MOV      3   2
+0024    TGETS    2   2   7  ; "args"
+0025    KSTR     4   8      ; "?"
+0026    CALL     2   1   3
+0027    MOV      3   1
+0028    TGETS    2   1  11  ; "flag"
+0029    KSTR     4  12      ; "--outdated"
+0030    KSTR     5  13      ; "List only rocks for which there is a hig"~
+0031    KSTR     6  14      ; "version available in the rocks server."
+0032    CAT      5   5   6
+0033    CALL     2   1   4
+0034    MOV      3   1
+0035    TGETS    2   1  11  ; "flag"
+0036    KSTR     4  15      ; "--porcelain"
+0037    KSTR     5  16      ; "Produce machine-friendly output."
+0038    CALL     2   1   4
+0039    RET0     0   1
+
+-- BYTECODE -- list.lua:26-52
+0001    TNEW     2   0
+0002    GGET     3   0      ; "ipairs"
+0003    MOV      4   0
+0004    CALL     3   4   2
+0005    JMP      6 => 0015
+0006 => UGET     8   0      ; search
+0007    TGETS    8   8   1  ; "local_manifest_search"
+0008    MOV      9   2
+0009    UGET    10   1      ; path
+0010    TGETS   10  10   2  ; "rocks_dir"
+0011    MOV     11   7
+0012    CALL    10   2   2
+0013    MOV     11   1
+0014    CALL     8   1   4
+0015 => ITERC    6   3   3
+0016    ITERL    6 => 0006
+0017    TNEW     3   0
+0018    UGET     4   2      ; util
+0019    TGETS    4   4   3  ; "sortedpairs"
+0020    MOV      5   2
+0021    CALL     4   4   2
+0022    JMP      7 => 0079
+0023 => UGET     9   2      ; util
+0024    TGETS    9   9   4  ; "keys"
+0025    MOV     10   8
+0026    CALL     9   2   2
+0027    MOV      8   9
+0028    GGET     9   5      ; "table"
+0029    TGETS    9   9   6  ; "sort"
+0030    MOV     10   8
+0031    UGET    11   3      ; vers
+0032    TGETS   11  11   7  ; "compare_versions"
+0033    CALL     9   1   3
+0034    TGETB    9   8   1
+0035    UGET    10   4      ; queries
+0036    TGETS   10  10   8  ; "new"
+0037    MOV     12   7
+0038    TGETS   11   7   9  ; "lower"
+0039    CALL    11   0   2
+0040    CALLM   10   2   0
+0041    UGET    11   0      ; search
+0042    TGETS   11  11  10  ; "search_repos"
+0043    MOV     12  10
+0044    CALL    11   3   2
+0045    TGETV   13  11   7
+0046    ISF         13
+0047    JMP     14 => 0079
+0048    UGET    13   2      ; util
+0049    TGETS   13  13   4  ; "keys"
+0050    TGETV   14  11   7
+0051    CALL    13   2   2
+0052    GGET    14   5      ; "table"
+0053    TGETS   14  14   6  ; "sort"
+0054    MOV     15  13
+0055    UGET    16   3      ; vers
+0056    TGETS   16  16   7  ; "compare_versions"
+0057    CALL    14   1   3
+0058    TGETB   14  13   1
+0059    TGETV   15  11   7
+0060    TGETV   15  15  14
+0061    TGETB   15  15   1
+0062    TGETS   15  15  11  ; "repo"
+0063    UGET    16   3      ; vers
+0064    TGETS   16  16   7  ; "compare_versions"
+0065    MOV     17  14
+0066    MOV     18   9
+0067    CALL    16   2   3
+0068    ISF         16
+0069    JMP     17 => 0079
+0070    GGET    16   5      ; "table"
+0071    TGETS   16  16  12  ; "insert"
+0072    MOV     17   3
+0073    TDUP    18  13
+0074    TSETS    7  18  14  ; "name"
+0075    TSETS    9  18  15  ; "installed"
+0076    TSETS   14  18  16  ; "available"
+0077    TSETS   15  18  11  ; "repo"
+0078    CALL    16   1   3
+0079 => ITERC    7   3   3
+0080    ITERL    7 => 0023
+0081    RET1     3   2
+
+-- BYTECODE -- list.lua:54-67
+0001    UGET     3   0      ; util
+0002    TGETS    3   3   0  ; "title"
+0003    KSTR     4   1      ; "Outdated rocks:"
+0004    MOV      5   2
+0005    CALL     3   1   3
+0006    UGET     3   1      ; check_outdated
+0007    MOV      4   0
+0008    MOV      5   1
+0009    CALL     3   2   3
+0010    GGET     4   2      ; "ipairs"
+0011    MOV      5   3
+0012    CALL     4   4   2
+0013    JMP      7 => 0041
+0014 => ISF          2
+0015    JMP      9 => 0024
+0016    UGET     9   0      ; util
+0017    TGETS    9   9   3  ; "printout"
+0018    TGETS   10   8   4  ; "name"
+0019    TGETS   11   8   5  ; "installed"
+0020    TGETS   12   8   6  ; "available"
+0021    TGETS   13   8   7  ; "repo"
+0022    CALL     9   1   5
+0023    JMP      9 => 0041
+0024 => UGET     9   0      ; util
+0025    TGETS    9   9   3  ; "printout"
+0026    TGETS   10   8   4  ; "name"
+0027    CALL     9   1   2
+0028    UGET     9   0      ; util
+0029    TGETS    9   9   3  ; "printout"
+0030    KSTR    10   8      ; "   "
+0031    TGETS   11   8   5  ; "installed"
+0032    KSTR    12   9      ; " < "
+0033    TGETS   13   8   6  ; "available"
+0034    KSTR    14  10      ; " at "
+0035    TGETS   15   8   7  ; "repo"
+0036    CAT     10  10  15
+0037    CALL     9   1   2
+0038    UGET     9   0      ; util
+0039    TGETS    9   9   3  ; "printout"
+0040    CALL     9   1   1
+0041 => ITERC    7   3   3
+0042    ITERL    7 => 0014
+0043    KPRI     4   2
+0044    RET1     4   2
+
+-- BYTECODE -- list.lua:71-94
+0001    UGET     1   0      ; queries
+0002    TGETS    1   1   0  ; "new"
+0003    TGETS    2   0   1  ; "filter"
+0004    ISF          2
+0005    JMP      3 => 0012
+0006    TGETS    2   0   1  ; "filter"
+0007    MOV      3   2
+0008    TGETS    2   2   2  ; "lower"
+0009    CALL     2   2   2
+0010    IST          2
+0011    JMP      3 => 0013
+0012 => KSTR     2   3      ; ""
+0013 => TGETS    3   0   4  ; "namespace"
+0014    TGETS    4   0   5  ; "version"
+0015    KPRI     5   2
+0016    CALL     1   2   5
+0017    UGET     2   1      ; cfg
+0018    TGETS    2   2   6  ; "rocks_trees"
+0019    KSTR     3   7      ; "Rocks installed for Lua "
+0020    UGET     4   1      ; cfg
+0021    TGETS    4   4   8  ; "lua_version"
+0022    CAT      3   3   4
+0023    TGETS    4   0   9  ; "tree"
+0024    ISF          4
+0025    JMP      5 => 0034
+0026    TNEW     4   3
+0027    TGETS    5   0   9  ; "tree"
+0028    TSETB    5   4   1
+0029    MOV      2   4
+0030    MOV      4   3
+0031    KSTR     5  10      ; " in "
+0032    TGETS    6   0   9  ; "tree"
+0033    CAT      3   4   6
+0034 => TGETS    4   0  11  ; "outdated"
+0035    ISF          4
+0036    JMP      5 => 0042
+0037    UGET     4   2      ; list_outdated
+0038    MOV      5   2
+0039    MOV      6   1
+0040    TGETS    7   0  12  ; "porcelain"
+0041    CALLT    4   4
+0042 => TNEW     4   0
+0043    GGET     5  13      ; "ipairs"
+0044    MOV      6   2
+0045    CALL     5   4   2
+0046    JMP      8 => 0064
+0047 => UGET    10   3      ; search
+0048    TGETS   10  10  14  ; "local_manifest_search"
+0049    MOV     11   4
+0050    UGET    12   4      ; path
+0051    TGETS   12  12  15  ; "rocks_dir"
+0052    MOV     13   9
+0053    CALL    12   2   2
+0054    MOV     13   1
+0055    CALL    10   4   4
+0056    IST         10
+0057    JMP     13 => 0064
+0058    ISEQS   12  16      ; "open"
+0059    JMP     13 => 0064
+0060    UGET    13   5      ; util
+0061    TGETS   13  13  17  ; "warning"
+0062    MOV     14  11
+0063    CALL    13   1   2
+0064 => ITERC    8   3   3
+0065    ITERL    8 => 0047
+0066    UGET     5   5      ; util
+0067    TGETS    5   5  18  ; "title"
+0068    MOV      6   3
+0069    TGETS    7   0  12  ; "porcelain"
+0070    CALL     5   1   3
+0071    UGET     5   3      ; search
+0072    TGETS    5   5  19  ; "print_result_tree"
+0073    MOV      6   4
+0074    TGETS    7   0  12  ; "porcelain"
+0075    CALL     5   1   3
+0076    KPRI     5   2
+0077    RET1     5   2
+
+-- BYTECODE -- list.lua:0-97
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.search"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.queries"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.core.vers"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.core.cfg"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.util"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.path"
+0019    CALL     6   2   2
+0020    FNEW     7   8      ; list.lua:13
+0021    TSETS    7   0   7  ; "add_to_parser"
+0022    FNEW     7   9      ; list.lua:26
+0023    FNEW     8  10      ; list.lua:54
+0024    FNEW     9  12      ; list.lua:71
+0025    TSETS    9   0  11  ; "command"
+0026    UCLO     0 => 0027
+0027 => RET1     0   2
+

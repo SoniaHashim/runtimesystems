@@ -1,0 +1,196 @@
+-- BYTECODE -- opdsparser.lua:22-30
+0001    UGET     3   0      ; unescape_map
+0002    TGETV    3   3   2
+0003    ISF          3
+0004    JMP      4 => 0009
+0005    UGET     3   0      ; unescape_map
+0006    TGETV    3   3   2
+0007    RET1     3   2
+0008    JMP      3 => 0019
+0009 => ISNES    1   0      ; "#"
+0010    JMP      3 => 0018
+0011    UGET     3   1      ; util
+0012    TGETS    3   3   1  ; "unicodeCodepointToUtf8"
+0013    GGET     4   2      ; "tonumber"
+0014    MOV      5   2
+0015    CALL     4   0   2
+0016    CALLMT   3   0
+0017    JMP      3 => 0019
+0018 => RET1     0   2
+0019 => RET0     0   1
+
+-- BYTECODE -- opdsparser.lua:21-31
+0001    UGET     1   0      ; gsub
+0002    MOV      2   0
+0003    KSTR     3   0      ; "(&(#?)([%d%a]+);)"
+0004    FNEW     4   1      ; opdsparser.lua:22
+0005    UCLO     0 => 0006
+0006 => CALLT    1   4
+
+-- BYTECODE -- opdsparser.lua:33-73
+0001    IST          2
+0002    JMP      3 => 0004
+0003    TNEW     2   0
+0004 => KPRI     3   0
+0005    KSHORT   4   0
+0006    KPRI     5   0
+0007    MOV      7   1
+0008    TGETS    6   1   0  ; "Lexemes"
+0009    CALL     6   4   2
+0010    JMP      9 => 0084
+0011 => UGET    12   0      ; ffi
+0012    TGETS   12  12   1  ; "string"
+0013    TGETS   13   1   2  ; "buf"
+0014    ADDVV   13  13  10
+0015    MOV     14  11
+0016    CALL    12   2   3
+0017    MOV      5  12
+0018    UGET    12   1      ; luxl
+0019    TGETS   12  12   3  ; "EVENT_START"
+0020    ISNEV    9  12
+0021    JMP     12 => 0050
+0022    ISEQS    5   4      ; "xml"
+0023    JMP     12 => 0084
+0024    MOV     13   0
+0025    TGETS   12   0   5  ; "createFlatXTable"
+0026    MOV     14   1
+0027    CALL    12   2   3
+0028    ISEQS    5   6      ; "entry"
+0029    JMP     13 => 0032
+0030    ISNES    5   7      ; "link"
+0031    JMP     13 => 0043
+0032 => TGETV   13   2   5
+0033    ISNEP   13   0
+0034    JMP     13 => 0037
+0035    TNEW    13   0
+0036    TSETV   13   2   5
+0037 => GGET    13   8      ; "table"
+0038    TGETS   13  13   9  ; "insert"
+0039    TGETV   14   2   5
+0040    MOV     15  12
+0041    CALL    13   1   3
+0042    JMP     13 => 0084
+0043 => GGET    13  10      ; "type"
+0044    MOV     14   2
+0045    CALL    13   2   2
+0046    ISNES   13   8      ; "table"
+0047    JMP     13 => 0084
+0048    TSETV   12   2   5
+0049    JMP     12 => 0084
+0050 => UGET    12   1      ; luxl
+0051    TGETS   12  12  11  ; "EVENT_ATTR_NAME"
+0052    ISNEV    9  12
+0053    JMP     12 => 0059
+0054    UGET    12   2      ; unescape
+0055    MOV     13   5
+0056    CALL    12   2   2
+0057    MOV      3  12
+0058    JMP     12 => 0084
+0059 => UGET    12   1      ; luxl
+0060    TGETS   12  12  12  ; "EVENT_ATTR_VAL"
+0061    ISNEV    9  12
+0062    JMP     12 => 0070
+0063    UGET    12   2      ; unescape
+0064    MOV     13   5
+0065    CALL    12   2   2
+0066    TSETV   12   2   3
+0067    ADDVN    4   4   0  ; 1
+0068    KPRI     3   0
+0069    JMP     12 => 0084
+0070 => UGET    12   1      ; luxl
+0071    TGETS   12  12  13  ; "EVENT_TEXT"
+0072    ISNEV    9  12
+0073    JMP     12 => 0079
+0074    UGET    12   2      ; unescape
+0075    MOV     13   5
+0076    CALL    12   2   2
+0077    MOV      2  12
+0078    JMP     12 => 0084
+0079 => UGET    12   1      ; luxl
+0080    TGETS   12  12  14  ; "EVENT_END"
+0081    ISNEV    9  12
+0082    JMP     12 => 0084
+0083    RET1     2   2
+0084 => ITERC    9   4   3
+0085    ITERL    9 => 0011
+0086    RET1     2   2
+
+-- BYTECODE -- opdsparser.lua:86-88
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "gsub"
+0003    KSTR     3   1      ; "%p"
+0004    TDUP     4   2
+0005    CALLT    1   4
+
+-- BYTECODE -- opdsparser.lua:75-91
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "gsub"
+0003    KSTR     4   1      ; "<!--.--->"
+0004    KSTR     5   2      ; ""
+0005    CALL     2   2   4
+0006    MOV      1   2
+0007    MOV      3   1
+0008    TGETS    2   1   0  ; "gsub"
+0009    KSTR     4   3      ; "<br>"
+0010    KSTR     5   4      ; "<br />"
+0011    CALL     2   2   4
+0012    MOV      1   2
+0013    MOV      3   1
+0014    TGETS    2   1   0  ; "gsub"
+0015    KSTR     4   5      ; "<br/>"
+0016    KSTR     5   4      ; "<br />"
+0017    CALL     2   2   4
+0018    MOV      1   2
+0019    MOV      3   1
+0020    TGETS    2   1   0  ; "gsub"
+0021    KSTR     4   6      ; "<hr>"
+0022    KSTR     5   7      ; "<hr />"
+0023    CALL     2   2   4
+0024    MOV      1   2
+0025    MOV      3   1
+0026    TGETS    2   1   0  ; "gsub"
+0027    KSTR     4   8      ; "<hr/>"
+0028    KSTR     5   7      ; "<hr />"
+0029    CALL     2   2   4
+0030    MOV      1   2
+0031    MOV      3   1
+0032    TGETS    2   1   0  ; "gsub"
+0033    KSTR     4   9      ; "<!%[CDATA%[(.-)%]%]>"
+0034    FNEW     5  10      ; opdsparser.lua:86
+0035    CALL     2   2   4
+0036    MOV      1   2
+0037    UGET     2   0      ; luxl
+0038    TGETS    2   2  11  ; "new"
+0039    MOV      3   1
+0040    LEN      4   1
+0041    CALL     2   2   3
+0042    GGET     3  12      ; "assert"
+0043    MOV      5   0
+0044    TGETS    4   0  13  ; "createFlatXTable"
+0045    MOV      6   2
+0046    CALL     4   0   3
+0047    UCLO     0 => 0048
+0048 => CALLMT   3   0
+
+-- BYTECODE -- opdsparser.lua:0-94
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "util"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "luxl"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ffi"
+0009    CALL     2   2   2
+0010    TNEW     3   0
+0011    TDUP     4   4
+0012    GGET     5   5      ; "string"
+0013    TGETS    5   5   6  ; "gsub"
+0014    FNEW     6   7      ; opdsparser.lua:21
+0015    FNEW     7   9      ; opdsparser.lua:33
+0016    TSETS    7   3   8  ; "createFlatXTable"
+0017    FNEW     7  11      ; opdsparser.lua:75
+0018    TSETS    7   3  10  ; "parse"
+0019    UCLO     0 => 0020
+0020 => RET1     3   2
+

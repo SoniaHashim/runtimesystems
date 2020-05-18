@@ -1,0 +1,96 @@
+
+main <./frontend/httpclient.lua:0,0> (12 instructions, 48 bytes at 0x7feb4f4068c0)
+0+ params, 3 slots, 0 upvalues, 2 locals, 6 constants, 2 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "ui/uimanager"
+	3	[1]	CALL     	0 2 2
+	4	[3]	NEWTABLE 	1 0 1
+	5	[4]	SETTABLE 	1 -3 -4	; "input_timeouts" 0
+	6	[12]	CLOSURE  	2 0	; 0x7feb4f406bd0
+	7	[7]	SETTABLE 	1 -5 2	; "new" -
+	8	[35]	CLOSURE  	2 1	; 0x7feb4f407220
+	9	[35]	MOVE     	0 0
+	10	[14]	SETTABLE 	1 -6 2	; "request" -
+	11	[37]	RETURN   	1 2
+	12	[37]	RETURN   	0 1
+
+function <./frontend/httpclient.lua:7,12> (8 instructions, 32 bytes at 0x7feb4f406bd0)
+1 param, 5 slots, 0 upvalues, 2 locals, 2 constants, 0 functions
+	1	[8]	NEWTABLE 	1 0 0
+	2	[9]	GETGLOBAL	2 -1	; setmetatable
+	3	[9]	MOVE     	3 1
+	4	[9]	MOVE     	4 0
+	5	[9]	CALL     	2 3 1
+	6	[10]	SETTABLE 	0 -2 0	; "__index" -
+	7	[11]	RETURN   	1 2
+	8	[12]	RETURN   	0 1
+
+function <./frontend/httpclient.lua:14,35> (15 instructions, 60 bytes at 0x7feb4f407220)
+3 params, 6 slots, 1 upvalue, 3 locals, 7 constants, 1 function
+	1	[15]	SETTABLE 	1 -1 -2	; "connect_timeout" 10
+	2	[16]	SETTABLE 	1 -3 -4	; "request_timeout" 20
+	3	[17]	GETUPVAL 	3 0	; UIManager
+	4	[17]	SELF     	3 3 -5	; "initLooper"
+	5	[17]	CALL     	3 2 1
+	6	[18]	GETUPVAL 	3 0	; UIManager
+	7	[18]	GETTABLE 	3 3 -6	; "looper"
+	8	[18]	SELF     	3 3 -7	; "add_callback"
+	9	[34]	CLOSURE  	5 0	; 0x7feb4f407470
+	10	[34]	GETUPVAL 	0 0	; UIManager
+	11	[34]	MOVE     	0 0
+	12	[34]	MOVE     	0 1
+	13	[34]	MOVE     	0 2
+	14	[18]	CALL     	3 3 1
+	15	[35]	RETURN   	0 1
+
+function <./frontend/httpclient.lua:18,34> (49 instructions, 196 bytes at 0x7feb4f407470)
+0 params, 7 slots, 4 upvalues, 3 locals, 19 constants, 0 functions
+	1	[20]	GETUPVAL 	0 0	; UIManager
+	2	[20]	SELF     	0 0 -1	; "setInputTimeout"
+	3	[20]	CALL     	0 2 1
+	4	[21]	GETUPVAL 	0 1	; self
+	5	[21]	GETUPVAL 	1 1	; self
+	6	[21]	GETTABLE 	1 1 -2	; "input_timeouts"
+	7	[21]	ADD      	1 1 -3	; - 1
+	8	[21]	SETTABLE 	0 -2 1	; "input_timeouts" -
+	9	[22]	GETGLOBAL	0 -4	; require
+	10	[22]	LOADK    	1 -5	; "turbo"
+	11	[22]	CALL     	0 2 2
+	12	[24]	GETTABLE 	1 0 -6	; "log"
+	13	[24]	GETTABLE 	1 1 -7	; "categories"
+	14	[24]	SETTABLE 	1 -8 -9	; "success" false
+	15	[25]	GETTABLE 	1 0 -6	; "log"
+	16	[25]	GETTABLE 	1 1 -7	; "categories"
+	17	[25]	SETTABLE 	1 -10 -9	; "warning" false
+	18	[26]	GETTABLE 	1 0 -11	; "async"
+	19	[26]	GETTABLE 	1 1 -12	; "HTTPClient"
+	20	[26]	NEWTABLE 	2 0 1
+	21	[26]	SETTABLE 	2 -13 -9	; "verify_ca" false
+	22	[26]	CALL     	1 2 2
+	23	[27]	GETGLOBAL	2 -14	; coroutine
+	24	[27]	GETTABLE 	2 2 -15	; "yield"
+	25	[27]	SELF     	3 1 -16	; "fetch"
+	26	[27]	GETUPVAL 	5 2	; request
+	27	[27]	GETTABLE 	5 5 -17	; "url"
+	28	[27]	GETUPVAL 	6 2	; request
+	29	[27]	CALL     	3 4 0
+	30	[27]	CALL     	2 0 2
+	31	[28]	GETUPVAL 	3 1	; self
+	32	[28]	GETUPVAL 	4 1	; self
+	33	[28]	GETTABLE 	4 4 -2	; "input_timeouts"
+	34	[28]	SUB      	4 4 -3	; - 1
+	35	[28]	SETTABLE 	3 -2 4	; "input_timeouts" -
+	36	[30]	GETUPVAL 	3 1	; self
+	37	[30]	GETTABLE 	3 3 -2	; "input_timeouts"
+	38	[30]	EQ       	0 3 -18	; - 0
+	39	[30]	JMP      	3	; to 43
+	40	[30]	GETUPVAL 	3 0	; UIManager
+	41	[30]	SELF     	3 3 -19	; "resetInputTimeout"
+	42	[30]	CALL     	3 2 1
+	43	[31]	GETUPVAL 	3 3	; response_callback
+	44	[31]	TEST     	3 0 0
+	45	[31]	JMP      	3	; to 49
+	46	[32]	GETUPVAL 	3 3	; response_callback
+	47	[32]	MOVE     	4 2
+	48	[32]	CALL     	3 2 1
+	49	[34]	RETURN   	0 1

@@ -1,0 +1,3621 @@
+-- BYTECODE -- credocument.lua:63-72
+0001    GGET     2   0      ; "io"
+0002    TGETS    2   2   1  ; "popen"
+0003    KSTR     3   2      ; "unzip "
+0004    KSTR     4   3      ; "-qql ""
+0005    MOV      5   1
+0006    KSTR     6   4      ; """
+0007    CAT      3   3   6
+0008    CALL     2   2   2
+0009    ISF          2
+0010    JMP      3 => 0030
+0011    MOV      4   2
+0012    TGETS    3   2   5  ; "lines"
+0013    CALL     3   4   2
+0014    JMP      6 => 0028
+0015 => GGET     7   6      ; "string"
+0016    TGETS    7   7   7  ; "match"
+0017    MOV      8   6
+0018    KSTR     9   8      ; "%s+(%d+)%s+.+%.([^.]+)"
+0019    CALL     7   3   3
+0020    ISF          7
+0021    JMP      9 => 0028
+0022    ISF          8
+0023    JMP      9 => 0028
+0024    GGET     9   6      ; "string"
+0025    TGETS    9   9   9  ; "lower"
+0026    MOV     10   8
+0027    CALLT    9   2
+0028 => ITERC    6   2   3
+0029    ITERL    6 => 0015
+0030 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:74-94
+0001    UGET     1   0      ; lfs
+0002    TGETS    1   1   0  ; "attributes"
+0003    KSTR     2   1      ; "./cr3cache"
+0004    KSTR     3   2      ; "mode"
+0005    CALL     1   2   3
+0006    ISNES    1   3      ; "directory"
+0007    JMP      1 => 0012
+0008    GGET     1   4      ; "os"
+0009    TGETS    1   1   5  ; "execute"
+0010    KSTR     2   6      ; "rm -r ./cr3cache"
+0011    CALL     1   1   2
+0012 => KSHORT   1  64
+0013    KSHORT   2  40
+0014    GGET     3   7      ; "cre"
+0015    TGETS    3   3   8  ; "initCache"
+0016    UGET     4   1      ; DataStorage
+0017    MOV      5   4
+0018    TGETS    4   4   9  ; "getDataDir"
+0019    CALL     4   2   2
+0020    KSTR     5  10      ; "/cache/cr3cache"
+0021    CAT      4   4   5
+0022    GGET     5  11      ; "G_reader_settings"
+0023    MOV      6   5
+0024    TGETS    5   5  12  ; "readSetting"
+0025    KSTR     7  13      ; "cre_disk_cache_max_size"
+0026    CALL     5   2   3
+0027    IST          5
+0028    JMP      6 => 0030
+0029    MOV      5   1
+0030 => MULVN    5   5   0  ; 1024
+0031    MULVN    5   5   0  ; 1024
+0032    GGET     6  11      ; "G_reader_settings"
+0033    MOV      7   6
+0034    TGETS    6   6  14  ; "nilOrTrue"
+0035    KSTR     8  15      ; "cre_compress_cached_data"
+0036    CALL     6   2   3
+0037    GGET     7  11      ; "G_reader_settings"
+0038    MOV      8   7
+0039    TGETS    7   7  12  ; "readSetting"
+0040    KSTR     9  16      ; "cre_storage_size_factor"
+0041    CALL     7   2   3
+0042    IST          7
+0043    JMP      8 => 0045
+0044    MOV      7   2
+0045 => CALL     3   1   5
+0046    RET0     0   1
+
+-- BYTECODE -- credocument.lua:96-118
+0001    UGET     1   0      ; engine_initialized
+0002    IST          1
+0003    JMP      1 => 0049
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   1      ; "libs/libkoreader-cre"
+0006    CALL     1   1   2
+0007    MOV      2   0
+0008    TGETS    1   0   2  ; "cacheInit"
+0009    CALL     1   1   2
+0010    GGET     1   3      ; "cre"
+0011    TGETS    1   1   4  ; "initHyphDict"
+0012    KSTR     2   5      ; "./data/hyph/"
+0013    CALL     1   1   2
+0014    UGET     1   1      ; FontList
+0015    MOV      2   1
+0016    TGETS    1   1   6  ; "getFontList"
+0017    CALL     1   2   2
+0018    GGET     2   7      ; "ipairs"
+0019    MOV      3   1
+0020    CALL     2   4   2
+0021    JMP      5 => 0046
+0022 => MOV      8   6
+0023    TGETS    7   6   8  ; "find"
+0024    KSTR     9   9      ; "/urw/"
+0025    CALL     7   2   3
+0026    IST          7
+0027    JMP      7 => 0046
+0028    MOV      8   6
+0029    TGETS    7   6   8  ; "find"
+0030    KSTR     9  10      ; "/nerdfonts/symbols.ttf"
+0031    CALL     7   2   3
+0032    IST          7
+0033    JMP      7 => 0046
+0034    GGET     7  11      ; "pcall"
+0035    GGET     8   3      ; "cre"
+0036    TGETS    8   8  12  ; "registerFont"
+0037    MOV      9   6
+0038    CALL     7   3   3
+0039    IST          7
+0040    JMP      9 => 0046
+0041    UGET     9   2      ; logger
+0042    TGETS    9   9  13  ; "err"
+0043    KSTR    10  14      ; "failed to register crengine font:"
+0044    MOV     11   8
+0045    CALL     9   1   3
+0046 => ITERC    5   3   3
+0047    ITERL    5 => 0022
+0048    USETP    0   2      ; engine_initialized
+0049 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:120-164
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "updateColorRendering"
+0003    CALL     1   1   2
+0004    MOV      2   0
+0005    TGETS    1   0   1  ; "engineInit"
+0006    CALL     1   1   2
+0007    GGET     1   2      ; "string"
+0008    TGETS    1   1   3  ; "lower"
+0009    GGET     2   2      ; "string"
+0010    TGETS    2   2   4  ; "match"
+0011    TGETS    3   0   5  ; "file"
+0012    KSTR     4   6      ; ".+%.([^.]+)"
+0013    CALL     2   0   3
+0014    CALLM    1   2   0
+0015    ISNES    1   7      ; "zip"
+0016    JMP      2 => 0024
+0017    MOV      3   0
+0018    TGETS    2   0   8  ; "zipContentExt"
+0019    TGETS    4   0   5  ; "file"
+0020    CALL     2   2   3
+0021    ISTC     1   2
+0022    JMP      3 => 0024
+0023    KSTR     1   9      ; "unknown"
+0024 => KSTR     2  11      ; "./data/epub.css"
+0025    TSETS    2   0  10  ; "default_css"
+0026    ISEQS    1  12      ; "fb2"
+0027    JMP      2 => 0030
+0028    ISNES    1  13      ; "fb3"
+0029    JMP      2 => 0032
+0030 => KSTR     2  14      ; "./data/fb2.css"
+0031    TSETS    2   0  10  ; "default_css"
+0032 => GGET     2  16      ; "DCREREADER_VIEW_MODE"
+0033    ISNES    2  17      ; "scroll"
+0034    JMP      2 => 0038
+0035    TGETS    2   0  18  ; "SCROLL_VIEW_MODE"
+0036    IST          2
+0037    JMP      3 => 0039
+0038 => TGETS    2   0  19  ; "PAGE_VIEW_MODE"
+0039 => TSETS    2   0  15  ; "_view_mode"
+0040    KPRI     2   0
+0041    GGET     3  21      ; "pcall"
+0042    GGET     4  22      ; "cre"
+0043    TGETS    4   4  23  ; "newDocView"
+0044    UGET     5   0      ; CanvasContext
+0045    MOV      6   5
+0046    TGETS    5   5  24  ; "getWidth"
+0047    CALL     5   2   2
+0048    UGET     6   0      ; CanvasContext
+0049    MOV      7   6
+0050    TGETS    6   6  25  ; "getHeight"
+0051    CALL     6   2   2
+0052    TGETS    7   0  15  ; "_view_mode"
+0053    CALL     3   3   5
+0054    TSETS    4   0  20  ; "_document"
+0055    MOV      2   3
+0056    IST          2
+0057    JMP      3 => 0061
+0058    GGET     3  26      ; "error"
+0059    TGETS    4   0  20  ; "_document"
+0060    CALL     3   1   2
+0061 => KPRI     3   2
+0062    TSETS    3   0  27  ; "is_open"
+0063    TGETS    3   0  28  ; "info"
+0064    KPRI     4   1
+0065    TSETS    4   3  29  ; "has_pages"
+0066    MOV      4   0
+0067    TGETS    3   0  30  ; "_readMetadata"
+0068    CALL     3   1   2
+0069    TGETS    3   0  28  ; "info"
+0070    KPRI     4   2
+0071    TSETS    4   3  31  ; "configurable"
+0072    MOV      4   0
+0073    TGETS    3   0  32  ; "setupCallCache"
+0074    CALL     3   1   2
+0075    RET0     0   1
+
+-- BYTECODE -- credocument.lua:166-168
+0001    GGET     1   0      ; "cre"
+0002    TGETS    1   1   1  ; "getDomVersionWithNormalizedXPointers"
+0003    CALLT    1   1
+
+-- BYTECODE -- credocument.lua:170-172
+0001    GGET     1   0      ; "cre"
+0002    TGETS    1   1   1  ; "getLatestDomVersion"
+0003    CALLT    1   1
+
+-- BYTECODE -- credocument.lua:174-176
+0001    KNUM     1   0      ; 20171225
+0002    RET1     1   2
+
+-- BYTECODE -- credocument.lua:178-181
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: requesting DOM version:"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    GGET     2   2      ; "cre"
+0007    TGETS    2   2   3  ; "requestDomVersion"
+0008    MOV      3   1
+0009    CALL     2   1   2
+0010    RET0     0   1
+
+-- BYTECODE -- credocument.lua:183-208
+0001    TGETS    1   0   0  ; "loaded"
+0002    ISF          1
+0003    JMP      2 => 0005
+0004    RET0     0   1
+0005 => TGETS    1   0   1  ; "_document"
+0006    MOV      2   1
+0007    TGETS    1   1   2  ; "readDefaults"
+0008    CALL     1   1   2
+0009    UGET     1   0      ; logger
+0010    TGETS    1   1   3  ; "dbg"
+0011    KSTR     2   4      ; "CreDocument: applied cr3.ini default set"~
+0012    CALL     1   1   2
+0013    MOV      2   0
+0014    TGETS    1   0   5  ; "setupFallbackFontFaces"
+0015    CALL     1   1   2
+0016    TGETS    1   0   1  ; "_document"
+0017    MOV      2   1
+0018    TGETS    1   1   6  ; "adjustFontSizes"
+0019    UGET     3   1      ; CanvasContext
+0020    MOV      4   3
+0021    TGETS    3   3   7  ; "getDPI"
+0022    CALL     3   0   2
+0023    CALLM    1   1   1
+0024    GGET     1   8      ; "G_reader_settings"
+0025    MOV      2   1
+0026    TGETS    1   1   9  ; "readSetting"
+0027    KSTR     3  10      ; "cre_header_status_font_size"
+0028    CALL     1   2   3
+0029    ISF          1
+0030    JMP      2 => 0041
+0031    TGETS    1   0   1  ; "_document"
+0032    MOV      2   1
+0033    TGETS    1   1  11  ; "setIntProperty"
+0034    KSTR     3  12      ; "crengine.page.header.font.size"
+0035    GGET     4   8      ; "G_reader_settings"
+0036    MOV      5   4
+0037    TGETS    4   4   9  ; "readSetting"
+0038    KSTR     6  10      ; "cre_header_status_font_size"
+0039    CALL     4   0   3
+0040    CALLM    1   1   2
+0041 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:210-227
+0001    TGETS    2   0   0  ; "_loaded"
+0002    IST          2
+0003    JMP      2 => 0038
+0004    ISEQP    1   1
+0005    JMP      2 => 0008
+0006    KPRI     2   1
+0007    JMP      3 => 0009
+0008 => KPRI     2   2
+0009 => UGET     3   0      ; logger
+0010    TGETS    3   3   1  ; "dbg"
+0011    KSTR     4   2      ; "CreDocument: loading document..."
+0012    CALL     3   1   2
+0013    ISF          2
+0014    JMP      3 => 0019
+0015    MOV      4   0
+0016    TGETS    3   0   3  ; "setFontFace"
+0017    TGETS    5   0   4  ; "default_font"
+0018    CALL     3   1   3
+0019 => TGETS    3   0   5  ; "_document"
+0020    MOV      4   3
+0021    TGETS    3   3   6  ; "loadDocument"
+0022    TGETS    5   0   7  ; "file"
+0023    MOV      6   2
+0024    CALL     3   2   4
+0025    ISF          3
+0026    JMP      4 => 0034
+0027    KPRI     3   2
+0028    TSETS    3   0   0  ; "_loaded"
+0029    UGET     3   0      ; logger
+0030    TGETS    3   3   1  ; "dbg"
+0031    KSTR     4   8      ; "CreDocument: loading done."
+0032    CALL     3   1   2
+0033    JMP      3 => 0038
+0034 => UGET     3   0      ; logger
+0035    TGETS    3   3   1  ; "dbg"
+0036    KSTR     4   9      ; "CreDocument: loading failed."
+0037    CALL     3   1   2
+0038 => TGETS    2   0   0  ; "_loaded"
+0039    RET1     2   2
+
+-- BYTECODE -- credocument.lua:229-243
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "loadDocument"
+0003    CALL     1   1   2
+0004    UGET     1   0      ; logger
+0005    TGETS    1   1   1  ; "dbg"
+0006    KSTR     2   2      ; "CreDocument: rendering document..."
+0007    CALL     1   1   2
+0008    TGETS    1   0   3  ; "_document"
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "renderDocument"
+0011    CALL     1   1   2
+0012    TGETS    1   0   5  ; "info"
+0013    TGETS    2   0   3  ; "_document"
+0014    MOV      3   2
+0015    TGETS    2   2   7  ; "getFullHeight"
+0016    CALL     2   2   2
+0017    TSETS    2   1   6  ; "doc_height"
+0018    KPRI     1   2
+0019    TSETS    1   0   8  ; "been_rendered"
+0020    UGET     1   0      ; logger
+0021    TGETS    1   1   1  ; "dbg"
+0022    KSTR     2   9      ; "CreDocument: rendering done."
+0023    CALL     1   1   2
+0024    RET0     0   1
+
+-- BYTECODE -- credocument.lua:245-253
+0001    UGET     1   0      ; Document
+0002    TGETS    1   1   0  ; "_readMetadata"
+0003    MOV      2   0
+0004    CALL     1   1   2
+0005    TGETS    1   0   1  ; "been_rendered"
+0006    ISF          1
+0007    JMP      2 => 0014
+0008    TGETS    1   0   2  ; "info"
+0009    TGETS    2   0   4  ; "_document"
+0010    MOV      3   2
+0011    TGETS    2   2   5  ; "getFullHeight"
+0012    CALL     2   2   2
+0013    TSETS    2   1   3  ; "doc_height"
+0014 => KPRI     1   2
+0015    RET1     1   2
+
+-- BYTECODE -- credocument.lua:255-261
+0001    UGET     1   0      ; Document
+0002    TGETS    1   1   0  ; "close"
+0003    MOV      2   0
+0004    CALL     1   1   2
+0005    TGETS    1   0   1  ; "buffer"
+0006    ISF          1
+0007    JMP      2 => 0014
+0008    TGETS    1   0   1  ; "buffer"
+0009    MOV      2   1
+0010    TGETS    1   1   2  ; "free"
+0011    CALL     1   1   2
+0012    KPRI     1   0
+0013    TSETS    1   0   1  ; "buffer"
+0014 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:263-271
+0001    UGET     1   0      ; Document
+0002    TGETS    1   1   0  ; "updateColorRendering"
+0003    MOV      2   0
+0004    CALL     1   1   2
+0005    TGETS    1   0   1  ; "buffer"
+0006    ISF          1
+0007    JMP      2 => 0014
+0008    TGETS    1   0   1  ; "buffer"
+0009    MOV      2   1
+0010    TGETS    1   1   2  ; "free"
+0011    CALL     1   1   2
+0012    KPRI     1   0
+0013    TSETS    1   0   1  ; "buffer"
+0014 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:273-275
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getPages"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:277-288
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "loadDocument"
+0003    CALL     1   2   2
+0004    IST          1
+0005    JMP      1 => 0008
+0006    KPRI     1   0
+0007    RET1     1   2
+0008 => TGETS    1   0   1  ; "_document"
+0009    MOV      2   1
+0010    TGETS    1   1   2  ; "getCoverPageImageData"
+0011    CALL     1   3   2
+0012    ISF          1
+0013    JMP      3 => 0027
+0014    ISF          2
+0015    JMP      3 => 0027
+0016    UGET     3   0      ; RenderImage
+0017    MOV      4   3
+0018    TGETS    3   3   3  ; "renderImageData"
+0019    MOV      5   1
+0020    MOV      6   2
+0021    CALL     3   2   4
+0022    UGET     4   1      ; C
+0023    TGETS    4   4   4  ; "free"
+0024    MOV      5   1
+0025    CALL     4   1   2
+0026    RET1     3   2
+0027 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:290-298
+0001    TGETS    3   0   0  ; "_document"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "getImageDataFromPosition"
+0004    TGETS    5   1   2  ; "x"
+0005    TGETS    6   1   3  ; "y"
+0006    CALL     3   3   4
+0007    ISF          3
+0008    JMP      5 => 0029
+0009    ISF          4
+0010    JMP      5 => 0029
+0011    UGET     5   0      ; logger
+0012    TGETS    5   5   4  ; "dbg"
+0013    KSTR     6   5      ; "CreDocument: got image data from positio"~
+0014    MOV      7   3
+0015    MOV      8   4
+0016    CALL     5   1   4
+0017    UGET     5   1      ; RenderImage
+0018    MOV      6   5
+0019    TGETS    5   5   6  ; "renderImageData"
+0020    MOV      7   3
+0021    MOV      8   4
+0022    MOV      9   2
+0023    CALL     5   2   5
+0024    UGET     6   2      ; C
+0025    TGETS    6   6   7  ; "free"
+0026    MOV      7   3
+0027    CALL     6   1   2
+0028    RET1     5   2
+0029 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:300-328
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getWordFromPosition"
+0004    TGETS    4   1   2  ; "x"
+0005    TGETS    5   1   3  ; "y"
+0006    CALL     2   2   4
+0007    UGET     3   0      ; logger
+0008    TGETS    3   3   4  ; "dbg"
+0009    KSTR     4   5      ; "CreDocument: get word box"
+0010    MOV      5   2
+0011    CALL     3   1   3
+0012    TGETS    3   0   0  ; "_document"
+0013    MOV      4   3
+0014    TGETS    3   3   6  ; "getTextFromPositions"
+0015    TGETS    5   1   2  ; "x"
+0016    TGETS    6   1   3  ; "y"
+0017    TGETS    7   1   2  ; "x"
+0018    TGETS    8   1   3  ; "y"
+0019    CALL     3   2   6
+0020    UGET     4   0      ; logger
+0021    TGETS    4   4   4  ; "dbg"
+0022    KSTR     5   7      ; "CreDocument: get text range"
+0023    MOV      6   3
+0024    CALL     4   1   3
+0025    TDUP     4  11
+0026    TGETS    5   3   8  ; "text"
+0027    ISNES    5   9      ; ""
+0028    JMP      5 => 0032
+0029    TGETS    5   2  10  ; "word"
+0030    IST          5
+0031    JMP      6 => 0033
+0032 => TGETS    5   3   8  ; "text"
+0033 => TSETS    5   4  10  ; "word"
+0034    TGETS    5   0   0  ; "_document"
+0035    MOV      6   5
+0036    TGETS    5   5  12  ; "getCurrentPage"
+0037    CALL     5   2   2
+0038    TSETS    5   4  13  ; "page"
+0039    TGETS    5   2  10  ; "word"
+0040    ISF          5
+0041    JMP      6 => 0061
+0042    UGET     5   1      ; Geom
+0043    MOV      6   5
+0044    TGETS    5   5  15  ; "new"
+0045    TDUP     7  17
+0046    TGETS    8   2  16  ; "x0"
+0047    TSETS    8   7   2  ; "x"
+0048    TGETS    8   2  18  ; "y0"
+0049    TSETS    8   7   3  ; "y"
+0050    TGETS    8   2  19  ; "x1"
+0051    TGETS    9   2  16  ; "x0"
+0052    SUBVV    8   8   9
+0053    TSETS    8   7  20  ; "w"
+0054    TGETS    8   2  21  ; "y1"
+0055    TGETS    9   2  18  ; "y0"
+0056    SUBVV    8   8   9
+0057    TSETS    8   7  22  ; "h"
+0058    CALL     5   2   3
+0059    TSETS    5   4  14  ; "sbox"
+0060    JMP      5 => 0071
+0061 => UGET     5   1      ; Geom
+0062    MOV      6   5
+0063    TGETS    5   5  15  ; "new"
+0064    TDUP     7  23
+0065    TGETS    8   1   2  ; "x"
+0066    TSETS    8   7   2  ; "x"
+0067    TGETS    8   1   3  ; "y"
+0068    TSETS    8   7   3  ; "y"
+0069    CALL     5   2   3
+0070    TSETS    5   4  14  ; "sbox"
+0071 => ISF          3
+0072    JMP      5 => 0077
+0073    TGETS    5   3  24  ; "pos0"
+0074    TSETS    5   4  24  ; "pos0"
+0075    TGETS    5   3  25  ; "pos1"
+0076    TSETS    5   4  25  ; "pos1"
+0077 => RET1     4   2
+
+-- BYTECODE -- credocument.lua:330-342
+0001    TGETS    3   0   0  ; "_document"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "getTextFromPositions"
+0004    TGETS    5   1   2  ; "x"
+0005    TGETS    6   1   3  ; "y"
+0006    TGETS    7   2   2  ; "x"
+0007    TGETS    8   2   3  ; "y"
+0008    CALL     3   2   6
+0009    UGET     4   0      ; logger
+0010    TGETS    4   4   4  ; "dbg"
+0011    KSTR     5   5      ; "CreDocument: get text range"
+0012    MOV      6   3
+0013    CALL     4   1   3
+0014    ISF          3
+0015    JMP      4 => 0024
+0016    TDUP     4   7
+0017    TGETS    5   3   6  ; "text"
+0018    TSETS    5   4   6  ; "text"
+0019    TGETS    5   3   8  ; "pos0"
+0020    TSETS    5   4   8  ; "pos0"
+0021    TGETS    5   3   9  ; "pos1"
+0022    TSETS    5   4   9  ; "pos1"
+0023    RET1     4   2
+0024 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:344-358
+0001    TNEW     4   0
+0002    ISF          1
+0003    JMP      5 => 0040
+0004    ISF          2
+0005    JMP      5 => 0040
+0006    TGETS    5   0   0  ; "_document"
+0007    MOV      6   5
+0008    TGETS    5   5   1  ; "getWordBoxesFromPositions"
+0009    MOV      7   1
+0010    MOV      8   2
+0011    MOV      9   3
+0012    CALL     5   2   5
+0013    KSHORT   6   1
+0014    LEN      7   5
+0015    KSHORT   8   1
+0016    FORI     6 => 0040
+0017 => TGETV   10   5   9
+0018    GGET    11   2      ; "table"
+0019    TGETS   11  11   3  ; "insert"
+0020    MOV     12   4
+0021    UGET    13   0      ; Geom
+0022    MOV     14  13
+0023    TGETS   13  13   4  ; "new"
+0024    TDUP    15   6
+0025    TGETS   16  10   5  ; "x0"
+0026    TSETS   16  15   7  ; "x"
+0027    TGETS   16  10   8  ; "y0"
+0028    TSETS   16  15   9  ; "y"
+0029    TGETS   16  10  10  ; "x1"
+0030    TGETS   17  10   5  ; "x0"
+0031    SUBVV   16  16  17
+0032    TSETS   16  15  11  ; "w"
+0033    TGETS   16  10  12  ; "y1"
+0034    TGETS   17  10   8  ; "y0"
+0035    SUBVV   16  16  17
+0036    TSETS   16  15  13  ; "h"
+0037    CALL    13   0   3
+0038    CALLM   11   1   1
+0039    FORL     6 => 0017
+0040 => RET1     4   2
+
+-- BYTECODE -- credocument.lua:360-363
+0001    TGETS    3   0   0  ; "_document"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "compareXPointers"
+0004    MOV      5   1
+0005    MOV      6   2
+0006    CALLT    3   4
+
+-- BYTECODE -- credocument.lua:365-367
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getNextVisibleWordStart"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:369-371
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getNextVisibleWordEnd"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:373-375
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getPrevVisibleWordStart"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:377-379
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getPrevVisibleWordEnd"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:381-383
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getPrevVisibleChar"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:385-387
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getNextVisibleChar"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:389-419
+0001    TGETS    6   0   0  ; "buffer"
+0002    ISF          6
+0003    JMP      7 => 0020
+0004    TGETS    6   0   0  ; "buffer"
+0005    TGETS    6   6   1  ; "w"
+0006    TGETS    7   4   1  ; "w"
+0007    ISNEV    6   7
+0008    JMP      6 => 0014
+0009    TGETS    6   0   0  ; "buffer"
+0010    TGETS    6   6   2  ; "h"
+0011    TGETS    7   4   2  ; "h"
+0012    ISEQV    6   7
+0013    JMP      6 => 0020
+0014 => TGETS    6   0   0  ; "buffer"
+0015    MOV      7   6
+0016    TGETS    6   6   3  ; "free"
+0017    CALL     6   1   2
+0018    KPRI     6   0
+0019    TSETS    6   0   0  ; "buffer"
+0020 => TGETS    6   0   0  ; "buffer"
+0021    IST          6
+0022    JMP      6 => 0037
+0023    UGET     6   0      ; Blitbuffer
+0024    TGETS    6   6   4  ; "new"
+0025    TGETS    7   4   1  ; "w"
+0026    TGETS    8   4   2  ; "h"
+0027    TGETS    9   0   5  ; "render_color"
+0028    ISF          9
+0029    JMP     10 => 0034
+0030    UGET     9   0      ; Blitbuffer
+0031    TGETS    9   9   6  ; "TYPE_BBRGB32"
+0032    IST          9
+0033    JMP     10 => 0035
+0034 => KPRI     9   0
+0035 => CALL     6   2   4
+0036    TSETS    6   0   0  ; "buffer"
+0037 => TGETS    6   0   9  ; "_document"
+0038    MOV      7   6
+0039    TGETS    6   6  10  ; "drawCurrentPage"
+0040    TGETS    8   0   0  ; "buffer"
+0041    TGETS    9   0   5  ; "render_color"
+0042    UGET    10   1      ; Screen
+0043    TGETS   10  10  11  ; "night_mode"
+0044    ISF         10
+0045    JMP     11 => 0047
+0046    TGETS   10   0  12  ; "_nightmode_images"
+0047 => TGETS   11   0  13  ; "_smooth_scaling"
+0048    UGET    12   1      ; Screen
+0049    TGETS   12  12  14  ; "sw_dithering"
+0050    CALL     6   3   7
+0051    TSETS    7   0   8  ; "_drawn_images_surface_ratio"
+0052    TSETS    6   0   7  ; "_drawn_images_count"
+0053    MOV      7   1
+0054    TGETS    6   1  15  ; "blitFrom"
+0055    TGETS    8   0   0  ; "buffer"
+0056    MOV      9   2
+0057    MOV     10   3
+0058    KSHORT  11   0
+0059    KSHORT  12   0
+0060    TGETS   13   4   1  ; "w"
+0061    TGETS   14   4   2  ; "h"
+0062    CALL     6   1   9
+0063    RET0     0   1
+
+-- BYTECODE -- credocument.lua:421-424
+0001    TGETS    6   0   0  ; "_document"
+0002    MOV      7   6
+0003    TGETS    6   6   1  ; "gotoPos"
+0004    MOV      8   5
+0005    CALL     6   1   3
+0006    MOV      7   0
+0007    TGETS    6   0   2  ; "drawCurrentView"
+0008    MOV      8   1
+0009    MOV      9   2
+0010    MOV     10   3
+0011    MOV     11   4
+0012    CALL     6   1   6
+0013    RET0     0   1
+
+-- BYTECODE -- credocument.lua:426-429
+0001    TGETS    6   0   0  ; "_document"
+0002    MOV      7   6
+0003    TGETS    6   6   1  ; "gotoPage"
+0004    MOV      8   5
+0005    CALL     6   1   3
+0006    MOV      7   0
+0007    TGETS    6   0   2  ; "drawCurrentView"
+0008    MOV      8   1
+0009    MOV      9   2
+0010    MOV     10   3
+0011    MOV     11   4
+0012    CALL     6   1   6
+0013    RET0     0   1
+
+-- BYTECODE -- credocument.lua:431-432
+0001    RET0     0   1
+
+-- BYTECODE -- credocument.lua:434-435
+0001    RET0     0   1
+
+-- BYTECODE -- credocument.lua:437-438
+0001    RET0     0   1
+
+-- BYTECODE -- credocument.lua:440-442
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getPageMargins"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:444-446
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getHeaderHeight"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:448-451
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: goto xpointer"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "gotoXPointer"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- credocument.lua:453-455
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getXPointer"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:457-459
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "isXPointerInDocument"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:461-463
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getPosFromXPointer"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:465-467
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getPageFromXPointer"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:469-471
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getPageOffsetX"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:473-498
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "getPageMargins"
+0003    CALL     2   2   2
+0004    MOV      4   0
+0005    TGETS    3   0   1  ; "getPosFromXPointer"
+0006    MOV      5   1
+0007    CALL     3   3   3
+0008    MOV      6   0
+0009    TGETS    5   0   2  ; "getCurrentPos"
+0010    CALL     5   2   2
+0011    SUBVV    6   3   5
+0012    TGETS    7   2   3  ; "left"
+0013    ADDVV    7   4   7
+0014    TGETS    8   0   4  ; "_view_mode"
+0015    TGETS    9   0   5  ; "PAGE_VIEW_MODE"
+0016    ISNEV    8   9
+0017    JMP      8 => 0053
+0018    MOV      9   0
+0019    TGETS    8   0   6  ; "getVisiblePageCount"
+0020    CALL     8   2   2
+0021    KSHORT   9   1
+0022    ISGE     9   8
+0023    JMP      8 => 0047
+0024    MOV      9   0
+0025    TGETS    8   0   7  ; "getCurrentPage"
+0026    CALL     8   2   2
+0027    ADDVN    8   8   0  ; 1
+0028    MOV     10   0
+0029    TGETS    9   0   8  ; "getPageCount"
+0030    CALL     9   2   2
+0031    ISGT     8   9
+0032    JMP      9 => 0047
+0033    TGETS    9   0   9  ; "_document"
+0034    MOV     10   9
+0035    TGETS    9   9  10  ; "getPageStartY"
+0036    MOV     11   8
+0037    CALL     9   2   3
+0038    ISGT     9   3
+0039    JMP     10 => 0047
+0040    SUBVV    6   3   9
+0041    TGETS   10   0   9  ; "_document"
+0042    MOV     11  10
+0043    TGETS   10  10  11  ; "getPageOffsetX"
+0044    MOV     12   8
+0045    CALL    10   2   3
+0046    ADDVV    7   7  10
+0047 => TGETS    8   2  12  ; "top"
+0048    ADDVV    8   6   8
+0049    MOV     10   0
+0050    TGETS    9   0  13  ; "getHeaderHeight"
+0051    CALL     9   2   2
+0052    ADDVV    6   8   9
+0053 => MOV      8   6
+0054    MOV      9   7
+0055    RET      8   3
+
+-- BYTECODE -- credocument.lua:500-502
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getFontFace"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:504-506
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getCurrentPos"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:508-510
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getPageLinks"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:512-514
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getLinkFromPosition"
+0004    TGETS    4   1   2  ; "x"
+0005    TGETS    5   1   3  ; "y"
+0006    CALLT    2   4
+
+-- BYTECODE -- credocument.lua:516-518
+0001    TGETS    5   0   0  ; "_document"
+0002    MOV      6   5
+0003    TGETS    5   5   1  ; "isLinkToFootnote"
+0004    MOV      7   1
+0005    MOV      8   2
+0006    MOV      9   3
+0007    MOV     10   4
+0008    CALLT    5   6
+
+-- BYTECODE -- credocument.lua:520-523
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "highlightXPointer"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:525-529
+0001    ISF          1
+0002    JMP      2 => 0008
+0003    TGETS    2   0   0  ; "_document"
+0004    MOV      3   2
+0005    TGETS    2   2   1  ; "getDocumentFileContent"
+0006    MOV      4   1
+0007    CALLT    2   3
+0008 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:531-535
+0001    ISF          1
+0002    JMP      2 => 0008
+0003    TGETS    2   0   0  ; "_document"
+0004    MOV      3   2
+0005    TGETS    2   2   1  ; "getTextFromXPointer"
+0006    MOV      4   1
+0007    CALLT    2   3
+0008 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:537-539
+0001    TGETS    3   0   0  ; "_document"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "getTextFromXPointers"
+0004    MOV      5   1
+0005    MOV      6   2
+0006    CALLT    3   4
+
+-- BYTECODE -- credocument.lua:541-545
+0001    ISF          1
+0002    JMP      4 => 0010
+0003    TGETS    4   0   0  ; "_document"
+0004    MOV      5   4
+0005    TGETS    4   4   1  ; "getHTMLFromXPointer"
+0006    MOV      6   1
+0007    MOV      7   2
+0008    MOV      8   3
+0009    CALLT    4   5
+0010 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:547-551
+0001    ISF          1
+0002    JMP      5 => 0013
+0003    ISF          2
+0004    JMP      5 => 0013
+0005    TGETS    5   0   0  ; "_document"
+0006    MOV      6   5
+0007    TGETS    5   5   1  ; "getHTMLFromXPointers"
+0008    MOV      7   1
+0009    MOV      8   2
+0010    MOV      9   3
+0011    MOV     10   4
+0012    CALLT    5   6
+0013 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:553-558
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getNormalizedXPointer"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:560-563
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: goto position"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "gotoPos"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- credocument.lua:565-568
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: goto page"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "gotoPage"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- credocument.lua:570-573
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: goto link"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "gotoLink"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- credocument.lua:575-578
+0001    UGET     1   0      ; logger
+0002    TGETS    1   1   0  ; "dbg"
+0003    KSTR     2   1      ; "CreDocument: go back"
+0004    CALL     1   1   2
+0005    TGETS    1   0   2  ; "_document"
+0006    MOV      2   1
+0007    TGETS    1   1   3  ; "goBack"
+0008    CALL     1   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- credocument.lua:580-583
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: go forward"
+0004    CALL     2   1   2
+0005    TGETS    2   0   2  ; "_document"
+0006    MOV      3   2
+0007    TGETS    2   2   3  ; "goForward"
+0008    CALL     2   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- credocument.lua:585-587
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getCurrentPage"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:589-626
+0001    ISF          1
+0002    JMP      2 => 0026
+0003    UGET     2   0      ; logger
+0004    TGETS    2   2   0  ; "dbg"
+0005    KSTR     3   1      ; "CreDocument: set font face"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    TGETS    2   0   2  ; "_document"
+0009    MOV      3   2
+0010    TGETS    2   2   3  ; "setStringProperty"
+0011    KSTR     4   4      ; "font.face.default"
+0012    MOV      5   1
+0013    CALL     2   1   4
+0014    TGETS    2   0   2  ; "_document"
+0015    MOV      3   2
+0016    TGETS    2   2   5  ; "setAsPreferredFontWithBias"
+0017    MOV      4   1
+0018    KSHORT   5   1
+0019    CALL     2   1   4
+0020    TGETS    2   0   2  ; "_document"
+0021    MOV      3   2
+0022    TGETS    2   2   5  ; "setAsPreferredFontWithBias"
+0023    MOV      4   1
+0024    KSHORT   5 1921
+0025    CALL     2   1   4
+0026 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:628-654
+0001    TNEW     1   0
+0002    TNEW     2   0
+0003    GGET     3   0      ; "G_reader_settings"
+0004    MOV      4   3
+0005    TGETS    3   3   1  ; "readSetting"
+0006    KSTR     5   2      ; "fallback_font"
+0007    CALL     3   2   3
+0008    ISF          3
+0009    JMP      4 => 0017
+0010    GGET     4   3      ; "table"
+0011    TGETS    4   4   4  ; "insert"
+0012    MOV      5   1
+0013    MOV      6   3
+0014    CALL     4   1   3
+0015    KPRI     4   2
+0016    TSETV    4   2   3
+0017 => GGET     4   5      ; "pairs"
+0018    TGETS    5   0   6  ; "fallback_fonts"
+0019    CALL     4   4   2
+0020    ISNEXT   7 => 0031
+0021 => TGETV    9   2   8
+0022    IST          9
+0023    JMP      9 => 0031
+0024    GGET     9   3      ; "table"
+0025    TGETS    9   9   4  ; "insert"
+0026    MOV     10   1
+0027    MOV     11   8
+0028    CALL     9   1   3
+0029    KPRI     9   2
+0030    TSETV    9   2   8
+0031 => ITERN    7   3   3
+0032    ITERL    7 => 0021
+0033    GGET     4   0      ; "G_reader_settings"
+0034    MOV      5   4
+0035    TGETS    4   4   7  ; "isFalse"
+0036    KSTR     6   8      ; "additional_fallback_fonts"
+0037    CALL     4   2   3
+0038    ISF          4
+0039    JMP      5 => 0050
+0040    LEN      4   1
+0041    KSHORT   5   2
+0042    KSHORT   6  -1
+0043    FORI     4 => 0050
+0044 => GGET     8   3      ; "table"
+0045    TGETS    8   8   9  ; "remove"
+0046    MOV      9   1
+0047    MOV     10   7
+0048    CALL     8   1   3
+0049    FORL     4 => 0044
+0050 => GGET     4   3      ; "table"
+0051    TGETS    4   4  10  ; "concat"
+0052    MOV      5   1
+0053    KSTR     6  11      ; "|"
+0054    CALL     4   2   3
+0055    UGET     5   0      ; logger
+0056    TGETS    5   5  12  ; "dbg"
+0057    KSTR     6  13      ; "CreDocument: set fallback font faces:"
+0058    MOV      7   4
+0059    CALL     5   1   3
+0060    TGETS    5   0  14  ; "_document"
+0061    MOV      6   5
+0062    TGETS    5   5  15  ; "setStringProperty"
+0063    KSTR     7  16      ; "crengine.font.fallback.face"
+0064    MOV      8   4
+0065    CALL     5   1   4
+0066    RET0     0   1
+
+-- BYTECODE -- credocument.lua:658-663
+0001    ISF          1
+0002    JMP      2 => 0014
+0003    UGET     2   0      ; logger
+0004    TGETS    2   2   0  ; "dbg"
+0005    KSTR     3   1      ; "CreDocument: set textlang main lang"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    TGETS    2   0   2  ; "_document"
+0009    MOV      3   2
+0010    TGETS    2   2   3  ; "setStringProperty"
+0011    KSTR     4   4      ; "crengine.textlang.main.lang"
+0012    MOV      5   1
+0013    CALL     2   1   4
+0014 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:665-668
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set textlang embedded langs"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setStringProperty"
+0009    KSTR     4   4      ; "crengine.textlang.embedded.langs.enabled"
+0010    ISF          1
+0011    JMP      5 => 0014
+0012    KSHORT   5   1
+0013    JMP      6 => 0015
+0014 => KSHORT   5   0
+0015 => CALL     2   1   4
+0016    RET0     0   1
+
+-- BYTECODE -- credocument.lua:670-673
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set textlang hyphenation en"~
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setStringProperty"
+0009    KSTR     4   4      ; "crengine.textlang.hyphenation.enabled"
+0010    ISF          1
+0011    JMP      5 => 0014
+0012    KSHORT   5   1
+0013    JMP      6 => 0015
+0014 => KSHORT   5   0
+0015 => CALL     2   1   4
+0016    RET0     0   1
+
+-- BYTECODE -- credocument.lua:675-678
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set textlang hyphenation so"~
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setStringProperty"
+0009    KSTR     4   4      ; "crengine.textlang.hyphenation.soft.hyphe"~
+0010    ISF          1
+0011    JMP      5 => 0014
+0012    KSHORT   5   1
+0013    JMP      6 => 0015
+0014 => KSHORT   5   0
+0015 => CALL     2   1   4
+0016    RET0     0   1
+
+-- BYTECODE -- credocument.lua:680-683
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set textlang hyphenation fo"~
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setStringProperty"
+0009    KSTR     4   4      ; "crengine.textlang.hyphenation.force.algo"~
+0010    ISF          1
+0011    JMP      5 => 0014
+0012    KSHORT   5   1
+0013    JMP      6 => 0015
+0014 => KSHORT   5   0
+0015 => CALL     2   1   4
+0016    RET0     0   1
+
+-- BYTECODE -- credocument.lua:685-688
+0001    GGET     1   0      ; "cre"
+0002    TGETS    1   1   1  ; "getTextLangStatus"
+0003    CALL     1   4   1
+0004    TGETV    4   3   1
+0005    ISF          4
+0006    JMP      5 => 0009
+0007    TGETV    4   3   1
+0008    TGETS    4   4   2  ; "hyph_dict_name"
+0009 => RET1     4   2
+
+-- BYTECODE -- credocument.lua:691-696
+0001    ISF          1
+0002    JMP      2 => 0014
+0003    UGET     2   0      ; logger
+0004    TGETS    2   2   0  ; "dbg"
+0005    KSTR     3   1      ; "CreDocument: set hyphenation dictionary"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    TGETS    2   0   2  ; "_document"
+0009    MOV      3   2
+0010    TGETS    2   2   3  ; "setStringProperty"
+0011    KSTR     4   4      ; "crengine.hyphenation.directory"
+0012    MOV      5   1
+0013    CALL     2   1   4
+0014 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:698-702
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set hyphenation left hyphen"~
+0004    ISTC     4   1
+0005    JMP      4 => 0007
+0006    KSHORT   4   2
+0007 => CALL     2   1   3
+0008    TGETS    2   0   2  ; "_document"
+0009    MOV      3   2
+0010    TGETS    2   2   3  ; "setIntProperty"
+0011    KSTR     4   4      ; "crengine.hyphenation.left.hyphen.min"
+0012    ISTC     5   1
+0013    JMP      5 => 0015
+0014    KSHORT   5   2
+0015 => CALL     2   1   4
+0016    RET0     0   1
+
+-- BYTECODE -- credocument.lua:704-707
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set hyphenation right hyphe"~
+0004    ISTC     4   1
+0005    JMP      4 => 0007
+0006    KSHORT   4   2
+0007 => CALL     2   1   3
+0008    TGETS    2   0   2  ; "_document"
+0009    MOV      3   2
+0010    TGETS    2   2   3  ; "setIntProperty"
+0011    KSTR     4   4      ; "crengine.hyphenation.right.hyphen.min"
+0012    ISTC     5   1
+0013    JMP      5 => 0015
+0014    KSHORT   5   2
+0015 => CALL     2   1   4
+0016    RET0     0   1
+
+-- BYTECODE -- credocument.lua:709-712
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set hyphenation trust soft "~
+0004    ISF          1
+0005    JMP      4 => 0008
+0006    KSHORT   4   1
+0007    JMP      5 => 0009
+0008 => KSHORT   4   0
+0009 => CALL     2   1   3
+0010    TGETS    2   0   2  ; "_document"
+0011    MOV      3   2
+0012    TGETS    2   2   3  ; "setIntProperty"
+0013    KSTR     4   4      ; "crengine.hyphenation.trust.soft.hyphens"
+0014    ISF          1
+0015    JMP      5 => 0018
+0016    KSHORT   5   1
+0017    JMP      6 => 0019
+0018 => KSHORT   5   0
+0019 => CALL     2   1   4
+0020    RET0     0   1
+
+-- BYTECODE -- credocument.lua:714-721
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set render dpi"
+0004    ISTC     4   1
+0005    JMP      4 => 0007
+0006    KSHORT   4  96
+0007 => CALL     2   1   3
+0008    TGETS    2   0   2  ; "_document"
+0009    MOV      3   2
+0010    TGETS    2   2   3  ; "setIntProperty"
+0011    KSTR     4   4      ; "crengine.render.dpi"
+0012    ISTC     5   1
+0013    JMP      5 => 0015
+0014    KSHORT   5  96
+0015 => CALL     2   1   4
+0016    RET0     0   1
+
+-- BYTECODE -- credocument.lua:723-727
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set render scale font with "~
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setIntProperty"
+0009    KSTR     4   4      ; "crengine.render.scale.font.with.dpi"
+0010    MOV      5   1
+0011    CALL     2   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- credocument.lua:729-732
+0001    UGET     1   0      ; logger
+0002    TGETS    1   1   0  ; "dbg"
+0003    KSTR     2   1      ; "clear selection"
+0004    CALL     1   1   2
+0005    TGETS    1   0   2  ; "_document"
+0006    MOV      2   1
+0007    TGETS    1   1   3  ; "clearSelection"
+0008    CALL     1   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- credocument.lua:734-736
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getFontSize"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:738-743
+0001    ISF          1
+0002    JMP      2 => 0013
+0003    UGET     2   0      ; logger
+0004    TGETS    2   2   0  ; "dbg"
+0005    KSTR     3   1      ; "CreDocument: set font size"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    TGETS    2   0   2  ; "_document"
+0009    MOV      3   2
+0010    TGETS    2   2   3  ; "setFontSize"
+0011    MOV      4   1
+0012    CALL     2   1   3
+0013 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:745-755
+0001    ISF          1
+0002    JMP      2 => 0020
+0003    UGET     2   0      ; logger
+0004    TGETS    2   2   0  ; "dbg"
+0005    KSTR     3   1      ; "CreDocument: set view mode"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    ISNES    1   2      ; "scroll"
+0009    JMP      2 => 0013
+0010    TGETS    2   0   4  ; "SCROLL_VIEW_MODE"
+0011    TSETS    2   0   3  ; "_view_mode"
+0012    JMP      2 => 0015
+0013 => TGETS    2   0   5  ; "PAGE_VIEW_MODE"
+0014    TSETS    2   0   3  ; "_view_mode"
+0015 => TGETS    2   0   6  ; "_document"
+0016    MOV      3   2
+0017    TGETS    2   2   7  ; "setViewMode"
+0018    TGETS    4   0   3  ; "_view_mode"
+0019    CALL     2   1   3
+0020 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:757-760
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set view dimen"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setViewDimen"
+0009    TGETS    4   1   4  ; "w"
+0010    TGETS    5   1   5  ; "h"
+0011    CALL     2   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- credocument.lua:762-767
+0001    ISF          1
+0002    JMP      2 => 0013
+0003    UGET     2   0      ; logger
+0004    TGETS    2   2   0  ; "dbg"
+0005    KSTR     3   1      ; "CreDocument: set header font"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    TGETS    2   0   2  ; "_document"
+0009    MOV      3   2
+0010    TGETS    2   2   3  ; "setHeaderFont"
+0011    MOV      4   1
+0012    CALL     2   1   3
+0013 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:769-772
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: zoom font"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "zoomFont"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- credocument.lua:774-777
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set interline space"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setDefaultInterlineSpace"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- credocument.lua:779-782
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: toggle font bolder"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setIntProperty"
+0009    KSTR     4   4      ; "font.face.weight.embolden"
+0010    MOV      5   1
+0011    CALL     2   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- credocument.lua:784-786
+0001    GGET     1   0      ; "cre"
+0002    TGETS    1   1   1  ; "getGammaLevel"
+0003    CALLT    1   1
+
+-- BYTECODE -- credocument.lua:788-791
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set gamma index"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    GGET     2   2      ; "cre"
+0007    TGETS    2   2   3  ; "setGammaIndex"
+0008    MOV      3   1
+0009    CALL     2   1   2
+0010    RET0     0   1
+
+-- BYTECODE -- credocument.lua:793-796
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set font hinting mode"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setIntProperty"
+0009    KSTR     4   4      ; "font.hinting.mode"
+0010    MOV      5   1
+0011    CALL     2   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- credocument.lua:798-801
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set font kerning mode"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setIntProperty"
+0009    KSTR     4   4      ; "font.kerning.mode"
+0010    MOV      5   1
+0011    CALL     2   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- credocument.lua:803-813
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set space width scale"
+0004    TGETB    4   1   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setIntProperty"
+0009    KSTR     4   4      ; "crengine.style.space.width.scale.percent"
+0010    TGETB    5   1   1
+0011    CALL     2   1   4
+0012    UGET     2   0      ; logger
+0013    TGETS    2   2   0  ; "dbg"
+0014    KSTR     3   5      ; "CreDocument: set space condensing"
+0015    TGETB    4   1   2
+0016    CALL     2   1   3
+0017    TGETS    2   0   2  ; "_document"
+0018    MOV      3   2
+0019    TGETS    2   2   3  ; "setIntProperty"
+0020    KSTR     4   6      ; "crengine.style.space.condensing.percent"
+0021    TGETB    5   1   2
+0022    CALL     2   1   4
+0023    RET0     0   1
+
+-- BYTECODE -- credocument.lua:815-818
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set word expansion"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setIntProperty"
+0009    KSTR     4   4      ; "crengine.style.max.added.letter.spacing."~
+0010    ISTC     5   1
+0011    JMP      5 => 0013
+0012    KSHORT   5   0
+0013 => CALL     2   1   4
+0014    RET0     0   1
+
+-- BYTECODE -- credocument.lua:820-825
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "dbg"
+0003    KSTR     4   1      ; "CreDocument: set style sheet:"
+0004    ISF          1
+0005    JMP      5 => 0008
+0006    ISTC     5   1
+0007    JMP      5 => 0009
+0008 => KSTR     5   2      ; "no file"
+0009 => ISF          2
+0010    JMP      6 => 0017
+0011    KSTR     6   3      ; "and appended content ("
+0012    LEN      7   2
+0013    KSTR     8   4      ; " bytes)"
+0014    CAT      6   6   8
+0015    IST          6
+0016    JMP      7 => 0018
+0017 => KSTR     6   5      ; "(no appended content)"
+0018 => CALL     3   1   4
+0019    TGETS    3   0   6  ; "_document"
+0020    MOV      4   3
+0021    TGETS    3   3   7  ; "setStyleSheet"
+0022    MOV      5   1
+0023    MOV      6   2
+0024    CALL     3   1   4
+0025    RET0     0   1
+
+-- BYTECODE -- credocument.lua:827-831
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set embedded style sheet"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setIntProperty"
+0009    KSTR     4   4      ; "crengine.doc.embedded.styles.enabled"
+0010    MOV      5   1
+0011    CALL     2   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- credocument.lua:833-836
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set embedded fonts"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setIntProperty"
+0009    KSTR     4   4      ; "crengine.doc.embedded.fonts.enabled"
+0010    MOV      5   1
+0011    CALL     2   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- credocument.lua:838-844
+0001    UGET     5   0      ; logger
+0002    TGETS    5   5   0  ; "dbg"
+0003    KSTR     6   1      ; "CreDocument: set page margins"
+0004    MOV      7   1
+0005    MOV      8   2
+0006    MOV      9   3
+0007    MOV     10   4
+0008    CALL     5   1   6
+0009    TGETS    5   0   2  ; "_document"
+0010    MOV      6   5
+0011    TGETS    5   5   3  ; "setIntProperty"
+0012    KSTR     7   4      ; "crengine.page.margin.left"
+0013    MOV      8   1
+0014    CALL     5   1   4
+0015    TGETS    5   0   2  ; "_document"
+0016    MOV      6   5
+0017    TGETS    5   5   3  ; "setIntProperty"
+0018    KSTR     7   5      ; "crengine.page.margin.top"
+0019    MOV      8   2
+0020    CALL     5   1   4
+0021    TGETS    5   0   2  ; "_document"
+0022    MOV      6   5
+0023    TGETS    5   5   3  ; "setIntProperty"
+0024    KSTR     7   6      ; "crengine.page.margin.right"
+0025    MOV      8   3
+0026    CALL     5   1   4
+0027    TGETS    5   0   2  ; "_document"
+0028    MOV      6   5
+0029    TGETS    5   5   3  ; "setIntProperty"
+0030    KSTR     7   7      ; "crengine.page.margin.bottom"
+0031    MOV      8   4
+0032    CALL     5   1   4
+0033    RET0     0   1
+
+-- BYTECODE -- credocument.lua:846-849
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set block rendering flags"
+0004    GGET     4   2      ; "string"
+0005    TGETS    4   4   3  ; "format"
+0006    KSTR     5   4      ; "0x%x"
+0007    MOV      6   1
+0008    CALL     4   0   3
+0009    CALLM    2   1   1
+0010    TGETS    2   0   5  ; "_document"
+0011    MOV      3   2
+0012    TGETS    2   2   6  ; "setIntProperty"
+0013    KSTR     4   7      ; "crengine.render.block.rendering.flags"
+0014    MOV      5   1
+0015    CALL     2   1   4
+0016    RET0     0   1
+
+-- BYTECODE -- credocument.lua:851-854
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set smooth scaling"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TSETS    1   0   2  ; "_smooth_scaling"
+0007    RET0     0   1
+
+-- BYTECODE -- credocument.lua:856-859
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set nightmode images"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TSETS    1   0   2  ; "_nightmode_images"
+0007    RET0     0   1
+
+-- BYTECODE -- credocument.lua:861-865
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set floating punctuation"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setIntProperty"
+0009    KSTR     4   4      ; "crengine.style.floating.punctuation.enab"~
+0010    MOV      5   1
+0011    CALL     2   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- credocument.lua:867-870
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set txt preformatted"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setIntProperty"
+0009    KSTR     4   4      ; "crengine.file.txt.preformatted"
+0010    MOV      5   1
+0011    CALL     2   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- credocument.lua:872-874
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getVisiblePageCount"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:876-879
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set visible page count"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setVisiblePageCount"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- credocument.lua:881-884
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set battery state"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setBatteryState"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- credocument.lua:886-889
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: check xpointer in current p"~
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "isXPointerInCurrentPage"
+0009    MOV      4   1
+0010    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:891-894
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set status line property"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setStringProperty"
+0009    KSTR     4   4      ; "window.status.line"
+0010    MOV      5   1
+0011    CALL     2   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- credocument.lua:896-899
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set background image"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setBackgroundImage"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- credocument.lua:901-905
+0001    UGET     5   0      ; logger
+0002    TGETS    5   5   0  ; "dbg"
+0003    KSTR     6   1      ; "CreDocument: find text"
+0004    MOV      7   1
+0005    MOV      8   2
+0006    MOV      9   3
+0007    MOV     10   4
+0008    CALL     5   1   6
+0009    TGETS    5   0   2  ; "_document"
+0010    MOV      6   5
+0011    TGETS    5   5   3  ; "findText"
+0012    MOV      7   1
+0013    MOV      8   2
+0014    MOV      9   3
+0015    ISF          4
+0016    JMP     10 => 0019
+0017    KSHORT  10   1
+0018    JMP     11 => 0020
+0019 => KSHORT  10   0
+0020 => CALLT    5   6
+
+-- BYTECODE -- credocument.lua:907-918
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "CreDocument: set bookmarks highlight and"~
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "_document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setIntProperty"
+0009    KSTR     4   4      ; "crengine.highlight.bookmarks"
+0010    ISF          1
+0011    JMP      5 => 0014
+0012    KSHORT   5   2
+0013    JMP      6 => 0015
+0014 => KSHORT   5   0
+0015 => CALL     2   1   4
+0016    RET0     0   1
+
+-- BYTECODE -- credocument.lua:920-922
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "setCallback"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:924-926
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "isBuiltDomStale"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:928-930
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "hasCacheFile"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:932-934
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "invalidateCacheFile"
+0004    CALL     1   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- credocument.lua:936-938
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getCacheFilePath"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:940-942
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getStatistics"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:944-946
+0001    KPRI     1   2
+0002    RET1     1   2
+
+-- BYTECODE -- credocument.lua:948-950
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "isTocAlternativeToc"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:952-954
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "buildAlternativeToc"
+0004    CALL     1   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- credocument.lua:956-958
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "hasPageMap"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:960-962
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getPageMap"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:964-966
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getPageMapSource"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:968-970
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getPageMapCurrentPageLabel"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:972-974
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getPageMapFirstPageLabel"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:976-978
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getPageMapLastPageLabel"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:980-982
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getPageMapXPointerPageLabel"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- credocument.lua:984-986
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getPageMapVisiblePageLabels"
+0004    CALLT    1   2
+
+-- BYTECODE -- credocument.lua:988-1020
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "addProvider"
+0003    KSTR     4   1      ; "azw"
+0004    KSTR     5   2      ; "application/vnd.amazon.mobi8-ebook"
+0005    MOV      6   0
+0006    KSHORT   7  90
+0007    CALL     2   1   6
+0008    MOV      3   1
+0009    TGETS    2   1   0  ; "addProvider"
+0010    KSTR     4   3      ; "chm"
+0011    KSTR     5   4      ; "application/vnd.ms-htmlhelp"
+0012    MOV      6   0
+0013    KSHORT   7  90
+0014    CALL     2   1   6
+0015    MOV      3   1
+0016    TGETS    2   1   0  ; "addProvider"
+0017    KSTR     4   5      ; "doc"
+0018    KSTR     5   6      ; "application/msword"
+0019    MOV      6   0
+0020    KSHORT   7  90
+0021    CALL     2   1   6
+0022    MOV      3   1
+0023    TGETS    2   1   0  ; "addProvider"
+0024    KSTR     4   7      ; "docx"
+0025    KSTR     5   8      ; "application/vnd.openxmlformats-officedoc"~
+0026    MOV      6   0
+0027    KSHORT   7  90
+0028    CALL     2   1   6
+0029    MOV      3   1
+0030    TGETS    2   1   0  ; "addProvider"
+0031    KSTR     4   9      ; "epub"
+0032    KSTR     5  10      ; "application/epub+zip"
+0033    MOV      6   0
+0034    KSHORT   7 100
+0035    CALL     2   1   6
+0036    MOV      3   1
+0037    TGETS    2   1   0  ; "addProvider"
+0038    KSTR     4  11      ; "epub3"
+0039    KSTR     5  10      ; "application/epub+zip"
+0040    MOV      6   0
+0041    KSHORT   7 100
+0042    CALL     2   1   6
+0043    MOV      3   1
+0044    TGETS    2   1   0  ; "addProvider"
+0045    KSTR     4  12      ; "fb2"
+0046    KSTR     5  13      ; "application/fb2"
+0047    MOV      6   0
+0048    KSHORT   7  90
+0049    CALL     2   1   6
+0050    MOV      3   1
+0051    TGETS    2   1   0  ; "addProvider"
+0052    KSTR     4  14      ; "fb2.zip"
+0053    KSTR     5  15      ; "application/zip"
+0054    MOV      6   0
+0055    KSHORT   7  90
+0056    CALL     2   1   6
+0057    MOV      3   1
+0058    TGETS    2   1   0  ; "addProvider"
+0059    KSTR     4  16      ; "fb3"
+0060    KSTR     5  17      ; "application/fb3"
+0061    MOV      6   0
+0062    KSHORT   7  90
+0063    CALL     2   1   6
+0064    MOV      3   1
+0065    TGETS    2   1   0  ; "addProvider"
+0066    KSTR     4  18      ; "htm"
+0067    KSTR     5  19      ; "text/html"
+0068    MOV      6   0
+0069    KSHORT   7 100
+0070    CALL     2   1   6
+0071    MOV      3   1
+0072    TGETS    2   1   0  ; "addProvider"
+0073    KSTR     4  20      ; "html"
+0074    KSTR     5  19      ; "text/html"
+0075    MOV      6   0
+0076    KSHORT   7 100
+0077    CALL     2   1   6
+0078    MOV      3   1
+0079    TGETS    2   1   0  ; "addProvider"
+0080    KSTR     4  21      ; "htm.zip"
+0081    KSTR     5  15      ; "application/zip"
+0082    MOV      6   0
+0083    KSHORT   7 100
+0084    CALL     2   1   6
+0085    MOV      3   1
+0086    TGETS    2   1   0  ; "addProvider"
+0087    KSTR     4  22      ; "html.zip"
+0088    KSTR     5  15      ; "application/zip"
+0089    MOV      6   0
+0090    KSHORT   7 100
+0091    CALL     2   1   6
+0092    MOV      3   1
+0093    TGETS    2   1   0  ; "addProvider"
+0094    KSTR     4  23      ; "log"
+0095    KSTR     5  24      ; "text/plain"
+0096    MOV      6   0
+0097    CALL     2   1   5
+0098    MOV      3   1
+0099    TGETS    2   1   0  ; "addProvider"
+0100    KSTR     4  25      ; "log.zip"
+0101    KSTR     5  15      ; "application/zip"
+0102    MOV      6   0
+0103    CALL     2   1   5
+0104    MOV      3   1
+0105    TGETS    2   1   0  ; "addProvider"
+0106    KSTR     4  26      ; "md"
+0107    KSTR     5  24      ; "text/plain"
+0108    MOV      6   0
+0109    CALL     2   1   5
+0110    MOV      3   1
+0111    TGETS    2   1   0  ; "addProvider"
+0112    KSTR     4  27      ; "md.zip"
+0113    KSTR     5  15      ; "application/zip"
+0114    MOV      6   0
+0115    CALL     2   1   5
+0116    MOV      3   1
+0117    TGETS    2   1   0  ; "addProvider"
+0118    KSTR     4  28      ; "mobi"
+0119    KSTR     5  29      ; "application/x-mobipocket-ebook"
+0120    MOV      6   0
+0121    KSHORT   7  90
+0122    CALL     2   1   6
+0123    MOV      3   1
+0124    TGETS    2   1   0  ; "addProvider"
+0125    KSTR     4  30      ; "pdb"
+0126    KSTR     5  31      ; "application/vnd.palm"
+0127    MOV      6   0
+0128    KSHORT   7  90
+0129    CALL     2   1   6
+0130    MOV      3   1
+0131    TGETS    2   1   0  ; "addProvider"
+0132    KSTR     4  32      ; "prc"
+0133    KSTR     5  31      ; "application/vnd.palm"
+0134    MOV      6   0
+0135    CALL     2   1   5
+0136    MOV      3   1
+0137    TGETS    2   1   0  ; "addProvider"
+0138    KSTR     4  33      ; "tcr"
+0139    KSTR     5  34      ; "application/tcr"
+0140    MOV      6   0
+0141    CALL     2   1   5
+0142    MOV      3   1
+0143    TGETS    2   1   0  ; "addProvider"
+0144    KSTR     4  35      ; "txt"
+0145    KSTR     5  24      ; "text/plain"
+0146    MOV      6   0
+0147    KSHORT   7  90
+0148    CALL     2   1   6
+0149    MOV      3   1
+0150    TGETS    2   1   0  ; "addProvider"
+0151    KSTR     4  36      ; "txt.zip"
+0152    KSTR     5  15      ; "application/zip"
+0153    MOV      6   0
+0154    KSHORT   7  90
+0155    CALL     2   1   6
+0156    MOV      3   1
+0157    TGETS    2   1   0  ; "addProvider"
+0158    KSTR     4  37      ; "rtf"
+0159    KSTR     5  38      ; "application/rtf"
+0160    MOV      6   0
+0161    KSHORT   7  90
+0162    CALL     2   1   6
+0163    MOV      3   1
+0164    TGETS    2   1   0  ; "addProvider"
+0165    KSTR     4  39      ; "xhtml"
+0166    KSTR     5  40      ; "application/xhtml+xml"
+0167    MOV      6   0
+0168    KSHORT   7  90
+0169    CALL     2   1   6
+0170    MOV      3   1
+0171    TGETS    2   1   0  ; "addProvider"
+0172    KSTR     4  41      ; "zip"
+0173    KSTR     5  15      ; "application/zip"
+0174    MOV      6   0
+0175    KSHORT   7  10
+0176    CALL     2   1   6
+0177    MOV      3   1
+0178    TGETS    2   1   0  ; "addProvider"
+0179    KSTR     4  42      ; "sh"
+0180    KSTR     5  43      ; "application/x-shellscript"
+0181    MOV      6   0
+0182    KSHORT   7  90
+0183    CALL     2   1   6
+0184    MOV      3   1
+0185    TGETS    2   1   0  ; "addProvider"
+0186    KSTR     4  44      ; "py"
+0187    KSTR     5  45      ; "text/x-python"
+0188    MOV      6   0
+0189    KSHORT   7  90
+0190    CALL     2   1   6
+0191    RET0     0   1
+
+-- BYTECODE -- credocument.lua:1044-1047
+0001    UGET     0   0      ; self
+0002    TNEW     1   0
+0003    TSETS    1   0   0  ; "_call_cache"
+0004    UGET     0   0      ; self
+0005    TNEW     1   0
+0006    TSETS    1   0   1  ; "_call_cache_tags_lru"
+0007    RET0     0   1
+
+-- BYTECODE -- credocument.lua:1049-1051
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "_call_cache"
+0003    TGETV    1   1   0
+0004    RET1     1   2
+
+-- BYTECODE -- credocument.lua:1052-1054
+0001    UGET     2   0      ; self
+0002    TGETS    2   2   0  ; "_call_cache"
+0003    TSETV    1   2   0
+0004    RET0     0   1
+
+-- BYTECODE -- credocument.lua:1059-1076
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "_call_cache"
+0003    TGETV    1   1   0
+0004    IST          1
+0005    JMP      1 => 0010
+0006    UGET     1   0      ; self
+0007    TGETS    1   1   0  ; "_call_cache"
+0008    TNEW     2   0
+0009    TSETV    2   1   0
+0010 => UGET     1   0      ; self
+0011    TSETS    0   1   1  ; "_call_cache_current_tag"
+0012    UGET     1   0      ; self
+0013    TGETS    1   1   2  ; "_call_cache_tags_lru"
+0014    TGETB    1   1   1
+0015    ISEQV    1   0
+0016    JMP      1 => 0060
+0017    UGET     1   0      ; self
+0018    TGETS    1   1   2  ; "_call_cache_tags_lru"
+0019    LEN      1   1
+0020    KSHORT   2   1
+0021    KSHORT   3  -1
+0022    FORI     1 => 0053
+0023 => UGET     5   0      ; self
+0024    TGETS    5   5   2  ; "_call_cache_tags_lru"
+0025    TGETV    5   5   4
+0026    ISNEV    5   0
+0027    JMP      5 => 0035
+0028    GGET     5   3      ; "table"
+0029    TGETS    5   5   4  ; "remove"
+0030    UGET     6   0      ; self
+0031    TGETS    6   6   2  ; "_call_cache_tags_lru"
+0032    MOV      7   4
+0033    CALL     5   1   3
+0034    JMP      5 => 0052
+0035 => UGET     5   0      ; self
+0036    TGETS    5   5   5  ; "_call_cache_keep_tags_nb"
+0037    ISGE     5   4
+0038    JMP      5 => 0052
+0039    UGET     5   0      ; self
+0040    TGETS    5   5   0  ; "_call_cache"
+0041    UGET     6   0      ; self
+0042    TGETS    6   6   2  ; "_call_cache_tags_lru"
+0043    TGETV    6   6   4
+0044    KPRI     7   0
+0045    TSETV    7   5   6
+0046    GGET     5   3      ; "table"
+0047    TGETS    5   5   4  ; "remove"
+0048    UGET     6   0      ; self
+0049    TGETS    6   6   2  ; "_call_cache_tags_lru"
+0050    MOV      7   4
+0051    CALL     5   1   3
+0052 => FORL     1 => 0023
+0053 => GGET     1   3      ; "table"
+0054    TGETS    1   1   6  ; "insert"
+0055    UGET     2   0      ; self
+0056    TGETS    2   2   2  ; "_call_cache_tags_lru"
+0057    KSHORT   3   1
+0058    MOV      4   0
+0059    CALL     1   1   4
+0060 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:1077-1079
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "_call_cache_current_tag"
+0003    RET1     1   2
+
+-- BYTECODE -- credocument.lua:1081-1085
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "_call_cache_current_tag"
+0003    ISF          1
+0004    JMP      2 => 0019
+0005    UGET     1   0      ; self
+0006    TGETS    1   1   1  ; "_call_cache"
+0007    UGET     2   0      ; self
+0008    TGETS    2   2   0  ; "_call_cache_current_tag"
+0009    TGETV    1   1   2
+0010    ISF          1
+0011    JMP      2 => 0019
+0012    UGET     1   0      ; self
+0013    TGETS    1   1   1  ; "_call_cache"
+0014    UGET     2   0      ; self
+0015    TGETS    2   2   0  ; "_call_cache_current_tag"
+0016    TGETV    1   1   2
+0017    TGETV    1   1   0
+0018    RET1     1   2
+0019 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:1086-1090
+0001    UGET     2   0      ; self
+0002    TGETS    2   2   0  ; "_call_cache_current_tag"
+0003    ISF          2
+0004    JMP      3 => 0018
+0005    UGET     2   0      ; self
+0006    TGETS    2   2   1  ; "_call_cache"
+0007    UGET     3   0      ; self
+0008    TGETS    3   3   0  ; "_call_cache_current_tag"
+0009    TGETV    2   2   3
+0010    ISF          2
+0011    JMP      3 => 0018
+0012    UGET     2   0      ; self
+0013    TGETS    2   2   1  ; "_call_cache"
+0014    UGET     3   0      ; self
+0015    TGETS    3   3   0  ; "_call_cache_current_tag"
+0016    TGETV    2   2   3
+0017    TSETV    1   2   0
+0018 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:1094-1112
+0001    TNEW     0   0
+0002    GGET     1   0      ; "ipairs"
+0003    TNEW     2   3
+0004    VARG     3   0   0
+0005    TSETM    3   0      ; 1
+0006    CALL     1   4   2
+0007    JMP      4 => 0052
+0008 => KPRI     6   0
+0009    GGET     7   1      ; "type"
+0010    MOV      8   5
+0011    CALL     7   2   2
+0012    ISNES    7   2      ; "table"
+0013    JMP      7 => 0043
+0014    TNEW     7   0
+0015    GGET     8   3      ; "pairs"
+0016    MOV      9   5
+0017    CALL     8   4   2
+0018    ISNEXT  11 => 0030
+0019 => GGET    13   2      ; "table"
+0020    TGETS   13  13   4  ; "insert"
+0021    MOV     14   7
+0022    GGET    15   5      ; "tostring"
+0023    MOV     16  11
+0024    CALL    15   2   2
+0025    GGET    16   5      ; "tostring"
+0026    MOV     17  12
+0027    CALL    16   2   2
+0028    CAT     15  15  16
+0029    CALL    13   1   3
+0030 => ITERN   11   3   3
+0031    ITERL   11 => 0019
+0032    GGET     8   2      ; "table"
+0033    TGETS    8   8   6  ; "sort"
+0034    MOV      9   7
+0035    CALL     8   1   2
+0036    GGET     8   2      ; "table"
+0037    TGETS    8   8   7  ; "concat"
+0038    MOV      9   7
+0039    KSTR    10   8      ; "|"
+0040    CALL     8   2   3
+0041    MOV      6   8
+0042    JMP      7 => 0047
+0043 => GGET     7   5      ; "tostring"
+0044    MOV      8   5
+0045    CALL     7   2   2
+0046    MOV      6   7
+0047 => GGET     7   2      ; "table"
+0048    TGETS    7   7   4  ; "insert"
+0049    MOV      8   0
+0050    MOV      9   6
+0051    CALL     7   1   3
+0052 => ITERC    4   3   3
+0053    ITERL    4 => 0008
+0054    GGET     1   2      ; "table"
+0055    TGETS    1   1   7  ; "concat"
+0056    MOV      2   0
+0057    KSTR     3   8      ; "|"
+0058    CALLT    1   3
+
+-- BYTECODE -- credocument.lua:1114-1114
+0001    RET0     0   1
+
+-- BYTECODE -- credocument.lua:1123-1126
+0001    UGET     0   0      ; _gettime
+0002    CALL     0   3   1
+0003    DIVVN    2   1   0  ; 1000000
+0004    ADDVV    2   0   2
+0005    RET1     2   2
+
+-- BYTECODE -- credocument.lua:1127-1136
+0001    UGET     3   0      ; getTime
+0002    CALL     3   2   1
+0003    SUBVV    3   3   1
+0004    UGET     4   1      ; self
+0005    TGETS    4   4   0  ; "_call_cache_stats"
+0006    TGETV    4   4   0
+0007    IST          4
+0008    JMP      4 => 0016
+0009    UGET     4   1      ; self
+0010    TGETS    4   4   0  ; "_call_cache_stats"
+0011    TDUP     5   1
+0012    TSETB    3   5   4
+0013    TSETB    2   5   5
+0014    TSETV    5   4   0
+0015    JMP      4 => 0025
+0016 => UGET     4   1      ; self
+0017    TGETS    4   4   0  ; "_call_cache_stats"
+0018    TGETV    4   4   0
+0019    TGETB    5   4   3
+0020    ADDVN    5   5   0  ; 1
+0021    TSETB    5   4   3
+0022    TGETB    5   4   4
+0023    ADDVV    5   5   3
+0024    TSETB    5   4   4
+0025 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:1137-1147
+0001    UGET     2   0      ; getTime
+0002    CALL     2   2   1
+0003    SUBVV    2   2   1
+0004    IST          2
+0005    JMP      3 => 0007
+0006    KSHORT   2   0
+0007 => UGET     3   1      ; self
+0008    TGETS    3   3   0  ; "_call_cache_stats"
+0009    TGETV    3   3   0
+0010    IST          3
+0011    JMP      3 => 0018
+0012    UGET     3   1      ; self
+0013    TGETS    3   3   0  ; "_call_cache_stats"
+0014    TDUP     4   1
+0015    TSETB    2   4   2
+0016    TSETV    4   3   0
+0017    JMP      3 => 0027
+0018 => UGET     3   1      ; self
+0019    TGETS    3   3   0  ; "_call_cache_stats"
+0020    TGETV    3   3   0
+0021    TGETB    4   3   1
+0022    ADDVN    4   4   0  ; 1
+0023    TSETB    4   3   1
+0024    TGETB    4   3   2
+0025    ADDVV    4   4   2
+0026    TSETB    4   3   2
+0027 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:1148-1150
+0001    UGET     0   0      ; logger
+0002    TGETS    0   0   0  ; "info"
+0003    KSTR     1   1      ; "cre call cache statistics:\n"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   2  ; "getCallCacheStatistics"
+0006    CALL     2   2   1
+0007    CAT      1   1   2
+0008    CALL     0   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- credocument.lua:1152-1222
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "util"
+0003    CALL     0   2   2
+0004    TNEW     1   0
+0005    GGET     2   2      ; "table"
+0006    TGETS    2   2   3  ; "insert"
+0007    MOV      3   1
+0008    KSTR     4   4      ; "CRE call cache content:"
+0009    CALL     2   1   3
+0010    GGET     2   2      ; "table"
+0011    TGETS    2   2   3  ; "insert"
+0012    MOV      3   1
+0013    GGET     4   5      ; "string"
+0014    TGETS    4   4   6  ; "format"
+0015    KSTR     5   7      ; "     all: %d items"
+0016    TGETS    6   0   8  ; "tableSize"
+0017    UGET     7   0      ; self
+0018    TGETS    7   7   9  ; "_call_cache"
+0019    CALL     6   0   2
+0020    CALLM    4   0   1
+0021    CALLM    2   1   1
+0022    GGET     2   2      ; "table"
+0023    TGETS    2   2   3  ; "insert"
+0024    MOV      3   1
+0025    GGET     4   5      ; "string"
+0026    TGETS    4   4   6  ; "format"
+0027    KSTR     5  10      ; "  global: %d items"
+0028    TGETS    6   0   8  ; "tableSize"
+0029    UGET     7   0      ; self
+0030    TGETS    7   7   9  ; "_call_cache"
+0031    CALL     6   2   2
+0032    UGET     7   0      ; self
+0033    TGETS    7   7  11  ; "_call_cache_tags_lru"
+0034    LEN      7   7
+0035    SUBVV    6   6   7
+0036    CALL     4   0   3
+0037    CALLM    2   1   1
+0038    GGET     2   2      ; "table"
+0039    TGETS    2   2   3  ; "insert"
+0040    MOV      3   1
+0041    GGET     4   5      ; "string"
+0042    TGETS    4   4   6  ; "format"
+0043    KSTR     5  12      ; "    tags: %d items"
+0044    UGET     6   0      ; self
+0045    TGETS    6   6  11  ; "_call_cache_tags_lru"
+0046    LEN      6   6
+0047    CALL     4   0   3
+0048    CALLM    2   1   1
+0049    KSHORT   2   1
+0050    UGET     3   0      ; self
+0051    TGETS    3   3  11  ; "_call_cache_tags_lru"
+0052    LEN      3   3
+0053    KSHORT   4   1
+0054    FORI     2 => 0075
+0055 => GGET     6   2      ; "table"
+0056    TGETS    6   6   3  ; "insert"
+0057    MOV      7   1
+0058    GGET     8   5      ; "string"
+0059    TGETS    8   8   6  ; "format"
+0060    KSTR     9  13      ; "          '%s': %d items"
+0061    UGET    10   0      ; self
+0062    TGETS   10  10  11  ; "_call_cache_tags_lru"
+0063    TGETV   10  10   5
+0064    TGETS   11   0   8  ; "tableSize"
+0065    UGET    12   0      ; self
+0066    TGETS   12  12   9  ; "_call_cache"
+0067    UGET    13   0      ; self
+0068    TGETS   13  13  11  ; "_call_cache_tags_lru"
+0069    TGETV   13  13   5
+0070    TGETV   12  12  13
+0071    CALL    11   0   2
+0072    CALLM    8   0   2
+0073    CALLM    6   1   1
+0074    FORL     2 => 0055
+0075 => TNEW     2   0
+0076    TNEW     3   0
+0077    TNEW     4   0
+0078    GGET     5  14      ; "pairs"
+0079    UGET     6   0      ; self
+0080    TGETS    6   6  15  ; "_call_cache_stats"
+0081    CALL     5   4   2
+0082    ISNEXT   8 => 0111
+0083 => UGET    10   0      ; self
+0084    TGETS   10  10  15  ; "_call_cache_stats"
+0085    TGETV   10  10   8
+0086    TGETB   10  10   1
+0087    KSHORT  11   0
+0088    ISGE    11  10
+0089    JMP     10 => 0096
+0090    GGET    10   2      ; "table"
+0091    TGETS   10  10   3  ; "insert"
+0092    MOV     11   2
+0093    MOV     12   8
+0094    CALL    10   1   3
+0095    JMP     10 => 0111
+0096 => LEN     10   9
+0097    KSHORT  11   4
+0098    ISGE    11  10
+0099    JMP     10 => 0106
+0100    GGET    10   2      ; "table"
+0101    TGETS   10  10   3  ; "insert"
+0102    MOV     11   4
+0103    MOV     12   8
+0104    CALL    10   1   3
+0105    JMP     10 => 0111
+0106 => GGET    10   2      ; "table"
+0107    TGETS   10  10   3  ; "insert"
+0108    MOV     11   3
+0109    MOV     12   8
+0110    CALL    10   1   3
+0111 => ITERN    8   3   3
+0112    ITERL    8 => 0083
+0113    GGET     5   2      ; "table"
+0114    TGETS    5   5  16  ; "sort"
+0115    MOV      6   2
+0116    CALL     5   1   2
+0117    GGET     5   2      ; "table"
+0118    TGETS    5   5  16  ; "sort"
+0119    MOV      6   3
+0120    CALL     5   1   2
+0121    GGET     5   2      ; "table"
+0122    TGETS    5   5  16  ; "sort"
+0123    MOV      6   4
+0124    CALL     5   1   2
+0125    GGET     5   2      ; "table"
+0126    TGETS    5   5   3  ; "insert"
+0127    MOV      6   1
+0128    KSTR     7  17      ; "CRE call cache hits statistics:"
+0129    CALL     5   1   3
+0130    KSHORT   5   0
+0131    KSHORT   6   0
+0132    GGET     7  18      ; "ipairs"
+0133    MOV      8   2
+0134    CALL     7   4   2
+0135    JMP     10 => 0181
+0136 => GGET    12  19      ; "unpack"
+0137    UGET    13   0      ; self
+0138    TGETS   13  13  15  ; "_call_cache_stats"
+0139    TGETV   13  13  11
+0140    CALL    12   5   2
+0141    ADDVV   16  12  14
+0142    MULNV   17  12   0  ; 100
+0143    DIVVV   17  17  16
+0144    MULNV   18  12   1  ; 1
+0145    MULVV   18  18  15
+0146    DIVVV   18  18  14
+0147    KSTR    19  20      ; ""
+0148    KNUM    20   2      ; 0.001
+0149    ISGT    20  13
+0150    JMP     20 => 0157
+0151    GGET    20   5      ; "string"
+0152    TGETS   20  20   6  ; "format"
+0153    KSTR    21  21      ; " (-%.3fs)"
+0154    MOV     22  13
+0155    CALL    20   2   3
+0156    MOV     19  20
+0157 => MULNV   20  18   0  ; 100
+0158    ADDVV   21  15  13
+0159    ADDVV   21  21  18
+0160    DIVVV   20  20  21
+0161    GGET    21   2      ; "table"
+0162    TGETS   21  21   3  ; "insert"
+0163    MOV     22   1
+0164    GGET    23   5      ; "string"
+0165    TGETS   23  23   6  ; "format"
+0166    KSTR    24  22      ; "    %s: %d/%d hits (%d%%) %.3fs%s saved,"~
+0167    MOV     25  11
+0168    MOV     26  12
+0169    MOV     27  16
+0170    MOV     28  17
+0171    MOV     29  18
+0172    MOV     30  19
+0173    MOV     31  15
+0174    MOV     32  20
+0175    CALL    23   0  10
+0176    CALLM   21   1   1
+0177    ADDVV   21   5  15
+0178    ADDVV    5  21  13
+0179    ADDVV   21   6  18
+0180    SUBVV    6  21  13
+0181 => ITERC   10   3   3
+0182    ITERL   10 => 0136
+0183    GGET     7   2      ; "table"
+0184    TGETS    7   7   3  ; "insert"
+0185    MOV      8   1
+0186    KSTR     9  23      ; "  By call times (hits | misses):"
+0187    CALL     7   1   3
+0188    GGET     7  18      ; "ipairs"
+0189    MOV      8   2
+0190    CALL     7   4   2
+0191    JMP     10 => 0212
+0192 => GGET    12  19      ; "unpack"
+0193    UGET    13   0      ; self
+0194    TGETS   13  13  15  ; "_call_cache_stats"
+0195    TGETV   13  13  11
+0196    CALL    12   5   2
+0197    GGET    16   2      ; "table"
+0198    TGETS   16  16   3  ; "insert"
+0199    MOV     17   1
+0200    GGET    18   5      ; "string"
+0201    TGETS   18  18   6  ; "format"
+0202    KSTR    19  24      ; "    %s: (%d) %.3f ms | %.3f ms (%d)"
+0203    MOV     20  11
+0204    MOV     21  12
+0205    MULNV   22  13   3  ; 1000
+0206    DIVVV   22  22  12
+0207    MULNV   23  15   3  ; 1000
+0208    DIVVV   23  23  14
+0209    MOV     24  14
+0210    CALL    18   0   7
+0211    CALLM   16   1   1
+0212 => ITERC   10   3   3
+0213    ITERL   10 => 0192
+0214    GGET     7   2      ; "table"
+0215    TGETS    7   7   3  ; "insert"
+0216    MOV      8   1
+0217    KSTR     9  25      ; "  No hit for:"
+0218    CALL     7   1   3
+0219    GGET     7  18      ; "ipairs"
+0220    MOV      8   3
+0221    CALL     7   4   2
+0222    JMP     10 => 0241
+0223 => GGET    12  19      ; "unpack"
+0224    UGET    13   0      ; self
+0225    TGETS   13  13  15  ; "_call_cache_stats"
+0226    TGETV   13  13  11
+0227    CALL    12   5   2
+0228    GGET    16   2      ; "table"
+0229    TGETS   16  16   3  ; "insert"
+0230    MOV     17   1
+0231    GGET    18   5      ; "string"
+0232    TGETS   18  18   6  ; "format"
+0233    KSTR    19  26      ; "    %s: %d misses %.3fs"
+0234    MOV     20  11
+0235    MOV     21  14
+0236    MOV     22  15
+0237    CALL    18   0   5
+0238    CALLM   16   1   1
+0239    ADDVV   16   5  15
+0240    ADDVV    5  16  13
+0241 => ITERC   10   3   3
+0242    ITERL   10 => 0223
+0243    LEN      7   4
+0244    KSHORT   8   0
+0245    ISGE     8   7
+0246    JMP      7 => 0276
+0247    GGET     7   2      ; "table"
+0248    TGETS    7   7   3  ; "insert"
+0249    MOV      8   1
+0250    KSTR     9  27      ; "  No cache for:"
+0251    CALL     7   1   3
+0252    GGET     7  18      ; "ipairs"
+0253    MOV      8   4
+0254    CALL     7   4   2
+0255    JMP     10 => 0274
+0256 => GGET    12  19      ; "unpack"
+0257    UGET    13   0      ; self
+0258    TGETS   13  13  15  ; "_call_cache_stats"
+0259    TGETV   13  13  11
+0260    CALL    12   5   2
+0261    GGET    16   2      ; "table"
+0262    TGETS   16  16   3  ; "insert"
+0263    MOV     17   1
+0264    GGET    18   5      ; "string"
+0265    TGETS   18  18   6  ; "format"
+0266    KSTR    19  28      ; "    %s: %d calls %.3fs"
+0267    MOV     20  11
+0268    MOV     21  14
+0269    MOV     22  15
+0270    CALL    18   0   5
+0271    CALLM   16   1   1
+0272    ADDVV   16   5  15
+0273    ADDVV    5  16  13
+0274 => ITERC   10   3   3
+0275    ITERL   10 => 0256
+0276 => MULNV    7   6   0  ; 100
+0277    ADDVV    8   5   6
+0278    DIVVV    7   7   8
+0279    GGET     8   2      ; "table"
+0280    TGETS    8   8   3  ; "insert"
+0281    MOV      9   1
+0282    GGET    10   5      ; "string"
+0283    TGETS   10  10   6  ; "format"
+0284    KSTR    11  29      ; "  cpu time used: %.3fs, saved: %.3fs (%d"~
+0285    MOV     12   5
+0286    MOV     13   6
+0287    MOV     14   7
+0288    CALL    10   0   5
+0289    CALLM    8   1   1
+0290    GGET     8   2      ; "table"
+0291    TGETS    8   8  30  ; "concat"
+0292    MOV      9   1
+0293    KSTR    10  31      ; "\n"
+0294    CALLT    8   3
+
+-- BYTECODE -- credocument.lua:1307-1312
+0001    UGET     0   0      ; do_log
+0002    ISF          0
+0003    JMP      1 => 0010
+0004    UGET     0   1      ; logger
+0005    TGETS    0   0   0  ; "dbg"
+0006    KSTR     1   1      ; "callCache:"
+0007    UGET     2   2      ; name
+0008    KSTR     3   2      ; "reseting cache"
+0009    CALL     0   1   4
+0010 => UGET     0   3      ; self
+0011    TGETS    0   0   3  ; "_callCacheReset"
+0012    CALL     0   1   1
+0013    UGET     0   4      ; func
+0014    VARG     1   0   0
+0015    CALLMT   0   0
+
+-- BYTECODE -- credocument.lua:1314-1318
+0001    UGET     0   0      ; do_log
+0002    ISF          0
+0003    JMP      1 => 0010
+0004    UGET     0   1      ; logger
+0005    TGETS    0   0   0  ; "dbg"
+0006    KSTR     1   1      ; "callCache:"
+0007    UGET     2   2      ; name
+0008    KSTR     3   2      ; "reseting buffer"
+0009    CALL     0   1   4
+0010 => UGET     0   3      ; self
+0011    TGETS    0   0   3  ; "_callCacheSet"
+0012    KSTR     1   4      ; "current_buffer_tag"
+0013    KPRI     2   0
+0014    CALL     0   1   3
+0015    UGET     0   4      ; func
+0016    VARG     1   0   0
+0017    CALLMT   0   0
+
+-- BYTECODE -- credocument.lua:1320-1325
+0001    UGET     0   0      ; do_log
+0002    ISF          0
+0003    JMP      1 => 0010
+0004    UGET     0   1      ; logger
+0005    TGETS    0   0   0  ; "dbg"
+0006    KSTR     1   1      ; "callCache:"
+0007    UGET     2   2      ; name
+0008    KSTR     3   2      ; "setting tag"
+0009    CALL     0   1   4
+0010 => GGET     0   3      ; "select"
+0011    UGET     1   3      ; set_arg
+0012    VARG     2   0   0
+0013    CALLM    0   2   1
+0014    UGET     1   4      ; self
+0015    TGETS    1   1   4  ; "_callCacheSetCurrentTag"
+0016    UGET     2   5      ; set_tag
+0017    MOV      3   0
+0018    CAT      2   2   3
+0019    CALL     1   1   2
+0020    UGET     1   6      ; func
+0021    VARG     2   0   0
+0022    CALLMT   1   0
+
+-- BYTECODE -- credocument.lua:1328-1346
+0001    UGET     0   0      ; getTime
+0002    CALL     0   2   1
+0003    UGET     1   1      ; name
+0004    UGET     2   2      ; asString
+0005    GGET     3   0      ; "select"
+0006    KSHORT   4   2
+0007    VARG     5   0   0
+0008    CALLM    3   0   1
+0009    CALLM    2   2   0
+0010    CAT      1   1   2
+0011    UGET     2   3      ; self
+0012    TGETS    2   2   1  ; "_callCacheTagGet"
+0013    MOV      3   1
+0014    CALL     2   2   2
+0015    ISF          2
+0016    JMP      3 => 0035
+0017    UGET     3   4      ; do_log
+0018    ISF          3
+0019    JMP      4 => 0027
+0020    UGET     3   5      ; logger
+0021    TGETS    3   3   2  ; "dbg"
+0022    KSTR     4   3      ; "callCache:"
+0023    UGET     5   1      ; name
+0024    KSTR     6   4      ; "cache hit:"
+0025    MOV      7   1
+0026    CALL     3   1   5
+0027 => UGET     3   6      ; addStatHit
+0028    UGET     4   1      ; name
+0029    MOV      5   0
+0030    CALL     3   1   3
+0031    GGET     3   5      ; "unpack"
+0032    MOV      4   2
+0033    CALLT    3   2
+0034    JMP      3 => 0063
+0035 => UGET     3   4      ; do_log
+0036    ISF          3
+0037    JMP      4 => 0045
+0038    UGET     3   5      ; logger
+0039    TGETS    3   3   2  ; "dbg"
+0040    KSTR     4   3      ; "callCache:"
+0041    UGET     5   1      ; name
+0042    KSTR     6   6      ; "cache miss:"
+0043    MOV      7   1
+0044    CALL     3   1   5
+0045 => TNEW     3   3
+0046    UGET     4   7      ; func
+0047    VARG     5   0   0
+0048    CALLM    4   0   0
+0049    TSETM    4   0      ; 1
+0050    MOV      2   3
+0051    UGET     3   3      ; self
+0052    TGETS    3   3   7  ; "_callCacheTagSet"
+0053    MOV      4   1
+0054    MOV      5   2
+0055    CALL     3   1   3
+0056    UGET     3   8      ; addStatMiss
+0057    UGET     4   1      ; name
+0058    MOV      5   0
+0059    CALL     3   1   3
+0060    GGET     3   5      ; "unpack"
+0061    MOV      4   2
+0062    CALLT    3   2
+0063 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:1349-1365
+0001    UGET     0   0      ; getTime
+0002    CALL     0   2   1
+0003    UGET     1   1      ; name
+0004    UGET     2   2      ; asString
+0005    GGET     3   0      ; "select"
+0006    KSHORT   4   2
+0007    VARG     5   0   0
+0008    CALLM    3   0   1
+0009    CALLM    2   2   0
+0010    CAT      1   1   2
+0011    UGET     2   3      ; self
+0012    TGETS    2   2   1  ; "_callCacheGet"
+0013    MOV      3   1
+0014    CALL     2   2   2
+0015    ISF          2
+0016    JMP      3 => 0035
+0017    UGET     3   4      ; do_log
+0018    ISF          3
+0019    JMP      4 => 0027
+0020    UGET     3   5      ; logger
+0021    TGETS    3   3   2  ; "dbg"
+0022    KSTR     4   3      ; "callCache:"
+0023    UGET     5   1      ; name
+0024    KSTR     6   4      ; "cache hit:"
+0025    MOV      7   1
+0026    CALL     3   1   5
+0027 => UGET     3   6      ; addStatHit
+0028    UGET     4   1      ; name
+0029    MOV      5   0
+0030    CALL     3   1   3
+0031    GGET     3   5      ; "unpack"
+0032    MOV      4   2
+0033    CALLT    3   2
+0034    JMP      3 => 0063
+0035 => UGET     3   4      ; do_log
+0036    ISF          3
+0037    JMP      4 => 0045
+0038    UGET     3   5      ; logger
+0039    TGETS    3   3   2  ; "dbg"
+0040    KSTR     4   3      ; "callCache:"
+0041    UGET     5   1      ; name
+0042    KSTR     6   6      ; "cache miss:"
+0043    MOV      7   1
+0044    CALL     3   1   5
+0045 => TNEW     3   3
+0046    UGET     4   7      ; func
+0047    VARG     5   0   0
+0048    CALLM    4   0   0
+0049    TSETM    4   0      ; 1
+0050    MOV      2   3
+0051    UGET     3   3      ; self
+0052    TGETS    3   3   7  ; "_callCacheSet"
+0053    MOV      4   1
+0054    MOV      5   2
+0055    CALL     3   1   3
+0056    UGET     3   8      ; addStatMiss
+0057    UGET     4   1      ; name
+0058    MOV      5   0
+0059    CALL     3   1   3
+0060    GGET     3   5      ; "unpack"
+0061    MOV      4   2
+0062    CALLT    3   2
+0063 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:1369-1374
+0001    UGET     0   0      ; getTime
+0002    CALL     0   2   1
+0003    TNEW     1   3
+0004    UGET     2   1      ; func2
+0005    VARG     3   0   0
+0006    CALLM    2   0   0
+0007    TSETM    2   0      ; 1
+0008    UGET     2   2      ; addStatMiss
+0009    UGET     3   3      ; name
+0010    MOV      4   0
+0011    KPRI     5   2
+0012    CALL     2   1   4
+0013    GGET     2   0      ; "unpack"
+0014    MOV      3   1
+0015    CALLT    2   2
+
+-- BYTECODE -- credocument.lua:1379-1403
+0001    KPRI     6   1
+0002    UGET     7   0      ; self
+0003    TGETS    7   7   0  ; "_callCacheGetCurrentTag"
+0004    CALL     7   2   1
+0005    UGET     8   0      ; self
+0006    TGETS    8   8   1  ; "_callCacheGet"
+0007    KSTR     9   2      ; "current_buffer_tag"
+0008    CALL     8   2   2
+0009    TGETS    9   0   3  ; "buffer"
+0010    ISF          9
+0011    JMP     10 => 0024
+0012    TGETS    9   0   3  ; "buffer"
+0013    TGETS    9   9   4  ; "w"
+0014    TGETS   10   4   4  ; "w"
+0015    ISNEV    9  10
+0016    JMP      9 => 0022
+0017    TGETS    9   0   3  ; "buffer"
+0018    TGETS    9   9   5  ; "h"
+0019    TGETS   10   4   5  ; "h"
+0020    ISEQV    9  10
+0021    JMP      9 => 0024
+0022 => KPRI     6   2
+0023    JMP      9 => 0036
+0024 => TGETS    9   0   3  ; "buffer"
+0025    IST          9
+0026    JMP      9 => 0029
+0027    KPRI     6   2
+0028    JMP      9 => 0036
+0029 => IST          8
+0030    JMP      9 => 0033
+0031    KPRI     6   2
+0032    JMP      9 => 0036
+0033 => ISEQV    8   7
+0034    JMP      9 => 0036
+0035    KPRI     6   2
+0036 => UGET     9   1      ; getTime
+0037    CALL     9   2   1
+0038    ISF          6
+0039    JMP     10 => 0066
+0040    UGET    10   2      ; do_log
+0041    ISF         10
+0042    JMP     11 => 0047
+0043    UGET    10   3      ; logger
+0044    TGETS   10  10   6  ; "dbg"
+0045    KSTR    11   7      ; "callCache: ########## drawCurrentView: f"~
+0046    CALL    10   1   2
+0047 => UGET    10   4      ; CreDocument
+0048    TGETS   10  10   8  ; "drawCurrentView"
+0049    MOV     11   0
+0050    MOV     12   1
+0051    MOV     13   2
+0052    MOV     14   3
+0053    MOV     15   4
+0054    MOV     16   5
+0055    CALL    10   1   7
+0056    UGET    10   5      ; addStatMiss
+0057    KSTR    11   8      ; "drawCurrentView"
+0058    MOV     12   9
+0059    CALL    10   1   3
+0060    UGET    10   0      ; self
+0061    TGETS   10  10   9  ; "_callCacheSet"
+0062    KSTR    11   2      ; "current_buffer_tag"
+0063    MOV     12   7
+0064    CALL    10   1   3
+0065    JMP     10 => 0087
+0066 => UGET    10   2      ; do_log
+0067    ISF         10
+0068    JMP     11 => 0073
+0069    UGET    10   3      ; logger
+0070    TGETS   10  10   6  ; "dbg"
+0071    KSTR    11  10      ; "callCache: ---------- drawCurrentView: l"~
+0072    CALL    10   1   2
+0073 => MOV     11   1
+0074    TGETS   10   1  11  ; "blitFrom"
+0075    TGETS   12   0   3  ; "buffer"
+0076    MOV     13   2
+0077    MOV     14   3
+0078    KSHORT  15   0
+0079    KSHORT  16   0
+0080    TGETS   17   4   4  ; "w"
+0081    TGETS   18   4   5  ; "h"
+0082    CALL    10   1   9
+0083    UGET    10   6      ; addStatHit
+0084    KSTR    11   8      ; "drawCurrentView"
+0085    MOV     12   9
+0086    CALL    10   1   3
+0087 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:1406-1409
+0001    UGET     1   0      ; CreDocument
+0002    TGETS    1   1   0  ; "close"
+0003    MOV      2   0
+0004    CALL     1   1   2
+0005    UGET     1   1      ; dumpStats
+0006    CALL     1   1   1
+0007    RET0     0   1
+
+-- BYTECODE -- credocument.lua:1025-1411
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "nilOrTrue"
+0004    KSTR     3   2      ; "use_cre_call_cache"
+0005    CALL     1   2   3
+0006    IST          1
+0007    JMP      1 => 0013
+0008    UGET     1   0      ; logger
+0009    TGETS    1   1   3  ; "dbg"
+0010    KSTR     2   4      ; "CreDocument: not using cre call cache"
+0011    CALL     1   1   2
+0012    UCLO     0 => 0329
+0013 => UGET     1   0      ; logger
+0014    TGETS    1   1   3  ; "dbg"
+0015    KSTR     2   5      ; "CreDocument: using cre call cache"
+0016    CALL     1   1   2
+0017    GGET     1   0      ; "G_reader_settings"
+0018    MOV      2   1
+0019    TGETS    1   1   6  ; "isTrue"
+0020    KSTR     3   7      ; "use_cre_call_cache_log_stats"
+0021    CALL     1   2   3
+0022    KPRI     2   1
+0023    KPRI     3   1
+0024    FNEW     4   9      ; credocument.lua:1044
+0025    TSETS    4   0   8  ; "_callCacheReset"
+0026    FNEW     4  11      ; credocument.lua:1049
+0027    TSETS    4   0  10  ; "_callCacheGet"
+0028    FNEW     4  13      ; credocument.lua:1052
+0029    TSETS    4   0  12  ; "_callCacheSet"
+0030    KSHORT   4  10
+0031    TSETS    4   0  14  ; "_call_cache_keep_tags_nb"
+0032    FNEW     4  16      ; credocument.lua:1059
+0033    TSETS    4   0  15  ; "_callCacheSetCurrentTag"
+0034    FNEW     4  18      ; credocument.lua:1077
+0035    TSETS    4   0  17  ; "_callCacheGetCurrentTag"
+0036    FNEW     4  20      ; credocument.lua:1081
+0037    TSETS    4   0  19  ; "_callCacheTagGet"
+0038    FNEW     4  22      ; credocument.lua:1086
+0039    TSETS    4   0  21  ; "_callCacheTagSet"
+0040    TGETS    4   0   8  ; "_callCacheReset"
+0041    CALL     4   1   1
+0042    FNEW     4  23      ; credocument.lua:1094
+0043    FNEW     5  24      ; credocument.lua:1114
+0044    MOV      6   5
+0045    MOV      7   5
+0046    MOV      8   5
+0047    MOV      9   5
+0048    ISF          1
+0049    JMP     10 => 0063
+0050    TNEW    10   0
+0051    TSETS   10   0  25  ; "_call_cache_stats"
+0052    GGET    10  26      ; "require"
+0053    KSTR    11  27      ; "ffi/util"
+0054    CALL    10   2   2
+0055    TGETS   10  10  28  ; "gettime"
+0056    FNEW     6  29      ; credocument.lua:1123
+0057    FNEW     7  30      ; credocument.lua:1127
+0058    FNEW     8  31      ; credocument.lua:1137
+0059    FNEW     9  32      ; credocument.lua:1148
+0060    FNEW    11  34      ; credocument.lua:1152
+0061    TSETS   11   0  33  ; "getCallCacheStatistics"
+0062    UCLO    10 => 0063
+0063 => GGET    10  35      ; "pairs"
+0064    UGET    11   1      ; CreDocument
+0065    CALL    10   4   2
+0066    ISNEXT  13 => 0319
+0067 => GGET    15  36      ; "type"
+0068    MOV     16  14
+0069    CALL    15   2   2
+0070    ISNES   15  37      ; "function"
+0071    JMP     15 => 0318
+0072    KPRI    15   1
+0073    KPRI    16   1
+0074    KPRI    17   1
+0075    KPRI    18   1
+0076    KPRI    19   1
+0077    KNIL    20  21
+0078    KPRI    22   1
+0079    ISNES   13  38      ; "setBatteryState"
+0080    JMP     23 => 0083
+0081    KPRI    15   2
+0082    JMP     23 => 0283
+0083 => MOV     24  13
+0084    TGETS   23  13  39  ; "sub"
+0085    KSHORT  25   1
+0086    KSHORT  26   3
+0087    CALL    23   2   4
+0088    ISNES   23  40      ; "set"
+0089    JMP     23 => 0092
+0090    KPRI    16   2
+0091    JMP     23 => 0283
+0092 => MOV     24  13
+0093    TGETS   23  13  39  ; "sub"
+0094    KSHORT  25   1
+0095    KSHORT  26   6
+0096    CALL    23   2   4
+0097    ISNES   23  41      ; "toggle"
+0098    JMP     23 => 0101
+0099    KPRI    16   2
+0100    JMP     23 => 0283
+0101 => MOV     24  13
+0102    TGETS   23  13  39  ; "sub"
+0103    KSHORT  25   1
+0104    KSHORT  26   6
+0105    CALL    23   2   4
+0106    ISNES   23  42      ; "update"
+0107    JMP     23 => 0110
+0108    KPRI    16   2
+0109    JMP     23 => 0283
+0110 => MOV     24  13
+0111    TGETS   23  13  39  ; "sub"
+0112    KSHORT  25   1
+0113    KSHORT  26   6
+0114    CALL    23   2   4
+0115    ISNES   23  43      ; "enable"
+0116    JMP     23 => 0119
+0117    KPRI    16   2
+0118    JMP     23 => 0283
+0119 => ISNES   13  44      ; "zoomFont"
+0120    JMP     23 => 0123
+0121    KPRI    16   2
+0122    JMP     23 => 0283
+0123 => ISNES   13  45      ; "clearSelection"
+0124    JMP     23 => 0127
+0125    KPRI    17   2
+0126    JMP     23 => 0283
+0127 => ISNES   13  46      ; "highlightXPointer"
+0128    JMP     23 => 0131
+0129    KPRI    17   2
+0130    JMP     23 => 0283
+0131 => ISNES   13  47      ; "getWordFromPosition"
+0132    JMP     23 => 0135
+0133    KPRI    17   2
+0134    JMP     23 => 0283
+0135 => ISNES   13  48      ; "getTextFromPositions"
+0136    JMP     23 => 0139
+0137    KPRI    17   2
+0138    JMP     23 => 0283
+0139 => ISNES   13  49      ; "findText"
+0140    JMP     23 => 0143
+0141    KPRI    17   2
+0142    JMP     23 => 0283
+0143 => ISNES   13  50      ; "gotoPage"
+0144    JMP     23 => 0148
+0145    KSTR    20  51      ; "page"
+0146    KSHORT  21   2
+0147    JMP     23 => 0283
+0148 => ISNES   13  52      ; "gotoPos"
+0149    JMP     23 => 0153
+0150    KSTR    20  53      ; "pos"
+0151    KSHORT  21   2
+0152    JMP     23 => 0283
+0153 => ISNES   13  54      ; "drawCurrentViewByPage"
+0154    JMP     23 => 0158
+0155    KSTR    20  51      ; "page"
+0156    KSHORT  21   6
+0157    JMP     23 => 0283
+0158 => ISNES   13  55      ; "drawCurrentViewByPos"
+0159    JMP     23 => 0163
+0160    KSTR    20  53      ; "pos"
+0161    KSHORT  21   6
+0162    JMP     23 => 0283
+0163 => ISNES   13  56      ; "getCurrentPage"
+0164    JMP     23 => 0167
+0165    KPRI    15   2
+0166    JMP     23 => 0283
+0167 => ISNES   13  57      ; "getCurrentPos"
+0168    JMP     23 => 0171
+0169    KPRI    15   2
+0170    JMP     23 => 0283
+0171 => ISNES   13  58      ; "getVisiblePageCount"
+0172    JMP     23 => 0175
+0173    KPRI    15   2
+0174    JMP     23 => 0283
+0175 => ISNES   13  59      ; "getCoverPageImage"
+0176    JMP     23 => 0179
+0177    KPRI    15   2
+0178    JMP     23 => 0283
+0179 => ISNES   13  60      ; "getDocumentFileContent"
+0180    JMP     23 => 0183
+0181    KPRI    15   2
+0182    JMP     23 => 0283
+0183 => ISNES   13  61      ; "getHTMLFromXPointer"
+0184    JMP     23 => 0187
+0185    KPRI    15   2
+0186    JMP     23 => 0283
+0187 => ISNES   13  62      ; "getHTMLFromXPointers"
+0188    JMP     23 => 0191
+0189    KPRI    15   2
+0190    JMP     23 => 0283
+0191 => ISNES   13  63      ; "getImageFromPosition"
+0192    JMP     23 => 0195
+0193    KPRI    15   2
+0194    JMP     23 => 0283
+0195 => ISNES   13  64      ; "getTextFromXPointer"
+0196    JMP     23 => 0199
+0197    KPRI    15   2
+0198    JMP     23 => 0283
+0199 => ISNES   13  65      ; "getTextFromXPointers"
+0200    JMP     23 => 0203
+0201    KPRI    15   2
+0202    JMP     23 => 0283
+0203 => ISNES   13  66      ; "getPageOffsetX"
+0204    JMP     23 => 0207
+0205    KPRI    15   2
+0206    JMP     23 => 0283
+0207 => ISNES   13  67      ; "getNextVisibleWordStart"
+0208    JMP     23 => 0211
+0209    KPRI    15   2
+0210    JMP     23 => 0283
+0211 => ISNES   13  68      ; "getNextVisibleWordEnd"
+0212    JMP     23 => 0215
+0213    KPRI    15   2
+0214    JMP     23 => 0283
+0215 => ISNES   13  69      ; "getPrevVisibleWordStart"
+0216    JMP     23 => 0219
+0217    KPRI    15   2
+0218    JMP     23 => 0283
+0219 => ISNES   13  70      ; "getPrevVisibleWordEnd"
+0220    JMP     23 => 0223
+0221    KPRI    15   2
+0222    JMP     23 => 0283
+0223 => ISNES   13  71      ; "getPrevVisibleChar"
+0224    JMP     23 => 0227
+0225    KPRI    15   2
+0226    JMP     23 => 0283
+0227 => ISNES   13  72      ; "getNextVisibleChar"
+0228    JMP     23 => 0231
+0229    KPRI    15   2
+0230    JMP     23 => 0283
+0231 => ISNES   13  73      ; "getCacheFilePath"
+0232    JMP     23 => 0235
+0233    KPRI    15   2
+0234    JMP     23 => 0283
+0235 => ISNES   13  74      ; "getStatistics"
+0236    JMP     23 => 0239
+0237    KPRI    15   2
+0238    JMP     23 => 0283
+0239 => ISNES   13  75      ; "getNormalizedXPointer"
+0240    JMP     23 => 0243
+0241    KPRI    15   2
+0242    JMP     23 => 0283
+0243 => ISNES   13  76      ; "getLinkFromPosition"
+0244    JMP     23 => 0247
+0245    KPRI    18   2
+0246    JMP     23 => 0283
+0247 => ISNES   13  77      ; "getPageLinks"
+0248    JMP     23 => 0251
+0249    KPRI    18   2
+0250    JMP     23 => 0283
+0251 => ISNES   13  78      ; "getScreenBoxesFromPositions"
+0252    JMP     23 => 0255
+0253    KPRI    18   2
+0254    JMP     23 => 0283
+0255 => ISNES   13  79      ; "getScreenPositionFromXPointer"
+0256    JMP     23 => 0259
+0257    KPRI    18   2
+0258    JMP     23 => 0283
+0259 => ISNES   13  80      ; "getXPointer"
+0260    JMP     23 => 0263
+0261    KPRI    18   2
+0262    JMP     23 => 0283
+0263 => ISNES   13  81      ; "isXPointerInCurrentPage"
+0264    JMP     23 => 0267
+0265    KPRI    18   2
+0266    JMP     23 => 0283
+0267 => ISNES   13  82      ; "getPageMapCurrentPageLabel"
+0268    JMP     23 => 0271
+0269    KPRI    18   2
+0270    JMP     23 => 0283
+0271 => ISNES   13  83      ; "getPageMapVisiblePageLabels"
+0272    JMP     23 => 0275
+0273    KPRI    18   2
+0274    JMP     23 => 0283
+0275 => MOV     24  13
+0276    TGETS   23  13  39  ; "sub"
+0277    KSHORT  25   1
+0278    KSHORT  26   3
+0279    CALL    23   2   4
+0280    ISNES   23  84      ; "get"
+0281    JMP     23 => 0283
+0282    KPRI    19   2
+0283 => ISF         16
+0284    JMP     23 => 0288
+0285    FNEW    23  85      ; credocument.lua:1307
+0286    TSETV   23   0  13
+0287    JMP     23 => 0309
+0288 => ISF         17
+0289    JMP     23 => 0293
+0290    FNEW    23  86      ; credocument.lua:1314
+0291    TSETV   23   0  13
+0292    JMP     23 => 0309
+0293 => ISF         20
+0294    JMP     23 => 0298
+0295    FNEW    23  87      ; credocument.lua:1320
+0296    TSETV   23   0  13
+0297    JMP     23 => 0309
+0298 => ISF         18
+0299    JMP     23 => 0304
+0300    KPRI    22   2
+0301    FNEW    23  88      ; credocument.lua:1328
+0302    TSETV   23   0  13
+0303    JMP     23 => 0309
+0304 => ISF         19
+0305    JMP     23 => 0309
+0306    KPRI    22   2
+0307    FNEW    23  89      ; credocument.lua:1349
+0308    TSETV   23   0  13
+0309 => ISF          2
+0310    JMP     23 => 0317
+0311    IST         22
+0312    JMP     23 => 0317
+0313    TGETV   23   0  13
+0314    FNEW    24  90      ; credocument.lua:1369
+0315    TSETV   24   0  13
+0316    UCLO    23 => 0317
+0317 => UCLO    15 => 0318
+0318 => UCLO    13 => 0319
+0319 => ITERN   13   3   3
+0320    ITERL   13 => 0067
+0321    FNEW    10  92      ; credocument.lua:1379
+0322    TSETS   10   0  91  ; "drawCurrentView"
+0323    ISF          1
+0324    JMP     10 => 0327
+0325    FNEW    10  94      ; credocument.lua:1406
+0326    TSETS   10   0  93  ; "close"
+0327 => UCLO     0 => 0328
+0328 => RET0     0   1
+0329 => RET0     0   1
+
+-- BYTECODE -- credocument.lua:0-1414
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/blitbuffer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "document/canvascontext"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "datastorage"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "document/document"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "fontlist"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/geometry"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/renderimage"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "device"
+0024    CALL     7   2   2
+0025    TGETS    7   7   9  ; "screen"
+0026    GGET     8   0      ; "require"
+0027    KSTR     9  10      ; "ffi"
+0028    CALL     8   2   2
+0029    TGETS    9   8  11  ; "C"
+0030    GGET    10   0      ; "require"
+0031    KSTR    11  12      ; "libs/libkoreader-lfs"
+0032    CALL    10   2   2
+0033    GGET    11   0      ; "require"
+0034    KSTR    12  13      ; "logger"
+0035    CALL    11   2   2
+0036    KPRI    12   1
+0037    MOV     14   3
+0038    TGETS   13   3  14  ; "new"
+0039    TDUP    15  15
+0040    TDUP    16  16
+0041    TSETS   16  15  17  ; "fallback_fonts"
+0042    CALL    13   2   3
+0043    FNEW    14  19      ; credocument.lua:63
+0044    TSETS   14  13  18  ; "zipContentExt"
+0045    FNEW    14  21      ; credocument.lua:74
+0046    TSETS   14  13  20  ; "cacheInit"
+0047    FNEW    14  23      ; credocument.lua:96
+0048    TSETS   14  13  22  ; "engineInit"
+0049    FNEW    14  25      ; credocument.lua:120
+0050    TSETS   14  13  24  ; "init"
+0051    FNEW    14  27      ; credocument.lua:166
+0052    TSETS   14  13  26  ; "getDomVersionWithNormalizedXPointers"
+0053    FNEW    14  29      ; credocument.lua:170
+0054    TSETS   14  13  28  ; "getLatestDomVersion"
+0055    FNEW    14  31      ; credocument.lua:174
+0056    TSETS   14  13  30  ; "getOldestDomVersion"
+0057    FNEW    14  33      ; credocument.lua:178
+0058    TSETS   14  13  32  ; "requestDomVersion"
+0059    FNEW    14  35      ; credocument.lua:183
+0060    TSETS   14  13  34  ; "setupDefaultView"
+0061    FNEW    14  37      ; credocument.lua:210
+0062    TSETS   14  13  36  ; "loadDocument"
+0063    FNEW    14  39      ; credocument.lua:229
+0064    TSETS   14  13  38  ; "render"
+0065    FNEW    14  41      ; credocument.lua:245
+0066    TSETS   14  13  40  ; "_readMetadata"
+0067    FNEW    14  43      ; credocument.lua:255
+0068    TSETS   14  13  42  ; "close"
+0069    FNEW    14  45      ; credocument.lua:263
+0070    TSETS   14  13  44  ; "updateColorRendering"
+0071    FNEW    14  47      ; credocument.lua:273
+0072    TSETS   14  13  46  ; "getPageCount"
+0073    FNEW    14  49      ; credocument.lua:277
+0074    TSETS   14  13  48  ; "getCoverPageImage"
+0075    FNEW    14  51      ; credocument.lua:290
+0076    TSETS   14  13  50  ; "getImageFromPosition"
+0077    FNEW    14  53      ; credocument.lua:300
+0078    TSETS   14  13  52  ; "getWordFromPosition"
+0079    FNEW    14  55      ; credocument.lua:330
+0080    TSETS   14  13  54  ; "getTextFromPositions"
+0081    FNEW    14  57      ; credocument.lua:344
+0082    TSETS   14  13  56  ; "getScreenBoxesFromPositions"
+0083    FNEW    14  59      ; credocument.lua:360
+0084    TSETS   14  13  58  ; "compareXPointers"
+0085    FNEW    14  61      ; credocument.lua:365
+0086    TSETS   14  13  60  ; "getNextVisibleWordStart"
+0087    FNEW    14  63      ; credocument.lua:369
+0088    TSETS   14  13  62  ; "getNextVisibleWordEnd"
+0089    FNEW    14  65      ; credocument.lua:373
+0090    TSETS   14  13  64  ; "getPrevVisibleWordStart"
+0091    FNEW    14  67      ; credocument.lua:377
+0092    TSETS   14  13  66  ; "getPrevVisibleWordEnd"
+0093    FNEW    14  69      ; credocument.lua:381
+0094    TSETS   14  13  68  ; "getPrevVisibleChar"
+0095    FNEW    14  71      ; credocument.lua:385
+0096    TSETS   14  13  70  ; "getNextVisibleChar"
+0097    FNEW    14  73      ; credocument.lua:389
+0098    TSETS   14  13  72  ; "drawCurrentView"
+0099    FNEW    14  75      ; credocument.lua:421
+0100    TSETS   14  13  74  ; "drawCurrentViewByPos"
+0101    FNEW    14  77      ; credocument.lua:426
+0102    TSETS   14  13  76  ; "drawCurrentViewByPage"
+0103    FNEW    14  79      ; credocument.lua:431
+0104    TSETS   14  13  78  ; "hintPage"
+0105    FNEW    14  81      ; credocument.lua:434
+0106    TSETS   14  13  80  ; "drawPage"
+0107    FNEW    14  83      ; credocument.lua:437
+0108    TSETS   14  13  82  ; "renderPage"
+0109    FNEW    14  85      ; credocument.lua:440
+0110    TSETS   14  13  84  ; "getPageMargins"
+0111    FNEW    14  87      ; credocument.lua:444
+0112    TSETS   14  13  86  ; "getHeaderHeight"
+0113    FNEW    14  89      ; credocument.lua:448
+0114    TSETS   14  13  88  ; "gotoXPointer"
+0115    FNEW    14  91      ; credocument.lua:453
+0116    TSETS   14  13  90  ; "getXPointer"
+0117    FNEW    14  93      ; credocument.lua:457
+0118    TSETS   14  13  92  ; "isXPointerInDocument"
+0119    FNEW    14  95      ; credocument.lua:461
+0120    TSETS   14  13  94  ; "getPosFromXPointer"
+0121    FNEW    14  97      ; credocument.lua:465
+0122    TSETS   14  13  96  ; "getPageFromXPointer"
+0123    FNEW    14  99      ; credocument.lua:469
+0124    TSETS   14  13  98  ; "getPageOffsetX"
+0125    FNEW    14 101      ; credocument.lua:473
+0126    TSETS   14  13 100  ; "getScreenPositionFromXPointer"
+0127    FNEW    14 103      ; credocument.lua:500
+0128    TSETS   14  13 102  ; "getFontFace"
+0129    FNEW    14 105      ; credocument.lua:504
+0130    TSETS   14  13 104  ; "getCurrentPos"
+0131    FNEW    14 107      ; credocument.lua:508
+0132    TSETS   14  13 106  ; "getPageLinks"
+0133    FNEW    14 109      ; credocument.lua:512
+0134    TSETS   14  13 108  ; "getLinkFromPosition"
+0135    FNEW    14 111      ; credocument.lua:516
+0136    TSETS   14  13 110  ; "isLinkToFootnote"
+0137    FNEW    14 113      ; credocument.lua:520
+0138    TSETS   14  13 112  ; "highlightXPointer"
+0139    FNEW    14 115      ; credocument.lua:525
+0140    TSETS   14  13 114  ; "getDocumentFileContent"
+0141    FNEW    14 117      ; credocument.lua:531
+0142    TSETS   14  13 116  ; "getTextFromXPointer"
+0143    FNEW    14 119      ; credocument.lua:537
+0144    TSETS   14  13 118  ; "getTextFromXPointers"
+0145    FNEW    14 121      ; credocument.lua:541
+0146    TSETS   14  13 120  ; "getHTMLFromXPointer"
+0147    FNEW    14 123      ; credocument.lua:547
+0148    TSETS   14  13 122  ; "getHTMLFromXPointers"
+0149    FNEW    14 125      ; credocument.lua:553
+0150    TSETS   14  13 124  ; "getNormalizedXPointer"
+0151    FNEW    14 127      ; credocument.lua:560
+0152    TSETS   14  13 126  ; "gotoPos"
+0153    FNEW    14 129      ; credocument.lua:565
+0154    TSETS   14  13 128  ; "gotoPage"
+0155    FNEW    14 131      ; credocument.lua:570
+0156    TSETS   14  13 130  ; "gotoLink"
+0157    FNEW    14 133      ; credocument.lua:575
+0158    TSETS   14  13 132  ; "goBack"
+0159    FNEW    14 135      ; credocument.lua:580
+0160    TSETS   14  13 134  ; "goForward"
+0161    FNEW    14 137      ; credocument.lua:585
+0162    TSETS   14  13 136  ; "getCurrentPage"
+0163    FNEW    14 139      ; credocument.lua:589
+0164    TSETS   14  13 138  ; "setFontFace"
+0165    FNEW    14 141      ; credocument.lua:628
+0166    TSETS   14  13 140  ; "setupFallbackFontFaces"
+0167    FNEW    14 143      ; credocument.lua:658
+0168    TSETS   14  13 142  ; "setTextMainLang"
+0169    FNEW    14 145      ; credocument.lua:665
+0170    TSETS   14  13 144  ; "setTextEmbeddedLangs"
+0171    FNEW    14 147      ; credocument.lua:670
+0172    TSETS   14  13 146  ; "setTextHyphenation"
+0173    FNEW    14 149      ; credocument.lua:675
+0174    TSETS   14  13 148  ; "setTextHyphenationSoftHyphensOnly"
+0175    FNEW    14 151      ; credocument.lua:680
+0176    TSETS   14  13 150  ; "setTextHyphenationForceAlgorithmic"
+0177    FNEW    14 153      ; credocument.lua:685
+0178    TSETS   14  13 152  ; "getTextMainLangDefaultHyphDictionary"
+0179    FNEW    14 155      ; credocument.lua:691
+0180    TSETS   14  13 154  ; "setHyphDictionary"
+0181    FNEW    14 157      ; credocument.lua:698
+0182    TSETS   14  13 156  ; "setHyphLeftHyphenMin"
+0183    FNEW    14 159      ; credocument.lua:704
+0184    TSETS   14  13 158  ; "setHyphRightHyphenMin"
+0185    FNEW    14 161      ; credocument.lua:709
+0186    TSETS   14  13 160  ; "setTrustSoftHyphens"
+0187    FNEW    14 163      ; credocument.lua:714
+0188    TSETS   14  13 162  ; "setRenderDPI"
+0189    FNEW    14 165      ; credocument.lua:723
+0190    TSETS   14  13 164  ; "setRenderScaleFontWithDPI"
+0191    FNEW    14 167      ; credocument.lua:729
+0192    TSETS   14  13 166  ; "clearSelection"
+0193    FNEW    14 169      ; credocument.lua:734
+0194    TSETS   14  13 168  ; "getFontSize"
+0195    FNEW    14 171      ; credocument.lua:738
+0196    TSETS   14  13 170  ; "setFontSize"
+0197    FNEW    14 173      ; credocument.lua:745
+0198    TSETS   14  13 172  ; "setViewMode"
+0199    FNEW    14 175      ; credocument.lua:757
+0200    TSETS   14  13 174  ; "setViewDimen"
+0201    FNEW    14 177      ; credocument.lua:762
+0202    TSETS   14  13 176  ; "setHeaderFont"
+0203    FNEW    14 179      ; credocument.lua:769
+0204    TSETS   14  13 178  ; "zoomFont"
+0205    FNEW    14 181      ; credocument.lua:774
+0206    TSETS   14  13 180  ; "setInterlineSpacePercent"
+0207    FNEW    14 183      ; credocument.lua:779
+0208    TSETS   14  13 182  ; "toggleFontBolder"
+0209    FNEW    14 185      ; credocument.lua:784
+0210    TSETS   14  13 184  ; "getGammaLevel"
+0211    FNEW    14 187      ; credocument.lua:788
+0212    TSETS   14  13 186  ; "setGammaIndex"
+0213    FNEW    14 189      ; credocument.lua:793
+0214    TSETS   14  13 188  ; "setFontHinting"
+0215    FNEW    14 191      ; credocument.lua:798
+0216    TSETS   14  13 190  ; "setFontKerning"
+0217    FNEW    14 193      ; credocument.lua:803
+0218    TSETS   14  13 192  ; "setWordSpacing"
+0219    FNEW    14 195      ; credocument.lua:815
+0220    TSETS   14  13 194  ; "setWordExpansion"
+0221    FNEW    14 197      ; credocument.lua:820
+0222    TSETS   14  13 196  ; "setStyleSheet"
+0223    FNEW    14 199      ; credocument.lua:827
+0224    TSETS   14  13 198  ; "setEmbeddedStyleSheet"
+0225    FNEW    14 201      ; credocument.lua:833
+0226    TSETS   14  13 200  ; "setEmbeddedFonts"
+0227    FNEW    14 203      ; credocument.lua:838
+0228    TSETS   14  13 202  ; "setPageMargins"
+0229    FNEW    14 205      ; credocument.lua:846
+0230    TSETS   14  13 204  ; "setBlockRenderingFlags"
+0231    FNEW    14 207      ; credocument.lua:851
+0232    TSETS   14  13 206  ; "setImageScaling"
+0233    FNEW    14 209      ; credocument.lua:856
+0234    TSETS   14  13 208  ; "setNightmodeImages"
+0235    FNEW    14 211      ; credocument.lua:861
+0236    TSETS   14  13 210  ; "setFloatingPunctuation"
+0237    FNEW    14 213      ; credocument.lua:867
+0238    TSETS   14  13 212  ; "setTxtPreFormatted"
+0239    FNEW    14 215      ; credocument.lua:872
+0240    TSETS   14  13 214  ; "getVisiblePageCount"
+0241    FNEW    14 217      ; credocument.lua:876
+0242    TSETS   14  13 216  ; "setVisiblePageCount"
+0243    FNEW    14 219      ; credocument.lua:881
+0244    TSETS   14  13 218  ; "setBatteryState"
+0245    FNEW    14 221      ; credocument.lua:886
+0246    TSETS   14  13 220  ; "isXPointerInCurrentPage"
+0247    FNEW    14 223      ; credocument.lua:891
+0248    TSETS   14  13 222  ; "setStatusLineProp"
+0249    FNEW    14 225      ; credocument.lua:896
+0250    TSETS   14  13 224  ; "setBackgroundImage"
+0251    FNEW    14 227      ; credocument.lua:901
+0252    TSETS   14  13 226  ; "findText"
+0253    FNEW    14 229      ; credocument.lua:907
+0254    TSETS   14  13 228  ; "enableInternalHistory"
+0255    FNEW    14 231      ; credocument.lua:920
+0256    TSETS   14  13 230  ; "setCallback"
+0257    FNEW    14 233      ; credocument.lua:924
+0258    TSETS   14  13 232  ; "isBuiltDomStale"
+0259    FNEW    14 235      ; credocument.lua:928
+0260    TSETS   14  13 234  ; "hasCacheFile"
+0261    FNEW    14 237      ; credocument.lua:932
+0262    TSETS   14  13 236  ; "invalidateCacheFile"
+0263    FNEW    14 239      ; credocument.lua:936
+0264    TSETS   14  13 238  ; "getCacheFilePath"
+0265    FNEW    14 241      ; credocument.lua:940
+0266    TSETS   14  13 240  ; "getStatistics"
+0267    FNEW    14 243      ; credocument.lua:944
+0268    TSETS   14  13 242  ; "canHaveAlternativeToc"
+0269    FNEW    14 245      ; credocument.lua:948
+0270    TSETS   14  13 244  ; "isTocAlternativeToc"
+0271    FNEW    14 247      ; credocument.lua:952
+0272    TSETS   14  13 246  ; "buildAlternativeToc"
+0273    FNEW    14 249      ; credocument.lua:956
+0274    TSETS   14  13 248  ; "hasPageMap"
+0275    FNEW    14 251      ; credocument.lua:960
+0276    TSETS   14  13 250  ; "getPageMap"
+0277    FNEW    14 253      ; credocument.lua:964
+0278    TSETS   14  13 252  ; "getPageMapSource"
+0279    FNEW    14 255      ; credocument.lua:968
+0280    TSETS   14  13 254  ; "getPageMapCurrentPageLabel"
+0281    KSTR    14 256      ; "getPageMapFirstPageLabel"
+0282    FNEW    15 257      ; credocument.lua:972
+0283    TSETV   15  13  14
+0284    KSTR    14 258      ; "getPageMapLastPageLabel"
+0285    FNEW    15 259      ; credocument.lua:976
+0286    TSETV   15  13  14
+0287    KSTR    14 260      ; "getPageMapXPointerPageLabel"
+0288    FNEW    15 261      ; credocument.lua:980
+0289    TSETV   15  13  14
+0290    KSTR    14 262      ; "getPageMapVisiblePageLabels"
+0291    FNEW    15 263      ; credocument.lua:984
+0292    TSETV   15  13  14
+0293    KSTR    14 264      ; "register"
+0294    FNEW    15 265      ; credocument.lua:988
+0295    TSETV   15  13  14
+0296    KSTR    14 266      ; "setupCallCache"
+0297    FNEW    15 267      ; credocument.lua:1025
+0298    TSETV   15  13  14
+0299    UCLO     0 => 0300
+0300 => RET1    13   2
+

@@ -1,0 +1,273 @@
+
+main <./admin/cache.lua:0,0> (34 instructions, 136 bytes at 0x7f8e7d4068a0)
+0+ params, 7 slots, 0 upvalues, 6 locals, 9 constants, 5 functions
+	1	[4]	NEWTABLE 	0 0 0
+	2	[6]	GETGLOBAL	1 -1	; require
+	3	[6]	LOADK    	2 -2	; "luarocks.fs"
+	4	[6]	CALL     	1 2 2
+	5	[7]	GETGLOBAL	2 -1	; require
+	6	[7]	LOADK    	3 -3	; "luarocks.core.cfg"
+	7	[7]	CALL     	2 2 2
+	8	[8]	GETGLOBAL	3 -1	; require
+	9	[8]	LOADK    	4 -4	; "luarocks.dir"
+	10	[8]	CALL     	3 2 2
+	11	[9]	GETGLOBAL	4 -1	; require
+	12	[9]	LOADK    	5 -5	; "luarocks.util"
+	13	[9]	CALL     	4 2 2
+	14	[17]	CLOSURE  	5 0	; 0x7f8e7d406fd0
+	15	[17]	MOVE     	0 2
+	16	[11]	SETTABLE 	0 -6 5	; "get_upload_server" -
+	17	[33]	CLOSURE  	5 1	; 0x7f8e7d407680
+	18	[19]	SETTABLE 	0 -7 5	; "get_server_urls" -
+	19	[50]	CLOSURE  	5 2	; 0x7f8e7d4079b0
+	20	[50]	MOVE     	0 3
+	21	[50]	MOVE     	0 1
+	22	[50]	MOVE     	0 2
+	23	[35]	SETTABLE 	0 -8 5	; "split_server_url" -
+	24	[66]	CLOSURE  	5 3	; 0x7f8e7d407c30
+	25	[66]	MOVE     	0 1
+	26	[66]	MOVE     	0 2
+	27	[86]	CLOSURE  	6 4	; 0x7f8e7d406f50
+	28	[86]	MOVE     	0 0
+	29	[86]	MOVE     	0 1
+	30	[86]	MOVE     	0 4
+	31	[86]	MOVE     	0 5
+	32	[68]	SETTABLE 	0 -9 6	; "refresh_local_cache" -
+	33	[88]	RETURN   	0 2
+	34	[88]	RETURN   	0 1
+
+function <./admin/cache.lua:11,17> (19 instructions, 76 bytes at 0x7f8e7d406fd0)
+1 param, 3 slots, 1 upvalue, 1 local, 3 constants, 0 functions
+	1	[12]	TEST     	0 0 1
+	2	[12]	JMP      	2	; to 5
+	3	[12]	GETUPVAL 	1 0	; cfg
+	4	[12]	GETTABLE 	0 1 -1	; "upload_server"
+	5	[13]	TEST     	0 0 1
+	6	[13]	JMP      	3	; to 10
+	7	[14]	LOADNIL  	1 1
+	8	[14]	LOADK    	2 -2	; "No server specified and no default configured with upload_server."
+	9	[14]	RETURN   	1 3
+	10	[16]	MOVE     	1 0
+	11	[16]	GETUPVAL 	2 0	; cfg
+	12	[16]	GETTABLE 	2 2 -3	; "upload_servers"
+	13	[16]	TEST     	2 0 0
+	14	[16]	JMP      	3	; to 18
+	15	[16]	GETUPVAL 	2 0	; cfg
+	16	[16]	GETTABLE 	2 2 -3	; "upload_servers"
+	17	[16]	GETTABLE 	2 2 0
+	18	[16]	RETURN   	1 3
+	19	[17]	RETURN   	0 1
+
+function <./admin/cache.lua:19,33> (41 instructions, 164 bytes at 0x7f8e7d407680)
+2 params, 6 slots, 0 upvalues, 4 locals, 8 constants, 0 functions
+	1	[20]	MOVE     	2 0
+	2	[21]	LOADNIL  	3 3
+	3	[22]	TEST     	1 0 0
+	4	[22]	JMP      	33	; to 38
+	5	[23]	GETTABLE 	4 1 -1	; "rsync"
+	6	[23]	TEST     	4 0 0
+	7	[23]	JMP      	4	; to 12
+	8	[23]	LOADK    	4 -2	; "rsync://"
+	9	[23]	GETTABLE 	5 1 -1	; "rsync"
+	10	[23]	CONCAT   	2 4 5
+	11	[23]	JMP      	13	; to 25
+	12	[24]	GETTABLE 	4 1 -3	; "http"
+	13	[24]	TEST     	4 0 0
+	14	[24]	JMP      	4	; to 19
+	15	[24]	LOADK    	4 -4	; "http://"
+	16	[24]	GETTABLE 	5 1 -3	; "http"
+	17	[24]	CONCAT   	2 4 5
+	18	[24]	JMP      	6	; to 25
+	19	[25]	GETTABLE 	4 1 -5	; "ftp"
+	20	[25]	TEST     	4 0 0
+	21	[25]	JMP      	3	; to 25
+	22	[25]	LOADK    	4 -6	; "ftp://"
+	23	[25]	GETTABLE 	5 1 -5	; "ftp"
+	24	[25]	CONCAT   	2 4 5
+	25	[28]	GETTABLE 	4 1 -5	; "ftp"
+	26	[28]	TEST     	4 0 0
+	27	[28]	JMP      	4	; to 32
+	28	[28]	LOADK    	4 -6	; "ftp://"
+	29	[28]	GETTABLE 	5 1 -5	; "ftp"
+	30	[28]	CONCAT   	3 4 5
+	31	[28]	JMP      	6	; to 38
+	32	[29]	GETTABLE 	4 1 -7	; "sftp"
+	33	[29]	TEST     	4 0 0
+	34	[29]	JMP      	3	; to 38
+	35	[29]	LOADK    	4 -8	; "sftp://"
+	36	[29]	GETTABLE 	5 1 -7	; "sftp"
+	37	[29]	CONCAT   	3 4 5
+	38	[32]	MOVE     	4 2
+	39	[32]	MOVE     	5 3
+	40	[32]	RETURN   	4 3
+	41	[33]	RETURN   	0 1
+
+function <./admin/cache.lua:35,50> (50 instructions, 200 bytes at 0x7f8e7d4079b0)
+3 params, 11 slots, 3 upvalues, 7 locals, 13 constants, 0 functions
+	1	[36]	GETUPVAL 	3 0	; dir
+	2	[36]	GETTABLE 	3 3 -1	; "split_url"
+	3	[36]	MOVE     	4 0
+	4	[36]	CALL     	3 2 3
+	5	[37]	EQ       	0 3 -2	; - "file"
+	6	[37]	JMP      	6	; to 13
+	7	[38]	GETUPVAL 	5 1	; fs
+	8	[38]	GETTABLE 	5 5 -3	; "absolute_name"
+	9	[38]	MOVE     	6 4
+	10	[38]	CALL     	5 2 2
+	11	[38]	MOVE     	4 5
+	12	[38]	JMP      	23	; to 36
+	13	[39]	SELF     	5 4 -4	; "match"
+	14	[39]	LOADK    	7 -5	; "@"
+	15	[39]	CALL     	5 3 2
+	16	[39]	TEST     	5 0 0
+	17	[39]	JMP      	18	; to 36
+	18	[40]	LOADNIL  	5 5
+	19	[41]	SELF     	6 4 -4	; "match"
+	20	[41]	LOADK    	8 -6	; "([^@]*)@(.*)"
+	21	[41]	CALL     	6 3 3
+	22	[41]	MOVE     	4 7
+	23	[41]	MOVE     	5 6
+	24	[42]	SELF     	6 5 -4	; "match"
+	25	[42]	LOADK    	8 -7	; ":"
+	26	[42]	CALL     	6 3 2
+	27	[42]	TEST     	6 0 0
+	28	[42]	JMP      	6	; to 35
+	29	[43]	SELF     	6 5 -4	; "match"
+	30	[43]	LOADK    	8 -8	; "([^:]*):(.*)"
+	31	[43]	CALL     	6 3 3
+	32	[43]	MOVE     	2 7
+	33	[43]	MOVE     	1 6
+	34	[43]	JMP      	1	; to 36
+	35	[45]	MOVE     	1 5
+	36	[48]	GETUPVAL 	5 2	; cfg
+	37	[48]	GETTABLE 	5 5 -9	; "local_cache"
+	38	[48]	LOADK    	6 -10	; "/"
+	39	[48]	SELF     	7 4 -11	; "gsub"
+	40	[48]	LOADK    	9 -12	; "[\\/]"
+	41	[48]	LOADK    	10 -13	; "_"
+	42	[48]	CALL     	7 4 2
+	43	[48]	CONCAT   	5 5 7
+	44	[49]	MOVE     	6 5
+	45	[49]	MOVE     	7 3
+	46	[49]	MOVE     	8 4
+	47	[49]	MOVE     	9 1
+	48	[49]	MOVE     	10 2
+	49	[49]	RETURN   	6 6
+	50	[50]	RETURN   	0 1
+
+function <./admin/cache.lua:52,66> (64 instructions, 256 bytes at 0x7f8e7d407c30)
+4 params, 17 slots, 2 upvalues, 7 locals, 24 constants, 0 functions
+	1	[53]	GETGLOBAL	4 -1	; os
+	2	[53]	GETTABLE 	4 4 -2	; "remove"
+	3	[53]	LOADK    	5 -3	; "index.html"
+	4	[53]	CALL     	4 2 1
+	5	[55]	EQ       	0 0 -4	; - "rsync"
+	6	[55]	JMP      	23	; to 30
+	7	[56]	SELF     	4 1 -5	; "match"
+	8	[56]	LOADK    	6 -6	; "([^/]+)(/.+)"
+	9	[56]	CALL     	4 3 3
+	10	[57]	GETUPVAL 	6 0	; fs
+	11	[57]	GETTABLE 	6 6 -7	; "execute"
+	12	[57]	GETUPVAL 	7 1	; cfg
+	13	[57]	GETTABLE 	7 7 -8	; "variables"
+	14	[57]	GETTABLE 	7 7 -9	; "RSYNC"
+	15	[57]	LOADK    	8 -10	; " "
+	16	[57]	GETUPVAL 	9 1	; cfg
+	17	[57]	GETTABLE 	9 9 -8	; "variables"
+	18	[57]	GETTABLE 	9 9 -11	; "RSYNCFLAGS"
+	19	[57]	LOADK    	10 -12	; " -e ssh "
+	20	[57]	MOVE     	11 2
+	21	[57]	LOADK    	12 -13	; "@"
+	22	[57]	MOVE     	13 4
+	23	[57]	LOADK    	14 -14	; ":"
+	24	[57]	MOVE     	15 5
+	25	[57]	LOADK    	16 -15	; "/ ./"
+	26	[57]	CONCAT   	7 7 16
+	27	[57]	TAILCALL 	6 2 0
+	28	[57]	RETURN   	6 0
+	29	[57]	JMP      	34	; to 64
+	30	[58]	EQ       	0 0 -16	; - "file"
+	31	[58]	JMP      	7	; to 39
+	32	[59]	GETUPVAL 	4 0	; fs
+	33	[59]	GETTABLE 	4 4 -17	; "copy_contents"
+	34	[59]	MOVE     	5 1
+	35	[59]	LOADK    	6 -18	; "."
+	36	[59]	TAILCALL 	4 3 0
+	37	[59]	RETURN   	4 0
+	38	[59]	JMP      	25	; to 64
+	39	[61]	LOADK    	4 -19	; ""
+	40	[62]	TEST     	2 0 0
+	41	[62]	JMP      	3	; to 45
+	42	[62]	LOADK    	5 -20	; " --user="
+	43	[62]	MOVE     	6 2
+	44	[62]	CONCAT   	4 5 6
+	45	[63]	TEST     	3 0 0
+	46	[63]	JMP      	4	; to 51
+	47	[63]	MOVE     	5 4
+	48	[63]	LOADK    	6 -21	; " --password="
+	49	[63]	MOVE     	7 3
+	50	[63]	CONCAT   	4 5 7
+	51	[64]	GETUPVAL 	5 0	; fs
+	52	[64]	GETTABLE 	5 5 -7	; "execute"
+	53	[64]	GETUPVAL 	6 1	; cfg
+	54	[64]	GETTABLE 	6 6 -8	; "variables"
+	55	[64]	GETTABLE 	6 6 -22	; "WGET"
+	56	[64]	LOADK    	7 -23	; " --no-cache -q -m -np -nd "
+	57	[64]	MOVE     	8 0
+	58	[64]	LOADK    	9 -24	; "://"
+	59	[64]	MOVE     	10 1
+	60	[64]	MOVE     	11 4
+	61	[64]	CONCAT   	6 6 11
+	62	[64]	TAILCALL 	5 2 0
+	63	[64]	RETURN   	5 0
+	64	[66]	RETURN   	0 1
+
+function <./admin/cache.lua:68,86> (47 instructions, 188 bytes at 0x7f8e7d406f50)
+3 params, 15 slots, 4 upvalues, 10 locals, 8 constants, 0 functions
+	1	[69]	GETUPVAL 	3 0	; cache
+	2	[69]	GETTABLE 	3 3 -1	; "split_server_url"
+	3	[69]	MOVE     	4 0
+	4	[69]	MOVE     	5 1
+	5	[69]	MOVE     	6 2
+	6	[69]	CALL     	3 4 6
+	7	[71]	GETUPVAL 	8 1	; fs
+	8	[71]	GETTABLE 	8 8 -2	; "make_dir"
+	9	[71]	MOVE     	9 3
+	10	[71]	CALL     	8 2 3
+	11	[72]	TEST     	8 0 1
+	12	[72]	JMP      	5	; to 18
+	13	[73]	LOADNIL  	10 10
+	14	[73]	LOADK    	11 -3	; "Failed creating local cache dir: "
+	15	[73]	MOVE     	12 9
+	16	[73]	CONCAT   	11 11 12
+	17	[73]	RETURN   	10 3
+	18	[76]	GETUPVAL 	10 1	; fs
+	19	[76]	GETTABLE 	10 10 -4	; "change_dir"
+	20	[76]	MOVE     	11 3
+	21	[76]	CALL     	10 2 1
+	22	[78]	GETUPVAL 	10 2	; util
+	23	[78]	GETTABLE 	10 10 -5	; "printout"
+	24	[78]	LOADK    	11 -6	; "Refreshing cache "
+	25	[78]	MOVE     	12 3
+	26	[78]	LOADK    	13 -7	; "..."
+	27	[78]	CONCAT   	11 11 13
+	28	[78]	CALL     	10 2 1
+	29	[80]	GETUPVAL 	10 3	; download_cache
+	30	[80]	MOVE     	11 4
+	31	[80]	MOVE     	12 5
+	32	[80]	MOVE     	13 6
+	33	[80]	MOVE     	14 7
+	34	[80]	CALL     	10 5 2
+	35	[80]	MOVE     	8 10
+	36	[81]	TEST     	8 0 1
+	37	[81]	JMP      	3	; to 41
+	38	[82]	LOADNIL  	10 10
+	39	[82]	LOADK    	11 -8	; "Failed downloading cache."
+	40	[82]	RETURN   	10 3
+	41	[85]	MOVE     	10 3
+	42	[85]	MOVE     	11 4
+	43	[85]	MOVE     	12 5
+	44	[85]	MOVE     	13 6
+	45	[85]	MOVE     	14 7
+	46	[85]	RETURN   	10 6
+	47	[86]	RETURN   	0 1

@@ -1,0 +1,460 @@
+-- BYTECODE -- doc.lua:15-31
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "command"
+0003    KSTR     3   1      ; "doc"
+0004    KSTR     4   2      ; "Show documentation for an installed rock"~
+0005    KSTR     5   3      ; "Without any flags, tries to load the doc"~
+0006    KSTR     6   4      ; "With flags, return only the desired info"~
+0007    CAT      4   4   6
+0008    UGET     5   0      ; util
+0009    TGETS    5   5   5  ; "see_also"
+0010    KSTR     6   6      ; "   For more information about a rock, se"~
+0011    CALL     5   0   2
+0012    CALLM    1   2   3
+0013    MOV      2   1
+0014    TGETS    1   1   7  ; "summary"
+0015    KSTR     3   8      ; "Show documentation for an installed rock"~
+0016    CALL     1   2   3
+0017    MOV      3   1
+0018    TGETS    2   1   9  ; "argument"
+0019    KSTR     4  10      ; "rock"
+0020    KSTR     5  11      ; "Name of the rock."
+0021    CALL     2   2   4
+0022    MOV      3   2
+0023    TGETS    2   2  12  ; "action"
+0024    UGET     4   0      ; util
+0025    TGETS    4   4  13  ; "namespaced_name_action"
+0026    CALL     2   1   3
+0027    MOV      3   1
+0028    TGETS    2   1   9  ; "argument"
+0029    KSTR     4  14      ; "version"
+0030    KSTR     5  15      ; "Version of the rock."
+0031    CALL     2   2   4
+0032    MOV      3   2
+0033    TGETS    2   2  16  ; "args"
+0034    KSTR     4  17      ; "?"
+0035    CALL     2   1   3
+0036    MOV      3   1
+0037    TGETS    2   1  18  ; "flag"
+0038    KSTR     4  19      ; "--home"
+0039    KSTR     5  20      ; "Open the home page of project."
+0040    CALL     2   1   4
+0041    MOV      3   1
+0042    TGETS    2   1  18  ; "flag"
+0043    KSTR     4  21      ; "--list"
+0044    KSTR     5  22      ; "List documentation files only."
+0045    CALL     2   1   4
+0046    MOV      3   1
+0047    TGETS    2   1  18  ; "flag"
+0048    KSTR     4  23      ; "--porcelain"
+0049    KSTR     5  24      ; "Produce machine-friendly output."
+0050    CALL     2   1   4
+0051    RET0     0   1
+
+-- BYTECODE -- doc.lua:33-40
+0001    IST          0
+0002    JMP      4 => 0013
+0003    KPRI     4   0
+0004    KSTR     5   0      ; "No 'homepage' field in rockspec for "
+0005    UGET     6   0      ; util
+0006    TGETS    6   6   1  ; "format_rock_name"
+0007    MOV      7   1
+0008    MOV      8   2
+0009    MOV      9   3
+0010    CALL     6   2   4
+0011    CAT      5   5   6
+0012    RET      4   3
+0013 => UGET     4   0      ; util
+0014    TGETS    4   4   2  ; "printout"
+0015    KSTR     5   3      ; "Opening "
+0016    MOV      6   0
+0017    KSTR     7   4      ; " ..."
+0018    CAT      5   5   7
+0019    CALL     4   1   2
+0020    UGET     4   1      ; fs
+0021    TGETS    4   4   5  ; "browser"
+0022    MOV      5   0
+0023    CALL     4   1   2
+0024    KPRI     4   2
+0025    RET1     4   2
+
+-- BYTECODE -- doc.lua:42-57
+0001    UGET     3   0      ; fs
+0002    TGETS    3   3   0  ; "make_temp_dir"
+0003    KSTR     4   1      ; "doc-"
+0004    MOV      5   0
+0005    KSTR     6   2      ; "-"
+0006    ISTC     7   2
+0007    JMP      7 => 0009
+0008    KSTR     7   3      ; ""
+0009 => CAT      4   4   7
+0010    CALL     3   3   2
+0011    IST          3
+0012    JMP      5 => 0018
+0013    KPRI     5   0
+0014    KSTR     6   4      ; "Failed creating temporary directory: "
+0015    MOV      7   4
+0016    CAT      6   6   7
+0017    RET      5   3
+0018 => UGET     5   1      ; util
+0019    TGETS    5   5   5  ; "schedule_function"
+0020    UGET     6   0      ; fs
+0021    TGETS    6   6   6  ; "delete"
+0022    MOV      7   3
+0023    CALL     5   1   3
+0024    UGET     5   0      ; fs
+0025    TGETS    5   5   7  ; "change_dir"
+0026    MOV      6   3
+0027    CALL     5   3   2
+0028    IST          5
+0029    JMP      7 => 0033
+0030    KPRI     7   0
+0031    MOV      8   6
+0032    RET      7   3
+0033 => UGET     7   2      ; download
+0034    TGETS    7   7   8  ; "download"
+0035    KSTR     8   9      ; "rockspec"
+0036    MOV      9   0
+0037    MOV     10   1
+0038    MOV     11   2
+0039    CALL     7   3   5
+0040    IST          7
+0041    JMP      9 => 0045
+0042    KPRI     9   0
+0043    MOV     10   8
+0044    RET      9   3
+0045 => UGET     9   3      ; fetch
+0046    TGETS    9   9  10  ; "load_local_rockspec"
+0047    MOV     10   7
+0048    CALL     9   3   2
+0049    IST          9
+0050    JMP     11 => 0054
+0051    KPRI    11   0
+0052    MOV     12  10
+0053    RET     11   3
+0054 => UGET    11   0      ; fs
+0055    TGETS   11  11  11  ; "pop_dir"
+0056    CALL    11   1   1
+0057    TGETS   11   9  12  ; "description"
+0058    IST         11
+0059    JMP     12 => 0061
+0060    TNEW    11   0
+0061 => UGET    12   4      ; show_homepage
+0062    TGETS   13  11  13  ; "homepage"
+0063    MOV     14   0
+0064    MOV     15   1
+0065    MOV     16   2
+0066    CALLT   12   5
+
+-- BYTECODE -- doc.lua:61-150
+0001    UGET     1   0      ; queries
+0002    TGETS    1   1   0  ; "new"
+0003    TGETS    2   0   1  ; "rock"
+0004    TGETS    3   0   2  ; "namespace"
+0005    TGETS    4   0   3  ; "version"
+0006    CALL     1   2   4
+0007    UGET     2   1      ; search
+0008    TGETS    2   2   4  ; "pick_installed_rock"
+0009    MOV      3   1
+0010    TGETS    4   0   5  ; "tree"
+0011    CALL     2   4   3
+0012    IST          2
+0013    JMP      5 => 0031
+0014    UGET     5   2      ; util
+0015    TGETS    5   5   6  ; "format_rock_name"
+0016    TGETS    6   0   1  ; "rock"
+0017    TGETS    7   0   2  ; "namespace"
+0018    TGETS    8   0   3  ; "version"
+0019    CALL     5   2   4
+0020    UGET     6   2      ; util
+0021    TGETS    6   6   7  ; "printout"
+0022    MOV      7   5
+0023    KSTR     8   8      ; " is not installed. Looking for it in the"~
+0024    CAT      7   7   8
+0025    CALL     6   1   2
+0026    UGET     6   3      ; try_to_open_homepage
+0027    TGETS    7   0   1  ; "rock"
+0028    TGETS    8   0   2  ; "namespace"
+0029    TGETS    9   0   3  ; "version"
+0030    CALLT    6   4
+0031 => MOV      5   2
+0032    GSET     3   3      ; "version"
+0033    GSET     5   9      ; "name"
+0034    UGET     5   4      ; fetch
+0035    TGETS    5   5  10  ; "load_local_rockspec"
+0036    UGET     6   5      ; path
+0037    TGETS    6   6  11  ; "rockspec_file"
+0038    GGET     7   9      ; "name"
+0039    GGET     8   3      ; "version"
+0040    MOV      9   4
+0041    CALL     6   0   4
+0042    CALLM    5   3   0
+0043    IST          5
+0044    JMP      7 => 0048
+0045    KPRI     7   0
+0046    MOV      8   6
+0047    RET      7   3
+0048 => TGETS    7   5  12  ; "description"
+0049    IST          7
+0050    JMP      8 => 0052
+0051    TNEW     7   0
+0052 => TGETS    8   0  13  ; "home"
+0053    ISF          8
+0054    JMP      9 => 0061
+0055    UGET     8   6      ; show_homepage
+0056    TGETS    9   7  14  ; "homepage"
+0057    GGET    10   9      ; "name"
+0058    TGETS   11   0   2  ; "namespace"
+0059    GGET    12   3      ; "version"
+0060    CALLT    8   5
+0061 => UGET     8   5      ; path
+0062    TGETS    8   8  15  ; "install_dir"
+0063    GGET     9   9      ; "name"
+0064    GGET    10   3      ; "version"
+0065    MOV     11   4
+0066    CALL     8   2   4
+0067    KPRI     9   0
+0068    TDUP    10  16
+0069    GGET    11  17      ; "ipairs"
+0070    MOV     12  10
+0071    CALL    11   4   2
+0072    JMP     14 => 0086
+0073 => UGET    16   7      ; dir
+0074    TGETS   16  16  18  ; "path"
+0075    MOV     17   8
+0076    MOV     18  15
+0077    CALL    16   2   3
+0078    UGET    17   8      ; fs
+0079    TGETS   17  17  19  ; "is_dir"
+0080    MOV     18  16
+0081    CALL    17   2   2
+0082    ISF         17
+0083    JMP     18 => 0086
+0084    MOV      9  16
+0085    JMP     11 => 0088
+0086 => ITERC   14   3   3
+0087    ITERL   14 => 0073
+0088 => IST          9
+0089    JMP     11 => 0116
+0090    TGETS   11   7  14  ; "homepage"
+0091    ISF         11
+0092    JMP     12 => 0109
+0093    TGETS   11   0  20  ; "list"
+0094    IST         11
+0095    JMP     11 => 0109
+0096    UGET    11   2      ; util
+0097    TGETS   11  11   7  ; "printout"
+0098    KSTR    12  21      ; "Local documentation directory not found "~
+0099    TGETS   13   7  14  ; "homepage"
+0100    KSTR    14  22      ; " ..."
+0101    CAT     12  12  14
+0102    CALL    11   1   2
+0103    UGET    11   8      ; fs
+0104    TGETS   11  11  23  ; "browser"
+0105    TGETS   12   7  14  ; "homepage"
+0106    CALL    11   1   2
+0107    KPRI    11   2
+0108    RET1    11   2
+0109 => KPRI    11   0
+0110    KSTR    12  24      ; "Documentation directory not found for "
+0111    GGET    13   9      ; "name"
+0112    KSTR    14  25      ; " "
+0113    GGET    15   3      ; "version"
+0114    CAT     12  12  15
+0115    RET     11   3
+0116 => UGET    11   7      ; dir
+0117    TGETS   11  11  26  ; "normalize"
+0118    MOV     12   9
+0119    CALL    11   2   2
+0120    MOV     12  11
+0121    TGETS   11  11  27  ; "gsub"
+0122    KSTR    13  28      ; "/+"
+0123    KSTR    14  29      ; "/"
+0124    CALL    11   2   4
+0125    MOV      9  11
+0126    UGET    11   8      ; fs
+0127    TGETS   11  11  30  ; "find"
+0128    MOV     12   9
+0129    CALL    11   2   2
+0130    KSTR    12  31      ; "%.html?$"
+0131    TDUP    13  32
+0132    TSETB   12  13   1
+0133    TDUP    14  33
+0134    TGETS   15   0  34  ; "porcelain"
+0135    LEN     16  11
+0136    KSHORT  17   0
+0137    ISGE    17  16
+0138    JMP     16 => 0182
+0139    UGET    16   2      ; util
+0140    TGETS   16  16  35  ; "title"
+0141    KSTR    17  36      ; "Documentation files for "
+0142    GGET    18   9      ; "name"
+0143    KSTR    19  25      ; " "
+0144    GGET    20   3      ; "version"
+0145    CAT     17  17  20
+0146    MOV     18  15
+0147    CALL    16   1   3
+0148    ISF         15
+0149    JMP     16 => 0164
+0150    GGET    16  17      ; "ipairs"
+0151    MOV     17  11
+0152    CALL    16   4   2
+0153    JMP     19 => 0161
+0154 => UGET    21   2      ; util
+0155    TGETS   21  21   7  ; "printout"
+0156    MOV     22   9
+0157    KSTR    23  29      ; "/"
+0158    MOV     24  20
+0159    CAT     22  22  24
+0160    CALL    21   1   2
+0161 => ITERC   19   3   3
+0162    ITERL   19 => 0154
+0163    JMP     16 => 0182
+0164 => UGET    16   2      ; util
+0165    TGETS   16  16   7  ; "printout"
+0166    MOV     17   9
+0167    KSTR    18  29      ; "/"
+0168    CAT     17  17  18
+0169    CALL    16   1   2
+0170    GGET    16  17      ; "ipairs"
+0171    MOV     17  11
+0172    CALL    16   4   2
+0173    JMP     19 => 0180
+0174 => UGET    21   2      ; util
+0175    TGETS   21  21   7  ; "printout"
+0176    KSTR    22  37      ; "\t"
+0177    MOV     23  20
+0178    CAT     22  22  23
+0179    CALL    21   1   2
+0180 => ITERC   19   3   3
+0181    ITERL   19 => 0174
+0182 => TGETS   16   0  20  ; "list"
+0183    ISF         16
+0184    JMP     17 => 0187
+0185    KPRI    16   2
+0186    RET1    16   2
+0187 => GGET    16  17      ; "ipairs"
+0188    MOV     17  13
+0189    CALL    16   4   2
+0190    JMP     19 => 0272
+0191 => GGET    21  17      ; "ipairs"
+0192    MOV     22  14
+0193    CALL    21   4   2
+0194    JMP     24 => 0270
+0195 => MOV     26  25
+0196    MOV     27  20
+0197    CAT     26  26  27
+0198    KPRI    27   0
+0199    GGET    28  17      ; "ipairs"
+0200    MOV     29  11
+0201    CALL    28   4   2
+0202    JMP     31 => 0219
+0203 => MOV     34  32
+0204    TGETS   33  32  38  ; "lower"
+0205    CALL    33   2   2
+0206    MOV     34  33
+0207    TGETS   33  33  39  ; "match"
+0208    MOV     35  26
+0209    CALL    33   2   3
+0210    ISF         33
+0211    JMP     34 => 0219
+0212    ISF         27
+0213    JMP     33 => 0218
+0214    LEN     33  32
+0215    LEN     34  27
+0216    ISGE    33  34
+0217    JMP     33 => 0219
+0218 => MOV     27  32
+0219 => ITERC   31   3   3
+0220    ITERL   31 => 0203
+0221    ISF         27
+0222    JMP     28 => 0270
+0223    UGET    28   7      ; dir
+0224    TGETS   28  28  18  ; "path"
+0225    MOV     29   9
+0226    MOV     30  27
+0227    CALL    28   2   3
+0228    UGET    29   2      ; util
+0229    TGETS   29  29   7  ; "printout"
+0230    CALL    29   1   1
+0231    UGET    29   2      ; util
+0232    TGETS   29  29   7  ; "printout"
+0233    KSTR    30  40      ; "Opening "
+0234    MOV     31  28
+0235    KSTR    32  22      ; " ..."
+0236    CAT     30  30  32
+0237    CALL    29   1   2
+0238    UGET    29   2      ; util
+0239    TGETS   29  29   7  ; "printout"
+0240    CALL    29   1   1
+0241    UGET    29   8      ; fs
+0242    TGETS   29  29  23  ; "browser"
+0243    MOV     30  28
+0244    CALL    29   2   2
+0245    IST         29
+0246    JMP     30 => 0268
+0247    MOV     31  28
+0248    TGETS   30  28  39  ; "match"
+0249    MOV     32  12
+0250    CALL    30   2   3
+0251    IST         30
+0252    JMP     30 => 0268
+0253    GGET    30  41      ; "io"
+0254    TGETS   30  30  42  ; "open"
+0255    MOV     31  28
+0256    KSTR    32  43      ; "r"
+0257    CALL    30   2   3
+0258    UGET    31   2      ; util
+0259    TGETS   31  31   7  ; "printout"
+0260    MOV     33  30
+0261    TGETS   32  30  44  ; "read"
+0262    KSTR    34  45      ; "*a"
+0263    CALL    32   0   3
+0264    CALLM   31   1   0
+0265    MOV     32  30
+0266    TGETS   31  30  46  ; "close"
+0267    CALL    31   1   2
+0268 => KPRI    30   2
+0269    RET1    30   2
+0270 => ITERC   24   3   3
+0271    ITERL   24 => 0195
+0272 => ITERC   19   3   3
+0273    ITERL   19 => 0191
+0274    KPRI    16   2
+0275    RET1    16   2
+
+-- BYTECODE -- doc.lua:0-154
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.util"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.queries"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.search"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.path"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.dir"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.fetch"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   7      ; "luarocks.fs"
+0022    CALL     7   2   2
+0023    GGET     8   0      ; "require"
+0024    KSTR     9   8      ; "luarocks.download"
+0025    CALL     8   2   2
+0026    FNEW     9  10      ; doc.lua:15
+0027    TSETS    9   0   9  ; "add_to_parser"
+0028    FNEW     9  11      ; doc.lua:33
+0029    FNEW    10  12      ; doc.lua:42
+0030    FNEW    11  14      ; doc.lua:61
+0031    TSETS   11   0  13  ; "command"
+0032    UCLO     0 => 0033
+0033 => RET1     0   2
+

@@ -1,0 +1,1671 @@
+-- BYTECODE -- compile.lua:31-38
+0001    ISNEP    2   0
+0002    JMP      3 => 0004
+0003    LEN      2   0
+0004 => TGETS    3   0   0  ; "posmap"
+0005    TGETV    3   3   2
+0006    IST          3
+0007    JMP      3 => 0010
+0008    TGETS    3   0   0  ; "posmap"
+0009    TSETV    1   3   2
+0010 => RET0     0   1
+
+-- BYTECODE -- compile.lua:39-49
+0001    UGET     2   0      ; mtype
+0002    MOV      3   1
+0003    CALL     2   2   2
+0004    UGET     3   1      ; Line
+0005    ISNEV    3   2
+0006    JMP      3 => 0012
+0007    MOV      4   1
+0008    TGETS    3   1   0  ; "render"
+0009    MOV      5   0
+0010    CALL     3   1   3
+0011    JMP      3 => 0023
+0012 => UGET     3   2      ; Block
+0013    ISNEV    3   2
+0014    JMP      3 => 0020
+0015    MOV      4   1
+0016    TGETS    3   1   0  ; "render"
+0017    MOV      5   0
+0018    CALL     3   1   3
+0019    JMP      3 => 0023
+0020 => LEN      3   0
+0021    ADDVN    3   3   0  ; 1
+0022    TSETV    1   0   3
+0023 => RET1     0   2
+
+-- BYTECODE -- compile.lua:50-75
+0001    ISNEP    1   0
+0002    JMP      3 => 0004
+0003    KSHORT   1   0
+0004 => ISNEP    2   0
+0005    JMP      3 => 0007
+0006    TNEW     2   0
+0007 => TGETS    3   0   0  ; "posmap"
+0008    GGET     4   1      ; "ipairs"
+0009    MOV      5   0
+0010    CALL     4   4   2
+0011    JMP      7 => 0053
+0012 => UGET     9   0      ; mtype
+0013    MOV     10   8
+0014    CALL     9   2   2
+0015    ISEQS    9   2      ; "string"
+0016    JMP     10 => 0020
+0017    UGET    10   1      ; DelayedLine
+0018    ISNEV   10   9
+0019    JMP     10 => 0034
+0020 => ADDVN    1   1   0  ; 1
+0021    TGETV   10   3   7
+0022    TSETV   10   2   1
+0023    MOV     11   8
+0024    TGETS   10   8   3  ; "gmatch"
+0025    KSTR    12   4      ; "\n"
+0026    CALL    10   4   3
+0027    JMP     13 => 0029
+0028 => ADDVN    1   1   0  ; 1
+0029 => ITERC   13   2   3
+0030    ITERL   13 => 0028
+0031    TGETV   10   3   7
+0032    TSETV   10   2   1
+0033    JMP     10 => 0053
+0034 => UGET    10   2      ; Lines
+0035    ISNEV   10   9
+0036    JMP     10 => 0046
+0037    KPRI    10   0
+0038    MOV     12   8
+0039    TGETS   11   8   5  ; "flatten_posmap"
+0040    MOV     13   1
+0041    MOV     14   2
+0042    CALL    11   3   4
+0043    MOV      1  12
+0044    MOV     10  11
+0045    JMP     10 => 0053
+0046 => GGET    10   6      ; "error"
+0047    KSTR    11   7      ; "Unknown item in Lines: "
+0048    GGET    12   8      ; "tostring"
+0049    MOV     13   8
+0050    CALL    12   2   2
+0051    CAT     11  11  12
+0052    CALL    10   1   2
+0053 => ITERC    7   3   3
+0054    ITERL    7 => 0012
+0055    MOV      4   2
+0056    MOV      5   1
+0057    RET      4   3
+
+-- BYTECODE -- compile.lua:76-110
+0001    ISNEP    1   0
+0002    JMP      3 => 0004
+0003    KPRI     1   0
+0004 => ISNEP    2   0
+0005    JMP      3 => 0007
+0006    TNEW     2   0
+0007 => KSHORT   3   1
+0008    LEN      4   0
+0009    KSHORT   5   1
+0010    FORI     3 => 0092
+0011 => TGETV    7   0   6
+0012    UGET     8   0      ; mtype
+0013    MOV      9   7
+0014    CALL     8   2   2
+0015    UGET     9   1      ; DelayedLine
+0016    ISNEV    8   9
+0017    JMP      9 => 0023
+0018    MOV     10   7
+0019    TGETS    9   7   0  ; "render"
+0020    CALL     9   2   2
+0021    MOV      7   9
+0022    KSTR     8   1      ; "string"
+0023 => MOV      9   8
+0024    ISNES    9   1      ; "string"
+0025    JMP     10 => 0068
+0026    ISF          1
+0027    JMP     10 => 0032
+0028    UGET    10   2      ; insert
+0029    MOV     11   2
+0030    MOV     12   1
+0031    CALL    10   1   3
+0032 => UGET    10   2      ; insert
+0033    MOV     11   2
+0034    MOV     12   7
+0035    CALL    10   1   3
+0036    GGET    10   2      ; "type"
+0037    ADDVN   11   6   0  ; 1
+0038    TGETV   11   0  11
+0039    CALL    10   2   2
+0040    ISNES   10   1      ; "string"
+0041    JMP     10 => 0063
+0042    MOV     11   7
+0043    TGETS   10   7   3  ; "sub"
+0044    KSHORT  12  -1
+0045    CALL    10   2   3
+0046    ISEQS   10   4      ; ")"
+0047    JMP     11 => 0050
+0048    ISNES   10   5      ; "]"
+0049    JMP     11 => 0063
+0050 => ADDVN   11   6   0  ; 1
+0051    TGETV   11   0  11
+0052    MOV     12  11
+0053    TGETS   11  11   3  ; "sub"
+0054    KSHORT  13   1
+0055    KSHORT  14   1
+0056    CALL    11   2   4
+0057    ISNES   11   6      ; "("
+0058    JMP     11 => 0063
+0059    UGET    11   2      ; insert
+0060    MOV     12   2
+0061    KSTR    13   7      ; ";"
+0062    CALL    11   1   3
+0063 => UGET    10   2      ; insert
+0064    MOV     11   2
+0065    KSTR    12   8      ; "\n"
+0066    CALL    10   1   3
+0067    JMP     10 => 0091
+0068 => UGET    10   3      ; Lines
+0069    ISNEV   10   9
+0070    JMP     10 => 0084
+0071    MOV     11   7
+0072    TGETS   10   7   9  ; "flatten"
+0073    ISF          1
+0074    JMP     12 => 0080
+0075    MOV     12   1
+0076    UGET    13   4      ; indent_char
+0077    CAT     12  12  13
+0078    IST         12
+0079    JMP     13 => 0081
+0080 => UGET    12   4      ; indent_char
+0081 => MOV     13   2
+0082    CALL    10   1   4
+0083    JMP     10 => 0091
+0084 => GGET    10  10      ; "error"
+0085    KSTR    11  11      ; "Unknown item in Lines: "
+0086    GGET    12  12      ; "tostring"
+0087    MOV     13   7
+0088    CALL    12   2   2
+0089    CAT     11  11  12
+0090    CALL    10   1   2
+0091 => FORL     3 => 0011
+0092 => RET1     2   2
+
+-- BYTECODE -- compile.lua:113-126
+0001    GGET     1   0      ; "type"
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISNES    1   1      ; "table"
+0005    JMP      1 => 0021
+0006    TNEW     1   0
+0007    KSHORT   2   1
+0008    KSHORT   3   1
+0009    LEN      4   0
+0010    KSHORT   5   1
+0011    FORI     3 => 0019
+0012 => TGETV    7   0   6
+0013    UGET     8   0      ; strip
+0014    MOV      9   7
+0015    CALL     8   2   2
+0016    TSETV    8   1   2
+0017    ADDVN    2   2   0  ; 1
+0018    FORL     3 => 0012
+0019 => RET1     1   2
+0020    JMP      1 => 0022
+0021 => RET1     0   2
+0022 => RET0     0   1
+
+-- BYTECODE -- compile.lua:111-128
+0001    KPRI     1   0
+0002    FNEW     1   0      ; compile.lua:113
+0003    KSTR     2   1      ; "Lines<"
+0004    GGET     3   2      ; "tostring"
+0005    UGET     4   0      ; util
+0006    TGETS    4   4   3  ; "dump"
+0007    MOV      5   1
+0008    MOV      6   0
+0009    CALL     5   0   2
+0010    CALLM    4   2   0
+0011    MOV      5   4
+0012    TGETS    4   4   4  ; "sub"
+0013    KSHORT   6   1
+0014    KSHORT   7  -2
+0015    CALL     4   0   4
+0016    CALLM    3   2   0
+0017    KSTR     4   5      ; ">"
+0018    CAT      2   2   4
+0019    UCLO     0 => 0020
+0020 => RET1     2   2
+
+-- BYTECODE -- compile.lua:132-134
+0001    TNEW     1   0
+0002    TSETS    1   0   0  ; "posmap"
+0003    RET0     0   1
+
+-- BYTECODE -- compile.lua:139-143
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    UGET     3   0      ; _base_0
+0004    CALL     1   2   3
+0005    TGETS    2   0   1  ; "__init"
+0006    MOV      3   1
+0007    VARG     4   0   1
+0008    CALLM    2   1   1
+0009    RET1     1   2
+
+-- BYTECODE -- compile.lua:152-160
+0001    KSHORT   3   1
+0002    LEN      4   1
+0003    KSHORT   5   1
+0004    FORI     3 => 0017
+0005 => MOV      8   0
+0006    TGETS    7   0   0  ; "append"
+0007    TGETV    9   1   6
+0008    CALL     7   1   3
+0009    LEN      7   1
+0010    ISGE     6   7
+0011    JMP      7 => 0016
+0012    UGET     7   0      ; insert
+0013    MOV      8   0
+0014    MOV      9   2
+0015    CALL     7   1   3
+0016 => FORL     3 => 0005
+0017 => KPRI     3   0
+0018    RET1     3   2
+
+-- BYTECODE -- compile.lua:161-176
+0001    UGET     2   0      ; Line
+0002    UGET     3   1      ; mtype
+0003    MOV      4   1
+0004    CALL     3   2   2
+0005    ISNEV    2   3
+0006    JMP      2 => 0023
+0007    TGETS    2   0   0  ; "pos"
+0008    IST          2
+0009    JMP      2 => 0012
+0010    TGETS    2   1   0  ; "pos"
+0011    TSETS    2   0   0  ; "pos"
+0012 => KSHORT   2   1
+0013    LEN      3   1
+0014    KSHORT   4   1
+0015    FORI     2 => 0022
+0016 => TGETV    6   1   5
+0017    MOV      8   0
+0018    TGETS    7   0   1  ; "append"
+0019    MOV      9   6
+0020    CALL     7   1   3
+0021    FORL     2 => 0016
+0022 => JMP      2 => 0027
+0023 => UGET     2   2      ; insert
+0024    MOV      3   0
+0025    MOV      4   1
+0026    CALL     2   1   3
+0027 => VARG     2   2   2
+0028    ISF          2
+0029    JMP      3 => 0034
+0030    MOV      3   0
+0031    TGETS    2   0   1  ; "append"
+0032    VARG     4   0   2
+0033    CALLMT   2   1
+0034 => RET0     0   1
+
+-- BYTECODE -- compile.lua:180-183
+0001    UGET     0   0      ; buffer
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "add"
+0004    UGET     2   1      ; concat
+0005    UGET     3   2      ; current
+0006    CALL     2   0   2
+0007    CALLM    0   1   1
+0008    UGET     0   0      ; buffer
+0009    MOV      1   0
+0010    TGETS    0   0   1  ; "mark_pos"
+0011    UGET     2   3      ; self
+0012    TGETS    2   2   2  ; "pos"
+0013    CALLT    0   3
+
+-- BYTECODE -- compile.lua:177-207
+0001    TNEW     2   0
+0002    KPRI     3   0
+0003    FNEW     3   0      ; compile.lua:180
+0004    KSHORT   4   1
+0005    LEN      5   0
+0006    KSHORT   6   1
+0007    FORI     4 => 0049
+0008 => TGETV    8   0   7
+0009    UGET     9   1      ; mtype
+0010    MOV     10   8
+0011    CALL     9   2   2
+0012    UGET    10   2      ; Block
+0013    ISNEV   10   9
+0014    JMP     10 => 0044
+0015    MOV     11   8
+0016    TGETS   10   8   1  ; "render"
+0017    UGET    12   3      ; Lines
+0018    CALL    12   0   1
+0019    CALLM   10   2   1
+0020    KSHORT  11   1
+0021    LEN     12  10
+0022    KSHORT  13   1
+0023    FORI    11 => 0043
+0024 => TGETV   15  10  14
+0025    GGET    16   2      ; "type"
+0026    MOV     17  15
+0027    CALL    16   2   2
+0028    ISNES   16   3      ; "string"
+0029    JMP     16 => 0035
+0030    UGET    16   4      ; insert
+0031    MOV     17   2
+0032    MOV     18  15
+0033    CALL    16   1   3
+0034    JMP     16 => 0042
+0035 => MOV     16   3
+0036    CALL    16   1   1
+0037    MOV     17   1
+0038    TGETS   16   1   4  ; "add"
+0039    MOV     18  15
+0040    CALL    16   1   3
+0041    TNEW     2   0
+0042 => FORL    11 => 0024
+0043 => JMP     10 => 0048
+0044 => UGET    10   4      ; insert
+0045    MOV     11   2
+0046    MOV     12   8
+0047    CALL    10   1   3
+0048 => FORL     4 => 0008
+0049 => TGETB    4   2   1
+0050    ISF          4
+0051    JMP      5 => 0054
+0052    MOV      4   3
+0053    CALL     4   1   1
+0054 => UCLO     0 => 0055
+0055 => RET1     1   2
+
+-- BYTECODE -- compile.lua:208-210
+0001    KSTR     1   0      ; "Line<"
+0002    GGET     2   1      ; "tostring"
+0003    UGET     3   0      ; util
+0004    TGETS    3   3   2  ; "dump"
+0005    MOV      4   0
+0006    CALL     3   2   2
+0007    MOV      4   3
+0008    TGETS    3   3   3  ; "sub"
+0009    KSHORT   5   1
+0010    KSHORT   6  -2
+0011    CALL     3   0   4
+0012    CALLM    2   2   0
+0013    KSTR     3   4      ; ">"
+0014    CAT      1   1   3
+0015    RET1     1   2
+
+-- BYTECODE -- compile.lua:214-214
+0001    RET0     0   1
+
+-- BYTECODE -- compile.lua:219-223
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    UGET     3   0      ; _base_0
+0004    CALL     1   2   3
+0005    TGETS    2   0   1  ; "__init"
+0006    MOV      3   1
+0007    VARG     4   0   1
+0008    CALLM    2   1   1
+0009    RET1     1   2
+
+-- BYTECODE -- compile.lua:231-231
+0001    RET0     0   1
+
+-- BYTECODE -- compile.lua:232-235
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "prepare"
+0003    CALL     1   1   2
+0004    UGET     1   0      ; concat
+0005    MOV      2   0
+0006    CALLT    1   2
+
+-- BYTECODE -- compile.lua:239-241
+0001    TSETS    1   0   0  ; "prepare"
+0002    RET0     0   1
+
+-- BYTECODE -- compile.lua:246-250
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    UGET     3   0      ; _base_0
+0004    CALL     1   2   3
+0005    TGETS    2   0   1  ; "__init"
+0006    MOV      3   1
+0007    VARG     4   0   1
+0008    CALLM    2   1   1
+0009    RET1     1   2
+
+-- BYTECODE -- compile.lua:264-272
+0001    KPRI     1   0
+0002    GGET     2   0      ; "type"
+0003    TGETS    3   0   1  ; "header"
+0004    CALL     2   2   2
+0005    ISNES    2   2      ; "string"
+0006    JMP      2 => 0009
+0007    TGETS    1   0   1  ; "header"
+0008    JMP      2 => 0017
+0009 => UGET     2   0      ; unpack
+0010    TGETS    3   0   1  ; "header"
+0011    MOV      4   3
+0012    TGETS    3   3   3  ; "render"
+0013    TNEW     5   0
+0014    CALL     3   0   3
+0015    CALLM    2   2   0
+0016    MOV      1   2
+0017 => KSTR     2   4      ; "Block<"
+0018    GGET     3   5      ; "tostring"
+0019    MOV      4   1
+0020    CALL     3   2   2
+0021    KSTR     4   6      ; "> <- "
+0022    GGET     5   5      ; "tostring"
+0023    TGETS    6   0   7  ; "parent"
+0024    CALL     5   2   2
+0025    CAT      2   2   5
+0026    RET1     2   2
+
+-- BYTECODE -- compile.lua:273-275
+0001    TGETS    3   0   0  ; "_state"
+0002    TSETV    2   3   1
+0003    RET0     0   1
+
+-- BYTECODE -- compile.lua:276-278
+0001    TGETS    2   0   0  ; "_state"
+0002    TGETV    2   2   1
+0003    RET1     2   2
+
+-- BYTECODE -- compile.lua:279-281
+0001    GGET     2   0      ; "rawget"
+0002    TGETS    3   0   1  ; "_state"
+0003    MOV      4   1
+0004    CALLT    2   3
+
+-- BYTECODE -- compile.lua:282-284
+0001    TGETS    3   0   0  ; "_listeners"
+0002    TSETV    2   3   1
+0003    RET0     0   1
+
+-- BYTECODE -- compile.lua:285-287
+0001    TGETS    2   0   0  ; "_listeners"
+0002    KPRI     3   0
+0003    TSETV    3   2   1
+0004    RET0     0   1
+
+-- BYTECODE -- compile.lua:288-295
+0001    TGETS    2   0   0  ; "_listeners"
+0002    TGETV    2   2   1
+0003    ISF          2
+0004    JMP      3 => 0009
+0005    MOV      3   2
+0006    MOV      4   0
+0007    VARG     5   0   2
+0008    CALLMT   3   1
+0009 => RET0     0   1
+
+-- BYTECODE -- compile.lua:296-311
+0001    KPRI     2   1
+0002    KPRI     3   0
+0003    UGET     4   0      ; mtype
+0004    MOV      5   1
+0005    CALL     4   2   2
+0006    UGET     5   1      ; LocalName
+0007    ISNEV    5   4
+0008    JMP      5 => 0016
+0009    KPRI     2   2
+0010    MOV      6   1
+0011    TGETS    5   1   0  ; "get_name"
+0012    MOV      7   0
+0013    CALL     5   2   3
+0014    MOV      3   5
+0015    JMP      5 => 0039
+0016 => UGET     5   2      ; NameProxy
+0017    ISNEV    5   4
+0018    JMP      5 => 0025
+0019    MOV      6   1
+0020    TGETS    5   1   0  ; "get_name"
+0021    MOV      7   0
+0022    CALL     5   2   3
+0023    MOV      3   5
+0024    JMP      5 => 0039
+0025 => ISNES    4   1      ; "table"
+0026    JMP      5 => 0036
+0027    TGETB    5   1   1
+0028    ISNES    5   2      ; "ref"
+0029    JMP      5 => 0032
+0030    TGETB    3   1   2
+0031    JMP      5 => 0039
+0032 => KPRI     3   1
+0033    JMP      5 => 0035
+0034    KPRI     3   2
+0035 => JMP      5 => 0039
+0036 => ISNES    4   3      ; "string"
+0037    JMP      5 => 0039
+0038    MOV      3   1
+0039 => MOV      5   3
+0040    MOV      6   2
+0041    RET      5   3
+
+-- BYTECODE -- compile.lua:312-343
+0001    KPRI     2   0
+0002    TNEW     3   0
+0003    KSHORT   4   1
+0004    KSHORT   5   1
+0005    LEN      6   1
+0006    KSHORT   7   1
+0007    FORI     5 => 0049
+0008 => KPRI     9   1
+0009    LOOP    10 => 0045
+0010    TGETV   10   1   8
+0011    MOV     12   0
+0012    TGETS   11   0   0  ; "extract_assign_name"
+0013    MOV     13  10
+0014    CALL    11   3   3
+0015    IST         12
+0016    JMP     13 => 0029
+0017    ISF         11
+0018    JMP     13 => 0027
+0019    MOV     14   0
+0020    TGETS   13   0   1  ; "has_name"
+0021    MOV     15  11
+0022    KPRI    16   2
+0023    CALL    13   2   4
+0024    NOT     13  13
+0025    IST         13
+0026    JMP     13 => 0029
+0027 => KPRI     9   2
+0028    JMP     10 => 0045
+0029 => MOV     14   0
+0030    TGETS   13   0   2  ; "put_name"
+0031    MOV     15  11
+0032    CALL    13   1   3
+0033    MOV     14   0
+0034    TGETS   13   0   3  ; "name_exported"
+0035    MOV     15  11
+0036    CALL    13   2   3
+0037    ISF         13
+0038    JMP     14 => 0041
+0039    KPRI     9   2
+0040    JMP     10 => 0045
+0041 => MOV     13  11
+0042    TSETV   13   3   4
+0043    ADDVN    4   4   0  ; 1
+0044    KPRI     9   2
+0045 => IST          9
+0046    JMP     10 => 0048
+0047    JMP      5 => 0049
+0048 => FORL     5 => 0008
+0049 => MOV      2   3
+0050    RET1     2   2
+
+-- BYTECODE -- compile.lua:344-346
+0001    UGET     2   0      ; Set
+0002    MOV      3   1
+0003    CALL     2   2   2
+0004    TSETS    2   0   0  ; "_name_whitelist"
+0005    RET0     0   1
+
+-- BYTECODE -- compile.lua:347-354
+0001    TGETS    2   0   0  ; "export_all"
+0002    ISF          2
+0003    JMP      3 => 0006
+0004    KPRI     2   2
+0005    RET1     2   2
+0006 => TGETS    2   0   1  ; "export_proper"
+0007    ISF          2
+0008    JMP      3 => 0017
+0009    MOV      3   1
+0010    TGETS    2   1   2  ; "match"
+0011    KSTR     4   3      ; "^%u"
+0012    CALL     2   2   3
+0013    ISF          2
+0014    JMP      3 => 0017
+0015    KPRI     2   2
+0016    RET1     2   2
+0017 => RET0     0   1
+
+-- BYTECODE -- compile.lua:355-364
+0001    VARG     2   2   2
+0002    GGET     3   0      ; "select"
+0003    KSTR     4   1      ; "#"
+0004    VARG     5   0   2
+0005    CALLM    3   2   1
+0006    ISNEN    3   0      ; 0
+0007    JMP      3 => 0009
+0008    KPRI     2   2
+0009 => UGET     3   0      ; NameProxy
+0010    UGET     4   1      ; mtype
+0011    MOV      5   1
+0012    CALL     4   2   2
+0013    ISNEV    3   4
+0014    JMP      3 => 0020
+0015    MOV      4   1
+0016    TGETS    3   1   2  ; "get_name"
+0017    MOV      5   0
+0018    CALL     3   2   3
+0019    MOV      1   3
+0020 => TGETS    3   0   3  ; "_names"
+0021    TSETV    2   3   1
+0022    RET0     0   1
+
+-- BYTECODE -- compile.lua:365-377
+0001    IST          2
+0002    JMP      3 => 0011
+0003    MOV      4   0
+0004    TGETS    3   0   0  ; "name_exported"
+0005    MOV      5   1
+0006    CALL     3   2   3
+0007    ISF          3
+0008    JMP      4 => 0011
+0009    KPRI     3   2
+0010    RET1     3   2
+0011 => TGETS    3   0   1  ; "_names"
+0012    TGETV    3   3   1
+0013    ISNEP    3   0
+0014    JMP      4 => 0032
+0015    TGETS    4   0   2  ; "parent"
+0016    ISF          4
+0017    JMP      5 => 0032
+0018    TGETS    4   0   3  ; "_name_whitelist"
+0019    ISF          4
+0020    JMP      4 => 0025
+0021    TGETS    4   0   3  ; "_name_whitelist"
+0022    TGETV    4   4   1
+0023    ISF          4
+0024    JMP      5 => 0033
+0025 => TGETS    4   0   2  ; "parent"
+0026    MOV      5   4
+0027    TGETS    4   4   4  ; "has_name"
+0028    MOV      6   1
+0029    KPRI     7   2
+0030    CALLT    4   4
+0031    JMP      4 => 0033
+0032 => RET1     3   2
+0033 => RET0     0   1
+
+-- BYTECODE -- compile.lua:378-392
+0001    UGET     2   0      ; mtype
+0002    MOV      3   1
+0003    CALL     2   2   2
+0004    ISNES    2   0      ; "string"
+0005    JMP      3 => 0011
+0006    MOV      4   0
+0007    TGETS    3   0   1  ; "has_name"
+0008    MOV      5   1
+0009    KPRI     6   1
+0010    CALLT    3   4
+0011 => UGET     3   1      ; NameProxy
+0012    ISEQV    2   3
+0013    JMP      3 => 0017
+0014    UGET     3   2      ; LocalName
+0015    ISNEV    2   3
+0016    JMP      3 => 0019
+0017 => KPRI     3   2
+0018    RET1     3   2
+0019 => ISNES    2   2      ; "table"
+0020    JMP      3 => 0034
+0021    TGETB    3   1   1
+0022    ISEQS    3   3      ; "ref"
+0023    JMP      3 => 0030
+0024    TGETB    3   1   1
+0025    ISNES    3   4      ; "chain"
+0026    JMP      3 => 0034
+0027    LEN      3   1
+0028    ISNEN    3   0      ; 2
+0029    JMP      3 => 0034
+0030 => MOV      4   0
+0031    TGETS    3   0   5  ; "is_local"
+0032    TGETB    5   1   2
+0033    CALLT    3   3
+0034 => KPRI     3   1
+0035    RET1     3   2
+
+-- BYTECODE -- compile.lua:393-410
+0001    IST          1
+0002    JMP      3 => 0004
+0003    KSTR     1   0      ; "moon"
+0004 => KPRI     3   2
+0005    KPRI     4   0
+0006    KSHORT   5   0
+0007 => ISF          3
+0008    JMP      6 => 0025
+0009    LOOP     6 => 0025
+0010    UGET     6   0      ; concat
+0011    TDUP     7   1
+0012    TSETB    1   7   2
+0013    TSETB    5   7   3
+0014    KSTR     8   2      ; "_"
+0015    CALL     6   2   3
+0016    MOV      4   6
+0017    ADDVN    5   5   0  ; 1
+0018    MOV      7   0
+0019    TGETS    6   0   3  ; "has_name"
+0020    MOV      8   4
+0021    KPRI     9   2
+0022    CALL     6   2   4
+0023    MOV      3   6
+0024    JMP      6 => 0007
+0025 => IST          2
+0026    JMP      6 => 0031
+0027    MOV      7   0
+0028    TGETS    6   0   4  ; "put_name"
+0029    MOV      8   4
+0030    CALL     6   1   3
+0031 => RET1     4   2
+
+-- BYTECODE -- compile.lua:411-423
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "free_name"
+0003    MOV      5   1
+0004    KPRI     6   2
+0005    CALL     3   2   4
+0006    MOV      5   0
+0007    TGETS    4   0   1  ; "stm"
+0008    TDUP     6   2
+0009    TNEW     7   3
+0010    TSETB    3   7   1
+0011    TSETB    7   6   2
+0012    TNEW     7   3
+0013    TSETB    2   7   1
+0014    TSETB    7   6   3
+0015    CALL     4   1   3
+0016    RET1     3   2
+
+-- BYTECODE -- compile.lua:424-433
+0001    TGETS    3   0   0  ; "_lines"
+0002    MOV      5   3
+0003    TGETS    4   3   1  ; "add"
+0004    MOV      6   1
+0005    CALL     4   1   3
+0006    ISF          2
+0007    JMP      4 => 0012
+0008    MOV      5   3
+0009    TGETS    4   3   2  ; "mark_pos"
+0010    MOV      6   2
+0011    CALL     4   1   3
+0012 => RET1     1   2
+
+-- BYTECODE -- compile.lua:434-450
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "add"
+0003    TGETS    4   0   1  ; "header"
+0004    CALL     2   1   3
+0005    MOV      3   1
+0006    TGETS    2   1   2  ; "mark_pos"
+0007    TGETS    4   0   3  ; "pos"
+0008    CALL     2   1   3
+0009    TGETS    2   0   4  ; "next"
+0010    ISF          2
+0011    JMP      3 => 0022
+0012    MOV      3   1
+0013    TGETS    2   1   0  ; "add"
+0014    TGETS    4   0   5  ; "_lines"
+0015    CALL     2   1   3
+0016    TGETS    2   0   4  ; "next"
+0017    MOV      3   2
+0018    TGETS    2   2   6  ; "render"
+0019    MOV      4   1
+0020    CALL     2   1   3
+0021    JMP      2 => 0059
+0022 => TGETS    2   0   5  ; "_lines"
+0023    LEN      2   2
+0024    ISNEN    2   0      ; 0
+0025    JMP      2 => 0047
+0026    GGET     2   7      ; "type"
+0027    LEN      3   1
+0028    TGETV    3   1   3
+0029    CALL     2   2   2
+0030    ISNES    2   8      ; "string"
+0031    JMP      2 => 0047
+0032    LEN      2   1
+0033    LEN      3   1
+0034    TGETV    3   1   3
+0035    KSTR     4   9      ; " "
+0036    UGET     5   0      ; unpack
+0037    UGET     6   1      ; Lines
+0038    CALL     6   2   1
+0039    MOV      7   6
+0040    TGETS    6   6   0  ; "add"
+0041    TGETS    8   0  10  ; "footer"
+0042    CALL     6   0   3
+0043    CALLM    5   2   0
+0044    CAT      3   3   5
+0045    TSETV    3   1   2
+0046    JMP      2 => 0059
+0047 => MOV      3   1
+0048    TGETS    2   1   0  ; "add"
+0049    TGETS    4   0   5  ; "_lines"
+0050    CALL     2   1   3
+0051    MOV      3   1
+0052    TGETS    2   1   0  ; "add"
+0053    TGETS    4   0  10  ; "footer"
+0054    CALL     2   1   3
+0055    MOV      3   1
+0056    TGETS    2   1   2  ; "mark_pos"
+0057    TGETS    4   0   3  ; "pos"
+0058    CALL     2   1   3
+0059 => RET1     1   2
+
+-- BYTECODE -- compile.lua:451-453
+0001    UGET     3   0      ; Block
+0002    MOV      4   0
+0003    MOV      5   1
+0004    MOV      6   2
+0005    CALLT    3   4
+
+-- BYTECODE -- compile.lua:454-460
+0001    UGET     1   0      ; Line
+0002    CALL     1   2   1
+0003    MOV      3   1
+0004    TGETS    2   1   0  ; "append"
+0005    VARG     4   0   1
+0006    CALLM    2   1   1
+0007    RET1     1   2
+
+-- BYTECODE -- compile.lua:461-463
+0001    TGETS    2   0   0  ; "statement_compilers"
+0002    UGET     3   0      ; ntype
+0003    MOV      4   1
+0004    CALL     3   2   2
+0005    TGETV    2   2   3
+0006    ISNEP    2   0
+0007    JMP      2 => 0010
+0008    KPRI     2   1
+0009    JMP      3 => 0011
+0010 => KPRI     2   2
+0011 => RET1     2   2
+
+-- BYTECODE -- compile.lua:464-467
+0001    UGET     2   0      ; ntype
+0002    MOV      3   1
+0003    CALL     2   2   2
+0004    TGETS    3   0   0  ; "value_compilers"
+0005    TGETV    3   3   2
+0006    ISNEP    3   0
+0007    JMP      3 => 0012
+0008    ISEQS    2   1      ; "value"
+0009    JMP      3 => 0012
+0010    KPRI     3   1
+0011    JMP      4 => 0013
+0012 => KPRI     3   2
+0013 => RET1     3   2
+
+-- BYTECODE -- compile.lua:468-474
+0001    GGET     2   0      ; "type"
+0002    MOV      3   1
+0003    CALL     2   2   2
+0004    ISNES    2   1      ; "string"
+0005    JMP      2 => 0008
+0006    RET1     1   2
+0007    JMP      2 => 0013
+0008 => MOV      3   0
+0009    TGETS    2   0   2  ; "value"
+0010    MOV      4   1
+0011    VARG     5   0   2
+0012    CALLMT   2   2
+0013 => RET0     0   1
+
+-- BYTECODE -- compile.lua:475-503
+0001    TGETS    2   0   0  ; "transform"
+0002    TGETS    2   2   1  ; "value"
+0003    MOV      3   1
+0004    CALL     2   2   2
+0005    MOV      1   2
+0006    KPRI     2   0
+0007    GGET     3   2      ; "type"
+0008    MOV      4   1
+0009    CALL     3   2   2
+0010    ISEQS    3   3      ; "table"
+0011    JMP      3 => 0014
+0012    KSTR     2   4      ; "raw_value"
+0013    JMP      3 => 0015
+0014 => TGETB    2   1   1
+0015 => TGETS    3   0   5  ; "value_compilers"
+0016    TGETV    3   3   2
+0017    IST          3
+0018    JMP      4 => 0032
+0019    GGET     4   6      ; "error"
+0020    TDUP     5   7
+0021    KSTR     6   8      ; "Failed to find value compiler for: "
+0022    UGET     7   0      ; dump
+0023    TGETS    7   7   1  ; "value"
+0024    MOV      8   1
+0025    CALL     7   2   2
+0026    CAT      6   6   7
+0027    TSETB    6   5   2
+0028    KSHORT   6  -1
+0029    TGETV    6   1   6
+0030    TSETB    6   5   3
+0031    CALL     4   1   2
+0032 => MOV      4   3
+0033    MOV      5   0
+0034    MOV      6   1
+0035    VARG     7   0   2
+0036    CALLM    4   2   2
+0037    GGET     5   2      ; "type"
+0038    MOV      6   1
+0039    CALL     5   2   2
+0040    ISNES    5   3      ; "table"
+0041    JMP      5 => 0061
+0042    KSHORT   5  -1
+0043    TGETV    5   1   5
+0044    ISF          5
+0045    JMP      6 => 0061
+0046    GGET     5   2      ; "type"
+0047    MOV      6   4
+0048    CALL     5   2   2
+0049    ISNES    5   9      ; "string"
+0050    JMP      5 => 0058
+0051    UGET     5   1      ; Line
+0052    CALL     5   2   1
+0053    MOV      7   5
+0054    TGETS    6   5  10  ; "append"
+0055    MOV      8   4
+0056    CALL     6   1   3
+0057    MOV      4   5
+0058 => KSHORT   5  -1
+0059    TGETV    5   1   5
+0060    TSETS    5   4  11  ; "pos"
+0061 => RET1     4   2
+
+-- BYTECODE -- compile.lua:508-517
+0001    TNEW     0   0
+0002    KSHORT   1   1
+0003    KSHORT   2   1
+0004    UGET     3   0      ; values
+0005    LEN      3   3
+0006    KSHORT   4   1
+0007    FORI     2 => 0018
+0008 => UGET     6   0      ; values
+0009    TGETV    6   6   5
+0010    UGET     7   1      ; self
+0011    MOV      8   7
+0012    TGETS    7   7   0  ; "value"
+0013    MOV      9   6
+0014    CALL     7   2   3
+0015    TSETV    7   0   1
+0016    ADDVN    1   1   0  ; 1
+0017    FORL     2 => 0008
+0018 => RET1     0   2
+
+-- BYTECODE -- compile.lua:504-520
+0001    IST          2
+0002    JMP      3 => 0004
+0003    KSTR     2   0      ; ", "
+0004 => UGET     3   0      ; Line
+0005    CALL     3   2   1
+0006    MOV      5   3
+0007    TGETS    4   3   1  ; "append_list"
+0008    FNEW     6   2      ; compile.lua:508
+0009    CALL     6   2   1
+0010    MOV      7   2
+0011    CALL     4   1   4
+0012    UCLO     0 => 0013
+0013 => RET1     3   2
+
+-- BYTECODE -- compile.lua:521-554
+0001    IST          1
+0002    JMP      2 => 0004
+0003    RET0     0   1
+0004 => TGETS    2   0   0  ; "transform"
+0005    TGETS    2   2   1  ; "statement"
+0006    MOV      3   1
+0007    CALL     2   2   2
+0008    MOV      1   2
+0009    KPRI     2   0
+0010    TGETS    3   0   2  ; "statement_compilers"
+0011    UGET     4   0      ; ntype
+0012    MOV      5   1
+0013    CALL     4   2   2
+0014    TGETV    3   3   4
+0015    ISF          3
+0016    JMP      4 => 0024
+0017    MOV      4   3
+0018    MOV      5   0
+0019    MOV      6   1
+0020    VARG     7   0   2
+0021    CALLM    4   2   2
+0022    MOV      2   4
+0023    JMP      4 => 0045
+0024 => UGET     4   1      ; value_can_be_statement
+0025    MOV      5   1
+0026    CALL     4   2   2
+0027    ISF          4
+0028    JMP      5 => 0035
+0029    MOV      5   0
+0030    TGETS    4   0   3  ; "value"
+0031    MOV      6   1
+0032    CALL     4   2   3
+0033    MOV      2   4
+0034    JMP      4 => 0045
+0035 => MOV      5   0
+0036    TGETS    4   0   4  ; "stm"
+0037    TDUP     6   5
+0038    TDUP     7   6
+0039    TSETB    7   6   2
+0040    TNEW     7   3
+0041    TSETB    1   7   1
+0042    TSETB    7   6   3
+0043    CALL     4   2   3
+0044    MOV      2   4
+0045 => ISF          2
+0046    JMP      3 => 0068
+0047    GGET     3   7      ; "type"
+0048    MOV      4   1
+0049    CALL     3   2   2
+0050    ISNES    3   8      ; "table"
+0051    JMP      3 => 0064
+0052    GGET     3   7      ; "type"
+0053    MOV      4   2
+0054    CALL     3   2   2
+0055    ISNES    3   8      ; "table"
+0056    JMP      3 => 0064
+0057    KSHORT   3  -1
+0058    TGETV    3   1   3
+0059    ISF          3
+0060    JMP      4 => 0064
+0061    KSHORT   3  -1
+0062    TGETV    3   1   3
+0063    TSETS    3   2   9  ; "pos"
+0064 => MOV      4   0
+0065    TGETS    3   0  10  ; "add"
+0066    MOV      5   2
+0067    CALL     3   1   3
+0068 => KPRI     3   0
+0069    RET1     3   2
+
+-- BYTECODE -- compile.lua:555-569
+0001    ISF          2
+0002    JMP      3 => 0006
+0003    GGET     3   0      ; "error"
+0004    KSTR     4   1      ; "deprecated stms call, use transformer"
+0005    CALL     3   1   2
+0006 => KNIL     3   4
+0007    TGETS    5   0   2  ; "current_stms"
+0008    TGETS    4   0   3  ; "current_stm_i"
+0009    MOV      3   5
+0010    TSETS    1   0   2  ; "current_stms"
+0011    KSHORT   5   1
+0012    LEN      6   1
+0013    KSHORT   7   1
+0014    FORI     5 => 0021
+0015 => TSETS    8   0   3  ; "current_stm_i"
+0016    MOV     10   0
+0017    TGETS    9   0   4  ; "stm"
+0018    TGETV   11   1   8
+0019    CALL     9   1   3
+0020    FORL     5 => 0015
+0021 => TSETS    3   0   2  ; "current_stms"
+0022    TSETS    4   0   3  ; "current_stm_i"
+0023    KPRI     5   0
+0024    RET1     5   2
+
+-- BYTECODE -- compile.lua:570-577
+0001    TDUP     2   0
+0002    TGETS    3   0   1  ; "_lines"
+0003    TSETB    3   2   2
+0004    UGET     3   0      ; Lines
+0005    CALL     3   2   1
+0006    TSETS    3   0   1  ; "_lines"
+0007    MOV      4   0
+0008    TGETS    3   0   2  ; "stms"
+0009    MOV      5   1
+0010    MOV      6   2
+0011    CALL     5   0   2
+0012    CALLMT   3   1
+
+-- BYTECODE -- compile.lua:581-605
+0001    MOV      4   1
+0002    MOV      5   2
+0003    TSETS    3   0   2  ; "footer"
+0004    TSETS    5   0   1  ; "header"
+0005    TSETS    4   0   0  ; "parent"
+0006    UGET     4   0      ; Lines
+0007    CALL     4   2   1
+0008    TSETS    4   0   3  ; "_lines"
+0009    TNEW     4   0
+0010    TSETS    4   0   4  ; "_names"
+0011    TNEW     4   0
+0012    TSETS    4   0   5  ; "_state"
+0013    TNEW     4   0
+0014    TSETS    4   0   6  ; "_listeners"
+0015    TDUP     4  10
+0016    UGET     5   1      ; transform
+0017    TGETS    5   5   8  ; "Value"
+0018    MOV      6   5
+0019    TGETS    5   5   9  ; "bind"
+0020    MOV      7   0
+0021    CALL     5   2   3
+0022    TSETS    5   4  11  ; "value"
+0023    UGET     5   1      ; transform
+0024    TGETS    5   5  12  ; "Statement"
+0025    MOV      6   5
+0026    TGETS    5   5   9  ; "bind"
+0027    MOV      7   0
+0028    CALL     5   2   3
+0029    TSETS    5   4  13  ; "statement"
+0030    TSETS    4   0   7  ; "transform"
+0031    TGETS    4   0   0  ; "parent"
+0032    ISF          4
+0033    JMP      5 => 0056
+0034    TGETS    4   0   0  ; "parent"
+0035    TGETS    4   4  14  ; "root"
+0036    TSETS    4   0  14  ; "root"
+0037    TGETS    4   0   0  ; "parent"
+0038    TGETS    4   4  15  ; "indent"
+0039    ADDVN    4   4   0  ; 1
+0040    TSETS    4   0  15  ; "indent"
+0041    GGET     4  16      ; "setmetatable"
+0042    TGETS    5   0   5  ; "_state"
+0043    TDUP     6  17
+0044    TGETS    7   0   0  ; "parent"
+0045    TGETS    7   7   5  ; "_state"
+0046    TSETS    7   6  18  ; "__index"
+0047    CALL     4   1   3
+0048    GGET     4  16      ; "setmetatable"
+0049    TGETS    5   0   6  ; "_listeners"
+0050    TDUP     6  19
+0051    TGETS    7   0   0  ; "parent"
+0052    TGETS    7   7   6  ; "_listeners"
+0053    TSETS    7   6  18  ; "__index"
+0054    CALLT    4   3
+0055    JMP      4 => 0058
+0056 => KSHORT   4   0
+0057    TSETS    4   0  15  ; "indent"
+0058 => RET0     0   1
+
+-- BYTECODE -- compile.lua:610-614
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    UGET     3   0      ; _base_0
+0004    CALL     1   2   3
+0005    TGETS    2   0   1  ; "__init"
+0006    MOV      3   1
+0007    VARG     4   0   1
+0008    CALLM    2   1   1
+0009    RET1     1   2
+
+-- BYTECODE -- compile.lua:623-625
+0001    KSTR     1   0      ; "RootBlock<>"
+0002    RET1     1   2
+
+-- BYTECODE -- compile.lua:626-631
+0001    TGETS    2   0   0  ; "options"
+0002    TGETS    2   2   1  ; "implicitly_return_root"
+0003    ISEQP    2   1
+0004    JMP      2 => 0013
+0005    UGET     2   0      ; transform
+0006    TGETS    2   2   2  ; "Statement"
+0007    TGETS    2   2   3  ; "transformers"
+0008    TGETS    2   2   4  ; "root_stms"
+0009    MOV      3   0
+0010    MOV      4   1
+0011    CALL     2   2   3
+0012    MOV      1   2
+0013 => MOV      3   0
+0014    TGETS    2   0   5  ; "stms"
+0015    MOV      4   1
+0016    CALLT    2   3
+
+-- BYTECODE -- compile.lua:632-638
+0001    TGETS    1   0   0  ; "_lines"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "flatten"
+0004    CALL     1   2   2
+0005    LEN      2   1
+0006    TGETV    2   1   2
+0007    ISNES    2   2      ; "\n"
+0008    JMP      2 => 0012
+0009    LEN      2   1
+0010    KPRI     3   0
+0011    TSETV    3   1   2
+0012 => GGET     2   3      ; "table"
+0013    TGETS    2   2   4  ; "concat"
+0014    MOV      3   1
+0015    CALLT    2   2
+
+-- BYTECODE -- compile.lua:643-647
+0001    TSETS    1   0   0  ; "options"
+0002    TSETS    0   0   1  ; "root"
+0003    UGET     2   0      ; _class_0
+0004    TGETS    2   2   2  ; "__parent"
+0005    TGETS    2   2   3  ; "__init"
+0006    MOV      3   0
+0007    CALLT    2   2
+
+-- BYTECODE -- compile.lua:652-662
+0001    GGET     2   0      ; "rawget"
+0002    UGET     3   0      ; _base_0
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISNEP    2   0
+0006    JMP      3 => 0016
+0007    GGET     3   0      ; "rawget"
+0008    MOV      4   0
+0009    KSTR     5   1      ; "__parent"
+0010    CALL     3   2   3
+0011    ISF          3
+0012    JMP      4 => 0017
+0013    TGETV    4   3   1
+0014    RET1     4   2
+0015    JMP      3 => 0017
+0016 => RET1     2   2
+0017 => RET0     0   1
+
+-- BYTECODE -- compile.lua:663-667
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    UGET     3   0      ; _base_0
+0004    CALL     1   2   3
+0005    TGETS    2   0   1  ; "__init"
+0006    MOV      3   1
+0007    VARG     4   0   1
+0008    CALLM    2   1   1
+0009    RET1     1   2
+
+-- BYTECODE -- compile.lua:676-689
+0001    KPRI     3   0
+0002    ISF          1
+0003    JMP      4 => 0027
+0004    UGET     4   0      ; pos_to_line
+0005    MOV      5   2
+0006    MOV      6   1
+0007    CALL     4   2   3
+0008    KPRI     5   0
+0009    UGET     6   1      ; get_closest_line
+0010    MOV      7   2
+0011    MOV      8   4
+0012    CALL     6   3   3
+0013    MOV      4   7
+0014    MOV      5   6
+0015    IST          5
+0016    JMP      6 => 0018
+0017    KSTR     5   0      ; ""
+0018 => KSTR     6   1      ; " [%d] >>    %s"
+0019    MOV      7   6
+0020    TGETS    6   6   2  ; "format"
+0021    MOV      8   4
+0022    UGET     9   2      ; trim
+0023    MOV     10   5
+0024    CALL     9   0   2
+0025    CALLM    6   2   2
+0026    MOV      3   6
+0027 => UGET     4   3      ; concat
+0028    TNEW     5   3
+0029    KSTR     6   3      ; "Compile error: "
+0030    MOV      7   0
+0031    CAT      6   6   7
+0032    TSETB    6   5   1
+0033    TSETB    3   5   2
+0034    KSTR     6   4      ; "\n"
+0035    CALLT    4   3
+
+-- BYTECODE -- compile.lua:691-699
+0001    KPRI     1   0
+0002    UGET     2   0      ; RootBlock
+0003    CALL     2   2   1
+0004    MOV      4   2
+0005    TGETS    3   2   0  ; "add"
+0006    MOV      6   2
+0007    TGETS    5   2   1  ; "value"
+0008    MOV      7   0
+0009    CALL     5   0   3
+0010    CALLM    3   1   1
+0011    MOV      4   2
+0012    TGETS    3   2   2  ; "render"
+0013    CALL     3   2   2
+0014    MOV      1   3
+0015    RET1     1   2
+
+-- BYTECODE -- compile.lua:707-709
+0001    UGET     0   0      ; scope
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "root_stms"
+0004    UGET     2   1      ; tree
+0005    CALLT    0   3
+
+-- BYTECODE -- compile.lua:701-731
+0001    ISNEP    1   0
+0002    JMP      2 => 0004
+0003    TNEW     1   0
+0004 => GGET     2   0      ; "assert"
+0005    MOV      3   0
+0006    KSTR     4   1      ; "missing tree"
+0007    CALL     2   1   3
+0008    TGETS    2   1   2  ; "scope"
+0009    IST          2
+0010    JMP      3 => 0012
+0011    UGET     2   0      ; RootBlock
+0012 => MOV      3   1
+0013    CALL     2   2   2
+0014    GGET     3   3      ; "coroutine"
+0015    TGETS    3   3   4  ; "create"
+0016    FNEW     4   5      ; compile.lua:707
+0017    CALL     3   2   2
+0018    GGET     4   3      ; "coroutine"
+0019    TGETS    4   4   6  ; "resume"
+0020    MOV      5   3
+0021    CALL     4   3   2
+0022    IST          4
+0023    JMP      6 => 0071
+0024    KNIL     6   7
+0025    GGET     8   7      ; "type"
+0026    MOV      9   5
+0027    CALL     8   2   2
+0028    ISNES    8   8      ; "table"
+0029    JMP      8 => 0052
+0030    TGETB    8   5   1
+0031    ISEQS    8   9      ; "user-error"
+0032    JMP      9 => 0035
+0033    ISNES    8  10      ; "compile-error"
+0034    JMP      9 => 0042
+0035 => UGET     9   1      ; unpack
+0036    MOV     10   5
+0037    KSHORT  11   2
+0038    CALL     9   3   3
+0039    MOV      7  10
+0040    MOV      6   9
+0041    JMP      9 => 0064
+0042 => GGET     9  11      ; "error"
+0043    KSTR    10  12      ; "Unknown error thrown"
+0044    UGET    11   2      ; util
+0045    TGETS   11  11  13  ; "dump"
+0046    MOV     12   6
+0047    CALL    11   0   2
+0048    CALLM    9   3   1
+0049    MOV      7  10
+0050    MOV      6   9
+0051    JMP      8 => 0064
+0052 => UGET     8   3      ; concat
+0053    TNEW     9   3
+0054    TSETB    5   9   1
+0055    GGET    10  14      ; "debug"
+0056    TGETS   10  10  15  ; "traceback"
+0057    MOV     11   3
+0058    CALL    10   0   2
+0059    TSETM   10   0      ; 2
+0060    KSTR    10  16      ; "\n"
+0061    CALL     8   3   3
+0062    MOV      7   9
+0063    MOV      6   8
+0064 => KPRI     8   0
+0065    MOV      9   6
+0066    ISTC    10   7
+0067    JMP     10 => 0069
+0068    TGETS   10   2  17  ; "last_pos"
+0069 => UCLO     0 => 0070
+0070 => RET      8   4
+0071 => MOV      7   2
+0072    TGETS    6   2  18  ; "render"
+0073    CALL     6   2   2
+0074    TGETS    7   2  19  ; "_lines"
+0075    MOV      8   7
+0076    TGETS    7   7  20  ; "flatten_posmap"
+0077    CALL     7   2   2
+0078    MOV      8   6
+0079    MOV      9   7
+0080    UCLO     0 => 0081
+0081 => RET      8   3
+
+-- BYTECODE -- compile.lua:0-749
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "moonscript.util"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "moonscript.dump"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "moonscript.transform"
+0009    CALL     2   2   2
+0010    KNIL     3   4
+0011    GGET     5   0      ; "require"
+0012    KSTR     6   4      ; "moonscript.transform.names"
+0013    CALL     5   2   2
+0014    TGETS    6   5   5  ; "NameProxy"
+0015    TGETS    4   5   6  ; "LocalName"
+0016    MOV      3   6
+0017    KPRI     5   0
+0018    GGET     6   0      ; "require"
+0019    KSTR     7   7      ; "moonscript.data"
+0020    CALL     6   2   2
+0021    TGETS    5   6   8  ; "Set"
+0022    KNIL     6   7
+0023    GGET     8   0      ; "require"
+0024    KSTR     9   9      ; "moonscript.types"
+0025    CALL     8   2   2
+0026    TGETS    9   8  10  ; "ntype"
+0027    TGETS    7   8  11  ; "value_can_be_statement"
+0028    MOV      6   9
+0029    GGET     8   0      ; "require"
+0030    KSTR     9  12      ; "moonscript.compile.statement"
+0031    CALL     8   2   2
+0032    GGET     9   0      ; "require"
+0033    KSTR    10  13      ; "moonscript.compile.value"
+0034    CALL     9   2   2
+0035    KNIL    10  11
+0036    GGET    12  14      ; "table"
+0037    TGETS   13  12  15  ; "concat"
+0038    TGETS   11  12  16  ; "insert"
+0039    MOV     10  13
+0040    KNIL    12  15
+0041    TGETS   16   0  17  ; "pos_to_line"
+0042    TGETS   17   0  18  ; "get_closest_line"
+0043    TGETS   18   0  19  ; "trim"
+0044    TGETS   15   0  20  ; "unpack"
+0045    MOV     14  18
+0046    MOV     13  17
+0047    MOV     12  16
+0048    TGETS   16   0  21  ; "moon"
+0049    TGETS   16  16  22  ; "type"
+0050    KSTR    17  23      ; "  "
+0051    KNIL    18  23
+0052    TDUP    24  25
+0053    FNEW    25  24      ; compile.lua:31
+0054    TSETS   25  24  26  ; "mark_pos"
+0055    FNEW    25  27      ; compile.lua:39
+0056    TSETS   25  24  28  ; "add"
+0057    FNEW    25  29      ; compile.lua:50
+0058    TSETS   25  24  30  ; "flatten_posmap"
+0059    FNEW    25  31      ; compile.lua:76
+0060    TSETS   25  24  32  ; "flatten"
+0061    FNEW    25  33      ; compile.lua:111
+0062    TSETS   25  24  34  ; "__tostring"
+0063    TSETS   24  24  35  ; "__index"
+0064    GGET    25  36      ; "setmetatable"
+0065    TDUP    26  38
+0066    FNEW    27  37      ; compile.lua:132
+0067    TSETS   27  26  39  ; "__init"
+0068    TSETS   24  26  40  ; "__base"
+0069    TDUP    27  41
+0070    TSETS   24  27  35  ; "__index"
+0071    FNEW    28  42      ; compile.lua:139
+0072    TSETS   28  27  43  ; "__call"
+0073    CALL    25   2   3
+0074    MOV     23  25
+0075    TSETS   23  24  44  ; "__class"
+0076    MOV     20  23
+0077    UCLO    23 => 0078
+0078 => KPRI    23   0
+0079    TDUP    24  45
+0080    FNEW    25  46      ; compile.lua:152
+0081    TSETS   25  24  47  ; "append_list"
+0082    FNEW    25  48      ; compile.lua:161
+0083    TSETS   25  24  49  ; "append"
+0084    FNEW    25  50      ; compile.lua:177
+0085    TSETS   25  24  51  ; "render"
+0086    FNEW    25  52      ; compile.lua:208
+0087    TSETS   25  24  34  ; "__tostring"
+0088    TSETS   24  24  35  ; "__index"
+0089    GGET    25  36      ; "setmetatable"
+0090    TDUP    26  54
+0091    FNEW    27  53      ; compile.lua:214
+0092    TSETS   27  26  39  ; "__init"
+0093    TSETS   24  26  40  ; "__base"
+0094    TDUP    27  55
+0095    TSETS   24  27  35  ; "__index"
+0096    FNEW    28  56      ; compile.lua:219
+0097    TSETS   28  27  43  ; "__call"
+0098    CALL    25   2   3
+0099    MOV     23  25
+0100    TSETS   23  24  44  ; "__class"
+0101    MOV     18  23
+0102    UCLO    23 => 0103
+0103 => KPRI    23   0
+0104    TDUP    24  58
+0105    FNEW    25  57      ; compile.lua:231
+0106    TSETS   25  24  59  ; "prepare"
+0107    FNEW    25  60      ; compile.lua:232
+0108    TSETS   25  24  51  ; "render"
+0109    TSETS   24  24  35  ; "__index"
+0110    GGET    25  36      ; "setmetatable"
+0111    TDUP    26  62
+0112    FNEW    27  61      ; compile.lua:239
+0113    TSETS   27  26  39  ; "__init"
+0114    TSETS   24  26  40  ; "__base"
+0115    TDUP    27  63
+0116    TSETS   24  27  35  ; "__index"
+0117    FNEW    28  64      ; compile.lua:246
+0118    TSETS   28  27  43  ; "__call"
+0119    CALL    25   2   3
+0120    MOV     23  25
+0121    TSETS   23  24  44  ; "__class"
+0122    MOV     19  23
+0123    UCLO    23 => 0124
+0124 => KPRI    23   0
+0125    TDUP    24  65
+0126    TSETS    9  24  66  ; "value_compilers"
+0127    TSETS    8  24  67  ; "statement_compilers"
+0128    FNEW    25  68      ; compile.lua:264
+0129    TSETS   25  24  34  ; "__tostring"
+0130    FNEW    25  69      ; compile.lua:273
+0131    TSETS   25  24  70  ; "set"
+0132    FNEW    25  71      ; compile.lua:276
+0133    TSETS   25  24  72  ; "get"
+0134    FNEW    25  73      ; compile.lua:279
+0135    TSETS   25  24  74  ; "get_current"
+0136    FNEW    25  75      ; compile.lua:282
+0137    TSETS   25  24  76  ; "listen"
+0138    FNEW    25  77      ; compile.lua:285
+0139    TSETS   25  24  78  ; "unlisten"
+0140    FNEW    25  79      ; compile.lua:288
+0141    TSETS   25  24  80  ; "send"
+0142    FNEW    25  81      ; compile.lua:296
+0143    TSETS   25  24  82  ; "extract_assign_name"
+0144    FNEW    25  83      ; compile.lua:312
+0145    TSETS   25  24  84  ; "declare"
+0146    FNEW    25  85      ; compile.lua:344
+0147    TSETS   25  24  86  ; "whitelist_names"
+0148    FNEW    25  87      ; compile.lua:347
+0149    TSETS   25  24  88  ; "name_exported"
+0150    FNEW    25  89      ; compile.lua:355
+0151    TSETS   25  24  90  ; "put_name"
+0152    FNEW    25  91      ; compile.lua:365
+0153    TSETS   25  24  92  ; "has_name"
+0154    FNEW    25  93      ; compile.lua:378
+0155    TSETS   25  24  94  ; "is_local"
+0156    FNEW    25  95      ; compile.lua:393
+0157    TSETS   25  24  96  ; "free_name"
+0158    FNEW    25  97      ; compile.lua:411
+0159    TSETS   25  24  98  ; "init_free_var"
+0160    FNEW    25  99      ; compile.lua:424
+0161    TSETS   25  24  28  ; "add"
+0162    FNEW    25 100      ; compile.lua:434
+0163    TSETS   25  24  51  ; "render"
+0164    FNEW    25 101      ; compile.lua:451
+0165    TSETS   25  24 102  ; "block"
+0166    FNEW    25 103      ; compile.lua:454
+0167    TSETS   25  24 104  ; "line"
+0168    FNEW    25 105      ; compile.lua:461
+0169    TSETS   25  24 106  ; "is_stm"
+0170    FNEW    25 107      ; compile.lua:464
+0171    TSETS   25  24 108  ; "is_value"
+0172    FNEW    25 109      ; compile.lua:468
+0173    TSETS   25  24 110  ; "name"
+0174    FNEW    25 111      ; compile.lua:475
+0175    TSETS   25  24 112  ; "value"
+0176    FNEW    25 113      ; compile.lua:504
+0177    TSETS   25  24 114  ; "values"
+0178    FNEW    25 115      ; compile.lua:521
+0179    TSETS   25  24 116  ; "stm"
+0180    FNEW    25 117      ; compile.lua:555
+0181    TSETS   25  24 118  ; "stms"
+0182    FNEW    25 119      ; compile.lua:570
+0183    TSETS   25  24 120  ; "splice"
+0184    TSETS   24  24  35  ; "__index"
+0185    GGET    25  36      ; "setmetatable"
+0186    TDUP    26 122
+0187    FNEW    27 121      ; compile.lua:581
+0188    TSETS   27  26  39  ; "__init"
+0189    TSETS   24  26  40  ; "__base"
+0190    TDUP    27 123
+0191    TSETS   24  27  35  ; "__index"
+0192    FNEW    28 124      ; compile.lua:610
+0193    TSETS   28  27  43  ; "__call"
+0194    CALL    25   2   3
+0195    MOV     23  25
+0196    TSETS   23  24  44  ; "__class"
+0197    MOV     21  23
+0198    UCLO    23 => 0199
+0199 => KPRI    23   0
+0200    MOV     24  21
+0201    TDUP    25 126
+0202    FNEW    26 125      ; compile.lua:623
+0203    TSETS   26  25  34  ; "__tostring"
+0204    FNEW    26 127      ; compile.lua:626
+0205    TSETS   26  25 128  ; "root_stms"
+0206    FNEW    26 129      ; compile.lua:632
+0207    TSETS   26  25  51  ; "render"
+0208    TSETS   25  25  35  ; "__index"
+0209    GGET    26  36      ; "setmetatable"
+0210    MOV     27  25
+0211    TGETS   28  24  40  ; "__base"
+0212    CALL    26   1   3
+0213    GGET    26  36      ; "setmetatable"
+0214    TDUP    27 131
+0215    FNEW    28 130      ; compile.lua:643
+0216    TSETS   28  27  39  ; "__init"
+0217    TSETS   25  27  40  ; "__base"
+0218    TSETS   24  27 132  ; "__parent"
+0219    TDUP    28 134
+0220    FNEW    29 133      ; compile.lua:652
+0221    TSETS   29  28  35  ; "__index"
+0222    FNEW    29 135      ; compile.lua:663
+0223    TSETS   29  28  43  ; "__call"
+0224    CALL    26   2   3
+0225    MOV     23  26
+0226    TSETS   23  25  44  ; "__class"
+0227    TGETS   26  24 136  ; "__inherited"
+0228    ISF         26
+0229    JMP     27 => 0234
+0230    TGETS   26  24 136  ; "__inherited"
+0231    MOV     27  24
+0232    MOV     28  23
+0233    CALL    26   1   3
+0234 => MOV     22  23
+0235    UCLO    23 => 0236
+0236 => KPRI    23   0
+0237    FNEW    23 137      ; compile.lua:676
+0238    KPRI    24   0
+0239    FNEW    24 138      ; compile.lua:691
+0240    KPRI    25   0
+0241    FNEW    25 139      ; compile.lua:701
+0242    GGET    26   0      ; "require"
+0243    KSTR    27   7      ; "moonscript.data"
+0244    CALL    26   2   2
+0245    GGET    27 140      ; "pairs"
+0246    TDUP    28 141
+0247    TSETS   18  28 142  ; "Line"
+0248    TSETS   20  28 143  ; "Lines"
+0249    TSETS   19  28 144  ; "DelayedLine"
+0250    CALL    27   4   2
+0251    ISNEXT  30 => 0253
+0252 => TSETV   31  26  30
+0253 => ITERN   30   3   3
+0254    ITERL   30 => 0252
+0255    TDUP    26 145
+0256    TSETS   25  26 146  ; "tree"
+0257    TSETS   24  26 112  ; "value"
+0258    TSETS   23  26 147  ; "format_error"
+0259    TSETS   21  26 148  ; "Block"
+0260    TSETS   22  26 149  ; "RootBlock"
+0261    UCLO     0 => 0262
+0262 => RET1    26   2
+

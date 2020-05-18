@@ -1,0 +1,248 @@
+-- BYTECODE -- JoplinClient.lua:11-16
+0001    IST          1
+0002    JMP      2 => 0004
+0003    TNEW     1   0
+0004 => TSETS    0   0   0  ; "__index"
+0005    GGET     2   1      ; "setmetatable"
+0006    MOV      3   1
+0007    MOV      4   0
+0008    CALL     2   1   3
+0009    RET1     1   2
+
+-- BYTECODE -- JoplinClient.lua:18-44
+0001    TNEW     4   0
+0002    UGET     5   0      ; json
+0003    TGETS    5   5   0  ; "encode"
+0004    MOV      6   3
+0005    CALL     5   2   2
+0006    UGET     6   1      ; ltn12
+0007    TGETS    6   6   1  ; "source"
+0008    TGETS    6   6   2  ; "string"
+0009    MOV      7   5
+0010    CALL     6   2   2
+0011    UGET     7   2      ; http
+0012    TGETS    7   7   3  ; "request"
+0013    TDUP     8   4
+0014    TSETS    1   8   5  ; "url"
+0015    TSETS    2   8   6  ; "method"
+0016    UGET     9   1      ; ltn12
+0017    TGETS    9   9   7  ; "sink"
+0018    TGETS    9   9   8  ; "table"
+0019    MOV     10   4
+0020    CALL     9   2   2
+0021    TSETS    9   8   7  ; "sink"
+0022    TSETS    6   8   1  ; "source"
+0023    TDUP     9   9
+0024    LEN     10   5
+0025    TSETS   10   9  10  ; "Content-Length"
+0026    TSETS    9   8  11  ; "headers"
+0027    CALL     7   1   2
+0028    TGETB    7   4   1
+0029    IST          7
+0030    JMP      7 => 0034
+0031    GGET     7  12      ; "error"
+0032    KSTR     8  13      ; "No response from Joplin Server"
+0033    CALL     7   1   2
+0034 => UGET     7   0      ; json
+0035    TGETS    7   7  14  ; "decode"
+0036    TGETB    8   4   1
+0037    CALL     7   2   2
+0038    TGETS    8   7  12  ; "error"
+0039    ISF          8
+0040    JMP      9 => 0044
+0041    GGET     8  12      ; "error"
+0042    TGETS    9   7  12  ; "error"
+0043    CALL     8   1   2
+0044 => RET1     7   2
+
+-- BYTECODE -- JoplinClient.lua:46-60
+0001    TNEW     1   0
+0002    UGET     2   0      ; http
+0003    TGETS    2   2   0  ; "request"
+0004    TDUP     3   6
+0005    KSTR     4   1      ; "http://"
+0006    TGETS    5   0   2  ; "server_ip"
+0007    KSTR     6   3      ; ":"
+0008    TGETS    7   0   4  ; "server_port"
+0009    KSTR     8   5      ; "/ping"
+0010    CAT      4   4   8
+0011    TSETS    4   3   7  ; "url"
+0012    UGET     4   1      ; ltn12
+0013    TGETS    4   4   8  ; "sink"
+0014    TGETS    4   4   9  ; "table"
+0015    MOV      5   1
+0016    CALL     4   2   2
+0017    TSETS    4   3   8  ; "sink"
+0018    CALL     2   1   2
+0019    TGETB    2   1   1
+0020    ISNES    2  10      ; "JoplinClipperServer"
+0021    JMP      2 => 0025
+0022    KPRI     2   2
+0023    RET1     2   2
+0024    JMP      2 => 0027
+0025 => KPRI     2   1
+0026    RET1     2   2
+0027 => RET0     0   1
+
+-- BYTECODE -- JoplinClient.lua:63-78
+0001    KSTR     3   0      ; "http://"
+0002    TGETS    4   0   1  ; "server_ip"
+0003    KSTR     5   2      ; ":"
+0004    TGETS    6   0   3  ; "server_port"
+0005    KSTR     7   4      ; "/notes?"
+0006    KSTR     8   5      ; "token="
+0007    TGETS    9   0   6  ; "auth_token"
+0008    KSTR    10   7      ; "&fields=id,title,parent_id"
+0009    CAT      3   3  10
+0010    MOV      5   0
+0011    TGETS    4   0   8  ; "_makeRequest"
+0012    MOV      6   3
+0013    KSTR     7   9      ; "GET"
+0014    CALL     4   2   4
+0015    GGET     5  10      ; "pairs"
+0016    MOV      6   4
+0017    CALL     5   4   2
+0018    ISNEXT   8 => 0029
+0019 => TGETS   10   9  11  ; "title"
+0020    ISNEV   10   1
+0021    JMP     10 => 0029
+0022    ISEQP    2   0
+0023    JMP     10 => 0027
+0024    TGETS   10   9  12  ; "parent_id"
+0025    ISNEV   10   2
+0026    JMP     10 => 0029
+0027 => TGETS   10   9  13  ; "id"
+0028    RET1    10   2
+0029 => ITERN    8   3   3
+0030    ITERL    8 => 0019
+0031    KPRI     5   1
+0032    RET1     5   2
+
+-- BYTECODE -- JoplinClient.lua:81-93
+0001    KSTR     2   0      ; "http://"
+0002    TGETS    3   0   1  ; "server_ip"
+0003    KSTR     4   2      ; ":"
+0004    TGETS    5   0   3  ; "server_port"
+0005    KSTR     6   4      ; "/folders?"
+0006    KSTR     7   5      ; "token="
+0007    TGETS    8   0   6  ; "auth_token"
+0008    KSTR     9   7      ; "&"
+0009    KSTR    10   8      ; "query="
+0010    MOV     11   1
+0011    CAT      2   2  11
+0012    MOV      4   0
+0013    TGETS    3   0   9  ; "_makeRequest"
+0014    MOV      5   2
+0015    KSTR     6  10      ; "GET"
+0016    CALL     3   2   4
+0017    GGET     4  11      ; "pairs"
+0018    MOV      5   3
+0019    CALL     4   4   2
+0020    ISNEXT   7 => 0026
+0021 => TGETS    9   8  12  ; "title"
+0022    ISNEV    9   1
+0023    JMP      9 => 0026
+0024    TGETS    9   8  13  ; "id"
+0025    RET1     9   2
+0026 => ITERN    7   3   3
+0027    ITERL    7 => 0021
+0028    KPRI     4   1
+0029    RET1     4   2
+
+-- BYTECODE -- JoplinClient.lua:96-106
+0001    TDUP     3   0
+0002    TSETS    1   3   1  ; "title"
+0003    TSETS    2   3   2  ; "created_time"
+0004    KSTR     4   3      ; "http://"
+0005    TGETS    5   0   4  ; "server_ip"
+0006    KSTR     6   5      ; ":"
+0007    TGETS    7   0   6  ; "server_port"
+0008    KSTR     8   7      ; "/folders?"
+0009    KSTR     9   8      ; "token="
+0010    TGETS   10   0   9  ; "auth_token"
+0011    CAT      4   4  10
+0012    MOV      6   0
+0013    TGETS    5   0  10  ; "_makeRequest"
+0014    MOV      7   4
+0015    KSTR     8  11      ; "POST"
+0016    MOV      9   3
+0017    CALL     5   2   5
+0018    TGETS    6   5  12  ; "id"
+0019    RET1     6   2
+
+-- BYTECODE -- JoplinClient.lua:110-121
+0001    TDUP     5   0
+0002    TSETS    1   5   1  ; "title"
+0003    TSETS    2   5   2  ; "body"
+0004    TSETS    3   5   3  ; "parent_id"
+0005    TSETS    4   5   4  ; "created_time"
+0006    KSTR     6   5      ; "http://"
+0007    TGETS    7   0   6  ; "server_ip"
+0008    KSTR     8   7      ; ":"
+0009    TGETS    9   0   8  ; "server_port"
+0010    KSTR    10   9      ; "/notes?"
+0011    KSTR    11  10      ; "token="
+0012    TGETS   12   0  11  ; "auth_token"
+0013    CAT      6   6  12
+0014    MOV      8   0
+0015    TGETS    7   0  12  ; "_makeRequest"
+0016    MOV      9   6
+0017    KSTR    10  13      ; "POST"
+0018    MOV     11   5
+0019    CALL     7   2   5
+0020    TGETS    8   7  14  ; "id"
+0021    RET1     8   2
+
+-- BYTECODE -- JoplinClient.lua:124-134
+0001    TDUP     5   0
+0002    TSETS    2   5   1  ; "body"
+0003    TSETS    3   5   2  ; "title"
+0004    TSETS    4   5   3  ; "parent_id"
+0005    KSTR     6   4      ; "http://"
+0006    TGETS    7   0   5  ; "server_ip"
+0007    KSTR     8   6      ; ":"
+0008    TGETS    9   0   7  ; "server_port"
+0009    KSTR    10   8      ; "/notes/"
+0010    MOV     11   1
+0011    KSTR    12   9      ; "?token="
+0012    TGETS   13   0  10  ; "auth_token"
+0013    CAT      6   6  13
+0014    MOV      8   0
+0015    TGETS    7   0  11  ; "_makeRequest"
+0016    MOV      9   6
+0017    KSTR    10  12      ; "PUT"
+0018    MOV     11   5
+0019    CALL     7   2   5
+0020    TGETS    8   7  13  ; "id"
+0021    RET1     8   2
+
+-- BYTECODE -- JoplinClient.lua:0-137
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "json"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "socket.http"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ltn12"
+0009    CALL     2   2   2
+0010    TDUP     3   4
+0011    FNEW     4   6      ; JoplinClient.lua:11
+0012    TSETS    4   3   5  ; "new"
+0013    FNEW     4   8      ; JoplinClient.lua:18
+0014    TSETS    4   3   7  ; "_makeRequest"
+0015    FNEW     4  10      ; JoplinClient.lua:46
+0016    TSETS    4   3   9  ; "ping"
+0017    FNEW     4  12      ; JoplinClient.lua:63
+0018    TSETS    4   3  11  ; "findNoteByTitle"
+0019    FNEW     4  14      ; JoplinClient.lua:81
+0020    TSETS    4   3  13  ; "findNotebookByTitle"
+0021    FNEW     4  16      ; JoplinClient.lua:96
+0022    TSETS    4   3  15  ; "createNotebook"
+0023    FNEW     4  18      ; JoplinClient.lua:110
+0024    TSETS    4   3  17  ; "createNote"
+0025    FNEW     4  20      ; JoplinClient.lua:124
+0026    TSETS    4   3  19  ; "updateNote"
+0027    UCLO     0 => 0028
+0028 => RET1     3   2
+

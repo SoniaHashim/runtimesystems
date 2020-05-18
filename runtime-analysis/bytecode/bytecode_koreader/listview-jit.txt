@@ -1,0 +1,228 @@
+-- BYTECODE -- listview.lua:57-85
+0001    TGETS    1   0   0  ; "items"
+0002    LEN      1   1
+0003    KSHORT   2   0
+0004    ISGT     1   2
+0005    JMP      1 => 0007
+0006    RET0     0   1
+0007 => KSHORT   1   1
+0008    TSETS    1   0   1  ; "show_page"
+0009    UGET     1   0      ; Geom
+0010    MOV      2   1
+0011    TGETS    1   1   3  ; "new"
+0012    TDUP     3   5
+0013    TGETS    4   0   4  ; "width"
+0014    TSETS    4   3   6  ; "w"
+0015    TGETS    4   0   7  ; "height"
+0016    TSETS    4   3   8  ; "h"
+0017    CALL     1   2   3
+0018    TSETS    1   0   2  ; "dimen"
+0019    UGET     1   1      ; Device
+0020    MOV      2   1
+0021    TGETS    1   1   9  ; "isTouchDevice"
+0022    CALL     1   2   2
+0023    ISF          1
+0024    JMP      2 => 0036
+0025    TGETS    1   0  10  ; "ges_events"
+0026    TNEW     2   3
+0027    UGET     3   2      ; GestureRange
+0028    MOV      4   3
+0029    TGETS    3   3   3  ; "new"
+0030    TDUP     5  12
+0031    TGETS    6   0   2  ; "dimen"
+0032    TSETS    6   5  13  ; "range"
+0033    CALL     3   0   3
+0034    TSETM    3   0      ; 1
+0035    TSETS    2   1  11  ; "Swipe"
+0036 => TGETS    1   0  14  ; "padding"
+0037    IST          1
+0038    JMP      2 => 0042
+0039    UGET     1   3      ; Size
+0040    TGETS    1   1  14  ; "padding"
+0041    TGETS    1   1  15  ; "large"
+0042 => TGETS    2   0  16  ; "item_height"
+0043    IST          2
+0044    JMP      3 => 0051
+0045    TGETS    2   0   0  ; "items"
+0046    TGETB    2   2   1
+0047    MOV      3   2
+0048    TGETS    2   2  17  ; "getSize"
+0049    CALL     2   2   2
+0050    TGETS    2   2   8  ; "h"
+0051 => TSETS    2   0  16  ; "item_height"
+0052    TGETS    2   0   2  ; "dimen"
+0053    TGETS    2   2   6  ; "w"
+0054    MULNV    3   1   1  ; 2
+0055    SUBVV    2   2   3
+0056    TSETS    2   0  18  ; "item_width"
+0057    GGET     2  20      ; "math"
+0058    TGETS    2   2  21  ; "floor"
+0059    TGETS    3   0   7  ; "height"
+0060    TGETS    4   0  16  ; "item_height"
+0061    DIVVV    3   3   4
+0062    CALL     2   2   2
+0063    TSETS    2   0  19  ; "items_per_page"
+0064    UGET     2   4      ; VerticalGroup
+0065    MOV      3   2
+0066    TGETS    2   2   3  ; "new"
+0067    TNEW     4   0
+0068    CALL     2   2   3
+0069    TSETS    2   0  22  ; "main_content"
+0070    MOV      3   0
+0071    TGETS    2   0  23  ; "_populateItems"
+0072    CALL     2   1   2
+0073    UGET     2   5      ; FrameContainer
+0074    MOV      3   2
+0075    TGETS    2   2   3  ; "new"
+0076    TDUP     4  24
+0077    TGETS    5   0   2  ; "dimen"
+0078    TGETS    5   5   8  ; "h"
+0079    TSETS    5   4   7  ; "height"
+0080    TSETS    1   4  14  ; "padding"
+0081    UGET     5   6      ; Blitbuffer
+0082    TGETS    5   5  25  ; "COLOR_WHITE"
+0083    TSETS    5   4  26  ; "background"
+0084    TGETS    5   0  22  ; "main_content"
+0085    TSETB    5   4   1
+0086    CALL     2   2   3
+0087    TSETB    2   0   1
+0088    RET0     0   1
+
+-- BYTECODE -- listview.lua:88-98
+0001    GGET     1   1      ; "math"
+0002    TGETS    1   1   2  ; "ceil"
+0003    TGETS    2   0   3  ; "items"
+0004    LEN      2   2
+0005    TGETS    3   0   4  ; "items_per_page"
+0006    DIVVV    2   2   3
+0007    CALL     1   2   2
+0008    TSETS    1   0   0  ; "pages"
+0009    TGETS    1   0   5  ; "main_content"
+0010    MOV      2   1
+0011    TGETS    1   1   6  ; "clear"
+0012    CALL     1   1   2
+0013    TGETS    1   0   7  ; "show_page"
+0014    SUBVN    1   1   0  ; 1
+0015    TGETS    2   0   4  ; "items_per_page"
+0016    MULVV    1   1   2
+0017    KSHORT   2   1
+0018    TGETS    3   0   4  ; "items_per_page"
+0019    KSHORT   4   1
+0020    FORI     2 => 0033
+0021 => TGETS    6   0   3  ; "items"
+0022    ADDVV    7   1   5
+0023    TGETV    6   6   7
+0024    ISNEP    6   0
+0025    JMP      7 => 0027
+0026    JMP      2 => 0033
+0027 => GGET     7   8      ; "table"
+0028    TGETS    7   7   9  ; "insert"
+0029    TGETS    8   0   5  ; "main_content"
+0030    MOV      9   6
+0031    CALL     7   1   3
+0032    FORL     2 => 0021
+0033 => TGETS    2   0  10  ; "page_update_cb"
+0034    TGETS    3   0   7  ; "show_page"
+0035    TGETS    4   0   0  ; "pages"
+0036    CALL     2   1   3
+0037    RET0     0   1
+
+-- BYTECODE -- listview.lua:100-106
+0001    GGET     1   0      ; "math"
+0002    TGETS    1   1   1  ; "min"
+0003    TGETS    2   0   2  ; "show_page"
+0004    ADDVN    2   2   0  ; 1
+0005    TGETS    3   0   3  ; "pages"
+0006    CALL     1   2   3
+0007    TGETS    2   0   2  ; "show_page"
+0008    ISGE     2   1
+0009    JMP      2 => 0014
+0010    TSETS    1   0   2  ; "show_page"
+0011    MOV      3   0
+0012    TGETS    2   0   4  ; "_populateItems"
+0013    CALL     2   1   2
+0014 => RET0     0   1
+
+-- BYTECODE -- listview.lua:108-114
+0001    GGET     1   0      ; "math"
+0002    TGETS    1   1   1  ; "max"
+0003    TGETS    2   0   2  ; "show_page"
+0004    SUBVN    2   2   0  ; 1
+0005    KSHORT   3   1
+0006    CALL     1   2   3
+0007    TGETS    2   0   2  ; "show_page"
+0008    ISGE     1   2
+0009    JMP      2 => 0014
+0010    TSETS    1   0   2  ; "show_page"
+0011    MOV      3   0
+0012    TGETS    2   0   3  ; "_populateItems"
+0013    CALL     2   1   2
+0014 => RET0     0   1
+
+-- BYTECODE -- listview.lua:116-125
+0001    UGET     3   0      ; BD
+0002    TGETS    3   3   0  ; "flipDirectionIfMirroredUILayout"
+0003    TGETS    4   2   1  ; "direction"
+0004    CALL     3   2   2
+0005    ISNES    3   2      ; "west"
+0006    JMP      4 => 0013
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "nextPage"
+0009    CALL     4   1   2
+0010    KPRI     4   2
+0011    RET1     4   2
+0012    JMP      4 => 0020
+0013 => ISNES    3   4      ; "east"
+0014    JMP      4 => 0020
+0015    MOV      5   0
+0016    TGETS    4   0   5  ; "prevPage"
+0017    CALL     4   1   2
+0018    KPRI     4   2
+0019    RET1     4   2
+0020 => RET0     0   1
+
+-- BYTECODE -- listview.lua:0-128
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/blitbuffer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "device"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/container/framecontainer"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/geometry"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/gesturerange"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/container/inputcontainer"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/size"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/widget/verticalgroup"
+0027    CALL     8   2   2
+0028    MOV     10   6
+0029    TGETS    9   6  10  ; "new"
+0030    TDUP    11  11
+0031    CALL     9   2   3
+0032    FNEW    10  13      ; listview.lua:57
+0033    TSETS   10   9  12  ; "init"
+0034    FNEW    10  15      ; listview.lua:88
+0035    TSETS   10   9  14  ; "_populateItems"
+0036    FNEW    10  17      ; listview.lua:100
+0037    TSETS   10   9  16  ; "nextPage"
+0038    FNEW    10  19      ; listview.lua:108
+0039    TSETS   10   9  18  ; "prevPage"
+0040    FNEW    10  21      ; listview.lua:116
+0041    TSETS   10   9  20  ; "onSwipe"
+0042    UCLO     0 => 0043
+0043 => RET1     9   2
+

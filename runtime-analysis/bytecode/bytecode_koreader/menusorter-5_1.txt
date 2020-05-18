@@ -1,0 +1,379 @@
+
+main <./frontend/ui/menusorter.lua:0,0> (36 instructions, 144 bytes at 0x7fd015c068c0)
+0+ params, 8 slots, 0 upvalues, 6 locals, 16 constants, 4 functions
+	1	[6]	GETGLOBAL	0 -1	; require
+	2	[6]	LOADK    	1 -2	; "datastorage"
+	3	[6]	CALL     	0 2 2
+	4	[7]	GETGLOBAL	1 -1	; require
+	5	[7]	LOADK    	2 -3	; "libs/libkoreader-lfs"
+	6	[7]	CALL     	1 2 2
+	7	[8]	GETGLOBAL	2 -1	; require
+	8	[8]	LOADK    	3 -4	; "logger"
+	9	[8]	CALL     	2 2 2
+	10	[9]	GETGLOBAL	3 -1	; require
+	11	[9]	LOADK    	4 -5	; "gettext"
+	12	[9]	CALL     	3 2 2
+	13	[11]	LOADK    	4 -6	; "----------------------------"
+	14	[13]	NEWTABLE 	5 0 2
+	15	[14]	MOVE     	6 3
+	16	[14]	LOADK    	7 -8	; "NEW: "
+	17	[14]	CALL     	6 2 2
+	18	[14]	SETTABLE 	5 -7 6	; "orphaned_prefix" -
+	19	[15]	NEWTABLE 	6 0 2
+	20	[16]	SETTABLE 	6 -10 4	; "id" -
+	21	[17]	SETTABLE 	6 -11 -12	; "text" "KOMenu:separator"
+	22	[18]	SETTABLE 	5 -9 6	; "separator" -
+	23	[31]	CLOSURE  	6 0	; 0x7fd015c06bc0
+	24	[31]	MOVE     	0 0
+	25	[31]	MOVE     	0 1
+	26	[21]	SETTABLE 	5 -13 6	; "readMSSettings" -
+	27	[41]	CLOSURE  	6 1	; 0x7fd015c066f0
+	28	[33]	SETTABLE 	5 -14 6	; "mergeAndSort" -
+	29	[187]	CLOSURE  	6 2	; 0x7fd015c07580
+	30	[187]	MOVE     	0 4
+	31	[187]	MOVE     	0 2
+	32	[47]	SETTABLE 	5 -15 6	; "sort" -
+	33	[219]	CLOSURE  	6 3	; 0x7fd015c07cb0
+	34	[193]	SETTABLE 	5 -16 6	; "findById" -
+	35	[221]	RETURN   	5 2
+	36	[221]	RETURN   	0 1
+
+function <./frontend/ui/menusorter.lua:21,31> (28 instructions, 112 bytes at 0x7fd015c06bc0)
+2 params, 6 slots, 2 upvalues, 3 locals, 7 constants, 0 functions
+	1	[22]	TEST     	1 0 0
+	2	[22]	JMP      	23	; to 26
+	3	[23]	GETGLOBAL	2 -1	; string
+	4	[23]	GETTABLE 	2 2 -2	; "format"
+	5	[24]	LOADK    	3 -3	; "%s/%s_menu_order"
+	6	[24]	GETUPVAL 	4 0	; DataStorage
+	7	[24]	SELF     	4 4 -4	; "getSettingsDir"
+	8	[24]	CALL     	4 2 2
+	9	[24]	MOVE     	5 1
+	10	[23]	CALL     	2 4 2
+	11	[26]	GETUPVAL 	3 1	; lfs
+	12	[26]	GETTABLE 	3 3 -5	; "attributes"
+	13	[26]	MOVE     	4 2
+	14	[26]	LOADK    	5 -6	; ".lua"
+	15	[26]	CONCAT   	4 4 5
+	16	[26]	CALL     	3 2 2
+	17	[26]	TEST     	3 0 0
+	18	[26]	JMP      	7	; to 26
+	19	[27]	GETGLOBAL	3 -7	; require
+	20	[27]	MOVE     	4 2
+	21	[27]	CALL     	3 2 2
+	22	[27]	TEST     	3 0 1
+	23	[27]	JMP      	1	; to 25
+	24	[27]	NEWTABLE 	3 0 0
+	25	[27]	RETURN   	3 2
+	26	[30]	NEWTABLE 	2 0 0
+	27	[30]	RETURN   	2 2
+	28	[31]	RETURN   	0 1
+
+function <./frontend/ui/menusorter.lua:33,41> (18 instructions, 72 bytes at 0x7fd015c066f0)
+4 params, 11 slots, 0 upvalues, 10 locals, 3 constants, 0 functions
+	1	[34]	SELF     	4 0 -1	; "readMSSettings"
+	2	[34]	MOVE     	6 1
+	3	[34]	CALL     	4 3 2
+	4	[35]	TEST     	4 0 0
+	5	[35]	JMP      	7	; to 13
+	6	[36]	GETGLOBAL	5 -2	; pairs
+	7	[36]	MOVE     	6 4
+	8	[36]	CALL     	5 2 4
+	9	[36]	JMP      	1	; to 11
+	10	[37]	SETTABLE 	3 8 9
+	11	[36]	TFORLOOP 	5 2
+	12	[37]	JMP      	-3	; to 10
+	13	[40]	SELF     	5 0 -3	; "sort"
+	14	[40]	MOVE     	7 2
+	15	[40]	MOVE     	8 3
+	16	[40]	TAILCALL 	5 4 0
+	17	[40]	RETURN   	5 0
+	18	[41]	RETURN   	0 1
+
+function <./frontend/ui/menusorter.lua:47,187> (209 instructions, 836 bytes at 0x7fd015c07580)
+3 params, 19 slots, 2 upvalues, 50 locals, 23 constants, 0 functions
+	1	[48]	NEWTABLE 	3 0 0
+	2	[49]	NEWTABLE 	4 0 0
+	3	[51]	GETGLOBAL	5 -1	; pairs
+	4	[51]	MOVE     	6 2
+	5	[51]	CALL     	5 2 4
+	6	[51]	JMP      	81	; to 88
+	7	[53]	GETTABLE 	10 1 8
+	8	[53]	EQ       	1 10 -2	; - nil
+	9	[53]	JMP      	69	; to 79
+	10	[54]	NEWTABLE 	10 0 0
+	11	[55]	GETTABLE 	11 1 8
+	12	[55]	SETTABLE 	3 8 11
+	13	[56]	GETTABLE 	11 3 8
+	14	[56]	SETTABLE 	11 -3 8	; "id" -
+	15	[57]	GETGLOBAL	11 -4	; ipairs
+	16	[57]	MOVE     	12 9
+	17	[57]	CALL     	11 2 4
+	18	[57]	JMP      	29	; to 48
+	19	[59]	GETTABLE 	16 1 15
+	20	[59]	EQ       	1 16 -2	; - nil
+	21	[59]	JMP      	12	; to 34
+	22	[59]	GETTABLE 	16 2 15
+	23	[59]	TEST     	16 0 0
+	24	[59]	JMP      	9	; to 34
+	25	[60]	GETGLOBAL	16 -5	; table
+	26	[60]	GETTABLE 	16 16 -6	; "insert"
+	27	[60]	MOVE     	17 4
+	28	[60]	MOVE     	18 15
+	29	[60]	CALL     	16 3 1
+	30	[61]	NEWTABLE 	16 0 1
+	31	[62]	SETTABLE 	16 -3 15	; "id" -
+	32	[63]	SETTABLE 	10 14 16
+	33	[63]	JMP      	14	; to 48
+	34	[66]	GETUPVAL 	16 0	; separator_id
+	35	[66]	EQ       	0 15 16
+	36	[66]	JMP      	3	; to 40
+	37	[68]	GETTABLE 	16 0 -7	; "separator"
+	38	[68]	SETTABLE 	10 14 16
+	39	[68]	JMP      	8	; to 48
+	40	[69]	GETTABLE 	16 1 15
+	41	[69]	EQ       	1 16 -2	; - nil
+	42	[69]	JMP      	5	; to 48
+	43	[70]	GETTABLE 	16 1 15
+	44	[70]	SETTABLE 	16 -3 15	; "id" -
+	45	[71]	GETTABLE 	16 1 15
+	46	[71]	SETTABLE 	10 14 16
+	47	[73]	SETTABLE 	1 15 -2	; - nil
+	48	[57]	TFORLOOP 	11 2
+	49	[75]	JMP      	-31	; to 19
+	50	[80]	LOADK    	11 -8	; 1
+	51	[81]	LOADK    	12 -8	; 1
+	52	[82]	GETGLOBAL	13 -5	; table
+	53	[82]	GETTABLE 	13 13 -9	; "maxn"
+	54	[82]	MOVE     	14 10
+	55	[82]	CALL     	13 2 2
+	56	[82]	LE       	0 11 13
+	57	[82]	JMP      	30	; to 88
+	58	[83]	GETTABLE 	13 10 11
+	59	[84]	TEST     	13 0 0
+	60	[84]	JMP      	15	; to 76
+	61	[85]	GETTABLE 	14 13 -3	; "id"
+	62	[85]	GETUPVAL 	15 0	; separator_id
+	63	[85]	EQ       	0 14 15
+	64	[85]	JMP      	7	; to 72
+	65	[86]	SUB      	12 12 -8	; - 1
+	66	[88]	LT       	0 -10 12	; 0 -
+	67	[88]	JMP      	7	; to 75
+	68	[89]	GETTABLE 	14 3 8
+	69	[89]	GETTABLE 	14 14 12
+	70	[89]	SETTABLE 	14 -7 -11	; "separator" true
+	71	[90]	JMP      	3	; to 75
+	72	[93]	GETTABLE 	14 3 8
+	73	[93]	GETTABLE 	15 10 11
+	74	[93]	SETTABLE 	14 12 15
+	75	[96]	ADD      	12 12 -8	; - 1
+	76	[98]	ADD      	11 11 -8	; - 1
+	77	[98]	JMP      	-26	; to 52
+	78	[99]	JMP      	9	; to 88
+	79	[101]	EQ       	1 8 -12	; - "KOMenu:disabled"
+	80	[101]	JMP      	7	; to 88
+	81	[101]	EQ       	1 8 -13	; - "plus_menu"
+	82	[101]	JMP      	5	; to 88
+	83	[104]	GETUPVAL 	10 1	; logger
+	84	[104]	GETTABLE 	10 10 -14	; "warn"
+	85	[104]	LOADK    	11 -15	; "menu id not found:"
+	86	[104]	MOVE     	12 8
+	87	[104]	CALL     	10 3 1
+	88	[51]	TFORLOOP 	5 2
+	89	[106]	JMP      	-83	; to 7
+	90	[113]	LOADBOOL 	5 1 0
+	91	[114]	TEST     	5 0 0
+	92	[114]	JMP      	26	; to 119
+	93	[115]	LOADBOOL 	5 0 0
+	94	[117]	GETGLOBAL	6 -4	; ipairs
+	95	[117]	MOVE     	7 4
+	96	[117]	CALL     	6 2 4
+	97	[117]	JMP      	18	; to 116
+	98	[118]	GETTABLE 	11 3 10
+	99	[118]	EQ       	1 11 -2	; - nil
+	100	[118]	JMP      	15	; to 116
+	101	[119]	SELF     	11 0 -16	; "findById"
+	102	[119]	GETTABLE 	13 3 -17	; "KOMenu:menu_buttons"
+	103	[119]	MOVE     	14 10
+	104	[119]	CALL     	11 4 2
+	105	[120]	TEST     	11 0 0
+	106	[120]	JMP      	9	; to 116
+	107	[121]	LOADBOOL 	5 1 0
+	108	[122]	GETTABLE 	12 3 10
+	109	[123]	GETTABLE 	13 12 -18	; "text"
+	110	[123]	SETTABLE 	11 -18 13	; "text" -
+	111	[124]	GETTABLE 	13 12 -19	; "hold_callback"
+	112	[124]	SETTABLE 	11 -19 13	; "hold_callback" -
+	113	[125]	SETTABLE 	11 -20 12	; "sub_item_table" -
+	114	[127]	SETTABLE 	3 10 -2	; - nil
+	115	[129]	SETTABLE 	1 10 -2	; - nil
+	116	[117]	TFORLOOP 	6 2
+	117	[131]	JMP      	-20	; to 98
+	118	[132]	JMP      	-28	; to 91
+	119	[137]	LOADK    	6 -10	; 0
+	120	[138]	GETGLOBAL	7 -4	; ipairs
+	121	[138]	GETTABLE 	8 3 -17	; "KOMenu:menu_buttons"
+	122	[138]	CALL     	7 2 4
+	123	[138]	JMP      	12	; to 136
+	124	[139]	GETTABLE 	12 3 -17	; "KOMenu:menu_buttons"
+	125	[139]	GETTABLE 	12 12 10
+	126	[139]	GETTABLE 	12 12 -20	; "sub_item_table"
+	127	[140]	GETTABLE 	13 3 -17	; "KOMenu:menu_buttons"
+	128	[140]	SETTABLE 	13 10 -2	; - nil
+	129	[141]	TEST     	12 0 0
+	130	[141]	JMP      	4	; to 135
+	131	[142]	GETTABLE 	13 3 -17	; "KOMenu:menu_buttons"
+	132	[142]	SUB      	14 10 6
+	133	[142]	SETTABLE 	13 14 12
+	134	[142]	JMP      	1	; to 136
+	135	[144]	ADD      	6 6 -8	; - 1
+	136	[138]	TFORLOOP 	7 2
+	137	[145]	JMP      	-14	; to 124
+	138	[148]	GETTABLE 	7 2 -12	; "KOMenu:disabled"
+	139	[148]	TEST     	7 0 0
+	140	[148]	JMP      	10	; to 151
+	141	[149]	GETGLOBAL	7 -4	; ipairs
+	142	[149]	GETTABLE 	8 2 -12	; "KOMenu:disabled"
+	143	[149]	CALL     	7 2 4
+	144	[149]	JMP      	4	; to 149
+	145	[150]	GETTABLE 	12 1 11
+	146	[150]	TEST     	12 0 0
+	147	[150]	JMP      	1	; to 149
+	148	[152]	SETTABLE 	1 11 -2	; - nil
+	149	[149]	TFORLOOP 	7 2
+	150	[153]	JMP      	-6	; to 145
+	151	[158]	SETTABLE 	1 -17 -2	; "KOMenu:menu_buttons" nil
+	152	[161]	GETGLOBAL	7 -1	; pairs
+	153	[161]	MOVE     	8 1
+	154	[161]	CALL     	7 2 4
+	155	[161]	JMP      	49	; to 205
+	156	[162]	GETTABLE 	12 11 -21	; "sorting_hint"
+	157	[165]	GETTABLE 	13 11 -18	; "text"
+	158	[165]	TEST     	13 0 0
+	159	[165]	JMP      	24	; to 184
+	160	[165]	GETTABLE 	13 11 -22	; "new"
+	161	[165]	EQ       	1 13 -11	; - true
+	162	[165]	JMP      	21	; to 184
+	163	[166]	SETTABLE 	11 -3 10	; "id" -
+	164	[167]	TEST     	12 0 1
+	165	[167]	JMP      	4	; to 170
+	166	[167]	GETTABLE 	13 0 -23	; "orphaned_prefix"
+	167	[167]	GETTABLE 	14 11 -18	; "text"
+	168	[167]	CONCAT   	13 13 14
+	169	[167]	SETTABLE 	11 -18 13	; "text" -
+	170	[169]	SETTABLE 	11 -22 -11	; "new" true
+	171	[171]	LEN      	13 11
+	172	[171]	LT       	0 -10 13	; 0 -
+	173	[171]	JMP      	10	; to 184
+	174	[172]	NEWTABLE 	13 0 0
+	175	[172]	SETTABLE 	11 -20 13	; "sub_item_table" -
+	176	[173]	LOADK    	13 -8	; 1
+	177	[173]	LEN      	14 11
+	178	[173]	LOADK    	15 -8	; 1
+	179	[173]	FORPREP  	13 3	; to 183
+	180	[174]	GETTABLE 	17 11 -20	; "sub_item_table"
+	181	[174]	GETTABLE 	18 11 16
+	182	[174]	SETTABLE 	17 16 18
+	183	[173]	FORLOOP  	13 -4	; to 180
+	184	[178]	TEST     	12 0 0
+	185	[178]	JMP      	13	; to 199
+	186	[179]	SELF     	13 0 -16	; "findById"
+	187	[179]	GETTABLE 	15 3 -17	; "KOMenu:menu_buttons"
+	188	[179]	MOVE     	16 12
+	189	[179]	CALL     	13 4 2
+	190	[180]	GETTABLE 	14 13 -20	; "sub_item_table"
+	191	[180]	TESTSET  	13 14 1
+	192	[180]	JMP      	0	; to 193
+	193	[181]	GETGLOBAL	14 -5	; table
+	194	[181]	GETTABLE 	14 14 -6	; "insert"
+	195	[181]	MOVE     	15 13
+	196	[181]	MOVE     	16 11
+	197	[181]	CALL     	14 3 1
+	198	[181]	JMP      	6	; to 205
+	199	[183]	GETGLOBAL	13 -5	; table
+	200	[183]	GETTABLE 	13 13 -6	; "insert"
+	201	[183]	GETTABLE 	14 3 -17	; "KOMenu:menu_buttons"
+	202	[183]	GETTABLE 	14 14 -8	; 1
+	203	[183]	MOVE     	15 11
+	204	[183]	CALL     	13 3 1
+	205	[161]	TFORLOOP 	7 2
+	206	[184]	JMP      	-51	; to 156
+	207	[186]	GETTABLE 	7 3 -17	; "KOMenu:menu_buttons"
+	208	[186]	RETURN   	7 2
+	209	[187]	RETURN   	0 1
+
+function <./frontend/ui/menusorter.lua:193,219> (73 instructions, 292 bytes at 0x7fd015c07cb0)
+3 params, 16 slots, 0 upvalues, 18 locals, 8 constants, 0 functions
+	1	[194]	NEWTABLE 	3 0 0
+	2	[196]	GETGLOBAL	4 -1	; pairs
+	3	[196]	MOVE     	5 1
+	4	[196]	CALL     	4 2 4
+	5	[196]	JMP      	7	; to 13
+	6	[197]	EQ       	1 8 -2	; - "KOMenu:menu_buttons"
+	7	[197]	JMP      	5	; to 13
+	8	[198]	GETGLOBAL	9 -3	; table
+	9	[198]	GETTABLE 	9 9 -4	; "insert"
+	10	[198]	MOVE     	10 3
+	11	[198]	MOVE     	11 8
+	12	[198]	CALL     	9 3 1
+	13	[196]	TFORLOOP 	4 2
+	14	[199]	JMP      	-9	; to 6
+	15	[202]	LOADNIL  	4 5
+	16	[203]	GETGLOBAL	6 -5	; next
+	17	[203]	MOVE     	7 3
+	18	[203]	LOADNIL  	8 8
+	19	[203]	CALL     	6 3 3
+	20	[203]	MOVE     	5 7
+	21	[203]	MOVE     	4 6
+	22	[204]	TEST     	4 0 0
+	23	[204]	JMP      	49	; to 73
+	24	[205]	GETTABLE 	6 5 -6	; "id"
+	25	[205]	EQ       	1 6 2
+	26	[205]	JMP      	1	; to 28
+	27	[205]	LOADBOOL 	6 0 1
+	28	[205]	LOADBOOL 	6 1 0
+	29	[206]	GETTABLE 	7 5 -7	; "sub_item_table"
+	30	[206]	TEST     	7 0 1
+	31	[206]	JMP      	9	; to 41
+	32	[206]	GETGLOBAL	7 -8	; type
+	33	[206]	MOVE     	8 5
+	34	[206]	CALL     	7 2 2
+	35	[206]	EQ       	0 7 -3	; - "table"
+	36	[206]	JMP      	2	; to 39
+	37	[206]	MOVE     	7 5
+	38	[206]	JMP      	2	; to 41
+	39	[206]	LOADBOOL 	7 0 1
+	40	[206]	LOADBOOL 	7 1 0
+	41	[208]	TEST     	6 0 0
+	42	[208]	JMP      	2	; to 45
+	43	[209]	RETURN   	5 2
+	44	[209]	JMP      	21	; to 66
+	45	[210]	TEST     	7 0 0
+	46	[210]	JMP      	19	; to 66
+	47	[211]	GETGLOBAL	8 -1	; pairs
+	48	[211]	MOVE     	9 7
+	49	[211]	CALL     	8 2 4
+	50	[211]	JMP      	13	; to 64
+	51	[212]	GETGLOBAL	13 -8	; type
+	52	[212]	MOVE     	14 12
+	53	[212]	CALL     	13 2 2
+	54	[212]	EQ       	0 13 -3	; - "table"
+	55	[212]	JMP      	8	; to 64
+	56	[212]	GETTABLE 	13 12 -6	; "id"
+	57	[212]	TEST     	13 0 0
+	58	[212]	JMP      	5	; to 64
+	59	[213]	GETGLOBAL	13 -3	; table
+	60	[213]	GETTABLE 	13 13 -4	; "insert"
+	61	[213]	MOVE     	14 3
+	62	[213]	MOVE     	15 12
+	63	[213]	CALL     	13 3 1
+	64	[211]	TFORLOOP 	8 2
+	65	[214]	JMP      	-15	; to 51
+	66	[217]	GETGLOBAL	8 -5	; next
+	67	[217]	MOVE     	9 3
+	68	[217]	MOVE     	10 4
+	69	[217]	CALL     	8 3 3
+	70	[217]	MOVE     	5 9
+	71	[217]	MOVE     	4 8
+	72	[217]	JMP      	-51	; to 22
+	73	[219]	RETURN   	0 1

@@ -1,0 +1,2005 @@
+-- BYTECODE -- frontlightwidget.lua:41-119
+0001    TGETS    1   0   1  ; "use_system_fl"
+0002    ISF          1
+0003    JMP      2 => 0009
+0004    GGET     1   2      ; "G_reader_settings"
+0005    MOV      2   1
+0006    TGETS    1   1   3  ; "nilOrTrue"
+0007    KSTR     3   0      ; "light_fallback"
+0008    CALL     1   2   3
+0009 => TSETS    1   0   0  ; "light_fallback"
+0010    UGET     1   0      ; Font
+0011    MOV      2   1
+0012    TGETS    1   1   5  ; "getFace"
+0013    KSTR     3   6      ; "ffont"
+0014    CALL     1   2   3
+0015    TSETS    1   0   4  ; "medium_font_face"
+0016    UGET     1   0      ; Font
+0017    MOV      2   1
+0018    TGETS    1   1   5  ; "getFace"
+0019    KSTR     3   8      ; "cfont"
+0020    CALL     1   2   3
+0021    TSETS    1   0   7  ; "larger_font_face"
+0022    TNEW     1   0
+0023    TSETS    1   0   9  ; "light_bar"
+0024    UGET     1   1      ; Screen
+0025    MOV      2   1
+0026    TGETS    1   1  11  ; "getWidth"
+0027    CALL     1   2   2
+0028    TSETS    1   0  10  ; "screen_width"
+0029    UGET     1   1      ; Screen
+0030    MOV      2   1
+0031    TGETS    1   1  13  ; "getHeight"
+0032    CALL     1   2   2
+0033    TSETS    1   0  12  ; "screen_height"
+0034    GGET     1  15      ; "math"
+0035    TGETS    1   1  16  ; "ceil"
+0036    TGETS    2   0  12  ; "screen_height"
+0037    MULVN    2   2   0  ; 0.01
+0038    CALL     1   2   2
+0039    TSETS    1   0  14  ; "span"
+0040    TGETS    1   0  10  ; "screen_width"
+0041    MULVN    1   1   1  ; 0.95
+0042    TSETS    1   0  17  ; "width"
+0043    UGET     1   2      ; Device
+0044    MOV      2   1
+0045    TGETS    1   1  19  ; "getPowerDevice"
+0046    CALL     1   2   2
+0047    TSETS    1   0  18  ; "powerd"
+0048    TGETS    1   0  18  ; "powerd"
+0049    TGETS    1   1  20  ; "fl_min"
+0050    TSETS    1   0  20  ; "fl_min"
+0051    TGETS    1   0  18  ; "powerd"
+0052    TGETS    1   1  21  ; "fl_max"
+0053    TSETS    1   0  21  ; "fl_max"
+0054    TGETS    1   0  18  ; "powerd"
+0055    MOV      2   1
+0056    TGETS    1   1  23  ; "frontlightIntensity"
+0057    CALL     1   2   2
+0058    TSETS    1   0  22  ; "fl_cur"
+0059    TGETS    1   0  21  ; "fl_max"
+0060    TGETS    2   0  20  ; "fl_min"
+0061    SUBVV    1   1   2
+0062    ADDVN    1   1   2  ; 1
+0063    GGET     2  15      ; "math"
+0064    TGETS    2   2  16  ; "ceil"
+0065    DIVVN    3   1   3  ; 25
+0066    CALL     2   2   2
+0067    TSETS    2   0  24  ; "one_step"
+0068    GGET     2  15      ; "math"
+0069    TGETS    2   2  16  ; "ceil"
+0070    TGETS    3   0  24  ; "one_step"
+0071    DIVVV    3   1   3
+0072    CALL     2   2   2
+0073    TSETS    2   0  25  ; "steps"
+0074    TGETS    2   0  25  ; "steps"
+0075    SUBVN    2   2   2  ; 1
+0076    TGETS    3   0  24  ; "one_step"
+0077    MULVV    2   2   3
+0078    TGETS    3   0  21  ; "fl_max"
+0079    TGETS    4   0  20  ; "fl_min"
+0080    SUBVV    3   3   4
+0081    ISGE     2   3
+0082    JMP      2 => 0086
+0083    TGETS    2   0  25  ; "steps"
+0084    ADDVN    2   2   2  ; 1
+0085    TSETS    2   0  25  ; "steps"
+0086 => GGET     2  15      ; "math"
+0087    TGETS    2   2  26  ; "min"
+0088    TGETS    3   0  25  ; "steps"
+0089    MOV      4   1
+0090    CALL     2   2   3
+0091    TSETS    2   0  25  ; "steps"
+0092    UGET     2   2      ; Device
+0093    MOV      3   2
+0094    TGETS    2   2  28  ; "hasNaturalLight"
+0095    CALL     2   2   2
+0096    TSETS    2   0  27  ; "natural_light"
+0097    UGET     2   2      ; Device
+0098    MOV      3   2
+0099    TGETS    2   2  30  ; "hasNaturalLightMixer"
+0100    CALL     2   2   2
+0101    TSETS    2   0  29  ; "has_nl_mixer"
+0102    TGETS    2   0  27  ; "natural_light"
+0103    ISF          2
+0104    JMP      3 => 0114
+0105    TGETS    2   0  18  ; "powerd"
+0106    TGETS    2   2  32  ; "fl_warmth_min"
+0107    TSETS    2   0  31  ; "nl_min"
+0108    TGETS    2   0  18  ; "powerd"
+0109    TGETS    2   2  34  ; "fl_warmth_max"
+0110    TSETS    2   0  33  ; "nl_max"
+0111    TGETS    2   0  33  ; "nl_max"
+0112    DIVNV    2   2   4  ; 100
+0113    TSETS    2   0  35  ; "nl_scale"
+0114 => UGET     2   3      ; Size
+0115    TGETS    2   2  36  ; "margin"
+0116    TGETS    2   2  37  ; "tiny"
+0117    UGET     3   3      ; Size
+0118    TGETS    3   3  38  ; "padding"
+0119    TGETS    3   3  39  ; "button"
+0120    UGET     4   3      ; Size
+0121    TGETS    4   4  40  ; "border"
+0122    TGETS    4   4  39  ; "button"
+0123    KPRI     5   1
+0124    TSETS    5   0  41  ; "auto_nl"
+0125    GGET     5  15      ; "math"
+0126    TGETS    5   5  43  ; "floor"
+0127    TGETS    6   0  10  ; "screen_width"
+0128    MULVN    6   6   5  ; 0.9
+0129    TGETS    7   0  25  ; "steps"
+0130    DIVVV    6   6   7
+0131    CALL     5   2   2
+0132    ADDVV    6   2   3
+0133    ADDVV    6   6   4
+0134    MULNV    6   6   6  ; 2
+0135    SUBVV    5   5   6
+0136    TSETS    5   0  42  ; "button_width"
+0137    UGET     5   4      ; Button
+0138    MOV      6   5
+0139    TGETS    5   5  45  ; "new"
+0140    TDUP     7  46
+0141    TSETS    2   7  36  ; "margin"
+0142    TSETS    3   7  38  ; "padding"
+0143    TSETS    4   7  47  ; "bordersize"
+0144    TGETS    8   0   0  ; "light_fallback"
+0145    NOT      8   8
+0146    TSETS    8   7  48  ; "enabled"
+0147    TGETS    8   0  42  ; "button_width"
+0148    TSETS    8   7  17  ; "width"
+0149    TSETS    0   7  49  ; "show_parent"
+0150    CALL     5   2   3
+0151    TSETS    5   0  44  ; "fl_prog_button"
+0152    UGET     5   2      ; Device
+0153    MOV      6   5
+0154    TGETS    5   5  50  ; "hasKeys"
+0155    CALL     5   2   2
+0156    ISF          5
+0157    JMP      6 => 0164
+0158    TDUP     5  54
+0159    TDUP     6  53
+0160    TDUP     7  52
+0161    TSETB    7   6   1
+0162    TSETS    6   5  55  ; "Close"
+0163    TSETS    5   0  51  ; "key_events"
+0164 => UGET     5   2      ; Device
+0165    MOV      6   5
+0166    TGETS    5   5  56  ; "isTouchDevice"
+0167    CALL     5   2   2
+0168    ISF          5
+0169    JMP      6 => 0208
+0170    TDUP     5  63
+0171    TNEW     6   3
+0172    UGET     7   5      ; GestureRange
+0173    MOV      8   7
+0174    TGETS    7   7  45  ; "new"
+0175    TDUP     9  58
+0176    UGET    10   6      ; Geom
+0177    MOV     11  10
+0178    TGETS   10  10  45  ; "new"
+0179    TDUP    12  59
+0180    TGETS   13   0  10  ; "screen_width"
+0181    TSETS   13  12  60  ; "w"
+0182    TGETS   13   0  12  ; "screen_height"
+0183    TSETS   13  12  61  ; "h"
+0184    CALL    10   2   3
+0185    TSETS   10   9  62  ; "range"
+0186    CALL     7   0   3
+0187    TSETM    7   7      ; 1
+0188    TSETS    6   5  64  ; "TapProgress"
+0189    TNEW     6   3
+0190    UGET     7   5      ; GestureRange
+0191    MOV      8   7
+0192    TGETS    7   7  45  ; "new"
+0193    TDUP     9  65
+0194    UGET    10   6      ; Geom
+0195    MOV     11  10
+0196    TGETS   10  10  45  ; "new"
+0197    TDUP    12  66
+0198    TGETS   13   0  10  ; "screen_width"
+0199    TSETS   13  12  60  ; "w"
+0200    TGETS   13   0  12  ; "screen_height"
+0201    TSETS   13  12  61  ; "h"
+0202    CALL    10   2   3
+0203    TSETS   10   9  62  ; "range"
+0204    CALL     7   0   3
+0205    TSETM    7   7      ; 1
+0206    TSETS    6   5  67  ; "PanProgress"
+0207    TSETS    5   0  57  ; "ges_events"
+0208 => MOV      6   0
+0209    TGETS    5   0  68  ; "update"
+0210    CALL     5   1   2
+0211    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:121-127
+0001    UGET     5   0      ; CenterContainer
+0002    MOV      6   5
+0003    TGETS    5   5   1  ; "new"
+0004    TDUP     7   5
+0005    UGET     8   1      ; Geom
+0006    MOV      9   8
+0007    TGETS    8   8   1  ; "new"
+0008    TDUP    10   2
+0009    TSETS    1  10   3  ; "w"
+0010    TSETS    2  10   4  ; "h"
+0011    CALL     8   2   3
+0012    TSETS    8   7   6  ; "dimen"
+0013    CALL     5   2   3
+0014    TSETS    5   0   0  ; "fl_container"
+0015    MOV      6   0
+0016    TGETS    5   0   7  ; "setProgress"
+0017    MOV      7   3
+0018    MOV      8   4
+0019    CALL     5   1   4
+0020    TGETS    5   0   0  ; "fl_container"
+0021    RET1     5   2
+
+-- BYTECODE -- frontlightwidget.lua:179-179
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setProgress"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "fl_cur"
+0006    SUBVN    2   2   0  ; 1
+0007    UGET     3   1      ; step
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:188-188
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setProgress"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "fl_cur"
+0006    ADDVN    2   2   0  ; 1
+0007    UGET     3   1      ; step
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:203-203
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setProgress"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "fl_min"
+0006    ADDVN    2   2   0  ; 1
+0007    UGET     3   1      ; step
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:212-212
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setProgress"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "fl_max"
+0006    UGET     3   1      ; step
+0007    CALL     0   1   4
+0008    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:221-223
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setProgress"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "fl_min"
+0006    UGET     3   1      ; step
+0007    CALL     0   1   4
+0008    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:251-259
+0001    UGET     0   0      ; system_level_checkbutton
+0002    TGETS    0   0   0  ; "checked"
+0003    ISF          0
+0004    JMP      1 => 0009
+0005    UGET     0   1      ; self
+0006    KPRI     1   1
+0007    TSETS    1   0   1  ; "light_fallback"
+0008    JMP      0 => 0012
+0009 => UGET     0   1      ; self
+0010    KPRI     1   2
+0011    TSETS    1   0   1  ; "light_fallback"
+0012 => GGET     0   2      ; "G_reader_settings"
+0013    MOV      1   0
+0014    TGETS    0   0   3  ; "saveSetting"
+0015    KSTR     2   1      ; "light_fallback"
+0016    UGET     3   1      ; self
+0017    TGETS    3   3   1  ; "light_fallback"
+0018    CALL     0   1   4
+0019    UGET     0   1      ; self
+0020    MOV      1   0
+0021    TGETS    0   0   4  ; "setProgress"
+0022    UGET     2   1      ; self
+0023    TGETS    2   2   5  ; "fl_cur"
+0024    UGET     3   2      ; step
+0025    CALL     0   1   4
+0026    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:286-288
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; NaturalLight
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   2
+0008    UGET     5   2      ; self
+0009    TSETS    5   4   3  ; "fl_widget"
+0010    CALL     2   0   3
+0011    CALLM    0   1   1
+0012    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:297-299
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "light_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- frontlightwidget.lua:129-301
+0001    TGETS    4   0   0  ; "fl_container"
+0002    MOV      5   4
+0003    TGETS    4   4   1  ; "clear"
+0004    CALL     4   1   2
+0005    UGET     4   0      ; VerticalSpan
+0006    MOV      5   4
+0007    TGETS    4   4   2  ; "new"
+0008    TDUP     6   4
+0009    TGETS    7   0   3  ; "span"
+0010    TSETS    7   6   5  ; "width"
+0011    CALL     4   2   3
+0012    UGET     5   1      ; HorizontalGroup
+0013    MOV      6   5
+0014    TGETS    5   5   2  ; "new"
+0015    TDUP     7   6
+0016    CALL     5   2   3
+0017    UGET     6   1      ; HorizontalGroup
+0018    MOV      7   6
+0019    TGETS    6   6   2  ; "new"
+0020    TDUP     8   7
+0021    CALL     6   2   3
+0022    UGET     7   2      ; VerticalGroup
+0023    MOV      8   7
+0024    TGETS    7   7   2  ; "new"
+0025    TDUP     9   8
+0026    CALL     7   2   3
+0027    TGETS    8   0   9  ; "fl_prog_button"
+0028    TGETS    9   0  11  ; "light_fallback"
+0029    NOT      9   9
+0030    TSETS    9   8  10  ; "enabled"
+0031    KPRI     8   2
+0032    KPRI     9   2
+0033    TGETS   10   0  12  ; "natural_light"
+0034    ISF         10
+0035    JMP     11 => 0040
+0036    IST          3
+0037    JMP     10 => 0040
+0038    TGETS   10   0  13  ; "powerd"
+0039    TGETS    3  10  14  ; "fl_warmth"
+0040 => ISF          1
+0041    JMP     10 => 0062
+0042    TGETS   10   0  15  ; "fl_min"
+0043    ISEQV    1  10
+0044    JMP     10 => 0048
+0045    TGETS   10   0  16  ; "fl_cur"
+0046    ISEQV    1  10
+0047    JMP     10 => 0052
+0048 => MOV     11   0
+0049    TGETS   10   0  17  ; "setFrontLightIntensity"
+0050    MOV     12   1
+0051    CALL    10   1   3
+0052 => TGETS   10   0  16  ; "fl_cur"
+0053    TGETS   11   0  18  ; "fl_max"
+0054    ISNEV   10  11
+0055    JMP     10 => 0057
+0056    KPRI     8   1
+0057 => TGETS   10   0  16  ; "fl_cur"
+0058    TGETS   11   0  15  ; "fl_min"
+0059    ISNEV   10  11
+0060    JMP     10 => 0062
+0061    KPRI     9   1
+0062 => TNEW    10   0
+0063    KSHORT  11   1
+0064    TGETS   12   0  19  ; "steps"
+0065    SUBVN   12  12   0  ; 2
+0066    KSHORT  13   1
+0067    FORI    11 => 0075
+0068 => GGET    15  20      ; "table"
+0069    TGETS   15  15  21  ; "insert"
+0070    MOV     16  10
+0071    TGETS   17   0  22  ; "one_step"
+0072    MULVV   17  14  17
+0073    CALL    15   1   3
+0074    FORL    11 => 0068
+0075 => UGET    11   3      ; ProgressWidget
+0076    MOV     12  11
+0077    TGETS   11  11   2  ; "new"
+0078    TDUP    13  25
+0079    TGETS   14   0  24  ; "screen_width"
+0080    MULVN   14  14   1  ; 0.9
+0081    TSETS   14  13   5  ; "width"
+0082    UGET    14   4      ; Size
+0083    TGETS   14  14  26  ; "item"
+0084    TGETS   14  14  27  ; "height_big"
+0085    TSETS   14  13  28  ; "height"
+0086    TGETS   14   0  16  ; "fl_cur"
+0087    TGETS   15   0  18  ; "fl_max"
+0088    DIVVV   14  14  15
+0089    TSETS   14  13  29  ; "percentage"
+0090    TSETS   10  13  30  ; "ticks"
+0091    UGET    14   5      ; Screen
+0092    MOV     15  14
+0093    TGETS   14  14  31  ; "scaleBySize"
+0094    KNUM    16   2      ; 0.5
+0095    CALL    14   2   3
+0096    TSETS   14  13  32  ; "tick_width"
+0097    TGETS   14   0  18  ; "fl_max"
+0098    TSETS   14  13  33  ; "last"
+0099    CALL    11   2   3
+0100    TSETS   11   0  23  ; "fl_group"
+0101    UGET    11   6      ; TextBoxWidget
+0102    MOV     12  11
+0103    TGETS   11  11   2  ; "new"
+0104    TDUP    13  35
+0105    UGET    14   7      ; _
+0106    KSTR    15  34      ; "Brightness"
+0107    CALL    14   2   2
+0108    TSETS   14  13  36  ; "text"
+0109    TGETS   14   0  37  ; "medium_font_face"
+0110    TSETS   14  13  38  ; "face"
+0111    TGETS   14   0  24  ; "screen_width"
+0112    MULVN   14  14   3  ; 0.95
+0113    TSETS   14  13   5  ; "width"
+0114    CALL    11   2   3
+0115    UGET    12   8      ; Button
+0116    MOV     13  12
+0117    TGETS   12  12   2  ; "new"
+0118    TDUP    14  39
+0119    UGET    15   4      ; Size
+0120    TGETS   15  15  40  ; "margin"
+0121    TGETS   15  15  41  ; "small"
+0122    TSETS   15  14  40  ; "margin"
+0123    ISFC    15   9
+0124    JMP     15 => 0127
+0125    TGETS   15   0  11  ; "light_fallback"
+0126    NOT     15  15
+0127 => TSETS   15  14  10  ; "enabled"
+0128    TGETS   15   0  24  ; "screen_width"
+0129    MULVN   15  15   4  ; 0.2
+0130    TSETS   15  14   5  ; "width"
+0131    TSETS    0  14  42  ; "show_parent"
+0132    FNEW    15  43      ; frontlightwidget.lua:179
+0133    TSETS   15  14  44  ; "callback"
+0134    CALL    12   2   3
+0135    UGET    13   8      ; Button
+0136    MOV     14  13
+0137    TGETS   13  13   2  ; "new"
+0138    TDUP    15  45
+0139    UGET    16   4      ; Size
+0140    TGETS   16  16  40  ; "margin"
+0141    TGETS   16  16  41  ; "small"
+0142    TSETS   16  15  40  ; "margin"
+0143    ISFC    16   8
+0144    JMP     16 => 0147
+0145    TGETS   16   0  11  ; "light_fallback"
+0146    NOT     16  16
+0147 => TSETS   16  15  10  ; "enabled"
+0148    TGETS   16   0  24  ; "screen_width"
+0149    MULVN   16  16   4  ; 0.2
+0150    TSETS   16  15   5  ; "width"
+0151    TSETS    0  15  42  ; "show_parent"
+0152    FNEW    16  46      ; frontlightwidget.lua:188
+0153    TSETS   16  15  44  ; "callback"
+0154    CALL    13   2   3
+0155    UGET    14   6      ; TextBoxWidget
+0156    MOV     15  14
+0157    TGETS   14  14   2  ; "new"
+0158    TDUP    16  47
+0159    TGETS   17   0  16  ; "fl_cur"
+0160    TSETS   17  16  36  ; "text"
+0161    TGETS   17   0  37  ; "medium_font_face"
+0162    TSETS   17  16  38  ; "face"
+0163    TGETS   17   0  24  ; "screen_width"
+0164    MULVN   17  17   3  ; 0.95
+0165    TGETS   18  12   5  ; "width"
+0166    MULNV   18  18   5  ; 1.275
+0167    SUBVV   17  17  18
+0168    TGETS   18  13   5  ; "width"
+0169    MULNV   18  18   5  ; 1.275
+0170    SUBVV   17  17  18
+0171    TSETS   17  16   5  ; "width"
+0172    CALL    14   2   3
+0173    UGET    15   8      ; Button
+0174    MOV     16  15
+0175    TGETS   15  15   2  ; "new"
+0176    TDUP    17  49
+0177    UGET    18   7      ; _
+0178    KSTR    19  48      ; "Min"
+0179    CALL    18   2   2
+0180    TSETS   18  17  36  ; "text"
+0181    UGET    18   4      ; Size
+0182    TGETS   18  18  40  ; "margin"
+0183    TGETS   18  18  41  ; "small"
+0184    TSETS   18  17  40  ; "margin"
+0185    TGETS   18   0  11  ; "light_fallback"
+0186    NOT     18  18
+0187    TSETS   18  17  10  ; "enabled"
+0188    TGETS   18   0  24  ; "screen_width"
+0189    MULVN   18  18   4  ; 0.2
+0190    TSETS   18  17   5  ; "width"
+0191    TSETS    0  17  42  ; "show_parent"
+0192    FNEW    18  50      ; frontlightwidget.lua:203
+0193    TSETS   18  17  44  ; "callback"
+0194    CALL    15   2   3
+0195    UGET    16   8      ; Button
+0196    MOV     17  16
+0197    TGETS   16  16   2  ; "new"
+0198    TDUP    18  52
+0199    UGET    19   7      ; _
+0200    KSTR    20  51      ; "Max"
+0201    CALL    19   2   2
+0202    TSETS   19  18  36  ; "text"
+0203    UGET    19   4      ; Size
+0204    TGETS   19  19  40  ; "margin"
+0205    TGETS   19  19  41  ; "small"
+0206    TSETS   19  18  40  ; "margin"
+0207    TGETS   19   0  11  ; "light_fallback"
+0208    NOT     19  19
+0209    TSETS   19  18  10  ; "enabled"
+0210    TGETS   19   0  24  ; "screen_width"
+0211    MULVN   19  19   4  ; 0.2
+0212    TSETS   19  18   5  ; "width"
+0213    TSETS    0  18  42  ; "show_parent"
+0214    FNEW    19  53      ; frontlightwidget.lua:212
+0215    TSETS   19  18  44  ; "callback"
+0216    CALL    16   2   3
+0217    UGET    17   8      ; Button
+0218    MOV     18  17
+0219    TGETS   17  17   2  ; "new"
+0220    TDUP    19  55
+0221    UGET    20   7      ; _
+0222    KSTR    21  54      ; "Toggle"
+0223    CALL    20   2   2
+0224    TSETS   20  19  36  ; "text"
+0225    UGET    20   4      ; Size
+0226    TGETS   20  20  40  ; "margin"
+0227    TGETS   20  20  41  ; "small"
+0228    TSETS   20  19  40  ; "margin"
+0229    TGETS   20   0  11  ; "light_fallback"
+0230    NOT     20  20
+0231    TSETS   20  19  10  ; "enabled"
+0232    TGETS   20   0  24  ; "screen_width"
+0233    MULVN   20  20   4  ; 0.2
+0234    TSETS   20  19   5  ; "width"
+0235    TSETS    0  19  42  ; "show_parent"
+0236    FNEW    20  56      ; frontlightwidget.lua:221
+0237    TSETS   20  19  44  ; "callback"
+0238    CALL    17   2   3
+0239    UGET    18   9      ; HorizontalSpan
+0240    MOV     19  18
+0241    TGETS   18  18   2  ; "new"
+0242    TDUP    20  57
+0243    TGETS   21   0  24  ; "screen_width"
+0244    MULVN   21  21   3  ; 0.95
+0245    TGETS   22  12   5  ; "width"
+0246    MULNV   22  22   6  ; 1.2
+0247    SUBVV   21  21  22
+0248    TGETS   22  13   5  ; "width"
+0249    MULNV   22  22   6  ; 1.2
+0250    SUBVV   21  21  22
+0251    TGETS   22  17   5  ; "width"
+0252    MULNV   22  22   6  ; 1.2
+0253    SUBVV   21  21  22
+0254    DIVVN   21  21   0  ; 2
+0255    TSETS   21  20   5  ; "width"
+0256    CALL    18   2   3
+0257    UGET    19   1      ; HorizontalGroup
+0258    MOV     20  19
+0259    TGETS   19  19   2  ; "new"
+0260    TDUP    21  58
+0261    TSETB   12  21   1
+0262    TSETB   14  21   2
+0263    TSETB   13  21   3
+0264    CALL    19   2   3
+0265    UGET    20   1      ; HorizontalGroup
+0266    MOV     21  20
+0267    TGETS   20  20   2  ; "new"
+0268    TDUP    22  59
+0269    TSETB   15  22   1
+0270    TSETB   18  22   2
+0271    TSETB   17  22   3
+0272    TSETB   18  22   4
+0273    TSETB   16  22   5
+0274    CALL    20   2   3
+0275    TGETS   21   0  12  ; "natural_light"
+0276    ISF         21
+0277    JMP     22 => 0283
+0278    GGET    21  20      ; "table"
+0279    TGETS   21  21  21  ; "insert"
+0280    MOV     22   7
+0281    MOV     23  11
+0282    CALL    21   1   3
+0283 => KPRI    21   0
+0284    UGET    22  10      ; CheckButton
+0285    MOV     23  22
+0286    TGETS   22  22   2  ; "new"
+0287    TDUP    24  61
+0288    UGET    25   7      ; _
+0289    KSTR    26  60      ; "Use system settings"
+0290    CALL    25   2   2
+0291    TSETS   25  24  36  ; "text"
+0292    TGETS   25   0  11  ; "light_fallback"
+0293    TSETS   25  24  62  ; "checked"
+0294    FNEW    25  63      ; frontlightwidget.lua:251
+0295    TSETS   25  24  44  ; "callback"
+0296    CALL    22   2   3
+0297    MOV     21  22
+0298    GGET    22  20      ; "table"
+0299    TGETS   22  22  21  ; "insert"
+0300    MOV     23   6
+0301    MOV     24  19
+0302    CALL    22   1   3
+0303    GGET    22  20      ; "table"
+0304    TGETS   22  22  21  ; "insert"
+0305    MOV     23   5
+0306    MOV     24  20
+0307    CALL    22   1   3
+0308    GGET    22  20      ; "table"
+0309    TGETS   22  22  21  ; "insert"
+0310    MOV     23   7
+0311    MOV     24   4
+0312    CALL    22   1   3
+0313    GGET    22  20      ; "table"
+0314    TGETS   22  22  21  ; "insert"
+0315    MOV     23   7
+0316    MOV     24   6
+0317    CALL    22   1   3
+0318    GGET    22  20      ; "table"
+0319    TGETS   22  22  21  ; "insert"
+0320    MOV     23   7
+0321    MOV     24   4
+0322    CALL    22   1   3
+0323    GGET    22  20      ; "table"
+0324    TGETS   22  22  21  ; "insert"
+0325    MOV     23   7
+0326    TGETS   24   0  23  ; "fl_group"
+0327    CALL    22   1   3
+0328    GGET    22  20      ; "table"
+0329    TGETS   22  22  21  ; "insert"
+0330    MOV     23   7
+0331    MOV     24   4
+0332    CALL    22   1   3
+0333    GGET    22  20      ; "table"
+0334    TGETS   22  22  21  ; "insert"
+0335    MOV     23   7
+0336    MOV     24   5
+0337    CALL    22   1   3
+0338    GGET    22  20      ; "table"
+0339    TGETS   22  22  21  ; "insert"
+0340    MOV     23   7
+0341    MOV     24   4
+0342    CALL    22   1   3
+0343    TGETS   22   0  64  ; "use_system_fl"
+0344    ISF         22
+0345    JMP     23 => 0356
+0346    GGET    22  20      ; "table"
+0347    TGETS   22  22  21  ; "insert"
+0348    MOV     23   7
+0349    MOV     24  21
+0350    CALL    22   1   3
+0351    GGET    22  20      ; "table"
+0352    TGETS   22  22  21  ; "insert"
+0353    MOV     23   7
+0354    MOV     24   4
+0355    CALL    22   1   3
+0356 => TGETS   22   0  12  ; "natural_light"
+0357    ISF         22
+0358    JMP     23 => 0396
+0359    MOV     23   0
+0360    TGETS   22   0  65  ; "addWarmthWidgets"
+0361    MOV     24   3
+0362    MOV     25   2
+0363    MOV     26   7
+0364    CALL    22   1   5
+0365    TGETS   22   0  66  ; "has_nl_mixer"
+0366    IST         22
+0367    JMP     22 => 0396
+0368    UGET    22   8      ; Button
+0369    MOV     23  22
+0370    TGETS   22  22   2  ; "new"
+0371    TDUP    24  69
+0372    UGET    25   7      ; _
+0373    KSTR    26  68      ; "Configure"
+0374    CALL    25   2   2
+0375    TSETS   25  24  36  ; "text"
+0376    UGET    25   4      ; Size
+0377    TGETS   25  25  40  ; "margin"
+0378    TGETS   25  25  41  ; "small"
+0379    TSETS   25  24  40  ; "margin"
+0380    TGETS   25   0  24  ; "screen_width"
+0381    MULVN   25  25   4  ; 0.2
+0382    TSETS   25  24   5  ; "width"
+0383    TGETS   25   0  70  ; "nl_configure_open"
+0384    NOT     25  25
+0385    TSETS   25  24  10  ; "enabled"
+0386    TSETS    0  24  42  ; "show_parent"
+0387    FNEW    25  71      ; frontlightwidget.lua:286
+0388    TSETS   25  24  44  ; "callback"
+0389    CALL    22   2   3
+0390    TSETS   22   0  67  ; "configure_button"
+0391    GGET    22  20      ; "table"
+0392    TGETS   22  22  21  ; "insert"
+0393    MOV     23   7
+0394    TGETS   24   0  67  ; "configure_button"
+0395    CALL    22   1   3
+0396 => GGET    22  20      ; "table"
+0397    TGETS   22  22  21  ; "insert"
+0398    TGETS   23   0   0  ; "fl_container"
+0399    MOV     24   7
+0400    CALL    22   1   3
+0401    TGETS   22   0   0  ; "fl_container"
+0402    TGETS   22  22  72  ; "dimen"
+0403    MOV     24   7
+0404    TGETS   23   7  74  ; "getSize"
+0405    CALL    23   2   2
+0406    TGETS   23  23  73  ; "h"
+0407    TSETS   23  22  73  ; "h"
+0408    UGET    22  11      ; UIManager
+0409    MOV     23  22
+0410    TGETS   22  22  75  ; "setDirty"
+0411    MOV     24   0
+0412    FNEW    25  76      ; frontlightwidget.lua:297
+0413    CALL    22   1   4
+0414    KPRI    22   2
+0415    UCLO     0 => 0416
+0416 => RET1    22   2
+
+-- BYTECODE -- frontlightwidget.lua:338-340
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setProgress"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "fl_cur"
+0006    UGET     3   1      ; step
+0007    UGET     4   2      ; i
+0008    UGET     5   1      ; step
+0009    MULVV    4   4   5
+0010    CALL     0   1   5
+0011    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:348-350
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setProgress"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "fl_cur"
+0006    UGET     3   1      ; step
+0007    UGET     4   2      ; i
+0008    UGET     5   1      ; step
+0009    MULVV    4   4   5
+0010    CALL     0   1   5
+0011    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:369-369
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setProgress"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "fl_cur"
+0006    UGET     3   1      ; step
+0007    UGET     4   2      ; num_warmth
+0008    UGET     5   0      ; self
+0009    TGETS    5   5   2  ; "nl_scale"
+0010    MULNV    5   5   0  ; 1
+0011    SUBVV    4   4   5
+0012    CALL     0   1   5
+0013    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:378-378
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setProgress"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "fl_cur"
+0006    UGET     3   1      ; step
+0007    UGET     4   2      ; num_warmth
+0008    UGET     5   0      ; self
+0009    TGETS    5   5   2  ; "nl_scale"
+0010    MULNV    5   5   0  ; 1
+0011    ADDVV    4   4   5
+0012    CALL     0   1   5
+0013    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:393-393
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setProgress"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "fl_cur"
+0006    UGET     3   1      ; step
+0007    UGET     4   0      ; self
+0008    TGETS    4   4   2  ; "nl_min"
+0009    CALL     0   1   5
+0010    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:402-402
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setProgress"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "fl_cur"
+0006    UGET     3   1      ; step
+0007    UGET     4   0      ; self
+0008    TGETS    4   4   2  ; "nl_max"
+0009    UGET     5   0      ; self
+0010    TGETS    5   5   3  ; "nl_scale"
+0011    MULVV    4   4   5
+0012    CALL     0   1   5
+0013    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:422-430
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "powerd"
+0003    TGETS    0   0   1  ; "auto_warmth"
+0004    ISF          0
+0005    JMP      1 => 0011
+0006    UGET     0   0      ; self
+0007    TGETS    0   0   0  ; "powerd"
+0008    KPRI     1   1
+0009    TSETS    1   0   1  ; "auto_warmth"
+0010    JMP      0 => 0020
+0011 => UGET     0   0      ; self
+0012    TGETS    0   0   0  ; "powerd"
+0013    KPRI     1   2
+0014    TSETS    1   0   1  ; "auto_warmth"
+0015    UGET     0   0      ; self
+0016    TGETS    0   0   0  ; "powerd"
+0017    MOV      1   0
+0018    TGETS    0   0   2  ; "calculateAutoWarmth"
+0019    CALL     0   1   2
+0020 => UGET     0   0      ; self
+0021    MOV      1   0
+0022    TGETS    0   0   3  ; "setProgress"
+0023    UGET     2   0      ; self
+0024    TGETS    2   2   4  ; "fl_cur"
+0025    UGET     3   1      ; step
+0026    CALL     0   1   4
+0027    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:458-463
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "powerd"
+0003    UGET     1   0      ; self
+0004    TGETS    1   1   0  ; "powerd"
+0005    TGETS    1   1   1  ; "max_warmth_hour"
+0006    SUBVN    1   1   0  ; 1
+0007    MODVN    1   1   1  ; 24
+0008    TSETS    1   0   1  ; "max_warmth_hour"
+0009    UGET     0   0      ; self
+0010    TGETS    0   0   0  ; "powerd"
+0011    MOV      1   0
+0012    TGETS    0   0   2  ; "calculateAutoWarmth"
+0013    CALL     0   1   2
+0014    UGET     0   0      ; self
+0015    MOV      1   0
+0016    TGETS    0   0   3  ; "setProgress"
+0017    UGET     2   0      ; self
+0018    TGETS    2   2   4  ; "fl_cur"
+0019    UGET     3   1      ; step
+0020    CALL     0   1   4
+0021    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:464-469
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "powerd"
+0003    UGET     1   0      ; self
+0004    TGETS    1   1   0  ; "powerd"
+0005    TGETS    1   1   1  ; "max_warmth_hour"
+0006    SUBVN    1   1   0  ; 0.5
+0007    MODVN    1   1   1  ; 24
+0008    TSETS    1   0   1  ; "max_warmth_hour"
+0009    UGET     0   0      ; self
+0010    TGETS    0   0   0  ; "powerd"
+0011    MOV      1   0
+0012    TGETS    0   0   2  ; "calculateAutoWarmth"
+0013    CALL     0   1   2
+0014    UGET     0   0      ; self
+0015    MOV      1   0
+0016    TGETS    0   0   3  ; "setProgress"
+0017    UGET     2   0      ; self
+0018    TGETS    2   2   4  ; "fl_cur"
+0019    UGET     3   1      ; step
+0020    CALL     0   1   4
+0021    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:478-483
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "powerd"
+0003    UGET     1   0      ; self
+0004    TGETS    1   1   0  ; "powerd"
+0005    TGETS    1   1   1  ; "max_warmth_hour"
+0006    ADDVN    1   1   0  ; 1
+0007    MODVN    1   1   1  ; 24
+0008    TSETS    1   0   1  ; "max_warmth_hour"
+0009    UGET     0   0      ; self
+0010    TGETS    0   0   0  ; "powerd"
+0011    MOV      1   0
+0012    TGETS    0   0   2  ; "calculateAutoWarmth"
+0013    CALL     0   1   2
+0014    UGET     0   0      ; self
+0015    MOV      1   0
+0016    TGETS    0   0   3  ; "setProgress"
+0017    UGET     2   0      ; self
+0018    TGETS    2   2   4  ; "fl_cur"
+0019    UGET     3   1      ; step
+0020    CALL     0   1   4
+0021    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:484-489
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "powerd"
+0003    UGET     1   0      ; self
+0004    TGETS    1   1   0  ; "powerd"
+0005    TGETS    1   1   1  ; "max_warmth_hour"
+0006    ADDVN    1   1   0  ; 0.5
+0007    MODVN    1   1   1  ; 24
+0008    TSETS    1   0   1  ; "max_warmth_hour"
+0009    UGET     0   0      ; self
+0010    TGETS    0   0   0  ; "powerd"
+0011    MOV      1   0
+0012    TGETS    0   0   2  ; "calculateAutoWarmth"
+0013    CALL     0   1   2
+0014    UGET     0   0      ; self
+0015    MOV      1   0
+0016    TGETS    0   0   3  ; "setProgress"
+0017    UGET     2   0      ; self
+0018    TGETS    2   2   4  ; "fl_cur"
+0019    UGET     3   1      ; step
+0020    CALL     0   1   4
+0021    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:305-509
+0001    UGET     4   0      ; HorizontalGroup
+0002    MOV      5   4
+0003    TGETS    4   4   0  ; "new"
+0004    TDUP     6   1
+0005    CALL     4   2   3
+0006    UGET     5   0      ; HorizontalGroup
+0007    MOV      6   5
+0008    TGETS    5   5   0  ; "new"
+0009    TDUP     7   2
+0010    CALL     5   2   3
+0011    UGET     6   0      ; HorizontalGroup
+0012    MOV      7   6
+0013    TGETS    6   6   0  ; "new"
+0014    TDUP     8   3
+0015    CALL     6   2   3
+0016    UGET     7   0      ; HorizontalGroup
+0017    MOV      8   7
+0018    TGETS    7   7   0  ; "new"
+0019    TDUP     9   4
+0020    CALL     7   2   3
+0021    UGET     8   1      ; VerticalSpan
+0022    MOV      9   8
+0023    TGETS    8   8   0  ; "new"
+0024    TDUP    10   6
+0025    TGETS   11   0   5  ; "span"
+0026    TSETS   11  10   7  ; "width"
+0027    CALL     8   2   3
+0028    KPRI     9   2
+0029    KPRI    10   2
+0030    UGET    11   2      ; Blitbuffer
+0031    TGETS   11  11   8  ; "COLOR_WHITE"
+0032    TGETB   12   0   1
+0033    ISF         12
+0034    JMP     13 => 0044
+0035    TGETS   12   0   9  ; "powerd"
+0036    TGETS   12  12  10  ; "fl_warmth"
+0037    ISEQV    1  12
+0038    JMP     12 => 0044
+0039    TGETS   12   0   9  ; "powerd"
+0040    MOV     13  12
+0041    TGETS   12  12  11  ; "setWarmth"
+0042    MOV     14   1
+0043    CALL    12   1   3
+0044 => TGETS   12   0   9  ; "powerd"
+0045    TGETS   12  12  12  ; "auto_warmth"
+0046    ISF         12
+0047    JMP     13 => 0053
+0048    KPRI     9   1
+0049    KPRI    10   1
+0050    UGET    12   2      ; Blitbuffer
+0051    TGETS   11  12  13  ; "COLOR_DARK_GRAY"
+0052    JMP     12 => 0071
+0053 => GGET    12  14      ; "math"
+0054    TGETS   12  12  15  ; "floor"
+0055    TGETS   13   0  16  ; "nl_scale"
+0056    DIVVV   13   1  13
+0057    CALL    12   2   2
+0058    TGETS   13   0  17  ; "nl_min"
+0059    ISGT    12  13
+0060    JMP     12 => 0062
+0061    KPRI    10   1
+0062 => GGET    12  14      ; "math"
+0063    TGETS   12  12  18  ; "ceil"
+0064    TGETS   13   0  16  ; "nl_scale"
+0065    DIVVV   13   1  13
+0066    CALL    12   2   2
+0067    TGETS   13   0  19  ; "nl_max"
+0068    ISGT    13  12
+0069    JMP     12 => 0071
+0070    KPRI     9   1
+0071 => TGETS   12   0  20  ; "natural_light"
+0072    ISF         12
+0073    JMP     13 => 0127
+0074    ISF          1
+0075    JMP     12 => 0127
+0076    KSHORT  12   0
+0077    GGET    13  14      ; "math"
+0078    TGETS   13  13  15  ; "floor"
+0079    DIVVV   14   1   2
+0080    CALL    13   2   2
+0081    KSHORT  14   1
+0082    FORI    12 => 0101
+0083 => GGET    16  21      ; "table"
+0084    TGETS   16  16  22  ; "insert"
+0085    MOV     17   6
+0086    TGETS   18   0  23  ; "fl_prog_button"
+0087    MOV     19  18
+0088    TGETS   18  18   0  ; "new"
+0089    TDUP    20  24
+0090    TGETS   21   0   9  ; "powerd"
+0091    TGETS   21  21  12  ; "auto_warmth"
+0092    NOT     21  21
+0093    TSETS   21  20  25  ; "enabled"
+0094    TSETS   11  20  26  ; "background"
+0095    FNEW    21  27      ; frontlightwidget.lua:338
+0096    TSETS   21  20  28  ; "callback"
+0097    CALL    18   0   3
+0098    CALLM   16   1   1
+0099    UCLO    15 => 0100
+0100 => FORL    12 => 0083
+0101 => GGET    12  14      ; "math"
+0102    TGETS   12  12  15  ; "floor"
+0103    DIVVV   13   1   2
+0104    CALL    12   2   2
+0105    ADDVN   12  12   0  ; 1
+0106    TGETS   13   0  29  ; "steps"
+0107    SUBVN   13  13   0  ; 1
+0108    KSHORT  14   1
+0109    FORI    12 => 0127
+0110 => GGET    16  21      ; "table"
+0111    TGETS   16  16  22  ; "insert"
+0112    MOV     17   6
+0113    TGETS   18   0  23  ; "fl_prog_button"
+0114    MOV     19  18
+0115    TGETS   18  18   0  ; "new"
+0116    TDUP    20  30
+0117    TGETS   21   0   9  ; "powerd"
+0118    TGETS   21  21  12  ; "auto_warmth"
+0119    NOT     21  21
+0120    TSETS   21  20  25  ; "enabled"
+0121    FNEW    21  31      ; frontlightwidget.lua:348
+0122    TSETS   21  20  28  ; "callback"
+0123    CALL    18   0   3
+0124    CALLM   16   1   1
+0125    UCLO    15 => 0126
+0126 => FORL    12 => 0110
+0127 => UGET    12   3      ; TextBoxWidget
+0128    MOV     13  12
+0129    TGETS   12  12   0  ; "new"
+0130    TDUP    14  34
+0131    KSTR    15  32      ; "\n"
+0132    UGET    16   4      ; _
+0133    KSTR    17  33      ; "Warmth"
+0134    CALL    16   2   2
+0135    CAT     15  15  16
+0136    TSETS   15  14  35  ; "text"
+0137    TGETS   15   0  36  ; "medium_font_face"
+0138    TSETS   15  14  37  ; "face"
+0139    TGETS   15   0  38  ; "screen_width"
+0140    MULVN   15  15   1  ; 0.95
+0141    TSETS   15  14   7  ; "width"
+0142    CALL    12   2   3
+0143    UGET    13   5      ; Button
+0144    MOV     14  13
+0145    TGETS   13  13   0  ; "new"
+0146    TDUP    15  40
+0147    KSTR    16  39      ; "-"
+0148    TGETS   17   0  16  ; "nl_scale"
+0149    MULNV   17  17   0  ; 1
+0150    CAT     16  16  17
+0151    TSETS   16  15  35  ; "text"
+0152    UGET    16   6      ; Size
+0153    TGETS   16  16  41  ; "margin"
+0154    TGETS   16  16  42  ; "small"
+0155    TSETS   16  15  41  ; "margin"
+0156    TSETS   10  15  25  ; "enabled"
+0157    TGETS   16   0  38  ; "screen_width"
+0158    MULVN   16  16   2  ; 0.2
+0159    TSETS   16  15   7  ; "width"
+0160    TSETS    0  15  43  ; "show_parent"
+0161    FNEW    16  44      ; frontlightwidget.lua:369
+0162    TSETS   16  15  28  ; "callback"
+0163    CALL    13   2   3
+0164    UGET    14   5      ; Button
+0165    MOV     15  14
+0166    TGETS   14  14   0  ; "new"
+0167    TDUP    16  46
+0168    KSTR    17  45      ; "+"
+0169    TGETS   18   0  16  ; "nl_scale"
+0170    MULNV   18  18   0  ; 1
+0171    CAT     17  17  18
+0172    TSETS   17  16  35  ; "text"
+0173    UGET    17   6      ; Size
+0174    TGETS   17  17  41  ; "margin"
+0175    TGETS   17  17  42  ; "small"
+0176    TSETS   17  16  41  ; "margin"
+0177    TSETS    9  16  25  ; "enabled"
+0178    TGETS   17   0  38  ; "screen_width"
+0179    MULVN   17  17   2  ; 0.2
+0180    TSETS   17  16   7  ; "width"
+0181    TSETS    0  16  43  ; "show_parent"
+0182    FNEW    17  47      ; frontlightwidget.lua:378
+0183    TSETS   17  16  28  ; "callback"
+0184    CALL    14   2   3
+0185    UGET    15   3      ; TextBoxWidget
+0186    MOV     16  15
+0187    TGETS   15  15   0  ; "new"
+0188    TDUP    17  48
+0189    TSETS    1  17  35  ; "text"
+0190    TGETS   18   0  36  ; "medium_font_face"
+0191    TSETS   18  17  37  ; "face"
+0192    TGETS   18   0  38  ; "screen_width"
+0193    MULVN   18  18   1  ; 0.95
+0194    TGETS   19  13   7  ; "width"
+0195    MULNV   19  19   3  ; 1.275
+0196    SUBVV   18  18  19
+0197    TGETS   19  14   7  ; "width"
+0198    MULNV   19  19   3  ; 1.275
+0199    SUBVV   18  18  19
+0200    TSETS   18  17   7  ; "width"
+0201    CALL    15   2   3
+0202    UGET    16   5      ; Button
+0203    MOV     17  16
+0204    TGETS   16  16   0  ; "new"
+0205    TDUP    18  50
+0206    UGET    19   4      ; _
+0207    KSTR    20  49      ; "Min"
+0208    CALL    19   2   2
+0209    TSETS   19  18  35  ; "text"
+0210    UGET    19   6      ; Size
+0211    TGETS   19  19  41  ; "margin"
+0212    TGETS   19  19  42  ; "small"
+0213    TSETS   19  18  41  ; "margin"
+0214    TGETS   19   0   9  ; "powerd"
+0215    TGETS   19  19  12  ; "auto_warmth"
+0216    NOT     19  19
+0217    TSETS   19  18  25  ; "enabled"
+0218    TGETS   19   0  38  ; "screen_width"
+0219    MULVN   19  19   2  ; 0.2
+0220    TSETS   19  18   7  ; "width"
+0221    TSETS    0  18  43  ; "show_parent"
+0222    FNEW    19  51      ; frontlightwidget.lua:393
+0223    TSETS   19  18  28  ; "callback"
+0224    CALL    16   2   3
+0225    UGET    17   5      ; Button
+0226    MOV     18  17
+0227    TGETS   17  17   0  ; "new"
+0228    TDUP    19  53
+0229    UGET    20   4      ; _
+0230    KSTR    21  52      ; "Max"
+0231    CALL    20   2   2
+0232    TSETS   20  19  35  ; "text"
+0233    UGET    20   6      ; Size
+0234    TGETS   20  20  41  ; "margin"
+0235    TGETS   20  20  42  ; "small"
+0236    TSETS   20  19  41  ; "margin"
+0237    TGETS   20   0   9  ; "powerd"
+0238    TGETS   20  20  12  ; "auto_warmth"
+0239    NOT     20  20
+0240    TSETS   20  19  25  ; "enabled"
+0241    TGETS   20   0  38  ; "screen_width"
+0242    MULVN   20  20   2  ; 0.2
+0243    TSETS   20  19   7  ; "width"
+0244    TSETS    0  19  43  ; "show_parent"
+0245    FNEW    20  54      ; frontlightwidget.lua:402
+0246    TSETS   20  19  28  ; "callback"
+0247    CALL    17   2   3
+0248    UGET    18   7      ; HorizontalSpan
+0249    MOV     19  18
+0250    TGETS   18  18   0  ; "new"
+0251    TDUP    20  55
+0252    TGETS   21   0  38  ; "screen_width"
+0253    MULVN   21  21   1  ; 0.95
+0254    TGETS   22  13   7  ; "width"
+0255    MULNV   22  22   4  ; 1.2
+0256    SUBVV   21  21  22
+0257    TGETS   22  14   7  ; "width"
+0258    MULNV   22  22   4  ; 1.2
+0259    SUBVV   21  21  22
+0260    DIVVN   21  21   5  ; 2
+0261    TSETS   21  20   7  ; "width"
+0262    CALL    18   2   3
+0263    UGET    19   0      ; HorizontalGroup
+0264    MOV     20  19
+0265    TGETS   19  19   0  ; "new"
+0266    TDUP    21  56
+0267    TSETB   13  21   1
+0268    TSETB   15  21   2
+0269    TSETB   14  21   3
+0270    CALL    19   2   3
+0271    UGET    20   0      ; HorizontalGroup
+0272    MOV     21  20
+0273    TGETS   20  20   0  ; "new"
+0274    TDUP    22  57
+0275    TSETB   16  22   1
+0276    TSETB   18  22   2
+0277    TSETB   17  22   3
+0278    CALL    20   2   3
+0279    UGET    21   8      ; CheckButton
+0280    MOV     22  21
+0281    TGETS   21  21   0  ; "new"
+0282    TDUP    23  59
+0283    UGET    24   4      ; _
+0284    KSTR    25  58      ; "Auto"
+0285    CALL    24   2   2
+0286    TSETS   24  23  35  ; "text"
+0287    TGETS   24   0   9  ; "powerd"
+0288    TGETS   24  24  12  ; "auto_warmth"
+0289    TSETS   24  23  60  ; "checked"
+0290    FNEW    24  61      ; frontlightwidget.lua:422
+0291    TSETS   24  23  28  ; "callback"
+0292    CALL    21   2   3
+0293    UGET    22   3      ; TextBoxWidget
+0294    MOV     23  22
+0295    TGETS   22  22   0  ; "new"
+0296    TDUP    24  64
+0297    UGET    25   4      ; _
+0298    KSTR    26  62      ; "Max. at:"
+0299    CALL    25   2   2
+0300    KSTR    26  63      ; "  "
+0301    CAT     25  25  26
+0302    TSETS   25  24  35  ; "text"
+0303    TGETS   25   0  65  ; "larger_font_face"
+0304    TSETS   25  24  37  ; "face"
+0305    TGETS   25   0   9  ; "powerd"
+0306    TGETS   25  25  12  ; "auto_warmth"
+0307    ISF         25
+0308    JMP     26 => 0313
+0309    UGET    25   2      ; Blitbuffer
+0310    TGETS   25  25  66  ; "COLOR_BLACK"
+0311    IST         25
+0312    JMP     26 => 0315
+0313 => UGET    25   2      ; Blitbuffer
+0314    TGETS   25  25  13  ; "COLOR_DARK_GRAY"
+0315 => TSETS   25  24  67  ; "fgcolor"
+0316    TGETS   25   0  38  ; "screen_width"
+0317    MULVN   25  25   6  ; 0.3
+0318    TSETS   25  24   7  ; "width"
+0319    CALL    22   2   3
+0320    UGET    23   3      ; TextBoxWidget
+0321    MOV     24  23
+0322    TGETS   23  23   0  ; "new"
+0323    TDUP    25  72
+0324    KSTR    26  68      ; " "
+0325    GGET    27  14      ; "math"
+0326    TGETS   27  27  15  ; "floor"
+0327    TGETS   28   0   9  ; "powerd"
+0328    TGETS   28  28  69  ; "max_warmth_hour"
+0329    CALL    27   2   2
+0330    KSTR    28  70      ; ":"
+0331    TGETS   29   0   9  ; "powerd"
+0332    TGETS   29  29  69  ; "max_warmth_hour"
+0333    MODVN   29  29   0  ; 1
+0334    MULVN   29  29   7  ; 6
+0335    KSTR    30  71      ; "0"
+0336    CAT     26  26  30
+0337    TSETS   26  25  35  ; "text"
+0338    TGETS   26   0  65  ; "larger_font_face"
+0339    TSETS   26  25  37  ; "face"
+0340    TGETS   26   0   9  ; "powerd"
+0341    TGETS   26  26  12  ; "auto_warmth"
+0342    ISF         26
+0343    JMP     27 => 0348
+0344    UGET    26   2      ; Blitbuffer
+0345    TGETS   26  26  66  ; "COLOR_BLACK"
+0346    IST         26
+0347    JMP     27 => 0350
+0348 => UGET    26   2      ; Blitbuffer
+0349    TGETS   26  26  13  ; "COLOR_DARK_GRAY"
+0350 => TSETS   26  25  67  ; "fgcolor"
+0351    TGETS   26   0  38  ; "screen_width"
+0352    MULVN   26  26   8  ; 0.15
+0353    TSETS   26  25   7  ; "width"
+0354    CALL    23   2   3
+0355    UGET    24   5      ; Button
+0356    MOV     25  24
+0357    TGETS   24  24   0  ; "new"
+0358    TDUP    26  73
+0359    UGET    27   6      ; Size
+0360    TGETS   27  27  41  ; "margin"
+0361    TGETS   27  27  42  ; "small"
+0362    TSETS   27  26  41  ; "margin"
+0363    TGETS   27   0   9  ; "powerd"
+0364    TGETS   27  27  12  ; "auto_warmth"
+0365    TSETS   27  26  25  ; "enabled"
+0366    TGETS   27   0  38  ; "screen_width"
+0367    MULVN   27  27   9  ; 0.1
+0368    TSETS   27  26   7  ; "width"
+0369    TSETS    0  26  43  ; "show_parent"
+0370    FNEW    27  74      ; frontlightwidget.lua:458
+0371    TSETS   27  26  28  ; "callback"
+0372    FNEW    27  75      ; frontlightwidget.lua:464
+0373    TSETS   27  26  76  ; "hold_callback"
+0374    CALL    24   2   3
+0375    UGET    25   5      ; Button
+0376    MOV     26  25
+0377    TGETS   25  25   0  ; "new"
+0378    TDUP    27  77
+0379    UGET    28   6      ; Size
+0380    TGETS   28  28  41  ; "margin"
+0381    TGETS   28  28  42  ; "small"
+0382    TSETS   28  27  41  ; "margin"
+0383    TGETS   28   0   9  ; "powerd"
+0384    TGETS   28  28  12  ; "auto_warmth"
+0385    TSETS   28  27  25  ; "enabled"
+0386    TGETS   28   0  38  ; "screen_width"
+0387    MULVN   28  28   9  ; 0.1
+0388    TSETS   28  27   7  ; "width"
+0389    TSETS    0  27  43  ; "show_parent"
+0390    FNEW    28  78      ; frontlightwidget.lua:478
+0391    TSETS   28  27  28  ; "callback"
+0392    FNEW    28  79      ; frontlightwidget.lua:484
+0393    TSETS   28  27  76  ; "hold_callback"
+0394    CALL    25   2   3
+0395    GGET    26  21      ; "table"
+0396    TGETS   26  26  22  ; "insert"
+0397    MOV     27   3
+0398    MOV     28  12
+0399    CALL    26   1   3
+0400    GGET    26  21      ; "table"
+0401    TGETS   26  26  22  ; "insert"
+0402    MOV     27   5
+0403    MOV     28  19
+0404    CALL    26   1   3
+0405    GGET    26  21      ; "table"
+0406    TGETS   26  26  22  ; "insert"
+0407    MOV     27   4
+0408    MOV     28  20
+0409    CALL    26   1   3
+0410    GGET    26  21      ; "table"
+0411    TGETS   26  26  22  ; "insert"
+0412    MOV     27   7
+0413    MOV     28  21
+0414    CALL    26   1   3
+0415    GGET    26  21      ; "table"
+0416    TGETS   26  26  22  ; "insert"
+0417    MOV     27   7
+0418    MOV     28  22
+0419    CALL    26   1   3
+0420    GGET    26  21      ; "table"
+0421    TGETS   26  26  22  ; "insert"
+0422    MOV     27   7
+0423    MOV     28  24
+0424    CALL    26   1   3
+0425    GGET    26  21      ; "table"
+0426    TGETS   26  26  22  ; "insert"
+0427    MOV     27   7
+0428    MOV     28  23
+0429    CALL    26   1   3
+0430    GGET    26  21      ; "table"
+0431    TGETS   26  26  22  ; "insert"
+0432    MOV     27   7
+0433    MOV     28  25
+0434    CALL    26   1   3
+0435    GGET    26  21      ; "table"
+0436    TGETS   26  26  22  ; "insert"
+0437    MOV     27   3
+0438    MOV     28   8
+0439    CALL    26   1   3
+0440    GGET    26  21      ; "table"
+0441    TGETS   26  26  22  ; "insert"
+0442    MOV     27   3
+0443    MOV     28   5
+0444    CALL    26   1   3
+0445    GGET    26  21      ; "table"
+0446    TGETS   26  26  22  ; "insert"
+0447    MOV     27   3
+0448    MOV     28   8
+0449    CALL    26   1   3
+0450    GGET    26  21      ; "table"
+0451    TGETS   26  26  22  ; "insert"
+0452    MOV     27   3
+0453    MOV     28   6
+0454    CALL    26   1   3
+0455    GGET    26  21      ; "table"
+0456    TGETS   26  26  22  ; "insert"
+0457    MOV     27   3
+0458    MOV     28   8
+0459    CALL    26   1   3
+0460    GGET    26  21      ; "table"
+0461    TGETS   26  26  22  ; "insert"
+0462    MOV     27   3
+0463    MOV     28   4
+0464    CALL    26   1   3
+0465    GGET    26  21      ; "table"
+0466    TGETS   26  26  22  ; "insert"
+0467    MOV     27   3
+0468    MOV     28   8
+0469    CALL    26   1   3
+0470    GGET    26  21      ; "table"
+0471    TGETS   26  26  22  ; "insert"
+0472    MOV     27   3
+0473    MOV     28   7
+0474    CALL    26   1   3
+0475    UCLO     0 => 0476
+0476 => RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:511-533
+0001    TSETS    1   0   0  ; "fl_cur"
+0002    GGET     2   1      ; "math"
+0003    TGETS    2   2   2  ; "min"
+0004    TGETS    3   0   0  ; "fl_cur"
+0005    TGETS    4   0   3  ; "fl_max"
+0006    CALL     2   2   3
+0007    TGETB    3   0   1
+0008    ISF          3
+0009    JMP      4 => 0057
+0010    TGETS    3   0   4  ; "fl_min"
+0011    ISNEV    2   3
+0012    JMP      3 => 0018
+0013    TGETS    3   0   5  ; "powerd"
+0014    MOV      4   3
+0015    TGETS    3   3   6  ; "toggleFrontlight"
+0016    CALL     3   1   2
+0017    JMP      3 => 0023
+0018 => TGETS    3   0   5  ; "powerd"
+0019    MOV      4   3
+0020    TGETS    3   3   7  ; "setIntensity"
+0021    MOV      5   2
+0022    CALL     3   1   3
+0023 => TGETS    3   0   8  ; "light_fallback"
+0024    IST          3
+0025    JMP      3 => 0038
+0026    TGETS    3   0   0  ; "fl_cur"
+0027    KSHORT   4   0
+0028    ISGT     4   3
+0029    JMP      3 => 0038
+0030    GGET     3   9      ; "G_reader_settings"
+0031    MOV      4   3
+0032    TGETS    3   3  10  ; "saveSetting"
+0033    KSTR     5  11      ; "fl_last_level"
+0034    TGETS    6   0   0  ; "fl_cur"
+0035    MULVN    6   6   0  ; 10
+0036    CALL     3   1   4
+0037    JMP      3 => 0052
+0038 => TGETS    3   0   8  ; "light_fallback"
+0039    ISF          3
+0040    JMP      4 => 0052
+0041    GGET     3   9      ; "G_reader_settings"
+0042    MOV      4   3
+0043    TGETS    3   3  10  ; "saveSetting"
+0044    KSTR     5  11      ; "fl_last_level"
+0045    KPRI     6   0
+0046    CALL     3   1   4
+0047    UGET     3   0      ; Device
+0048    MOV      4   3
+0049    TGETS    3   3  12  ; "setScreenBrightness"
+0050    KSHORT   5  -1
+0051    CALL     3   1   3
+0052 => TGETS    3   0   5  ; "powerd"
+0053    MOV      4   3
+0054    TGETS    3   3  13  ; "frontlightIntensity"
+0055    CALL     3   2   2
+0056    TSETS    3   0   0  ; "fl_cur"
+0057 => RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:535-600
+0001    UGET     1   0      ; FrameContainer
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "new"
+0004    TDUP     3   4
+0005    UGET     4   1      ; Size
+0006    TGETS    4   4   2  ; "padding"
+0007    TGETS    4   4   3  ; "default"
+0008    TSETS    4   3   2  ; "padding"
+0009    UGET     4   1      ; Size
+0010    TGETS    4   4   5  ; "margin"
+0011    TGETS    4   4   6  ; "title"
+0012    TSETS    4   3   5  ; "margin"
+0013    UGET     4   2      ; TextWidget
+0014    MOV      5   4
+0015    TGETS    4   4   1  ; "new"
+0016    TDUP     6   8
+0017    UGET     7   3      ; _
+0018    KSTR     8   7      ; "Frontlight"
+0019    CALL     7   2   2
+0020    TSETS    7   6   9  ; "text"
+0021    TGETS    7   0  10  ; "title_face"
+0022    TSETS    7   6  11  ; "face"
+0023    TGETS    7   0  12  ; "screen_width"
+0024    MULVN    7   7   0  ; 0.95
+0025    TSETS    7   6  13  ; "width"
+0026    CALL     4   0   3
+0027    TSETM    4   1      ; 1
+0028    CALL     1   2   3
+0029    TSETS    1   0   0  ; "light_title"
+0030    UGET     1   0      ; FrameContainer
+0031    MOV      2   1
+0032    TGETS    1   1   1  ; "new"
+0033    TDUP     3  15
+0034    UGET     4   1      ; Size
+0035    TGETS    4   4   2  ; "padding"
+0036    TGETS    4   4  14  ; "button"
+0037    TSETS    4   3   2  ; "padding"
+0038    UGET     4   1      ; Size
+0039    TGETS    4   4   5  ; "margin"
+0040    TGETS    4   4  16  ; "small"
+0041    TSETS    4   3   5  ; "margin"
+0042    MOV      5   0
+0043    TGETS    4   0  17  ; "generateProgressGroup"
+0044    TGETS    6   0  12  ; "screen_width"
+0045    MULVN    6   6   0  ; 0.95
+0046    TGETS    7   0  18  ; "screen_height"
+0047    MULVN    7   7   2  ; 0.2
+0048    TGETS    8   0  19  ; "fl_cur"
+0049    TGETS    9   0  20  ; "one_step"
+0050    CALL     4   0   6
+0051    TSETM    4   1      ; 1
+0052    CALL     1   2   3
+0053    UGET     2   4      ; LineWidget
+0054    MOV      3   2
+0055    TGETS    2   2   1  ; "new"
+0056    TDUP     4  26
+0057    UGET     5   5      ; Geom
+0058    MOV      6   5
+0059    TGETS    5   5   1  ; "new"
+0060    TDUP     7  21
+0061    TGETS    8   0  13  ; "width"
+0062    TSETS    8   7  22  ; "w"
+0063    UGET     8   1      ; Size
+0064    TGETS    8   8  23  ; "line"
+0065    TGETS    8   8  24  ; "thick"
+0066    TSETS    8   7  25  ; "h"
+0067    CALL     5   2   3
+0068    TSETS    5   4  27  ; "dimen"
+0069    CALL     2   2   3
+0070    UGET     3   6      ; OverlapGroup
+0071    MOV      4   3
+0072    TGETS    3   3   1  ; "new"
+0073    TDUP     5  31
+0074    TDUP     6  29
+0075    TGETS    7   0  13  ; "width"
+0076    TSETS    7   6  22  ; "w"
+0077    TGETS    7   0   0  ; "light_title"
+0078    MOV      8   7
+0079    TGETS    7   7  30  ; "getSize"
+0080    CALL     7   2   2
+0081    TGETS    7   7  25  ; "h"
+0082    TSETS    7   6  25  ; "h"
+0083    TSETS    6   5  27  ; "dimen"
+0084    TGETS    6   0   0  ; "light_title"
+0085    TSETB    6   5   1
+0086    UGET     6   7      ; CloseButton
+0087    MOV      7   6
+0088    TGETS    6   6   1  ; "new"
+0089    TDUP     8  32
+0090    TSETS    0   8  33  ; "window"
+0091    UGET     9   1      ; Size
+0092    TGETS    9   9   5  ; "margin"
+0093    TGETS    9   9   6  ; "title"
+0094    TSETS    9   8  34  ; "padding_top"
+0095    CALL     6   0   3
+0096    TSETM    6   3      ; 2
+0097    CALL     3   2   3
+0098    TSETS    3   0  28  ; "light_bar"
+0099    UGET     3   0      ; FrameContainer
+0100    MOV      4   3
+0101    TGETS    3   3   1  ; "new"
+0102    TDUP     5  37
+0103    UGET     6   1      ; Size
+0104    TGETS    6   6  36  ; "radius"
+0105    TGETS    6   6  33  ; "window"
+0106    TSETS    6   5  36  ; "radius"
+0107    UGET     6   1      ; Size
+0108    TGETS    6   6  38  ; "border"
+0109    TGETS    6   6  33  ; "window"
+0110    TSETS    6   5  39  ; "bordersize"
+0111    UGET     6   8      ; Blitbuffer
+0112    TGETS    6   6  40  ; "COLOR_WHITE"
+0113    TSETS    6   5  41  ; "background"
+0114    UGET     6   9      ; VerticalGroup
+0115    MOV      7   6
+0116    TGETS    6   6   1  ; "new"
+0117    TDUP     8  42
+0118    TGETS    9   0  28  ; "light_bar"
+0119    TSETB    9   8   1
+0120    TSETB    2   8   2
+0121    UGET     9  10      ; CenterContainer
+0122    MOV     10   9
+0123    TGETS    9   9   1  ; "new"
+0124    TDUP    11  44
+0125    UGET    12   5      ; Geom
+0126    MOV     13  12
+0127    TGETS   12  12   1  ; "new"
+0128    TDUP    14  43
+0129    MOV     16   2
+0130    TGETS   15   2  30  ; "getSize"
+0131    CALL    15   2   2
+0132    TGETS   15  15  22  ; "w"
+0133    TSETS   15  14  22  ; "w"
+0134    MOV     16   1
+0135    TGETS   15   1  30  ; "getSize"
+0136    CALL    15   2   2
+0137    TGETS   15  15  25  ; "h"
+0138    TSETS   15  14  25  ; "h"
+0139    CALL    12   2   3
+0140    TSETS   12  11  27  ; "dimen"
+0141    TSETB    1  11   1
+0142    CALL     9   0   3
+0143    TSETM    9   4      ; 3
+0144    CALL     6   0   3
+0145    TSETM    6   1      ; 1
+0146    CALL     3   2   3
+0147    TSETS    3   0  35  ; "light_frame"
+0148    UGET     3  11      ; WidgetContainer
+0149    MOV      4   3
+0150    TGETS    3   3   1  ; "new"
+0151    TDUP     5  45
+0152    UGET     6   5      ; Geom
+0153    MOV      7   6
+0154    TGETS    6   6   1  ; "new"
+0155    TDUP     8  46
+0156    TGETS    9   0  12  ; "screen_width"
+0157    TSETS    9   8  22  ; "w"
+0158    TGETS    9   0  18  ; "screen_height"
+0159    TSETS    9   8  25  ; "h"
+0160    CALL     6   2   3
+0161    TSETS    6   5  27  ; "dimen"
+0162    UGET     6   0      ; FrameContainer
+0163    MOV      7   6
+0164    TGETS    6   6   1  ; "new"
+0165    TDUP     8  47
+0166    TGETS    9   0  35  ; "light_frame"
+0167    TSETB    9   8   1
+0168    CALL     6   0   3
+0169    TSETM    6   1      ; 1
+0170    CALL     3   2   3
+0171    TSETB    3   0   1
+0172    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:603-605
+0001    KSTR     0   0      ; "flashpartial"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "light_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- frontlightwidget.lua:602-607
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    KPRI     3   0
+0005    FNEW     4   1      ; frontlightwidget.lua:603
+0006    CALL     1   1   4
+0007    KPRI     1   2
+0008    UCLO     0 => 0009
+0009 => RET1     1   2
+
+-- BYTECODE -- frontlightwidget.lua:611-613
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "light_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- frontlightwidget.lua:609-615
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    MOV      3   0
+0005    FNEW     4   1      ; frontlightwidget.lua:611
+0006    CALL     1   1   4
+0007    KPRI     1   2
+0008    UCLO     0 => 0009
+0009 => RET1     1   2
+
+-- BYTECODE -- frontlightwidget.lua:617-620
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- frontlightwidget.lua:622-625
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- frontlightwidget.lua:628-637
+0001    GGET     1   0      ; "table"
+0002    TGETS    1   1   1  ; "remove"
+0003    TGETS    2   0   2  ; "light_bar"
+0004    CALL     1   1   2
+0005    TGETS    1   0   3  ; "configure_button"
+0006    MOV      2   1
+0007    TGETS    1   1   4  ; "disable"
+0008    CALL     1   1   2
+0009    KPRI     1   2
+0010    TSETS    1   0   5  ; "nl_configure_open"
+0011    TGETB    1   0   1
+0012    KSTR     2   7      ; "bottom"
+0013    TSETS    2   1   6  ; "align"
+0014    UGET     1   0      ; UIManager
+0015    MOV      2   1
+0016    TGETS    1   1   8  ; "setDirty"
+0017    MOV      3   0
+0018    KSTR     4   9      ; "ui"
+0019    CALL     1   1   4
+0020    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:639-647
+0001    GGET     1   0      ; "table"
+0002    TGETS    1   1   1  ; "insert"
+0003    TGETS    2   0   2  ; "light_bar"
+0004    UGET     3   0      ; CloseButton
+0005    MOV      4   3
+0006    TGETS    3   3   3  ; "new"
+0007    TDUP     5   4
+0008    TSETS    0   5   5  ; "window"
+0009    UGET     6   1      ; Size
+0010    TGETS    6   6   6  ; "margin"
+0011    TGETS    6   6   7  ; "title"
+0012    TSETS    6   5   8  ; "padding_top"
+0013    CALL     3   0   3
+0014    CALLM    1   1   1
+0015    TGETS    1   0   9  ; "configure_button"
+0016    MOV      2   1
+0017    TGETS    1   1  10  ; "enable"
+0018    CALL     1   1   2
+0019    KPRI     1   1
+0020    TSETS    1   0  11  ; "nl_configure_open"
+0021    TGETB    1   0   1
+0022    KSTR     2  13      ; "center"
+0023    TSETS    2   1  12  ; "align"
+0024    UGET     1   2      ; UIManager
+0025    MOV      2   1
+0026    TGETS    1   1  14  ; "setDirty"
+0027    MOV      3   0
+0028    KSTR     4  15      ; "ui"
+0029    CALL     1   1   4
+0030    RET0     0   1
+
+-- BYTECODE -- frontlightwidget.lua:649-683
+0001    TGETS    3   2   0  ; "pos"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "intersectWith"
+0004    TGETS    5   0   2  ; "fl_group"
+0005    TGETS    5   5   3  ; "dimen"
+0006    CALL     3   2   3
+0007    ISF          3
+0008    JMP      4 => 0074
+0009    UGET     3   0      ; UIManager
+0010    MOV      4   3
+0011    TGETS    3   3   4  ; "unschedule"
+0012    TGETS    5   0   5  ; "update"
+0013    CALL     3   1   3
+0014    TGETS    3   0   2  ; "fl_group"
+0015    MOV      4   3
+0016    TGETS    3   3   6  ; "getPercentageFromPosition"
+0017    TGETS    5   2   0  ; "pos"
+0018    CALL     3   2   3
+0019    IST          3
+0020    JMP      4 => 0023
+0021    KPRI     4   2
+0022    RET1     4   2
+0023 => UGET     4   1      ; Math
+0024    TGETS    4   4   7  ; "round"
+0025    TGETS    5   0   8  ; "fl_max"
+0026    MULVV    5   3   5
+0027    CALL     4   2   2
+0028    MOV      6   0
+0029    TGETS    5   0   9  ; "setFrontLightIntensity"
+0030    MOV      7   4
+0031    CALL     5   1   3
+0032    UGET     5   2      ; Screen
+0033    TGETS    5   5  10  ; "low_pan_rate"
+0034    ISF          5
+0035    JMP      6 => 0070
+0036    UGET     5   3      ; TimeVal
+0037    MOV      6   5
+0038    TGETS    5   5  11  ; "now"
+0039    CALL     5   2   2
+0040    TGETS    6   0  12  ; "last_time"
+0041    IST          6
+0042    JMP      7 => 0048
+0043    UGET     6   3      ; TimeVal
+0044    MOV      7   6
+0045    TGETS    6   6  13  ; "new"
+0046    TNEW     8   0
+0047    CALL     6   2   3
+0048 => SUBVV    7   5   6
+0049    UGET     8   3      ; TimeVal
+0050    MOV      9   8
+0051    TGETS    8   8  13  ; "new"
+0052    TDUP    10  15
+0053    TGETS   11   0  14  ; "rate"
+0054    DIVNV   11  11   0  ; 1000000
+0055    TSETS   11  10  16  ; "usec"
+0056    CALL     8   2   3
+0057    ISGE     8   7
+0058    JMP      7 => 0061
+0059    TSETS    5   0  12  ; "last_time"
+0060    JMP      7 => 0070
+0061 => UGET     7   0      ; UIManager
+0062    MOV      8   7
+0063    TGETS    7   7  17  ; "scheduleIn"
+0064    KNUM     9   1      ; 0.075
+0065    TGETS   10   0   5  ; "update"
+0066    MOV     11   0
+0067    CALL     7   1   5
+0068    KPRI     7   2
+0069    RET1     7   2
+0070 => MOV      6   0
+0071    TGETS    5   0   5  ; "update"
+0072    CALL     5   1   2
+0073    JMP      3 => 0088
+0074 => TGETS    3   2   0  ; "pos"
+0075    MOV      4   3
+0076    TGETS    3   3   1  ; "intersectWith"
+0077    TGETS    5   0  18  ; "light_frame"
+0078    TGETS    5   5   3  ; "dimen"
+0079    CALL     3   2   3
+0080    IST          3
+0081    JMP      3 => 0088
+0082    TGETS    3   2  19  ; "ges"
+0083    ISNES    3  20      ; "tap"
+0084    JMP      3 => 0088
+0085    MOV      4   0
+0086    TGETS    3   0  21  ; "onClose"
+0087    CALL     3   1   2
+0088 => KPRI     3   2
+0089    RET1     3   2
+
+-- BYTECODE -- frontlightwidget.lua:0-688
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/blitbuffer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/button"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/container/centercontainer"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/checkbutton"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/closebutton"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "device"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/container/framecontainer"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/geometry"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/gesturerange"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/font"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/widget/horizontalgroup"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/horizontalspan"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/container/inputcontainer"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/widget/linewidget"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "optmath"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/widget/naturallightwidget"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "ui/widget/overlapgroup"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/widget/progresswidget"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "ui/size"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "ui/widget/textboxwidget"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "ui/widget/textwidget"
+0063    CALL    20   2   2
+0064    GGET    21   0      ; "require"
+0065    KSTR    22  22      ; "ui/timeval"
+0066    CALL    21   2   2
+0067    GGET    22   0      ; "require"
+0068    KSTR    23  23      ; "ui/uimanager"
+0069    CALL    22   2   2
+0070    GGET    23   0      ; "require"
+0071    KSTR    24  24      ; "ui/widget/verticalgroup"
+0072    CALL    23   2   2
+0073    GGET    24   0      ; "require"
+0074    KSTR    25  25      ; "ui/widget/verticalspan"
+0075    CALL    24   2   2
+0076    GGET    25   0      ; "require"
+0077    KSTR    26  26      ; "ui/widget/container/widgetcontainer"
+0078    CALL    25   2   2
+0079    GGET    26   0      ; "require"
+0080    KSTR    27  27      ; "gettext"
+0081    CALL    26   2   2
+0082    TGETS   27   5  28  ; "screen"
+0083    MOV     29  12
+0084    TGETS   28  12  29  ; "new"
+0085    TDUP    30  32
+0086    MOV     32   9
+0087    TGETS   31   9  30  ; "getFace"
+0088    KSTR    33  31      ; "x_smalltfont"
+0089    CALL    31   2   3
+0090    TSETS   31  30  33  ; "title_face"
+0091    TGETS   31  27  34  ; "low_pan_rate"
+0092    ISF         31
+0093    JMP     32 => 0096
+0094    KSHORT  31   3
+0095    JMP     32 => 0097
+0096 => KSHORT  31  30
+0097 => TSETS   31  30  35  ; "rate"
+0098    MOV     32  21
+0099    TGETS   31  21  29  ; "new"
+0100    TNEW    33   0
+0101    CALL    31   2   3
+0102    TSETS   31  30  36  ; "last_time"
+0103    CALL    28   2   3
+0104    FNEW    29  38      ; frontlightwidget.lua:41
+0105    TSETS   29  28  37  ; "init"
+0106    FNEW    29  40      ; frontlightwidget.lua:121
+0107    TSETS   29  28  39  ; "generateProgressGroup"
+0108    FNEW    29  42      ; frontlightwidget.lua:129
+0109    TSETS   29  28  41  ; "setProgress"
+0110    FNEW    29  44      ; frontlightwidget.lua:305
+0111    TSETS   29  28  43  ; "addWarmthWidgets"
+0112    FNEW    29  46      ; frontlightwidget.lua:511
+0113    TSETS   29  28  45  ; "setFrontLightIntensity"
+0114    FNEW    29  48      ; frontlightwidget.lua:535
+0115    TSETS   29  28  47  ; "update"
+0116    FNEW    29  50      ; frontlightwidget.lua:602
+0117    TSETS   29  28  49  ; "onCloseWidget"
+0118    FNEW    29  52      ; frontlightwidget.lua:609
+0119    TSETS   29  28  51  ; "onShow"
+0120    FNEW    29  54      ; frontlightwidget.lua:617
+0121    TSETS   29  28  53  ; "onAnyKeyPressed"
+0122    FNEW    29  56      ; frontlightwidget.lua:622
+0123    TSETS   29  28  55  ; "onClose"
+0124    FNEW    29  58      ; frontlightwidget.lua:628
+0125    TSETS   29  28  57  ; "naturalLightConfigOpen"
+0126    FNEW    29  60      ; frontlightwidget.lua:639
+0127    TSETS   29  28  59  ; "naturalLightConfigClose"
+0128    FNEW    29  62      ; frontlightwidget.lua:649
+0129    TSETS   29  28  61  ; "onTapProgress"
+0130    TGETS   29  28  61  ; "onTapProgress"
+0131    TSETS   29  28  63  ; "onPanProgress"
+0132    UCLO     0 => 0133
+0133 => RET1    28   2
+

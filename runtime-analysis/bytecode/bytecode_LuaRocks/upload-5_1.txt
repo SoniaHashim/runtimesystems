@@ -1,0 +1,361 @@
+
+main <./cmd/upload.lua:0,0> (34 instructions, 136 bytes at 0x7faced4068a0)
+0+ params, 9 slots, 0 upvalues, 8 locals, 9 constants, 3 functions
+	1	[2]	NEWTABLE 	0 0 0
+	2	[4]	GETGLOBAL	1 -1	; require
+	3	[4]	LOADK    	2 -2	; "luarocks.signing"
+	4	[4]	CALL     	1 2 2
+	5	[5]	GETGLOBAL	2 -1	; require
+	6	[5]	LOADK    	3 -3	; "luarocks.util"
+	7	[5]	CALL     	2 2 2
+	8	[6]	GETGLOBAL	3 -1	; require
+	9	[6]	LOADK    	4 -4	; "luarocks.fetch"
+	10	[6]	CALL     	3 2 2
+	11	[7]	GETGLOBAL	4 -1	; require
+	12	[7]	LOADK    	5 -5	; "luarocks.pack"
+	13	[7]	CALL     	4 2 2
+	14	[8]	GETGLOBAL	5 -1	; require
+	15	[8]	LOADK    	6 -6	; "luarocks.core.cfg"
+	16	[8]	CALL     	5 2 2
+	17	[9]	GETGLOBAL	6 -1	; require
+	18	[9]	LOADK    	7 -7	; "luarocks.upload.api"
+	19	[9]	CALL     	6 2 2
+	20	[30]	CLOSURE  	7 0	; 0x7faced406cd0
+	21	[30]	MOVE     	0 2
+	22	[11]	SETTABLE 	0 -8 7	; "add_to_parser" -
+	23	[34]	CLOSURE  	7 1	; 0x7faced407880
+	24	[121]	CLOSURE  	8 2	; 0x7faced406f50
+	25	[121]	MOVE     	0 6
+	26	[121]	MOVE     	0 5
+	27	[121]	MOVE     	0 3
+	28	[121]	MOVE     	0 2
+	29	[121]	MOVE     	0 1
+	30	[121]	MOVE     	0 7
+	31	[121]	MOVE     	0 4
+	32	[36]	SETTABLE 	0 -9 8	; "command" -
+	33	[123]	RETURN   	0 2
+	34	[123]	RETURN   	0 1
+
+function <./cmd/upload.lua:11,30> (55 instructions, 220 bytes at 0x7faced406cd0)
+1 param, 9 slots, 1 upvalue, 2 locals, 30 constants, 0 functions
+	1	[12]	SELF     	1 0 -1	; "command"
+	2	[12]	LOADK    	3 -2	; "upload"
+	3	[12]	LOADK    	4 -3	; "Pack a source rock file (.src.rock extension) "
+	4	[13]	LOADK    	5 -4	; "and upload it and the rockspec to the public rocks repository."
+	5	[13]	CONCAT   	4 4 5
+	6	[13]	GETUPVAL 	5 0	; util
+	7	[13]	GETTABLE 	5 5 -5	; "see_also"
+	8	[13]	CALL     	5 1 0
+	9	[12]	CALL     	1 0 2
+	10	[14]	SELF     	1 1 -6	; "summary"
+	11	[14]	LOADK    	3 -7	; "Upload a rockspec to the public rocks repository."
+	12	[14]	CALL     	1 3 2
+	13	[16]	SELF     	2 1 -8	; "argument"
+	14	[16]	LOADK    	4 -9	; "rockspec"
+	15	[16]	LOADK    	5 -10	; "Rockspec for the rock to upload."
+	16	[16]	CALL     	2 4 1
+	17	[18]	SELF     	2 1 -11	; "flag"
+	18	[18]	LOADK    	4 -12	; "--skip-pack"
+	19	[18]	LOADK    	5 -13	; "Do not pack and send source rock."
+	20	[18]	CALL     	2 4 1
+	21	[19]	SELF     	2 1 -14	; "option"
+	22	[19]	LOADK    	4 -15	; "--api-key"
+	23	[19]	LOADK    	5 -16	; "Pass an API key. It will be stored for subsequent uses."
+	24	[19]	CALL     	2 4 2
+	25	[20]	SELF     	2 2 -17	; "argname"
+	26	[20]	LOADK    	4 -18	; "<key>"
+	27	[20]	CALL     	2 3 1
+	28	[21]	SELF     	2 1 -14	; "option"
+	29	[21]	LOADK    	4 -19	; "--temp-key"
+	30	[21]	LOADK    	5 -20	; "Use the given a temporary API key in this "
+	31	[22]	LOADK    	6 -21	; "invocation only. It will not be stored."
+	32	[22]	CONCAT   	5 5 6
+	33	[21]	CALL     	2 4 2
+	34	[23]	SELF     	2 2 -17	; "argname"
+	35	[23]	LOADK    	4 -18	; "<key>"
+	36	[23]	CALL     	2 3 1
+	37	[24]	SELF     	2 1 -11	; "flag"
+	38	[24]	LOADK    	4 -22	; "--force"
+	39	[24]	LOADK    	5 -23	; "Replace existing rockspec if the same revision of a "
+	40	[25]	LOADK    	6 -24	; "module already exists. This should be used only in case of upload "
+	41	[26]	LOADK    	7 -25	; "mistakes: when updating a rockspec, increment the revision number "
+	42	[27]	LOADK    	8 -26	; "instead."
+	43	[27]	CONCAT   	5 5 8
+	44	[24]	CALL     	2 4 1
+	45	[28]	SELF     	2 1 -11	; "flag"
+	46	[28]	LOADK    	4 -27	; "--sign"
+	47	[28]	LOADK    	5 -28	; "Upload a signature file alongside each file as well."
+	48	[28]	CALL     	2 4 1
+	49	[29]	SELF     	2 1 -11	; "flag"
+	50	[29]	LOADK    	4 -29	; "--debug"
+	51	[29]	CALL     	2 3 2
+	52	[29]	SELF     	2 2 -30	; "hidden"
+	53	[29]	LOADBOOL 	4 1 0
+	54	[29]	CALL     	2 3 1
+	55	[30]	RETURN   	0 1
+
+function <./cmd/upload.lua:32,34> (10 instructions, 40 bytes at 0x7faced407880)
+1 param, 4 slots, 0 upvalues, 1 local, 3 constants, 0 functions
+	1	[33]	SELF     	1 0 -1	; "match"
+	2	[33]	LOADK    	3 -2	; "^dev"
+	3	[33]	CALL     	1 3 2
+	4	[33]	TEST     	1 0 1
+	5	[33]	JMP      	3	; to 9
+	6	[33]	SELF     	1 0 -1	; "match"
+	7	[33]	LOADK    	3 -3	; "^scm"
+	8	[33]	CALL     	1 3 2
+	9	[33]	RETURN   	1 2
+	10	[34]	RETURN   	0 1
+
+function <./cmd/upload.lua:36,121> (250 instructions, 1000 bytes at 0x7faced406f50)
+1 param, 20 slots, 7 upvalues, 13 locals, 50 constants, 0 functions
+	1	[37]	GETUPVAL 	1 0	; Api
+	2	[37]	GETTABLE 	1 1 -1	; "new"
+	3	[37]	MOVE     	2 0
+	4	[37]	CALL     	1 2 3
+	5	[38]	TEST     	1 0 1
+	6	[38]	JMP      	3	; to 10
+	7	[39]	LOADNIL  	3 3
+	8	[39]	MOVE     	4 2
+	9	[39]	RETURN   	3 3
+	10	[41]	GETUPVAL 	3 1	; cfg
+	11	[41]	GETTABLE 	3 3 -2	; "verbose"
+	12	[41]	TEST     	3 0 0
+	13	[41]	JMP      	1	; to 15
+	14	[42]	SETTABLE 	1 -3 -4	; "debug" true
+	15	[45]	GETUPVAL 	3 2	; fetch
+	16	[45]	GETTABLE 	3 3 -5	; "load_rockspec"
+	17	[45]	GETTABLE 	4 0 -6	; "rockspec"
+	18	[45]	CALL     	3 2 4
+	19	[46]	TEST     	4 0 0
+	20	[46]	JMP      	4	; to 25
+	21	[47]	LOADNIL  	6 6
+	22	[47]	MOVE     	7 4
+	23	[47]	MOVE     	8 5
+	24	[47]	RETURN   	6 4
+	25	[50]	GETUPVAL 	6 3	; util
+	26	[50]	GETTABLE 	6 6 -7	; "printout"
+	27	[50]	LOADK    	7 -8	; "Sending "
+	28	[50]	GETGLOBAL	8 -9	; tostring
+	29	[50]	GETTABLE 	9 0 -6	; "rockspec"
+	30	[50]	CALL     	8 2 2
+	31	[50]	LOADK    	9 -10	; " ..."
+	32	[50]	CONCAT   	7 7 9
+	33	[50]	CALL     	6 2 1
+	34	[51]	SELF     	6 1 -11	; "method"
+	35	[51]	LOADK    	8 -12	; "check_rockspec"
+	36	[51]	NEWTABLE 	9 0 2
+	37	[52]	GETTABLE 	10 3 -13	; "package"
+	38	[52]	SETTABLE 	9 -13 10	; "package" -
+	39	[53]	GETTABLE 	10 3 -14	; "version"
+	40	[53]	SETTABLE 	9 -14 10	; "version" -
+	41	[51]	CALL     	6 4 3
+	42	[55]	TEST     	6 0 1
+	43	[55]	JMP      	3	; to 47
+	44	[55]	LOADNIL  	8 8
+	45	[55]	MOVE     	9 7
+	46	[55]	RETURN   	8 3
+	47	[57]	GETTABLE 	8 6 -15	; "module"
+	48	[57]	TEST     	8 0 1
+	49	[57]	JMP      	9	; to 59
+	50	[58]	GETUPVAL 	8 3	; util
+	51	[58]	GETTABLE 	8 8 -7	; "printout"
+	52	[58]	LOADK    	9 -16	; "Will create new module ("
+	53	[58]	GETGLOBAL	10 -9	; tostring
+	54	[58]	GETTABLE 	11 3 -13	; "package"
+	55	[58]	CALL     	10 2 2
+	56	[58]	LOADK    	11 -17	; ")"
+	57	[58]	CONCAT   	9 9 11
+	58	[58]	CALL     	8 2 1
+	59	[60]	GETTABLE 	8 6 -14	; "version"
+	60	[60]	TEST     	8 0 0
+	61	[60]	JMP      	13	; to 75
+	62	[60]	GETTABLE 	8 0 -18	; "force"
+	63	[60]	TEST     	8 0 1
+	64	[60]	JMP      	10	; to 75
+	65	[61]	LOADNIL  	8 8
+	66	[61]	LOADK    	9 -19	; "Revision "
+	67	[61]	GETTABLE 	10 3 -14	; "version"
+	68	[61]	LOADK    	11 -20	; " already exists on the server. "
+	69	[61]	GETUPVAL 	12 3	; util
+	70	[61]	GETTABLE 	12 12 -21	; "see_help"
+	71	[61]	LOADK    	13 -22	; "upload"
+	72	[61]	CALL     	12 2 2
+	73	[61]	CONCAT   	9 9 12
+	74	[61]	RETURN   	8 3
+	75	[64]	LOADNIL  	8 9
+	76	[67]	GETTABLE 	10 0 -23	; "sign"
+	77	[67]	TEST     	10 0 0
+	78	[67]	JMP      	19	; to 98
+	79	[68]	GETUPVAL 	10 4	; signing
+	80	[68]	GETTABLE 	10 10 -24	; "sign_file"
+	81	[68]	GETTABLE 	11 0 -6	; "rockspec"
+	82	[68]	CALL     	10 2 3
+	83	[68]	MOVE     	7 11
+	84	[68]	MOVE     	8 10
+	85	[69]	TEST     	7 0 0
+	86	[69]	JMP      	5	; to 92
+	87	[70]	LOADNIL  	10 10
+	88	[70]	LOADK    	11 -25	; "Failed signing rockspec: "
+	89	[70]	MOVE     	12 7
+	90	[70]	CONCAT   	11 11 12
+	91	[70]	RETURN   	10 3
+	92	[72]	GETUPVAL 	10 3	; util
+	93	[72]	GETTABLE 	10 10 -7	; "printout"
+	94	[72]	LOADK    	11 -26	; "Signed rockspec: "
+	95	[72]	MOVE     	12 8
+	96	[72]	CONCAT   	11 11 12
+	97	[72]	CALL     	10 2 1
+	98	[75]	LOADNIL  	10 10
+	99	[76]	GETTABLE 	11 0 -27	; "skip_pack"
+	100	[76]	TEST     	11 0 1
+	101	[76]	JMP      	46	; to 148
+	102	[76]	GETUPVAL 	11 5	; is_dev_version
+	103	[76]	GETTABLE 	12 3 -14	; "version"
+	104	[76]	CALL     	11 2 2
+	105	[76]	TEST     	11 0 1
+	106	[76]	JMP      	41	; to 148
+	107	[77]	GETUPVAL 	11 3	; util
+	108	[77]	GETTABLE 	11 11 -7	; "printout"
+	109	[77]	LOADK    	12 -28	; "Packing "
+	110	[77]	GETGLOBAL	13 -9	; tostring
+	111	[77]	GETTABLE 	14 3 -13	; "package"
+	112	[77]	CALL     	13 2 2
+	113	[77]	CONCAT   	12 12 13
+	114	[77]	CALL     	11 2 1
+	115	[78]	GETUPVAL 	11 6	; pack
+	116	[78]	GETTABLE 	11 11 -29	; "pack_source_rock"
+	117	[78]	GETTABLE 	12 0 -6	; "rockspec"
+	118	[78]	CALL     	11 2 3
+	119	[78]	MOVE     	7 12
+	120	[78]	MOVE     	10 11
+	121	[79]	TEST     	10 0 1
+	122	[79]	JMP      	3	; to 126
+	123	[80]	LOADNIL  	11 11
+	124	[80]	MOVE     	12 7
+	125	[80]	RETURN   	11 3
+	126	[82]	GETTABLE 	11 0 -23	; "sign"
+	127	[82]	TEST     	11 0 0
+	128	[82]	JMP      	19	; to 148
+	129	[83]	GETUPVAL 	11 4	; signing
+	130	[83]	GETTABLE 	11 11 -24	; "sign_file"
+	131	[83]	MOVE     	12 10
+	132	[83]	CALL     	11 2 3
+	133	[83]	MOVE     	7 12
+	134	[83]	MOVE     	9 11
+	135	[84]	TEST     	7 0 0
+	136	[84]	JMP      	5	; to 142
+	137	[85]	LOADNIL  	11 11
+	138	[85]	LOADK    	12 -30	; "Failed signing rock: "
+	139	[85]	MOVE     	13 7
+	140	[85]	CONCAT   	12 12 13
+	141	[85]	RETURN   	11 3
+	142	[87]	GETUPVAL 	11 3	; util
+	143	[87]	GETTABLE 	11 11 -7	; "printout"
+	144	[87]	LOADK    	12 -31	; "Signed packed rock: "
+	145	[87]	MOVE     	13 9
+	146	[87]	CONCAT   	12 12 13
+	147	[87]	CALL     	11 2 1
+	148	[91]	GETGLOBAL	11 -32	; require
+	149	[91]	LOADK    	12 -33	; "luarocks.upload.multipart"
+	150	[91]	CALL     	11 2 2
+	151	[93]	SELF     	12 1 -11	; "method"
+	152	[93]	LOADK    	14 -22	; "upload"
+	153	[93]	LOADNIL  	15 15
+	154	[93]	NEWTABLE 	16 0 2
+	155	[94]	GETTABLE 	17 11 -35	; "new_file"
+	156	[94]	GETTABLE 	18 0 -6	; "rockspec"
+	157	[94]	CALL     	17 2 2
+	158	[94]	SETTABLE 	16 -34 17	; "rockspec_file" -
+	159	[95]	TESTSET  	17 8 0
+	160	[95]	JMP      	3	; to 164
+	161	[95]	GETTABLE 	17 11 -35	; "new_file"
+	162	[95]	MOVE     	18 8
+	163	[95]	CALL     	17 2 2
+	164	[95]	SETTABLE 	16 -36 17	; "rockspec_sig" -
+	165	[93]	CALL     	12 5 3
+	166	[96]	MOVE     	7 13
+	167	[96]	MOVE     	6 12
+	168	[97]	TEST     	6 0 1
+	169	[97]	JMP      	3	; to 173
+	170	[97]	LOADNIL  	12 12
+	171	[97]	MOVE     	13 7
+	172	[97]	RETURN   	12 3
+	173	[99]	GETTABLE 	12 6 -37	; "is_new"
+	174	[99]	TEST     	12 0 0
+	175	[99]	JMP      	8	; to 184
+	176	[99]	GETTABLE 	12 6 -38	; "manifests"
+	177	[99]	LEN      	12 12
+	178	[99]	EQ       	0 12 -39	; - 0
+	179	[99]	JMP      	4	; to 184
+	180	[100]	GETUPVAL 	12 3	; util
+	181	[100]	GETTABLE 	12 12 -40	; "printerr"
+	182	[100]	LOADK    	13 -41	; "Warning: module not added to root manifest due to name taken."
+	183	[100]	CALL     	12 2 1
+	184	[103]	GETTABLE 	12 6 -42	; "module_url"
+	185	[105]	TEST     	10 0 0
+	186	[105]	JMP      	47	; to 234
+	187	[106]	GETTABLE 	13 6 -14	; "version"
+	188	[106]	TEST     	13 0 0
+	189	[106]	JMP      	4	; to 194
+	190	[106]	GETTABLE 	13 6 -14	; "version"
+	191	[106]	GETTABLE 	13 13 -43	; "id"
+	192	[106]	TEST     	13 0 1
+	193	[106]	JMP      	3	; to 197
+	194	[107]	LOADNIL  	13 13
+	195	[107]	LOADK    	14 -44	; "Invalid response from server."
+	196	[107]	RETURN   	13 3
+	197	[109]	GETUPVAL 	13 3	; util
+	198	[109]	GETTABLE 	13 13 -7	; "printout"
+	199	[109]	LOADK    	14 -8	; "Sending "
+	200	[109]	GETGLOBAL	15 -9	; tostring
+	201	[109]	MOVE     	16 10
+	202	[109]	CALL     	15 2 2
+	203	[109]	LOADK    	16 -10	; " ..."
+	204	[109]	CONCAT   	14 14 16
+	205	[109]	CALL     	13 2 1
+	206	[110]	SELF     	13 1 -11	; "method"
+	207	[110]	LOADK    	15 -45	; "upload_rock/"
+	208	[110]	LOADK    	16 -46	; "%d"
+	209	[110]	SELF     	16 16 -47	; "format"
+	210	[110]	GETTABLE 	18 6 -14	; "version"
+	211	[110]	GETTABLE 	18 18 -43	; "id"
+	212	[110]	CALL     	16 3 2
+	213	[110]	CONCAT   	15 15 16
+	214	[110]	LOADNIL  	16 16
+	215	[110]	NEWTABLE 	17 0 2
+	216	[111]	GETTABLE 	18 11 -35	; "new_file"
+	217	[111]	MOVE     	19 10
+	218	[111]	CALL     	18 2 2
+	219	[111]	SETTABLE 	17 -48 18	; "rock_file" -
+	220	[112]	TESTSET  	18 9 0
+	221	[112]	JMP      	3	; to 225
+	222	[112]	GETTABLE 	18 11 -35	; "new_file"
+	223	[112]	MOVE     	19 9
+	224	[112]	CALL     	18 2 2
+	225	[112]	SETTABLE 	17 -49 18	; "rock_sig" -
+	226	[110]	CALL     	13 5 3
+	227	[113]	MOVE     	7 14
+	228	[113]	MOVE     	6 13
+	229	[114]	TEST     	6 0 1
+	230	[114]	JMP      	3	; to 234
+	231	[114]	LOADNIL  	13 13
+	232	[114]	MOVE     	14 7
+	233	[114]	RETURN   	13 3
+	234	[117]	GETUPVAL 	13 3	; util
+	235	[117]	GETTABLE 	13 13 -7	; "printout"
+	236	[117]	CALL     	13 1 1
+	237	[118]	GETUPVAL 	13 3	; util
+	238	[118]	GETTABLE 	13 13 -7	; "printout"
+	239	[118]	LOADK    	14 -50	; "Done: "
+	240	[118]	GETGLOBAL	15 -9	; tostring
+	241	[118]	MOVE     	16 12
+	242	[118]	CALL     	15 2 2
+	243	[118]	CONCAT   	14 14 15
+	244	[118]	CALL     	13 2 1
+	245	[119]	GETUPVAL 	13 3	; util
+	246	[119]	GETTABLE 	13 13 -7	; "printout"
+	247	[119]	CALL     	13 1 1
+	248	[120]	LOADBOOL 	13 1 0
+	249	[120]	RETURN   	13 2
+	250	[121]	RETURN   	0 1

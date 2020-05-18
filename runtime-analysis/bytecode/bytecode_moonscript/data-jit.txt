@@ -1,0 +1,112 @@
+-- BYTECODE -- data.lua:7-14
+0001    TNEW     1   0
+0002    KSHORT   2   1
+0003    LEN      3   0
+0004    KSHORT   4   1
+0005    FORI     2 => 0010
+0006 => TGETV    6   0   5
+0007    KPRI     7   2
+0008    TSETV    7   1   6
+0009    FORL     2 => 0006
+0010 => RET1     1   2
+
+-- BYTECODE -- data.lua:19-21
+0001    KSTR     1   0      ; "<Stack {"
+0002    UGET     2   0      ; concat
+0003    MOV      3   0
+0004    KSTR     4   1      ; ", "
+0005    CALL     2   2   3
+0006    KSTR     3   2      ; "}>"
+0007    CAT      1   1   3
+0008    RET1     1   2
+
+-- BYTECODE -- data.lua:22-24
+0001    UGET     1   0      ; remove
+0002    MOV      2   0
+0003    CALLT    1   2
+
+-- BYTECODE -- data.lua:25-32
+0001    UGET     2   0      ; insert
+0002    MOV      3   0
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    VARG     2   2   2
+0006    ISF          2
+0007    JMP      3 => 0013
+0008    MOV      3   0
+0009    TGETS    2   0   0  ; "push"
+0010    VARG     4   0   2
+0011    CALLMT   2   1
+0012    JMP      2 => 0014
+0013 => RET1     1   2
+0014 => RET0     0   1
+
+-- BYTECODE -- data.lua:33-35
+0001    LEN      1   0
+0002    TGETV    1   0   1
+0003    RET1     1   2
+
+-- BYTECODE -- data.lua:39-42
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "push"
+0003    VARG     3   0   1
+0004    CALLM    1   1   1
+0005    KPRI     1   0
+0006    RET1     1   2
+
+-- BYTECODE -- data.lua:47-51
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    UGET     3   0      ; _base_0
+0004    CALL     1   2   3
+0005    TGETS    2   0   1  ; "__init"
+0006    MOV      3   1
+0007    VARG     4   0   1
+0008    CALLM    2   1   1
+0009    RET1     1   2
+
+-- BYTECODE -- data.lua:0-84
+0001    KNIL     0   2
+0002    GGET     3   0      ; "table"
+0003    TGETS    4   3   1  ; "concat"
+0004    TGETS    5   3   2  ; "remove"
+0005    TGETS    2   3   3  ; "insert"
+0006    MOV      1   5
+0007    MOV      0   4
+0008    KPRI     3   0
+0009    FNEW     3   4      ; data.lua:7
+0010    KNIL     4   5
+0011    TDUP     6   6
+0012    FNEW     7   5      ; data.lua:19
+0013    TSETS    7   6   7  ; "__tostring"
+0014    FNEW     7   8      ; data.lua:22
+0015    TSETS    7   6   9  ; "pop"
+0016    FNEW     7  10      ; data.lua:25
+0017    TSETS    7   6  11  ; "push"
+0018    FNEW     7  12      ; data.lua:33
+0019    TSETS    7   6  13  ; "top"
+0020    TSETS    6   6  14  ; "__index"
+0021    GGET     7  15      ; "setmetatable"
+0022    TDUP     8  17
+0023    FNEW     9  16      ; data.lua:39
+0024    TSETS    9   8  18  ; "__init"
+0025    TSETS    6   8  19  ; "__base"
+0026    TDUP     9  20
+0027    TSETS    6   9  14  ; "__index"
+0028    FNEW    10  21      ; data.lua:47
+0029    TSETS   10   9  22  ; "__call"
+0030    CALL     7   2   3
+0031    MOV      5   7
+0032    TSETS    5   6  23  ; "__class"
+0033    MOV      4   5
+0034    UCLO     5 => 0035
+0035 => MOV      5   3
+0036    TDUP     6  24
+0037    CALL     5   2   2
+0038    TDUP     6  25
+0039    TSETS    3   6  26  ; "Set"
+0040    TSETS    4   6  27  ; "Stack"
+0041    TSETS    5   6  28  ; "lua_keywords"
+0042    UCLO     0 => 0043
+0043 => RET1     6   2
+

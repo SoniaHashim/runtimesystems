@@ -1,0 +1,1402 @@
+LuaMidi, accessed from https://luarocks.org/modules/pedroalvesv/luamidi
+-----------------------
+-- BYTECODE -- LuaMidi.lua:0-23
+0001    TNEW     0   0
+0002    GGET     1   1      ; "require"
+0003    KSTR     2   2      ; "LuaMidi.Constants"
+0004    CALL     1   2   2
+0005    TSETS    1   0   0  ; "Constants"
+0006    GGET     1   1      ; "require"
+0007    KSTR     2   4      ; "LuaMidi.Chunk"
+0008    CALL     1   2   2
+0009    TSETS    1   0   3  ; "Chunk"
+0010    GGET     1   1      ; "require"
+0011    KSTR     2   6      ; "LuaMidi.MetaEvent"
+0012    CALL     1   2   2
+0013    TSETS    1   0   5  ; "MetaEvent"
+0014    GGET     1   1      ; "require"
+0015    KSTR     2   8      ; "LuaMidi.NoteEvent"
+0016    CALL     1   2   2
+0017    TSETS    1   0   7  ; "NoteEvent"
+0018    GGET     1   1      ; "require"
+0019    KSTR     2  10      ; "LuaMidi.NoteOffEvent"
+0020    CALL     1   2   2
+0021    TSETS    1   0   9  ; "NoteOffEvent"
+0022    GGET     1   1      ; "require"
+0023    KSTR     2  12      ; "LuaMidi.NoteOnEvent"
+0024    CALL     1   2   2
+0025    TSETS    1   0  11  ; "NoteOnEvent"
+0026    GGET     1   1      ; "require"
+0027    KSTR     2  14      ; "LuaMidi.ProgramChangeEvent"
+0028    CALL     1   2   2
+0029    TSETS    1   0  13  ; "ProgramChangeEvent"
+0030    GGET     1   1      ; "require"
+0031    KSTR     2  16      ; "LuaMidi.Track"
+0032    CALL     1   2   2
+0033    TSETS    1   0  15  ; "Track"
+0034    GGET     1   1      ; "require"
+0035    KSTR     2  18      ; "LuaMidi.Util"
+0036    CALL     1   2   2
+0037    TSETS    1   0  17  ; "Util"
+0038    GGET     1   1      ; "require"
+0039    KSTR     2  20      ; "LuaMidi.Writer"
+0040    CALL     1   2   2
+0041    TSETS    1   0  19  ; "Writer"
+0042    RET1     0   2
+
+-----------------------
+-- BYTECODE -- NoteOnEvent.lua:3-8
+0001    TDUP     1   1
+0002    TGETS    2   0   0  ; "data"
+0003    TSETS    2   1   0  ; "data"
+0004    GGET     2   2      ; "setmetatable"
+0005    MOV      3   1
+0006    TDUP     4   3
+0007    UGET     5   0      ; NoteOnEvent
+0008    TSETS    5   4   4  ; "__index"
+0009    CALLT    2   3
+
+-- BYTECODE -- NoteOnEvent.lua:0-10
+0001    TNEW     0   0
+0002    FNEW     1   1      ; NoteOnEvent.lua:3
+0003    TSETS    1   0   0  ; "new"
+0004    UCLO     0 => 0005
+0005 => RET1     0   2
+
+-----------------------
+-- BYTECODE -- Writer.lua:8-27
+0001    TDUP     1   0
+0002    TNEW     2   0
+0003    TSETS    2   1   1  ; "data"
+0004    UGET     2   0      ; Constants
+0005    TGETS    2   2   2  ; "HEADER_CHUNK_FORMAT0"
+0006    LEN      3   0
+0007    KSHORT   4   1
+0008    ISGE     4   3
+0009    JMP      3 => 0012
+0010    UGET     3   0      ; Constants
+0011    TGETS    2   3   3  ; "HEADER_CHUNK_FORMAT1"
+0012 => UGET     3   1      ; Util
+0013    TGETS    3   3   4  ; "table_concat"
+0014    MOV      4   2
+0015    UGET     5   1      ; Util
+0016    TGETS    5   5   5  ; "number_to_bytes"
+0017    LEN      6   0
+0018    KSHORT   7   2
+0019    CALL     5   0   3
+0020    CALLM    3   2   1
+0021    UGET     4   1      ; Util
+0022    TGETS    4   4   4  ; "table_concat"
+0023    MOV      5   3
+0024    UGET     6   0      ; Constants
+0025    TGETS    6   6   6  ; "HEADER_CHUNK_DIVISION"
+0026    CALL     4   2   3
+0027    MOV      3   4
+0028    TGETS    4   1   1  ; "data"
+0029    UGET     5   2      ; Chunk
+0030    TGETS    5   5   7  ; "new"
+0031    TDUP     6   9
+0032    UGET     7   0      ; Constants
+0033    TGETS    7   7   8  ; "HEADER_CHUNK_TYPE"
+0034    TSETS    7   6  10  ; "type"
+0035    TSETS    3   6   1  ; "data"
+0036    CALL     5   2   2
+0037    TSETB    5   4   1
+0038    GGET     4  11      ; "ipairs"
+0039    MOV      5   0
+0040    CALL     4   4   2
+0041    JMP      7 => 0057
+0042 => MOV     10   8
+0043    TGETS    9   8  12  ; "add_event"
+0044    UGET    11   3      ; MetaEvent
+0045    TGETS   11  11   7  ; "new"
+0046    TDUP    12  14
+0047    UGET    13   0      ; Constants
+0048    TGETS   13  13  13  ; "META_END_OF_TRACK_ID"
+0049    TSETS   13  12   1  ; "data"
+0050    CALL    11   0   2
+0051    CALLM    9   1   1
+0052    TGETS    9   1   1  ; "data"
+0053    TGETS   10   1   1  ; "data"
+0054    LEN     10  10
+0055    ADDVN   10  10   0  ; 1
+0056    TSETV    8   9  10
+0057 => ITERC    7   3   3
+0058    ITERL    7 => 0042
+0059    GGET     4  15      ; "setmetatable"
+0060    MOV      5   1
+0061    TDUP     6  16
+0062    UGET     7   4      ; Writer
+0063    TSETS    7   6  17  ; "__index"
+0064    CALLT    4   3
+
+-- BYTECODE -- Writer.lua:29-37
+0001    TNEW     1   0
+0002    GGET     2   0      ; "ipairs"
+0003    TGETS    3   0   1  ; "data"
+0004    CALL     2   4   2
+0005    JMP      5 => 0024
+0006 => UGET     7   0      ; Util
+0007    TGETS    7   7   2  ; "table_concat"
+0008    MOV      8   1
+0009    TGETS    9   6   3  ; "type"
+0010    CALL     7   2   3
+0011    MOV      1   7
+0012    UGET     7   0      ; Util
+0013    TGETS    7   7   2  ; "table_concat"
+0014    MOV      8   1
+0015    TGETS    9   6   4  ; "size"
+0016    CALL     7   2   3
+0017    MOV      1   7
+0018    UGET     7   0      ; Util
+0019    TGETS    7   7   2  ; "table_concat"
+0020    MOV      8   1
+0021    TGETS    9   6   1  ; "data"
+0022    CALL     7   2   3
+0023    MOV      1   7
+0024 => ITERC    5   3   3
+0025    ITERL    5 => 0006
+0026    RET1     1   2
+
+-- BYTECODE -- Writer.lua:39-41
+0001    RET0     0   1
+
+-- BYTECODE -- Writer.lua:43-45
+0001    RET0     0   1
+
+-- BYTECODE -- Writer.lua:47-50
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "mm"
+0003    CALL     1   2   2
+0004    MOV      2   1
+0005    MOV      4   0
+0006    TGETS    3   0   2  ; "build_file"
+0007    CALL     3   0   2
+0008    CALLM    2   1   0
+0009    RET0     0   1
+
+-- BYTECODE -- Writer.lua:52-64
+0001    MOV      4   1
+0002    TGETS    3   1   0  ; "sub"
+0003    LEN      5   1
+0004    SUBVN    5   5   0  ; 3
+0005    CALL     3   2   3
+0006    ISEQS    3   1      ; ".mid"
+0007    JMP      3 => 0011
+0008    MOV      3   1
+0009    KSTR     4   1      ; ".mid"
+0010    CAT      1   3   4
+0011 => GGET     3   2      ; "type"
+0012    MOV      4   2
+0013    CALL     3   2   2
+0014    ISNES    3   3      ; "string"
+0015    JMP      3 => 0038
+0016    LEN      3   2
+0017    ISEQN    3   1      ; 0
+0018    JMP      3 => 0038
+0019    GGET     3   4      ; "os"
+0020    TGETS    3   3   5  ; "rename"
+0021    MOV      4   2
+0022    MOV      5   2
+0023    CALL     3   2   3
+0024    IST          3
+0025    JMP      3 => 0034
+0026    GGET     3   4      ; "os"
+0027    TGETS    3   3   6  ; "execute"
+0028    KSTR     4   7      ; "mkdir "
+0029    KSTR     5   8      ; "'"
+0030    MOV      6   2
+0031    KSTR     7   8      ; "'"
+0032    CAT      4   4   7
+0033    CALL     3   1   2
+0034 => MOV      3   2
+0035    KSTR     4   9      ; "/"
+0036    MOV      5   1
+0037    CAT      1   3   5
+0038 => GGET     3  10      ; "io"
+0039    TGETS    3   3  11  ; "open"
+0040    MOV      4   1
+0041    KSTR     5  12      ; "wb"
+0042    CALL     3   2   3
+0043    GGET     4   3      ; "string"
+0044    TGETS    4   4  13  ; "char"
+0045    GGET     5  14      ; "table"
+0046    TGETS    5   5  15  ; "unpack"
+0047    MOV      7   0
+0048    TGETS    6   0  16  ; "build_file"
+0049    CALL     6   0   2
+0050    CALLM    5   0   0
+0051    CALLM    4   2   0
+0052    MOV      6   3
+0053    TGETS    5   3  17  ; "write"
+0054    MOV      7   4
+0055    CALL     5   1   3
+0056    MOV      6   3
+0057    TGETS    5   3  18  ; "close"
+0058    CALL     5   1   2
+0059    RET0     0   1
+
+-- BYTECODE -- Writer.lua:0-67
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "LuaMidi.Util"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "LuaMidi.Constants"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "LuaMidi.Chunk"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "LuaMidi.MetaEvent"
+0012    CALL     3   2   2
+0013    TNEW     4   0
+0014    FNEW     5   6      ; Writer.lua:8
+0015    TSETS    5   4   5  ; "new"
+0016    FNEW     5   8      ; Writer.lua:29
+0017    TSETS    5   4   7  ; "build_file"
+0018    FNEW     5  10      ; Writer.lua:39
+0019    TSETS    5   4   9  ; "base64"
+0020    FNEW     5  12      ; Writer.lua:43
+0021    TSETS    5   4  11  ; "data_URI"
+0022    FNEW     5  14      ; Writer.lua:47
+0023    TSETS    5   4  13  ; "stdout"
+0024    FNEW     5  16      ; Writer.lua:52
+0025    TSETS    5   4  15  ; "save_MIDI"
+0026    UCLO     0 => 0027
+0027 => RET1     4   2
+
+-----------------------
+-- BYTECODE -- NoteEvent.lua:19-25
+0001    IST          0
+0002    JMP      1 => 0004
+0003    KSHORT   0  50
+0004 => KSHORT   1 100
+0005    ISGE     1   0
+0006    JMP      1 => 0008
+0007    KSHORT   0 100
+0008 => UGET     1   0      ; Util
+0009    TGETS    1   1   0  ; "round"
+0010    DIVVN    2   0   0  ; 100
+0011    MULVN    2   2   1  ; 127
+0012    CALLT    1   2
+
+-- BYTECODE -- NoteEvent.lua:27-33
+0001    GGET     2   0      ; "tostring"
+0002    MOV      3   0
+0003    CALL     2   2   2
+0004    MOV      3   2
+0005    TGETS    2   2   1  ; "lower"
+0006    CALL     2   2   2
+0007    MOV      3   2
+0008    TGETS    2   2   2  ; "sub"
+0009    KSHORT   4   1
+0010    KSHORT   5   1
+0011    CALL     2   2   4
+0012    ISNES    2   3      ; "t"
+0013    JMP      2 => 0021
+0014    GGET     2   4      ; "string"
+0015    TGETS    2   2   5  ; "match"
+0016    GGET     3   0      ; "tostring"
+0017    MOV      4   0
+0018    CALL     3   2   2
+0019    KSTR     4   6      ; "%d+"
+0020    CALLT    2   3
+0021 => UGET     2   0      ; Util
+0022    TGETS    2   2   7  ; "number_from_bytes"
+0023    UGET     3   1      ; Constants
+0024    TGETS    3   3   8  ; "HEADER_CHUNK_DIVISION"
+0025    CALL     2   2   2
+0026    UGET     3   0      ; Util
+0027    TGETS    3   3   9  ; "round"
+0028    UGET     4   2      ; self
+0029    TGETS    4   4  10  ; "get_duration_multiplier"
+0030    MOV      5   0
+0031    MOV      6   1
+0032    CALL     4   2   3
+0033    MULVV    4   2   4
+0034    CALLT    3   2
+
+-- BYTECODE -- NoteEvent.lua:34-62
+0001    GGET     2   0      ; "tostring"
+0002    MOV      3   0
+0003    CALL     2   2   2
+0004    MOV      0   2
+0005    ISNES    0   1      ; "0"
+0006    JMP      2 => 0010
+0007    KSHORT   2   0
+0008    RET1     2   2
+0009    JMP      2 => 0061
+0010 => ISNES    0   2      ; "1"
+0011    JMP      2 => 0015
+0012    KSHORT   2   4
+0013    RET1     2   2
+0014    JMP      2 => 0061
+0015 => ISNES    0   3      ; "2"
+0016    JMP      2 => 0020
+0017    KSHORT   2   2
+0018    RET1     2   2
+0019    JMP      2 => 0061
+0020 => ISNES    0   4      ; "d2"
+0021    JMP      2 => 0025
+0022    KSHORT   2   3
+0023    RET1     2   2
+0024    JMP      2 => 0061
+0025 => ISNES    0   5      ; "4"
+0026    JMP      2 => 0030
+0027    KSHORT   2   1
+0028    RET1     2   2
+0029    JMP      2 => 0061
+0030 => ISNES    0   6      ; "d4"
+0031    JMP      2 => 0035
+0032    KNUM     2   0      ; 1.5
+0033    RET1     2   2
+0034    JMP      2 => 0061
+0035 => ISNES    0   7      ; "8"
+0036    JMP      2 => 0040
+0037    KNUM     2   1      ; 0.5
+0038    RET1     2   2
+0039    JMP      2 => 0061
+0040 => ISNES    0   8      ; "8t"
+0041    JMP      2 => 0045
+0042    KNUM     2   2      ; 0.33
+0043    RET1     2   2
+0044    JMP      2 => 0061
+0045 => ISNES    0   9      ; "d8"
+0046    JMP      2 => 0050
+0047    KNUM     2   3      ; 0.75
+0048    RET1     2   2
+0049    JMP      2 => 0061
+0050 => ISNES    0  10      ; "16"
+0051    JMP      2 => 0055
+0052    KNUM     2   4      ; 0.25
+0053    RET1     2   2
+0054    JMP      2 => 0061
+0055 => ISNES    1  11      ; "note"
+0056    JMP      2 => 0059
+0057    KSHORT   2   1
+0058    RET1     2   2
+0059 => KSHORT   2   0
+0060    RET1     2   2
+0061 => RET0     0   1
+
+-- BYTECODE -- NoteEvent.lua:63-65
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "channel"
+0003    ADDNV    0   0   0  ; 144
+0004    SUBVN    0   0   1  ; 1
+0005    RET1     0   2
+
+-- BYTECODE -- NoteEvent.lua:66-68
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "channel"
+0003    ADDNV    0   0   0  ; 128
+0004    SUBVN    0   0   1  ; 1
+0005    RET1     0   2
+
+-- BYTECODE -- NoteEvent.lua:69-143
+0001    UGET     0   0      ; self
+0002    TNEW     1   0
+0003    TSETS    1   0   0  ; "data"
+0004    UGET     0   0      ; self
+0005    TGETS    0   0   1  ; "get_tick_duration"
+0006    UGET     1   0      ; self
+0007    TGETS    1   1   2  ; "duration"
+0008    KSTR     2   3      ; "note"
+0009    CALL     0   2   3
+0010    UGET     1   0      ; self
+0011    TGETS    1   1   1  ; "get_tick_duration"
+0012    UGET     2   0      ; self
+0013    TGETS    2   2   4  ; "wait"
+0014    KSTR     3   5      ; "rest"
+0015    CALL     1   2   3
+0016    KNIL     2   3
+0017    GGET     4   6      ; "type"
+0018    UGET     5   0      ; self
+0019    TGETS    5   5   7  ; "pitch"
+0020    CALL     4   2   2
+0021    ISNES    4   8      ; "table"
+0022    JMP      4 => 0261
+0023    UGET     4   0      ; self
+0024    TGETS    4   4   9  ; "sequential"
+0025    IST          4
+0026    JMP      4 => 0152
+0027    KSHORT   4   1
+0028    UGET     5   0      ; self
+0029    TGETS    5   5  10  ; "repetition"
+0030    KSHORT   6   1
+0031    FORI     4 => 0151
+0032 => GGET     8  11      ; "ipairs"
+0033    UGET     9   0      ; self
+0034    TGETS    9   9   7  ; "pitch"
+0035    CALL     8   4   2
+0036    JMP     11 => 0089
+0037 => TNEW    13   0
+0038    KPRI    14   0
+0039    ISNEN   11   0      ; 1
+0040    JMP     15 => 0065
+0041    UGET    15   1      ; Util
+0042    TGETS   15  15  12  ; "num_to_var_length"
+0043    MOV     16   1
+0044    CALL    15   2   2
+0045    MOV     14  15
+0046    LEN     15  14
+0047    ADDVN   15  15   0  ; 1
+0048    UGET    16   0      ; self
+0049    TGETS   16  16  13  ; "get_note_on_status"
+0050    CALL    16   2   1
+0051    TSETV   16  14  15
+0052    LEN     15  14
+0053    ADDVN   15  15   0  ; 1
+0054    UGET    16   1      ; Util
+0055    TGETS   16  16  14  ; "get_pitch"
+0056    MOV     17  12
+0057    CALL    16   2   2
+0058    TSETV   16  14  15
+0059    LEN     15  14
+0060    ADDVN   15  15   0  ; 1
+0061    UGET    16   0      ; self
+0062    TGETS   16  16  15  ; "velocity"
+0063    TSETV   16  14  15
+0064    JMP     15 => 0075
+0065 => TDUP    15  16
+0066    UGET    16   1      ; Util
+0067    TGETS   16  16  14  ; "get_pitch"
+0068    MOV     17  12
+0069    CALL    16   2   2
+0070    TSETB   16  15   2
+0071    UGET    16   0      ; self
+0072    TGETS   16  16  15  ; "velocity"
+0073    TSETB   16  15   3
+0074    MOV     14  15
+0075 => TSETS   14  13   0  ; "data"
+0076    UGET    15   2      ; NoteOnEvent
+0077    TGETS   15  15  17  ; "new"
+0078    MOV     16  13
+0079    CALL    15   2   2
+0080    MOV      2  15
+0081    UGET    15   0      ; self
+0082    UGET    16   1      ; Util
+0083    TGETS   16  16  18  ; "table_concat"
+0084    UGET    17   0      ; self
+0085    TGETS   17  17   0  ; "data"
+0086    TGETS   18   2   0  ; "data"
+0087    CALL    16   2   3
+0088    TSETS   16  15   0  ; "data"
+0089 => ITERC   11   3   3
+0090    ITERL   11 => 0037
+0091    GGET     8  11      ; "ipairs"
+0092    UGET     9   0      ; self
+0093    TGETS    9   9   7  ; "pitch"
+0094    CALL     8   4   2
+0095    JMP     11 => 0148
+0096 => TNEW    13   0
+0097    KPRI    14   0
+0098    ISNEN   11   0      ; 1
+0099    JMP     15 => 0124
+0100    UGET    15   1      ; Util
+0101    TGETS   15  15  12  ; "num_to_var_length"
+0102    MOV     16   0
+0103    CALL    15   2   2
+0104    MOV     14  15
+0105    LEN     15  14
+0106    ADDVN   15  15   0  ; 1
+0107    UGET    16   0      ; self
+0108    TGETS   16  16  19  ; "get_note_off_status"
+0109    CALL    16   2   1
+0110    TSETV   16  14  15
+0111    LEN     15  14
+0112    ADDVN   15  15   0  ; 1
+0113    UGET    16   1      ; Util
+0114    TGETS   16  16  14  ; "get_pitch"
+0115    MOV     17  12
+0116    CALL    16   2   2
+0117    TSETV   16  14  15
+0118    LEN     15  14
+0119    ADDVN   15  15   0  ; 1
+0120    UGET    16   0      ; self
+0121    TGETS   16  16  15  ; "velocity"
+0122    TSETV   16  14  15
+0123    JMP     15 => 0134
+0124 => TDUP    15  20
+0125    UGET    16   1      ; Util
+0126    TGETS   16  16  14  ; "get_pitch"
+0127    MOV     17  12
+0128    CALL    16   2   2
+0129    TSETB   16  15   2
+0130    UGET    16   0      ; self
+0131    TGETS   16  16  15  ; "velocity"
+0132    TSETB   16  15   3
+0133    MOV     14  15
+0134 => TSETS   14  13   0  ; "data"
+0135    UGET    15   3      ; NoteOffEvent
+0136    TGETS   15  15  17  ; "new"
+0137    MOV     16  13
+0138    CALL    15   2   2
+0139    MOV      3  15
+0140    UGET    15   0      ; self
+0141    UGET    16   1      ; Util
+0142    TGETS   16  16  18  ; "table_concat"
+0143    UGET    17   0      ; self
+0144    TGETS   17  17   0  ; "data"
+0145    TGETS   18   3   0  ; "data"
+0146    CALL    16   2   3
+0147    TSETS   16  15   0  ; "data"
+0148 => ITERC   11   3   3
+0149    ITERL   11 => 0096
+0150    FORL     4 => 0032
+0151 => JMP      4 => 0264
+0152 => KSHORT   4   1
+0153    UGET     5   0      ; self
+0154    TGETS    5   5  10  ; "repetition"
+0155    KSHORT   6   1
+0156    FORI     4 => 0260
+0157 => GGET     8  11      ; "ipairs"
+0158    UGET     9   0      ; self
+0159    TGETS    9   9   7  ; "pitch"
+0160    CALL     8   4   2
+0161    JMP     11 => 0257
+0162 => TNEW    13   0
+0163    KSHORT  14   1
+0164    ISGE    14  11
+0165    JMP     14 => 0167
+0166    KSHORT   1   0
+0167 => UGET    14   0      ; self
+0168    TGETS   14  14   2  ; "duration"
+0169    ISNES   14  21      ; "8t"
+0170    JMP     14 => 0183
+0171    UGET    14   0      ; self
+0172    TGETS   14  14   7  ; "pitch"
+0173    LEN     14  14
+0174    ISNEV   11  14
+0175    JMP     14 => 0183
+0176    UGET    14   1      ; Util
+0177    TGETS   14  14  22  ; "number_from_bytes"
+0178    UGET    15   4      ; Constants
+0179    TGETS   15  15  23  ; "HEADER_CHUNK_DIVISION"
+0180    CALL    14   2   2
+0181    MULVN   15   0   1  ; 2
+0182    SUBVV    0  14  15
+0183 => TNEW    14   0
+0184    TNEW    15   0
+0185    UGET    16   1      ; Util
+0186    TGETS   16  16  12  ; "num_to_var_length"
+0187    MOV     17   1
+0188    CALL    16   2   2
+0189    LEN     17  16
+0190    ADDVN   17  17   0  ; 1
+0191    UGET    18   0      ; self
+0192    TGETS   18  18  13  ; "get_note_on_status"
+0193    CALL    18   2   1
+0194    TSETV   18  16  17
+0195    LEN     17  16
+0196    ADDVN   17  17   0  ; 1
+0197    UGET    18   1      ; Util
+0198    TGETS   18  18  14  ; "get_pitch"
+0199    MOV     19  12
+0200    CALL    18   2   2
+0201    TSETV   18  16  17
+0202    LEN     17  16
+0203    ADDVN   17  17   0  ; 1
+0204    UGET    18   0      ; self
+0205    TGETS   18  18  15  ; "velocity"
+0206    TSETV   18  16  17
+0207    TSETS   16  14   0  ; "data"
+0208    UGET    17   2      ; NoteOnEvent
+0209    TGETS   17  17  17  ; "new"
+0210    MOV     18  14
+0211    CALL    17   2   2
+0212    MOV      2  17
+0213    UGET    17   1      ; Util
+0214    TGETS   17  17  12  ; "num_to_var_length"
+0215    MOV     18   0
+0216    CALL    17   2   2
+0217    LEN     18  17
+0218    ADDVN   18  18   0  ; 1
+0219    UGET    19   0      ; self
+0220    TGETS   19  19  19  ; "get_note_off_status"
+0221    CALL    19   2   1
+0222    TSETV   19  17  18
+0223    LEN     18  17
+0224    ADDVN   18  18   0  ; 1
+0225    UGET    19   1      ; Util
+0226    TGETS   19  19  14  ; "get_pitch"
+0227    MOV     20  12
+0228    CALL    19   2   2
+0229    TSETV   19  17  18
+0230    LEN     18  17
+0231    ADDVN   18  18   0  ; 1
+0232    UGET    19   0      ; self
+0233    TGETS   19  19  15  ; "velocity"
+0234    TSETV   19  17  18
+0235    TSETS   17  15   0  ; "data"
+0236    UGET    18   3      ; NoteOffEvent
+0237    TGETS   18  18  17  ; "new"
+0238    MOV     19  15
+0239    CALL    18   2   2
+0240    MOV      3  18
+0241    UGET    18   0      ; self
+0242    UGET    19   1      ; Util
+0243    TGETS   19  19  18  ; "table_concat"
+0244    UGET    20   0      ; self
+0245    TGETS   20  20   0  ; "data"
+0246    MOV     21  16
+0247    CALL    19   2   3
+0248    TSETS   19  18   0  ; "data"
+0249    UGET    18   0      ; self
+0250    UGET    19   1      ; Util
+0251    TGETS   19  19  18  ; "table_concat"
+0252    UGET    20   0      ; self
+0253    TGETS   20  20   0  ; "data"
+0254    MOV     21  17
+0255    CALL    19   2   3
+0256    TSETS   19  18   0  ; "data"
+0257 => ITERC   11   3   3
+0258    ITERL   11 => 0162
+0259    FORL     4 => 0157
+0260 => JMP      4 => 0264
+0261 => GGET     4  24      ; "print"
+0262    KSTR     5  25      ; "Pitch must be an array."
+0263    CALL     4   1   2
+0264 => RET0     0   1
+
+-- BYTECODE -- NoteEvent.lua:8-146
+0001    TDUP     1   0
+0002    TGETS    2   0   1  ; "pitch"
+0003    TSETS    2   1   1  ; "pitch"
+0004    TGETS    2   0   2  ; "wait"
+0005    IST          2
+0006    JMP      3 => 0008
+0007    KSHORT   2   0
+0008 => TSETS    2   1   2  ; "wait"
+0009    TGETS    2   0   3  ; "duration"
+0010    TSETS    2   1   3  ; "duration"
+0011    TGETS    2   0   4  ; "sequential"
+0012    IST          2
+0013    JMP      3 => 0015
+0014    KPRI     2   1
+0015 => TSETS    2   1   4  ; "sequential"
+0016    TGETS    2   0   5  ; "velocity"
+0017    IST          2
+0018    JMP      3 => 0020
+0019    KSHORT   2  50
+0020 => TSETS    2   1   5  ; "velocity"
+0021    TGETS    2   0   6  ; "channel"
+0022    IST          2
+0023    JMP      3 => 0025
+0024    KSHORT   2   1
+0025 => TSETS    2   1   6  ; "channel"
+0026    TGETS    2   0   7  ; "repetition"
+0027    IST          2
+0028    JMP      3 => 0030
+0029    KSHORT   2   1
+0030 => TSETS    2   1   7  ; "repetition"
+0031    FNEW     2   9      ; NoteEvent.lua:19
+0032    TSETS    2   1   8  ; "convert_velocity"
+0033    TGETS    2   1   8  ; "convert_velocity"
+0034    TGETS    3   1   5  ; "velocity"
+0035    CALL     2   2   2
+0036    TSETS    2   1   5  ; "velocity"
+0037    FNEW     2  11      ; NoteEvent.lua:27
+0038    TSETS    2   1  10  ; "get_tick_duration"
+0039    FNEW     2  13      ; NoteEvent.lua:34
+0040    TSETS    2   1  12  ; "get_duration_multiplier"
+0041    FNEW     2  15      ; NoteEvent.lua:63
+0042    TSETS    2   1  14  ; "get_note_on_status"
+0043    FNEW     2  17      ; NoteEvent.lua:66
+0044    TSETS    2   1  16  ; "get_note_off_status"
+0045    FNEW     2  19      ; NoteEvent.lua:69
+0046    TSETS    2   1  18  ; "build_data"
+0047    TGETS    2   1  18  ; "build_data"
+0048    CALL     2   1   1
+0049    GGET     2  20      ; "setmetatable"
+0050    MOV      3   1
+0051    TDUP     4  21
+0052    UGET     5   4      ; NoteEvent
+0053    TSETS    5   4  22  ; "__index"
+0054    UCLO     0 => 0055
+0055 => CALLT    2   3
+
+-- BYTECODE -- NoteEvent.lua:0-149
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "LuaMidi.Constants"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "LuaMidi.Util"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "LuaMidi.NoteOnEvent"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "LuaMidi.NoteOffEvent"
+0012    CALL     3   2   2
+0013    TNEW     4   0
+0014    FNEW     5   6      ; NoteEvent.lua:8
+0015    TSETS    5   4   5  ; "new"
+0016    UCLO     0 => 0017
+0017 => RET1     4   2
+
+-----------------------
+-- BYTECODE -- ProgramChangeEvent.lua:6-15
+0001    UGET     1   0      ; Util
+0002    TGETS    1   1   0  ; "num_to_var_length"
+0003    KSHORT   2   0
+0004    CALL     1   2   2
+0005    LEN      2   1
+0006    ADDVN    2   2   0  ; 1
+0007    UGET     3   1      ; Constants
+0008    TGETS    3   3   1  ; "PROGRAM_CHANGE_STATUS"
+0009    TSETV    3   1   2
+0010    LEN      2   1
+0011    ADDVN    2   2   0  ; 1
+0012    TGETS    3   0   2  ; "data"
+0013    TSETV    3   1   2
+0014    TDUP     2   3
+0015    TSETS    1   2   2  ; "data"
+0016    GGET     3   4      ; "setmetatable"
+0017    MOV      4   2
+0018    TDUP     5   5
+0019    UGET     6   2      ; ProgramChangeEvent
+0020    TSETS    6   5   6  ; "__index"
+0021    CALLT    3   3
+
+-- BYTECODE -- ProgramChangeEvent.lua:0-18
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "LuaMidi.Constants"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "LuaMidi.Util"
+0006    CALL     1   2   2
+0007    TNEW     2   0
+0008    FNEW     3   4      ; ProgramChangeEvent.lua:6
+0009    TSETS    3   2   3  ; "new"
+0010    UCLO     0 => 0011
+0011 => RET1     2   2
+
+-----------------------
+-- BYTECODE -- Track.lua:8-16
+0001    TDUP     0   1
+0002    UGET     1   0      ; Constants
+0003    TGETS    1   1   0  ; "TRACK_CHUNK_TYPE"
+0004    TSETS    1   0   2  ; "type"
+0005    TNEW     1   0
+0006    TSETS    1   0   3  ; "data"
+0007    TNEW     1   0
+0008    TSETS    1   0   4  ; "size"
+0009    TNEW     1   0
+0010    TSETS    1   0   5  ; "events"
+0011    GGET     1   6      ; "setmetatable"
+0012    MOV      2   0
+0013    TDUP     3   7
+0014    UGET     4   1      ; Track
+0015    TSETS    4   3   8  ; "__index"
+0016    CALLT    1   3
+
+-- BYTECODE -- Track.lua:18-40
+0001    GGET     3   0      ; "type"
+0002    MOV      4   1
+0003    CALL     3   2   2
+0004    ISNES    3   1      ; "table"
+0005    JMP      3 => 0061
+0006    TGETB    3   1   1
+0007    ISEQP    3   0
+0008    JMP      3 => 0061
+0009    GGET     3   2      ; "ipairs"
+0010    MOV      4   1
+0011    CALL     3   4   2
+0012    JMP      6 => 0058
+0013 => GGET     8   0      ; "type"
+0014    MOV      9   2
+0015    CALL     8   2   2
+0016    ISNES    8   3      ; "function"
+0017    JMP      8 => 0040
+0018    TGETS    8   7   0  ; "type"
+0019    ISNES    8   4      ; "note"
+0020    JMP      8 => 0040
+0021    MOV      8   2
+0022    MOV      9   6
+0023    MOV     10   7
+0024    CALL     8   2   3
+0025    GGET     9   0      ; "type"
+0026    MOV     10   8
+0027    CALL     9   2   2
+0028    ISNES    9   1      ; "table"
+0029    JMP      9 => 0040
+0030    TGETS    9   8   5  ; "duration"
+0031    TSETS    9   7   5  ; "duration"
+0032    TGETS    9   8   6  ; "sequential"
+0033    TSETS    9   7   6  ; "sequential"
+0034    TGETS    9   7   8  ; "convert_velocity"
+0035    TGETS   10   8   7  ; "velocity"
+0036    CALL     9   2   2
+0037    TSETS    9   7   7  ; "velocity"
+0038    TGETS    9   7   9  ; "build_data"
+0039    CALL     9   1   1
+0040 => UGET     8   0      ; Util
+0041    TGETS    8   8  11  ; "table_concat"
+0042    TGETS    9   0  10  ; "data"
+0043    TGETS   10   7  10  ; "data"
+0044    CALL     8   2   3
+0045    TSETS    8   0  10  ; "data"
+0046    UGET     8   0      ; Util
+0047    TGETS    8   8  13  ; "number_to_bytes"
+0048    TGETS    9   0  10  ; "data"
+0049    LEN      9   9
+0050    KSHORT  10   4
+0051    CALL     8   2   3
+0052    TSETS    8   0  12  ; "size"
+0053    TGETS    8   0  14  ; "events"
+0054    TGETS    9   0  14  ; "events"
+0055    LEN      9   9
+0056    ADDVN    9   9   0  ; 1
+0057    TSETV    7   8   9
+0058 => ITERC    6   3   3
+0059    ITERL    6 => 0013
+0060    JMP      3 => 0079
+0061 => UGET     3   0      ; Util
+0062    TGETS    3   3  11  ; "table_concat"
+0063    TGETS    4   0  10  ; "data"
+0064    TGETS    5   1  10  ; "data"
+0065    CALL     3   2   3
+0066    TSETS    3   0  10  ; "data"
+0067    UGET     3   0      ; Util
+0068    TGETS    3   3  13  ; "number_to_bytes"
+0069    TGETS    4   0  10  ; "data"
+0070    LEN      4   4
+0071    KSHORT   5   4
+0072    CALL     3   2   3
+0073    TSETS    3   0  12  ; "size"
+0074    TGETS    3   0  14  ; "events"
+0075    TGETS    4   0  14  ; "events"
+0076    LEN      4   4
+0077    ADDVN    4   4   0  ; 1
+0078    TSETV    1   3   4
+0079 => RET1     0   2
+
+-- BYTECODE -- Track.lua:42-49
+0001    UGET     2   0      ; MetaEvent
+0002    TGETS    2   2   0  ; "new"
+0003    TDUP     3   2
+0004    TNEW     4   3
+0005    UGET     5   1      ; Constants
+0006    TGETS    5   5   1  ; "META_TEMPO_ID"
+0007    TSETB    5   4   1
+0008    TSETS    4   3   3  ; "data"
+0009    CALL     2   2   2
+0010    TGETS    3   2   3  ; "data"
+0011    TGETS    4   2   3  ; "data"
+0012    LEN      4   4
+0013    ADDVN    4   4   0  ; 1
+0014    KSHORT   5   3
+0015    TSETV    5   3   4
+0016    UGET     3   2      ; Util
+0017    TGETS    3   3   4  ; "round"
+0018    DIVNV    4   1   1  ; 60000000
+0019    CALL     3   2   2
+0020    UGET     4   2      ; Util
+0021    TGETS    4   4   5  ; "table_concat"
+0022    TGETS    5   2   3  ; "data"
+0023    UGET     6   2      ; Util
+0024    TGETS    6   6   6  ; "number_to_bytes"
+0025    MOV      7   3
+0026    KSHORT   8   3
+0027    CALL     6   0   3
+0028    CALLM    4   2   1
+0029    TSETS    4   2   3  ; "data"
+0030    MOV      5   0
+0031    TGETS    4   0   7  ; "add_event"
+0032    MOV      6   2
+0033    CALLT    4   3
+
+-- BYTECODE -- Track.lua:51-63
+0001    IST          3
+0002    JMP      5 => 0004
+0003    KSHORT   3  24
+0004 => IST          4
+0005    JMP      5 => 0007
+0006    KSHORT   4   8
+0007 => UGET     5   0      ; MetaEvent
+0008    TGETS    5   5   0  ; "new"
+0009    TDUP     6   2
+0010    TNEW     7   3
+0011    UGET     8   1      ; Constants
+0012    TGETS    8   8   1  ; "META_TIME_SIGNATURE_ID"
+0013    TSETB    8   7   1
+0014    TSETS    7   6   3  ; "data"
+0015    CALL     5   2   2
+0016    TGETS    6   5   3  ; "data"
+0017    TGETS    7   5   3  ; "data"
+0018    LEN      7   7
+0019    ADDVN    7   7   0  ; 1
+0020    KSHORT   8   4
+0021    TSETV    8   6   7
+0022    UGET     6   2      ; Util
+0023    TGETS    6   6   4  ; "table_concat"
+0024    UGET     7   2      ; Util
+0025    TGETS    7   7   5  ; "number_to_bytes"
+0026    MOV      8   1
+0027    KSHORT   9   1
+0028    CALL     7   0   3
+0029    CALLM    6   2   0
+0030    TSETS    6   5   3  ; "data"
+0031    GGET     6   6      ; "math"
+0032    TGETS    6   6   7  ; "log"
+0033    MOV      7   2
+0034    KSHORT   8   2
+0035    CALL     6   2   3
+0036    MOV      2   6
+0037    UGET     6   2      ; Util
+0038    TGETS    6   6   4  ; "table_concat"
+0039    TGETS    7   5   3  ; "data"
+0040    UGET     8   2      ; Util
+0041    TGETS    8   8   5  ; "number_to_bytes"
+0042    MOV      9   2
+0043    KSHORT  10   1
+0044    CALL     8   0   3
+0045    CALLM    6   2   1
+0046    TSETS    6   5   3  ; "data"
+0047    UGET     6   2      ; Util
+0048    TGETS    6   6   4  ; "table_concat"
+0049    TGETS    7   5   3  ; "data"
+0050    UGET     8   2      ; Util
+0051    TGETS    8   8   5  ; "number_to_bytes"
+0052    MOV      9   3
+0053    KSHORT  10   1
+0054    CALL     8   0   3
+0055    CALLM    6   2   1
+0056    TSETS    6   5   3  ; "data"
+0057    UGET     6   2      ; Util
+0058    TGETS    6   6   4  ; "table_concat"
+0059    TGETS    7   5   3  ; "data"
+0060    UGET     8   2      ; Util
+0061    TGETS    8   8   5  ; "number_to_bytes"
+0062    MOV      9   4
+0063    KSHORT  10   1
+0064    CALL     8   0   3
+0065    CALLM    6   2   1
+0066    TSETS    6   5   3  ; "data"
+0067    MOV      7   0
+0068    TGETS    6   0   8  ; "add_event"
+0069    MOV      8   5
+0070    CALLT    6   3
+
+-- BYTECODE -- Track.lua:65-101
+0001    UGET     3   0      ; MetaEvent
+0002    TGETS    3   3   0  ; "new"
+0003    TDUP     4   2
+0004    TNEW     5   3
+0005    UGET     6   1      ; Constants
+0006    TGETS    6   6   1  ; "META_KEY_SIGNATURE_ID"
+0007    TSETB    6   5   1
+0008    TSETS    5   4   3  ; "data"
+0009    CALL     3   2   2
+0010    TGETS    4   3   3  ; "data"
+0011    TGETS    5   3   3  ; "data"
+0012    LEN      5   5
+0013    ADDVN    5   5   0  ; 1
+0014    KSHORT   6   2
+0015    TSETV    6   4   5
+0016    ISTC     4   2
+0017    JMP      4 => 0019
+0018    KSHORT   4   0
+0019 => IST          1
+0020    JMP      5 => 0022
+0021    KSHORT   1   0
+0022 => IST          2
+0023    JMP      5 => 0104
+0024    TNEW     5   3
+0025    TDUP     6   4
+0026    TSETB    6   5   1
+0027    TDUP     6   5
+0028    TSETB    6   5   2
+0029    ISTC     6   1
+0030    JMP      6 => 0032
+0031    KSTR     6   6      ; "C"
+0032 => MOV      8   1
+0033    TGETS    7   1   7  ; "sub"
+0034    KSHORT   9   1
+0035    KSHORT  10   1
+0036    CALL     7   2   4
+0037    GGET     8   8      ; "string"
+0038    TGETS    8   8   9  ; "lower"
+0039    MOV     10   1
+0040    TGETS    9   1   7  ; "sub"
+0041    KSHORT  11   1
+0042    KSHORT  12   1
+0043    CALL     9   0   4
+0044    CALLM    8   2   0
+0045    ISNEV    7   8
+0046    JMP      7 => 0048
+0047    KSHORT   4   1
+0048 => LEN      7   1
+0049    KSHORT   8   1
+0050    ISGE     8   7
+0051    JMP      7 => 0094
+0052    MOV      8   1
+0053    TGETS    7   1   7  ; "sub"
+0054    LEN      9   1
+0055    LEN     10   1
+0056    CALL     7   2   4
+0057    ISEQS    7  10      ; "m"
+0058    JMP      8 => 0061
+0059    ISNES    7  11      ; "-"
+0060    JMP      8 => 0072
+0061 => KSHORT   4   1
+0062    GGET     8   8      ; "string"
+0063    TGETS    8   8   9  ; "lower"
+0064    MOV     10   1
+0065    TGETS    9   1   7  ; "sub"
+0066    KSHORT  11   1
+0067    KSHORT  12   1
+0068    CALL     9   0   4
+0069    CALLM    8   2   0
+0070    MOV      6   8
+0071    JMP      8 => 0087
+0072 => ISEQS    7  12      ; "M"
+0073    JMP      8 => 0077
+0074    GGET     8  13      ; "start_with"
+0075    ISNES    8  14      ; "+"
+0076    JMP      8 => 0087
+0077 => KSHORT   4   0
+0078    GGET     8   8      ; "string"
+0079    TGETS    8   8  15  ; "upper"
+0080    MOV     10   1
+0081    TGETS    9   1   7  ; "sub"
+0082    KSHORT  11   1
+0083    KSHORT  12   1
+0084    CALL     9   0   4
+0085    CALLM    8   2   0
+0086    MOV      6   8
+0087 => MOV      8   6
+0088    MOV     10   1
+0089    TGETS    9   1   7  ; "sub"
+0090    KSHORT  11   2
+0091    LEN     12   1
+0092    CALL     9   2   4
+0093    CAT      6   8   9
+0094 => UGET     7   2      ; Util
+0095    TGETS    7   7  16  ; "table_index_of"
+0096    TGETV    8   5   4
+0097    MOV      9   6
+0098    CALL     7   2   3
+0099    IST          7
+0100    JMP      8 => 0103
+0101    KSHORT   1   0
+0102    JMP      8 => 0104
+0103 => SUBVN    1   7   1  ; 7
+0104 => UGET     5   2      ; Util
+0105    TGETS    5   5  17  ; "table_concat"
+0106    TGETS    6   3   3  ; "data"
+0107    UGET     7   2      ; Util
+0108    TGETS    7   7  18  ; "number_to_bytes"
+0109    MOV      8   1
+0110    KSHORT   9   1
+0111    CALL     7   0   3
+0112    CALLM    5   2   1
+0113    TSETS    5   3   3  ; "data"
+0114    UGET     5   2      ; Util
+0115    TGETS    5   5  17  ; "table_concat"
+0116    TGETS    6   3   3  ; "data"
+0117    UGET     7   2      ; Util
+0118    TGETS    7   7  18  ; "number_to_bytes"
+0119    MOV      8   4
+0120    KSHORT   9   1
+0121    CALL     7   0   3
+0122    CALLM    5   2   1
+0123    TSETS    5   3   3  ; "data"
+0124    MOV      6   0
+0125    TGETS    5   0  19  ; "add_event"
+0126    MOV      7   3
+0127    CALLT    5   3
+
+-- BYTECODE -- Track.lua:103-110
+0001    UGET     2   0      ; MetaEvent
+0002    TGETS    2   2   0  ; "new"
+0003    TDUP     3   1
+0004    TNEW     4   3
+0005    TSETB    1   4   1
+0006    TSETS    4   3   2  ; "data"
+0007    CALL     2   2   2
+0008    UGET     3   1      ; Util
+0009    TGETS    3   3   3  ; "string_to_bytes"
+0010    MOV      4   0
+0011    CALL     3   2   2
+0012    UGET     4   1      ; Util
+0013    TGETS    4   4   4  ; "table_concat"
+0014    TGETS    5   2   2  ; "data"
+0015    UGET     6   1      ; Util
+0016    TGETS    6   6   5  ; "num_to_var_length"
+0017    LEN      7   3
+0018    CALL     6   0   2
+0019    CALLM    4   2   1
+0020    TSETS    4   2   2  ; "data"
+0021    UGET     4   1      ; Util
+0022    TGETS    4   4   4  ; "table_concat"
+0023    TGETS    5   2   2  ; "data"
+0024    MOV      6   3
+0025    CALL     4   2   3
+0026    TSETS    4   2   2  ; "data"
+0027    GGET     4   6      ; "self"
+0028    MOV      5   4
+0029    TGETS    4   4   7  ; "add_event"
+0030    MOV      6   2
+0031    CALLT    4   3
+
+-- BYTECODE -- Track.lua:112-114
+0001    UGET     2   0      ; default_add_text
+0002    MOV      3   1
+0003    UGET     4   1      ; Constants
+0004    TGETS    4   4   0  ; "META_TEXT_ID"
+0005    CALLT    2   3
+
+-- BYTECODE -- Track.lua:116-118
+0001    UGET     2   0      ; default_add_text
+0002    MOV      3   1
+0003    UGET     4   1      ; Constants
+0004    TGETS    4   4   0  ; "META_COPYRIGHT_ID"
+0005    CALLT    2   3
+
+-- BYTECODE -- Track.lua:120-122
+0001    UGET     2   0      ; default_add_text
+0002    MOV      3   1
+0003    UGET     4   1      ; Constants
+0004    TGETS    4   4   0  ; "META_INSTRUMENT_NAME_ID"
+0005    CALLT    2   3
+
+-- BYTECODE -- Track.lua:124-126
+0001    UGET     2   0      ; default_add_text
+0002    MOV      3   1
+0003    UGET     4   1      ; Constants
+0004    TGETS    4   4   0  ; "META_MARKER_ID"
+0005    CALLT    2   3
+
+-- BYTECODE -- Track.lua:128-130
+0001    UGET     2   0      ; default_add_text
+0002    MOV      3   1
+0003    UGET     4   1      ; Constants
+0004    TGETS    4   4   0  ; "META_CUE_POINT"
+0005    CALLT    2   3
+
+-- BYTECODE -- Track.lua:132-134
+0001    UGET     2   0      ; default_add_text
+0002    MOV      3   1
+0003    UGET     4   1      ; Constants
+0004    TGETS    4   4   0  ; "META_LYRIC_ID"
+0005    CALLT    2   3
+
+-- BYTECODE -- Track.lua:136-141
+0001    UGET     1   0      ; NoteOnEvent
+0002    TGETS    1   1   0  ; "new"
+0003    TDUP     2   2
+0004    TDUP     3   1
+0005    TSETS    3   2   3  ; "data"
+0006    CALL     1   2   2
+0007    MOV      3   0
+0008    TGETS    2   0   4  ; "add_event"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    GGET     2   5      ; "print"
+0012    MOV      3   1
+0013    CALL     2   1   2
+0014    RET0     0   1
+
+-- BYTECODE -- Track.lua:0-144
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "LuaMidi.Constants"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "LuaMidi.Util"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "LuaMidi.MetaEvent"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "LuaMidi.NoteOnEvent"
+0012    CALL     3   2   2
+0013    TNEW     4   0
+0014    FNEW     5   6      ; Track.lua:8
+0015    TSETS    5   4   5  ; "new"
+0016    FNEW     5   8      ; Track.lua:18
+0017    TSETS    5   4   7  ; "add_event"
+0018    FNEW     5  10      ; Track.lua:42
+0019    TSETS    5   4   9  ; "set_tempo"
+0020    FNEW     5  12      ; Track.lua:51
+0021    TSETS    5   4  11  ; "set_time_signature"
+0022    FNEW     5  14      ; Track.lua:65
+0023    TSETS    5   4  13  ; "set_key_signature"
+0024    FNEW     5  15      ; Track.lua:103
+0025    FNEW     6  17      ; Track.lua:112
+0026    TSETS    6   4  16  ; "add_text"
+0027    FNEW     6  19      ; Track.lua:116
+0028    TSETS    6   4  18  ; "add_copyright"
+0029    FNEW     6  21      ; Track.lua:120
+0030    TSETS    6   4  20  ; "add_instrument_name"
+0031    FNEW     6  23      ; Track.lua:124
+0032    TSETS    6   4  22  ; "add_marker"
+0033    FNEW     6  25      ; Track.lua:128
+0034    TSETS    6   4  24  ; "add_cue_point"
+0035    FNEW     6  27      ; Track.lua:132
+0036    TSETS    6   4  26  ; "add_lyric"
+0037    FNEW     6  29      ; Track.lua:136
+0038    TSETS    6   4  28  ; "poly_mode_on"
+0039    UCLO     0 => 0040
+0040 => RET1     4   2
+
+-----------------------
+-- BYTECODE -- Constants.lua:0-54
+0001    TDUP     0   1
+0002    TDUP     1   0
+0003    TSETS    1   0   2  ; "HEADER_CHUNK_TYPE"
+0004    TDUP     1   3
+0005    TSETS    1   0   4  ; "HEADER_CHUNK_LENGTH"
+0006    TDUP     1   5
+0007    TSETS    1   0   6  ; "HEADER_CHUNK_FORMAT0"
+0008    TDUP     1   7
+0009    TSETS    1   0   8  ; "HEADER_CHUNK_FORMAT1"
+0010    TDUP     1   9
+0011    TSETS    1   0  10  ; "HEADER_CHUNK_DIVISION"
+0012    TDUP     1  11
+0013    TSETS    1   0  12  ; "TRACK_CHUNK_TYPE"
+0014    TDUP     1  13
+0015    TSETS    1   0  14  ; "META_END_OF_TRACK_ID"
+0016    TNEW     1   0
+0017    TSETS    1   0  15  ; "NOTES"
+0018    TNEW     1  13
+0019    TDUP     2  16
+0020    TSETB    2   1   1
+0021    TDUP     2  17
+0022    TSETB    2   1   2
+0023    TDUP     2  18
+0024    TSETB    2   1   3
+0025    TDUP     2  19
+0026    TSETB    2   1   4
+0027    TDUP     2  20
+0028    TSETB    2   1   5
+0029    TDUP     2  21
+0030    TSETB    2   1   6
+0031    TDUP     2  22
+0032    TSETB    2   1   7
+0033    TDUP     2  23
+0034    TSETB    2   1   8
+0035    TDUP     2  24
+0036    TSETB    2   1   9
+0037    TDUP     2  25
+0038    TSETB    2   1  10
+0039    TDUP     2  26
+0040    TSETB    2   1  11
+0041    TDUP     2  27
+0042    TSETB    2   1  12
+0043    KSHORT   2   0
+0044    KSHORT   3  -1
+0045    KSHORT   4   9
+0046    KSHORT   5   1
+0047    FORI     3 => 0067
+0048 => GGET     7  28      ; "ipairs"
+0049    MOV      8   1
+0050    CALL     7   4   2
+0051    JMP     10 => 0064
+0052 => GGET    12  28      ; "ipairs"
+0053    MOV     13  11
+0054    CALL    12   4   2
+0055    JMP     15 => 0061
+0056 => TGETS   17   0  15  ; "NOTES"
+0057    MOV     18  16
+0058    MOV     19   6
+0059    CAT     18  18  19
+0060    TSETV    2  17  18
+0061 => ITERC   15   3   3
+0062    ITERL   15 => 0056
+0063    ADDVN    2   2   0  ; 1
+0064 => ITERC   10   3   3
+0065    ITERL   10 => 0052
+0066    FORL     3 => 0048
+0067 => RET1     0   2
+
+-----------------------
+-- BYTECODE -- Chunk.lua:3-10
+0001    TDUP     1   1
+0002    TGETS    2   0   0  ; "type"
+0003    TSETS    2   1   0  ; "type"
+0004    TGETS    2   0   2  ; "data"
+0005    TSETS    2   1   2  ; "data"
+0006    TDUP     2   3
+0007    TGETS    3   0   2  ; "data"
+0008    LEN      3   3
+0009    TSETB    3   2   4
+0010    TSETS    2   1   4  ; "size"
+0011    GGET     2   5      ; "setmetatable"
+0012    MOV      3   1
+0013    TDUP     4   6
+0014    UGET     5   0      ; Chunk
+0015    TSETS    5   4   7  ; "__index"
+0016    CALLT    2   3
+
+-- BYTECODE -- Chunk.lua:0-12
+0001    TNEW     0   0
+0002    FNEW     1   1      ; Chunk.lua:3
+0003    TSETS    1   0   0  ; "new"
+0004    UCLO     0 => 0005
+0005 => RET1     0   2
+
+-----------------------
+-----------------------
+-- BYTECODE -- NoteOffEvent.lua:3-8
+0001    TDUP     1   1
+0002    TGETS    2   0   0  ; "data"
+0003    TSETS    2   1   0  ; "data"
+0004    GGET     2   2      ; "setmetatable"
+0005    MOV      3   1
+0006    TDUP     4   3
+0007    UGET     5   0      ; NoteOffEvent
+0008    TSETS    5   4   4  ; "__index"
+0009    CALLT    2   3
+
+-- BYTECODE -- NoteOffEvent.lua:0-10
+0001    TNEW     0   0
+0002    FNEW     1   1      ; NoteOffEvent.lua:3
+0003    TSETS    1   0   0  ; "new"
+0004    UCLO     0 => 0005
+0005 => RET1     0   2
+
+-----------------------
+-- BYTECODE -- MetaEvent.lua:6-15
+0001    UGET     1   0      ; Util
+0002    TGETS    1   1   0  ; "num_to_var_length"
+0003    KSHORT   2   0
+0004    CALL     1   2   2
+0005    UGET     2   0      ; Util
+0006    TGETS    2   2   1  ; "table_concat"
+0007    MOV      3   1
+0008    TNEW     4   3
+0009    UGET     5   1      ; Constants
+0010    TGETS    5   5   2  ; "META_EVENT_ID"
+0011    TSETB    5   4   1
+0012    CALL     2   2   3
+0013    MOV      1   2
+0014    UGET     2   0      ; Util
+0015    TGETS    2   2   1  ; "table_concat"
+0016    MOV      3   1
+0017    TGETS    4   0   3  ; "data"
+0018    CALL     2   2   3
+0019    MOV      1   2
+0020    TDUP     2   4
+0021    TSETS    1   2   3  ; "data"
+0022    GGET     3   5      ; "setmetatable"
+0023    MOV      4   2
+0024    TDUP     5   6
+0025    UGET     6   2      ; MetaEvent
+0026    TSETS    6   5   7  ; "__index"
+0027    CALLT    3   3
+
+-- BYTECODE -- MetaEvent.lua:0-18
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "LuaMidi.Constants"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "LuaMidi.Util"
+0006    CALL     1   2   2
+0007    TNEW     2   0
+0008    FNEW     3   4      ; MetaEvent.lua:6
+0009    TSETS    3   2   3  ; "new"
+0010    UCLO     0 => 0011
+0011 => RET1     2   2
+

@@ -1,0 +1,111 @@
+-- BYTECODE -- gesturerange.lua:14-19
+0001    ISTC     2   1
+0002    JMP      2 => 0004
+0003    TNEW     2   0
+0004 => GGET     3   0      ; "setmetatable"
+0005    MOV      4   2
+0006    MOV      5   0
+0007    CALL     3   1   3
+0008    TSETS    0   0   1  ; "__index"
+0009    RET1     2   2
+
+-- BYTECODE -- gesturerange.lua:21-67
+0001    TGETS    2   1   0  ; "ges"
+0002    TGETS    3   0   0  ; "ges"
+0003    ISEQV    2   3
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    RET1     2   2
+0007 => TGETS    2   0   1  ; "range"
+0008    ISF          2
+0009    JMP      3 => 0031
+0010    KPRI     2   0
+0011    GGET     3   2      ; "type"
+0012    TGETS    4   0   1  ; "range"
+0013    CALL     3   2   2
+0014    ISNES    3   3      ; "function"
+0015    JMP      3 => 0020
+0016    TGETS    3   0   1  ; "range"
+0017    CALL     3   2   1
+0018    MOV      2   3
+0019    JMP      3 => 0021
+0020 => TGETS    2   0   1  ; "range"
+0021 => ISF          2
+0022    JMP      3 => 0029
+0023    MOV      4   2
+0024    TGETS    3   2   4  ; "contains"
+0025    TGETS    5   1   5  ; "pos"
+0026    CALL     3   2   3
+0027    IST          3
+0028    JMP      3 => 0031
+0029 => KPRI     3   1
+0030    RET1     3   2
+0031 => TGETS    2   0   6  ; "rate"
+0032    ISF          2
+0033    JMP      3 => 0059
+0034    TGETS    2   0   7  ; "last_time"
+0035    IST          2
+0036    JMP      3 => 0042
+0037    UGET     2   0      ; TimeVal
+0038    MOV      3   2
+0039    TGETS    2   2   8  ; "new"
+0040    TNEW     4   0
+0041    CALL     2   2   3
+0042 => TGETS    3   1   9  ; "time"
+0043    SUBVV    3   3   2
+0044    UGET     4   0      ; TimeVal
+0045    MOV      5   4
+0046    TGETS    4   4   8  ; "new"
+0047    TDUP     6  10
+0048    TGETS    7   0   6  ; "rate"
+0049    DIVNV    7   7   0  ; 1000000
+0050    TSETS    7   6  11  ; "usec"
+0051    CALL     4   2   3
+0052    ISGE     4   3
+0053    JMP      3 => 0057
+0054    TGETS    3   1   9  ; "time"
+0055    TSETS    3   0   7  ; "last_time"
+0056    JMP      3 => 0059
+0057 => KPRI     3   1
+0058    RET1     3   2
+0059 => TGETS    2   0  12  ; "scale"
+0060    ISF          2
+0061    JMP      3 => 0076
+0062    TGETS    2   1  13  ; "distance"
+0063    IST          2
+0064    JMP      3 => 0066
+0065    TGETS    2   1  14  ; "span"
+0066 => TGETS    3   0  12  ; "scale"
+0067    TGETB    3   3   1
+0068    ISLT     2   3
+0069    JMP      3 => 0074
+0070    TGETS    3   0  12  ; "scale"
+0071    TGETB    3   3   2
+0072    ISGE     3   2
+0073    JMP      3 => 0076
+0074 => KPRI     3   1
+0075    RET1     3   2
+0076 => TGETS    2   0  15  ; "direction"
+0077    ISF          2
+0078    JMP      3 => 0085
+0079    TGETS    2   0  15  ; "direction"
+0080    TGETS    3   1  15  ; "direction"
+0081    ISEQV    2   3
+0082    JMP      2 => 0085
+0083    KPRI     2   1
+0084    RET1     2   2
+0085 => KPRI     2   2
+0086    RET1     2   2
+
+-- BYTECODE -- gesturerange.lua:0-70
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/timeval"
+0003    CALL     0   2   2
+0004    TDUP     1   2
+0005    FNEW     2   4      ; gesturerange.lua:14
+0006    TSETS    2   1   3  ; "new"
+0007    FNEW     2   6      ; gesturerange.lua:21
+0008    TSETS    2   1   5  ; "match"
+0009    UCLO     0 => 0010
+0010 => RET1     1   2
+

@@ -1,0 +1,760 @@
+-- BYTECODE -- api.lua:13-18
+0001    UGET     0   0      ; cfg
+0002    TGETS    0   0   0  ; "config_files"
+0003    TGETS    0   0   1  ; "user"
+0004    TGETS    0   0   2  ; "file"
+0005    IST          0
+0006    JMP      0 => 0009
+0007    KPRI     0   0
+0008    RET1     0   2
+0009 => UGET     0   0      ; cfg
+0010    TGETS    0   0   0  ; "config_files"
+0011    TGETS    0   0   1  ; "user"
+0012    TGETS    0   0   2  ; "file"
+0013    MOV      1   0
+0014    TGETS    0   0   3  ; "gsub"
+0015    KSTR     2   4      ; "/[^/]+$"
+0016    KSTR     3   5      ; "/upload_config.lua"
+0017    CALL     0   2   4
+0018    RET1     0   2
+
+-- BYTECODE -- api.lua:20-25
+0001    UGET     1   0      ; upload_config_file
+0002    CALL     1   2   1
+0003    IST          1
+0004    JMP      2 => 0007
+0005    KPRI     2   0
+0006    RET1     2   2
+0007 => UGET     2   1      ; persist
+0008    TGETS    2   2   0  ; "load_into_table"
+0009    MOV      3   1
+0010    CALL     2   3   2
+0011    RET1     2   2
+
+-- BYTECODE -- api.lua:27-45
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "raw_method"
+0003    KSTR     3   1      ; "status"
+0004    CALL     1   3   3
+0005    IST          1
+0006    JMP      3 => 0010
+0007    KPRI     3   0
+0008    MOV      4   2
+0009    RET      3   3
+0010 => TGETS    3   1   2  ; "errors"
+0011    ISF          3
+0012    JMP      4 => 0023
+0013    UGET     3   0      ; util
+0014    TGETS    3   3   3  ; "printerr"
+0015    KSTR     4   4      ; "Server says: "
+0016    GGET     5   5      ; "tostring"
+0017    TGETS    6   1   2  ; "errors"
+0018    TGETB    6   6   1
+0019    CALL     5   2   2
+0020    CAT      4   4   5
+0021    CALL     3   1   2
+0022    RET0     0   1
+0023 => UGET     3   1      ; upload_config_file
+0024    CALL     3   2   1
+0025    IST          3
+0026    JMP      4 => 0029
+0027    KPRI     4   0
+0028    RET1     4   2
+0029 => UGET     4   2      ; fs
+0030    TGETS    4   4   6  ; "make_dir"
+0031    UGET     5   3      ; dir
+0032    TGETS    5   5   7  ; "dir_name"
+0033    MOV      6   3
+0034    CALL     5   0   2
+0035    CALLM    4   3   0
+0036    IST          4
+0037    JMP      6 => 0041
+0038    KPRI     6   0
+0039    MOV      7   5
+0040    RET      6   3
+0041 => UGET     6   4      ; persist
+0042    TGETS    6   6   8  ; "save_from_table"
+0043    MOV      7   3
+0044    TGETS    8   0   9  ; "config"
+0045    CALL     6   1   3
+0046    UGET     6   2      ; fs
+0047    TGETS    6   6  10  ; "set_permissions"
+0048    MOV      7   3
+0049    KSTR     8  11      ; "read"
+0050    KSTR     9  12      ; "user"
+0051    CALL     6   1   4
+0052    RET0     0   1
+
+-- BYTECODE -- api.lua:47-68
+0001    TGETS    1   0   0  ; "_server_tool_version"
+0002    IST          1
+0003    JMP      1 => 0044
+0004    UGET     1   0      ; cfg
+0005    TGETS    1   1   1  ; "upload"
+0006    TGETS    1   1   2  ; "tool_version"
+0007    MOV      3   0
+0008    TGETS    2   0   3  ; "request"
+0009    GGET     4   4      ; "tostring"
+0010    TGETS    5   0   5  ; "config"
+0011    TGETS    5   5   6  ; "server"
+0012    CALL     4   2   2
+0013    KSTR     5   7      ; "/api/tool_version"
+0014    CAT      4   4   5
+0015    TDUP     5   8
+0016    TSETS    1   5   9  ; "current"
+0017    CALL     2   3   4
+0018    IST          2
+0019    JMP      4 => 0023
+0020    KPRI     4   0
+0021    MOV      5   3
+0022    RET      4   3
+0023 => TGETS    4   2  10  ; "version"
+0024    IST          4
+0025    JMP      4 => 0029
+0026    KPRI     4   0
+0027    KSTR     5  11      ; "failed to fetch tool version"
+0028    RET      4   3
+0029 => TGETS    4   2  10  ; "version"
+0030    TSETS    4   0   0  ; "_server_tool_version"
+0031    TGETS    4   2  12  ; "force_update"
+0032    ISF          4
+0033    JMP      5 => 0037
+0034    KPRI     4   0
+0035    KSTR     5  13      ; "Your upload client is too out of date to"~
+0036    RET      4   3
+0037 => TGETS    4   2  10  ; "version"
+0038    ISEQV    4   1
+0039    JMP      4 => 0044
+0040    UGET     4   1      ; util
+0041    TGETS    4   4  14  ; "warning"
+0042    KSTR     5  15      ; "your LuaRocks is out of date, consider u"~
+0043    CALL     4   1   2
+0044 => KPRI     1   2
+0045    RET1     1   2
+
+-- BYTECODE -- api.lua:70-83
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "raw_method"
+0003    VARG     3   0   1
+0004    CALLM    1   3   1
+0005    IST          1
+0006    JMP      3 => 0010
+0007    KPRI     3   0
+0008    MOV      4   2
+0009    RET      3   3
+0010 => TGETS    3   1   1  ; "errors"
+0011    ISF          3
+0012    JMP      4 => 0033
+0013    TGETS    3   1   1  ; "errors"
+0014    TGETB    3   3   1
+0015    ISNES    3   2      ; "Invalid key"
+0016    JMP      3 => 0023
+0017    KPRI     3   0
+0018    TGETS    4   1   1  ; "errors"
+0019    TGETB    4   4   1
+0020    KSTR     5   3      ; " (use the --api-key flag to change)"
+0021    CAT      4   4   5
+0022    RET      3   3
+0023 => GGET     3   4      ; "table"
+0024    TGETS    3   3   5  ; "concat"
+0025    TGETS    4   1   1  ; "errors"
+0026    KSTR     5   6      ; ", "
+0027    CALL     3   2   3
+0028    KPRI     4   0
+0029    KSTR     5   7      ; "API Failed: "
+0030    MOV      6   3
+0031    CAT      5   5   6
+0032    RET      4   3
+0033 => RET1     1   2
+
+-- BYTECODE -- api.lua:85-89
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "check_version"
+0003    CALL     2   1   2
+0004    GGET     2   1      ; "tostring"
+0005    TGETS    3   0   2  ; "config"
+0006    TGETS    3   3   3  ; "server"
+0007    CALL     2   2   2
+0008    KSTR     3   4      ; "/api/"
+0009    GGET     4   1      ; "tostring"
+0010    UGET     5   0      ; cfg
+0011    TGETS    5   5   5  ; "upload"
+0012    TGETS    5   5   6  ; "api_version"
+0013    CALL     4   2   2
+0014    KSTR     5   7      ; "/"
+0015    GGET     6   1      ; "tostring"
+0016    TGETS    7   0   2  ; "config"
+0017    TGETS    7   7   8  ; "key"
+0018    CALL     6   2   2
+0019    KSTR     7   7      ; "/"
+0020    GGET     8   1      ; "tostring"
+0021    MOV      9   1
+0022    CALL     8   2   2
+0023    CAT      2   2   8
+0024    MOV      4   0
+0025    TGETS    3   0   9  ; "request"
+0026    MOV      5   2
+0027    VARG     6   0   2
+0028    CALLMT   3   2
+
+-- BYTECODE -- api.lua:91-109
+0001    ISNEP    1   0
+0002    JMP      2 => 0004
+0003    KSTR     1   0      ; "&"
+0004 => KSHORT   2   0
+0005    TNEW     3   0
+0006    GGET     4   1      ; "pairs"
+0007    MOV      5   0
+0008    CALL     4   4   2
+0009    ISNEXT   7 => 0041
+0010 => GGET     9   2      ; "type"
+0011    MOV     10   7
+0012    CALL     9   2   2
+0013    ISNES    9   3      ; "number"
+0014    JMP      9 => 0023
+0015    GGET     9   2      ; "type"
+0016    MOV     10   8
+0017    CALL     9   2   2
+0018    ISNES    9   4      ; "table"
+0019    JMP      9 => 0023
+0020    TGETB    9   8   1
+0021    TGETB    8   8   2
+0022    MOV      7   9
+0023 => ADDVN    9   2   0  ; 1
+0024    UGET    10   0      ; multipart
+0025    TGETS   10  10   5  ; "url_escape"
+0026    MOV     11   7
+0027    CALL    10   2   2
+0028    TSETV   10   3   9
+0029    ADDVN    9   2   1  ; 2
+0030    KSTR    10   6      ; "="
+0031    TSETV   10   3   9
+0032    ADDVN    9   2   2  ; 3
+0033    UGET    10   0      ; multipart
+0034    TGETS   10  10   5  ; "url_escape"
+0035    MOV     11   8
+0036    CALL    10   2   2
+0037    TSETV   10   3   9
+0038    ADDVN    9   2   3  ; 4
+0039    TSETV    1   3   9
+0040    ADDVN    2   2   3  ; 4
+0041 => ITERN    7   3   3
+0042    ITERL    7 => 0010
+0043    KPRI     4   0
+0044    TSETV    4   3   2
+0045    GGET     4   4      ; "table"
+0046    TGETS    4   4   7  ; "concat"
+0047    MOV      5   3
+0048    CALLT    4   2
+
+-- BYTECODE -- api.lua:111-114
+0001    GGET     1   0      ; "tostring"
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    MOV      0   1
+0005    MOV      2   0
+0006    TGETS    1   0   1  ; "gsub"
+0007    KSTR     3   2      ; ".*/api/[^/]+/[^/]+"
+0008    KSTR     4   3      ; ""
+0009    CALL     1   2   4
+0010    IST          1
+0011    JMP      2 => 0013
+0012    KSTR     1   3      ; ""
+0013 => RET1     1   2
+
+-- BYTECODE -- api.lua:119-178
+0001    UGET     4   0      ; cfg
+0002    TGETS    4   4   0  ; "variables"
+0003    UGET     5   1      ; util
+0004    TGETS    5   5   1  ; "require_json"
+0005    CALL     5   3   1
+0006    IST          5
+0007    JMP      7 => 0013
+0008    KPRI     7   0
+0009    KSTR     8   2      ; "A JSON library is required for this comm"~
+0010    MOV      9   6
+0011    CAT      8   8   9
+0012    RET      7   3
+0013 => UGET     7   2      ; fs
+0014    TGETS    7   7   3  ; "which_tool"
+0015    KSTR     8   4      ; "downloader"
+0016    CALL     7   2   2
+0017    ISNES    7   5      ; "wget"
+0018    JMP      7 => 0029
+0019    UGET     7   2      ; fs
+0020    TGETS    7   7   6  ; "is_tool_available"
+0021    TGETS    8   4   7  ; "CURL"
+0022    KSTR     9   8      ; "curl"
+0023    CALL     7   3   3
+0024    IST          7
+0025    JMP      9 => 0029
+0026    KPRI     9   0
+0027    MOV     10   8
+0028    RET      9   3
+0029 => TGETS    7   0   9  ; "config"
+0030    TGETS    7   7  10  ; "key"
+0031    IST          7
+0032    JMP      7 => 0036
+0033    KPRI     7   0
+0034    KSTR     8  11      ; "Must have API key before performing any "~
+0035    RET      7   3
+0036 => ISF          2
+0037    JMP      7 => 0049
+0038    GGET     7  12      ; "next"
+0039    MOV      8   2
+0040    CALL     7   2   2
+0041    ISF          7
+0042    JMP      8 => 0049
+0043    MOV      7   1
+0044    KSTR     8  13      ; "?"
+0045    UGET     9   3      ; encode_query_string
+0046    MOV     10   2
+0047    CALL     9   2   2
+0048    CAT      1   7   9
+0049 => KSTR     7  14      ; "GET"
+0050    KPRI     8   0
+0051    UGET     9   2      ; fs
+0052    TGETS    9   9  15  ; "tmpname"
+0053    CALL     9   2   1
+0054    ISF          3
+0055    JMP     10 => 0126
+0056    KSTR     7  16      ; "POST"
+0057    TGETS   10   4   7  ; "CURL"
+0058    KSTR    11  17      ; " -f -k -L --silent --user-agent ""
+0059    UGET    12   0      ; cfg
+0060    TGETS   12  12  18  ; "user_agent"
+0061    KSTR    13  19      ; " via curl" "
+0062    CAT     10  10  13
+0063    GGET    11  20      ; "pairs"
+0064    MOV     12   3
+0065    CALL    11   4   2
+0066    ISNEXT  14 => 0083
+0067 => MOV     16  15
+0068    GGET    17  21      ; "type"
+0069    MOV     18  15
+0070    CALL    17   2   2
+0071    ISNES   17  22      ; "table"
+0072    JMP     17 => 0076
+0073    KSTR    17  23      ; "@"
+0074    TGETS   18  15  24  ; "fname"
+0075    CAT     16  17  18
+0076 => MOV     17  10
+0077    KSTR    18  25      ; "--form ""
+0078    MOV     19  14
+0079    KSTR    20  26      ; "="
+0080    MOV     21  16
+0081    KSTR    22  27      ; "" "
+0082    CAT     10  17  22
+0083 => ITERN   14   3   3
+0084    ITERL   14 => 0067
+0085    UGET    11   0      ; cfg
+0086    TGETS   11  11  28  ; "connection_timeout"
+0087    ISF         11
+0088    JMP     12 => 0102
+0089    UGET    11   0      ; cfg
+0090    TGETS   11  11  28  ; "connection_timeout"
+0091    KSHORT  12   0
+0092    ISGE    12  11
+0093    JMP     11 => 0102
+0094    MOV     11  10
+0095    KSTR    12  29      ; "--connect-timeout "
+0096    GGET    13  30      ; "tonumber"
+0097    UGET    14   0      ; cfg
+0098    TGETS   14  14  28  ; "connection_timeout"
+0099    CALL    13   2   2
+0100    KSTR    14  31      ; " "
+0101    CAT     10  11  14
+0102 => UGET    11   2      ; fs
+0103    TGETS   11  11  32  ; "execute_string"
+0104    MOV     12  10
+0105    UGET    13   2      ; fs
+0106    TGETS   13  13  33  ; "Q"
+0107    MOV     14   1
+0108    CALL    13   2   2
+0109    KSTR    14  34      ; " -o "
+0110    UGET    15   2      ; fs
+0111    TGETS   15  15  33  ; "Q"
+0112    MOV     16   9
+0113    CALL    15   2   2
+0114    CAT     12  12  15
+0115    CALL    11   2   2
+0116    IST         11
+0117    JMP     12 => 0144
+0118    KPRI    12   0
+0119    KSTR    13  35      ; "API failure: "
+0120    UGET    14   4      ; redact_api_url
+0121    MOV     15   1
+0122    CALL    14   2   2
+0123    CAT     13  13  14
+0124    RET     12   3
+0125    JMP     10 => 0144
+0126 => UGET    10   2      ; fs
+0127    TGETS   10  10  36  ; "download"
+0128    MOV     11   1
+0129    MOV     12   9
+0130    CALL    10   3   3
+0131    IST         10
+0132    JMP     12 => 0144
+0133    KPRI    12   0
+0134    KSTR    13  35      ; "API failure: "
+0135    GGET    14  37      ; "tostring"
+0136    MOV     15  11
+0137    CALL    14   2   2
+0138    KSTR    15  38      ; " - "
+0139    UGET    16   4      ; redact_api_url
+0140    MOV     17   1
+0141    CALL    16   2   2
+0142    CAT     13  13  16
+0143    RET     12   3
+0144 => GGET    10  39      ; "io"
+0145    TGETS   10  10  40  ; "open"
+0146    MOV     11   9
+0147    CALL    10   2   2
+0148    IST         10
+0149    JMP     11 => 0161
+0150    GGET    11  41      ; "os"
+0151    TGETS   11  11  42  ; "remove"
+0152    MOV     12   9
+0153    CALL    11   1   2
+0154    KPRI    11   0
+0155    KSTR    12  43      ; "API failure reading temporary file - "
+0156    UGET    13   4      ; redact_api_url
+0157    MOV     14   1
+0158    CALL    13   2   2
+0159    CAT     12  12  13
+0160    RET     11   3
+0161 => MOV     12  10
+0162    TGETS   11  10  44  ; "read"
+0163    KSTR    13  45      ; "*a"
+0164    CALL    11   2   3
+0165    MOV      8  11
+0166    MOV     12  10
+0167    TGETS   11  10  46  ; "close"
+0168    CALL    11   1   2
+0169    GGET    11  41      ; "os"
+0170    TGETS   11  11  42  ; "remove"
+0171    MOV     12   9
+0172    CALL    11   1   2
+0173    TGETS   11   0  47  ; "debug"
+0174    ISF         11
+0175    JMP     12 => 0189
+0176    UGET    11   1      ; util
+0177    TGETS   11  11  48  ; "printout"
+0178    KSTR    12  49      ; "["
+0179    GGET    13  37      ; "tostring"
+0180    MOV     14   7
+0181    CALL    13   2   2
+0182    KSTR    14  50      ; " via curl] "
+0183    UGET    15   4      ; redact_api_url
+0184    MOV     16   1
+0185    CALL    15   2   2
+0186    KSTR    16  51      ; " ... "
+0187    CAT     12  12  16
+0188    CALL    11   1   2
+0189 => TGETS   11   6  52  ; "decode"
+0190    MOV     12   8
+0191    CALLT   11   2
+
+-- BYTECODE -- api.lua:184-244
+0001    UGET     4   0      ; util
+0002    TGETS    4   4   0  ; "require_json"
+0003    CALL     4   3   1
+0004    IST          4
+0005    JMP      6 => 0011
+0006    KPRI     6   0
+0007    KSTR     7   1      ; "A JSON library is required for this comm"~
+0008    MOV      8   5
+0009    CAT      7   7   8
+0010    RET      6   3
+0011 => GGET     6   2      ; "tostring"
+0012    TGETS    7   0   3  ; "config"
+0013    TGETS    7   7   4  ; "server"
+0014    CALL     6   2   2
+0015    KNIL     7   8
+0016    KSTR     9   5      ; "luasocket"
+0017    MOV     11   6
+0018    TGETS   10   6   6  ; "match"
+0019    KSTR    12   7      ; "^https://"
+0020    CALL    10   2   3
+0021    ISF         10
+0022    JMP     11 => 0055
+0023    GGET    10   8      ; "pcall"
+0024    GGET    11   9      ; "require"
+0025    KSTR    12  10      ; "ssl.https"
+0026    CALL    10   3   3
+0027    MOV      8  11
+0028    MOV      7  10
+0029    ISF          7
+0030    JMP     10 => 0033
+0031    KSTR     9  11      ; "luasec"
+0032    JMP     10 => 0061
+0033 => UGET    10   1      ; warned_luasec
+0034    IST         10
+0035    JMP     10 => 0041
+0036    UGET    10   0      ; util
+0037    TGETS   10  10  12  ; "printerr"
+0038    KSTR    11  13      ; "LuaSec is not available; using plain HTT"~
+0039    CALL    10   1   2
+0040    USETP    1   2      ; warned_luasec
+0041 => GGET    10   8      ; "pcall"
+0042    GGET    11   9      ; "require"
+0043    KSTR    12  14      ; "socket.http"
+0044    CALL    10   3   3
+0045    MOV      8  11
+0046    MOV      7  10
+0047    MOV     11   1
+0048    TGETS   10   1  15  ; "gsub"
+0049    KSTR    12  16      ; "^https"
+0050    KSTR    13  17      ; "http"
+0051    CALL    10   2   4
+0052    MOV      1  10
+0053    KSTR     9   5      ; "luasocket"
+0054    JMP     10 => 0061
+0055 => GGET    10   8      ; "pcall"
+0056    GGET    11   9      ; "require"
+0057    KSTR    12  14      ; "socket.http"
+0058    CALL    10   3   3
+0059    MOV      8  11
+0060    MOV      7  10
+0061 => IST          7
+0062    JMP     10 => 0066
+0063    KPRI    10   0
+0064    KSTR    11  18      ; "Failed loading socket library!"
+0065    RET     10   3
+0066 => TGETS   10   0   3  ; "config"
+0067    TGETS   10  10  19  ; "key"
+0068    IST         10
+0069    JMP     10 => 0073
+0070    KPRI    10   0
+0071    KSTR    11  20      ; "Must have API key before performing any "~
+0072    RET     10   3
+0073 => KPRI    10   0
+0074    TNEW    11   0
+0075    ISF          2
+0076    JMP     12 => 0088
+0077    GGET    12  21      ; "next"
+0078    MOV     13   2
+0079    CALL    12   2   2
+0080    ISF         12
+0081    JMP     13 => 0088
+0082    MOV     12   1
+0083    KSTR    13  22      ; "?"
+0084    UGET    14   2      ; encode_query_string
+0085    MOV     15   2
+0086    CALL    14   2   2
+0087    CAT      1  12  14
+0088 => ISF          3
+0089    JMP     12 => 0105
+0090    KPRI    12   0
+0091    UGET    13   3      ; multipart
+0092    TGETS   13  13  23  ; "encode"
+0093    MOV     14   3
+0094    CALL    13   3   2
+0095    MOV     12  14
+0096    MOV     10  13
+0097    LEN     13  10
+0098    TSETS   13  11  24  ; "Content-length"
+0099    KSTR    13  26      ; "multipart/form-data; boundary="
+0100    GGET    14   2      ; "tostring"
+0101    MOV     15  12
+0102    CALL    14   2   2
+0103    CAT     13  13  14
+0104    TSETS   13  11  25  ; "Content-type"
+0105 => ISF          3
+0106    JMP     12 => 0109
+0107    KSTR    12  27      ; "POST"
+0108    JMP     13 => 0110
+0109 => KSTR    12  28      ; "GET"
+0110 => TGETS   13   0  29  ; "debug"
+0111    ISF         13
+0112    JMP     14 => 0128
+0113    UGET    13   0      ; util
+0114    TGETS   13  13  30  ; "printout"
+0115    KSTR    14  31      ; "["
+0116    GGET    15   2      ; "tostring"
+0117    MOV     16  12
+0118    CALL    15   2   2
+0119    KSTR    16  32      ; " via "
+0120    MOV     17   9
+0121    KSTR    18  33      ; "] "
+0122    UGET    19   4      ; redact_api_url
+0123    MOV     20   1
+0124    CALL    19   2   2
+0125    KSTR    20  34      ; " ... "
+0126    CAT     14  14  20
+0127    CALL    13   1   2
+0128 => TNEW    13   0
+0129    TGETS   14   8  35  ; "request"
+0130    TDUP    15  36
+0131    TSETS    1  15  37  ; "url"
+0132    TSETS   11  15  38  ; "headers"
+0133    TSETS   12  15  39  ; "method"
+0134    UGET    16   5      ; ltn12
+0135    TGETS   16  16  40  ; "sink"
+0136    TGETS   16  16  41  ; "table"
+0137    MOV     17  13
+0138    CALL    16   2   2
+0139    TSETS   16  15  40  ; "sink"
+0140    ISFC    16  10
+0141    JMP     16 => 0147
+0142    UGET    16   5      ; ltn12
+0143    TGETS   16  16  42  ; "source"
+0144    TGETS   16  16  43  ; "string"
+0145    MOV     17  10
+0146    CALL    16   2   2
+0147 => TSETS   16  15  42  ; "source"
+0148    CALL    14   3   2
+0149    TGETS   16   0  29  ; "debug"
+0150    ISF         16
+0151    JMP     17 => 0158
+0152    UGET    16   0      ; util
+0153    TGETS   16  16  30  ; "printout"
+0154    GGET    17   2      ; "tostring"
+0155    MOV     18  15
+0156    CALL    17   0   2
+0157    CALLM   16   1   0
+0158 => GGET    16   8      ; "pcall"
+0159    TGETS   17   5  44  ; "decode"
+0160    GGET    18  41      ; "table"
+0161    TGETS   18  18  45  ; "concat"
+0162    MOV     19  13
+0163    CALL    18   0   2
+0164    CALLM   16   4   1
+0165    ISF         16
+0166    JMP     19 => 0170
+0167    ISF         17
+0168    JMP     19 => 0170
+0169    RET1    17   2
+0170 => KPRI    19   0
+0171    KSTR    20  46      ; "API returned "
+0172    GGET    21   2      ; "tostring"
+0173    MOV     22  15
+0174    CALL    21   2   2
+0175    KSTR    22  47      ; " - "
+0176    UGET    23   4      ; redact_api_url
+0177    MOV     24   1
+0178    CALL    23   2   2
+0179    CAT     20  20  23
+0180    RET     19   3
+
+-- BYTECODE -- api.lua:248-265
+0001    TNEW     1   0
+0002    GGET     2   0      ; "setmetatable"
+0003    MOV      3   1
+0004    TDUP     4   1
+0005    UGET     5   0      ; Api
+0006    TSETS    5   4   2  ; "__index"
+0007    CALL     2   1   3
+0008    MOV      3   1
+0009    TGETS    2   1   4  ; "load_config"
+0010    CALL     2   2   2
+0011    IST          2
+0012    JMP      3 => 0014
+0013    TNEW     2   0
+0014 => TSETS    2   1   3  ; "config"
+0015    TGETS    2   1   3  ; "config"
+0016    TGETS    3   0   5  ; "server"
+0017    IST          3
+0018    JMP      4 => 0026
+0019    TGETS    3   1   3  ; "config"
+0020    TGETS    3   3   5  ; "server"
+0021    IST          3
+0022    JMP      4 => 0026
+0023    UGET     3   1      ; cfg
+0024    TGETS    3   3   6  ; "upload"
+0025    TGETS    3   3   5  ; "server"
+0026 => TSETS    3   2   5  ; "server"
+0027    TGETS    2   1   3  ; "config"
+0028    TGETS    3   1   3  ; "config"
+0029    TGETS    3   3   7  ; "version"
+0030    IST          3
+0031    JMP      4 => 0035
+0032    UGET     3   1      ; cfg
+0033    TGETS    3   3   6  ; "upload"
+0034    TGETS    3   3   7  ; "version"
+0035 => TSETS    3   2   7  ; "version"
+0036    TGETS    2   1   3  ; "config"
+0037    TGETS    3   0   9  ; "temp_key"
+0038    IST          3
+0039    JMP      4 => 0045
+0040    TGETS    3   0  10  ; "api_key"
+0041    IST          3
+0042    JMP      4 => 0045
+0043    TGETS    3   1   3  ; "config"
+0044    TGETS    3   3   8  ; "key"
+0045 => TSETS    3   2   8  ; "key"
+0046    TGETS    2   0  11  ; "debug"
+0047    TSETS    2   1  11  ; "debug"
+0048    TGETS    2   1   3  ; "config"
+0049    TGETS    2   2   8  ; "key"
+0050    IST          2
+0051    JMP      2 => 0061
+0052    KPRI     2   0
+0053    KSTR     3  12      ; "You need an API key to upload rocks.\n"
+0054    KSTR     4  13      ; "Navigate to "
+0055    TGETS    5   1   3  ; "config"
+0056    TGETS    5   5   5  ; "server"
+0057    KSTR     6  14      ; "/settings to get a key\n"
+0058    KSTR     7  15      ; "and then pass it through the --api-key=<"~
+0059    CAT      3   3   7
+0060    RET      2   3
+0061 => TGETS    2   0  10  ; "api_key"
+0062    ISF          2
+0063    JMP      3 => 0067
+0064    MOV      3   1
+0065    TGETS    2   1  16  ; "save_config"
+0066    CALL     2   1   2
+0067 => RET1     1   2
+
+-- BYTECODE -- api.lua:0-268
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.core.cfg"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.fs"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.dir"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.util"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.persist"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.upload.multipart"
+0019    CALL     6   2   2
+0020    TNEW     7   0
+0021    FNEW     8   7      ; api.lua:13
+0022    FNEW     9   9      ; api.lua:20
+0023    TSETS    9   7   8  ; "load_config"
+0024    FNEW     9  11      ; api.lua:27
+0025    TSETS    9   7  10  ; "save_config"
+0026    FNEW     9  13      ; api.lua:47
+0027    TSETS    9   7  12  ; "check_version"
+0028    FNEW     9  15      ; api.lua:70
+0029    TSETS    9   7  14  ; "method"
+0030    FNEW     9  17      ; api.lua:85
+0031    TSETS    9   7  16  ; "raw_method"
+0032    FNEW     9  18      ; api.lua:91
+0033    FNEW    10  19      ; api.lua:111
+0034    GGET    11  20      ; "pcall"
+0035    GGET    12   0      ; "require"
+0036    KSTR    13  21      ; "ltn12"
+0037    CALL    11   3   3
+0038    IST         11
+0039    JMP     13 => 0043
+0040    FNEW    13  23      ; api.lua:119
+0041    TSETS   13   7  22  ; "request"
+0042    JMP     13 => 0047
+0043 => KPRI    13   1
+0044    FNEW    14  24      ; api.lua:184
+0045    TSETS   14   7  22  ; "request"
+0046    UCLO    13 => 0047
+0047 => FNEW    13  26      ; api.lua:248
+0048    TSETS   13   0  25  ; "new"
+0049    UCLO     0 => 0050
+0050 => RET1     0   2
+

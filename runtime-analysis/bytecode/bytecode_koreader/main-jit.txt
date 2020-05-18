@@ -1,0 +1,5428 @@
+-- BYTECODE -- main.lua:104-106
+0001    TGETS    1   0   0  ; "ui"
+0002    ISEQP    1   0
+0003    JMP      1 => 0010
+0004    TGETS    1   0   0  ; "ui"
+0005    TGETS    1   1   1  ; "document"
+0006    ISEQP    1   0
+0007    JMP      1 => 0010
+0008    KPRI     1   1
+0009    JMP      2 => 0011
+0010 => KPRI     1   2
+0011 => RET1     1   2
+
+-- BYTECODE -- main.lua:125-127
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getStatsBookStatus"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "id_curr_book"
+0006    UGET     3   0      ; self
+0007    TGETS    3   3   2  ; "is_enabled"
+0008    CALLT    0   4
+
+-- BYTECODE -- main.lua:128-132
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "is_enabled"
+0003    ISF          0
+0004    JMP      1 => 0008
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   1  ; "avg_time"
+0007    RET1     0   2
+0008 => RET0     0   1
+
+-- BYTECODE -- main.lua:133-150
+0001    KPRI     0   0
+0002    UGET     1   0      ; self
+0003    MOV      2   1
+0004    TGETS    1   1   0  ; "insertDB"
+0005    UGET     3   0      ; self
+0006    TGETS    3   3   1  ; "id_curr_book"
+0007    CALL     1   1   3
+0008    UGET     1   0      ; self
+0009    MOV      2   1
+0010    TGETS    1   1   2  ; "getCurrentBookStats"
+0011    CALL     1   3   2
+0012    UGET     3   0      ; self
+0013    MOV      4   3
+0014    TGETS    3   3   3  ; "getTodayBookStats"
+0015    CALL     3   3   2
+0016    UGET     5   0      ; self
+0017    MOV      6   5
+0018    TGETS    5   5   4  ; "getReadingProgressStats"
+0019    KSHORT   7   7
+0020    CALL     5   2   3
+0021    ISF          5
+0022    JMP      6 => 0034
+0023    UGET     6   1      ; ReaderProgress
+0024    MOV      7   6
+0025    TGETS    6   6   5  ; "new"
+0026    TDUP     8   6
+0027    TSETS    5   8   7  ; "dates"
+0028    TSETS    1   8   8  ; "current_period"
+0029    TSETS    2   8   9  ; "current_pages"
+0030    TSETS    3   8  10  ; "today_period"
+0031    TSETS    4   8  11  ; "today_pages"
+0032    CALL     6   2   3
+0033    MOV      0   6
+0034 => RET1     0   2
+
+-- BYTECODE -- main.lua:152-169
+0001    KPRI     0   0
+0002    UGET     1   0      ; self
+0003    MOV      2   1
+0004    TGETS    1   1   0  ; "insertDB"
+0005    UGET     3   0      ; self
+0006    TGETS    3   3   1  ; "id_curr_book"
+0007    CALL     1   1   3
+0008    UGET     1   0      ; self
+0009    MOV      2   1
+0010    TGETS    1   1   2  ; "getCurrentBookStats"
+0011    CALL     1   3   2
+0012    UGET     3   0      ; self
+0013    MOV      4   3
+0014    TGETS    3   3   3  ; "getTodayBookStats"
+0015    CALL     3   3   2
+0016    UGET     5   0      ; self
+0017    MOV      6   5
+0018    TGETS    5   5   4  ; "getReadingProgressStats"
+0019    KSHORT   7   7
+0020    CALL     5   2   3
+0021    ISF          5
+0022    JMP      6 => 0034
+0023    UGET     6   1      ; ReaderProgress
+0024    MOV      7   6
+0025    TGETS    6   6   5  ; "new"
+0026    TDUP     8   6
+0027    TSETS    5   8   7  ; "dates"
+0028    TSETS    1   8   8  ; "current_period"
+0029    TSETS    2   8   9  ; "current_pages"
+0030    TSETS    3   8  10  ; "today_period"
+0031    TSETS    4   8  11  ; "today_pages"
+0032    CALL     6   2   3
+0033    MOV      0   6
+0034 => RET1     0   2
+
+-- BYTECODE -- main.lua:171-178
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "isDocless"
+0004    CALL     0   2   2
+0005    IST          0
+0006    JMP      1 => 0011
+0007    UGET     0   0      ; self
+0008    TGETS    0   0   1  ; "is_enabled"
+0009    IST          0
+0010    JMP      0 => 0012
+0011 => RET0     0   1
+0012 => UGET     0   1      ; KeyValuePage
+0013    MOV      1   0
+0014    TGETS    0   0   2  ; "new"
+0015    TDUP     2   4
+0016    UGET     3   2      ; _
+0017    KSTR     4   3      ; "Statistics"
+0018    CALL     3   2   2
+0019    TSETS    3   2   5  ; "title"
+0020    UGET     3   0      ; self
+0021    MOV      4   3
+0022    TGETS    3   3   6  ; "getCurrentStat"
+0023    UGET     5   0      ; self
+0024    TGETS    5   5   7  ; "id_curr_book"
+0025    CALL     3   2   3
+0026    TSETS    3   2   8  ; "kv_pairs"
+0027    CALL     0   2   3
+0028    RET1     0   2
+
+-- BYTECODE -- main.lua:180-182
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getCalendarView"
+0004    CALLT    0   2
+
+-- BYTECODE -- main.lua:108-183
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "isDocless"
+0003    CALL     1   2   2
+0004    IST          1
+0005    JMP      1 => 0012
+0006    TGETS    1   0   1  ; "ui"
+0007    TGETS    1   1   2  ; "document"
+0008    TGETS    1   1   3  ; "is_pic"
+0009    ISF          1
+0010    JMP      2 => 0012
+0011    UCLO     0 => 0082
+0012 => UGET     1   0      ; TimeVal
+0013    MOV      2   1
+0014    TGETS    1   1   5  ; "now"
+0015    CALL     1   2   2
+0016    TGETS    1   1   6  ; "sec"
+0017    TSETS    1   0   4  ; "start_current_period"
+0018    TNEW     1   0
+0019    TSETS    1   0   7  ; "pages_stats"
+0020    GGET     1   8      ; "G_reader_settings"
+0021    MOV      2   1
+0022    TGETS    1   1   9  ; "readSetting"
+0023    KSTR     3  10      ; "statistics"
+0024    CALL     1   2   3
+0025    IST          1
+0026    JMP      2 => 0028
+0027    TNEW     1   0
+0028 => GGET     2  12      ; "tonumber"
+0029    TGETS    3   1  13  ; "min_sec"
+0030    CALL     2   2   2
+0031    TSETS    2   0  11  ; "page_min_read_sec"
+0032    GGET     2  12      ; "tonumber"
+0033    TGETS    3   1  15  ; "max_sec"
+0034    CALL     2   2   2
+0035    TSETS    2   0  14  ; "page_max_read_sec"
+0036    TGETS    2   1  16  ; "calendar_start_day_of_week"
+0037    TSETS    2   0  16  ; "calendar_start_day_of_week"
+0038    TGETS    2   1  17  ; "calendar_nb_book_spans"
+0039    TSETS    2   0  17  ; "calendar_nb_book_spans"
+0040    TGETS    2   1  18  ; "calendar_show_histogram"
+0041    TSETS    2   0  18  ; "calendar_show_histogram"
+0042    TGETS    2   1  19  ; "calendar_browse_future_months"
+0043    TSETS    2   0  19  ; "calendar_browse_future_months"
+0044    TGETS    2   1  20  ; "is_enabled"
+0045    ISNEP    2   1
+0046    JMP      2 => 0049
+0047    KPRI     2   1
+0048    JMP      3 => 0050
+0049 => KPRI     2   2
+0050 => TSETS    2   0  20  ; "is_enabled"
+0051    TGETS    2   1  21  ; "convert_to_db"
+0052    TSETS    2   0  21  ; "convert_to_db"
+0053    TGETS    2   0   1  ; "ui"
+0054    TGETS    2   2  22  ; "menu"
+0055    MOV      3   2
+0056    TGETS    2   2  23  ; "registerToMainMenu"
+0057    MOV      4   0
+0058    CALL     2   1   3
+0059    MOV      3   0
+0060    TGETS    2   0  24  ; "checkInitDatabase"
+0061    CALL     2   1   2
+0062    UGET     2   1      ; BookStatusWidget
+0063    FNEW     3  26      ; main.lua:125
+0064    TSETS    3   2  25  ; "getStats"
+0065    UGET     2   2      ; ReaderFooter
+0066    FNEW     3  28      ; main.lua:128
+0067    TSETS    3   2  27  ; "getAvgTimePerPage"
+0068    UGET     2   3      ; Screensaver
+0069    FNEW     3  30      ; main.lua:133
+0070    TSETS    3   2  29  ; "getReaderProgress"
+0071    GGET     2  31      ; "require"
+0072    KSTR     3  32      ; "apps/reader/modules/readergesture"
+0073    CALL     2   2   2
+0074    FNEW     3  33      ; main.lua:152
+0075    TSETS    3   2  29  ; "getReaderProgress"
+0076    FNEW     3  35      ; main.lua:171
+0077    TSETS    3   2  34  ; "getBookStats"
+0078    FNEW     3  37      ; main.lua:180
+0079    TSETS    3   2  36  ; "getCalendarView"
+0080    UCLO     0 => 0081
+0081 => RET0     0   1
+0082 => RET0     0   1
+
+-- BYTECODE -- main.lua:185-215
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "isDocless"
+0003    CALL     1   2   2
+0004    IST          1
+0005    JMP      2 => 0009
+0006    TGETS    1   0   1  ; "is_enabled"
+0007    IST          1
+0008    JMP      1 => 0010
+0009 => RET0     0   1
+0010 => TGETS    1   0   2  ; "data"
+0011    IST          1
+0012    JMP      1 => 0017
+0013    TDUP     1   3
+0014    TNEW     2   0
+0015    TSETS    2   1   4  ; "performance_in_pages"
+0016    TSETS    1   0   2  ; "data"
+0017 => MOV      2   0
+0018    TGETS    1   0   5  ; "getBookProperties"
+0019    CALL     1   2   2
+0020    TGETS    2   0   2  ; "data"
+0021    TGETS    3   1   6  ; "title"
+0022    TSETS    3   2   6  ; "title"
+0023    TGETS    2   0   2  ; "data"
+0024    TGETS    2   2   6  ; "title"
+0025    ISEQP    2   0
+0026    JMP      2 => 0031
+0027    TGETS    2   0   2  ; "data"
+0028    TGETS    2   2   6  ; "title"
+0029    ISNES    2   7      ; ""
+0030    JMP      2 => 0039
+0031 => TGETS    2   0   2  ; "data"
+0032    TGETS    3   0   8  ; "document"
+0033    TGETS    3   3   9  ; "file"
+0034    MOV      4   3
+0035    TGETS    3   3  10  ; "match"
+0036    KSTR     5  11      ; "^.+/(.+)$"
+0037    CALL     3   2   3
+0038    TSETS    3   2   6  ; "title"
+0039 => TGETS    2   0   2  ; "data"
+0040    TGETS    3   1  12  ; "authors"
+0041    TSETS    3   2  12  ; "authors"
+0042    TGETS    2   0   2  ; "data"
+0043    TGETS    3   1  13  ; "language"
+0044    TSETS    3   2  13  ; "language"
+0045    TGETS    2   0   2  ; "data"
+0046    TGETS    3   1  14  ; "series"
+0047    TSETS    3   2  14  ; "series"
+0048    TGETS    2   0   2  ; "data"
+0049    TGETS    3   0  16  ; "view"
+0050    TGETS    3   3   8  ; "document"
+0051    MOV      4   3
+0052    TGETS    3   3  17  ; "getPageCount"
+0053    CALL     3   2   2
+0054    TSETS    3   2  15  ; "pages"
+0055    TGETS    2   0   2  ; "data"
+0056    TGETS    2   2  18  ; "md5"
+0057    IST          2
+0058    JMP      2 => 0066
+0059    TGETS    2   0   2  ; "data"
+0060    MOV      4   0
+0061    TGETS    3   0  19  ; "partialMd5"
+0062    TGETS    5   0   8  ; "document"
+0063    TGETS    5   5   9  ; "file"
+0064    CALL     3   2   3
+0065    TSETS    3   2  18  ; "md5"
+0066 => KSHORT   2   0
+0067    TSETS    2   0  20  ; "curr_total_time"
+0068    KSHORT   2   0
+0069    TSETS    2   0  21  ; "curr_total_pages"
+0070    MOV      3   0
+0071    TGETS    2   0  23  ; "getIdBookDB"
+0072    CALL     2   2   2
+0073    TSETS    2   0  22  ; "id_curr_book"
+0074    MOV      3   0
+0075    TGETS    2   0  26  ; "getPageTimeTotalStats"
+0076    TGETS    4   0  22  ; "id_curr_book"
+0077    CALL     2   3   3
+0078    TSETS    3   0  25  ; "total_read_time"
+0079    TSETS    2   0  24  ; "total_read_pages"
+0080    TGETS    2   0  24  ; "total_read_pages"
+0081    KSHORT   3   0
+0082    ISGE     3   2
+0083    JMP      2 => 0089
+0084    TGETS    2   0  25  ; "total_read_time"
+0085    TGETS    3   0  24  ; "total_read_pages"
+0086    DIVVV    2   2   3
+0087    TSETS    2   0  27  ; "avg_time"
+0088    JMP      2 => 0091
+0089 => KSHORT   2   0
+0090    TSETS    2   0  27  ; "avg_time"
+0091 => RET0     0   1
+
+-- BYTECODE -- main.lua:217-254
+0001    ISF          2
+0002    JMP      3 => 0005
+0003    ISNEP    1   0
+0004    JMP      3 => 0007
+0005 => TNEW     3   0
+0006    RET1     3   2
+0007 => MOV      4   0
+0008    TGETS    3   0   0  ; "insertDB"
+0009    TGETS    5   0   1  ; "id_curr_book"
+0010    CALL     3   1   3
+0011    UGET     3   0      ; SQ3
+0012    TGETS    3   3   2  ; "open"
+0013    UGET     4   1      ; db_location
+0014    CALL     3   2   2
+0015    KSTR     4   3      ; "        SELECT count(*)\n        FROM   "~
+0016    MOV      6   3
+0017    TGETS    5   3   4  ; "rowexec"
+0018    GGET     7   5      ; "string"
+0019    TGETS    7   7   6  ; "format"
+0020    MOV      8   4
+0021    MOV      9   1
+0022    CALL     7   0   3
+0023    CALLM    5   2   1
+0024    KSTR     4   7      ; "        SELECT sum(period),\n           "~
+0025    MOV      7   3
+0026    TGETS    6   3   4  ; "rowexec"
+0027    GGET     8   5      ; "string"
+0028    TGETS    8   8   6  ; "format"
+0029    MOV      9   4
+0030    MOV     10   1
+0031    CALL     8   0   3
+0032    CALLM    6   3   1
+0033    MOV      9   3
+0034    TGETS    8   3   8  ; "close"
+0035    CALL     8   1   2
+0036    ISNEP    6   0
+0037    JMP      8 => 0039
+0038    KSHORT   6   0
+0039 => ISNEP    7   0
+0040    JMP      8 => 0042
+0041    KSHORT   7   0
+0042 => TDUP     8  10
+0043    GGET     9   9      ; "tonumber"
+0044    MOV     10   5
+0045    CALL     9   2   2
+0046    TSETS    9   8  11  ; "days"
+0047    GGET     9   9      ; "tonumber"
+0048    MOV     10   6
+0049    CALL     9   2   2
+0050    TSETS    9   8  12  ; "time"
+0051    GGET     9   9      ; "tonumber"
+0052    MOV     10   7
+0053    CALL     9   2   2
+0054    TSETS    9   8  13  ; "pages"
+0055    RET1     8   2
+
+-- BYTECODE -- main.lua:268-270
+0001    RET0     0   1
+
+-- BYTECODE -- main.lua:272-278
+0001    UGET     0   0      ; SQ3
+0002    TGETS    0   0   0  ; "open"
+0003    UGET     1   1      ; db_location
+0004    CALL     0   2   2
+0005    UGET     1   2      ; self
+0006    MOV      2   1
+0007    TGETS    1   1   1  ; "createDB"
+0008    MOV      3   0
+0009    CALL     1   1   3
+0010    MOV      2   0
+0011    TGETS    1   0   2  ; "close"
+0012    CALL     1   1   2
+0013    UGET     1   3      ; UIManager
+0014    MOV      2   1
+0015    TGETS    1   1   3  ; "show"
+0016    UGET     3   4      ; InfoMessage
+0017    MOV      4   3
+0018    TGETS    3   3   4  ; "new"
+0019    TDUP     5   6
+0020    UGET     6   5      ; _
+0021    KSTR     7   5      ; "A new empty database has been created."
+0022    CALL     6   2   2
+0023    TSETS    6   5   7  ; "text"
+0024    CALL     3   0   3
+0025    CALLM    1   1   1
+0026    UGET     1   2      ; self
+0027    MOV      2   1
+0028    TGETS    1   1   8  ; "initData"
+0029    CALL     1   1   2
+0030    RET0     0   1
+
+-- BYTECODE -- main.lua:256-312
+0001    UGET     1   0      ; SQ3
+0002    TGETS    1   1   0  ; "open"
+0003    UGET     2   1      ; db_location
+0004    CALL     1   2   2
+0005    TGETS    2   0   1  ; "convert_to_db"
+0006    ISF          2
+0007    JMP      3 => 0046
+0008    MOV      3   1
+0009    TGETS    2   1   2  ; "exec"
+0010    KSTR     4   3      ; "pragma table_info('book');"
+0011    CALL     2   2   3
+0012    IST          2
+0013    JMP      2 => 0142
+0014    UGET     2   2      ; UIManager
+0015    MOV      3   2
+0016    TGETS    2   2   4  ; "show"
+0017    UGET     4   3      ; ConfirmBox
+0018    MOV      5   4
+0019    TGETS    4   4   5  ; "new"
+0020    TDUP     6   8
+0021    UGET     7   4      ; T
+0022    UGET     8   5      ; _
+0023    KSTR     9   6      ; "Cannot open database in %1.\nThe databas"~
+0024    CALL     8   2   2
+0025    UGET     9   6      ; BD
+0026    TGETS    9   9   7  ; "filepath"
+0027    UGET    10   1      ; db_location
+0028    CALL     9   0   2
+0029    CALLM    7   2   1
+0030    TSETS    7   6   9  ; "text"
+0031    UGET     7   5      ; _
+0032    KSTR     8  10      ; "Close"
+0033    CALL     7   2   2
+0034    TSETS    7   6  11  ; "cancel_text"
+0035    FNEW     7  12      ; main.lua:268
+0036    TSETS    7   6  13  ; "cancel_callback"
+0037    UGET     7   5      ; _
+0038    KSTR     8  14      ; "Create"
+0039    CALL     7   2   2
+0040    TSETS    7   6  15  ; "ok_text"
+0041    FNEW     7  16      ; main.lua:272
+0042    TSETS    7   6  17  ; "ok_callback"
+0043    CALL     4   0   3
+0044    CALLM    2   1   1
+0045    JMP      2 => 0142
+0046 => KPRI     2   2
+0047    TSETS    2   0   1  ; "convert_to_db"
+0048    MOV      3   1
+0049    TGETS    2   1   2  ; "exec"
+0050    KSTR     4   3      ; "pragma table_info('book');"
+0051    CALL     2   2   3
+0052    IST          2
+0053    JMP      2 => 0139
+0054    KNIL     2   4
+0055    UGET     5   8      ; ReadHistory
+0056    TGETS    5   5  18  ; "hist"
+0057    LEN      5   5
+0058    ISNEN    5   0      ; 1
+0059    JMP      5 => 0074
+0060    UGET     5   8      ; ReadHistory
+0061    TGETS    5   5  18  ; "hist"
+0062    TGETB    5   5   1
+0063    TGETS    2   5   9  ; "text"
+0064    GGET     5  19      ; "require"
+0065    KSTR     6  20      ; "ui/quickstart"
+0066    CALL     5   2   2
+0067    TGETS    5   5  21  ; "quickstart_filename"
+0068    UGET     6   9      ; util
+0069    TGETS    6   6  22  ; "splitFilePathName"
+0070    MOV      7   5
+0071    CALL     6   3   2
+0072    MOV      3   7
+0073    MOV      4   6
+0074 => UGET     5   8      ; ReadHistory
+0075    TGETS    5   5  18  ; "hist"
+0076    LEN      5   5
+0077    KSHORT   6   1
+0078    ISLT     6   5
+0079    JMP      5 => 0087
+0080    UGET     5   8      ; ReadHistory
+0081    TGETS    5   5  18  ; "hist"
+0082    LEN      5   5
+0083    ISNEN    5   0      ; 1
+0084    JMP      5 => 0135
+0085    ISEQV    2   3
+0086    JMP      5 => 0135
+0087 => UGET     5   7      ; InfoMessage
+0088    MOV      6   5
+0089    TGETS    5   5   5  ; "new"
+0090    TDUP     7  24
+0091    UGET     8   5      ; _
+0092    KSTR     9  23      ; "New version of statistics plugin detecte"~
+0093    CALL     8   2   2
+0094    TSETS    8   7   9  ; "text"
+0095    CALL     5   2   3
+0096    UGET     6   2      ; UIManager
+0097    MOV      7   6
+0098    TGETS    6   6   4  ; "show"
+0099    MOV      8   5
+0100    CALL     6   1   3
+0101    UGET     6   2      ; UIManager
+0102    MOV      7   6
+0103    TGETS    6   6  25  ; "forceRePaint"
+0104    CALL     6   1   2
+0105    MOV      7   0
+0106    TGETS    6   0  26  ; "migrateToDB"
+0107    MOV      8   1
+0108    CALL     6   2   3
+0109    UGET     7   2      ; UIManager
+0110    MOV      8   7
+0111    TGETS    7   7  27  ; "close"
+0112    MOV      9   5
+0113    CALL     7   1   3
+0114    UGET     7   2      ; UIManager
+0115    MOV      8   7
+0116    TGETS    7   7  25  ; "forceRePaint"
+0117    CALL     7   1   2
+0118    UGET     7   2      ; UIManager
+0119    MOV      8   7
+0120    TGETS    7   7   4  ; "show"
+0121    UGET     9   7      ; InfoMessage
+0122    MOV     10   9
+0123    TGETS    9   9   5  ; "new"
+0124    TDUP    11  29
+0125    UGET    12   4      ; T
+0126    UGET    13   5      ; _
+0127    KSTR    14  28      ; "Conversion completed.\nImported %1 books"~
+0128    CALL    13   2   2
+0129    MOV     14   6
+0130    CALL    12   2   3
+0131    TSETS   12  11   9  ; "text"
+0132    CALL     9   0   3
+0133    CALLM    7   1   1
+0134    JMP      5 => 0139
+0135 => MOV      6   0
+0136    TGETS    5   0  30  ; "createDB"
+0137    MOV      7   1
+0138    CALL     5   1   3
+0139 => MOV      3   0
+0140    TGETS    2   0  31  ; "saveSettings"
+0141    CALL     2   1   2
+0142 => MOV      3   1
+0143    TGETS    2   1  27  ; "close"
+0144    CALL     2   1   2
+0145    UCLO     0 => 0146
+0146 => RET0     0   1
+
+-- BYTECODE -- main.lua:314-334
+0001    ISNEP    1   0
+0002    JMP      2 => 0005
+0003    KPRI     2   0
+0004    RET1     2   2
+0005 => GGET     2   0      ; "require"
+0006    KSTR     3   1      ; "bit"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   2      ; "ffi/MD5"
+0010    CALL     3   2   2
+0011    TGETS    4   2   3  ; "lshift"
+0012    KSHORT   5 1024
+0013    KSHORT   6 1024
+0014    TGETS    7   3   4  ; "new"
+0015    CALL     7   2   1
+0016    GGET     8   5      ; "io"
+0017    TGETS    8   8   6  ; "open"
+0018    MOV      9   1
+0019    KSTR    10   7      ; "rb"
+0020    CALL     8   2   3
+0021    KSHORT   9  -1
+0022    KSHORT  10  10
+0023    KSHORT  11   1
+0024    FORI     9 => 0046
+0025 => MOV     14   8
+0026    TGETS   13   8   8  ; "seek"
+0027    KSTR    15   9      ; "set"
+0028    MOV     16   4
+0029    MOV     17   5
+0030    MULNV   18  12   0  ; 2
+0031    CALL    16   0   3
+0032    CALLM   13   1   2
+0033    MOV     14   8
+0034    TGETS   13   8  10  ; "read"
+0035    MOV     15   6
+0036    CALL    13   2   3
+0037    ISF         13
+0038    JMP     14 => 0046
+0039    MOV     15   7
+0040    TGETS   14   7  11  ; "update"
+0041    MOV     16  13
+0042    CALL    14   1   3
+0043    JMP     14 => 0045
+0044    JMP      9 => 0046
+0045 => FORL     9 => 0025
+0046 => MOV     10   7
+0047    TGETS    9   7  12  ; "sum"
+0048    CALLT    9   2
+
+-- BYTECODE -- main.lua:336-380
+0001    UGET     2   0      ; Device
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "canUseWAL"
+0004    CALL     2   2   2
+0005    ISF          2
+0006    JMP      3 => 0012
+0007    MOV      3   1
+0008    TGETS    2   1   1  ; "exec"
+0009    KSTR     4   2      ; "PRAGMA journal_mode=WAL;"
+0010    CALL     2   1   3
+0011    JMP      2 => 0016
+0012 => MOV      3   1
+0013    TGETS    2   1   1  ; "exec"
+0014    KSTR     4   3      ; "PRAGMA journal_mode=TRUNCATE;"
+0015    CALL     2   1   3
+0016 => KSTR     2   4      ; "        CREATE TABLE IF NOT EXISTS book\"~
+0017    MOV      4   1
+0018    TGETS    3   1   1  ; "exec"
+0019    MOV      5   2
+0020    CALL     3   1   3
+0021    MOV      4   1
+0022    TGETS    3   1   5  ; "prepare"
+0023    KSTR     5   6      ; "INSERT INTO info values (?)"
+0024    CALL     3   2   3
+0025    MOV      5   3
+0026    TGETS    4   3   7  ; "reset"
+0027    CALL     4   2   2
+0028    MOV      5   4
+0029    TGETS    4   4   8  ; "bind"
+0030    KSTR     6   9      ; "1"
+0031    CALL     4   2   3
+0032    MOV      5   4
+0033    TGETS    4   4  10  ; "step"
+0034    CALL     4   1   2
+0035    MOV      5   3
+0036    TGETS    4   3  11  ; "close"
+0037    CALL     4   1   2
+0038    RET0     0   1
+
+-- BYTECODE -- main.lua:382-481
+0001    KPRI     3   0
+0002    KSHORT   4   0
+0003    KNIL     5   6
+0004    KSHORT   7   0
+0005    KSHORT   8   0
+0006    KPRI     9   0
+0007    TGETS   10   1   0  ; "total_time_in_sec"
+0008    ISF         10
+0009    JMP     11 => 0280
+0010    TGETS   10   1   0  ; "total_time_in_sec"
+0011    KSHORT  11   0
+0012    ISGE    11  10
+0013    JMP     10 => 0280
+0014    UGET    10   0      ; util
+0015    TGETS   10  10   1  ; "tableSize"
+0016    TGETS   11   1   2  ; "performance_in_pages"
+0017    CALL    10   2   2
+0018    KSHORT  11   0
+0019    ISGE    11  10
+0020    JMP     10 => 0280
+0021    UGET    10   0      ; util
+0022    TGETS   10  10   1  ; "tableSize"
+0023    TGETS   11   1   2  ; "performance_in_pages"
+0024    CALL    10   2   2
+0025    UGET    11   1      ; logger
+0026    TGETS   11  11   3  ; "dbg"
+0027    KSTR    12   4      ; "Insert to database: "
+0028    TGETS   13   1   5  ; "title"
+0029    CAT     12  12  13
+0030    CALL    11   1   2
+0031    KSTR     9   6      ; "            SELECT count(id)\n          "~
+0032    MOV     12   2
+0033    TGETS   11   2   7  ; "prepare"
+0034    MOV     13   9
+0035    CALL    11   2   3
+0036    MOV     13  11
+0037    TGETS   12  11   8  ; "reset"
+0038    CALL    12   2   2
+0039    MOV     13  12
+0040    TGETS   12  12   9  ; "bind"
+0041    TGETS   14   0  10  ; "data"
+0042    TGETS   14  14   5  ; "title"
+0043    TGETS   15   0  10  ; "data"
+0044    TGETS   15  15  11  ; "authors"
+0045    TGETS   16   0  10  ; "data"
+0046    TGETS   16  16  12  ; "md5"
+0047    CALL    12   2   5
+0048    MOV     13  12
+0049    TGETS   12  12  13  ; "step"
+0050    CALL    12   2   2
+0051    GGET    13  14      ; "tonumber"
+0052    TGETB   14  12   1
+0053    CALL    13   2   2
+0054    ISNEN   13   0      ; 0
+0055    JMP     14 => 0091
+0056    MOV     15   2
+0057    TGETS   14   2   7  ; "prepare"
+0058    KSTR    16  15      ; "INSERT INTO book VALUES(NULL, ?, ?, ?, ?"~
+0059    CALL    14   2   3
+0060    MOV     11  14
+0061    MOV     15  11
+0062    TGETS   14  11   8  ; "reset"
+0063    CALL    14   2   2
+0064    MOV     15  14
+0065    TGETS   14  14   9  ; "bind"
+0066    TGETS   16   1   5  ; "title"
+0067    TGETS   17   1  11  ; "authors"
+0068    TGETS   18   1  16  ; "notes"
+0069    MOV     19   4
+0070    TGETS   20   1  17  ; "highlights"
+0071    TGETS   21   1  18  ; "pages"
+0072    TGETS   22   1  19  ; "series"
+0073    TGETS   23   1  20  ; "language"
+0074    MOV     25   0
+0075    TGETS   24   0  21  ; "partialMd5"
+0076    TGETS   26   1  22  ; "file"
+0077    CALL    24   2   3
+0078    MOV     25   8
+0079    MOV     26   7
+0080    CALL    14   2  13
+0081    MOV     15  14
+0082    TGETS   14  14  13  ; "step"
+0083    CALL    14   1   2
+0084    KSTR     9  23      ; "                SELECT last_insert_rowid"~
+0085    MOV     15   2
+0086    TGETS   14   2  24  ; "rowexec"
+0087    MOV     16   9
+0088    CALL    14   2   3
+0089    MOV      3  14
+0090    JMP     14 => 0114
+0091 => KSTR     9  25      ; "                SELECT id\n             "~
+0092    MOV     15   2
+0093    TGETS   14   2   7  ; "prepare"
+0094    MOV     16   9
+0095    CALL    14   2   3
+0096    MOV     11  14
+0097    MOV     15  11
+0098    TGETS   14  11   8  ; "reset"
+0099    CALL    14   2   2
+0100    MOV     15  14
+0101    TGETS   14  14   9  ; "bind"
+0102    TGETS   16   0  10  ; "data"
+0103    TGETS   16  16   5  ; "title"
+0104    TGETS   17   0  10  ; "data"
+0105    TGETS   17  17  11  ; "authors"
+0106    TGETS   18   0  10  ; "data"
+0107    TGETS   18  18  12  ; "md5"
+0108    CALL    14   2   5
+0109    MOV     15  14
+0110    TGETS   14  14  13  ; "step"
+0111    CALL    14   2   2
+0112    MOV     12  14
+0113    TGETB    3  12   1
+0114 => TNEW    14   0
+0115    GGET    15  26      ; "pairs"
+0116    TGETS   16   1   2  ; "performance_in_pages"
+0117    CALL    15   4   2
+0118    ISNEXT  18 => 0124
+0119 => GGET    20  27      ; "table"
+0120    TGETS   20  20  28  ; "insert"
+0121    MOV     21  14
+0122    MOV     22  18
+0123    CALL    20   1   3
+0124 => ITERN   18   3   3
+0125    ITERL   18 => 0119
+0126    GGET    15  27      ; "table"
+0127    TGETS   15  15  29  ; "sort"
+0128    MOV     16  14
+0129    CALL    15   1   2
+0130    MOV     16   2
+0131    TGETS   15   2  30  ; "exec"
+0132    KSTR    17  31      ; "BEGIN"
+0133    CALL    15   1   3
+0134    MOV     16   2
+0135    TGETS   15   2   7  ; "prepare"
+0136    KSTR    17  32      ; "INSERT OR IGNORE INTO page_stat VALUES(?"~
+0137    CALL    15   2   3
+0138    MOV     11  15
+0139    GGET    15  33      ; "math"
+0140    TGETS   15  15  34  ; "ceil"
+0141    TGETS   16   1   0  ; "total_time_in_sec"
+0142    DIVVV   16  16  10
+0143    CALL    15   2   2
+0144    TGETS   16   0  35  ; "page_max_read_sec"
+0145    ISGE    16  15
+0146    JMP     16 => 0148
+0147    TGETS   15   0  35  ; "page_max_read_sec"
+0148 => TGETS   16   1   2  ; "performance_in_pages"
+0149    TGETB   17  14   1
+0150    TGETV   16  16  17
+0151    KSHORT  17   1
+0152    ISGE    17  16
+0153    JMP     17 => 0155
+0154    SUBVN   16  16   1  ; 1
+0155 => TGETB    5  14   1
+0156    MOV     18  11
+0157    TGETS   17  11   8  ; "reset"
+0158    CALL    17   2   2
+0159    MOV     18  17
+0160    TGETS   17  17   9  ; "bind"
+0161    MOV     19   3
+0162    MOV     20  16
+0163    SUBVV   21   5  15
+0164    MOV     22  15
+0165    CALL    17   2   6
+0166    MOV     18  17
+0167    TGETS   17  17  13  ; "step"
+0168    CALL    17   1   2
+0169    KSHORT  17   2
+0170    LEN     18  14
+0171    KSHORT  19   1
+0172    FORI    17 => 0219
+0173 => SUBVN   21  20   1  ; 1
+0174    TGETV    5  14  21
+0175    TGETV   21  14  20
+0176    SUBVN   22  20   1  ; 1
+0177    TGETV   22  14  22
+0178    SUBVV    6  21  22
+0179    TGETS   21   0  35  ; "page_max_read_sec"
+0180    ISGT     6  21
+0181    JMP     21 => 0199
+0182    MOV     22  11
+0183    TGETS   21  11   8  ; "reset"
+0184    CALL    21   2   2
+0185    MOV     22  21
+0186    TGETS   21  21   9  ; "bind"
+0187    MOV     23   3
+0188    TGETS   24   1   2  ; "performance_in_pages"
+0189    SUBVN   25  20   1  ; 1
+0190    TGETV   25  14  25
+0191    TGETV   24  24  25
+0192    MOV     25   5
+0193    MOV     26   6
+0194    CALL    21   2   6
+0195    MOV     22  21
+0196    TGETS   21  21  13  ; "step"
+0197    CALL    21   1   2
+0198    JMP     21 => 0218
+0199 => TGETS   21   0  35  ; "page_max_read_sec"
+0200    ISGE    21   6
+0201    JMP     21 => 0218
+0202    MOV     22  11
+0203    TGETS   21  11   8  ; "reset"
+0204    CALL    21   2   2
+0205    MOV     22  21
+0206    TGETS   21  21   9  ; "bind"
+0207    MOV     23   3
+0208    TGETS   24   1   2  ; "performance_in_pages"
+0209    SUBVN   25  20   1  ; 1
+0210    TGETV   25  14  25
+0211    TGETV   24  24  25
+0212    MOV     25   5
+0213    MOV     26  15
+0214    CALL    21   2   6
+0215    MOV     22  21
+0216    TGETS   21  21  13  ; "step"
+0217    CALL    21   1   2
+0218 => FORL    17 => 0173
+0219 => MOV     18  11
+0220    TGETS   17  11   8  ; "reset"
+0221    CALL    17   2   2
+0222    MOV     18  17
+0223    TGETS   17  17   9  ; "bind"
+0224    MOV     19   3
+0225    TGETS   20   1   2  ; "performance_in_pages"
+0226    LEN     21  14
+0227    TGETV   21  14  21
+0228    TGETV   20  20  21
+0229    LEN     21  14
+0230    TGETV   21  14  21
+0231    MOV     22  15
+0232    CALL    17   2   6
+0233    MOV     18  17
+0234    TGETS   17  17  13  ; "step"
+0235    CALL    17   1   2
+0236    LEN     17  14
+0237    TGETV   17  14  17
+0238    ADDVV    4  17  15
+0239    MOV     18   2
+0240    TGETS   17   2  30  ; "exec"
+0241    KSTR    19  36      ; "COMMIT"
+0242    CALL    17   1   3
+0243    KSTR     9  37      ; "            SELECT count(DISTINCT page),"~
+0244    MOV     18   2
+0245    TGETS   17   2  24  ; "rowexec"
+0246    GGET    19  38      ; "string"
+0247    TGETS   19  19  39  ; "format"
+0248    MOV     20   9
+0249    GGET    21  14      ; "tonumber"
+0250    MOV     22   3
+0251    CALL    21   0   2
+0252    CALLM   19   0   1
+0253    CALLM   17   3   1
+0254    MOV      8  18
+0255    MOV      7  17
+0256    KSTR     9  40      ; "            UPDATE book\n            SET"~
+0257    MOV     18   2
+0258    TGETS   17   2   7  ; "prepare"
+0259    MOV     19   9
+0260    CALL    17   2   3
+0261    MOV     11  17
+0262    MOV     18  11
+0263    TGETS   17  11   8  ; "reset"
+0264    CALL    17   2   2
+0265    MOV     18  17
+0266    TGETS   17  17   9  ; "bind"
+0267    MOV     19   4
+0268    MOV     20   8
+0269    MOV     21   7
+0270    MOV     22   3
+0271    CALL    17   2   6
+0272    MOV     18  17
+0273    TGETS   17  17  13  ; "step"
+0274    CALL    17   1   2
+0275    MOV     18  11
+0276    TGETS   17  11  41  ; "close"
+0277    CALL    17   1   2
+0278    KPRI    17   2
+0279    RET1    17   2
+0280 => RET0     0   1
+
+-- BYTECODE -- main.lua:483-534
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "createDB"
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    KSHORT   2   0
+0006    TNEW     3   0
+0007    GGET     4   1      ; "pairs"
+0008    UGET     5   0      ; ReadHistory
+0009    TGETS    5   5   2  ; "hist"
+0010    CALL     4   4   2
+0011    ISNEXT   7 => 0060
+0012 => UGET     9   1      ; DocSettings
+0013    MOV     10   9
+0014    TGETS    9   9   3  ; "open"
+0015    TGETS   11   8   4  ; "file"
+0016    CALL     9   2   3
+0017    MOV     10   9
+0018    TGETS    9   9   5  ; "readSetting"
+0019    KSTR    11   6      ; "stats"
+0020    CALL     9   2   3
+0021    ISF          9
+0022    JMP     10 => 0032
+0023    TGETS   10   9   7  ; "title"
+0024    ISNES   10   8      ; ""
+0025    JMP     10 => 0032
+0026    TGETS   10   8   4  ; "file"
+0027    MOV     11  10
+0028    TGETS   10  10   9  ; "match"
+0029    KSTR    12  10      ; "^.+/(.+)$"
+0030    CALL    10   2   3
+0031    TSETS   10   9   7  ; "title"
+0032 => ISF          9
+0033    JMP     10 => 0055
+0034    TGETS   10   8   4  ; "file"
+0035    TSETS   10   9   4  ; "file"
+0036    MOV     11   0
+0037    TGETS   10   0  11  ; "addBookStatToDB"
+0038    MOV     12   9
+0039    MOV     13   1
+0040    CALL    10   2   4
+0041    ISF         10
+0042    JMP     11 => 0048
+0043    ADDVN    2   2   0  ; 1
+0044    TGETS   10   9   7  ; "title"
+0045    KPRI    11   2
+0046    TSETV   11   3  10
+0047    JMP     10 => 0060
+0048 => UGET    10   2      ; logger
+0049    TGETS   10  10  12  ; "dbg"
+0050    KSTR    11  13      ; "Book not converted: "
+0051    TGETS   12   9   7  ; "title"
+0052    CAT     11  11  12
+0053    CALL    10   1   2
+0054    JMP     10 => 0060
+0055 => UGET    10   2      ; logger
+0056    TGETS   10  10  12  ; "dbg"
+0057    KSTR    11  14      ; "Empty stats for file: "
+0058    TGETS   12   8   4  ; "file"
+0059    CALL    10   1   3
+0060 => ITERN    7   3   3
+0061    ITERL    7 => 0012
+0062    UGET     4   3      ; lfs
+0063    TGETS    4   4  15  ; "attributes"
+0064    UGET     5   4      ; statistics_dir
+0065    KSTR     6  16      ; "mode"
+0066    CALL     4   2   3
+0067    ISNES    4  17      ; "directory"
+0068    JMP      4 => 0147
+0069    UGET     4   3      ; lfs
+0070    TGETS    4   4  18  ; "dir"
+0071    UGET     5   4      ; statistics_dir
+0072    CALL     4   4   2
+0073    JMP      7 => 0145
+0074 => UGET     8   4      ; statistics_dir
+0075    MOV      9   7
+0076    CAT      8   8   9
+0077    UGET     9   3      ; lfs
+0078    TGETS    9   9  15  ; "attributes"
+0079    MOV     10   8
+0080    KSTR    11  16      ; "mode"
+0081    CALL     9   2   3
+0082    ISNES    9   4      ; "file"
+0083    JMP      9 => 0145
+0084    MOV     10   0
+0085    TGETS    9   0  19  ; "importFromFile"
+0086    UGET    11   4      ; statistics_dir
+0087    MOV     12   7
+0088    CALL     9   2   4
+0089    ISF          9
+0090    JMP     10 => 0145
+0091    TGETS   10   9  20  ; "total_time"
+0092    KSHORT  11   0
+0093    ISGE    11  10
+0094    JMP     10 => 0145
+0095    TGETS   10   9   7  ; "title"
+0096    TGETV   10   3  10
+0097    IST         10
+0098    JMP     10 => 0145
+0099    TDUP    10  21
+0100    TNEW    11   0
+0101    TSETS   11  10  22  ; "performance_in_pages"
+0102    GGET    11   1      ; "pairs"
+0103    TGETS   12   9  23  ; "details"
+0104    CALL    11   4   2
+0105    ISNEXT  14 => 0110
+0106 => TGETS   16  10  22  ; "performance_in_pages"
+0107    TGETS   17  15  24  ; "time"
+0108    TGETS   18  15  25  ; "page"
+0109    TSETV   18  16  17
+0110 => ITERN   14   3   3
+0111    ITERL   14 => 0106
+0112    TGETS   11   9   7  ; "title"
+0113    TSETS   11  10   7  ; "title"
+0114    TGETS   11   9  26  ; "authors"
+0115    TSETS   11  10  26  ; "authors"
+0116    TGETS   11   9  27  ; "notes"
+0117    TSETS   11  10  27  ; "notes"
+0118    TGETS   11   9  28  ; "highlights"
+0119    TSETS   11  10  28  ; "highlights"
+0120    TGETS   11   9  29  ; "pages"
+0121    TSETS   11  10  29  ; "pages"
+0122    TGETS   11   9  30  ; "series"
+0123    TSETS   11  10  30  ; "series"
+0124    TGETS   11   9  31  ; "language"
+0125    TSETS   11  10  31  ; "language"
+0126    TGETS   11   9  20  ; "total_time"
+0127    TSETS   11  10  32  ; "total_time_in_sec"
+0128    KPRI    11   0
+0129    TSETS   11  10   4  ; "file"
+0130    MOV     12   0
+0131    TGETS   11   0  11  ; "addBookStatToDB"
+0132    MOV     13  10
+0133    MOV     14   1
+0134    CALL    11   2   4
+0135    ISF         11
+0136    JMP     12 => 0139
+0137    ADDVN    2   2   0  ; 1
+0138    JMP     11 => 0145
+0139 => UGET    11   2      ; logger
+0140    TGETS   11  11  12  ; "dbg"
+0141    KSTR    12  33      ; "Book not converted (old stats): "
+0142    TGETS   13  10   7  ; "title"
+0143    CAT     12  12  13
+0144    CALL    11   1   2
+0145 => ITERC    7   2   3
+0146    ITERL    7 => 0074
+0147 => RET1     2   2
+
+-- BYTECODE -- main.lua:536-572
+0001    UGET     1   0      ; SQ3
+0002    TGETS    1   1   0  ; "open"
+0003    UGET     2   1      ; db_location
+0004    CALL     1   2   2
+0005    KPRI     2   0
+0006    KSTR     3   1      ; "        SELECT count(id)\n        FROM  "~
+0007    MOV      5   1
+0008    TGETS    4   1   2  ; "prepare"
+0009    MOV      6   3
+0010    CALL     4   2   3
+0011    MOV      6   4
+0012    TGETS    5   4   3  ; "reset"
+0013    CALL     5   2   2
+0014    MOV      6   5
+0015    TGETS    5   5   4  ; "bind"
+0016    TGETS    7   0   5  ; "data"
+0017    TGETS    7   7   6  ; "title"
+0018    TGETS    8   0   5  ; "data"
+0019    TGETS    8   8   7  ; "authors"
+0020    TGETS    9   0   5  ; "data"
+0021    TGETS    9   9   8  ; "md5"
+0022    CALL     5   2   5
+0023    MOV      6   5
+0024    TGETS    5   5   9  ; "step"
+0025    CALL     5   2   2
+0026    GGET     6  10      ; "tonumber"
+0027    TGETB    7   5   1
+0028    CALL     6   2   2
+0029    ISNEN    6   0      ; 0
+0030    JMP      7 => 0075
+0031    MOV      8   1
+0032    TGETS    7   1   2  ; "prepare"
+0033    KSTR     9  11      ; "INSERT INTO book VALUES(NULL, ?, ?, ?, ?"~
+0034    CALL     7   2   3
+0035    MOV      4   7
+0036    MOV      8   4
+0037    TGETS    7   4   3  ; "reset"
+0038    CALL     7   2   2
+0039    MOV      8   7
+0040    TGETS    7   7   4  ; "bind"
+0041    TGETS    9   0   5  ; "data"
+0042    TGETS    9   9   6  ; "title"
+0043    TGETS   10   0   5  ; "data"
+0044    TGETS   10  10   7  ; "authors"
+0045    TGETS   11   0   5  ; "data"
+0046    TGETS   11  11  12  ; "notes"
+0047    UGET    12   2      ; TimeVal
+0048    MOV     13  12
+0049    TGETS   12  12  13  ; "now"
+0050    CALL    12   2   2
+0051    TGETS   12  12  14  ; "sec"
+0052    TGETS   13   0   5  ; "data"
+0053    TGETS   13  13  15  ; "highlights"
+0054    TGETS   14   0   5  ; "data"
+0055    TGETS   14  14  16  ; "pages"
+0056    TGETS   15   0   5  ; "data"
+0057    TGETS   15  15  17  ; "series"
+0058    TGETS   16   0   5  ; "data"
+0059    TGETS   16  16  18  ; "language"
+0060    TGETS   17   0   5  ; "data"
+0061    TGETS   17  17   8  ; "md5"
+0062    TGETS   18   0  19  ; "curr_total_time"
+0063    TGETS   19   0  20  ; "curr_total_pages"
+0064    CALL     7   2  13
+0065    MOV      8   7
+0066    TGETS    7   7   9  ; "step"
+0067    CALL     7   1   2
+0068    KSTR     3  21      ; "            SELECT last_insert_rowid() A"~
+0069    MOV      8   1
+0070    TGETS    7   1  22  ; "rowexec"
+0071    MOV      9   3
+0072    CALL     7   2   3
+0073    MOV      2   7
+0074    JMP      7 => 0098
+0075 => KSTR     3  23      ; "            SELECT id\n            FROM "~
+0076    MOV      8   1
+0077    TGETS    7   1   2  ; "prepare"
+0078    MOV      9   3
+0079    CALL     7   2   3
+0080    MOV      4   7
+0081    MOV      8   4
+0082    TGETS    7   4   3  ; "reset"
+0083    CALL     7   2   2
+0084    MOV      8   7
+0085    TGETS    7   7   4  ; "bind"
+0086    TGETS    9   0   5  ; "data"
+0087    TGETS    9   9   6  ; "title"
+0088    TGETS   10   0   5  ; "data"
+0089    TGETS   10  10   7  ; "authors"
+0090    TGETS   11   0   5  ; "data"
+0091    TGETS   11  11   8  ; "md5"
+0092    CALL     7   2   5
+0093    MOV      8   7
+0094    TGETS    7   7   9  ; "step"
+0095    CALL     7   2   2
+0096    MOV      5   7
+0097    TGETB    2   5   1
+0098 => MOV      8   1
+0099    TGETS    7   1  24  ; "close"
+0100    CALL     7   1   2
+0101    GGET     7  10      ; "tonumber"
+0102    MOV      8   2
+0103    CALLT    7   2
+
+-- BYTECODE -- main.lua:574-632
+0001    TGETS    2   0   0  ; "pages_stats"
+0002    UGET     3   0      ; TimeVal
+0003    MOV      4   3
+0004    TGETS    3   3   1  ; "now"
+0005    CALL     3   2   2
+0006    TGETS    3   3   2  ; "sec"
+0007    TGETS    4   0   3  ; "curr_page"
+0008    TSETV    4   2   3
+0009    ISEQP    1   0
+0010    JMP      2 => 0018
+0011    UGET     2   1      ; util
+0012    TGETS    2   2   4  ; "tableSize"
+0013    TGETS    3   0   0  ; "pages_stats"
+0014    CALL     2   2   2
+0015    KSHORT   3   2
+0016    ISGE     2   3
+0017    JMP      2 => 0019
+0018 => RET0     0   1
+0019 => KPRI     2   0
+0020    UGET     3   2      ; SQ3
+0021    TGETS    3   3   5  ; "open"
+0022    UGET     4   3      ; db_location
+0023    CALL     3   2   2
+0024    TNEW     4   0
+0025    GGET     5   6      ; "pairs"
+0026    TGETS    6   0   0  ; "pages_stats"
+0027    CALL     5   4   2
+0028    ISNEXT   8 => 0034
+0029 => GGET    10   7      ; "table"
+0030    TGETS   10  10   8  ; "insert"
+0031    MOV     11   4
+0032    MOV     12   8
+0033    CALL    10   1   3
+0034 => ITERN    8   3   3
+0035    ITERL    8 => 0029
+0036    GGET     5   7      ; "table"
+0037    TGETS    5   5   9  ; "sort"
+0038    MOV      6   4
+0039    CALL     5   1   2
+0040    MOV      6   3
+0041    TGETS    5   3  10  ; "exec"
+0042    KSTR     7  11      ; "BEGIN"
+0043    CALL     5   1   3
+0044    MOV      6   3
+0045    TGETS    5   3  12  ; "prepare"
+0046    KSTR     7  13      ; "INSERT OR IGNORE INTO page_stat VALUES(?"~
+0047    CALL     5   2   3
+0048    KSHORT   6   1
+0049    LEN      7   4
+0050    SUBVN    7   7   0  ; 1
+0051    KSHORT   8   1
+0052    FORI     6 => 0080
+0053 => ADDVN   10   9   0  ; 1
+0054    TGETV   10   4  10
+0055    TGETV   11   4   9
+0056    SUBVV    2  10  11
+0057    TGETS   10   0  14  ; "page_min_read_sec"
+0058    ISGT    10   2
+0059    JMP     10 => 0079
+0060    MOV     11   5
+0061    TGETS   10   5  15  ; "reset"
+0062    CALL    10   2   2
+0063    MOV     11  10
+0064    TGETS   10  10  16  ; "bind"
+0065    MOV     12   1
+0066    TGETS   13   0   0  ; "pages_stats"
+0067    TGETV   14   4   9
+0068    TGETV   13  13  14
+0069    TGETV   14   4   9
+0070    GGET    15  17      ; "math"
+0071    TGETS   15  15  18  ; "min"
+0072    MOV     16   2
+0073    TGETS   17   0  19  ; "page_max_read_sec"
+0074    CALL    15   0   3
+0075    CALLM   10   2   4
+0076    MOV     11  10
+0077    TGETS   10  10  20  ; "step"
+0078    CALL    10   1   2
+0079 => FORL     6 => 0053
+0080 => MOV      7   3
+0081    TGETS    6   3  10  ; "exec"
+0082    KSTR     8  21      ; "COMMIT"
+0083    CALL     6   1   3
+0084    KSTR     6  22      ; "        SELECT count(DISTINCT page),\n  "~
+0085    MOV      8   3
+0086    TGETS    7   3  23  ; "rowexec"
+0087    GGET     9  24      ; "string"
+0088    TGETS    9   9  25  ; "format"
+0089    MOV     10   6
+0090    MOV     11   1
+0091    CALL     9   0   3
+0092    CALLM    7   3   1
+0093    KSTR     6  26      ; "        UPDATE book\n        SET    last"~
+0094    MOV     10   3
+0095    TGETS    9   3  12  ; "prepare"
+0096    MOV     11   6
+0097    CALL     9   2   3
+0098    MOV      5   9
+0099    MOV     10   5
+0100    TGETS    9   5  15  ; "reset"
+0101    CALL     9   2   2
+0102    MOV     10   9
+0103    TGETS    9   9  16  ; "bind"
+0104    UGET    11   0      ; TimeVal
+0105    MOV     12  11
+0106    TGETS   11  11   1  ; "now"
+0107    CALL    11   2   2
+0108    TGETS   11  11   2  ; "sec"
+0109    TGETS   12   0  27  ; "data"
+0110    TGETS   12  12  28  ; "notes"
+0111    TGETS   13   0  27  ; "data"
+0112    TGETS   13  13  29  ; "highlights"
+0113    MOV     14   8
+0114    MOV     15   7
+0115    TGETS   16   0  27  ; "data"
+0116    TGETS   16  16  30  ; "pages"
+0117    MOV     17   1
+0118    CALL     9   2   9
+0119    MOV     10   9
+0120    TGETS    9   9  20  ; "step"
+0121    CALL     9   1   2
+0122    ISF          7
+0123    JMP      9 => 0129
+0124    GGET     9  32      ; "tonumber"
+0125    MOV     10   7
+0126    CALL     9   2   2
+0127    TSETS    9   0  31  ; "total_read_pages"
+0128    JMP      9 => 0131
+0129 => KSHORT   9   0
+0130    TSETS    9   0  31  ; "total_read_pages"
+0131 => ISF          8
+0132    JMP      9 => 0138
+0133    GGET     9  32      ; "tonumber"
+0134    MOV     10   8
+0135    CALL     9   2   2
+0136    TSETS    9   0  33  ; "total_read_time"
+0137    JMP      9 => 0140
+0138 => KSHORT   9   0
+0139    TSETS    9   0  33  ; "total_read_time"
+0140 => TNEW     9   0
+0141    TSETS    9   0   0  ; "pages_stats"
+0142    TGETS    9   0   0  ; "pages_stats"
+0143    UGET    10   0      ; TimeVal
+0144    MOV     11  10
+0145    TGETS   10  10   1  ; "now"
+0146    CALL    10   2   2
+0147    TGETS   10  10   2  ; "sec"
+0148    TGETS   11   0   3  ; "curr_page"
+0149    TSETV   11   9  10
+0150    MOV     10   3
+0151    TGETS    9   3  34  ; "close"
+0152    CALL     9   1   2
+0153    RET0     0   1
+
+-- BYTECODE -- main.lua:634-658
+0001    ISNEP    1   0
+0002    JMP      2 => 0004
+0003    RET0     0   1
+0004 => UGET     2   0      ; SQ3
+0005    TGETS    2   2   0  ; "open"
+0006    UGET     3   1      ; db_location
+0007    CALL     2   2   2
+0008    KSTR     3   1      ; "        SELECT total_read_pages,\n      "~
+0009    MOV      5   2
+0010    TGETS    4   2   2  ; "rowexec"
+0011    GGET     6   3      ; "string"
+0012    TGETS    6   6   4  ; "format"
+0013    MOV      7   3
+0014    MOV      8   1
+0015    CALL     6   0   3
+0016    CALLM    4   3   1
+0017    ISF          4
+0018    JMP      6 => 0024
+0019    GGET     6   5      ; "tonumber"
+0020    MOV      7   4
+0021    CALL     6   2   2
+0022    MOV      4   6
+0023    JMP      6 => 0025
+0024 => KSHORT   4   0
+0025 => ISF          5
+0026    JMP      6 => 0032
+0027    GGET     6   5      ; "tonumber"
+0028    MOV      7   5
+0029    CALL     6   2   2
+0030    MOV      5   6
+0031    JMP      6 => 0033
+0032 => KSHORT   5   0
+0033 => MOV      7   2
+0034    TGETS    6   2   6  ; "close"
+0035    CALL     6   1   2
+0036    MOV      6   4
+0037    MOV      7   5
+0038    RET      6   3
+
+-- BYTECODE -- main.lua:660-667
+0001    TGETS    1   0   0  ; "view"
+0002    TGETS    1   1   1  ; "document"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "getProps"
+0005    CALL     1   2   2
+0006    TGETS    2   1   3  ; "title"
+0007    ISEQS    2   4      ; "No document"
+0008    JMP      2 => 0012
+0009    TGETS    2   1   3  ; "title"
+0010    ISNES    2   5      ; ""
+0011    JMP      2 => 0018
+0012 => TGETS    2   0   0  ; "view"
+0013    TGETS    2   2   1  ; "document"
+0014    MOV      3   2
+0015    TGETS    2   2   2  ; "getProps"
+0016    CALL     2   2   2
+0017    MOV      1   2
+0018 => RET1     1   2
+
+-- BYTECODE -- main.lua:672-672
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "is_enabled"
+0003    RET1     0   2
+
+-- BYTECODE -- main.lua:673-693
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "is_enabled"
+0003    ISF          0
+0004    JMP      1 => 0026
+0005    UGET     0   0      ; self
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "isDocless"
+0008    CALL     0   2   2
+0009    IST          0
+0010    JMP      0 => 0026
+0011    UGET     0   0      ; self
+0012    MOV      1   0
+0013    TGETS    0   0   2  ; "insertDB"
+0014    UGET     2   0      ; self
+0015    TGETS    2   2   3  ; "id_curr_book"
+0016    CALL     0   1   3
+0017    UGET     0   0      ; self
+0018    TGETS    0   0   4  ; "ui"
+0019    TGETS    0   0   5  ; "doc_settings"
+0020    MOV      1   0
+0021    TGETS    0   0   6  ; "saveSetting"
+0022    KSTR     2   7      ; "stats"
+0023    UGET     3   0      ; self
+0024    TGETS    3   3   8  ; "data"
+0025    CALL     0   1   4
+0026 => UGET     0   0      ; self
+0027    UGET     1   0      ; self
+0028    TGETS    1   1   0  ; "is_enabled"
+0029    NOT      1   1
+0030    TSETS    1   0   0  ; "is_enabled"
+0031    UGET     0   0      ; self
+0032    TGETS    0   0   0  ; "is_enabled"
+0033    ISF          0
+0034    JMP      1 => 0069
+0035    UGET     0   0      ; self
+0036    MOV      1   0
+0037    TGETS    0   0   1  ; "isDocless"
+0038    CALL     0   2   2
+0039    IST          0
+0040    JMP      0 => 0069
+0041    UGET     0   0      ; self
+0042    MOV      1   0
+0043    TGETS    0   0   9  ; "initData"
+0044    CALL     0   1   2
+0045    UGET     0   0      ; self
+0046    TNEW     1   0
+0047    TSETS    1   0  10  ; "pages_stats"
+0048    UGET     0   0      ; self
+0049    UGET     1   1      ; TimeVal
+0050    MOV      2   1
+0051    TGETS    1   1  12  ; "now"
+0052    CALL     1   2   2
+0053    TGETS    1   1  13  ; "sec"
+0054    TSETS    1   0  11  ; "start_current_period"
+0055    UGET     0   0      ; self
+0056    UGET     1   0      ; self
+0057    TGETS    1   1   4  ; "ui"
+0058    MOV      2   1
+0059    TGETS    1   1  15  ; "getCurrentPage"
+0060    CALL     1   2   2
+0061    TSETS    1   0  14  ; "curr_page"
+0062    UGET     0   0      ; self
+0063    TGETS    0   0  10  ; "pages_stats"
+0064    UGET     1   0      ; self
+0065    TGETS    1   1  11  ; "start_current_period"
+0066    UGET     2   0      ; self
+0067    TGETS    2   2  14  ; "curr_page"
+0068    TSETV    2   0   1
+0069 => UGET     0   0      ; self
+0070    MOV      1   0
+0071    TGETS    0   0  16  ; "saveSettings"
+0072    CALL     0   1   2
+0073    UGET     0   0      ; self
+0074    MOV      1   0
+0075    TGETS    0   0   1  ; "isDocless"
+0076    CALL     0   2   2
+0077    IST          0
+0078    JMP      0 => 0085
+0079    UGET     0   0      ; self
+0080    TGETS    0   0  17  ; "view"
+0081    TGETS    0   0  18  ; "footer"
+0082    MOV      1   0
+0083    TGETS    0   0  19  ; "updateFooter"
+0084    CALL     0   1   2
+0085 => RET0     0   1
+
+-- BYTECODE -- main.lua:669-695
+0001    TDUP     1   1
+0002    UGET     2   0      ; _
+0003    KSTR     3   0      ; "Enabled"
+0004    CALL     2   2   2
+0005    TSETS    2   1   2  ; "text"
+0006    FNEW     2   3      ; main.lua:672
+0007    TSETS    2   1   4  ; "checked_func"
+0008    FNEW     2   5      ; main.lua:673
+0009    TSETS    2   1   6  ; "callback"
+0010    UCLO     0 => 0011
+0011 => RET1     1   2
+
+-- BYTECODE -- main.lua:706-709
+0001    UGET     0   0      ; T
+0002    UGET     1   1      ; _
+0003    KSTR     2   0      ; "Read page duration limits: %1 s / %2 s"
+0004    CALL     1   2   2
+0005    UGET     2   2      ; self
+0006    TGETS    2   2   1  ; "page_min_read_sec"
+0007    UGET     3   2      ; self
+0008    TGETS    3   3   2  ; "page_max_read_sec"
+0009    CALLT    0   4
+
+-- BYTECODE -- main.lua:735-746
+0001    IST          0
+0002    JMP      2 => 0004
+0003    UGET     0   0      ; DEFAULT_MIN_READ_SEC
+0004 => IST          1
+0005    JMP      2 => 0007
+0006    UGET     1   1      ; DEFAULT_MAX_READ_SEC
+0007 => ISGE     1   0
+0008    JMP      2 => 0012
+0009    MOV      2   1
+0010    MOV      1   0
+0011    MOV      0   2
+0012 => UGET     2   2      ; self
+0013    TSETS    0   2   0  ; "page_min_read_sec"
+0014    UGET     2   2      ; self
+0015    TSETS    1   2   1  ; "page_max_read_sec"
+0016    UGET     2   2      ; self
+0017    MOV      3   2
+0018    TGETS    2   2   2  ; "saveSettings"
+0019    CALL     2   1   2
+0020    UGET     2   3      ; UIManager
+0021    MOV      3   2
+0022    TGETS    2   2   3  ; "close"
+0023    UGET     4   4      ; durations_widget
+0024    CALL     2   1   3
+0025    UGET     2   5      ; touchmenu_instance
+0026    MOV      3   2
+0027    TGETS    2   2   4  ; "updateItems"
+0028    CALL     2   1   2
+0029    RET0     0   1
+
+-- BYTECODE -- main.lua:710-749
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "/ui/widget/doublespinwidget"
+0003    CALL     1   2   2
+0004    KPRI     2   0
+0005    MOV      4   1
+0006    TGETS    3   1   2  ; "new"
+0007    TDUP     5   4
+0008    UGET     6   0      ; _
+0009    KSTR     7   3      ; "Min"
+0010    CALL     6   2   2
+0011    TSETS    6   5   5  ; "left_text"
+0012    UGET     6   1      ; self
+0013    TGETS    6   6   6  ; "page_min_read_sec"
+0014    TSETS    6   5   7  ; "left_value"
+0015    UGET     6   2      ; DEFAULT_MIN_READ_SEC
+0016    TSETS    6   5   8  ; "left_default"
+0017    UGET     6   0      ; _
+0018    KSTR     7   9      ; "Max"
+0019    CALL     6   2   2
+0020    TSETS    6   5  10  ; "right_text"
+0021    UGET     6   1      ; self
+0022    TGETS    6   6  11  ; "page_max_read_sec"
+0023    TSETS    6   5  12  ; "right_value"
+0024    UGET     6   3      ; DEFAULT_MAX_READ_SEC
+0025    TSETS    6   5  13  ; "right_default"
+0026    UGET     6   0      ; _
+0027    KSTR     7  14      ; "Use defaults"
+0028    CALL     6   2   2
+0029    TSETS    6   5  15  ; "default_text"
+0030    UGET     6   0      ; _
+0031    KSTR     7  16      ; "Read page duration limits"
+0032    CALL     6   2   2
+0033    TSETS    6   5  17  ; "title_text"
+0034    UGET     6   0      ; _
+0035    KSTR     7  18      ; "Set min and max time spent (in seconds) "~
+0036    CALL     6   2   2
+0037    TSETS    6   5  19  ; "info_text"
+0038    FNEW     6  20      ; main.lua:735
+0039    TSETS    6   5  21  ; "callback"
+0040    CALL     3   2   3
+0041    MOV      2   3
+0042    UGET     3   4      ; UIManager
+0043    MOV      4   3
+0044    TGETS    3   3  22  ; "show"
+0045    MOV      5   2
+0046    CALL     3   1   3
+0047    UCLO     0 => 0048
+0048 => RET0     0   1
+
+-- BYTECODE -- main.lua:754-757
+0001    UGET     0   0      ; T
+0002    UGET     1   1      ; _
+0003    KSTR     2   0      ; "Calendar weeks start on %1"
+0004    CALL     1   2   2
+0005    UGET     2   2      ; longDayOfWeekTranslation
+0006    UGET     3   3      ; weekDays
+0007    UGET     4   4      ; self
+0008    TGETS    4   4   1  ; "calendar_start_day_of_week"
+0009    TGETV    3   3   4
+0010    TGETV    2   2   3
+0011    CALLT    0   3
+
+-- BYTECODE -- main.lua:761-761
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "calendar_start_day_of_week"
+0003    ISEQN    0   0      ; 6
+0004    JMP      0 => 0007
+0005    KPRI     0   1
+0006    JMP      1 => 0008
+0007 => KPRI     0   2
+0008 => RET1     0   2
+
+-- BYTECODE -- main.lua:762-762
+0001    UGET     0   0      ; self
+0002    KSHORT   1   6
+0003    TSETS    1   0   0  ; "calendar_start_day_of_week"
+0004    RET0     0   1
+
+-- BYTECODE -- main.lua:766-766
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "calendar_start_day_of_week"
+0003    ISEQN    0   0      ; 7
+0004    JMP      0 => 0007
+0005    KPRI     0   1
+0006    JMP      1 => 0008
+0007 => KPRI     0   2
+0008 => RET1     0   2
+
+-- BYTECODE -- main.lua:767-767
+0001    UGET     0   0      ; self
+0002    KSHORT   1   7
+0003    TSETS    1   0   0  ; "calendar_start_day_of_week"
+0004    RET0     0   1
+
+-- BYTECODE -- main.lua:771-771
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "calendar_start_day_of_week"
+0003    ISEQN    0   0      ; 1
+0004    JMP      0 => 0007
+0005    KPRI     0   1
+0006    JMP      1 => 0008
+0007 => KPRI     0   2
+0008 => RET1     0   2
+
+-- BYTECODE -- main.lua:772-772
+0001    UGET     0   0      ; self
+0002    KSHORT   1   1
+0003    TSETS    1   0   0  ; "calendar_start_day_of_week"
+0004    RET0     0   1
+
+-- BYTECODE -- main.lua:776-776
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "calendar_start_day_of_week"
+0003    ISEQN    0   0      ; 2
+0004    JMP      0 => 0007
+0005    KPRI     0   1
+0006    JMP      1 => 0008
+0007 => KPRI     0   2
+0008 => RET1     0   2
+
+-- BYTECODE -- main.lua:777-777
+0001    UGET     0   0      ; self
+0002    KSHORT   1   2
+0003    TSETS    1   0   0  ; "calendar_start_day_of_week"
+0004    RET0     0   1
+
+-- BYTECODE -- main.lua:782-784
+0001    UGET     0   0      ; T
+0002    UGET     1   1      ; _
+0003    KSTR     2   0      ; "Books per calendar day: %1"
+0004    CALL     1   2   2
+0005    UGET     2   2      ; self
+0006    TGETS    2   2   1  ; "calendar_nb_book_spans"
+0007    CALLT    0   3
+
+-- BYTECODE -- main.lua:795-798
+0001    UGET     1   0      ; self
+0002    TGETS    2   0   1  ; "value"
+0003    TSETS    2   1   0  ; "calendar_nb_book_spans"
+0004    UGET     1   1      ; touchmenu_instance
+0005    MOV      2   1
+0006    TGETS    1   1   2  ; "updateItems"
+0007    CALL     1   1   2
+0008    RET0     0   1
+
+-- BYTECODE -- main.lua:800-803
+0001    UGET     0   0      ; self
+0002    UGET     1   1      ; DEFAULT_CALENDAR_NB_BOOK_SPANS
+0003    TSETS    1   0   0  ; "calendar_nb_book_spans"
+0004    UGET     0   2      ; touchmenu_instance
+0005    MOV      1   0
+0006    TGETS    0   0   1  ; "updateItems"
+0007    CALL     0   1   2
+0008    RET0     0   1
+
+-- BYTECODE -- main.lua:785-805
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "ui/widget/spinwidget"
+0003    CALL     1   2   2
+0004    UGET     2   0      ; UIManager
+0005    MOV      3   2
+0006    TGETS    2   2   2  ; "show"
+0007    MOV      5   1
+0008    TGETS    4   1   3  ; "new"
+0009    TDUP     6   5
+0010    UGET     7   1      ; Screen
+0011    MOV      8   7
+0012    TGETS    7   7   4  ; "getWidth"
+0013    CALL     7   2   2
+0014    MULVN    7   7   0  ; 0.6
+0015    TSETS    7   6   6  ; "width"
+0016    UGET     7   2      ; self
+0017    TGETS    7   7   7  ; "calendar_nb_book_spans"
+0018    TSETS    7   6   8  ; "value"
+0019    UGET     7   3      ; _
+0020    KSTR     8   9      ; "Set"
+0021    CALL     7   2   2
+0022    TSETS    7   6  10  ; "ok_text"
+0023    UGET     7   3      ; _
+0024    KSTR     8  11      ; "Books per calendar day"
+0025    CALL     7   2   2
+0026    TSETS    7   6  12  ; "title_text"
+0027    UGET     7   3      ; _
+0028    KSTR     8  13      ; "Set the max number of book spans to show"~
+0029    CALL     7   2   2
+0030    TSETS    7   6  14  ; "info_text"
+0031    FNEW     7  15      ; main.lua:795
+0032    TSETS    7   6  16  ; "callback"
+0033    UGET     7   3      ; _
+0034    KSTR     8  17      ; "Use default"
+0035    CALL     7   2   2
+0036    TSETS    7   6  18  ; "extra_text"
+0037    FNEW     7  19      ; main.lua:800
+0038    TSETS    7   6  20  ; "extra_callback"
+0039    CALL     4   0   3
+0040    CALLM    2   1   1
+0041    UCLO     0 => 0042
+0042 => RET0     0   1
+
+-- BYTECODE -- main.lua:810-810
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "calendar_show_histogram"
+0003    RET1     0   2
+
+-- BYTECODE -- main.lua:811-813
+0001    UGET     0   0      ; self
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "calendar_show_histogram"
+0004    NOT      1   1
+0005    TSETS    1   0   0  ; "calendar_show_histogram"
+0006    RET0     0   1
+
+-- BYTECODE -- main.lua:817-817
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "calendar_browse_future_months"
+0003    RET1     0   2
+
+-- BYTECODE -- main.lua:818-820
+0001    UGET     0   0      ; self
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "calendar_browse_future_months"
+0004    NOT      1   1
+0005    TSETS    1   0   0  ; "calendar_browse_future_months"
+0006    RET0     0   1
+
+-- BYTECODE -- main.lua:832-837
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; KeyValuePage
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   3
+0008    UGET     5   2      ; _
+0009    KSTR     6   2      ; "Statistics"
+0010    CALL     5   2   2
+0011    TSETS    5   4   4  ; "title"
+0012    UGET     5   3      ; self
+0013    MOV      6   5
+0014    TGETS    5   5   5  ; "getCurrentStat"
+0015    UGET     7   3      ; self
+0016    TGETS    7   7   6  ; "id_curr_book"
+0017    CALL     5   2   3
+0018    TSETS    5   4   7  ; "kv_pairs"
+0019    CALL     2   0   3
+0020    CALLM    0   1   1
+0021    RET0     0   1
+
+-- BYTECODE -- main.lua:838-838
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "isDocless"
+0004    CALL     0   2   2
+0005    IST          0
+0006    JMP      0 => 0010
+0007    UGET     0   0      ; self
+0008    TGETS    0   0   1  ; "is_enabled"
+0009    JMP      1 => 0013
+0010 => KPRI     0   1
+0011    JMP      1 => 0013
+0012    KPRI     0   2
+0013 => RET1     0   2
+
+-- BYTECODE -- main.lua:843-860
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "insertDB"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "id_curr_book"
+0006    CALL     0   1   3
+0007    UGET     0   0      ; self
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "getCurrentBookStats"
+0010    CALL     0   3   2
+0011    UGET     2   0      ; self
+0012    MOV      3   2
+0013    TGETS    2   2   3  ; "getTodayBookStats"
+0014    CALL     2   3   2
+0015    UGET     4   0      ; self
+0016    MOV      5   4
+0017    TGETS    4   4   4  ; "getReadingProgressStats"
+0018    KSHORT   6   7
+0019    CALL     4   2   3
+0020    ISF          4
+0021    JMP      5 => 0037
+0022    UGET     5   1      ; UIManager
+0023    MOV      6   5
+0024    TGETS    5   5   5  ; "show"
+0025    UGET     7   2      ; ReaderProgress
+0026    MOV      8   7
+0027    TGETS    7   7   6  ; "new"
+0028    TDUP     9   7
+0029    TSETS    4   9   8  ; "dates"
+0030    TSETS    0   9   9  ; "current_period"
+0031    TSETS    1   9  10  ; "current_pages"
+0032    TSETS    2   9  11  ; "today_period"
+0033    TSETS    3   9  12  ; "today_pages"
+0034    CALL     7   0   3
+0035    CALLM    5   1   1
+0036    JMP      5 => 0053
+0037 => UGET     5   1      ; UIManager
+0038    MOV      6   5
+0039    TGETS    5   5   5  ; "show"
+0040    UGET     7   3      ; InfoMessage
+0041    MOV      8   7
+0042    TGETS    7   7   6  ; "new"
+0043    TDUP     9  14
+0044    UGET    10   4      ; T
+0045    UGET    11   5      ; _
+0046    KSTR    12  13      ; "Reading progress unavailable.\nNo data f"~
+0047    CALL    11   2   2
+0048    KSHORT  12   7
+0049    CALL    10   2   3
+0050    TSETS   10   9  15  ; "text"
+0051    CALL     7   0   3
+0052    CALLM    5   1   1
+0053 => RET0     0   1
+
+-- BYTECODE -- main.lua:865-867
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "statMenu"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- main.lua:872-874
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; self
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "getCalendarView"
+0007    CALL     2   0   2
+0008    CALLM    0   1   1
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:697-878
+0001    TDUP     2   2
+0002    UGET     3   0      ; _
+0003    KSTR     4   1      ; "Reading statistics"
+0004    CALL     3   2   2
+0005    TSETS    3   2   3  ; "text"
+0006    TNEW     3   8
+0007    MOV      5   0
+0008    TGETS    4   0   4  ; "getStatisticEnabledMenuItem"
+0009    CALL     4   2   2
+0010    TSETB    4   3   1
+0011    TDUP     4   6
+0012    UGET     5   0      ; _
+0013    KSTR     6   5      ; "Settings"
+0014    CALL     5   2   2
+0015    TSETS    5   4   3  ; "text"
+0016    TNEW     5   6
+0017    TDUP     6   8
+0018    FNEW     7   7      ; main.lua:706
+0019    TSETS    7   6   9  ; "text_func"
+0020    FNEW     7  10      ; main.lua:710
+0021    TSETS    7   6  11  ; "callback"
+0022    TSETB    6   5   1
+0023    TDUP     6  13
+0024    FNEW     7  12      ; main.lua:754
+0025    TSETS    7   6   9  ; "text_func"
+0026    TNEW     7   5
+0027    TDUP     8  14
+0028    UGET     9   5      ; longDayOfWeekTranslation
+0029    UGET    10   6      ; weekDays
+0030    TGETB   10  10   6
+0031    TGETV    9   9  10
+0032    TSETS    9   8   3  ; "text"
+0033    FNEW     9  15      ; main.lua:761
+0034    TSETS    9   8  16  ; "checked_func"
+0035    FNEW     9  17      ; main.lua:762
+0036    TSETS    9   8  11  ; "callback"
+0037    TSETB    8   7   1
+0038    TDUP     8  18
+0039    UGET     9   5      ; longDayOfWeekTranslation
+0040    UGET    10   6      ; weekDays
+0041    TGETB   10  10   7
+0042    TGETV    9   9  10
+0043    TSETS    9   8   3  ; "text"
+0044    FNEW     9  19      ; main.lua:766
+0045    TSETS    9   8  16  ; "checked_func"
+0046    FNEW     9  20      ; main.lua:767
+0047    TSETS    9   8  11  ; "callback"
+0048    TSETB    8   7   2
+0049    TDUP     8  21
+0050    UGET     9   5      ; longDayOfWeekTranslation
+0051    UGET    10   6      ; weekDays
+0052    TGETB   10  10   1
+0053    TGETV    9   9  10
+0054    TSETS    9   8   3  ; "text"
+0055    FNEW     9  22      ; main.lua:771
+0056    TSETS    9   8  16  ; "checked_func"
+0057    FNEW     9  23      ; main.lua:772
+0058    TSETS    9   8  11  ; "callback"
+0059    TSETB    8   7   3
+0060    TDUP     8  24
+0061    UGET     9   5      ; longDayOfWeekTranslation
+0062    UGET    10   6      ; weekDays
+0063    TGETB   10  10   2
+0064    TGETV    9   9  10
+0065    TSETS    9   8   3  ; "text"
+0066    FNEW     9  25      ; main.lua:776
+0067    TSETS    9   8  16  ; "checked_func"
+0068    FNEW     9  26      ; main.lua:777
+0069    TSETS    9   8  11  ; "callback"
+0070    TSETB    8   7   4
+0071    TSETS    7   6  27  ; "sub_item_table"
+0072    TSETB    6   5   2
+0073    TDUP     6  29
+0074    FNEW     7  28      ; main.lua:782
+0075    TSETS    7   6   9  ; "text_func"
+0076    FNEW     7  30      ; main.lua:785
+0077    TSETS    7   6  11  ; "callback"
+0078    TSETB    6   5   3
+0079    TDUP     6  32
+0080    UGET     7   0      ; _
+0081    KSTR     8  31      ; "Show hourly histogram in calendar days"
+0082    CALL     7   2   2
+0083    TSETS    7   6   3  ; "text"
+0084    FNEW     7  33      ; main.lua:810
+0085    TSETS    7   6  16  ; "checked_func"
+0086    FNEW     7  34      ; main.lua:811
+0087    TSETS    7   6  11  ; "callback"
+0088    TSETB    6   5   4
+0089    TDUP     6  36
+0090    UGET     7   0      ; _
+0091    KSTR     8  35      ; "Allow browsing coming months"
+0092    CALL     7   2   2
+0093    TSETS    7   6   3  ; "text"
+0094    FNEW     7  37      ; main.lua:817
+0095    TSETS    7   6  16  ; "checked_func"
+0096    FNEW     7  38      ; main.lua:818
+0097    TSETS    7   6  11  ; "callback"
+0098    TSETB    6   5   5
+0099    TSETS    5   4  27  ; "sub_item_table"
+0100    TSETB    4   3   2
+0101    TDUP     4  40
+0102    UGET     5   0      ; _
+0103    KSTR     6  39      ; "Reset statistics"
+0104    CALL     5   2   2
+0105    TSETS    5   4   3  ; "text"
+0106    MOV      6   0
+0107    TGETS    5   0  41  ; "genResetBookSubItemTable"
+0108    CALL     5   2   2
+0109    TSETS    5   4  27  ; "sub_item_table"
+0110    TSETB    4   3   3
+0111    TDUP     4  43
+0112    UGET     5   0      ; _
+0113    KSTR     6  42      ; "Current book"
+0114    CALL     5   2   2
+0115    TSETS    5   4   3  ; "text"
+0116    FNEW     5  44      ; main.lua:832
+0117    TSETS    5   4  11  ; "callback"
+0118    FNEW     5  45      ; main.lua:838
+0119    TSETS    5   4  46  ; "enabled_func"
+0120    TSETB    4   3   4
+0121    TDUP     4  48
+0122    UGET     5   0      ; _
+0123    KSTR     6  47      ; "Reading progress"
+0124    CALL     5   2   2
+0125    TSETS    5   4   3  ; "text"
+0126    FNEW     5  49      ; main.lua:843
+0127    TSETS    5   4  11  ; "callback"
+0128    TSETB    4   3   5
+0129    TDUP     4  51
+0130    UGET     5   0      ; _
+0131    KSTR     6  50      ; "Time range"
+0132    CALL     5   2   2
+0133    TSETS    5   4   3  ; "text"
+0134    FNEW     5  52      ; main.lua:865
+0135    TSETS    5   4  11  ; "callback"
+0136    TSETB    4   3   6
+0137    TDUP     4  54
+0138    UGET     5   0      ; _
+0139    KSTR     6  53      ; "Calendar view"
+0140    CALL     5   2   2
+0141    TSETS    5   4   3  ; "text"
+0142    FNEW     5  55      ; main.lua:872
+0143    TSETS    5   4  11  ; "callback"
+0144    TSETB    4   3   7
+0145    TSETS    3   2  27  ; "sub_item_table"
+0146    TSETS    2   1   0  ; "statistics"
+0147    UCLO     0 => 0148
+0148 => RET0     0   1
+
+-- BYTECODE -- main.lua:894-897
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:886-900
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "kv"
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "close"
+0006    UGET     3   0      ; self
+0007    TGETS    3   3   0  ; "kv"
+0008    CALL     1   1   3
+0009    UGET     1   0      ; self
+0010    MOV      2   1
+0011    TGETS    1   1   2  ; "getTotalStats"
+0012    CALL     1   3   2
+0013    UGET     3   0      ; self
+0014    UGET     4   2      ; KeyValuePage
+0015    MOV      5   4
+0016    TGETS    4   4   3  ; "new"
+0017    TDUP     6   4
+0018    TSETS    1   6   5  ; "title"
+0019    TSETS    2   6   6  ; "kv_pairs"
+0020    FNEW     7   7      ; main.lua:894
+0021    TSETS    7   6   8  ; "callback_return"
+0022    CALL     4   2   3
+0023    TSETS    4   3   0  ; "kv"
+0024    UGET     3   1      ; UIManager
+0025    MOV      4   3
+0026    TGETS    3   3   9  ; "show"
+0027    UGET     5   0      ; self
+0028    TGETS    5   5   0  ; "kv"
+0029    CALL     3   1   3
+0030    UCLO     0 => 0031
+0031 => RET0     0   1
+
+-- BYTECODE -- main.lua:911-914
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:904-917
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "kv"
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "close"
+0006    UGET     3   0      ; self
+0007    TGETS    3   3   0  ; "kv"
+0008    CALL     1   1   3
+0009    UGET     1   0      ; self
+0010    UGET     2   2      ; KeyValuePage
+0011    MOV      3   2
+0012    TGETS    2   2   2  ; "new"
+0013    TDUP     4   4
+0014    UGET     5   3      ; _
+0015    KSTR     6   3      ; "Last week"
+0016    CALL     5   2   2
+0017    TSETS    5   4   5  ; "title"
+0018    UGET     5   0      ; self
+0019    MOV      6   5
+0020    TGETS    5   5   6  ; "getDatesFromAll"
+0021    KSHORT   7   7
+0022    KSTR     8   7      ; "daily_weekday"
+0023    CALL     5   2   4
+0024    TSETS    5   4   8  ; "kv_pairs"
+0025    FNEW     5   9      ; main.lua:911
+0026    TSETS    5   4  10  ; "callback_return"
+0027    CALL     2   2   3
+0028    TSETS    2   1   0  ; "kv"
+0029    UGET     1   1      ; UIManager
+0030    MOV      2   1
+0031    TGETS    1   1  11  ; "show"
+0032    UGET     3   0      ; self
+0033    TGETS    3   3   0  ; "kv"
+0034    CALL     1   1   3
+0035    UCLO     0 => 0036
+0036 => RET0     0   1
+
+-- BYTECODE -- main.lua:927-930
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:920-933
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "kv"
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "close"
+0006    UGET     3   0      ; self
+0007    TGETS    3   3   0  ; "kv"
+0008    CALL     1   1   3
+0009    UGET     1   0      ; self
+0010    UGET     2   2      ; KeyValuePage
+0011    MOV      3   2
+0012    TGETS    2   2   2  ; "new"
+0013    TDUP     4   4
+0014    UGET     5   3      ; _
+0015    KSTR     6   3      ; "Last month by day"
+0016    CALL     5   2   2
+0017    TSETS    5   4   5  ; "title"
+0018    UGET     5   0      ; self
+0019    MOV      6   5
+0020    TGETS    5   5   6  ; "getDatesFromAll"
+0021    KSHORT   7  30
+0022    KSTR     8   7      ; "daily_weekday"
+0023    CALL     5   2   4
+0024    TSETS    5   4   8  ; "kv_pairs"
+0025    FNEW     5   9      ; main.lua:927
+0026    TSETS    5   4  10  ; "callback_return"
+0027    CALL     2   2   3
+0028    TSETS    2   1   0  ; "kv"
+0029    UGET     1   1      ; UIManager
+0030    MOV      2   1
+0031    TGETS    1   1  11  ; "show"
+0032    UGET     3   0      ; self
+0033    TGETS    3   3   0  ; "kv"
+0034    CALL     1   1   3
+0035    UCLO     0 => 0036
+0036 => RET0     0   1
+
+-- BYTECODE -- main.lua:943-946
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:936-949
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "kv"
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "close"
+0006    UGET     3   0      ; self
+0007    TGETS    3   3   0  ; "kv"
+0008    CALL     1   1   3
+0009    UGET     1   0      ; self
+0010    UGET     2   2      ; KeyValuePage
+0011    MOV      3   2
+0012    TGETS    2   2   2  ; "new"
+0013    TDUP     4   4
+0014    UGET     5   3      ; _
+0015    KSTR     6   3      ; "Last year by day"
+0016    CALL     5   2   2
+0017    TSETS    5   4   5  ; "title"
+0018    UGET     5   0      ; self
+0019    MOV      6   5
+0020    TGETS    5   5   6  ; "getDatesFromAll"
+0021    KSHORT   7 365
+0022    KSTR     8   7      ; "daily"
+0023    CALL     5   2   4
+0024    TSETS    5   4   8  ; "kv_pairs"
+0025    FNEW     5   9      ; main.lua:943
+0026    TSETS    5   4  10  ; "callback_return"
+0027    CALL     2   2   3
+0028    TSETS    2   1   0  ; "kv"
+0029    UGET     1   1      ; UIManager
+0030    MOV      2   1
+0031    TGETS    1   1  11  ; "show"
+0032    UGET     3   0      ; self
+0033    TGETS    3   3   0  ; "kv"
+0034    CALL     1   1   3
+0035    UCLO     0 => 0036
+0036 => RET0     0   1
+
+-- BYTECODE -- main.lua:959-962
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:952-965
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "kv"
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "close"
+0006    UGET     3   0      ; self
+0007    TGETS    3   3   0  ; "kv"
+0008    CALL     1   1   3
+0009    UGET     1   0      ; self
+0010    UGET     2   2      ; KeyValuePage
+0011    MOV      3   2
+0012    TGETS    2   2   2  ; "new"
+0013    TDUP     4   4
+0014    UGET     5   3      ; _
+0015    KSTR     6   3      ; "Last year by week"
+0016    CALL     5   2   2
+0017    TSETS    5   4   5  ; "title"
+0018    UGET     5   0      ; self
+0019    MOV      6   5
+0020    TGETS    5   5   6  ; "getDatesFromAll"
+0021    KSHORT   7 365
+0022    KSTR     8   7      ; "weekly"
+0023    CALL     5   2   4
+0024    TSETS    5   4   8  ; "kv_pairs"
+0025    FNEW     5   9      ; main.lua:959
+0026    TSETS    5   4  10  ; "callback_return"
+0027    CALL     2   2   3
+0028    TSETS    2   1   0  ; "kv"
+0029    UGET     1   1      ; UIManager
+0030    MOV      2   1
+0031    TGETS    1   1  11  ; "show"
+0032    UGET     3   0      ; self
+0033    TGETS    3   3   0  ; "kv"
+0034    CALL     1   1   3
+0035    UCLO     0 => 0036
+0036 => RET0     0   1
+
+-- BYTECODE -- main.lua:975-978
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:968-981
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "kv"
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "close"
+0006    UGET     3   0      ; self
+0007    TGETS    3   3   0  ; "kv"
+0008    CALL     1   1   3
+0009    UGET     1   0      ; self
+0010    UGET     2   2      ; KeyValuePage
+0011    MOV      3   2
+0012    TGETS    2   2   2  ; "new"
+0013    TDUP     4   4
+0014    UGET     5   3      ; _
+0015    KSTR     6   3      ; "All stats by month"
+0016    CALL     5   2   2
+0017    TSETS    5   4   5  ; "title"
+0018    UGET     5   0      ; self
+0019    MOV      6   5
+0020    TGETS    5   5   6  ; "getDatesFromAll"
+0021    KSHORT   7   0
+0022    KSTR     8   7      ; "monthly"
+0023    CALL     5   2   4
+0024    TSETS    5   4   8  ; "kv_pairs"
+0025    FNEW     5   9      ; main.lua:975
+0026    TSETS    5   4  10  ; "callback_return"
+0027    CALL     2   2   3
+0028    TSETS    2   1   0  ; "kv"
+0029    UGET     1   1      ; UIManager
+0030    MOV      2   1
+0031    TGETS    1   1  11  ; "show"
+0032    UGET     3   0      ; self
+0033    TGETS    3   3   0  ; "kv"
+0034    CALL     1   1   3
+0035    UCLO     0 => 0036
+0036 => RET0     0   1
+
+-- BYTECODE -- main.lua:992-995
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:985-998
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "kv"
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "close"
+0006    UGET     3   0      ; self
+0007    TGETS    3   3   0  ; "kv"
+0008    CALL     1   1   3
+0009    UGET     1   0      ; self
+0010    UGET     2   2      ; KeyValuePage
+0011    MOV      3   2
+0012    TGETS    2   2   2  ; "new"
+0013    TDUP     4   4
+0014    UGET     5   3      ; _
+0015    KSTR     6   3      ; "Books by week"
+0016    CALL     5   2   2
+0017    TSETS    5   4   5  ; "title"
+0018    UGET     5   0      ; self
+0019    MOV      6   5
+0020    TGETS    5   5   6  ; "getDatesFromAll"
+0021    KSHORT   7   0
+0022    KSTR     8   7      ; "weekly"
+0023    KPRI     9   2
+0024    CALL     5   2   5
+0025    TSETS    5   4   8  ; "kv_pairs"
+0026    FNEW     5   9      ; main.lua:992
+0027    TSETS    5   4  10  ; "callback_return"
+0028    CALL     2   2   3
+0029    TSETS    2   1   0  ; "kv"
+0030    UGET     1   1      ; UIManager
+0031    MOV      2   1
+0032    TGETS    1   1  11  ; "show"
+0033    UGET     3   0      ; self
+0034    TGETS    3   3   0  ; "kv"
+0035    CALL     1   1   3
+0036    UCLO     0 => 0037
+0037 => RET0     0   1
+
+-- BYTECODE -- main.lua:1008-1011
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1001-1014
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "kv"
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "close"
+0006    UGET     3   0      ; self
+0007    TGETS    3   3   0  ; "kv"
+0008    CALL     1   1   3
+0009    UGET     1   0      ; self
+0010    UGET     2   2      ; KeyValuePage
+0011    MOV      3   2
+0012    TGETS    2   2   2  ; "new"
+0013    TDUP     4   4
+0014    UGET     5   3      ; _
+0015    KSTR     6   3      ; "Books by month"
+0016    CALL     5   2   2
+0017    TSETS    5   4   5  ; "title"
+0018    UGET     5   0      ; self
+0019    MOV      6   5
+0020    TGETS    5   5   6  ; "getDatesFromAll"
+0021    KSHORT   7   0
+0022    KSTR     8   7      ; "monthly"
+0023    KPRI     9   2
+0024    CALL     5   2   5
+0025    TSETS    5   4   8  ; "kv_pairs"
+0026    FNEW     5   9      ; main.lua:1008
+0027    TSETS    5   4  10  ; "callback_return"
+0028    CALL     2   2   3
+0029    TSETS    2   1   0  ; "kv"
+0030    UGET     1   1      ; UIManager
+0031    MOV      2   1
+0032    TGETS    1   1  11  ; "show"
+0033    UGET     3   0      ; self
+0034    TGETS    3   3   0  ; "kv"
+0035    CALL     1   1   3
+0036    UCLO     0 => 0037
+0037 => RET0     0   1
+
+-- BYTECODE -- main.lua:880-1019
+0001    UGET     1   0      ; KeyValuePage
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "new"
+0004    TDUP     3   3
+0005    UGET     4   1      ; _
+0006    KSTR     5   2      ; "Time range statistics"
+0007    CALL     4   2   2
+0008    TSETS    4   3   4  ; "title"
+0009    TDUP     4   9
+0010    TDUP     5   6
+0011    UGET     6   1      ; _
+0012    KSTR     7   5      ; "All books"
+0013    CALL     6   2   2
+0014    TSETB    6   5   1
+0015    FNEW     6   7      ; main.lua:886
+0016    TSETS    6   5   8  ; "callback"
+0017    TSETB    5   4   1
+0018    TDUP     5  11
+0019    UGET     6   1      ; _
+0020    KSTR     7  10      ; "Last week"
+0021    CALL     6   2   2
+0022    TSETB    6   5   1
+0023    FNEW     6  12      ; main.lua:904
+0024    TSETS    6   5   8  ; "callback"
+0025    TSETB    5   4   3
+0026    TDUP     5  14
+0027    UGET     6   1      ; _
+0028    KSTR     7  13      ; "Last month by day"
+0029    CALL     6   2   2
+0030    TSETB    6   5   1
+0031    FNEW     6  15      ; main.lua:920
+0032    TSETS    6   5   8  ; "callback"
+0033    TSETB    5   4   4
+0034    TDUP     5  17
+0035    UGET     6   1      ; _
+0036    KSTR     7  16      ; "Last year by day"
+0037    CALL     6   2   2
+0038    TSETB    6   5   1
+0039    FNEW     6  18      ; main.lua:936
+0040    TSETS    6   5   8  ; "callback"
+0041    TSETB    5   4   5
+0042    TDUP     5  20
+0043    UGET     6   1      ; _
+0044    KSTR     7  19      ; "Last year by week"
+0045    CALL     6   2   2
+0046    TSETB    6   5   1
+0047    FNEW     6  21      ; main.lua:952
+0048    TSETS    6   5   8  ; "callback"
+0049    TSETB    5   4   6
+0050    TDUP     5  23
+0051    UGET     6   1      ; _
+0052    KSTR     7  22      ; "All stats by month"
+0053    CALL     6   2   2
+0054    TSETB    6   5   1
+0055    FNEW     6  24      ; main.lua:968
+0056    TSETS    6   5   8  ; "callback"
+0057    TSETB    5   4   7
+0058    TDUP     5  26
+0059    UGET     6   1      ; _
+0060    KSTR     7  25      ; "Books by week"
+0061    CALL     6   2   2
+0062    TSETB    6   5   1
+0063    FNEW     6  27      ; main.lua:985
+0064    TSETS    6   5   8  ; "callback"
+0065    TSETB    5   4   9
+0066    TDUP     5  29
+0067    UGET     6   1      ; _
+0068    KSTR     7  28      ; "Books by month"
+0069    CALL     6   2   2
+0070    TSETB    6   5   1
+0071    FNEW     6  30      ; main.lua:1001
+0072    TSETS    6   5   8  ; "callback"
+0073    TSETB    5   4  10
+0074    TSETS    4   3  31  ; "kv_pairs"
+0075    CALL     1   2   3
+0076    TSETS    1   0   0  ; "kv"
+0077    UGET     1   2      ; UIManager
+0078    MOV      2   1
+0079    TGETS    1   1  32  ; "show"
+0080    TGETS    3   0   0  ; "kv"
+0081    CALL     1   1   3
+0082    UCLO     0 => 0083
+0083 => RET0     0   1
+
+-- BYTECODE -- main.lua:1021-1048
+0001    GGET     1   0      ; "os"
+0002    TGETS    1   1   1  ; "time"
+0003    CALL     1   2   1
+0004    GGET     2   0      ; "os"
+0005    TGETS    2   2   2  ; "date"
+0006    KSTR     3   3      ; "*t"
+0007    CALL     2   2   2
+0008    TGETS    3   2   4  ; "hour"
+0009    MULVN    3   3   0  ; 3600
+0010    TGETS    4   2   5  ; "min"
+0011    MULVN    4   4   1  ; 60
+0012    ADDVV    3   3   4
+0013    TGETS    4   2   6  ; "sec"
+0014    ADDVV    3   3   4
+0015    SUBVV    4   1   3
+0016    UGET     5   0      ; SQ3
+0017    TGETS    5   5   7  ; "open"
+0018    UGET     6   1      ; db_location
+0019    CALL     5   2   2
+0020    KSTR     6   8      ; "        SELECT count(*),\n              "~
+0021    MOV      8   5
+0022    TGETS    7   5   9  ; "rowexec"
+0023    GGET     9  10      ; "string"
+0024    TGETS    9   9  11  ; "format"
+0025    MOV     10   6
+0026    MOV     11   4
+0027    CALL     9   0   3
+0028    CALLM    7   3   1
+0029    ISNEP    7   0
+0030    JMP      9 => 0032
+0031    KSHORT   7   0
+0032 => ISNEP    8   0
+0033    JMP      9 => 0035
+0034    KSHORT   8   0
+0035 => GGET     9  12      ; "tonumber"
+0036    MOV     10   8
+0037    CALL     9   2   2
+0038    MOV      8   9
+0039    GGET     9  12      ; "tonumber"
+0040    MOV     10   7
+0041    CALL     9   2   2
+0042    MOV      7   9
+0043    MOV     10   5
+0044    TGETS    9   5  13  ; "close"
+0045    CALL     9   1   2
+0046    MOV      9   8
+0047    MOV     10   7
+0048    RET      9   3
+
+-- BYTECODE -- main.lua:1050-1072
+0001    UGET     1   0      ; SQ3
+0002    TGETS    1   1   0  ; "open"
+0003    UGET     2   1      ; db_location
+0004    CALL     1   2   2
+0005    KSTR     2   1      ; "        SELECT count(*),\n              "~
+0006    MOV      4   1
+0007    TGETS    3   1   2  ; "rowexec"
+0008    GGET     5   3      ; "string"
+0009    TGETS    5   5   4  ; "format"
+0010    MOV      6   2
+0011    TGETS    7   0   5  ; "start_current_period"
+0012    CALL     5   0   3
+0013    CALLM    3   3   1
+0014    ISNEP    3   0
+0015    JMP      5 => 0017
+0016    KSHORT   3   0
+0017 => ISNEP    4   0
+0018    JMP      5 => 0020
+0019    KSHORT   4   0
+0020 => GGET     5   6      ; "tonumber"
+0021    MOV      6   4
+0022    CALL     5   2   2
+0023    MOV      4   5
+0024    GGET     5   6      ; "tonumber"
+0025    MOV      6   3
+0026    CALL     5   2   2
+0027    MOV      3   5
+0028    MOV      5   4
+0029    MOV      6   3
+0030    RET      5   3
+
+-- BYTECODE -- main.lua:1074-1134
+0001    ISNEP    1   0
+0002    JMP      2 => 0004
+0003    RET0     0   1
+0004 => MOV      3   0
+0005    TGETS    2   0   0  ; "insertDB"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    MOV      3   0
+0009    TGETS    2   0   1  ; "getTodayBookStats"
+0010    CALL     2   3   2
+0011    MOV      5   0
+0012    TGETS    4   0   2  ; "getCurrentBookStats"
+0013    CALL     4   3   2
+0014    UGET     6   0      ; SQ3
+0015    TGETS    6   6   3  ; "open"
+0016    UGET     7   1      ; db_location
+0017    CALL     6   2   2
+0018    MOV      8   6
+0019    TGETS    7   6   4  ; "rowexec"
+0020    GGET     9   5      ; "string"
+0021    TGETS    9   9   6  ; "format"
+0022    KSTR    10   7      ; "SELECT notes, highlights  FROM book WHER"~
+0023    MOV     11   1
+0024    CALL     9   0   3
+0025    CALLM    7   3   1
+0026    KSTR     9   8      ; "        SELECT count(*)\n        FROM   "~
+0027    MOV     11   6
+0028    TGETS   10   6   4  ; "rowexec"
+0029    GGET    12   5      ; "string"
+0030    TGETS   12  12   6  ; "format"
+0031    MOV     13   9
+0032    MOV     14   1
+0033    CALL    12   0   3
+0034    CALLM   10   2   1
+0035    KSTR     9   9      ; "        SELECT sum(period),\n           "~
+0036    MOV     12   6
+0037    TGETS   11   6   4  ; "rowexec"
+0038    GGET    13   5      ; "string"
+0039    TGETS   13  13   6  ; "format"
+0040    MOV     14   9
+0041    MOV     15   1
+0042    CALL    13   0   3
+0043    CALLM   11   3   1
+0044    MOV     14   6
+0045    TGETS   13   6  10  ; "close"
+0046    CALL    13   1   2
+0047    ISNEP   11   0
+0048    JMP     13 => 0050
+0049    KSHORT  11   0
+0050 => ISNEP   12   0
+0051    JMP     13 => 0053
+0052    KSHORT  12   0
+0053 => TGETS   13   0  11  ; "data"
+0054    TGETS   14   0  13  ; "view"
+0055    TGETS   14  14  14  ; "document"
+0056    MOV     15  14
+0057    TGETS   14  14  15  ; "getPageCount"
+0058    CALL    14   2   2
+0059    TSETS   14  13  12  ; "pages"
+0060    GGET    13  16      ; "tonumber"
+0061    MOV     14  11
+0062    CALL    13   2   2
+0063    MOV     11  13
+0064    GGET    13  16      ; "tonumber"
+0065    MOV     14  12
+0066    CALL    13   2   2
+0067    MOV     12  13
+0068    TGETS   13   0  11  ; "data"
+0069    TGETS   13  13  12  ; "pages"
+0070    TGETS   14   0  13  ; "view"
+0071    TGETS   14  14  17  ; "state"
+0072    TGETS   14  14  18  ; "page"
+0073    SUBVV   13  13  14
+0074    TGETS   14   0  19  ; "avg_time"
+0075    MULVV   13  13  14
+0076    GGET    14  20      ; "math"
+0077    TGETS   14  14  21  ; "ceil"
+0078    GGET    15  16      ; "tonumber"
+0079    MOV     16  10
+0080    CALL    15   2   2
+0081    DIVVV   15  11  15
+0082    DIVVV   15  13  15
+0083    CALL    14   2   2
+0084    GGET    15  22      ; "os"
+0085    TGETS   15  15  23  ; "date"
+0086    KSTR    16  24      ; "%Y-%m-%d"
+0087    GGET    17  16      ; "tonumber"
+0088    GGET    18  22      ; "os"
+0089    TGETS   18  18  25  ; "time"
+0090    CALL    18   2   1
+0091    MULVN   19  14   0  ; 86400
+0092    ADDVV   18  18  19
+0093    CALL    17   0   2
+0094    CALLM   15   2   1
+0095    KSTR    16  26      ; "%.0f%%"
+0096    TNEW    17  16
+0097    TNEW    18   3
+0098    UGET    19   2      ; _
+0099    KSTR    20  27      ; "Time spent reading this session"
+0100    CALL    19   2   2
+0101    TSETB   19  18   1
+0102    UGET    19   3      ; util
+0103    TGETS   19  19  28  ; "secondsToClock"
+0104    MOV     20   4
+0105    KPRI    21   1
+0106    CALL    19   0   3
+0107    TSETM   19   1      ; 2
+0108    TSETB   18  17   1
+0109    TNEW    18   3
+0110    UGET    19   2      ; _
+0111    KSTR    20  29      ; "Pages read this session"
+0112    CALL    19   2   2
+0113    TSETB   19  18   1
+0114    GGET    19  16      ; "tonumber"
+0115    MOV     20   5
+0116    CALL    19   0   2
+0117    TSETM   19   1      ; 2
+0118    TSETB   18  17   2
+0119    TNEW    18   3
+0120    UGET    19   2      ; _
+0121    KSTR    20  30      ; "Time spent reading today"
+0122    CALL    19   2   2
+0123    TSETB   19  18   1
+0124    UGET    19   3      ; util
+0125    TGETS   19  19  28  ; "secondsToClock"
+0126    MOV     20   2
+0127    KPRI    21   1
+0128    CALL    19   0   3
+0129    TSETM   19   1      ; 2
+0130    TSETB   18  17   3
+0131    TNEW    18   3
+0132    UGET    19   2      ; _
+0133    KSTR    20  31      ; "Pages read today"
+0134    CALL    19   2   2
+0135    TSETB   19  18   1
+0136    GGET    19  16      ; "tonumber"
+0137    MOV     20   3
+0138    CALL    19   0   2
+0139    TSETM   19   1      ; 2
+0140    TSETB   18  17   4
+0141    TDUP    18  33
+0142    UGET    19   2      ; _
+0143    KSTR    20  32      ; "Time to read"
+0144    CALL    19   2   2
+0145    TSETB   19  18   1
+0146    UGET    19   3      ; util
+0147    TGETS   19  19  28  ; "secondsToClock"
+0148    MOV     20  13
+0149    CALL    19   2   2
+0150    TSETB   19  18   2
+0151    TSETB   18  17   5
+0152    TNEW    18   3
+0153    UGET    19   2      ; _
+0154    KSTR    20  34      ; "Total time"
+0155    CALL    19   2   2
+0156    TSETB   19  18   1
+0157    UGET    19   3      ; util
+0158    TGETS   19  19  28  ; "secondsToClock"
+0159    MOV     20  11
+0160    KPRI    21   1
+0161    CALL    19   0   3
+0162    TSETM   19   1      ; 2
+0163    TSETB   18  17   6
+0164    TNEW    18   3
+0165    UGET    19   2      ; _
+0166    KSTR    20  35      ; "Total highlights"
+0167    CALL    19   2   2
+0168    TSETB   19  18   1
+0169    GGET    19  16      ; "tonumber"
+0170    MOV     20   8
+0171    CALL    19   0   2
+0172    TSETM   19   1      ; 2
+0173    TSETB   18  17   7
+0174    TNEW    18   3
+0175    UGET    19   2      ; _
+0176    KSTR    20  36      ; "Total notes"
+0177    CALL    19   2   2
+0178    TSETB   19  18   1
+0179    GGET    19  16      ; "tonumber"
+0180    MOV     20   7
+0181    CALL    19   0   2
+0182    TSETM   19   1      ; 2
+0183    TSETB   18  17   8
+0184    TNEW    18   3
+0185    UGET    19   2      ; _
+0186    KSTR    20  37      ; "Total pages read"
+0187    CALL    19   2   2
+0188    TSETB   19  18   1
+0189    GGET    19  16      ; "tonumber"
+0190    MOV     20  12
+0191    CALL    19   0   2
+0192    TSETM   19   1      ; 2
+0193    TSETB   18  17   9
+0194    TNEW    18   3
+0195    UGET    19   2      ; _
+0196    KSTR    20  38      ; "Total days"
+0197    CALL    19   2   2
+0198    TSETB   19  18   1
+0199    GGET    19  16      ; "tonumber"
+0200    MOV     20  10
+0201    CALL    19   0   2
+0202    TSETM   19   1      ; 2
+0203    TSETB   18  17  10
+0204    TNEW    18   3
+0205    UGET    19   2      ; _
+0206    KSTR    20  39      ; "Average time per page"
+0207    CALL    19   2   2
+0208    TSETB   19  18   1
+0209    UGET    19   3      ; util
+0210    TGETS   19  19  28  ; "secondsToClock"
+0211    TGETS   20   0  19  ; "avg_time"
+0212    KPRI    21   1
+0213    CALL    19   0   3
+0214    TSETM   19   1      ; 2
+0215    TSETB   18  17  11
+0216    TNEW    18   3
+0217    UGET    19   2      ; _
+0218    KSTR    20  40      ; "Current pages read/Total pages"
+0219    CALL    19   2   2
+0220    TSETB   19  18   1
+0221    TGETS   19   0  41  ; "curr_page"
+0222    KSTR    20  42      ; "/"
+0223    TGETS   21   0  11  ; "data"
+0224    TGETS   21  21  12  ; "pages"
+0225    CAT     19  19  21
+0226    TSETB   19  18   2
+0227    TSETB   18  17  12
+0228    TNEW    18   3
+0229    UGET    19   2      ; _
+0230    KSTR    20  43      ; "Percentage completed"
+0231    CALL    19   2   2
+0232    TSETB   19  18   1
+0233    MOV     20  16
+0234    TGETS   19  16   6  ; "format"
+0235    TGETS   21   0  41  ; "curr_page"
+0236    TGETS   22   0  11  ; "data"
+0237    TGETS   22  22  12  ; "pages"
+0238    DIVVV   21  21  22
+0239    MULVN   21  21   2  ; 100
+0240    CALL    19   0   3
+0241    TSETM   19   1      ; 2
+0242    TSETB   18  17  13
+0243    TDUP    18  45
+0244    UGET    19   2      ; _
+0245    KSTR    20  44      ; "Average time per day"
+0246    CALL    19   2   2
+0247    TSETB   19  18   1
+0248    UGET    19   3      ; util
+0249    TGETS   19  19  28  ; "secondsToClock"
+0250    GGET    20  16      ; "tonumber"
+0251    MOV     21  10
+0252    CALL    20   2   2
+0253    DIVVV   20  11  20
+0254    CALL    19   2   2
+0255    TSETB   19  18   2
+0256    TSETB   18  17  14
+0257    TNEW    18   3
+0258    UGET    19   2      ; _
+0259    KSTR    20  46      ; "Estimated reading finished"
+0260    CALL    19   2   2
+0261    TSETB   19  18   1
+0262    UGET    19   4      ; T
+0263    UGET    20   5      ; N_
+0264    KSTR    21  47      ; "%1 (1 day)"
+0265    KSTR    22  48      ; "%1 (%2 days)"
+0266    MOV     23  14
+0267    CALL    20   2   4
+0268    MOV     21  15
+0269    MOV     22  14
+0270    CALL    19   0   4
+0271    TSETM   19   1      ; 2
+0272    TSETB   18  17  15
+0273    RET1    17   2
+
+-- BYTECODE -- main.lua:1210-1213
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1203-1216
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "kv"
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "close"
+0006    UGET     3   0      ; self
+0007    TGETS    3   3   0  ; "kv"
+0008    CALL     1   1   3
+0009    UGET     1   0      ; self
+0010    UGET     2   2      ; KeyValuePage
+0011    MOV      3   2
+0012    TGETS    2   2   2  ; "new"
+0013    TDUP     4   4
+0014    UGET     5   3      ; _
+0015    KSTR     6   3      ; "Read in days"
+0016    CALL     5   2   2
+0017    TSETS    5   4   5  ; "title"
+0018    UGET     5   0      ; self
+0019    MOV      6   5
+0020    TGETS    5   5   6  ; "getDatesForBook"
+0021    UGET     7   4      ; id_book
+0022    CALL     5   2   3
+0023    TSETS    5   4   7  ; "kv_pairs"
+0024    FNEW     5   8      ; main.lua:1210
+0025    TSETS    5   4   9  ; "callback_return"
+0026    CALL     2   2   3
+0027    TSETS    2   1   0  ; "kv"
+0028    UGET     1   1      ; UIManager
+0029    MOV      2   1
+0030    TGETS    1   1  10  ; "show"
+0031    UGET     3   0      ; self
+0032    TGETS    3   3   0  ; "kv"
+0033    CALL     1   1   3
+0034    UCLO     0 => 0035
+0035 => RET0     0   1
+
+-- BYTECODE -- main.lua:1136-1219
+0001    ISNEP    1   0
+0002    JMP      2 => 0004
+0003    UCLO     0 => 0208
+0004 => UGET     2   0      ; SQ3
+0005    TGETS    2   2   0  ; "open"
+0006    UGET     3   1      ; db_location
+0007    CALL     2   2   2
+0008    KSTR     3   1      ; "        SELECT title, authors, notes, hi"~
+0009    MOV      5   2
+0010    TGETS    4   2   2  ; "rowexec"
+0011    GGET     6   3      ; "string"
+0012    TGETS    6   6   4  ; "format"
+0013    MOV      7   3
+0014    MOV      8   1
+0015    CALL     6   0   3
+0016    CALLM    4   7   1
+0017    KSTR     3   5      ; "        SELECT count(*)\n        FROM   "~
+0018    MOV     11   2
+0019    TGETS   10   2   2  ; "rowexec"
+0020    GGET    12   3      ; "string"
+0021    TGETS   12  12   4  ; "format"
+0022    MOV     13   3
+0023    MOV     14   1
+0024    CALL    12   0   3
+0025    CALLM   10   2   1
+0026    KSTR     3   6      ; "        SELECT sum(period),\n           "~
+0027    MOV     12   2
+0028    TGETS   11   2   2  ; "rowexec"
+0029    GGET    13   3      ; "string"
+0030    TGETS   13  13   4  ; "format"
+0031    MOV     14   3
+0032    MOV     15   1
+0033    CALL    13   0   3
+0034    CALLM   11   3   1
+0035    KSTR     3   7      ; "        SELECT min(start_time)\n        "~
+0036    MOV     14   2
+0037    TGETS   13   2   2  ; "rowexec"
+0038    GGET    15   3      ; "string"
+0039    TGETS   15  15   4  ; "format"
+0040    MOV     16   3
+0041    MOV     17   1
+0042    CALL    15   0   3
+0043    CALLM   13   2   1
+0044    MOV     15   2
+0045    TGETS   14   2   8  ; "close"
+0046    CALL    14   1   2
+0047    ISNEP   11   0
+0048    JMP     14 => 0050
+0049    KSHORT  11   0
+0050 => ISNEP   12   0
+0051    JMP     14 => 0053
+0052    KSHORT  12   0
+0053 => GGET    14   9      ; "tonumber"
+0054    MOV     15  11
+0055    CALL    14   2   2
+0056    MOV     11  14
+0057    GGET    14   9      ; "tonumber"
+0058    MOV     15  12
+0059    CALL    14   2   2
+0060    MOV     12  14
+0061    GGET    14   9      ; "tonumber"
+0062    MOV     15   8
+0063    CALL    14   2   2
+0064    MOV      8  14
+0065    ISEQP    8   0
+0066    JMP     14 => 0069
+0067    ISNEN    8   0      ; 0
+0068    JMP     14 => 0070
+0069 => KSHORT   8   1
+0070 => DIVVV   14  11  12
+0071    TDUP    15  29
+0072    TNEW    16   3
+0073    UGET    17   2      ; _
+0074    KSTR    18  10      ; "Title"
+0075    CALL    17   2   2
+0076    TSETB   17  16   1
+0077    TSETB    4  16   2
+0078    TSETB   16  15   1
+0079    TNEW    16   3
+0080    UGET    17   2      ; _
+0081    KSTR    18  11      ; "Authors"
+0082    CALL    17   2   2
+0083    TSETB   17  16   1
+0084    TSETB    5  16   2
+0085    TSETB   16  15   2
+0086    TNEW    16   3
+0087    UGET    17   2      ; _
+0088    KSTR    18  12      ; "First opened"
+0089    CALL    17   2   2
+0090    TSETB   17  16   1
+0091    GGET    17  13      ; "os"
+0092    TGETS   17  17  14  ; "date"
+0093    KSTR    18  15      ; "%Y-%m-%d (%H:%M)"
+0094    GGET    19   9      ; "tonumber"
+0095    MOV     20  13
+0096    CALL    19   0   2
+0097    CALLM   17   0   1
+0098    TSETM   17   1      ; 2
+0099    TSETB   16  15   3
+0100    TNEW    16   3
+0101    UGET    17   2      ; _
+0102    KSTR    18  16      ; "Last opened"
+0103    CALL    17   2   2
+0104    TSETB   17  16   1
+0105    GGET    17  13      ; "os"
+0106    TGETS   17  17  14  ; "date"
+0107    KSTR    18  15      ; "%Y-%m-%d (%H:%M)"
+0108    GGET    19   9      ; "tonumber"
+0109    MOV     20   9
+0110    CALL    19   0   2
+0111    CALLM   17   0   1
+0112    TSETM   17   1      ; 2
+0113    TSETB   16  15   4
+0114    TNEW    16   3
+0115    UGET    17   2      ; _
+0116    KSTR    18  17      ; "Total time"
+0117    CALL    17   2   2
+0118    TSETB   17  16   1
+0119    UGET    17   3      ; util
+0120    TGETS   17  17  18  ; "secondsToClock"
+0121    MOV     18  11
+0122    KPRI    19   1
+0123    CALL    17   0   3
+0124    TSETM   17   1      ; 2
+0125    TSETB   16  15   5
+0126    TNEW    16   3
+0127    UGET    17   2      ; _
+0128    KSTR    18  19      ; "Total highlights"
+0129    CALL    17   2   2
+0130    TSETB   17  16   1
+0131    GGET    17   9      ; "tonumber"
+0132    MOV     18   7
+0133    CALL    17   0   2
+0134    TSETM   17   1      ; 2
+0135    TSETB   16  15   6
+0136    TNEW    16   3
+0137    UGET    17   2      ; _
+0138    KSTR    18  20      ; "Total notes"
+0139    CALL    17   2   2
+0140    TSETB   17  16   1
+0141    GGET    17   9      ; "tonumber"
+0142    MOV     18   6
+0143    CALL    17   0   2
+0144    TSETM   17   1      ; 2
+0145    TSETB   16  15   7
+0146    TNEW    16   3
+0147    UGET    17   2      ; _
+0148    KSTR    18  21      ; "Total days"
+0149    CALL    17   2   2
+0150    TSETB   17  16   1
+0151    GGET    17   9      ; "tonumber"
+0152    MOV     18  10
+0153    CALL    17   0   2
+0154    TSETM   17   1      ; 2
+0155    TSETB   16  15   8
+0156    TNEW    16   3
+0157    UGET    17   2      ; _
+0158    KSTR    18  22      ; "Average time per page"
+0159    CALL    17   2   2
+0160    TSETB   17  16   1
+0161    UGET    17   3      ; util
+0162    TGETS   17  17  18  ; "secondsToClock"
+0163    MOV     18  14
+0164    KPRI    19   1
+0165    CALL    17   0   3
+0166    TSETM   17   1      ; 2
+0167    TSETB   16  15   9
+0168    TNEW    16   3
+0169    UGET    17   2      ; _
+0170    KSTR    18  23      ; "Read pages/Total pages"
+0171    CALL    17   2   2
+0172    TSETB   17  16   1
+0173    MOV     17  12
+0174    KSTR    18  24      ; "/"
+0175    MOV     19   8
+0176    CAT     17  17  19
+0177    TSETB   17  16   2
+0178    TSETB   16  15  10
+0179    TNEW    16   3
+0180    UGET    17   2      ; _
+0181    KSTR    18  25      ; "Percentage completed"
+0182    CALL    17   2   2
+0183    TSETB   17  16   1
+0184    GGET    17  26      ; "math"
+0185    TGETS   17  17  27  ; "floor"
+0186    DIVVV   18  12   8
+0187    MULVN   18  18   2  ; 100
+0188    ADDVN   18  18   3  ; 0.5
+0189    CALL    17   2   2
+0190    KSTR    18  28      ; "%"
+0191    CAT     17  17  18
+0192    TSETB   17  16   2
+0193    TSETB   16  15  11
+0194    TDUP    16  33
+0195    UGET    17   2      ; _
+0196    KSTR    18  30      ; "Show days"
+0197    CALL    17   2   2
+0198    TSETB   17  16   1
+0199    UGET    17   2      ; _
+0200    KSTR    18  31      ; "Tap to display"
+0201    CALL    17   2   2
+0202    TSETB   17  16   2
+0203    FNEW    17  32      ; main.lua:1203
+0204    TSETS   17  16  34  ; "callback"
+0205    TSETB   16  15  13
+0206    UCLO     0 => 0207
+0207 => RET1    15   2
+0208 => RET0     0   1
+
+-- BYTECODE -- main.lua:1221-1239
+0001    KSTR     0   0      ; "            SELECT dates,\n             "~
+0002    RET1     0   2
+
+-- BYTECODE -- main.lua:1241-1259
+0001    KSTR     0   0      ; "            SELECT dates,\n             "~
+0002    RET1     0   2
+
+-- BYTECODE -- main.lua:1261-1279
+0001    KSTR     0   0      ; "            SELECT dates,\n             "~
+0002    RET1     0   2
+
+-- BYTECODE -- main.lua:1289-1292
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1299-1302
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1281-1306
+0001    TGETS    5   0   0  ; "kv"
+0002    UGET     6   0      ; UIManager
+0003    MOV      7   6
+0004    TGETS    6   6   1  ; "close"
+0005    MOV      8   5
+0006    CALL     6   1   3
+0007    ISF          4
+0008    JMP      6 => 0031
+0009    UGET     6   1      ; KeyValuePage
+0010    MOV      7   6
+0011    TGETS    6   6   2  ; "new"
+0012    TDUP     8   4
+0013    UGET     9   2      ; T
+0014    UGET    10   3      ; _
+0015    KSTR    11   3      ; "Books from: %1"
+0016    CALL    10   2   2
+0017    MOV     11   3
+0018    CALL     9   2   3
+0019    TSETS    9   8   5  ; "title"
+0020    MOV     10   0
+0021    TGETS    9   0   6  ; "getBooksFromPeriod"
+0022    MOV     11   1
+0023    MOV     12   2
+0024    CALL     9   2   4
+0025    TSETS    9   8   7  ; "kv_pairs"
+0026    FNEW     9   8      ; main.lua:1289
+0027    TSETS    9   8   9  ; "callback_return"
+0028    CALL     6   2   3
+0029    TSETS    6   0   0  ; "kv"
+0030    JMP      6 => 0046
+0031 => UGET     6   1      ; KeyValuePage
+0032    MOV      7   6
+0033    TGETS    6   6   2  ; "new"
+0034    TDUP     8  10
+0035    TSETS    3   8   5  ; "title"
+0036    MOV     10   0
+0037    TGETS    9   0  11  ; "getDaysFromPeriod"
+0038    MOV     11   1
+0039    MOV     12   2
+0040    CALL     9   2   4
+0041    TSETS    9   8   7  ; "kv_pairs"
+0042    FNEW     9  12      ; main.lua:1299
+0043    TSETS    9   8   9  ; "callback_return"
+0044    CALL     6   2   3
+0045    TSETS    6   0   0  ; "kv"
+0046 => UGET     6   0      ; UIManager
+0047    MOV      7   6
+0048    TGETS    6   6  13  ; "show"
+0049    TGETS    8   0   0  ; "kv"
+0050    CALL     6   1   3
+0051    UCLO     0 => 0052
+0052 => RET0     0   1
+
+-- BYTECODE -- main.lua:1316-1319
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1326-1329
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1308-1333
+0001    TGETS    5   0   0  ; "kv"
+0002    UGET     6   0      ; UIManager
+0003    MOV      7   6
+0004    TGETS    6   6   1  ; "close"
+0005    MOV      8   5
+0006    CALL     6   1   3
+0007    ISF          4
+0008    JMP      6 => 0031
+0009    UGET     6   1      ; KeyValuePage
+0010    MOV      7   6
+0011    TGETS    6   6   2  ; "new"
+0012    TDUP     8   4
+0013    UGET     9   2      ; T
+0014    UGET    10   3      ; _
+0015    KSTR    11   3      ; "Books from: %1"
+0016    CALL    10   2   2
+0017    MOV     11   3
+0018    CALL     9   2   3
+0019    TSETS    9   8   5  ; "title"
+0020    MOV     10   0
+0021    TGETS    9   0   6  ; "getBooksFromPeriod"
+0022    MOV     11   1
+0023    MOV     12   2
+0024    CALL     9   2   4
+0025    TSETS    9   8   7  ; "kv_pairs"
+0026    FNEW     9   8      ; main.lua:1316
+0027    TSETS    9   8   9  ; "callback_return"
+0028    CALL     6   2   3
+0029    TSETS    6   0   0  ; "kv"
+0030    JMP      6 => 0046
+0031 => UGET     6   1      ; KeyValuePage
+0032    MOV      7   6
+0033    TGETS    6   6   2  ; "new"
+0034    TDUP     8  10
+0035    TSETS    3   8   5  ; "title"
+0036    MOV     10   0
+0037    TGETS    9   0  11  ; "getDaysFromPeriod"
+0038    MOV     11   1
+0039    MOV     12   2
+0040    CALL     9   2   4
+0041    TSETS    9   8   7  ; "kv_pairs"
+0042    FNEW     9  12      ; main.lua:1326
+0043    TSETS    9   8   9  ; "callback_return"
+0044    CALL     6   2   3
+0045    TSETS    6   0   0  ; "kv"
+0046 => UGET     6   0      ; UIManager
+0047    MOV      7   6
+0048    TGETS    6   6  13  ; "show"
+0049    TGETS    8   0   0  ; "kv"
+0050    CALL     6   1   3
+0051    UCLO     0 => 0052
+0052 => RET0     0   1
+
+-- BYTECODE -- main.lua:1342-1345
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1335-1348
+0001    TGETS    4   0   0  ; "kv"
+0002    UGET     5   0      ; UIManager
+0003    MOV      6   5
+0004    TGETS    5   5   1  ; "close"
+0005    MOV      7   4
+0006    CALL     5   1   3
+0007    UGET     5   1      ; KeyValuePage
+0008    MOV      6   5
+0009    TGETS    5   5   2  ; "new"
+0010    TDUP     7   3
+0011    TSETS    3   7   4  ; "title"
+0012    MOV      9   0
+0013    TGETS    8   0   5  ; "getBooksFromPeriod"
+0014    MOV     10   1
+0015    MOV     11   2
+0016    CALL     8   2   4
+0017    TSETS    8   7   6  ; "kv_pairs"
+0018    FNEW     8   7      ; main.lua:1342
+0019    TSETS    8   7   8  ; "callback_return"
+0020    CALL     5   2   3
+0021    TSETS    5   0   0  ; "kv"
+0022    UGET     5   0      ; UIManager
+0023    MOV      6   5
+0024    TGETS    5   5   9  ; "show"
+0025    TGETS    7   0   0  ; "kv"
+0026    CALL     5   1   3
+0027    UCLO     0 => 0028
+0028 => RET0     0   1
+
+-- BYTECODE -- main.lua:1414-1416
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "callbackMonthly"
+0004    UGET     2   1      ; start_month
+0005    UGET     3   2      ; stop_month
+0006    UGET     4   3      ; date_text
+0007    UGET     5   4      ; book_mode
+0008    CALL     0   1   6
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1428-1430
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "callbackWeekly"
+0004    UGET     2   1      ; begin_week
+0005    UGET     3   1      ; begin_week
+0006    ADDVN    3   3   0  ; 604800
+0007    UGET     4   2      ; date_text
+0008    UGET     5   3      ; book_mode
+0009    CALL     0   1   6
+0010    RET0     0   1
+
+-- BYTECODE -- main.lua:1439-1441
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "callbackDaily"
+0004    UGET     2   1      ; begin_day
+0005    UGET     3   1      ; begin_day
+0006    ADDVN    3   3   0  ; 86400
+0007    UGET     4   2      ; date_text
+0008    CALL     0   1   5
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1356-1446
+0001    TNEW     4   0
+0002    KNIL     5   9
+0003    GGET    10   0      ; "os"
+0004    TGETS   10  10   1  ; "date"
+0005    KSTR    11   2      ; "*t"
+0006    CALL    10   2   2
+0007    TGETS   11  10   3  ; "hour"
+0008    MULVN   11  11   0  ; 3600
+0009    TGETS   12  10   4  ; "min"
+0010    MULVN   12  12   1  ; 60
+0011    ADDVV   11  11  12
+0012    TGETS   12  10   5  ; "sec"
+0013    ADDVV   11  11  12
+0014    GGET    12   0      ; "os"
+0015    TGETS   12  12   6  ; "time"
+0016    CALL    12   2   1
+0017    KNUM    13   2      ; 86400
+0018    KPRI    14   0
+0019    KSHORT  15   0
+0020    KSHORT  16   0
+0021    ISGE    16   1
+0022    JMP     16 => 0027
+0023    SUBVN   16   1   3  ; 1
+0024    MULVV   16  16  13
+0025    SUBVV   16  12  16
+0026    SUBVV   15  16  11
+0027 => ISEQS    2   7      ; "daily"
+0028    JMP     16 => 0031
+0029    ISNES    2   8      ; "daily_weekday"
+0030    JMP     16 => 0035
+0031 => UGET    16   0      ; sqlDaily
+0032    CALL    16   2   1
+0033    MOV     14  16
+0034    JMP     16 => 0046
+0035 => ISNES    2   9      ; "weekly"
+0036    JMP     16 => 0041
+0037    UGET    16   1      ; sqlWeekly
+0038    CALL    16   2   1
+0039    MOV     14  16
+0040    JMP     16 => 0046
+0041 => ISNES    2  10      ; "monthly"
+0042    JMP     16 => 0046
+0043    UGET    16   2      ; sqlMonthly
+0044    CALL    16   2   1
+0045    MOV     14  16
+0046 => MOV     17   0
+0047    TGETS   16   0  11  ; "insertDB"
+0048    TGETS   18   0  12  ; "id_curr_book"
+0049    CALL    16   1   3
+0050    UGET    16   3      ; SQ3
+0051    TGETS   16  16  13  ; "open"
+0052    UGET    17   4      ; db_location
+0053    CALL    16   2   2
+0054    MOV     18  16
+0055    TGETS   17  16  14  ; "exec"
+0056    GGET    19  15      ; "string"
+0057    TGETS   19  19  16  ; "format"
+0058    MOV     20  14
+0059    MOV     21  15
+0060    CALL    19   0   3
+0061    CALLM   17   2   1
+0062    MOV     19  16
+0063    TGETS   18  16  17  ; "close"
+0064    CALL    18   1   2
+0065    ISNEP   17   0
+0066    JMP     18 => 0069
+0067    TNEW    18   0
+0068    UCLO     0 => 0357
+0069 => KSHORT  18   1
+0070    TGETS   19  17  18  ; "dates"
+0071    LEN     19  19
+0072    KSHORT  20   1
+0073    FORI    18 => 0355
+0074 => KPRI    22   0
+0075    GGET    23  19      ; "tonumber"
+0076    TGETB   24  17   4
+0077    TGETV   24  24  21
+0078    CALL    23   2   2
+0079    MOV      9  23
+0080    ISNES    2   8      ; "daily_weekday"
+0081    JMP     23 => 0100
+0082    GGET    23  15      ; "string"
+0083    TGETS   23  23  16  ; "format"
+0084    KSTR    24  20      ; "%s (%s)"
+0085    GGET    25   0      ; "os"
+0086    TGETS   25  25   1  ; "date"
+0087    KSTR    26  21      ; "%Y-%m-%d"
+0088    MOV     27   9
+0089    CALL    25   2   3
+0090    UGET    26   5      ; shortDayOfWeekTranslation
+0091    GGET    27   0      ; "os"
+0092    TGETS   27  27   1  ; "date"
+0093    KSTR    28  22      ; "%a"
+0094    MOV     29   9
+0095    CALL    27   2   3
+0096    TGETV   26  26  27
+0097    CALL    23   2   4
+0098    MOV     22  23
+0099    JMP     23 => 0142
+0100 => ISNES    2   7      ; "daily"
+0101    JMP     23 => 0105
+0102    TGETB   23  17   1
+0103    TGETV   22  23  21
+0104    JMP     23 => 0142
+0105 => ISNES    2   9      ; "weekly"
+0106    JMP     23 => 0124
+0107    UGET    23   6      ; T
+0108    UGET    24   7      ; _
+0109    KSTR    25  23      ; "%1 Week %2"
+0110    CALL    24   2   2
+0111    GGET    25   0      ; "os"
+0112    TGETS   25  25   1  ; "date"
+0113    KSTR    26  24      ; "%Y"
+0114    MOV     27   9
+0115    CALL    25   2   3
+0116    GGET    26   0      ; "os"
+0117    TGETS   26  26   1  ; "date"
+0118    KSTR    27  25      ; " %W"
+0119    MOV     28   9
+0120    CALL    26   0   3
+0121    CALLM   23   2   2
+0122    MOV     22  23
+0123    JMP     23 => 0142
+0124 => ISNES    2  10      ; "monthly"
+0125    JMP     23 => 0140
+0126    UGET    23   8      ; monthTranslation
+0127    GGET    24   0      ; "os"
+0128    TGETS   24  24   1  ; "date"
+0129    KSTR    25  26      ; "%B"
+0130    MOV     26   9
+0131    CALL    24   2   3
+0132    TGETV   23  23  24
+0133    GGET    24   0      ; "os"
+0134    TGETS   24  24   1  ; "date"
+0135    KSTR    25  27      ; " %Y"
+0136    MOV     26   9
+0137    CALL    24   2   3
+0138    CAT     22  23  24
+0139    JMP     23 => 0142
+0140 => TGETB   23  17   1
+0141    TGETV   22  23  21
+0142 => ISNES    2  10      ; "monthly"
+0143    JMP     23 => 0206
+0144    GGET    23  19      ; "tonumber"
+0145    GGET    24   0      ; "os"
+0146    TGETS   24  24   1  ; "date"
+0147    KSTR    25  24      ; "%Y"
+0148    MOV     26   9
+0149    CALL    24   0   3
+0150    CALLM   23   2   0
+0151    MOV      5  23
+0152    GGET    23  19      ; "tonumber"
+0153    GGET    24   0      ; "os"
+0154    TGETS   24  24   1  ; "date"
+0155    KSTR    25  28      ; "%m"
+0156    MOV     26   9
+0157    CALL    24   0   3
+0158    CALLM   23   2   0
+0159    MOV      7  23
+0160    ISNEN    7   4      ; 12
+0161    JMP     23 => 0165
+0162    ADDVN    6   5   3  ; 1
+0163    KSHORT   8   1
+0164    JMP     23 => 0167
+0165 => MOV      6   5
+0166    ADDVN    8   7   3  ; 1
+0167 => GGET    23   0      ; "os"
+0168    TGETS   23  23   6  ; "time"
+0169    TDUP    24  29
+0170    TSETS    5  24  30  ; "year"
+0171    TSETS    7  24  31  ; "month"
+0172    CALL    23   2   2
+0173    GGET    24   0      ; "os"
+0174    TGETS   24  24   6  ; "time"
+0175    TDUP    25  32
+0176    TSETS    6  25  30  ; "year"
+0177    TSETS    8  25  31  ; "month"
+0178    CALL    24   2   2
+0179    GGET    25  33      ; "table"
+0180    TGETS   25  25  34  ; "insert"
+0181    MOV     26   4
+0182    TDUP    27  38
+0183    TSETB   22  27   1
+0184    UGET    28   6      ; T
+0185    UGET    29   7      ; _
+0186    KSTR    30  35      ; "Pages: (%1) Time: %2"
+0187    CALL    29   2   2
+0188    GGET    30  19      ; "tonumber"
+0189    TGETB   31  17   2
+0190    TGETV   31  31  21
+0191    CALL    30   2   2
+0192    UGET    31   9      ; util
+0193    TGETS   31  31  36  ; "secondsToClock"
+0194    GGET    32  19      ; "tonumber"
+0195    TGETB   33  17   3
+0196    TGETV   33  33  21
+0197    CALL    32   2   2
+0198    KPRI    33   1
+0199    CALL    31   0   3
+0200    CALLM   28   2   2
+0201    TSETB   28  27   2
+0202    FNEW    28  37      ; main.lua:1414
+0203    TSETS   28  27  39  ; "callback"
+0204    CALL    25   1   3
+0205    UCLO    23 => 0353
+0206 => ISNES    2   9      ; "weekly"
+0207    JMP     23 => 0288
+0208    GGET    23   0      ; "os"
+0209    TGETS   23  23   1  ; "date"
+0210    KSTR    24  40      ; "%H%M%S%w"
+0211    MOV     25   9
+0212    CALL    23   2   3
+0213    GGET    24  19      ; "tonumber"
+0214    TGETB   25  17   4
+0215    TGETV   25  25  21
+0216    CALL    24   2   2
+0217    GGET    25  19      ; "tonumber"
+0218    GGET    26  15      ; "string"
+0219    TGETS   26  26  41  ; "sub"
+0220    MOV     27  23
+0221    KSHORT  28   1
+0222    KSHORT  29   2
+0223    CALL    26   0   4
+0224    CALLM   25   2   0
+0225    MULNV   25  25   0  ; 3600
+0226    SUBVV   24  24  25
+0227    GGET    25  19      ; "tonumber"
+0228    GGET    26  15      ; "string"
+0229    TGETS   26  26  41  ; "sub"
+0230    MOV     27  23
+0231    KSHORT  28   3
+0232    KSHORT  29   4
+0233    CALL    26   0   4
+0234    CALLM   25   2   0
+0235    MULNV   25  25   1  ; 60
+0236    SUBVV   24  24  25
+0237    GGET    25  19      ; "tonumber"
+0238    GGET    26  15      ; "string"
+0239    TGETS   26  26  41  ; "sub"
+0240    MOV     27  23
+0241    KSHORT  28   5
+0242    KSHORT  29   6
+0243    CALL    26   0   4
+0244    CALLM   25   2   0
+0245    SUBVV   24  24  25
+0246    GGET    25  19      ; "tonumber"
+0247    GGET    26  15      ; "string"
+0248    TGETS   26  26  41  ; "sub"
+0249    MOV     27  23
+0250    KSHORT  28   7
+0251    KSHORT  29   8
+0252    CALL    26   0   4
+0253    CALLM   25   2   0
+0254    ISNEN   25   5      ; 0
+0255    JMP     26 => 0258
+0256    KSHORT  25   6
+0257    JMP     26 => 0259
+0258 => SUBVN   25  25   3  ; 1
+0259 => MULVN   26  25   2  ; 86400
+0260    SUBVV   24  24  26
+0261    GGET    26  33      ; "table"
+0262    TGETS   26  26  34  ; "insert"
+0263    MOV     27   4
+0264    TDUP    28  43
+0265    TSETB   22  28   1
+0266    UGET    29   6      ; T
+0267    UGET    30   7      ; _
+0268    KSTR    31  35      ; "Pages: (%1) Time: %2"
+0269    CALL    30   2   2
+0270    GGET    31  19      ; "tonumber"
+0271    TGETB   32  17   2
+0272    TGETV   32  32  21
+0273    CALL    31   2   2
+0274    UGET    32   9      ; util
+0275    TGETS   32  32  36  ; "secondsToClock"
+0276    GGET    33  19      ; "tonumber"
+0277    TGETB   34  17   3
+0278    TGETV   34  34  21
+0279    CALL    33   2   2
+0280    KPRI    34   1
+0281    CALL    32   0   3
+0282    CALLM   29   2   2
+0283    TSETB   29  28   2
+0284    FNEW    29  42      ; main.lua:1428
+0285    TSETS   29  28  39  ; "callback"
+0286    CALL    26   1   3
+0287    UCLO    23 => 0353
+0288 => GGET    23   0      ; "os"
+0289    TGETS   23  23   1  ; "date"
+0290    KSTR    24  44      ; "%H%M%S"
+0291    MOV     25   9
+0292    CALL    23   2   3
+0293    GGET    24  19      ; "tonumber"
+0294    TGETB   25  17   4
+0295    TGETV   25  25  21
+0296    CALL    24   2   2
+0297    GGET    25  19      ; "tonumber"
+0298    GGET    26  15      ; "string"
+0299    TGETS   26  26  41  ; "sub"
+0300    MOV     27  23
+0301    KSHORT  28   1
+0302    KSHORT  29   2
+0303    CALL    26   0   4
+0304    CALLM   25   2   0
+0305    MULNV   25  25   0  ; 3600
+0306    SUBVV   24  24  25
+0307    GGET    25  19      ; "tonumber"
+0308    GGET    26  15      ; "string"
+0309    TGETS   26  26  41  ; "sub"
+0310    MOV     27  23
+0311    KSHORT  28   3
+0312    KSHORT  29   4
+0313    CALL    26   0   4
+0314    CALLM   25   2   0
+0315    MULNV   25  25   1  ; 60
+0316    SUBVV   24  24  25
+0317    GGET    25  19      ; "tonumber"
+0318    GGET    26  15      ; "string"
+0319    TGETS   26  26  41  ; "sub"
+0320    MOV     27  23
+0321    KSHORT  28   5
+0322    KSHORT  29   6
+0323    CALL    26   0   4
+0324    CALLM   25   2   0
+0325    SUBVV   24  24  25
+0326    GGET    25  33      ; "table"
+0327    TGETS   25  25  34  ; "insert"
+0328    MOV     26   4
+0329    TDUP    27  46
+0330    TSETB   22  27   1
+0331    UGET    28   6      ; T
+0332    UGET    29   7      ; _
+0333    KSTR    30  35      ; "Pages: (%1) Time: %2"
+0334    CALL    29   2   2
+0335    GGET    30  19      ; "tonumber"
+0336    TGETB   31  17   2
+0337    TGETV   31  31  21
+0338    CALL    30   2   2
+0339    UGET    31   9      ; util
+0340    TGETS   31  31  36  ; "secondsToClock"
+0341    GGET    32  19      ; "tonumber"
+0342    TGETB   33  17   3
+0343    TGETV   33  33  21
+0344    CALL    32   2   2
+0345    KPRI    33   1
+0346    CALL    31   0   3
+0347    CALLM   28   2   2
+0348    TSETB   28  27   2
+0349    FNEW    28  45      ; main.lua:1439
+0350    TSETS   28  27  39  ; "callback"
+0351    CALL    25   1   3
+0352    UCLO    23 => 0353
+0353 => UCLO    22 => 0354
+0354 => FORL    18 => 0074
+0355 => UCLO     0 => 0356
+0356 => RET1     4   2
+0357 => RET1    18   2
+
+-- BYTECODE -- main.lua:1485-1488
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1478-1491
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "kv"
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "close"
+0006    MOV      3   0
+0007    CALL     1   1   3
+0008    UGET     1   0      ; self
+0009    UGET     2   2      ; KeyValuePage
+0010    MOV      3   2
+0011    TGETS    2   2   2  ; "new"
+0012    TDUP     4   4
+0013    UGET     5   3      ; T
+0014    UGET     6   4      ; _
+0015    KSTR     7   3      ; "Books in %1"
+0016    CALL     6   2   2
+0017    UGET     7   5      ; result_book
+0018    TGETB    7   7   1
+0019    UGET     8   6      ; i
+0020    TGETV    7   7   8
+0021    CALL     5   2   3
+0022    TSETS    5   4   5  ; "title"
+0023    UGET     5   0      ; self
+0024    MOV      6   5
+0025    TGETS    5   5   6  ; "getBooksFromPeriod"
+0026    UGET     7   7      ; time_begin
+0027    UGET     8   7      ; time_begin
+0028    ADDVN    8   8   0  ; 86400
+0029    CALL     5   2   4
+0030    TSETS    5   4   7  ; "kv_pairs"
+0031    FNEW     5   8      ; main.lua:1485
+0032    TSETS    5   4   9  ; "callback_return"
+0033    CALL     2   2   3
+0034    TSETS    2   1   0  ; "kv"
+0035    UGET     1   1      ; UIManager
+0036    MOV      2   1
+0037    TGETS    1   1  10  ; "show"
+0038    UGET     3   0      ; self
+0039    TGETS    3   3   0  ; "kv"
+0040    CALL     1   1   3
+0041    UCLO     0 => 0042
+0042 => RET0     0   1
+
+-- BYTECODE -- main.lua:1448-1495
+0001    TNEW     3   0
+0002    KSTR     4   0      ; "        SELECT dates,\n               co"~
+0003    UGET     5   0      ; SQ3
+0004    TGETS    5   5   1  ; "open"
+0005    UGET     6   1      ; db_location
+0006    CALL     5   2   2
+0007    MOV      7   5
+0008    TGETS    6   5   2  ; "exec"
+0009    GGET     8   3      ; "string"
+0010    TGETS    8   8   4  ; "format"
+0011    MOV      9   4
+0012    MOV     10   1
+0013    MOV     11   2
+0014    CALL     8   0   4
+0015    CALLM    6   2   1
+0016    MOV      8   5
+0017    TGETS    7   5   5  ; "close"
+0018    CALL     7   1   2
+0019    ISNEP    6   0
+0020    JMP      7 => 0023
+0021    TNEW     7   0
+0022    UCLO     0 => 0089
+0023 => KSHORT   7   1
+0024    TGETS    8   6   6  ; "dates"
+0025    LEN      8   8
+0026    KSHORT   9   1
+0027    FORI     7 => 0087
+0028 => GGET    11   7      ; "os"
+0029    TGETS   11  11   8  ; "time"
+0030    TDUP    12  10
+0031    GGET    13   3      ; "string"
+0032    TGETS   13  13   9  ; "sub"
+0033    TGETB   14   6   1
+0034    TGETV   14  14  10
+0035    KSHORT  15   1
+0036    KSHORT  16   4
+0037    CALL    13   2   4
+0038    TSETS   13  12  11  ; "year"
+0039    GGET    13   3      ; "string"
+0040    TGETS   13  13   9  ; "sub"
+0041    TGETB   14   6   1
+0042    TGETV   14  14  10
+0043    KSHORT  15   6
+0044    KSHORT  16   7
+0045    CALL    13   2   4
+0046    TSETS   13  12  12  ; "month"
+0047    GGET    13   3      ; "string"
+0048    TGETS   13  13   9  ; "sub"
+0049    TGETB   14   6   1
+0050    TGETV   14  14  10
+0051    KSHORT  15   9
+0052    KSHORT  16  10
+0053    CALL    13   2   4
+0054    TSETS   13  12  13  ; "day"
+0055    CALL    11   2   2
+0056    GGET    12  14      ; "table"
+0057    TGETS   12  12  15  ; "insert"
+0058    MOV     13   3
+0059    TDUP    14  20
+0060    TGETB   15   6   1
+0061    TGETV   15  15  10
+0062    TSETB   15  14   1
+0063    UGET    15   2      ; T
+0064    UGET    16   3      ; _
+0065    KSTR    17  16      ; "Pages: (%1) Time: %2"
+0066    CALL    16   2   2
+0067    GGET    17  17      ; "tonumber"
+0068    TGETB   18   6   2
+0069    TGETV   18  18  10
+0070    CALL    17   2   2
+0071    UGET    18   4      ; util
+0072    TGETS   18  18  18  ; "secondsToClock"
+0073    GGET    19  17      ; "tonumber"
+0074    TGETB   20   6   3
+0075    TGETV   20  20  10
+0076    CALL    19   2   2
+0077    KPRI    20   1
+0078    CALL    18   0   3
+0079    CALLM   15   2   2
+0080    TSETB   15  14   2
+0081    FNEW    15  19      ; main.lua:1478
+0082    TSETS   15  14  21  ; "callback"
+0083    CALL    12   1   3
+0084    UCLO    11 => 0085
+0085 => UCLO    10 => 0086
+0086 => FORL     7 => 0028
+0087 => UCLO     0 => 0088
+0088 => RET1     3   2
+0089 => RET1     7   2
+
+-- BYTECODE -- main.lua:1526-1529
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1519-1532
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "kv"
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "close"
+0006    UGET     3   0      ; self
+0007    TGETS    3   3   0  ; "kv"
+0008    CALL     1   1   3
+0009    UGET     1   0      ; self
+0010    UGET     2   2      ; KeyValuePage
+0011    MOV      3   2
+0012    TGETS    2   2   2  ; "new"
+0013    TDUP     4   4
+0014    UGET     5   3      ; _
+0015    KSTR     6   3      ; "Read in days"
+0016    CALL     5   2   2
+0017    TSETS    5   4   5  ; "title"
+0018    UGET     5   0      ; self
+0019    MOV      6   5
+0020    TGETS    5   5   6  ; "getDatesForBook"
+0021    GGET     7   7      ; "tonumber"
+0022    UGET     8   4      ; result_book
+0023    TGETB    8   8   4
+0024    UGET     9   5      ; i
+0025    TGETV    8   8   9
+0026    CALL     7   0   2
+0027    CALLM    5   2   1
+0028    TSETS    5   4   8  ; "kv_pairs"
+0029    FNEW     5   9      ; main.lua:1526
+0030    TSETS    5   4  10  ; "callback_return"
+0031    CALL     2   2   3
+0032    TSETS    2   1   0  ; "kv"
+0033    UGET     1   1      ; UIManager
+0034    MOV      2   1
+0035    TGETS    1   1  11  ; "show"
+0036    UGET     3   0      ; self
+0037    TGETS    3   3   0  ; "kv"
+0038    CALL     1   1   3
+0039    UCLO     0 => 0040
+0040 => RET0     0   1
+
+-- BYTECODE -- main.lua:1497-1536
+0001    TNEW     3   0
+0002    KSTR     4   0      ; "        SELECT  book_tbl.title AS title,"~
+0003    UGET     5   0      ; SQ3
+0004    TGETS    5   5   1  ; "open"
+0005    UGET     6   1      ; db_location
+0006    CALL     5   2   2
+0007    MOV      7   5
+0008    TGETS    6   5   2  ; "exec"
+0009    GGET     8   3      ; "string"
+0010    TGETS    8   8   4  ; "format"
+0011    MOV      9   4
+0012    MOV     10   1
+0013    MOV     11   2
+0014    CALL     8   0   4
+0015    CALLM    6   2   1
+0016    MOV      8   5
+0017    TGETS    7   5   5  ; "close"
+0018    CALL     7   1   2
+0019    ISNEP    6   0
+0020    JMP      7 => 0023
+0021    TNEW     7   0
+0022    UCLO     0 => 0060
+0023 => KSHORT   7   1
+0024    TGETS    8   6   6  ; "title"
+0025    LEN      8   8
+0026    KSHORT   9   1
+0027    FORI     7 => 0058
+0028 => GGET    11   7      ; "table"
+0029    TGETS   11  11   8  ; "insert"
+0030    MOV     12   3
+0031    TDUP    13  13
+0032    TGETB   14   6   1
+0033    TGETV   14  14  10
+0034    TSETB   14  13   1
+0035    UGET    14   2      ; T
+0036    UGET    15   3      ; _
+0037    KSTR    16   9      ; "%1 (%2)"
+0038    CALL    15   2   2
+0039    UGET    16   4      ; util
+0040    TGETS   16  16  10  ; "secondsToClock"
+0041    GGET    17  11      ; "tonumber"
+0042    TGETB   18   6   2
+0043    TGETV   18  18  10
+0044    CALL    17   2   2
+0045    KPRI    18   1
+0046    CALL    16   2   3
+0047    GGET    17  11      ; "tonumber"
+0048    TGETB   18   6   3
+0049    TGETV   18  18  10
+0050    CALL    17   0   2
+0051    CALLM   14   2   2
+0052    TSETB   14  13   2
+0053    FNEW    14  12      ; main.lua:1519
+0054    TSETS   14  13  14  ; "callback"
+0055    CALL    11   1   3
+0056    UCLO    10 => 0057
+0057 => FORL     7 => 0028
+0058 => UCLO     0 => 0059
+0059 => RET1     3   2
+0060 => RET1     7   2
+
+-- BYTECODE -- main.lua:1538-1579
+0001    TNEW     2   0
+0002    KNIL     3   5
+0003    GGET     6   0      ; "os"
+0004    TGETS    6   6   1  ; "date"
+0005    KSTR     7   2      ; "*t"
+0006    CALL     6   2   2
+0007    TGETS    7   6   3  ; "hour"
+0008    MULVN    7   7   0  ; 3600
+0009    TGETS    8   6   4  ; "min"
+0010    MULVN    8   8   1  ; 60
+0011    ADDVV    7   7   8
+0012    TGETS    8   6   5  ; "sec"
+0013    ADDVV    7   7   8
+0014    GGET     8   0      ; "os"
+0015    TGETS    8   8   6  ; "time"
+0016    CALL     8   2   1
+0017    KNUM     9   2      ; 86400
+0018    SUBVN   10   1   3  ; 1
+0019    MULVV   10  10   9
+0020    SUBVV   10   8  10
+0021    SUBVV   10  10   7
+0022    UGET    11   0      ; SQ3
+0023    TGETS   11  11   7  ; "open"
+0024    UGET    12   1      ; db_location
+0025    CALL    11   2   2
+0026    KSTR    12   8      ; "        SELECT dates,\n               co"~
+0027    MOV     14  11
+0028    TGETS   13  11   9  ; "exec"
+0029    GGET    15  10      ; "string"
+0030    TGETS   15  15  11  ; "format"
+0031    MOV     16  12
+0032    MOV     17  10
+0033    CALL    15   0   3
+0034    CALLM   13   2   1
+0035    IST         13
+0036    JMP     14 => 0038
+0037    RET0     0   1
+0038 => KSHORT  14   1
+0039    MOV     15   1
+0040    KSHORT  16   1
+0041    FORI    14 => 0069
+0042 => GGET    18  12      ; "tonumber"
+0043    TGETB   19  13   2
+0044    TGETV   19  19  17
+0045    CALL    18   2   2
+0046    MOV      3  18
+0047    GGET    18  12      ; "tonumber"
+0048    TGETB   19  13   3
+0049    TGETV   19  19  17
+0050    CALL    18   2   2
+0051    MOV      4  18
+0052    TGETB   18  13   1
+0053    TGETV    5  18  17
+0054    ISNEP    3   0
+0055    JMP     18 => 0057
+0056    KSHORT   3   0
+0057 => ISNEP    4   0
+0058    JMP     18 => 0060
+0059    KSHORT   4   0
+0060 => GGET    18  13      ; "table"
+0061    TGETS   18  18  14  ; "insert"
+0062    MOV     19   2
+0063    TNEW    20   4
+0064    TSETB    3  20   1
+0065    TSETB    4  20   2
+0066    TSETB    5  20   3
+0067    CALL    18   1   3
+0068    FORL    14 => 0042
+0069 => MOV     15  11
+0070    TGETS   14  11  15  ; "close"
+0071    CALL    14   1   2
+0072    RET1     2   2
+
+-- BYTECODE -- main.lua:1581-1605
+0001    TNEW     2   0
+0002    UGET     3   0      ; SQ3
+0003    TGETS    3   3   0  ; "open"
+0004    UGET     4   1      ; db_location
+0005    CALL     3   2   2
+0006    KSTR     4   1      ; "        SELECT date(start_time, 'unixepo"~
+0007    MOV      6   3
+0008    TGETS    5   3   2  ; "exec"
+0009    GGET     7   3      ; "string"
+0010    TGETS    7   7   4  ; "format"
+0011    MOV      8   4
+0012    MOV      9   1
+0013    CALL     7   0   3
+0014    CALLM    5   2   1
+0015    MOV      7   3
+0016    TGETS    6   3   5  ; "close"
+0017    CALL     6   1   2
+0018    ISNEP    5   0
+0019    JMP      6 => 0022
+0020    TNEW     6   0
+0021    RET1     6   2
+0022 => KSHORT   6   1
+0023    TGETS    7   5   6  ; "dates"
+0024    LEN      7   7
+0025    KSHORT   8   1
+0026    FORI     6 => 0054
+0027 => GGET    10   7      ; "table"
+0028    TGETS   10  10   8  ; "insert"
+0029    MOV     11   2
+0030    TNEW    12   3
+0031    TGETB   13   5   1
+0032    TGETV   13  13   9
+0033    TSETB   13  12   1
+0034    UGET    13   2      ; T
+0035    UGET    14   3      ; _
+0036    KSTR    15   9      ; "Pages: (%1) Time: %2"
+0037    CALL    14   2   2
+0038    GGET    15  10      ; "tonumber"
+0039    TGETB   16   5   2
+0040    TGETV   16  16   9
+0041    CALL    15   2   2
+0042    UGET    16   4      ; util
+0043    TGETS   16  16  11  ; "secondsToClock"
+0044    GGET    17  10      ; "tonumber"
+0045    TGETB   18   5   3
+0046    TGETV   18  18   9
+0047    CALL    17   2   2
+0048    KPRI    18   1
+0049    CALL    16   0   3
+0050    CALLM   13   0   2
+0051    TSETM   13   0      ; 2
+0052    CALL    10   1   3
+0053    FORL     6 => 0027
+0054 => RET1     2   2
+
+-- BYTECODE -- main.lua:1661-1664
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; kv
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    UGET     1   1      ; kv
+0008    TSETS    1   0   1  ; "kv"
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1653-1667
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "kv"
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "close"
+0006    UGET     3   0      ; self
+0007    TGETS    3   3   0  ; "kv"
+0008    CALL     1   1   3
+0009    UGET     1   0      ; self
+0010    UGET     2   2      ; KeyValuePage
+0011    MOV      3   2
+0012    TGETS    2   2   2  ; "new"
+0013    TDUP     4   3
+0014    UGET     5   3      ; book_title
+0015    TSETS    5   4   4  ; "title"
+0016    UGET     5   0      ; self
+0017    MOV      6   5
+0018    TGETS    5   5   5  ; "getBookStat"
+0019    UGET     7   4      ; id_book
+0020    CALL     5   2   3
+0021    TSETS    5   4   6  ; "kv_pairs"
+0022    FNEW     5   7      ; main.lua:1661
+0023    TSETS    5   4   8  ; "callback_return"
+0024    CALL     2   2   3
+0025    TSETS    2   1   0  ; "kv"
+0026    UGET     1   1      ; UIManager
+0027    MOV      2   1
+0028    TGETS    1   1   9  ; "show"
+0029    UGET     3   0      ; self
+0030    TGETS    3   3   0  ; "kv"
+0031    CALL     1   1   3
+0032    UCLO     0 => 0033
+0033 => RET0     0   1
+
+-- BYTECODE -- main.lua:1607-1672
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "insertDB"
+0003    TGETS    3   0   1  ; "id_curr_book"
+0004    CALL     1   1   3
+0005    UGET     1   0      ; SQ3
+0006    TGETS    1   1   2  ; "open"
+0007    UGET     2   1      ; db_location
+0008    CALL     1   2   2
+0009    KSTR     2   3      ; "        SELECT sum(period)\n        FROM"~
+0010    MOV      4   1
+0011    TGETS    3   1   4  ; "rowexec"
+0012    MOV      5   2
+0013    CALL     3   2   3
+0014    ISNEP    3   0
+0015    JMP      4 => 0017
+0016    KSHORT   3   0
+0017 => TNEW     4   0
+0018    KSTR     2   5      ; "        SELECT id\n        FROM   book\n"~
+0019    MOV      6   1
+0020    TGETS    5   1   6  ; "exec"
+0021    MOV      7   2
+0022    CALL     5   2   3
+0023    KPRI     6   0
+0024    ISEQP    5   0
+0025    JMP      7 => 0029
+0026    TGETS    7   5   7  ; "id"
+0027    LEN      6   7
+0028    JMP      7 => 0030
+0029 => KSHORT   6   0
+0030 => KPRI     7   0
+0031    KSHORT   8   1
+0032    MOV      9   6
+0033    KSHORT  10   1
+0034    FORI     8 => 0077
+0035 => GGET    12   8      ; "tonumber"
+0036    TGETB   13   5   1
+0037    TGETV   13  13  11
+0038    CALL    12   2   2
+0039    KSTR     2   9      ; "            SELECT title\n            FR"~
+0040    MOV     14   1
+0041    TGETS   13   1   4  ; "rowexec"
+0042    GGET    15  10      ; "string"
+0043    TGETS   15  15  11  ; "format"
+0044    MOV     16   2
+0045    MOV     17  12
+0046    CALL    15   0   3
+0047    CALLM   13   2   1
+0048    KSTR     2  12      ; "            SELECT sum(period)\n        "~
+0049    MOV     15   1
+0050    TGETS   14   1   4  ; "rowexec"
+0051    GGET    16  10      ; "string"
+0052    TGETS   16  16  11  ; "format"
+0053    MOV     17   2
+0054    MOV     18  12
+0055    CALL    16   0   3
+0056    CALLM   14   2   1
+0057    MOV      7  14
+0058    ISNEP    7   0
+0059    JMP     14 => 0061
+0060    KSHORT   7   0
+0061 => GGET    14  13      ; "table"
+0062    TGETS   14  14  14  ; "insert"
+0063    MOV     15   4
+0064    TDUP    16  17
+0065    TSETB   13  16   1
+0066    UGET    17   2      ; util
+0067    TGETS   17  17  15  ; "secondsToClock"
+0068    MOV     18   7
+0069    KPRI    19   1
+0070    CALL    17   2   3
+0071    TSETB   17  16   2
+0072    FNEW    17  16      ; main.lua:1653
+0073    TSETS   17  16  18  ; "callback"
+0074    CALL    14   1   3
+0075    UCLO    12 => 0076
+0076 => FORL     8 => 0035
+0077 => MOV      9   1
+0078    TGETS    8   1  19  ; "close"
+0079    CALL     8   1   2
+0080    UGET     8   5      ; T
+0081    UGET     9   6      ; _
+0082    KSTR    10  20      ; "Total hours read %1"
+0083    CALL     9   2   2
+0084    UGET    10   2      ; util
+0085    TGETS   10  10  15  ; "secondsToClock"
+0086    MOV     11   3
+0087    KPRI    12   1
+0088    CALL    10   0   3
+0089    CALLM    8   2   1
+0090    MOV      9   4
+0091    UCLO     0 => 0092
+0092 => RET      8   3
+
+-- BYTECODE -- main.lua:1679-1681
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "resetBook"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- main.lua:1692-1694
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "deleteBooksByTotalDuration"
+0004    UGET     2   1      ; minutes
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- main.lua:1674-1698
+0001    TNEW     1   0
+0002    GGET     2   0      ; "table"
+0003    TGETS    2   2   1  ; "insert"
+0004    MOV      3   1
+0005    TDUP     4   3
+0006    UGET     5   0      ; _
+0007    KSTR     6   2      ; "Reset statistics per book"
+0008    CALL     5   2   2
+0009    TSETS    5   4   4  ; "text"
+0010    FNEW     5   5      ; main.lua:1679
+0011    TSETS    5   4   6  ; "callback"
+0012    CALL     2   1   3
+0013    TDUP     2   7
+0014    GGET     3   8      ; "ipairs"
+0015    MOV      4   2
+0016    CALL     3   4   2
+0017    JMP      6 => 0035
+0018 => UGET     8   1      ; T
+0019    UGET     9   2      ; N_
+0020    KSTR    10   9      ; "Reset stats for books read for < 1 m"
+0021    KSTR    11  10      ; "Reset stats for books read for < %1 m"
+0022    MOV     12   7
+0023    CALL     9   2   4
+0024    MOV     10   7
+0025    CALL     8   2   3
+0026    GGET     9   0      ; "table"
+0027    TGETS    9   9   1  ; "insert"
+0028    MOV     10   1
+0029    TDUP    11  11
+0030    TSETS    8  11   4  ; "text"
+0031    FNEW    12  12      ; main.lua:1692
+0032    TSETS   12  11   6  ; "callback"
+0033    CALL     9   1   3
+0034    UCLO     6 => 0035
+0035 => ITERC    6   3   3
+0036    ITERL    6 => 0018
+0037    UCLO     0 => 0038
+0038 => RET1     1   2
+
+-- BYTECODE -- main.lua:1747-1749
+0001    RET0     0   1
+
+-- BYTECODE -- main.lua:1751-1761
+0001    KSHORT   0   1
+0002    UGET     1   0      ; total_stats
+0003    LEN      1   1
+0004    KSHORT   2   1
+0005    FORI     0 => 0024
+0006 => UGET     4   0      ; total_stats
+0007    TGETV    4   4   3
+0008    TGETB    4   4   3
+0009    UGET     5   1      ; id_book
+0010    ISNEV    4   5
+0011    JMP      4 => 0023
+0012    UGET     4   2      ; self
+0013    MOV      5   4
+0014    TGETS    4   4   0  ; "deleteBook"
+0015    UGET     6   1      ; id_book
+0016    CALL     4   1   3
+0017    GGET     4   1      ; "table"
+0018    TGETS    4   4   2  ; "remove"
+0019    UGET     5   0      ; total_stats
+0020    MOV      6   3
+0021    CALL     4   1   3
+0022    JMP      0 => 0024
+0023 => FORL     0 => 0006
+0024 => UGET     0   3      ; kv_reset_book
+0025    MOV      1   0
+0026    TGETS    0   0   3  ; "_populateItems"
+0027    CALL     0   1   2
+0028    RET0     0   1
+
+-- BYTECODE -- main.lua:1743-1763
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; ConfirmBox
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   3
+0008    UGET     5   2      ; T
+0009    UGET     6   3      ; _
+0010    KSTR     7   2      ; "Do you want to reset statistics for book"~
+0011    CALL     6   2   2
+0012    UGET     7   4      ; book_title
+0013    CALL     5   2   3
+0014    TSETS    5   4   4  ; "text"
+0015    UGET     5   3      ; _
+0016    KSTR     6   5      ; "Cancel"
+0017    CALL     5   2   2
+0018    TSETS    5   4   6  ; "cancel_text"
+0019    FNEW     5   7      ; main.lua:1747
+0020    TSETS    5   4   8  ; "cancel_callback"
+0021    UGET     5   3      ; _
+0022    KSTR     6   9      ; "Reset"
+0023    CALL     5   2   2
+0024    TSETS    5   4  10  ; "ok_text"
+0025    FNEW     5  11      ; main.lua:1751
+0026    TSETS    5   4  12  ; "ok_callback"
+0027    CALL     2   0   3
+0028    CALLM    0   1   1
+0029    RET0     0   1
+
+-- BYTECODE -- main.lua:1700-1774
+0001    TNEW     1   0
+0002    KPRI     2   0
+0003    MOV      4   0
+0004    TGETS    3   0   0  ; "insertDB"
+0005    TGETS    5   0   1  ; "id_curr_book"
+0006    CALL     3   1   3
+0007    UGET     3   0      ; SQ3
+0008    TGETS    3   3   2  ; "open"
+0009    UGET     4   1      ; db_location
+0010    CALL     3   2   2
+0011    KSTR     4   3      ; "        SELECT id\n        FROM   book\n"~
+0012    MOV      6   3
+0013    TGETS    5   3   4  ; "exec"
+0014    MOV      7   4
+0015    CALL     5   2   3
+0016    KPRI     6   0
+0017    ISEQP    5   0
+0018    JMP      7 => 0022
+0019    TGETS    7   5   5  ; "id"
+0020    LEN      6   7
+0021    JMP      7 => 0023
+0022 => KSHORT   6   0
+0023 => KPRI     7   0
+0024    KSHORT   8   1
+0025    MOV      9   6
+0026    KSHORT  10   1
+0027    FORI     8 => 0074
+0028 => GGET    12   6      ; "tonumber"
+0029    TGETB   13   5   1
+0030    TGETV   13  13  11
+0031    CALL    12   2   2
+0032    KSTR     4   7      ; "            SELECT title\n            FR"~
+0033    MOV     14   3
+0034    TGETS   13   3   8  ; "rowexec"
+0035    GGET    15   9      ; "string"
+0036    TGETS   15  15  10  ; "format"
+0037    MOV     16   4
+0038    MOV     17  12
+0039    CALL    15   0   3
+0040    CALLM   13   2   1
+0041    KSTR     4  11      ; "            SELECT sum(period)\n        "~
+0042    MOV     15   3
+0043    TGETS   14   3   8  ; "rowexec"
+0044    GGET    16   9      ; "string"
+0045    TGETS   16  16  10  ; "format"
+0046    MOV     17   4
+0047    MOV     18  12
+0048    CALL    16   0   3
+0049    CALLM   14   2   1
+0050    MOV      7  14
+0051    ISNEP    7   0
+0052    JMP     14 => 0054
+0053    KSHORT   7   0
+0054 => TGETS   14   0   1  ; "id_curr_book"
+0055    ISEQV   12  14
+0056    JMP     14 => 0072
+0057    GGET    14  12      ; "table"
+0058    TGETS   14  14  13  ; "insert"
+0059    MOV     15   1
+0060    TDUP    16  16
+0061    TSETB   13  16   1
+0062    UGET    17   2      ; util
+0063    TGETS   17  17  14  ; "secondsToClock"
+0064    MOV     18   7
+0065    KPRI    19   1
+0066    CALL    17   2   3
+0067    TSETB   17  16   2
+0068    TSETB   12  16   3
+0069    FNEW    17  15      ; main.lua:1743
+0070    TSETS   17  16  17  ; "callback"
+0071    CALL    14   1   3
+0072 => UCLO    12 => 0073
+0073 => FORL     8 => 0028
+0074 => UGET     8   7      ; KeyValuePage
+0075    MOV      9   8
+0076    TGETS    8   8  18  ; "new"
+0077    TDUP    10  20
+0078    UGET    11   6      ; _
+0079    KSTR    12  19      ; "Reset book statistics"
+0080    CALL    11   2   2
+0081    TSETS   11  10  21  ; "title"
+0082    TSETS    1  10  22  ; "kv_pairs"
+0083    CALL     8   2   3
+0084    MOV      2   8
+0085    UGET     8   3      ; UIManager
+0086    MOV      9   8
+0087    TGETS    8   8  23  ; "show"
+0088    MOV     10   2
+0089    CALL     8   1   3
+0090    MOV      9   3
+0091    TGETS    8   3  24  ; "close"
+0092    CALL     8   1   2
+0093    UCLO     0 => 0094
+0094 => RET0     0   1
+
+-- BYTECODE -- main.lua:1776-1793
+0001    UGET     2   0      ; SQ3
+0002    TGETS    2   2   0  ; "open"
+0003    UGET     3   1      ; db_location
+0004    CALL     2   2   2
+0005    KSTR     3   1      ; "            DELETE from book\n          "~
+0006    MOV      5   2
+0007    TGETS    4   2   2  ; "prepare"
+0008    MOV      6   3
+0009    CALL     4   2   3
+0010    MOV      6   4
+0011    TGETS    5   4   3  ; "reset"
+0012    CALL     5   2   2
+0013    MOV      6   5
+0014    TGETS    5   5   4  ; "bind"
+0015    MOV      7   1
+0016    CALL     5   2   3
+0017    MOV      6   5
+0018    TGETS    5   5   5  ; "step"
+0019    CALL     5   1   2
+0020    KSTR     3   6      ; "            DELETE from page_stat\n     "~
+0021    MOV      6   2
+0022    TGETS    5   2   2  ; "prepare"
+0023    MOV      7   3
+0024    CALL     5   2   3
+0025    MOV      4   5
+0026    MOV      6   4
+0027    TGETS    5   4   3  ; "reset"
+0028    CALL     5   2   2
+0029    MOV      6   5
+0030    TGETS    5   5   4  ; "bind"
+0031    MOV      7   1
+0032    CALL     5   2   3
+0033    MOV      6   5
+0034    TGETS    5   5   5  ; "step"
+0035    CALL     5   1   2
+0036    MOV      6   4
+0037    TGETS    5   4   7  ; "close"
+0038    CALL     5   1   2
+0039    MOV      6   2
+0040    TGETS    5   2   7  ; "close"
+0041    CALL     5   1   2
+0042    RET0     0   1
+
+-- BYTECODE -- main.lua:1802-1843
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "id_curr_book"
+0003    IST          0
+0004    JMP      1 => 0006
+0005    KSHORT   0  -1
+0006 => UGET     1   1      ; SQ3
+0007    TGETS    1   1   1  ; "open"
+0008    UGET     2   2      ; db_location
+0009    CALL     1   2   2
+0010    KSTR     2   2      ; "                    DELETE from page_sta"~
+0011    MOV      4   1
+0012    TGETS    3   1   3  ; "prepare"
+0013    MOV      5   2
+0014    CALL     3   2   3
+0015    MOV      5   3
+0016    TGETS    4   3   4  ; "reset"
+0017    CALL     4   2   2
+0018    MOV      5   4
+0019    TGETS    4   4   5  ; "bind"
+0020    MOV      6   0
+0021    UGET     7   3      ; max_total_duration_sec
+0022    CALL     4   2   4
+0023    MOV      5   4
+0024    TGETS    4   4   6  ; "step"
+0025    CALL     4   1   2
+0026    KSTR     2   7      ; "                    DELETE from book\n  "~
+0027    MOV      5   1
+0028    TGETS    4   1   3  ; "prepare"
+0029    MOV      6   2
+0030    CALL     4   2   3
+0031    MOV      3   4
+0032    MOV      5   3
+0033    TGETS    4   3   4  ; "reset"
+0034    CALL     4   2   2
+0035    MOV      5   4
+0036    TGETS    4   4   5  ; "bind"
+0037    MOV      6   0
+0038    UGET     7   3      ; max_total_duration_sec
+0039    CALL     4   2   4
+0040    MOV      5   4
+0041    TGETS    4   4   6  ; "step"
+0042    CALL     4   1   2
+0043    MOV      5   3
+0044    TGETS    4   3   8  ; "close"
+0045    CALL     4   1   2
+0046    KSTR     2   9      ; "                SELECT changes()\n      "~
+0047    MOV      5   1
+0048    TGETS    4   1  10  ; "rowexec"
+0049    MOV      6   2
+0050    CALL     4   2   3
+0051    ISF          4
+0052    JMP      5 => 0058
+0053    GGET     5  11      ; "tonumber"
+0054    MOV      6   4
+0055    CALL     5   2   2
+0056    ISTC     4   5
+0057    JMP      6 => 0059
+0058 => KSHORT   4   0
+0059 => UGET     5   4      ; max_total_duration_mn
+0060    KSHORT   6  30
+0061    ISGT     6   5
+0062    JMP      5 => 0082
+0063    KSHORT   5  10
+0064    ISGT     5   4
+0065    JMP      5 => 0082
+0066    MOV      6   1
+0067    TGETS    5   1  12  ; "exec"
+0068    KSTR     7  13      ; "PRAGMA temp_store = 2"
+0069    CALL     5   1   3
+0070    GGET     5  14      ; "pcall"
+0071    TGETS    6   1  12  ; "exec"
+0072    MOV      7   1
+0073    KSTR     8  15      ; "VACUUM"
+0074    CALL     5   3   4
+0075    IST          5
+0076    JMP      7 => 0082
+0077    UGET     7   5      ; logger
+0078    TGETS    7   7  16  ; "warn"
+0079    KSTR     8  17      ; "Failed compacting statistics database:"
+0080    MOV      9   6
+0081    CALL     7   1   3
+0082 => MOV      6   1
+0083    TGETS    5   1   8  ; "close"
+0084    CALL     5   1   2
+0085    UGET     5   6      ; UIManager
+0086    MOV      6   5
+0087    TGETS    5   5  18  ; "show"
+0088    UGET     7   7      ; InfoMessage
+0089    MOV      8   7
+0090    TGETS    7   7  19  ; "new"
+0091    TDUP     9  23
+0092    KSHORT  10   0
+0093    ISGE    10   4
+0094    JMP     10 => 0105
+0095    UGET    10   8      ; T
+0096    UGET    11   9      ; N_
+0097    KSTR    12  20      ; "Statistics for 1 book removed."
+0098    KSTR    13  21      ; "Statistics for %1 books removed."
+0099    MOV     14   4
+0100    CALL    11   2   4
+0101    MOV     12   4
+0102    CALL    10   2   3
+0103    IST         10
+0104    JMP     11 => 0110
+0105 => UGET    10   8      ; T
+0106    UGET    11  10      ; _
+0107    KSTR    12  22      ; "No statistics removed."
+0108    CALL    11   0   2
+0109    CALLM   10   2   0
+0110 => TSETS   10   9  24  ; "text"
+0111    CALL     7   0   3
+0112    CALLM    5   1   1
+0113    RET0     0   1
+
+-- BYTECODE -- main.lua:1795-1845
+0001    MULVN    2   1   0  ; 60
+0002    UGET     3   0      ; UIManager
+0003    MOV      4   3
+0004    TGETS    3   3   0  ; "show"
+0005    UGET     5   1      ; ConfirmBox
+0006    MOV      6   5
+0007    TGETS    5   5   1  ; "new"
+0008    TDUP     7   4
+0009    UGET     8   2      ; T
+0010    UGET     9   3      ; N_
+0011    KSTR    10   2      ; "Permanently remove statistics for books "~
+0012    KSTR    11   3      ; "Permanently remove statistics for books "~
+0013    MOV     12   1
+0014    CALL     9   2   4
+0015    MOV     10   1
+0016    CALL     8   2   3
+0017    TSETS    8   7   5  ; "text"
+0018    UGET     8   4      ; _
+0019    KSTR     9   6      ; "Remove"
+0020    CALL     8   2   2
+0021    TSETS    8   7   7  ; "ok_text"
+0022    FNEW     8   8      ; main.lua:1802
+0023    TSETS    8   7   9  ; "ok_callback"
+0024    CALL     5   0   3
+0025    CALLM    3   1   1
+0026    UCLO     0 => 0027
+0027 => RET0     0   1
+
+-- BYTECODE -- main.lua:1848-1852
+0001    TGETS    3   0   0  ; "curr_page"
+0002    ISEQV    3   2
+0003    JMP      3 => 0008
+0004    MOV      4   0
+0005    TGETS    3   0   1  ; "onPageUpdate"
+0006    MOV      5   2
+0007    CALL     3   1   3
+0008 => RET0     0   1
+
+-- BYTECODE -- main.lua:1854-1888
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "isDocless"
+0003    CALL     2   2   2
+0004    IST          2
+0005    JMP      3 => 0009
+0006    TGETS    2   0   1  ; "is_enabled"
+0007    IST          2
+0008    JMP      2 => 0010
+0009 => RET0     0   1
+0010 => TSETS    1   0   2  ; "curr_page"
+0011    TGETS    2   0   3  ; "pages_stats"
+0012    UGET     3   0      ; TimeVal
+0013    MOV      4   3
+0014    TGETS    3   3   4  ; "now"
+0015    CALL     3   2   2
+0016    TGETS    3   3   5  ; "sec"
+0017    TSETV    1   2   3
+0018    KSHORT   2   0
+0019    KSHORT   3   0
+0020    UGET     4   1      ; util
+0021    TGETS    4   4   6  ; "tableSize"
+0022    TGETS    5   0   3  ; "pages_stats"
+0023    CALL     4   2   2
+0024    KSHORT   5   1
+0025    ISGE     5   4
+0026    JMP      4 => 0072
+0027    UGET     4   1      ; util
+0028    TGETS    4   4   6  ; "tableSize"
+0029    TGETS    5   0   3  ; "pages_stats"
+0030    CALL     4   2   2
+0031    SUBVN    2   4   0  ; 1
+0032    TNEW     4   0
+0033    GGET     5   7      ; "pairs"
+0034    TGETS    6   0   3  ; "pages_stats"
+0035    CALL     5   4   2
+0036    ISNEXT   8 => 0042
+0037 => GGET    10   8      ; "table"
+0038    TGETS   10  10   9  ; "insert"
+0039    MOV     11   4
+0040    MOV     12   8
+0041    CALL    10   1   3
+0042 => ITERN    8   3   3
+0043    ITERL    8 => 0037
+0044    GGET     5   8      ; "table"
+0045    TGETS    5   5  10  ; "sort"
+0046    MOV      6   4
+0047    CALL     5   1   2
+0048    KPRI     5   0
+0049    KSHORT   6   1
+0050    LEN      7   4
+0051    SUBVN    7   7   0  ; 1
+0052    KSHORT   8   1
+0053    FORI     6 => 0072
+0054 => ADDVN   10   9   0  ; 1
+0055    TGETV   10   4  10
+0056    TGETV   11   4   9
+0057    SUBVV    5  10  11
+0058    TGETS   10   0  11  ; "page_max_read_sec"
+0059    ISGT     5  10
+0060    JMP     10 => 0066
+0061    TGETS   10   0  12  ; "page_min_read_sec"
+0062    ISGT    10   5
+0063    JMP     10 => 0066
+0064    ADDVV    3   3   5
+0065    JMP     10 => 0071
+0066 => TGETS   10   0  11  ; "page_max_read_sec"
+0067    ISGE    10   5
+0068    JMP     10 => 0071
+0069    TGETS   10   0  11  ; "page_max_read_sec"
+0070    ADDVV    3   3  10
+0071 => FORL     6 => 0054
+0072 => UGET     4   1      ; util
+0073    TGETS    4   4   6  ; "tableSize"
+0074    TGETS    5   0   3  ; "pages_stats"
+0075    CALL     4   2   2
+0076    UGET     5   2      ; PAGE_INSERT
+0077    MODVV    4   4   5
+0078    ISNEN    4   1      ; 0
+0079    JMP      4 => 0086
+0080    MOV      5   0
+0081    TGETS    4   0  13  ; "insertDB"
+0082    TGETS    6   0  14  ; "id_curr_book"
+0083    CALL     4   1   3
+0084    KSHORT   2   0
+0085    KSHORT   3   0
+0086 => TGETS    4   0  15  ; "total_read_pages"
+0087    KSHORT   5   0
+0088    ISLT     5   4
+0089    JMP      4 => 0093
+0090    KSHORT   4   0
+0091    ISGE     4   2
+0092    JMP      4 => 0099
+0093 => TGETS    4   0  17  ; "total_read_time"
+0094    ADDVV    4   4   3
+0095    TGETS    5   0  15  ; "total_read_pages"
+0096    ADDVV    5   5   2
+0097    DIVVV    4   4   5
+0098    TSETS    4   0  16  ; "avg_time"
+0099 => RET0     0   1
+
+-- BYTECODE -- main.lua:1891-1903
+0001    GGET     3   0      ; "string"
+0002    TGETS    3   3   1  ; "gsub"
+0003    MOV      4   2
+0004    KSTR     5   2      ; "^%s*(.-)%s*$"
+0005    KSTR     6   3      ; "%1"
+0006    CALL     3   2   4
+0007    MOV      2   3
+0008    ISEQS    2   4      ; ".stat"
+0009    JMP      3 => 0029
+0010    UGET     3   0      ; joinPath
+0011    MOV      4   1
+0012    MOV      5   2
+0013    CALL     3   2   3
+0014    UGET     4   1      ; lfs
+0015    TGETS    4   4   5  ; "attributes"
+0016    MOV      5   3
+0017    KSTR     6   6      ; "mode"
+0018    CALL     4   2   3
+0019    ISNES    4   7      ; "directory"
+0020    JMP      4 => 0022
+0021    RET0     0   1
+0022 => GGET     4   8      ; "pcall"
+0023    GGET     5   9      ; "dofile"
+0024    MOV      6   3
+0025    CALL     4   3   3
+0026    ISF          4
+0027    JMP      6 => 0029
+0028    RET1     5   2
+0029 => RET0     0   1
+
+-- BYTECODE -- main.lua:1905-1910
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "isDocless"
+0003    CALL     1   2   2
+0004    IST          1
+0005    JMP      1 => 0020
+0006    TGETS    1   0   1  ; "is_enabled"
+0007    ISF          1
+0008    JMP      2 => 0020
+0009    TGETS    1   0   2  ; "ui"
+0010    TGETS    1   1   3  ; "doc_settings"
+0011    MOV      2   1
+0012    TGETS    1   1   4  ; "saveSetting"
+0013    KSTR     3   5      ; "stats"
+0014    TGETS    4   0   6  ; "data"
+0015    CALL     1   1   4
+0016    MOV      2   0
+0017    TGETS    1   0   7  ; "insertDB"
+0018    TGETS    3   0   8  ; "id_curr_book"
+0019    CALL     1   1   3
+0020 => RET0     0   1
+
+-- BYTECODE -- main.lua:1912-1915
+0001    TGETS    1   0   0  ; "data"
+0002    TGETS    2   0   0  ; "data"
+0003    TGETS    2   2   1  ; "highlights"
+0004    ADDVN    2   2   0  ; 1
+0005    TSETS    2   1   1  ; "highlights"
+0006    KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- main.lua:1917-1922
+0001    TGETS    1   0   0  ; "data"
+0002    TGETS    1   1   1  ; "highlights"
+0003    KSHORT   2   0
+0004    ISGE     2   1
+0005    JMP      1 => 0011
+0006    TGETS    1   0   0  ; "data"
+0007    TGETS    2   0   0  ; "data"
+0008    TGETS    2   2   1  ; "highlights"
+0009    SUBVN    2   2   0  ; 1
+0010    TSETS    2   1   1  ; "highlights"
+0011 => KPRI     1   2
+0012    RET1     1   2
+
+-- BYTECODE -- main.lua:1924-1926
+0001    TGETS    1   0   0  ; "data"
+0002    TGETS    2   0   0  ; "data"
+0003    TGETS    2   2   1  ; "notes"
+0004    ADDVN    2   2   0  ; 1
+0005    TSETS    2   1   1  ; "notes"
+0006    RET0     0   1
+
+-- BYTECODE -- main.lua:1928-1933
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "saveSettings"
+0003    CALL     1   1   2
+0004    MOV      2   0
+0005    TGETS    1   0   1  ; "isDocless"
+0006    CALL     1   2   2
+0007    IST          1
+0008    JMP      1 => 0016
+0009    TGETS    1   0   2  ; "ui"
+0010    TGETS    1   1   3  ; "doc_settings"
+0011    MOV      2   1
+0012    TGETS    1   1   4  ; "saveSetting"
+0013    KSTR     3   5      ; "stats"
+0014    TGETS    4   0   6  ; "data"
+0015    CALL     1   1   4
+0016 => RET0     0   1
+
+-- BYTECODE -- main.lua:1936-1941
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "isDocless"
+0003    CALL     1   2   2
+0004    IST          1
+0005    JMP      1 => 0017
+0006    TGETS    1   0   1  ; "ui"
+0007    TGETS    1   1   2  ; "doc_settings"
+0008    MOV      2   1
+0009    TGETS    1   1   3  ; "saveSetting"
+0010    KSTR     3   4      ; "stats"
+0011    TGETS    4   0   5  ; "data"
+0012    CALL     1   1   4
+0013    MOV      2   0
+0014    TGETS    1   0   6  ; "insertDB"
+0015    TGETS    3   0   7  ; "id_curr_book"
+0016    CALL     1   1   3
+0017 => RET0     0   1
+
+-- BYTECODE -- main.lua:1944-1948
+0001    UGET     1   0      ; TimeVal
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "now"
+0004    CALL     1   2   2
+0005    TGETS    1   1   2  ; "sec"
+0006    TSETS    1   0   0  ; "start_current_period"
+0007    TNEW     1   0
+0008    TSETS    1   0   3  ; "pages_stats"
+0009    TGETS    1   0   3  ; "pages_stats"
+0010    TGETS    2   0   0  ; "start_current_period"
+0011    TGETS    3   0   4  ; "curr_page"
+0012    TSETV    3   1   2
+0013    RET0     0   1
+
+-- BYTECODE -- main.lua:1950-1962
+0001    TDUP     1   1
+0002    TGETS    2   0   0  ; "page_min_read_sec"
+0003    TSETS    2   1   2  ; "min_sec"
+0004    TGETS    2   0   3  ; "page_max_read_sec"
+0005    TSETS    2   1   4  ; "max_sec"
+0006    TGETS    2   0   5  ; "is_enabled"
+0007    TSETS    2   1   5  ; "is_enabled"
+0008    TGETS    2   0   6  ; "convert_to_db"
+0009    TSETS    2   1   6  ; "convert_to_db"
+0010    TGETS    2   0   7  ; "calendar_start_day_of_week"
+0011    TSETS    2   1   7  ; "calendar_start_day_of_week"
+0012    TGETS    2   0   8  ; "calendar_nb_book_spans"
+0013    TSETS    2   1   8  ; "calendar_nb_book_spans"
+0014    TGETS    2   0   9  ; "calendar_show_histogram"
+0015    TSETS    2   1   9  ; "calendar_show_histogram"
+0016    TGETS    2   0  10  ; "calendar_browse_future_months"
+0017    TSETS    2   1  10  ; "calendar_browse_future_months"
+0018    GGET     2  11      ; "G_reader_settings"
+0019    MOV      3   2
+0020    TGETS    2   2  12  ; "saveSetting"
+0021    KSTR     4  13      ; "statistics"
+0022    MOV      5   1
+0023    CALL     2   1   4
+0024    RET0     0   1
+
+-- BYTECODE -- main.lua:1964-1966
+0001    TGETS    2   1   0  ; "data"
+0002    TGETS    2   2   1  ; "stats"
+0003    IST          2
+0004    JMP      3 => 0006
+0005    TNEW     2   0
+0006 => TSETS    2   0   0  ; "data"
+0007    RET0     0   1
+
+-- BYTECODE -- main.lua:1968-1972
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "initData"
+0003    CALL     1   1   2
+0004    TGETS    1   0   1  ; "view"
+0005    TGETS    1   1   2  ; "footer"
+0006    MOV      2   1
+0007    TGETS    1   1   3  ; "updateFooter"
+0008    CALL     1   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- main.lua:1974-1987
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "insertDB"
+0003    TGETS    3   0   1  ; "id_curr_book"
+0004    CALL     1   1   3
+0005    GGET     1   2      ; "require"
+0006    KSTR     2   3      ; "calendarview"
+0007    CALL     1   2   2
+0008    MOV      3   1
+0009    TGETS    2   1   4  ; "new"
+0010    TDUP     4   5
+0011    TSETS    0   4   6  ; "reader_statistics"
+0012    UGET     5   0      ; monthTranslation
+0013    TSETS    5   4   7  ; "monthTranslation"
+0014    UGET     5   1      ; shortDayOfWeekTranslation
+0015    TSETS    5   4   8  ; "shortDayOfWeekTranslation"
+0016    UGET     5   2      ; longDayOfWeekTranslation
+0017    TSETS    5   4   9  ; "longDayOfWeekTranslation"
+0018    TGETS    5   0  10  ; "calendar_start_day_of_week"
+0019    TSETS    5   4  11  ; "start_day_of_week"
+0020    TGETS    5   0  12  ; "calendar_nb_book_spans"
+0021    TSETS    5   4  13  ; "nb_book_spans"
+0022    TGETS    5   0  14  ; "calendar_show_histogram"
+0023    TSETS    5   4  15  ; "show_hourly_histogram"
+0024    TGETS    5   0  16  ; "calendar_browse_future_months"
+0025    TSETS    5   4  17  ; "browse_future_months"
+0026    CALLT    2   3
+
+-- BYTECODE -- main.lua:1990-1999
+0001    KSTR     1   0      ; "        SELECT min(start_time)\n        "~
+0002    UGET     2   0      ; SQ3
+0003    TGETS    2   2   1  ; "open"
+0004    UGET     3   1      ; db_location
+0005    CALL     2   2   2
+0006    MOV      4   2
+0007    TGETS    3   2   2  ; "rowexec"
+0008    MOV      5   1
+0009    CALL     3   2   3
+0010    MOV      5   2
+0011    TGETS    4   2   3  ; "close"
+0012    CALL     4   1   2
+0013    ISF          3
+0014    JMP      4 => 0020
+0015    GGET     4   4      ; "tonumber"
+0016    MOV      5   3
+0017    CALL     4   2   2
+0018    IST          4
+0019    JMP      5 => 0021
+0020 => KPRI     4   0
+0021 => RET1     4   2
+
+-- BYTECODE -- main.lua:2001-2029
+0001    KSTR     2   0      ; "        SELECT\n            strftime('%Y"~
+0002    UGET     3   0      ; SQ3
+0003    TGETS    3   3   1  ; "open"
+0004    UGET     4   1      ; db_location
+0005    CALL     3   2   2
+0006    MOV      5   3
+0007    TGETS    4   3   2  ; "prepare"
+0008    MOV      6   2
+0009    CALL     4   2   3
+0010    MOV      6   4
+0011    TGETS    5   4   3  ; "reset"
+0012    CALL     5   2   2
+0013    MOV      6   5
+0014    TGETS    5   5   4  ; "bind"
+0015    MOV      7   1
+0016    CALL     5   2   3
+0017    MOV      6   5
+0018    TGETS    5   5   5  ; "resultset"
+0019    KSTR     7   6      ; "i"
+0020    CALL     5   3   3
+0021    MOV      8   4
+0022    TGETS    7   4   7  ; "close"
+0023    CALL     7   1   2
+0024    MOV      8   3
+0025    TGETS    7   3   7  ; "close"
+0026    CALL     7   1   2
+0027    TNEW     7   0
+0028    KSHORT   8   1
+0029    MOV      9   6
+0030    KSHORT  10   1
+0031    FORI     8 => 0050
+0032 => TGETB   12   5   1
+0033    TGETV   12  12  11
+0034    TGETB   13   5   2
+0035    TGETV   13  13  11
+0036    TGETB   14   5   3
+0037    TGETV   14  14  11
+0038    TGETV   15   7  12
+0039    IST         15
+0040    JMP     15 => 0043
+0041    TNEW    15   0
+0042    TSETV   15   7  12
+0043 => TGETV   15   7  12
+0044    GGET    16   8      ; "tonumber"
+0045    MOV     17  13
+0046    CALL    16   2   2
+0047    ADDVN   16  16   0  ; 1
+0048    TSETV   14  15  16
+0049    FORL     8 => 0032
+0050 => RET1     7   2
+
+-- BYTECODE -- main.lua:2031-2063
+0001    KSTR     2   0      ; "        SELECT\n            strftime('%Y"~
+0002    UGET     3   0      ; SQ3
+0003    TGETS    3   3   1  ; "open"
+0004    UGET     4   1      ; db_location
+0005    CALL     3   2   2
+0006    MOV      5   3
+0007    TGETS    4   3   2  ; "prepare"
+0008    MOV      6   2
+0009    CALL     4   2   3
+0010    MOV      6   4
+0011    TGETS    5   4   3  ; "reset"
+0012    CALL     5   2   2
+0013    MOV      6   5
+0014    TGETS    5   5   4  ; "bind"
+0015    MOV      7   1
+0016    CALL     5   2   3
+0017    MOV      6   5
+0018    TGETS    5   5   5  ; "resultset"
+0019    KSTR     7   6      ; "i"
+0020    CALL     5   3   3
+0021    MOV      8   4
+0022    TGETS    7   4   7  ; "close"
+0023    CALL     7   1   2
+0024    MOV      8   3
+0025    TGETS    7   3   7  ; "close"
+0026    CALL     7   1   2
+0027    TNEW     7   0
+0028    KSHORT   8   1
+0029    MOV      9   6
+0030    KSHORT  10   1
+0031    FORI     8 => 0059
+0032 => TGETB   12   5   1
+0033    TGETV   12  12  11
+0034    TGETB   13   5   2
+0035    TGETV   13  13  11
+0036    TGETB   14   5   3
+0037    TGETV   14  14  11
+0038    TGETB   15   5   4
+0039    TGETV   15  15  11
+0040    TGETV   16   7  12
+0041    IST         16
+0042    JMP     16 => 0045
+0043    TNEW    16   0
+0044    TSETV   16   7  12
+0045 => GGET    16   8      ; "table"
+0046    TGETS   16  16   9  ; "insert"
+0047    TGETV   17   7  12
+0048    TDUP    18  11
+0049    GGET    19  10      ; "tonumber"
+0050    MOV     20  14
+0051    CALL    19   2   2
+0052    TSETS   19  18  12  ; "id"
+0053    GGET    19  13      ; "tostring"
+0054    MOV     20  15
+0055    CALL    19   2   2
+0056    TSETS   19  18  14  ; "title"
+0057    CALL    16   1   3
+0058    FORL     8 => 0032
+0059 => RET1     7   2
+
+-- BYTECODE -- main.lua:0-2066
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/bookstatuswidget"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/confirmbox"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "datastorage"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "device"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "docsettings"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/infomessage"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/widget/keyvaluepage"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "apps/reader/modules/readerfooter"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "readerprogress"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "readhistory"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/screensaver"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "lua-ljsqlite3/init"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/timeval"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/uimanager"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/widget/widget"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "libs/libkoreader-lfs"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "logger"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "util"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "gettext"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "ffi/util"
+0063    CALL    20   2   2
+0064    TGETS   20  20  22  ; "joinPath"
+0065    GGET    21   0      ; "require"
+0066    KSTR    22   5      ; "device"
+0067    CALL    21   2   2
+0068    TGETS   21  21  23  ; "screen"
+0069    TGETS   22  19  24  ; "ngettext"
+0070    GGET    23   0      ; "require"
+0071    KSTR    24  21      ; "ffi/util"
+0072    CALL    23   2   2
+0073    TGETS   23  23  25  ; "template"
+0074    MOV     25   3
+0075    TGETS   24   3  26  ; "getDataDir"
+0076    CALL    24   2   2
+0077    KSTR    25  27      ; "/statistics/"
+0078    CAT     24  24  25
+0079    MOV     26   3
+0080    TGETS   25   3  28  ; "getSettingsDir"
+0081    CALL    25   2   2
+0082    KSTR    26  29      ; "/statistics.sqlite3"
+0083    CAT     25  25  26
+0084    KSHORT  26  50
+0085    KSHORT  27   5
+0086    KSHORT  28 120
+0087    KSHORT  29   2
+0088    KSHORT  30   3
+0089    MOV     32  15
+0090    TGETS   31  15  30  ; "extend"
+0091    TDUP    33  31
+0092    TSETS   27  33  32  ; "page_min_read_sec"
+0093    TSETS   28  33  33  ; "page_max_read_sec"
+0094    TSETS   29  33  34  ; "calendar_start_day_of_week"
+0095    TSETS   30  33  35  ; "calendar_nb_book_spans"
+0096    TNEW    34   0
+0097    TSETS   34  33  36  ; "pages_stats"
+0098    TDUP    34  37
+0099    TNEW    35   0
+0100    TSETS   35  34  38  ; "performance_in_pages"
+0101    TSETS   34  33  39  ; "data"
+0102    CALL    31   2   3
+0103    TDUP    32  40
+0104    TDUP    33  42
+0105    MOV     34  19
+0106    KSTR    35  41      ; "Mon"
+0107    CALL    34   2   2
+0108    TSETS   34  33  41  ; "Mon"
+0109    MOV     34  19
+0110    KSTR    35  43      ; "Tue"
+0111    CALL    34   2   2
+0112    TSETS   34  33  43  ; "Tue"
+0113    MOV     34  19
+0114    KSTR    35  44      ; "Wed"
+0115    CALL    34   2   2
+0116    TSETS   34  33  44  ; "Wed"
+0117    MOV     34  19
+0118    KSTR    35  45      ; "Thu"
+0119    CALL    34   2   2
+0120    TSETS   34  33  45  ; "Thu"
+0121    MOV     34  19
+0122    KSTR    35  46      ; "Fri"
+0123    CALL    34   2   2
+0124    TSETS   34  33  46  ; "Fri"
+0125    MOV     34  19
+0126    KSTR    35  47      ; "Sat"
+0127    CALL    34   2   2
+0128    TSETS   34  33  47  ; "Sat"
+0129    MOV     34  19
+0130    KSTR    35  48      ; "Sun"
+0131    CALL    34   2   2
+0132    TSETS   34  33  48  ; "Sun"
+0133    TDUP    34  50
+0134    MOV     35  19
+0135    KSTR    36  49      ; "Monday"
+0136    CALL    35   2   2
+0137    TSETS   35  34  41  ; "Mon"
+0138    MOV     35  19
+0139    KSTR    36  51      ; "Tuesday"
+0140    CALL    35   2   2
+0141    TSETS   35  34  43  ; "Tue"
+0142    MOV     35  19
+0143    KSTR    36  52      ; "Wednesday"
+0144    CALL    35   2   2
+0145    TSETS   35  34  44  ; "Wed"
+0146    MOV     35  19
+0147    KSTR    36  53      ; "Thursday"
+0148    CALL    35   2   2
+0149    TSETS   35  34  45  ; "Thu"
+0150    MOV     35  19
+0151    KSTR    36  54      ; "Friday"
+0152    CALL    35   2   2
+0153    TSETS   35  34  46  ; "Fri"
+0154    MOV     35  19
+0155    KSTR    36  55      ; "Saturday"
+0156    CALL    35   2   2
+0157    TSETS   35  34  47  ; "Sat"
+0158    MOV     35  19
+0159    KSTR    36  56      ; "Sunday"
+0160    CALL    35   2   2
+0161    TSETS   35  34  48  ; "Sun"
+0162    TDUP    35  58
+0163    MOV     36  19
+0164    KSTR    37  57      ; "January"
+0165    CALL    36   2   2
+0166    TSETS   36  35  57  ; "January"
+0167    MOV     36  19
+0168    KSTR    37  59      ; "February"
+0169    CALL    36   2   2
+0170    TSETS   36  35  59  ; "February"
+0171    MOV     36  19
+0172    KSTR    37  60      ; "March"
+0173    CALL    36   2   2
+0174    TSETS   36  35  60  ; "March"
+0175    MOV     36  19
+0176    KSTR    37  61      ; "April"
+0177    CALL    36   2   2
+0178    TSETS   36  35  61  ; "April"
+0179    MOV     36  19
+0180    KSTR    37  62      ; "May"
+0181    CALL    36   2   2
+0182    TSETS   36  35  62  ; "May"
+0183    MOV     36  19
+0184    KSTR    37  63      ; "June"
+0185    CALL    36   2   2
+0186    TSETS   36  35  63  ; "June"
+0187    MOV     36  19
+0188    KSTR    37  64      ; "July"
+0189    CALL    36   2   2
+0190    TSETS   36  35  64  ; "July"
+0191    MOV     36  19
+0192    KSTR    37  65      ; "August"
+0193    CALL    36   2   2
+0194    TSETS   36  35  65  ; "August"
+0195    MOV     36  19
+0196    KSTR    37  66      ; "September"
+0197    CALL    36   2   2
+0198    TSETS   36  35  66  ; "September"
+0199    MOV     36  19
+0200    KSTR    37  67      ; "October"
+0201    CALL    36   2   2
+0202    TSETS   36  35  67  ; "October"
+0203    MOV     36  19
+0204    KSTR    37  68      ; "November"
+0205    CALL    36   2   2
+0206    TSETS   36  35  68  ; "November"
+0207    MOV     36  19
+0208    KSTR    37  69      ; "December"
+0209    CALL    36   2   2
+0210    TSETS   36  35  69  ; "December"
+0211    FNEW    36  71      ; main.lua:104
+0212    TSETS   36  31  70  ; "isDocless"
+0213    FNEW    36  73      ; main.lua:108
+0214    TSETS   36  31  72  ; "init"
+0215    FNEW    36  75      ; main.lua:185
+0216    TSETS   36  31  74  ; "initData"
+0217    FNEW    36  77      ; main.lua:217
+0218    TSETS   36  31  76  ; "getStatsBookStatus"
+0219    FNEW    36  79      ; main.lua:256
+0220    TSETS   36  31  78  ; "checkInitDatabase"
+0221    FNEW    36  81      ; main.lua:314
+0222    TSETS   36  31  80  ; "partialMd5"
+0223    FNEW    36  83      ; main.lua:336
+0224    TSETS   36  31  82  ; "createDB"
+0225    FNEW    36  85      ; main.lua:382
+0226    TSETS   36  31  84  ; "addBookStatToDB"
+0227    FNEW    36  87      ; main.lua:483
+0228    TSETS   36  31  86  ; "migrateToDB"
+0229    FNEW    36  89      ; main.lua:536
+0230    TSETS   36  31  88  ; "getIdBookDB"
+0231    FNEW    36  91      ; main.lua:574
+0232    TSETS   36  31  90  ; "insertDB"
+0233    FNEW    36  93      ; main.lua:634
+0234    TSETS   36  31  92  ; "getPageTimeTotalStats"
+0235    FNEW    36  95      ; main.lua:660
+0236    TSETS   36  31  94  ; "getBookProperties"
+0237    FNEW    36  97      ; main.lua:669
+0238    TSETS   36  31  96  ; "getStatisticEnabledMenuItem"
+0239    FNEW    36  99      ; main.lua:697
+0240    TSETS   36  31  98  ; "addToMainMenu"
+0241    FNEW    36 101      ; main.lua:880
+0242    TSETS   36  31 100  ; "statMenu"
+0243    FNEW    36 103      ; main.lua:1021
+0244    TSETS   36  31 102  ; "getTodayBookStats"
+0245    FNEW    36 105      ; main.lua:1050
+0246    TSETS   36  31 104  ; "getCurrentBookStats"
+0247    FNEW    36 107      ; main.lua:1074
+0248    TSETS   36  31 106  ; "getCurrentStat"
+0249    FNEW    36 109      ; main.lua:1136
+0250    TSETS   36  31 108  ; "getBookStat"
+0251    FNEW    36 110      ; main.lua:1221
+0252    FNEW    37 111      ; main.lua:1241
+0253    FNEW    38 112      ; main.lua:1261
+0254    FNEW    39 114      ; main.lua:1281
+0255    TSETS   39  31 113  ; "callbackMonthly"
+0256    FNEW    39 116      ; main.lua:1308
+0257    TSETS   39  31 115  ; "callbackWeekly"
+0258    FNEW    39 118      ; main.lua:1335
+0259    TSETS   39  31 117  ; "callbackDaily"
+0260    FNEW    39 120      ; main.lua:1356
+0261    TSETS   39  31 119  ; "getDatesFromAll"
+0262    FNEW    39 122      ; main.lua:1448
+0263    TSETS   39  31 121  ; "getDaysFromPeriod"
+0264    FNEW    39 124      ; main.lua:1497
+0265    TSETS   39  31 123  ; "getBooksFromPeriod"
+0266    FNEW    39 126      ; main.lua:1538
+0267    TSETS   39  31 125  ; "getReadingProgressStats"
+0268    FNEW    39 128      ; main.lua:1581
+0269    TSETS   39  31 127  ; "getDatesForBook"
+0270    FNEW    39 130      ; main.lua:1607
+0271    TSETS   39  31 129  ; "getTotalStats"
+0272    FNEW    39 132      ; main.lua:1674
+0273    TSETS   39  31 131  ; "genResetBookSubItemTable"
+0274    FNEW    39 134      ; main.lua:1700
+0275    TSETS   39  31 133  ; "resetBook"
+0276    FNEW    39 136      ; main.lua:1776
+0277    TSETS   39  31 135  ; "deleteBook"
+0278    FNEW    39 138      ; main.lua:1795
+0279    TSETS   39  31 137  ; "deleteBooksByTotalDuration"
+0280    FNEW    39 140      ; main.lua:1848
+0281    TSETS   39  31 139  ; "onPosUpdate"
+0282    FNEW    39 142      ; main.lua:1854
+0283    TSETS   39  31 141  ; "onPageUpdate"
+0284    FNEW    39 144      ; main.lua:1891
+0285    TSETS   39  31 143  ; "importFromFile"
+0286    FNEW    39 146      ; main.lua:1905
+0287    TSETS   39  31 145  ; "onCloseDocument"
+0288    FNEW    39 148      ; main.lua:1912
+0289    TSETS   39  31 147  ; "onAddHighlight"
+0290    FNEW    39 150      ; main.lua:1917
+0291    TSETS   39  31 149  ; "onDelHighlight"
+0292    FNEW    39 152      ; main.lua:1924
+0293    TSETS   39  31 151  ; "onAddNote"
+0294    FNEW    39 154      ; main.lua:1928
+0295    TSETS   39  31 153  ; "onSaveSettings"
+0296    FNEW    39 156      ; main.lua:1936
+0297    TSETS   39  31 155  ; "onSuspend"
+0298    FNEW    39 158      ; main.lua:1944
+0299    TSETS   39  31 157  ; "onResume"
+0300    FNEW    39 160      ; main.lua:1950
+0301    TSETS   39  31 159  ; "saveSettings"
+0302    FNEW    39 162      ; main.lua:1964
+0303    TSETS   39  31 161  ; "onReadSettings"
+0304    FNEW    39 164      ; main.lua:1968
+0305    TSETS   39  31 163  ; "onReaderReady"
+0306    FNEW    39 166      ; main.lua:1974
+0307    TSETS   39  31 165  ; "getCalendarView"
+0308    FNEW    39 168      ; main.lua:1990
+0309    TSETS   39  31 167  ; "getFirstTimestamp"
+0310    FNEW    39 170      ; main.lua:2001
+0311    TSETS   39  31 169  ; "getReadingRatioPerHourByDay"
+0312    FNEW    39 172      ; main.lua:2031
+0313    TSETS   39  31 171  ; "getReadBookByDay"
+0314    UCLO     0 => 0315
+0315 => RET1    31   2
+

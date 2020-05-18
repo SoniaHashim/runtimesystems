@@ -1,0 +1,1944 @@
+-- BYTECODE -- filemanagermenu.lua:26-60
+0001    TDUP     1   1
+0002    TNEW     2   0
+0003    TSETS    2   1   2  ; "KOMenu:menu_buttons"
+0004    TDUP     2   3
+0005    TSETS    2   1   4  ; "filemanager_settings"
+0006    TDUP     2   5
+0007    TSETS    2   1   6  ; "setting"
+0008    TDUP     2   7
+0009    TSETS    2   1   8  ; "tools"
+0010    TDUP     2   9
+0011    TSETS    2   1  10  ; "search"
+0012    TDUP     2  11
+0013    TSETS    2   1  12  ; "main"
+0014    TSETS    1   0   0  ; "menu_items"
+0015    TNEW     1   0
+0016    TSETS    1   0  13  ; "registered_widgets"
+0017    UGET     1   0      ; Device
+0018    MOV      2   1
+0019    TGETS    1   1  14  ; "hasKeys"
+0020    CALL     1   2   2
+0021    ISF          1
+0022    JMP      2 => 0029
+0023    TDUP     1  18
+0024    TDUP     2  17
+0025    TDUP     3  16
+0026    TSETB    3   2   1
+0027    TSETS    2   1  19  ; "ShowMenu"
+0028    TSETS    1   0  15  ; "key_events"
+0029 => GGET     1  21      ; "G_reader_settings"
+0030    MOV      2   1
+0031    TGETS    1   1  22  ; "readSetting"
+0032    KSTR     3  23      ; "activate_menu"
+0033    CALL     1   2   3
+0034    TSETS    1   0  20  ; "activation_menu"
+0035    TGETS    1   0  20  ; "activation_menu"
+0036    ISNEP    1   0
+0037    JMP      1 => 0040
+0038    KSTR     1  24      ; "swipe_tap"
+0039    TSETS    1   0  20  ; "activation_menu"
+0040 => RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:73-73
+0001    UGET     1   0      ; self
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "onTapShowMenu"
+0004    MOV      3   0
+0005    CALLT    1   3
+
+-- BYTECODE -- filemanagermenu.lua:86-86
+0001    UGET     1   0      ; self
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "onSwipeShowMenu"
+0004    MOV      3   0
+0005    CALLT    1   3
+
+-- BYTECODE -- filemanagermenu.lua:62-89
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "isTouchDevice"
+0004    CALL     1   2   2
+0005    IST          1
+0006    JMP      1 => 0008
+0007    UCLO     0 => 0052
+0008 => MOV      2   0
+0009    TGETS    1   0   1  ; "registerTouchZones"
+0010    TNEW     3   3
+0011    TDUP     4   2
+0012    TDUP     5   5
+0013    GGET     6   3      ; "DTAP_ZONE_MENU"
+0014    TGETS    6   6   4  ; "x"
+0015    TSETS    6   5   6  ; "ratio_x"
+0016    GGET     6   3      ; "DTAP_ZONE_MENU"
+0017    TGETS    6   6   7  ; "y"
+0018    TSETS    6   5   8  ; "ratio_y"
+0019    GGET     6   3      ; "DTAP_ZONE_MENU"
+0020    TGETS    6   6   9  ; "w"
+0021    TSETS    6   5  10  ; "ratio_w"
+0022    GGET     6   3      ; "DTAP_ZONE_MENU"
+0023    TGETS    6   6  11  ; "h"
+0024    TSETS    6   5  12  ; "ratio_h"
+0025    TSETS    5   4  13  ; "screen_zone"
+0026    FNEW     5  14      ; filemanagermenu.lua:73
+0027    TSETS    5   4  15  ; "handler"
+0028    TSETB    4   3   1
+0029    TDUP     4  16
+0030    TDUP     5  17
+0031    GGET     6   3      ; "DTAP_ZONE_MENU"
+0032    TGETS    6   6   4  ; "x"
+0033    TSETS    6   5   6  ; "ratio_x"
+0034    GGET     6   3      ; "DTAP_ZONE_MENU"
+0035    TGETS    6   6   7  ; "y"
+0036    TSETS    6   5   8  ; "ratio_y"
+0037    GGET     6   3      ; "DTAP_ZONE_MENU"
+0038    TGETS    6   6   9  ; "w"
+0039    TSETS    6   5  10  ; "ratio_w"
+0040    GGET     6   3      ; "DTAP_ZONE_MENU"
+0041    TGETS    6   6  11  ; "h"
+0042    TSETS    6   5  12  ; "ratio_h"
+0043    TSETS    5   4  13  ; "screen_zone"
+0044    TDUP     5  18
+0045    TSETS    5   4  19  ; "overrides"
+0046    FNEW     5  20      ; filemanagermenu.lua:86
+0047    TSETS    5   4  15  ; "handler"
+0048    TSETB    4   3   2
+0049    CALL     1   1   3
+0050    UCLO     0 => 0051
+0051 => RET0     0   1
+0052 => RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:91-110
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "readSetting"
+0004    KSTR     3   2      ; "lastfile"
+0005    CALL     1   2   3
+0006    ISF          1
+0007    JMP      2 => 0015
+0008    UGET     2   0      ; lfs
+0009    TGETS    2   2   3  ; "attributes"
+0010    MOV      3   1
+0011    KSTR     4   4      ; "mode"
+0012    CALL     2   2   3
+0013    ISEQS    2   5      ; "file"
+0014    JMP      2 => 0031
+0015 => GGET     2   6      ; "require"
+0016    KSTR     3   7      ; "ui/widget/infomessage"
+0017    CALL     2   2   2
+0018    UGET     3   1      ; UIManager
+0019    MOV      4   3
+0020    TGETS    3   3   8  ; "show"
+0021    MOV      6   2
+0022    TGETS    5   2   9  ; "new"
+0023    TDUP     7  11
+0024    UGET     8   2      ; _
+0025    KSTR     9  10      ; "Cannot open last document"
+0026    CALL     8   2   2
+0027    TSETS    8   7  12  ; "text"
+0028    CALL     5   0   3
+0029    CALLM    3   1   1
+0030    RET0     0   1
+0031 => GGET     2   6      ; "require"
+0032    KSTR     3  13      ; "apps/reader/readerui"
+0033    CALL     2   2   2
+0034    MOV      4   2
+0035    TGETS    3   2  14  ; "showReader"
+0036    MOV      5   1
+0037    CALL     3   1   3
+0038    TGETS    3   0  15  ; "menu_container"
+0039    ISF          3
+0040    JMP      4 => 0044
+0041    MOV      4   0
+0042    TGETS    3   0  16  ; "onCloseFileManagerMenu"
+0043    CALL     3   1   2
+0044 => GGET     3   6      ; "require"
+0045    KSTR     4  17      ; "apps/filemanager/filemanager"
+0046    CALL     3   2   2
+0047    TGETS    4   3  18  ; "instance"
+0048    MOV      5   4
+0049    TGETS    4   4  19  ; "onClose"
+0050    CALL     4   1   2
+0051    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:123-123
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    TGETS    0   0   1  ; "file_chooser"
+0004    TGETS    0   0   2  ; "show_hidden"
+0005    RET1     0   2
+
+-- BYTECODE -- filemanagermenu.lua:124-124
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "toggleHiddenFiles"
+0005    CALL     0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:128-128
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    TGETS    0   0   1  ; "file_chooser"
+0004    TGETS    0   0   2  ; "show_unsupported"
+0005    RET1     0   2
+
+-- BYTECODE -- filemanagermenu.lua:129-129
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "toggleUnsupportedFiles"
+0005    CALL     0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:152-155
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "saveSetting"
+0004    KSTR     3   2      ; "items_per_page"
+0005    TGETS    4   0   3  ; "value"
+0006    CALL     1   1   4
+0007    UGET     1   0      ; self
+0008    TGETS    1   1   4  ; "ui"
+0009    MOV      2   1
+0010    TGETS    1   1   5  ; "onRefresh"
+0011    CALL     1   1   2
+0012    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:142-158
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/spinwidget"
+0003    CALL     0   2   2
+0004    GGET     1   2      ; "G_reader_settings"
+0005    MOV      2   1
+0006    TGETS    1   1   3  ; "readSetting"
+0007    KSTR     3   4      ; "items_per_page"
+0008    CALL     1   2   3
+0009    IST          1
+0010    JMP      2 => 0012
+0011    KSHORT   1  14
+0012 => MOV      3   0
+0013    TGETS    2   0   5  ; "new"
+0014    TDUP     4   7
+0015    UGET     5   0      ; Screen
+0016    MOV      6   5
+0017    TGETS    5   5   6  ; "getWidth"
+0018    CALL     5   2   2
+0019    MULVN    5   5   0  ; 0.6
+0020    TSETS    5   4   8  ; "width"
+0021    TSETS    1   4   9  ; "value"
+0022    UGET     5   1      ; _
+0023    KSTR     6  10      ; "Items per page"
+0024    CALL     5   2   2
+0025    TSETS    5   4  11  ; "title_text"
+0026    FNEW     5  12      ; filemanagermenu.lua:152
+0027    TSETS    5   4  13  ; "callback"
+0028    CALL     2   2   3
+0029    UGET     3   3      ; UIManager
+0030    MOV      4   3
+0031    TGETS    3   3  14  ; "show"
+0032    MOV      5   2
+0033    CALL     3   1   3
+0034    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:176-179
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "saveSetting"
+0004    KSTR     3   2      ; "items_font_size"
+0005    TGETS    4   0   3  ; "value"
+0006    CALL     1   1   4
+0007    UGET     1   0      ; self
+0008    TGETS    1   1   4  ; "ui"
+0009    MOV      2   1
+0010    TGETS    1   1   5  ; "onRefresh"
+0011    CALL     1   1   2
+0012    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:163-182
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/spinwidget"
+0003    CALL     0   2   2
+0004    GGET     1   2      ; "G_reader_settings"
+0005    MOV      2   1
+0006    TGETS    1   1   3  ; "readSetting"
+0007    KSTR     3   4      ; "items_per_page"
+0008    CALL     1   2   3
+0009    IST          1
+0010    JMP      2 => 0012
+0011    KSHORT   1  14
+0012 => GGET     2   5      ; "math"
+0013    TGETS    2   2   6  ; "floor"
+0014    SUBVN    3   1   0  ; 6
+0015    DIVVN    3   3   1  ; 18
+0016    MULVN    3   3   2  ; 10
+0017    SUBNV    3   3   3  ; 24
+0018    CALL     2   2   2
+0019    GGET     3   2      ; "G_reader_settings"
+0020    MOV      4   3
+0021    TGETS    3   3   3  ; "readSetting"
+0022    KSTR     5   7      ; "items_font_size"
+0023    CALL     3   2   3
+0024    IST          3
+0025    JMP      4 => 0027
+0026    MOV      3   2
+0027 => MOV      5   0
+0028    TGETS    4   0   8  ; "new"
+0029    TDUP     6  10
+0030    UGET     7   0      ; Screen
+0031    MOV      8   7
+0032    TGETS    7   7   9  ; "getWidth"
+0033    CALL     7   2   2
+0034    MULVN    7   7   4  ; 0.6
+0035    TSETS    7   6  11  ; "width"
+0036    TSETS    3   6  12  ; "value"
+0037    TSETS    2   6  13  ; "default_value"
+0038    UGET     7   1      ; _
+0039    KSTR     8  14      ; "Maximum font size for item"
+0040    CALL     7   2   2
+0041    TSETS    7   6  15  ; "title_text"
+0042    FNEW     7  16      ; filemanagermenu.lua:176
+0043    TSETS    7   6  17  ; "callback"
+0044    CALL     4   2   3
+0045    UGET     5   3      ; UIManager
+0046    MOV      6   5
+0047    TGETS    5   5  18  ; "show"
+0048    MOV      7   4
+0049    CALL     5   1   3
+0050    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:187-189
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "items_multilines_show_more_text"
+0005    CALLT    0   3
+
+-- BYTECODE -- filemanagermenu.lua:190-192
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrFalse"
+0004    KSTR     2   2      ; "items_multilines_show_more_text"
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:199-199
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    TGETS    0   0   1  ; "file_chooser"
+0004    TGETS    0   0   2  ; "reverse_collate"
+0005    RET1     0   2
+
+-- BYTECODE -- filemanagermenu.lua:200-200
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "toggleReverseCollate"
+0005    CALL     0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:217-219
+0001    UGET     0   0      ; SetDefaults
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "ConfirmEdit"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:220-222
+0001    UGET     0   0      ; SetDefaults
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "ConfirmSave"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:233-233
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "onRefresh"
+0005    CALL     0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:234-237
+0001    UGET     1   0      ; filemanagerRefresh
+0002    CALL     1   1   1
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   0  ; "close"
+0006    MOV      3   0
+0007    CALL     1   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:231-239
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "apps/opdscatalog/opdscatalog"
+0003    CALL     0   2   2
+0004    FNEW     1   2      ; filemanagermenu.lua:233
+0005    FNEW     2   4      ; filemanagermenu.lua:234
+0006    TSETS    2   0   3  ; "onClose"
+0007    MOV      3   0
+0008    TGETS    2   0   5  ; "showCatalog"
+0009    CALL     2   1   2
+0010    UCLO     0 => 0011
+0011 => RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:249-265
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/util"
+0003    CALL     0   2   2
+0004    TGETS    0   0   2  ; "purgeDir"
+0005    GGET     1   0      ; "require"
+0006    KSTR     2   3      ; "datastorage"
+0007    CALL     1   2   2
+0008    MOV      3   1
+0009    TGETS    2   1   4  ; "getDataDir"
+0010    CALL     2   2   2
+0011    KSTR     3   5      ; "/cache"
+0012    CAT      2   2   3
+0013    UGET     3   0      ; lfs
+0014    TGETS    3   3   6  ; "attributes"
+0015    MOV      4   2
+0016    KSTR     5   7      ; "mode"
+0017    CALL     3   2   3
+0018    ISNES    3   8      ; "directory"
+0019    JMP      3 => 0023
+0020    MOV      3   0
+0021    MOV      4   2
+0022    CALL     3   1   2
+0023 => UGET     3   0      ; lfs
+0024    TGETS    3   3   9  ; "mkdir"
+0025    MOV      4   2
+0026    CALL     3   1   2
+0027    GGET     3   0      ; "require"
+0028    KSTR     4  10      ; "cache"
+0029    CALL     3   2   2
+0030    TNEW     4   0
+0031    TSETS    4   3  11  ; "cached"
+0032    GGET     4   0      ; "require"
+0033    KSTR     5  12      ; "ui/widget/infomessage"
+0034    CALL     4   2   2
+0035    UGET     5   1      ; UIManager
+0036    MOV      6   5
+0037    TGETS    5   5  13  ; "show"
+0038    MOV      8   4
+0039    TGETS    7   4  14  ; "new"
+0040    TDUP     9  16
+0041    UGET    10   2      ; _
+0042    KSTR    11  15      ; "Caches cleared. Please exit and restart "~
+0043    CALL    10   2   2
+0044    TSETS   10   9  17  ; "text"
+0045    CALL     7   0   3
+0046    CALLM    5   1   1
+0047    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:246-267
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; ConfirmBox
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   3
+0008    UGET     5   2      ; _
+0009    KSTR     6   2      ; "Clear cache/ and cr3cache/ ?"
+0010    CALL     5   2   2
+0011    TSETS    5   4   4  ; "text"
+0012    FNEW     5   5      ; filemanagermenu.lua:249
+0013    TSETS    5   4   6  ; "ok_callback"
+0014    CALL     2   0   3
+0015    CALLM    0   1   1
+0016    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:271-273
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "debug"
+0005    CALLT    0   3
+
+-- BYTECODE -- filemanagermenu.lua:274-283
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrFalse"
+0004    KSTR     2   2      ; "debug"
+0005    CALL     0   1   3
+0006    GGET     0   0      ; "G_reader_settings"
+0007    MOV      1   0
+0008    TGETS    0   0   3  ; "isTrue"
+0009    KSTR     2   2      ; "debug"
+0010    CALL     0   2   3
+0011    ISF          0
+0012    JMP      1 => 0018
+0013    UGET     0   0      ; dbg
+0014    MOV      1   0
+0015    TGETS    0   0   4  ; "turnOn"
+0016    CALL     0   1   2
+0017    JMP      0 => 0032
+0018 => UGET     0   0      ; dbg
+0019    MOV      1   0
+0020    TGETS    0   0   5  ; "setVerbose"
+0021    KPRI     2   1
+0022    CALL     0   1   3
+0023    UGET     0   0      ; dbg
+0024    MOV      1   0
+0025    TGETS    0   0   6  ; "turnOff"
+0026    CALL     0   1   2
+0027    GGET     0   0      ; "G_reader_settings"
+0028    MOV      1   0
+0029    TGETS    0   0   7  ; "flipFalse"
+0030    KSTR     2   8      ; "debug_verbose"
+0031    CALL     0   1   3
+0032 => RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:287-289
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "debug"
+0005    CALLT    0   3
+
+-- BYTECODE -- filemanagermenu.lua:290-292
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "debug_verbose"
+0005    CALLT    0   3
+
+-- BYTECODE -- filemanagermenu.lua:293-300
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrFalse"
+0004    KSTR     2   2      ; "debug_verbose"
+0005    CALL     0   1   3
+0006    GGET     0   0      ; "G_reader_settings"
+0007    MOV      1   0
+0008    TGETS    0   0   3  ; "isTrue"
+0009    KSTR     2   2      ; "debug_verbose"
+0010    CALL     0   2   3
+0011    ISF          0
+0012    JMP      1 => 0019
+0013    UGET     0   0      ; dbg
+0014    MOV      1   0
+0015    TGETS    0   0   4  ; "setVerbose"
+0016    KPRI     2   2
+0017    CALL     0   1   3
+0018    JMP      0 => 0024
+0019 => UGET     0   0      ; dbg
+0020    MOV      1   0
+0021    TGETS    0   0   4  ; "setVerbose"
+0022    KPRI     2   1
+0023    CALL     0   1   3
+0024 => RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:307-309
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "dev_startup_no_fbdepth"
+0005    CALLT    0   3
+
+-- BYTECODE -- filemanagermenu.lua:310-316
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrFalse"
+0004    KSTR     2   2      ; "dev_startup_no_fbdepth"
+0005    CALL     0   1   3
+0006    GGET     0   3      ; "require"
+0007    KSTR     1   4      ; "ui/widget/infomessage"
+0008    CALL     0   2   2
+0009    UGET     1   0      ; UIManager
+0010    MOV      2   1
+0011    TGETS    1   1   5  ; "show"
+0012    MOV      4   0
+0013    TGETS    3   0   6  ; "new"
+0014    TDUP     5   8
+0015    UGET     6   1      ; _
+0016    KSTR     7   7      ; "This will take effect on next restart."
+0017    CALL     6   2   2
+0018    TSETS    6   5   9  ; "text"
+0019    CALL     3   0   3
+0020    CALLM    1   1   1
+0021    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:323-325
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "dev_abort_on_crash"
+0005    CALLT    0   3
+
+-- BYTECODE -- filemanagermenu.lua:326-332
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrFalse"
+0004    KSTR     2   2      ; "dev_abort_on_crash"
+0005    CALL     0   1   3
+0006    GGET     0   3      ; "require"
+0007    KSTR     1   4      ; "ui/widget/infomessage"
+0008    CALL     0   2   2
+0009    UGET     1   0      ; UIManager
+0010    MOV      2   1
+0011    TGETS    1   1   5  ; "show"
+0012    MOV      4   0
+0013    TGETS    3   0   6  ; "new"
+0014    TDUP     5   8
+0015    UGET     6   1      ; _
+0016    KSTR     7   7      ; "This will take effect on next restart."
+0017    CALL     6   2   2
+0018    TSETS    6   5   9  ; "text"
+0019    CALL     3   0   3
+0020    CALLM    1   1   1
+0021    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:338-340
+0001    UGET     0   0      ; lfs
+0002    TGETS    0   0   0  ; "attributes"
+0003    KSTR     1   1      ; "libs/libblitbuffer.so"
+0004    KSTR     2   2      ; "mode"
+0005    CALL     0   2   3
+0006    ISEQS    0   3      ; "file"
+0007    JMP      0 => 0010
+0008    KPRI     0   1
+0009    JMP      1 => 0011
+0010 => KPRI     0   2
+0011 => RET1     0   2
+
+-- BYTECODE -- filemanagermenu.lua:341-343
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "dev_no_c_blitter"
+0005    CALLT    0   3
+
+-- BYTECODE -- filemanagermenu.lua:344-350
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrFalse"
+0004    KSTR     2   2      ; "dev_no_c_blitter"
+0005    CALL     0   1   3
+0006    GGET     0   3      ; "require"
+0007    KSTR     1   4      ; "ui/widget/infomessage"
+0008    CALL     0   2   2
+0009    UGET     1   0      ; UIManager
+0010    MOV      2   1
+0011    TGETS    1   1   5  ; "show"
+0012    MOV      4   0
+0013    TGETS    3   0   6  ; "new"
+0014    TDUP     5   8
+0015    UGET     6   1      ; _
+0016    KSTR     7   7      ; "This will take effect on next restart."
+0017    CALL     6   2   2
+0018    TSETS    6   5   9  ; "text"
+0019    CALL     3   0   3
+0020    CALLM    1   1   1
+0021    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:356-358
+0001    UGET     0   0      ; Device
+0002    TGETS    0   0   0  ; "screen"
+0003    TGETS    0   0   1  ; "hw_dithering"
+0004    NOT      0   0
+0005    RET1     0   2
+
+-- BYTECODE -- filemanagermenu.lua:359-367
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrFalse"
+0004    KSTR     2   2      ; "dev_no_hw_dither"
+0005    CALL     0   1   3
+0006    UGET     0   0      ; Device
+0007    TGETS    0   0   3  ; "screen"
+0008    MOV      1   0
+0009    TGETS    0   0   4  ; "toggleHWDithering"
+0010    CALL     0   1   2
+0011    UGET     0   0      ; Device
+0012    TGETS    0   0   3  ; "screen"
+0013    TGETS    0   0   5  ; "hw_dithering"
+0014    ISF          0
+0015    JMP      1 => 0026
+0016    UGET     0   0      ; Device
+0017    TGETS    0   0   3  ; "screen"
+0018    TGETS    0   0   6  ; "sw_dithering"
+0019    ISF          0
+0020    JMP      1 => 0026
+0021    UGET     0   0      ; Device
+0022    TGETS    0   0   3  ; "screen"
+0023    MOV      1   0
+0024    TGETS    0   0   7  ; "toggleSWDithering"
+0025    CALL     0   1   2
+0026 => UGET     0   1      ; UIManager
+0027    MOV      1   0
+0028    TGETS    0   0   8  ; "setDirty"
+0029    KSTR     2   9      ; "all"
+0030    KSTR     3  10      ; "full"
+0031    CALL     0   1   4
+0032    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:373-375
+0001    UGET     0   0      ; Device
+0002    TGETS    0   0   0  ; "screen"
+0003    TGETS    0   0   1  ; "fb_bpp"
+0004    ISEQN    0   0      ; 8
+0005    JMP      0 => 0008
+0006    KPRI     0   1
+0007    JMP      1 => 0009
+0008 => KPRI     0   2
+0009 => RET1     0   2
+
+-- BYTECODE -- filemanagermenu.lua:376-378
+0001    UGET     0   0      ; Device
+0002    TGETS    0   0   0  ; "screen"
+0003    TGETS    0   0   1  ; "sw_dithering"
+0004    NOT      0   0
+0005    RET1     0   2
+
+-- BYTECODE -- filemanagermenu.lua:379-387
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrFalse"
+0004    KSTR     2   2      ; "dev_no_sw_dither"
+0005    CALL     0   1   3
+0006    UGET     0   0      ; Device
+0007    TGETS    0   0   3  ; "screen"
+0008    MOV      1   0
+0009    TGETS    0   0   4  ; "toggleSWDithering"
+0010    CALL     0   1   2
+0011    UGET     0   0      ; Device
+0012    TGETS    0   0   3  ; "screen"
+0013    TGETS    0   0   5  ; "hw_dithering"
+0014    ISF          0
+0015    JMP      1 => 0026
+0016    UGET     0   0      ; Device
+0017    TGETS    0   0   3  ; "screen"
+0018    TGETS    0   0   6  ; "sw_dithering"
+0019    ISF          0
+0020    JMP      1 => 0026
+0021    UGET     0   0      ; Device
+0022    TGETS    0   0   3  ; "screen"
+0023    MOV      1   0
+0024    TGETS    0   0   7  ; "toggleHWDithering"
+0025    CALL     0   1   2
+0026 => UGET     0   1      ; UIManager
+0027    MOV      1   0
+0028    TGETS    0   0   8  ; "setDirty"
+0029    KSTR     2   9      ; "all"
+0030    KSTR     3  10      ; "full"
+0031    CALL     0   1   4
+0032    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:393-395
+0001    UGET     0   0      ; Device
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "epdTest"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:401-403
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isFalse"
+0004    KSTR     2   2      ; "use_xtext"
+0005    CALLT    0   3
+
+-- BYTECODE -- filemanagermenu.lua:404-410
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrTrue"
+0004    KSTR     2   2      ; "use_xtext"
+0005    CALL     0   1   3
+0006    GGET     0   3      ; "require"
+0007    KSTR     1   4      ; "ui/widget/infomessage"
+0008    CALL     0   2   2
+0009    UGET     1   0      ; UIManager
+0010    MOV      2   1
+0011    TGETS    1   1   5  ; "show"
+0012    MOV      4   0
+0013    TGETS    3   0   6  ; "new"
+0014    TDUP     5   8
+0015    UGET     6   1      ; _
+0016    KSTR     7   7      ; "This will take effect on next restart."
+0017    CALL     6   2   2
+0018    TSETS    6   5   9  ; "text"
+0019    CALL     3   0   3
+0020    CALLM    1   1   1
+0021    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:417-419
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "dev_reverse_ui_layout_mirroring"
+0005    CALLT    0   3
+
+-- BYTECODE -- filemanagermenu.lua:420-426
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrFalse"
+0004    KSTR     2   2      ; "dev_reverse_ui_layout_mirroring"
+0005    CALL     0   1   3
+0006    GGET     0   3      ; "require"
+0007    KSTR     1   4      ; "ui/widget/infomessage"
+0008    CALL     0   2   2
+0009    UGET     1   0      ; UIManager
+0010    MOV      2   1
+0011    TGETS    1   1   5  ; "show"
+0012    MOV      4   0
+0013    TGETS    3   0   6  ; "new"
+0014    TDUP     5   8
+0015    UGET     6   1      ; _
+0016    KSTR     7   7      ; "This will take effect on next restart."
+0017    CALL     6   2   2
+0018    TSETS    6   5   9  ; "text"
+0019    CALL     3   0   3
+0020    CALLM    1   1   1
+0021    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:430-432
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "dev_reverse_ui_text_direction"
+0005    CALLT    0   3
+
+-- BYTECODE -- filemanagermenu.lua:433-439
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrFalse"
+0004    KSTR     2   2      ; "dev_reverse_ui_text_direction"
+0005    CALL     0   1   3
+0006    GGET     0   3      ; "require"
+0007    KSTR     1   4      ; "ui/widget/infomessage"
+0008    CALL     0   2   2
+0009    UGET     1   0      ; UIManager
+0010    MOV      2   1
+0011    TGETS    1   1   5  ; "show"
+0012    MOV      4   0
+0013    TGETS    3   0   6  ; "new"
+0014    TDUP     5   8
+0015    UGET     6   1      ; _
+0016    KSTR     7   7      ; "This will take effect on next restart."
+0017    CALL     6   2   2
+0018    TSETS    6   5   9  ; "text"
+0019    CALL     3   0   3
+0020    CALLM    1   1   1
+0021    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:444-450
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "nilOrTrue"
+0004    KSTR     2   2      ; "use_cre_call_cache"
+0005    CALL     0   2   3
+0006    ISF          0
+0007    JMP      1 => 0018
+0008    GGET     0   0      ; "G_reader_settings"
+0009    MOV      1   0
+0010    TGETS    0   0   3  ; "isTrue"
+0011    KSTR     2   4      ; "use_cre_call_cache_log_stats"
+0012    CALL     0   2   3
+0013    ISF          0
+0014    JMP      1 => 0018
+0015    UGET     0   0      ; _
+0016    KSTR     1   5      ; "Enable CRE call cache (with stats)"
+0017    CALLT    0   2
+0018 => UGET     0   0      ; _
+0019    KSTR     1   6      ; "Enable CRE call cache"
+0020    CALLT    0   2
+
+-- BYTECODE -- filemanagermenu.lua:451-453
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "nilOrTrue"
+0004    KSTR     2   2      ; "use_cre_call_cache"
+0005    CALLT    0   3
+
+-- BYTECODE -- filemanagermenu.lua:454-458
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrTrue"
+0004    KSTR     2   2      ; "use_cre_call_cache"
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:459-462
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "flipNilOrFalse"
+0004    KSTR     3   2      ; "use_cre_call_cache_log_stats"
+0005    CALL     1   1   3
+0006    MOV      2   0
+0007    TGETS    1   0   3  ; "updateItems"
+0008    CALL     1   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:470-470
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "onRefresh"
+0005    CALL     0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:471-474
+0001    UGET     1   0      ; filemanagerRefresh
+0002    CALL     1   1   1
+0003    UGET     1   1      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   0  ; "close"
+0006    UGET     3   2      ; cloud_storage
+0007    CALL     1   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:467-475
+0001    UGET     0   0      ; CloudStorage
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "new"
+0004    TNEW     2   0
+0005    CALL     0   2   3
+0006    UGET     1   1      ; UIManager
+0007    MOV      2   1
+0008    TGETS    1   1   1  ; "show"
+0009    MOV      3   0
+0010    CALL     1   1   3
+0011    FNEW     1   2      ; filemanagermenu.lua:470
+0012    FNEW     2   4      ; filemanagermenu.lua:471
+0013    TSETS    2   0   3  ; "onClose"
+0014    UCLO     0 => 0015
+0015 => RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:481-484
+0001    UGET     0   0      ; Search
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getCalibre"
+0004    CALL     0   1   2
+0005    UGET     0   0      ; Search
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "ShowSearch"
+0008    CALL     0   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:489-491
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "handleEvent"
+0005    UGET     2   1      ; Event
+0006    MOV      3   2
+0007    TGETS    2   2   2  ; "new"
+0008    KSTR     4   3      ; "ShowFileSearch"
+0009    UGET     5   0      ; self
+0010    TGETS    5   5   0  ; "ui"
+0011    TGETS    5   5   4  ; "file_chooser"
+0012    TGETS    5   5   5  ; "path"
+0013    CALL     2   0   4
+0014    CALLM    0   1   1
+0015    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:496-503
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "open_last_menu_show_filename"
+0005    CALL     0   2   3
+0006    ISF          0
+0007    JMP      0 => 0015
+0008    GGET     0   0      ; "G_reader_settings"
+0009    MOV      1   0
+0010    TGETS    0   0   3  ; "readSetting"
+0011    KSTR     2   4      ; "lastfile"
+0012    CALL     0   2   3
+0013    IST          0
+0014    JMP      0 => 0018
+0015 => UGET     0   0      ; _
+0016    KSTR     1   5      ; "Open last document"
+0017    CALLT    0   2
+0018 => GGET     0   0      ; "G_reader_settings"
+0019    MOV      1   0
+0020    TGETS    0   0   3  ; "readSetting"
+0021    KSTR     2   4      ; "lastfile"
+0022    CALL     0   2   3
+0023    UGET     1   1      ; util
+0024    TGETS    1   1   6  ; "splitFilePathName"
+0025    MOV      2   0
+0026    CALL     1   3   2
+0027    UGET     3   2      ; T
+0028    UGET     4   0      ; _
+0029    KSTR     5   7      ; "Last: %1"
+0030    CALL     4   2   2
+0031    UGET     5   3      ; BD
+0032    TGETS    5   5   8  ; "filename"
+0033    MOV      6   2
+0034    CALL     5   0   2
+0035    CALLMT   3   1
+
+-- BYTECODE -- filemanagermenu.lua:504-506
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "readSetting"
+0004    KSTR     2   2      ; "lastfile"
+0005    CALL     0   2   3
+0006    ISNEP    0   0
+0007    JMP      0 => 0010
+0008    KPRI     0   1
+0009    JMP      1 => 0011
+0010 => KPRI     0   2
+0011 => RET1     0   2
+
+-- BYTECODE -- filemanagermenu.lua:507-509
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "openLastDoc"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:515-517
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "openLastDoc"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:510-519
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "readSetting"
+0004    KSTR     2   2      ; "lastfile"
+0005    CALL     0   2   3
+0006    UGET     1   0      ; UIManager
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "show"
+0009    UGET     3   1      ; ConfirmBox
+0010    MOV      4   3
+0011    TGETS    3   3   4  ; "new"
+0012    TDUP     5   7
+0013    UGET     6   2      ; T
+0014    UGET     7   3      ; _
+0015    KSTR     8   5      ; "Would you like to open the last document"~
+0016    CALL     7   2   2
+0017    UGET     8   4      ; BD
+0018    TGETS    8   8   6  ; "filepath"
+0019    MOV      9   0
+0020    CALL     8   0   2
+0021    CALLM    6   2   1
+0022    TSETS    6   5   8  ; "text"
+0023    UGET     6   3      ; _
+0024    KSTR     7   9      ; "OK"
+0025    CALL     6   2   2
+0026    TSETS    6   5  10  ; "ok_text"
+0027    FNEW     6  11      ; filemanagermenu.lua:515
+0028    TSETS    6   5  12  ; "ok_callback"
+0029    CALL     3   0   3
+0030    CALLM    1   1   1
+0031    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:527-529
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "exitOrRestart"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:533-535
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "exitOrRestart"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:540-542
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "restartKOReader"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:539-543
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "exitOrRestart"
+0004    FNEW     2   1      ; filemanagermenu.lua:540
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:556-559
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onCloseFileManagerMenu"
+0004    CALL     0   1   2
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   1  ; "ui"
+0007    MOV      1   0
+0008    TGETS    0   0   2  ; "tapPlus"
+0009    CALL     0   1   2
+0010    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:112-567
+0001    GGET     1   0      ; "pairs"
+0002    TGETS    2   0   1  ; "registered_widgets"
+0003    CALL     1   4   2
+0004    ISNEXT   4 => 0018
+0005 => GGET     6   2      ; "pcall"
+0006    TGETS    7   5   3  ; "addToMainMenu"
+0007    MOV      8   5
+0008    TGETS    9   0   4  ; "menu_items"
+0009    CALL     6   3   4
+0010    IST          6
+0011    JMP      8 => 0018
+0012    UGET     8   0      ; logger
+0013    TGETS    8   8   5  ; "err"
+0014    KSTR     9   6      ; "failed to register widget"
+0015    TGETS   10   5   7  ; "name"
+0016    MOV     11   7
+0017    CALL     8   1   4
+0018 => ITERN    4   3   3
+0019    ITERL    4 => 0005
+0020    TGETS    1   0   4  ; "menu_items"
+0021    TDUP     2  10
+0022    UGET     3   1      ; _
+0023    KSTR     4   9      ; "Show hidden files"
+0024    CALL     3   2   2
+0025    TSETS    3   2  11  ; "text"
+0026    FNEW     3  12      ; filemanagermenu.lua:123
+0027    TSETS    3   2  13  ; "checked_func"
+0028    FNEW     3  14      ; filemanagermenu.lua:124
+0029    TSETS    3   2  15  ; "callback"
+0030    TSETS    2   1   8  ; "show_hidden_files"
+0031    TGETS    1   0   4  ; "menu_items"
+0032    TDUP     2  18
+0033    UGET     3   1      ; _
+0034    KSTR     4  17      ; "Show unsupported files"
+0035    CALL     3   2   2
+0036    TSETS    3   2  11  ; "text"
+0037    FNEW     3  19      ; filemanagermenu.lua:128
+0038    TSETS    3   2  13  ; "checked_func"
+0039    FNEW     3  20      ; filemanagermenu.lua:129
+0040    TSETS    3   2  15  ; "callback"
+0041    TSETS    2   1  16  ; "show_unsupported_files"
+0042    TGETS    1   0   4  ; "menu_items"
+0043    TDUP     2  23
+0044    UGET     3   1      ; _
+0045    KSTR     4  22      ; "Items"
+0046    CALL     3   2   2
+0047    TSETS    3   2  11  ; "text"
+0048    TNEW     3   4
+0049    TDUP     4  25
+0050    UGET     5   1      ; _
+0051    KSTR     6  24      ; "Items per page"
+0052    CALL     5   2   2
+0053    TSETS    5   4  11  ; "text"
+0054    UGET     5   1      ; _
+0055    KSTR     6  26      ; "This sets the number of items per page i"~
+0056    CALL     5   2   2
+0057    TSETS    5   4  27  ; "help_text"
+0058    FNEW     5  28      ; filemanagermenu.lua:142
+0059    TSETS    5   4  15  ; "callback"
+0060    TSETB    4   3   1
+0061    TDUP     4  30
+0062    UGET     5   1      ; _
+0063    KSTR     6  29      ; "Font size"
+0064    CALL     5   2   2
+0065    TSETS    5   4  11  ; "text"
+0066    FNEW     5  31      ; filemanagermenu.lua:163
+0067    TSETS    5   4  15  ; "callback"
+0068    TSETB    4   3   2
+0069    TDUP     4  33
+0070    UGET     5   1      ; _
+0071    KSTR     6  32      ; "Reduce font size to show more text"
+0072    CALL     5   2   2
+0073    TSETS    5   4  11  ; "text"
+0074    FNEW     5  34      ; filemanagermenu.lua:187
+0075    TSETS    5   4  13  ; "checked_func"
+0076    FNEW     5  35      ; filemanagermenu.lua:190
+0077    TSETS    5   4  15  ; "callback"
+0078    TSETB    4   3   3
+0079    TSETS    3   2  36  ; "sub_item_table"
+0080    TSETS    2   1  21  ; "items"
+0081    TGETS    1   0   4  ; "menu_items"
+0082    TGETS    2   0  38  ; "ui"
+0083    MOV      3   2
+0084    TGETS    2   2  39  ; "getSortingMenuTable"
+0085    CALL     2   2   2
+0086    TSETS    2   1  37  ; "sort_by"
+0087    TGETS    1   0   4  ; "menu_items"
+0088    TDUP     2  42
+0089    UGET     3   1      ; _
+0090    KSTR     4  41      ; "Reverse sorting"
+0091    CALL     3   2   2
+0092    TSETS    3   2  11  ; "text"
+0093    FNEW     3  43      ; filemanagermenu.lua:199
+0094    TSETS    3   2  13  ; "checked_func"
+0095    FNEW     3  44      ; filemanagermenu.lua:200
+0096    TSETS    3   2  15  ; "callback"
+0097    TSETS    2   1  40  ; "reverse_sorting"
+0098    TGETS    1   0   4  ; "menu_items"
+0099    TGETS    2   0  38  ; "ui"
+0100    MOV      3   2
+0101    TGETS    2   2  46  ; "getStartWithMenuTable"
+0102    CALL     2   2   2
+0103    TSETS    2   1  45  ; "start_with"
+0104    UGET     1   4      ; Device
+0105    MOV      2   1
+0106    TGETS    1   1  47  ; "supportsScreensaver"
+0107    CALL     1   2   2
+0108    ISF          1
+0109    JMP      2 => 0121
+0110    TGETS    1   0   4  ; "menu_items"
+0111    TDUP     2  50
+0112    UGET     3   1      ; _
+0113    KSTR     4  49      ; "Screensaver"
+0114    CALL     3   2   2
+0115    TSETS    3   2  11  ; "text"
+0116    GGET     3  51      ; "require"
+0117    KSTR     4  52      ; "ui/elements/screensaver_menu"
+0118    CALL     3   2   2
+0119    TSETS    3   2  36  ; "sub_item_table"
+0120    TSETS    2   1  48  ; "screensaver"
+0121 => GGET     1   0      ; "pairs"
+0122    GGET     2  53      ; "dofile"
+0123    KSTR     3  54      ; "frontend/ui/elements/common_settings_men"~
+0124    CALL     2   0   2
+0125    CALLM    1   4   0
+0126    ISNEXT   4 => 0129
+0127 => TGETS    6   0   4  ; "menu_items"
+0128    TSETV    5   6   4
+0129 => ITERN    4   3   3
+0130    ITERL    4 => 0127
+0131    TGETS    1   0   4  ; "menu_items"
+0132    TDUP     2  57
+0133    UGET     3   1      ; _
+0134    KSTR     4  56      ; "Advanced settings"
+0135    CALL     3   2   2
+0136    TSETS    3   2  11  ; "text"
+0137    FNEW     3  58      ; filemanagermenu.lua:217
+0138    TSETS    3   2  15  ; "callback"
+0139    FNEW     3  59      ; filemanagermenu.lua:220
+0140    TSETS    3   2  60  ; "hold_callback"
+0141    TSETS    2   1  55  ; "advanced_settings"
+0142    TGETS    1   0   4  ; "menu_items"
+0143    TDUP     2  63
+0144    UGET     3   1      ; _
+0145    KSTR     4  62      ; "Plugin management"
+0146    CALL     3   2   2
+0147    TSETS    3   2  11  ; "text"
+0148    UGET     3   6      ; PluginLoader
+0149    MOV      4   3
+0150    TGETS    3   3  64  ; "genPluginManagerSubItem"
+0151    CALL     3   2   2
+0152    TSETS    3   2  36  ; "sub_item_table"
+0153    TSETS    2   1  61  ; "plugin_management"
+0154    TGETS    1   0   4  ; "menu_items"
+0155    TDUP     2  67
+0156    UGET     3   1      ; _
+0157    KSTR     4  66      ; "OPDS catalog"
+0158    CALL     3   2   2
+0159    TSETS    3   2  11  ; "text"
+0160    FNEW     3  68      ; filemanagermenu.lua:231
+0161    TSETS    3   2  15  ; "callback"
+0162    TSETS    2   1  65  ; "opds_catalog"
+0163    TGETS    1   0   4  ; "menu_items"
+0164    TDUP     2  71
+0165    UGET     3   1      ; _
+0166    KSTR     4  70      ; "Developer options"
+0167    CALL     3   2   2
+0168    TSETS    3   2  11  ; "text"
+0169    TNEW     3   4
+0170    TDUP     4  73
+0171    UGET     5   1      ; _
+0172    KSTR     6  72      ; "Clear readers' caches"
+0173    CALL     5   2   2
+0174    TSETS    5   4  11  ; "text"
+0175    FNEW     5  74      ; filemanagermenu.lua:246
+0176    TSETS    5   4  15  ; "callback"
+0177    TSETB    4   3   1
+0178    TDUP     4  76
+0179    UGET     5   1      ; _
+0180    KSTR     6  75      ; "Enable debug logging"
+0181    CALL     5   2   2
+0182    TSETS    5   4  11  ; "text"
+0183    FNEW     5  77      ; filemanagermenu.lua:271
+0184    TSETS    5   4  13  ; "checked_func"
+0185    FNEW     5  78      ; filemanagermenu.lua:274
+0186    TSETS    5   4  15  ; "callback"
+0187    TSETB    4   3   2
+0188    TDUP     4  80
+0189    UGET     5   1      ; _
+0190    KSTR     6  79      ; "Enable verbose debug logging"
+0191    CALL     5   2   2
+0192    TSETS    5   4  11  ; "text"
+0193    FNEW     5  81      ; filemanagermenu.lua:287
+0194    TSETS    5   4  82  ; "enabled_func"
+0195    FNEW     5  83      ; filemanagermenu.lua:290
+0196    TSETS    5   4  13  ; "checked_func"
+0197    FNEW     5  84      ; filemanagermenu.lua:293
+0198    TSETS    5   4  15  ; "callback"
+0199    TSETB    4   3   3
+0200    TSETS    3   2  36  ; "sub_item_table"
+0201    TSETS    2   1  69  ; "developer_options"
+0202    UGET     1   4      ; Device
+0203    MOV      2   1
+0204    TGETS    1   1  85  ; "isKobo"
+0205    CALL     1   2   2
+0206    ISF          1
+0207    JMP      2 => 0223
+0208    GGET     1  86      ; "table"
+0209    TGETS    1   1  87  ; "insert"
+0210    TGETS    2   0   4  ; "menu_items"
+0211    TGETS    2   2  69  ; "developer_options"
+0212    TGETS    2   2  36  ; "sub_item_table"
+0213    TDUP     3  89
+0214    UGET     4   1      ; _
+0215    KSTR     5  88      ; "Disable forced 8-bit pixel depth"
+0216    CALL     4   2   2
+0217    TSETS    4   3  11  ; "text"
+0218    FNEW     4  90      ; filemanagermenu.lua:307
+0219    TSETS    4   3  13  ; "checked_func"
+0220    FNEW     4  91      ; filemanagermenu.lua:310
+0221    TSETS    4   3  15  ; "callback"
+0222    CALL     1   1   3
+0223 => UGET     1   4      ; Device
+0224    MOV      2   1
+0225    TGETS    1   1  85  ; "isKobo"
+0226    CALL     1   2   2
+0227    ISF          1
+0228    JMP      2 => 0244
+0229    GGET     1  86      ; "table"
+0230    TGETS    1   1  87  ; "insert"
+0231    TGETS    2   0   4  ; "menu_items"
+0232    TGETS    2   2  69  ; "developer_options"
+0233    TGETS    2   2  36  ; "sub_item_table"
+0234    TDUP     3  93
+0235    UGET     4   1      ; _
+0236    KSTR     5  92      ; "Always abort on crash"
+0237    CALL     4   2   2
+0238    TSETS    4   3  11  ; "text"
+0239    FNEW     4  94      ; filemanagermenu.lua:323
+0240    TSETS    4   3  13  ; "checked_func"
+0241    FNEW     4  95      ; filemanagermenu.lua:326
+0242    TSETS    4   3  15  ; "callback"
+0243    CALL     1   1   3
+0244 => UGET     1   4      ; Device
+0245    TGETS    1   1  96  ; "should_restrict_JIT"
+0246    IST          1
+0247    JMP      1 => 0265
+0248    GGET     1  86      ; "table"
+0249    TGETS    1   1  87  ; "insert"
+0250    TGETS    2   0   4  ; "menu_items"
+0251    TGETS    2   2  69  ; "developer_options"
+0252    TGETS    2   2  36  ; "sub_item_table"
+0253    TDUP     3  98
+0254    UGET     4   1      ; _
+0255    KSTR     5  97      ; "Disable C blitter"
+0256    CALL     4   2   2
+0257    TSETS    4   3  11  ; "text"
+0258    FNEW     4  99      ; filemanagermenu.lua:338
+0259    TSETS    4   3  82  ; "enabled_func"
+0260    FNEW     4 100      ; filemanagermenu.lua:341
+0261    TSETS    4   3  13  ; "checked_func"
+0262    FNEW     4 101      ; filemanagermenu.lua:344
+0263    TSETS    4   3  15  ; "callback"
+0264    CALL     1   1   3
+0265 => UGET     1   4      ; Device
+0266    MOV      2   1
+0267    TGETS    1   1 102  ; "hasEinkScreen"
+0268    CALL     1   2   2
+0269    ISF          1
+0270    JMP      2 => 0292
+0271    UGET     1   4      ; Device
+0272    MOV      2   1
+0273    TGETS    1   1 103  ; "canHWDither"
+0274    CALL     1   2   2
+0275    ISF          1
+0276    JMP      2 => 0292
+0277    GGET     1  86      ; "table"
+0278    TGETS    1   1  87  ; "insert"
+0279    TGETS    2   0   4  ; "menu_items"
+0280    TGETS    2   2  69  ; "developer_options"
+0281    TGETS    2   2  36  ; "sub_item_table"
+0282    TDUP     3 105
+0283    UGET     4   1      ; _
+0284    KSTR     5 104      ; "Disable HW dithering"
+0285    CALL     4   2   2
+0286    TSETS    4   3  11  ; "text"
+0287    FNEW     4 106      ; filemanagermenu.lua:356
+0288    TSETS    4   3  13  ; "checked_func"
+0289    FNEW     4 107      ; filemanagermenu.lua:359
+0290    TSETS    4   3  15  ; "callback"
+0291    CALL     1   1   3
+0292 => UGET     1   4      ; Device
+0293    MOV      2   1
+0294    TGETS    1   1 102  ; "hasEinkScreen"
+0295    CALL     1   2   2
+0296    ISF          1
+0297    JMP      2 => 0315
+0298    GGET     1  86      ; "table"
+0299    TGETS    1   1  87  ; "insert"
+0300    TGETS    2   0   4  ; "menu_items"
+0301    TGETS    2   2  69  ; "developer_options"
+0302    TGETS    2   2  36  ; "sub_item_table"
+0303    TDUP     3 109
+0304    UGET     4   1      ; _
+0305    KSTR     5 108      ; "Disable SW dithering"
+0306    CALL     4   2   2
+0307    TSETS    4   3  11  ; "text"
+0308    FNEW     4 110      ; filemanagermenu.lua:373
+0309    TSETS    4   3  82  ; "enabled_func"
+0310    FNEW     4 111      ; filemanagermenu.lua:376
+0311    TSETS    4   3  13  ; "checked_func"
+0312    FNEW     4 112      ; filemanagermenu.lua:379
+0313    TSETS    4   3  15  ; "callback"
+0314    CALL     1   1   3
+0315 => UGET     1   4      ; Device
+0316    MOV      2   1
+0317    TGETS    1   1 113  ; "isAndroid"
+0318    CALL     1   2   2
+0319    ISF          1
+0320    JMP      2 => 0334
+0321    GGET     1  86      ; "table"
+0322    TGETS    1   1  87  ; "insert"
+0323    TGETS    2   0   4  ; "menu_items"
+0324    TGETS    2   2  69  ; "developer_options"
+0325    TGETS    2   2  36  ; "sub_item_table"
+0326    TDUP     3 115
+0327    UGET     4   1      ; _
+0328    KSTR     5 114      ; "Start E-ink test"
+0329    CALL     4   2   2
+0330    TSETS    4   3  11  ; "text"
+0331    FNEW     4 116      ; filemanagermenu.lua:393
+0332    TSETS    4   3  15  ; "callback"
+0333    CALL     1   1   3
+0334 => GGET     1  86      ; "table"
+0335    TGETS    1   1  87  ; "insert"
+0336    TGETS    2   0   4  ; "menu_items"
+0337    TGETS    2   2  69  ; "developer_options"
+0338    TGETS    2   2  36  ; "sub_item_table"
+0339    TDUP     3 118
+0340    UGET     4   1      ; _
+0341    KSTR     5 117      ; "Disable enhanced UI text shaping (xtext)"
+0342    CALL     4   2   2
+0343    TSETS    4   3  11  ; "text"
+0344    FNEW     4 119      ; filemanagermenu.lua:401
+0345    TSETS    4   3  13  ; "checked_func"
+0346    FNEW     4 120      ; filemanagermenu.lua:404
+0347    TSETS    4   3  15  ; "callback"
+0348    CALL     1   1   3
+0349    GGET     1  86      ; "table"
+0350    TGETS    1   1  87  ; "insert"
+0351    TGETS    2   0   4  ; "menu_items"
+0352    TGETS    2   2  69  ; "developer_options"
+0353    TGETS    2   2  36  ; "sub_item_table"
+0354    TDUP     3 121
+0355    TNEW     4   3
+0356    TDUP     5 123
+0357    UGET     6   1      ; _
+0358    KSTR     7 122      ; "Reverse UI layout mirroring"
+0359    CALL     6   2   2
+0360    TSETS    6   5  11  ; "text"
+0361    FNEW     6 124      ; filemanagermenu.lua:417
+0362    TSETS    6   5  13  ; "checked_func"
+0363    FNEW     6 125      ; filemanagermenu.lua:420
+0364    TSETS    6   5  15  ; "callback"
+0365    TSETB    5   4   1
+0366    TDUP     5 127
+0367    UGET     6   1      ; _
+0368    KSTR     7 126      ; "Reverse UI text direction"
+0369    CALL     6   2   2
+0370    TSETS    6   5  11  ; "text"
+0371    FNEW     6 128      ; filemanagermenu.lua:430
+0372    TSETS    6   5  13  ; "checked_func"
+0373    FNEW     6 129      ; filemanagermenu.lua:433
+0374    TSETS    6   5  15  ; "callback"
+0375    TSETB    5   4   2
+0376    TSETS    4   3  36  ; "sub_item_table"
+0377    CALL     1   1   3
+0378    GGET     1  86      ; "table"
+0379    TGETS    1   1  87  ; "insert"
+0380    TGETS    2   0   4  ; "menu_items"
+0381    TGETS    2   2  69  ; "developer_options"
+0382    TGETS    2   2  36  ; "sub_item_table"
+0383    TDUP     3 131
+0384    FNEW     4 130      ; filemanagermenu.lua:444
+0385    TSETS    4   3 132  ; "text_func"
+0386    FNEW     4 133      ; filemanagermenu.lua:451
+0387    TSETS    4   3  13  ; "checked_func"
+0388    FNEW     4 134      ; filemanagermenu.lua:454
+0389    TSETS    4   3  15  ; "callback"
+0390    FNEW     4 135      ; filemanagermenu.lua:459
+0391    TSETS    4   3  60  ; "hold_callback"
+0392    CALL     1   1   3
+0393    TGETS    1   0   4  ; "menu_items"
+0394    TDUP     2 138
+0395    UGET     3   1      ; _
+0396    KSTR     4 137      ; "Cloud storage"
+0397    CALL     3   2   2
+0398    TSETS    3   2  11  ; "text"
+0399    FNEW     3 139      ; filemanagermenu.lua:467
+0400    TSETS    3   2  15  ; "callback"
+0401    TSETS    2   1 136  ; "cloud_storage"
+0402    TGETS    1   0   4  ; "menu_items"
+0403    TDUP     2 142
+0404    UGET     3   1      ; _
+0405    KSTR     4 141      ; "Find a book via calibre metadata"
+0406    CALL     3   2   2
+0407    TSETS    3   2  11  ; "text"
+0408    FNEW     3 143      ; filemanagermenu.lua:481
+0409    TSETS    3   2  15  ; "callback"
+0410    TSETS    2   1 140  ; "find_book_in_calibre_catalog"
+0411    TGETS    1   0   4  ; "menu_items"
+0412    TDUP     2 146
+0413    UGET     3   1      ; _
+0414    KSTR     4 145      ; "Find a file"
+0415    CALL     3   2   2
+0416    TSETS    3   2  11  ; "text"
+0417    FNEW     3 147      ; filemanagermenu.lua:489
+0418    TSETS    3   2  15  ; "callback"
+0419    TSETS    2   1 144  ; "find_file"
+0420    TGETS    1   0   4  ; "menu_items"
+0421    TDUP     2 150
+0422    FNEW     3 149      ; filemanagermenu.lua:496
+0423    TSETS    3   2 132  ; "text_func"
+0424    FNEW     3 151      ; filemanagermenu.lua:504
+0425    TSETS    3   2  82  ; "enabled_func"
+0426    FNEW     3 152      ; filemanagermenu.lua:507
+0427    TSETS    3   2  15  ; "callback"
+0428    FNEW     3 153      ; filemanagermenu.lua:510
+0429    TSETS    3   2  60  ; "hold_callback"
+0430    TSETS    2   1 148  ; "open_last_document"
+0431    GGET     1   0      ; "pairs"
+0432    GGET     2  53      ; "dofile"
+0433    KSTR     3 154      ; "frontend/ui/elements/common_info_menu_ta"~
+0434    CALL     2   0   2
+0435    CALLM    1   4   0
+0436    ISNEXT   4 => 0439
+0437 => TGETS    6   0   4  ; "menu_items"
+0438    TSETV    5   6   4
+0439 => ITERN    4   3   3
+0440    ITERL    4 => 0437
+0441    TGETS    1   0   4  ; "menu_items"
+0442    TDUP     2 157
+0443    UGET     3   1      ; _
+0444    KSTR     4 156      ; "Exit"
+0445    CALL     3   2   2
+0446    TSETS    3   2  11  ; "text"
+0447    FNEW     3 158      ; filemanagermenu.lua:527
+0448    TSETS    3   2  60  ; "hold_callback"
+0449    TSETS    2   1 155  ; "exit_menu"
+0450    TGETS    1   0   4  ; "menu_items"
+0451    TDUP     2 160
+0452    UGET     3   1      ; _
+0453    KSTR     4 156      ; "Exit"
+0454    CALL     3   2   2
+0455    TSETS    3   2  11  ; "text"
+0456    FNEW     3 161      ; filemanagermenu.lua:533
+0457    TSETS    3   2  15  ; "callback"
+0458    TSETS    2   1 159  ; "exit"
+0459    TGETS    1   0   4  ; "menu_items"
+0460    TDUP     2 164
+0461    UGET     3   1      ; _
+0462    KSTR     4 163      ; "Restart KOReader"
+0463    CALL     3   2   2
+0464    TSETS    3   2  11  ; "text"
+0465    FNEW     3 165      ; filemanagermenu.lua:539
+0466    TSETS    3   2  15  ; "callback"
+0467    TSETS    2   1 162  ; "restart_koreader"
+0468    UGET     1   4      ; Device
+0469    MOV      2   1
+0470    TGETS    1   1 166  ; "canRestart"
+0471    CALL     1   2   2
+0472    IST          1
+0473    JMP      1 => 0484
+0474    TGETS    1   0   4  ; "menu_items"
+0475    TGETS    2   0   4  ; "menu_items"
+0476    TGETS    2   2 159  ; "exit"
+0477    TSETS    2   1 155  ; "exit_menu"
+0478    TGETS    1   0   4  ; "menu_items"
+0479    KPRI     2   0
+0480    TSETS    2   1 159  ; "exit"
+0481    TGETS    1   0   4  ; "menu_items"
+0482    KPRI     2   0
+0483    TSETS    2   1 162  ; "restart_koreader"
+0484 => UGET     1   4      ; Device
+0485    MOV      2   1
+0486    TGETS    1   1 167  ; "isTouchDevice"
+0487    CALL     1   2   2
+0488    IST          1
+0489    JMP      1 => 0495
+0490    TGETS    1   0   4  ; "menu_items"
+0491    TDUP     2 169
+0492    FNEW     3 170      ; filemanagermenu.lua:556
+0493    TSETS    3   2  15  ; "callback"
+0494    TSETS    2   1 168  ; "plus_menu"
+0495 => GGET     1  51      ; "require"
+0496    KSTR     2 171      ; "ui/elements/filemanager_menu_order"
+0497    CALL     1   2   2
+0498    GGET     2  51      ; "require"
+0499    KSTR     3 172      ; "ui/menusorter"
+0500    CALL     2   2   2
+0501    MOV      4   2
+0502    TGETS    3   2 174  ; "mergeAndSort"
+0503    KSTR     5 175      ; "filemanager"
+0504    TGETS    6   0   4  ; "menu_items"
+0505    MOV      7   1
+0506    CALL     3   2   5
+0507    TSETS    3   0 173  ; "tab_item_table"
+0508    UCLO     0 => 0509
+0509 => RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:569-575
+0001    TNEW     1   0
+0002    GGET     2   0      ; "pairs"
+0003    TGETS    3   0   1  ; "registered_widgets"
+0004    CALL     2   4   2
+0005    ISNEXT   5 => 0010
+0006 => MOV      8   6
+0007    TGETS    7   6   2  ; "addToMainMenu"
+0008    MOV      9   1
+0009    CALL     7   1   3
+0010 => ITERN    5   3   3
+0011    ITERL    5 => 0006
+0012    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:577-583
+0001    UGET     2   0      ; UIManager
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "close"
+0004    TGETS    4   0   1  ; "menu_container"
+0005    CALL     2   1   3
+0006    TGETS    2   0   2  ; "ui"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "onClose"
+0009    CALL     2   1   2
+0010    ISF          1
+0011    JMP      2 => 0014
+0012    MOV      2   1
+0013    CALL     2   1   1
+0014 => RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:618-620
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onCloseFileManagerMenu"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:585-627
+0001    TGETS    2   0   0  ; "tab_item_table"
+0002    ISNEP    2   0
+0003    JMP      2 => 0007
+0004    MOV      3   0
+0005    TGETS    2   0   1  ; "setUpdateItemTable"
+0006    CALL     2   1   2
+0007 => IST          1
+0008    JMP      2 => 0017
+0009    GGET     2   2      ; "G_reader_settings"
+0010    MOV      3   2
+0011    TGETS    2   2   3  ; "readSetting"
+0012    KSTR     4   4      ; "filemanagermenu_tab_index"
+0013    CALL     2   2   3
+0014    ISTC     1   2
+0015    JMP      3 => 0017
+0016    KSHORT   1   1
+0017 => UGET     2   0      ; CenterContainer
+0018    MOV      3   2
+0019    TGETS    2   2   5  ; "new"
+0020    TDUP     4   6
+0021    UGET     5   1      ; Screen
+0022    MOV      6   5
+0023    TGETS    5   5   7  ; "getSize"
+0024    CALL     5   2   2
+0025    TSETS    5   4   8  ; "dimen"
+0026    CALL     2   2   3
+0027    KPRI     3   0
+0028    UGET     4   2      ; Device
+0029    MOV      5   4
+0030    TGETS    4   4   9  ; "isTouchDevice"
+0031    CALL     4   2   2
+0032    IST          4
+0033    JMP      5 => 0040
+0034    UGET     4   2      ; Device
+0035    MOV      5   4
+0036    TGETS    4   4  10  ; "hasDPad"
+0037    CALL     4   2   2
+0038    ISF          4
+0039    JMP      5 => 0058
+0040 => GGET     4  11      ; "require"
+0041    KSTR     5  12      ; "ui/widget/touchmenu"
+0042    CALL     4   2   2
+0043    MOV      6   4
+0044    TGETS    5   4   5  ; "new"
+0045    TDUP     7  14
+0046    UGET     8   1      ; Screen
+0047    MOV      9   8
+0048    TGETS    8   8  13  ; "getWidth"
+0049    CALL     8   2   2
+0050    TSETS    8   7  15  ; "width"
+0051    TSETS    1   7  16  ; "last_index"
+0052    TGETS    8   0   0  ; "tab_item_table"
+0053    TSETS    8   7   0  ; "tab_item_table"
+0054    TSETS    2   7  17  ; "show_parent"
+0055    CALL     5   2   3
+0056    MOV      3   5
+0057    JMP      4 => 0081
+0058 => GGET     4  11      ; "require"
+0059    KSTR     5  18      ; "ui/widget/menu"
+0060    CALL     4   2   2
+0061    MOV      6   4
+0062    TGETS    5   4   5  ; "new"
+0063    TDUP     7  20
+0064    UGET     8   3      ; _
+0065    KSTR     9  19      ; "File manager menu"
+0066    CALL     8   2   2
+0067    TSETS    8   7  21  ; "title"
+0068    TGETS    8   4  22  ; "itemTableFromTouchMenu"
+0069    TGETS    9   0   0  ; "tab_item_table"
+0070    CALL     8   2   2
+0071    TSETS    8   7  23  ; "item_table"
+0072    UGET     8   1      ; Screen
+0073    MOV      9   8
+0074    TGETS    8   8  13  ; "getWidth"
+0075    CALL     8   2   2
+0076    SUBVN    8   8   0  ; 10
+0077    TSETS    8   7  15  ; "width"
+0078    TSETS    2   7  17  ; "show_parent"
+0079    CALL     5   2   3
+0080    MOV      3   5
+0081 => FNEW     4  25      ; filemanagermenu.lua:618
+0082    TSETS    4   3  24  ; "close_callback"
+0083    TSETB    3   2   1
+0084    TSETS    2   0  26  ; "menu_container"
+0085    UGET     4   4      ; UIManager
+0086    MOV      5   4
+0087    TGETS    4   4  27  ; "show"
+0088    MOV      6   2
+0089    CALL     4   1   3
+0090    KPRI     4   2
+0091    UCLO     0 => 0092
+0092 => RET1     4   2
+
+-- BYTECODE -- filemanagermenu.lua:629-634
+0001    TGETS    1   0   0  ; "menu_container"
+0002    TGETB    1   1   1
+0003    TGETS    1   1   1  ; "last_index"
+0004    GGET     2   2      ; "G_reader_settings"
+0005    MOV      3   2
+0006    TGETS    2   2   3  ; "saveSetting"
+0007    KSTR     4   4      ; "filemanagermenu_tab_index"
+0008    MOV      5   1
+0009    CALL     2   1   4
+0010    UGET     2   0      ; UIManager
+0011    MOV      3   2
+0012    TGETS    2   2   5  ; "close"
+0013    TGETS    4   0   0  ; "menu_container"
+0014    CALL     2   1   3
+0015    KPRI     2   2
+0016    RET1     2   2
+
+-- BYTECODE -- filemanagermenu.lua:636-653
+0001    TGETS    2   0   0  ; "tab_item_table"
+0002    ISNEP    2   0
+0003    JMP      2 => 0007
+0004    MOV      3   0
+0005    TGETS    2   0   1  ; "setUpdateItemTable"
+0006    CALL     2   1   2
+0007 => GGET     2   2      ; "G_reader_settings"
+0008    MOV      3   2
+0009    TGETS    2   2   3  ; "readSetting"
+0010    KSTR     4   4      ; "filemanagermenu_tab_index"
+0011    CALL     2   2   3
+0012    IST          2
+0013    JMP      3 => 0015
+0014    KSHORT   2   1
+0015 => IST          1
+0016    JMP      3 => 0019
+0017    RET1     2   2
+0018    JMP      3 => 0062
+0019 => TGETS    3   1   5  ; "pos"
+0020    TGETS    3   3   6  ; "x"
+0021    UGET     4   0      ; Screen
+0022    MOV      5   4
+0023    TGETS    4   4   7  ; "getWidth"
+0024    CALL     4   2   2
+0025    MULNV    4   4   0  ; 2
+0026    DIVVN    4   4   1  ; 3
+0027    ISGE     4   3
+0028    JMP      3 => 0040
+0029    UGET     3   1      ; BD
+0030    TGETS    3   3   8  ; "mirroredUILayout"
+0031    CALL     3   2   1
+0032    ISF          3
+0033    JMP      4 => 0036
+0034    KSHORT   3   1
+0035    JMP      4 => 0038
+0036 => TGETS    3   0   0  ; "tab_item_table"
+0037    LEN      3   3
+0038 => RET1     3   2
+0039    JMP      3 => 0062
+0040 => TGETS    3   1   5  ; "pos"
+0041    TGETS    3   3   6  ; "x"
+0042    UGET     4   0      ; Screen
+0043    MOV      5   4
+0044    TGETS    4   4   7  ; "getWidth"
+0045    CALL     4   2   2
+0046    DIVVN    4   4   1  ; 3
+0047    ISGE     3   4
+0048    JMP      3 => 0061
+0049    UGET     3   1      ; BD
+0050    TGETS    3   3   8  ; "mirroredUILayout"
+0051    CALL     3   2   1
+0052    ISF          3
+0053    JMP      4 => 0058
+0054    TGETS    3   0   0  ; "tab_item_table"
+0055    LEN      3   3
+0056    IST          3
+0057    JMP      4 => 0059
+0058 => KSHORT   3   1
+0059 => RET1     3   2
+0060    JMP      3 => 0062
+0061 => RET1     2   2
+0062 => RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:655-660
+0001    TGETS    2   0   0  ; "activation_menu"
+0002    ISEQS    2   1      ; "swipe"
+0003    JMP      2 => 0013
+0004    MOV      3   0
+0005    TGETS    2   0   2  ; "onShowMenu"
+0006    MOV      5   0
+0007    TGETS    4   0   3  ; "_getTabIndexFromLocation"
+0008    MOV      6   1
+0009    CALL     4   0   3
+0010    CALLM    2   1   1
+0011    KPRI     2   2
+0012    RET1     2   2
+0013 => RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:662-667
+0001    TGETS    2   0   0  ; "activation_menu"
+0002    ISEQS    2   1      ; "tap"
+0003    JMP      2 => 0016
+0004    TGETS    2   1   2  ; "direction"
+0005    ISNES    2   3      ; "south"
+0006    JMP      2 => 0016
+0007    MOV      3   0
+0008    TGETS    2   0   4  ; "onShowMenu"
+0009    MOV      5   0
+0010    TGETS    4   0   5  ; "_getTabIndexFromLocation"
+0011    MOV      6   1
+0012    CALL     4   0   3
+0013    CALLM    2   1   1
+0014    KPRI     2   2
+0015    RET1     2   2
+0016 => RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:669-674
+0001    UGET     2   0      ; Device
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "isTouchDevice"
+0004    CALL     2   2   2
+0005    ISF          2
+0006    JMP      3 => 0010
+0007    MOV      3   0
+0008    TGETS    2   0   1  ; "initGesListener"
+0009    CALL     2   1   2
+0010 => RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:676-678
+0001    GGET     2   0      ; "table"
+0002    TGETS    2   2   1  ; "insert"
+0003    TGETS    3   0   2  ; "registered_widgets"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagermenu.lua:0-681
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/container/centercontainer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "apps/cloudstorage/cloudstorage"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/confirmbox"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "device"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/event"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/container/inputcontainer"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "pluginloader"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "apps/filemanager/filemanagersearch"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "apps/filemanager/filemanagersetdefaults"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/uimanager"
+0033    CALL    10   2   2
+0034    TGETS   11   4  12  ; "screen"
+0035    GGET    12   0      ; "require"
+0036    KSTR    13  13      ; "dbg"
+0037    CALL    12   2   2
+0038    GGET    13   0      ; "require"
+0039    KSTR    14  14      ; "libs/libkoreader-lfs"
+0040    CALL    13   2   2
+0041    GGET    14   0      ; "require"
+0042    KSTR    15  15      ; "logger"
+0043    CALL    14   2   2
+0044    GGET    15   0      ; "require"
+0045    KSTR    16  16      ; "util"
+0046    CALL    15   2   2
+0047    GGET    16   0      ; "require"
+0048    KSTR    17  17      ; "gettext"
+0049    CALL    16   2   2
+0050    GGET    17   0      ; "require"
+0051    KSTR    18  18      ; "ffi/util"
+0052    CALL    17   2   2
+0053    TGETS   17  17  19  ; "template"
+0054    MOV     19   6
+0055    TGETS   18   6  20  ; "extend"
+0056    TDUP    20  21
+0057    TNEW    21   0
+0058    TSETS   21  20  22  ; "menu_items"
+0059    CALL    18   2   3
+0060    FNEW    19  24      ; filemanagermenu.lua:26
+0061    TSETS   19  18  23  ; "init"
+0062    FNEW    19  26      ; filemanagermenu.lua:62
+0063    TSETS   19  18  25  ; "initGesListener"
+0064    FNEW    19  28      ; filemanagermenu.lua:91
+0065    TSETS   19  18  27  ; "openLastDoc"
+0066    FNEW    19  30      ; filemanagermenu.lua:112
+0067    TSETS   19  18  29  ; "setUpdateItemTable"
+0068    MOV     20  12
+0069    TGETS   19  12  31  ; "guard"
+0070    MOV     21  18
+0071    KSTR    22  29      ; "setUpdateItemTable"
+0072    FNEW    23  32      ; filemanagermenu.lua:569
+0073    CALL    19   1   5
+0074    FNEW    19  34      ; filemanagermenu.lua:577
+0075    TSETS   19  18  33  ; "exitOrRestart"
+0076    FNEW    19  36      ; filemanagermenu.lua:585
+0077    TSETS   19  18  35  ; "onShowMenu"
+0078    FNEW    19  38      ; filemanagermenu.lua:629
+0079    TSETS   19  18  37  ; "onCloseFileManagerMenu"
+0080    FNEW    19  40      ; filemanagermenu.lua:636
+0081    TSETS   19  18  39  ; "_getTabIndexFromLocation"
+0082    FNEW    19  42      ; filemanagermenu.lua:655
+0083    TSETS   19  18  41  ; "onTapShowMenu"
+0084    FNEW    19  44      ; filemanagermenu.lua:662
+0085    TSETS   19  18  43  ; "onSwipeShowMenu"
+0086    FNEW    19  46      ; filemanagermenu.lua:669
+0087    TSETS   19  18  45  ; "onSetDimensions"
+0088    FNEW    19  48      ; filemanagermenu.lua:676
+0089    TSETS   19  18  47  ; "registerToMainMenu"
+0090    UCLO     0 => 0091
+0091 => RET1    18   2
+

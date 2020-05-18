@@ -1,0 +1,1447 @@
+-- BYTECODE -- readhistory_spec.lua:10-12
+0001    UGET     1   0      ; joinPath
+0002    UGET     2   1      ; DataStorage
+0003    MOV      3   2
+0004    TGETS    2   2   0  ; "getDataDir"
+0005    CALL     2   2   2
+0006    MOV      3   0
+0007    CALLT    1   3
+
+-- BYTECODE -- readhistory_spec.lua:14-16
+0001    UGET     0   0      ; joinPath
+0002    UGET     1   1      ; DataStorage
+0003    MOV      2   1
+0004    TGETS    1   1   0  ; "getDataDir"
+0005    CALL     1   2   2
+0006    KSTR     2   1      ; "testdata"
+0007    CALLT    0   3
+
+-- BYTECODE -- readhistory_spec.lua:18-20
+0001    UGET     1   0      ; joinPath
+0002    UGET     2   1      ; test_data_dir
+0003    CALL     2   2   1
+0004    MOV      3   0
+0005    CALLT    1   3
+
+-- BYTECODE -- readhistory_spec.lua:22-24
+0001    UGET     1   0      ; DocSettings
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "getHistoryPath"
+0004    UGET     3   1      ; realpath
+0005    UGET     4   2      ; test_file
+0006    MOV      5   0
+0007    CALL     4   0   2
+0008    CALLM    3   0   0
+0009    CALLMT   1   1
+
+-- BYTECODE -- readhistory_spec.lua:26-28
+0001    GGET     1   0      ; "os"
+0002    TGETS    1   1   1  ; "remove"
+0003    MOV      2   0
+0004    CALL     1   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:30-32
+0001    GGET     2   0      ; "os"
+0002    TGETS    2   2   1  ; "rename"
+0003    MOV      3   0
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:34-37
+0001    GGET     1   0      ; "io"
+0002    TGETS    1   1   1  ; "open"
+0003    MOV      2   0
+0004    KSTR     3   2      ; "w"
+0005    CALL     1   2   3
+0006    MOV      3   1
+0007    TGETS    2   1   3  ; "close"
+0008    CALL     2   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:39-48
+0001    GGET     4   0      ; "assert"
+0002    TGETS    4   4   1  ; "is"
+0003    TGETS    4   4   2  ; "same"
+0004    TGETS    5   0   3  ; "hist"
+0005    TGETV    5   5   1
+0006    TGETS    5   5   4  ; "text"
+0007    MOV      6   2
+0008    CALL     4   1   3
+0009    GGET     4   0      ; "assert"
+0010    TGETS    4   4   1  ; "is"
+0011    TGETS    4   4   2  ; "same"
+0012    TGETS    5   0   3  ; "hist"
+0013    TGETV    5   5   1
+0014    TGETS    5   5   5  ; "index"
+0015    MOV      6   1
+0016    CALL     4   1   3
+0017    GGET     4   0      ; "assert"
+0018    TGETS    4   4   1  ; "is"
+0019    TGETS    4   4   2  ; "same"
+0020    TGETS    5   0   3  ; "hist"
+0021    TGETV    5   5   1
+0022    TGETS    5   5   6  ; "file"
+0023    UGET     6   0      ; joinPath
+0024    UGET     7   1      ; realpath
+0025    UGET     8   2      ; test_data_dir
+0026    CALL     8   0   1
+0027    CALLM    7   2   0
+0028    MOV      8   2
+0029    CALL     6   0   3
+0030    CALLM    4   1   1
+0031    ISF          3
+0032    JMP      4 => 0042
+0033    GGET     4   0      ; "assert"
+0034    TGETS    4   4   7  ; "is_nil"
+0035    UGET     5   1      ; realpath
+0036    UGET     6   3      ; test_file
+0037    MOV      7   2
+0038    CALL     6   0   2
+0039    CALLM    5   0   0
+0040    CALLM    4   1   0
+0041    JMP      4 => 0054
+0042 => GGET     4   0      ; "assert"
+0043    TGETS    4   4   1  ; "is"
+0044    TGETS    4   4   2  ; "same"
+0045    TGETS    5   0   3  ; "hist"
+0046    TGETV    5   5   1
+0047    TGETS    5   5   6  ; "file"
+0048    UGET     6   1      ; realpath
+0049    UGET     7   3      ; test_file
+0050    MOV      8   2
+0051    CALL     7   0   2
+0052    CALLM    6   0   0
+0053    CALLM    4   1   1
+0054 => RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:57-57
+0001    GGET     0   0      ; "package"
+0002    TGETS    0   0   1  ; "reload"
+0003    KSTR     1   2      ; "readhistory"
+0004    CALLT    0   2
+
+-- BYTECODE -- readhistory_spec.lua:50-61
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "docsettings"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; DocSettings
+0008    GGET     0   0      ; "require"
+0009    KSTR     1   3      ; "datastorage"
+0010    CALL     0   2   2
+0011    USETV    1   0      ; DataStorage
+0012    GGET     0   0      ; "require"
+0013    KSTR     1   4      ; "ffi/util"
+0014    CALL     0   2   2
+0015    TGETS    0   0   5  ; "joinPath"
+0016    USETV    2   0      ; joinPath
+0017    GGET     0   0      ; "require"
+0018    KSTR     1   6      ; "libs/libkoreader-lfs"
+0019    CALL     0   2   2
+0020    TGETS    0   0   7  ; "mkdir"
+0021    USETV    3   0      ; mkdir
+0022    GGET     0   0      ; "require"
+0023    KSTR     1   4      ; "ffi/util"
+0024    CALL     0   2   2
+0025    TGETS    0   0   8  ; "realpath"
+0026    USETV    4   0      ; realpath
+0027    FNEW     0   9      ; readhistory_spec.lua:57
+0028    USETV    5   0      ; reload
+0029    GGET     0   0      ; "require"
+0030    KSTR     1   4      ; "ffi/util"
+0031    CALL     0   2   2
+0032    TGETS    0   0  10  ; "usleep"
+0033    USETV    6   0      ; usleep
+0034    UGET     0   3      ; mkdir
+0035    UGET     1   2      ; joinPath
+0036    UGET     2   1      ; DataStorage
+0037    MOV      3   2
+0038    TGETS    2   2  11  ; "getDataDir"
+0039    CALL     2   2   2
+0040    KSTR     3  12      ; "testdata"
+0041    CALL     1   0   3
+0042    CALLM    0   1   0
+0043    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:63-70
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; reload
+0007    CALL     0   2   1
+0008    GGET     1   1      ; "assert"
+0009    TGETS    1   1   2  ; "is"
+0010    TGETS    1   1   3  ; "same"
+0011    TGETS    2   0   4  ; "hist"
+0012    LEN      2   2
+0013    KSHORT   3   0
+0014    CALL     1   1   3
+0015    UGET     1   3      ; touch
+0016    UGET     2   1      ; file
+0017    KSTR     3   0      ; "history.lua"
+0018    CALL     2   0   2
+0019    CALLM    1   1   0
+0020    UGET     1   2      ; reload
+0021    CALL     1   2   1
+0022    MOV      0   1
+0023    GGET     1   1      ; "assert"
+0024    TGETS    1   1   2  ; "is"
+0025    TGETS    1   1   3  ; "same"
+0026    TGETS    2   0   4  ; "hist"
+0027    LEN      2   2
+0028    KSHORT   3   0
+0029    CALL     1   1   3
+0030    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:72-81
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; reload
+0007    CALL     0   2   1
+0008    UGET     1   3      ; touch
+0009    UGET     2   4      ; test_file
+0010    KSTR     3   1      ; "a"
+0011    CALL     2   0   2
+0012    CALLM    1   1   0
+0013    MOV      2   0
+0014    TGETS    1   0   2  ; "addItem"
+0015    UGET     3   4      ; test_file
+0016    KSTR     4   1      ; "a"
+0017    CALL     3   0   2
+0018    CALLM    1   1   1
+0019    UGET     1   2      ; reload
+0020    CALL     1   2   1
+0021    MOV      0   1
+0022    GGET     1   3      ; "assert"
+0023    TGETS    1   1   4  ; "is"
+0024    TGETS    1   1   5  ; "same"
+0025    TGETS    2   0   6  ; "hist"
+0026    LEN      2   2
+0027    KSHORT   3   1
+0028    CALL     1   1   3
+0029    UGET     1   5      ; assert_item_is
+0030    MOV      2   0
+0031    KSHORT   3   1
+0032    KSTR     4   1      ; "a"
+0033    CALL     1   1   4
+0034    UGET     1   0      ; rm
+0035    UGET     2   4      ; test_file
+0036    KSTR     3   1      ; "a"
+0037    CALL     2   0   2
+0038    CALLM    1   1   0
+0039    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:83-98
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; touch
+0007    UGET     1   3      ; test_file
+0008    KSTR     2   1      ; "a"
+0009    CALL     1   0   2
+0010    CALLM    0   1   0
+0011    UGET     0   2      ; touch
+0012    UGET     1   3      ; test_file
+0013    KSTR     2   2      ; "b"
+0014    CALL     1   0   2
+0015    CALLM    0   1   0
+0016    UGET     0   4      ; reload
+0017    CALL     0   2   1
+0018    MOV      2   0
+0019    TGETS    1   0   3  ; "addItem"
+0020    UGET     3   3      ; test_file
+0021    KSTR     4   1      ; "a"
+0022    CALL     3   0   2
+0023    CALLM    1   1   1
+0024    UGET     1   5      ; usleep
+0025    KNUM     2   0      ; 1000000
+0026    CALL     1   1   2
+0027    UGET     1   2      ; touch
+0028    UGET     2   6      ; legacy_history_file
+0029    KSTR     3   2      ; "b"
+0030    CALL     2   0   2
+0031    CALLM    1   1   0
+0032    UGET     1   4      ; reload
+0033    CALL     1   2   1
+0034    MOV      0   1
+0035    GGET     1   4      ; "assert"
+0036    TGETS    1   1   5  ; "is"
+0037    TGETS    1   1   6  ; "same"
+0038    TGETS    2   0   7  ; "hist"
+0039    LEN      2   2
+0040    KSHORT   3   2
+0041    CALL     1   1   3
+0042    UGET     1   7      ; assert_item_is
+0043    MOV      2   0
+0044    KSHORT   3   1
+0045    KSTR     4   2      ; "b"
+0046    CALL     1   1   4
+0047    UGET     1   7      ; assert_item_is
+0048    MOV      2   0
+0049    KSHORT   3   2
+0050    KSTR     4   1      ; "a"
+0051    CALL     1   1   4
+0052    UGET     1   0      ; rm
+0053    UGET     2   6      ; legacy_history_file
+0054    KSTR     3   2      ; "b"
+0055    CALL     2   0   2
+0056    CALLM    1   1   0
+0057    UGET     1   0      ; rm
+0058    UGET     2   3      ; test_file
+0059    KSTR     3   1      ; "a"
+0060    CALL     2   0   2
+0061    CALLM    1   1   0
+0062    UGET     1   0      ; rm
+0063    UGET     2   3      ; test_file
+0064    KSTR     3   2      ; "b"
+0065    CALL     2   0   2
+0066    CALLM    1   1   0
+0067    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:100-138
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; touch
+0007    UGET     1   3      ; test_file
+0008    KSTR     2   1      ; "a"
+0009    CALL     1   0   2
+0010    CALLM    0   1   0
+0011    UGET     0   2      ; touch
+0012    UGET     1   3      ; test_file
+0013    KSTR     2   2      ; "b"
+0014    CALL     1   0   2
+0015    CALLM    0   1   0
+0016    UGET     0   2      ; touch
+0017    UGET     1   3      ; test_file
+0018    KSTR     2   3      ; "c"
+0019    CALL     1   0   2
+0020    CALLM    0   1   0
+0021    UGET     0   2      ; touch
+0022    UGET     1   3      ; test_file
+0023    KSTR     2   4      ; "d"
+0024    CALL     1   0   2
+0025    CALLM    0   1   0
+0026    UGET     0   2      ; touch
+0027    UGET     1   3      ; test_file
+0028    KSTR     2   5      ; "e"
+0029    CALL     1   0   2
+0030    CALLM    0   1   0
+0031    UGET     0   2      ; touch
+0032    UGET     1   3      ; test_file
+0033    KSTR     2   6      ; "f"
+0034    CALL     1   0   2
+0035    CALLM    0   1   0
+0036    UGET     0   4      ; reload
+0037    CALL     0   2   1
+0038    MOV      2   0
+0039    TGETS    1   0   7  ; "addItem"
+0040    UGET     3   3      ; test_file
+0041    KSTR     4   6      ; "f"
+0042    CALL     3   0   2
+0043    CALLM    1   1   1
+0044    UGET     1   5      ; usleep
+0045    KNUM     2   0      ; 1000000
+0046    CALL     1   1   2
+0047    UGET     1   2      ; touch
+0048    UGET     2   6      ; legacy_history_file
+0049    KSTR     3   3      ; "c"
+0050    CALL     2   0   2
+0051    CALLM    1   1   0
+0052    UGET     1   5      ; usleep
+0053    KNUM     2   0      ; 1000000
+0054    CALL     1   1   2
+0055    UGET     1   2      ; touch
+0056    UGET     2   6      ; legacy_history_file
+0057    KSTR     3   2      ; "b"
+0058    CALL     2   0   2
+0059    CALLM    1   1   0
+0060    UGET     1   5      ; usleep
+0061    KNUM     2   0      ; 1000000
+0062    CALL     1   1   2
+0063    MOV      2   0
+0064    TGETS    1   0   7  ; "addItem"
+0065    UGET     3   3      ; test_file
+0066    KSTR     4   4      ; "d"
+0067    CALL     3   0   2
+0068    CALLM    1   1   1
+0069    UGET     1   5      ; usleep
+0070    KNUM     2   0      ; 1000000
+0071    CALL     1   1   2
+0072    UGET     1   2      ; touch
+0073    UGET     2   6      ; legacy_history_file
+0074    KSTR     3   1      ; "a"
+0075    CALL     2   0   2
+0076    CALLM    1   1   0
+0077    UGET     1   5      ; usleep
+0078    KNUM     2   0      ; 1000000
+0079    CALL     1   1   2
+0080    MOV      2   0
+0081    TGETS    1   0   7  ; "addItem"
+0082    UGET     3   3      ; test_file
+0083    KSTR     4   5      ; "e"
+0084    CALL     3   0   2
+0085    CALLM    1   1   1
+0086    UGET     1   4      ; reload
+0087    CALL     1   2   1
+0088    MOV      0   1
+0089    GGET     1   8      ; "assert"
+0090    TGETS    1   1   9  ; "is"
+0091    TGETS    1   1  10  ; "same"
+0092    TGETS    2   0  11  ; "hist"
+0093    LEN      2   2
+0094    KSHORT   3   6
+0095    CALL     1   1   3
+0096    UGET     1   7      ; assert_item_is
+0097    MOV      2   0
+0098    KSHORT   3   1
+0099    KSTR     4   5      ; "e"
+0100    CALL     1   1   4
+0101    UGET     1   7      ; assert_item_is
+0102    MOV      2   0
+0103    KSHORT   3   2
+0104    KSTR     4   1      ; "a"
+0105    CALL     1   1   4
+0106    UGET     1   7      ; assert_item_is
+0107    MOV      2   0
+0108    KSHORT   3   3
+0109    KSTR     4   4      ; "d"
+0110    CALL     1   1   4
+0111    UGET     1   7      ; assert_item_is
+0112    MOV      2   0
+0113    KSHORT   3   4
+0114    KSTR     4   2      ; "b"
+0115    CALL     1   1   4
+0116    UGET     1   7      ; assert_item_is
+0117    MOV      2   0
+0118    KSHORT   3   5
+0119    KSTR     4   3      ; "c"
+0120    CALL     1   1   4
+0121    UGET     1   7      ; assert_item_is
+0122    MOV      2   0
+0123    KSHORT   3   6
+0124    KSTR     4   6      ; "f"
+0125    CALL     1   1   4
+0126    UGET     1   0      ; rm
+0127    UGET     2   6      ; legacy_history_file
+0128    KSTR     3   3      ; "c"
+0129    CALL     2   0   2
+0130    CALLM    1   1   0
+0131    UGET     1   0      ; rm
+0132    UGET     2   6      ; legacy_history_file
+0133    KSTR     3   2      ; "b"
+0134    CALL     2   0   2
+0135    CALLM    1   1   0
+0136    UGET     1   0      ; rm
+0137    UGET     2   6      ; legacy_history_file
+0138    KSTR     3   1      ; "a"
+0139    CALL     2   0   2
+0140    CALLM    1   1   0
+0141    UGET     1   0      ; rm
+0142    UGET     2   3      ; test_file
+0143    KSTR     3   1      ; "a"
+0144    CALL     2   0   2
+0145    CALLM    1   1   0
+0146    UGET     1   0      ; rm
+0147    UGET     2   3      ; test_file
+0148    KSTR     3   2      ; "b"
+0149    CALL     2   0   2
+0150    CALLM    1   1   0
+0151    UGET     1   0      ; rm
+0152    UGET     2   3      ; test_file
+0153    KSTR     3   3      ; "c"
+0154    CALL     2   0   2
+0155    CALLM    1   1   0
+0156    UGET     1   0      ; rm
+0157    UGET     2   3      ; test_file
+0158    KSTR     3   4      ; "d"
+0159    CALL     2   0   2
+0160    CALLM    1   1   0
+0161    UGET     1   0      ; rm
+0162    UGET     2   3      ; test_file
+0163    KSTR     3   5      ; "e"
+0164    CALL     2   0   2
+0165    CALLM    1   1   0
+0166    UGET     1   0      ; rm
+0167    UGET     2   3      ; test_file
+0168    KSTR     3   6      ; "f"
+0169    CALL     2   0   2
+0170    CALLM    1   1   0
+0171    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:140-148
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; touch
+0007    UGET     1   3      ; test_file
+0008    KSTR     2   1      ; "a"
+0009    CALL     1   0   2
+0010    CALLM    0   1   0
+0011    UGET     0   4      ; reload
+0012    CALL     0   2   1
+0013    MOV      2   0
+0014    TGETS    1   0   2  ; "addItem"
+0015    UGET     3   3      ; test_file
+0016    KSTR     4   1      ; "a"
+0017    CALL     3   0   2
+0018    CALLM    1   1   1
+0019    GGET     1   3      ; "assert"
+0020    TGETS    1   1   4  ; "is"
+0021    TGETS    1   1   5  ; "same"
+0022    TGETS    2   0   6  ; "hist"
+0023    LEN      2   2
+0024    KSHORT   3   1
+0025    CALL     1   1   3
+0026    UGET     1   5      ; assert_item_is
+0027    MOV      2   0
+0028    KSHORT   3   1
+0029    KSTR     4   1      ; "a"
+0030    CALL     1   1   4
+0031    UGET     1   0      ; rm
+0032    UGET     2   3      ; test_file
+0033    KSTR     3   1      ; "a"
+0034    CALL     2   0   2
+0035    CALLM    1   1   0
+0036    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:150-167
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; touch
+0007    UGET     1   3      ; test_file
+0008    KSTR     2   1      ; "a"
+0009    CALL     1   0   2
+0010    CALLM    0   1   0
+0011    UGET     0   2      ; touch
+0012    UGET     1   3      ; test_file
+0013    KSTR     2   2      ; "b"
+0014    CALL     1   0   2
+0015    CALLM    0   1   0
+0016    UGET     0   2      ; touch
+0017    UGET     1   3      ; test_file
+0018    KSTR     2   3      ; "c"
+0019    CALL     1   0   2
+0020    CALLM    0   1   0
+0021    UGET     0   4      ; reload
+0022    CALL     0   2   1
+0023    MOV      2   0
+0024    TGETS    1   0   4  ; "addItem"
+0025    UGET     3   3      ; test_file
+0026    KSTR     4   1      ; "a"
+0027    CALL     3   0   2
+0028    CALLM    1   1   1
+0029    MOV      2   0
+0030    TGETS    1   0   4  ; "addItem"
+0031    UGET     3   3      ; test_file
+0032    KSTR     4   2      ; "b"
+0033    CALL     3   0   2
+0034    CALLM    1   1   1
+0035    MOV      2   0
+0036    TGETS    1   0   4  ; "addItem"
+0037    UGET     3   3      ; test_file
+0038    KSTR     4   3      ; "c"
+0039    CALL     3   0   2
+0040    CALLM    1   1   1
+0041    MOV      2   0
+0042    TGETS    1   0   5  ; "removeItem"
+0043    TGETS    3   0   6  ; "hist"
+0044    TGETB    3   3   1
+0045    CALL     1   1   3
+0046    UGET     1   5      ; assert_item_is
+0047    MOV      2   0
+0048    KSHORT   3   1
+0049    KSTR     4   2      ; "b"
+0050    CALL     1   1   4
+0051    UGET     1   5      ; assert_item_is
+0052    MOV      2   0
+0053    KSHORT   3   2
+0054    KSTR     4   3      ; "c"
+0055    CALL     1   1   4
+0056    MOV      2   0
+0057    TGETS    1   0   5  ; "removeItem"
+0058    TGETS    3   0   6  ; "hist"
+0059    TGETB    3   3   1
+0060    CALL     1   1   3
+0061    UGET     1   5      ; assert_item_is
+0062    MOV      2   0
+0063    KSHORT   3   1
+0064    KSTR     4   3      ; "c"
+0065    CALL     1   1   4
+0066    UGET     1   0      ; rm
+0067    UGET     2   3      ; test_file
+0068    KSTR     3   1      ; "a"
+0069    CALL     2   0   2
+0070    CALLM    1   1   0
+0071    UGET     1   0      ; rm
+0072    UGET     2   3      ; test_file
+0073    KSTR     3   2      ; "b"
+0074    CALL     2   0   2
+0075    CALLM    1   1   0
+0076    UGET     1   0      ; rm
+0077    UGET     2   3      ; test_file
+0078    KSTR     3   3      ; "c"
+0079    CALL     2   0   2
+0080    CALLM    1   1   0
+0081    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:169-184
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; touch
+0007    UGET     1   3      ; test_file
+0008    KSTR     2   1      ; "a"
+0009    CALL     1   0   2
+0010    CALLM    0   1   0
+0011    UGET     0   2      ; touch
+0012    UGET     1   3      ; test_file
+0013    KSTR     2   2      ; "b"
+0014    CALL     1   0   2
+0015    CALLM    0   1   0
+0016    UGET     0   2      ; touch
+0017    UGET     1   3      ; test_file
+0018    KSTR     2   3      ; "c"
+0019    CALL     1   0   2
+0020    CALLM    0   1   0
+0021    UGET     0   4      ; reload
+0022    CALL     0   2   1
+0023    MOV      2   0
+0024    TGETS    1   0   4  ; "addItem"
+0025    UGET     3   3      ; test_file
+0026    KSTR     4   1      ; "a"
+0027    CALL     3   0   2
+0028    CALLM    1   1   1
+0029    MOV      2   0
+0030    TGETS    1   0   4  ; "addItem"
+0031    UGET     3   3      ; test_file
+0032    KSTR     4   2      ; "b"
+0033    CALL     3   0   2
+0034    CALLM    1   1   1
+0035    MOV      2   0
+0036    TGETS    1   0   4  ; "addItem"
+0037    UGET     3   3      ; test_file
+0038    KSTR     4   3      ; "c"
+0039    CALL     3   0   2
+0040    CALLM    1   1   1
+0041    MOV      2   0
+0042    TGETS    1   0   5  ; "removeItem"
+0043    TGETS    3   0   6  ; "hist"
+0044    TGETB    3   3   2
+0045    CALL     1   1   3
+0046    UGET     1   5      ; assert_item_is
+0047    MOV      2   0
+0048    KSHORT   3   1
+0049    KSTR     4   1      ; "a"
+0050    CALL     1   1   4
+0051    UGET     1   5      ; assert_item_is
+0052    MOV      2   0
+0053    KSHORT   3   2
+0054    KSTR     4   3      ; "c"
+0055    CALL     1   1   4
+0056    UGET     1   0      ; rm
+0057    UGET     2   3      ; test_file
+0058    KSTR     3   1      ; "a"
+0059    CALL     2   0   2
+0060    CALLM    1   1   0
+0061    UGET     1   0      ; rm
+0062    UGET     2   3      ; test_file
+0063    KSTR     3   2      ; "b"
+0064    CALL     2   0   2
+0065    CALLM    1   1   0
+0066    UGET     1   0      ; rm
+0067    UGET     2   3      ; test_file
+0068    KSTR     3   3      ; "c"
+0069    CALL     2   0   2
+0070    CALLM    1   1   0
+0071    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:186-203
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; touch
+0007    UGET     1   3      ; test_file
+0008    KSTR     2   1      ; "a"
+0009    CALL     1   0   2
+0010    CALLM    0   1   0
+0011    UGET     0   2      ; touch
+0012    UGET     1   3      ; test_file
+0013    KSTR     2   2      ; "b"
+0014    CALL     1   0   2
+0015    CALLM    0   1   0
+0016    UGET     0   2      ; touch
+0017    UGET     1   3      ; test_file
+0018    KSTR     2   3      ; "c"
+0019    CALL     1   0   2
+0020    CALLM    0   1   0
+0021    UGET     0   4      ; reload
+0022    CALL     0   2   1
+0023    MOV      2   0
+0024    TGETS    1   0   4  ; "addItem"
+0025    UGET     3   3      ; test_file
+0026    KSTR     4   1      ; "a"
+0027    CALL     3   0   2
+0028    CALLM    1   1   1
+0029    MOV      2   0
+0030    TGETS    1   0   4  ; "addItem"
+0031    UGET     3   3      ; test_file
+0032    KSTR     4   2      ; "b"
+0033    CALL     3   0   2
+0034    CALLM    1   1   1
+0035    MOV      2   0
+0036    TGETS    1   0   4  ; "addItem"
+0037    UGET     3   3      ; test_file
+0038    KSTR     4   3      ; "c"
+0039    CALL     3   0   2
+0040    CALLM    1   1   1
+0041    MOV      2   0
+0042    TGETS    1   0   5  ; "removeItem"
+0043    TGETS    3   0   6  ; "hist"
+0044    TGETB    3   3   3
+0045    CALL     1   1   3
+0046    UGET     1   5      ; assert_item_is
+0047    MOV      2   0
+0048    KSHORT   3   1
+0049    KSTR     4   1      ; "a"
+0050    CALL     1   1   4
+0051    UGET     1   5      ; assert_item_is
+0052    MOV      2   0
+0053    KSHORT   3   2
+0054    KSTR     4   2      ; "b"
+0055    CALL     1   1   4
+0056    MOV      2   0
+0057    TGETS    1   0   5  ; "removeItem"
+0058    TGETS    3   0   6  ; "hist"
+0059    TGETB    3   3   2
+0060    CALL     1   1   3
+0061    UGET     1   5      ; assert_item_is
+0062    MOV      2   0
+0063    KSHORT   3   1
+0064    KSTR     4   1      ; "a"
+0065    CALL     1   1   4
+0066    UGET     1   0      ; rm
+0067    UGET     2   3      ; test_file
+0068    KSTR     3   1      ; "a"
+0069    CALL     2   0   2
+0070    CALLM    1   1   0
+0071    UGET     1   0      ; rm
+0072    UGET     2   3      ; test_file
+0073    KSTR     3   2      ; "b"
+0074    CALL     2   0   2
+0075    CALLM    1   1   0
+0076    UGET     1   0      ; rm
+0077    UGET     2   3      ; test_file
+0078    KSTR     3   3      ; "c"
+0079    CALL     2   0   2
+0080    CALLM    1   1   0
+0081    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:205-224
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; touch
+0007    UGET     1   3      ; test_file
+0008    KSTR     2   1      ; "a"
+0009    CALL     1   0   2
+0010    CALLM    0   1   0
+0011    UGET     0   2      ; touch
+0012    UGET     1   3      ; test_file
+0013    KSTR     2   2      ; "b"
+0014    CALL     1   0   2
+0015    CALLM    0   1   0
+0016    UGET     0   2      ; touch
+0017    UGET     1   3      ; test_file
+0018    KSTR     2   3      ; "c"
+0019    CALL     1   0   2
+0020    CALLM    0   1   0
+0021    UGET     0   2      ; touch
+0022    UGET     1   3      ; test_file
+0023    KSTR     2   4      ; "d"
+0024    CALL     1   0   2
+0025    CALLM    0   1   0
+0026    UGET     0   4      ; reload
+0027    CALL     0   2   1
+0028    MOV      2   0
+0029    TGETS    1   0   5  ; "addItem"
+0030    UGET     3   3      ; test_file
+0031    KSTR     4   1      ; "a"
+0032    CALL     3   0   2
+0033    CALLM    1   1   1
+0034    MOV      2   0
+0035    TGETS    1   0   5  ; "addItem"
+0036    UGET     3   3      ; test_file
+0037    KSTR     4   2      ; "b"
+0038    CALL     3   0   2
+0039    CALLM    1   1   1
+0040    MOV      2   0
+0041    TGETS    1   0   5  ; "addItem"
+0042    UGET     3   3      ; test_file
+0043    KSTR     4   3      ; "c"
+0044    CALL     3   0   2
+0045    CALLM    1   1   1
+0046    MOV      2   0
+0047    TGETS    1   0   5  ; "addItem"
+0048    UGET     3   3      ; test_file
+0049    KSTR     4   4      ; "d"
+0050    CALL     3   0   2
+0051    CALLM    1   1   1
+0052    MOV      2   0
+0053    TGETS    1   0   6  ; "removeItem"
+0054    TGETS    3   0   7  ; "hist"
+0055    TGETB    3   3   3
+0056    CALL     1   1   3
+0057    MOV      2   0
+0058    TGETS    1   0   6  ; "removeItem"
+0059    TGETS    3   0   7  ; "hist"
+0060    TGETB    3   3   2
+0061    CALL     1   1   3
+0062    UGET     1   5      ; assert_item_is
+0063    MOV      2   0
+0064    KSHORT   3   1
+0065    KSTR     4   1      ; "a"
+0066    CALL     1   1   4
+0067    UGET     1   5      ; assert_item_is
+0068    MOV      2   0
+0069    KSHORT   3   2
+0070    KSTR     4   4      ; "d"
+0071    CALL     1   1   4
+0072    UGET     1   0      ; rm
+0073    UGET     2   3      ; test_file
+0074    KSTR     3   1      ; "a"
+0075    CALL     2   0   2
+0076    CALLM    1   1   0
+0077    UGET     1   0      ; rm
+0078    UGET     2   3      ; test_file
+0079    KSTR     3   2      ; "b"
+0080    CALL     2   0   2
+0081    CALLM    1   1   0
+0082    UGET     1   0      ; rm
+0083    UGET     2   3      ; test_file
+0084    KSTR     3   3      ; "c"
+0085    CALL     2   0   2
+0086    CALLM    1   1   0
+0087    UGET     1   0      ; rm
+0088    UGET     2   3      ; test_file
+0089    KSTR     3   4      ; "d"
+0090    CALL     2   0   2
+0091    CALLM    1   1   0
+0092    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:226-249
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; touch
+0007    UGET     1   3      ; test_file
+0008    KSTR     2   1      ; "a"
+0009    CALL     1   0   2
+0010    CALLM    0   1   0
+0011    UGET     0   2      ; touch
+0012    UGET     1   3      ; test_file
+0013    KSTR     2   2      ; "b"
+0014    CALL     1   0   2
+0015    CALLM    0   1   0
+0016    UGET     0   2      ; touch
+0017    UGET     1   3      ; test_file
+0018    KSTR     2   3      ; "c"
+0019    CALL     1   0   2
+0020    CALLM    0   1   0
+0021    UGET     0   2      ; touch
+0022    UGET     1   3      ; test_file
+0023    KSTR     2   4      ; "d"
+0024    CALL     1   0   2
+0025    CALLM    0   1   0
+0026    UGET     0   2      ; touch
+0027    UGET     1   3      ; test_file
+0028    KSTR     2   5      ; "e"
+0029    CALL     1   0   2
+0030    CALLM    0   1   0
+0031    UGET     0   4      ; reload
+0032    CALL     0   2   1
+0033    MOV      2   0
+0034    TGETS    1   0   6  ; "addItem"
+0035    UGET     3   3      ; test_file
+0036    KSTR     4   1      ; "a"
+0037    CALL     3   0   2
+0038    CALLM    1   1   1
+0039    MOV      2   0
+0040    TGETS    1   0   6  ; "addItem"
+0041    UGET     3   3      ; test_file
+0042    KSTR     4   2      ; "b"
+0043    CALL     3   0   2
+0044    CALLM    1   1   1
+0045    MOV      2   0
+0046    TGETS    1   0   6  ; "addItem"
+0047    UGET     3   3      ; test_file
+0048    KSTR     4   3      ; "c"
+0049    CALL     3   0   2
+0050    CALLM    1   1   1
+0051    MOV      2   0
+0052    TGETS    1   0   6  ; "addItem"
+0053    UGET     3   3      ; test_file
+0054    KSTR     4   4      ; "d"
+0055    CALL     3   0   2
+0056    CALLM    1   1   1
+0057    MOV      2   0
+0058    TGETS    1   0   6  ; "addItem"
+0059    UGET     3   3      ; test_file
+0060    KSTR     4   5      ; "e"
+0061    CALL     3   0   2
+0062    CALLM    1   1   1
+0063    MOV      2   0
+0064    TGETS    1   0   7  ; "removeItem"
+0065    TGETS    3   0   8  ; "hist"
+0066    TGETB    3   3   2
+0067    CALL     1   1   3
+0068    MOV      2   0
+0069    TGETS    1   0   7  ; "removeItem"
+0070    TGETS    3   0   8  ; "hist"
+0071    TGETB    3   3   2
+0072    CALL     1   1   3
+0073    MOV      2   0
+0074    TGETS    1   0   7  ; "removeItem"
+0075    TGETS    3   0   8  ; "hist"
+0076    TGETB    3   3   3
+0077    CALL     1   1   3
+0078    UGET     1   5      ; assert_item_is
+0079    MOV      2   0
+0080    KSHORT   3   1
+0081    KSTR     4   1      ; "a"
+0082    CALL     1   1   4
+0083    UGET     1   5      ; assert_item_is
+0084    MOV      2   0
+0085    KSHORT   3   2
+0086    KSTR     4   4      ; "d"
+0087    CALL     1   1   4
+0088    UGET     1   0      ; rm
+0089    UGET     2   3      ; test_file
+0090    KSTR     3   1      ; "a"
+0091    CALL     2   0   2
+0092    CALLM    1   1   0
+0093    UGET     1   0      ; rm
+0094    UGET     2   3      ; test_file
+0095    KSTR     3   2      ; "b"
+0096    CALL     2   0   2
+0097    CALLM    1   1   0
+0098    UGET     1   0      ; rm
+0099    UGET     2   3      ; test_file
+0100    KSTR     3   3      ; "c"
+0101    CALL     2   0   2
+0102    CALLM    1   1   0
+0103    UGET     1   0      ; rm
+0104    UGET     2   3      ; test_file
+0105    KSTR     3   4      ; "d"
+0106    CALL     2   0   2
+0107    CALLM    1   1   0
+0108    UGET     1   0      ; rm
+0109    UGET     2   3      ; test_file
+0110    KSTR     3   5      ; "e"
+0111    CALL     2   0   2
+0112    CALLM    1   1   0
+0113    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:251-268
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; touch
+0007    UGET     1   3      ; test_file
+0008    KSTR     2   1      ; "a"
+0009    CALL     1   0   2
+0010    CALLM    0   1   0
+0011    UGET     0   2      ; touch
+0012    UGET     1   3      ; test_file
+0013    KSTR     2   2      ; "b"
+0014    CALL     1   0   2
+0015    CALLM    0   1   0
+0016    UGET     0   4      ; reload
+0017    CALL     0   2   1
+0018    MOV      2   0
+0019    TGETS    1   0   3  ; "addItem"
+0020    UGET     3   3      ; test_file
+0021    KSTR     4   2      ; "b"
+0022    CALL     3   0   2
+0023    CALLM    1   1   1
+0024    MOV      2   0
+0025    TGETS    1   0   3  ; "addItem"
+0026    UGET     3   3      ; test_file
+0027    KSTR     4   2      ; "b"
+0028    CALL     3   0   2
+0029    CALLM    1   1   1
+0030    UGET     1   2      ; touch
+0031    UGET     2   5      ; legacy_history_file
+0032    KSTR     3   1      ; "a"
+0033    CALL     2   0   2
+0034    CALLM    1   1   0
+0035    MOV      2   0
+0036    TGETS    1   0   3  ; "addItem"
+0037    UGET     3   3      ; test_file
+0038    KSTR     4   1      ; "a"
+0039    CALL     3   0   2
+0040    CALLM    1   1   1
+0041    UGET     1   4      ; reload
+0042    CALL     1   2   1
+0043    MOV      0   1
+0044    GGET     1   4      ; "assert"
+0045    TGETS    1   1   5  ; "is"
+0046    TGETS    1   1   6  ; "same"
+0047    TGETS    2   0   7  ; "hist"
+0048    LEN      2   2
+0049    KSHORT   3   2
+0050    CALL     1   1   3
+0051    UGET     1   6      ; assert_item_is
+0052    MOV      2   0
+0053    KSHORT   3   1
+0054    KSTR     4   1      ; "a"
+0055    CALL     1   1   4
+0056    UGET     1   6      ; assert_item_is
+0057    MOV      2   0
+0058    KSHORT   3   2
+0059    KSTR     4   2      ; "b"
+0060    CALL     1   1   4
+0061    UGET     1   0      ; rm
+0062    UGET     2   5      ; legacy_history_file
+0063    KSTR     3   1      ; "a"
+0064    CALL     2   0   2
+0065    CALLM    1   1   0
+0066    UGET     1   0      ; rm
+0067    UGET     2   3      ; test_file
+0068    KSTR     3   1      ; "a"
+0069    CALL     2   0   2
+0070    CALLM    1   1   0
+0071    UGET     1   0      ; rm
+0072    UGET     2   3      ; test_file
+0073    KSTR     3   2      ; "b"
+0074    CALL     2   0   2
+0075    CALLM    1   1   0
+0076    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:271-273
+0001    UGET     1   0      ; test_file
+0002    GGET     2   0      ; "string"
+0003    TGETS    2   2   1  ; "format"
+0004    KSTR     3   2      ; "%04d"
+0005    MOV      4   0
+0006    CALL     2   0   3
+0007    CALLMT   1   0
+
+-- BYTECODE -- readhistory_spec.lua:270-288
+0001    FNEW     0   0      ; readhistory_spec.lua:271
+0002    UGET     1   1      ; rm
+0003    UGET     2   2      ; file
+0004    KSTR     3   1      ; "history.lua"
+0005    CALL     2   0   2
+0006    CALLM    1   1   0
+0007    UGET     1   3      ; reload
+0008    CALL     1   2   1
+0009    KSHORT   2 1000
+0010    KSHORT   3   1
+0011    KSHORT   4  -1
+0012    FORI     2 => 0025
+0013 => UGET     6   4      ; touch
+0014    MOV      7   0
+0015    MOV      8   5
+0016    CALL     7   0   2
+0017    CALLM    6   1   0
+0018    MOV      7   1
+0019    TGETS    6   1   2  ; "addItem"
+0020    MOV      8   0
+0021    MOV      9   5
+0022    CALL     8   0   2
+0023    CALLM    6   1   1
+0024    FORL     2 => 0013
+0025 => KSHORT   2   1
+0026    KSHORT   3 500
+0027    KSHORT   4   1
+0028    FORI     2 => 0039
+0029 => UGET     6   5      ; assert_item_is
+0030    MOV      7   1
+0031    MOV      8   5
+0032    GGET     9   3      ; "string"
+0033    TGETS    9   9   4  ; "format"
+0034    KSTR    10   5      ; "%04d"
+0035    MOV     11   5
+0036    CALL     9   0   3
+0037    CALLM    6   1   2
+0038    FORL     2 => 0029
+0039 => KSHORT   2   1
+0040    KSHORT   3 1000
+0041    KSHORT   4   1
+0042    FORI     2 => 0049
+0043 => UGET     6   1      ; rm
+0044    MOV      7   0
+0045    MOV      8   5
+0046    CALL     7   0   2
+0047    CALLM    6   1   0
+0048    FORL     2 => 0043
+0049 => RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:290-311
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; touch
+0007    UGET     1   3      ; test_file
+0008    KSTR     2   1      ; "a"
+0009    CALL     1   0   2
+0010    CALLM    0   1   0
+0011    UGET     0   2      ; touch
+0012    UGET     1   3      ; test_file
+0013    KSTR     2   2      ; "b"
+0014    CALL     1   0   2
+0015    CALLM    0   1   0
+0016    UGET     0   4      ; reload
+0017    CALL     0   2   1
+0018    MOV      2   0
+0019    TGETS    1   0   3  ; "addItem"
+0020    UGET     3   3      ; test_file
+0021    KSTR     4   1      ; "a"
+0022    CALL     3   0   2
+0023    CALLM    1   1   1
+0024    MOV      2   0
+0025    TGETS    1   0   3  ; "addItem"
+0026    UGET     3   3      ; test_file
+0027    KSTR     4   2      ; "b"
+0028    CALL     3   0   2
+0029    CALLM    1   1   1
+0030    UGET     1   5      ; mv
+0031    UGET     2   1      ; file
+0032    KSTR     3   0      ; "history.lua"
+0033    CALL     2   2   2
+0034    UGET     3   1      ; file
+0035    KSTR     4   4      ; "history.backup"
+0036    CALL     3   0   2
+0037    CALLM    1   1   1
+0038    UGET     1   4      ; reload
+0039    CALL     1   2   1
+0040    MOV      0   1
+0041    GGET     1   5      ; "assert"
+0042    TGETS    1   1   6  ; "is"
+0043    TGETS    1   1   7  ; "same"
+0044    TGETS    2   0   8  ; "hist"
+0045    LEN      2   2
+0046    KSHORT   3   0
+0047    CALL     1   1   3
+0048    UGET     1   5      ; mv
+0049    UGET     2   1      ; file
+0050    KSTR     3   4      ; "history.backup"
+0051    CALL     2   2   2
+0052    UGET     3   1      ; file
+0053    KSTR     4   0      ; "history.lua"
+0054    CALL     3   0   2
+0055    CALLM    1   1   1
+0056    MOV      2   0
+0057    TGETS    1   0   9  ; "reload"
+0058    CALL     1   1   2
+0059    GGET     1   5      ; "assert"
+0060    TGETS    1   1   6  ; "is"
+0061    TGETS    1   1   7  ; "same"
+0062    TGETS    2   0   8  ; "hist"
+0063    LEN      2   2
+0064    KSHORT   3   2
+0065    CALL     1   1   3
+0066    UGET     1   6      ; assert_item_is
+0067    MOV      2   0
+0068    KSHORT   3   1
+0069    KSTR     4   1      ; "a"
+0070    CALL     1   1   4
+0071    UGET     1   6      ; assert_item_is
+0072    MOV      2   0
+0073    KSHORT   3   2
+0074    KSTR     4   2      ; "b"
+0075    CALL     1   1   4
+0076    UGET     1   0      ; rm
+0077    UGET     2   3      ; test_file
+0078    KSTR     3   1      ; "a"
+0079    CALL     2   0   2
+0080    CALLM    1   1   0
+0081    UGET     1   0      ; rm
+0082    UGET     2   3      ; test_file
+0083    KSTR     3   2      ; "b"
+0084    CALL     2   0   2
+0085    CALLM    1   1   0
+0086    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:313-329
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; touch
+0007    UGET     1   3      ; test_file
+0008    KSTR     2   1      ; "a"
+0009    CALL     1   0   2
+0010    CALLM    0   1   0
+0011    UGET     0   2      ; touch
+0012    UGET     1   3      ; test_file
+0013    KSTR     2   2      ; "b"
+0014    CALL     1   0   2
+0015    CALLM    0   1   0
+0016    UGET     0   4      ; reload
+0017    CALL     0   2   1
+0018    MOV      2   0
+0019    TGETS    1   0   3  ; "addItem"
+0020    UGET     3   3      ; test_file
+0021    KSTR     4   1      ; "a"
+0022    CALL     3   0   2
+0023    CALLM    1   1   1
+0024    MOV      2   0
+0025    TGETS    1   0   3  ; "addItem"
+0026    UGET     3   3      ; test_file
+0027    KSTR     4   2      ; "b"
+0028    CALL     3   0   2
+0029    CALLM    1   1   1
+0030    UGET     1   0      ; rm
+0031    UGET     2   3      ; test_file
+0032    KSTR     3   1      ; "a"
+0033    CALL     2   0   2
+0034    CALLM    1   1   0
+0035    MOV      2   0
+0036    TGETS    1   0   4  ; "reload"
+0037    CALL     1   1   2
+0038    GGET     1   5      ; "assert"
+0039    TGETS    1   1   6  ; "is"
+0040    TGETS    1   1   7  ; "same"
+0041    TGETS    2   0   8  ; "hist"
+0042    LEN      2   2
+0043    KSHORT   3   1
+0044    CALL     1   1   3
+0045    UGET     1   5      ; assert_item_is
+0046    MOV      2   0
+0047    KSHORT   3   1
+0048    KSTR     4   2      ; "b"
+0049    CALL     1   1   4
+0050    UGET     1   0      ; rm
+0051    UGET     2   3      ; test_file
+0052    KSTR     3   2      ; "b"
+0053    CALL     2   0   2
+0054    CALLM    1   1   0
+0055    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:331-348
+0001    UGET     0   0      ; rm
+0002    UGET     1   1      ; file
+0003    KSTR     2   0      ; "history.lua"
+0004    CALL     1   0   2
+0005    CALLM    0   1   0
+0006    UGET     0   2      ; touch
+0007    UGET     1   3      ; test_file
+0008    KSTR     2   1      ; "a"
+0009    CALL     1   0   2
+0010    CALLM    0   1   0
+0011    UGET     0   2      ; touch
+0012    UGET     1   3      ; test_file
+0013    KSTR     2   2      ; "b"
+0014    CALL     1   0   2
+0015    CALLM    0   1   0
+0016    UGET     0   4      ; reload
+0017    CALL     0   2   1
+0018    MOV      2   0
+0019    TGETS    1   0   3  ; "addItem"
+0020    UGET     3   3      ; test_file
+0021    KSTR     4   1      ; "a"
+0022    CALL     3   0   2
+0023    CALLM    1   1   1
+0024    MOV      2   0
+0025    TGETS    1   0   3  ; "addItem"
+0026    UGET     3   3      ; test_file
+0027    KSTR     4   2      ; "b"
+0028    CALL     3   0   2
+0029    CALLM    1   1   1
+0030    UGET     1   0      ; rm
+0031    UGET     2   3      ; test_file
+0032    KSTR     3   1      ; "a"
+0033    CALL     2   0   2
+0034    CALLM    1   1   0
+0035    MOV      2   0
+0036    TGETS    1   0   4  ; "reload"
+0037    CALL     1   1   2
+0038    GGET     1   5      ; "assert"
+0039    TGETS    1   1   6  ; "is"
+0040    TGETS    1   1   7  ; "same"
+0041    TGETS    2   0   8  ; "hist"
+0042    LEN      2   2
+0043    KSHORT   3   2
+0044    CALL     1   1   3
+0045    UGET     1   5      ; assert_item_is
+0046    MOV      2   0
+0047    KSHORT   3   1
+0048    KSTR     4   1      ; "a"
+0049    KPRI     5   2
+0050    CALL     1   1   5
+0051    UGET     1   5      ; assert_item_is
+0052    MOV      2   0
+0053    KSHORT   3   2
+0054    KSTR     4   2      ; "b"
+0055    CALL     1   1   4
+0056    UGET     1   0      ; rm
+0057    UGET     2   3      ; test_file
+0058    KSTR     3   2      ; "b"
+0059    CALL     2   0   2
+0060    CALLM    1   1   0
+0061    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:351-355
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "autoremove_deleted_items_from_history"
+0005    KSTR     3   3      ; "true"
+0006    CALL     0   1   4
+0007    UGET     0   0      ; testAutoRemoveDeletedItems
+0008    CALL     0   1   1
+0009    GGET     0   0      ; "G_reader_settings"
+0010    MOV      1   0
+0011    TGETS    0   0   4  ; "delSetting"
+0012    KSTR     2   2      ; "autoremove_deleted_items_from_history"
+0013    CALL     0   1   3
+0014    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:358-361
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "delSetting"
+0004    KSTR     2   2      ; "autoremove_deleted_items_from_history"
+0005    CALL     0   1   3
+0006    UGET     0   0      ; testDoNotAutoRemoveDeletedItems
+0007    CALL     0   1   1
+0008    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:364-368
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "autoremove_deleted_items_from_history"
+0005    KSTR     3   3      ; "false"
+0006    CALL     0   1   4
+0007    UGET     0   0      ; testDoNotAutoRemoveDeletedItems
+0008    CALL     0   1   1
+0009    GGET     0   0      ; "G_reader_settings"
+0010    MOV      1   0
+0011    TGETS    0   0   4  ; "delSetting"
+0012    KSTR     2   2      ; "autoremove_deleted_items_from_history"
+0013    CALL     0   1   3
+0014    RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:1-369
+0001    KNIL     0   6
+0002    FNEW     7   0      ; readhistory_spec.lua:10
+0003    FNEW     8   1      ; readhistory_spec.lua:14
+0004    FNEW     9   2      ; readhistory_spec.lua:18
+0005    FNEW    10   3      ; readhistory_spec.lua:22
+0006    FNEW    11   4      ; readhistory_spec.lua:26
+0007    FNEW    12   5      ; readhistory_spec.lua:30
+0008    FNEW    13   6      ; readhistory_spec.lua:34
+0009    FNEW    14   7      ; readhistory_spec.lua:39
+0010    GGET    15   8      ; "setup"
+0011    FNEW    16   9      ; readhistory_spec.lua:50
+0012    CALL    15   1   2
+0013    GGET    15  10      ; "it"
+0014    KSTR    16  11      ; "should read empty history.lua"
+0015    FNEW    17  12      ; readhistory_spec.lua:63
+0016    CALL    15   1   3
+0017    GGET    15  10      ; "it"
+0018    KSTR    16  13      ; "should read non-empty history.lua"
+0019    FNEW    17  14      ; readhistory_spec.lua:72
+0020    CALL    15   1   3
+0021    GGET    15  10      ; "it"
+0022    KSTR    16  15      ; "should order legacy and history.lua"
+0023    FNEW    17  16      ; readhistory_spec.lua:83
+0024    CALL    15   1   3
+0025    GGET    15  10      ; "it"
+0026    KSTR    16  17      ; "should read legacy history folder"
+0027    FNEW    17  18      ; readhistory_spec.lua:100
+0028    CALL    15   1   3
+0029    GGET    15  10      ; "it"
+0030    KSTR    16  19      ; "should add item"
+0031    FNEW    17  20      ; readhistory_spec.lua:140
+0032    CALL    15   1   3
+0033    GGET    15  10      ; "it"
+0034    KSTR    16  21      ; "should be able to remove the first item"
+0035    FNEW    17  22      ; readhistory_spec.lua:150
+0036    CALL    15   1   3
+0037    GGET    15  10      ; "it"
+0038    KSTR    16  23      ; "should be able to remove an item in the "~
+0039    FNEW    17  24      ; readhistory_spec.lua:169
+0040    CALL    15   1   3
+0041    GGET    15  10      ; "it"
+0042    KSTR    16  25      ; "should be able to remove the last item"
+0043    FNEW    17  26      ; readhistory_spec.lua:186
+0044    CALL    15   1   3
+0045    GGET    15  10      ; "it"
+0046    KSTR    16  27      ; "should be able to remove two items"
+0047    FNEW    17  28      ; readhistory_spec.lua:205
+0048    CALL    15   1   3
+0049    GGET    15  10      ; "it"
+0050    KSTR    16  29      ; "should be able to remove three items"
+0051    FNEW    17  30      ; readhistory_spec.lua:226
+0052    CALL    15   1   3
+0053    GGET    15  10      ; "it"
+0054    KSTR    16  31      ; "should remove duplicate entry"
+0055    FNEW    17  32      ; readhistory_spec.lua:251
+0056    CALL    15   1   3
+0057    GGET    15  10      ; "it"
+0058    KSTR    16  33      ; "should reduce the total count"
+0059    FNEW    17  34      ; readhistory_spec.lua:270
+0060    CALL    15   1   3
+0061    GGET    15  10      ; "it"
+0062    KSTR    16  35      ; "should reload the history file if it upd"~
+0063    FNEW    17  36      ; readhistory_spec.lua:290
+0064    CALL    15   1   3
+0065    FNEW    15  37      ; readhistory_spec.lua:313
+0066    FNEW    16  38      ; readhistory_spec.lua:331
+0067    GGET    17  10      ; "it"
+0068    KSTR    18  39      ; "should automatically remove deleted item"~
+0069    FNEW    19  40      ; readhistory_spec.lua:351
+0070    CALL    17   1   3
+0071    GGET    17  10      ; "it"
+0072    KSTR    18  41      ; "should not automatically remove deleted "~
+0073    FNEW    19  42      ; readhistory_spec.lua:358
+0074    CALL    17   1   3
+0075    GGET    17  10      ; "it"
+0076    KSTR    18  43      ; "should not automatically remove deleted "~
+0077    FNEW    19  44      ; readhistory_spec.lua:364
+0078    CALL    17   1   3
+0079    UCLO     0 => 0080
+0080 => RET0     0   1
+
+-- BYTECODE -- readhistory_spec.lua:0-370
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "ReadHistory module"
+0003    FNEW     2   2      ; readhistory_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

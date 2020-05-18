@@ -1,0 +1,82 @@
+-- BYTECODE -- random.lua:7-9
+0001    GGET     0   0      ; "math"
+0002    TGETS    0   0   1  ; "randomseed"
+0003    GGET     1   2      ; "os"
+0004    TGETS    1   1   3  ; "time"
+0005    CALL     1   0   1
+0006    CALLM    0   1   0
+0007    RET0     0   1
+
+-- BYTECODE -- random.lua:14-32
+0001    TNEW     1   0
+0002    KSHORT   2   1
+0003    KSHORT   3  16
+0004    KSHORT   4   1
+0005    FORI     2 => 0016
+0006 => GGET     6   0      ; "table"
+0007    TGETS    6   6   1  ; "insert"
+0008    MOV      7   1
+0009    GGET     8   2      ; "math"
+0010    TGETS    8   8   3  ; "random"
+0011    KSHORT   9 256
+0012    CALL     8   2   2
+0013    SUBVN    8   8   0  ; 1
+0014    CALL     6   1   3
+0015    FORL     2 => 0006
+0016 => UGET     2   0      ; bit
+0017    TGETS    2   2   4  ; "band"
+0018    TGETB    3   1   7
+0019    KSHORT   4  79
+0020    CALL     2   2   3
+0021    TSETB    2   1   7
+0022    UGET     2   0      ; bit
+0023    TGETS    2   2   5  ; "bor"
+0024    TGETB    3   1   7
+0025    KSHORT   4  64
+0026    CALL     2   2   3
+0027    TSETB    2   1   7
+0028    UGET     2   0      ; bit
+0029    TGETS    2   2   4  ; "band"
+0030    TGETB    3   1   9
+0031    KSHORT   4 191
+0032    CALL     2   2   3
+0033    TSETB    2   1   9
+0034    UGET     2   0      ; bit
+0035    TGETS    2   2   5  ; "bor"
+0036    TGETB    3   1   9
+0037    KSHORT   4 128
+0038    CALL     2   2   3
+0039    TSETB    2   1   9
+0040    ISF          0
+0041    JMP      2 => 0050
+0042    GGET     2   6      ; "string"
+0043    TGETS    2   2   7  ; "format"
+0044    KSTR     3   8      ; "%02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%"~
+0045    GGET     4   9      ; "unpack"
+0046    MOV      5   1
+0047    CALL     4   0   2
+0048    CALLMT   2   1
+0049    JMP      2 => 0057
+0050 => GGET     2   6      ; "string"
+0051    TGETS    2   2   7  ; "format"
+0052    KSTR     3  10      ; "%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X"~
+0053    GGET     4   9      ; "unpack"
+0054    MOV      5   1
+0055    CALL     4   0   2
+0056    CALLMT   2   1
+0057 => RET0     0   1
+
+-- BYTECODE -- random.lua:0-35
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "bit"
+0003    CALL     0   2   2
+0004    TNEW     1   0
+0005    FNEW     2   3      ; random.lua:7
+0006    TSETS    2   1   2  ; "seed"
+0007    TGETS    2   1   2  ; "seed"
+0008    CALL     2   1   1
+0009    FNEW     2   5      ; random.lua:14
+0010    TSETS    2   1   4  ; "uuid"
+0011    UCLO     0 => 0012
+0012 => RET1     1   2
+

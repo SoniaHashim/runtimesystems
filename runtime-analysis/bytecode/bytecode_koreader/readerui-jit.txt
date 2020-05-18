@@ -1,0 +1,1924 @@
+-- BYTECODE -- readerui.lua:81-85
+0001    ISF          1
+0002    JMP      4 => 0004
+0003    TSETV    2   0   1
+0004 => KSTR     4   1      ; "reader"
+0005    MOV      5   1
+0006    CAT      4   4   5
+0007    TSETS    4   2   0  ; "name"
+0008    GGET     4   2      ; "table"
+0009    TGETS    4   4   3  ; "insert"
+0010    ISF          3
+0011    JMP      5 => 0015
+0012    TGETS    5   0   4  ; "active_widgets"
+0013    IST          5
+0014    JMP      6 => 0016
+0015 => MOV      5   0
+0016 => MOV      6   2
+0017    CALL     4   1   3
+0018    RET0     0   1
+
+-- BYTECODE -- readerui.lua:87-89
+0001    GGET     2   0      ; "table"
+0002    TGETS    2   2   1  ; "insert"
+0003    TGETS    3   0   2  ; "postInitCallback"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readerui.lua:91-93
+0001    GGET     2   0      ; "table"
+0002    TGETS    2   2   1  ; "insert"
+0003    TGETS    3   0   2  ; "postReaderCallback"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readerui.lua:281-291
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "document"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "loadDocument"
+0005    CALL     0   2   2
+0006    IST          0
+0007    JMP      0 => 0012
+0008    UGET     0   0      ; self
+0009    MOV      1   0
+0010    TGETS    0   0   2  ; "dealWithLoadDocumentFailure"
+0011    CALL     0   1   2
+0012 => UGET     0   0      ; self
+0013    MOV      1   0
+0014    TGETS    0   0   3  ; "handleEvent"
+0015    UGET     2   1      ; Event
+0016    MOV      3   2
+0017    TGETS    2   2   4  ; "new"
+0018    KSTR     4   5      ; "PreRenderDocument"
+0019    UGET     5   0      ; self
+0020    TGETS    5   5   6  ; "doc_settings"
+0021    CALL     2   0   4
+0022    CALLM    0   1   1
+0023    UGET     0   0      ; self
+0024    TGETS    0   0   0  ; "document"
+0025    MOV      1   0
+0026    TGETS    0   0   7  ; "render"
+0027    CALL     0   1   2
+0028    RET0     0   1
+
+-- BYTECODE -- readerui.lua:95-429
+0001    UGET     1   0      ; Screen
+0002    TGETS    1   1   0  ; "low_pan_rate"
+0003    ISF          1
+0004    JMP      2 => 0007
+0005    KSHORT   1   2
+0006    JMP      2 => 0008
+0007 => KSHORT   1  30
+0008 => TNEW     2   0
+0009    TSETS    2   0   1  ; "postInitCallback"
+0010    TNEW     2   0
+0011    TSETS    2   0   2  ; "postReaderCallback"
+0012    TGETS    2   0   3  ; "dialog"
+0013    IST          2
+0014    JMP      2 => 0016
+0015    TSETS    0   0   3  ; "dialog"
+0016 => UGET     2   1      ; DocSettings
+0017    MOV      3   2
+0018    TGETS    2   2   5  ; "open"
+0019    TGETS    4   0   6  ; "document"
+0020    TGETS    4   4   7  ; "file"
+0021    CALL     2   2   3
+0022    TSETS    2   0   4  ; "doc_settings"
+0023    UGET     2   2      ; SettingsMigration
+0024    MOV      3   2
+0025    TGETS    2   2   8  ; "migrateSettings"
+0026    TGETS    4   0   4  ; "doc_settings"
+0027    CALL     2   1   3
+0028    UGET     2   3      ; Device
+0029    MOV      3   2
+0030    TGETS    2   2   9  ; "hasKeys"
+0031    CALL     2   2   2
+0032    ISF          2
+0033    JMP      3 => 0039
+0034    TGETS    2   0  10  ; "key_events"
+0035    TDUP     3  13
+0036    TDUP     4  12
+0037    TSETB    4   3   1
+0038    TSETS    3   2  11  ; "Home"
+0039 => MOV      3   0
+0040    TGETS    2   0  14  ; "registerModule"
+0041    KSTR     4  15      ; "view"
+0042    UGET     5   4      ; ReaderView
+0043    MOV      6   5
+0044    TGETS    5   5  16  ; "new"
+0045    TDUP     7  17
+0046    TGETS    8   0   3  ; "dialog"
+0047    TSETS    8   7   3  ; "dialog"
+0048    TGETS    8   0  18  ; "dimen"
+0049    TSETS    8   7  18  ; "dimen"
+0050    TSETS    0   7  19  ; "ui"
+0051    TGETS    8   0   6  ; "document"
+0052    TSETS    8   7   6  ; "document"
+0053    CALL     5   0   3
+0054    CALLM    2   1   2
+0055    MOV      3   0
+0056    TGETS    2   0  14  ; "registerModule"
+0057    KSTR     4  20      ; "link"
+0058    UGET     5   5      ; ReaderLink
+0059    MOV      6   5
+0060    TGETS    5   5  16  ; "new"
+0061    TDUP     7  21
+0062    TGETS    8   0   3  ; "dialog"
+0063    TSETS    8   7   3  ; "dialog"
+0064    TGETS    8   0  15  ; "view"
+0065    TSETS    8   7  15  ; "view"
+0066    TSETS    0   7  19  ; "ui"
+0067    TGETS    8   0   6  ; "document"
+0068    TSETS    8   7   6  ; "document"
+0069    CALL     5   0   3
+0070    CALLM    2   1   2
+0071    MOV      3   0
+0072    TGETS    2   0  14  ; "registerModule"
+0073    KSTR     4  22      ; "highlight"
+0074    UGET     5   6      ; ReaderHighlight
+0075    MOV      6   5
+0076    TGETS    5   5  16  ; "new"
+0077    TDUP     7  23
+0078    TGETS    8   0   3  ; "dialog"
+0079    TSETS    8   7   3  ; "dialog"
+0080    TGETS    8   0  15  ; "view"
+0081    TSETS    8   7  15  ; "view"
+0082    TSETS    0   7  19  ; "ui"
+0083    TGETS    8   0   6  ; "document"
+0084    TSETS    8   7   6  ; "document"
+0085    CALL     5   0   3
+0086    CALLM    2   1   2
+0087    MOV      3   0
+0088    TGETS    2   0  14  ; "registerModule"
+0089    KSTR     4  24      ; "menu"
+0090    UGET     5   7      ; ReaderMenu
+0091    MOV      6   5
+0092    TGETS    5   5  16  ; "new"
+0093    TDUP     7  25
+0094    TGETS    8   0  15  ; "view"
+0095    TSETS    8   7  15  ; "view"
+0096    TSETS    0   7  19  ; "ui"
+0097    CALL     5   0   3
+0098    CALLM    2   1   2
+0099    MOV      3   0
+0100    TGETS    2   0  14  ; "registerModule"
+0101    KSTR     4  26      ; "rotation"
+0102    UGET     5   8      ; ReaderRotation
+0103    MOV      6   5
+0104    TGETS    5   5  16  ; "new"
+0105    TDUP     7  27
+0106    TGETS    8   0   3  ; "dialog"
+0107    TSETS    8   7   3  ; "dialog"
+0108    TGETS    8   0  15  ; "view"
+0109    TSETS    8   7  15  ; "view"
+0110    TSETS    0   7  19  ; "ui"
+0111    CALL     5   0   3
+0112    CALLM    2   1   2
+0113    MOV      3   0
+0114    TGETS    2   0  14  ; "registerModule"
+0115    KSTR     4  28      ; "toc"
+0116    UGET     5   9      ; ReaderToc
+0117    MOV      6   5
+0118    TGETS    5   5  16  ; "new"
+0119    TDUP     7  29
+0120    TGETS    8   0   3  ; "dialog"
+0121    TSETS    8   7   3  ; "dialog"
+0122    TGETS    8   0  15  ; "view"
+0123    TSETS    8   7  15  ; "view"
+0124    TSETS    0   7  19  ; "ui"
+0125    CALL     5   0   3
+0126    CALLM    2   1   2
+0127    MOV      3   0
+0128    TGETS    2   0  14  ; "registerModule"
+0129    KSTR     4  30      ; "bookmark"
+0130    UGET     5  10      ; ReaderBookmark
+0131    MOV      6   5
+0132    TGETS    5   5  16  ; "new"
+0133    TDUP     7  31
+0134    TGETS    8   0   3  ; "dialog"
+0135    TSETS    8   7   3  ; "dialog"
+0136    TGETS    8   0  15  ; "view"
+0137    TSETS    8   7  15  ; "view"
+0138    TSETS    0   7  19  ; "ui"
+0139    CALL     5   0   3
+0140    CALLM    2   1   2
+0141    MOV      3   0
+0142    TGETS    2   0  14  ; "registerModule"
+0143    KSTR     4  32      ; "gotopage"
+0144    UGET     5  11      ; ReaderGoto
+0145    MOV      6   5
+0146    TGETS    5   5  16  ; "new"
+0147    TDUP     7  33
+0148    TGETS    8   0   3  ; "dialog"
+0149    TSETS    8   7   3  ; "dialog"
+0150    TGETS    8   0  15  ; "view"
+0151    TSETS    8   7  15  ; "view"
+0152    TSETS    0   7  19  ; "ui"
+0153    TGETS    8   0   6  ; "document"
+0154    TSETS    8   7   6  ; "document"
+0155    CALL     5   0   3
+0156    CALLM    2   1   2
+0157    MOV      3   0
+0158    TGETS    2   0  14  ; "registerModule"
+0159    KSTR     4  34      ; "dictionary"
+0160    UGET     5  12      ; ReaderDictionary
+0161    MOV      6   5
+0162    TGETS    5   5  16  ; "new"
+0163    TDUP     7  35
+0164    TGETS    8   0   3  ; "dialog"
+0165    TSETS    8   7   3  ; "dialog"
+0166    TGETS    8   0  15  ; "view"
+0167    TSETS    8   7  15  ; "view"
+0168    TSETS    0   7  19  ; "ui"
+0169    TGETS    8   0   6  ; "document"
+0170    TSETS    8   7   6  ; "document"
+0171    CALL     5   0   3
+0172    CALLM    2   1   2
+0173    MOV      3   0
+0174    TGETS    2   0  14  ; "registerModule"
+0175    KSTR     4  36      ; "wikipedia"
+0176    UGET     5  13      ; ReaderWikipedia
+0177    MOV      6   5
+0178    TGETS    5   5  16  ; "new"
+0179    TDUP     7  37
+0180    TGETS    8   0   3  ; "dialog"
+0181    TSETS    8   7   3  ; "dialog"
+0182    TGETS    8   0  15  ; "view"
+0183    TSETS    8   7  15  ; "view"
+0184    TSETS    0   7  19  ; "ui"
+0185    TGETS    8   0   6  ; "document"
+0186    TSETS    8   7   6  ; "document"
+0187    CALL     5   0   3
+0188    CALLM    2   1   2
+0189    MOV      3   0
+0190    TGETS    2   0  14  ; "registerModule"
+0191    KSTR     4  38      ; "screenshot"
+0192    UGET     5  14      ; Screenshoter
+0193    MOV      6   5
+0194    TGETS    5   5  16  ; "new"
+0195    TDUP     7  39
+0196    TGETS    8   0   3  ; "dialog"
+0197    TSETS    8   7   3  ; "dialog"
+0198    TGETS    8   0  15  ; "view"
+0199    TSETS    8   7  15  ; "view"
+0200    TSETS    0   7  19  ; "ui"
+0201    CALL     5   2   3
+0202    KPRI     6   2
+0203    CALL     2   1   5
+0204    UGET     2   3      ; Device
+0205    MOV      3   2
+0206    TGETS    2   2  40  ; "hasFrontlight"
+0207    CALL     2   2   2
+0208    ISF          2
+0209    JMP      3 => 0224
+0210    MOV      3   0
+0211    TGETS    2   0  14  ; "registerModule"
+0212    KSTR     4  41      ; "frontlight"
+0213    UGET     5  15      ; ReaderFrontLight
+0214    MOV      6   5
+0215    TGETS    5   5  16  ; "new"
+0216    TDUP     7  42
+0217    TGETS    8   0   3  ; "dialog"
+0218    TSETS    8   7   3  ; "dialog"
+0219    TGETS    8   0  15  ; "view"
+0220    TSETS    8   7  15  ; "view"
+0221    TSETS    0   7  19  ; "ui"
+0222    CALL     5   0   3
+0223    CALLM    2   1   2
+0224 => MOV      3   0
+0225    TGETS    2   0  14  ; "registerModule"
+0226    KSTR     4  43      ; "battery"
+0227    UGET     5  16      ; ReaderDeviceStatus
+0228    MOV      6   5
+0229    TGETS    5   5  16  ; "new"
+0230    TDUP     7  44
+0231    TSETS    0   7  19  ; "ui"
+0232    CALL     5   0   3
+0233    CALLM    2   1   2
+0234    TGETS    2   0   6  ; "document"
+0235    TGETS    2   2  45  ; "info"
+0236    TGETS    2   2  46  ; "configurable"
+0237    ISF          2
+0238    JMP      3 => 0312
+0239    MOV      3   0
+0240    TGETS    2   0  14  ; "registerModule"
+0241    KSTR     4  47      ; "config"
+0242    UGET     5  17      ; ReaderConfig
+0243    MOV      6   5
+0244    TGETS    5   5  16  ; "new"
+0245    TDUP     7  48
+0246    TGETS    8   0   6  ; "document"
+0247    TGETS    8   8  46  ; "configurable"
+0248    TSETS    8   7  46  ; "configurable"
+0249    TGETS    8   0   3  ; "dialog"
+0250    TSETS    8   7   3  ; "dialog"
+0251    TGETS    8   0  15  ; "view"
+0252    TSETS    8   7  15  ; "view"
+0253    TSETS    0   7  19  ; "ui"
+0254    TGETS    8   0   6  ; "document"
+0255    TSETS    8   7   6  ; "document"
+0256    CALL     5   0   3
+0257    CALLM    2   1   2
+0258    TGETS    2   0   6  ; "document"
+0259    TGETS    2   2  45  ; "info"
+0260    TGETS    2   2  49  ; "has_pages"
+0261    ISF          2
+0262    JMP      3 => 0280
+0263    MOV      3   0
+0264    TGETS    2   0  14  ; "registerModule"
+0265    KSTR     4  50      ; "koptlistener"
+0266    UGET     5  18      ; ReaderKoptListener
+0267    MOV      6   5
+0268    TGETS    5   5  16  ; "new"
+0269    TDUP     7  51
+0270    TGETS    8   0   3  ; "dialog"
+0271    TSETS    8   7   3  ; "dialog"
+0272    TGETS    8   0  15  ; "view"
+0273    TSETS    8   7  15  ; "view"
+0274    TSETS    0   7  19  ; "ui"
+0275    TGETS    8   0   6  ; "document"
+0276    TSETS    8   7   6  ; "document"
+0277    CALL     5   0   3
+0278    CALLM    2   1   2
+0279    JMP      2 => 0296
+0280 => MOV      3   0
+0281    TGETS    2   0  14  ; "registerModule"
+0282    KSTR     4  52      ; "crelistener"
+0283    UGET     5  19      ; ReaderCoptListener
+0284    MOV      6   5
+0285    TGETS    5   5  16  ; "new"
+0286    TDUP     7  53
+0287    TGETS    8   0   3  ; "dialog"
+0288    TSETS    8   7   3  ; "dialog"
+0289    TGETS    8   0  15  ; "view"
+0290    TSETS    8   7  15  ; "view"
+0291    TSETS    0   7  19  ; "ui"
+0292    TGETS    8   0   6  ; "document"
+0293    TSETS    8   7   6  ; "document"
+0294    CALL     5   0   3
+0295    CALLM    2   1   2
+0296 => MOV      3   0
+0297    TGETS    2   0  14  ; "registerModule"
+0298    KSTR     4  54      ; "activityindicator"
+0299    UGET     5  20      ; ReaderActivityIndicator
+0300    MOV      6   5
+0301    TGETS    5   5  16  ; "new"
+0302    TDUP     7  55
+0303    TGETS    8   0   3  ; "dialog"
+0304    TSETS    8   7   3  ; "dialog"
+0305    TGETS    8   0  15  ; "view"
+0306    TSETS    8   7  15  ; "view"
+0307    TSETS    0   7  19  ; "ui"
+0308    TGETS    8   0   6  ; "document"
+0309    TSETS    8   7   6  ; "document"
+0310    CALL     5   0   3
+0311    CALLM    2   1   2
+0312 => TGETS    2   0   6  ; "document"
+0313    TGETS    2   2  45  ; "info"
+0314    TGETS    2   2  49  ; "has_pages"
+0315    ISF          2
+0316    JMP      3 => 0397
+0317    MOV      3   0
+0318    TGETS    2   0  14  ; "registerModule"
+0319    KSTR     4  56      ; "cropping"
+0320    UGET     5  21      ; ReaderCropping
+0321    MOV      6   5
+0322    TGETS    5   5  16  ; "new"
+0323    TDUP     7  57
+0324    TGETS    8   0   3  ; "dialog"
+0325    TSETS    8   7   3  ; "dialog"
+0326    TGETS    8   0  15  ; "view"
+0327    TSETS    8   7  15  ; "view"
+0328    TSETS    0   7  19  ; "ui"
+0329    TGETS    8   0   6  ; "document"
+0330    TSETS    8   7   6  ; "document"
+0331    CALL     5   0   3
+0332    CALLM    2   1   2
+0333    MOV      3   0
+0334    TGETS    2   0  14  ; "registerModule"
+0335    KSTR     4  58      ; "paging"
+0336    UGET     5  22      ; ReaderPaging
+0337    MOV      6   5
+0338    TGETS    5   5  16  ; "new"
+0339    TDUP     7  59
+0340    TSETS    1   7  60  ; "pan_rate"
+0341    TGETS    8   0   3  ; "dialog"
+0342    TSETS    8   7   3  ; "dialog"
+0343    TGETS    8   0  15  ; "view"
+0344    TSETS    8   7  15  ; "view"
+0345    TSETS    0   7  19  ; "ui"
+0346    CALL     5   0   3
+0347    CALLM    2   1   2
+0348    MOV      3   0
+0349    TGETS    2   0  14  ; "registerModule"
+0350    KSTR     4  61      ; "zooming"
+0351    UGET     5  23      ; ReaderZooming
+0352    MOV      6   5
+0353    TGETS    5   5  16  ; "new"
+0354    TDUP     7  62
+0355    TGETS    8   0   3  ; "dialog"
+0356    TSETS    8   7   3  ; "dialog"
+0357    TGETS    8   0   6  ; "document"
+0358    TSETS    8   7   6  ; "document"
+0359    TGETS    8   0  15  ; "view"
+0360    TSETS    8   7  15  ; "view"
+0361    TSETS    0   7  19  ; "ui"
+0362    CALL     5   0   3
+0363    CALLM    2   1   2
+0364    MOV      3   0
+0365    TGETS    2   0  14  ; "registerModule"
+0366    KSTR     4  63      ; "panning"
+0367    UGET     5  24      ; ReaderPanning
+0368    MOV      6   5
+0369    TGETS    5   5  16  ; "new"
+0370    TDUP     7  64
+0371    TGETS    8   0   3  ; "dialog"
+0372    TSETS    8   7   3  ; "dialog"
+0373    TGETS    8   0  15  ; "view"
+0374    TSETS    8   7  15  ; "view"
+0375    TSETS    0   7  19  ; "ui"
+0376    CALL     5   0   3
+0377    CALLM    2   1   2
+0378    MOV      3   0
+0379    TGETS    2   0  14  ; "registerModule"
+0380    KSTR     4  65      ; "hinting"
+0381    UGET     5  25      ; ReaderHinting
+0382    MOV      6   5
+0383    TGETS    5   5  16  ; "new"
+0384    TDUP     7  66
+0385    TGETS    8   0   3  ; "dialog"
+0386    TSETS    8   7   3  ; "dialog"
+0387    TGETS    8   0  61  ; "zooming"
+0388    TSETS    8   7  67  ; "zoom"
+0389    TGETS    8   0  15  ; "view"
+0390    TSETS    8   7  15  ; "view"
+0391    TSETS    0   7  19  ; "ui"
+0392    TGETS    8   0   6  ; "document"
+0393    TSETS    8   7   6  ; "document"
+0394    CALL     5   0   3
+0395    CALLM    2   1   2
+0396    JMP      2 => 0505
+0397 => TGETS    2   0   6  ; "document"
+0398    TGETS    2   2  68  ; "setupDefaultView"
+0399    ISF          2
+0400    JMP      3 => 0405
+0401    TGETS    2   0   6  ; "document"
+0402    MOV      3   2
+0403    TGETS    2   2  68  ; "setupDefaultView"
+0404    CALL     2   1   2
+0405 => MOV      3   0
+0406    TGETS    2   0  69  ; "registerPostInitCallback"
+0407    FNEW     4  70      ; readerui.lua:281
+0408    CALL     2   1   3
+0409    MOV      3   0
+0410    TGETS    2   0  14  ; "registerModule"
+0411    KSTR     4  71      ; "styletweak"
+0412    UGET     5  27      ; ReaderStyleTweak
+0413    MOV      6   5
+0414    TGETS    5   5  16  ; "new"
+0415    TDUP     7  72
+0416    TGETS    8   0   3  ; "dialog"
+0417    TSETS    8   7   3  ; "dialog"
+0418    TGETS    8   0  15  ; "view"
+0419    TSETS    8   7  15  ; "view"
+0420    TSETS    0   7  19  ; "ui"
+0421    CALL     5   0   3
+0422    CALLM    2   1   2
+0423    MOV      3   0
+0424    TGETS    2   0  14  ; "registerModule"
+0425    KSTR     4  73      ; "typeset"
+0426    UGET     5  28      ; ReaderTypeset
+0427    MOV      6   5
+0428    TGETS    5   5  16  ; "new"
+0429    TDUP     7  74
+0430    TGETS    8   0   3  ; "dialog"
+0431    TSETS    8   7   3  ; "dialog"
+0432    TGETS    8   0  15  ; "view"
+0433    TSETS    8   7  15  ; "view"
+0434    TSETS    0   7  19  ; "ui"
+0435    CALL     5   0   3
+0436    CALLM    2   1   2
+0437    MOV      3   0
+0438    TGETS    2   0  14  ; "registerModule"
+0439    KSTR     4  75      ; "font"
+0440    UGET     5  29      ; ReaderFont
+0441    MOV      6   5
+0442    TGETS    5   5  16  ; "new"
+0443    TDUP     7  76
+0444    TGETS    8   0   3  ; "dialog"
+0445    TSETS    8   7   3  ; "dialog"
+0446    TGETS    8   0  15  ; "view"
+0447    TSETS    8   7  15  ; "view"
+0448    TSETS    0   7  19  ; "ui"
+0449    CALL     5   0   3
+0450    CALLM    2   1   2
+0451    MOV      3   0
+0452    TGETS    2   0  14  ; "registerModule"
+0453    KSTR     4  77      ; "typography"
+0454    UGET     5  30      ; ReaderTypography
+0455    MOV      6   5
+0456    TGETS    5   5  16  ; "new"
+0457    TDUP     7  78
+0458    TGETS    8   0   3  ; "dialog"
+0459    TSETS    8   7   3  ; "dialog"
+0460    TGETS    8   0  15  ; "view"
+0461    TSETS    8   7  15  ; "view"
+0462    TSETS    0   7  19  ; "ui"
+0463    CALL     5   0   3
+0464    CALLM    2   1   2
+0465    MOV      3   0
+0466    TGETS    2   0  14  ; "registerModule"
+0467    KSTR     4  79      ; "rolling"
+0468    UGET     5  31      ; ReaderRolling
+0469    MOV      6   5
+0470    TGETS    5   5  16  ; "new"
+0471    TDUP     7  80
+0472    TSETS    1   7  60  ; "pan_rate"
+0473    TGETS    8   0   3  ; "dialog"
+0474    TSETS    8   7   3  ; "dialog"
+0475    TGETS    8   0  15  ; "view"
+0476    TSETS    8   7  15  ; "view"
+0477    TSETS    0   7  19  ; "ui"
+0478    CALL     5   0   3
+0479    CALLM    2   1   2
+0480    MOV      3   0
+0481    TGETS    2   0  14  ; "registerModule"
+0482    KSTR     4  81      ; "pagemap"
+0483    UGET     5  32      ; ReaderPageMap
+0484    MOV      6   5
+0485    TGETS    5   5  16  ; "new"
+0486    TDUP     7  82
+0487    TGETS    8   0   3  ; "dialog"
+0488    TSETS    8   7   3  ; "dialog"
+0489    TGETS    8   0  15  ; "view"
+0490    TSETS    8   7  15  ; "view"
+0491    TSETS    0   7  19  ; "ui"
+0492    CALL     5   0   3
+0493    CALLM    2   1   2
+0494    GGET     2  84      ; "G_reader_settings"
+0495    MOV      3   2
+0496    TGETS    2   2  85  ; "readSetting"
+0497    KSTR     4  83      ; "disable_double_tap"
+0498    CALL     2   2   3
+0499    ISNEP    2   1
+0500    JMP      2 => 0503
+0501    KPRI     2   1
+0502    JMP      3 => 0504
+0503 => KPRI     2   2
+0504 => TSETS    2   0  83  ; "disable_double_tap"
+0505 => MOV      3   0
+0506    TGETS    2   0  14  ; "registerModule"
+0507    KSTR     4  86      ; "back"
+0508    UGET     5  33      ; ReaderBack
+0509    MOV      6   5
+0510    TGETS    5   5  16  ; "new"
+0511    TDUP     7  87
+0512    TSETS    0   7  19  ; "ui"
+0513    TGETS    8   0  15  ; "view"
+0514    TSETS    8   7  15  ; "view"
+0515    CALL     5   0   3
+0516    CALLM    2   1   2
+0517    MOV      3   0
+0518    TGETS    2   0  14  ; "registerModule"
+0519    KSTR     4  88      ; "search"
+0520    UGET     5  34      ; ReaderSearch
+0521    MOV      6   5
+0522    TGETS    5   5  16  ; "new"
+0523    TDUP     7  89
+0524    TGETS    8   0   3  ; "dialog"
+0525    TSETS    8   7   3  ; "dialog"
+0526    TGETS    8   0  15  ; "view"
+0527    TSETS    8   7  15  ; "view"
+0528    TSETS    0   7  19  ; "ui"
+0529    CALL     5   0   3
+0530    CALLM    2   1   2
+0531    MOV      3   0
+0532    TGETS    2   0  14  ; "registerModule"
+0533    KSTR     4  90      ; "status"
+0534    UGET     5  35      ; ReaderStatus
+0535    MOV      6   5
+0536    TGETS    5   5  16  ; "new"
+0537    TDUP     7  91
+0538    TSETS    0   7  19  ; "ui"
+0539    TGETS    8   0   6  ; "document"
+0540    TSETS    8   7   6  ; "document"
+0541    TGETS    8   0  15  ; "view"
+0542    TSETS    8   7  15  ; "view"
+0543    CALL     5   0   3
+0544    CALLM    2   1   2
+0545    MOV      3   0
+0546    TGETS    2   0  14  ; "registerModule"
+0547    KSTR     4  92      ; "filesearcher"
+0548    UGET     5  36      ; FileManagerFileSearcher
+0549    MOV      6   5
+0550    TGETS    5   5  16  ; "new"
+0551    TDUP     7  93
+0552    TGETS    8   0   3  ; "dialog"
+0553    TSETS    8   7   3  ; "dialog"
+0554    TSETS    0   7  19  ; "ui"
+0555    CALL     5   0   3
+0556    CALLM    2   1   2
+0557    MOV      3   0
+0558    TGETS    2   0  14  ; "registerModule"
+0559    KSTR     4  94      ; "folder_shortcuts"
+0560    UGET     5  37      ; FileManagerShortcuts
+0561    MOV      6   5
+0562    TGETS    5   5  16  ; "new"
+0563    TDUP     7  95
+0564    TGETS    8   0   3  ; "dialog"
+0565    TSETS    8   7   3  ; "dialog"
+0566    TSETS    0   7  19  ; "ui"
+0567    CALL     5   0   3
+0568    CALLM    2   1   2
+0569    MOV      3   0
+0570    TGETS    2   0  14  ; "registerModule"
+0571    KSTR     4  96      ; "history"
+0572    UGET     5  38      ; FileManagerHistory
+0573    MOV      6   5
+0574    TGETS    5   5  16  ; "new"
+0575    TDUP     7  97
+0576    TGETS    8   0   3  ; "dialog"
+0577    TSETS    8   7   3  ; "dialog"
+0578    TSETS    0   7  19  ; "ui"
+0579    CALL     5   0   3
+0580    CALLM    2   1   2
+0581    MOV      3   0
+0582    TGETS    2   0  14  ; "registerModule"
+0583    KSTR     4  98      ; "collections"
+0584    UGET     5  39      ; FileManagerCollection
+0585    MOV      6   5
+0586    TGETS    5   5  16  ; "new"
+0587    TDUP     7  99
+0588    TGETS    8   0   3  ; "dialog"
+0589    TSETS    8   7   3  ; "dialog"
+0590    TSETS    0   7  19  ; "ui"
+0591    CALL     5   0   3
+0592    CALLM    2   1   2
+0593    MOV      3   0
+0594    TGETS    2   0  14  ; "registerModule"
+0595    KSTR     4 100      ; "bookinfo"
+0596    UGET     5  40      ; FileManagerBookInfo
+0597    MOV      6   5
+0598    TGETS    5   5  16  ; "new"
+0599    TDUP     7 101
+0600    TGETS    8   0   3  ; "dialog"
+0601    TSETS    8   7   3  ; "dialog"
+0602    TGETS    8   0   6  ; "document"
+0603    TSETS    8   7   6  ; "document"
+0604    TSETS    0   7  19  ; "ui"
+0605    CALL     5   0   3
+0606    CALLM    2   1   2
+0607    GGET     2 102      ; "ipairs"
+0608    UGET     3  41      ; PluginLoader
+0609    MOV      4   3
+0610    TGETS    3   3 103  ; "loadPlugins"
+0611    CALL     3   0   2
+0612    CALLM    2   4   0
+0613    JMP      5 => 0641
+0614 => UGET     7  41      ; PluginLoader
+0615    MOV      8   7
+0616    TGETS    7   7 104  ; "createPluginInstance"
+0617    MOV      9   6
+0618    TDUP    10 105
+0619    TGETS   11   0   3  ; "dialog"
+0620    TSETS   11  10   3  ; "dialog"
+0621    TGETS   11   0  15  ; "view"
+0622    TSETS   11  10  15  ; "view"
+0623    TSETS    0  10  19  ; "ui"
+0624    TGETS   11   0   6  ; "document"
+0625    TSETS   11  10   6  ; "document"
+0626    CALL     7   3   4
+0627    ISF          7
+0628    JMP      9 => 0641
+0629    MOV     10   0
+0630    TGETS    9   0  14  ; "registerModule"
+0631    TGETS   11   6 106  ; "name"
+0632    MOV     12   8
+0633    CALL     9   1   4
+0634    UGET     9  42      ; logger
+0635    TGETS    9   9  45  ; "info"
+0636    KSTR    10 107      ; "RD loaded plugin"
+0637    TGETS   11   6 106  ; "name"
+0638    KSTR    12 108      ; "at"
+0639    TGETS   13   6 109  ; "path"
+0640    CALL     9   1   5
+0641 => ITERC    5   3   3
+0642    ITERL    5 => 0614
+0643    UGET     2   3      ; Device
+0644    MOV      3   2
+0645    TGETS    2   2 110  ; "isTouchDevice"
+0646    CALL     2   2   2
+0647    ISF          2
+0648    JMP      3 => 0663
+0649    MOV      3   0
+0650    TGETS    2   0  14  ; "registerModule"
+0651    KSTR     4 111      ; "gesture"
+0652    UGET     5  43      ; ReaderGesture
+0653    MOV      6   5
+0654    TGETS    5   5  16  ; "new"
+0655    TDUP     7 112
+0656    TGETS    8   0   6  ; "document"
+0657    TSETS    8   7   6  ; "document"
+0658    TGETS    8   0  15  ; "view"
+0659    TSETS    8   7  15  ; "view"
+0660    TSETS    0   7  19  ; "ui"
+0661    CALL     5   0   3
+0662    CALLM    2   1   2
+0663 => MOV      3   0
+0664    TGETS    2   0 113  ; "handleEvent"
+0665    UGET     4  26      ; Event
+0666    MOV      5   4
+0667    TGETS    4   4  16  ; "new"
+0668    KSTR     6 114      ; "DocSettingsLoad"
+0669    TGETS    7   0   4  ; "doc_settings"
+0670    TGETS    8   0   6  ; "document"
+0671    CALL     4   0   5
+0672    CALLM    2   1   1
+0673    MOV      3   0
+0674    TGETS    2   0 113  ; "handleEvent"
+0675    UGET     4  26      ; Event
+0676    MOV      5   4
+0677    TGETS    4   4  16  ; "new"
+0678    KSTR     6 115      ; "ReadSettings"
+0679    TGETS    7   0   4  ; "doc_settings"
+0680    CALL     4   0   4
+0681    CALLM    2   1   1
+0682    GGET     2 102      ; "ipairs"
+0683    TGETS    3   0   1  ; "postInitCallback"
+0684    CALL     2   4   2
+0685    JMP      5 => 0688
+0686 => MOV      7   6
+0687    CALL     7   1   1
+0688 => ITERC    5   3   3
+0689    ITERL    5 => 0686
+0690    KPRI     2   0
+0691    TSETS    2   0   1  ; "postInitCallback"
+0692    TGETS    2   0   4  ; "doc_settings"
+0693    MOV      3   2
+0694    TGETS    2   2 116  ; "saveSetting"
+0695    KSTR     4 117      ; "doc_props"
+0696    TGETS    5   0   6  ; "document"
+0697    MOV      6   5
+0698    TGETS    5   5 118  ; "getProps"
+0699    CALL     5   0   2
+0700    CALLM    2   1   2
+0701    MOV      3   0
+0702    TGETS    2   0 113  ; "handleEvent"
+0703    UGET     4  26      ; Event
+0704    MOV      5   4
+0705    TGETS    4   4  16  ; "new"
+0706    KSTR     6 119      ; "ReaderReady"
+0707    TGETS    7   0   4  ; "doc_settings"
+0708    CALL     4   0   4
+0709    CALLM    2   1   1
+0710    GGET     2 102      ; "ipairs"
+0711    TGETS    3   0   2  ; "postReaderCallback"
+0712    CALL     2   4   2
+0713    JMP      5 => 0716
+0714 => MOV      7   6
+0715    CALL     7   1   1
+0716 => ITERC    5   3   3
+0717    ITERL    5 => 0714
+0718    KPRI     2   0
+0719    TSETS    2   0   2  ; "postReaderCallback"
+0720    UCLO     0 => 0721
+0721 => RET0     0   1
+
+-- BYTECODE -- readerui.lua:431-440
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "ui/quickstart"
+0003    CALL     1   2   2
+0004    KPRI     2   0
+0005    GGET     3   2      ; "G_reader_settings"
+0006    MOV      4   3
+0007    TGETS    3   3   3  ; "readSetting"
+0008    KSTR     5   4      ; "lastfile"
+0009    CALL     3   2   3
+0010    ISF          3
+0011    JMP      4 => 0020
+0012    TGETS    4   1   5  ; "quickstart_filename"
+0013    ISEQV    3   4
+0014    JMP      4 => 0020
+0015    MOV      5   3
+0016    TGETS    4   3   6  ; "match"
+0017    KSTR     6   7      ; "(.*)/"
+0018    CALL     4   2   3
+0019    MOV      2   4
+0020 => MOV      4   2
+0021    MOV      5   3
+0022    RET      4   3
+
+-- BYTECODE -- readerui.lua:442-457
+0001    GGET     2   0      ; "require"
+0002    KSTR     3   1      ; "apps/filemanager/filemanager"
+0003    CALL     2   2   2
+0004    KNIL     3   4
+0005    ISF          1
+0006    JMP      5 => 0019
+0007    UGET     5   0      ; util
+0008    TGETS    5   5   2  ; "splitFilePathName"
+0009    MOV      6   1
+0010    CALL     5   3   2
+0011    MOV      4   6
+0012    MOV      3   5
+0013    MOV      6   3
+0014    TGETS    5   3   3  ; "match"
+0015    KSTR     7   4      ; "(.*)/"
+0016    CALL     5   2   3
+0017    MOV      3   5
+0018    JMP      5 => 0024
+0019 => MOV      6   0
+0020    TGETS    5   0   5  ; "getLastDirFile"
+0021    CALL     5   3   2
+0022    MOV      4   6
+0023    MOV      3   5
+0024 => TGETS    5   2   6  ; "instance"
+0025    ISF          5
+0026    JMP      6 => 0034
+0027    TGETS    5   2   6  ; "instance"
+0028    MOV      6   5
+0029    TGETS    5   5   7  ; "reinit"
+0030    MOV      7   3
+0031    MOV      8   4
+0032    CALL     5   1   4
+0033    JMP      5 => 0039
+0034 => MOV      6   2
+0035    TGETS    5   2   8  ; "showFiles"
+0036    MOV      7   3
+0037    MOV      8   4
+0038    CALL     5   1   4
+0039 => RET0     0   1
+
+-- BYTECODE -- readerui.lua:489-493
+0001    UGET     0   0      ; doc_settings
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "delSetting"
+0004    KSTR     2   1      ; "bookmarks"
+0005    CALL     0   1   3
+0006    UGET     0   0      ; doc_settings
+0007    MOV      1   0
+0008    TGETS    0   0   2  ; "close"
+0009    CALL     0   1   2
+0010    UGET     0   1      ; self
+0011    MOV      1   0
+0012    TGETS    0   0   3  ; "showReaderCoroutine"
+0013    UGET     2   2      ; file
+0014    UGET     3   3      ; provider
+0015    CALL     0   1   4
+0016    RET0     0   1
+
+-- BYTECODE -- readerui.lua:494-494
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "showFileManager"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readerui.lua:459-500
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "dbg"
+0003    KSTR     4   1      ; "show reader ui"
+0004    CALL     3   1   2
+0005    UGET     3   1      ; lfs
+0006    TGETS    3   3   2  ; "attributes"
+0007    MOV      4   1
+0008    KSTR     5   3      ; "mode"
+0009    CALL     3   2   3
+0010    ISEQS    3   4      ; "file"
+0011    JMP      3 => 0032
+0012    UGET     3   2      ; UIManager
+0013    MOV      4   3
+0014    TGETS    3   3   5  ; "show"
+0015    UGET     5   3      ; InfoMessage
+0016    MOV      6   5
+0017    TGETS    5   5   6  ; "new"
+0018    TDUP     7   9
+0019    UGET     8   4      ; T
+0020    UGET     9   5      ; _
+0021    KSTR    10   7      ; "File '%1' does not exist."
+0022    CALL     9   2   2
+0023    UGET    10   6      ; BD
+0024    TGETS   10  10   8  ; "filepath"
+0025    MOV     11   1
+0026    CALL    10   0   2
+0027    CALLM    8   2   1
+0028    TSETS    8   7  10  ; "text"
+0029    CALL     5   0   3
+0030    CALLM    3   1   1
+0031    UCLO     0 => 0146
+0032 => UGET     3   7      ; DocumentRegistry
+0033    MOV      4   3
+0034    TGETS    3   3  11  ; "hasProvider"
+0035    MOV      5   1
+0036    CALL     3   2   3
+0037    IST          3
+0038    JMP      3 => 0065
+0039    ISNEP    2   0
+0040    JMP      3 => 0065
+0041    UGET     3   2      ; UIManager
+0042    MOV      4   3
+0043    TGETS    3   3   5  ; "show"
+0044    UGET     5   3      ; InfoMessage
+0045    MOV      6   5
+0046    TGETS    5   5   6  ; "new"
+0047    TDUP     7  13
+0048    UGET     8   4      ; T
+0049    UGET     9   5      ; _
+0050    KSTR    10  12      ; "File '%1' is not supported."
+0051    CALL     9   2   2
+0052    UGET    10   6      ; BD
+0053    TGETS   10  10   8  ; "filepath"
+0054    MOV     11   1
+0055    CALL    10   0   2
+0056    CALLM    8   2   1
+0057    TSETS    8   7  10  ; "text"
+0058    CALL     5   0   3
+0059    CALLM    3   1   1
+0060    MOV      4   0
+0061    TGETS    3   0  14  ; "showFileManager"
+0062    MOV      5   1
+0063    CALL     3   1   3
+0064    UCLO     0 => 0147
+0065 => IST          2
+0066    JMP      3 => 0073
+0067    UGET     3   7      ; DocumentRegistry
+0068    MOV      4   3
+0069    TGETS    3   3  15  ; "getProvider"
+0070    MOV      5   1
+0071    CALL     3   2   3
+0072    MOV      2   3
+0073 => TGETS    3   2  16  ; "provider"
+0074    ISF          3
+0075    JMP      4 => 0144
+0076    UGET     3   8      ; DocSettings
+0077    MOV      4   3
+0078    TGETS    3   3  17  ; "open"
+0079    MOV      5   1
+0080    CALL     3   2   3
+0081    MOV      5   3
+0082    TGETS    4   3  18  ; "readSetting"
+0083    KSTR     6  19      ; "bookmarks"
+0084    CALL     4   2   3
+0085    IST          4
+0086    JMP      5 => 0088
+0087    TNEW     4   0
+0088 => LEN      5   4
+0089    KSHORT   6   1
+0090    ISGT     6   5
+0091    JMP      5 => 0138
+0092    TGETS    5   2  16  ; "provider"
+0093    ISNES    5  20      ; "crengine"
+0094    JMP      5 => 0101
+0095    GGET     5  21      ; "type"
+0096    TGETB    6   4   1
+0097    TGETS    6   6  22  ; "page"
+0098    CALL     5   2   2
+0099    ISEQS    5  23      ; "number"
+0100    JMP      5 => 0110
+0101 => TGETS    5   2  16  ; "provider"
+0102    ISNES    5  24      ; "mupdf"
+0103    JMP      5 => 0138
+0104    GGET     5  21      ; "type"
+0105    TGETB    6   4   1
+0106    TGETS    6   6  22  ; "page"
+0107    CALL     5   2   2
+0108    ISNES    5  25      ; "string"
+0109    JMP      5 => 0138
+0110 => UGET     5   2      ; UIManager
+0111    MOV      6   5
+0112    TGETS    5   5   5  ; "show"
+0113    UGET     7   9      ; ConfirmBox
+0114    MOV      8   7
+0115    TGETS    7   7   6  ; "new"
+0116    TDUP     9  27
+0117    UGET    10   4      ; T
+0118    UGET    11   5      ; _
+0119    KSTR    12  26      ; "The document '%1' with bookmarks or high"~
+0120    CALL    11   2   2
+0121    UGET    12   6      ; BD
+0122    TGETS   12  12   8  ; "filepath"
+0123    MOV     13   1
+0124    CALL    12   0   2
+0125    CALLM   10   2   1
+0126    TSETS   10   9  10  ; "text"
+0127    UGET    10   5      ; _
+0128    KSTR    11  28      ; "Delete"
+0129    CALL    10   2   2
+0130    TSETS   10   9  29  ; "ok_text"
+0131    FNEW    10  30      ; readerui.lua:489
+0132    TSETS   10   9  31  ; "ok_callback"
+0133    FNEW    10  32      ; readerui.lua:494
+0134    TSETS   10   9  33  ; "cancel_callback"
+0135    CALL     7   0   3
+0136    CALLM    5   1   1
+0137    JMP      5 => 0143
+0138 => MOV      6   0
+0139    TGETS    5   0  34  ; "showReaderCoroutine"
+0140    MOV      7   1
+0141    MOV      8   2
+0142    CALL     5   1   4
+0143 => UCLO     3 => 0144
+0144 => UCLO     0 => 0145
+0145 => RET0     0   1
+0146 => RET0     0   1
+0147 => RET0     0   1
+
+-- BYTECODE -- readerui.lua:511-513
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "doShowReader"
+0004    UGET     2   1      ; file
+0005    UGET     3   2      ; provider
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readerui.lua:509-523
+0001    UGET     0   0      ; logger
+0002    TGETS    0   0   0  ; "dbg"
+0003    KSTR     1   1      ; "creating coroutine for showing reader"
+0004    CALL     0   1   2
+0005    GGET     0   2      ; "coroutine"
+0006    TGETS    0   0   3  ; "create"
+0007    FNEW     1   4      ; readerui.lua:511
+0008    CALL     0   2   2
+0009    GGET     1   2      ; "coroutine"
+0010    TGETS    1   1   5  ; "resume"
+0011    MOV      2   0
+0012    CALL     1   3   2
+0013    ISNEP    2   0
+0014    JMP      3 => 0017
+0015    ISNEP    1   1
+0016    JMP      3 => 0051
+0017 => GGET     3   6      ; "io"
+0018    TGETS    3   3   7  ; "stderr"
+0019    MOV      4   3
+0020    TGETS    3   3   8  ; "write"
+0021    KSTR     5   9      ; "[!] doShowReader coroutine crashed:\n"
+0022    CALL     3   1   3
+0023    GGET     3   6      ; "io"
+0024    TGETS    3   3   7  ; "stderr"
+0025    MOV      4   3
+0026    TGETS    3   3   8  ; "write"
+0027    GGET     5  10      ; "debug"
+0028    TGETS    5   5  11  ; "traceback"
+0029    MOV      6   0
+0030    MOV      7   2
+0031    KSHORT   8   1
+0032    CALL     5   0   4
+0033    CALLM    3   1   1
+0034    UGET     3   4      ; UIManager
+0035    MOV      4   3
+0036    TGETS    3   3  12  ; "show"
+0037    UGET     5   5      ; InfoMessage
+0038    MOV      6   5
+0039    TGETS    5   5  13  ; "new"
+0040    TDUP     7  15
+0041    UGET     8   6      ; _
+0042    KSTR     9  14      ; "No reader engine for this file or invali"~
+0043    CALL     8   2   2
+0044    TSETS    8   7  16  ; "text"
+0045    CALL     5   0   3
+0046    CALLM    3   1   1
+0047    UGET     3   1      ; self
+0048    MOV      4   3
+0049    TGETS    3   3  17  ; "showFileManager"
+0050    CALL     3   1   2
+0051 => RET0     0   1
+
+-- BYTECODE -- readerui.lua:502-524
+0001    UGET     3   0      ; UIManager
+0002    MOV      4   3
+0003    TGETS    3   3   0  ; "show"
+0004    UGET     5   1      ; InfoMessage
+0005    MOV      6   5
+0006    TGETS    5   5   1  ; "new"
+0007    TDUP     7   4
+0008    UGET     8   2      ; T
+0009    UGET     9   3      ; _
+0010    KSTR    10   2      ; "Opening file '%1'."
+0011    CALL     9   2   2
+0012    UGET    10   4      ; BD
+0013    TGETS   10  10   3  ; "filepath"
+0014    MOV     11   1
+0015    CALL    10   0   2
+0016    CALLM    8   2   1
+0017    TSETS    8   7   5  ; "text"
+0018    CALL     5   0   3
+0019    CALLM    3   1   1
+0020    UGET     3   0      ; UIManager
+0021    MOV      4   3
+0022    TGETS    3   3   6  ; "forceRePaint"
+0023    CALL     3   1   2
+0024    UGET     3   0      ; UIManager
+0025    MOV      4   3
+0026    TGETS    3   3   7  ; "nextTick"
+0027    FNEW     5   8      ; readerui.lua:509
+0028    CALL     3   1   3
+0029    UCLO     0 => 0030
+0030 => RET0     0   1
+
+-- BYTECODE -- readerui.lua:527-575
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "info"
+0003    KSTR     4   1      ; "opening file"
+0004    MOV      5   1
+0005    CALL     3   1   3
+0006    UGET     3   1      ; _running_instance
+0007    ISF          3
+0008    JMP      4 => 0013
+0009    UGET     3   1      ; _running_instance
+0010    MOV      4   3
+0011    TGETS    3   3   2  ; "onClose"
+0012    CALL     3   1   2
+0013 => UGET     3   2      ; DocumentRegistry
+0014    MOV      4   3
+0015    TGETS    3   3   3  ; "openDocument"
+0016    MOV      5   1
+0017    MOV      6   2
+0018    CALL     3   2   4
+0019    IST          3
+0020    JMP      4 => 0038
+0021    UGET     4   3      ; UIManager
+0022    MOV      5   4
+0023    TGETS    4   4   4  ; "show"
+0024    UGET     6   4      ; InfoMessage
+0025    MOV      7   6
+0026    TGETS    6   6   5  ; "new"
+0027    TDUP     8   7
+0028    UGET     9   5      ; _
+0029    KSTR    10   6      ; "No reader engine for this file or invali"~
+0030    CALL     9   2   2
+0031    TSETS    9   8   8  ; "text"
+0032    CALL     6   0   3
+0033    CALLM    4   1   1
+0034    MOV      5   0
+0035    TGETS    4   0   9  ; "showFileManager"
+0036    CALL     4   1   2
+0037    RET0     0   1
+0038 => TGETS    4   3  10  ; "is_locked"
+0039    ISF          4
+0040    JMP      5 => 0070
+0041    UGET     4   0      ; logger
+0042    TGETS    4   4   0  ; "info"
+0043    KSTR     5  11      ; "document is locked"
+0044    CALL     4   1   2
+0045    GGET     4  13      ; "coroutine"
+0046    TGETS    4   4  14  ; "running"
+0047    CALL     4   2   1
+0048    IST          4
+0049    JMP      5 => 0051
+0050    TGETS    4   0  12  ; "_coroutine"
+0051 => TSETS    4   0  12  ; "_coroutine"
+0052    MOV      5   0
+0053    TGETS    4   0  15  ; "unlockDocumentWithPassword"
+0054    MOV      6   3
+0055    CALL     4   1   3
+0056    GGET     4  13      ; "coroutine"
+0057    TGETS    4   4  14  ; "running"
+0058    CALL     4   2   1
+0059    ISF          4
+0060    JMP      5 => 0070
+0061    GGET     4  13      ; "coroutine"
+0062    TGETS    4   4  16  ; "yield"
+0063    CALL     4   2   1
+0064    IST          4
+0065    JMP      5 => 0070
+0066    MOV      6   0
+0067    TGETS    5   0   9  ; "showFileManager"
+0068    CALL     5   1   2
+0069    RET0     0   1
+0070 => GGET     4  17      ; "require"
+0071    KSTR     5  18      ; "readhistory"
+0072    CALL     4   2   2
+0073    MOV      5   4
+0074    TGETS    4   4  19  ; "addItem"
+0075    MOV      6   1
+0076    CALL     4   1   3
+0077    UGET     4   6      ; ReaderUI
+0078    MOV      5   4
+0079    TGETS    4   4   5  ; "new"
+0080    TDUP     6  21
+0081    UGET     7   7      ; Screen
+0082    MOV      8   7
+0083    TGETS    7   7  20  ; "getSize"
+0084    CALL     7   2   2
+0085    TSETS    7   6  22  ; "dimen"
+0086    TSETS    3   6  23  ; "document"
+0087    CALL     4   2   3
+0088    TGETS    5   4  23  ; "document"
+0089    MOV      6   5
+0090    TGETS    5   5  24  ; "getProps"
+0091    CALL     5   2   2
+0092    TGETS    5   5  25  ; "title"
+0093    ISEQS    5  26      ; ""
+0094    JMP      6 => 0101
+0095    UGET     6   7      ; Screen
+0096    MOV      7   6
+0097    TGETS    6   6  27  ; "setWindowTitle"
+0098    MOV      8   5
+0099    CALL     6   1   3
+0100    JMP      6 => 0110
+0101 => UGET     6   8      ; util
+0102    TGETS    6   6  28  ; "splitFilePathName"
+0103    MOV      7   1
+0104    CALL     6   3   2
+0105    UGET     8   7      ; Screen
+0106    MOV      9   8
+0107    TGETS    8   8  27  ; "setWindowTitle"
+0108    MOV     10   7
+0109    CALL     8   1   3
+0110 => UGET     6   3      ; UIManager
+0111    MOV      7   6
+0112    TGETS    6   6   4  ; "show"
+0113    MOV      8   4
+0114    CALL     6   1   3
+0115    USETV    1   4      ; _running_instance
+0116    GGET     6  17      ; "require"
+0117    KSTR     7  29      ; "apps/filemanager/filemanager"
+0118    CALL     6   2   2
+0119    TGETS    7   6  30  ; "instance"
+0120    ISF          7
+0121    JMP      8 => 0126
+0122    TGETS    7   6  30  ; "instance"
+0123    MOV      8   7
+0124    TGETS    7   7   2  ; "onClose"
+0125    CALL     7   1   2
+0126 => RET0     0   1
+
+-- BYTECODE -- readerui.lua:577-579
+0001    UGET     1   0      ; _running_instance
+0002    RET1     1   2
+
+-- BYTECODE -- readerui.lua:591-594
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "closeDialog"
+0004    CALL     0   1   2
+0005    GGET     0   1      ; "coroutine"
+0006    TGETS    0   0   2  ; "resume"
+0007    UGET     1   0      ; self
+0008    TGETS    1   1   3  ; "_coroutine"
+0009    CALL     0   1   2
+0010    RET0     0   1
+
+-- BYTECODE -- readerui.lua:599-607
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onVerifyPassword"
+0004    UGET     2   1      ; document
+0005    CALL     0   2   3
+0006    UGET     1   0      ; self
+0007    MOV      2   1
+0008    TGETS    1   1   1  ; "closeDialog"
+0009    CALL     1   1   2
+0010    ISF          0
+0011    JMP      1 => 0019
+0012    GGET     1   2      ; "coroutine"
+0013    TGETS    1   1   3  ; "resume"
+0014    UGET     2   0      ; self
+0015    TGETS    2   2   4  ; "_coroutine"
+0016    MOV      3   0
+0017    CALL     1   1   3
+0018    JMP      1 => 0025
+0019 => UGET     1   0      ; self
+0020    MOV      2   1
+0021    TGETS    1   1   5  ; "unlockDocumentWithPassword"
+0022    UGET     3   1      ; document
+0023    KPRI     4   2
+0024    CALL     1   1   4
+0025 => RET0     0   1
+
+-- BYTECODE -- readerui.lua:581-615
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "dbg"
+0003    KSTR     4   1      ; "show input password dialog"
+0004    CALL     3   1   2
+0005    UGET     3   1      ; InputDialog
+0006    MOV      4   3
+0007    TGETS    3   3   3  ; "new"
+0008    TDUP     5   6
+0009    ISF          2
+0010    JMP      6 => 0016
+0011    UGET     6   2      ; _
+0012    KSTR     7   4      ; "Password is incorrect, try again?"
+0013    CALL     6   2   2
+0014    IST          6
+0015    JMP      7 => 0019
+0016 => UGET     6   2      ; _
+0017    KSTR     7   5      ; "Input document password"
+0018    CALL     6   2   2
+0019 => TSETS    6   5   7  ; "title"
+0020    TNEW     6   3
+0021    TNEW     7   3
+0022    TDUP     8   9
+0023    UGET     9   2      ; _
+0024    KSTR    10   8      ; "Cancel"
+0025    CALL     9   2   2
+0026    TSETS    9   8  10  ; "text"
+0027    FNEW     9  11      ; readerui.lua:591
+0028    TSETS    9   8  12  ; "callback"
+0029    TSETB    8   7   1
+0030    TDUP     8  14
+0031    UGET     9   2      ; _
+0032    KSTR    10  13      ; "OK"
+0033    CALL     9   2   2
+0034    TSETS    9   8  10  ; "text"
+0035    FNEW     9  15      ; readerui.lua:599
+0036    TSETS    9   8  12  ; "callback"
+0037    TSETB    8   7   2
+0038    TSETB    7   6   1
+0039    TSETS    6   5  16  ; "buttons"
+0040    CALL     3   2   3
+0041    TSETS    3   0   2  ; "password_dialog"
+0042    UGET     3   3      ; UIManager
+0043    MOV      4   3
+0044    TGETS    3   3  17  ; "show"
+0045    TGETS    5   0   2  ; "password_dialog"
+0046    CALL     3   1   3
+0047    TGETS    3   0   2  ; "password_dialog"
+0048    MOV      4   3
+0049    TGETS    3   3  18  ; "onShowKeyboard"
+0050    CALL     3   1   2
+0051    UCLO     0 => 0052
+0052 => RET0     0   1
+
+-- BYTECODE -- readerui.lua:617-620
+0001    TGETS    2   0   0  ; "password_dialog"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getInputText"
+0004    CALL     2   2   2
+0005    MOV      4   1
+0006    TGETS    3   1   2  ; "unlock"
+0007    MOV      5   2
+0008    CALLT    3   3
+
+-- BYTECODE -- readerui.lua:622-625
+0001    TGETS    1   0   0  ; "password_dialog"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "onClose"
+0004    CALL     1   1   2
+0005    UGET     1   0      ; UIManager
+0006    MOV      2   1
+0007    TGETS    1   1   2  ; "close"
+0008    TGETS    3   0   0  ; "password_dialog"
+0009    CALL     1   1   3
+0010    RET0     0   1
+
+-- BYTECODE -- readerui.lua:627-630
+0001    TSETS    1   0   0  ; "dimen"
+0002    MOV      3   0
+0003    TGETS    2   0   1  ; "updateTouchZonesOnScreenResize"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readerui.lua:632-636
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "handleEvent"
+0003    UGET     3   0      ; Event
+0004    MOV      4   3
+0005    TGETS    3   3   1  ; "new"
+0006    KSTR     5   2      ; "SaveSettings"
+0007    CALL     3   0   3
+0008    CALLM    1   1   1
+0009    TGETS    1   0   3  ; "doc_settings"
+0010    MOV      2   1
+0011    TGETS    1   1   4  ; "flush"
+0012    CALL     1   1   2
+0013    GGET     1   5      ; "G_reader_settings"
+0014    MOV      2   1
+0015    TGETS    1   1   4  ; "flush"
+0016    CALL     1   1   2
+0017    RET0     0   1
+
+-- BYTECODE -- readerui.lua:638-640
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "saveSettings"
+0003    CALL     1   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- readerui.lua:642-645
+0001    TGETS    1   0   0  ; "document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "close"
+0004    CALL     1   1   2
+0005    KPRI     1   0
+0006    TSETS    1   0   0  ; "document"
+0007    RET0     0   1
+
+-- BYTECODE -- readerui.lua:661-663
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "closeDocument"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readerui.lua:664-667
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "document"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "discardChange"
+0005    CALL     0   1   2
+0006    UGET     0   0      ; self
+0007    MOV      1   0
+0008    TGETS    0   0   2  ; "closeDocument"
+0009    CALL     0   1   2
+0010    RET0     0   1
+
+-- BYTECODE -- readerui.lua:647-673
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "handleEvent"
+0003    UGET     3   0      ; Event
+0004    MOV      4   3
+0005    TGETS    3   3   1  ; "new"
+0006    KSTR     5   2      ; "CloseDocument"
+0007    CALL     3   0   3
+0008    CALLM    1   1   1
+0009    TGETS    1   0   3  ; "document"
+0010    MOV      2   1
+0011    TGETS    1   1   4  ; "isEdited"
+0012    CALL     1   2   2
+0013    ISF          1
+0014    JMP      2 => 0062
+0015    GGET     1   5      ; "G_reader_settings"
+0016    MOV      2   1
+0017    TGETS    1   1   6  ; "readSetting"
+0018    KSTR     3   7      ; "save_document"
+0019    CALL     1   2   3
+0020    ISNES    1   8      ; "always"
+0021    JMP      2 => 0026
+0022    MOV      3   0
+0023    TGETS    2   0   9  ; "closeDocument"
+0024    CALL     2   1   2
+0025    JMP      2 => 0065
+0026 => ISNES    1  10      ; "disable"
+0027    JMP      2 => 0036
+0028    TGETS    2   0   3  ; "document"
+0029    MOV      3   2
+0030    TGETS    2   2  11  ; "discardChange"
+0031    CALL     2   1   2
+0032    MOV      3   0
+0033    TGETS    2   0   9  ; "closeDocument"
+0034    CALL     2   1   2
+0035    JMP      2 => 0065
+0036 => UGET     2   1      ; UIManager
+0037    MOV      3   2
+0038    TGETS    2   2  12  ; "show"
+0039    UGET     4   2      ; ConfirmBox
+0040    MOV      5   4
+0041    TGETS    4   4   1  ; "new"
+0042    TDUP     6  14
+0043    UGET     7   3      ; _
+0044    KSTR     8  13      ; "Do you want to save this document?"
+0045    CALL     7   2   2
+0046    TSETS    7   6  15  ; "text"
+0047    UGET     7   3      ; _
+0048    KSTR     8  16      ; "Save"
+0049    CALL     7   2   2
+0050    TSETS    7   6  17  ; "ok_text"
+0051    UGET     7   3      ; _
+0052    KSTR     8  18      ; "Don't save"
+0053    CALL     7   2   2
+0054    TSETS    7   6  19  ; "cancel_text"
+0055    FNEW     7  20      ; readerui.lua:661
+0056    TSETS    7   6  21  ; "ok_callback"
+0057    FNEW     7  22      ; readerui.lua:664
+0058    TSETS    7   6  23  ; "cancel_callback"
+0059    CALL     4   0   3
+0060    CALLM    2   1   1
+0061    JMP      1 => 0065
+0062 => MOV      2   0
+0063    TGETS    1   0   9  ; "closeDocument"
+0064    CALL     1   1   2
+0065 => UCLO     0 => 0066
+0066 => RET0     0   1
+
+-- BYTECODE -- readerui.lua:675-695
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "closing reader"
+0004    CALL     2   1   2
+0005    ISNEP    1   0
+0006    JMP      2 => 0008
+0007    KPRI     1   2
+0008 => TGETS    2   0   2  ; "dialog"
+0009    ISEQV    2   0
+0010    JMP      2 => 0014
+0011    MOV      3   0
+0012    TGETS    2   0   3  ; "saveSettings"
+0013    CALL     2   1   2
+0014 => TGETS    2   0   4  ; "document"
+0015    ISEQP    2   0
+0016    JMP      2 => 0024
+0017    UGET     2   0      ; logger
+0018    TGETS    2   2   0  ; "dbg"
+0019    KSTR     3   5      ; "closing document"
+0020    CALL     2   1   2
+0021    MOV      3   0
+0022    TGETS    2   0   6  ; "notifyCloseDocument"
+0023    CALL     2   1   2
+0024 => UGET     2   1      ; UIManager
+0025    MOV      3   2
+0026    TGETS    2   2   7  ; "close"
+0027    TGETS    4   0   2  ; "dialog"
+0028    ISFC     5   1
+0029    JMP      5 => 0031
+0030    KSTR     5   8      ; "full"
+0031 => CALL     2   1   4
+0032    UGET     2   2      ; Cache
+0033    MOV      3   2
+0034    TGETS    2   2   9  ; "serialize"
+0035    CALL     2   1   2
+0036    UGET     2   3      ; _running_instance
+0037    ISNEV    2   0
+0038    JMP      2 => 0040
+0039    USETP    3   0      ; _running_instance
+0040 => RET0     0   1
+
+-- BYTECODE -- readerui.lua:713-715
+0001    GGET     0   0      ; "coroutine"
+0002    TGETS    0   0   1  ; "resume"
+0003    UGET     1   0      ; _coroutine
+0004    KPRI     2   1
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readerui.lua:697-721
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "readhistory"
+0003    CALL     1   2   2
+0004    MOV      2   1
+0005    TGETS    1   1   2  ; "removeItemByPath"
+0006    TGETS    3   0   3  ; "document"
+0007    TGETS    3   3   4  ; "file"
+0008    CALL     1   1   3
+0009    GGET     1   5      ; "coroutine"
+0010    TGETS    1   1   6  ; "running"
+0011    CALL     1   2   1
+0012    GGET     2   5      ; "coroutine"
+0013    ISF          2
+0014    JMP      3 => 0037
+0015    UGET     2   0      ; logger
+0016    TGETS    2   2   7  ; "warn"
+0017    KSTR     3   8      ; "crengine failed recognizing or parsing t"~
+0018    CALL     2   1   2
+0019    UGET     2   1      ; UIManager
+0020    MOV      3   2
+0021    TGETS    2   2   9  ; "show"
+0022    UGET     4   2      ; InfoMessage
+0023    MOV      5   4
+0024    TGETS    4   4  10  ; "new"
+0025    TDUP     6  12
+0026    UGET     7   3      ; _
+0027    KSTR     8  11      ; "Failed recognizing or parsing this file:"~
+0028    CALL     7   2   2
+0029    TSETS    7   6  13  ; "text"
+0030    FNEW     7  14      ; readerui.lua:713
+0031    TSETS    7   6  15  ; "dismiss_callback"
+0032    CALL     4   0   3
+0033    CALLM    2   1   1
+0034    GGET     2   5      ; "coroutine"
+0035    TGETS    2   2  16  ; "yield"
+0036    CALL     2   1   1
+0037 => GGET     2  17      ; "error"
+0038    KSTR     3   8      ; "crengine failed recognizing or parsing t"~
+0039    CALL     2   1   2
+0040    UCLO     0 => 0041
+0041 => RET0     0   1
+
+-- BYTECODE -- readerui.lua:723-727
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "onClose"
+0003    CALL     1   1   2
+0004    MOV      2   0
+0005    TGETS    1   0   1  ; "showFileManager"
+0006    CALL     1   1   2
+0007    KPRI     1   2
+0008    RET1     1   2
+
+-- BYTECODE -- readerui.lua:729-741
+0001    TGETS    2   0   0  ; "document"
+0002    TGETS    2   2   1  ; "file"
+0003    GGET     3   2      ; "getmetatable"
+0004    TGETS    4   0   0  ; "document"
+0005    CALL     3   2   2
+0006    TGETS    3   3   3  ; "__index"
+0007    MOV      5   0
+0008    TGETS    4   0   4  ; "handleEvent"
+0009    UGET     6   0      ; Event
+0010    MOV      7   6
+0011    TGETS    6   6   5  ; "new"
+0012    KSTR     8   6      ; "CloseReaderMenu"
+0013    CALL     6   0   3
+0014    CALLM    4   1   1
+0015    MOV      5   0
+0016    TGETS    4   0   4  ; "handleEvent"
+0017    UGET     6   0      ; Event
+0018    MOV      7   6
+0019    TGETS    6   6   5  ; "new"
+0020    KSTR     8   7      ; "CloseConfigMenu"
+0021    CALL     6   0   3
+0022    CALLM    4   1   1
+0023    TGETS    4   0   8  ; "highlight"
+0024    MOV      5   4
+0025    TGETS    4   4   9  ; "onClose"
+0026    CALL     4   1   2
+0027    MOV      5   0
+0028    TGETS    4   0   9  ; "onClose"
+0029    KPRI     6   1
+0030    CALL     4   1   3
+0031    ISF          1
+0032    JMP      4 => 0037
+0033    MOV      4   1
+0034    MOV      5   2
+0035    MOV      6   3
+0036    CALL     4   1   3
+0037 => MOV      5   0
+0038    TGETS    4   0  10  ; "showReader"
+0039    MOV      6   2
+0040    MOV      7   3
+0041    CALL     4   1   4
+0042    RET0     0   1
+
+-- BYTECODE -- readerui.lua:743-750
+0001    IST          1
+0002    JMP      2 => 0004
+0003    RET0     0   1
+0004 => MOV      3   0
+0005    TGETS    2   0   0  ; "handleEvent"
+0006    UGET     4   0      ; Event
+0007    MOV      5   4
+0008    TGETS    4   4   1  ; "new"
+0009    KSTR     6   2      ; "CloseReaderMenu"
+0010    CALL     4   0   3
+0011    CALLM    2   1   1
+0012    MOV      3   0
+0013    TGETS    2   0   0  ; "handleEvent"
+0014    UGET     4   0      ; Event
+0015    MOV      5   4
+0016    TGETS    4   4   1  ; "new"
+0017    KSTR     6   3      ; "CloseConfigMenu"
+0018    CALL     4   0   3
+0019    CALLM    2   1   1
+0020    TGETS    2   0   4  ; "highlight"
+0021    MOV      3   2
+0022    TGETS    2   2   5  ; "onClose"
+0023    CALL     2   1   2
+0024    MOV      3   0
+0025    TGETS    2   0   5  ; "onClose"
+0026    KPRI     4   1
+0027    CALL     2   1   3
+0028    MOV      3   0
+0029    TGETS    2   0   6  ; "showReader"
+0030    MOV      4   1
+0031    CALL     2   1   3
+0032    RET0     0   1
+
+-- BYTECODE -- readerui.lua:752-758
+0001    TGETS    1   0   0  ; "document"
+0002    TGETS    1   1   1  ; "info"
+0003    TGETS    1   1   2  ; "has_pages"
+0004    ISF          1
+0005    JMP      2 => 0010
+0006    TGETS    1   0   3  ; "paging"
+0007    TGETS    1   1   4  ; "current_page"
+0008    RET1     1   2
+0009    JMP      1 => 0014
+0010 => TGETS    1   0   0  ; "document"
+0011    MOV      2   1
+0012    TGETS    1   1   5  ; "getCurrentPage"
+0013    CALLT    1   2
+0014 => RET0     0   1
+
+-- BYTECODE -- readerui.lua:0-761
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "cache"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/confirmbox"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "device"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "docsettings"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "document/documentregistry"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/event"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "apps/filemanager/filemanagerbookinfo"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "apps/filemanager/filemanagercollection"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "apps/filemanager/filemanagerhistory"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "apps/filemanager/filemanagerfilesearcher"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "apps/filemanager/filemanagershortcuts"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/infomessage"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/widget/container/inputcontainer"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/widget/inputdialog"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "pluginloader"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "apps/reader/modules/readeractivityindica"~
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "apps/reader/modules/readerback"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "apps/reader/modules/readerbookmark"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "apps/reader/modules/readerconfig"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "apps/reader/modules/readercoptlistener"
+0063    CALL    20   2   2
+0064    GGET    21   0      ; "require"
+0065    KSTR    22  22      ; "apps/reader/modules/readercropping"
+0066    CALL    21   2   2
+0067    GGET    22   0      ; "require"
+0068    KSTR    23  23      ; "apps/reader/modules/readerdevicestatus"
+0069    CALL    22   2   2
+0070    GGET    23   0      ; "require"
+0071    KSTR    24  24      ; "apps/reader/modules/readerdictionary"
+0072    CALL    23   2   2
+0073    GGET    24   0      ; "require"
+0074    KSTR    25  25      ; "apps/reader/modules/readerfont"
+0075    CALL    24   2   2
+0076    GGET    25   0      ; "require"
+0077    KSTR    26  26      ; "apps/reader/modules/readerfrontlight"
+0078    CALL    25   2   2
+0079    GGET    26   0      ; "require"
+0080    KSTR    27  27      ; "apps/reader/modules/readergesture"
+0081    CALL    26   2   2
+0082    GGET    27   0      ; "require"
+0083    KSTR    28  28      ; "apps/reader/modules/readergoto"
+0084    CALL    27   2   2
+0085    GGET    28   0      ; "require"
+0086    KSTR    29  29      ; "apps/reader/modules/readerhinting"
+0087    CALL    28   2   2
+0088    GGET    29   0      ; "require"
+0089    KSTR    30  30      ; "apps/reader/modules/readerhighlight"
+0090    CALL    29   2   2
+0091    GGET    30   0      ; "require"
+0092    KSTR    31  31      ; "apps/reader/modules/readerkoptlistener"
+0093    CALL    30   2   2
+0094    GGET    31   0      ; "require"
+0095    KSTR    32  32      ; "apps/reader/modules/readerlink"
+0096    CALL    31   2   2
+0097    GGET    32   0      ; "require"
+0098    KSTR    33  33      ; "apps/reader/modules/readermenu"
+0099    CALL    32   2   2
+0100    GGET    33   0      ; "require"
+0101    KSTR    34  34      ; "apps/reader/modules/readerpagemap"
+0102    CALL    33   2   2
+0103    GGET    34   0      ; "require"
+0104    KSTR    35  35      ; "apps/reader/modules/readerpanning"
+0105    CALL    34   2   2
+0106    GGET    35   0      ; "require"
+0107    KSTR    36  36      ; "apps/reader/modules/readerrotation"
+0108    CALL    35   2   2
+0109    GGET    36   0      ; "require"
+0110    KSTR    37  37      ; "apps/reader/modules/readerpaging"
+0111    CALL    36   2   2
+0112    GGET    37   0      ; "require"
+0113    KSTR    38  38      ; "apps/reader/modules/readerrolling"
+0114    CALL    37   2   2
+0115    GGET    38   0      ; "require"
+0116    KSTR    39  39      ; "apps/reader/modules/readersearch"
+0117    CALL    38   2   2
+0118    GGET    39   0      ; "require"
+0119    KSTR    40  40      ; "apps/reader/modules/readerstatus"
+0120    CALL    39   2   2
+0121    GGET    40   0      ; "require"
+0122    KSTR    41  41      ; "apps/reader/modules/readerstyletweak"
+0123    CALL    40   2   2
+0124    GGET    41   0      ; "require"
+0125    KSTR    42  42      ; "apps/reader/modules/readertoc"
+0126    CALL    41   2   2
+0127    GGET    42   0      ; "require"
+0128    KSTR    43  43      ; "apps/reader/modules/readertypeset"
+0129    CALL    42   2   2
+0130    GGET    43   0      ; "require"
+0131    KSTR    44  44      ; "apps/reader/modules/readertypography"
+0132    CALL    43   2   2
+0133    GGET    44   0      ; "require"
+0134    KSTR    45  45      ; "apps/reader/modules/readerview"
+0135    CALL    44   2   2
+0136    GGET    45   0      ; "require"
+0137    KSTR    46  46      ; "apps/reader/modules/readerwikipedia"
+0138    CALL    45   2   2
+0139    GGET    46   0      ; "require"
+0140    KSTR    47  47      ; "apps/reader/modules/readerzooming"
+0141    CALL    46   2   2
+0142    GGET    47   0      ; "require"
+0143    KSTR    48  48      ; "ui/widget/screenshoter"
+0144    CALL    47   2   2
+0145    GGET    48   0      ; "require"
+0146    KSTR    49  49      ; "ui/data/settings_migration"
+0147    CALL    48   2   2
+0148    GGET    49   0      ; "require"
+0149    KSTR    50  50      ; "ui/uimanager"
+0150    CALL    49   2   2
+0151    GGET    50   0      ; "require"
+0152    KSTR    51  51      ; "libs/libkoreader-lfs"
+0153    CALL    50   2   2
+0154    GGET    51   0      ; "require"
+0155    KSTR    52  52      ; "logger"
+0156    CALL    51   2   2
+0157    GGET    52   0      ; "require"
+0158    KSTR    53  53      ; "util"
+0159    CALL    52   2   2
+0160    GGET    53   0      ; "require"
+0161    KSTR    54  54      ; "gettext"
+0162    CALL    53   2   2
+0163    GGET    54   0      ; "require"
+0164    KSTR    55   4      ; "device"
+0165    CALL    54   2   2
+0166    TGETS   54  54  55  ; "screen"
+0167    GGET    55   0      ; "require"
+0168    KSTR    56  56      ; "ffi/util"
+0169    CALL    55   2   2
+0170    TGETS   55  55  57  ; "template"
+0171    MOV     57  13
+0172    TGETS   56  13  58  ; "new"
+0173    TDUP    58  59
+0174    TNEW    59   0
+0175    TSETS   59  58  60  ; "active_widgets"
+0176    CALL    56   2   3
+0177    FNEW    57  62      ; readerui.lua:81
+0178    TSETS   57  56  61  ; "registerModule"
+0179    FNEW    57  64      ; readerui.lua:87
+0180    TSETS   57  56  63  ; "registerPostInitCallback"
+0181    FNEW    57  66      ; readerui.lua:91
+0182    TSETS   57  56  65  ; "registerPostReadyCallback"
+0183    FNEW    57  68      ; readerui.lua:95
+0184    TSETS   57  56  67  ; "init"
+0185    FNEW    57  70      ; readerui.lua:431
+0186    TSETS   57  56  69  ; "getLastDirFile"
+0187    FNEW    57  72      ; readerui.lua:442
+0188    TSETS   57  56  71  ; "showFileManager"
+0189    FNEW    57  74      ; readerui.lua:459
+0190    TSETS   57  56  73  ; "showReader"
+0191    FNEW    57  76      ; readerui.lua:502
+0192    TSETS   57  56  75  ; "showReaderCoroutine"
+0193    KPRI    57   0
+0194    FNEW    58  78      ; readerui.lua:527
+0195    TSETS   58  56  77  ; "doShowReader"
+0196    FNEW    58  80      ; readerui.lua:577
+0197    TSETS   58  56  79  ; "_getRunningInstance"
+0198    FNEW    58  82      ; readerui.lua:581
+0199    TSETS   58  56  81  ; "unlockDocumentWithPassword"
+0200    FNEW    58  84      ; readerui.lua:617
+0201    TSETS   58  56  83  ; "onVerifyPassword"
+0202    FNEW    58  86      ; readerui.lua:622
+0203    TSETS   58  56  85  ; "closeDialog"
+0204    FNEW    58  88      ; readerui.lua:627
+0205    TSETS   58  56  87  ; "onScreenResize"
+0206    FNEW    58  90      ; readerui.lua:632
+0207    TSETS   58  56  89  ; "saveSettings"
+0208    FNEW    58  92      ; readerui.lua:638
+0209    TSETS   58  56  91  ; "onFlushSettings"
+0210    FNEW    58  94      ; readerui.lua:642
+0211    TSETS   58  56  93  ; "closeDocument"
+0212    FNEW    58  96      ; readerui.lua:647
+0213    TSETS   58  56  95  ; "notifyCloseDocument"
+0214    FNEW    58  98      ; readerui.lua:675
+0215    TSETS   58  56  97  ; "onClose"
+0216    FNEW    58 100      ; readerui.lua:697
+0217    TSETS   58  56  99  ; "dealWithLoadDocumentFailure"
+0218    FNEW    58 102      ; readerui.lua:723
+0219    TSETS   58  56 101  ; "onHome"
+0220    FNEW    58 104      ; readerui.lua:729
+0221    TSETS   58  56 103  ; "reloadDocument"
+0222    FNEW    58 106      ; readerui.lua:743
+0223    TSETS   58  56 105  ; "switchDocument"
+0224    FNEW    58 108      ; readerui.lua:752
+0225    TSETS   58  56 107  ; "getCurrentPage"
+0226    UCLO     0 => 0227
+0227 => RET1    56   2
+

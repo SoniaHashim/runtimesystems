@@ -1,0 +1,2004 @@
+-- BYTECODE -- bookinfomanager.lua:118-133
+0001    UGET     1   0      ; DataStorage
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getSettingsDir"
+0004    CALL     1   2   2
+0005    KSTR     2   2      ; "/bookinfo_cache.sqlite3"
+0006    CAT      1   1   2
+0007    TSETS    1   0   0  ; "db_location"
+0008    KPRI     1   1
+0009    TSETS    1   0   3  ; "db_created"
+0010    KPRI     1   0
+0011    TSETS    1   0   4  ; "db_conn"
+0012    KSHORT   1   3
+0013    TSETS    1   0   5  ; "max_extract_tries"
+0014    KPRI     1   0
+0015    TSETS    1   0   6  ; "subprocesses_collector"
+0016    KSHORT   1  10
+0017    TSETS    1   0   7  ; "subprocesses_collect_interval"
+0018    TNEW     1   0
+0019    TSETS    1   0   8  ; "subprocesses_pids"
+0020    KPRI     1   0
+0021    TSETS    1   0   9  ; "subprocesses_last_added_ts"
+0022    KSHORT   1 300
+0023    TSETS    1   0  10  ; "subprocesses_killall_timeout_seconds"
+0024    GGET     1  12      ; "G_reader_settings"
+0025    MOV      2   1
+0026    TGETS    1   1  13  ; "isTrue"
+0027    KSTR     3  14      ; "legacy_image_scaling"
+0028    CALL     1   2   3
+0029    TSETS    1   0  11  ; "use_legacy_image_scaling"
+0030    UGET     1   0      ; DataStorage
+0031    MOV      2   1
+0032    TGETS    1   1  16  ; "getDataDir"
+0033    CALL     1   2   2
+0034    KSTR     2  17      ; "/cache/tmpcr3cache"
+0035    CAT      1   1   2
+0036    TSETS    1   0  15  ; "tmpcr3cache"
+0037    RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:136-139
+0001    UGET     1   0      ; lfs
+0002    TGETS    1   1   0  ; "attributes"
+0003    TGETS    2   0   1  ; "db_location"
+0004    KSTR     3   2      ; "size"
+0005    CALL     1   2   3
+0006    IST          1
+0007    JMP      2 => 0009
+0008    KSHORT   1   0
+0009 => GGET     2   3      ; "require"
+0010    KSTR     3   4      ; "util"
+0011    CALL     2   2   2
+0012    TGETS    2   2   5  ; "getFriendlySize"
+0013    MOV      3   1
+0014    CALLT    2   2
+
+-- BYTECODE -- bookinfomanager.lua:141-165
+0001    UGET     1   0      ; SQ3
+0002    TGETS    1   1   0  ; "open"
+0003    TGETS    2   0   1  ; "db_location"
+0004    CALL     1   2   2
+0005    UGET     2   1      ; Device
+0006    MOV      3   2
+0007    TGETS    2   2   2  ; "canUseWAL"
+0008    CALL     2   2   2
+0009    ISF          2
+0010    JMP      3 => 0016
+0011    MOV      3   1
+0012    TGETS    2   1   3  ; "exec"
+0013    KSTR     4   4      ; "PRAGMA journal_mode=WAL;"
+0014    CALL     2   1   3
+0015    JMP      2 => 0020
+0016 => MOV      3   1
+0017    TGETS    2   1   3  ; "exec"
+0018    KSTR     4   5      ; "PRAGMA journal_mode=TRUNCATE;"
+0019    CALL     2   1   3
+0020 => MOV      3   1
+0021    TGETS    2   1   3  ; "exec"
+0022    UGET     4   2      ; BOOKINFO_DB_SCHEMA
+0023    CALL     2   1   3
+0024    MOV      3   1
+0025    TGETS    2   1   3  ; "exec"
+0026    KSTR     4   6      ; "SELECT value FROM config where key='vers"~
+0027    CALL     2   2   3
+0028    TGETB    3   2   1
+0029    TGETB    3   3   1
+0030    UGET     4   3      ; BOOKINFO_DB_VERSION
+0031    ISEQV    3   4
+0032    JMP      3 => 0063
+0033    UGET     3   4      ; logger
+0034    TGETS    3   3   7  ; "warn"
+0035    KSTR     4   8      ; "BookInfo cache DB schema updated from ve"~
+0036    TGETB    5   2   1
+0037    TGETB    5   5   1
+0038    KSTR     6   9      ; "to version"
+0039    UGET     7   3      ; BOOKINFO_DB_VERSION
+0040    CALL     3   1   5
+0041    UGET     3   4      ; logger
+0042    TGETS    3   3   7  ; "warn"
+0043    KSTR     4  10      ; "Deleting existing"
+0044    TGETS    5   0   1  ; "db_location"
+0045    KSTR     6  11      ; "to recreate it"
+0046    CALL     3   1   4
+0047    MOV      4   1
+0048    TGETS    3   1  12  ; "close"
+0049    CALL     3   1   2
+0050    GGET     3  13      ; "os"
+0051    TGETS    3   3  14  ; "remove"
+0052    TGETS    4   0   1  ; "db_location"
+0053    CALL     3   1   2
+0054    UGET     3   0      ; SQ3
+0055    TGETS    3   3   0  ; "open"
+0056    TGETS    4   0   1  ; "db_location"
+0057    CALL     3   2   2
+0058    MOV      1   3
+0059    MOV      4   1
+0060    TGETS    3   1   3  ; "exec"
+0061    UGET     5   2      ; BOOKINFO_DB_SCHEMA
+0062    CALL     3   1   3
+0063 => MOV      4   1
+0064    TGETS    3   1  12  ; "close"
+0065    CALL     3   1   2
+0066    KPRI     3   2
+0067    TSETS    3   0  15  ; "db_created"
+0068    RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:167-181
+0001    TGETS    1   0   0  ; "db_conn"
+0002    ISF          1
+0003    JMP      2 => 0005
+0004    RET0     0   1
+0005 => TGETS    1   0   1  ; "db_created"
+0006    IST          1
+0007    JMP      1 => 0011
+0008    MOV      2   0
+0009    TGETS    1   0   2  ; "createDB"
+0010    CALL     1   1   2
+0011 => UGET     1   0      ; SQ3
+0012    TGETS    1   1   3  ; "open"
+0013    TGETS    2   0   4  ; "db_location"
+0014    CALL     1   2   2
+0015    TSETS    1   0   0  ; "db_conn"
+0016    UGET     1   1      ; xutil
+0017    TGETS    1   1   5  ; "sqlite_set_timeout"
+0018    TGETS    2   0   0  ; "db_conn"
+0019    KSHORT   3 5000
+0020    CALL     1   1   3
+0021    TGETS    1   0   0  ; "db_conn"
+0022    MOV      2   1
+0023    TGETS    1   1   7  ; "prepare"
+0024    UGET     3   2      ; BOOKINFO_INSERT_SQL
+0025    CALL     1   2   3
+0026    TSETS    1   0   6  ; "set_stmt"
+0027    TGETS    1   0   0  ; "db_conn"
+0028    MOV      2   1
+0029    TGETS    1   1   7  ; "prepare"
+0030    UGET     3   3      ; BOOKINFO_SELECT_SQL
+0031    CALL     1   2   3
+0032    TSETS    1   0   8  ; "get_stmt"
+0033    TGETS    1   0   0  ; "db_conn"
+0034    MOV      2   1
+0035    TGETS    1   1   7  ; "prepare"
+0036    UGET     3   4      ; BOOKINFO_IN_PROGRESS_SQL
+0037    CALL     1   2   3
+0038    TSETS    1   0   9  ; "in_progress_stmt"
+0039    RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:183-188
+0001    TGETS    1   0   0  ; "db_conn"
+0002    ISF          1
+0003    JMP      2 => 0010
+0004    TGETS    1   0   0  ; "db_conn"
+0005    MOV      2   1
+0006    TGETS    1   1   1  ; "close"
+0007    CALL     1   1   2
+0008    KPRI     1   0
+0009    TSETS    1   0   0  ; "db_conn"
+0010 => RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:190-194
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "closeDbConnection"
+0003    CALL     1   1   2
+0004    GGET     1   1      ; "os"
+0005    TGETS    1   1   2  ; "remove"
+0006    TGETS    2   0   3  ; "db_location"
+0007    CALL     1   1   2
+0008    KPRI     1   1
+0009    TSETS    1   0   4  ; "db_created"
+0010    RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:196-215
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "getDbSize"
+0003    CALL     1   2   2
+0004    MOV      3   0
+0005    TGETS    2   0   1  ; "openDbConnection"
+0006    CALL     2   1   2
+0007    TGETS    2   0   2  ; "db_conn"
+0008    MOV      3   2
+0009    TGETS    2   2   3  ; "exec"
+0010    KSTR     4   4      ; "PRAGMA temp_store = 2"
+0011    CALL     2   1   3
+0012    GGET     2   5      ; "pcall"
+0013    TGETS    3   0   2  ; "db_conn"
+0014    TGETS    3   3   3  ; "exec"
+0015    TGETS    4   0   2  ; "db_conn"
+0016    KSTR     5   6      ; "VACUUM"
+0017    CALL     2   3   4
+0018    MOV      5   0
+0019    TGETS    4   0   7  ; "closeDbConnection"
+0020    CALL     4   1   2
+0021    IST          2
+0022    JMP      4 => 0029
+0023    UGET     4   0      ; T
+0024    UGET     5   1      ; _
+0025    KSTR     6   8      ; "Failed compacting database: %1"
+0026    CALL     5   2   2
+0027    MOV      6   3
+0028    CALLT    4   3
+0029 => MOV      5   0
+0030    TGETS    4   0   0  ; "getDbSize"
+0031    CALL     4   2   2
+0032    UGET     5   0      ; T
+0033    UGET     6   1      ; _
+0034    KSTR     7   9      ; "Cache database size reduced from %1 to %"~
+0035    CALL     6   2   2
+0036    MOV      7   1
+0037    MOV      8   4
+0038    CALLT    5   4
+
+-- BYTECODE -- bookinfomanager.lua:218-232
+0001    UGET     1   0      ; lfs
+0002    TGETS    1   1   0  ; "attributes"
+0003    TGETS    2   0   1  ; "db_location"
+0004    KSTR     3   2      ; "mode"
+0005    CALL     1   2   3
+0006    ISEQS    1   3      ; "file"
+0007    JMP      1 => 0011
+0008    TNEW     1   0
+0009    TSETS    1   0   4  ; "settings"
+0010    RET0     0   1
+0011 => TNEW     1   0
+0012    TSETS    1   0   4  ; "settings"
+0013    MOV      2   0
+0014    TGETS    1   0   5  ; "openDbConnection"
+0015    CALL     1   1   2
+0016    TGETS    1   0   6  ; "db_conn"
+0017    MOV      2   1
+0018    TGETS    1   1   7  ; "exec"
+0019    KSTR     3   8      ; "SELECT key, value FROM config"
+0020    CALL     1   2   3
+0021    TGETB    2   1   1
+0022    TGETB    3   1   2
+0023    GGET     4   9      ; "ipairs"
+0024    MOV      5   2
+0025    CALL     4   4   2
+0026    JMP      7 => 0030
+0027 => TGETS    9   0   4  ; "settings"
+0028    TGETV   10   3   7
+0029    TSETV   10   9   8
+0030 => ITERC    7   3   3
+0031    ITERL    7 => 0027
+0032    RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:234-239
+0001    TGETS    2   0   0  ; "settings"
+0002    IST          2
+0003    JMP      2 => 0007
+0004    MOV      3   0
+0005    TGETS    2   0   1  ; "loadSettings"
+0006    CALL     2   1   2
+0007 => TGETS    2   0   0  ; "settings"
+0008    TGETV    2   2   1
+0009    RET1     2   2
+
+-- BYTECODE -- bookinfomanager.lua:241-261
+0001    ISF          2
+0002    JMP      3 => 0007
+0003    ISEQP    2   1
+0004    JMP      3 => 0007
+0005    ISNES    2   0      ; ""
+0006    JMP      3 => 0015
+0007 => UGET     3   0      ; lfs
+0008    TGETS    3   3   1  ; "attributes"
+0009    TGETS    4   0   2  ; "db_location"
+0010    KSTR     5   3      ; "mode"
+0011    CALL     3   2   3
+0012    ISEQS    3   4      ; "file"
+0013    JMP      3 => 0015
+0014    RET0     0   1
+0015 => MOV      4   0
+0016    TGETS    3   0   5  ; "openDbConnection"
+0017    CALL     3   1   2
+0018    KSTR     3   6      ; "INSERT OR REPLACE INTO config (key, valu"~
+0019    TGETS    4   0   7  ; "db_conn"
+0020    MOV      5   4
+0021    TGETS    4   4   8  ; "prepare"
+0022    MOV      6   3
+0023    CALL     4   2   3
+0024    ISNEP    2   1
+0025    JMP      5 => 0028
+0026    KPRI     2   0
+0027    JMP      5 => 0031
+0028 => ISNEP    2   2
+0029    JMP      5 => 0031
+0030    KSTR     2   9      ; "Y"
+0031 => MOV      6   4
+0032    TGETS    5   4  10  ; "bind"
+0033    MOV      7   1
+0034    MOV      8   2
+0035    CALL     5   1   4
+0036    MOV      6   4
+0037    TGETS    5   4  11  ; "step"
+0038    CALL     5   1   2
+0039    MOV      6   4
+0040    TGETS    5   4  12  ; "clearbind"
+0041    CALL     5   2   2
+0042    MOV      6   5
+0043    TGETS    5   5  13  ; "reset"
+0044    CALL     5   1   2
+0045    MOV      6   0
+0046    TGETS    5   0  14  ; "loadSettings"
+0047    CALL     5   1   2
+0048    RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:264-326
+0001    UGET     3   0      ; splitFilePathName
+0002    MOV      4   1
+0003    CALL     3   3   2
+0004    UGET     5   1      ; lfs
+0005    TGETS    5   5   0  ; "attributes"
+0006    MOV      6   1
+0007    KSTR     7   1      ; "mode"
+0008    CALL     5   2   3
+0009    ISEQS    5   2      ; "directory"
+0010    JMP      5 => 0013
+0011    KPRI     5   1
+0012    JMP      6 => 0014
+0013 => KPRI     5   2
+0014 => IST          5
+0015    JMP      6 => 0023
+0016    UGET     6   2      ; DocumentRegistry
+0017    MOV      7   6
+0018    TGETS    6   6   3  ; "hasProvider"
+0019    MOV      8   1
+0020    CALL     6   2   3
+0021    IST          6
+0022    JMP      6 => 0028
+0023 => TDUP     6   4
+0024    TSETS    3   6   2  ; "directory"
+0025    TSETS    4   6   5  ; "filename"
+0026    TSETS    5   6   6  ; "_is_directory"
+0027    RET1     6   2
+0028 => MOV      7   0
+0029    TGETS    6   0   7  ; "openDbConnection"
+0030    CALL     6   1   2
+0031    TGETS    6   0   8  ; "get_stmt"
+0032    MOV      7   6
+0033    TGETS    6   6   9  ; "bind"
+0034    MOV      8   3
+0035    MOV      9   4
+0036    CALL     6   2   4
+0037    MOV      7   6
+0038    TGETS    6   6  10  ; "step"
+0039    CALL     6   2   2
+0040    TGETS    7   0   8  ; "get_stmt"
+0041    MOV      8   7
+0042    TGETS    7   7  11  ; "clearbind"
+0043    CALL     7   2   2
+0044    MOV      8   7
+0045    TGETS    7   7  12  ; "reset"
+0046    CALL     7   1   2
+0047    IST          6
+0048    JMP      7 => 0051
+0049    KPRI     7   0
+0050    RET1     7   2
+0051 => TNEW     7   0
+0052    GGET     8  13      ; "ipairs"
+0053    UGET     9   3      ; BOOKINFO_COLS_SET
+0054    CALL     8   4   2
+0055    JMP     11 => 0108
+0056 => ISNES   12  14      ; "pages"
+0057    JMP     13 => 0063
+0058    GGET    13  15      ; "tonumber"
+0059    TGETV   14   6  11
+0060    CALL    13   2   2
+0061    TSETV   13   7  12
+0062    JMP     13 => 0065
+0063 => TGETV   13   6  11
+0064    TSETV   13   7  12
+0065 => ISNES   12  16      ; "cover_w"
+0066    JMP     13 => 0108
+0067    IST          2
+0068    JMP     13 => 0070
+0069    JMP      8 => 0110
+0070 => KPRI    13   0
+0071    TSETS   13   7  17  ; "cover_bb"
+0072    TGETS   13   7  18  ; "has_cover"
+0073    ISF         13
+0074    JMP     14 => 0110
+0075    GGET    13  15      ; "tonumber"
+0076    TGETV   14   6  11
+0077    CALL    13   2   2
+0078    TSETS   13   7  16  ; "cover_w"
+0079    GGET    13  15      ; "tonumber"
+0080    ADDVN   14  11   0  ; 1
+0081    TGETV   14   6  14
+0082    CALL    13   2   2
+0083    TSETS   13   7  19  ; "cover_h"
+0084    UGET    13   4      ; xutil
+0085    TGETS   13  13  20  ; "zlib_uncompress"
+0086    ADDVN   14  11   1  ; 5
+0087    TGETV   14   6  14
+0088    ADDVN   15  11   2  ; 4
+0089    TGETV   15   6  15
+0090    CALL    13   2   3
+0091    ADDVN   14  11   1  ; 5
+0092    KPRI    15   0
+0093    TSETV   15   6  14
+0094    UGET    14   5      ; Blitbuffer
+0095    TGETS   14  14  21  ; "fromstring"
+0096    TGETV   15   6  11
+0097    ADDVN   16  11   0  ; 1
+0098    TGETV   16   6  16
+0099    ADDVN   17  11   3  ; 2
+0100    TGETV   17   6  17
+0101    MOV     18  13
+0102    ADDVN   19  11   4  ; 3
+0103    TGETV   19   6  19
+0104    CALL    14   2   6
+0105    TSETS   14   7  17  ; "cover_bb"
+0106    KPRI    13   0
+0107    JMP      8 => 0110
+0108 => ITERC   11   3   3
+0109    ITERL   11 => 0056
+0110 => RET1     7   2
+
+-- BYTECODE -- bookinfomanager.lua:328-479
+0001    TGETS    3   0   0  ; "cre_cache_overriden"
+0002    IST          3
+0003    JMP      3 => 0029
+0004    GGET     3   1      ; "require"
+0005    KSTR     4   2      ; "document/credocument"
+0006    CALL     3   2   2
+0007    MOV      4   3
+0008    TGETS    3   3   3  ; "engineInit"
+0009    CALL     3   1   2
+0010    GGET     3   1      ; "require"
+0011    KSTR     4   4      ; "libs/libkoreader-cre"
+0012    CALL     3   2   2
+0013    KSHORT   4  20
+0014    TGETS    5   3   5  ; "initCache"
+0015    TGETS    6   0   6  ; "tmpcr3cache"
+0016    KSHORT   7   0
+0017    KPRI     8   2
+0018    GGET     9   7      ; "G_reader_settings"
+0019    MOV     10   9
+0020    TGETS    9   9   8  ; "readSetting"
+0021    KSTR    11   9      ; "cre_storage_size_factor"
+0022    CALL     9   2   3
+0023    IST          9
+0024    JMP     10 => 0026
+0025    MOV      9   4
+0026 => CALL     5   1   5
+0027    KPRI     5   2
+0028    TSETS    5   0   0  ; "cre_cache_overriden"
+0029 => UGET     3   0      ; splitFilePathName
+0030    MOV      4   1
+0031    CALL     3   3   2
+0032    TNEW     5   0
+0033    TSETS    3   5  10  ; "directory"
+0034    TSETS    4   5  11  ; "filename"
+0035    KPRI     6   1
+0036    KSHORT   7   0
+0037    MOV      9   0
+0038    TGETS    8   0  12  ; "openDbConnection"
+0039    CALL     8   1   2
+0040    TGETS    8   0  13  ; "in_progress_stmt"
+0041    MOV      9   8
+0042    TGETS    8   8  14  ; "bind"
+0043    MOV     10   3
+0044    MOV     11   4
+0045    CALL     8   1   4
+0046    TGETS    8   0  13  ; "in_progress_stmt"
+0047    MOV      9   8
+0048    TGETS    8   8  15  ; "step"
+0049    CALL     8   2   2
+0050    TGETS    9   0  13  ; "in_progress_stmt"
+0051    MOV     10   9
+0052    TGETS    9   9  16  ; "clearbind"
+0053    CALL     9   2   2
+0054    MOV     10   9
+0055    TGETS    9   9  17  ; "reset"
+0056    CALL     9   1   2
+0057    ISF          8
+0058    JMP      9 => 0063
+0059    GGET     9  18      ; "tonumber"
+0060    TGETB   10   8   1
+0061    CALL     9   2   2
+0062    MOV      7   9
+0063 => TGETS    9   0  19  ; "max_extract_tries"
+0064    ISGE     7   9
+0065    JMP      9 => 0080
+0066    KSHORT   9   0
+0067    ISGE     9   7
+0068    JMP      9 => 0077
+0069    UGET     9   1      ; logger
+0070    TGETS    9   9  20  ; "dbg"
+0071    KSTR    10  21      ; "Seen"
+0072    MOV     11   7
+0073    KSTR    12  22      ; "previous attempts at info extraction"
+0074    MOV     13   1
+0075    KSTR    14  23      ; ", trying again"
+0076    CALL     9   1   6
+0077 => ADDVN    9   7   0  ; 1
+0078    TSETS    9   5  24  ; "in_progress"
+0079    JMP      9 => 0097
+0080 => UGET     9   1      ; logger
+0081    TGETS    9   9  25  ; "info"
+0082    KSTR    10  21      ; "Seen"
+0083    MOV     11   7
+0084    KSTR    12  22      ; "previous attempts at info extraction"
+0085    MOV     13   1
+0086    KSTR    14  26      ; ", too many, ignoring it."
+0087    CALL     9   1   6
+0088    KPRI     6   2
+0089    KSHORT   9   0
+0090    TSETS    9   5  24  ; "in_progress"
+0091    UGET     9   2      ; _
+0092    KSTR    10  28      ; "too many interruptions or crashes"
+0093    CALL     9   2   2
+0094    TSETS    9   5  27  ; "unsupported"
+0095    KSTR     9  30      ; "Y"
+0096    TSETS    9   5  29  ; "cover_fetched"
+0097 => GGET     9  31      ; "ipairs"
+0098    UGET    10   3      ; BOOKINFO_COLS_SET
+0099    CALL     9   4   2
+0100    JMP     12 => 0107
+0101 => TGETS   14   0  32  ; "set_stmt"
+0102    MOV     15  14
+0103    TGETS   14  14  33  ; "bind1"
+0104    MOV     16  12
+0105    TGETV   17   5  13
+0106    CALL    14   1   4
+0107 => ITERC   12   3   3
+0108    ITERL   12 => 0101
+0109    TGETS    9   0  32  ; "set_stmt"
+0110    MOV     10   9
+0111    TGETS    9   9  15  ; "step"
+0112    CALL     9   1   2
+0113    TGETS    9   0  32  ; "set_stmt"
+0114    MOV     10   9
+0115    TGETS    9   9  16  ; "clearbind"
+0116    CALL     9   2   2
+0117    MOV     10   9
+0118    TGETS    9   9  17  ; "reset"
+0119    CALL     9   1   2
+0120    ISF          6
+0121    JMP      9 => 0123
+0122    RET0     0   1
+0123 => UGET     9   4      ; DocumentRegistry
+0124    MOV     10   9
+0125    TGETS    9   9  34  ; "openDocument"
+0126    MOV     11   1
+0127    CALL     9   2   3
+0128    KPRI    10   2
+0129    ISF          9
+0130    JMP     11 => 0321
+0131    KPRI    11   0
+0132    TGETS   12   9  35  ; "loadDocument"
+0133    ISF         12
+0134    JMP     13 => 0143
+0135    MOV     13   9
+0136    TGETS   12   9  35  ; "loadDocument"
+0137    KPRI    14   1
+0138    CALL    12   2   3
+0139    IST         12
+0140    JMP     12 => 0147
+0141    KPRI    10   1
+0142    JMP     12 => 0147
+0143 => MOV     13   9
+0144    TGETS   12   9  36  ; "getPageCount"
+0145    CALL    12   2   2
+0146    MOV     11  12
+0147 => ISF         10
+0148    JMP     12 => 0315
+0149    TSETS   11   5  37  ; "pages"
+0150    MOV     13   9
+0151    TGETS   12   9  38  ; "getProps"
+0152    CALL    12   2   2
+0153    GGET    13  39      ; "next"
+0154    MOV     14  12
+0155    CALL    13   2   2
+0156    ISF         13
+0157    JMP     14 => 0160
+0158    KSTR    13  30      ; "Y"
+0159    TSETS   13   5  40  ; "has_meta"
+0160 => TGETS   13  12  41  ; "title"
+0161    ISF         13
+0162    JMP     14 => 0168
+0163    TGETS   13  12  41  ; "title"
+0164    ISEQS   13  42      ; ""
+0165    JMP     13 => 0168
+0166    TGETS   13  12  41  ; "title"
+0167    TSETS   13   5  41  ; "title"
+0168 => TGETS   13  12  43  ; "authors"
+0169    ISF         13
+0170    JMP     14 => 0176
+0171    TGETS   13  12  43  ; "authors"
+0172    ISEQS   13  42      ; ""
+0173    JMP     13 => 0176
+0174    TGETS   13  12  43  ; "authors"
+0175    TSETS   13   5  43  ; "authors"
+0176 => TGETS   13  12  44  ; "series"
+0177    ISF         13
+0178    JMP     14 => 0184
+0179    TGETS   13  12  44  ; "series"
+0180    ISEQS   13  42      ; ""
+0181    JMP     13 => 0184
+0182    TGETS   13  12  44  ; "series"
+0183    TSETS   13   5  44  ; "series"
+0184 => TGETS   13  12  45  ; "language"
+0185    ISF         13
+0186    JMP     14 => 0192
+0187    TGETS   13  12  45  ; "language"
+0188    ISEQS   13  42      ; ""
+0189    JMP     13 => 0192
+0190    TGETS   13  12  45  ; "language"
+0191    TSETS   13   5  45  ; "language"
+0192 => TGETS   13  12  46  ; "keywords"
+0193    ISF         13
+0194    JMP     14 => 0200
+0195    TGETS   13  12  46  ; "keywords"
+0196    ISEQS   13  42      ; ""
+0197    JMP     13 => 0200
+0198    TGETS   13  12  46  ; "keywords"
+0199    TSETS   13   5  46  ; "keywords"
+0200 => TGETS   13  12  47  ; "description"
+0201    ISF         13
+0202    JMP     14 => 0208
+0203    TGETS   13  12  47  ; "description"
+0204    ISEQS   13  42      ; ""
+0205    JMP     13 => 0208
+0206    TGETS   13  12  47  ; "description"
+0207    TSETS   13   5  47  ; "description"
+0208 => ISF          2
+0209    JMP     13 => 0315
+0210    TGETS   13   2  48  ; "sizetag"
+0211    TGETS   14   2  49  ; "max_cover_w"
+0212    TGETS   15   2  50  ; "max_cover_h"
+0213    KSTR    16  30      ; "Y"
+0214    TSETS   16   5  29  ; "cover_fetched"
+0215    MOV     17   9
+0216    TGETS   16   9  51  ; "getCoverPageImage"
+0217    CALL    16   2   2
+0218    ISF         16
+0219    JMP     17 => 0315
+0220    KSTR    17  30      ; "Y"
+0221    TSETS   17   5  52  ; "has_cover"
+0222    TSETS   13   5  53  ; "cover_sizetag"
+0223    MOV     18  16
+0224    TGETS   17  16  54  ; "getWidth"
+0225    CALL    17   2   2
+0226    MOV     19  16
+0227    TGETS   18  16  55  ; "getHeight"
+0228    CALL    18   2   2
+0229    KSHORT  19   1
+0230    ISLT    14  17
+0231    JMP     20 => 0234
+0232    ISGE    15  18
+0233    JMP     20 => 0269
+0234 => GGET    20  56      ; "math"
+0235    TGETS   20  20  57  ; "min"
+0236    DIVVV   21  14  17
+0237    DIVVV   22  15  18
+0238    CALL    20   2   3
+0239    MOV     19  20
+0240    GGET    20  56      ; "math"
+0241    TGETS   20  20  57  ; "min"
+0242    GGET    21  56      ; "math"
+0243    TGETS   21  21  58  ; "floor"
+0244    MULVV   22  17  19
+0245    CALL    21   2   2
+0246    ADDVN   21  21   0  ; 1
+0247    MOV     22  14
+0248    CALL    20   2   3
+0249    MOV     17  20
+0250    GGET    20  56      ; "math"
+0251    TGETS   20  20  57  ; "min"
+0252    GGET    21  56      ; "math"
+0253    TGETS   21  21  58  ; "floor"
+0254    MULVV   22  18  19
+0255    CALL    21   2   2
+0256    ADDVN   21  21   0  ; 1
+0257    MOV     22  15
+0258    CALL    20   2   3
+0259    MOV     18  20
+0260    UGET    20   5      ; RenderImage
+0261    MOV     21  20
+0262    TGETS   20  20  59  ; "scaleBlitBuffer"
+0263    MOV     22  16
+0264    MOV     23  17
+0265    MOV     24  18
+0266    KPRI    25   2
+0267    CALL    20   2   6
+0268    MOV     16  20
+0269 => TSETS   17   5  60  ; "cover_w"
+0270    TSETS   18   5  61  ; "cover_h"
+0271    MOV     21  16
+0272    TGETS   20  16  63  ; "getType"
+0273    CALL    20   2   2
+0274    TSETS   20   5  62  ; "cover_btype"
+0275    TGETS   20  16  65  ; "pitch"
+0276    TSETS   20   5  64  ; "cover_bpitch"
+0277    UGET    20   6      ; Blitbuffer
+0278    TGETS   20  20  66  ; "tostring"
+0279    MOV     21  16
+0280    CALL    20   2   2
+0281    MOV     22  16
+0282    TGETS   21  16  67  ; "free"
+0283    CALL    21   1   2
+0284    MOV     22  20
+0285    TGETS   21  20  69  ; "len"
+0286    CALL    21   2   2
+0287    TSETS   21   5  68  ; "cover_datalen"
+0288    UGET    21   7      ; xutil
+0289    TGETS   21  21  70  ; "zlib_compress"
+0290    MOV     22  20
+0291    CALL    21   2   2
+0292    KPRI    20   0
+0293    UGET    22   8      ; SQ3
+0294    TGETS   22  22  72  ; "blob"
+0295    MOV     23  21
+0296    CALL    22   2   2
+0297    TSETS   22   5  71  ; "cover_dataz"
+0298    UGET    22   1      ; logger
+0299    TGETS   22  22  20  ; "dbg"
+0300    KSTR    23  73      ; "cover for"
+0301    MOV     24   4
+0302    KSTR    25  74      ; "scaled by"
+0303    MOV     26  19
+0304    KSTR    27  75      ; "=>"
+0305    MOV     28  17
+0306    KSTR    29  76      ; "x"
+0307    MOV     30  18
+0308    KSTR    31  77      ; ", compressed from"
+0309    TGETS   32   5  68  ; "cover_datalen"
+0310    KSTR    33  78      ; "to"
+0311    MOV     35  21
+0312    TGETS   34  21  69  ; "len"
+0313    CALL    34   0   2
+0314    CALLM   22   1  11
+0315 => UGET    12   4      ; DocumentRegistry
+0316    MOV     13  12
+0317    TGETS   12  12  79  ; "closeDocument"
+0318    MOV     14   1
+0319    CALL    12   1   3
+0320    JMP     11 => 0322
+0321 => KPRI    10   1
+0322 => IST         10
+0323    JMP     11 => 0330
+0324    UGET    11   2      ; _
+0325    KSTR    12  80      ; "not readable by engine"
+0326    CALL    11   2   2
+0327    TSETS   11   5  27  ; "unsupported"
+0328    KSTR    11  30      ; "Y"
+0329    TSETS   11   5  29  ; "cover_fetched"
+0330 => KSHORT  11   0
+0331    TSETS   11   5  24  ; "in_progress"
+0332    GGET    11  31      ; "ipairs"
+0333    UGET    12   3      ; BOOKINFO_COLS_SET
+0334    CALL    11   4   2
+0335    JMP     14 => 0342
+0336 => TGETS   16   0  32  ; "set_stmt"
+0337    MOV     17  16
+0338    TGETS   16  16  33  ; "bind1"
+0339    MOV     18  14
+0340    TGETV   19   5  15
+0341    CALL    16   1   4
+0342 => ITERC   14   3   3
+0343    ITERL   14 => 0336
+0344    TGETS   11   0  32  ; "set_stmt"
+0345    MOV     12  11
+0346    TGETS   11  11  15  ; "step"
+0347    CALL    11   1   2
+0348    TGETS   11   0  32  ; "set_stmt"
+0349    MOV     12  11
+0350    TGETS   11  11  16  ; "clearbind"
+0351    CALL    11   2   2
+0352    MOV     12  11
+0353    TGETS   11  11  17  ; "reset"
+0354    CALL    11   1   2
+0355    RET1    10   2
+
+-- BYTECODE -- bookinfomanager.lua:481-499
+0001    UGET     3   0      ; splitFilePathName
+0002    MOV      4   1
+0003    CALL     3   3   2
+0004    MOV      6   0
+0005    TGETS    5   0   0  ; "openDbConnection"
+0006    CALL     5   1   2
+0007    KSTR     5   1      ; "UPDATE bookinfo SET %s=? WHERE directory"~
+0008    GGET     6   2      ; "pairs"
+0009    MOV      7   2
+0010    CALL     6   4   2
+0011    ISNEXT   9 => 0040
+0012 => GGET    11   3      ; "string"
+0013    TGETS   11  11   4  ; "format"
+0014    MOV     12   5
+0015    MOV     13   9
+0016    CALL    11   2   3
+0017    TGETS   12   0   5  ; "db_conn"
+0018    MOV     13  12
+0019    TGETS   12  12   6  ; "prepare"
+0020    MOV     14  11
+0021    CALL    12   2   3
+0022    ISNEP   10   1
+0023    JMP     13 => 0025
+0024    KPRI    10   0
+0025 => MOV     14  12
+0026    TGETS   13  12   7  ; "bind"
+0027    MOV     15  10
+0028    MOV     16   3
+0029    MOV     17   4
+0030    CALL    13   1   5
+0031    MOV     14  12
+0032    TGETS   13  12   8  ; "step"
+0033    CALL    13   1   2
+0034    MOV     14  12
+0035    TGETS   13  12   9  ; "clearbind"
+0036    CALL    13   2   2
+0037    MOV     14  13
+0038    TGETS   13  13  10  ; "reset"
+0039    CALL    13   1   2
+0040 => ITERN    9   3   3
+0041    ITERL    9 => 0012
+0042    RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:501-509
+0001    UGET     2   0      ; splitFilePathName
+0002    MOV      3   1
+0003    CALL     2   3   2
+0004    MOV      5   0
+0005    TGETS    4   0   0  ; "openDbConnection"
+0006    CALL     4   1   2
+0007    KSTR     4   1      ; "DELETE FROM bookinfo WHERE directory=? A"~
+0008    TGETS    5   0   2  ; "db_conn"
+0009    MOV      6   5
+0010    TGETS    5   5   3  ; "prepare"
+0011    MOV      7   4
+0012    CALL     5   2   3
+0013    MOV      7   5
+0014    TGETS    6   5   4  ; "bind"
+0015    MOV      8   2
+0016    MOV      9   3
+0017    CALL     6   1   4
+0018    MOV      7   5
+0019    TGETS    6   5   5  ; "step"
+0020    CALL     6   1   2
+0021    MOV      7   5
+0022    TGETS    6   5   6  ; "clearbind"
+0023    CALL     6   2   2
+0024    MOV      7   6
+0025    TGETS    6   6   7  ; "reset"
+0026    CALL     6   1   2
+0027    RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:511-533
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "openDbConnection"
+0003    CALL     1   1   2
+0004    TGETS    1   0   1  ; "db_conn"
+0005    MOV      2   1
+0006    TGETS    1   1   2  ; "exec"
+0007    KSTR     3   3      ; "SELECT bcid, directory || filename FROM "~
+0008    CALL     1   2   3
+0009    IST          1
+0010    JMP      2 => 0014
+0011    UGET     2   0      ; _
+0012    KSTR     3   4      ; "Cache is empty. Nothing to prune."
+0013    CALLT    2   2
+0014 => TGETB    2   1   1
+0015    TGETB    3   1   2
+0016    TNEW     4   0
+0017    GGET     5   5      ; "ipairs"
+0018    MOV      6   3
+0019    CALL     5   4   2
+0020    JMP      8 => 0035
+0021 => UGET    10   1      ; lfs
+0022    TGETS   10  10   6  ; "attributes"
+0023    MOV     11   9
+0024    KSTR    12   7      ; "mode"
+0025    CALL    10   2   3
+0026    ISEQS   10   8      ; "file"
+0027    JMP     10 => 0035
+0028    GGET    10   9      ; "table"
+0029    TGETS   10  10  10  ; "insert"
+0030    MOV     11   4
+0031    GGET    12  11      ; "tonumber"
+0032    TGETV   13   2   8
+0033    CALL    12   0   2
+0034    CALLM   10   1   1
+0035 => ITERC    8   3   3
+0036    ITERL    8 => 0021
+0037    KSTR     5  12      ; "DELETE FROM bookinfo WHERE bcid=?"
+0038    TGETS    6   0   1  ; "db_conn"
+0039    MOV      7   6
+0040    TGETS    6   6  13  ; "prepare"
+0041    MOV      8   5
+0042    CALL     6   2   3
+0043    KSHORT   7   1
+0044    LEN      8   4
+0045    KSHORT   9   1
+0046    FORI     7 => 0061
+0047 => MOV     12   6
+0048    TGETS   11   6  14  ; "bind"
+0049    TGETV   13   4  10
+0050    CALL    11   1   3
+0051    MOV     12   6
+0052    TGETS   11   6  15  ; "step"
+0053    CALL    11   1   2
+0054    MOV     12   6
+0055    TGETS   11   6  16  ; "clearbind"
+0056    CALL    11   2   2
+0057    MOV     12  11
+0058    TGETS   11  11  17  ; "reset"
+0059    CALL    11   1   2
+0060    FORL     7 => 0047
+0061 => UGET     7   2      ; T
+0062    UGET     8   0      ; _
+0063    KSTR     9  18      ; "Removed %1 / %2 entries from cache."
+0064    CALL     8   2   2
+0065    LEN      9   4
+0066    LEN     10   2
+0067    CALLT    7   4
+
+-- BYTECODE -- bookinfomanager.lua:553-555
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "collectSubprocesses"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:536-577
+0001    TGETS    1   0   0  ; "subprocesses_pids"
+0002    LEN      1   1
+0003    KSHORT   2   0
+0004    ISGE     2   1
+0005    JMP      1 => 0066
+0006    KSHORT   1   1
+0007 => TGETS    2   0   0  ; "subprocesses_pids"
+0008    LEN      2   2
+0009    ISGT     1   2
+0010    JMP      2 => 0028
+0011    LOOP     2 => 0028
+0012    TGETS    2   0   0  ; "subprocesses_pids"
+0013    TGETV    2   2   1
+0014    UGET     3   0      ; util
+0015    TGETS    3   3   1  ; "isSubProcessDone"
+0016    MOV      4   2
+0017    CALL     3   2   2
+0018    ISF          3
+0019    JMP      4 => 0026
+0020    GGET     3   2      ; "table"
+0021    TGETS    3   3   3  ; "remove"
+0022    TGETS    4   0   0  ; "subprocesses_pids"
+0023    MOV      5   1
+0024    CALL     3   1   3
+0025    JMP      3 => 0007
+0026 => ADDVN    1   1   0  ; 1
+0027    JMP      2 => 0007
+0028 => TGETS    2   0   0  ; "subprocesses_pids"
+0029    LEN      2   2
+0030    KSHORT   3   0
+0031    ISGE     3   2
+0032    JMP      2 => 0056
+0033    UGET     2   1      ; UIManager
+0034    MOV      3   2
+0035    TGETS    2   2   5  ; "scheduleIn"
+0036    TGETS    4   0   6  ; "subprocesses_collect_interval"
+0037    FNEW     5   7      ; bookinfomanager.lua:553
+0038    CALL     2   2   4
+0039    TSETS    2   0   4  ; "subprocesses_collector"
+0040    UGET     2   0      ; util
+0041    TGETS    2   2   8  ; "gettime"
+0042    CALL     2   2   1
+0043    TGETS    3   0   9  ; "subprocesses_last_added_ts"
+0044    TGETS    4   0  10  ; "subprocesses_killall_timeout_seconds"
+0045    ADDVV    3   3   4
+0046    ISGE     3   2
+0047    JMP      2 => 0066
+0048    UGET     2   2      ; logger
+0049    TGETS    2   2  11  ; "warn"
+0050    KSTR     3  12      ; "Some subprocesses were running for too l"~
+0051    CALL     2   1   2
+0052    MOV      3   0
+0053    TGETS    2   0  13  ; "terminateBackgroundJobs"
+0054    CALL     2   1   2
+0055    JMP      2 => 0066
+0056 => KPRI     2   0
+0057    TSETS    2   0   4  ; "subprocesses_collector"
+0058    TGETS    2   0  14  ; "delayed_cleanup"
+0059    ISF          2
+0060    JMP      3 => 0066
+0061    KPRI     2   1
+0062    TSETS    2   0  14  ; "delayed_cleanup"
+0063    MOV      3   0
+0064    TGETS    2   0  15  ; "cleanUp"
+0065    CALL     2   1   2
+0066 => UCLO     0 => 0067
+0067 => RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:579-584
+0001    UGET     1   0      ; logger
+0002    TGETS    1   1   0  ; "dbg"
+0003    KSTR     2   1      ; "terminating"
+0004    TGETS    3   0   2  ; "subprocesses_pids"
+0005    LEN      3   3
+0006    KSTR     4   3      ; "subprocesses"
+0007    CALL     1   1   4
+0008    KSHORT   1   1
+0009    TGETS    2   0   2  ; "subprocesses_pids"
+0010    LEN      2   2
+0011    KSHORT   3   1
+0012    FORI     1 => 0019
+0013 => UGET     5   1      ; util
+0014    TGETS    5   5   4  ; "terminateSubProcess"
+0015    TGETS    6   0   2  ; "subprocesses_pids"
+0016    TGETV    6   6   4
+0017    CALL     5   1   2
+0018    FORL     1 => 0013
+0019 => RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:586-588
+0001    TGETS    1   0   0  ; "subprocesses_pids"
+0002    LEN      1   1
+0003    KSHORT   2   0
+0004    ISLT     2   1
+0005    JMP      1 => 0008
+0006    KPRI     1   1
+0007    JMP      2 => 0009
+0008 => KPRI     1   2
+0009 => RET1     1   2
+
+-- BYTECODE -- bookinfomanager.lua:603-613
+0001    UGET     0   0      ; logger
+0002    TGETS    0   0   0  ; "dbg"
+0003    KSTR     1   1      ; "  BG extraction started"
+0004    CALL     0   1   2
+0005    KSHORT   0   1
+0006    UGET     1   1      ; files
+0007    LEN      1   1
+0008    KSHORT   2   1
+0009    FORI     0 => 0032
+0010 => UGET     4   1      ; files
+0011    TGETV    4   4   3
+0012    TGETS    4   4   2  ; "filepath"
+0013    UGET     5   1      ; files
+0014    TGETV    5   5   3
+0015    TGETS    5   5   3  ; "cover_specs"
+0016    UGET     6   0      ; logger
+0017    TGETS    6   6   0  ; "dbg"
+0018    KSTR     7   4      ; "  BG extracting:"
+0019    MOV      8   4
+0020    CALL     6   1   3
+0021    UGET     6   2      ; self
+0022    MOV      7   6
+0023    TGETS    6   6   5  ; "extractBookInfo"
+0024    MOV      8   4
+0025    MOV      9   5
+0026    CALL     6   1   4
+0027    UGET     6   3      ; util
+0028    TGETS    6   6   6  ; "usleep"
+0029    KNUM     7   0      ; 100000
+0030    CALL     6   1   2
+0031    FORL     0 => 0010
+0032 => UGET     0   0      ; logger
+0033    TGETS    0   0   0  ; "dbg"
+0034    KSTR     1   7      ; "  BG extraction done"
+0035    CALL     0   1   2
+0036    RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:631-633
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "collectSubprocesses"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:590-637
+0001    LEN      2   1
+0002    ISNEN    2   0      ; 0
+0003    JMP      2 => 0005
+0004    UCLO     0 => 0050
+0005 => MOV      3   0
+0006    TGETS    2   0   0  ; "terminateBackgroundJobs"
+0007    CALL     2   1   2
+0008    UGET     2   0      ; BookInfoManager
+0009    MOV      3   2
+0010    TGETS    2   2   1  ; "closeDbConnection"
+0011    CALL     2   1   2
+0012    FNEW     2   2      ; bookinfomanager.lua:603
+0013    KPRI     3   2
+0014    TSETS    3   0   3  ; "cleanup_needed"
+0015    UGET     3   2      ; util
+0016    TGETS    3   3   4  ; "runInSubProcess"
+0017    MOV      4   2
+0018    CALL     3   2   2
+0019    IST          3
+0020    JMP      4 => 0028
+0021    UGET     4   1      ; logger
+0022    TGETS    4   4   5  ; "warn"
+0023    KSTR     5   6      ; "Failed lauching background extraction su"~
+0024    CALL     4   1   2
+0025    KPRI     4   1
+0026    UCLO     0 => 0027
+0027 => RET1     4   2
+0028 => GGET     4   7      ; "table"
+0029    TGETS    4   4   8  ; "insert"
+0030    TGETS    5   0   9  ; "subprocesses_pids"
+0031    MOV      6   3
+0032    CALL     4   1   3
+0033    UGET     4   2      ; util
+0034    TGETS    4   4  11  ; "gettime"
+0035    CALL     4   2   1
+0036    TSETS    4   0  10  ; "subprocesses_last_added_ts"
+0037    TGETS    4   0  12  ; "subprocesses_collector"
+0038    IST          4
+0039    JMP      4 => 0047
+0040    UGET     4   3      ; UIManager
+0041    MOV      5   4
+0042    TGETS    4   4  13  ; "scheduleIn"
+0043    TGETS    6   0  14  ; "subprocesses_collect_interval"
+0044    FNEW     7  15      ; bookinfomanager.lua:631
+0045    CALL     4   2   4
+0046    TSETS    4   0  12  ; "subprocesses_collector"
+0047 => KPRI     4   2
+0048    UCLO     0 => 0049
+0049 => RET1     4   2
+0050 => RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:639-651
+0001    TGETS    1   0   0  ; "subprocesses_pids"
+0002    LEN      1   1
+0003    KSHORT   2   0
+0004    ISGE     2   1
+0005    JMP      1 => 0009
+0006    KPRI     1   2
+0007    TSETS    1   0   1  ; "delayed_cleanup"
+0008    RET0     0   1
+0009 => TGETS    1   0   2  ; "cleanup_needed"
+0010    ISF          1
+0011    JMP      2 => 0023
+0012    UGET     1   0      ; logger
+0013    TGETS    1   1   3  ; "dbg"
+0014    KSTR     2   4      ; "Removing directory"
+0015    TGETS    3   0   5  ; "tmpcr3cache"
+0016    CALL     1   1   3
+0017    UGET     1   1      ; util
+0018    TGETS    1   1   6  ; "purgeDir"
+0019    TGETS    2   0   5  ; "tmpcr3cache"
+0020    CALL     1   1   2
+0021    KPRI     1   1
+0022    TSETS    1   0   2  ; "cleanup_needed"
+0023 => RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:653-677
+0001    GGET     2   0      ; "require"
+0002    KSTR     3   1      ; "util"
+0003    CALL     2   2   2
+0004    TGETS    2   2   2  ; "stringStartsWith"
+0005    TNEW     3   3
+0006    TSETB    0   3   1
+0007    TNEW     4   0
+0008 => LEN      5   3
+0009    ISEQN    5   0      ; 0
+0010    JMP      5 => 0085
+0011    LOOP     5 => 0085
+0012    TNEW     5   0
+0013    GGET     6   3      ; "pairs"
+0014    MOV      7   3
+0015    CALL     6   4   2
+0016    ISNEXT   9 => 0081
+0017 => UGET    11   0      ; lfs
+0018    TGETS   11  11   4  ; "dir"
+0019    MOV     12  10
+0020    CALL    11   4   2
+0021    JMP     14 => 0079
+0022 => MOV     15  10
+0023    KSTR    16   5      ; "/"
+0024    MOV     17  14
+0025    CAT     15  15  17
+0026    UGET    16   0      ; lfs
+0027    TGETS   16  16   6  ; "attributes"
+0028    MOV     17  15
+0029    CALL    16   2   2
+0030    ISF          1
+0031    JMP     17 => 0058
+0032    TGETS   17  16   7  ; "mode"
+0033    ISNES   17   8      ; "directory"
+0034    JMP     17 => 0058
+0035    ISEQS   14   9      ; "."
+0036    JMP     17 => 0058
+0037    ISEQS   14  10      ; ".."
+0038    JMP     17 => 0058
+0039    GGET    17  11      ; "G_reader_settings"
+0040    MOV     18  17
+0041    TGETS   17  17  12  ; "isTrue"
+0042    KSTR    19  13      ; "show_hidden"
+0043    CALL    17   2   3
+0044    IST         17
+0045    JMP     18 => 0052
+0046    MOV     17   2
+0047    MOV     18  14
+0048    KSTR    19   9      ; "."
+0049    CALL    17   2   3
+0050    IST         17
+0051    JMP     17 => 0058
+0052 => GGET    17  14      ; "table"
+0053    TGETS   17  17  15  ; "insert"
+0054    MOV     18   5
+0055    MOV     19  15
+0056    CALL    17   1   3
+0057    JMP     17 => 0079
+0058 => TGETS   17  16   7  ; "mode"
+0059    ISNES   17  16      ; "file"
+0060    JMP     17 => 0079
+0061    MOV     17   2
+0062    MOV     18  14
+0063    KSTR    19  17      ; "._"
+0064    CALL    17   2   3
+0065    IST         17
+0066    JMP     17 => 0079
+0067    UGET    17   1      ; DocumentRegistry
+0068    MOV     18  17
+0069    TGETS   17  17  18  ; "hasProvider"
+0070    MOV     19  15
+0071    CALL    17   2   3
+0072    ISF         17
+0073    JMP     18 => 0079
+0074    GGET    17  14      ; "table"
+0075    TGETS   17  17  15  ; "insert"
+0076    MOV     18   4
+0077    MOV     19  15
+0078    CALL    17   1   3
+0079 => ITERC   14   2   3
+0080    ITERL   14 => 0022
+0081 => ITERN    9   3   3
+0082    ITERL    9 => 0017
+0083    MOV      3   5
+0084    JMP      5 => 0008
+0085 => RET1     4   2
+
+-- BYTECODE -- bookinfomanager.lua:720-722
+0001    UGET     0   0      ; Trapper
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "confirm"
+0004    UGET     2   1      ; _
+0005    KSTR     3   1      ; "Do you want to abort extraction?"
+0006    CALL     2   2   2
+0007    UGET     3   1      ; _
+0008    KSTR     4   2      ; "Don't abort"
+0009    CALL     3   2   2
+0010    UGET     4   1      ; _
+0011    KSTR     5   3      ; "Abort"
+0012    CALL     4   0   2
+0013    CALLMT   0   3
+
+-- BYTECODE -- bookinfomanager.lua:734-736
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "removeNonExistantEntries"
+0004    CALLT    0   2
+
+-- BYTECODE -- bookinfomanager.lua:758-762
+0001    UGET     0   0      ; findFilesInDir
+0002    UGET     1   1      ; path
+0003    UGET     2   2      ; recursive
+0004    CALL     0   2   3
+0005    GGET     1   0      ; "table"
+0006    TGETS    1   1   1  ; "sort"
+0007    MOV      2   0
+0008    CALL     1   1   2
+0009    RET1     0   2
+
+-- BYTECODE -- bookinfomanager.lua:790-811
+0001    TNEW     0   0
+0002    USETV    0   0      ; files
+0003    GGET     0   0      ; "pairs"
+0004    UGET     1   1      ; all_files
+0005    CALL     0   4   2
+0006    ISNEXT   3 => 0045
+0007 => UGET     5   2      ; self
+0008    MOV      6   5
+0009    TGETS    5   5   1  ; "getBookInfo"
+0010    MOV      7   4
+0011    CALL     5   2   3
+0012    NOT      6   5
+0013    ISF          5
+0014    JMP      7 => 0038
+0015    UGET     7   3      ; cover_specs
+0016    ISF          7
+0017    JMP      8 => 0038
+0018    TGETS    7   5   2  ; "ignore_cover"
+0019    IST          7
+0020    JMP      7 => 0038
+0021    TGETS    7   5   3  ; "cover_fetched"
+0022    ISF          7
+0023    JMP      8 => 0037
+0024    TGETS    7   5   4  ; "has_cover"
+0025    ISF          7
+0026    JMP      8 => 0038
+0027    UGET     7   3      ; cover_specs
+0028    TGETS    7   7   5  ; "sizetag"
+0029    TGETS    8   5   6  ; "cover_sizetag"
+0030    ISEQV    7   8
+0031    JMP      7 => 0038
+0032    TGETS    7   5   6  ; "cover_sizetag"
+0033    ISEQS    7   7      ; "M"
+0034    JMP      7 => 0038
+0035    KPRI     6   2
+0036    JMP      7 => 0038
+0037 => KPRI     6   2
+0038 => ISF          6
+0039    JMP      7 => 0045
+0040    GGET     7   8      ; "table"
+0041    TGETS    7   7   9  ; "insert"
+0042    UGET     8   0      ; files
+0043    MOV      9   4
+0044    CALL     7   1   3
+0045 => ITERN    3   3   3
+0046    ITERL    3 => 0007
+0047    UGET     0   0      ; files
+0048    RET1     0   2
+
+-- BYTECODE -- bookinfomanager.lua:871-873
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "extractBookInfo"
+0004    UGET     2   1      ; filepath
+0005    UGET     3   2      ; cover_specs
+0006    CALLT    0   4
+
+-- BYTECODE -- bookinfomanager.lua:680-894
+0001    GGET     3   0      ; "require"
+0002    KSTR     4   1      ; "ui/geometry"
+0003    CALL     3   2   2
+0004    GGET     4   0      ; "require"
+0005    KSTR     5   2      ; "ui/widget/infomessage"
+0006    CALL     4   2   2
+0007    GGET     5   0      ; "require"
+0008    KSTR     6   3      ; "ui/widget/container/topcontainer"
+0009    CALL     5   2   2
+0010    GGET     6   0      ; "require"
+0011    KSTR     7   4      ; "ui/trapper"
+0012    CALL     6   2   2
+0013    GGET     7   0      ; "require"
+0014    KSTR     8   5      ; "device"
+0015    CALL     7   2   2
+0016    TGETS    7   7   6  ; "screen"
+0017    MOV      9   6
+0018    TGETS    8   6   7  ; "confirm"
+0019    UGET    10   0      ; _
+0020    KSTR    11   8      ; "This will extract metadata and cover ima"~
+0021    CALL    10   2   2
+0022    UGET    11   0      ; _
+0023    KSTR    12   9      ; "Cancel"
+0024    CALL    11   2   2
+0025    UGET    12   0      ; _
+0026    KSTR    13  10      ; "Continue"
+0027    CALL    12   0   2
+0028    CALLM    8   2   3
+0029    IST          8
+0030    JMP      9 => 0032
+0031    UCLO     0 => 0518
+0032 => MOV     10   6
+0033    TGETS    9   6   7  ; "confirm"
+0034    UGET    11   0      ; _
+0035    KSTR    12  11      ; "Also extract book information from books"~
+0036    CALL    11   2   2
+0037    UGET    12   0      ; _
+0038    KSTR    13  12      ; "Here only"
+0039    CALL    12   2   2
+0040    UGET    13   0      ; _
+0041    KSTR    14  13      ; "Here and under"
+0042    CALL    13   0   2
+0043    CALLM    9   2   3
+0044    MOV     11   6
+0045    TGETS   10   6   7  ; "confirm"
+0046    UGET    12   0      ; _
+0047    KSTR    13  14      ; "Do you want to refresh metadata and cove"~
+0048    CALL    12   2   2
+0049    UGET    13   0      ; _
+0050    KSTR    14  15      ; "Don't refresh"
+0051    CALL    13   2   2
+0052    UGET    14   0      ; _
+0053    KSTR    15  16      ; "Refresh"
+0054    CALL    14   0   2
+0055    CALLM   10   2   3
+0056    MOV     12   6
+0057    TGETS   11   6   7  ; "confirm"
+0058    UGET    13   0      ; _
+0059    KSTR    14  17      ; "If you have removed many books, or have "~
+0060    CALL    13   2   2
+0061    UGET    14   0      ; _
+0062    KSTR    15  18      ; "Don't prune"
+0063    CALL    14   2   2
+0064    UGET    15   0      ; _
+0065    KSTR    16  19      ; "Prune"
+0066    CALL    15   0   2
+0067    CALLM   11   2   3
+0068    MOV     13   6
+0069    TGETS   12   6  20  ; "clear"
+0070    CALL    12   1   2
+0071    FNEW    12  21      ; bookinfomanager.lua:720
+0072    MOV     14   0
+0073    TGETS   13   0  22  ; "terminateBackgroundJobs"
+0074    CALL    13   1   2
+0075    KNIL    13  14
+0076    ISF         11
+0077    JMP     15 => 0145
+0078    KPRI    15   0
+0079 => LOOP    16 => 0140
+0080    MOV     17   4
+0081    TGETS   16   4  23  ; "new"
+0082    TDUP    18  25
+0083    UGET    19   0      ; _
+0084    KSTR    20  24      ; "Pruning cache of removed books…"
+0085    CALL    19   2   2
+0086    TSETS   19  18  26  ; "text"
+0087    CALL    16   2   3
+0088    MOV     13  16
+0089    UGET    16   1      ; UIManager
+0090    MOV     17  16
+0091    TGETS   16  16  27  ; "show"
+0092    MOV     18  13
+0093    CALL    16   1   3
+0094    UGET    16   1      ; UIManager
+0095    MOV     17  16
+0096    TGETS   16  16  28  ; "forceRePaint"
+0097    CALL    16   1   2
+0098    MOV     17   6
+0099    TGETS   16   6  29  ; "dismissableRunInSubprocess"
+0100    FNEW    18  30      ; bookinfomanager.lua:734
+0101    MOV     19  13
+0102    CALL    16   3   4
+0103    MOV     15  17
+0104    MOV     14  16
+0105    IST         14
+0106    JMP     16 => 0114
+0107    MOV     16  12
+0108    CALL    16   2   1
+0109    ISF         16
+0110    JMP     17 => 0079
+0111    UCLO     0 => 0112
+0112 => RET0     0   1
+0113    JMP     16 => 0079
+0114 => UGET    16   1      ; UIManager
+0115    MOV     17  16
+0116    TGETS   16  16  31  ; "close"
+0117    MOV     18  13
+0118    CALL    16   1   3
+0119    MOV     17   4
+0120    TGETS   16   4  23  ; "new"
+0121    TDUP    18  32
+0122    TSETS   15  18  26  ; "text"
+0123    CALL    16   2   3
+0124    MOV     13  16
+0125    UGET    16   1      ; UIManager
+0126    MOV     17  16
+0127    TGETS   16  16  27  ; "show"
+0128    MOV     18  13
+0129    CALL    16   1   3
+0130    UGET    16   1      ; UIManager
+0131    MOV     17  16
+0132    TGETS   16  16  28  ; "forceRePaint"
+0133    CALL    16   1   2
+0134    UGET    16   2      ; util
+0135    TGETS   16  16  33  ; "sleep"
+0136    KSHORT  17   2
+0137    CALL    16   1   2
+0138    JMP     16 => 0140
+0139    JMP     16 => 0079
+0140 => UGET    16   1      ; UIManager
+0141    MOV     17  16
+0142    TGETS   16  16  31  ; "close"
+0143    MOV     18  13
+0144    CALL    16   1   3
+0145 => KPRI    15   0
+0146 => LOOP    16 => 0210
+0147    MOV     17   4
+0148    TGETS   16   4  23  ; "new"
+0149    TDUP    18  35
+0150    UGET    19   0      ; _
+0151    KSTR    20  34      ; "Looking for books to index…"
+0152    CALL    19   2   2
+0153    TSETS   19  18  26  ; "text"
+0154    CALL    16   2   3
+0155    MOV     13  16
+0156    UGET    16   1      ; UIManager
+0157    MOV     17  16
+0158    TGETS   16  16  27  ; "show"
+0159    MOV     18  13
+0160    CALL    16   1   3
+0161    UGET    16   1      ; UIManager
+0162    MOV     17  16
+0163    TGETS   16  16  28  ; "forceRePaint"
+0164    CALL    16   1   2
+0165    MOV     17   6
+0166    TGETS   16   6  29  ; "dismissableRunInSubprocess"
+0167    FNEW    18  36      ; bookinfomanager.lua:758
+0168    MOV     19  13
+0169    CALL    16   3   4
+0170    MOV     15  17
+0171    MOV     14  16
+0172    IST         14
+0173    JMP     16 => 0181
+0174    MOV     16  12
+0175    CALL    16   2   1
+0176    ISF         16
+0177    JMP     17 => 0146
+0178    UCLO     0 => 0179
+0179 => RET0     0   1
+0180    JMP     16 => 0146
+0181 => ISF         15
+0182    JMP     16 => 0186
+0183    LEN     16  15
+0184    ISNEN   16   0      ; 0
+0185    JMP     16 => 0210
+0186 => UGET    16   1      ; UIManager
+0187    MOV     17  16
+0188    TGETS   16  16  31  ; "close"
+0189    MOV     18  13
+0190    CALL    16   1   3
+0191    MOV     17   4
+0192    TGETS   16   4  23  ; "new"
+0193    TDUP    18  38
+0194    UGET    19   0      ; _
+0195    KSTR    20  37      ; "No books were found."
+0196    CALL    19   2   2
+0197    TSETS   19  18  26  ; "text"
+0198    CALL    16   2   3
+0199    MOV     13  16
+0200    UGET    16   1      ; UIManager
+0201    MOV     17  16
+0202    TGETS   16  16  27  ; "show"
+0203    MOV     18  13
+0204    CALL    16   1   3
+0205    UCLO     0 => 0206
+0206 => RET0     0   1
+0207    JMP     16 => 0146
+0208    JMP     16 => 0210
+0209    JMP     16 => 0146
+0210 => UGET    16   1      ; UIManager
+0211    MOV     17  16
+0212    TGETS   16  16  31  ; "close"
+0213    MOV     18  13
+0214    CALL    16   1   3
+0215    ISF         10
+0216    JMP     16 => 0243
+0217    MOV     17   4
+0218    TGETS   16   4  23  ; "new"
+0219    TDUP    18  40
+0220    UGET    19   4      ; T
+0221    UGET    20   0      ; _
+0222    KSTR    21  39      ; "Found %1 books to index."
+0223    CALL    20   2   2
+0224    LEN     21  15
+0225    CALL    19   2   3
+0226    TSETS   19  18  26  ; "text"
+0227    CALL    16   2   3
+0228    MOV     13  16
+0229    UGET    16   1      ; UIManager
+0230    MOV     17  16
+0231    TGETS   16  16  27  ; "show"
+0232    MOV     18  13
+0233    CALL    16   1   3
+0234    UGET    16   1      ; UIManager
+0235    MOV     17  16
+0236    TGETS   16  16  28  ; "forceRePaint"
+0237    CALL    16   1   2
+0238    UGET    16   2      ; util
+0239    TGETS   16  16  33  ; "sleep"
+0240    KSHORT  17   2
+0241    CALL    16   1   2
+0242    JMP     16 => 0346
+0243 => MOV     16  15
+0244 => LOOP    17 => 0315
+0245    MOV     18   4
+0246    TGETS   17   4  23  ; "new"
+0247    TDUP    19  42
+0248    UGET    20   4      ; T
+0249    UGET    21   0      ; _
+0250    KSTR    22  41      ; "Found %1 books.\nLooking for those not a"~
+0251    CALL    21   2   2
+0252    LEN     22  16
+0253    CALL    20   2   3
+0254    TSETS   20  19  26  ; "text"
+0255    CALL    17   2   3
+0256    MOV     13  17
+0257    UGET    17   1      ; UIManager
+0258    MOV     18  17
+0259    TGETS   17  17  27  ; "show"
+0260    MOV     19  13
+0261    CALL    17   1   3
+0262    UGET    17   1      ; UIManager
+0263    MOV     18  17
+0264    TGETS   17  17  28  ; "forceRePaint"
+0265    CALL    17   1   2
+0266    UGET    17   2      ; util
+0267    TGETS   17  17  33  ; "sleep"
+0268    KSHORT  18   2
+0269    CALL    17   1   2
+0270    MOV     18   6
+0271    TGETS   17   6  29  ; "dismissableRunInSubprocess"
+0272    FNEW    19  43      ; bookinfomanager.lua:790
+0273    MOV     20  13
+0274    CALL    17   3   4
+0275    MOV     15  18
+0276    MOV     14  17
+0277    IST         14
+0278    JMP     17 => 0286
+0279    MOV     17  12
+0280    CALL    17   2   1
+0281    ISF         17
+0282    JMP     18 => 0244
+0283    UCLO     0 => 0284
+0284 => RET0     0   1
+0285    JMP     17 => 0244
+0286 => ISF         15
+0287    JMP     17 => 0291
+0288    LEN     17  15
+0289    ISNEN   17   0      ; 0
+0290    JMP     17 => 0315
+0291 => UGET    17   1      ; UIManager
+0292    MOV     18  17
+0293    TGETS   17  17  31  ; "close"
+0294    MOV     19  13
+0295    CALL    17   1   3
+0296    MOV     18   4
+0297    TGETS   17   4  23  ; "new"
+0298    TDUP    19  45
+0299    UGET    20   0      ; _
+0300    KSTR    21  44      ; "No books were found that need to be inde"~
+0301    CALL    20   2   2
+0302    TSETS   20  19  26  ; "text"
+0303    CALL    17   2   3
+0304    MOV     13  17
+0305    UGET    17   1      ; UIManager
+0306    MOV     18  17
+0307    TGETS   17  17  27  ; "show"
+0308    MOV     19  13
+0309    CALL    17   1   3
+0310    UCLO     0 => 0311
+0311 => RET0     0   1
+0312    JMP     17 => 0244
+0313    JMP     17 => 0315
+0314    JMP     17 => 0244
+0315 => UGET    17   1      ; UIManager
+0316    MOV     18  17
+0317    TGETS   17  17  31  ; "close"
+0318    MOV     19  13
+0319    CALL    17   1   3
+0320    MOV     18   4
+0321    TGETS   17   4  23  ; "new"
+0322    TDUP    19  46
+0323    UGET    20   4      ; T
+0324    UGET    21   0      ; _
+0325    KSTR    22  39      ; "Found %1 books to index."
+0326    CALL    21   2   2
+0327    LEN     22  15
+0328    CALL    20   2   3
+0329    TSETS   20  19  26  ; "text"
+0330    CALL    17   2   3
+0331    MOV     13  17
+0332    UGET    17   1      ; UIManager
+0333    MOV     18  17
+0334    TGETS   17  17  27  ; "show"
+0335    MOV     19  13
+0336    CALL    17   1   3
+0337    UGET    17   1      ; UIManager
+0338    MOV     18  17
+0339    TGETS   17  17  28  ; "forceRePaint"
+0340    CALL    17   1   2
+0341    UGET    17   2      ; util
+0342    TGETS   17  17  33  ; "sleep"
+0343    KSHORT  18   2
+0344    CALL    17   1   2
+0345    UCLO    16 => 0346
+0346 => UGET    16   1      ; UIManager
+0347    MOV     17  16
+0348    TGETS   16  16  31  ; "close"
+0349    MOV     18  13
+0350    CALL    16   1   3
+0351    LEN     16  15
+0352    KSHORT  17   0
+0353    KSHORT  18   0
+0354    KSHORT  19   1
+0355    MOV     21   4
+0356    TGETS   20   4  23  ; "new"
+0357    TDUP    22  47
+0358    CALL    20   2   3
+0359    MOV     13  20
+0360    UGET    20   1      ; UIManager
+0361    MOV     21  20
+0362    TGETS   20  20  27  ; "show"
+0363    MOV     22  13
+0364    CALL    20   1   3
+0365    KSHORT  20   0
+0366    KPRI    21   0
+0367 => ISGT    19  16
+0368    JMP     22 => 0492
+0369    LOOP    22 => 0492
+0370    TGETV   22  15  19
+0371    UGET    23   2      ; util
+0372    TGETS   23  23  48  ; "basename"
+0373    MOV     24  22
+0374    CALL    23   2   2
+0375    TGETS   24  13  49  ; "movable"
+0376    MOV     25  24
+0377    TGETS   24  24  50  ; "getMovedOffset"
+0378    CALL    24   2   2
+0379    MOV     26  13
+0380    TGETS   25  13  51  ; "free"
+0381    CALL    25   1   2
+0382    UGET    25   4      ; T
+0383    UGET    26   0      ; _
+0384    KSTR    27  52      ; "Indexing %1 / %2…\n\n%3"
+0385    CALL    26   2   2
+0386    MOV     27  19
+0387    MOV     28  16
+0388    UGET    29   5      ; BD
+0389    TGETS   29  29  53  ; "filename"
+0390    MOV     30  23
+0391    CALL    29   0   2
+0392    CALLM   25   2   3
+0393    TSETS   25  13  26  ; "text"
+0394    MOV     26  13
+0395    TGETS   25  13  54  ; "init"
+0396    CALL    25   1   2
+0397    GGET    25  55      ; "table"
+0398    TGETS   25  25  56  ; "remove"
+0399    TGETS   26  13  49  ; "movable"
+0400    TGETB   26  26   1
+0401    TGETB   26  26   1
+0402    KSHORT  27   3
+0403    CALL    25   2   3
+0404    MOV     27  25
+0405    TGETS   26  25  57  ; "getSize"
+0406    CALL    26   2   2
+0407    TGETS   27  26  58  ; "h"
+0408    ISGE    20  27
+0409    JMP     27 => 0411
+0410    TGETS   20  26  58  ; "h"
+0411 => GGET    27  55      ; "table"
+0412    TGETS   27  27  59  ; "insert"
+0413    TGETS   28  13  49  ; "movable"
+0414    TGETB   28  28   1
+0415    TGETB   28  28   1
+0416    MOV     30   5
+0417    TGETS   29   5  23  ; "new"
+0418    TDUP    31  62
+0419    MOV     33   3
+0420    TGETS   32   3  23  ; "new"
+0421    TDUP    34  61
+0422    TGETS   35  26  60  ; "w"
+0423    TSETS   35  34  60  ; "w"
+0424    TSETS   20  34  58  ; "h"
+0425    CALL    32   2   3
+0426    TSETS   32  31  63  ; "dimen"
+0427    TSETB   25  31   1
+0428    CALL    29   0   3
+0429    CALLM   27   1   1
+0430    TGETS   27  13  49  ; "movable"
+0431    TGETB   27  27   1
+0432    TGETB   27  27   1
+0433    KPRI    28   0
+0434    TSETS   28  27  64  ; "_size"
+0435    TGETS   27  13  49  ; "movable"
+0436    MOV     28  27
+0437    TGETS   27  27  65  ; "setMovedOffset"
+0438    MOV     29  24
+0439    CALL    27   1   3
+0440    MOV     28  13
+0441    TGETS   27  13  66  ; "paintTo"
+0442    TGETS   29   7  67  ; "bb"
+0443    KSHORT  30   0
+0444    KSHORT  31   0
+0445    CALL    27   1   5
+0446    TGETS   27  13  49  ; "movable"
+0447    TGETB   27  27   1
+0448    TGETS   27  27  63  ; "dimen"
+0449    TGETS   28   7  68  ; "refreshUI"
+0450    MOV     29   7
+0451    TGETS   30  27  69  ; "x"
+0452    TGETS   31  27  70  ; "y"
+0453    TGETS   32  27  60  ; "w"
+0454    TGETS   33  27  58  ; "h"
+0455    CALL    28   1   6
+0456    MOV     29   6
+0457    TGETS   28   6  29  ; "dismissableRunInSubprocess"
+0458    FNEW    30  71      ; bookinfomanager.lua:871
+0459    MOV     31  13
+0460    CALL    28   3   4
+0461    MOV     21  29
+0462    MOV     14  28
+0463    IST         14
+0464    JMP     28 => 0486
+0465    MOV     28  12
+0466    CALL    28   2   1
+0467    ISF         28
+0468    JMP     29 => 0470
+0469    UCLO    22 => 0492
+0470 => MOV     29   4
+0471    TGETS   28   4  23  ; "new"
+0472    TDUP    30  72
+0473    CALL    28   2   3
+0474    MOV     13  28
+0475    TGETS   28  13  49  ; "movable"
+0476    MOV     29  28
+0477    TGETS   28  28  65  ; "setMovedOffset"
+0478    MOV     30  24
+0479    CALL    28   1   3
+0480    UGET    28   1      ; UIManager
+0481    MOV     29  28
+0482    TGETS   28  28  27  ; "show"
+0483    MOV     30  13
+0484    CALL    28   1   3
+0485    JMP     28 => 0491
+0486 => ADDVN   17  17   1  ; 1
+0487    ISF         21
+0488    JMP     28 => 0490
+0489    ADDVN   18  18   1  ; 1
+0490 => ADDVN   19  19   1  ; 1
+0491 => UCLO    22 => 0367
+0492 => UGET    22   1      ; UIManager
+0493    MOV     23  22
+0494    TGETS   22  22  31  ; "close"
+0495    MOV     24  13
+0496    CALL    22   1   3
+0497    MOV     23   4
+0498    TGETS   22   4  23  ; "new"
+0499    TDUP    24  74
+0500    UGET    25   4      ; T
+0501    UGET    26   0      ; _
+0502    KSTR    27  73      ; "Processed %1 / %2 books.\n%3 extracted s"~
+0503    CALL    26   2   2
+0504    MOV     27  17
+0505    MOV     28  16
+0506    MOV     29  18
+0507    CALL    25   2   5
+0508    TSETS   25  24  26  ; "text"
+0509    CALL    22   2   3
+0510    MOV     13  22
+0511    UGET    22   1      ; UIManager
+0512    MOV     23  22
+0513    TGETS   22  22  27  ; "show"
+0514    MOV     24  13
+0515    CALL    22   1   3
+0516    UCLO     0 => 0517
+0517 => RET0     0   1
+0518 => RET0     0   1
+
+-- BYTECODE -- bookinfomanager.lua:0-899
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/blitbuffer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "datastorage"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "device"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "document/documentregistry"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/renderimage"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "lua-ljsqlite3/init"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/uimanager"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "libs/libkoreader-lfs"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "logger"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ffi/util"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "util"
+0036    CALL    11   2   2
+0037    TGETS   11  11  13  ; "splitFilePathName"
+0038    GGET    12   0      ; "require"
+0039    KSTR    13  14      ; "gettext"
+0040    CALL    12   2   2
+0041    GGET    13   0      ; "require"
+0042    KSTR    14  11      ; "ffi/util"
+0043    CALL    13   2   2
+0044    TGETS   13  13  15  ; "template"
+0045    GGET    14   0      ; "require"
+0046    KSTR    15  16      ; "xutil"
+0047    CALL    14   2   2
+0048    KSTR    15  17      ; "2-20170701"
+0049    KSTR    16  18      ; "    -- For caching book cover and metada"~
+0050    MOV     17  15
+0051    KSTR    18  19      ; "');\n\n"
+0052    CAT     16  16  18
+0053    TDUP    17  20
+0054    TNEW    18   0
+0055    KSHORT  19   1
+0056    LEN     20  17
+0057    KSHORT  21   1
+0058    FORI    19 => 0065
+0059 => GGET    23  21      ; "table"
+0060    TGETS   23  23  22  ; "insert"
+0061    MOV     24  18
+0062    KSTR    25  23      ; "?"
+0063    CALL    23   1   3
+0064    FORL    19 => 0059
+0065 => KSTR    19  24      ; "INSERT OR REPLACE INTO bookinfo "
+0066    KSTR    20  25      ; "("
+0067    GGET    21  21      ; "table"
+0068    TGETS   21  21  26  ; "concat"
+0069    MOV     22  17
+0070    KSTR    23  27      ; ","
+0071    CALL    21   2   3
+0072    KSTR    22  28      ; ") "
+0073    KSTR    23  29      ; "VALUES ("
+0074    GGET    24  21      ; "table"
+0075    TGETS   24  24  26  ; "concat"
+0076    MOV     25  18
+0077    KSTR    26  27      ; ","
+0078    CALL    24   2   3
+0079    KSTR    25  30      ; ")"
+0080    CAT     19  19  25
+0081    KSTR    20  31      ; "SELECT "
+0082    GGET    21  21      ; "table"
+0083    TGETS   21  21  26  ; "concat"
+0084    MOV     22  17
+0085    KSTR    23  27      ; ","
+0086    CALL    21   2   3
+0087    KSTR    22  32      ; " FROM bookinfo "
+0088    KSTR    23  33      ; "WHERE directory=? and filename=? and in_"~
+0089    CAT     20  20  23
+0090    KSTR    21  34      ; "SELECT in_progress, filename, unsupporte"~
+0091    TNEW    22   0
+0092    FNEW    23  36      ; bookinfomanager.lua:118
+0093    TSETS   23  22  35  ; "init"
+0094    FNEW    23  38      ; bookinfomanager.lua:136
+0095    TSETS   23  22  37  ; "getDbSize"
+0096    FNEW    23  40      ; bookinfomanager.lua:141
+0097    TSETS   23  22  39  ; "createDB"
+0098    FNEW    23  42      ; bookinfomanager.lua:167
+0099    TSETS   23  22  41  ; "openDbConnection"
+0100    FNEW    23  44      ; bookinfomanager.lua:183
+0101    TSETS   23  22  43  ; "closeDbConnection"
+0102    FNEW    23  46      ; bookinfomanager.lua:190
+0103    TSETS   23  22  45  ; "deleteDb"
+0104    FNEW    23  48      ; bookinfomanager.lua:196
+0105    TSETS   23  22  47  ; "compactDb"
+0106    FNEW    23  50      ; bookinfomanager.lua:218
+0107    TSETS   23  22  49  ; "loadSettings"
+0108    FNEW    23  52      ; bookinfomanager.lua:234
+0109    TSETS   23  22  51  ; "getSetting"
+0110    FNEW    23  54      ; bookinfomanager.lua:241
+0111    TSETS   23  22  53  ; "saveSetting"
+0112    FNEW    23  56      ; bookinfomanager.lua:264
+0113    TSETS   23  22  55  ; "getBookInfo"
+0114    FNEW    23  58      ; bookinfomanager.lua:328
+0115    TSETS   23  22  57  ; "extractBookInfo"
+0116    FNEW    23  60      ; bookinfomanager.lua:481
+0117    TSETS   23  22  59  ; "setBookInfoProperties"
+0118    FNEW    23  62      ; bookinfomanager.lua:501
+0119    TSETS   23  22  61  ; "deleteBookInfo"
+0120    FNEW    23  64      ; bookinfomanager.lua:511
+0121    TSETS   23  22  63  ; "removeNonExistantEntries"
+0122    FNEW    23  66      ; bookinfomanager.lua:536
+0123    TSETS   23  22  65  ; "collectSubprocesses"
+0124    FNEW    23  68      ; bookinfomanager.lua:579
+0125    TSETS   23  22  67  ; "terminateBackgroundJobs"
+0126    FNEW    23  70      ; bookinfomanager.lua:586
+0127    TSETS   23  22  69  ; "isExtractingInBackground"
+0128    FNEW    23  72      ; bookinfomanager.lua:590
+0129    TSETS   23  22  71  ; "extractInBackground"
+0130    FNEW    23  74      ; bookinfomanager.lua:639
+0131    TSETS   23  22  73  ; "cleanUp"
+0132    FNEW    23  75      ; bookinfomanager.lua:653
+0133    FNEW    24  77      ; bookinfomanager.lua:680
+0134    TSETS   24  22  76  ; "extractBooksInDirectory"
+0135    MOV     25  22
+0136    TGETS   24  22  35  ; "init"
+0137    CALL    24   1   2
+0138    UCLO     0 => 0139
+0139 => RET1    22   2
+

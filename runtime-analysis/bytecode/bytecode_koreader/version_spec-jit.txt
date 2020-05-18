@@ -1,0 +1,264 @@
+-- BYTECODE -- version_spec.lua:3-6
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "version"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; Version
+0008    RET0     0   1
+
+-- BYTECODE -- version_spec.lua:7-15
+0001    UGET     0   0      ; Version
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getCurrentRevision"
+0004    CALL     0   2   2
+0005    MOV      2   0
+0006    TGETS    1   0   1  ; "match"
+0007    KSTR     3   2      ; "v(%d%d%d%d)%.(%d%d)%.?(%d?)-?(%d*)"
+0008    CALL     1   5   3
+0009    MOV      6   0
+0010    TGETS    5   0   1  ; "match"
+0011    KSTR     7   3      ; "-%d*-g(%x*)[%d_%-]*"
+0012    CALL     5   2   3
+0013    GGET     6   4      ; "assert"
+0014    TGETS    6   6   5  ; "is_truthy"
+0015    MOV      7   1
+0016    CALL     6   1   2
+0017    GGET     6   4      ; "assert"
+0018    TGETS    6   6   5  ; "is_truthy"
+0019    MOV      7   2
+0020    CALL     6   1   2
+0021    GGET     6   4      ; "assert"
+0022    TGETS    6   6   6  ; "is_true"
+0023    MOV      8   1
+0024    TGETS    7   1   7  ; "len"
+0025    CALL     7   2   2
+0026    ISEQN    7   0      ; 4
+0027    JMP      7 => 0030
+0028    KPRI     7   1
+0029    JMP      8 => 0031
+0030 => KPRI     7   2
+0031 => CALL     6   1   2
+0032    GGET     6   4      ; "assert"
+0033    TGETS    6   6   6  ; "is_true"
+0034    MOV      8   2
+0035    TGETS    7   2   7  ; "len"
+0036    CALL     7   2   2
+0037    ISEQN    7   1      ; 2
+0038    JMP      7 => 0041
+0039    KPRI     7   1
+0040    JMP      8 => 0042
+0041 => KPRI     7   2
+0042 => CALL     6   1   2
+0043    RET0     0   1
+
+-- BYTECODE -- version_spec.lua:17-19
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_true"
+0003    GGET     1   2      ; "tostring"
+0004    UGET     2   0      ; Version
+0005    MOV      3   2
+0006    TGETS    2   2   3  ; "getNormalizedCurrentVersion"
+0007    CALL     2   0   2
+0008    CALLM    1   2   0
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "len"
+0011    CALL     1   2   2
+0012    ISEQN    1   0      ; 12
+0013    JMP      1 => 0016
+0014    KPRI     1   1
+0015    JMP      2 => 0017
+0016 => KPRI     1   2
+0017 => CALL     0   1   2
+0018    RET0     0   1
+
+-- BYTECODE -- version_spec.lua:20-27
+0001    KSTR     0   0      ; "v2015.11-982-g704d4238"
+0002    UGET     1   0      ; Version
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "getNormalizedVersion"
+0005    MOV      3   0
+0006    CALL     1   3   3
+0007    KNUM     3   0      ; 201511000982
+0008    KSTR     4   2      ; "704d4238"
+0009    GGET     5   3      ; "assert"
+0010    TGETS    5   5   4  ; "are"
+0011    TGETS    5   5   5  ; "same"
+0012    MOV      6   3
+0013    MOV      7   1
+0014    CALL     5   1   3
+0015    GGET     5   3      ; "assert"
+0016    TGETS    5   5   4  ; "are"
+0017    TGETS    5   5   5  ; "same"
+0018    MOV      6   4
+0019    MOV      7   2
+0020    CALL     5   1   3
+0021    RET0     0   1
+
+-- BYTECODE -- version_spec.lua:28-35
+0001    KSTR     0   0      ; "v2015.11-1755-gecd7b5b_2018-07-02"
+0002    UGET     1   0      ; Version
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "getNormalizedVersion"
+0005    MOV      3   0
+0006    CALL     1   3   3
+0007    KNUM     3   0      ; 201511001755
+0008    KSTR     4   2      ; "ecd7b5b"
+0009    GGET     5   3      ; "assert"
+0010    TGETS    5   5   4  ; "are"
+0011    TGETS    5   5   5  ; "same"
+0012    MOV      6   3
+0013    MOV      7   1
+0014    CALL     5   1   3
+0015    GGET     5   3      ; "assert"
+0016    TGETS    5   5   4  ; "are"
+0017    TGETS    5   5   5  ; "same"
+0018    MOV      6   4
+0019    MOV      7   2
+0020    CALL     5   1   3
+0021    RET0     0   1
+
+-- BYTECODE -- version_spec.lua:36-43
+0001    KSTR     0   0      ; "v2018.11"
+0002    UGET     1   0      ; Version
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "getNormalizedVersion"
+0005    MOV      3   0
+0006    CALL     1   3   3
+0007    KNUM     3   0      ; 201811000000
+0008    KPRI     4   0
+0009    GGET     5   2      ; "assert"
+0010    TGETS    5   5   3  ; "are"
+0011    TGETS    5   5   4  ; "same"
+0012    MOV      6   3
+0013    MOV      7   1
+0014    CALL     5   1   3
+0015    GGET     5   2      ; "assert"
+0016    TGETS    5   5   3  ; "are"
+0017    TGETS    5   5   4  ; "same"
+0018    MOV      6   4
+0019    MOV      7   2
+0020    CALL     5   1   3
+0021    RET0     0   1
+
+-- BYTECODE -- version_spec.lua:44-51
+0001    KSTR     0   0      ; "v2018.11.1"
+0002    UGET     1   0      ; Version
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "getNormalizedVersion"
+0005    MOV      3   0
+0006    CALL     1   3   3
+0007    KNUM     3   0      ; 201811010000
+0008    KPRI     4   0
+0009    GGET     5   2      ; "assert"
+0010    TGETS    5   5   3  ; "are"
+0011    TGETS    5   5   4  ; "same"
+0012    MOV      6   3
+0013    MOV      7   1
+0014    CALL     5   1   3
+0015    GGET     5   2      ; "assert"
+0016    TGETS    5   5   3  ; "are"
+0017    TGETS    5   5   4  ; "same"
+0018    MOV      6   4
+0019    MOV      7   2
+0020    CALL     5   1   3
+0021    RET0     0   1
+
+-- BYTECODE -- version_spec.lua:52-59
+0001    KSTR     0   0      ; "v2018.11.1-1755-gecd7b5b_2018-07-02"
+0002    UGET     1   0      ; Version
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "getNormalizedVersion"
+0005    MOV      3   0
+0006    CALL     1   3   3
+0007    KNUM     3   0      ; 201811011755
+0008    KSTR     4   2      ; "ecd7b5b"
+0009    GGET     5   3      ; "assert"
+0010    TGETS    5   5   4  ; "are"
+0011    TGETS    5   5   5  ; "same"
+0012    MOV      6   3
+0013    MOV      7   1
+0014    CALL     5   1   3
+0015    GGET     5   3      ; "assert"
+0016    TGETS    5   5   4  ; "are"
+0017    TGETS    5   5   5  ; "same"
+0018    MOV      6   4
+0019    MOV      7   2
+0020    CALL     5   1   3
+0021    RET0     0   1
+
+-- BYTECODE -- version_spec.lua:16-60
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should get current version"
+0003    FNEW     2   2      ; version_spec.lua:17
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should get version"
+0007    FNEW     2   4      ; version_spec.lua:20
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should get version with four number revi"~
+0011    FNEW     2   6      ; version_spec.lua:28
+0012    CALL     0   1   3
+0013    GGET     0   0      ; "it"
+0014    KSTR     1   7      ; "should get stable version"
+0015    FNEW     2   8      ; version_spec.lua:36
+0016    CALL     0   1   3
+0017    GGET     0   0      ; "it"
+0018    KSTR     1   9      ; "should get stable point release version"
+0019    FNEW     2  10      ; version_spec.lua:44
+0020    CALL     0   1   3
+0021    GGET     0   0      ; "it"
+0022    KSTR     1  11      ; "should get point release nightly version"
+0023    FNEW     2  12      ; version_spec.lua:52
+0024    CALL     0   1   3
+0025    RET0     0   1
+
+-- BYTECODE -- version_spec.lua:61-67
+0001    UGET     0   0      ; Version
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getNormalizedVersion"
+0004    CALL     0   3   2
+0005    KNIL     2   3
+0006    GGET     4   1      ; "assert"
+0007    TGETS    4   4   2  ; "are"
+0008    TGETS    4   4   3  ; "same"
+0009    MOV      5   2
+0010    MOV      6   0
+0011    CALL     4   1   3
+0012    GGET     4   1      ; "assert"
+0013    TGETS    4   4   2  ; "are"
+0014    TGETS    4   4   3  ; "same"
+0015    MOV      5   3
+0016    MOV      6   1
+0017    CALL     4   1   3
+0018    RET0     0   1
+
+-- BYTECODE -- version_spec.lua:1-68
+0001    KPRI     0   0
+0002    GGET     1   0      ; "setup"
+0003    FNEW     2   1      ; version_spec.lua:3
+0004    CALL     1   1   2
+0005    GGET     1   2      ; "it"
+0006    KSTR     2   3      ; "should get current revision"
+0007    FNEW     3   4      ; version_spec.lua:7
+0008    CALL     1   1   3
+0009    GGET     1   5      ; "describe"
+0010    KSTR     2   6      ; "normalized"
+0011    FNEW     3   7      ; version_spec.lua:16
+0012    CALL     1   1   3
+0013    GGET     1   2      ; "it"
+0014    KSTR     2   8      ; "should fail gracefully"
+0015    FNEW     3   9      ; version_spec.lua:61
+0016    CALL     1   1   3
+0017    UCLO     0 => 0018
+0018 => RET0     0   1
+
+-- BYTECODE -- version_spec.lua:0-69
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "Version module"
+0003    FNEW     2   2      ; version_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

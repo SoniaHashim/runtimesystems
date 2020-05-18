@@ -1,0 +1,53 @@
+-- BYTECODE -- wikipedia_spec.lua:3-6
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "ui/wikipedia"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; Wikipedia
+0008    RET0     0   1
+
+-- BYTECODE -- wikipedia_spec.lua:8-13
+0001    KSTR     0   0      ; "https://en.wikipedia.org"
+0002    KSTR     1   1      ; "https://nl.wikipedia.org"
+0003    GGET     2   2      ; "assert"
+0004    TGETS    2   2   3  ; "is"
+0005    TGETS    2   2   4  ; "same"
+0006    MOV      3   0
+0007    UGET     4   0      ; Wikipedia
+0008    MOV      5   4
+0009    TGETS    4   4   5  ; "getWikiServer"
+0010    CALL     4   0   2
+0011    CALLM    2   1   1
+0012    GGET     2   2      ; "assert"
+0013    TGETS    2   2   3  ; "is"
+0014    TGETS    2   2   4  ; "same"
+0015    MOV      3   1
+0016    UGET     4   0      ; Wikipedia
+0017    MOV      5   4
+0018    TGETS    4   4   5  ; "getWikiServer"
+0019    KSTR     6   6      ; "nl"
+0020    CALL     4   0   3
+0021    CALLM    2   1   1
+0022    RET0     0   1
+
+-- BYTECODE -- wikipedia_spec.lua:1-14
+0001    KPRI     0   0
+0002    GGET     1   0      ; "setup"
+0003    FNEW     2   1      ; wikipedia_spec.lua:3
+0004    CALL     1   1   2
+0005    GGET     1   2      ; "it"
+0006    KSTR     2   3      ; "should return Wikipedia server"
+0007    FNEW     3   4      ; wikipedia_spec.lua:8
+0008    CALL     1   1   3
+0009    UCLO     0 => 0010
+0010 => RET0     0   1
+
+-- BYTECODE -- wikipedia_spec.lua:0-15
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "Wikipedia module"
+0003    FNEW     2   2      ; wikipedia_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

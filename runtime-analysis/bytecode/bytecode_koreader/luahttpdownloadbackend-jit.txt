@@ -1,0 +1,56 @@
+-- BYTECODE -- luahttpdownloadbackend.lua:7-12
+0001    GGET     2   0      ; "assert"
+0002    UGET     3   0      ; http_request
+0003    TGETS    3   3   1  ; "new_from_uri"
+0004    MOV      4   1
+0005    CALL     3   2   2
+0006    MOV      4   3
+0007    TGETS    3   3   2  ; "go"
+0008    CALL     3   0   2
+0009    CALLM    2   3   0
+0010    GGET     4   0      ; "assert"
+0011    MOV      6   3
+0012    TGETS    5   3   3  ; "get_body_as_string"
+0013    CALL     5   0   2
+0014    CALLM    4   2   0
+0015    UGET     5   1      ; logger
+0016    TGETS    5   5   4  ; "dbg"
+0017    KSTR     6   5      ; "Response body :"
+0018    MOV      7   4
+0019    CALL     5   1   3
+0020    RET1     4   2
+
+-- BYTECODE -- luahttpdownloadbackend.lua:14-18
+0001    GGET     3   0      ; "assert"
+0002    UGET     4   0      ; http_request
+0003    TGETS    4   4   1  ; "new_from_uri"
+0004    MOV      5   1
+0005    CALL     4   2   2
+0006    MOV      5   4
+0007    TGETS    4   4   2  ; "go"
+0008    CALL     4   0   2
+0009    CALLM    3   3   0
+0010    MOV      6   4
+0011    TGETS    5   4   3  ; "save_body_to_file"
+0012    MOV      7   2
+0013    CALL     5   1   3
+0014    MOV      6   4
+0015    TGETS    5   4   4  ; "shutdown"
+0016    CALL     5   1   2
+0017    RET0     0   1
+
+-- BYTECODE -- luahttpdownloadbackend.lua:0-21
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "logger"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "http.request"
+0006    CALL     1   2   2
+0007    TNEW     2   0
+0008    FNEW     3   4      ; luahttpdownloadbackend.lua:7
+0009    TSETS    3   2   3  ; "getResponseAsString"
+0010    FNEW     3   6      ; luahttpdownloadbackend.lua:14
+0011    TSETS    3   2   5  ; "download"
+0012    UCLO     0 => 0013
+0013 => RET1     2   2
+

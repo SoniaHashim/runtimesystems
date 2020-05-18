@@ -1,0 +1,1104 @@
+-- BYTECODE -- fetch.lua:13-38
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "match"
+0003    KSTR     3   1      ; "^(.*)/([^/]+)$"
+0004    CALL     1   3   3
+0005    MOV      4   1
+0006    TGETS    3   1   2  ; "gsub"
+0007    KSTR     5   3      ; "[/:]"
+0008    KSTR     6   4      ; "_"
+0009    CALL     3   2   4
+0010    UGET     4   0      ; dir
+0011    TGETS    4   4   5  ; "path"
+0012    UGET     5   1      ; cfg
+0013    TGETS    5   5   6  ; "local_cache"
+0014    MOV      6   3
+0015    CALL     4   2   3
+0016    UGET     5   2      ; fs
+0017    TGETS    5   5   7  ; "make_dir"
+0018    MOV      6   4
+0019    CALL     5   2   2
+0020    IST          5
+0021    JMP      6 => 0047
+0022    UGET     6   1      ; cfg
+0023    UGET     7   2      ; fs
+0024    TGETS    7   7   8  ; "make_temp_dir"
+0025    KSTR     8   6      ; "local_cache"
+0026    CALL     7   2   2
+0027    TSETS    7   6   6  ; "local_cache"
+0028    UGET     6   0      ; dir
+0029    TGETS    6   6   5  ; "path"
+0030    UGET     7   1      ; cfg
+0031    TGETS    7   7   6  ; "local_cache"
+0032    MOV      8   3
+0033    CALL     6   2   3
+0034    MOV      4   6
+0035    UGET     6   2      ; fs
+0036    TGETS    6   6   7  ; "make_dir"
+0037    MOV      7   4
+0038    CALL     6   2   2
+0039    MOV      5   6
+0040    IST          5
+0041    JMP      6 => 0047
+0042    KPRI     6   0
+0043    KSTR     7   9      ; "Failed creating temporary cache director"~
+0044    MOV      8   4
+0045    CAT      7   7   8
+0046    RET      6   3
+0047 => UGET     6   0      ; dir
+0048    TGETS    6   6   5  ; "path"
+0049    MOV      7   4
+0050    MOV      8   2
+0051    CALL     6   2   3
+0052    UGET     7   1      ; cfg
+0053    TGETS    7   7  10  ; "aggressive_cache"
+0054    ISF          7
+0055    JMP      8 => 0077
+0056    MOV      8   3
+0057    TGETS    7   3   0  ; "match"
+0058    KSTR     9  11      ; "^manifest"
+0059    CALL     7   2   3
+0060    IST          7
+0061    JMP      7 => 0077
+0062    UGET     7   2      ; fs
+0063    TGETS    7   7  12  ; "exists"
+0064    MOV      8   6
+0065    CALL     7   2   2
+0066    ISF          7
+0067    JMP      8 => 0077
+0068    GGET     7  13      ; "print"
+0069    KSTR     8  14      ; "FAST TRACK!"
+0070    UGET     9   1      ; cfg
+0071    TGETS    9   9  10  ; "aggressive_cache"
+0072    CALL     7   1   3
+0073    MOV      7   6
+0074    KNIL     8   9
+0075    KPRI    10   2
+0076    RET      7   5
+0077 => UGET     7   3      ; fetch
+0078    TGETS    7   7  15  ; "fetch_url"
+0079    MOV      8   0
+0080    MOV      9   6
+0081    KPRI    10   2
+0082    CALL     7   5   4
+0083    IST          7
+0084    JMP     11 => 0099
+0085    KPRI    11   0
+0086    KSTR    12  16      ; "Failed downloading "
+0087    MOV     13   1
+0088    ISF          8
+0089    JMP     14 => 0095
+0090    KSTR    14  17      ; " - "
+0091    MOV     15   8
+0092    CAT     14  14  15
+0093    IST         14
+0094    JMP     15 => 0096
+0095 => KSTR    14  18      ; ""
+0096 => CAT     12  12  14
+0097    MOV     13   9
+0098    RET     11   4
+0099 => MOV     11   7
+0100    KNIL    12  13
+0101    MOV     14  10
+0102    RET     11   5
+
+-- BYTECODE -- fetch.lua:61-77
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISEQS    4   2      ; "string"
+0006    JMP      4 => 0009
+0007    KPRI     4   1
+0008    JMP      5 => 0010
+0009 => KPRI     4   2
+0010 => CALL     3   1   2
+0011    GGET     3   0      ; "assert"
+0012    GGET     4   1      ; "type"
+0013    MOV      5   1
+0014    CALL     4   2   2
+0015    ISEQS    4   2      ; "string"
+0016    JMP      4 => 0021
+0017    NOT      4   1
+0018    JMP      5 => 0022
+0019    KPRI     4   1
+0020    JMP      5 => 0022
+0021 => KPRI     4   2
+0022 => CALL     3   1   2
+0023    UGET     3   0      ; dir
+0024    TGETS    3   3   3  ; "split_url"
+0025    MOV      4   0
+0026    CALL     3   3   2
+0027    ISNES    3   4      ; "file"
+0028    JMP      5 => 0034
+0029    UGET     5   1      ; fs
+0030    TGETS    5   5   5  ; "absolute_name"
+0031    MOV      6   4
+0032    CALLT    5   2
+0033    JMP      5 => 0072
+0034 => UGET     5   0      ; dir
+0035    TGETS    5   5   6  ; "is_basic_protocol"
+0036    MOV      6   3
+0037    CALL     5   2   2
+0038    ISF          5
+0039    JMP      6 => 0067
+0040    UGET     5   1      ; fs
+0041    TGETS    5   5   7  ; "download"
+0042    MOV      6   0
+0043    MOV      7   1
+0044    MOV      8   2
+0045    CALL     5   4   4
+0046    IST          5
+0047    JMP      8 => 0062
+0048    KPRI     8   0
+0049    KSTR     9   8      ; "Failed downloading "
+0050    MOV     10   0
+0051    ISF          1
+0052    JMP     11 => 0058
+0053    KSTR    11   9      ; " - "
+0054    MOV     12   1
+0055    CAT     11  11  12
+0056    IST         11
+0057    JMP     12 => 0059
+0058 => KSTR    11  10      ; ""
+0059 => CAT      9   9  11
+0060    KSTR    10  11      ; "network"
+0061    RET      8   4
+0062 => MOV      8   6
+0063    KNIL     9  10
+0064    MOV     11   7
+0065    RET      8   5
+0066    JMP      5 => 0072
+0067 => KPRI     5   0
+0068    KSTR     6  12      ; "Unsupported protocol "
+0069    MOV      7   3
+0070    CAT      6   6   7
+0071    RET      5   3
+0072 => RET0     0   1
+
+-- BYTECODE -- fetch.lua:90-133
+0001    GGET     4   0      ; "assert"
+0002    GGET     5   1      ; "type"
+0003    MOV      6   0
+0004    CALL     5   2   2
+0005    ISEQS    5   2      ; "string"
+0006    JMP      5 => 0009
+0007    KPRI     5   1
+0008    JMP      6 => 0010
+0009 => KPRI     5   2
+0010 => CALL     4   1   2
+0011    GGET     4   0      ; "assert"
+0012    GGET     5   1      ; "type"
+0013    MOV      6   1
+0014    CALL     5   2   2
+0015    ISEQS    5   2      ; "string"
+0016    JMP      5 => 0019
+0017    KPRI     5   1
+0018    JMP      6 => 0020
+0019 => KPRI     5   2
+0020 => CALL     4   1   2
+0021    GGET     4   0      ; "assert"
+0022    GGET     5   1      ; "type"
+0023    MOV      6   2
+0024    CALL     5   2   2
+0025    ISEQS    5   2      ; "string"
+0026    JMP      5 => 0031
+0027    NOT      5   2
+0028    JMP      6 => 0032
+0029    KPRI     5   1
+0030    JMP      6 => 0032
+0031 => KPRI     5   2
+0032 => CALL     4   1   2
+0033    IST          2
+0034    JMP      4 => 0040
+0035    UGET     4   0      ; dir
+0036    TGETS    4   4   3  ; "base_name"
+0037    MOV      5   0
+0038    CALL     4   2   2
+0039    MOV      2   4
+0040 => UGET     4   0      ; dir
+0041    TGETS    4   4   4  ; "split_url"
+0042    MOV      5   0
+0043    CALL     4   3   2
+0044    ISNES    4   5      ; "file"
+0045    JMP      6 => 0068
+0046    UGET     6   1      ; fs
+0047    TGETS    6   6   6  ; "exists"
+0048    MOV      7   5
+0049    CALL     6   2   2
+0050    ISF          6
+0051    JMP      7 => 0062
+0052    MOV      6   5
+0053    UGET     7   0      ; dir
+0054    TGETS    7   7   7  ; "dir_name"
+0055    UGET     8   1      ; fs
+0056    TGETS    8   8   8  ; "absolute_name"
+0057    MOV      9   5
+0058    CALL     8   0   2
+0059    CALLM    7   0   0
+0060    RETM     6   1
+0061    JMP      6 => 0144
+0062 => KPRI     6   0
+0063    KSTR     7   9      ; "File not found: "
+0064    MOV      8   5
+0065    CAT      7   7   8
+0066    RET      6   3
+0067    JMP      6 => 0144
+0068 => UGET     6   1      ; fs
+0069    TGETS    6   6  10  ; "make_temp_dir"
+0070    MOV      7   1
+0071    CALL     6   3   2
+0072    IST          6
+0073    JMP      8 => 0081
+0074    KPRI     8   0
+0075    KSTR     9  11      ; "Failed creating temporary directory "
+0076    MOV     10   1
+0077    KSTR    11  12      ; ": "
+0078    MOV     12   7
+0079    CAT      9   9  12
+0080    RET      8   3
+0081 => UGET     8   2      ; util
+0082    TGETS    8   8  13  ; "schedule_function"
+0083    UGET     9   1      ; fs
+0084    TGETS    9   9  14  ; "delete"
+0085    MOV     10   6
+0086    CALL     8   1   3
+0087    UGET     8   1      ; fs
+0088    TGETS    8   8  15  ; "change_dir"
+0089    MOV      9   6
+0090    CALL     8   3   2
+0091    IST          8
+0092    JMP     10 => 0096
+0093    KPRI    10   0
+0094    MOV     11   9
+0095    RET     10   3
+0096 => KNIL    10  12
+0097    ISF          3
+0098    JMP     13 => 0121
+0099    KPRI    13   0
+0100    UGET    14   3      ; fetch
+0101    TGETS   14  14  16  ; "fetch_caching"
+0102    MOV     15   0
+0103    CALL    14   4   2
+0104    MOV     12  16
+0105    MOV     11  15
+0106    MOV     13  14
+0107    ISF         13
+0108    JMP     14 => 0130
+0109    UGET    14   0      ; dir
+0110    TGETS   14  14  17  ; "path"
+0111    MOV     15   6
+0112    MOV     16   2
+0113    CALL    14   2   3
+0114    MOV     10  14
+0115    UGET    14   1      ; fs
+0116    TGETS   14  14  18  ; "copy"
+0117    MOV     15  13
+0118    MOV     16  10
+0119    CALL    14   1   3
+0120    JMP     13 => 0130
+0121 => UGET    13   3      ; fetch
+0122    TGETS   13  13  19  ; "fetch_url"
+0123    MOV     14   0
+0124    MOV     15   2
+0125    MOV     16   3
+0126    CALL    13   4   4
+0127    MOV     12  15
+0128    MOV     11  14
+0129    MOV     10  13
+0130 => UGET    13   1      ; fs
+0131    TGETS   13  13  20  ; "pop_dir"
+0132    CALL    13   1   1
+0133    IST         10
+0134    JMP     13 => 0141
+0135    KPRI    13   0
+0136    KSTR    14  21      ; "Error fetching file: "
+0137    MOV     15  11
+0138    CAT     14  14  15
+0139    MOV     15  12
+0140    RET     13   4
+0141 => MOV     13  10
+0142    MOV     14   6
+0143    RET     13   3
+0144 => RET0     0   1
+
+-- BYTECODE -- fetch.lua:147-171
+0001    UGET     4   0      ; fs
+0002    TGETS    4   4   0  ; "change_dir"
+0003    MOV      5   1
+0004    CALL     4   3   2
+0005    IST          4
+0006    JMP      6 => 0010
+0007    KPRI     6   0
+0008    MOV      7   5
+0009    RET      6   3
+0010 => UGET     6   0      ; fs
+0011    TGETS    6   6   1  ; "unpack_archive"
+0012    MOV      7   0
+0013    CALL     6   1   2
+0014    ISTC     6   3
+0015    JMP      6 => 0020
+0016    UGET     6   1      ; dir
+0017    TGETS    6   6   2  ; "deduce_base_dir"
+0018    MOV      7   2
+0019    CALL     6   2   2
+0020 => KPRI     7   0
+0021    UGET     8   0      ; fs
+0022    TGETS    8   8   3  ; "exists"
+0023    MOV      9   6
+0024    CALL     8   2   2
+0025    ISF          8
+0026    JMP      9 => 0029
+0027    MOV      7   6
+0028    JMP      8 => 0065
+0029 => UGET     8   2      ; util
+0030    TGETS    8   8   4  ; "printerr"
+0031    KSTR     9   5      ; "Directory "
+0032    MOV     10   6
+0033    KSTR    11   6      ; " not found"
+0034    CAT      9   9  11
+0035    CALL     8   1   2
+0036    UGET     8   0      ; fs
+0037    TGETS    8   8   7  ; "list_dir"
+0038    CALL     8   2   1
+0039    ISF          8
+0040    JMP      9 => 0065
+0041    GGET     9   8      ; "table"
+0042    TGETS    9   9   9  ; "sort"
+0043    MOV     10   8
+0044    CALL     9   1   2
+0045    GGET     9  10      ; "ipairs"
+0046    MOV     10   8
+0047    CALL     9   4   2
+0048    JMP     12 => 0063
+0049 => UGET    14   0      ; fs
+0050    TGETS   14  14  11  ; "is_dir"
+0051    MOV     15  13
+0052    CALL    14   2   2
+0053    ISF         14
+0054    JMP     15 => 0063
+0055    UGET    14   2      ; util
+0056    TGETS   14  14   4  ; "printerr"
+0057    KSTR    15  12      ; "Found "
+0058    MOV     16  13
+0059    CAT     15  15  16
+0060    CALL    14   1   2
+0061    MOV      7  13
+0062    JMP      9 => 0065
+0063 => ITERC   12   3   3
+0064    ITERL   12 => 0049
+0065 => UGET     8   0      ; fs
+0066    TGETS    8   8  13  ; "pop_dir"
+0067    CALL     8   1   1
+0068    MOV      8   6
+0069    MOV      9   7
+0070    RET      8   3
+
+-- BYTECODE -- fetch.lua:173-186
+0001    UGET     3   0      ; signing
+0002    TGETS    3   3   0  ; "signature_url"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    UGET     4   1      ; fetch
+0006    TGETS    4   4   1  ; "fetch_url_at_temp_dir"
+0007    MOV      5   3
+0008    MOV      6   2
+0009    CALL     4   4   3
+0010    IST          4
+0011    JMP      7 => 0018
+0012    KPRI     7   0
+0013    KSTR     8   2      ; "Could not fetch signature file for verif"~
+0014    MOV      9   5
+0015    CAT      8   8   9
+0016    MOV      9   6
+0017    RET      7   4
+0018 => UGET     7   0      ; signing
+0019    TGETS    7   7   3  ; "verify_signature"
+0020    MOV      8   1
+0021    MOV      9   4
+0022    CALL     7   3   3
+0023    IST          7
+0024    JMP      9 => 0030
+0025    KPRI     9   0
+0026    KSTR    10   4      ; "Failed signature verification: "
+0027    MOV     11   8
+0028    CAT     10  10  11
+0029    RET      9   3
+0030 => UGET     9   2      ; fs
+0031    TGETS    9   9   5  ; "absolute_name"
+0032    MOV     10   4
+0033    CALLT    9   2
+
+-- BYTECODE -- fetch.lua:197-249
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISEQS    4   2      ; "string"
+0006    JMP      4 => 0009
+0007    KPRI     4   1
+0008    JMP      5 => 0010
+0009 => KPRI     4   2
+0010 => CALL     3   1   2
+0011    GGET     3   0      ; "assert"
+0012    GGET     4   1      ; "type"
+0013    MOV      5   1
+0014    CALL     4   2   2
+0015    ISEQS    4   2      ; "string"
+0016    JMP      4 => 0021
+0017    NOT      4   1
+0018    JMP      5 => 0022
+0019    KPRI     4   1
+0020    JMP      5 => 0022
+0021 => KPRI     4   2
+0022 => CALL     3   1   2
+0023    UGET     3   0      ; dir
+0024    TGETS    3   3   3  ; "base_name"
+0025    MOV      4   0
+0026    CALL     3   2   2
+0027    MOV      4   3
+0028    TGETS    3   3   4  ; "match"
+0029    KSTR     5   5      ; "(.*)%.[^.]*%.rock"
+0030    CALL     3   2   3
+0031    KSTR     4   6      ; "luarocks-rock-"
+0032    MOV      5   3
+0033    CAT      4   4   5
+0034    UGET     5   1      ; fetch
+0035    TGETS    5   5   7  ; "fetch_url_at_temp_dir"
+0036    MOV      6   0
+0037    MOV      7   4
+0038    KPRI     8   0
+0039    KPRI     9   2
+0040    CALL     5   4   5
+0041    IST          5
+0042    JMP      8 => 0049
+0043    KPRI     8   0
+0044    KSTR     9   8      ; "Could not fetch rock file: "
+0045    MOV     10   6
+0046    CAT      9   9  10
+0047    MOV     10   7
+0048    RET      8   4
+0049 => KPRI     8   0
+0050    ISF          2
+0051    JMP      9 => 0064
+0052    UGET     9   2      ; fetch_and_verify_signature_for
+0053    MOV     10   0
+0054    MOV     11   5
+0055    MOV     12   4
+0056    CALL     9   3   4
+0057    MOV      6  10
+0058    MOV      8   9
+0059    ISF          6
+0060    JMP      9 => 0064
+0061    KPRI     9   0
+0062    MOV     10   6
+0063    RET      9   3
+0064 => UGET     9   3      ; fs
+0065    TGETS    9   9   9  ; "absolute_name"
+0066    MOV     10   5
+0067    CALL     9   2   2
+0068    MOV      5   9
+0069    KPRI     9   0
+0070    ISF          1
+0071    JMP     10 => 0085
+0072    MOV      9   1
+0073    UGET    10   3      ; fs
+0074    TGETS   10  10  10  ; "make_dir"
+0075    MOV     11   9
+0076    CALL    10   3   2
+0077    IST         10
+0078    JMP     12 => 0098
+0079    KPRI    12   0
+0080    KSTR    13  11      ; "Failed unpacking rock file: "
+0081    MOV     14  11
+0082    CAT     13  13  14
+0083    RET     12   3
+0084    JMP     10 => 0098
+0085 => UGET    10   3      ; fs
+0086    TGETS   10  10  12  ; "make_temp_dir"
+0087    MOV     11   3
+0088    CALL    10   3   2
+0089    MOV      6  11
+0090    MOV      9  10
+0091    IST          9
+0092    JMP     10 => 0098
+0093    KPRI    10   0
+0094    KSTR    11  13      ; "Failed creating temporary dir: "
+0095    MOV     12   6
+0096    CAT     11  11  12
+0097    RET     10   3
+0098 => IST          1
+0099    JMP     10 => 0106
+0100    UGET    10   4      ; util
+0101    TGETS   10  10  14  ; "schedule_function"
+0102    UGET    11   3      ; fs
+0103    TGETS   11  11  15  ; "delete"
+0104    MOV     12   9
+0105    CALL    10   1   3
+0106 => UGET    10   3      ; fs
+0107    TGETS   10  10  16  ; "change_dir"
+0108    MOV     11   9
+0109    CALL    10   3   2
+0110    IST         10
+0111    JMP     12 => 0115
+0112    KPRI    12   0
+0113    MOV     13  11
+0114    RET     12   3
+0115 => UGET    12   3      ; fs
+0116    TGETS   12  12  17  ; "unzip"
+0117    MOV     13   5
+0118    CALL    12   3   2
+0119    MOV     11  13
+0120    MOV     10  12
+0121    IST         10
+0122    JMP     12 => 0130
+0123    KPRI    12   0
+0124    KSTR    13  11      ; "Failed unpacking rock file: "
+0125    MOV     14   5
+0126    KSTR    15  18      ; ": "
+0127    MOV     16  11
+0128    CAT     13  13  16
+0129    RET     12   3
+0130 => ISF          8
+0131    JMP     12 => 0144
+0132    UGET    12   3      ; fs
+0133    TGETS   12  12  19  ; "copy"
+0134    MOV     13   8
+0135    KSTR    14  20      ; "."
+0136    CALL    12   3   3
+0137    MOV     11  13
+0138    MOV     10  12
+0139    IST         10
+0140    JMP     12 => 0144
+0141    KPRI    12   0
+0142    KSTR    13  21      ; "Failed copying signature file"
+0143    RET     12   3
+0144 => UGET    12   3      ; fs
+0145    TGETS   12  12  22  ; "pop_dir"
+0146    CALL    12   1   1
+0147    RET1     9   2
+
+-- BYTECODE -- fetch.lua:258-285
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "string"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => CALL     2   1   2
+0011    UGET     2   0      ; fs
+0012    TGETS    2   2   3  ; "absolute_name"
+0013    MOV      3   0
+0014    CALL     2   2   2
+0015    UGET     3   1      ; dir
+0016    TGETS    3   3   4  ; "base_name"
+0017    MOV      4   2
+0018    CALL     3   2   2
+0019    ISEQS    3   5      ; "rockspec"
+0020    JMP      4 => 0030
+0021    MOV      5   3
+0022    TGETS    4   3   6  ; "match"
+0023    KSTR     6   7      ; "(.*)%-[^-]*%-[0-9]*"
+0024    CALL     4   2   3
+0025    IST          4
+0026    JMP      4 => 0030
+0027    KPRI     4   0
+0028    KSTR     5   8      ; "Expected filename in format 'name-versio"~
+0029    RET      4   3
+0030 => UGET     4   2      ; persist
+0031    TGETS    4   4   9  ; "load_into_table"
+0032    MOV      5   2
+0033    CALL     4   3   2
+0034    IST          4
+0035    JMP      6 => 0044
+0036    KPRI     6   0
+0037    KSTR     7  10      ; "Could not load rockspec file "
+0038    MOV      8   2
+0039    KSTR     9  11      ; " ("
+0040    MOV     10   5
+0041    KSTR    11  12      ; ")"
+0042    CAT      7   7  11
+0043    RET      6   3
+0044 => UGET     6   3      ; rockspecs
+0045    TGETS    6   6  13  ; "from_persisted_table"
+0046    MOV      7   2
+0047    MOV      8   4
+0048    MOV      9   5
+0049    MOV     10   1
+0050    CALL     6   3   5
+0051    IST          6
+0052    JMP      8 => 0059
+0053    KPRI     8   0
+0054    MOV      9   2
+0055    KSTR    10  14      ; ": "
+0056    MOV     11   7
+0057    CAT      9   9  11
+0058    RET      8   3
+0059 => TGETS    8   6  15  ; "package"
+0060    MOV      9   8
+0061    TGETS    8   8  16  ; "lower"
+0062    CALL     8   2   2
+0063    KSTR     9  17      ; "-"
+0064    TGETS   10   6  18  ; "version"
+0065    CAT      8   8  10
+0066    ISEQS    3   5      ; "rockspec"
+0067    JMP      9 => 0081
+0068    MOV      9   8
+0069    KSTR    10  19      ; ".rockspec"
+0070    CAT      9   9  10
+0071    ISEQV    3   9
+0072    JMP      9 => 0081
+0073    KPRI     9   0
+0074    KSTR    10  20      ; "Inconsistency between rockspec filename "~
+0075    MOV     11   3
+0076    KSTR    12  21      ; ") and its contents ("
+0077    MOV     13   8
+0078    KSTR    14  22      ; ".rockspec)."
+0079    CAT     10  10  14
+0080    RET      9   3
+0081 => RET1     6   2
+
+-- BYTECODE -- fetch.lua:297-333
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISEQS    4   2      ; "string"
+0006    JMP      4 => 0009
+0007    KPRI     4   1
+0008    JMP      5 => 0010
+0009 => KPRI     4   2
+0010 => CALL     3   1   2
+0011    KPRI     3   0
+0012    UGET     4   0      ; dir
+0013    TGETS    4   4   3  ; "base_name"
+0014    MOV      5   0
+0015    CALL     4   2   2
+0016    ISNES    4   4      ; "rockspec"
+0017    JMP      5 => 0020
+0018    KSTR     3   4      ; "rockspec"
+0019    JMP      5 => 0033
+0020 => MOV      6   4
+0021    TGETS    5   4   5  ; "match"
+0022    KSTR     7   6      ; "(.*)%.rockspec"
+0023    CALL     5   2   3
+0024    MOV      3   5
+0025    IST          3
+0026    JMP      5 => 0033
+0027    KPRI     5   0
+0028    KSTR     6   7      ; "Filename '"
+0029    MOV      7   0
+0030    KSTR     8   8      ; "' does not look like a rockspec."
+0031    CAT      6   6   8
+0032    RET      5   3
+0033 => KSTR     5   9      ; "luarocks-rockspec-"
+0034    MOV      6   3
+0035    CAT      5   5   6
+0036    KNIL     6   8
+0037    ISF          1
+0038    JMP      9 => 0058
+0039    UGET     9   1      ; fs
+0040    TGETS    9   9  10  ; "change_dir"
+0041    MOV     10   1
+0042    CALL     9   3   2
+0043    IST          9
+0044    JMP     11 => 0048
+0045    KPRI    11   0
+0046    MOV     12  10
+0047    RET     11   3
+0048 => UGET    11   2      ; fetch
+0049    TGETS   11  11  11  ; "fetch_url"
+0050    MOV     12   0
+0051    CALL    11   3   2
+0052    MOV     10  12
+0053    MOV      6  11
+0054    UGET    11   1      ; fs
+0055    TGETS   11  11  12  ; "pop_dir"
+0056    CALL    11   1   1
+0057    JMP      9 => 0068
+0058 => UGET     9   2      ; fetch
+0059    TGETS    9   9  13  ; "fetch_url_at_temp_dir"
+0060    MOV     10   0
+0061    MOV     11   5
+0062    KPRI    12   0
+0063    KPRI    13   2
+0064    CALL     9   4   5
+0065    MOV      8  11
+0066    MOV      7  10
+0067    MOV      6   9
+0068 => IST          6
+0069    JMP      9 => 0074
+0070    KPRI     9   0
+0071    MOV     10   7
+0072    MOV     11   8
+0073    RET      9   4
+0074 => ISF          2
+0075    JMP      9 => 0086
+0076    UGET     9   3      ; fetch_and_verify_signature_for
+0077    MOV     10   0
+0078    MOV     11   6
+0079    MOV     12   5
+0080    CALL     9   3   4
+0081    ISF         10
+0082    JMP     11 => 0086
+0083    KPRI    11   0
+0084    MOV     12  10
+0085    RET     11   3
+0086 => UGET     9   2      ; fetch
+0087    TGETS    9   9  14  ; "load_local_rockspec"
+0088    MOV     10   6
+0089    CALLT    9   2
+
+-- BYTECODE -- fetch.lua:344-403
+0001    GGET     3   0      ; "assert"
+0002    MOV      5   0
+0003    TGETS    4   0   1  ; "type"
+0004    CALL     4   2   2
+0005    ISEQS    4   2      ; "rockspec"
+0006    JMP      4 => 0009
+0007    KPRI     4   1
+0008    JMP      5 => 0010
+0009 => KPRI     4   2
+0010 => CALL     3   1   2
+0011    GGET     3   0      ; "assert"
+0012    GGET     4   1      ; "type"
+0013    MOV      5   1
+0014    CALL     4   2   2
+0015    ISEQS    4   3      ; "boolean"
+0016    JMP      4 => 0019
+0017    KPRI     4   1
+0018    JMP      5 => 0020
+0019 => KPRI     4   2
+0020 => CALL     3   1   2
+0021    GGET     3   0      ; "assert"
+0022    GGET     4   1      ; "type"
+0023    MOV      5   2
+0024    CALL     4   2   2
+0025    ISEQS    4   4      ; "string"
+0026    JMP      4 => 0031
+0027    NOT      4   2
+0028    JMP      5 => 0032
+0029    KPRI     4   1
+0030    JMP      5 => 0032
+0031 => KPRI     4   2
+0032 => CALL     3   1   2
+0033    TGETS    3   0   5  ; "source"
+0034    TGETS    3   3   6  ; "url"
+0035    TGETS    4   0   7  ; "name"
+0036    KSTR     5   8      ; "-"
+0037    TGETS    6   0   9  ; "version"
+0038    CAT      4   4   6
+0039    TGETS    5   0   5  ; "source"
+0040    TGETS    5   5  10  ; "file"
+0041    KNIL     6  10
+0042    ISF          2
+0043    JMP     11 => 0069
+0044    UGET    11   0      ; fs
+0045    TGETS   11  11  11  ; "change_dir"
+0046    MOV     12   2
+0047    CALL    11   3   2
+0048    MOV      9  12
+0049    MOV      8  11
+0050    IST          8
+0051    JMP     11 => 0056
+0052    KPRI    11   0
+0053    MOV     12   9
+0054    KSTR    13  12      ; "dest_dir"
+0055    RET     11   4
+0056 => UGET    11   1      ; fetch
+0057    TGETS   11  11  13  ; "fetch_url"
+0058    MOV     12   3
+0059    MOV     13   5
+0060    CALL    11   4   3
+0061    MOV     10  13
+0062    MOV      9  12
+0063    MOV      6  11
+0064    UGET    11   0      ; fs
+0065    TGETS   11  11  14  ; "pop_dir"
+0066    CALL    11   1   1
+0067    MOV      7   2
+0068    JMP     11 => 0080
+0069 => UGET    11   1      ; fetch
+0070    TGETS   11  11  15  ; "fetch_url_at_temp_dir"
+0071    MOV     12   3
+0072    KSTR    13  16      ; "luarocks-source-"
+0073    MOV     14   4
+0074    CAT     13  13  14
+0075    MOV     14   5
+0076    CALL    11   4   4
+0077    MOV     10  13
+0078    MOV      7  12
+0079    MOV      6  11
+0080 => IST          6
+0081    JMP     11 => 0088
+0082    KPRI    11   0
+0083    ISTC    12   9
+0084    JMP     12 => 0086
+0085    MOV     12   7
+0086 => MOV     13  10
+0087    RET     11   4
+0088 => TGETS   11   0   5  ; "source"
+0089    TGETS   11  11  17  ; "md5"
+0090    ISF         11
+0091    JMP     12 => 0107
+0092    UGET    11   0      ; fs
+0093    TGETS   11  11  18  ; "check_md5"
+0094    MOV     12   6
+0095    TGETS   13   0   5  ; "source"
+0096    TGETS   13  13  17  ; "md5"
+0097    CALL    11   2   3
+0098    IST         11
+0099    JMP     11 => 0107
+0100    KPRI    11   0
+0101    KSTR    12  19      ; "MD5 check for "
+0102    MOV     13   5
+0103    KSTR    14  20      ; " has failed."
+0104    CAT     12  12  14
+0105    KSTR    13  17      ; "md5"
+0106    RET     11   4
+0107 => ISF          1
+0108    JMP     11 => 0185
+0109    UGET    11   0      ; fs
+0110    TGETS   11  11  11  ; "change_dir"
+0111    MOV     12   7
+0112    CALL    11   3   2
+0113    IST         11
+0114    JMP     13 => 0118
+0115    KPRI    13   0
+0116    MOV     14  12
+0117    RET     13   3
+0118 => UGET    13   0      ; fs
+0119    TGETS   13  13  21  ; "unpack_archive"
+0120    TGETS   14   0   5  ; "source"
+0121    TGETS   14  14  10  ; "file"
+0122    CALL    13   3   2
+0123    MOV     12  14
+0124    MOV     11  13
+0125    IST         11
+0126    JMP     13 => 0130
+0127    KPRI    13   0
+0128    MOV     14  12
+0129    RET     13   3
+0130 => UGET    13   0      ; fs
+0131    TGETS   13  13  22  ; "exists"
+0132    TGETS   14   0   5  ; "source"
+0133    TGETS   14  14  23  ; "dir"
+0134    CALL    13   2   2
+0135    IST         13
+0136    JMP     13 => 0182
+0137    KSHORT  13   0
+0138    KPRI    14   0
+0139    TGETS   15   0   5  ; "source"
+0140    TGETS   15  15  24  ; "dir_set"
+0141    IST         15
+0142    JMP     15 => 0163
+0143    MOV     16   0
+0144    TGETS   15   0  25  ; "format_is_at_least"
+0145    KSTR    17  26      ; "3.0"
+0146    CALL    15   2   3
+0147    ISF         15
+0148    JMP     16 => 0163
+0149    UGET    15   0      ; fs
+0150    TGETS   15  15  23  ; "dir"
+0151    CALL    15   4   1
+0152    JMP     18 => 0161
+0153 => ADDVN   13  13   0  ; 1
+0154    UGET    19   0      ; fs
+0155    TGETS   19  19  27  ; "is_dir"
+0156    MOV     20  18
+0157    CALL    19   2   2
+0158    ISF         19
+0159    JMP     20 => 0161
+0160    MOV     14  18
+0161 => ITERC   18   2   3
+0162    ITERL   18 => 0153
+0163 => ISNEN   13   0      ; 1
+0164    JMP     15 => 0170
+0165    ISF         14
+0166    JMP     15 => 0170
+0167    TGETS   15   0   5  ; "source"
+0168    TSETS   14  15  23  ; "dir"
+0169    JMP     15 => 0182
+0170 => KPRI    15   0
+0171    KSTR    16  28      ; "Directory "
+0172    TGETS   17   0   5  ; "source"
+0173    TGETS   17  17  23  ; "dir"
+0174    KSTR    18  29      ; " not found inside archive "
+0175    TGETS   19   0   5  ; "source"
+0176    TGETS   19  19  10  ; "file"
+0177    CAT     16  16  19
+0178    KSTR    17  30      ; "source.dir"
+0179    MOV     18   6
+0180    MOV     19   7
+0181    RET     15   6
+0182 => UGET    13   0      ; fs
+0183    TGETS   13  13  14  ; "pop_dir"
+0184    CALL    13   1   1
+0185 => MOV     11   6
+0186    MOV     12   7
+0187    RET     11   3
+
+-- BYTECODE -- fetch.lua:414-440
+0001    GGET     3   0      ; "assert"
+0002    MOV      5   0
+0003    TGETS    4   0   1  ; "type"
+0004    CALL     4   2   2
+0005    ISEQS    4   2      ; "rockspec"
+0006    JMP      4 => 0009
+0007    KPRI     4   1
+0008    JMP      5 => 0010
+0009 => KPRI     4   2
+0010 => CALL     3   1   2
+0011    GGET     3   0      ; "assert"
+0012    GGET     4   1      ; "type"
+0013    MOV      5   1
+0014    CALL     4   2   2
+0015    ISEQS    4   3      ; "boolean"
+0016    JMP      4 => 0019
+0017    KPRI     4   1
+0018    JMP      5 => 0020
+0019 => KPRI     4   2
+0020 => CALL     3   1   2
+0021    GGET     3   0      ; "assert"
+0022    GGET     4   1      ; "type"
+0023    MOV      5   2
+0024    CALL     4   2   2
+0025    ISEQS    4   4      ; "string"
+0026    JMP      4 => 0031
+0027    NOT      4   2
+0028    JMP      5 => 0032
+0029    KPRI     4   1
+0030    JMP      5 => 0032
+0031 => KPRI     4   2
+0032 => CALL     3   1   2
+0033    TGETS    3   0   5  ; "source"
+0034    TGETS    3   3   6  ; "protocol"
+0035    KNIL     4   5
+0036    UGET     6   0      ; dir
+0037    TGETS    6   6   7  ; "is_basic_protocol"
+0038    MOV      7   3
+0039    CALL     6   2   2
+0040    ISF          6
+0041    JMP      7 => 0044
+0042    UGET     5   1      ; fetch
+0043    JMP      6 => 0063
+0044 => GGET     6   8      ; "pcall"
+0045    GGET     7   9      ; "require"
+0046    KSTR     8  10      ; "luarocks.fetch."
+0047    MOV     10   3
+0048    TGETS    9   3  11  ; "gsub"
+0049    KSTR    11  12      ; "[+-]"
+0050    KSTR    12  13      ; "_"
+0051    CALL     9   2   4
+0052    CAT      8   8   9
+0053    CALL     6   3   3
+0054    MOV      5   7
+0055    MOV      4   6
+0056    IST          4
+0057    JMP      6 => 0063
+0058    KPRI     6   0
+0059    KSTR     7  14      ; "Unknown protocol "
+0060    MOV      8   3
+0061    CAT      7   7   8
+0062    RET      6   3
+0063 => UGET     6   2      ; cfg
+0064    TGETS    6   6  15  ; "only_sources_from"
+0065    ISF          6
+0066    JMP      7 => 0110
+0067    TGETS    6   0   5  ; "source"
+0068    TGETS    6   6  16  ; "pathname"
+0069    ISF          6
+0070    JMP      7 => 0110
+0071    TGETS    6   0   5  ; "source"
+0072    TGETS    6   6  16  ; "pathname"
+0073    LEN      6   6
+0074    KSHORT   7   0
+0075    ISGE     7   6
+0076    JMP      6 => 0110
+0077    UGET     6   2      ; cfg
+0078    TGETS    6   6  15  ; "only_sources_from"
+0079    LEN      6   6
+0080    ISNEN    6   0      ; 0
+0081    JMP      6 => 0090
+0082    KPRI     6   0
+0083    KSTR     7  17      ; "Can't download "
+0084    TGETS    8   0   5  ; "source"
+0085    TGETS    8   8  18  ; "url"
+0086    KSTR     9  19      ; " -- download from remote servers disable"~
+0087    CAT      7   7   9
+0088    RET      6   3
+0089    JMP      6 => 0110
+0090 => TGETS    6   0   5  ; "source"
+0091    TGETS    6   6  16  ; "pathname"
+0092    MOV      7   6
+0093    TGETS    6   6  20  ; "find"
+0094    UGET     8   2      ; cfg
+0095    TGETS    8   8  15  ; "only_sources_from"
+0096    KSHORT   9   1
+0097    KPRI    10   2
+0098    CALL     6   2   5
+0099    ISEQN    6   1      ; 1
+0100    JMP      6 => 0110
+0101    KPRI     6   0
+0102    KSTR     7  17      ; "Can't download "
+0103    TGETS    8   0   5  ; "source"
+0104    TGETS    8   8  18  ; "url"
+0105    KSTR     9  21      ; " -- only downloading from "
+0106    UGET    10   2      ; cfg
+0107    TGETS   10  10  15  ; "only_sources_from"
+0108    CAT      7   7  10
+0109    RET      6   3
+0110 => TGETS    6   5  22  ; "get_sources"
+0111    MOV      7   0
+0112    MOV      8   1
+0113    MOV      9   2
+0114    CALLT    6   4
+
+-- BYTECODE -- fetch.lua:0-443
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.fs"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.dir"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.rockspecs"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.signing"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.persist"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.util"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   7      ; "luarocks.core.cfg"
+0022    CALL     7   2   2
+0023    FNEW     8   9      ; fetch.lua:13
+0024    TSETS    8   0   8  ; "fetch_caching"
+0025    FNEW     8  11      ; fetch.lua:61
+0026    TSETS    8   0  10  ; "fetch_url"
+0027    FNEW     8  13      ; fetch.lua:90
+0028    TSETS    8   0  12  ; "fetch_url_at_temp_dir"
+0029    FNEW     8  15      ; fetch.lua:147
+0030    TSETS    8   0  14  ; "find_base_dir"
+0031    FNEW     8  16      ; fetch.lua:173
+0032    FNEW     9  18      ; fetch.lua:197
+0033    TSETS    9   0  17  ; "fetch_and_unpack_rock"
+0034    FNEW     9  20      ; fetch.lua:258
+0035    TSETS    9   0  19  ; "load_local_rockspec"
+0036    FNEW     9  22      ; fetch.lua:297
+0037    TSETS    9   0  21  ; "load_rockspec"
+0038    FNEW     9  24      ; fetch.lua:344
+0039    TSETS    9   0  23  ; "get_sources"
+0040    FNEW     9  26      ; fetch.lua:414
+0041    TSETS    9   0  25  ; "fetch_sources"
+0042    UCLO     0 => 0043
+0043 => RET1     0   2
+

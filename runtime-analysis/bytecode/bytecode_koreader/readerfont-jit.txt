@@ -1,0 +1,1484 @@
+-- BYTECODE -- readerfont.lua:64-76
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "readSetting"
+0004    KSTR     2   2      ; "cre_font"
+0005    CALL     0   2   3
+0006    IST          0
+0007    JMP      1 => 0012
+0008    UGET     0   0      ; self
+0009    TGETS    0   0   3  ; "ui"
+0010    TGETS    0   0   4  ; "document"
+0011    TGETS    0   0   5  ; "default_font"
+0012 => GGET     1   0      ; "G_reader_settings"
+0013    MOV      2   1
+0014    TGETS    1   1   1  ; "readSetting"
+0015    KSTR     3   6      ; "fallback_font"
+0016    CALL     1   2   3
+0017    IST          1
+0018    JMP      2 => 0024
+0019    UGET     1   0      ; self
+0020    TGETS    1   1   3  ; "ui"
+0021    TGETS    1   1   4  ; "document"
+0022    TGETS    1   1   7  ; "fallback_fonts"
+0023    TGETB    1   1   1
+0024 => UGET     2   1      ; v
+0025    UGET     3   1      ; v
+0026    ISNEV    3   0
+0027    JMP      3 => 0031
+0028    MOV      3   2
+0029    KSTR     4   8      ; "   ★"
+0030    CAT      2   3   4
+0031 => UGET     3   1      ; v
+0032    ISNEV    3   1
+0033    JMP      3 => 0037
+0034    MOV      3   2
+0035    KSTR     4   9      ; "   �"
+0036    CAT      2   3   4
+0037 => RET1     2   2
+
+-- BYTECODE -- readerfont.lua:77-79
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setFont"
+0004    UGET     2   1      ; v
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readerfont.lua:80-82
+0001    UGET     1   0      ; self
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "makeDefault"
+0004    UGET     3   1      ; v
+0005    MOV      4   0
+0006    CALL     1   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readerfont.lua:83-85
+0001    UGET     0   0      ; v
+0002    UGET     1   1      ; self
+0003    TGETS    1   1   0  ; "font_face"
+0004    ISEQV    0   1
+0005    JMP      0 => 0008
+0006    KPRI     0   1
+0007    JMP      1 => 0009
+0008 => KPRI     0   2
+0009 => RET1     0   2
+
+-- BYTECODE -- readerfont.lua:29-90
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "hasKeyboard"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0045
+0007    TDUP     1   4
+0008    TDUP     2   3
+0009    TDUP     3   2
+0010    TSETB    3   2   1
+0011    TSETS    2   1   5  ; "ShowFontMenu"
+0012    TDUP     2   9
+0013    TDUP     3   6
+0014    UGET     4   1      ; Input
+0015    TGETS    4   4   7  ; "group"
+0016    TGETS    4   4   8  ; "PgFwd"
+0017    TSETB    4   3   2
+0018    TSETB    3   2   1
+0019    TSETS    2   1  10  ; "IncreaseSize"
+0020    TDUP     2  13
+0021    TDUP     3  11
+0022    UGET     4   1      ; Input
+0023    TGETS    4   4   7  ; "group"
+0024    TGETS    4   4  12  ; "PgBack"
+0025    TSETB    4   3   2
+0026    TSETB    3   2   1
+0027    TSETS    2   1  14  ; "DecreaseSize"
+0028    TDUP     2  16
+0029    TDUP     3  15
+0030    UGET     4   1      ; Input
+0031    TGETS    4   4   7  ; "group"
+0032    TGETS    4   4   8  ; "PgFwd"
+0033    TSETB    4   3   2
+0034    TSETB    3   2   1
+0035    TSETS    2   1  17  ; "IncreaseLineSpace"
+0036    TDUP     2  19
+0037    TDUP     3  18
+0038    UGET     4   1      ; Input
+0039    TGETS    4   4   7  ; "group"
+0040    TGETS    4   4  12  ; "PgBack"
+0041    TSETB    4   3   2
+0042    TSETB    3   2   1
+0043    TSETS    2   1  20  ; "DecreaseLineSpace"
+0044    TSETS    1   0   1  ; "key_events"
+0045 => TNEW     1   0
+0046    TSETS    1   0  21  ; "face_table"
+0047    GGET     1  22      ; "table"
+0048    TGETS    1   1  23  ; "insert"
+0049    TGETS    2   0  21  ; "face_table"
+0050    TDUP     3  25
+0051    UGET     4   2      ; _
+0052    KSTR     5  24      ; "Font settings"
+0053    CALL     4   2   2
+0054    TSETS    4   3  26  ; "text"
+0055    MOV      5   0
+0056    TGETS    4   0  27  ; "getFontSettingsTable"
+0057    CALL     4   2   2
+0058    TSETS    4   3  28  ; "sub_item_table"
+0059    CALL     1   1   3
+0060    GGET     1  29      ; "cre"
+0061    TGETS    1   1  30  ; "getFontFaces"
+0062    CALL     1   2   1
+0063    GGET     2  31      ; "ipairs"
+0064    MOV      3   1
+0065    CALL     2   4   2
+0066    JMP      5 => 0084
+0067 => GGET     7  22      ; "table"
+0068    TGETS    7   7  23  ; "insert"
+0069    TGETS    8   0  21  ; "face_table"
+0070    TDUP     9  33
+0071    FNEW    10  32      ; readerfont.lua:64
+0072    TSETS   10   9  34  ; "text_func"
+0073    FNEW    10  35      ; readerfont.lua:77
+0074    TSETS   10   9  36  ; "callback"
+0075    FNEW    10  37      ; readerfont.lua:80
+0076    TSETS   10   9  38  ; "hold_callback"
+0077    FNEW    10  39      ; readerfont.lua:83
+0078    TSETS   10   9  40  ; "checked_func"
+0079    CALL     7   1   3
+0080    TDUP     7  41
+0081    TSETS    6   7  26  ; "text"
+0082    TSETV    7   1   5
+0083    UCLO     5 => 0084
+0084 => ITERC    5   3   3
+0085    ITERL    5 => 0067
+0086    TGETS    2   0  42  ; "ui"
+0087    TGETS    2   2  43  ; "menu"
+0088    MOV      3   2
+0089    TGETS    2   2  44  ; "registerToMainMenu"
+0090    MOV      4   0
+0091    CALL     2   1   3
+0092    UCLO     0 => 0093
+0093 => RET0     0   1
+
+-- BYTECODE -- readerfont.lua:92-94
+0001    TSETS    1   0   0  ; "dimen"
+0002    RET0     0   1
+
+-- BYTECODE -- readerfont.lua:146-148
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "handleEvent"
+0005    UGET     2   1      ; Event
+0006    MOV      3   2
+0007    TGETS    2   2   2  ; "new"
+0008    KSTR     4   3      ; "UpdatePos"
+0009    CALL     2   0   3
+0010    CALLM    0   1   1
+0011    RET0     0   1
+
+-- BYTECODE -- readerfont.lua:96-149
+0001    MOV      3   1
+0002    TGETS    2   1   1  ; "readSetting"
+0003    KSTR     4   0      ; "font_face"
+0004    CALL     2   2   3
+0005    IST          2
+0006    JMP      3 => 0017
+0007    GGET     2   2      ; "G_reader_settings"
+0008    MOV      3   2
+0009    TGETS    2   2   1  ; "readSetting"
+0010    KSTR     4   3      ; "cre_font"
+0011    CALL     2   2   3
+0012    IST          2
+0013    JMP      3 => 0017
+0014    TGETS    2   0   4  ; "ui"
+0015    TGETS    2   2   5  ; "document"
+0016    TGETS    2   2   6  ; "default_font"
+0017 => TSETS    2   0   0  ; "font_face"
+0018    TGETS    2   0   4  ; "ui"
+0019    TGETS    2   2   5  ; "document"
+0020    MOV      3   2
+0021    TGETS    2   2   7  ; "setFontFace"
+0022    TGETS    4   0   0  ; "font_face"
+0023    CALL     2   1   3
+0024    MOV      3   1
+0025    TGETS    2   1   1  ; "readSetting"
+0026    KSTR     4   8      ; "header_font_face"
+0027    CALL     2   2   3
+0028    IST          2
+0029    JMP      3 => 0040
+0030    GGET     2   2      ; "G_reader_settings"
+0031    MOV      3   2
+0032    TGETS    2   2   1  ; "readSetting"
+0033    KSTR     4   9      ; "header_font"
+0034    CALL     2   2   3
+0035    IST          2
+0036    JMP      3 => 0040
+0037    TGETS    2   0   4  ; "ui"
+0038    TGETS    2   2   5  ; "document"
+0039    TGETS    2   2   9  ; "header_font"
+0040 => TSETS    2   0   8  ; "header_font_face"
+0041    TGETS    2   0   4  ; "ui"
+0042    TGETS    2   2   5  ; "document"
+0043    MOV      3   2
+0044    TGETS    2   2  10  ; "setHeaderFont"
+0045    TGETS    4   0   8  ; "header_font_face"
+0046    CALL     2   1   3
+0047    MOV      3   1
+0048    TGETS    2   1   1  ; "readSetting"
+0049    KSTR     4  11      ; "font_size"
+0050    CALL     2   2   3
+0051    IST          2
+0052    JMP      3 => 0064
+0053    GGET     2   2      ; "G_reader_settings"
+0054    MOV      3   2
+0055    TGETS    2   2   1  ; "readSetting"
+0056    KSTR     4  12      ; "copt_font_size"
+0057    CALL     2   2   3
+0058    IST          2
+0059    JMP      3 => 0064
+0060    GGET     2  13      ; "DCREREADER_CONFIG_DEFAULT_FONT_SIZE"
+0061    IST          2
+0062    JMP      3 => 0064
+0063    KSHORT   2  22
+0064 => TSETS    2   0  11  ; "font_size"
+0065    TGETS    2   0   4  ; "ui"
+0066    TGETS    2   2   5  ; "document"
+0067    MOV      3   2
+0068    TGETS    2   2  14  ; "setFontSize"
+0069    UGET     4   0      ; Screen
+0070    MOV      5   4
+0071    TGETS    4   4  15  ; "scaleBySize"
+0072    TGETS    6   0  11  ; "font_size"
+0073    CALL     4   0   3
+0074    CALLM    2   1   1
+0075    MOV      3   1
+0076    TGETS    2   1   1  ; "readSetting"
+0077    KSTR     4  16      ; "font_embolden"
+0078    CALL     2   2   3
+0079    IST          2
+0080    JMP      3 => 0089
+0081    GGET     2   2      ; "G_reader_settings"
+0082    MOV      3   2
+0083    TGETS    2   2   1  ; "readSetting"
+0084    KSTR     4  17      ; "copt_font_weight"
+0085    CALL     2   2   3
+0086    IST          2
+0087    JMP      3 => 0089
+0088    KSHORT   2   0
+0089 => TSETS    2   0  16  ; "font_embolden"
+0090    TGETS    2   0   4  ; "ui"
+0091    TGETS    2   2   5  ; "document"
+0092    MOV      3   2
+0093    TGETS    2   2  18  ; "toggleFontBolder"
+0094    TGETS    4   0  16  ; "font_embolden"
+0095    CALL     2   1   3
+0096    MOV      3   1
+0097    TGETS    2   1   1  ; "readSetting"
+0098    KSTR     4  19      ; "font_hinting"
+0099    CALL     2   2   3
+0100    IST          2
+0101    JMP      3 => 0110
+0102    GGET     2   2      ; "G_reader_settings"
+0103    MOV      3   2
+0104    TGETS    2   2   1  ; "readSetting"
+0105    KSTR     4  20      ; "copt_font_hinting"
+0106    CALL     2   2   3
+0107    IST          2
+0108    JMP      3 => 0110
+0109    KSHORT   2   2
+0110 => TSETS    2   0  19  ; "font_hinting"
+0111    TGETS    2   0   4  ; "ui"
+0112    TGETS    2   2   5  ; "document"
+0113    MOV      3   2
+0114    TGETS    2   2  21  ; "setFontHinting"
+0115    TGETS    4   0  19  ; "font_hinting"
+0116    CALL     2   1   3
+0117    MOV      3   1
+0118    TGETS    2   1   1  ; "readSetting"
+0119    KSTR     4  22      ; "font_kerning"
+0120    CALL     2   2   3
+0121    IST          2
+0122    JMP      3 => 0131
+0123    GGET     2   2      ; "G_reader_settings"
+0124    MOV      3   2
+0125    TGETS    2   2   1  ; "readSetting"
+0126    KSTR     4  23      ; "copt_font_kerning"
+0127    CALL     2   2   3
+0128    IST          2
+0129    JMP      3 => 0131
+0130    KSHORT   2   3
+0131 => TSETS    2   0  22  ; "font_kerning"
+0132    TGETS    2   0   4  ; "ui"
+0133    TGETS    2   2   5  ; "document"
+0134    MOV      3   2
+0135    TGETS    2   2  24  ; "setFontKerning"
+0136    TGETS    4   0  22  ; "font_kerning"
+0137    CALL     2   1   3
+0138    MOV      3   1
+0139    TGETS    2   1   1  ; "readSetting"
+0140    KSTR     4  25      ; "word_spacing"
+0141    CALL     2   2   3
+0142    IST          2
+0143    JMP      3 => 0152
+0144    GGET     2   2      ; "G_reader_settings"
+0145    MOV      3   2
+0146    TGETS    2   2   1  ; "readSetting"
+0147    KSTR     4  26      ; "copt_word_spacing"
+0148    CALL     2   2   3
+0149    IST          2
+0150    JMP      3 => 0152
+0151    TDUP     2  27
+0152 => TSETS    2   0  25  ; "word_spacing"
+0153    TGETS    2   0   4  ; "ui"
+0154    TGETS    2   2   5  ; "document"
+0155    MOV      3   2
+0156    TGETS    2   2  28  ; "setWordSpacing"
+0157    TGETS    4   0  25  ; "word_spacing"
+0158    CALL     2   1   3
+0159    MOV      3   1
+0160    TGETS    2   1   1  ; "readSetting"
+0161    KSTR     4  29      ; "word_expansion"
+0162    CALL     2   2   3
+0163    IST          2
+0164    JMP      3 => 0173
+0165    GGET     2   2      ; "G_reader_settings"
+0166    MOV      3   2
+0167    TGETS    2   2   1  ; "readSetting"
+0168    KSTR     4  30      ; "copt_word_expansion"
+0169    CALL     2   2   3
+0170    IST          2
+0171    JMP      3 => 0173
+0172    KSHORT   2   0
+0173 => TSETS    2   0  29  ; "word_expansion"
+0174    TGETS    2   0   4  ; "ui"
+0175    TGETS    2   2   5  ; "document"
+0176    MOV      3   2
+0177    TGETS    2   2  31  ; "setWordExpansion"
+0178    TGETS    4   0  29  ; "word_expansion"
+0179    CALL     2   1   3
+0180    MOV      3   1
+0181    TGETS    2   1   1  ; "readSetting"
+0182    KSTR     4  32      ; "line_space_percent"
+0183    CALL     2   2   3
+0184    IST          2
+0185    JMP      3 => 0194
+0186    GGET     2   2      ; "G_reader_settings"
+0187    MOV      3   2
+0188    TGETS    2   2   1  ; "readSetting"
+0189    KSTR     4  33      ; "copt_line_spacing"
+0190    CALL     2   2   3
+0191    IST          2
+0192    JMP      3 => 0194
+0193    GGET     2  34      ; "DCREREADER_CONFIG_LINE_SPACE_PERCENT_MED"~
+0194 => TSETS    2   0  32  ; "line_space_percent"
+0195    TGETS    2   0   4  ; "ui"
+0196    TGETS    2   2   5  ; "document"
+0197    MOV      3   2
+0198    TGETS    2   2  35  ; "setInterlineSpacePercent"
+0199    TGETS    4   0  32  ; "line_space_percent"
+0200    CALL     2   1   3
+0201    MOV      3   1
+0202    TGETS    2   1   1  ; "readSetting"
+0203    KSTR     4  36      ; "gamma_index"
+0204    CALL     2   2   3
+0205    IST          2
+0206    JMP      3 => 0218
+0207    GGET     2   2      ; "G_reader_settings"
+0208    MOV      3   2
+0209    TGETS    2   2   1  ; "readSetting"
+0210    KSTR     4  37      ; "copt_font_gamma"
+0211    CALL     2   2   3
+0212    IST          2
+0213    JMP      3 => 0218
+0214    GGET     2  38      ; "DCREREADER_CONFIG_DEFAULT_FONT_GAMMA"
+0215    IST          2
+0216    JMP      3 => 0218
+0217    KSHORT   2  15
+0218 => TSETS    2   0  36  ; "gamma_index"
+0219    TGETS    2   0   4  ; "ui"
+0220    TGETS    2   2   5  ; "document"
+0221    MOV      3   2
+0222    TGETS    2   2  39  ; "setGammaIndex"
+0223    TGETS    4   0  36  ; "gamma_index"
+0224    CALL     2   1   3
+0225    GGET     2  40      ; "table"
+0226    TGETS    2   2  41  ; "insert"
+0227    TGETS    3   0   4  ; "ui"
+0228    TGETS    3   3  42  ; "postInitCallback"
+0229    FNEW     4  43      ; readerfont.lua:146
+0230    CALL     2   1   3
+0231    UCLO     0 => 0232
+0232 => RET0     0   1
+
+-- BYTECODE -- readerfont.lua:166-168
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; menu_container
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readerfont.lua:151-176
+0001    UGET     1   0      ; Menu
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "new"
+0004    TDUP     3   2
+0005    TGETS    4   0   1  ; "font_menu_title"
+0006    TSETS    4   3   3  ; "title"
+0007    TGETS    4   0   4  ; "face_table"
+0008    TSETS    4   3   5  ; "item_table"
+0009    UGET     4   1      ; Screen
+0010    MOV      5   4
+0011    TGETS    4   4   6  ; "getWidth"
+0012    CALL     4   2   2
+0013    SUBVN    4   4   0  ; 100
+0014    TSETS    4   3   7  ; "width"
+0015    UGET     4   1      ; Screen
+0016    MOV      5   4
+0017    TGETS    4   4   8  ; "getHeight"
+0018    CALL     4   2   2
+0019    DIVVN    4   4   1  ; 2
+0020    TSETS    4   3   9  ; "height"
+0021    CALL     1   2   3
+0022    UGET     2   2      ; CenterContainer
+0023    MOV      3   2
+0024    TGETS    2   2   0  ; "new"
+0025    TDUP     4  11
+0026    TSETB    1   4   1
+0027    UGET     5   1      ; Screen
+0028    MOV      6   5
+0029    TGETS    5   5  10  ; "getSize"
+0030    CALL     5   2   2
+0031    TSETS    5   4  12  ; "dimen"
+0032    CALL     2   2   3
+0033    FNEW     3  14      ; readerfont.lua:166
+0034    TSETS    3   1  13  ; "close_callback"
+0035    TSETS    2   1  15  ; "show_parent"
+0036    UGET     3   3      ; UIManager
+0037    MOV      4   3
+0038    TGETS    3   3  16  ; "show"
+0039    MOV      5   2
+0040    CALL     3   1   3
+0041    KPRI     3   2
+0042    UCLO     0 => 0043
+0043 => RET1     3   2
+
+-- BYTECODE -- readerfont.lua:181-190
+0001    ISNES    1   0      ; "decrease"
+0002    JMP      3 => 0005
+0003    KNUM     3   0      ; -0.5
+0004    JMP      4 => 0006
+0005 => KNUM     3   1      ; 0.5
+0006 => ISF          2
+0007    JMP      4 => 0013
+0008    TGETS    4   0   1  ; "font_size"
+0009    MULVV    5   2   3
+0010    ADDVV    4   4   5
+0011    TSETS    4   0   1  ; "font_size"
+0012    JMP      4 => 0016
+0013 => TGETS    4   0   1  ; "font_size"
+0014    ADDVV    4   4   3
+0015    TSETS    4   0   1  ; "font_size"
+0016 => TGETS    4   0   2  ; "ui"
+0017    MOV      5   4
+0018    TGETS    4   4   3  ; "handleEvent"
+0019    UGET     6   0      ; Event
+0020    MOV      7   6
+0021    TGETS    6   6   4  ; "new"
+0022    KSTR     8   5      ; "SetFontSize"
+0023    TGETS    9   0   1  ; "font_size"
+0024    CALL     6   0   4
+0025    CALLM    4   1   1
+0026    KPRI     4   2
+0027    RET1     4   2
+
+-- BYTECODE -- readerfont.lua:192-205
+0001    KSHORT   2 255
+0002    ISGE     2   1
+0003    JMP      2 => 0005
+0004    KSHORT   1 255
+0005 => KSHORT   2  12
+0006    ISGE     1   2
+0007    JMP      2 => 0009
+0008    KSHORT   1  12
+0009 => TSETS    1   0   0  ; "font_size"
+0010    TGETS    2   0   1  ; "ui"
+0011    TGETS    2   2   2  ; "document"
+0012    MOV      3   2
+0013    TGETS    2   2   3  ; "setFontSize"
+0014    UGET     4   0      ; Screen
+0015    MOV      5   4
+0016    TGETS    4   4   4  ; "scaleBySize"
+0017    MOV      6   1
+0018    CALL     4   0   3
+0019    CALLM    2   1   1
+0020    TGETS    2   0   1  ; "ui"
+0021    MOV      3   2
+0022    TGETS    2   2   5  ; "handleEvent"
+0023    UGET     4   1      ; Event
+0024    MOV      5   4
+0025    TGETS    4   4   6  ; "new"
+0026    KSTR     6   7      ; "UpdatePos"
+0027    CALL     4   0   3
+0028    CALLM    2   1   1
+0029    UGET     2   2      ; UIManager
+0030    MOV      3   2
+0031    TGETS    2   2   8  ; "show"
+0032    UGET     4   3      ; Notification
+0033    MOV      5   4
+0034    TGETS    4   4   6  ; "new"
+0035    TDUP     6  10
+0036    UGET     7   4      ; T
+0037    UGET     8   5      ; _
+0038    KSTR     9   9      ; "Font size set to %1."
+0039    CALL     8   2   2
+0040    TGETS    9   0   0  ; "font_size"
+0041    CALL     7   2   3
+0042    TSETS    7   6  11  ; "text"
+0043    CALL     4   0   3
+0044    CALLM    2   1   1
+0045    KPRI     2   2
+0046    RET1     2   2
+
+-- BYTECODE -- readerfont.lua:207-216
+0001    GGET     2   1      ; "math"
+0002    TGETS    2   2   2  ; "min"
+0003    KSHORT   3 200
+0004    GGET     4   1      ; "math"
+0005    TGETS    4   4   3  ; "max"
+0006    KSHORT   5  50
+0007    MOV      6   1
+0008    CALL     4   0   3
+0009    CALLM    2   2   1
+0010    TSETS    2   0   0  ; "line_space_percent"
+0011    UGET     2   0      ; UIManager
+0012    MOV      3   2
+0013    TGETS    2   2   4  ; "show"
+0014    UGET     4   1      ; Notification
+0015    MOV      5   4
+0016    TGETS    4   4   5  ; "new"
+0017    TDUP     6   7
+0018    UGET     7   2      ; T
+0019    UGET     8   3      ; _
+0020    KSTR     9   6      ; "Line spacing set to %1%."
+0021    CALL     8   2   2
+0022    TGETS    9   0   0  ; "line_space_percent"
+0023    CALL     7   2   3
+0024    TSETS    7   6   8  ; "text"
+0025    CALL     4   0   3
+0026    CALLM    2   1   1
+0027    TGETS    2   0   9  ; "ui"
+0028    TGETS    2   2  10  ; "document"
+0029    MOV      3   2
+0030    TGETS    2   2  11  ; "setInterlineSpacePercent"
+0031    TGETS    4   0   0  ; "line_space_percent"
+0032    CALL     2   1   3
+0033    TGETS    2   0   9  ; "ui"
+0034    MOV      3   2
+0035    TGETS    2   2  12  ; "handleEvent"
+0036    UGET     4   4      ; Event
+0037    MOV      5   4
+0038    TGETS    4   4   5  ; "new"
+0039    KSTR     6  13      ; "UpdatePos"
+0040    CALL     4   0   3
+0041    CALLM    2   1   1
+0042    KPRI     2   2
+0043    RET1     2   2
+
+-- BYTECODE -- readerfont.lua:218-223
+0001    TSETS    1   0   0  ; "font_embolden"
+0002    TGETS    2   0   1  ; "ui"
+0003    TGETS    2   2   2  ; "document"
+0004    MOV      3   2
+0005    TGETS    2   2   3  ; "toggleFontBolder"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    TGETS    2   0   1  ; "ui"
+0009    MOV      3   2
+0010    TGETS    2   2   4  ; "handleEvent"
+0011    UGET     4   0      ; Event
+0012    MOV      5   4
+0013    TGETS    4   4   5  ; "new"
+0014    KSTR     6   6      ; "UpdatePos"
+0015    CALL     4   0   3
+0016    CALLM    2   1   1
+0017    KPRI     2   2
+0018    RET1     2   2
+
+-- BYTECODE -- readerfont.lua:225-230
+0001    TSETS    1   0   0  ; "font_hinting"
+0002    TGETS    2   0   1  ; "ui"
+0003    TGETS    2   2   2  ; "document"
+0004    MOV      3   2
+0005    TGETS    2   2   3  ; "setFontHinting"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    TGETS    2   0   1  ; "ui"
+0009    MOV      3   2
+0010    TGETS    2   2   4  ; "handleEvent"
+0011    UGET     4   0      ; Event
+0012    MOV      5   4
+0013    TGETS    4   4   5  ; "new"
+0014    KSTR     6   6      ; "UpdatePos"
+0015    CALL     4   0   3
+0016    CALLM    2   1   1
+0017    KPRI     2   2
+0018    RET1     2   2
+
+-- BYTECODE -- readerfont.lua:232-237
+0001    TSETS    1   0   0  ; "font_kerning"
+0002    TGETS    2   0   1  ; "ui"
+0003    TGETS    2   2   2  ; "document"
+0004    MOV      3   2
+0005    TGETS    2   2   3  ; "setFontKerning"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    TGETS    2   0   1  ; "ui"
+0009    MOV      3   2
+0010    TGETS    2   2   4  ; "handleEvent"
+0011    UGET     4   0      ; Event
+0012    MOV      5   4
+0013    TGETS    4   4   5  ; "new"
+0014    KSTR     6   6      ; "UpdatePos"
+0015    CALL     4   0   3
+0016    CALLM    2   1   1
+0017    KPRI     2   2
+0018    RET1     2   2
+
+-- BYTECODE -- readerfont.lua:239-244
+0001    TSETS    1   0   0  ; "word_spacing"
+0002    TGETS    2   0   1  ; "ui"
+0003    TGETS    2   2   2  ; "document"
+0004    MOV      3   2
+0005    TGETS    2   2   3  ; "setWordSpacing"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    TGETS    2   0   1  ; "ui"
+0009    MOV      3   2
+0010    TGETS    2   2   4  ; "handleEvent"
+0011    UGET     4   0      ; Event
+0012    MOV      5   4
+0013    TGETS    4   4   5  ; "new"
+0014    KSTR     6   6      ; "UpdatePos"
+0015    CALL     4   0   3
+0016    CALLM    2   1   1
+0017    KPRI     2   2
+0018    RET1     2   2
+
+-- BYTECODE -- readerfont.lua:246-251
+0001    TSETS    1   0   0  ; "word_expansion"
+0002    TGETS    2   0   1  ; "ui"
+0003    TGETS    2   2   2  ; "document"
+0004    MOV      3   2
+0005    TGETS    2   2   3  ; "setWordExpansion"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    TGETS    2   0   1  ; "ui"
+0009    MOV      3   2
+0010    TGETS    2   2   4  ; "handleEvent"
+0011    UGET     4   0      ; Event
+0012    MOV      5   4
+0013    TGETS    4   4   5  ; "new"
+0014    KSTR     6   6      ; "UpdatePos"
+0015    CALL     4   0   3
+0016    CALLM    2   1   1
+0017    KPRI     2   2
+0018    RET1     2   2
+
+-- BYTECODE -- readerfont.lua:253-263
+0001    TSETS    1   0   0  ; "gamma_index"
+0002    TGETS    2   0   1  ; "ui"
+0003    TGETS    2   2   2  ; "document"
+0004    MOV      3   2
+0005    TGETS    2   2   3  ; "setGammaIndex"
+0006    TGETS    4   0   0  ; "gamma_index"
+0007    CALL     2   1   3
+0008    TGETS    2   0   1  ; "ui"
+0009    TGETS    2   2   2  ; "document"
+0010    MOV      3   2
+0011    TGETS    2   2   4  ; "getGammaLevel"
+0012    CALL     2   2   2
+0013    UGET     3   0      ; UIManager
+0014    MOV      4   3
+0015    TGETS    3   3   5  ; "show"
+0016    UGET     5   1      ; Notification
+0017    MOV      6   5
+0018    TGETS    5   5   6  ; "new"
+0019    TDUP     7   8
+0020    UGET     8   2      ; T
+0021    UGET     9   3      ; _
+0022    KSTR    10   7      ; "Font gamma set to %1."
+0023    CALL     9   2   2
+0024    MOV     10   2
+0025    CALL     8   2   3
+0026    TSETS    8   7   9  ; "text"
+0027    CALL     5   0   3
+0028    CALLM    3   1   1
+0029    TGETS    3   0   1  ; "ui"
+0030    MOV      4   3
+0031    TGETS    3   3  10  ; "handleEvent"
+0032    UGET     5   4      ; Event
+0033    MOV      6   5
+0034    TGETS    5   5   6  ; "new"
+0035    KSTR     7  11      ; "RedrawCurrentView"
+0036    CALL     5   0   3
+0037    CALLM    3   1   1
+0038    KPRI     3   2
+0039    RET1     3   2
+
+-- BYTECODE -- readerfont.lua:265-276
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "doc_settings"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "saveSetting"
+0005    KSTR     3   3      ; "font_face"
+0006    TGETS    4   0   3  ; "font_face"
+0007    CALL     1   1   4
+0008    TGETS    1   0   0  ; "ui"
+0009    TGETS    1   1   1  ; "doc_settings"
+0010    MOV      2   1
+0011    TGETS    1   1   2  ; "saveSetting"
+0012    KSTR     3   4      ; "header_font_face"
+0013    TGETS    4   0   4  ; "header_font_face"
+0014    CALL     1   1   4
+0015    TGETS    1   0   0  ; "ui"
+0016    TGETS    1   1   1  ; "doc_settings"
+0017    MOV      2   1
+0018    TGETS    1   1   2  ; "saveSetting"
+0019    KSTR     3   5      ; "font_size"
+0020    TGETS    4   0   5  ; "font_size"
+0021    CALL     1   1   4
+0022    TGETS    1   0   0  ; "ui"
+0023    TGETS    1   1   1  ; "doc_settings"
+0024    MOV      2   1
+0025    TGETS    1   1   2  ; "saveSetting"
+0026    KSTR     3   6      ; "font_embolden"
+0027    TGETS    4   0   6  ; "font_embolden"
+0028    CALL     1   1   4
+0029    TGETS    1   0   0  ; "ui"
+0030    TGETS    1   1   1  ; "doc_settings"
+0031    MOV      2   1
+0032    TGETS    1   1   2  ; "saveSetting"
+0033    KSTR     3   7      ; "font_hinting"
+0034    TGETS    4   0   7  ; "font_hinting"
+0035    CALL     1   1   4
+0036    TGETS    1   0   0  ; "ui"
+0037    TGETS    1   1   1  ; "doc_settings"
+0038    MOV      2   1
+0039    TGETS    1   1   2  ; "saveSetting"
+0040    KSTR     3   8      ; "font_kerning"
+0041    TGETS    4   0   8  ; "font_kerning"
+0042    CALL     1   1   4
+0043    TGETS    1   0   0  ; "ui"
+0044    TGETS    1   1   1  ; "doc_settings"
+0045    MOV      2   1
+0046    TGETS    1   1   2  ; "saveSetting"
+0047    KSTR     3   9      ; "word_spacing"
+0048    TGETS    4   0   9  ; "word_spacing"
+0049    CALL     1   1   4
+0050    TGETS    1   0   0  ; "ui"
+0051    TGETS    1   1   1  ; "doc_settings"
+0052    MOV      2   1
+0053    TGETS    1   1   2  ; "saveSetting"
+0054    KSTR     3  10      ; "word_expansion"
+0055    TGETS    4   0  10  ; "word_expansion"
+0056    CALL     1   1   4
+0057    TGETS    1   0   0  ; "ui"
+0058    TGETS    1   1   1  ; "doc_settings"
+0059    MOV      2   1
+0060    TGETS    1   1   2  ; "saveSetting"
+0061    KSTR     3  11      ; "line_space_percent"
+0062    TGETS    4   0  11  ; "line_space_percent"
+0063    CALL     1   1   4
+0064    TGETS    1   0   0  ; "ui"
+0065    TGETS    1   1   1  ; "doc_settings"
+0066    MOV      2   1
+0067    TGETS    1   1   2  ; "saveSetting"
+0068    KSTR     3  12      ; "gamma_index"
+0069    TGETS    4   0  12  ; "gamma_index"
+0070    CALL     1   1   4
+0071    RET0     0   1
+
+-- BYTECODE -- readerfont.lua:278-290
+0001    ISF          1
+0002    JMP      2 => 0038
+0003    TGETS    2   0   0  ; "font_face"
+0004    ISEQV    2   1
+0005    JMP      2 => 0038
+0006    TSETS    1   0   0  ; "font_face"
+0007    UGET     2   0      ; UIManager
+0008    MOV      3   2
+0009    TGETS    2   2   1  ; "show"
+0010    UGET     4   1      ; Notification
+0011    MOV      5   4
+0012    TGETS    4   4   2  ; "new"
+0013    TDUP     6   4
+0014    UGET     7   2      ; T
+0015    UGET     8   3      ; _
+0016    KSTR     9   3      ; "Redrawing with font %1."
+0017    CALL     8   2   2
+0018    MOV      9   1
+0019    CALL     7   2   3
+0020    TSETS    7   6   5  ; "text"
+0021    CALL     4   0   3
+0022    CALLM    2   1   1
+0023    TGETS    2   0   6  ; "ui"
+0024    TGETS    2   2   7  ; "document"
+0025    MOV      3   2
+0026    TGETS    2   2   8  ; "setFontFace"
+0027    MOV      4   1
+0028    CALL     2   1   3
+0029    TGETS    2   0   6  ; "ui"
+0030    MOV      3   2
+0031    TGETS    2   2   9  ; "handleEvent"
+0032    UGET     4   4      ; Event
+0033    MOV      5   4
+0034    TGETS    4   4   2  ; "new"
+0035    KSTR     6  10      ; "UpdatePos"
+0036    CALL     4   0   3
+0037    CALLM    2   1   1
+0038 => RET0     0   1
+
+-- BYTECODE -- readerfont.lua:297-300
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "cre_font"
+0005    UGET     3   0      ; face
+0006    CALL     0   1   4
+0007    UGET     0   1      ; touchmenu_instance
+0008    ISF          0
+0009    JMP      1 => 0014
+0010    UGET     0   1      ; touchmenu_instance
+0011    MOV      1   0
+0012    TGETS    0   0   3  ; "updateItems"
+0013    CALL     0   1   2
+0014 => RET0     0   1
+
+-- BYTECODE -- readerfont.lua:302-307
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "fallback_font"
+0005    UGET     3   0      ; face
+0006    CALL     0   1   4
+0007    UGET     0   1      ; self
+0008    TGETS    0   0   3  ; "ui"
+0009    TGETS    0   0   4  ; "document"
+0010    MOV      1   0
+0011    TGETS    0   0   5  ; "setupFallbackFontFaces"
+0012    CALL     0   1   2
+0013    UGET     0   1      ; self
+0014    TGETS    0   0   3  ; "ui"
+0015    MOV      1   0
+0016    TGETS    0   0   6  ; "handleEvent"
+0017    UGET     2   2      ; Event
+0018    MOV      3   2
+0019    TGETS    2   2   7  ; "new"
+0020    KSTR     4   8      ; "UpdatePos"
+0021    CALL     2   0   3
+0022    CALLM    0   1   1
+0023    UGET     0   3      ; touchmenu_instance
+0024    ISF          0
+0025    JMP      1 => 0030
+0026    UGET     0   3      ; touchmenu_instance
+0027    MOV      1   0
+0028    TGETS    0   0   9  ; "updateItems"
+0029    CALL     0   1   2
+0030 => RET0     0   1
+
+-- BYTECODE -- readerfont.lua:292-310
+0001    ISF          1
+0002    JMP      3 => 0032
+0003    UGET     3   0      ; UIManager
+0004    MOV      4   3
+0005    TGETS    3   3   0  ; "show"
+0006    UGET     5   1      ; MultiConfirmBox
+0007    MOV      6   5
+0008    TGETS    5   5   1  ; "new"
+0009    TDUP     7   3
+0010    UGET     8   2      ; T
+0011    UGET     9   3      ; _
+0012    KSTR    10   2      ; "Would you like %1 to be used as the defa"~
+0013    CALL     9   2   2
+0014    MOV     10   1
+0015    CALL     8   2   3
+0016    TSETS    8   7   4  ; "text"
+0017    UGET     8   3      ; _
+0018    KSTR     9   5      ; "Default"
+0019    CALL     8   2   2
+0020    TSETS    8   7   6  ; "choice1_text"
+0021    FNEW     8   7      ; readerfont.lua:297
+0022    TSETS    8   7   8  ; "choice1_callback"
+0023    UGET     8   4      ; C_
+0024    KSTR     9   9      ; "Font"
+0025    KSTR    10  10      ; "Fallback"
+0026    CALL     8   2   3
+0027    TSETS    8   7  11  ; "choice2_text"
+0028    FNEW     8  12      ; readerfont.lua:302
+0029    TSETS    8   7  13  ; "choice2_callback"
+0030    CALL     5   0   3
+0031    CALLM    3   1   1
+0032 => UCLO     0 => 0033
+0033 => RET0     0   1
+
+-- BYTECODE -- readerfont.lua:312-321
+0001    TGETS    2   0   0  ; "face_table"
+0002    KSHORT   3   5
+0003    TSETS    3   2   1  ; "max_per_page"
+0004    TDUP     2   4
+0005    TGETS    3   0   3  ; "font_menu_title"
+0006    TSETS    3   2   5  ; "text"
+0007    TGETS    3   0   0  ; "face_table"
+0008    TSETS    3   2   6  ; "sub_item_table"
+0009    TSETS    2   1   2  ; "change_font"
+0010    RET0     0   1
+
+-- BYTECODE -- readerfont.lua:325-349
+0001    TGETS    3   1   0  ; "distance"
+0002    ISNEP    3   0
+0003    JMP      3 => 0006
+0004    KSHORT   3   1
+0005    TSETS    3   1   0  ; "distance"
+0006 => ISEQN    2   0      ; -1
+0007    JMP      3 => 0011
+0008    ISEQN    2   1      ; 1
+0009    JMP      3 => 0011
+0010    KSHORT   2   1
+0011 => GGET     3   1      ; "math"
+0012    TGETS    3   3   2  ; "ceil"
+0013    TGETS    4   0   3  ; "steps"
+0014    LEN      4   4
+0015    MULNV    4   4   2  ; 2
+0016    TGETS    5   1   0  ; "distance"
+0017    MULVV    4   4   5
+0018    TGETS    5   0   4  ; "gestureScale"
+0019    DIVVV    4   4   5
+0020    CALL     3   2   2
+0021    TGETS    4   0   3  ; "steps"
+0022    TGETV    4   4   3
+0023    IST          4
+0024    JMP      5 => 0029
+0025    TGETS    4   0   3  ; "steps"
+0026    TGETS    5   0   3  ; "steps"
+0027    LEN      5   5
+0028    TGETV    4   4   5
+0029 => ISNEN    2   1      ; 1
+0030    JMP      5 => 0060
+0031    UGET     5   0      ; Notification
+0032    MOV      6   5
+0033    TGETS    5   5   5  ; "new"
+0034    TDUP     7   7
+0035    UGET     8   1      ; _
+0036    KSTR     9   6      ; "Increasing font size…"
+0037    CALL     8   2   2
+0038    TSETS    8   7   8  ; "text"
+0039    CALL     5   2   3
+0040    UGET     6   2      ; UIManager
+0041    MOV      7   6
+0042    TGETS    6   6   9  ; "show"
+0043    MOV      8   5
+0044    CALL     6   1   3
+0045    UGET     6   2      ; UIManager
+0046    MOV      7   6
+0047    TGETS    6   6  10  ; "forceRePaint"
+0048    CALL     6   1   2
+0049    MOV      7   0
+0050    TGETS    6   0  11  ; "onChangeSize"
+0051    KSTR     8  12      ; "increase"
+0052    MOV      9   4
+0053    CALL     6   1   4
+0054    UGET     6   2      ; UIManager
+0055    MOV      7   6
+0056    TGETS    6   6  13  ; "close"
+0057    MOV      8   5
+0058    CALL     6   1   3
+0059    JMP      5 => 0088
+0060 => UGET     5   0      ; Notification
+0061    MOV      6   5
+0062    TGETS    5   5   5  ; "new"
+0063    TDUP     7  15
+0064    UGET     8   1      ; _
+0065    KSTR     9  14      ; "Decreasing font size…"
+0066    CALL     8   2   2
+0067    TSETS    8   7   8  ; "text"
+0068    CALL     5   2   3
+0069    UGET     6   2      ; UIManager
+0070    MOV      7   6
+0071    TGETS    6   6   9  ; "show"
+0072    MOV      8   5
+0073    CALL     6   1   3
+0074    UGET     6   2      ; UIManager
+0075    MOV      7   6
+0076    TGETS    6   6  10  ; "forceRePaint"
+0077    CALL     6   1   2
+0078    MOV      7   0
+0079    TGETS    6   0  11  ; "onChangeSize"
+0080    KSTR     8  16      ; "decrease"
+0081    MOV      9   4
+0082    CALL     6   1   4
+0083    UGET     6   2      ; UIManager
+0084    MOV      7   6
+0085    TGETS    6   6  13  ; "close"
+0086    MOV      8   5
+0087    CALL     6   1   3
+0088 => KPRI     5   2
+0089    RET1     5   2
+
+-- BYTECODE -- readerfont.lua:363-365
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "nilOrTrue"
+0004    KSTR     2   2      ; "additional_fallback_fonts"
+0005    CALLT    0   3
+
+-- BYTECODE -- readerfont.lua:366-370
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrTrue"
+0004    KSTR     2   2      ; "additional_fallback_fonts"
+0005    CALL     0   1   3
+0006    UGET     0   0      ; self
+0007    TGETS    0   0   3  ; "ui"
+0008    TGETS    0   0   4  ; "document"
+0009    MOV      1   0
+0010    TGETS    0   0   5  ; "setupFallbackFontFaces"
+0011    CALL     0   1   2
+0012    UGET     0   0      ; self
+0013    TGETS    0   0   3  ; "ui"
+0014    MOV      1   0
+0015    TGETS    0   0   6  ; "handleEvent"
+0016    UGET     2   1      ; Event
+0017    MOV      3   2
+0018    TGETS    2   2   7  ; "new"
+0019    KSTR     4   8      ; "UpdatePos"
+0020    CALL     2   0   3
+0021    CALLM    0   1   1
+0022    RET0     0   1
+
+-- BYTECODE -- readerfont.lua:388-390
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "buildFontsTestDocument"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readerfont.lua:385-392
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; ConfirmBox
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   3
+0008    UGET     5   2      ; _
+0009    KSTR     6   2      ; "Would you like to generate an HTML docum"~
+0010    CALL     5   2   2
+0011    TSETS    5   4   4  ; "text"
+0012    FNEW     5   5      ; readerfont.lua:388
+0013    TSETS    5   4   6  ; "ok_callback"
+0014    CALL     2   0   3
+0015    CALLM    0   1   1
+0016    RET0     0   1
+
+-- BYTECODE -- readerfont.lua:351-395
+0001    TNEW     1   0
+0002    UGET     2   0      ; Device
+0003    MOV      3   2
+0004    TGETS    2   2   0  ; "isAndroid"
+0005    CALL     2   2   2
+0006    IST          2
+0007    JMP      3 => 0020
+0008    UGET     2   0      ; Device
+0009    MOV      3   2
+0010    TGETS    2   2   1  ; "isDesktop"
+0011    CALL     2   2   2
+0012    IST          2
+0013    JMP      3 => 0020
+0014    UGET     2   0      ; Device
+0015    MOV      3   2
+0016    TGETS    2   2   2  ; "isEmulator"
+0017    CALL     2   2   2
+0018    ISF          2
+0019    JMP      3 => 0040
+0020 => GGET     2   3      ; "ipairs"
+0021    GGET     3   4      ; "require"
+0022    KSTR     4   5      ; "ui/elements/font_settings"
+0023    CALL     3   2   2
+0024    MOV      4   3
+0025    TGETS    3   3   6  ; "getSystemFontMenuItems"
+0026    CALL     3   0   2
+0027    CALLM    2   4   0
+0028    JMP      5 => 0034
+0029 => GGET     7   7      ; "table"
+0030    TGETS    7   7   8  ; "insert"
+0031    MOV      8   1
+0032    MOV      9   6
+0033    CALL     7   1   3
+0034 => ITERC    5   3   3
+0035    ITERL    5 => 0029
+0036    LEN      2   1
+0037    TGETV    2   1   2
+0038    KPRI     3   2
+0039    TSETS    3   2   9  ; "separator"
+0040 => GGET     2   7      ; "table"
+0041    TGETS    2   2   8  ; "insert"
+0042    MOV      3   1
+0043    TDUP     4  11
+0044    UGET     5   1      ; _
+0045    KSTR     6  10      ; "Use additional fallback fonts"
+0046    CALL     5   2   2
+0047    TSETS    5   4  12  ; "text"
+0048    FNEW     5  13      ; readerfont.lua:363
+0049    TSETS    5   4  14  ; "checked_func"
+0050    FNEW     5  15      ; readerfont.lua:366
+0051    TSETS    5   4  16  ; "callback"
+0052    UGET     5   3      ; T
+0053    UGET     6   1      ; _
+0054    KSTR     7  17      ; "Enable additional fallback fonts, for th"~
+0055    CALL     6   2   2
+0056    GGET     7   7      ; "table"
+0057    TGETS    7   7  18  ; "concat"
+0058    TGETS    8   0  19  ; "ui"
+0059    TGETS    8   8  20  ; "document"
+0060    TGETS    8   8  21  ; "fallback_fonts"
+0061    KSTR     9  22      ; "\n"
+0062    CALL     7   0   3
+0063    CALLM    5   2   1
+0064    TSETS    5   4  23  ; "help_text"
+0065    CALL     2   1   3
+0066    GGET     2   7      ; "table"
+0067    TGETS    2   2   8  ; "insert"
+0068    MOV      3   1
+0069    TDUP     4  25
+0070    UGET     5   1      ; _
+0071    KSTR     6  24      ; "Generate font test document"
+0072    CALL     5   2   2
+0073    TSETS    5   4  12  ; "text"
+0074    FNEW     5  26      ; readerfont.lua:385
+0075    TSETS    5   4  16  ; "callback"
+0076    CALL     2   1   3
+0077    UCLO     0 => 0078
+0078 => RET1     1   2
+
+-- BYTECODE -- readerfont.lua:462-464
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "switchDocument"
+0005    UGET     2   1      ; font_test_final_path
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readerfont.lua:461-465
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "scheduleIn"
+0004    KSHORT   2   1
+0005    FNEW     3   1      ; readerfont.lua:462
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readerfont.lua:404-467
+0001    KPRI     1   0
+0002    GGET     2   0      ; "io"
+0003    TGETS    2   2   1  ; "open"
+0004    UGET     3   0      ; FONT_TEST_USER_SAMPLE_PATH
+0005    KSTR     4   2      ; "r"
+0006    CALL     2   2   3
+0007    ISF          2
+0008    JMP      3 => 0017
+0009    MOV      4   2
+0010    TGETS    3   2   3  ; "read"
+0011    KSTR     5   4      ; "*all"
+0012    CALL     3   2   3
+0013    MOV      1   3
+0014    MOV      4   2
+0015    TGETS    3   2   5  ; "close"
+0016    CALL     3   1   2
+0017 => IST          1
+0018    JMP      3 => 0037
+0019    GGET     3   0      ; "io"
+0020    TGETS    3   3   1  ; "open"
+0021    UGET     4   1      ; FONT_TEST_DEFAULT_SAMPLE_PATH
+0022    KSTR     5   2      ; "r"
+0023    CALL     3   2   3
+0024    MOV      2   3
+0025    IST          2
+0026    JMP      3 => 0029
+0027    KPRI     3   0
+0028    UCLO     0 => 0186
+0029 => MOV      4   2
+0030    TGETS    3   2   3  ; "read"
+0031    KSTR     5   4      ; "*all"
+0032    CALL     3   2   3
+0033    MOV      1   3
+0034    MOV      4   2
+0035    TGETS    3   2   5  ; "close"
+0036    CALL     3   1   2
+0037 => GGET     3   6      ; "G_reader_settings"
+0038    MOV      4   3
+0039    TGETS    3   3   7  ; "readSetting"
+0040    KSTR     5   8      ; "home_dir"
+0041    CALL     3   2   3
+0042    IST          3
+0043    JMP      4 => 0050
+0044    GGET     4   9      ; "require"
+0045    KSTR     5  10      ; "apps/filemanager/filemanagerutil"
+0046    CALL     4   2   2
+0047    TGETS    4   4  11  ; "getDefaultDir"
+0048    CALL     4   2   1
+0049    MOV      3   4
+0050 => IST          3
+0051    JMP      4 => 0053
+0052    KSTR     3  12      ; "."
+0053 => MOV      4   3
+0054    KSTR     5  13      ; "/"
+0055    UGET     6   2      ; FONT_TEST_FINAL_FILENAME
+0056    CAT      4   4   6
+0057    GGET     5   0      ; "io"
+0058    TGETS    5   5   1  ; "open"
+0059    MOV      6   4
+0060    KSTR     7  14      ; "w"
+0061    CALL     5   2   3
+0062    MOV      2   5
+0063    IST          2
+0064    JMP      5 => 0066
+0065    UCLO     0 => 0187
+0066 => MOV      6   2
+0067    TGETS    5   2  15  ; "write"
+0068    GGET     7  16      ; "string"
+0069    TGETS    7   7  17  ; "format"
+0070    KSTR     8  18      ; "<?xml version="1.0" encoding="UTF-8"?>\n"~
+0071    UGET     9   3      ; _
+0072    KSTR    10  19      ; "Available fonts test document"
+0073    CALL     9   2   2
+0074    UGET    10   3      ; _
+0075    KSTR    11  20      ; "AVAILABLE FONTS"
+0076    CALL    10   0   2
+0077    CALLM    7   0   2
+0078    CALLM    5   1   1
+0079    GGET     5  21      ; "cre"
+0080    TGETS    5   5  22  ; "getFontFaces"
+0081    CALL     5   2   1
+0082    MOV      7   2
+0083    TGETS    6   2  15  ; "write"
+0084    KSTR     8  23      ; "<div style='margin: 2em'>\n"
+0085    CALL     6   1   3
+0086    GGET     6  24      ; "ipairs"
+0087    MOV      7   5
+0088    CALL     6   4   2
+0089    JMP      9 => 0109
+0090 => MOV     12  10
+0091    TGETS   11  10  25  ; "gsub"
+0092    KSTR    13  26      ; " "
+0093    KSTR    14  27      ; "_"
+0094    CALL    11   2   4
+0095    MOV     12  11
+0096    TGETS   11  11  25  ; "gsub"
+0097    KSTR    13  28      ; "'"
+0098    KSTR    14  27      ; "_"
+0099    CALL    11   2   4
+0100    MOV     13   2
+0101    TGETS   12   2  15  ; "write"
+0102    GGET    14  16      ; "string"
+0103    TGETS   14  14  17  ; "format"
+0104    KSTR    15  29      ; "  <div><a href='#%s'>%s</a></div>\n"
+0105    MOV     16  11
+0106    MOV     17  10
+0107    CALL    14   0   4
+0108    CALLM   12   1   1
+0109 => ITERC    9   3   3
+0110    ITERL    9 => 0090
+0111    MOV      7   2
+0112    TGETS    6   2  15  ; "write"
+0113    KSTR     8  30      ; "</div>\n\n"
+0114    CALL     6   1   3
+0115    GGET     6  24      ; "ipairs"
+0116    MOV      7   5
+0117    CALL     6   4   2
+0118    JMP      9 => 0154
+0119 => MOV     12  10
+0120    TGETS   11  10  25  ; "gsub"
+0121    KSTR    13  26      ; " "
+0122    KSTR    14  27      ; "_"
+0123    CALL    11   2   4
+0124    MOV     12  11
+0125    TGETS   11  11  25  ; "gsub"
+0126    KSTR    13  28      ; "'"
+0127    KSTR    14  27      ; "_"
+0128    CALL    11   2   4
+0129    MOV     13   2
+0130    TGETS   12   2  15  ; "write"
+0131    GGET    14  16      ; "string"
+0132    TGETS   14  14  17  ; "format"
+0133    KSTR    15  31      ; "<section id='%s'><title>%s</title></sect"~
+0134    MOV     16  11
+0135    MOV     17  10
+0136    CALL    14   0   4
+0137    CALLM   12   1   1
+0138    MOV     13   2
+0139    TGETS   12   2  15  ; "write"
+0140    GGET    14  16      ; "string"
+0141    TGETS   14  14  17  ; "format"
+0142    KSTR    15  32      ; "<div style='font-family: %s'>\n"
+0143    MOV     16  10
+0144    CALL    14   0   3
+0145    CALLM   12   1   1
+0146    MOV     13   2
+0147    TGETS   12   2  15  ; "write"
+0148    MOV     14   1
+0149    CALL    12   1   3
+0150    MOV     13   2
+0151    TGETS   12   2  15  ; "write"
+0152    KSTR    14  33      ; "\n</div>\n\n"
+0153    CALL    12   1   3
+0154 => ITERC    9   3   3
+0155    ITERL    9 => 0119
+0156    MOV      7   2
+0157    TGETS    6   2  15  ; "write"
+0158    KSTR     8  34      ; "</body></html>\n"
+0159    CALL     6   1   3
+0160    MOV      7   2
+0161    TGETS    6   2   5  ; "close"
+0162    CALL     6   1   2
+0163    UGET     6   4      ; UIManager
+0164    MOV      7   6
+0165    TGETS    6   6  35  ; "show"
+0166    UGET     8   5      ; ConfirmBox
+0167    MOV      9   8
+0168    TGETS    8   8  36  ; "new"
+0169    TDUP    10  39
+0170    UGET    11   6      ; T
+0171    UGET    12   3      ; _
+0172    KSTR    13  37      ; "Document created as:\n%1\n\nWould you li"~
+0173    CALL    12   2   2
+0174    UGET    13   7      ; BD
+0175    TGETS   13  13  38  ; "filepath"
+0176    MOV     14   4
+0177    CALL    13   0   2
+0178    CALLM   11   2   1
+0179    TSETS   11  10  40  ; "text"
+0180    FNEW    11  41      ; readerfont.lua:461
+0181    TSETS   11  10  42  ; "ok_callback"
+0182    CALL     8   0   3
+0183    CALLM    6   1   1
+0184    UCLO     0 => 0185
+0185 => RET0     0   1
+0186 => RET1     3   2
+0187 => RET0     0   1
+
+-- BYTECODE -- readerfont.lua:0-470
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/container/centercontainer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/confirmbox"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "device"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/event"
+0015    CALL     4   2   2
+0016    TGETS    5   3   6  ; "input"
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   7      ; "ui/widget/container/inputcontainer"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   8      ; "ui/widget/menu"
+0022    CALL     7   2   2
+0023    GGET     8   0      ; "require"
+0024    KSTR     9   9      ; "ui/widget/multiconfirmbox"
+0025    CALL     8   2   2
+0026    GGET     9   0      ; "require"
+0027    KSTR    10  10      ; "ui/widget/notification"
+0028    CALL     9   2   2
+0029    GGET    10   0      ; "require"
+0030    KSTR    11   4      ; "device"
+0031    CALL    10   2   2
+0032    TGETS   10  10  11  ; "screen"
+0033    GGET    11   0      ; "require"
+0034    KSTR    12  12      ; "ui/uimanager"
+0035    CALL    11   2   2
+0036    GGET    12   0      ; "require"
+0037    KSTR    13  13      ; "ffi/util"
+0038    CALL    12   2   2
+0039    TGETS   12  12  14  ; "template"
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  15      ; "gettext"
+0042    CALL    13   2   2
+0043    TGETS   14  13  16  ; "pgettext"
+0044    MOV     16   6
+0045    TGETS   15   6  17  ; "new"
+0046    TDUP    17  18
+0047    MOV     18  13
+0048    KSTR    19  19      ; "Font"
+0049    CALL    18   2   2
+0050    TSETS   18  17  20  ; "font_menu_title"
+0051    TDUP    18  21
+0052    TSETS   18  17  22  ; "steps"
+0053    MOV     19  10
+0054    TGETS   18  10  23  ; "getWidth"
+0055    CALL    18   2   2
+0056    GGET    19  24      ; "FRONTLIGHT_SENSITIVITY_DECREASE"
+0057    MULVV   18  18  19
+0058    TSETS   18  17  25  ; "gestureScale"
+0059    CALL    15   2   3
+0060    FNEW    16  27      ; readerfont.lua:29
+0061    TSETS   16  15  26  ; "init"
+0062    FNEW    16  29      ; readerfont.lua:92
+0063    TSETS   16  15  28  ; "onSetDimensions"
+0064    FNEW    16  31      ; readerfont.lua:96
+0065    TSETS   16  15  30  ; "onReadSettings"
+0066    FNEW    16  33      ; readerfont.lua:151
+0067    TSETS   16  15  32  ; "onShowFontMenu"
+0068    FNEW    16  35      ; readerfont.lua:181
+0069    TSETS   16  15  34  ; "onChangeSize"
+0070    FNEW    16  37      ; readerfont.lua:192
+0071    TSETS   16  15  36  ; "onSetFontSize"
+0072    FNEW    16  39      ; readerfont.lua:207
+0073    TSETS   16  15  38  ; "onSetLineSpace"
+0074    FNEW    16  41      ; readerfont.lua:218
+0075    TSETS   16  15  40  ; "onToggleFontBolder"
+0076    FNEW    16  43      ; readerfont.lua:225
+0077    TSETS   16  15  42  ; "onSetFontHinting"
+0078    FNEW    16  45      ; readerfont.lua:232
+0079    TSETS   16  15  44  ; "onSetFontKerning"
+0080    FNEW    16  47      ; readerfont.lua:239
+0081    TSETS   16  15  46  ; "onSetWordSpacing"
+0082    FNEW    16  49      ; readerfont.lua:246
+0083    TSETS   16  15  48  ; "onSetWordExpansion"
+0084    FNEW    16  51      ; readerfont.lua:253
+0085    TSETS   16  15  50  ; "onSetFontGamma"
+0086    FNEW    16  53      ; readerfont.lua:265
+0087    TSETS   16  15  52  ; "onSaveSettings"
+0088    FNEW    16  55      ; readerfont.lua:278
+0089    TSETS   16  15  54  ; "setFont"
+0090    FNEW    16  57      ; readerfont.lua:292
+0091    TSETS   16  15  56  ; "makeDefault"
+0092    FNEW    16  59      ; readerfont.lua:312
+0093    TSETS   16  15  58  ; "addToMainMenu"
+0094    FNEW    16  61      ; readerfont.lua:325
+0095    TSETS   16  15  60  ; "onAdjustFontSize"
+0096    FNEW    16  63      ; readerfont.lua:351
+0097    TSETS   16  15  62  ; "getFontSettingsTable"
+0098    KSTR    16  64      ; "frontend/ui/elements/font-test-sample-de"~
+0099    GGET    17   0      ; "require"
+0100    KSTR    18  65      ; "datastorage"
+0101    CALL    17   2   2
+0102    MOV     18  17
+0103    TGETS   17  17  66  ; "getSettingsDir"
+0104    CALL    17   2   2
+0105    KSTR    18  67      ; "/font-test-sample.html"
+0106    CAT     17  17  18
+0107    KSTR    18  68      ; "font-test.html"
+0108    FNEW    19  70      ; readerfont.lua:404
+0109    TSETS   19  15  69  ; "buildFontsTestDocument"
+0110    UCLO     0 => 0111
+0111 => RET1    15   2
+

@@ -1,0 +1,1631 @@
+-- BYTECODE -- inputdialog.lua:377-386
+0001    GGET     0   0      ; "ipairs"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "buttons"
+0004    CALL     0   4   2
+0005    JMP      3 => 0018
+0006 => GGET     5   0      ; "ipairs"
+0007    MOV      6   4
+0008    CALL     5   4   2
+0009    JMP      8 => 0016
+0010 => TGETS   10   9   2  ; "is_enter_default"
+0011    ISF         10
+0012    JMP     11 => 0016
+0013    TGETS   10   9   3  ; "callback"
+0014    CALL    10   1   1
+0015    RET0     0   1
+0016 => ITERC    8   3   3
+0017    ITERL    8 => 0010
+0018 => ITERC    3   3   3
+0019    ITERL    3 => 0006
+0020    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:202-454
+0001    TGETS    1   0   0  ; "fullscreen"
+0002    ISF          1
+0003    JMP      2 => 0019
+0004    KPRI     1   1
+0005    TSETS    1   0   1  ; "movable"
+0006    KSHORT   1   0
+0007    TSETS    1   0   2  ; "border_size"
+0008    UGET     1   0      ; Screen
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "getWidth"
+0011    CALL     1   2   2
+0012    TGETS    2   0   2  ; "border_size"
+0013    MULNV    2   2   0  ; 2
+0014    SUBVV    1   1   2
+0015    TSETS    1   0   3  ; "width"
+0016    KPRI     1   2
+0017    TSETS    1   0   5  ; "covers_fullscreen"
+0018    JMP      1 => 0028
+0019 => TGETS    1   0   3  ; "width"
+0020    IST          1
+0021    JMP      2 => 0027
+0022    UGET     1   0      ; Screen
+0023    MOV      2   1
+0024    TGETS    1   1   4  ; "getWidth"
+0025    CALL     1   2   2
+0026    MULVN    1   1   1  ; 0.8
+0027 => TSETS    1   0   3  ; "width"
+0028 => TGETS    1   0   6  ; "condensed"
+0029    ISF          1
+0030    JMP      2 => 0041
+0031    TGETS    1   0   3  ; "width"
+0032    TGETS    2   0   2  ; "border_size"
+0033    TGETS    3   0   8  ; "input_padding"
+0034    ADDVV    2   2   3
+0035    TGETS    3   0   9  ; "input_margin"
+0036    ADDVV    2   2   3
+0037    MULNV    2   2   0  ; 2
+0038    SUBVV    1   1   2
+0039    TSETS    1   0   7  ; "text_width"
+0040    JMP      1 => 0047
+0041 => TGETS    1   0   7  ; "text_width"
+0042    IST          1
+0043    JMP      2 => 0046
+0044    TGETS    1   0   3  ; "width"
+0045    MULVN    1   1   2  ; 0.9
+0046 => TSETS    1   0   7  ; "text_width"
+0047 => TGETS    1   0  10  ; "readonly"
+0048    ISF          1
+0049    JMP      2 => 0052
+0050    KPRI     1   2
+0051    TSETS    1   0  11  ; "keyboard_hidden"
+0052 => UGET     1   1      ; FrameContainer
+0053    MOV      2   1
+0054    TGETS    1   1  13  ; "new"
+0055    TDUP     3  15
+0056    TGETS    4   0  14  ; "title_padding"
+0057    TSETS    4   3  16  ; "padding"
+0058    TGETS    4   0  17  ; "title_margin"
+0059    TSETS    4   3  18  ; "margin"
+0060    UGET     4   2      ; TextWidget
+0061    MOV      5   4
+0062    TGETS    4   4  13  ; "new"
+0063    TDUP     6  20
+0064    TGETS    7   0  19  ; "title"
+0065    TSETS    7   6  21  ; "text"
+0066    TGETS    7   0  22  ; "title_face"
+0067    TSETS    7   6  23  ; "face"
+0068    TGETS    7   0   3  ; "width"
+0069    TSETS    7   6  24  ; "max_width"
+0070    CALL     4   0   3
+0071    TSETM    4   3      ; 1
+0072    CALL     1   2   3
+0073    TSETS    1   0  12  ; "title_widget"
+0074    UGET     1   3      ; LineWidget
+0075    MOV      2   1
+0076    TGETS    1   1  13  ; "new"
+0077    TDUP     3  31
+0078    UGET     4   4      ; Geom
+0079    MOV      5   4
+0080    TGETS    4   4  13  ; "new"
+0081    TDUP     6  26
+0082    TGETS    7   0   3  ; "width"
+0083    TSETS    7   6  27  ; "w"
+0084    UGET     7   5      ; Size
+0085    TGETS    7   7  28  ; "line"
+0086    TGETS    7   7  29  ; "thick"
+0087    TSETS    7   6  30  ; "h"
+0088    CALL     4   2   3
+0089    TSETS    4   3  32  ; "dimen"
+0090    CALL     1   2   3
+0091    TSETS    1   0  25  ; "title_bar"
+0092    TGETS    1   0  33  ; "description"
+0093    ISF          1
+0094    JMP      2 => 0124
+0095    UGET     1   1      ; FrameContainer
+0096    MOV      2   1
+0097    TGETS    1   1  13  ; "new"
+0098    TDUP     3  36
+0099    TGETS    4   0  35  ; "desc_padding"
+0100    TSETS    4   3  16  ; "padding"
+0101    TGETS    4   0  37  ; "desc_margin"
+0102    TSETS    4   3  18  ; "margin"
+0103    UGET     4   6      ; TextBoxWidget
+0104    MOV      5   4
+0105    TGETS    4   4  13  ; "new"
+0106    TDUP     6  38
+0107    TGETS    7   0  33  ; "description"
+0108    TSETS    7   6  21  ; "text"
+0109    TGETS    7   0  39  ; "description_face"
+0110    TSETS    7   6  23  ; "face"
+0111    TGETS    7   0   3  ; "width"
+0112    TGETS    8   0  35  ; "desc_padding"
+0113    MULNV    8   8   0  ; 2
+0114    SUBVV    7   7   8
+0115    TGETS    8   0  37  ; "desc_margin"
+0116    MULNV    8   8   0  ; 2
+0117    SUBVV    7   7   8
+0118    TSETS    7   6   3  ; "width"
+0119    CALL     4   0   3
+0120    TSETM    4   3      ; 1
+0121    CALL     1   2   3
+0122    TSETS    1   0  34  ; "description_widget"
+0123    JMP      1 => 0130
+0124 => UGET     1   7      ; VerticalSpan
+0125    MOV      2   1
+0126    TGETS    1   1  13  ; "new"
+0127    TDUP     3  40
+0128    CALL     1   2   3
+0129    TSETS    1   0  34  ; "description_widget"
+0130 => UGET     1   7      ; VerticalSpan
+0131    MOV      2   1
+0132    TGETS    1   1  13  ; "new"
+0133    TDUP     3  41
+0134    CALL     1   2   3
+0135    UGET     2   7      ; VerticalSpan
+0136    MOV      3   2
+0137    TGETS    2   2  13  ; "new"
+0138    TDUP     4  42
+0139    CALL     2   2   3
+0140    TGETS    3   0   6  ; "condensed"
+0141    IST          3
+0142    JMP      3 => 0155
+0143    TGETS    3   0  37  ; "desc_margin"
+0144    TGETS    4   0  35  ; "desc_padding"
+0145    ADDVV    3   3   4
+0146    TGETS    4   0  33  ; "description"
+0147    ISF          4
+0148    JMP      5 => 0153
+0149    KSHORT   4   0
+0150    TSETS    4   1   3  ; "width"
+0151    TSETS    3   2   3  ; "width"
+0152    JMP      4 => 0155
+0153 => TSETS    3   1   3  ; "width"
+0154    TSETS    3   2   3  ; "width"
+0155 => MOV      4   0
+0156    TGETS    3   0  43  ; "_backupRestoreButtons"
+0157    CALL     3   1   2
+0158    TGETS    3   0  44  ; "save_callback"
+0159    ISF          3
+0160    JMP      4 => 0164
+0161    MOV      4   0
+0162    TGETS    3   0  45  ; "_addSaveCloseButtons"
+0163    CALL     3   1   2
+0164 => TGETS    3   0  46  ; "add_nav_bar"
+0165    ISF          3
+0166    JMP      4 => 0172
+0167    MOV      4   0
+0168    TGETS    3   0  47  ; "_addScrollButtons"
+0169    KPRI     5   2
+0170    CALL     3   1   3
+0171    JMP      3 => 0179
+0172 => TGETS    3   0  48  ; "add_scroll_buttons"
+0173    ISF          3
+0174    JMP      4 => 0179
+0175    MOV      4   0
+0176    TGETS    3   0  47  ; "_addScrollButtons"
+0177    KPRI     5   1
+0178    CALL     3   1   3
+0179 => UGET     3   8      ; ButtonTable
+0180    MOV      4   3
+0181    TGETS    3   3  13  ; "new"
+0182    TDUP     5  51
+0183    TGETS    6   0   3  ; "width"
+0184    TGETS    7   0  50  ; "button_padding"
+0185    MULNV    7   7   0  ; 2
+0186    SUBVV    6   6   7
+0187    TSETS    6   5   3  ; "width"
+0188    TGETS    6   0  52  ; "buttons"
+0189    TSETS    6   5  52  ; "buttons"
+0190    TSETS    0   5  53  ; "show_parent"
+0191    CALL     3   2   3
+0192    TSETS    3   0  49  ; "button_table"
+0193    UGET     3   9      ; CenterContainer
+0194    MOV      4   3
+0195    TGETS    3   3  13  ; "new"
+0196    TDUP     5  56
+0197    UGET     6   4      ; Geom
+0198    MOV      7   6
+0199    TGETS    6   6  13  ; "new"
+0200    TDUP     8  54
+0201    TGETS    9   0   3  ; "width"
+0202    TSETS    9   8  27  ; "w"
+0203    TGETS    9   0  49  ; "button_table"
+0204    MOV     10   9
+0205    TGETS    9   9  55  ; "getSize"
+0206    CALL     9   2   2
+0207    TGETS    9   9  30  ; "h"
+0208    TSETS    9   8  30  ; "h"
+0209    CALL     6   2   3
+0210    TSETS    6   5  32  ; "dimen"
+0211    TGETS    6   0  49  ; "button_table"
+0212    TSETB    6   5   1
+0213    CALL     3   2   3
+0214    TGETS    4   0  57  ; "orig_text_height"
+0215    ISNEP    4   0
+0216    JMP      4 => 0225
+0217    TGETS    4   0  58  ; "text_height"
+0218    ISF          4
+0219    JMP      5 => 0223
+0220    TGETS    4   0  58  ; "text_height"
+0221    TSETS    4   0  57  ; "orig_text_height"
+0222    JMP      4 => 0225
+0223 => KPRI     4   1
+0224    TSETS    4   0  57  ; "orig_text_height"
+0225 => TGETS    4   0  58  ; "text_height"
+0226    ISF          4
+0227    JMP      4 => 0231
+0228    TGETS    4   0   0  ; "fullscreen"
+0229    ISF          4
+0230    JMP      5 => 0349
+0231 => UGET     4  10      ; InputText
+0232    MOV      5   4
+0233    TGETS    4   4  13  ; "new"
+0234    TDUP     6  61
+0235    TGETS    7   0   0  ; "fullscreen"
+0236    ISF          7
+0237    JMP      8 => 0240
+0238    KSTR     7  59      ; "-"
+0239    JMP      8 => 0241
+0240 => TGETS    7   0  60  ; "input"
+0241 => TSETS    7   6  21  ; "text"
+0242    TGETS    7   0  62  ; "input_face"
+0243    TSETS    7   6  23  ; "face"
+0244    TGETS    7   0   7  ; "text_width"
+0245    TSETS    7   6   3  ; "width"
+0246    TGETS    7   0   8  ; "input_padding"
+0247    TSETS    7   6  16  ; "padding"
+0248    TGETS    7   0   9  ; "input_margin"
+0249    TSETS    7   6  18  ; "margin"
+0250    TGETS    7   0  63  ; "lang"
+0251    TSETS    7   6  63  ; "lang"
+0252    TGETS    7   0  64  ; "para_direction_rtl"
+0253    TSETS    7   6  64  ; "para_direction_rtl"
+0254    TGETS    7   0  65  ; "auto_para_direction"
+0255    TSETS    7   6  65  ; "auto_para_direction"
+0256    CALL     4   2   3
+0257    MOV      6   4
+0258    TGETS    5   4  66  ; "getTextHeight"
+0259    CALL     5   2   2
+0260    MOV      7   4
+0261    TGETS    6   4  67  ; "getLineHeight"
+0262    CALL     6   2   2
+0263    MOV      8   4
+0264    TGETS    7   4  55  ; "getSize"
+0265    CALL     7   2   2
+0266    TGETS    7   7  30  ; "h"
+0267    SUBVV    7   7   5
+0268    KSHORT   8   0
+0269    TGETS    9   0  11  ; "keyboard_hidden"
+0270    IST          9
+0271    JMP      9 => 0276
+0272    MOV     10   4
+0273    TGETS    9   4  68  ; "getKeyboardDimen"
+0274    CALL     9   2   2
+0275    TGETS    8   9  30  ; "h"
+0276 => MOV     10   4
+0277    TGETS    9   4  69  ; "onCloseWidget"
+0278    CALL     9   1   2
+0279    UGET     9   0      ; Screen
+0280    MOV     10   9
+0281    TGETS    9   9  70  ; "getHeight"
+0282    CALL     9   2   2
+0283    TGETS   10   0   2  ; "border_size"
+0284    MULNV   10  10   0  ; 2
+0285    SUBVV    9   9  10
+0286    TGETS   10   0  12  ; "title_widget"
+0287    MOV     11  10
+0288    TGETS   10  10  55  ; "getSize"
+0289    CALL    10   2   2
+0290    TGETS   10  10  30  ; "h"
+0291    SUBVV    9   9  10
+0292    TGETS   10   0  25  ; "title_bar"
+0293    MOV     11  10
+0294    TGETS   10  10  55  ; "getSize"
+0295    CALL    10   2   2
+0296    TGETS   10  10  30  ; "h"
+0297    SUBVV    9   9  10
+0298    TGETS   10   0  34  ; "description_widget"
+0299    MOV     11  10
+0300    TGETS   10  10  55  ; "getSize"
+0301    CALL    10   2   2
+0302    TGETS   10  10  30  ; "h"
+0303    SUBVV    9   9  10
+0304    MOV     11   1
+0305    TGETS   10   1  55  ; "getSize"
+0306    CALL    10   2   2
+0307    TGETS   10  10  30  ; "h"
+0308    SUBVV    9   9  10
+0309    SUBVV    9   9   7
+0310    MOV     11   2
+0311    TGETS   10   2  55  ; "getSize"
+0312    CALL    10   2   2
+0313    TGETS   10  10  30  ; "h"
+0314    SUBVV    9   9  10
+0315    MOV     11   3
+0316    TGETS   10   3  55  ; "getSize"
+0317    CALL    10   2   2
+0318    TGETS   10  10  30  ; "h"
+0319    SUBVV    9   9  10
+0320    SUBVV    9   9   8
+0321    TGETS   10   0   0  ; "fullscreen"
+0322    IST         10
+0323    JMP     11 => 0326
+0324    ISGE     9   5
+0325    JMP     10 => 0348
+0326 => GGET    10  71      ; "math"
+0327    TGETS   10  10  72  ; "floor"
+0328    DIVVV   11   9   6
+0329    CALL    10   2   2
+0330    MULVV   10  10   6
+0331    TSETS   10   0  58  ; "text_height"
+0332    TGETS   10   0  58  ; "text_height"
+0333    SUBVV   10   9  10
+0334    GGET    11  71      ; "math"
+0335    TGETS   11  11  73  ; "ceil"
+0336    DIVVN   12  10   0  ; 2
+0337    CALL    11   2   2
+0338    SUBVV   12  10  11
+0339    TGETS   13   1   3  ; "width"
+0340    ADDVV   13  13  11
+0341    TSETS   13   1   3  ; "width"
+0342    TGETS   13   2   3  ; "width"
+0343    ADDVV   13  13  12
+0344    TSETS   13   2   3  ; "width"
+0345    KPRI    13   1
+0346    TSETS   13   0  74  ; "cursor_at_end"
+0347    JMP     10 => 0349
+0348 => TSETS    5   0  58  ; "text_height"
+0349 => TGETS    4   0  75  ; "view_pos_callback"
+0350    ISF          4
+0351    JMP      5 => 0356
+0352    TGETS    4   0  75  ; "view_pos_callback"
+0353    CALL     4   3   1
+0354    TSETS    5   0  77  ; "_charpos"
+0355    TSETS    4   0  76  ; "_top_line_num"
+0356 => UGET     4  10      ; InputText
+0357    MOV      5   4
+0358    TGETS    4   4  13  ; "new"
+0359    TDUP     6  79
+0360    TGETS    7   0  60  ; "input"
+0361    TSETS    7   6  21  ; "text"
+0362    TGETS    7   0  80  ; "input_hint"
+0363    TSETS    7   6  81  ; "hint"
+0364    TGETS    7   0  62  ; "input_face"
+0365    TSETS    7   6  23  ; "face"
+0366    TGETS    7   0  82  ; "alignment"
+0367    TSETS    7   6  82  ; "alignment"
+0368    TGETS    7   0  83  ; "justified"
+0369    TSETS    7   6  83  ; "justified"
+0370    TGETS    7   0  63  ; "lang"
+0371    TSETS    7   6  63  ; "lang"
+0372    TGETS    7   0  64  ; "para_direction_rtl"
+0373    TSETS    7   6  64  ; "para_direction_rtl"
+0374    TGETS    7   0  65  ; "auto_para_direction"
+0375    TSETS    7   6  65  ; "auto_para_direction"
+0376    TGETS    7   0  84  ; "alignment_strict"
+0377    TSETS    7   6  84  ; "alignment_strict"
+0378    TGETS    7   0   7  ; "text_width"
+0379    TSETS    7   6   3  ; "width"
+0380    TGETS    7   0  58  ; "text_height"
+0381    IST          7
+0382    JMP      8 => 0384
+0383    KPRI     7   0
+0384 => TSETS    7   6  85  ; "height"
+0385    TGETS    7   0   8  ; "input_padding"
+0386    TSETS    7   6  16  ; "padding"
+0387    TGETS    7   0   9  ; "input_margin"
+0388    TSETS    7   6  18  ; "margin"
+0389    TGETS    7   0  86  ; "input_type"
+0390    TSETS    7   6  86  ; "input_type"
+0391    TGETS    7   0  87  ; "text_type"
+0392    TSETS    7   6  87  ; "text_type"
+0393    TGETS    7   0  88  ; "enter_callback"
+0394    IST          7
+0395    JMP      8 => 0397
+0396    FNEW     7  89      ; inputdialog.lua:377
+0397 => TSETS    7   6  88  ; "enter_callback"
+0398    TGETS    7   0  90  ; "_buttons_edit_callback"
+0399    TSETS    7   6  91  ; "edit_callback"
+0400    TGETS    7   0  92  ; "_buttons_scroll_callback"
+0401    TSETS    7   6  93  ; "scroll_callback"
+0402    TGETS    7   0  94  ; "scroll_by_pan"
+0403    TSETS    7   6  94  ; "scroll_by_pan"
+0404    TGETS    7   0  74  ; "cursor_at_end"
+0405    TSETS    7   6  74  ; "cursor_at_end"
+0406    TGETS    7   0  10  ; "readonly"
+0407    TSETS    7   6  10  ; "readonly"
+0408    TSETS    0   6  95  ; "parent"
+0409    TGETS    7   0  96  ; "_text_modified"
+0410    TSETS    7   6  97  ; "is_text_edited"
+0411    TGETS    7   0  76  ; "_top_line_num"
+0412    TSETS    7   6  98  ; "top_line_num"
+0413    TGETS    7   0  77  ; "_charpos"
+0414    TSETS    7   6  99  ; "charpos"
+0415    CALL     4   2   3
+0416    TSETS    4   0  78  ; "_input_widget"
+0417    TGETS    4   0 100  ; "allow_newline"
+0418    ISF          4
+0419    JMP      5 => 0423
+0420    TGETS    4   0  78  ; "_input_widget"
+0421    KPRI     5   0
+0422    TSETS    5   4  88  ; "enter_callback"
+0423 => UGET     4  11      ; Device
+0424    MOV      5   4
+0425    TGETS    4   4 101  ; "hasDPad"
+0426    CALL     4   2   2
+0427    ISF          4
+0428    JMP      5 => 0438
+0429    GGET     4 102      ; "table"
+0430    TGETS    4   4 103  ; "insert"
+0431    TGETS    5   0  49  ; "button_table"
+0432    TGETS    5   5 104  ; "layout"
+0433    KSHORT   6   1
+0434    TNEW     7   3
+0435    TGETS    8   0  78  ; "_input_widget"
+0436    TSETB    8   7   1
+0437    CALL     4   1   4
+0438 => TGETS    4   0  44  ; "save_callback"
+0439    ISF          4
+0440    JMP      5 => 0470
+0441    TGETS    4   0  49  ; "button_table"
+0442    MOV      5   4
+0443    TGETS    4   4 105  ; "getButtonById"
+0444    KSTR     6 106      ; "save"
+0445    CALL     4   2   3
+0446    TGETS    5   0  10  ; "readonly"
+0447    ISF          5
+0448    JMP      6 => 0457
+0449    MOV      6   4
+0450    TGETS    5   4 107  ; "setText"
+0451    UGET     7  12      ; _
+0452    KSTR     8 108      ; "Read only"
+0453    CALL     7   2   2
+0454    TGETS    8   4   3  ; "width"
+0455    CALL     5   1   4
+0456    JMP      5 => 0470
+0457 => TGETS    5   0  78  ; "_input_widget"
+0458    MOV      6   5
+0459    TGETS    5   5 109  ; "isTextEditable"
+0460    CALL     5   2   2
+0461    IST          5
+0462    JMP      5 => 0470
+0463    MOV      6   4
+0464    TGETS    5   4 107  ; "setText"
+0465    UGET     7  12      ; _
+0466    KSTR     8 110      ; "Not editable"
+0467    CALL     7   2   2
+0468    TGETS    8   4   3  ; "width"
+0469    CALL     5   1   4
+0470 => UGET     4   1      ; FrameContainer
+0471    MOV      5   4
+0472    TGETS    4   4  13  ; "new"
+0473    TDUP     6 114
+0474    TGETS    7   0   0  ; "fullscreen"
+0475    ISF          7
+0476    JMP      8 => 0479
+0477    KSHORT   7   0
+0478    JMP      8 => 0482
+0479 => UGET     7   5      ; Size
+0480    TGETS    7   7 112  ; "radius"
+0481    TGETS    7   7 113  ; "window"
+0482 => TSETS    7   6 112  ; "radius"
+0483    TGETS    7   0   2  ; "border_size"
+0484    TSETS    7   6 115  ; "bordersize"
+0485    UGET     7  13      ; Blitbuffer
+0486    TGETS    7   7 116  ; "COLOR_WHITE"
+0487    TSETS    7   6 117  ; "background"
+0488    UGET     7  14      ; VerticalGroup
+0489    MOV      8   7
+0490    TGETS    7   7  13  ; "new"
+0491    TDUP     9 118
+0492    TGETS   10   0  12  ; "title_widget"
+0493    TSETB   10   9   1
+0494    TGETS   10   0  25  ; "title_bar"
+0495    TSETB   10   9   2
+0496    TGETS   10   0  34  ; "description_widget"
+0497    TSETB   10   9   3
+0498    TSETB    1   9   4
+0499    UGET    10   9      ; CenterContainer
+0500    MOV     11  10
+0501    TGETS   10  10  13  ; "new"
+0502    TDUP    12 120
+0503    UGET    13   4      ; Geom
+0504    MOV     14  13
+0505    TGETS   13  13  13  ; "new"
+0506    TDUP    15 119
+0507    TGETS   16   0   3  ; "width"
+0508    TSETS   16  15  27  ; "w"
+0509    TGETS   16   0  78  ; "_input_widget"
+0510    MOV     17  16
+0511    TGETS   16  16  55  ; "getSize"
+0512    CALL    16   2   2
+0513    TGETS   16  16  30  ; "h"
+0514    TSETS   16  15  30  ; "h"
+0515    CALL    13   2   3
+0516    TSETS   13  12  32  ; "dimen"
+0517    TGETS   13   0  78  ; "_input_widget"
+0518    TSETB   13  12   1
+0519    CALL    10   2   3
+0520    TSETB   10   9   5
+0521    TSETB    2   9   6
+0522    TSETB    3   9   7
+0523    CALL     7   0   3
+0524    TSETM    7   3      ; 1
+0525    CALL     4   2   3
+0526    TSETS    4   0 111  ; "dialog_frame"
+0527    TGETS    4   0 111  ; "dialog_frame"
+0528    TGETS    5   0   1  ; "movable"
+0529    ISF          5
+0530    JMP      6 => 0539
+0531    UGET     5  15      ; MovableContainer
+0532    MOV      6   5
+0533    TGETS    5   5  13  ; "new"
+0534    TNEW     7   3
+0535    TGETS    8   0 111  ; "dialog_frame"
+0536    TSETB    8   7   1
+0537    CALL     5   2   3
+0538    MOV      4   5
+0539 => TGETS    5   0  11  ; "keyboard_hidden"
+0540    ISF          5
+0541    JMP      6 => 0544
+0542    KSHORT   5   0
+0543    JMP      6 => 0549
+0544 => TGETS    5   0  78  ; "_input_widget"
+0545    MOV      6   5
+0546    TGETS    5   5  68  ; "getKeyboardDimen"
+0547    CALL     5   2   2
+0548    TGETS    5   5  30  ; "h"
+0549 => UGET     6   9      ; CenterContainer
+0550    MOV      7   6
+0551    TGETS    6   6  13  ; "new"
+0552    TDUP     8 122
+0553    UGET     9   4      ; Geom
+0554    MOV     10   9
+0555    TGETS    9   9  13  ; "new"
+0556    TDUP    11 121
+0557    UGET    12   0      ; Screen
+0558    MOV     13  12
+0559    TGETS   12  12   4  ; "getWidth"
+0560    CALL    12   2   2
+0561    TSETS   12  11  27  ; "w"
+0562    UGET    12   0      ; Screen
+0563    MOV     13  12
+0564    TGETS   12  12  70  ; "getHeight"
+0565    CALL    12   2   2
+0566    SUBVV   12  12   5
+0567    TSETS   12  11  30  ; "h"
+0568    CALL     9   2   3
+0569    TSETS    9   8  32  ; "dimen"
+0570    TSETB    4   8   1
+0571    CALL     6   2   3
+0572    TSETB    6   0   1
+0573    UCLO     0 => 0574
+0574 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:456-458
+0001    TGETS    1   0   0  ; "_input_widget"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getText"
+0004    CALLT    1   2
+
+-- BYTECODE -- inputdialog.lua:460-467
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "getInputText"
+0003    CALL     1   2   2
+0004    TGETS    2   0   1  ; "input_type"
+0005    ISNES    2   2      ; "number"
+0006    JMP      2 => 0011
+0007    GGET     2   3      ; "tonumber"
+0008    MOV      3   1
+0009    CALLT    2   2
+0010    JMP      2 => 0012
+0011 => RET1     1   2
+0012 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:469-471
+0001    TGETS    2   0   0  ; "_input_widget"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "setText"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:473-475
+0001    TGETS    1   0   0  ; "_input_widget"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "isTextEditable"
+0004    CALLT    1   2
+
+-- BYTECODE -- inputdialog.lua:477-479
+0001    TGETS    1   0   0  ; "_input_widget"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "isTextEdited"
+0004    CALLT    1   2
+
+-- BYTECODE -- inputdialog.lua:482-484
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dialog_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- inputdialog.lua:481-485
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    MOV      3   0
+0005    FNEW     4   1      ; inputdialog.lua:482
+0006    CALL     1   1   4
+0007    UCLO     0 => 0008
+0008 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:489-491
+0001    KSTR     0   0      ; "partial"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dialog_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- inputdialog.lua:487-492
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "onClose"
+0003    CALL     1   1   2
+0004    UGET     1   0      ; UIManager
+0005    MOV      2   1
+0006    TGETS    1   1   1  ; "setDirty"
+0007    KPRI     3   0
+0008    FNEW     4   2      ; inputdialog.lua:489
+0009    CALL     1   1   4
+0010    UCLO     0 => 0011
+0011 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:494-498
+0001    TGETS    2   0   0  ; "readonly"
+0002    IST          2
+0003    JMP      2 => 0012
+0004    TGETS    2   0   1  ; "keyboard_hidden"
+0005    IST          2
+0006    JMP      2 => 0012
+0007    TGETS    2   0   2  ; "_input_widget"
+0008    MOV      3   2
+0009    TGETS    2   2   3  ; "onShowKeyboard"
+0010    MOV      4   1
+0011    CALL     2   1   3
+0012 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:500-513
+0001    MOV      2   0
+0002    TGETS    1   0   1  ; "getInputText"
+0003    CALL     1   2   2
+0004    TSETS    1   0   0  ; "input"
+0005    MOV      2   0
+0006    TGETS    1   0   2  ; "onClose"
+0007    CALL     1   1   2
+0008    TGETS    1   0   3  ; "_input_widget"
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "onCloseWidget"
+0011    CALL     1   1   2
+0012    MOV      2   0
+0013    TGETS    1   0   5  ; "free"
+0014    CALL     1   1   2
+0015    TGETS    1   0   7  ; "orig_text_height"
+0016    IST          1
+0017    JMP      2 => 0019
+0018    KPRI     1   0
+0019 => TSETS    1   0   6  ; "text_height"
+0020    MOV      2   0
+0021    TGETS    1   0   8  ; "init"
+0022    CALL     1   1   2
+0023    TGETS    1   0   9  ; "keyboard_hidden"
+0024    IST          1
+0025    JMP      1 => 0029
+0026    MOV      2   0
+0027    TGETS    1   0  10  ; "onShowKeyboard"
+0028    CALL     1   1   2
+0029 => UGET     1   0      ; UIManager
+0030    MOV      2   1
+0031    TGETS    1   1  11  ; "setDirty"
+0032    KSTR     3  12      ; "all"
+0033    KSTR     4  13      ; "flashui"
+0034    CALL     1   1   4
+0035    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:515-524
+0001    TGETS    1   0   1  ; "_input_widget"
+0002    TGETS    1   1   2  ; "top_line_num"
+0003    TSETS    1   0   0  ; "_top_line_num"
+0004    TGETS    1   0   1  ; "_input_widget"
+0005    TGETS    1   1   4  ; "charpos"
+0006    TSETS    1   0   3  ; "_charpos"
+0007    TGETS    1   0   5  ; "view_pos_callback"
+0008    ISF          1
+0009    JMP      2 => 0014
+0010    TGETS    1   0   5  ; "view_pos_callback"
+0011    TGETS    2   0   0  ; "_top_line_num"
+0012    TGETS    3   0   3  ; "_charpos"
+0013    CALL     1   1   3
+0014 => TGETS    1   0   1  ; "_input_widget"
+0015    MOV      2   1
+0016    TGETS    1   1   6  ; "onCloseKeyboard"
+0017    CALL     1   1   2
+0018    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:534-536
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dialog_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- inputdialog.lua:526-537
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    MOV      3   0
+0005    FNEW     4   1      ; inputdialog.lua:534
+0006    CALL     1   1   4
+0007    UCLO     0 => 0008
+0008 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:539-559
+0001    TGETS    1   0   0  ; "_buttons_backup_done"
+0002    ISF          1
+0003    JMP      2 => 0006
+0004    TGETS    1   0   2  ; "_buttons_backup"
+0005    TSETS    1   0   1  ; "buttons"
+0006 => TGETS    1   0   1  ; "buttons"
+0007    ISF          1
+0008    JMP      2 => 0029
+0009    TNEW     1   0
+0010    TSETS    1   0   2  ; "_buttons_backup"
+0011    GGET     1   3      ; "ipairs"
+0012    TGETS    2   0   1  ; "buttons"
+0013    CALL     1   4   2
+0014    JMP      4 => 0027
+0015 => ISF          5
+0016    JMP      6 => 0027
+0017    TNEW     6   0
+0018    TGETS    7   0   2  ; "_buttons_backup"
+0019    TSETV    6   7   4
+0020    GGET     7   3      ; "ipairs"
+0021    MOV      8   5
+0022    CALL     7   4   2
+0023    JMP     10 => 0025
+0024 => TSETV   11   6  10
+0025 => ITERC   10   3   3
+0026    ITERL   10 => 0024
+0027 => ITERC    4   3   3
+0028    ITERL    4 => 0015
+0029 => KPRI     1   2
+0030    TSETS    1   0   0  ; "_buttons_backup_done"
+0031    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:567-569
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "button_table"
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "getButtonById"
+0005    MOV      3   0
+0006    CALLT    1   3
+
+-- BYTECODE -- inputdialog.lua:571-583
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "_text_modified"
+0003    ISF          1
+0004    JMP      2 => 0032
+0005    IST          0
+0006    JMP      1 => 0032
+0007    UGET     1   0      ; self
+0008    KPRI     2   1
+0009    TSETS    2   1   0  ; "_text_modified"
+0010    UGET     1   1      ; button
+0011    KSTR     2   1      ; "save"
+0012    CALL     1   2   2
+0013    MOV      2   1
+0014    TGETS    1   1   2  ; "disable"
+0015    CALL     1   1   2
+0016    UGET     1   1      ; button
+0017    KSTR     2   3      ; "reset"
+0018    CALL     1   2   2
+0019    ISF          1
+0020    JMP      2 => 0027
+0021    UGET     1   1      ; button
+0022    KSTR     2   3      ; "reset"
+0023    CALL     1   2   2
+0024    MOV      2   1
+0025    TGETS    1   1   2  ; "disable"
+0026    CALL     1   1   2
+0027 => UGET     1   0      ; self
+0028    MOV      2   1
+0029    TGETS    1   1   4  ; "refreshButtons"
+0030    CALL     1   1   2
+0031    JMP      1 => 0062
+0032 => ISF          0
+0033    JMP      1 => 0062
+0034    UGET     1   0      ; self
+0035    TGETS    1   1   0  ; "_text_modified"
+0036    IST          1
+0037    JMP      1 => 0062
+0038    UGET     1   0      ; self
+0039    KPRI     2   2
+0040    TSETS    2   1   0  ; "_text_modified"
+0041    UGET     1   1      ; button
+0042    KSTR     2   1      ; "save"
+0043    CALL     1   2   2
+0044    MOV      2   1
+0045    TGETS    1   1   5  ; "enable"
+0046    CALL     1   1   2
+0047    UGET     1   1      ; button
+0048    KSTR     2   3      ; "reset"
+0049    CALL     1   2   2
+0050    ISF          1
+0051    JMP      2 => 0058
+0052    UGET     1   1      ; button
+0053    KSTR     2   3      ; "reset"
+0054    CALL     1   2   2
+0055    MOV      2   1
+0056    TGETS    1   1   5  ; "enable"
+0057    CALL     1   1   2
+0058 => UGET     1   0      ; self
+0059    MOV      2   1
+0060    TGETS    1   1   4  ; "refreshButtons"
+0061    CALL     1   1   2
+0062 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:594-610
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "reset_callback"
+0003    CALL     0   3   1
+0004    ISF          0
+0005    JMP      2 => 0031
+0006    UGET     2   0      ; self
+0007    MOV      3   2
+0008    TGETS    2   2   1  ; "setInputText"
+0009    MOV      4   0
+0010    CALL     2   1   3
+0011    UGET     2   0      ; self
+0012    TGETS    2   2   2  ; "_buttons_edit_callback"
+0013    KPRI     3   1
+0014    CALL     2   1   2
+0015    UGET     2   1      ; UIManager
+0016    MOV      3   2
+0017    TGETS    2   2   3  ; "show"
+0018    UGET     4   2      ; Notification
+0019    MOV      5   4
+0020    TGETS    4   4   4  ; "new"
+0021    TDUP     6   6
+0022    ISTC     7   1
+0023    JMP      7 => 0027
+0024    UGET     7   3      ; _
+0025    KSTR     8   5      ; "Text reset"
+0026    CALL     7   2   2
+0027 => TSETS    7   6   7  ; "text"
+0028    CALL     4   0   3
+0029    CALLM    2   1   1
+0030    JMP      2 => 0048
+0031 => ISEQP    1   1
+0032    JMP      2 => 0048
+0033    UGET     2   1      ; UIManager
+0034    MOV      3   2
+0035    TGETS    2   2   3  ; "show"
+0036    UGET     4   4      ; InfoMessage
+0037    MOV      5   4
+0038    TGETS    4   4   4  ; "new"
+0039    TDUP     6   9
+0040    ISTC     7   1
+0041    JMP      7 => 0045
+0042    UGET     7   3      ; _
+0043    KSTR     8   8      ; "Resetting failed."
+0044    CALL     7   2   2
+0045 => TSETS    7   6   7  ; "text"
+0046    CALL     4   0   3
+0047    CALLM    2   1   1
+0048 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:591-611
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/trapper"
+0003    CALL     0   2   2
+0004    MOV      1   0
+0005    TGETS    0   0   2  ; "wrap"
+0006    FNEW     2   3      ; inputdialog.lua:594
+0007    CALL     0   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:621-638
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "_text_modified"
+0003    ISF          0
+0004    JMP      1 => 0051
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   1  ; "save_callback"
+0007    UGET     1   0      ; self
+0008    MOV      2   1
+0009    TGETS    1   1   2  ; "getInputText"
+0010    CALL     1   0   2
+0011    CALLM    0   3   0
+0012    ISNEP    0   1
+0013    JMP      2 => 0032
+0014    ISEQP    1   1
+0015    JMP      2 => 0051
+0016    UGET     2   1      ; UIManager
+0017    MOV      3   2
+0018    TGETS    2   2   3  ; "show"
+0019    UGET     4   2      ; InfoMessage
+0020    MOV      5   4
+0021    TGETS    4   4   4  ; "new"
+0022    TDUP     6   6
+0023    ISTC     7   1
+0024    JMP      7 => 0028
+0025    UGET     7   3      ; _
+0026    KSTR     8   5      ; "Saving failed."
+0027    CALL     7   2   2
+0028 => TSETS    7   6   7  ; "text"
+0029    CALL     4   0   3
+0030    CALLM    2   1   1
+0031    JMP      2 => 0051
+0032 => UGET     2   0      ; self
+0033    TGETS    2   2   8  ; "_buttons_edit_callback"
+0034    KPRI     3   1
+0035    CALL     2   1   2
+0036    UGET     2   1      ; UIManager
+0037    MOV      3   2
+0038    TGETS    2   2   3  ; "show"
+0039    UGET     4   4      ; Notification
+0040    MOV      5   4
+0041    TGETS    4   4   4  ; "new"
+0042    TDUP     6  10
+0043    ISTC     7   1
+0044    JMP      7 => 0048
+0045    UGET     7   3      ; _
+0046    KSTR     8   9      ; "Saved"
+0047    CALL     7   2   2
+0048 => TSETS    7   6   7  ; "text"
+0049    CALL     4   0   3
+0050    CALLM    2   1   1
+0051 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:618-639
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/trapper"
+0003    CALL     0   2   2
+0004    MOV      1   0
+0005    TGETS    0   0   2  ; "wrap"
+0006    FNEW     2   3      ; inputdialog.lua:621
+0007    CALL     0   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:650-657
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "close_callback"
+0003    ISF          0
+0004    JMP      1 => 0008
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   0  ; "close_callback"
+0007    CALL     0   1   1
+0008 => UGET     0   1      ; UIManager
+0009    MOV      1   0
+0010    TGETS    0   0   1  ; "close"
+0011    UGET     2   0      ; self
+0012    CALL     0   1   3
+0013    UGET     0   1      ; UIManager
+0014    MOV      1   0
+0015    TGETS    0   0   2  ; "show"
+0016    UGET     2   2      ; Notification
+0017    MOV      3   2
+0018    TGETS    2   2   3  ; "new"
+0019    TDUP     4   6
+0020    UGET     5   0      ; self
+0021    TGETS    5   5   4  ; "close_discarded_notif_text"
+0022    IST          5
+0023    JMP      6 => 0027
+0024    UGET     5   3      ; _
+0025    KSTR     6   5      ; "Changes discarded"
+0026    CALL     5   2   2
+0027 => TSETS    5   4   7  ; "text"
+0028    CALL     2   0   3
+0029    CALLM    0   1   1
+0030    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:662-678
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "save_callback"
+0003    UGET     1   0      ; self
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "getInputText"
+0006    CALL     1   2   2
+0007    KPRI     2   2
+0008    CALL     0   3   3
+0009    ISNEP    0   1
+0010    JMP      2 => 0029
+0011    ISEQP    1   1
+0012    JMP      2 => 0056
+0013    UGET     2   1      ; UIManager
+0014    MOV      3   2
+0015    TGETS    2   2   2  ; "show"
+0016    UGET     4   2      ; InfoMessage
+0017    MOV      5   4
+0018    TGETS    4   4   3  ; "new"
+0019    TDUP     6   5
+0020    ISTC     7   1
+0021    JMP      7 => 0025
+0022    UGET     7   3      ; _
+0023    KSTR     8   4      ; "Saving failed."
+0024    CALL     7   2   2
+0025 => TSETS    7   6   6  ; "text"
+0026    CALL     4   0   3
+0027    CALLM    2   1   1
+0028    JMP      2 => 0056
+0029 => UGET     2   0      ; self
+0030    TGETS    2   2   7  ; "close_callback"
+0031    ISF          2
+0032    JMP      3 => 0036
+0033    UGET     2   0      ; self
+0034    TGETS    2   2   7  ; "close_callback"
+0035    CALL     2   1   1
+0036 => UGET     2   1      ; UIManager
+0037    MOV      3   2
+0038    TGETS    2   2   8  ; "close"
+0039    UGET     4   0      ; self
+0040    CALL     2   1   3
+0041    UGET     2   1      ; UIManager
+0042    MOV      3   2
+0043    TGETS    2   2   2  ; "show"
+0044    UGET     4   4      ; Notification
+0045    MOV      5   4
+0046    TGETS    4   4   3  ; "new"
+0047    TDUP     6  10
+0048    ISTC     7   1
+0049    JMP      7 => 0053
+0050    UGET     7   3      ; _
+0051    KSTR     8   9      ; "Saved"
+0052    CALL     7   2   2
+0053 => TSETS    7   6   6  ; "text"
+0054    CALL     4   0   3
+0055    CALLM    2   1   1
+0056 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:659-679
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/trapper"
+0003    CALL     0   2   2
+0004    MOV      1   0
+0005    TGETS    0   0   2  ; "wrap"
+0006    FNEW     2   3      ; inputdialog.lua:662
+0007    CALL     0   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:644-686
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "_text_modified"
+0003    ISF          0
+0004    JMP      1 => 0051
+0005    UGET     0   1      ; UIManager
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "show"
+0008    UGET     2   2      ; MultiConfirmBox
+0009    MOV      3   2
+0010    TGETS    2   2   2  ; "new"
+0011    TDUP     4   5
+0012    UGET     5   0      ; self
+0013    TGETS    5   5   3  ; "close_unsaved_confirm_text"
+0014    IST          5
+0015    JMP      6 => 0019
+0016    UGET     5   3      ; _
+0017    KSTR     6   4      ; "You have unsaved changes."
+0018    CALL     5   2   2
+0019 => TSETS    5   4   6  ; "text"
+0020    UGET     5   0      ; self
+0021    TGETS    5   5   7  ; "close_cancel_button_text"
+0022    IST          5
+0023    JMP      6 => 0027
+0024    UGET     5   3      ; _
+0025    KSTR     6   8      ; "Cancel"
+0026    CALL     5   2   2
+0027 => TSETS    5   4   9  ; "cancel_text"
+0028    UGET     5   0      ; self
+0029    TGETS    5   5  10  ; "close_discard_button_text"
+0030    IST          5
+0031    JMP      6 => 0035
+0032    UGET     5   3      ; _
+0033    KSTR     6  11      ; "Discard"
+0034    CALL     5   2   2
+0035 => TSETS    5   4  12  ; "choice1_text"
+0036    FNEW     5  13      ; inputdialog.lua:650
+0037    TSETS    5   4  14  ; "choice1_callback"
+0038    UGET     5   0      ; self
+0039    TGETS    5   5  15  ; "close_save_button_text"
+0040    IST          5
+0041    JMP      6 => 0045
+0042    UGET     5   3      ; _
+0043    KSTR     6  16      ; "Save"
+0044    CALL     5   2   2
+0045 => TSETS    5   4  17  ; "choice2_text"
+0046    FNEW     5  18      ; inputdialog.lua:659
+0047    TSETS    5   4  19  ; "choice2_callback"
+0048    CALL     2   0   3
+0049    CALLM    0   1   1
+0050    JMP      0 => 0063
+0051 => UGET     0   0      ; self
+0052    TGETS    0   0  20  ; "close_callback"
+0053    ISF          0
+0054    JMP      1 => 0058
+0055    UGET     0   0      ; self
+0056    TGETS    0   0  20  ; "close_callback"
+0057    CALL     0   1   1
+0058 => UGET     0   1      ; UIManager
+0059    MOV      1   0
+0060    TGETS    0   0  21  ; "close"
+0061    UGET     2   0      ; self
+0062    CALL     0   1   3
+0063 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:561-688
+0001    TGETS    1   0   0  ; "buttons"
+0002    IST          1
+0003    JMP      1 => 0008
+0004    TNEW     1   3
+0005    TNEW     2   0
+0006    TSETB    2   1   1
+0007    TSETS    1   0   0  ; "buttons"
+0008 => TGETS    1   0   0  ; "buttons"
+0009    TGETB    1   1   1
+0010    FNEW     2   1      ; inputdialog.lua:567
+0011    FNEW     3   3      ; inputdialog.lua:571
+0012    TSETS    3   0   2  ; "_buttons_edit_callback"
+0013    TGETS    3   0   4  ; "reset_callback"
+0014    ISF          3
+0015    JMP      4 => 0032
+0016    GGET     3   5      ; "table"
+0017    TGETS    3   3   6  ; "insert"
+0018    MOV      4   1
+0019    TDUP     5   9
+0020    TGETS    6   0   7  ; "reset_button_text"
+0021    IST          6
+0022    JMP      7 => 0026
+0023    UGET     6   0      ; _
+0024    KSTR     7   8      ; "Reset"
+0025    CALL     6   2   2
+0026 => TSETS    6   5  10  ; "text"
+0027    TGETS    6   0  11  ; "_text_modified"
+0028    TSETS    6   5  12  ; "enabled"
+0029    FNEW     6  13      ; inputdialog.lua:591
+0030    TSETS    6   5  14  ; "callback"
+0031    CALL     3   1   3
+0032 => GGET     3   5      ; "table"
+0033    TGETS    3   3   6  ; "insert"
+0034    MOV      4   1
+0035    TDUP     5  17
+0036    TGETS    6   0  15  ; "save_button_text"
+0037    IST          6
+0038    JMP      7 => 0042
+0039    UGET     6   0      ; _
+0040    KSTR     7  16      ; "Save"
+0041    CALL     6   2   2
+0042 => TSETS    6   5  10  ; "text"
+0043    TGETS    6   0  11  ; "_text_modified"
+0044    TSETS    6   5  12  ; "enabled"
+0045    FNEW     6  18      ; inputdialog.lua:618
+0046    TSETS    6   5  14  ; "callback"
+0047    CALL     3   1   3
+0048    GGET     3   5      ; "table"
+0049    TGETS    3   3   6  ; "insert"
+0050    MOV      4   1
+0051    TDUP     5  21
+0052    TGETS    6   0  19  ; "close_button_text"
+0053    IST          6
+0054    JMP      7 => 0058
+0055    UGET     6   0      ; _
+0056    KSTR     7  20      ; "Close"
+0057    CALL     6   2   2
+0058 => TSETS    6   5  10  ; "text"
+0059    FNEW     6  22      ; inputdialog.lua:644
+0060    TSETS    6   5  14  ; "callback"
+0061    CALL     3   1   3
+0062    UCLO     0 => 0063
+0063 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:710-719
+0001    UGET     0   0      ; self
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "keyboard_hidden"
+0004    NOT      1   1
+0005    TSETS    1   0   0  ; "keyboard_hidden"
+0006    UGET     0   0      ; self
+0007    UGET     1   0      ; self
+0008    MOV      2   1
+0009    TGETS    1   1   2  ; "getInputText"
+0010    CALL     1   2   2
+0011    TSETS    1   0   1  ; "input"
+0012    UGET     0   0      ; self
+0013    MOV      1   0
+0014    TGETS    0   0   3  ; "onClose"
+0015    CALL     0   1   2
+0016    UGET     0   0      ; self
+0017    MOV      1   0
+0018    TGETS    0   0   4  ; "free"
+0019    CALL     0   1   2
+0020    UGET     0   0      ; self
+0021    MOV      1   0
+0022    TGETS    0   0   5  ; "init"
+0023    CALL     0   1   2
+0024    UGET     0   0      ; self
+0025    TGETS    0   0   0  ; "keyboard_hidden"
+0026    IST          0
+0027    JMP      0 => 0032
+0028    UGET     0   0      ; self
+0029    MOV      1   0
+0030    TGETS    0   0   6  ; "onShowKeyboard"
+0031    CALL     0   1   2
+0032 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:725-727
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "_input_widget"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "scrollToTop"
+0005    CALL     0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:732-734
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "_input_widget"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "scrollToBottom"
+0005    CALL     0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:741-743
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "_input_widget"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "scrollUp"
+0005    CALL     0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:748-750
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "_input_widget"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "scrollDown"
+0005    CALL     0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:755-757
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "button_table"
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "getButtonById"
+0005    MOV      3   0
+0006    CALLT    1   3
+
+-- BYTECODE -- inputdialog.lua:758-785
+0001    KPRI     2   1
+0002    UGET     3   0      ; prev_at_top
+0003    ISF          3
+0004    JMP      4 => 0028
+0005    KSHORT   3   0
+0006    ISGE     3   0
+0007    JMP      3 => 0028
+0008    UGET     3   1      ; button
+0009    KSTR     4   0      ; "up"
+0010    CALL     3   2   2
+0011    MOV      4   3
+0012    TGETS    3   3   1  ; "enable"
+0013    CALL     3   1   2
+0014    UGET     3   1      ; button
+0015    KSTR     4   2      ; "top"
+0016    CALL     3   2   2
+0017    ISF          3
+0018    JMP      4 => 0025
+0019    UGET     3   1      ; button
+0020    KSTR     4   2      ; "top"
+0021    CALL     3   2   2
+0022    MOV      4   3
+0023    TGETS    3   3   1  ; "enable"
+0024    CALL     3   1   2
+0025 => USETP    0   1      ; prev_at_top
+0026    KPRI     2   2
+0027    JMP      3 => 0053
+0028 => UGET     3   0      ; prev_at_top
+0029    IST          3
+0030    JMP      3 => 0053
+0031    KSHORT   3   0
+0032    ISGT     0   3
+0033    JMP      3 => 0053
+0034    UGET     3   1      ; button
+0035    KSTR     4   0      ; "up"
+0036    CALL     3   2   2
+0037    MOV      4   3
+0038    TGETS    3   3   3  ; "disable"
+0039    CALL     3   1   2
+0040    UGET     3   1      ; button
+0041    KSTR     4   2      ; "top"
+0042    CALL     3   2   2
+0043    ISF          3
+0044    JMP      4 => 0051
+0045    UGET     3   1      ; button
+0046    KSTR     4   2      ; "top"
+0047    CALL     3   2   2
+0048    MOV      4   3
+0049    TGETS    3   3   3  ; "disable"
+0050    CALL     3   1   2
+0051 => USETP    0   2      ; prev_at_top
+0052    KPRI     2   2
+0053 => UGET     3   2      ; prev_at_bottom
+0054    ISF          3
+0055    JMP      4 => 0079
+0056    KSHORT   3   1
+0057    ISGE     1   3
+0058    JMP      3 => 0079
+0059    UGET     3   1      ; button
+0060    KSTR     4   4      ; "down"
+0061    CALL     3   2   2
+0062    MOV      4   3
+0063    TGETS    3   3   1  ; "enable"
+0064    CALL     3   1   2
+0065    UGET     3   1      ; button
+0066    KSTR     4   5      ; "bottom"
+0067    CALL     3   2   2
+0068    ISF          3
+0069    JMP      4 => 0076
+0070    UGET     3   1      ; button
+0071    KSTR     4   5      ; "bottom"
+0072    CALL     3   2   2
+0073    MOV      4   3
+0074    TGETS    3   3   1  ; "enable"
+0075    CALL     3   1   2
+0076 => USETP    2   1      ; prev_at_bottom
+0077    KPRI     2   2
+0078    JMP      3 => 0104
+0079 => UGET     3   2      ; prev_at_bottom
+0080    IST          3
+0081    JMP      3 => 0104
+0082    KSHORT   3   1
+0083    ISGT     3   1
+0084    JMP      3 => 0104
+0085    UGET     3   1      ; button
+0086    KSTR     4   4      ; "down"
+0087    CALL     3   2   2
+0088    MOV      4   3
+0089    TGETS    3   3   3  ; "disable"
+0090    CALL     3   1   2
+0091    UGET     3   1      ; button
+0092    KSTR     4   5      ; "bottom"
+0093    CALL     3   2   2
+0094    ISF          3
+0095    JMP      4 => 0102
+0096    UGET     3   1      ; button
+0097    KSTR     4   5      ; "bottom"
+0098    CALL     3   2   2
+0099    MOV      4   3
+0100    TGETS    3   3   3  ; "disable"
+0101    CALL     3   1   2
+0102 => USETP    2   2      ; prev_at_bottom
+0103    KPRI     2   2
+0104 => ISF          2
+0105    JMP      3 => 0110
+0106    UGET     3   3      ; self
+0107    MOV      4   3
+0108    TGETS    3   3   6  ; "refreshButtons"
+0109    CALL     3   1   2
+0110 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:690-786
+0001    KPRI     2   0
+0002    ISF          1
+0003    JMP      3 => 0016
+0004    TGETS    3   0   0  ; "buttons"
+0005    IST          3
+0006    JMP      3 => 0009
+0007    TNEW     3   0
+0008    TSETS    3   0   0  ; "buttons"
+0009 => TNEW     2   0
+0010    GGET     3   1      ; "table"
+0011    TGETS    3   3   2  ; "insert"
+0012    TGETS    4   0   0  ; "buttons"
+0013    MOV      5   2
+0014    CALL     3   1   3
+0015    JMP      3 => 0025
+0016 => TGETS    3   0   0  ; "buttons"
+0017    IST          3
+0018    JMP      3 => 0023
+0019    TNEW     3   3
+0020    TNEW     4   0
+0021    TSETB    4   3   1
+0022    TSETS    3   0   0  ; "buttons"
+0023 => TGETS    3   0   0  ; "buttons"
+0024    TGETB    2   3   1
+0025 => ISF          1
+0026    JMP      3 => 0061
+0027    TGETS    3   0   3  ; "fullscreen"
+0028    ISF          3
+0029    JMP      4 => 0047
+0030    TGETS    3   0   4  ; "readonly"
+0031    IST          3
+0032    JMP      3 => 0047
+0033    GGET     3   1      ; "table"
+0034    TGETS    3   3   2  ; "insert"
+0035    MOV      4   2
+0036    TDUP     5   7
+0037    TGETS    6   0   5  ; "keyboard_hidden"
+0038    ISF          6
+0039    JMP      7 => 0042
+0040    KSTR     6   6      ; "↑⌨"
+0041    JMP      7 => 0043
+0042 => KSTR     6   8      ; "↓⌨"
+0043 => TSETS    6   5   9  ; "text"
+0044    FNEW     6  10      ; inputdialog.lua:710
+0045    TSETS    6   5  11  ; "callback"
+0046    CALL     3   1   3
+0047 => GGET     3   1      ; "table"
+0048    TGETS    3   3   2  ; "insert"
+0049    MOV      4   2
+0050    TDUP     5  12
+0051    FNEW     6  13      ; inputdialog.lua:725
+0052    TSETS    6   5  11  ; "callback"
+0053    CALL     3   1   3
+0054    GGET     3   1      ; "table"
+0055    TGETS    3   3   2  ; "insert"
+0056    MOV      4   2
+0057    TDUP     5  14
+0058    FNEW     6  15      ; inputdialog.lua:732
+0059    TSETS    6   5  11  ; "callback"
+0060    CALL     3   1   3
+0061 => GGET     3   1      ; "table"
+0062    TGETS    3   3   2  ; "insert"
+0063    MOV      4   2
+0064    TDUP     5  16
+0065    FNEW     6  17      ; inputdialog.lua:741
+0066    TSETS    6   5  11  ; "callback"
+0067    CALL     3   1   3
+0068    GGET     3   1      ; "table"
+0069    TGETS    3   3   2  ; "insert"
+0070    MOV      4   2
+0071    TDUP     5  18
+0072    FNEW     6  19      ; inputdialog.lua:748
+0073    TSETS    6   5  11  ; "callback"
+0074    CALL     3   1   3
+0075    KPRI     3   1
+0076    KPRI     4   1
+0077    FNEW     5  20      ; inputdialog.lua:755
+0078    FNEW     6  22      ; inputdialog.lua:758
+0079    TSETS    6   0  21  ; "_buttons_scroll_callback"
+0080    UCLO     0 => 0081
+0081 => RET0     0   1
+
+-- BYTECODE -- inputdialog.lua:0-789
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/blitbuffer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/buttontable"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/container/centercontainer"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "device"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/font"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/container/framecontainer"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/geometry"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/widget/infomessage"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/widget/container/inputcontainer"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/widget/inputtext"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/widget/linewidget"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/container/movablecontainer"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/multiconfirmbox"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/widget/notification"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/size"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/widget/textboxwidget"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "ui/widget/textwidget"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/uimanager"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "ui/widget/verticalgroup"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "ui/widget/verticalspan"
+0060    CALL    19   2   2
+0061    TGETS   20   3  21  ; "screen"
+0062    GGET    21   0      ; "require"
+0063    KSTR    22  22      ; "gettext"
+0064    CALL    21   2   2
+0065    MOV     23   8
+0066    TGETS   22   8  23  ; "new"
+0067    TDUP    24  24
+0068    MOV     26   4
+0069    TGETS   25   4  25  ; "getFace"
+0070    KSTR    27  26      ; "x_smalltfont"
+0071    CALL    25   2   3
+0072    TSETS   25  24  27  ; "title_face"
+0073    MOV     26   4
+0074    TGETS   25   4  25  ; "getFace"
+0075    KSTR    27  28      ; "x_smallinfofont"
+0076    CALL    25   2   3
+0077    TSETS   25  24  29  ; "description_face"
+0078    MOV     26   4
+0079    TGETS   25   4  25  ; "getFace"
+0080    KSTR    27  28      ; "x_smallinfofont"
+0081    CALL    25   2   3
+0082    TSETS   25  24  30  ; "input_face"
+0083    TGETS   25  14  31  ; "padding"
+0084    TGETS   25  25  32  ; "default"
+0085    TSETS   25  24  33  ; "title_padding"
+0086    TGETS   25  14  34  ; "margin"
+0087    TGETS   25  25  35  ; "title"
+0088    TSETS   25  24  36  ; "title_margin"
+0089    TGETS   25  14  31  ; "padding"
+0090    TGETS   25  25  32  ; "default"
+0091    TSETS   25  24  37  ; "desc_padding"
+0092    TGETS   25  14  34  ; "margin"
+0093    TGETS   25  25  35  ; "title"
+0094    TSETS   25  24  38  ; "desc_margin"
+0095    TGETS   25  14  31  ; "padding"
+0096    TGETS   25  25  32  ; "default"
+0097    TSETS   25  24  39  ; "input_padding"
+0098    TGETS   25  14  34  ; "margin"
+0099    TGETS   25  25  32  ; "default"
+0100    TSETS   25  24  40  ; "input_margin"
+0101    TGETS   25  14  31  ; "padding"
+0102    TGETS   25  25  32  ; "default"
+0103    TSETS   25  24  41  ; "button_padding"
+0104    TGETS   25  14  42  ; "border"
+0105    TGETS   25  25  43  ; "window"
+0106    TSETS   25  24  44  ; "border_size"
+0107    CALL    22   2   3
+0108    FNEW    23  46      ; inputdialog.lua:202
+0109    TSETS   23  22  45  ; "init"
+0110    FNEW    23  48      ; inputdialog.lua:456
+0111    TSETS   23  22  47  ; "getInputText"
+0112    FNEW    23  50      ; inputdialog.lua:460
+0113    TSETS   23  22  49  ; "getInputValue"
+0114    FNEW    23  52      ; inputdialog.lua:469
+0115    TSETS   23  22  51  ; "setInputText"
+0116    FNEW    23  54      ; inputdialog.lua:473
+0117    TSETS   23  22  53  ; "isTextEditable"
+0118    FNEW    23  56      ; inputdialog.lua:477
+0119    TSETS   23  22  55  ; "isTextEdited"
+0120    FNEW    23  58      ; inputdialog.lua:481
+0121    TSETS   23  22  57  ; "onShow"
+0122    FNEW    23  60      ; inputdialog.lua:487
+0123    TSETS   23  22  59  ; "onCloseWidget"
+0124    FNEW    23  62      ; inputdialog.lua:494
+0125    TSETS   23  22  61  ; "onShowKeyboard"
+0126    FNEW    23  64      ; inputdialog.lua:500
+0127    TSETS   23  22  63  ; "onKeyboardHeightChanged"
+0128    FNEW    23  66      ; inputdialog.lua:515
+0129    TSETS   23  22  65  ; "onClose"
+0130    FNEW    23  68      ; inputdialog.lua:526
+0131    TSETS   23  22  67  ; "refreshButtons"
+0132    FNEW    23  70      ; inputdialog.lua:539
+0133    TSETS   23  22  69  ; "_backupRestoreButtons"
+0134    FNEW    23  72      ; inputdialog.lua:561
+0135    TSETS   23  22  71  ; "_addSaveCloseButtons"
+0136    FNEW    23  74      ; inputdialog.lua:690
+0137    TSETS   23  22  73  ; "_addScrollButtons"
+0138    UCLO     0 => 0139
+0139 => RET1    22   2
+

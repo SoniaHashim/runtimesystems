@@ -1,0 +1,516 @@
+-- BYTECODE -- tar.lua:11-26
+0001    ISEQS    0   0      ; "0"
+0002    JMP      1 => 0005
+0003    ISNES    0   1      ; "\000"
+0004    JMP      1 => 0008
+0005 => KSTR     1   2      ; "file"
+0006    RET1     1   2
+0007    JMP      1 => 0062
+0008 => ISNES    0   3      ; "1"
+0009    JMP      1 => 0013
+0010    KSTR     1   4      ; "link"
+0011    RET1     1   2
+0012    JMP      1 => 0062
+0013 => ISNES    0   5      ; "2"
+0014    JMP      1 => 0018
+0015    KSTR     1   6      ; "symlink"
+0016    RET1     1   2
+0017    JMP      1 => 0062
+0018 => ISNES    0   7      ; "3"
+0019    JMP      1 => 0023
+0020    KSTR     1   8      ; "character"
+0021    RET1     1   2
+0022    JMP      1 => 0062
+0023 => ISNES    0   9      ; "4"
+0024    JMP      1 => 0028
+0025    KSTR     1  10      ; "block"
+0026    RET1     1   2
+0027    JMP      1 => 0062
+0028 => ISNES    0  11      ; "5"
+0029    JMP      1 => 0033
+0030    KSTR     1  12      ; "directory"
+0031    RET1     1   2
+0032    JMP      1 => 0062
+0033 => ISNES    0  13      ; "6"
+0034    JMP      1 => 0038
+0035    KSTR     1  14      ; "fifo"
+0036    RET1     1   2
+0037    JMP      1 => 0062
+0038 => ISNES    0  15      ; "7"
+0039    JMP      1 => 0043
+0040    KSTR     1  16      ; "contiguous"
+0041    RET1     1   2
+0042    JMP      1 => 0062
+0043 => ISNES    0  17      ; "x"
+0044    JMP      1 => 0048
+0045    KSTR     1  18      ; "next file"
+0046    RET1     1   2
+0047    JMP      1 => 0062
+0048 => ISNES    0  19      ; "g"
+0049    JMP      1 => 0053
+0050    KSTR     1  20      ; "global extended header"
+0051    RET1     1   2
+0052    JMP      1 => 0062
+0053 => ISNES    0  21      ; "L"
+0054    JMP      1 => 0058
+0055    KSTR     1  22      ; "long name"
+0056    RET1     1   2
+0057    JMP      1 => 0062
+0058 => ISNES    0  23      ; "K"
+0059    JMP      1 => 0062
+0060    KSTR     1  24      ; "long link name"
+0061    RET1     1   2
+0062 => KSTR     1  25      ; "unknown"
+0063    RET1     1   2
+
+-- BYTECODE -- tar.lua:28-41
+0001    KSHORT   1   0
+0002    KSHORT   2   0
+0003    MOV      4   0
+0004    TGETS    3   0   0  ; "gsub"
+0005    KSTR     5   1      ; "%s"
+0006    KSTR     6   2      ; ""
+0007    CALL     3   2   4
+0008    MOV      0   3
+0009    LEN      3   0
+0010    KSHORT   4   1
+0011    KSHORT   5  -1
+0012    FORI     3 => 0029
+0013 => GGET     7   3      ; "tonumber"
+0014    MOV      9   0
+0015    TGETS    8   0   4  ; "sub"
+0016    MOV     10   6
+0017    MOV     11   6
+0018    CALL     8   0   4
+0019    CALLM    7   2   0
+0020    IST          7
+0021    JMP      8 => 0023
+0022    JMP      3 => 0029
+0023 => KSHORT   8   8
+0024    POW      8   8   1
+0025    MULVV    8   7   8
+0026    ADDVV    2   2   8
+0027    ADDVN    1   1   0  ; 1
+0028    FORL     3 => 0013
+0029 => RET1     2   2
+
+-- BYTECODE -- tar.lua:43-54
+0001    KSHORT   1 256
+0002    KSHORT   2   1
+0003    KSHORT   3 148
+0004    KSHORT   4   1
+0005    FORI     2 => 0015
+0006 => MOV      7   0
+0007    TGETS    6   0   0  ; "byte"
+0008    MOV      8   5
+0009    CALL     6   2   3
+0010    IST          6
+0011    JMP      7 => 0013
+0012    KSHORT   6   0
+0013 => ADDVV    1   1   6
+0014    FORL     2 => 0006
+0015 => KSHORT   2 157
+0016    KSHORT   3 500
+0017    KSHORT   4   1
+0018    FORI     2 => 0028
+0019 => MOV      7   0
+0020    TGETS    6   0   0  ; "byte"
+0021    MOV      8   5
+0022    CALL     6   2   3
+0023    IST          6
+0024    JMP      7 => 0026
+0025    KSHORT   6   0
+0026 => ADDVV    1   1   6
+0027    FORL     2 => 0019
+0028 => RET1     1   2
+
+-- BYTECODE -- tar.lua:56-58
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "match"
+0003    KSTR     3   1      ; "^[^%z]*"
+0004    CALLT    1   3
+
+-- BYTECODE -- tar.lua:60-88
+0001    TNEW     1   0
+0002    UGET     2   0      ; nullterm
+0003    MOV      4   0
+0004    TGETS    3   0   1  ; "sub"
+0005    KSHORT   5   1
+0006    KSHORT   6 100
+0007    CALL     3   0   4
+0008    CALLM    2   2   0
+0009    TSETS    2   1   0  ; "name"
+0010    UGET     2   0      ; nullterm
+0011    MOV      4   0
+0012    TGETS    3   0   1  ; "sub"
+0013    KSHORT   5 101
+0014    KSHORT   6 108
+0015    CALL     3   0   4
+0016    CALLM    2   2   0
+0017    MOV      3   2
+0018    TGETS    2   2   3  ; "gsub"
+0019    KSTR     4   4      ; " "
+0020    KSTR     5   5      ; ""
+0021    CALL     2   2   4
+0022    TSETS    2   1   2  ; "mode"
+0023    UGET     2   1      ; octal_to_number
+0024    UGET     3   0      ; nullterm
+0025    MOV      5   0
+0026    TGETS    4   0   1  ; "sub"
+0027    KSHORT   6 109
+0028    KSHORT   7 116
+0029    CALL     4   0   4
+0030    CALLM    3   0   0
+0031    CALLM    2   2   0
+0032    TSETS    2   1   6  ; "uid"
+0033    UGET     2   1      ; octal_to_number
+0034    UGET     3   0      ; nullterm
+0035    MOV      5   0
+0036    TGETS    4   0   1  ; "sub"
+0037    KSHORT   6 117
+0038    KSHORT   7 124
+0039    CALL     4   0   4
+0040    CALLM    3   0   0
+0041    CALLM    2   2   0
+0042    TSETS    2   1   7  ; "gid"
+0043    UGET     2   1      ; octal_to_number
+0044    UGET     3   0      ; nullterm
+0045    MOV      5   0
+0046    TGETS    4   0   1  ; "sub"
+0047    KSHORT   6 125
+0048    KSHORT   7 136
+0049    CALL     4   0   4
+0050    CALLM    3   0   0
+0051    CALLM    2   2   0
+0052    TSETS    2   1   8  ; "size"
+0053    UGET     2   1      ; octal_to_number
+0054    UGET     3   0      ; nullterm
+0055    MOV      5   0
+0056    TGETS    4   0   1  ; "sub"
+0057    KSHORT   6 137
+0058    KSHORT   7 148
+0059    CALL     4   0   4
+0060    CALLM    3   0   0
+0061    CALLM    2   2   0
+0062    TSETS    2   1   9  ; "mtime"
+0063    UGET     2   1      ; octal_to_number
+0064    UGET     3   0      ; nullterm
+0065    MOV      5   0
+0066    TGETS    4   0   1  ; "sub"
+0067    KSHORT   6 149
+0068    KSHORT   7 156
+0069    CALL     4   0   4
+0070    CALLM    3   0   0
+0071    CALLM    2   2   0
+0072    TSETS    2   1  10  ; "chksum"
+0073    UGET     2   2      ; get_typeflag
+0074    MOV      4   0
+0075    TGETS    3   0   1  ; "sub"
+0076    KSHORT   5 157
+0077    KSHORT   6 157
+0078    CALL     3   0   4
+0079    CALLM    2   2   0
+0080    TSETS    2   1  11  ; "typeflag"
+0081    UGET     2   0      ; nullterm
+0082    MOV      4   0
+0083    TGETS    3   0   1  ; "sub"
+0084    KSHORT   5 158
+0085    KSHORT   6 257
+0086    CALL     3   0   4
+0087    CALLM    2   2   0
+0088    TSETS    2   1  12  ; "linkname"
+0089    MOV      3   0
+0090    TGETS    2   0   1  ; "sub"
+0091    KSHORT   4 258
+0092    KSHORT   5 263
+0093    CALL     2   2   4
+0094    TSETS    2   1  13  ; "magic"
+0095    MOV      3   0
+0096    TGETS    2   0   1  ; "sub"
+0097    KSHORT   4 264
+0098    KSHORT   5 265
+0099    CALL     2   2   4
+0100    TSETS    2   1  14  ; "version"
+0101    UGET     2   0      ; nullterm
+0102    MOV      4   0
+0103    TGETS    3   0   1  ; "sub"
+0104    KSHORT   5 266
+0105    KSHORT   6 297
+0106    CALL     3   0   4
+0107    CALLM    2   2   0
+0108    TSETS    2   1  15  ; "uname"
+0109    UGET     2   0      ; nullterm
+0110    MOV      4   0
+0111    TGETS    3   0   1  ; "sub"
+0112    KSHORT   5 298
+0113    KSHORT   6 329
+0114    CALL     3   0   4
+0115    CALLM    2   2   0
+0116    TSETS    2   1  16  ; "gname"
+0117    UGET     2   1      ; octal_to_number
+0118    UGET     3   0      ; nullterm
+0119    MOV      5   0
+0120    TGETS    4   0   1  ; "sub"
+0121    KSHORT   6 330
+0122    KSHORT   7 337
+0123    CALL     4   0   4
+0124    CALLM    3   0   0
+0125    CALLM    2   2   0
+0126    TSETS    2   1  17  ; "devmajor"
+0127    UGET     2   1      ; octal_to_number
+0128    UGET     3   0      ; nullterm
+0129    MOV      5   0
+0130    TGETS    4   0   1  ; "sub"
+0131    KSHORT   6 338
+0132    KSHORT   7 345
+0133    CALL     4   0   4
+0134    CALLM    3   0   0
+0135    CALLM    2   2   0
+0136    TSETS    2   1  18  ; "devminor"
+0137    MOV      3   0
+0138    TGETS    2   0   1  ; "sub"
+0139    KSHORT   4 346
+0140    KSHORT   5 500
+0141    CALL     2   2   4
+0142    TSETS    2   1  19  ; "prefix"
+0143    UGET     2   3      ; checksum_header
+0144    MOV      3   0
+0145    CALL     2   2   2
+0146    NOT      2   2
+0147    TGETS    3   1  10  ; "chksum"
+0148    ISNEV    2   3
+0149    JMP      2 => 0153
+0150    KPRI     2   1
+0151    KSTR     3  20      ; "Failed header checksum"
+0152    RET      2   3
+0153 => RET1     1   2
+
+-- BYTECODE -- tar.lua:90-172
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "string"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => CALL     2   1   2
+0011    GGET     2   0      ; "assert"
+0012    GGET     3   1      ; "type"
+0013    MOV      4   1
+0014    CALL     3   2   2
+0015    ISEQS    3   2      ; "string"
+0016    JMP      3 => 0019
+0017    KPRI     3   1
+0018    JMP      4 => 0020
+0019 => KPRI     3   2
+0020 => CALL     2   1   2
+0021    GGET     2   3      ; "io"
+0022    TGETS    2   2   4  ; "open"
+0023    MOV      3   0
+0024    KSTR     4   5      ; "rb"
+0025    CALL     2   2   3
+0026    IST          2
+0027    JMP      3 => 0033
+0028    KPRI     3   0
+0029    KSTR     4   6      ; "Error opening file "
+0030    MOV      5   0
+0031    CAT      4   4   5
+0032    RET      3   3
+0033 => KNIL     3   6
+0034    UGET     7   0      ; fun
+0035    TGETS    7   7   7  ; "memoize"
+0036    UGET     8   1      ; fs
+0037    TGETS    8   8   8  ; "make_dir"
+0038    CALL     7   2   2
+0039 => LOOP     8 => 0200
+0040    KPRI     8   0
+0041 => LOOP     9 => 0055
+0042    MOV     10   2
+0043    TGETS    9   2   9  ; "read"
+0044    UGET    11   2      ; blocksize
+0045    CALL     9   2   3
+0046    MOV      8   9
+0047    ISF          8
+0048    JMP      9 => 0055
+0049    UGET     9   3      ; checksum_header
+0050    MOV     10   8
+0051    CALL     9   2   2
+0052    KSHORT  10 256
+0053    ISGE    10   9
+0054    JMP      9 => 0041
+0055 => IST          8
+0056    JMP      9 => 0058
+0057    JMP      8 => 0200
+0058 => LEN      9   8
+0059    UGET    10   2      ; blocksize
+0060    ISGE     9  10
+0061    JMP      9 => 0066
+0062    KPRI     9   0
+0063    KSTR     6  10      ; "Invalid block size -- corrupted file?"
+0064    MOV      5   9
+0065    JMP      8 => 0200
+0066 => KPRI     9   0
+0067    UGET    10   4      ; read_header_block
+0068    MOV     11   8
+0069    CALL    10   3   2
+0070    MOV      6  11
+0071    MOV      9  10
+0072    IST          9
+0073    JMP     10 => 0076
+0074    KPRI     5   1
+0075    JMP      8 => 0200
+0076 => MOV     11   2
+0077    TGETS   10   2   9  ; "read"
+0078    GGET    12  11      ; "math"
+0079    TGETS   12  12  12  ; "ceil"
+0080    TGETS   13   9  13  ; "size"
+0081    UGET    14   2      ; blocksize
+0082    DIVVV   13  13  14
+0083    CALL    12   2   2
+0084    UGET    13   2      ; blocksize
+0085    MULVV   12  12  13
+0086    CALL    10   2   3
+0087    MOV     11  10
+0088    TGETS   10  10  14  ; "sub"
+0089    KSHORT  12   1
+0090    TGETS   13   9  13  ; "size"
+0091    CALL    10   2   4
+0092    TGETS   11   9  15  ; "typeflag"
+0093    ISNES   11  16      ; "long name"
+0094    JMP     11 => 0100
+0095    UGET    11   5      ; nullterm
+0096    MOV     12  10
+0097    CALL    11   2   2
+0098    MOV      3  11
+0099    JMP     11 => 0116
+0100 => TGETS   11   9  15  ; "typeflag"
+0101    ISNES   11  17      ; "long link name"
+0102    JMP     11 => 0108
+0103    UGET    11   5      ; nullterm
+0104    MOV     12  10
+0105    CALL    11   2   2
+0106    MOV      4  11
+0107    JMP     11 => 0116
+0108 => ISF          3
+0109    JMP     11 => 0112
+0110    TSETS    3   9  18  ; "name"
+0111    KPRI     3   0
+0112 => ISF          4
+0113    JMP     11 => 0116
+0114    TSETS    4   9  18  ; "name"
+0115    KPRI     4   0
+0116 => UGET    11   6      ; dir
+0117    TGETS   11  11  19  ; "path"
+0118    MOV     12   1
+0119    TGETS   13   9  18  ; "name"
+0120    CALL    11   2   3
+0121    UGET    12   1      ; fs
+0122    TGETS   12  12  20  ; "absolute_name"
+0123    MOV     13  11
+0124    CALL    12   2   2
+0125    MOV     11  12
+0126    TGETS   12   9  15  ; "typeflag"
+0127    ISNES   12  21      ; "directory"
+0128    JMP     12 => 0138
+0129    MOV     12   7
+0130    MOV     13  11
+0131    CALL    12   3   2
+0132    MOV      6  13
+0133    MOV      5  12
+0134    IST          5
+0135    JMP     12 => 0039
+0136    JMP      8 => 0200
+0137    JMP     12 => 0039
+0138 => TGETS   12   9  15  ; "typeflag"
+0139    ISNES   12  22      ; "file"
+0140    JMP     12 => 0039
+0141    UGET    12   6      ; dir
+0142    TGETS   12  12  23  ; "dir_name"
+0143    MOV     13  11
+0144    CALL    12   2   2
+0145    ISEQS   12  24      ; ""
+0146    JMP     13 => 0155
+0147    MOV     13   7
+0148    MOV     14  12
+0149    CALL    13   3   2
+0150    MOV      6  14
+0151    MOV      5  13
+0152    IST          5
+0153    JMP     13 => 0155
+0154    JMP      8 => 0200
+0155 => KPRI    13   0
+0156    GGET    14   3      ; "io"
+0157    TGETS   14  14   4  ; "open"
+0158    MOV     15  11
+0159    KSTR    16  25      ; "wb"
+0160    CALL    14   3   3
+0161    MOV      6  15
+0162    MOV     13  14
+0163    IST         13
+0164    JMP     14 => 0167
+0165    KPRI     5   0
+0166    JMP      8 => 0200
+0167 => MOV     15  13
+0168    TGETS   14  13  26  ; "write"
+0169    MOV     16  10
+0170    CALL    14   1   3
+0171    MOV     15  13
+0172    TGETS   14  13  27  ; "close"
+0173    CALL    14   1   2
+0174    UGET    14   1      ; fs
+0175    TGETS   14  14  28  ; "set_time"
+0176    MOV     15  11
+0177    TGETS   16   9  29  ; "mtime"
+0178    CALL    14   1   3
+0179    TGETS   14   9  30  ; "mode"
+0180    MOV     15  14
+0181    TGETS   14  14  31  ; "match"
+0182    KSTR    16  32      ; "[75]"
+0183    CALL    14   2   3
+0184    ISF         14
+0185    JMP     15 => 0193
+0186    UGET    14   1      ; fs
+0187    TGETS   14  14  33  ; "set_permissions"
+0188    MOV     15  11
+0189    KSTR    16  34      ; "exec"
+0190    KSTR    17  35      ; "all"
+0191    CALL    14   1   4
+0192    JMP     14 => 0039
+0193 => UGET    14   1      ; fs
+0194    TGETS   14  14  33  ; "set_permissions"
+0195    MOV     15  11
+0196    KSTR    16   9      ; "read"
+0197    KSTR    17  35      ; "all"
+0198    CALL    14   1   4
+0199    JMP      8 => 0039
+0200 => MOV      9   2
+0201    TGETS    8   2  27  ; "close"
+0202    CALL     8   1   2
+0203    MOV      8   5
+0204    MOV      9   6
+0205    RET      8   3
+
+-- BYTECODE -- tar.lua:0-175
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.fs"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.dir"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.fun"
+0010    CALL     3   2   2
+0011    KSHORT   4 512
+0012    FNEW     5   4      ; tar.lua:11
+0013    FNEW     6   5      ; tar.lua:28
+0014    FNEW     7   6      ; tar.lua:43
+0015    FNEW     8   7      ; tar.lua:56
+0016    FNEW     9   8      ; tar.lua:60
+0017    FNEW    10  10      ; tar.lua:90
+0018    TSETS   10   0   9  ; "untar"
+0019    UCLO     0 => 0020
+0020 => RET1     0   2
+

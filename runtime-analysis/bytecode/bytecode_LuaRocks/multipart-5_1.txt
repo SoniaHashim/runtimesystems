@@ -1,0 +1,294 @@
+
+main <./upload/multipart.lua:0,0> (26 instructions, 104 bytes at 0x7f90ccc068a0)
+0+ params, 5 slots, 0 upvalues, 4 locals, 7 constants, 6 functions
+	1	[2]	NEWTABLE 	0 0 0
+	2	[4]	NEWTABLE 	1 0 0
+	3	[6]	GETGLOBAL	2 -1	; unpack
+	4	[6]	TEST     	2 0 1
+	5	[6]	JMP      	2	; to 8
+	6	[6]	GETGLOBAL	2 -2	; table
+	7	[6]	GETTABLE 	2 2 -1	; "unpack"
+	8	[13]	CLOSURE  	3 0	; 0x7f90ccc06cb0
+	9	[9]	SETTABLE 	0 -3 3	; "url_escape" -
+	10	[24]	CLOSURE  	3 1	; 0x7f90ccc06b20
+	11	[15]	SETTABLE 	1 -4 3	; "mime" -
+	12	[34]	CLOSURE  	3 2	; 0x7f90ccc06740
+	13	[26]	SETTABLE 	1 -5 3	; "content" -
+	14	[46]	CLOSURE  	3 3	; 0x7f90ccc07bf0
+	15	[46]	MOVE     	0 2
+	16	[97]	CLOSURE  	4 4	; 0x7f90ccc07fe0
+	17	[97]	MOVE     	0 2
+	18	[97]	MOVE     	0 0
+	19	[97]	MOVE     	0 1
+	20	[97]	MOVE     	0 3
+	21	[56]	SETTABLE 	0 -6 4	; "encode" -
+	22	[106]	CLOSURE  	4 5	; 0x7f90ccc06fd0
+	23	[106]	MOVE     	0 1
+	24	[99]	SETTABLE 	0 -7 4	; "new_file" -
+	25	[108]	RETURN   	0 2
+	26	[108]	RETURN   	0 1
+
+function <./upload/multipart.lua:9,13> (8 instructions, 32 bytes at 0x7f90ccc06cb0)
+1 param, 5 slots, 0 upvalues, 1 local, 3 constants, 1 function
+	1	[10]	GETGLOBAL	1 -1	; string
+	2	[10]	GETTABLE 	1 1 -2	; "gsub"
+	3	[10]	MOVE     	2 0
+	4	[10]	LOADK    	3 -3	; "([^A-Za-z0-9_])"
+	5	[12]	CLOSURE  	4 0	; 0x7f90ccc07060
+	6	[10]	CALL     	1 4 2
+	7	[12]	RETURN   	1 2
+	8	[13]	RETURN   	0 1
+
+function <./upload/multipart.lua:10,12> (10 instructions, 40 bytes at 0x7f90ccc07060)
+1 param, 5 slots, 0 upvalues, 1 local, 4 constants, 0 functions
+	1	[11]	GETGLOBAL	1 -1	; string
+	2	[11]	GETTABLE 	1 1 -2	; "format"
+	3	[11]	LOADK    	2 -3	; "%%%02x"
+	4	[11]	GETGLOBAL	3 -1	; string
+	5	[11]	GETTABLE 	3 3 -4	; "byte"
+	6	[11]	MOVE     	4 0
+	7	[11]	CALL     	3 2 0
+	8	[11]	TAILCALL 	1 0 0
+	9	[11]	RETURN   	1 0
+	10	[12]	RETURN   	0 1
+
+function <./upload/multipart.lua:15,24> (21 instructions, 84 bytes at 0x7f90ccc06b20)
+1 param, 5 slots, 0 upvalues, 3 locals, 7 constants, 0 functions
+	1	[16]	GETTABLE 	1 0 -1	; "mimetype"
+	2	[16]	TEST     	1 0 1
+	3	[16]	JMP      	15	; to 19
+	4	[17]	GETGLOBAL	1 -2	; pcall
+	5	[17]	GETGLOBAL	2 -3	; require
+	6	[17]	LOADK    	3 -4	; "mimetypes"
+	7	[17]	CALL     	1 3 3
+	8	[18]	TEST     	1 0 0
+	9	[18]	JMP      	4	; to 14
+	10	[19]	GETTABLE 	3 2 -5	; "guess"
+	11	[19]	GETTABLE 	4 0 -6	; "fname"
+	12	[19]	CALL     	3 2 2
+	13	[19]	SETTABLE 	0 -1 3	; "mimetype" -
+	14	[21]	GETTABLE 	3 0 -1	; "mimetype"
+	15	[21]	TEST     	3 0 1
+	16	[21]	JMP      	1	; to 18
+	17	[21]	LOADK    	3 -7	; "application/octet-stream"
+	18	[21]	SETTABLE 	0 -1 3	; "mimetype" -
+	19	[23]	GETTABLE 	1 0 -1	; "mimetype"
+	20	[23]	RETURN   	1 2
+	21	[24]	RETURN   	0 1
+
+function <./upload/multipart.lua:26,34> (19 instructions, 76 bytes at 0x7f90ccc06740)
+1 param, 5 slots, 0 upvalues, 3 locals, 8 constants, 0 functions
+	1	[27]	GETGLOBAL	1 -1	; io
+	2	[27]	GETTABLE 	1 1 -2	; "open"
+	3	[27]	GETTABLE 	2 0 -3	; "fname"
+	4	[27]	LOADK    	3 -4	; "rb"
+	5	[27]	CALL     	1 3 2
+	6	[28]	TEST     	1 0 1
+	7	[28]	JMP      	5	; to 13
+	8	[29]	LOADNIL  	2 2
+	9	[29]	LOADK    	3 -5	; "Failed to open file: "
+	10	[29]	GETTABLE 	4 0 -3	; "fname"
+	11	[29]	CONCAT   	3 3 4
+	12	[29]	RETURN   	2 3
+	13	[31]	SELF     	2 1 -6	; "read"
+	14	[31]	LOADK    	4 -7	; "*a"
+	15	[31]	CALL     	2 3 2
+	16	[32]	SELF     	3 1 -8	; "close"
+	17	[32]	CALL     	3 2 1
+	18	[33]	RETURN   	2 2
+	19	[34]	RETURN   	0 1
+
+function <./upload/multipart.lua:36,46> (26 instructions, 104 bytes at 0x7f90ccc07bf0)
+1 param, 9 slots, 1 upvalue, 7 locals, 9 constants, 0 functions
+	1	[37]	NEWTABLE 	1 0 0
+	2	[38]	LOADK    	2 -1	; 1
+	3	[38]	MOVE     	3 0
+	4	[38]	LOADK    	4 -1	; 1
+	5	[38]	FORPREP  	2 12	; to 18
+	6	[39]	GETGLOBAL	6 -2	; math
+	7	[39]	GETTABLE 	6 6 -3	; "random"
+	8	[39]	LOADK    	7 -4	; 97
+	9	[39]	LOADK    	8 -5	; 122
+	10	[39]	CALL     	6 3 2
+	11	[40]	GETGLOBAL	7 -2	; math
+	12	[40]	GETTABLE 	7 7 -3	; "random"
+	13	[40]	CALL     	7 1 2
+	14	[40]	LE       	0 -6 7	; 0.5 -
+	15	[40]	JMP      	1	; to 17
+	16	[41]	SUB      	6 6 -7	; - 32
+	17	[43]	SETTABLE 	1 5 6
+	18	[38]	FORLOOP  	2 -13	; to 6
+	19	[45]	GETGLOBAL	2 -8	; string
+	20	[45]	GETTABLE 	2 2 -9	; "char"
+	21	[45]	GETUPVAL 	3 0	; unpack
+	22	[45]	MOVE     	4 1
+	23	[45]	CALL     	3 2 0
+	24	[45]	TAILCALL 	2 0 0
+	25	[45]	RETURN   	2 0
+	26	[46]	RETURN   	0 1
+
+function <./upload/multipart.lua:56,97> (147 instructions, 588 bytes at 0x7f90ccc07fe0)
+1 param, 18 slots, 4 upvalues, 28 locals, 26 constants, 0 functions
+	1	[57]	NEWTABLE 	1 0 0
+	2	[58]	LOADK    	2 -1	; 1
+	3	[58]	LEN      	3 0
+	4	[58]	LOADK    	4 -1	; 1
+	5	[58]	FORPREP  	2 2	; to 8
+	6	[59]	GETTABLE 	6 0 5
+	7	[59]	SETTABLE 	1 5 6
+	8	[58]	FORLOOP  	2 -3	; to 6
+	9	[61]	GETGLOBAL	2 -2	; pairs
+	10	[61]	MOVE     	3 0
+	11	[61]	CALL     	2 2 4
+	12	[61]	JMP      	13	; to 26
+	13	[62]	GETGLOBAL	7 -3	; type
+	14	[62]	MOVE     	8 5
+	15	[62]	CALL     	7 2 2
+	16	[62]	EQ       	0 7 -4	; - "string"
+	17	[62]	JMP      	8	; to 26
+	18	[63]	GETGLOBAL	7 -5	; table
+	19	[63]	GETTABLE 	7 7 -6	; "insert"
+	20	[63]	MOVE     	8 1
+	21	[63]	NEWTABLE 	9 2 0
+	22	[63]	MOVE     	10 5
+	23	[63]	MOVE     	11 6
+	24	[63]	SETLIST  	9 2 1	; 1
+	25	[63]	CALL     	7 3 1
+	26	[61]	TFORLOOP 	2 2
+	27	[64]	JMP      	-15	; to 13
+	28	[66]	NEWTABLE 	2 0 0
+	29	[67]	GETGLOBAL	3 -7	; ipairs
+	30	[67]	MOVE     	4 1
+	31	[67]	CALL     	3 2 4
+	32	[67]	JMP      	66	; to 99
+	33	[68]	GETUPVAL 	8 0	; unpack
+	34	[68]	MOVE     	9 7
+	35	[68]	CALL     	8 2 3
+	36	[69]	GETUPVAL 	10 1	; multipart
+	37	[69]	GETTABLE 	10 10 -8	; "url_escape"
+	38	[69]	MOVE     	11 8
+	39	[69]	CALL     	10 2 2
+	40	[69]	MOVE     	8 10
+	41	[70]	NEWTABLE 	10 1 0
+	42	[70]	LOADK    	11 -9	; "Content-Disposition: form-data; name=\""
+	43	[70]	MOVE     	12 8
+	44	[70]	LOADK    	13 -10	; "\""
+	45	[70]	CONCAT   	11 11 13
+	46	[70]	SETLIST  	10 1 1	; 1
+	47	[71]	LOADNIL  	11 11
+	48	[72]	GETGLOBAL	12 -3	; type
+	49	[72]	MOVE     	13 9
+	50	[72]	CALL     	12 2 2
+	51	[72]	EQ       	0 12 -5	; - "table"
+	52	[72]	JMP      	26	; to 79
+	53	[72]	GETTABLE 	12 9 -11	; "__class"
+	54	[72]	GETUPVAL 	13 2	; File
+	55	[72]	EQ       	0 12 13
+	56	[72]	JMP      	22	; to 79
+	57	[73]	GETTABLE 	12 10 -1	; 1
+	58	[73]	LOADK    	13 -12	; "; filename=\""
+	59	[73]	GETTABLE 	14 9 -13	; "fname"
+	60	[73]	SELF     	14 14 -14	; "gsub"
+	61	[73]	LOADK    	16 -15	; ".*/"
+	62	[73]	LOADK    	17 -16	; ""
+	63	[73]	CALL     	14 4 2
+	64	[73]	LOADK    	15 -10	; "\""
+	65	[73]	CONCAT   	12 12 15
+	66	[73]	SETTABLE 	10 -1 12	; 1 -
+	67	[74]	GETGLOBAL	12 -5	; table
+	68	[74]	GETTABLE 	12 12 -6	; "insert"
+	69	[74]	MOVE     	13 10
+	70	[74]	LOADK    	14 -17	; "Content-type: "
+	71	[74]	SELF     	15 9 -18	; "mime"
+	72	[74]	CALL     	15 2 2
+	73	[74]	CONCAT   	14 14 15
+	74	[74]	CALL     	12 3 1
+	75	[75]	SELF     	12 9 -19	; "content"
+	76	[75]	CALL     	12 2 2
+	77	[75]	MOVE     	11 12
+	78	[75]	JMP      	1	; to 80
+	79	[77]	MOVE     	11 9
+	80	[79]	GETGLOBAL	12 -5	; table
+	81	[79]	GETTABLE 	12 12 -6	; "insert"
+	82	[79]	MOVE     	13 10
+	83	[79]	LOADK    	14 -16	; ""
+	84	[79]	CALL     	12 3 1
+	85	[80]	GETGLOBAL	12 -5	; table
+	86	[80]	GETTABLE 	12 12 -6	; "insert"
+	87	[80]	MOVE     	13 10
+	88	[80]	MOVE     	14 11
+	89	[80]	CALL     	12 3 1
+	90	[81]	GETGLOBAL	12 -5	; table
+	91	[81]	GETTABLE 	12 12 -6	; "insert"
+	92	[81]	MOVE     	13 2
+	93	[81]	GETGLOBAL	14 -5	; table
+	94	[81]	GETTABLE 	14 14 -20	; "concat"
+	95	[81]	MOVE     	15 10
+	96	[81]	LOADK    	16 -21	; "\r\n"
+	97	[81]	CALL     	14 3 0
+	98	[81]	CALL     	12 0 1
+	99	[67]	TFORLOOP 	3 2
+	100	[81]	JMP      	-68	; to 33
+	101	[83]	LOADNIL  	3 3
+	102	[84]	TEST     	3 0 1
+	103	[84]	JMP      	19	; to 123
+	104	[85]	LOADK    	4 -22	; "Boundary"
+	105	[85]	GETUPVAL 	5 3	; rand_string
+	106	[85]	LOADK    	6 -23	; 16
+	107	[85]	CALL     	5 2 2
+	108	[85]	CONCAT   	3 4 5
+	109	[86]	GETGLOBAL	4 -7	; ipairs
+	110	[86]	MOVE     	5 2
+	111	[86]	CALL     	4 2 4
+	112	[86]	JMP      	7	; to 120
+	113	[87]	SELF     	9 8 -24	; "find"
+	114	[87]	MOVE     	11 3
+	115	[87]	CALL     	9 3 2
+	116	[87]	TEST     	9 0 0
+	117	[87]	JMP      	2	; to 120
+	118	[88]	LOADNIL  	3 3
+	119	[89]	JMP      	-18	; to 102
+	120	[86]	TFORLOOP 	4 2
+	121	[90]	JMP      	-9	; to 113
+	122	[91]	JMP      	-21	; to 102
+	123	[93]	LOADK    	4 -25	; "\r\n--"
+	124	[93]	MOVE     	5 3
+	125	[93]	LOADK    	6 -21	; "\r\n"
+	126	[93]	CONCAT   	4 4 6
+	127	[94]	GETGLOBAL	5 -5	; table
+	128	[94]	GETTABLE 	5 5 -20	; "concat"
+	129	[94]	NEWTABLE 	6 9 0
+	130	[94]	LOADK    	7 -26	; "--"
+	131	[94]	MOVE     	8 3
+	132	[94]	LOADK    	9 -21	; "\r\n"
+	133	[95]	GETGLOBAL	10 -5	; table
+	134	[95]	GETTABLE 	10 10 -20	; "concat"
+	135	[95]	MOVE     	11 2
+	136	[95]	MOVE     	12 4
+	137	[95]	CALL     	10 3 2
+	138	[96]	LOADK    	11 -21	; "\r\n"
+	139	[96]	LOADK    	12 -26	; "--"
+	140	[96]	MOVE     	13 3
+	141	[96]	LOADK    	14 -26	; "--"
+	142	[96]	LOADK    	15 -21	; "\r\n"
+	143	[96]	SETLIST  	6 9 1	; 1
+	144	[94]	CALL     	5 2 2
+	145	[96]	MOVE     	6 3
+	146	[96]	RETURN   	5 3
+	147	[97]	RETURN   	0 1
+
+function <./upload/multipart.lua:99,106> (13 instructions, 52 bytes at 0x7f90ccc06fd0)
+2 params, 7 slots, 1 upvalue, 3 locals, 5 constants, 0 functions
+	1	[100]	NEWTABLE 	2 0 0
+	2	[101]	GETGLOBAL	3 -1	; setmetatable
+	3	[101]	MOVE     	4 2
+	4	[101]	NEWTABLE 	5 0 1
+	5	[101]	GETUPVAL 	6 0	; File
+	6	[101]	SETTABLE 	5 -2 6	; "__index" -
+	7	[101]	CALL     	3 3 1
+	8	[102]	GETUPVAL 	3 0	; File
+	9	[102]	SETTABLE 	2 -3 3	; "__class" -
+	10	[103]	SETTABLE 	2 -4 0	; "fname" -
+	11	[104]	SETTABLE 	2 -5 1	; "mimetype" -
+	12	[105]	RETURN   	2 2
+	13	[106]	RETURN   	0 1

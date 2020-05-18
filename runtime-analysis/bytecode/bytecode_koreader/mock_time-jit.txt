@@ -1,0 +1,159 @@
+-- BYTECODE -- mock_time.lua:17-20
+0001    UGET     0   0      ; logger
+0002    TGETS    0   0   0  ; "dbg"
+0003    KSTR     1   1      ; "MockTime:os.time: "
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   2  ; "value"
+0006    CALL     0   1   3
+0007    UGET     0   1      ; self
+0008    TGETS    0   0   2  ; "value"
+0009    RET1     0   2
+
+-- BYTECODE -- mock_time.lua:21-24
+0001    UGET     0   0      ; logger
+0002    TGETS    0   0   0  ; "dbg"
+0003    KSTR     1   1      ; "MockTime:util.gettime: "
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   2  ; "value"
+0006    CALL     0   1   3
+0007    UGET     0   1      ; self
+0008    TGETS    0   0   2  ; "value"
+0009    KSHORT   1   0
+0010    RET      0   3
+
+-- BYTECODE -- mock_time.lua:10-25
+0001    GGET     1   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      2 => 0006
+0004    KPRI     2   1
+0005    JMP      3 => 0007
+0006 => KPRI     2   2
+0007 => CALL     1   1   2
+0008    GGET     1   1      ; "require"
+0009    KSTR     2   2      ; "ffi/util"
+0010    CALL     1   2   2
+0011    TGETS    2   0   3  ; "original_util_time"
+0012    ISNEP    2   0
+0013    JMP      2 => 0024
+0014    TGETS    2   1   4  ; "gettime"
+0015    TSETS    2   0   3  ; "original_util_time"
+0016    GGET     2   0      ; "assert"
+0017    TGETS    3   0   3  ; "original_util_time"
+0018    ISNEP    3   0
+0019    JMP      3 => 0022
+0020    KPRI     3   1
+0021    JMP      4 => 0023
+0022 => KPRI     3   2
+0023 => CALL     2   1   2
+0024 => GGET     2   5      ; "os"
+0025    FNEW     3   7      ; mock_time.lua:17
+0026    TSETS    3   2   6  ; "time"
+0027    FNEW     2   8      ; mock_time.lua:21
+0028    TSETS    2   1   4  ; "gettime"
+0029    UCLO     0 => 0030
+0030 => RET0     0   1
+
+-- BYTECODE -- mock_time.lua:27-34
+0001    GGET     1   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      2 => 0006
+0004    KPRI     2   1
+0005    JMP      3 => 0007
+0006 => KPRI     2   2
+0007 => CALL     1   1   2
+0008    GGET     1   1      ; "require"
+0009    KSTR     2   2      ; "ffi/util"
+0010    CALL     1   2   2
+0011    GGET     2   3      ; "os"
+0012    TGETS    3   0   5  ; "original_os_time"
+0013    TSETS    3   2   4  ; "time"
+0014    TGETS    2   0   6  ; "original_util_time"
+0015    ISEQP    2   0
+0016    JMP      2 => 0019
+0017    TGETS    2   0   6  ; "original_util_time"
+0018    TSETS    2   1   7  ; "gettime"
+0019 => RET0     0   1
+
+-- BYTECODE -- mock_time.lua:36-44
+0001    GGET     2   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      3 => 0006
+0004    KPRI     3   1
+0005    JMP      4 => 0007
+0006 => KPRI     3   2
+0007 => CALL     2   1   2
+0008    GGET     2   1      ; "type"
+0009    MOV      3   1
+0010    CALL     2   2   2
+0011    ISEQS    2   2      ; "number"
+0012    JMP      2 => 0015
+0013    KPRI     2   1
+0014    RET1     2   2
+0015 => GGET     2   4      ; "math"
+0016    TGETS    2   2   5  ; "floor"
+0017    MOV      3   1
+0018    CALL     2   2   2
+0019    TSETS    2   0   3  ; "value"
+0020    UGET     2   0      ; logger
+0021    TGETS    2   2   6  ; "dbg"
+0022    KSTR     3   7      ; "MockTime:set "
+0023    TGETS    4   0   3  ; "value"
+0024    CALL     2   1   3
+0025    KPRI     2   2
+0026    RET1     2   2
+
+-- BYTECODE -- mock_time.lua:46-54
+0001    GGET     2   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      3 => 0006
+0004    KPRI     3   1
+0005    JMP      4 => 0007
+0006 => KPRI     3   2
+0007 => CALL     2   1   2
+0008    GGET     2   1      ; "type"
+0009    MOV      3   1
+0010    CALL     2   2   2
+0011    ISEQS    2   2      ; "number"
+0012    JMP      2 => 0015
+0013    KPRI     2   1
+0014    RET1     2   2
+0015 => GGET     2   4      ; "math"
+0016    TGETS    2   2   5  ; "floor"
+0017    TGETS    3   0   3  ; "value"
+0018    ADDVV    3   3   1
+0019    CALL     2   2   2
+0020    TSETS    2   0   3  ; "value"
+0021    UGET     2   0      ; logger
+0022    TGETS    2   2   6  ; "dbg"
+0023    KSTR     3   7      ; "MockTime:increase "
+0024    TGETS    4   0   3  ; "value"
+0025    CALL     2   1   3
+0026    KPRI     2   2
+0027    RET1     2   2
+
+-- BYTECODE -- mock_time.lua:0-57
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "logger"
+0006    CALL     0   2   2
+0007    TDUP     1   5
+0008    GGET     2   3      ; "os"
+0009    TGETS    2   2   4  ; "time"
+0010    TSETS    2   1   6  ; "original_os_time"
+0011    GGET     2   3      ; "os"
+0012    TGETS    2   2   4  ; "time"
+0013    CALL     2   2   1
+0014    TSETS    2   1   7  ; "value"
+0015    FNEW     2   9      ; mock_time.lua:10
+0016    TSETS    2   1   8  ; "install"
+0017    FNEW     2  11      ; mock_time.lua:27
+0018    TSETS    2   1  10  ; "uninstall"
+0019    FNEW     2  13      ; mock_time.lua:36
+0020    TSETS    2   1  12  ; "set"
+0021    FNEW     2  15      ; mock_time.lua:46
+0022    TSETS    2   1  14  ; "increase"
+0023    UCLO     0 => 0024
+0024 => RET1     1   2
+

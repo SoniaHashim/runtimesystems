@@ -1,0 +1,158 @@
+
+main <./frontend/apps/filemanager/filemanagerutil.lua:0,0> (26 instructions, 104 bytes at 0x7fc3304068f0)
+0+ params, 6 slots, 0 upvalues, 5 locals, 8 constants, 3 functions
+	1	[5]	GETGLOBAL	0 -1	; require
+	2	[5]	LOADK    	1 -2	; "device"
+	3	[5]	CALL     	0 2 2
+	4	[6]	GETGLOBAL	1 -1	; require
+	5	[6]	LOADK    	2 -3	; "docsettings"
+	6	[6]	CALL     	1 2 2
+	7	[7]	GETGLOBAL	2 -1	; require
+	8	[7]	LOADK    	3 -4	; "ffi/util"
+	9	[7]	CALL     	2 2 2
+	10	[8]	GETGLOBAL	3 -1	; require
+	11	[8]	LOADK    	4 -5	; "gettext"
+	12	[8]	CALL     	3 2 2
+	13	[10]	NEWTABLE 	4 0 0
+	14	[26]	CLOSURE  	5 0	; 0x7fc330406fe0
+	15	[26]	MOVE     	0 0
+	16	[12]	SETTABLE 	4 -6 5	; "getDefaultDir" -
+	17	[42]	CLOSURE  	5 1	; 0x7fc3304075e0
+	18	[42]	MOVE     	0 4
+	19	[42]	MOVE     	0 3
+	20	[28]	SETTABLE 	4 -7 5	; "abbreviate" -
+	21	[56]	CLOSURE  	5 2	; 0x7fc330407350
+	22	[56]	MOVE     	0 2
+	23	[56]	MOVE     	0 1
+	24	[45]	SETTABLE 	4 -8 5	; "purgeSettings" -
+	25	[58]	RETURN   	4 2
+	26	[58]	RETURN   	0 1
+
+function <./frontend/apps/filemanager/filemanagerutil.lua:12,26> (45 instructions, 180 bytes at 0x7fc330406fe0)
+0 params, 2 slots, 1 upvalue, 0 locals, 11 constants, 0 functions
+	1	[13]	GETUPVAL 	0 0	; Device
+	2	[13]	SELF     	0 0 -1	; "isAndroid"
+	3	[13]	CALL     	0 2 2
+	4	[13]	TEST     	0 0 0
+	5	[13]	JMP      	5	; to 11
+	6	[14]	GETUPVAL 	0 0	; Device
+	7	[14]	GETTABLE 	0 0 -2	; "external_storage"
+	8	[14]	TAILCALL 	0 1 0
+	9	[14]	RETURN   	0 0
+	10	[14]	JMP      	34	; to 45
+	11	[15]	GETUPVAL 	0 0	; Device
+	12	[15]	SELF     	0 0 -3	; "isCervantes"
+	13	[15]	CALL     	0 2 2
+	14	[15]	TEST     	0 0 0
+	15	[15]	JMP      	3	; to 19
+	16	[16]	LOADK    	0 -4	; "/mnt/public"
+	17	[16]	RETURN   	0 2
+	18	[16]	JMP      	26	; to 45
+	19	[17]	GETUPVAL 	0 0	; Device
+	20	[17]	SELF     	0 0 -5	; "isKindle"
+	21	[17]	CALL     	0 2 2
+	22	[17]	TEST     	0 0 0
+	23	[17]	JMP      	3	; to 27
+	24	[18]	LOADK    	0 -6	; "/mnt/us/documents"
+	25	[18]	RETURN   	0 2
+	26	[18]	JMP      	18	; to 45
+	27	[19]	GETUPVAL 	0 0	; Device
+	28	[19]	SELF     	0 0 -7	; "isKobo"
+	29	[19]	CALL     	0 2 2
+	30	[19]	TEST     	0 0 0
+	31	[19]	JMP      	3	; to 35
+	32	[20]	LOADK    	0 -8	; "/mnt/onboard"
+	33	[20]	RETURN   	0 2
+	34	[20]	JMP      	10	; to 45
+	35	[21]	GETUPVAL 	0 0	; Device
+	36	[21]	SELF     	0 0 -9	; "isRemarkable"
+	37	[21]	CALL     	0 2 2
+	38	[21]	TEST     	0 0 0
+	39	[21]	JMP      	3	; to 43
+	40	[22]	LOADK    	0 -10	; "/home/root"
+	41	[22]	RETURN   	0 2
+	42	[22]	JMP      	2	; to 45
+	43	[24]	LOADK    	0 -11	; "."
+	44	[24]	RETURN   	0 2
+	45	[26]	RETURN   	0 1
+
+function <./frontend/apps/filemanager/filemanagerutil.lua:28,42> (45 instructions, 180 bytes at 0x7fc3304075e0)
+1 param, 8 slots, 2 upvalues, 4 locals, 13 constants, 0 functions
+	1	[29]	TEST     	0 0 1
+	2	[29]	JMP      	2	; to 5
+	3	[29]	LOADK    	1 -1	; ""
+	4	[29]	RETURN   	1 2
+	5	[30]	GETGLOBAL	1 -2	; G_reader_settings
+	6	[30]	SELF     	1 1 -3	; "nilOrTrue"
+	7	[30]	LOADK    	3 -4	; "shorten_home_dir"
+	8	[30]	CALL     	1 3 2
+	9	[30]	TEST     	1 0 0
+	10	[30]	JMP      	33	; to 44
+	11	[31]	GETGLOBAL	1 -2	; G_reader_settings
+	12	[31]	SELF     	1 1 -5	; "readSetting"
+	13	[31]	LOADK    	3 -6	; "home_dir"
+	14	[31]	CALL     	1 3 2
+	15	[31]	TEST     	1 0 1
+	16	[31]	JMP      	3	; to 20
+	17	[31]	GETUPVAL 	1 0	; filemanagerutil
+	18	[31]	GETTABLE 	1 1 -7	; "getDefaultDir"
+	19	[31]	CALL     	1 1 2
+	20	[32]	EQ       	0 0 1
+	21	[32]	JMP      	4	; to 26
+	22	[33]	GETUPVAL 	2 1	; _
+	23	[33]	LOADK    	3 -8	; "Home"
+	24	[33]	TAILCALL 	2 2 0
+	25	[33]	RETURN   	2 0
+	26	[35]	SELF     	2 1 -9	; "len"
+	27	[35]	CALL     	2 2 2
+	28	[36]	SELF     	3 0 -10	; "sub"
+	29	[36]	LOADK    	5 -11	; 1
+	30	[36]	MOVE     	6 2
+	31	[36]	CALL     	3 4 2
+	32	[37]	EQ       	0 3 1
+	33	[37]	JMP      	10	; to 44
+	34	[37]	SELF     	4 0 -10	; "sub"
+	35	[37]	ADD      	6 2 -11	; - 1
+	36	[37]	ADD      	7 2 -11	; - 1
+	37	[37]	CALL     	4 4 2
+	38	[37]	EQ       	0 4 -12	; - "/"
+	39	[37]	JMP      	4	; to 44
+	40	[38]	SELF     	4 0 -10	; "sub"
+	41	[38]	ADD      	6 2 -13	; - 2
+	42	[38]	TAILCALL 	4 3 0
+	43	[38]	RETURN   	4 0
+	44	[41]	RETURN   	0 2
+	45	[42]	RETURN   	0 1
+
+function <./frontend/apps/filemanager/filemanagerutil.lua:45,56> (30 instructions, 120 bytes at 0x7fc330407350)
+1 param, 6 slots, 2 upvalues, 2 locals, 6 constants, 0 functions
+	1	[46]	GETUPVAL 	1 0	; util
+	2	[46]	GETTABLE 	1 1 -1	; "realpath"
+	3	[46]	MOVE     	2 0
+	4	[46]	CALL     	1 2 2
+	5	[47]	TEST     	1 0 0
+	6	[47]	JMP      	23	; to 30
+	7	[48]	GETGLOBAL	2 -2	; os
+	8	[48]	GETTABLE 	2 2 -3	; "remove"
+	9	[48]	GETUPVAL 	3 1	; DocSettings
+	10	[48]	SELF     	3 3 -4	; "getSidecarFile"
+	11	[48]	MOVE     	5 1
+	12	[48]	CALL     	3 3 0
+	13	[48]	CALL     	2 0 1
+	14	[51]	GETGLOBAL	2 -2	; os
+	15	[51]	GETTABLE 	2 2 -3	; "remove"
+	16	[51]	GETUPVAL 	3 1	; DocSettings
+	17	[51]	SELF     	3 3 -4	; "getSidecarFile"
+	18	[51]	MOVE     	5 1
+	19	[51]	CALL     	3 3 2
+	20	[51]	LOADK    	4 -5	; ".old"
+	21	[51]	CONCAT   	3 3 4
+	22	[51]	CALL     	2 2 1
+	23	[54]	GETGLOBAL	2 -2	; os
+	24	[54]	GETTABLE 	2 2 -3	; "remove"
+	25	[54]	GETUPVAL 	3 1	; DocSettings
+	26	[54]	SELF     	3 3 -6	; "getSidecarDir"
+	27	[54]	MOVE     	5 1
+	28	[54]	CALL     	3 3 0
+	29	[54]	CALL     	2 0 1
+	30	[56]	RETURN   	0 1

@@ -1,0 +1,1466 @@
+-- BYTECODE -- zip.lua:13-15
+0001    GGET     2   0      ; "math"
+0002    TGETS    2   2   1  ; "floor"
+0003    KSHORT   3   2
+0004    POW      3   3   1
+0005    DIVVV    3   0   3
+0006    CALLT    2   2
+
+-- BYTECODE -- zip.lua:17-19
+0001    KSHORT   2   2
+0002    POW      2   2   1
+0003    MULVV    2   0   2
+0004    RET1     2   2
+
+-- BYTECODE -- zip.lua:20-22
+0001    KSHORT   2   2
+0002    POW      2   2   1
+0003    MODVV    2   0   2
+0004    RET1     2   2
+
+-- BYTECODE -- zip.lua:24-32
+0001    ISNES    0   0      ; "gzip"
+0002    JMP      1 => 0006
+0003    KSHORT   1  31
+0004    RET1     1   2
+0005    JMP      1 => 0015
+0006 => ISNES    0   1      ; "zlib"
+0007    JMP      1 => 0011
+0008    KSHORT   1   0
+0009    RET1     1   2
+0010    JMP      1 => 0015
+0011 => ISNES    0   2      ; "raw"
+0012    JMP      1 => 0015
+0013    KSHORT   1 -15
+0014    RET1     1   2
+0015 => RET0     0   1
+
+-- BYTECODE -- zip.lua:38-40
+0001    UGET     2   0      ; zlib
+0002    TGETS    2   2   0  ; "deflate"
+0003    KSHORT   3   6
+0004    UGET     4   1      ; mode_to_windowbits
+0005    MOV      5   1
+0006    CALL     4   0   2
+0007    CALLM    2   2   1
+0008    MOV      3   0
+0009    KSTR     4   1      ; "finish"
+0010    CALL     2   2   3
+0011    RET1     2   2
+
+-- BYTECODE -- zip.lua:42-44
+0001    UGET     2   0      ; zlib
+0002    TGETS    2   2   0  ; "inflate"
+0003    UGET     3   1      ; mode_to_windowbits
+0004    MOV      4   1
+0005    CALL     3   0   2
+0006    CALLM    2   2   0
+0007    MOV      3   0
+0008    CALL     2   2   2
+0009    RET1     2   2
+
+-- BYTECODE -- zip.lua:46-48
+0001    UGET     1   0      ; zlib
+0002    TGETS    1   1   0  ; "crc32"
+0003    CALL     1   2   1
+0004    MOV      2   0
+0005    CALLT    1   2
+
+-- BYTECODE -- zip.lua:50-52
+0001    UGET     2   0      ; zlib
+0002    TGETS    2   2   0  ; "compress"
+0003    MOV      3   0
+0004    KSHORT   4  -1
+0005    KPRI     5   0
+0006    UGET     6   1      ; mode_to_windowbits
+0007    MOV      7   1
+0008    CALL     6   0   2
+0009    CALLMT   2   3
+
+-- BYTECODE -- zip.lua:54-56
+0001    UGET     2   0      ; zlib
+0002    TGETS    2   2   0  ; "decompress"
+0003    MOV      3   0
+0004    UGET     4   1      ; mode_to_windowbits
+0005    MOV      5   1
+0006    CALL     4   0   2
+0007    CALLMT   2   1
+
+-- BYTECODE -- zip.lua:58-60
+0001    UGET     1   0      ; zlib
+0002    TGETS    1   1   0  ; "crc32"
+0003    UGET     2   0      ; zlib
+0004    TGETS    2   2   0  ; "crc32"
+0005    CALL     2   2   1
+0006    MOV      3   0
+0007    CALLT    1   3
+
+-- BYTECODE -- zip.lua:65-73
+0001    TNEW     2   0
+0002    KSHORT   3   1
+0003    MOV      4   1
+0004    KSHORT   5   1
+0005    FORI     3 => 0018
+0006 => MODVN    7   0   0  ; 256
+0007    GGET     8   0      ; "table"
+0008    TGETS    8   8   1  ; "insert"
+0009    MOV      9   2
+0010    GGET    10   2      ; "string"
+0011    TGETS   10  10   3  ; "char"
+0012    MOV     11   7
+0013    CALL    10   0   2
+0014    CALLM    8   1   1
+0015    SUBVV    8   0   7
+0016    DIVVN    0   8   0  ; 256
+0017    FORL     3 => 0006
+0018 => GGET     3   0      ; "table"
+0019    TGETS    3   3   4  ; "concat"
+0020    MOV      4   2
+0021    CALLT    3   2
+
+-- BYTECODE -- zip.lua:75-82
+0001    KSHORT   1   0
+0002    TNEW     2   3
+0003    GGET     3   0      ; "string"
+0004    TGETS    3   3   1  ; "byte"
+0005    MOV      4   0
+0006    KSHORT   5   1
+0007    LEN      6   0
+0008    CALL     3   0   4
+0009    TSETM    3   0      ; 1
+0010    KSHORT   3   1
+0011    LEN      4   0
+0012    KSHORT   5   1
+0013    FORI     3 => 0021
+0014 => UGET     7   0      ; shl
+0015    TGETV    8   2   6
+0016    SUBVN    9   6   1  ; 1
+0017    MULVN    9   9   2  ; 8
+0018    CALL     7   2   3
+0019    ADDVV    1   1   7
+0020    FORL     3 => 0014
+0021 => GGET     3   2      ; "math"
+0022    TGETS    3   3   3  ; "floor"
+0023    MOV      4   1
+0024    CALLT    3   2
+
+-- BYTECODE -- zip.lua:93-108
+0001    TGETS    2   0   0  ; "in_open_file"
+0002    ISF          2
+0003    JMP      3 => 0009
+0004    MOV      3   0
+0005    TGETS    2   0   1  ; "close_file_in_zip"
+0006    CALL     2   1   2
+0007    KPRI     2   0
+0008    RET1     2   2
+0009 => TNEW     2   0
+0010    TSETS    2   0   2  ; "local_file_header"
+0011    KSHORT   3   0
+0012    TSETS    3   2   3  ; "last_mod_file_time"
+0013    KSHORT   3   0
+0014    TSETS    3   2   4  ; "last_mod_file_date"
+0015    LEN      3   1
+0016    TSETS    3   2   5  ; "file_name_length"
+0017    KSHORT   3   0
+0018    TSETS    3   2   6  ; "extra_field_length"
+0019    MOV      4   1
+0020    TGETS    3   1   8  ; "gsub"
+0021    KSTR     5   9      ; "\"
+0022    KSTR     6  10      ; "/"
+0023    CALL     3   2   4
+0024    TSETS    3   2   7  ; "file_name"
+0025    UGET     3   0      ; shl
+0026    KSHORT   4 493
+0027    KSHORT   5  16
+0028    CALL     3   2   3
+0029    TSETS    3   2  11  ; "external_attr"
+0030    KPRI     3   2
+0031    TSETS    3   0   0  ; "in_open_file"
+0032    KPRI     3   2
+0033    RET1     3   2
+
+-- BYTECODE -- zip.lua:114-125
+0001    TGETS    2   0   0  ; "in_open_file"
+0002    IST          2
+0003    JMP      2 => 0006
+0004    KPRI     2   0
+0005    RET1     2   2
+0006 => TGETS    2   0   1  ; "local_file_header"
+0007    UGET     3   0      ; zlib_compress
+0008    MOV      4   1
+0009    KSTR     5   2      ; "raw"
+0010    CALL     3   2   3
+0011    UGET     4   1      ; zlib_crc32
+0012    MOV      5   1
+0013    CALL     4   2   2
+0014    TSETS    4   2   3  ; "crc32"
+0015    LEN      4   3
+0016    TSETS    4   2   4  ; "compressed_size"
+0017    LEN      4   1
+0018    TSETS    4   2   5  ; "uncompressed_size"
+0019    TSETS    3   0   6  ; "data"
+0020    KPRI     4   2
+0021    RET1     4   2
+
+-- BYTECODE -- zip.lua:130-166
+0001    TGETS    1   0   0  ; "ziphandle"
+0002    TGETS    2   0   1  ; "in_open_file"
+0003    IST          2
+0004    JMP      2 => 0007
+0005    KPRI     2   0
+0006    RET1     2   2
+0007 => TGETS    2   0   2  ; "local_file_header"
+0008    MOV      4   1
+0009    TGETS    3   1   4  ; "seek"
+0010    CALL     3   2   2
+0011    TSETS    3   2   3  ; "offset"
+0012    MOV      4   1
+0013    TGETS    3   1   5  ; "write"
+0014    UGET     5   0      ; LOCAL_FILE_HEADER_SIGNATURE
+0015    CALL     3   1   3
+0016    MOV      4   1
+0017    TGETS    3   1   5  ; "write"
+0018    UGET     5   1      ; number_to_lestring
+0019    KSHORT   6  20
+0020    KSHORT   7   2
+0021    CALL     5   0   3
+0022    CALLM    3   1   1
+0023    MOV      4   1
+0024    TGETS    3   1   5  ; "write"
+0025    UGET     5   1      ; number_to_lestring
+0026    KSHORT   6   4
+0027    KSHORT   7   2
+0028    CALL     5   0   3
+0029    CALLM    3   1   1
+0030    MOV      4   1
+0031    TGETS    3   1   5  ; "write"
+0032    UGET     5   1      ; number_to_lestring
+0033    KSHORT   6   8
+0034    KSHORT   7   2
+0035    CALL     5   0   3
+0036    CALLM    3   1   1
+0037    MOV      4   1
+0038    TGETS    3   1   5  ; "write"
+0039    UGET     5   1      ; number_to_lestring
+0040    TGETS    6   2   6  ; "last_mod_file_time"
+0041    KSHORT   7   2
+0042    CALL     5   0   3
+0043    CALLM    3   1   1
+0044    MOV      4   1
+0045    TGETS    3   1   5  ; "write"
+0046    UGET     5   1      ; number_to_lestring
+0047    TGETS    6   2   7  ; "last_mod_file_date"
+0048    KSHORT   7   2
+0049    CALL     5   0   3
+0050    CALLM    3   1   1
+0051    MOV      4   1
+0052    TGETS    3   1   5  ; "write"
+0053    UGET     5   1      ; number_to_lestring
+0054    TGETS    6   2   8  ; "crc32"
+0055    KSHORT   7   4
+0056    CALL     5   0   3
+0057    CALLM    3   1   1
+0058    MOV      4   1
+0059    TGETS    3   1   5  ; "write"
+0060    UGET     5   1      ; number_to_lestring
+0061    TGETS    6   2   9  ; "compressed_size"
+0062    KSHORT   7   4
+0063    CALL     5   0   3
+0064    CALLM    3   1   1
+0065    MOV      4   1
+0066    TGETS    3   1   5  ; "write"
+0067    UGET     5   1      ; number_to_lestring
+0068    TGETS    6   2  10  ; "uncompressed_size"
+0069    KSHORT   7   4
+0070    CALL     5   0   3
+0071    CALLM    3   1   1
+0072    MOV      4   1
+0073    TGETS    3   1   5  ; "write"
+0074    UGET     5   1      ; number_to_lestring
+0075    TGETS    6   2  11  ; "file_name_length"
+0076    KSHORT   7   2
+0077    CALL     5   0   3
+0078    CALLM    3   1   1
+0079    MOV      4   1
+0080    TGETS    3   1   5  ; "write"
+0081    UGET     5   1      ; number_to_lestring
+0082    TGETS    6   2  12  ; "extra_field_length"
+0083    KSHORT   7   2
+0084    CALL     5   0   3
+0085    CALLM    3   1   1
+0086    MOV      4   1
+0087    TGETS    3   1   5  ; "write"
+0088    TGETS    5   2  13  ; "file_name"
+0089    CALL     3   1   3
+0090    MOV      4   1
+0091    TGETS    3   1   5  ; "write"
+0092    TGETS    5   0  14  ; "data"
+0093    CALL     3   1   3
+0094    MOV      4   1
+0095    TGETS    3   1   5  ; "write"
+0096    UGET     5   2      ; DATA_DESCRIPTOR_SIGNATURE
+0097    CALL     3   1   3
+0098    MOV      4   1
+0099    TGETS    3   1   5  ; "write"
+0100    UGET     5   1      ; number_to_lestring
+0101    TGETS    6   2   8  ; "crc32"
+0102    KSHORT   7   4
+0103    CALL     5   0   3
+0104    CALLM    3   1   1
+0105    MOV      4   1
+0106    TGETS    3   1   5  ; "write"
+0107    UGET     5   1      ; number_to_lestring
+0108    TGETS    6   2   9  ; "compressed_size"
+0109    KSHORT   7   4
+0110    CALL     5   0   3
+0111    CALLM    3   1   1
+0112    MOV      4   1
+0113    TGETS    3   1   5  ; "write"
+0114    UGET     5   1      ; number_to_lestring
+0115    TGETS    6   2  10  ; "uncompressed_size"
+0116    KSHORT   7   4
+0117    CALL     5   0   3
+0118    CALLM    3   1   1
+0119    GGET     3  15      ; "table"
+0120    TGETS    3   3  16  ; "insert"
+0121    TGETS    4   0  17  ; "files"
+0122    MOV      5   2
+0123    CALL     3   1   3
+0124    KPRI     3   1
+0125    TSETS    3   0   1  ; "in_open_file"
+0126    KPRI     3   2
+0127    RET1     3   2
+
+-- BYTECODE -- zip.lua:170-204
+0001    KPRI     2   0
+0002    MOV      4   0
+0003    TGETS    3   0   0  ; "open_new_file_in_zip"
+0004    MOV      5   1
+0005    CALL     3   3   3
+0006    IST          3
+0007    JMP      5 => 0013
+0008    KSTR     5   1      ; "error in opening "
+0009    MOV      6   1
+0010    KSTR     7   2      ; " in zipfile"
+0011    CAT      4   5   7
+0012    JMP      5 => 0029
+0013 => GGET     5   3      ; "io"
+0014    TGETS    5   5   4  ; "open"
+0015    UGET     6   0      ; fs
+0016    TGETS    6   6   5  ; "absolute_name"
+0017    MOV      7   1
+0018    CALL     6   2   2
+0019    KSTR     7   6      ; "rb"
+0020    CALL     5   2   3
+0021    MOV      2   5
+0022    IST          2
+0023    JMP      5 => 0029
+0024    KPRI     3   1
+0025    KSTR     5   7      ; "error opening "
+0026    MOV      6   1
+0027    KSTR     7   8      ; " for reading"
+0028    CAT      4   5   7
+0029 => ISF          3
+0030    JMP      5 => 0053
+0031    MOV      6   2
+0032    TGETS    5   2   9  ; "read"
+0033    KSTR     7  10      ; "*a"
+0034    CALL     5   2   3
+0035    IST          5
+0036    JMP      6 => 0042
+0037    KSTR     6  11      ; "error reading "
+0038    MOV      7   1
+0039    CAT      4   6   7
+0040    KPRI     3   1
+0041    JMP      6 => 0053
+0042 => MOV      7   0
+0043    TGETS    6   0  12  ; "write_file_in_zip"
+0044    MOV      8   5
+0045    CALL     6   2   3
+0046    MOV      3   6
+0047    IST          3
+0048    JMP      6 => 0053
+0049    KSTR     6  13      ; "error in writing "
+0050    MOV      7   1
+0051    KSTR     8  14      ; " in the zipfile"
+0052    CAT      4   6   8
+0053 => ISF          2
+0054    JMP      5 => 0058
+0055    MOV      6   2
+0056    TGETS    5   2  15  ; "close"
+0057    CALL     5   1   2
+0058 => ISF          3
+0059    JMP      5 => 0070
+0060    MOV      6   0
+0061    TGETS    5   0  16  ; "close_file_in_zip"
+0062    CALL     5   2   2
+0063    MOV      3   5
+0064    IST          3
+0065    JMP      5 => 0070
+0066    KSTR     5  13      ; "error in writing "
+0067    MOV      6   1
+0068    KSTR     7  14      ; " in the zipfile"
+0069    CAT      4   5   7
+0070 => ISEQP    3   2
+0071    JMP      5 => 0074
+0072    KPRI     5   1
+0073    JMP      6 => 0075
+0074 => KPRI     5   2
+0075 => MOV      6   4
+0076    RET      5   3
+
+-- BYTECODE -- zip.lua:209-250
+0001    TGETS    1   0   0  ; "ziphandle"
+0002    MOV      3   1
+0003    TGETS    2   1   1  ; "seek"
+0004    CALL     2   2   2
+0005    KSHORT   3   0
+0006    GGET     4   2      ; "ipairs"
+0007    TGETS    5   0   3  ; "files"
+0008    CALL     4   4   2
+0009    JMP      7 => 0133
+0010 => MOV     10   1
+0011    TGETS    9   1   4  ; "write"
+0012    UGET    11   0      ; CENTRAL_DIRECTORY_SIGNATURE
+0013    CALL     9   1   3
+0014    MOV     10   1
+0015    TGETS    9   1   4  ; "write"
+0016    UGET    11   1      ; number_to_lestring
+0017    KSHORT  12   3
+0018    KSHORT  13   2
+0019    CALL    11   0   3
+0020    CALLM    9   1   1
+0021    MOV     10   1
+0022    TGETS    9   1   4  ; "write"
+0023    UGET    11   1      ; number_to_lestring
+0024    KSHORT  12  20
+0025    KSHORT  13   2
+0026    CALL    11   0   3
+0027    CALLM    9   1   1
+0028    MOV     10   1
+0029    TGETS    9   1   4  ; "write"
+0030    UGET    11   1      ; number_to_lestring
+0031    KSHORT  12   0
+0032    KSHORT  13   2
+0033    CALL    11   0   3
+0034    CALLM    9   1   1
+0035    MOV     10   1
+0036    TGETS    9   1   4  ; "write"
+0037    UGET    11   1      ; number_to_lestring
+0038    KSHORT  12   8
+0039    KSHORT  13   2
+0040    CALL    11   0   3
+0041    CALLM    9   1   1
+0042    MOV     10   1
+0043    TGETS    9   1   4  ; "write"
+0044    UGET    11   1      ; number_to_lestring
+0045    TGETS   12   8   5  ; "last_mod_file_time"
+0046    KSHORT  13   2
+0047    CALL    11   0   3
+0048    CALLM    9   1   1
+0049    MOV     10   1
+0050    TGETS    9   1   4  ; "write"
+0051    UGET    11   1      ; number_to_lestring
+0052    TGETS   12   8   6  ; "last_mod_file_date"
+0053    KSHORT  13   2
+0054    CALL    11   0   3
+0055    CALLM    9   1   1
+0056    MOV     10   1
+0057    TGETS    9   1   4  ; "write"
+0058    UGET    11   1      ; number_to_lestring
+0059    TGETS   12   8   7  ; "crc32"
+0060    KSHORT  13   4
+0061    CALL    11   0   3
+0062    CALLM    9   1   1
+0063    MOV     10   1
+0064    TGETS    9   1   4  ; "write"
+0065    UGET    11   1      ; number_to_lestring
+0066    TGETS   12   8   8  ; "compressed_size"
+0067    KSHORT  13   4
+0068    CALL    11   0   3
+0069    CALLM    9   1   1
+0070    MOV     10   1
+0071    TGETS    9   1   4  ; "write"
+0072    UGET    11   1      ; number_to_lestring
+0073    TGETS   12   8   9  ; "uncompressed_size"
+0074    KSHORT  13   4
+0075    CALL    11   0   3
+0076    CALLM    9   1   1
+0077    MOV     10   1
+0078    TGETS    9   1   4  ; "write"
+0079    UGET    11   1      ; number_to_lestring
+0080    TGETS   12   8  10  ; "file_name_length"
+0081    KSHORT  13   2
+0082    CALL    11   0   3
+0083    CALLM    9   1   1
+0084    MOV     10   1
+0085    TGETS    9   1   4  ; "write"
+0086    UGET    11   1      ; number_to_lestring
+0087    TGETS   12   8  11  ; "extra_field_length"
+0088    KSHORT  13   2
+0089    CALL    11   0   3
+0090    CALLM    9   1   1
+0091    MOV     10   1
+0092    TGETS    9   1   4  ; "write"
+0093    UGET    11   1      ; number_to_lestring
+0094    KSHORT  12   0
+0095    KSHORT  13   2
+0096    CALL    11   0   3
+0097    CALLM    9   1   1
+0098    MOV     10   1
+0099    TGETS    9   1   4  ; "write"
+0100    UGET    11   1      ; number_to_lestring
+0101    KSHORT  12   0
+0102    KSHORT  13   2
+0103    CALL    11   0   3
+0104    CALLM    9   1   1
+0105    MOV     10   1
+0106    TGETS    9   1   4  ; "write"
+0107    UGET    11   1      ; number_to_lestring
+0108    KSHORT  12   0
+0109    KSHORT  13   2
+0110    CALL    11   0   3
+0111    CALLM    9   1   1
+0112    MOV     10   1
+0113    TGETS    9   1   4  ; "write"
+0114    UGET    11   1      ; number_to_lestring
+0115    TGETS   12   8  12  ; "external_attr"
+0116    KSHORT  13   4
+0117    CALL    11   0   3
+0118    CALLM    9   1   1
+0119    MOV     10   1
+0120    TGETS    9   1   4  ; "write"
+0121    UGET    11   1      ; number_to_lestring
+0122    TGETS   12   8  13  ; "offset"
+0123    KSHORT  13   4
+0124    CALL    11   0   3
+0125    CALLM    9   1   1
+0126    MOV     10   1
+0127    TGETS    9   1   4  ; "write"
+0128    TGETS   11   8  14  ; "file_name"
+0129    CALL     9   1   3
+0130    ADDVN    9   3   0  ; 46
+0131    TGETS   10   8  10  ; "file_name_length"
+0132    ADDVV    3   9  10
+0133 => ITERC    7   3   3
+0134    ITERL    7 => 0010
+0135    MOV      5   1
+0136    TGETS    4   1   4  ; "write"
+0137    UGET     6   2      ; END_OF_CENTRAL_DIR_SIGNATURE
+0138    CALL     4   1   3
+0139    MOV      5   1
+0140    TGETS    4   1   4  ; "write"
+0141    UGET     6   1      ; number_to_lestring
+0142    KSHORT   7   0
+0143    KSHORT   8   2
+0144    CALL     6   0   3
+0145    CALLM    4   1   1
+0146    MOV      5   1
+0147    TGETS    4   1   4  ; "write"
+0148    UGET     6   1      ; number_to_lestring
+0149    KSHORT   7   0
+0150    KSHORT   8   2
+0151    CALL     6   0   3
+0152    CALLM    4   1   1
+0153    MOV      5   1
+0154    TGETS    4   1   4  ; "write"
+0155    UGET     6   1      ; number_to_lestring
+0156    TGETS    7   0   3  ; "files"
+0157    LEN      7   7
+0158    KSHORT   8   2
+0159    CALL     6   0   3
+0160    CALLM    4   1   1
+0161    MOV      5   1
+0162    TGETS    4   1   4  ; "write"
+0163    UGET     6   1      ; number_to_lestring
+0164    TGETS    7   0   3  ; "files"
+0165    LEN      7   7
+0166    KSHORT   8   2
+0167    CALL     6   0   3
+0168    CALLM    4   1   1
+0169    MOV      5   1
+0170    TGETS    4   1   4  ; "write"
+0171    UGET     6   1      ; number_to_lestring
+0172    MOV      7   3
+0173    KSHORT   8   4
+0174    CALL     6   0   3
+0175    CALLM    4   1   1
+0176    MOV      5   1
+0177    TGETS    4   1   4  ; "write"
+0178    UGET     6   1      ; number_to_lestring
+0179    MOV      7   2
+0180    KSHORT   8   4
+0181    CALL     6   0   3
+0182    CALLM    4   1   1
+0183    MOV      5   1
+0184    TGETS    4   1   4  ; "write"
+0185    UGET     6   1      ; number_to_lestring
+0186    KSHORT   7   0
+0187    KSHORT   8   2
+0188    CALL     6   0   3
+0189    CALLM    4   1   1
+0190    MOV      5   1
+0191    TGETS    4   1  15  ; "close"
+0192    CALL     4   1   2
+0193    KPRI     4   2
+0194    RET1     4   2
+
+-- BYTECODE -- zip.lua:255-273
+0001    TNEW     1   0
+0002    GGET     2   1      ; "io"
+0003    TGETS    2   2   2  ; "open"
+0004    UGET     3   0      ; fs
+0005    TGETS    3   3   3  ; "absolute_name"
+0006    MOV      4   0
+0007    CALL     3   2   2
+0008    KSTR     4   4      ; "wb"
+0009    CALL     2   2   3
+0010    TSETS    2   1   0  ; "ziphandle"
+0011    TGETS    2   1   0  ; "ziphandle"
+0012    IST          2
+0013    JMP      2 => 0016
+0014    KPRI     2   0
+0015    RET1     2   2
+0016 => TNEW     2   0
+0017    TSETS    2   1   5  ; "files"
+0018    KPRI     2   1
+0019    TSETS    2   1   6  ; "in_open_file"
+0020    UGET     2   1      ; zipwriter_add
+0021    TSETS    2   1   7  ; "add"
+0022    UGET     2   2      ; zipwriter_close
+0023    TSETS    2   1   8  ; "close"
+0024    UGET     2   3      ; zipwriter_open_new_file_in_zip
+0025    TSETS    2   1   9  ; "open_new_file_in_zip"
+0026    UGET     2   4      ; zipwriter_write_file_in_zip
+0027    TSETS    2   1  10  ; "write_file_in_zip"
+0028    UGET     2   5      ; zipwriter_close_file_in_zip
+0029    TSETS    2   1  11  ; "close_file_in_zip"
+0030    RET1     1   2
+
+-- BYTECODE -- zip.lua:281-305
+0001    UGET     1   0      ; zip
+0002    TGETS    1   1   0  ; "new_zipwriter"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    IST          1
+0006    JMP      2 => 0012
+0007    KPRI     2   0
+0008    KSTR     3   1      ; "error opening "
+0009    MOV      4   0
+0010    CAT      3   3   4
+0011    RET      2   3
+0012 => KNIL     2   3
+0013    GGET     4   2      ; "pairs"
+0014    TNEW     5   3
+0015    VARG     6   0   1
+0016    TSETM    6   0      ; 1
+0017    CALL     4   4   2
+0018    ISNEXT   7 => 0064
+0019 => UGET     9   1      ; fs
+0020    TGETS    9   9   3  ; "is_dir"
+0021    MOV     10   8
+0022    CALL     9   2   2
+0023    ISF          9
+0024    JMP     10 => 0055
+0025    GGET     9   2      ; "pairs"
+0026    UGET    10   1      ; fs
+0027    TGETS   10  10   4  ; "find"
+0028    MOV     11   8
+0029    CALL    10   0   2
+0030    CALLM    9   4   0
+0031    ISNEXT  12 => 0052
+0032 => UGET    14   2      ; dir
+0033    TGETS   14  14   5  ; "path"
+0034    MOV     15   8
+0035    MOV     16  13
+0036    CALL    14   2   3
+0037    UGET    15   1      ; fs
+0038    TGETS   15  15   6  ; "is_file"
+0039    MOV     16  14
+0040    CALL    15   2   2
+0041    ISF         15
+0042    JMP     16 => 0052
+0043    MOV     16   1
+0044    TGETS   15   1   7  ; "add"
+0045    MOV     17  14
+0046    CALL    15   3   3
+0047    MOV      3  16
+0048    MOV      2  15
+0049    IST          2
+0050    JMP     15 => 0052
+0051    JMP      9 => 0064
+0052 => ITERN   12   3   3
+0053    ITERL   12 => 0032
+0054    JMP      9 => 0064
+0055 => MOV     10   1
+0056    TGETS    9   1   7  ; "add"
+0057    MOV     11   8
+0058    CALL     9   3   3
+0059    MOV      3  10
+0060    MOV      2   9
+0061    IST          2
+0062    JMP      9 => 0064
+0063    JMP      4 => 0066
+0064 => ITERN    7   3   3
+0065    ITERL    7 => 0019
+0066 => MOV      5   1
+0067    TGETS    4   1   8  ; "close"
+0068    CALL     4   1   2
+0069    MOV      4   2
+0070    MOV      5   3
+0071    RET      4   3
+
+-- BYTECODE -- zip.lua:308-322
+0001    TDUP     2   0
+0002    UGET     3   0      ; shr
+0003    MOV      4   1
+0004    KSHORT   5   9
+0005    CALL     3   2   3
+0006    ADDVN    3   3   0  ; 1980
+0007    TSETS    3   2   1  ; "year"
+0008    UGET     3   0      ; shr
+0009    UGET     4   1      ; lowbits
+0010    MOV      5   1
+0011    KSHORT   6   9
+0012    CALL     4   2   3
+0013    KSHORT   5   5
+0014    CALL     3   2   3
+0015    TSETS    3   2   2  ; "month"
+0016    UGET     3   1      ; lowbits
+0017    MOV      4   1
+0018    KSHORT   5   5
+0019    CALL     3   2   3
+0020    TSETS    3   2   3  ; "day"
+0021    UGET     3   0      ; shr
+0022    MOV      4   0
+0023    KSHORT   5  11
+0024    CALL     3   2   3
+0025    TSETS    3   2   4  ; "hour"
+0026    UGET     3   0      ; shr
+0027    UGET     4   1      ; lowbits
+0028    MOV      5   0
+0029    KSHORT   6  11
+0030    CALL     4   2   3
+0031    KSHORT   5   5
+0032    CALL     3   2   3
+0033    TSETS    3   2   5  ; "min"
+0034    UGET     3   1      ; lowbits
+0035    MOV      4   0
+0036    KSHORT   5   5
+0037    CALL     3   2   3
+0038    MULVN    3   3   1  ; 2
+0039    TSETS    3   2   6  ; "sec"
+0040    TGETS    3   2   2  ; "month"
+0041    ISNEN    3   2      ; 0
+0042    JMP      3 => 0045
+0043    KSHORT   3   1
+0044    TSETS    3   2   2  ; "month"
+0045 => TGETS    3   2   3  ; "day"
+0046    ISNEN    3   2      ; 0
+0047    JMP      3 => 0050
+0048    KSHORT   3   1
+0049    TSETS    3   2   3  ; "day"
+0050 => RET1     2   2
+
+-- BYTECODE -- zip.lua:324-363
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "read"
+0003    KSHORT   4   4
+0004    CALL     2   2   3
+0005    UGET     3   0      ; LOCAL_FILE_HEADER_SIGNATURE
+0006    ISEQV    2   3
+0007    JMP      3 => 0011
+0008    KPRI     3   0
+0009    KSTR     4   1      ; "failed reading Local File Header signatu"~
+0010    RET      3   3
+0011 => TNEW     3   0
+0012    UGET     4   1      ; lestring_to_number
+0013    MOV      6   0
+0014    TGETS    5   0   0  ; "read"
+0015    KSHORT   7   2
+0016    CALL     5   0   3
+0017    CALLM    4   2   0
+0018    TSETS    4   3   2  ; "version_needed"
+0019    UGET     4   1      ; lestring_to_number
+0020    MOV      6   0
+0021    TGETS    5   0   0  ; "read"
+0022    KSHORT   7   2
+0023    CALL     5   0   3
+0024    CALLM    4   2   0
+0025    TSETS    4   3   3  ; "bitflag"
+0026    UGET     4   1      ; lestring_to_number
+0027    MOV      6   0
+0028    TGETS    5   0   0  ; "read"
+0029    KSHORT   7   2
+0030    CALL     5   0   3
+0031    CALLM    4   2   0
+0032    TSETS    4   3   4  ; "compression_method"
+0033    UGET     4   1      ; lestring_to_number
+0034    MOV      6   0
+0035    TGETS    5   0   0  ; "read"
+0036    KSHORT   7   2
+0037    CALL     5   0   3
+0038    CALLM    4   2   0
+0039    TSETS    4   3   5  ; "last_mod_file_time"
+0040    UGET     4   1      ; lestring_to_number
+0041    MOV      6   0
+0042    TGETS    5   0   0  ; "read"
+0043    KSHORT   7   2
+0044    CALL     5   0   3
+0045    CALLM    4   2   0
+0046    TSETS    4   3   6  ; "last_mod_file_date"
+0047    UGET     4   1      ; lestring_to_number
+0048    MOV      6   0
+0049    TGETS    5   0   0  ; "read"
+0050    KSHORT   7   4
+0051    CALL     5   0   3
+0052    CALLM    4   2   0
+0053    TSETS    4   3   7  ; "crc32"
+0054    UGET     4   1      ; lestring_to_number
+0055    MOV      6   0
+0056    TGETS    5   0   0  ; "read"
+0057    KSHORT   7   4
+0058    CALL     5   0   3
+0059    CALLM    4   2   0
+0060    TSETS    4   3   8  ; "compressed_size"
+0061    UGET     4   1      ; lestring_to_number
+0062    MOV      6   0
+0063    TGETS    5   0   0  ; "read"
+0064    KSHORT   7   4
+0065    CALL     5   0   3
+0066    CALLM    4   2   0
+0067    TSETS    4   3   9  ; "uncompressed_size"
+0068    UGET     4   1      ; lestring_to_number
+0069    MOV      6   0
+0070    TGETS    5   0   0  ; "read"
+0071    KSHORT   7   2
+0072    CALL     5   0   3
+0073    CALLM    4   2   0
+0074    TSETS    4   3  10  ; "file_name_length"
+0075    UGET     4   1      ; lestring_to_number
+0076    MOV      6   0
+0077    TGETS    5   0   0  ; "read"
+0078    KSHORT   7   2
+0079    CALL     5   0   3
+0080    CALLM    4   2   0
+0081    TSETS    4   3  11  ; "extra_field_length"
+0082    MOV      5   0
+0083    TGETS    4   0   0  ; "read"
+0084    TGETS    6   3  10  ; "file_name_length"
+0085    CALL     4   2   3
+0086    TSETS    4   3  12  ; "file_name"
+0087    MOV      5   0
+0088    TGETS    4   0   0  ; "read"
+0089    TGETS    6   3  11  ; "extra_field_length"
+0090    CALL     4   2   3
+0091    TSETS    4   3  13  ; "extra_field"
+0092    MOV      5   0
+0093    TGETS    4   0   0  ; "read"
+0094    TGETS    6   1   8  ; "compressed_size"
+0095    CALL     4   2   3
+0096    KPRI     5   0
+0097    TGETS    6   1   4  ; "compression_method"
+0098    ISNEN    6   0      ; 8
+0099    JMP      6 => 0106
+0100    UGET     6   2      ; zlib_uncompress
+0101    MOV      7   4
+0102    KSTR     8  14      ; "raw"
+0103    CALL     6   2   3
+0104    MOV      5   6
+0105    JMP      6 => 0116
+0106 => TGETS    6   1   4  ; "compression_method"
+0107    ISNEN    6   1      ; 0
+0108    JMP      6 => 0111
+0109    MOV      5   4
+0110    JMP      6 => 0116
+0111 => KPRI     6   0
+0112    KSTR     7  15      ; "unknown compression method "
+0113    TGETS    8   1   4  ; "compression_method"
+0114    CAT      7   7   8
+0115    RET      6   3
+0116 => LEN      6   5
+0117    TGETS    7   1   9  ; "uncompressed_size"
+0118    ISEQV    6   7
+0119    JMP      6 => 0123
+0120    KPRI     6   0
+0121    KSTR     7  16      ; "uncompressed size doesn't match"
+0122    RET      6   3
+0123 => TGETS    6   1   7  ; "crc32"
+0124    UGET     7   3      ; zlib_crc32
+0125    MOV      8   5
+0126    CALL     7   2   2
+0127    ISEQV    6   7
+0128    JMP      6 => 0136
+0129    KPRI     6   0
+0130    KSTR     7  17      ; "crc32 failed (expected "
+0131    TGETS    8   1   7  ; "crc32"
+0132    KSTR     9  18      ; ") - data: "
+0133    MOV     10   5
+0134    CAT      7   7  10
+0135    RET      6   3
+0136 => RET1     5   2
+
+-- BYTECODE -- zip.lua:365-397
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "seek"
+0003    KSTR     3   1      ; "end"
+0004    KSHORT   4 -22
+0005    CALL     1   3   4
+0006    IST          1
+0007    JMP      3 => 0011
+0008    KPRI     3   0
+0009    MOV      4   2
+0010    RET      3   3
+0011 => LOOP     3 => 0032
+0012    MOV      4   0
+0013    TGETS    3   0   2  ; "read"
+0014    KSHORT   5   4
+0015    CALL     3   2   3
+0016    UGET     4   0      ; END_OF_CENTRAL_DIR_SIGNATURE
+0017    ISNEV    3   4
+0018    JMP      4 => 0020
+0019    JMP      3 => 0032
+0020 => SUBVN    1   1   0  ; 1
+0021    MOV      5   0
+0022    TGETS    4   0   0  ; "seek"
+0023    KSTR     6   3      ; "set"
+0024    MOV      7   1
+0025    CALL     4   3   4
+0026    ISEQV    4   1
+0027    JMP      6 => 0011
+0028    KPRI     6   0
+0029    KSTR     7   4      ; "Could not find End of Central Directory "~
+0030    RET      6   3
+0031    JMP      3 => 0011
+0032 => MOV      4   0
+0033    TGETS    3   0   0  ; "seek"
+0034    KSTR     5   5      ; "cur"
+0035    KSHORT   6   6
+0036    CALL     3   1   4
+0037    UGET     3   1      ; lestring_to_number
+0038    MOV      5   0
+0039    TGETS    4   0   2  ; "read"
+0040    KSHORT   6   2
+0041    CALL     4   0   3
+0042    CALLM    3   2   0
+0043    MOV      5   0
+0044    TGETS    4   0   0  ; "seek"
+0045    KSTR     6   5      ; "cur"
+0046    KSHORT   7   4
+0047    CALL     4   1   4
+0048    UGET     4   1      ; lestring_to_number
+0049    MOV      6   0
+0050    TGETS    5   0   2  ; "read"
+0051    KSHORT   7   4
+0052    CALL     5   0   3
+0053    CALLM    4   2   0
+0054    MOV      5   3
+0055    MOV      6   4
+0056    RET      5   3
+
+-- BYTECODE -- zip.lua:399-434
+0001    TNEW     2   0
+0002    KSHORT   3   1
+0003    MOV      4   1
+0004    KSHORT   5   1
+0005    FORI     3 => 0151
+0006 => MOV      8   0
+0007    TGETS    7   0   0  ; "read"
+0008    KSHORT   9   4
+0009    CALL     7   2   3
+0010    UGET     8   0      ; CENTRAL_DIRECTORY_SIGNATURE
+0011    ISEQV    7   8
+0012    JMP      8 => 0016
+0013    KPRI     8   0
+0014    KSTR     9   1      ; "failed reading Central Directory signatu"~
+0015    RET      8   3
+0016 => TNEW     8   0
+0017    TSETV    8   2   6
+0018    UGET     9   1      ; lestring_to_number
+0019    MOV     11   0
+0020    TGETS   10   0   0  ; "read"
+0021    KSHORT  12   2
+0022    CALL    10   0   3
+0023    CALLM    9   2   0
+0024    TSETS    9   8   2  ; "version_made_by"
+0025    UGET     9   1      ; lestring_to_number
+0026    MOV     11   0
+0027    TGETS   10   0   0  ; "read"
+0028    KSHORT  12   2
+0029    CALL    10   0   3
+0030    CALLM    9   2   0
+0031    TSETS    9   8   3  ; "version_needed"
+0032    UGET     9   1      ; lestring_to_number
+0033    MOV     11   0
+0034    TGETS   10   0   0  ; "read"
+0035    KSHORT  12   2
+0036    CALL    10   0   3
+0037    CALLM    9   2   0
+0038    TSETS    9   8   4  ; "bitflag"
+0039    UGET     9   1      ; lestring_to_number
+0040    MOV     11   0
+0041    TGETS   10   0   0  ; "read"
+0042    KSHORT  12   2
+0043    CALL    10   0   3
+0044    CALLM    9   2   0
+0045    TSETS    9   8   5  ; "compression_method"
+0046    UGET     9   1      ; lestring_to_number
+0047    MOV     11   0
+0048    TGETS   10   0   0  ; "read"
+0049    KSHORT  12   2
+0050    CALL    10   0   3
+0051    CALLM    9   2   0
+0052    TSETS    9   8   6  ; "last_mod_file_time"
+0053    UGET     9   1      ; lestring_to_number
+0054    MOV     11   0
+0055    TGETS   10   0   0  ; "read"
+0056    KSHORT  12   2
+0057    CALL    10   0   3
+0058    CALLM    9   2   0
+0059    TSETS    9   8   7  ; "last_mod_file_date"
+0060    UGET     9   2      ; ziptime_to_luatime
+0061    TGETS   10   8   6  ; "last_mod_file_time"
+0062    TGETS   11   8   7  ; "last_mod_file_date"
+0063    CALL     9   2   3
+0064    TSETS    9   8   8  ; "last_mod_luatime"
+0065    UGET     9   1      ; lestring_to_number
+0066    MOV     11   0
+0067    TGETS   10   0   0  ; "read"
+0068    KSHORT  12   4
+0069    CALL    10   0   3
+0070    CALLM    9   2   0
+0071    TSETS    9   8   9  ; "crc32"
+0072    UGET     9   1      ; lestring_to_number
+0073    MOV     11   0
+0074    TGETS   10   0   0  ; "read"
+0075    KSHORT  12   4
+0076    CALL    10   0   3
+0077    CALLM    9   2   0
+0078    TSETS    9   8  10  ; "compressed_size"
+0079    UGET     9   1      ; lestring_to_number
+0080    MOV     11   0
+0081    TGETS   10   0   0  ; "read"
+0082    KSHORT  12   4
+0083    CALL    10   0   3
+0084    CALLM    9   2   0
+0085    TSETS    9   8  11  ; "uncompressed_size"
+0086    UGET     9   1      ; lestring_to_number
+0087    MOV     11   0
+0088    TGETS   10   0   0  ; "read"
+0089    KSHORT  12   2
+0090    CALL    10   0   3
+0091    CALLM    9   2   0
+0092    TSETS    9   8  12  ; "file_name_length"
+0093    UGET     9   1      ; lestring_to_number
+0094    MOV     11   0
+0095    TGETS   10   0   0  ; "read"
+0096    KSHORT  12   2
+0097    CALL    10   0   3
+0098    CALLM    9   2   0
+0099    TSETS    9   8  13  ; "extra_field_length"
+0100    UGET     9   1      ; lestring_to_number
+0101    MOV     11   0
+0102    TGETS   10   0   0  ; "read"
+0103    KSHORT  12   2
+0104    CALL    10   0   3
+0105    CALLM    9   2   0
+0106    TSETS    9   8  14  ; "file_comment_length"
+0107    UGET     9   1      ; lestring_to_number
+0108    MOV     11   0
+0109    TGETS   10   0   0  ; "read"
+0110    KSHORT  12   2
+0111    CALL    10   0   3
+0112    CALLM    9   2   0
+0113    TSETS    9   8  15  ; "disk_number_start"
+0114    UGET     9   1      ; lestring_to_number
+0115    MOV     11   0
+0116    TGETS   10   0   0  ; "read"
+0117    KSHORT  12   2
+0118    CALL    10   0   3
+0119    CALLM    9   2   0
+0120    TSETS    9   8  16  ; "internal_attr"
+0121    UGET     9   1      ; lestring_to_number
+0122    MOV     11   0
+0123    TGETS   10   0   0  ; "read"
+0124    KSHORT  12   4
+0125    CALL    10   0   3
+0126    CALLM    9   2   0
+0127    TSETS    9   8  17  ; "external_attr"
+0128    UGET     9   1      ; lestring_to_number
+0129    MOV     11   0
+0130    TGETS   10   0   0  ; "read"
+0131    KSHORT  12   4
+0132    CALL    10   0   3
+0133    CALLM    9   2   0
+0134    TSETS    9   8  18  ; "offset"
+0135    MOV     10   0
+0136    TGETS    9   0   0  ; "read"
+0137    TGETS   11   8  12  ; "file_name_length"
+0138    CALL     9   2   3
+0139    TSETS    9   8  19  ; "file_name"
+0140    MOV     10   0
+0141    TGETS    9   0   0  ; "read"
+0142    TGETS   11   8  13  ; "extra_field_length"
+0143    CALL     9   2   3
+0144    TSETS    9   8  20  ; "extra_field"
+0145    MOV     10   0
+0146    TGETS    9   0   0  ; "read"
+0147    TGETS   11   8  14  ; "file_comment_length"
+0148    CALL     9   2   3
+0149    TSETS    9   8  21  ; "file_comment"
+0150    FORL     3 => 0006
+0151 => RET1     2   2
+
+-- BYTECODE -- zip.lua:440-509
+0001    UGET     1   0      ; fs
+0002    TGETS    1   1   0  ; "absolute_name"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    MOV      0   1
+0006    GGET     1   1      ; "io"
+0007    TGETS    1   1   2  ; "open"
+0008    MOV      2   0
+0009    KSTR     3   3      ; "rb"
+0010    CALL     1   3   3
+0011    IST          1
+0012    JMP      3 => 0016
+0013    KPRI     3   0
+0014    MOV      4   2
+0015    RET      3   3
+0016 => UGET     3   1      ; process_end_of_central_dir
+0017    MOV      4   1
+0018    CALL     3   3   2
+0019    IST          3
+0020    JMP      5 => 0024
+0021    KPRI     5   0
+0022    MOV      6   4
+0023    RET      5   3
+0024 => MOV      6   1
+0025    TGETS    5   1   4  ; "seek"
+0026    KSTR     7   5      ; "set"
+0027    MOV      8   4
+0028    CALL     5   3   4
+0029    IST          5
+0030    JMP      7 => 0034
+0031    KPRI     7   0
+0032    MOV      8   6
+0033    RET      7   3
+0034 => UGET     7   2      ; process_central_dir
+0035    MOV      8   1
+0036    MOV      9   3
+0037    CALL     7   3   3
+0038    IST          7
+0039    JMP      9 => 0043
+0040    KPRI     9   0
+0041    MOV     10   8
+0042    RET      9   3
+0043 => GGET     9   6      ; "ipairs"
+0044    MOV     10   7
+0045    CALL     9   4   2
+0046    JMP     12 => 0167
+0047 => TGETS   14  13   7  ; "file_name"
+0048    MOV     16  14
+0049    TGETS   15  14   8  ; "sub"
+0050    LEN     17  14
+0051    CALL    15   2   3
+0052    ISNES   15   9      ; "/"
+0053    JMP     15 => 0070
+0054    UGET    15   0      ; fs
+0055    TGETS   15  15  10  ; "make_dir"
+0056    UGET    16   3      ; dir
+0057    TGETS   16  16  11  ; "path"
+0058    UGET    17   0      ; fs
+0059    TGETS   17  17  12  ; "current_dir"
+0060    CALL    17   2   1
+0061    MOV     18  14
+0062    CALL    16   0   3
+0063    CALLM   15   3   0
+0064    IST         15
+0065    JMP     17 => 0167
+0066    KPRI    17   0
+0067    MOV     18  16
+0068    RET     17   3
+0069    JMP     15 => 0167
+0070 => UGET    15   3      ; dir
+0071    TGETS   15  15  13  ; "dir_name"
+0072    MOV     16  14
+0073    CALL    15   2   2
+0074    ISEQS   15  14      ; ""
+0075    JMP     16 => 0099
+0076    UGET    16   3      ; dir
+0077    TGETS   16  16  11  ; "path"
+0078    UGET    17   0      ; fs
+0079    TGETS   17  17  12  ; "current_dir"
+0080    CALL    17   2   1
+0081    MOV     18  15
+0082    CALL    16   2   3
+0083    MOV     15  16
+0084    UGET    16   0      ; fs
+0085    TGETS   16  16  15  ; "is_dir"
+0086    MOV     17  15
+0087    CALL    16   2   2
+0088    IST         16
+0089    JMP     16 => 0099
+0090    UGET    16   0      ; fs
+0091    TGETS   16  16  10  ; "make_dir"
+0092    MOV     17  15
+0093    CALL    16   3   2
+0094    IST         16
+0095    JMP     18 => 0099
+0096    KPRI    18   0
+0097    MOV     19  17
+0098    RET     18   3
+0099 => MOV     17   1
+0100    TGETS   16   1   4  ; "seek"
+0101    KSTR    18   5      ; "set"
+0102    TGETS   19  13  16  ; "offset"
+0103    CALL    16   3   4
+0104    IST         16
+0105    JMP     18 => 0109
+0106    KPRI    18   0
+0107    MOV     19  17
+0108    RET     18   3
+0109 => UGET    18   4      ; read_file_in_zip
+0110    MOV     19   1
+0111    MOV     20  13
+0112    CALL    18   3   3
+0113    IST         18
+0114    JMP     20 => 0118
+0115    KPRI    20   0
+0116    MOV     21  19
+0117    RET     20   3
+0118 => UGET    20   3      ; dir
+0119    TGETS   20  20  11  ; "path"
+0120    UGET    21   0      ; fs
+0121    TGETS   21  21  12  ; "current_dir"
+0122    CALL    21   2   1
+0123    MOV     22  14
+0124    CALL    20   2   3
+0125    GGET    21   1      ; "io"
+0126    TGETS   21  21   2  ; "open"
+0127    MOV     22  20
+0128    KSTR    23  17      ; "wb"
+0129    CALL    21   3   3
+0130    IST         21
+0131    JMP     23 => 0138
+0132    MOV     24   1
+0133    TGETS   23   1  18  ; "close"
+0134    CALL    23   1   2
+0135    KPRI    23   0
+0136    MOV     24  22
+0137    RET     23   3
+0138 => MOV     24  21
+0139    TGETS   23  21  19  ; "write"
+0140    MOV     25  18
+0141    CALL    23   1   3
+0142    MOV     24  21
+0143    TGETS   23  21  18  ; "close"
+0144    CALL    23   1   2
+0145    TGETS   23  13  20  ; "external_attr"
+0146    KSHORT  24   0
+0147    ISGE    24  23
+0148    JMP     23 => 0156
+0149    UGET    23   0      ; fs
+0150    TGETS   23  23  21  ; "set_permissions"
+0151    MOV     24  20
+0152    KSTR    25  22      ; "exec"
+0153    KSTR    26  23      ; "all"
+0154    CALL    23   1   4
+0155    JMP     23 => 0162
+0156 => UGET    23   0      ; fs
+0157    TGETS   23  23  21  ; "set_permissions"
+0158    MOV     24  20
+0159    KSTR    25  24      ; "read"
+0160    KSTR    26  23      ; "all"
+0161    CALL    23   1   4
+0162 => UGET    23   0      ; fs
+0163    TGETS   23  23  25  ; "set_time"
+0164    MOV     24  20
+0165    TGETS   25  13  26  ; "last_mod_luatime"
+0166    CALL    23   1   3
+0167 => ITERC   12   3   3
+0168    ITERL   12 => 0047
+0169    MOV     10   1
+0170    TGETS    9   1  18  ; "close"
+0171    CALL     9   1   2
+0172    KPRI     9   2
+0173    RET1     9   2
+
+-- BYTECODE -- zip.lua:511-521
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "string"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => CALL     2   1   2
+0011    GGET     2   0      ; "assert"
+0012    ISEQP    1   0
+0013    JMP      3 => 0021
+0014    GGET     3   1      ; "type"
+0015    MOV      4   1
+0016    CALL     3   2   2
+0017    ISEQS    3   2      ; "string"
+0018    JMP      3 => 0021
+0019    KPRI     3   1
+0020    JMP      4 => 0022
+0021 => KPRI     3   2
+0022 => CALL     2   1   2
+0023    IST          1
+0024    JMP      2 => 0028
+0025    MOV      2   0
+0026    KSTR     3   3      ; ".gz"
+0027    CAT      1   2   3
+0028 => UGET     2   0      ; fun
+0029    TGETS    2   2   4  ; "partial"
+0030    UGET     3   0      ; fun
+0031    TGETS    3   3   5  ; "flip"
+0032    UGET     4   1      ; zlib_compress
+0033    CALL     3   2   2
+0034    KSTR     4   6      ; "gzip"
+0035    CALL     2   2   3
+0036    UGET     3   2      ; fs
+0037    TGETS    3   3   7  ; "filter_file"
+0038    MOV      4   2
+0039    MOV      5   0
+0040    MOV      6   1
+0041    CALLT    3   4
+
+-- BYTECODE -- zip.lua:523-533
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "string"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => CALL     2   1   2
+0011    GGET     2   0      ; "assert"
+0012    ISEQP    1   0
+0013    JMP      3 => 0021
+0014    GGET     3   1      ; "type"
+0015    MOV      4   1
+0016    CALL     3   2   2
+0017    ISEQS    3   2      ; "string"
+0018    JMP      3 => 0021
+0019    KPRI     3   1
+0020    JMP      4 => 0022
+0021 => KPRI     3   2
+0022 => CALL     2   1   2
+0023    IST          1
+0024    JMP      2 => 0031
+0025    MOV      3   0
+0026    TGETS    2   0   3  ; "gsub"
+0027    KSTR     4   4      ; "%.gz$"
+0028    KSTR     5   5      ; ""
+0029    CALL     2   2   4
+0030    MOV      1   2
+0031 => UGET     2   0      ; fun
+0032    TGETS    2   2   6  ; "partial"
+0033    UGET     3   0      ; fun
+0034    TGETS    3   3   7  ; "flip"
+0035    UGET     4   1      ; zlib_uncompress
+0036    CALL     3   2   2
+0037    KSTR     4   8      ; "gzip"
+0038    CALL     2   2   3
+0039    UGET     3   2      ; fs
+0040    TGETS    3   3   9  ; "filter_file"
+0041    MOV      4   2
+0042    MOV      5   0
+0043    MOV      6   1
+0044    CALLT    3   4
+
+-- BYTECODE -- zip.lua:0-536
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "zlib"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.fs"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.fun"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.dir"
+0013    CALL     4   2   2
+0014    GGET     5   5      ; "pcall"
+0015    GGET     6   0      ; "require"
+0016    KSTR     7   6      ; "posix.sys.stat"
+0017    CALL     5   3   3
+0018    FNEW     7   7      ; zip.lua:13
+0019    FNEW     8   8      ; zip.lua:17
+0020    FNEW     9   9      ; zip.lua:20
+0021    FNEW    10  10      ; zip.lua:24
+0022    KNIL    11  13
+0023    TGETS   14   1  11  ; "_VERSION"
+0024    MOV     15  14
+0025    TGETS   14  14  12  ; "match"
+0026    KSTR    16  13      ; "^lua%-zlib"
+0027    CALL    14   2   3
+0028    ISF         14
+0029    JMP     15 => 0034
+0030    FNEW    11  14      ; zip.lua:38
+0031    FNEW    12  15      ; zip.lua:42
+0032    FNEW    13  16      ; zip.lua:46
+0033    JMP     14 => 0049
+0034 => TGETS   14   1  11  ; "_VERSION"
+0035    MOV     15  14
+0036    TGETS   14  14  12  ; "match"
+0037    KSTR    16  17      ; "^lzlib"
+0038    CALL    14   2   3
+0039    ISF         14
+0040    JMP     15 => 0045
+0041    FNEW    11  18      ; zip.lua:50
+0042    FNEW    12  19      ; zip.lua:54
+0043    FNEW    13  20      ; zip.lua:58
+0044    JMP     14 => 0049
+0045 => GGET    14  21      ; "error"
+0046    KSTR    15  22      ; "unknown zlib library"
+0047    KSHORT  16   0
+0048    CALL    14   1   3
+0049 => FNEW    14  23      ; zip.lua:65
+0050    FNEW    15  24      ; zip.lua:75
+0051    MOV     16  14
+0052    KNUM    17   0      ; 67324752
+0053    KSHORT  18   4
+0054    CALL    16   2   3
+0055    MOV     17  14
+0056    KNUM    18   1      ; 134695760
+0057    KSHORT  19   4
+0058    CALL    17   2   3
+0059    MOV     18  14
+0060    KNUM    19   2      ; 33639248
+0061    KSHORT  20   4
+0062    CALL    18   2   3
+0063    MOV     19  14
+0064    KNUM    20   3      ; 101010256
+0065    KSHORT  21   4
+0066    CALL    19   2   3
+0067    FNEW    20  25      ; zip.lua:93
+0068    FNEW    21  26      ; zip.lua:114
+0069    FNEW    22  27      ; zip.lua:130
+0070    FNEW    23  28      ; zip.lua:170
+0071    FNEW    24  29      ; zip.lua:209
+0072    FNEW    25  31      ; zip.lua:255
+0073    TSETS   25   0  30  ; "new_zipwriter"
+0074    FNEW    25  33      ; zip.lua:281
+0075    TSETS   25   0  32  ; "zip"
+0076    FNEW    25  34      ; zip.lua:308
+0077    FNEW    26  35      ; zip.lua:324
+0078    FNEW    27  36      ; zip.lua:365
+0079    FNEW    28  37      ; zip.lua:399
+0080    FNEW    29  39      ; zip.lua:440
+0081    TSETS   29   0  38  ; "unzip"
+0082    FNEW    29  41      ; zip.lua:511
+0083    TSETS   29   0  40  ; "gzip"
+0084    FNEW    29  43      ; zip.lua:523
+0085    TSETS   29   0  42  ; "gunzip"
+0086    UCLO     0 => 0087
+0087 => RET1     0   2
+

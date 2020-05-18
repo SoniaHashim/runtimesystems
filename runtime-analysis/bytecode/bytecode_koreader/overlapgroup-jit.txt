@@ -1,0 +1,188 @@
+-- BYTECODE -- overlapgroup.lua:22-38
+0001    TGETS    1   0   0  ; "_size"
+0002    IST          1
+0003    JMP      1 => 0039
+0004    TDUP     1   1
+0005    TSETS    1   0   0  ; "_size"
+0006    TDUP     1   5
+0007    GGET     2   3      ; "math"
+0008    TGETS    2   2   4  ; "huge"
+0009    TSETS    2   1   6  ; "x"
+0010    GGET     2   3      ; "math"
+0011    TGETS    2   2   4  ; "huge"
+0012    TSETS    2   1   7  ; "y"
+0013    TSETS    1   0   2  ; "_offsets"
+0014    GGET     1   8      ; "ipairs"
+0015    MOV      2   0
+0016    CALL     1   4   2
+0017    JMP      4 => 0037
+0018 => MOV      7   5
+0019    TGETS    6   5   9  ; "getSize"
+0020    CALL     6   2   2
+0021    TGETS    7   0   0  ; "_size"
+0022    TGETS    7   7  10  ; "h"
+0023    TGETS    8   6  10  ; "h"
+0024    ISGE     7   8
+0025    JMP      7 => 0029
+0026    TGETS    7   0   0  ; "_size"
+0027    TGETS    8   6  10  ; "h"
+0028    TSETS    8   7  10  ; "h"
+0029 => TGETS    7   0   0  ; "_size"
+0030    TGETS    7   7  11  ; "w"
+0031    TGETS    8   6  11  ; "w"
+0032    ISGE     7   8
+0033    JMP      7 => 0037
+0034    TGETS    7   0   0  ; "_size"
+0035    TGETS    8   6  11  ; "w"
+0036    TSETS    8   7  11  ; "w"
+0037 => ITERC    4   3   3
+0038    ITERL    4 => 0018
+0039 => TGETS    1   0   0  ; "_size"
+0040    RET1     1   2
+
+-- BYTECODE -- overlapgroup.lua:40-53
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "getSize"
+0003    CALL     1   1   2
+0004    TGETS    1   0   1  ; "dimen"
+0005    TGETS    1   1   2  ; "w"
+0006    ISF          1
+0007    JMP      2 => 0013
+0008    TGETS    1   0   3  ; "_size"
+0009    TGETS    2   0   1  ; "dimen"
+0010    TGETS    2   2   2  ; "w"
+0011    TSETS    2   1   2  ; "w"
+0012    JMP      1 => 0017
+0013 => TGETS    1   0   1  ; "dimen"
+0014    TGETS    2   0   3  ; "_size"
+0015    TGETS    2   2   2  ; "w"
+0016    TSETS    2   1   2  ; "w"
+0017 => TGETS    1   0   1  ; "dimen"
+0018    TGETS    1   1   4  ; "h"
+0019    ISF          1
+0020    JMP      2 => 0026
+0021    TGETS    1   0   3  ; "_size"
+0022    TGETS    2   0   1  ; "dimen"
+0023    TGETS    2   2   4  ; "h"
+0024    TSETS    2   1   4  ; "h"
+0025    JMP      1 => 0030
+0026 => TGETS    1   0   1  ; "dimen"
+0027    TGETS    2   0   3  ; "_size"
+0028    TGETS    2   2   4  ; "h"
+0029    TSETS    2   1   4  ; "h"
+0030 => RET0     0   1
+
+-- BYTECODE -- overlapgroup.lua:55-85
+0001    MOV      5   0
+0002    TGETS    4   0   0  ; "getSize"
+0003    CALL     4   2   2
+0004    GGET     5   1      ; "ipairs"
+0005    MOV      6   0
+0006    CALL     5   4   2
+0007    JMP      8 => 0087
+0008 => MOV     11   9
+0009    TGETS   10   9   0  ; "getSize"
+0010    CALL    10   2   2
+0011    TGETS   11   9   2  ; "overlap_align"
+0012    TGETS   12   0   3  ; "_mirroredUI"
+0013    ISF         12
+0014    JMP     13 => 0039
+0015    TGETS   12   0   4  ; "allow_mirroring"
+0016    ISF         12
+0017    JMP     13 => 0039
+0018    ISNES   11   5      ; "right"
+0019    JMP     12 => 0022
+0020    KSTR    11   6      ; "left"
+0021    JMP     12 => 0039
+0022 => ISNES   11   7      ; "center"
+0023    JMP     12 => 0026
+0024    KSTR    11   7      ; "center"
+0025    JMP     12 => 0039
+0026 => TGETS   12   9   8  ; "overlap_offset"
+0027    ISF         12
+0028    JMP     13 => 0038
+0029    TGETS   12   9   8  ; "overlap_offset"
+0030    TGETS   13   4   9  ; "w"
+0031    TGETS   14  10   9  ; "w"
+0032    SUBVV   13  13  14
+0033    TGETS   14   9   8  ; "overlap_offset"
+0034    TGETB   14  14   1
+0035    SUBVV   13  13  14
+0036    TSETB   13  12   1
+0037    JMP     12 => 0039
+0038 => KSTR    11   5      ; "right"
+0039 => ISNES   11   5      ; "right"
+0040    JMP     12 => 0051
+0041    MOV     13   9
+0042    TGETS   12   9  10  ; "paintTo"
+0043    MOV     14   1
+0044    TGETS   15   4   9  ; "w"
+0045    ADDVV   15   2  15
+0046    TGETS   16  10   9  ; "w"
+0047    SUBVV   15  15  16
+0048    MOV     16   3
+0049    CALL    12   1   5
+0050    JMP     12 => 0087
+0051 => ISNES   11   7      ; "center"
+0052    JMP     12 => 0067
+0053    MOV     13   9
+0054    TGETS   12   9  10  ; "paintTo"
+0055    MOV     14   1
+0056    GGET    15  11      ; "math"
+0057    TGETS   15  15  12  ; "floor"
+0058    TGETS   16   4   9  ; "w"
+0059    TGETS   17  10   9  ; "w"
+0060    SUBVV   16  16  17
+0061    DIVVN   16  16   0  ; 2
+0062    CALL    15   2   2
+0063    ADDVV   15   2  15
+0064    MOV     16   3
+0065    CALL    12   1   5
+0066    JMP     12 => 0087
+0067 => TGETS   12   9   8  ; "overlap_offset"
+0068    ISF         12
+0069    JMP     13 => 0081
+0070    MOV     13   9
+0071    TGETS   12   9  10  ; "paintTo"
+0072    MOV     14   1
+0073    TGETS   15   9   8  ; "overlap_offset"
+0074    TGETB   15  15   1
+0075    ADDVV   15   2  15
+0076    TGETS   16   9   8  ; "overlap_offset"
+0077    TGETB   16  16   2
+0078    ADDVV   16   3  16
+0079    CALL    12   1   5
+0080    JMP     12 => 0087
+0081 => MOV     13   9
+0082    TGETS   12   9  10  ; "paintTo"
+0083    MOV     14   1
+0084    MOV     15   2
+0085    MOV     16   3
+0086    CALL    12   1   5
+0087 => ITERC    8   3   3
+0088    ITERL    8 => 0008
+0089    RET0     0   1
+
+-- BYTECODE -- overlapgroup.lua:0-88
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/container/widgetcontainer"
+0006    CALL     1   2   2
+0007    MOV      3   1
+0008    TGETS    2   1   3  ; "new"
+0009    TDUP     4   4
+0010    TGETS    5   0   5  ; "mirroredUILayout"
+0011    CALL     5   2   1
+0012    TSETS    5   4   6  ; "_mirroredUI"
+0013    CALL     2   2   3
+0014    FNEW     3   8      ; overlapgroup.lua:22
+0015    TSETS    3   2   7  ; "getSize"
+0016    FNEW     3  10      ; overlapgroup.lua:40
+0017    TSETS    3   2   9  ; "initDimen"
+0018    FNEW     3  12      ; overlapgroup.lua:55
+0019    TSETS    3   2  11  ; "paintTo"
+0020    UCLO     0 => 0021
+0021 => RET1     2   2
+

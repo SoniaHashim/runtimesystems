@@ -1,0 +1,250 @@
+-- BYTECODE -- filemanagerconverter.lua:41-53
+0001    GGET     3   0      ; "require"
+0002    KSTR     4   1      ; "apps/filemanager/lib/md"
+0003    CALL     3   2   2
+0004    TDUP     4   2
+0005    GGET     5   3      ; "string"
+0006    TGETS    5   5   4  ; "format"
+0007    KSTR     6   5      ; "<title>%s</title>\n</head>\n<body>\n"
+0008    MOV      7   2
+0009    CALL     5   2   3
+0010    TSETS    5   4   6  ; "insertHead"
+0011    MOV      5   3
+0012    MOV      6   1
+0013    MOV      7   4
+0014    CALL     5   3   3
+0015    ISF          6
+0016    JMP      7 => 0022
+0017    UGET     7   0      ; logger
+0018    TGETS    7   7   7  ; "warn"
+0019    KSTR     8   8      ; "FileManagerConverter: could not generate"~
+0020    MOV      9   6
+0021    CALL     7   1   3
+0022 => RET1     5   2
+
+-- BYTECODE -- filemanagerconverter.lua:55-61
+0001    GGET     3   0      ; "io"
+0002    TGETS    3   3   1  ; "open"
+0003    MOV      4   1
+0004    KSTR     5   2      ; "rb"
+0005    CALL     3   2   3
+0006    MOV      5   3
+0007    TGETS    4   3   3  ; "read"
+0008    KSTR     6   4      ; "*all"
+0009    CALL     4   2   3
+0010    MOV      6   3
+0011    TGETS    5   3   5  ; "close"
+0012    CALL     5   1   2
+0013    MOV      6   0
+0014    TGETS    5   0   6  ; "mdToHtml"
+0015    MOV      7   4
+0016    MOV      8   2
+0017    CALL     5   2   4
+0018    RET1     5   2
+
+-- BYTECODE -- filemanagerconverter.lua:63-67
+0001    GGET     3   0      ; "io"
+0002    TGETS    3   3   1  ; "open"
+0003    MOV      4   2
+0004    KSTR     5   2      ; "w"
+0005    CALL     3   2   3
+0006    MOV      5   3
+0007    TGETS    4   3   3  ; "write"
+0008    MOV      6   1
+0009    CALL     4   1   3
+0010    MOV      5   3
+0011    TGETS    4   3   4  ; "close"
+0012    CALL     4   1   2
+0013    RET0     0   1
+
+-- BYTECODE -- filemanagerconverter.lua:69-71
+0001    UGET     2   0      ; FileConverter
+0002    TGETS    2   2   0  ; "formats_from"
+0003    UGET     3   1      ; util
+0004    TGETS    3   3   1  ; "getFileNameSuffix"
+0005    MOV      4   1
+0006    CALL     3   2   2
+0007    TGETV    2   2   3
+0008    ISF          2
+0009    JMP      3 => 0012
+0010    KPRI     2   2
+0011    JMP      3 => 0013
+0012 => KPRI     2   1
+0013 => RET1     2   2
+
+-- BYTECODE -- filemanagerconverter.lua:91-94
+0001    UGET     0   0      ; FileConverter
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "writeStringToFile"
+0004    UGET     2   1      ; html
+0005    UGET     3   2      ; filename_html
+0006    CALL     0   1   4
+0007    UGET     0   3      ; UIManager
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "close"
+0010    UGET     2   4      ; self
+0011    TGETS    2   2   2  ; "convert_dialog"
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- filemanagerconverter.lua:83-101
+0001    UGET     0   0      ; FileConverter
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "_mdFileToHtml"
+0004    UGET     2   1      ; file
+0005    UGET     3   2      ; filename_pure
+0006    CALL     0   2   4
+0007    IST          0
+0008    JMP      1 => 0010
+0009    UCLO     0 => 0058
+0010 => UGET     1   1      ; file
+0011    KSTR     2   1      ; ".html"
+0012    CAT      1   1   2
+0013    UGET     2   3      ; lfs
+0014    TGETS    2   2   2  ; "attributes"
+0015    MOV      3   1
+0016    KSTR     4   3      ; "mode"
+0017    CALL     2   2   3
+0018    ISNES    2   4      ; "file"
+0019    JMP      2 => 0040
+0020    UGET     2   4      ; UIManager
+0021    MOV      3   2
+0022    TGETS    2   2   5  ; "show"
+0023    UGET     4   5      ; ConfirmBox
+0024    MOV      5   4
+0025    TGETS    4   4   6  ; "new"
+0026    TDUP     6   8
+0027    UGET     7   6      ; _
+0028    KSTR     8   7      ; "Overwrite existing HTML file?"
+0029    CALL     7   2   2
+0030    TSETS    7   6   9  ; "text"
+0031    UGET     7   6      ; _
+0032    KSTR     8  10      ; "Overwrite"
+0033    CALL     7   2   2
+0034    TSETS    7   6  11  ; "ok_text"
+0035    FNEW     7  12      ; filemanagerconverter.lua:91
+0036    TSETS    7   6  13  ; "ok_callback"
+0037    CALL     4   0   3
+0038    CALLM    2   1   1
+0039    JMP      2 => 0056
+0040 => UGET     2   0      ; FileConverter
+0041    MOV      3   2
+0042    TGETS    2   2  14  ; "writeStringToFile"
+0043    MOV      4   0
+0044    MOV      5   1
+0045    CALL     2   1   4
+0046    UGET     2   8      ; ui
+0047    MOV      3   2
+0048    TGETS    2   2  15  ; "refreshPath"
+0049    CALL     2   1   2
+0050    UGET     2   4      ; UIManager
+0051    MOV      3   2
+0052    TGETS    2   2  16  ; "close"
+0053    UGET     4   7      ; self
+0054    TGETS    4   4  17  ; "convert_dialog"
+0055    CALL     2   1   3
+0056 => UCLO     0 => 0057
+0057 => RET0     0   1
+0058 => RET0     0   1
+
+-- BYTECODE -- filemanagerconverter.lua:73-107
+0001    UGET     3   0      ; util
+0002    TGETS    3   3   0  ; "splitFilePathName"
+0003    MOV      4   1
+0004    CALL     3   3   2
+0005    UGET     5   0      ; util
+0006    TGETS    5   5   1  ; "getFileNameSuffix"
+0007    MOV      6   1
+0008    CALL     5   2   2
+0009    TGETS    6   0   2  ; "formats_from"
+0010    TGETV    6   6   5
+0011    TGETS    6   6   3  ; "name"
+0012    UGET     7   1      ; ButtonDialogTitle
+0013    MOV      8   7
+0014    TGETS    7   7   5  ; "new"
+0015    TDUP     9   7
+0016    UGET    10   2      ; T
+0017    UGET    11   3      ; _
+0018    KSTR    12   6      ; "Convert %1 to:"
+0019    CALL    11   2   2
+0020    MOV     12   6
+0021    CALL    10   2   3
+0022    TSETS   10   9   8  ; "title"
+0023    TNEW    10   3
+0024    TNEW    11   3
+0025    TDUP    12  10
+0026    UGET    13   3      ; _
+0027    KSTR    14   9      ; "HTML"
+0028    CALL    13   2   2
+0029    TSETS   13  12  11  ; "text"
+0030    FNEW    13  12      ; filemanagerconverter.lua:83
+0031    TSETS   13  12  13  ; "callback"
+0032    TSETB   12  11   1
+0033    TSETB   11  10   1
+0034    TSETS   10   9  14  ; "buttons"
+0035    CALL     7   2   3
+0036    TSETS    7   0   4  ; "convert_dialog"
+0037    UGET     7   6      ; UIManager
+0038    MOV      8   7
+0039    TGETS    7   7  15  ; "show"
+0040    TGETS    9   0   4  ; "convert_dialog"
+0041    CALL     7   1   3
+0042    UCLO     0 => 0043
+0043 => RET0     0   1
+
+-- BYTECODE -- filemanagerconverter.lua:0-110
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/buttondialogtitle"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/confirmbox"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/uimanager"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "libs/libkoreader-lfs"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "logger"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "util"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "gettext"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ffi/util"
+0024    CALL     7   2   2
+0025    TGETS    7   7   9  ; "template"
+0026    TDUP     8  15
+0027    TDUP     9  13
+0028    TDUP    10  11
+0029    MOV     11   6
+0030    KSTR    12  10      ; "Markdown"
+0031    CALL    11   2   2
+0032    TSETS   11  10  12  ; "name"
+0033    TSETS   10   9  14  ; "md"
+0034    TSETS    9   8  16  ; "formats_from"
+0035    TDUP     9  18
+0036    TDUP    10  17
+0037    TSETS   10   9  19  ; "epub"
+0038    TDUP    10  20
+0039    TSETS   10   9  21  ; "html"
+0040    TDUP    10  22
+0041    TSETS   10   9  23  ; "pdf"
+0042    TSETS    9   8  24  ; "formats_to"
+0043    FNEW     9  26      ; filemanagerconverter.lua:41
+0044    TSETS    9   8  25  ; "mdToHtml"
+0045    FNEW     9  28      ; filemanagerconverter.lua:55
+0046    TSETS    9   8  27  ; "_mdFileToHtml"
+0047    FNEW     9  30      ; filemanagerconverter.lua:63
+0048    TSETS    9   8  29  ; "writeStringToFile"
+0049    FNEW     9  32      ; filemanagerconverter.lua:69
+0050    TSETS    9   8  31  ; "isSupported"
+0051    FNEW     9  34      ; filemanagerconverter.lua:73
+0052    TSETS    9   8  33  ; "showConvertButtons"
+0053    UCLO     0 => 0054
+0054 => RET1     8   2
+

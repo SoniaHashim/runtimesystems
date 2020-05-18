@@ -1,0 +1,557 @@
+-- BYTECODE -- koptinterface_spec.lua:3-8
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "document/documentregistry"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; DocumentRegistry
+0008    GGET     0   0      ; "require"
+0009    KSTR     1   3      ; "document/koptinterface"
+0010    CALL     0   2   2
+0011    USETV    1   0      ; Koptinterface
+0012    GGET     0   0      ; "require"
+0013    KSTR     1   4      ; "cache"
+0014    CALL     0   2   2
+0015    USETV    2   0      ; Cache
+0016    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:15-23
+0001    UGET     0   1      ; DocumentRegistry
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "openDocument"
+0004    UGET     2   2      ; tall_pdf
+0005    CALL     0   2   3
+0006    USETV    0   0      ; doc
+0007    UGET     0   1      ; DocumentRegistry
+0008    MOV      1   0
+0009    TGETS    0   0   0  ; "openDocument"
+0010    UGET     2   4      ; complex_pdf
+0011    CALL     0   2   3
+0012    USETV    3   0      ; complex_doc
+0013    UGET     0   1      ; DocumentRegistry
+0014    MOV      1   0
+0015    TGETS    0   0   0  ; "openDocument"
+0016    UGET     2   6      ; paper_pdf
+0017    CALL     0   2   3
+0018    USETV    5   0      ; paper_doc
+0019    UGET     0   0      ; doc
+0020    TGETS    0   0   1  ; "configurable"
+0021    KSHORT   1   0
+0022    TSETS    1   0   2  ; "text_wrap"
+0023    UGET     0   3      ; complex_doc
+0024    TGETS    0   0   1  ; "configurable"
+0025    KSHORT   1   0
+0026    TSETS    1   0   2  ; "text_wrap"
+0027    UGET     0   5      ; paper_doc
+0028    TGETS    0   0   1  ; "configurable"
+0029    KSHORT   1   0
+0030    TSETS    1   0   2  ; "text_wrap"
+0031    UGET     0   7      ; Cache
+0032    MOV      1   0
+0033    TGETS    0   0   3  ; "clear"
+0034    CALL     0   1   2
+0035    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:25-29
+0001    UGET     0   0      ; doc
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; complex_doc
+0006    MOV      1   0
+0007    TGETS    0   0   0  ; "close"
+0008    CALL     0   1   2
+0009    UGET     0   2      ; paper_doc
+0010    MOV      1   0
+0011    TGETS    0   0   0  ; "close"
+0012    CALL     0   1   2
+0013    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:31-37
+0001    UGET     0   0      ; Koptinterface
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getAutoBBox"
+0004    UGET     2   1      ; doc
+0005    KSHORT   3   1
+0006    CALL     0   2   4
+0007    GGET     1   1      ; "assert"
+0008    TGETS    1   1   2  ; "is"
+0009    TGETS    1   1   3  ; "near"
+0010    KSHORT   2  22
+0011    TGETS    3   0   4  ; "x0"
+0012    KNUM     4   0      ; 0.5
+0013    CALL     1   1   4
+0014    GGET     1   1      ; "assert"
+0015    TGETS    1   1   2  ; "is"
+0016    TGETS    1   1   3  ; "near"
+0017    KSHORT   2  38
+0018    TGETS    3   0   5  ; "y0"
+0019    KNUM     4   0      ; 0.5
+0020    CALL     1   1   4
+0021    GGET     1   1      ; "assert"
+0022    TGETS    1   1   2  ; "is"
+0023    TGETS    1   1   3  ; "near"
+0024    KSHORT   2 548
+0025    TGETS    3   0   6  ; "x1"
+0026    KNUM     4   0      ; 0.5
+0027    CALL     1   1   4
+0028    GGET     1   1      ; "assert"
+0029    TGETS    1   1   2  ; "is"
+0030    TGETS    1   1   3  ; "near"
+0031    KSHORT   2 1387
+0032    TGETS    3   0   7  ; "y1"
+0033    KNUM     4   0      ; 0.5
+0034    CALL     1   1   4
+0035    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:39-54
+0001    UGET     0   0      ; Koptinterface
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getSemiAutoBBox"
+0004    UGET     2   1      ; doc
+0005    KSHORT   3   1
+0006    CALL     0   2   4
+0007    UGET     1   1      ; doc
+0008    MOV      2   1
+0009    TGETS    1   1   1  ; "getPageBBox"
+0010    KSHORT   3   1
+0011    CALL     1   2   3
+0012    UGET     2   1      ; doc
+0013    TGETS    2   2   2  ; "bbox"
+0014    TDUP     3   4
+0015    TGETS    4   1   3  ; "x0"
+0016    ADDVN    4   4   0  ; 10
+0017    TSETS    4   3   3  ; "x0"
+0018    TGETS    4   1   5  ; "y0"
+0019    ADDVN    4   4   0  ; 10
+0020    TSETS    4   3   5  ; "y0"
+0021    TGETS    4   1   6  ; "x1"
+0022    SUBVN    4   4   0  ; 10
+0023    TSETS    4   3   6  ; "x1"
+0024    TGETS    4   1   7  ; "y1"
+0025    SUBVN    4   4   0  ; 10
+0026    TSETS    4   3   7  ; "y1"
+0027    TSETB    3   2   1
+0028    UGET     2   0      ; Koptinterface
+0029    MOV      3   2
+0030    TGETS    2   2   0  ; "getSemiAutoBBox"
+0031    UGET     4   1      ; doc
+0032    KSHORT   5   1
+0033    CALL     2   2   4
+0034    GGET     3   8      ; "assert"
+0035    TGETS    3   3   9  ; "is_not"
+0036    TGETS    3   3  10  ; "near"
+0037    TGETS    4   0   3  ; "x0"
+0038    TGETS    5   2   3  ; "x0"
+0039    KNUM     6   1      ; 0.5
+0040    CALL     3   1   4
+0041    GGET     3   8      ; "assert"
+0042    TGETS    3   3   9  ; "is_not"
+0043    TGETS    3   3  10  ; "near"
+0044    TGETS    4   0   5  ; "y0"
+0045    TGETS    5   2   5  ; "y0"
+0046    KNUM     6   1      ; 0.5
+0047    CALL     3   1   4
+0048    GGET     3   8      ; "assert"
+0049    TGETS    3   3   9  ; "is_not"
+0050    TGETS    3   3  10  ; "near"
+0051    TGETS    4   0   6  ; "x1"
+0052    TGETS    5   2   6  ; "x1"
+0053    KNUM     6   1      ; 0.5
+0054    CALL     3   1   4
+0055    GGET     3   8      ; "assert"
+0056    TGETS    3   3   9  ; "is_not"
+0057    TGETS    3   3  10  ; "near"
+0058    TGETS    4   0   7  ; "y1"
+0059    TGETS    5   2   7  ; "y1"
+0060    KNUM     6   1      ; 0.5
+0061    CALL     3   1   4
+0062    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:56-62
+0001    UGET     0   0      ; doc
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getPageDimensions"
+0004    KSHORT   2   1
+0005    KSHORT   3   1
+0006    KSHORT   4   0
+0007    CALL     0   2   5
+0008    UGET     1   1      ; Koptinterface
+0009    MOV      2   1
+0010    TGETS    1   1   1  ; "renderOptimizedPage"
+0011    UGET     3   0      ; doc
+0012    KSHORT   4   1
+0013    KPRI     5   0
+0014    KSHORT   6   1
+0015    KSHORT   7   0
+0016    KSHORT   8   0
+0017    CALL     1   2   8
+0018    GGET     2   2      ; "assert"
+0019    TGETS    2   2   3  ; "truthy"
+0020    MOV      3   1
+0021    CALL     2   1   2
+0022    GGET     2   2      ; "assert"
+0023    TGETS    2   2   4  ; "are"
+0024    TGETS    2   2   5  ; "same"
+0025    MOV      3   0
+0026    TGETS    4   1   6  ; "excerpt"
+0027    CALL     2   1   3
+0028    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:64-68
+0001    UGET     0   0      ; doc
+0002    TGETS    0   0   0  ; "configurable"
+0003    KSHORT   1   1
+0004    TSETS    1   0   1  ; "text_wrap"
+0005    UGET     0   1      ; Koptinterface
+0006    MOV      1   0
+0007    TGETS    0   0   2  ; "getCachedContext"
+0008    UGET     2   0      ; doc
+0009    KSHORT   3   1
+0010    CALL     0   2   4
+0011    GGET     1   3      ; "assert"
+0012    TGETS    1   1   4  ; "truthy"
+0013    MOV      2   0
+0014    CALL     1   1   2
+0015    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:70-76
+0001    UGET     0   0      ; doc
+0002    TGETS    0   0   0  ; "configurable"
+0003    KSHORT   1   1
+0004    TSETS    1   0   1  ; "text_wrap"
+0005    UGET     0   1      ; Koptinterface
+0006    MOV      1   0
+0007    TGETS    0   0   2  ; "hintReflowedPage"
+0008    UGET     2   0      ; doc
+0009    KSHORT   3   1
+0010    KSHORT   4   1
+0011    KSHORT   5   0
+0012    KSHORT   6   1
+0013    KSHORT   7   0
+0014    CALL     0   1   8
+0015    UGET     0   1      ; Koptinterface
+0016    MOV      1   0
+0017    TGETS    0   0   3  ; "getCachedContext"
+0018    UGET     2   0      ; doc
+0019    KSHORT   3   1
+0020    CALL     0   2   4
+0021    GGET     1   4      ; "assert"
+0022    TGETS    1   1   5  ; "truthy"
+0023    MOV      2   0
+0024    CALL     1   1   2
+0025    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:78-83
+0001    UGET     0   0      ; Koptinterface
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getCachedContext"
+0004    UGET     2   1      ; doc
+0005    KSHORT   3   1
+0006    CALL     0   1   4
+0007    UGET     0   0      ; Koptinterface
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "getNativeTextBoxes"
+0010    UGET     2   1      ; doc
+0011    KSHORT   3   1
+0012    CALL     0   2   4
+0013    LEN      1   0
+0014    GGET     2   2      ; "assert"
+0015    TGETS    2   2   3  ; "truthy"
+0016    ISEQN    1   0      ; 60
+0017    JMP      3 => 0020
+0018    KPRI     3   1
+0019    JMP      4 => 0021
+0020 => KPRI     3   2
+0021 => CALL     2   1   2
+0022    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:85-90
+0001    UGET     0   0      ; Koptinterface
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getCachedContext"
+0004    UGET     2   1      ; doc
+0005    KSHORT   3   1
+0006    CALL     0   1   4
+0007    UGET     0   0      ; Koptinterface
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "getNativeTextBoxesFromScratch"
+0010    UGET     2   1      ; doc
+0011    KSHORT   3   1
+0012    CALL     0   2   4
+0013    LEN      1   0
+0014    GGET     2   2      ; "assert"
+0015    TGETS    2   2   3  ; "truthy"
+0016    ISEQN    1   0      ; 60
+0017    JMP      3 => 0020
+0018    KPRI     3   1
+0019    JMP      4 => 0021
+0020 => KPRI     3   2
+0021 => CALL     2   1   2
+0022    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:92-98
+0001    UGET     0   0      ; doc
+0002    TGETS    0   0   0  ; "configurable"
+0003    KSHORT   1   1
+0004    TSETS    1   0   1  ; "text_wrap"
+0005    UGET     0   1      ; Koptinterface
+0006    MOV      1   0
+0007    TGETS    0   0   2  ; "getCachedContext"
+0008    UGET     2   0      ; doc
+0009    KSHORT   3   1
+0010    CALL     0   1   4
+0011    UGET     0   1      ; Koptinterface
+0012    MOV      1   0
+0013    TGETS    0   0   3  ; "getReflowedTextBoxes"
+0014    UGET     2   0      ; doc
+0015    KSHORT   3   1
+0016    CALL     0   2   4
+0017    LEN      1   0
+0018    GGET     2   4      ; "assert"
+0019    TGETS    2   2   5  ; "truthy"
+0020    KSHORT   3  60
+0021    ISLT     3   1
+0022    JMP      3 => 0025
+0023    KPRI     3   1
+0024    JMP      4 => 0026
+0025 => KPRI     3   2
+0026 => CALL     2   1   2
+0027    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:100-106
+0001    UGET     0   0      ; doc
+0002    TGETS    0   0   0  ; "configurable"
+0003    KSHORT   1   1
+0004    TSETS    1   0   1  ; "text_wrap"
+0005    UGET     0   1      ; Koptinterface
+0006    MOV      1   0
+0007    TGETS    0   0   2  ; "getCachedContext"
+0008    UGET     2   0      ; doc
+0009    KSHORT   3   1
+0010    CALL     0   1   4
+0011    UGET     0   1      ; Koptinterface
+0012    MOV      1   0
+0013    TGETS    0   0   3  ; "getReflowedTextBoxesFromScratch"
+0014    UGET     2   0      ; doc
+0015    KSHORT   3   1
+0016    CALL     0   2   4
+0017    LEN      1   0
+0018    GGET     2   4      ; "assert"
+0019    TGETS    2   2   5  ; "truthy"
+0020    KSHORT   3  60
+0021    ISLT     3   1
+0022    JMP      3 => 0025
+0023    KPRI     3   1
+0024    JMP      4 => 0026
+0025 => KPRI     3   2
+0026 => CALL     2   1   2
+0027    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:108-115
+0001    KNUM     0   0      ; 0.3
+0002    KNUM     1   1      ; 0.6
+0003    KNUM     2   0      ; 0.3
+0004    FORI     0 => 0031
+0005 => KNUM     4   0      ; 0.3
+0006    KNUM     5   1      ; 0.6
+0007    KNUM     6   0      ; 0.3
+0008    FORI     4 => 0030
+0009 => UGET     8   0      ; Koptinterface
+0010    MOV      9   8
+0011    TGETS    8   8   0  ; "getPageBlock"
+0012    UGET    10   1      ; complex_doc
+0013    KSHORT  11  34
+0014    MOV     12   3
+0015    MOV     13   7
+0016    CALL     8   2   6
+0017    GGET     9   1      ; "assert"
+0018    TGETS    9   9   2  ; "truthy"
+0019    TGETS   10   8   3  ; "x1"
+0020    TGETS   11   8   4  ; "x0"
+0021    SUBVV   10  10  11
+0022    KNUM    11   2      ; 0.5
+0023    ISLT    10  11
+0024    JMP     10 => 0027
+0025    KPRI    10   1
+0026    JMP     11 => 0028
+0027 => KPRI    10   2
+0028 => CALL     9   1   2
+0029    FORL     4 => 0009
+0030 => FORL     0 => 0005
+0031 => RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:117-122
+0001    UGET     0   0      ; Koptinterface
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getWordFromPosition"
+0004    UGET     2   1      ; complex_doc
+0005    TDUP     3   1
+0006    CALL     0   2   4
+0007    GGET     1   2      ; "assert"
+0008    TGETS    1   1   3  ; "is"
+0009    TGETS    1   1   4  ; "same"
+0010    KSTR     2   5      ; "previous"
+0011    TGETS    3   0   6  ; "word"
+0012    CALL     1   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:124-131
+0001    UGET     0   0      ; complex_doc
+0002    TGETS    0   0   0  ; "configurable"
+0003    KSHORT   1   1
+0004    TSETS    1   0   1  ; "text_wrap"
+0005    UGET     0   1      ; Koptinterface
+0006    MOV      1   0
+0007    TGETS    0   0   2  ; "getCachedContext"
+0008    UGET     2   0      ; complex_doc
+0009    KSHORT   3  19
+0010    CALL     0   1   4
+0011    UGET     0   1      ; Koptinterface
+0012    MOV      1   0
+0013    TGETS    0   0   3  ; "getWordFromPosition"
+0014    UGET     2   0      ; complex_doc
+0015    TDUP     3   4
+0016    CALL     0   2   4
+0017    GGET     1   5      ; "assert"
+0018    TGETS    1   1   6  ; "is"
+0019    TGETS    1   1   7  ; "same"
+0020    KSTR     2   8      ; "examples"
+0021    TGETS    3   0   9  ; "word"
+0022    CALL     1   1   3
+0023    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:133-140
+0001    UGET     0   0      ; Koptinterface
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getLinkFromPosition"
+0004    UGET     2   1      ; paper_doc
+0005    KSHORT   3   1
+0006    TDUP     4   1
+0007    CALL     0   2   5
+0008    GGET     1   2      ; "assert"
+0009    TGETS    1   1   3  ; "truthy"
+0010    MOV      2   0
+0011    CALL     1   1   2
+0012    GGET     1   2      ; "assert"
+0013    TGETS    1   1   4  ; "is"
+0014    TGETS    1   1   5  ; "same"
+0015    KSHORT   2  20
+0016    TGETS    3   0   6  ; "page"
+0017    CALL     1   1   3
+0018    GGET     1   7      ; "require"
+0019    KSTR     2   8      ; "dbg"
+0020    CALL     1   2   2
+0021    MOV      2   1
+0022    TGETS    1   1   9  ; "v"
+0023    KSTR     3  10      ; "link"
+0024    MOV      4   0
+0025    CALL     1   1   4
+0026    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:142-149
+0001    UGET     0   0      ; paper_doc
+0002    TGETS    0   0   0  ; "configurable"
+0003    KSHORT   1   1
+0004    TSETS    1   0   1  ; "text_wrap"
+0005    UGET     0   1      ; Koptinterface
+0006    MOV      1   0
+0007    TGETS    0   0   2  ; "getLinkFromPosition"
+0008    UGET     2   0      ; paper_doc
+0009    KSHORT   3   1
+0010    TDUP     4   3
+0011    CALL     0   2   5
+0012    GGET     1   4      ; "assert"
+0013    TGETS    1   1   5  ; "truthy"
+0014    MOV      2   0
+0015    CALL     1   1   2
+0016    GGET     1   4      ; "assert"
+0017    TGETS    1   1   6  ; "is"
+0018    TGETS    1   1   7  ; "same"
+0019    KSHORT   2  20
+0020    TGETS    3   0   8  ; "page"
+0021    CALL     1   1   3
+0022    RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:1-150
+0001    KNIL     0   2
+0002    GGET     3   0      ; "setup"
+0003    FNEW     4   1      ; koptinterface_spec.lua:3
+0004    CALL     3   1   2
+0005    KSTR     3   2      ; "spec/front/unit/data/tall.pdf"
+0006    KSTR     4   3      ; "spec/front/unit/data/sample.pdf"
+0007    KSTR     5   4      ; "spec/front/unit/data/paper.pdf"
+0008    KNIL     6   8
+0009    GGET     9   5      ; "before_each"
+0010    FNEW    10   6      ; koptinterface_spec.lua:15
+0011    CALL     9   1   2
+0012    GGET     9   7      ; "after_each"
+0013    FNEW    10   8      ; koptinterface_spec.lua:25
+0014    CALL     9   1   2
+0015    GGET     9   9      ; "it"
+0016    KSTR    10  10      ; "should get auto bbox"
+0017    FNEW    11  11      ; koptinterface_spec.lua:31
+0018    CALL     9   1   3
+0019    GGET     9   9      ; "it"
+0020    KSTR    10  12      ; "should get semi auto bbox"
+0021    FNEW    11  13      ; koptinterface_spec.lua:39
+0022    CALL     9   1   3
+0023    GGET     9   9      ; "it"
+0024    KSTR    10  14      ; "should render optimized page to de-water"~
+0025    FNEW    11  15      ; koptinterface_spec.lua:56
+0026    CALL     9   1   3
+0027    GGET     9   9      ; "it"
+0028    KSTR    10  16      ; "should reflow page in foreground"
+0029    FNEW    11  17      ; koptinterface_spec.lua:64
+0030    CALL     9   1   3
+0031    GGET     9   9      ; "it"
+0032    KSTR    10  18      ; "should hint reflowed page in background"
+0033    FNEW    11  19      ; koptinterface_spec.lua:70
+0034    CALL     9   1   3
+0035    GGET     9   9      ; "it"
+0036    KSTR    10  20      ; "should get native text boxes"
+0037    FNEW    11  21      ; koptinterface_spec.lua:78
+0038    CALL     9   1   3
+0039    GGET     9   9      ; "it"
+0040    KSTR    10  22      ; "should get native text boxes from scratc"~
+0041    FNEW    11  23      ; koptinterface_spec.lua:85
+0042    CALL     9   1   3
+0043    GGET     9   9      ; "it"
+0044    KSTR    10  24      ; "should get reflow text boxes"
+0045    FNEW    11  25      ; koptinterface_spec.lua:92
+0046    CALL     9   1   3
+0047    GGET     9   9      ; "it"
+0048    KSTR    10  26      ; "should get reflow text boxes from scratc"~
+0049    FNEW    11  27      ; koptinterface_spec.lua:100
+0050    CALL     9   1   3
+0051    GGET     9   9      ; "it"
+0052    KSTR    10  28      ; "should get page block of a two-column pa"~
+0053    FNEW    11  29      ; koptinterface_spec.lua:108
+0054    CALL     9   1   3
+0055    GGET     9   9      ; "it"
+0056    KSTR    10  30      ; "should get word from native position"
+0057    FNEW    11  31      ; koptinterface_spec.lua:117
+0058    CALL     9   1   3
+0059    GGET     9   9      ; "it"
+0060    KSTR    10  32      ; "should get word from reflow position"
+0061    FNEW    11  33      ; koptinterface_spec.lua:124
+0062    CALL     9   1   3
+0063    GGET     9   9      ; "it"
+0064    KSTR    10  34      ; "should get link from native position"
+0065    FNEW    11  35      ; koptinterface_spec.lua:133
+0066    CALL     9   1   3
+0067    GGET     9   9      ; "it"
+0068    KSTR    10  36      ; "should get link from reflow position"
+0069    FNEW    11  37      ; koptinterface_spec.lua:142
+0070    CALL     9   1   3
+0071    UCLO     0 => 0072
+0072 => RET0     0   1
+
+-- BYTECODE -- koptinterface_spec.lua:0-151
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "Koptinterface module"
+0003    FNEW     2   2      ; koptinterface_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

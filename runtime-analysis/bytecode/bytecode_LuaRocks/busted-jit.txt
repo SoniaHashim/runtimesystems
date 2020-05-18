@@ -1,0 +1,139 @@
+-- BYTECODE -- busted.lua:12-17
+0001    UGET     0   0      ; fs
+0002    TGETS    0   0   0  ; "exists"
+0003    KSTR     1   1      ; ".busted"
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0009
+0007    KPRI     0   2
+0008    RET1     0   2
+0009 => KPRI     0   1
+0010    RET1     0   2
+
+-- BYTECODE -- busted.lua:19-57
+0001    IST          0
+0002    JMP      2 => 0004
+0003    TNEW     0   0
+0004 => UGET     2   0      ; deps
+0005    TGETS    2   2   0  ; "fulfill_dependency"
+0006    UGET     3   1      ; queries
+0007    TGETS    3   3   1  ; "new"
+0008    KSTR     4   2      ; "busted"
+0009    CALL     3   2   2
+0010    KNIL     4   6
+0011    KSTR     7   3      ; "test_dependencies"
+0012    CALL     2   4   6
+0013    IST          2
+0014    JMP      5 => 0018
+0015    KPRI     5   0
+0016    MOV      6   3
+0017    RET      5   3
+0018 => KPRI     5   0
+0019    TGETS    6   0   4  ; "busted_executable"
+0020    ISF          6
+0021    JMP      7 => 0024
+0022    TGETS    5   0   4  ; "busted_executable"
+0023    JMP      6 => 0058
+0024 => UGET     6   2      ; dir
+0025    TGETS    6   6   5  ; "path"
+0026    UGET     7   3      ; path
+0027    TGETS    7   7   6  ; "root_dir"
+0028    MOV      8   4
+0029    CALL     7   2   2
+0030    KSTR     8   7      ; "bin"
+0031    KSTR     9   2      ; "busted"
+0032    CALL     6   2   4
+0033    MOV      5   6
+0034    UGET     6   2      ; dir
+0035    TGETS    6   6   5  ; "path"
+0036    UGET     7   3      ; path
+0037    TGETS    7   7   6  ; "root_dir"
+0038    MOV      8   4
+0039    CALL     7   2   2
+0040    KSTR     8   7      ; "bin"
+0041    KSTR     9   8      ; "busted.bat"
+0042    CALL     6   2   4
+0043    UGET     7   4      ; fs
+0044    TGETS    7   7   9  ; "exists"
+0045    MOV      8   5
+0046    CALL     7   2   2
+0047    IST          7
+0048    JMP      7 => 0058
+0049    UGET     7   4      ; fs
+0050    TGETS    7   7   9  ; "exists"
+0051    MOV      8   6
+0052    CALL     7   2   2
+0053    IST          7
+0054    JMP      7 => 0058
+0055    KPRI     7   0
+0056    KSTR     8  10      ; "'busted' executable failed to be install"~
+0057    RET      7   3
+0058 => GGET     6  11      ; "type"
+0059    TGETS    7   0  12  ; "flags"
+0060    CALL     6   2   2
+0061    ISNES    6  13      ; "table"
+0062    JMP      6 => 0076
+0063    KSHORT   6   1
+0064    TGETS    7   0  12  ; "flags"
+0065    LEN      7   7
+0066    KSHORT   8   1
+0067    FORI     6 => 0076
+0068 => GGET    10  13      ; "table"
+0069    TGETS   10  10  14  ; "insert"
+0070    MOV     11   1
+0071    MOV     12   9
+0072    TGETS   13   0  12  ; "flags"
+0073    TGETV   13  13   9
+0074    CALL    10   1   4
+0075    FORL     6 => 0068
+0076 => KPRI     6   0
+0077    UGET     7   4      ; fs
+0078    TGETS    7   7  15  ; "execute"
+0079    MOV      8   5
+0080    UGET     9   5      ; unpack
+0081    MOV     10   1
+0082    CALL     9   0   2
+0083    CALLM    7   3   1
+0084    MOV      6   8
+0085    MOV      2   7
+0086    ISF          2
+0087    JMP      7 => 0091
+0088    KPRI     7   2
+0089    RET1     7   2
+0090    JMP      7 => 0096
+0091 => KPRI     7   0
+0092    ISTC     8   6
+0093    JMP      8 => 0095
+0094    KSTR     8  16      ; "test suite failed."
+0095 => RET      7   3
+0096 => RET0     0   1
+
+-- BYTECODE -- busted.lua:0-61
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.fs"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.deps"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.path"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.dir"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.queries"
+0016    CALL     5   2   2
+0017    GGET     6   6      ; "table"
+0018    TGETS    6   6   7  ; "unpack"
+0019    IST          6
+0020    JMP      7 => 0022
+0021    GGET     6   7      ; "unpack"
+0022 => FNEW     7   9      ; busted.lua:12
+0023    TSETS    7   0   8  ; "detect_type"
+0024    FNEW     7  11      ; busted.lua:19
+0025    TSETS    7   0  10  ; "run_tests"
+0026    UCLO     0 => 0027
+0027 => RET1     0   2
+

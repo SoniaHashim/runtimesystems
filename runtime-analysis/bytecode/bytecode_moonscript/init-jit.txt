@@ -1,0 +1,350 @@
+-- BYTECODE -- init.lua:11-13
+0001    GGET     0   0      ; "print"
+0002    UGET     1   0      ; dump
+0003    VARG     2   0   0
+0004    CALLM    1   0   0
+0005    CALLMT   0   0
+
+-- BYTECODE -- init.lua:14-16
+0001    UGET     1   0      ; lua
+0002    TGETS    1   1   0  ; "type"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    ISNES    1   1      ; "table"
+0006    JMP      1 => 0009
+0007    TGETS    1   0   2  ; "__class"
+0008    JMP      2 => 0012
+0009 => KPRI     1   1
+0010    JMP      2 => 0012
+0011    KPRI     1   2
+0012 => RET1     1   2
+
+-- BYTECODE -- init.lua:17-26
+0001    UGET     1   0      ; lua
+0002    TGETS    1   1   0  ; "type"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    ISNES    1   1      ; "table"
+0006    JMP      2 => 0011
+0007    TGETS    2   0   2  ; "__class"
+0008    ISF          2
+0009    JMP      3 => 0011
+0010    RET1     2   2
+0011 => RET1     1   2
+
+-- BYTECODE -- init.lua:28-48
+0001    TNEW     3   0
+0002    KSHORT   4   1
+0003 => LOOP     5 => 0016
+0004    UGET     5   0      ; lua
+0005    TGETS    5   5   0  ; "debug"
+0006    TGETS    5   5   1  ; "getupvalue"
+0007    MOV      6   0
+0008    MOV      7   4
+0009    CALL     5   2   3
+0010    ISNEP    5   0
+0011    JMP      6 => 0013
+0012    JMP      5 => 0016
+0013 => TSETV    4   3   5
+0014    ADDVN    4   4   0  ; 1
+0015    JMP      5 => 0003
+0016 => TGETV    5   3   1
+0017    IST          5
+0018    JMP      5 => 0026
+0019    GGET     5   2      ; "error"
+0020    KSTR     6   3      ; "Failed to find upvalue: "
+0021    GGET     7   4      ; "tostring"
+0022    MOV      8   1
+0023    CALL     7   2   2
+0024    CAT      6   6   7
+0025    CALL     5   1   2
+0026 => IST          2
+0027    JMP      5 => 0036
+0028    UGET     5   0      ; lua
+0029    TGETS    5   5   0  ; "debug"
+0030    TGETS    5   5   1  ; "getupvalue"
+0031    MOV      6   0
+0032    TGETV    7   3   1
+0033    CALL     5   3   3
+0034    RET1     6   2
+0035    JMP      5 => 0043
+0036 => UGET     5   0      ; lua
+0037    TGETS    5   5   0  ; "debug"
+0038    TGETS    5   5   5  ; "setupvalue"
+0039    MOV      6   0
+0040    TGETV    7   3   1
+0041    MOV      8   2
+0042    CALLT    5   4
+0043 => RET0     0   1
+
+-- BYTECODE -- init.lua:55-62
+0001    UGET     2   0      ; scope
+0002    TGETV    2   2   1
+0003    ISEQP    2   0
+0004    JMP      3 => 0007
+0005    RET1     2   2
+0006    JMP      3 => 0010
+0007 => UGET     3   1      ; old_env
+0008    TGETV    3   3   1
+0009    RET1     3   2
+0010 => RET0     0   1
+
+-- BYTECODE -- init.lua:52-66
+0001    UGET     2   0      ; getfenv
+0002    MOV      3   0
+0003    CALL     2   2   2
+0004    GGET     3   0      ; "setmetatable"
+0005    TNEW     4   0
+0006    TDUP     5   2
+0007    FNEW     6   1      ; init.lua:55
+0008    TSETS    6   5   3  ; "__index"
+0009    CALL     3   2   3
+0010    UGET     4   1      ; setfenv
+0011    MOV      5   0
+0012    MOV      6   3
+0013    CALL     4   1   3
+0014    MOV      4   0
+0015    VARG     5   0   2
+0016    UCLO     0 => 0017
+0017 => CALLMT   4   0
+
+-- BYTECODE -- init.lua:73-75
+0001    UGET     0   0      ; val
+0002    UGET     1   1      ; obj
+0003    VARG     2   0   0
+0004    CALLMT   0   1
+
+-- BYTECODE -- init.lua:69-81
+0001    UGET     2   0      ; obj
+0002    TGETV    2   2   1
+0003    ISF          2
+0004    JMP      3 => 0017
+0005    UGET     3   1      ; lua
+0006    TGETS    3   3   0  ; "type"
+0007    MOV      4   2
+0008    CALL     3   2   2
+0009    ISNES    3   1      ; "function"
+0010    JMP      3 => 0017
+0011    KPRI     3   0
+0012    FNEW     3   2      ; init.lua:73
+0013    TSETV    3   0   1
+0014    UCLO     0 => 0015
+0015 => RET1     3   2
+0016    JMP      3 => 0019
+0017 => UCLO     0 => 0018
+0018 => RET1     2   2
+0019 => UCLO     0 => 0020
+0020 => RET0     0   1
+
+-- BYTECODE -- init.lua:67-83
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    TDUP     3   2
+0004    FNEW     4   1      ; init.lua:69
+0005    TSETS    4   3   3  ; "__index"
+0006    UCLO     0 => 0007
+0007 => CALLT    1   3
+
+-- BYTECODE -- init.lua:90-94
+0001    UGET     2   0      ; fn
+0002    MOV      3   0
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    GGET     3   0      ; "rawset"
+0006    MOV      4   0
+0007    MOV      5   1
+0008    MOV      6   2
+0009    CALL     3   1   4
+0010    RET1     2   2
+
+-- BYTECODE -- init.lua:84-96
+0001    IST          1
+0002    JMP      2 => 0005
+0003    MOV      1   0
+0004    TNEW     0   0
+0005 => GGET     2   0      ; "setmetatable"
+0006    MOV      3   0
+0007    TDUP     4   2
+0008    FNEW     5   1      ; init.lua:90
+0009    TSETS    5   4   3  ; "__index"
+0010    UCLO     0 => 0011
+0011 => CALLT    2   3
+
+-- BYTECODE -- init.lua:97-112
+0001    TNEW     0   3
+0002    VARG     1   0   0
+0003    TSETM    1   0      ; 1
+0004    LEN      1   0
+0005    KSHORT   2   2
+0006    ISGE     1   2
+0007    JMP      1 => 0009
+0008    RET0     0   1
+0009 => KSHORT   1   1
+0010    LEN      2   0
+0011    SUBVN    2   2   1  ; 1
+0012    KSHORT   3   1
+0013    FORI     1 => 0023
+0014 => TGETV    5   0   4
+0015    ADDVN    6   4   1  ; 1
+0016    TGETV    6   0   6
+0017    GGET     7   0      ; "setmetatable"
+0018    MOV      8   5
+0019    TDUP     9   1
+0020    TSETS    6   9   2  ; "__index"
+0021    CALL     7   1   3
+0022    FORL     1 => 0014
+0023 => TGETB    1   0   1
+0024    RET1     1   2
+
+-- BYTECODE -- init.lua:113-119
+0001    TNEW     1   0
+0002    GGET     2   0      ; "pairs"
+0003    MOV      3   0
+0004    CALL     2   4   2
+0005    ISNEXT   5 => 0007
+0006 => TSETV    6   1   5
+0007 => ITERN    5   3   3
+0008    ITERL    5 => 0006
+0009    RET1     1   2
+
+-- BYTECODE -- init.lua:120-127
+0001    GGET     2   0      ; "pairs"
+0002    TGETS    3   1   1  ; "__base"
+0003    CALL     2   4   2
+0004    ISNEXT   5 => 0012
+0005 => MOV      8   5
+0006    TGETS    7   5   2  ; "match"
+0007    KSTR     9   3      ; "^__"
+0008    CALL     7   2   3
+0009    IST          7
+0010    JMP      7 => 0012
+0011    TSETV    6   0   5
+0012 => ITERN    5   3   3
+0013    ITERL    5 => 0005
+0014    TGETS    2   1   4  ; "__init"
+0015    MOV      3   0
+0016    VARG     4   0   2
+0017    CALLMT   2   1
+
+-- BYTECODE -- init.lua:131-133
+0001    UGET     1   0      ; object
+0002    UGET     2   1      ; name
+0003    TGETV    1   1   2
+0004    UGET     2   0      ; object
+0005    VARG     3   0   1
+0006    CALLMT   1   1
+
+-- BYTECODE -- init.lua:128-135
+0001    KSHORT   3   1
+0002    LEN      4   2
+0003    KSHORT   5   1
+0004    FORI     3 => 0010
+0005 => TGETV    7   2   6
+0006    FNEW     8   0      ; init.lua:131
+0007    TSETV    8   0   7
+0008    UCLO     7 => 0009
+0009 => FORL     3 => 0005
+0010 => UCLO     0 => 0011
+0011 => RET0     0   1
+
+-- BYTECODE -- init.lua:136-147
+0001    ISF          2
+0002    JMP      3 => 0012
+0003    KSHORT   3   1
+0004    LEN      4   2
+0005    KSHORT   5   1
+0006    FORI     3 => 0011
+0007 => TGETV    7   2   6
+0008    TGETV    8   1   7
+0009    TSETV    8   0   7
+0010    FORL     3 => 0007
+0011 => JMP      3 => 0019
+0012 => GGET     3   0      ; "pairs"
+0013    MOV      4   1
+0014    CALL     3   4   2
+0015    ISNEXT   6 => 0017
+0016 => TSETV    7   0   6
+0017 => ITERN    6   3   3
+0018    ITERL    6 => 0016
+0019 => RET0     0   1
+
+-- BYTECODE -- init.lua:148-159
+0001    LEN      2   0
+0002    KSHORT   3   1
+0003    ISGE     3   2
+0004    JMP      3 => 0021
+0005    MOV      3   1
+0006    TGETB    4   0   1
+0007    TGETB    5   0   2
+0008    CALL     3   2   3
+0009    KSHORT   4   3
+0010    MOV      5   2
+0011    KSHORT   6   1
+0012    FORI     4 => 0019
+0013 => MOV      8   1
+0014    MOV      9   3
+0015    TGETV   10   0   7
+0016    CALL     8   2   3
+0017    MOV      3   8
+0018    FORL     4 => 0013
+0019 => RET1     3   2
+0020    JMP      3 => 0023
+0021 => TGETB    3   0   1
+0022    RET1     3   2
+0023 => RET0     0   1
+
+-- BYTECODE -- init.lua:0-176
+0001    TDUP     0   0
+0002    GGET     1   1      ; "debug"
+0003    TSETS    1   0   1  ; "debug"
+0004    GGET     1   2      ; "type"
+0005    TSETS    1   0   2  ; "type"
+0006    KNIL     1   3
+0007    GGET     4   3      ; "require"
+0008    KSTR     5   4      ; "moonscript.util"
+0009    CALL     4   2   2
+0010    TGETS    5   4   5  ; "getfenv"
+0011    TGETS    6   4   6  ; "setfenv"
+0012    TGETS    3   4   7  ; "dump"
+0013    MOV      2   6
+0014    MOV      1   5
+0015    KNIL     4  16
+0016    FNEW     4   8      ; init.lua:11
+0017    FNEW     5   9      ; init.lua:14
+0018    FNEW     6  10      ; init.lua:17
+0019    GGET    17  11      ; "setmetatable"
+0020    TDUP    18  13
+0021    FNEW    19  12      ; init.lua:28
+0022    TSETS   19  18  14  ; "upvalue"
+0023    TDUP    19  15
+0024    TGETS   20   0   1  ; "debug"
+0025    TSETS   20  19  16  ; "__index"
+0026    CALL    17   2   3
+0027    MOV      7  17
+0028    FNEW     8  17      ; init.lua:52
+0029    FNEW     9  18      ; init.lua:67
+0030    FNEW    10  19      ; init.lua:84
+0031    FNEW    11  20      ; init.lua:97
+0032    FNEW    12  21      ; init.lua:113
+0033    FNEW    13  22      ; init.lua:120
+0034    FNEW    14  23      ; init.lua:128
+0035    FNEW    15  24      ; init.lua:136
+0036    FNEW    16  25      ; init.lua:148
+0037    TDUP    17  26
+0038    TSETS    3  17   7  ; "dump"
+0039    TSETS    4  17  27  ; "p"
+0040    TSETS    5  17  28  ; "is_object"
+0041    TSETS    6  17   2  ; "type"
+0042    TSETS    7  17   1  ; "debug"
+0043    TSETS    8  17  29  ; "run_with_scope"
+0044    TSETS    9  17  30  ; "bind_methods"
+0045    TSETS   10  17  31  ; "defaultbl"
+0046    TSETS   11  17  32  ; "extend"
+0047    TSETS   12  17  33  ; "copy"
+0048    TSETS   13  17  34  ; "mixin"
+0049    TSETS   14  17  35  ; "mixin_object"
+0050    TSETS   15  17  36  ; "mixin_table"
+0051    TSETS   16  17  37  ; "fold"
+0052    UCLO     0 => 0053
+0053 => RET1    17   2
+

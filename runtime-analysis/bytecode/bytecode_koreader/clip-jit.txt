@@ -1,0 +1,690 @@
+-- BYTECODE -- clip.lua:13-18
+0001    ISNEP    1   0
+0002    JMP      2 => 0004
+0003    TNEW     1   0
+0004 => GGET     2   0      ; "setmetatable"
+0005    MOV      3   1
+0006    MOV      4   0
+0007    CALL     2   1   3
+0008    TSETS    0   0   1  ; "__index"
+0009    RET1     1   2
+
+-- BYTECODE -- clip.lua:41-88
+0001    GGET     1   0      ; "io"
+0002    TGETS    1   1   1  ; "open"
+0003    TGETS    2   0   2  ; "my_clippings"
+0004    KSTR     3   3      ; "r"
+0005    CALL     1   2   3
+0006    TNEW     2   0
+0007    ISF          1
+0008    JMP      3 => 0078
+0009    KSHORT   3   1
+0010    KNIL     4   7
+0011    MOV      9   1
+0012    TGETS    8   1   4  ; "lines"
+0013    CALL     8   4   2
+0014    JMP     11 => 0076
+0015 => MOV     13  11
+0016    TGETS   12  11   5  ; "match"
+0017    KSTR    14   6      ; "^%s*(.-)%s*$"
+0018    CALL    12   2   3
+0019    ISTC    11  12
+0020    JMP     13 => 0022
+0021    KSTR    11   7      ; ""
+0022 => ISNEN    3   0      ; 1
+0023    JMP     12 => 0038
+0024    MOV     13   0
+0025    TGETS   12   0   8  ; "getTitle"
+0026    MOV     14  11
+0027    CALL    12   3   3
+0028    MOV      5  13
+0029    MOV      4  12
+0030    TGETV   12   2   4
+0031    IST         12
+0032    JMP     13 => 0036
+0033    TDUP    12   9
+0034    TSETS    4  12  10  ; "title"
+0035    TSETS    5  12  11  ; "author"
+0036 => TSETV   12   2   4
+0037    JMP     12 => 0053
+0038 => ISNEN    3   1      ; 2
+0039    JMP     12 => 0046
+0040    MOV     13   0
+0041    TGETS   12   0  12  ; "getInfo"
+0042    MOV     14  11
+0043    CALL    12   2   3
+0044    MOV      6  12
+0045    JMP     12 => 0053
+0046 => ISNEN    3   2      ; 4
+0047    JMP     12 => 0053
+0048    MOV     13   0
+0049    TGETS   12   0  13  ; "getText"
+0050    MOV     14  11
+0051    CALL    12   2   3
+0052    MOV      7  12
+0053 => ISNES   11  14      ; "=========="
+0054    JMP     12 => 0075
+0055    ISNEN    3   3      ; 5
+0056    JMP     12 => 0074
+0057    TDUP    12  17
+0058    TGETS   13   6  15  ; "page"
+0059    IST         13
+0060    JMP     14 => 0062
+0061    TGETS   13   6  16  ; "location"
+0062 => TSETS   13  12  15  ; "page"
+0063    TGETS   13   6  18  ; "sort"
+0064    TSETS   13  12  18  ; "sort"
+0065    TGETS   13   6  19  ; "time"
+0066    TSETS   13  12  19  ; "time"
+0067    TSETS    7  12  20  ; "text"
+0068    GGET    13  21      ; "table"
+0069    TGETS   13  13  22  ; "insert"
+0070    TGETV   14   2   4
+0071    TNEW    15   3
+0072    TSETB   12  15   1
+0073    CALL    13   1   3
+0074 => KSHORT   3   0
+0075 => ADDVN    3   3   0  ; 1
+0076 => ITERC   11   2   3
+0077    ITERL   11 => 0015
+0078 => RET1     2   2
+
+-- BYTECODE -- clip.lua:104-117
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "match"
+0003    KSTR     4   1      ; "^%s*(.-)%s*$"
+0004    CALL     2   2   3
+0005    ISTC     1   2
+0006    JMP      3 => 0008
+0007    KSTR     1   2      ; ""
+0008 => UGET     2   0      ; extensions
+0009    MOV      4   1
+0010    TGETS    3   1   3  ; "sub"
+0011    KSHORT   5  -4
+0012    CALL     3   2   3
+0013    MOV      4   3
+0014    TGETS    3   3   4  ; "lower"
+0015    CALL     3   2   2
+0016    TGETV    2   2   3
+0017    ISF          2
+0018    JMP      3 => 0026
+0019    MOV      3   1
+0020    TGETS    2   1   3  ; "sub"
+0021    KSHORT   4   1
+0022    KSHORT   5  -5
+0023    CALL     2   2   4
+0024    MOV      1   2
+0025    JMP      2 => 0043
+0026 => UGET     2   0      ; extensions
+0027    MOV      4   1
+0028    TGETS    3   1   3  ; "sub"
+0029    KSHORT   5  -5
+0030    CALL     3   2   3
+0031    MOV      4   3
+0032    TGETS    3   3   4  ; "lower"
+0033    CALL     3   2   2
+0034    TGETV    2   2   3
+0035    ISF          2
+0036    JMP      3 => 0043
+0037    MOV      3   1
+0038    TGETS    2   1   3  ; "sub"
+0039    KSHORT   4   1
+0040    KSHORT   5  -6
+0041    CALL     2   2   4
+0042    MOV      1   2
+0043 => MOV      3   1
+0044    TGETS    2   1   5  ; "find"
+0045    KSTR     4   6      ; "(.-)%s*%((.*)%)"
+0046    CALL     2   5   3
+0047    IST          5
+0048    JMP      6 => 0057
+0049    MOV      7   1
+0050    TGETS    6   1   5  ; "find"
+0051    KSTR     8   7      ; "(.-)%s*-%s*(.*)"
+0052    CALL     6   5   3
+0053    MOV      5   9
+0054    MOV      4   8
+0055    MOV      3   7
+0056    MOV      3   6
+0057 => IST          4
+0058    JMP      6 => 0060
+0059    MOV      4   1
+0060 => MOV      7   4
+0061    TGETS    6   4   0  ; "match"
+0062    KSTR     8   1      ; "^%s*(.-)%s*$"
+0063    CALL     6   2   3
+0064    MOV      7   5
+0065    RET      6   3
+
+-- BYTECODE -- clip.lua:154-186
+0001    IST          1
+0002    JMP      2 => 0004
+0003    RET0     0   1
+0004 => MOV      3   1
+0005    TGETS    2   1   0  ; "find"
+0006    KSTR     4   1      ; "(%d+)年(%d+)月(%d+)日"
+0007    CALL     2   6   3
+0008    ISF          4
+0009    JMP      7 => 0014
+0010    ISF          5
+0011    JMP      7 => 0014
+0012    IST          6
+0013    JMP      7 => 0023
+0014 => MOV      8   1
+0015    TGETS    7   1   0  ; "find"
+0016    KSTR     9   2      ; "(%d%d%d%d)-(%d%d)-(%d%d)"
+0017    CALL     7   6   3
+0018    MOV      6  11
+0019    MOV      5  10
+0020    MOV      4   9
+0021    MOV      3   8
+0022    MOV      3   7
+0023 => ISF          4
+0024    JMP      7 => 0029
+0025    ISF          5
+0026    JMP      7 => 0029
+0027    IST          6
+0028    JMP      7 => 0057
+0029 => GGET     7   3      ; "pairs"
+0030    UGET     8   0      ; months
+0031    CALL     7   4   2
+0032    ISNEXT  10 => 0055
+0033 => MOV     13   1
+0034    TGETS   12   1   0  ; "find"
+0035    MOV     14  10
+0036    CALL    12   2   3
+0037    ISF         12
+0038    JMP     13 => 0055
+0039    MOV      5  11
+0040    MOV     13   1
+0041    TGETS   12   1   0  ; "find"
+0042    KSTR    14   4      ; " (%d?%d),"
+0043    CALL    12   4   3
+0044    MOV      6  14
+0045    MOV      3  13
+0046    MOV      3  12
+0047    MOV     13   1
+0048    TGETS   12   1   0  ; "find"
+0049    KSTR    14   5      ; " (%d%d%d%d)"
+0050    CALL    12   4   3
+0051    MOV      4  14
+0052    MOV      3  13
+0053    MOV      3  12
+0054    JMP      7 => 0057
+0055 => ITERN   10   3   3
+0056    ITERL   10 => 0033
+0057 => MOV      8   1
+0058    TGETS    7   1   0  ; "find"
+0059    KSTR     9   6      ; "(%d+):(%d+):(%d+)"
+0060    CALL     7   6   3
+0061    ISF          4
+0062    JMP     12 => 0098
+0063    ISF          5
+0064    JMP     12 => 0098
+0065    ISF          6
+0066    JMP     12 => 0098
+0067    ISF          9
+0068    JMP     12 => 0098
+0069    ISF         10
+0070    JMP     12 => 0098
+0071    ISF         11
+0072    JMP     12 => 0098
+0073    GGET    12   3      ; "pairs"
+0074    UGET    13   1      ; pms
+0075    CALL    12   4   2
+0076    ISNEXT  15 => 0085
+0077 => MOV     18   1
+0078    TGETS   17   1   0  ; "find"
+0079    MOV     19  15
+0080    CALL    17   2   3
+0081    ISF         17
+0082    JMP     18 => 0085
+0083    ADDVV    9   9  16
+0084    JMP     12 => 0087
+0085 => ITERN   15   3   3
+0086    ITERL   15 => 0077
+0087 => GGET    12   7      ; "os"
+0088    TGETS   12  12   8  ; "time"
+0089    TDUP    13   9
+0090    TSETS    4  13  10  ; "year"
+0091    TSETS    5  13  11  ; "month"
+0092    TSETS    6  13  12  ; "day"
+0093    TSETS    9  13  13  ; "hour"
+0094    TSETS   10  13  14  ; "min"
+0095    TSETS   11  13  15  ; "sec"
+0096    CALL    12   2   2
+0097    RET1    12   2
+0098 => RET0     0   1
+
+-- BYTECODE -- clip.lua:188-208
+0001    TNEW     2   0
+0002    IST          1
+0003    JMP      3 => 0005
+0004    KSTR     1   0      ; ""
+0005 => MOV      4   1
+0006    TGETS    3   1   1  ; "find"
+0007    KSTR     5   2      ; "(.+)%s*|%s*(.+)"
+0008    CALL     3   5   3
+0009    GGET     7   3      ; "pairs"
+0010    UGET     8   0      ; keywords
+0011    CALL     7   4   2
+0012    ISNEXT  10 => 0034
+0013 => GGET    12   4      ; "ipairs"
+0014    MOV     13  11
+0015    CALL    12   4   2
+0016    JMP     15 => 0032
+0017 => ISF          5
+0018    JMP     17 => 0032
+0019    MOV     18   5
+0020    TGETS   17   5   1  ; "find"
+0021    MOV     19  16
+0022    CALL    17   2   3
+0023    ISF         17
+0024    JMP     18 => 0032
+0025    TSETS   10   2   5  ; "sort"
+0026    MOV     18   5
+0027    TGETS   17   5   7  ; "match"
+0028    KSTR    19   8      ; "(%d+-?%d+)"
+0029    CALL    17   2   3
+0030    TSETS   17   2   6  ; "location"
+0031    JMP     12 => 0034
+0032 => ITERC   15   3   3
+0033    ITERL   15 => 0017
+0034 => ITERN   10   3   3
+0035    ITERL   10 => 0013
+0036    MOV      8   0
+0037    TGETS    7   0  10  ; "getTime"
+0038    ISTC     9   6
+0039    JMP      9 => 0041
+0040    KSTR     9   0      ; ""
+0041 => CALL     7   2   3
+0042    TSETS    7   2   9  ; "time"
+0043    RET1     2   2
+
+-- BYTECODE -- clip.lua:210-213
+0001    IST          1
+0002    JMP      2 => 0004
+0003    KSTR     1   0      ; ""
+0004 => MOV      3   1
+0005    TGETS    2   1   1  ; "match"
+0006    KSTR     4   2      ; "^%s*(.-)%s*$"
+0007    CALL     2   2   3
+0008    IST          2
+0009    JMP      3 => 0011
+0010    KSTR     2   0      ; ""
+0011 => RET1     2   2
+
+-- BYTECODE -- clip.lua:216-227
+0001    UGET     2   0      ; DocumentRegistry
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "openDocument"
+0004    TGETS    4   1   1  ; "file"
+0005    CALL     2   2   3
+0006    ISF          2
+0007    JMP      3 => 0028
+0008    MOV      4   2
+0009    TGETS    3   2   2  ; "clipPagePNGString"
+0010    TGETS    5   1   3  ; "pos0"
+0011    TGETS    6   1   4  ; "pos1"
+0012    TGETS    7   1   5  ; "pboxes"
+0013    TGETS    8   1   6  ; "drawer"
+0014    CALL     3   2   6
+0015    MOV      5   2
+0016    TGETS    4   2   7  ; "close"
+0017    CALL     4   1   2
+0018    ISF          3
+0019    JMP      4 => 0028
+0020    TDUP     4   8
+0021    TSETS    3   4   9  ; "png"
+0022    UGET     5   1      ; md5
+0023    TGETS    5   5  10  ; "sum"
+0024    MOV      6   3
+0025    CALL     5   2   2
+0026    TSETS    5   4  11  ; "hash"
+0027    RET1     4   2
+0028 => RET0     0   1
+
+-- BYTECODE -- clip.lua:263-263
+0001    TGETB    2   0   1
+0002    TGETS    2   2   0  ; "page"
+0003    TGETB    3   1   1
+0004    TGETS    3   3   0  ; "page"
+0005    ISLT     2   3
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => RET1     2   2
+
+-- BYTECODE -- clip.lua:229-264
+0001    GGET     4   0      ; "pairs"
+0002    MOV      5   1
+0003    CALL     4   4   2
+0004    ISNEXT   7 => 0122
+0005 => GGET     9   1      ; "ipairs"
+0006    MOV     10   8
+0007    CALL     9   4   2
+0008    JMP     12 => 0120
+0009 => TNEW    14   0
+0010    TSETS    7  14   2  ; "page"
+0011    KSTR    15   4      ; "highlight"
+0012    TSETS   15  14   3  ; "sort"
+0013    MOV     16   0
+0014    TGETS   15   0   6  ; "getTime"
+0015    TGETS   17  13   7  ; "datetime"
+0016    IST         17
+0017    JMP     18 => 0019
+0018    KSTR    17   8      ; ""
+0019 => CALL    15   2   3
+0020    TSETS   15  14   5  ; "time"
+0021    MOV     16   0
+0022    TGETS   15   0  10  ; "getText"
+0023    TGETS   17  13   9  ; "text"
+0024    CALL    15   2   3
+0025    TSETS   15  14   9  ; "text"
+0026    GGET    15   0      ; "pairs"
+0027    MOV     16   2
+0028    CALL    15   4   2
+0029    ISNEXT  18 => 0050
+0030 => TGETS   20  19   7  ; "datetime"
+0031    TGETS   21  13   7  ; "datetime"
+0032    ISNEV   20  21
+0033    JMP     20 => 0050
+0034    TGETS   20  19   9  ; "text"
+0035    ISF         20
+0036    JMP     21 => 0050
+0037    GGET    20  11      ; "string"
+0038    TGETS   20  20  12  ; "gsub"
+0039    TGETS   21  19   9  ; "text"
+0040    KSTR    22  13      ; "Page %d+ "
+0041    KSTR    23   8      ; ""
+0042    CALL    20   2   4
+0043    GGET    21  11      ; "string"
+0044    TGETS   21  21  12  ; "gsub"
+0045    MOV     22  20
+0046    KSTR    23  14      ; " @ %d%d%d%d%-%d%d%-%d%d %d%d:%d%d:%d%d"
+0047    KSTR    24   8      ; ""
+0048    CALL    21   2   4
+0049    TSETS   21  14   9  ; "text"
+0050 => ITERN   18   3   3
+0051    ITERL   18 => 0030
+0052    TGETS   15  13   9  ; "text"
+0053    ISNES   15   8      ; ""
+0054    JMP     15 => 0105
+0055    TGETS   15  13  15  ; "pos0"
+0056    ISF         15
+0057    JMP     16 => 0105
+0058    TGETS   15  13  16  ; "pos1"
+0059    ISF         15
+0060    JMP     16 => 0105
+0061    TGETS   15  13  15  ; "pos0"
+0062    TGETS   15  15  17  ; "x"
+0063    ISF         15
+0064    JMP     16 => 0105
+0065    TGETS   15  13  15  ; "pos0"
+0066    TGETS   15  15  18  ; "y"
+0067    ISF         15
+0068    JMP     16 => 0105
+0069    TGETS   15  13  16  ; "pos1"
+0070    TGETS   15  15  17  ; "x"
+0071    ISF         15
+0072    JMP     16 => 0105
+0073    TGETS   15  13  16  ; "pos1"
+0074    TGETS   15  15  18  ; "y"
+0075    ISF         15
+0076    JMP     16 => 0105
+0077    TGETS   15  13  15  ; "pos0"
+0078    TGETS   15  15   2  ; "page"
+0079    ISNEP   15   0
+0080    JMP     15 => 0083
+0081    TGETS   15  13  15  ; "pos0"
+0082    TSETS    7  15   2  ; "page"
+0083 => TGETS   15  13  16  ; "pos1"
+0084    TGETS   15  15   2  ; "page"
+0085    ISNEP   15   0
+0086    JMP     15 => 0089
+0087    TGETS   15  13  16  ; "pos1"
+0088    TSETS    7  15   2  ; "page"
+0089 => TNEW    15   0
+0090    TGETS   16   3  19  ; "file"
+0091    TSETS   16  15  19  ; "file"
+0092    TGETS   16  13  15  ; "pos0"
+0093    TGETS   17  13  16  ; "pos1"
+0094    TSETS   17  15  16  ; "pos1"
+0095    TSETS   16  15  15  ; "pos0"
+0096    TGETS   16  13  20  ; "pboxes"
+0097    TSETS   16  15  20  ; "pboxes"
+0098    TGETS   16  13  21  ; "drawer"
+0099    TSETS   16  15  21  ; "drawer"
+0100    MOV     17   0
+0101    TGETS   16   0  23  ; "getImage"
+0102    MOV     18  15
+0103    CALL    16   2   3
+0104    TSETS   16  14  22  ; "image"
+0105 => TGETS   15  14   9  ; "text"
+0106    ISF         15
+0107    JMP     16 => 0111
+0108    TGETS   15  14   9  ; "text"
+0109    ISNES   15   8      ; ""
+0110    JMP     15 => 0114
+0111 => TGETS   15  14  22  ; "image"
+0112    ISF         15
+0113    JMP     16 => 0120
+0114 => GGET    15  24      ; "table"
+0115    TGETS   15  15  25  ; "insert"
+0116    MOV     16   3
+0117    TNEW    17   3
+0118    TSETB   14  17   1
+0119    CALL    15   1   3
+0120 => ITERC   12   3   3
+0121    ITERL   12 => 0009
+0122 => ITERN    7   3   3
+0123    ITERL    7 => 0005
+0124    GGET     4  24      ; "table"
+0125    TGETS    4   4   3  ; "sort"
+0126    MOV      5   3
+0127    FNEW     6  26      ; clip.lua:263
+0128    CALL     4   1   3
+0129    RET0     0   1
+
+-- BYTECODE -- clip.lua:266-292
+0001    GGET     4   0      ; "lfs"
+0002    TGETS    4   4   1  ; "attributes"
+0003    MOV      5   2
+0004    KSTR     6   2      ; "mode"
+0005    CALL     4   2   3
+0006    ISNES    4   3      ; "file"
+0007    JMP      4 => 0014
+0008    MOV      5   2
+0009    TGETS    4   2   4  ; "find"
+0010    KSTR     6   5      ; ".+%.lua$"
+0011    CALL     4   2   3
+0012    IST          4
+0013    JMP      4 => 0015
+0014 => RET0     0   1
+0015 => GGET     4   0      ; "lfs"
+0016    TGETS    4   4   1  ; "attributes"
+0017    MOV      5   3
+0018    KSTR     6   2      ; "mode"
+0019    CALL     4   2   3
+0020    ISEQS    4   3      ; "file"
+0021    JMP      4 => 0023
+0022    RET0     0   1
+0023 => GGET     4   6      ; "pcall"
+0024    GGET     5   7      ; "dofile"
+0025    MOV      6   2
+0026    CALL     4   3   3
+0027    ISF          4
+0028    JMP      6 => 0066
+0029    IST          5
+0030    JMP      6 => 0040
+0031    UGET     6   0      ; logger
+0032    TGETS    6   6   8  ; "warn"
+0033    KSTR     7   9      ; "An empty history file "
+0034    MOV      8   2
+0035    KSTR     9  10      ; "has been found. The book associated is "
+0036    MOV     10   3
+0037    CALL     6   1   5
+0038    RET0     0   1
+0039    JMP      6 => 0044
+0040 => TGETS    6   5  11  ; "highlight"
+0041    IST          6
+0042    JMP      6 => 0044
+0043    RET0     0   1
+0044 => UGET     6   1      ; util
+0045    TGETS    6   6  12  ; "splitFilePathName"
+0046    MOV      7   3
+0047    CALL     6   3   2
+0048    MOV      9   0
+0049    TGETS    8   0  13  ; "getTitle"
+0050    UGET    10   1      ; util
+0051    TGETS   10  10  14  ; "splitFileNameSuffix"
+0052    MOV     11   7
+0053    CALL    10   0   2
+0054    CALLM    8   3   1
+0055    TDUP    10  15
+0056    TSETS    3  10   3  ; "file"
+0057    TSETS    8  10  16  ; "title"
+0058    TSETS    9  10  17  ; "author"
+0059    TSETV   10   1   8
+0060    MOV     11   0
+0061    TGETS   10   0  18  ; "parseHighlight"
+0062    TGETS   12   5  11  ; "highlight"
+0063    TGETS   13   5  19  ; "bookmarks"
+0064    TGETV   14   1   8
+0065    CALL    10   1   5
+0066 => RET0     0   1
+
+-- BYTECODE -- clip.lua:294-309
+0001    TNEW     1   0
+0002    GGET     2   0      ; "lfs"
+0003    TGETS    2   2   1  ; "dir"
+0004    TGETS    3   0   2  ; "history_dir"
+0005    CALL     2   4   2
+0006    JMP      5 => 0027
+0007 => MOV      7   0
+0008    TGETS    6   0   3  ; "parseHistoryFile"
+0009    MOV      8   1
+0010    TGETS    9   0   2  ; "history_dir"
+0011    KSTR    10   4      ; "/"
+0012    MOV     11   5
+0013    CAT      9   9  11
+0014    UGET    10   0      ; DocSettings
+0015    MOV     11  10
+0016    TGETS   10  10   5  ; "getPathFromHistory"
+0017    MOV     12   5
+0018    CALL    10   2   3
+0019    KSTR    11   4      ; "/"
+0020    UGET    12   0      ; DocSettings
+0021    MOV     13  12
+0022    TGETS   12  12   6  ; "getNameFromHistory"
+0023    MOV     14   5
+0024    CALL    12   2   3
+0025    CAT     10  10  12
+0026    CALL     6   1   5
+0027 => ITERC    5   2   3
+0028    ITERL    5 => 0007
+0029    GGET     2   7      ; "ipairs"
+0030    UGET     3   1      ; ReadHistory
+0031    TGETS    3   3   8  ; "hist"
+0032    CALL     2   4   2
+0033    JMP      5 => 0044
+0034 => MOV      8   0
+0035    TGETS    7   0   3  ; "parseHistoryFile"
+0036    MOV      9   1
+0037    UGET    10   0      ; DocSettings
+0038    MOV     11  10
+0039    TGETS   10  10   9  ; "getSidecarFile"
+0040    TGETS   12   6  10  ; "file"
+0041    CALL    10   2   3
+0042    TGETS   11   6  10  ; "file"
+0043    CALL     7   1   5
+0044 => ITERC    5   3   3
+0045    ITERL    5 => 0034
+0046    RET1     1   2
+
+-- BYTECODE -- clip.lua:311-324
+0001    TNEW     2   0
+0002    TGETS    3   1   0  ; "document"
+0003    TGETS    3   3   1  ; "file"
+0004    MOV      5   3
+0005    TGETS    4   3   2  ; "find"
+0006    KSTR     6   3      ; ".*/(.*)"
+0007    CALL     4   4   3
+0008    MOV      8   0
+0009    TGETS    7   0   4  ; "getTitle"
+0010    MOV      9   6
+0011    CALL     7   3   3
+0012    TDUP     9   5
+0013    TGETS   10   1   0  ; "document"
+0014    TGETS   10  10   1  ; "file"
+0015    TSETS   10   9   1  ; "file"
+0016    TSETS    7   9   6  ; "title"
+0017    TSETS    8   9   7  ; "author"
+0018    TSETV    9   2   7
+0019    MOV     10   0
+0020    TGETS    9   0   8  ; "parseHighlight"
+0021    TGETS   11   1   9  ; "highlight"
+0022    TGETS   11  11  10  ; "saved"
+0023    TGETS   12   1  11  ; "ui"
+0024    TGETS   12  12  12  ; "bookmark"
+0025    TGETS   12  12  13  ; "bookmarks"
+0026    TGETV   13   2   7
+0027    CALL     9   1   5
+0028    RET1     2   2
+
+-- BYTECODE -- clip.lua:0-328
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "document/documentregistry"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "docsettings"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "readhistory"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "logger"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ffi/MD5"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "util"
+0018    CALL     5   2   2
+0019    TDUP     6   7
+0020    FNEW     7   9      ; clip.lua:13
+0021    TSETS    7   6   8  ; "new"
+0022    FNEW     7  11      ; clip.lua:41
+0023    TSETS    7   6  10  ; "parseMyClippings"
+0024    TDUP     7  12
+0025    FNEW     8  14      ; clip.lua:104
+0026    TSETS    8   6  13  ; "getTitle"
+0027    TDUP     8  16
+0028    TDUP     9  15
+0029    TSETS    9   8  17  ; "highlight"
+0030    TDUP     9  18
+0031    TSETS    9   8  19  ; "note"
+0032    TDUP     9  20
+0033    TSETS    9   8  21  ; "bookmark"
+0034    TDUP     9  22
+0035    TDUP    10  23
+0036    FNEW    11  25      ; clip.lua:154
+0037    TSETS   11   6  24  ; "getTime"
+0038    FNEW    11  27      ; clip.lua:188
+0039    TSETS   11   6  26  ; "getInfo"
+0040    FNEW    11  29      ; clip.lua:210
+0041    TSETS   11   6  28  ; "getText"
+0042    FNEW    11  31      ; clip.lua:216
+0043    TSETS   11   6  30  ; "getImage"
+0044    FNEW    11  33      ; clip.lua:229
+0045    TSETS   11   6  32  ; "parseHighlight"
+0046    FNEW    11  35      ; clip.lua:266
+0047    TSETS   11   6  34  ; "parseHistoryFile"
+0048    FNEW    11  37      ; clip.lua:294
+0049    TSETS   11   6  36  ; "parseHistory"
+0050    FNEW    11  39      ; clip.lua:311
+0051    TSETS   11   6  38  ; "parseCurrentDoc"
+0052    UCLO     0 => 0053
+0053 => RET1     6   2
+

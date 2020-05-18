@@ -1,0 +1,415 @@
+-- BYTECODE -- djvudocument.lua:18-25
+0001    GGET     1   0      ; "io"
+0002    TGETS    1   1   1  ; "open"
+0003    MOV      2   0
+0004    KSTR     3   2      ; "r"
+0005    CALL     1   2   3
+0006    IST          1
+0007    JMP      2 => 0010
+0008    KPRI     2   1
+0009    RET1     2   2
+0010 => MOV      3   1
+0011    TGETS    2   1   3  ; "read"
+0012    KSHORT   4   8
+0013    CALL     2   2   3
+0014    MOV      4   1
+0015    TGETS    3   1   4  ; "close"
+0016    CALL     3   1   2
+0017    ISF          2
+0018    JMP      3 => 0021
+0019    ISEQS    2   5      ; "AT&TFORM"
+0020    JMP      3 => 0023
+0021 => KPRI     3   1
+0022    RET1     3   2
+0023 => KPRI     3   2
+0024    RET1     3   2
+
+-- BYTECODE -- djvudocument.lua:27-45
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "updateColorRendering"
+0003    CALL     1   1   2
+0004    GGET     1   1      ; "require"
+0005    KSTR     2   2      ; "libs/libkoreader-djvu"
+0006    CALL     1   2   2
+0007    GGET     2   1      ; "require"
+0008    KSTR     3   4      ; "document/koptinterface"
+0009    CALL     2   2   2
+0010    TSETS    2   0   3  ; "koptinterface"
+0011    TGETS    2   0   3  ; "koptinterface"
+0012    MOV      3   2
+0013    TGETS    2   2   5  ; "setDefaultConfigurable"
+0014    TGETS    4   0   6  ; "configurable"
+0015    CALL     2   1   3
+0016    UGET     2   0      ; validDjvuFile
+0017    TGETS    3   0   7  ; "file"
+0018    CALL     2   2   2
+0019    IST          2
+0020    JMP      2 => 0024
+0021    GGET     2   8      ; "error"
+0022    KSTR     3   9      ; "Not a valid DjVu file"
+0023    CALL     2   1   2
+0024 => KPRI     2   0
+0025    GGET     3  11      ; "pcall"
+0026    TGETS    4   1  12  ; "openDocument"
+0027    TGETS    5   0   7  ; "file"
+0028    TGETS    6   0  13  ; "render_color"
+0029    TGETS    7   0  14  ; "djvulibre_cache_size"
+0030    CALL     3   3   5
+0031    TSETS    4   0  10  ; "_document"
+0032    MOV      2   3
+0033    IST          2
+0034    JMP      3 => 0038
+0035    GGET     3   8      ; "error"
+0036    TGETS    4   0  10  ; "_document"
+0037    CALL     3   1   2
+0038 => KPRI     3   2
+0039    TSETS    3   0  15  ; "is_open"
+0040    TGETS    3   0  16  ; "info"
+0041    KPRI     4   2
+0042    TSETS    4   3  17  ; "has_pages"
+0043    TGETS    3   0  16  ; "info"
+0044    KPRI     4   2
+0045    TSETS    4   3   6  ; "configurable"
+0046    MOV      4   0
+0047    TGETS    3   0  18  ; "_readMetadata"
+0048    CALL     3   1   2
+0049    RET0     0   1
+
+-- BYTECODE -- djvudocument.lua:47-52
+0001    UGET     1   0      ; Document
+0002    TGETS    1   1   0  ; "updateColorRendering"
+0003    MOV      2   0
+0004    CALL     1   1   2
+0005    TGETS    1   0   1  ; "_document"
+0006    ISF          1
+0007    JMP      2 => 0013
+0008    TGETS    1   0   1  ; "_document"
+0009    MOV      2   1
+0010    TGETS    1   1   2  ; "setColorRendering"
+0011    TGETS    3   0   3  ; "render_color"
+0012    CALL     1   1   3
+0013 => RET0     0   1
+
+-- BYTECODE -- djvudocument.lua:54-69
+0001    TGETS    1   0   0  ; "_document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getMetadata"
+0004    CALL     1   2   2
+0005    TGETS    2   0   2  ; "file"
+0006    MOV      3   2
+0007    TGETS    2   2   3  ; "find"
+0008    KSTR     4   4      ; ".*/(.*)"
+0009    CALL     2   4   3
+0010    IST          4
+0011    JMP      5 => 0013
+0012    TGETS    4   0   2  ; "file"
+0013 => TGETS    5   1   5  ; "title"
+0014    IST          5
+0015    JMP      6 => 0023
+0016    TGETS    5   1   6  ; "Title"
+0017    IST          5
+0018    JMP      6 => 0023
+0019    MOV      6   4
+0020    TGETS    5   4   7  ; "match"
+0021    KSTR     7   8      ; "(.*)%."
+0022    CALL     5   2   3
+0023 => TSETS    5   1   5  ; "title"
+0024    TGETS    5   1  10  ; "author"
+0025    IST          5
+0026    JMP      6 => 0028
+0027    TGETS    5   1  11  ; "Author"
+0028 => TSETS    5   1   9  ; "authors"
+0029    TGETS    5   1  12  ; "series"
+0030    IST          5
+0031    JMP      6 => 0033
+0032    TGETS    5   1  13  ; "Series"
+0033 => TSETS    5   1  12  ; "series"
+0034    TGETS    5   1  14  ; "language"
+0035    IST          5
+0036    JMP      6 => 0038
+0037    TGETS    5   1  15  ; "Language"
+0038 => TSETS    5   1  14  ; "language"
+0039    TGETS    5   1  16  ; "keywords"
+0040    IST          5
+0041    JMP      6 => 0043
+0042    TGETS    5   1  17  ; "Keywords"
+0043 => TSETS    5   1  16  ; "keywords"
+0044    TGETS    5   1  18  ; "description"
+0045    IST          5
+0046    JMP      6 => 0048
+0047    TGETS    5   1  19  ; "Description"
+0048 => TSETS    5   1  18  ; "description"
+0049    RET1     1   2
+
+-- BYTECODE -- djvudocument.lua:71-73
+0001    TGETS    2   0   0  ; "_document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getPageText"
+0004    MOV      4   1
+0005    CALLT    2   3
+
+-- BYTECODE -- djvudocument.lua:75-77
+0001    TGETS    2   0   0  ; "koptinterface"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getWordFromPosition"
+0004    MOV      4   0
+0005    MOV      5   1
+0006    CALLT    2   4
+
+-- BYTECODE -- djvudocument.lua:79-81
+0001    TGETS    3   0   0  ; "koptinterface"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "getTextFromPositions"
+0004    MOV      5   0
+0005    MOV      6   1
+0006    MOV      7   2
+0007    CALLT    3   5
+
+-- BYTECODE -- djvudocument.lua:83-85
+0001    TGETS    4   0   0  ; "koptinterface"
+0002    MOV      5   4
+0003    TGETS    4   4   1  ; "getPageBoxesFromPositions"
+0004    MOV      6   0
+0005    MOV      7   1
+0006    MOV      8   2
+0007    MOV      9   3
+0008    CALLT    4   6
+
+-- BYTECODE -- djvudocument.lua:87-89
+0001    TGETS    3   0   0  ; "koptinterface"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "nativeToPageRectTransform"
+0004    MOV      5   0
+0005    MOV      6   1
+0006    MOV      7   2
+0007    CALLT    3   5
+
+-- BYTECODE -- djvudocument.lua:91-93
+0001    TGETS    3   0   0  ; "koptinterface"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "getOCRWord"
+0004    MOV      5   0
+0005    MOV      6   1
+0006    MOV      7   2
+0007    CALLT    3   5
+
+-- BYTECODE -- djvudocument.lua:95-97
+0001    TGETS    3   0   0  ; "koptinterface"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "getOCRText"
+0004    MOV      5   0
+0005    MOV      6   1
+0006    MOV      7   2
+0007    CALLT    3   5
+
+-- BYTECODE -- djvudocument.lua:99-101
+0001    TGETS    4   0   0  ; "koptinterface"
+0002    MOV      5   4
+0003    TGETS    4   4   1  ; "getPageBlock"
+0004    MOV      6   0
+0005    MOV      7   1
+0006    MOV      8   2
+0007    MOV      9   3
+0008    CALLT    4   6
+
+-- BYTECODE -- djvudocument.lua:103-109
+0001    TNEW     2   0
+0002    MOV      4   0
+0003    TGETS    3   0   0  ; "getNativePageDimensions"
+0004    MOV      5   1
+0005    CALL     3   2   3
+0006    KSHORT   4   0
+0007    KSHORT   5   0
+0008    TGETS    6   3   5  ; "w"
+0009    TGETS    7   3   6  ; "h"
+0010    TSETS    7   2   4  ; "y1"
+0011    TSETS    6   2   3  ; "x1"
+0012    TSETS    5   2   2  ; "y0"
+0013    TSETS    4   2   1  ; "x0"
+0014    RET1     2   2
+
+-- BYTECODE -- djvudocument.lua:111-113
+0001    TGETS    6   0   0  ; "koptinterface"
+0002    MOV      7   6
+0003    TGETS    6   6   1  ; "clipPagePNGFile"
+0004    MOV      8   0
+0005    MOV      9   1
+0006    MOV     10   2
+0007    MOV     11   3
+0008    MOV     12   4
+0009    MOV     13   5
+0010    CALLT    6   8
+
+-- BYTECODE -- djvudocument.lua:115-117
+0001    TGETS    5   0   0  ; "koptinterface"
+0002    MOV      6   5
+0003    TGETS    5   5   1  ; "clipPagePNGString"
+0004    MOV      7   0
+0005    MOV      8   1
+0006    MOV      9   2
+0007    MOV     10   3
+0008    MOV     11   4
+0009    CALLT    5   7
+
+-- BYTECODE -- djvudocument.lua:119-121
+0001    TGETS    2   0   0  ; "koptinterface"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getPageBBox"
+0004    MOV      4   0
+0005    MOV      5   1
+0006    CALLT    2   4
+
+-- BYTECODE -- djvudocument.lua:123-125
+0001    TGETS    4   0   0  ; "koptinterface"
+0002    MOV      5   4
+0003    TGETS    4   4   1  ; "getPageDimensions"
+0004    MOV      6   0
+0005    MOV      7   1
+0006    MOV      8   2
+0007    MOV      9   3
+0008    CALLT    4   6
+
+-- BYTECODE -- djvudocument.lua:127-129
+0001    TGETS    1   0   0  ; "koptinterface"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getCoverPageImage"
+0004    MOV      3   0
+0005    CALLT    1   3
+
+-- BYTECODE -- djvudocument.lua:131-133
+0001    TGETS    6   0   0  ; "koptinterface"
+0002    MOV      7   6
+0003    TGETS    6   6   1  ; "findText"
+0004    MOV      8   0
+0005    MOV      9   1
+0006    MOV     10   2
+0007    MOV     11   3
+0008    MOV     12   4
+0009    MOV     13   5
+0010    CALLT    6   8
+
+-- BYTECODE -- djvudocument.lua:135-137
+0001    TGETS    7   0   0  ; "koptinterface"
+0002    MOV      8   7
+0003    TGETS    7   7   1  ; "renderPage"
+0004    MOV      9   0
+0005    MOV     10   1
+0006    MOV     11   2
+0007    MOV     12   3
+0008    MOV     13   4
+0009    MOV     14   5
+0010    MOV     15   6
+0011    CALLT    7   9
+
+-- BYTECODE -- djvudocument.lua:139-141
+0001    TGETS    6   0   0  ; "koptinterface"
+0002    MOV      7   6
+0003    TGETS    6   6   1  ; "hintPage"
+0004    MOV      8   0
+0005    MOV      9   1
+0006    MOV     10   2
+0007    MOV     11   3
+0008    MOV     12   4
+0009    MOV     13   5
+0010    CALLT    6   8
+
+-- BYTECODE -- djvudocument.lua:143-145
+0001    TGETS   10   0   0  ; "koptinterface"
+0002    MOV     11  10
+0003    TGETS   10  10   1  ; "drawPage"
+0004    MOV     12   0
+0005    MOV     13   1
+0006    MOV     14   2
+0007    MOV     15   3
+0008    MOV     16   4
+0009    MOV     17   5
+0010    MOV     18   6
+0011    MOV     19   7
+0012    MOV     20   8
+0013    MOV     21   9
+0014    CALLT   10  12
+
+-- BYTECODE -- djvudocument.lua:147-150
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "addProvider"
+0003    KSTR     4   1      ; "djv"
+0004    KSTR     5   2      ; "image/vnd.djvu"
+0005    MOV      6   0
+0006    KSHORT   7 100
+0007    CALL     2   1   6
+0008    MOV      3   1
+0009    TGETS    2   1   0  ; "addProvider"
+0010    KSTR     4   3      ; "djvu"
+0011    KSTR     5   2      ; "image/vnd.djvu"
+0012    MOV      6   0
+0013    KSHORT   7 100
+0014    CALL     2   1   6
+0015    RET0     0   1
+
+-- BYTECODE -- djvudocument.lua:0-153
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/blitbuffer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "document/document"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ffi/drawcontext"
+0009    CALL     2   2   2
+0010    MOV      4   1
+0011    TGETS    3   1   4  ; "new"
+0012    TDUP     5   5
+0013    TGETS    6   2   4  ; "new"
+0014    CALL     6   2   1
+0015    TSETS    6   5   6  ; "dc_null"
+0016    TGETS    6   0   7  ; "TYPE_BBRGB24"
+0017    TSETS    6   5   8  ; "color_bb_type"
+0018    CALL     3   2   3
+0019    FNEW     4   9      ; djvudocument.lua:18
+0020    FNEW     5  11      ; djvudocument.lua:27
+0021    TSETS    5   3  10  ; "init"
+0022    FNEW     5  13      ; djvudocument.lua:47
+0023    TSETS    5   3  12  ; "updateColorRendering"
+0024    FNEW     5  15      ; djvudocument.lua:54
+0025    TSETS    5   3  14  ; "getProps"
+0026    FNEW     5  17      ; djvudocument.lua:71
+0027    TSETS    5   3  16  ; "getPageTextBoxes"
+0028    FNEW     5  19      ; djvudocument.lua:75
+0029    TSETS    5   3  18  ; "getWordFromPosition"
+0030    FNEW     5  21      ; djvudocument.lua:79
+0031    TSETS    5   3  20  ; "getTextFromPositions"
+0032    FNEW     5  23      ; djvudocument.lua:83
+0033    TSETS    5   3  22  ; "getPageBoxesFromPositions"
+0034    FNEW     5  25      ; djvudocument.lua:87
+0035    TSETS    5   3  24  ; "nativeToPageRectTransform"
+0036    FNEW     5  27      ; djvudocument.lua:91
+0037    TSETS    5   3  26  ; "getOCRWord"
+0038    FNEW     5  29      ; djvudocument.lua:95
+0039    TSETS    5   3  28  ; "getOCRText"
+0040    FNEW     5  31      ; djvudocument.lua:99
+0041    TSETS    5   3  30  ; "getPageBlock"
+0042    FNEW     5  33      ; djvudocument.lua:103
+0043    TSETS    5   3  32  ; "getUsedBBox"
+0044    FNEW     5  35      ; djvudocument.lua:111
+0045    TSETS    5   3  34  ; "clipPagePNGFile"
+0046    FNEW     5  37      ; djvudocument.lua:115
+0047    TSETS    5   3  36  ; "clipPagePNGString"
+0048    FNEW     5  39      ; djvudocument.lua:119
+0049    TSETS    5   3  38  ; "getPageBBox"
+0050    FNEW     5  41      ; djvudocument.lua:123
+0051    TSETS    5   3  40  ; "getPageDimensions"
+0052    FNEW     5  43      ; djvudocument.lua:127
+0053    TSETS    5   3  42  ; "getCoverPageImage"
+0054    FNEW     5  45      ; djvudocument.lua:131
+0055    TSETS    5   3  44  ; "findText"
+0056    FNEW     5  47      ; djvudocument.lua:135
+0057    TSETS    5   3  46  ; "renderPage"
+0058    FNEW     5  49      ; djvudocument.lua:139
+0059    TSETS    5   3  48  ; "hintPage"
+0060    FNEW     5  51      ; djvudocument.lua:143
+0061    TSETS    5   3  50  ; "drawPage"
+0062    FNEW     5  53      ; djvudocument.lua:147
+0063    TSETS    5   3  52  ; "register"
+0064    UCLO     0 => 0065
+0065 => RET1     3   2
+

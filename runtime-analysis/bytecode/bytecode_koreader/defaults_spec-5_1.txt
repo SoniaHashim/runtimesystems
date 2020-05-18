@@ -1,0 +1,238 @@
+
+main <./spec/unit/defaults_spec.lua:0,0> (5 instructions, 20 bytes at 0x7fc1d6c068c0)
+0+ params, 3 slots, 0 upvalues, 0 locals, 2 constants, 1 function
+	1	[1]	GETGLOBAL	0 -1	; describe
+	2	[1]	LOADK    	1 -2	; "defaults module"
+	3	[144]	CLOSURE  	2 0	; 0x7fc1d6c06b60
+	4	[1]	CALL     	0 3 1
+	5	[144]	RETURN   	0 1
+
+function <./spec/unit/defaults_spec.lua:1,144> (23 instructions, 92 bytes at 0x7fc1d6c06b60)
+0 params, 5 slots, 0 upvalues, 2 locals, 5 constants, 4 functions
+	1	[3]	GETGLOBAL	2 -1	; setup
+	2	[7]	CLOSURE  	3 0	; 0x7fc1d6c06ef0
+	3	[7]	MOVE     	0 0
+	4	[7]	MOVE     	0 1
+	5	[3]	CALL     	2 2 1
+	6	[9]	GETGLOBAL	2 -2	; it
+	7	[9]	LOADK    	3 -3	; "should load all defaults from defaults.lua"
+	8	[12]	CLOSURE  	4 1	; 0x7fc1d6c072c0
+	9	[12]	MOVE     	0 0
+	10	[9]	CALL     	2 3 1
+	11	[14]	GETGLOBAL	2 -2	; it
+	12	[14]	LOADK    	3 -4	; "should save changes to defaults.persistent.lua"
+	13	[106]	CLOSURE  	4 2	; 0x7fc1d6c07750
+	14	[106]	MOVE     	0 1
+	15	[106]	MOVE     	0 0
+	16	[14]	CALL     	2 3 1
+	17	[108]	GETGLOBAL	2 -2	; it
+	18	[108]	LOADK    	3 -5	; "should delete entry from defaults.persistent.lua if value is reverted back to default"
+	19	[143]	CLOSURE  	4 3	; 0x7fc1d6c06db0
+	20	[143]	MOVE     	0 1
+	21	[143]	MOVE     	0 0
+	22	[108]	CALL     	2 3 1
+	23	[144]	RETURN   	0 1
+
+function <./spec/unit/defaults_spec.lua:3,7> (12 instructions, 48 bytes at 0x7fc1d6c06ef0)
+0 params, 2 slots, 2 upvalues, 0 locals, 4 constants, 0 functions
+	1	[4]	GETGLOBAL	0 -1	; require
+	2	[4]	LOADK    	1 -2	; "commonrequire"
+	3	[4]	CALL     	0 2 1
+	4	[5]	GETGLOBAL	0 -1	; require
+	5	[5]	LOADK    	1 -3	; "apps/filemanager/filemanagersetdefaults"
+	6	[5]	CALL     	0 2 2
+	7	[5]	SETUPVAL 	0 0	; Defaults
+	8	[6]	GETGLOBAL	0 -1	; require
+	9	[6]	LOADK    	1 -4	; "datastorage"
+	10	[6]	CALL     	0 2 2
+	11	[6]	SETUPVAL 	0 1	; DataStorage
+	12	[7]	RETURN   	0 1
+
+function <./spec/unit/defaults_spec.lua:9,12> (11 instructions, 44 bytes at 0x7fc1d6c072c0)
+0 params, 3 slots, 1 upvalue, 0 locals, 5 constants, 0 functions
+	1	[10]	GETUPVAL 	0 0	; Defaults
+	2	[10]	SELF     	0 0 -1	; "init"
+	3	[10]	CALL     	0 2 1
+	4	[11]	GETGLOBAL	0 -2	; assert
+	5	[11]	GETTABLE 	0 0 -3	; "is_same"
+	6	[11]	LOADK    	1 -4	; 106
+	7	[11]	GETUPVAL 	2 0	; Defaults
+	8	[11]	GETTABLE 	2 2 -5	; "defaults_name"
+	9	[11]	LEN      	2 2
+	10	[11]	CALL     	0 3 1
+	11	[12]	RETURN   	0 1
+
+function <./spec/unit/defaults_spec.lua:14,106> (123 instructions, 492 bytes at 0x7fc1d6c07750)
+0 params, 7 slots, 2 upvalues, 2 locals, 42 constants, 0 functions
+	1	[15]	GETUPVAL 	0 0	; DataStorage
+	2	[15]	SELF     	0 0 -1	; "getDataDir"
+	3	[15]	CALL     	0 2 2
+	4	[15]	LOADK    	1 -2	; "/defaults.persistent.lua"
+	5	[15]	CONCAT   	0 0 1
+	6	[16]	GETGLOBAL	1 -3	; os
+	7	[16]	GETTABLE 	1 1 -4	; "remove"
+	8	[16]	MOVE     	2 0
+	9	[16]	CALL     	1 2 1
+	10	[22]	GETUPVAL 	1 1	; Defaults
+	11	[22]	GETTABLE 	1 1 -5	; "changed"
+	12	[22]	SETTABLE 	1 -6 -7	; 20 true
+	13	[23]	GETUPVAL 	1 1	; Defaults
+	14	[23]	GETTABLE 	1 1 -5	; "changed"
+	15	[23]	SETTABLE 	1 -8 -7	; 50 true
+	16	[24]	GETUPVAL 	1 1	; Defaults
+	17	[24]	GETTABLE 	1 1 -5	; "changed"
+	18	[24]	SETTABLE 	1 -9 -7	; 56 true
+	19	[25]	GETUPVAL 	1 1	; Defaults
+	20	[25]	GETTABLE 	1 1 -5	; "changed"
+	21	[25]	SETTABLE 	1 -10 -7	; 85 true
+	22	[26]	GETUPVAL 	1 1	; Defaults
+	23	[26]	GETTABLE 	1 1 -5	; "changed"
+	24	[26]	SETTABLE 	1 -11 -7	; 101 true
+	25	[27]	GETUPVAL 	1 1	; Defaults
+	26	[27]	SELF     	1 1 -12	; "saveSettings"
+	27	[27]	CALL     	1 2 1
+	28	[28]	GETGLOBAL	1 -13	; assert
+	29	[28]	GETTABLE 	1 1 -14	; "is_same"
+	30	[28]	LOADK    	2 -15	; 106
+	31	[28]	GETUPVAL 	3 1	; Defaults
+	32	[28]	GETTABLE 	3 3 -16	; "defaults_name"
+	33	[28]	LEN      	3 3
+	34	[28]	CALL     	1 3 1
+	35	[29]	GETGLOBAL	1 -13	; assert
+	36	[29]	GETTABLE 	1 1 -14	; "is_same"
+	37	[29]	LOADK    	2 -17	; "SEARCH_LIBRARY_PATH"
+	38	[29]	GETUPVAL 	3 1	; Defaults
+	39	[29]	GETTABLE 	3 3 -16	; "defaults_name"
+	40	[29]	GETTABLE 	3 3 -11	; 101
+	41	[29]	CALL     	1 3 1
+	42	[30]	GETGLOBAL	1 -13	; assert
+	43	[30]	GETTABLE 	1 1 -14	; "is_same"
+	44	[30]	LOADK    	2 -18	; "DTAP_ZONE_BACKWARD"
+	45	[30]	GETUPVAL 	3 1	; Defaults
+	46	[30]	GETTABLE 	3 3 -16	; "defaults_name"
+	47	[30]	GETTABLE 	3 3 -10	; 85
+	48	[30]	CALL     	1 3 1
+	49	[31]	GETGLOBAL	1 -13	; assert
+	50	[31]	GETTABLE 	1 1 -14	; "is_same"
+	51	[31]	LOADK    	2 -19	; "DCREREADER_CONFIG_WORD_SPACING_LARGE"
+	52	[31]	GETUPVAL 	3 1	; Defaults
+	53	[31]	GETTABLE 	3 3 -16	; "defaults_name"
+	54	[31]	GETTABLE 	3 3 -8	; 50
+	55	[31]	CALL     	1 3 1
+	56	[32]	GETGLOBAL	1 -13	; assert
+	57	[32]	GETTABLE 	1 1 -14	; "is_same"
+	58	[32]	LOADK    	2 -20	; "DCREREADER_CONFIG_H_MARGIN_SIZES_XXX_LARGE"
+	59	[32]	GETUPVAL 	3 1	; Defaults
+	60	[32]	GETTABLE 	3 3 -16	; "defaults_name"
+	61	[32]	GETTABLE 	3 3 -6	; 20
+	62	[32]	CALL     	1 3 1
+	63	[33]	GETGLOBAL	1 -21	; io
+	64	[33]	GETTABLE 	1 1 -22	; "open"
+	65	[33]	MOVE     	2 0
+	66	[33]	LOADK    	3 -23	; "r"
+	67	[33]	CALL     	1 3 2
+	68	[34]	GETGLOBAL	2 -13	; assert
+	69	[34]	GETTABLE 	2 2 -24	; "Equals"
+	70	[57]	LOADK    	3 -25	; "-- For configuration changes that persists between updates\nDCREREADER_CONFIG_WORD_SPACING_LARGE = {\n    [1] = 100,\n    [2] = 90\n}\nSEARCH_LIBRARY_PATH = \"\"\nDTAP_ZONE_BACKWARD = {\n    [\"y\"] = 0,\n    [\"x\"] = 0,\n    [\"h\"] = 1,\n    [\"w\"] = 0.25\n}\nDCREREADER_CONFIG_H_MARGIN_SIZES_XXX_LARGE = {\n    [1] = 50,\n    [2] = 50\n}\nDDOUBLE_TAP_ZONE_PREV_CHAPTER = {\n    [\"y\"] = 0,\n    [\"x\"] = 0,\n    [\"h\"] = 0.25,\n    [\"w\"] = 0.25\n}\n"
+	71	[58]	SELF     	4 1 -26	; "read"
+	72	[58]	LOADK    	6 -27	; "*a"
+	73	[58]	CALL     	4 3 0
+	74	[34]	CALL     	2 0 1
+	75	[59]	SELF     	2 1 -28	; "close"
+	76	[59]	CALL     	2 2 1
+	77	[62]	GETUPVAL 	2 1	; Defaults
+	78	[62]	SELF     	2 2 -29	; "init"
+	79	[62]	CALL     	2 2 1
+	80	[63]	GETUPVAL 	2 1	; Defaults
+	81	[63]	GETTABLE 	2 2 -5	; "changed"
+	82	[63]	SETTABLE 	2 -9 -7	; 56 true
+	83	[64]	GETUPVAL 	2 1	; Defaults
+	84	[64]	GETTABLE 	2 2 -30	; "defaults_value"
+	85	[64]	NEWTABLE 	3 0 4
+	86	[65]	SETTABLE 	3 -31 -32	; "y" 0
+	87	[66]	SETTABLE 	3 -33 -32	; "x" 0
+	88	[67]	SETTABLE 	3 -34 -35	; "h" 0.25
+	89	[68]	SETTABLE 	3 -36 -37	; "w" 0.75
+	90	[69]	SETTABLE 	2 -9 3	; 56 -
+	91	[70]	GETUPVAL 	2 1	; Defaults
+	92	[70]	GETTABLE 	2 2 -5	; "changed"
+	93	[70]	SETTABLE 	2 -10 -7	; 85 true
+	94	[71]	GETUPVAL 	2 1	; Defaults
+	95	[71]	GETTABLE 	2 2 -30	; "defaults_value"
+	96	[71]	NEWTABLE 	3 0 4
+	97	[72]	SETTABLE 	3 -31 -38	; "y" 10
+	98	[73]	SETTABLE 	3 -33 -39	; "x" 10.125
+	99	[74]	SETTABLE 	3 -34 -40	; "h" 20.25
+	100	[75]	SETTABLE 	3 -36 -41	; "w" 20.75
+	101	[76]	SETTABLE 	2 -10 3	; 85 -
+	102	[77]	GETUPVAL 	2 1	; Defaults
+	103	[77]	SELF     	2 2 -12	; "saveSettings"
+	104	[77]	CALL     	2 2 1
+	105	[78]	GETGLOBAL	2 -21	; io
+	106	[78]	GETTABLE 	2 2 -22	; "open"
+	107	[78]	MOVE     	3 0
+	108	[78]	CALL     	2 2 2
+	109	[78]	MOVE     	1 2
+	110	[79]	GETGLOBAL	2 -13	; assert
+	111	[79]	GETTABLE 	2 2 -24	; "Equals"
+	112	[102]	LOADK    	3 -42	; "-- For configuration changes that persists between updates\nDCREREADER_CONFIG_WORD_SPACING_LARGE = {\n    [2] = 90,\n    [1] = 100\n}\nSEARCH_LIBRARY_PATH = \"\"\nDTAP_ZONE_BACKWARD = {\n    [\"y\"] = 10,\n    [\"x\"] = 10.125,\n    [\"h\"] = 20.25,\n    [\"w\"] = 20.75\n}\nDCREREADER_CONFIG_H_MARGIN_SIZES_XXX_LARGE = {\n    [2] = 50,\n    [1] = 50\n}\nDDOUBLE_TAP_ZONE_PREV_CHAPTER = {\n    [\"y\"] = 0,\n    [\"x\"] = 0,\n    [\"h\"] = 0.25,\n    [\"w\"] = 0.75\n}\n"
+	113	[103]	SELF     	4 1 -26	; "read"
+	114	[103]	LOADK    	6 -27	; "*a"
+	115	[103]	CALL     	4 3 0
+	116	[79]	CALL     	2 0 1
+	117	[104]	SELF     	2 1 -28	; "close"
+	118	[104]	CALL     	2 2 1
+	119	[105]	GETGLOBAL	2 -3	; os
+	120	[105]	GETTABLE 	2 2 -4	; "remove"
+	121	[105]	MOVE     	3 0
+	122	[105]	CALL     	2 2 1
+	123	[106]	RETURN   	0 1
+
+function <./spec/unit/defaults_spec.lua:108,143> (46 instructions, 184 bytes at 0x7fc1d6c06db0)
+0 params, 7 slots, 2 upvalues, 2 locals, 22 constants, 0 functions
+	1	[109]	GETUPVAL 	0 0	; DataStorage
+	2	[109]	SELF     	0 0 -1	; "getDataDir"
+	3	[109]	CALL     	0 2 2
+	4	[109]	LOADK    	1 -2	; "/defaults.persistent.lua"
+	5	[109]	CONCAT   	0 0 1
+	6	[110]	GETGLOBAL	1 -3	; io
+	7	[110]	GETTABLE 	1 1 -4	; "open"
+	8	[110]	MOVE     	2 0
+	9	[110]	LOADK    	3 -5	; "w"
+	10	[110]	CALL     	1 3 2
+	11	[111]	SELF     	2 1 -6	; "write"
+	12	[120]	LOADK    	4 -7	; "-- For configuration changes that persists between updates\nSEARCH_TITLE = true\nDCREREADER_CONFIG_H_MARGIN_SIZES_LARGE = {\n    [1] = 15,\n    [2] = 15\n}\nDCREREADER_VIEW_MODE = \"page\"\nDHINTCOUNT = 2\n"
+	13	[111]	CALL     	2 3 1
+	14	[121]	SELF     	2 1 -8	; "close"
+	15	[121]	CALL     	2 2 1
+	16	[124]	GETUPVAL 	2 1	; Defaults
+	17	[124]	SELF     	2 2 -9	; "init"
+	18	[124]	CALL     	2 2 1
+	19	[125]	GETUPVAL 	2 1	; Defaults
+	20	[125]	GETTABLE 	2 2 -10	; "changed"
+	21	[125]	SETTABLE 	2 -11 -12	; 57 true
+	22	[126]	GETUPVAL 	2 1	; Defaults
+	23	[126]	GETTABLE 	2 2 -13	; "defaults_value"
+	24	[126]	SETTABLE 	2 -11 -14	; 57 1
+	25	[127]	GETUPVAL 	2 1	; Defaults
+	26	[127]	SELF     	2 2 -15	; "saveSettings"
+	27	[127]	CALL     	2 2 1
+	28	[128]	GETGLOBAL	2 -3	; io
+	29	[128]	GETTABLE 	2 2 -4	; "open"
+	30	[128]	MOVE     	3 0
+	31	[128]	CALL     	2 2 2
+	32	[128]	MOVE     	1 2
+	33	[129]	GETGLOBAL	2 -16	; assert
+	34	[129]	GETTABLE 	2 2 -17	; "Equals"
+	35	[139]	LOADK    	3 -18	; "-- For configuration changes that persists between updates\nSEARCH_TITLE = true\nDCREREADER_CONFIG_H_MARGIN_SIZES_LARGE = {\n    [2] = 15,\n    [1] = 15\n}\nDHINTCOUNT = 2\nDGLOBAL_CACHE_FREE_PROPORTION = 1\nDCREREADER_VIEW_MODE = \"page\"\n"
+	36	[140]	SELF     	4 1 -19	; "read"
+	37	[140]	LOADK    	6 -20	; "*a"
+	38	[140]	CALL     	4 3 0
+	39	[129]	CALL     	2 0 1
+	40	[141]	SELF     	2 1 -8	; "close"
+	41	[141]	CALL     	2 2 1
+	42	[142]	GETGLOBAL	2 -21	; os
+	43	[142]	GETTABLE 	2 2 -22	; "remove"
+	44	[142]	MOVE     	3 0
+	45	[142]	CALL     	2 2 1
+	46	[143]	RETURN   	0 1

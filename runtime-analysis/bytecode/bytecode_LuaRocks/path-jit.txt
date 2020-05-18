@@ -1,0 +1,824 @@
+-- BYTECODE -- path.lua:23-27
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "string"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => CALL     1   1   2
+0011    UGET     1   0      ; dir
+0012    TGETS    1   1   3  ; "base_name"
+0013    MOV      2   0
+0014    CALL     1   2   2
+0015    MOV      3   1
+0016    TGETS    2   1   4  ; "match"
+0017    KSTR     4   5      ; "(.*)%.[^.]*.rock"
+0018    CALL     2   2   3
+0019    KSTR     3   6      ; ".rockspec"
+0020    CAT      2   2   3
+0021    RET1     2   2
+
+-- BYTECODE -- path.lua:29-32
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "string"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => CALL     1   1   2
+0011    MOV      2   0
+0012    TGETS    1   0   3  ; "match"
+0013    KSTR     3   4      ; "(.*)"
+0014    UGET     4   0      ; util
+0015    TGETS    4   4   5  ; "matchquote"
+0016    UGET     5   1      ; cfg
+0017    TGETS    5   5   6  ; "rocks_subdir"
+0018    CALL     4   2   2
+0019    KSTR     5   7      ; ".*$"
+0020    CAT      3   3   5
+0021    CALLT    1   3
+
+-- BYTECODE -- path.lua:34-41
+0001    GGET     1   0      ; "type"
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISNES    1   1      ; "string"
+0005    JMP      1 => 0008
+0006    RET1     0   2
+0007    JMP      1 => 0020
+0008 => GGET     1   2      ; "assert"
+0009    GGET     2   0      ; "type"
+0010    MOV      3   0
+0011    CALL     2   2   2
+0012    ISEQS    2   3      ; "table"
+0013    JMP      2 => 0016
+0014    KPRI     2   1
+0015    JMP      3 => 0017
+0016 => KPRI     2   2
+0017 => CALL     1   1   2
+0018    TGETS    1   0   4  ; "root"
+0019    RET1     1   2
+0020 => RET0     0   1
+
+-- BYTECODE -- path.lua:43-45
+0001    UGET     1   0      ; dir
+0002    TGETS    1   1   0  ; "path"
+0003    UGET     2   1      ; path
+0004    TGETS    2   2   1  ; "root_dir"
+0005    MOV      3   0
+0006    CALL     2   2   2
+0007    KSTR     3   2      ; "bin"
+0008    CALLT    1   3
+
+-- BYTECODE -- path.lua:47-49
+0001    UGET     1   0      ; dir
+0002    TGETS    1   1   0  ; "path"
+0003    UGET     2   1      ; path
+0004    TGETS    2   2   1  ; "rocks_dir"
+0005    MOV      3   0
+0006    CALL     2   2   2
+0007    KSTR     3   2      ; "manifest"
+0008    CALLT    1   3
+
+-- BYTECODE -- path.lua:56-59
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISNES    3   2      ; "string"
+0006    JMP      3 => 0013
+0007    MOV      4   0
+0008    TGETS    3   0   3  ; "match"
+0009    KSTR     5   4      ; "/"
+0010    CALL     3   2   3
+0011    NOT      3   3
+0012    JMP      4 => 0016
+0013 => KPRI     3   1
+0014    JMP      4 => 0016
+0015    KPRI     3   2
+0016 => CALL     2   1   2
+0017    UGET     2   0      ; dir
+0018    TGETS    2   2   5  ; "path"
+0019    UGET     3   1      ; path
+0020    TGETS    3   3   6  ; "rocks_dir"
+0021    MOV      4   1
+0022    CALL     3   2   2
+0023    MOV      4   0
+0024    CALLT    2   3
+
+-- BYTECODE -- path.lua:67-71
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISNES    4   2      ; "string"
+0006    JMP      4 => 0013
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "match"
+0009    KSTR     6   4      ; "/"
+0010    CALL     4   2   3
+0011    NOT      4   4
+0012    JMP      5 => 0016
+0013 => KPRI     4   1
+0014    JMP      5 => 0016
+0015    KPRI     4   2
+0016 => CALL     3   1   2
+0017    GGET     3   0      ; "assert"
+0018    GGET     4   1      ; "type"
+0019    MOV      5   1
+0020    CALL     4   2   2
+0021    ISEQS    4   2      ; "string"
+0022    JMP      4 => 0025
+0023    KPRI     4   1
+0024    JMP      5 => 0026
+0025 => KPRI     4   2
+0026 => CALL     3   1   2
+0027    UGET     3   0      ; dir
+0028    TGETS    3   3   5  ; "path"
+0029    UGET     4   1      ; path
+0030    TGETS    4   4   6  ; "rocks_dir"
+0031    MOV      5   2
+0032    CALL     4   2   2
+0033    MOV      5   0
+0034    MOV      6   1
+0035    CALLT    3   4
+
+-- BYTECODE -- path.lua:79-83
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISNES    4   2      ; "string"
+0006    JMP      4 => 0013
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "match"
+0009    KSTR     6   4      ; "/"
+0010    CALL     4   2   3
+0011    NOT      4   4
+0012    JMP      5 => 0016
+0013 => KPRI     4   1
+0014    JMP      5 => 0016
+0015    KPRI     4   2
+0016 => CALL     3   1   2
+0017    GGET     3   0      ; "assert"
+0018    GGET     4   1      ; "type"
+0019    MOV      5   1
+0020    CALL     4   2   2
+0021    ISEQS    4   2      ; "string"
+0022    JMP      4 => 0025
+0023    KPRI     4   1
+0024    JMP      5 => 0026
+0025 => KPRI     4   2
+0026 => CALL     3   1   2
+0027    UGET     3   0      ; dir
+0028    TGETS    3   3   5  ; "path"
+0029    UGET     4   1      ; path
+0030    TGETS    4   4   6  ; "rocks_dir"
+0031    MOV      5   2
+0032    CALL     4   2   2
+0033    MOV      5   0
+0034    MOV      6   1
+0035    MOV      7   0
+0036    KSTR     8   7      ; "-"
+0037    MOV      9   1
+0038    KSTR    10   8      ; ".rockspec"
+0039    CAT      7   7  10
+0040    CALLT    3   5
+
+-- BYTECODE -- path.lua:91-95
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISNES    4   2      ; "string"
+0006    JMP      4 => 0013
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "match"
+0009    KSTR     6   4      ; "/"
+0010    CALL     4   2   3
+0011    NOT      4   4
+0012    JMP      5 => 0016
+0013 => KPRI     4   1
+0014    JMP      5 => 0016
+0015    KPRI     4   2
+0016 => CALL     3   1   2
+0017    GGET     3   0      ; "assert"
+0018    GGET     4   1      ; "type"
+0019    MOV      5   1
+0020    CALL     4   2   2
+0021    ISEQS    4   2      ; "string"
+0022    JMP      4 => 0025
+0023    KPRI     4   1
+0024    JMP      5 => 0026
+0025 => KPRI     4   2
+0026 => CALL     3   1   2
+0027    UGET     3   0      ; dir
+0028    TGETS    3   3   5  ; "path"
+0029    UGET     4   1      ; path
+0030    TGETS    4   4   6  ; "rocks_dir"
+0031    MOV      5   2
+0032    CALL     4   2   2
+0033    MOV      5   0
+0034    MOV      6   1
+0035    KSTR     7   7      ; "rock_manifest"
+0036    CALLT    3   5
+
+-- BYTECODE -- path.lua:103-107
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISNES    4   2      ; "string"
+0006    JMP      4 => 0013
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "match"
+0009    KSTR     6   4      ; "/"
+0010    CALL     4   2   3
+0011    NOT      4   4
+0012    JMP      5 => 0016
+0013 => KPRI     4   1
+0014    JMP      5 => 0016
+0015    KPRI     4   2
+0016 => CALL     3   1   2
+0017    GGET     3   0      ; "assert"
+0018    GGET     4   1      ; "type"
+0019    MOV      5   1
+0020    CALL     4   2   2
+0021    ISEQS    4   2      ; "string"
+0022    JMP      4 => 0025
+0023    KPRI     4   1
+0024    JMP      5 => 0026
+0025 => KPRI     4   2
+0026 => CALL     3   1   2
+0027    UGET     3   0      ; dir
+0028    TGETS    3   3   5  ; "path"
+0029    UGET     4   1      ; path
+0030    TGETS    4   4   6  ; "rocks_dir"
+0031    MOV      5   2
+0032    CALL     4   2   2
+0033    MOV      5   0
+0034    MOV      6   1
+0035    KSTR     7   7      ; "rock_namespace"
+0036    CALLT    3   5
+
+-- BYTECODE -- path.lua:115-119
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISNES    4   2      ; "string"
+0006    JMP      4 => 0013
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "match"
+0009    KSTR     6   4      ; "/"
+0010    CALL     4   2   3
+0011    NOT      4   4
+0012    JMP      5 => 0016
+0013 => KPRI     4   1
+0014    JMP      5 => 0016
+0015    KPRI     4   2
+0016 => CALL     3   1   2
+0017    GGET     3   0      ; "assert"
+0018    GGET     4   1      ; "type"
+0019    MOV      5   1
+0020    CALL     4   2   2
+0021    ISEQS    4   2      ; "string"
+0022    JMP      4 => 0025
+0023    KPRI     4   1
+0024    JMP      5 => 0026
+0025 => KPRI     4   2
+0026 => CALL     3   1   2
+0027    UGET     3   0      ; dir
+0028    TGETS    3   3   5  ; "path"
+0029    UGET     4   1      ; path
+0030    TGETS    4   4   6  ; "rocks_dir"
+0031    MOV      5   2
+0032    CALL     4   2   2
+0033    MOV      5   0
+0034    MOV      6   1
+0035    KSTR     7   7      ; "lib"
+0036    CALLT    3   5
+
+-- BYTECODE -- path.lua:127-131
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISNES    4   2      ; "string"
+0006    JMP      4 => 0013
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "match"
+0009    KSTR     6   4      ; "/"
+0010    CALL     4   2   3
+0011    NOT      4   4
+0012    JMP      5 => 0016
+0013 => KPRI     4   1
+0014    JMP      5 => 0016
+0015    KPRI     4   2
+0016 => CALL     3   1   2
+0017    GGET     3   0      ; "assert"
+0018    GGET     4   1      ; "type"
+0019    MOV      5   1
+0020    CALL     4   2   2
+0021    ISEQS    4   2      ; "string"
+0022    JMP      4 => 0025
+0023    KPRI     4   1
+0024    JMP      5 => 0026
+0025 => KPRI     4   2
+0026 => CALL     3   1   2
+0027    UGET     3   0      ; dir
+0028    TGETS    3   3   5  ; "path"
+0029    UGET     4   1      ; path
+0030    TGETS    4   4   6  ; "rocks_dir"
+0031    MOV      5   2
+0032    CALL     4   2   2
+0033    MOV      5   0
+0034    MOV      6   1
+0035    KSTR     7   7      ; "lua"
+0036    CALLT    3   5
+
+-- BYTECODE -- path.lua:139-143
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISNES    4   2      ; "string"
+0006    JMP      4 => 0013
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "match"
+0009    KSTR     6   4      ; "/"
+0010    CALL     4   2   3
+0011    NOT      4   4
+0012    JMP      5 => 0016
+0013 => KPRI     4   1
+0014    JMP      5 => 0016
+0015    KPRI     4   2
+0016 => CALL     3   1   2
+0017    GGET     3   0      ; "assert"
+0018    GGET     4   1      ; "type"
+0019    MOV      5   1
+0020    CALL     4   2   2
+0021    ISEQS    4   2      ; "string"
+0022    JMP      4 => 0025
+0023    KPRI     4   1
+0024    JMP      5 => 0026
+0025 => KPRI     4   2
+0026 => CALL     3   1   2
+0027    UGET     3   0      ; dir
+0028    TGETS    3   3   5  ; "path"
+0029    UGET     4   1      ; path
+0030    TGETS    4   4   6  ; "rocks_dir"
+0031    MOV      5   2
+0032    CALL     4   2   2
+0033    MOV      5   0
+0034    MOV      6   1
+0035    KSTR     7   7      ; "doc"
+0036    CALLT    3   5
+
+-- BYTECODE -- path.lua:151-155
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISNES    4   2      ; "string"
+0006    JMP      4 => 0013
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "match"
+0009    KSTR     6   4      ; "/"
+0010    CALL     4   2   3
+0011    NOT      4   4
+0012    JMP      5 => 0016
+0013 => KPRI     4   1
+0014    JMP      5 => 0016
+0015    KPRI     4   2
+0016 => CALL     3   1   2
+0017    GGET     3   0      ; "assert"
+0018    GGET     4   1      ; "type"
+0019    MOV      5   1
+0020    CALL     4   2   2
+0021    ISEQS    4   2      ; "string"
+0022    JMP      4 => 0025
+0023    KPRI     4   1
+0024    JMP      5 => 0026
+0025 => KPRI     4   2
+0026 => CALL     3   1   2
+0027    UGET     3   0      ; dir
+0028    TGETS    3   3   5  ; "path"
+0029    UGET     4   1      ; path
+0030    TGETS    4   4   6  ; "rocks_dir"
+0031    MOV      5   2
+0032    CALL     4   2   2
+0033    MOV      5   0
+0034    MOV      6   1
+0035    KSTR     7   7      ; "conf"
+0036    CALLT    3   5
+
+-- BYTECODE -- path.lua:164-168
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISNES    4   2      ; "string"
+0006    JMP      4 => 0013
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "match"
+0009    KSTR     6   4      ; "/"
+0010    CALL     4   2   3
+0011    NOT      4   4
+0012    JMP      5 => 0016
+0013 => KPRI     4   1
+0014    JMP      5 => 0016
+0015    KPRI     4   2
+0016 => CALL     3   1   2
+0017    GGET     3   0      ; "assert"
+0018    GGET     4   1      ; "type"
+0019    MOV      5   1
+0020    CALL     4   2   2
+0021    ISEQS    4   2      ; "string"
+0022    JMP      4 => 0025
+0023    KPRI     4   1
+0024    JMP      5 => 0026
+0025 => KPRI     4   2
+0026 => CALL     3   1   2
+0027    UGET     3   0      ; dir
+0028    TGETS    3   3   5  ; "path"
+0029    UGET     4   1      ; path
+0030    TGETS    4   4   6  ; "rocks_dir"
+0031    MOV      5   2
+0032    CALL     4   2   2
+0033    MOV      5   0
+0034    MOV      6   1
+0035    KSTR     7   7      ; "bin"
+0036    CALLT    3   5
+
+-- BYTECODE -- path.lua:175-182
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "string"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => CALL     1   1   2
+0011    MOV      2   0
+0012    TGETS    1   0   3  ; "match"
+0013    KSTR     3   4      ; "%.rock$"
+0014    CALL     1   2   3
+0015    ISF          1
+0016    JMP      2 => 0026
+0017    UGET     1   0      ; dir
+0018    TGETS    1   1   5  ; "base_name"
+0019    MOV      2   0
+0020    CALL     1   2   2
+0021    MOV      2   1
+0022    TGETS    1   1   3  ; "match"
+0023    KSTR     3   6      ; "(.*)-([^-]+-%d+)%.([^.]+)%.rock$"
+0024    CALLT    1   3
+0025    JMP      1 => 0034
+0026 => UGET     1   0      ; dir
+0027    TGETS    1   1   5  ; "base_name"
+0028    MOV      2   0
+0029    CALL     1   2   2
+0030    MOV      2   1
+0031    TGETS    1   1   3  ; "match"
+0032    KSTR     3   7      ; "(.*)-([^-]+-%d+)%.(rockspec)"
+0033    CALLT    1   3
+0034 => RET0     0   1
+
+-- BYTECODE -- path.lua:190-205
+0001    GGET     4   0      ; "assert"
+0002    GGET     5   1      ; "type"
+0003    MOV      6   0
+0004    CALL     5   2   2
+0005    ISEQS    5   2      ; "string"
+0006    JMP      5 => 0009
+0007    KPRI     5   1
+0008    JMP      6 => 0010
+0009 => KPRI     5   2
+0010 => CALL     4   1   2
+0011    GGET     4   0      ; "assert"
+0012    GGET     5   1      ; "type"
+0013    MOV      6   1
+0014    CALL     5   2   2
+0015    ISNES    5   2      ; "string"
+0016    JMP      5 => 0023
+0017    MOV      6   1
+0018    TGETS    5   1   3  ; "match"
+0019    KSTR     7   4      ; "/"
+0020    CALL     5   2   3
+0021    NOT      5   5
+0022    JMP      6 => 0026
+0023 => KPRI     5   1
+0024    JMP      6 => 0026
+0025    KPRI     5   2
+0026 => CALL     4   1   2
+0027    GGET     4   0      ; "assert"
+0028    GGET     5   1      ; "type"
+0029    MOV      6   2
+0030    CALL     5   2   2
+0031    ISEQS    5   2      ; "string"
+0032    JMP      5 => 0035
+0033    KPRI     5   1
+0034    JMP      6 => 0036
+0035 => KPRI     5   2
+0036 => CALL     4   1   2
+0037    GGET     4   0      ; "assert"
+0038    GGET     5   1      ; "type"
+0039    MOV      6   3
+0040    CALL     5   2   2
+0041    ISEQS    5   2      ; "string"
+0042    JMP      5 => 0045
+0043    KPRI     5   1
+0044    JMP      6 => 0046
+0045 => KPRI     5   2
+0046 => CALL     4   1   2
+0047    MOV      4   1
+0048    KSTR     5   5      ; "-"
+0049    MOV      6   2
+0050    CAT      4   4   6
+0051    ISNES    3   6      ; "installed"
+0052    JMP      5 => 0063
+0053    UGET     5   0      ; dir
+0054    TGETS    5   5   7  ; "path"
+0055    MOV      6   1
+0056    MOV      7   2
+0057    MOV      8   4
+0058    KSTR     9   8      ; ".rockspec"
+0059    CAT      8   8   9
+0060    CALL     5   2   4
+0061    MOV      4   5
+0062    JMP      5 => 0074
+0063 => ISNES    3   9      ; "rockspec"
+0064    JMP      5 => 0069
+0065    MOV      5   4
+0066    KSTR     6   8      ; ".rockspec"
+0067    CAT      4   5   6
+0068    JMP      5 => 0074
+0069 => MOV      5   4
+0070    KSTR     6  10      ; "."
+0071    MOV      7   3
+0072    KSTR     8  11      ; ".rock"
+0073    CAT      4   5   8
+0074 => UGET     5   0      ; dir
+0075    TGETS    5   5   7  ; "path"
+0076    MOV      6   0
+0077    MOV      7   4
+0078    CALLT    5   3
+
+-- BYTECODE -- path.lua:211-214
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "string"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => CALL     1   1   2
+0011    MOV      2   0
+0012    TGETS    1   0   3  ; "gsub"
+0013    KSTR     3   4      ; "[^.]*$"
+0014    KSTR     4   5      ; ""
+0015    CALL     1   2   4
+0016    MOV      2   1
+0017    TGETS    1   1   3  ; "gsub"
+0018    KSTR     3   6      ; "%."
+0019    KSTR     4   7      ; "/"
+0020    CALL     1   2   4
+0021    RET1     1   2
+
+-- BYTECODE -- path.lua:216-229
+0001    UGET     1   0      ; cfg
+0002    TSETS    0   1   0  ; "root_dir"
+0003    UGET     1   0      ; cfg
+0004    UGET     2   1      ; path
+0005    TGETS    2   2   1  ; "rocks_dir"
+0006    MOV      3   0
+0007    CALL     2   2   2
+0008    TSETS    2   1   1  ; "rocks_dir"
+0009    UGET     1   0      ; cfg
+0010    UGET     2   1      ; path
+0011    TGETS    2   2   2  ; "deploy_bin_dir"
+0012    MOV      3   0
+0013    CALL     2   2   2
+0014    TSETS    2   1   2  ; "deploy_bin_dir"
+0015    UGET     1   0      ; cfg
+0016    UGET     2   1      ; path
+0017    TGETS    2   2   3  ; "deploy_lua_dir"
+0018    MOV      3   0
+0019    CALL     2   2   2
+0020    TSETS    2   1   3  ; "deploy_lua_dir"
+0021    UGET     1   0      ; cfg
+0022    UGET     2   1      ; path
+0023    TGETS    2   2   4  ; "deploy_lib_dir"
+0024    MOV      3   0
+0025    CALL     2   2   2
+0026    TSETS    2   1   4  ; "deploy_lib_dir"
+0027    RET0     0   1
+
+-- BYTECODE -- path.lua:236-248
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISNES    4   2      ; "string"
+0006    JMP      4 => 0013
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "match"
+0009    KSTR     6   4      ; "/"
+0010    CALL     4   2   3
+0011    NOT      4   4
+0012    JMP      5 => 0016
+0013 => KPRI     4   1
+0014    JMP      5 => 0016
+0015    KPRI     4   2
+0016 => CALL     3   1   2
+0017    GGET     3   0      ; "assert"
+0018    GGET     4   1      ; "type"
+0019    MOV      5   1
+0020    CALL     4   2   2
+0021    ISEQS    4   2      ; "string"
+0022    JMP      4 => 0025
+0023    KPRI     4   1
+0024    JMP      5 => 0026
+0025 => KPRI     4   2
+0026 => CALL     3   1   2
+0027    GGET     3   0      ; "assert"
+0028    GGET     4   1      ; "type"
+0029    MOV      5   2
+0030    CALL     4   2   2
+0031    ISEQS    4   2      ; "string"
+0032    JMP      4 => 0035
+0033    KPRI     4   1
+0034    JMP      5 => 0036
+0035 => KPRI     4   2
+0036 => CALL     3   1   2
+0037    KPRI     3   0
+0038    GGET     4   5      ; "io"
+0039    TGETS    4   4   6  ; "open"
+0040    UGET     5   0      ; path
+0041    TGETS    5   5   7  ; "rock_namespace_file"
+0042    MOV      6   0
+0043    MOV      7   1
+0044    MOV      8   2
+0045    CALL     5   2   4
+0046    KSTR     6   8      ; "r"
+0047    CALL     4   2   3
+0048    ISF          4
+0049    JMP      5 => 0058
+0050    MOV      6   4
+0051    TGETS    5   4   9  ; "read"
+0052    KSTR     7  10      ; "*a"
+0053    CALL     5   2   3
+0054    MOV      3   5
+0055    MOV      6   4
+0056    TGETS    5   4  11  ; "close"
+0057    CALL     5   1   2
+0058 => RET1     3   2
+
+-- BYTECODE -- path.lua:253-258
+0001    UGET     1   0      ; path
+0002    TGETS    1   1   0  ; "root_dir"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    GGET     2   1      ; "table"
+0006    TGETS    2   2   2  ; "insert"
+0007    UGET     3   1      ; lpaths
+0008    UGET     4   2      ; dir
+0009    TGETS    4   4   3  ; "path"
+0010    MOV      5   1
+0011    UGET     6   3      ; cfg
+0012    TGETS    6   6   4  ; "lua_modules_path"
+0013    KSTR     7   5      ; "?.lua"
+0014    CALL     4   0   4
+0015    CALLM    2   1   1
+0016    GGET     2   1      ; "table"
+0017    TGETS    2   2   2  ; "insert"
+0018    UGET     3   1      ; lpaths
+0019    UGET     4   2      ; dir
+0020    TGETS    4   4   3  ; "path"
+0021    MOV      5   1
+0022    UGET     6   3      ; cfg
+0023    TGETS    6   6   4  ; "lua_modules_path"
+0024    KSTR     7   6      ; "?/init.lua"
+0025    CALL     4   0   4
+0026    CALLM    2   1   1
+0027    GGET     2   1      ; "table"
+0028    TGETS    2   2   2  ; "insert"
+0029    UGET     3   4      ; lcpaths
+0030    UGET     4   2      ; dir
+0031    TGETS    4   4   3  ; "path"
+0032    MOV      5   1
+0033    UGET     6   3      ; cfg
+0034    TGETS    6   6   7  ; "lib_modules_path"
+0035    KSTR     7   8      ; "?."
+0036    UGET     8   3      ; cfg
+0037    TGETS    8   8   9  ; "lib_extension"
+0038    CAT      7   7   8
+0039    CALL     4   0   4
+0040    CALLM    2   1   1
+0041    RET0     0   1
+
+-- BYTECODE -- path.lua:250-260
+0001    TNEW     1   0
+0002    TNEW     2   0
+0003    UGET     3   0      ; path
+0004    TGETS    3   3   0  ; "map_trees"
+0005    MOV      4   0
+0006    FNEW     5   1      ; path.lua:253
+0007    CALL     3   1   3
+0008    GGET     3   2      ; "table"
+0009    TGETS    3   3   3  ; "concat"
+0010    MOV      4   1
+0011    KSTR     5   4      ; ";"
+0012    CALL     3   2   3
+0013    GGET     4   2      ; "table"
+0014    TGETS    4   4   3  ; "concat"
+0015    MOV      5   2
+0016    KSTR     6   4      ; ";"
+0017    CALL     4   0   3
+0018    UCLO     0 => 0019
+0019 => RETM     3   1
+
+-- BYTECODE -- path.lua:0-263
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.core.path"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.dir"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.core.cfg"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.util"
+0013    CALL     4   2   2
+0014    TGETS    5   1   5  ; "rocks_dir"
+0015    TSETS    5   0   5  ; "rocks_dir"
+0016    TGETS    5   1   6  ; "versioned_name"
+0017    TSETS    5   0   6  ; "versioned_name"
+0018    TGETS    5   1   7  ; "path_to_module"
+0019    TSETS    5   0   7  ; "path_to_module"
+0020    TGETS    5   1   8  ; "deploy_lua_dir"
+0021    TSETS    5   0   8  ; "deploy_lua_dir"
+0022    TGETS    5   1   9  ; "deploy_lib_dir"
+0023    TSETS    5   0   9  ; "deploy_lib_dir"
+0024    TGETS    5   1  10  ; "map_trees"
+0025    TSETS    5   0  10  ; "map_trees"
+0026    TGETS    5   1  11  ; "rocks_tree_to_string"
+0027    TSETS    5   0  11  ; "rocks_tree_to_string"
+0028    FNEW     5  13      ; path.lua:23
+0029    TSETS    5   0  12  ; "rockspec_name_from_rock"
+0030    FNEW     5  15      ; path.lua:29
+0031    TSETS    5   0  14  ; "root_from_rocks_dir"
+0032    FNEW     5  17      ; path.lua:34
+0033    TSETS    5   0  16  ; "root_dir"
+0034    FNEW     5  19      ; path.lua:43
+0035    TSETS    5   0  18  ; "deploy_bin_dir"
+0036    FNEW     5  21      ; path.lua:47
+0037    TSETS    5   0  20  ; "manifest_file"
+0038    FNEW     5  23      ; path.lua:56
+0039    TSETS    5   0  22  ; "versions_dir"
+0040    FNEW     5  25      ; path.lua:67
+0041    TSETS    5   0  24  ; "install_dir"
+0042    FNEW     5  27      ; path.lua:79
+0043    TSETS    5   0  26  ; "rockspec_file"
+0044    FNEW     5  29      ; path.lua:91
+0045    TSETS    5   0  28  ; "rock_manifest_file"
+0046    FNEW     5  31      ; path.lua:103
+0047    TSETS    5   0  30  ; "rock_namespace_file"
+0048    FNEW     5  33      ; path.lua:115
+0049    TSETS    5   0  32  ; "lib_dir"
+0050    FNEW     5  35      ; path.lua:127
+0051    TSETS    5   0  34  ; "lua_dir"
+0052    FNEW     5  37      ; path.lua:139
+0053    TSETS    5   0  36  ; "doc_dir"
+0054    FNEW     5  39      ; path.lua:151
+0055    TSETS    5   0  38  ; "conf_dir"
+0056    FNEW     5  41      ; path.lua:164
+0057    TSETS    5   0  40  ; "bin_dir"
+0058    FNEW     5  43      ; path.lua:175
+0059    TSETS    5   0  42  ; "parse_name"
+0060    FNEW     5  45      ; path.lua:190
+0061    TSETS    5   0  44  ; "make_url"
+0062    FNEW     5  47      ; path.lua:211
+0063    TSETS    5   0  46  ; "module_to_path"
+0064    FNEW     5  49      ; path.lua:216
+0065    TSETS    5   0  48  ; "use_tree"
+0066    FNEW     5  51      ; path.lua:236
+0067    TSETS    5   0  50  ; "read_namespace"
+0068    FNEW     5  53      ; path.lua:250
+0069    TSETS    5   0  52  ; "package_paths"
+0070    UCLO     0 => 0071
+0071 => RET1     0   2
+

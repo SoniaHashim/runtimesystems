@@ -1,0 +1,414 @@
+-- BYTECODE -- git.lua:17-25
+0001    UGET     1   0      ; cached_git_version
+0002    IST          1
+0003    JMP      1 => 0025
+0004    GGET     1   0      ; "io"
+0005    TGETS    1   1   1  ; "popen"
+0006    UGET     2   1      ; fs
+0007    TGETS    2   2   2  ; "Q"
+0008    MOV      3   0
+0009    CALL     2   2   2
+0010    KSTR     3   3      ; " --version"
+0011    CAT      2   2   3
+0012    CALL     1   2   2
+0013    MOV      2   1
+0014    TGETS    1   1   4  ; "read"
+0015    CALL     1   2   2
+0016    MOV      3   1
+0017    TGETS    2   1   5  ; "match"
+0018    KSTR     4   6      ; "%d-%.%d+%.?%d*"
+0019    CALL     2   2   3
+0020    UGET     3   2      ; vers
+0021    TGETS    3   3   7  ; "parse_version"
+0022    MOV      4   2
+0023    CALL     3   2   2
+0024    USETV    0   3      ; cached_git_version
+0025 => UGET     1   0      ; cached_git_version
+0026    RET1     1   2
+
+-- BYTECODE -- git.lua:31-33
+0001    UGET     2   0      ; git_version
+0002    MOV      3   0
+0003    CALL     2   2   2
+0004    UGET     3   1      ; vers
+0005    TGETS    3   3   0  ; "parse_version"
+0006    MOV      4   1
+0007    CALL     3   2   2
+0008    ISLE     3   2
+0009    JMP      2 => 0012
+0010    KPRI     2   1
+0011    JMP      3 => 0013
+0012 => KPRI     2   2
+0013 => RET1     2   2
+
+-- BYTECODE -- git.lua:41-43
+0001    UGET     1   0      ; git_is_at_least
+0002    MOV      2   0
+0003    KSTR     3   0      ; "1.7.10"
+0004    CALLT    1   3
+
+-- BYTECODE -- git.lua:49-51
+0001    UGET     1   0      ; git_is_at_least
+0002    MOV      2   0
+0003    KSTR     3   0      ; "1.8.4"
+0004    CALLT    1   3
+
+-- BYTECODE -- git.lua:56-58
+0001    UGET     1   0      ; git_is_at_least
+0002    MOV      2   0
+0003    KSTR     3   0      ; "2.10.0"
+0004    CALLT    1   3
+
+-- BYTECODE -- git.lua:60-77
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "match"
+0003    KSTR     4   1      ; "^dev%-%d+$"
+0004    CALL     2   2   3
+0005    IST          2
+0006    JMP      3 => 0015
+0007    MOV      3   1
+0008    TGETS    2   1   0  ; "match"
+0009    KSTR     4   2      ; "^scm%-%d+$"
+0010    CALL     2   2   3
+0011    IST          2
+0012    JMP      2 => 0015
+0013    KPRI     2   0
+0014    RET1     2   2
+0015 => GGET     2   3      ; "io"
+0016    TGETS    2   2   4  ; "popen"
+0017    UGET     3   0      ; fs
+0018    TGETS    3   3   5  ; "command_at"
+0019    UGET     4   0      ; fs
+0020    TGETS    4   4   6  ; "current_dir"
+0021    CALL     4   2   1
+0022    UGET     5   0      ; fs
+0023    TGETS    5   5   7  ; "Q"
+0024    MOV      6   0
+0025    CALL     5   2   2
+0026    KSTR     6   8      ; " log --pretty=format:%ai_%h -n 1"
+0027    CAT      5   5   6
+0028    CALL     3   0   3
+0029    CALLM    2   2   0
+0030    IST          2
+0031    JMP      3 => 0034
+0032    KPRI     3   0
+0033    RET1     3   2
+0034 => MOV      4   2
+0035    TGETS    3   2   9  ; "read"
+0036    KSTR     5  10      ; "*l"
+0037    CALL     3   2   3
+0038    MOV      5   2
+0039    TGETS    4   2  11  ; "close"
+0040    CALL     4   1   2
+0041    IST          3
+0042    JMP      4 => 0045
+0043    KPRI     4   0
+0044    RET1     4   2
+0045 => MOV      5   3
+0046    TGETS    4   3   0  ; "match"
+0047    KSTR     6  12      ; "([^%s]+) ([^%s]+) ([^%s]+)_([^%s]+)"
+0048    CALL     4   5   3
+0049    MOV      9   4
+0050    TGETS    8   4  13  ; "gsub"
+0051    KSTR    10  14      ; "%-"
+0052    KSTR    11  15      ; ""
+0053    CALL     8   2   4
+0054    MOV      4   8
+0055    MOV      9   5
+0056    TGETS    8   5  13  ; "gsub"
+0057    KSTR    10  16      ; ":"
+0058    KSTR    11  15      ; ""
+0059    CALL     8   2   4
+0060    MOV      5   8
+0061    MOV      8   4
+0062    KSTR     9  17      ; "."
+0063    MOV     10   5
+0064    KSTR    11  17      ; "."
+0065    MOV     12   7
+0066    CAT      8   8  12
+0067    RET1     8   2
+
+-- BYTECODE -- git.lua:86-163
+0001    GGET     4   0      ; "assert"
+0002    MOV      6   0
+0003    TGETS    5   0   1  ; "type"
+0004    CALL     5   2   2
+0005    ISEQS    5   2      ; "rockspec"
+0006    JMP      5 => 0009
+0007    KPRI     5   1
+0008    JMP      6 => 0010
+0009 => KPRI     5   2
+0010 => CALL     4   1   2
+0011    GGET     4   0      ; "assert"
+0012    GGET     5   1      ; "type"
+0013    MOV      6   2
+0014    CALL     5   2   2
+0015    ISEQS    5   3      ; "string"
+0016    JMP      5 => 0021
+0017    NOT      5   2
+0018    JMP      6 => 0022
+0019    KPRI     5   1
+0020    JMP      6 => 0022
+0021 => KPRI     5   2
+0022 => CALL     4   1   2
+0023    TGETS    4   0   4  ; "variables"
+0024    TGETS    4   4   5  ; "GIT"
+0025    TGETS    5   0   6  ; "name"
+0026    KSTR     6   7      ; "-"
+0027    TGETS    7   0   8  ; "version"
+0028    CAT      5   5   7
+0029    UGET     6   0      ; dir
+0030    TGETS    6   6   9  ; "base_name"
+0031    TGETS    7   0  10  ; "source"
+0032    TGETS    7   7  11  ; "url"
+0033    CALL     6   2   2
+0034    MOV      8   6
+0035    TGETS    7   6  12  ; "gsub"
+0036    KSTR     9  13      ; "%.git$"
+0037    KSTR    10  14      ; ""
+0038    CALL     7   2   4
+0039    MOV      6   7
+0040    UGET     7   1      ; fs
+0041    TGETS    7   7  15  ; "is_tool_available"
+0042    MOV      8   4
+0043    KSTR     9  16      ; "Git"
+0044    CALL     7   3   3
+0045    IST          7
+0046    JMP      9 => 0050
+0047    KPRI     9   0
+0048    MOV     10   8
+0049    RET      9   3
+0050 => KPRI     9   0
+0051    IST          2
+0052    JMP     10 => 0070
+0053    UGET    10   1      ; fs
+0054    TGETS   10  10  17  ; "make_temp_dir"
+0055    MOV     11   5
+0056    CALL    10   2   2
+0057    MOV      9  10
+0058    IST          9
+0059    JMP     10 => 0063
+0060    KPRI    10   0
+0061    KSTR    11  18      ; "Failed creating temporary directory."
+0062    RET     10   3
+0063 => UGET    10   2      ; util
+0064    TGETS   10  10  19  ; "schedule_function"
+0065    UGET    11   1      ; fs
+0066    TGETS   11  11  20  ; "delete"
+0067    MOV     12   9
+0068    CALL    10   1   3
+0069    JMP     10 => 0071
+0070 => MOV      9   2
+0071 => UGET    10   1      ; fs
+0072    TGETS   10  10  21  ; "absolute_name"
+0073    MOV     11   9
+0074    CALL    10   2   2
+0075    MOV      9  10
+0076    UGET    10   1      ; fs
+0077    TGETS   10  10  22  ; "change_dir"
+0078    MOV     11   9
+0079    CALL    10   3   2
+0080    IST         10
+0081    JMP     12 => 0085
+0082    KPRI    12   0
+0083    MOV     13  11
+0084    RET     12   3
+0085 => TDUP    12  24
+0086    UGET    13   1      ; fs
+0087    TGETS   13  13  23  ; "Q"
+0088    MOV     14   4
+0089    CALL    13   2   2
+0090    TSETB   13  12   1
+0091    ISTC    13   3
+0092    JMP     13 => 0094
+0093    KSTR    13  25      ; "--depth=1"
+0094 => TSETB   13  12   3
+0095    TGETS   13   0  10  ; "source"
+0096    TGETS   13  13  11  ; "url"
+0097    TSETB   13  12   4
+0098    TSETB    6  12   5
+0099    TGETS   13   0  10  ; "source"
+0100    TGETS   13  13  26  ; "tag"
+0101    IST         13
+0102    JMP     14 => 0105
+0103    TGETS   13   0  10  ; "source"
+0104    TGETS   13  13  27  ; "branch"
+0105 => ISNES   13  28      ; "master"
+0106    JMP     14 => 0108
+0107    KPRI    13   0
+0108 => ISF         13
+0109    JMP     14 => 0123
+0110    UGET    14   3      ; git_can_clone_by_tag
+0111    MOV     15   4
+0112    CALL    14   2   2
+0113    ISF         14
+0114    JMP     15 => 0123
+0115    GGET    14  29      ; "table"
+0116    TGETS   14  14  30  ; "insert"
+0117    MOV     15  12
+0118    KSHORT  16   3
+0119    KSTR    17  31      ; "--branch="
+0120    MOV     18  13
+0121    CAT     17  17  18
+0122    CALL    14   1   4
+0123 => UGET    14   1      ; fs
+0124    TGETS   14  14  32  ; "execute"
+0125    UGET    15   4      ; unpack
+0126    MOV     16  12
+0127    CALL    15   0   2
+0128    CALLM   14   2   0
+0129    IST         14
+0130    JMP     14 => 0134
+0131    KPRI    14   0
+0132    KSTR    15  33      ; "Failed cloning git repository."
+0133    RET     14   3
+0134 => UGET    14   1      ; fs
+0135    TGETS   14  14  22  ; "change_dir"
+0136    MOV     15   6
+0137    CALL    14   3   2
+0138    MOV     11  15
+0139    MOV     10  14
+0140    IST         10
+0141    JMP     14 => 0145
+0142    KPRI    14   0
+0143    MOV     15  11
+0144    RET     14   3
+0145 => ISF         13
+0146    JMP     14 => 0168
+0147    UGET    14   3      ; git_can_clone_by_tag
+0148    CALL    14   2   1
+0149    IST         14
+0150    JMP     14 => 0168
+0151    UGET    14   1      ; fs
+0152    TGETS   14  14  32  ; "execute"
+0153    UGET    15   1      ; fs
+0154    TGETS   15  15  23  ; "Q"
+0155    MOV     16   4
+0156    CALL    15   2   2
+0157    KSTR    16  34      ; "checkout"
+0158    MOV     17  13
+0159    CALL    14   2   4
+0160    IST         14
+0161    JMP     14 => 0168
+0162    KPRI    14   0
+0163    KSTR    15  35      ; "Failed to check out the ""
+0164    MOV     16  13
+0165    KSTR    17  36      ; "" tag or branch."
+0166    CAT     15  15  17
+0167    RET     14   3
+0168 => MOV     15   0
+0169    TGETS   14   0  37  ; "format_is_at_least"
+0170    KSTR    16  38      ; "3.0"
+0171    CALL    14   2   3
+0172    ISF         14
+0173    JMP     15 => 0215
+0174    TDUP    14  39
+0175    UGET    15   1      ; fs
+0176    TGETS   15  15  23  ; "Q"
+0177    MOV     16   4
+0178    CALL    15   2   2
+0179    TSETB   15  14   1
+0180    MOV     12  14
+0181    UGET    14   5      ; git_supports_shallow_recommendations
+0182    MOV     15   4
+0183    CALL    14   2   2
+0184    ISF         14
+0185    JMP     15 => 0193
+0186    GGET    14  29      ; "table"
+0187    TGETS   14  14  30  ; "insert"
+0188    MOV     15  12
+0189    KSHORT  16   5
+0190    KSTR    17  40      ; "--recommend-shallow"
+0191    CALL    14   1   4
+0192    JMP     14 => 0204
+0193 => UGET    14   6      ; git_supports_shallow_submodules
+0194    MOV     15   4
+0195    CALL    14   2   2
+0196    ISF         14
+0197    JMP     15 => 0204
+0198    GGET    14  29      ; "table"
+0199    TGETS   14  14  30  ; "insert"
+0200    MOV     15  12
+0201    KSHORT  16   5
+0202    KSTR    17  25      ; "--depth=1"
+0203    CALL    14   1   4
+0204 => UGET    14   1      ; fs
+0205    TGETS   14  14  32  ; "execute"
+0206    UGET    15   4      ; unpack
+0207    MOV     16  12
+0208    CALL    15   0   2
+0209    CALLM   14   2   0
+0210    IST         14
+0211    JMP     14 => 0215
+0212    KPRI    14   0
+0213    KSTR    15  41      ; "Failed to fetch submodules."
+0214    RET     14   3
+0215 => TGETS   14   0  10  ; "source"
+0216    TGETS   14  14  26  ; "tag"
+0217    IST         14
+0218    JMP     14 => 0225
+0219    TGETS   14   0  10  ; "source"
+0220    UGET    15   7      ; git_identifier
+0221    MOV     16   4
+0222    TGETS   17   0   8  ; "version"
+0223    CALL    15   2   3
+0224    TSETS   15  14  42  ; "identifier"
+0225 => UGET    14   1      ; fs
+0226    TGETS   14  14  20  ; "delete"
+0227    UGET    15   0      ; dir
+0228    TGETS   15  15  43  ; "path"
+0229    MOV     16   9
+0230    MOV     17   6
+0231    KSTR    18  44      ; ".git"
+0232    CALL    15   0   4
+0233    CALLM   14   1   0
+0234    UGET    14   1      ; fs
+0235    TGETS   14  14  20  ; "delete"
+0236    UGET    15   0      ; dir
+0237    TGETS   15  15  43  ; "path"
+0238    MOV     16   9
+0239    MOV     17   6
+0240    KSTR    18  45      ; ".gitignore"
+0241    CALL    15   0   4
+0242    CALLM   14   1   0
+0243    UGET    14   1      ; fs
+0244    TGETS   14  14  46  ; "pop_dir"
+0245    CALL    14   1   1
+0246    UGET    14   1      ; fs
+0247    TGETS   14  14  46  ; "pop_dir"
+0248    CALL    14   1   1
+0249    MOV     14   6
+0250    MOV     15   9
+0251    RET     14   3
+
+-- BYTECODE -- git.lua:0-166
+0001    TNEW     0   0
+0002    GGET     1   0      ; "unpack"
+0003    IST          1
+0004    JMP      2 => 0007
+0005    GGET     1   1      ; "table"
+0006    TGETS    1   1   0  ; "unpack"
+0007 => GGET     2   2      ; "require"
+0008    KSTR     3   3      ; "luarocks.fs"
+0009    CALL     2   2   2
+0010    GGET     3   2      ; "require"
+0011    KSTR     4   4      ; "luarocks.dir"
+0012    CALL     3   2   2
+0013    GGET     4   2      ; "require"
+0014    KSTR     5   5      ; "luarocks.core.vers"
+0015    CALL     4   2   2
+0016    GGET     5   2      ; "require"
+0017    KSTR     6   6      ; "luarocks.util"
+0018    CALL     5   2   2
+0019    KPRI     6   0
+0020    FNEW     7   7      ; git.lua:17
+0021    FNEW     8   8      ; git.lua:31
+0022    FNEW     9   9      ; git.lua:41
+0023    FNEW    10  10      ; git.lua:49
+0024    FNEW    11  11      ; git.lua:56
+0025    FNEW    12  12      ; git.lua:60
+0026    FNEW    13  14      ; git.lua:86
+0027    TSETS   13   0  13  ; "get_sources"
+0028    UCLO     0 => 0029
+0029 => RET1     0   2
+

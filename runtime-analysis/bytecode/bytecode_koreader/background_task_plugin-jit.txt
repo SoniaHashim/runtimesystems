@@ -1,0 +1,57 @@
+-- BYTECODE -- background_task_plugin.lua:13-22
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "enabled"
+0003    IST          0
+0004    JMP      0 => 0007
+0005    KPRI     0   1
+0006    RET1     0   2
+0007 => UGET     0   1      ; settings_id
+0008    UGET     1   0      ; self
+0009    TGETS    1   1   1  ; "settings_id"
+0010    ISEQV    0   1
+0011    JMP      0 => 0014
+0012    KPRI     0   1
+0013    RET1     0   2
+0014 => KPRI     0   2
+0015    RET1     0   2
+
+-- BYTECODE -- background_task_plugin.lua:12-29
+0001    FNEW     2   0      ; background_task_plugin.lua:13
+0002    GGET     3   1      ; "table"
+0003    TGETS    3   3   2  ; "insert"
+0004    UGET     4   0      ; PluginShare
+0005    TGETS    4   4   3  ; "backgroundJobs"
+0006    TDUP     5   5
+0007    TGETS    6   0   4  ; "when"
+0008    TSETS    6   5   4  ; "when"
+0009    TSETS    2   5   6  ; "repeated"
+0010    TGETS    6   0   7  ; "executable"
+0011    TSETS    6   5   7  ; "executable"
+0012    CALL     3   1   3
+0013    UCLO     0 => 0014
+0014 => RET0     0   1
+
+-- BYTECODE -- background_task_plugin.lua:31-33
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "_schedule"
+0003    TGETS    3   0   1  ; "settings_id"
+0004    CALL     1   1   3
+0005    RET0     0   1
+
+-- BYTECODE -- background_task_plugin.lua:0-36
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "pluginshare"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/plugin/switch_plugin"
+0006    CALL     1   2   2
+0007    MOV      3   1
+0008    TGETS    2   1   3  ; "extend"
+0009    CALL     2   2   2
+0010    FNEW     3   5      ; background_task_plugin.lua:12
+0011    TSETS    3   2   4  ; "_schedule"
+0012    FNEW     3   7      ; background_task_plugin.lua:31
+0013    TSETS    3   2   6  ; "_start"
+0014    UCLO     0 => 0015
+0015 => RET1     2   2
+

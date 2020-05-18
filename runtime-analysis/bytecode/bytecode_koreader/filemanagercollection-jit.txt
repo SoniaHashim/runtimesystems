@@ -1,0 +1,502 @@
+-- BYTECODE -- filemanagercollection.lua:20-22
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "menu"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "registerToMainMenu"
+0005    MOV      3   0
+0006    CALL     1   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- filemanagercollection.lua:27-29
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onShowColl"
+0004    KSTR     2   1      ; "favorites"
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagercollection.lua:24-31
+0001    TDUP     2   2
+0002    TGETS    3   0   1  ; "coll_menu_title"
+0003    TSETS    3   2   3  ; "text"
+0004    FNEW     3   4      ; filemanagercollection.lua:27
+0005    TSETS    3   2   5  ; "callback"
+0006    TSETS    2   1   0  ; "collections"
+0007    UCLO     0 => 0008
+0008 => RET0     0   1
+
+-- BYTECODE -- filemanagercollection.lua:33-41
+0001    KPRI     1   0
+0002    TGETS    2   0   0  ; "coll_menu"
+0003    TGETS    2   2   1  ; "page"
+0004    ISF          2
+0005    JMP      3 => 0017
+0006    TGETS    2   0   0  ; "coll_menu"
+0007    TGETS    2   2   2  ; "perpage"
+0008    ISF          2
+0009    JMP      3 => 0017
+0010    TGETS    2   0   0  ; "coll_menu"
+0011    TGETS    2   2   1  ; "page"
+0012    SUBVN    2   2   0  ; 1
+0013    TGETS    3   0   0  ; "coll_menu"
+0014    TGETS    3   3   2  ; "perpage"
+0015    MULVV    2   2   3
+0016    ADDVN    1   2   0  ; 1
+0017 => TGETS    2   0   0  ; "coll_menu"
+0018    MOV      3   2
+0019    TGETS    2   2   3  ; "switchItemTable"
+0020    TGETS    4   0   4  ; "coll_menu_title"
+0021    UGET     5   0      ; ReadCollection
+0022    MOV      6   5
+0023    TGETS    5   5   5  ; "prepareList"
+0024    TGETS    7   0   0  ; "coll_menu"
+0025    TGETS    7   7   6  ; "collection"
+0026    CALL     5   2   3
+0027    MOV      6   1
+0028    CALL     2   1   5
+0029    RET0     0   1
+
+-- BYTECODE -- filemanagercollection.lua:60-70
+0001    TNEW     0   0
+0002    KSHORT   1   1
+0003    UGET     2   0      ; sort_item
+0004    TGETS    2   2   0  ; "item_table"
+0005    LEN      2   2
+0006    KSHORT   3   1
+0007    FORI     1 => 0020
+0008 => GGET     5   1      ; "table"
+0009    TGETS    5   5   2  ; "insert"
+0010    MOV      6   0
+0011    TDUP     7   4
+0012    UGET     8   0      ; sort_item
+0013    TGETS    8   8   0  ; "item_table"
+0014    TGETV    8   8   4
+0015    TGETS    8   8   3  ; "label"
+0016    TSETS    8   7   5  ; "file"
+0017    TSETS    4   7   6  ; "order"
+0018    CALL     5   1   3
+0019    FORL     1 => 0008
+0020 => UGET     1   1      ; ReadCollection
+0021    MOV      2   1
+0022    TGETS    1   1   7  ; "writeCollection"
+0023    MOV      3   0
+0024    UGET     4   2      ; self
+0025    TGETS    4   4   8  ; "_manager"
+0026    TGETS    4   4   9  ; "coll_menu"
+0027    TGETS    4   4  10  ; "collection"
+0028    CALL     1   1   4
+0029    UGET     1   2      ; self
+0030    TGETS    1   1   8  ; "_manager"
+0031    MOV      2   1
+0032    TGETS    1   1  11  ; "updateItemTable"
+0033    CALL     1   1   2
+0034    RET0     0   1
+
+-- BYTECODE -- filemanagercollection.lua:49-74
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "collfile_dialog"
+0006    CALL     0   1   3
+0007    TNEW     0   0
+0008    KSHORT   1   1
+0009    UGET     2   1      ; self
+0010    TGETS    2   2   2  ; "_manager"
+0011    TGETS    2   2   3  ; "coll_menu"
+0012    TGETS    2   2   4  ; "item_table"
+0013    LEN      2   2
+0014    KSHORT   3   1
+0015    FORI     1 => 0036
+0016 => GGET     5   5      ; "table"
+0017    TGETS    5   5   6  ; "insert"
+0018    MOV      6   0
+0019    TDUP     7   8
+0020    UGET     8   1      ; self
+0021    TGETS    8   8   2  ; "_manager"
+0022    TGETS    8   8   3  ; "coll_menu"
+0023    TGETS    8   8   4  ; "item_table"
+0024    TGETV    8   8   4
+0025    TGETS    8   8   7  ; "text"
+0026    TSETS    8   7   7  ; "text"
+0027    UGET     8   1      ; self
+0028    TGETS    8   8   2  ; "_manager"
+0029    TGETS    8   8   3  ; "coll_menu"
+0030    TGETS    8   8   4  ; "item_table"
+0031    TGETV    8   8   4
+0032    TGETS    8   8   9  ; "file"
+0033    TSETS    8   7  10  ; "label"
+0034    CALL     5   1   3
+0035    FORL     1 => 0016
+0036 => GGET     1  11      ; "require"
+0037    KSTR     2  12      ; "ui/widget/sortwidget"
+0038    CALL     1   2   2
+0039    KPRI     2   0
+0040    MOV      4   1
+0041    TGETS    3   1  13  ; "new"
+0042    TDUP     5  15
+0043    UGET     6   2      ; _
+0044    KSTR     7  14      ; "Sort favorites"
+0045    CALL     6   2   2
+0046    TSETS    6   5  16  ; "title"
+0047    TSETS    0   5   4  ; "item_table"
+0048    FNEW     6  17      ; filemanagercollection.lua:60
+0049    TSETS    6   5  18  ; "callback"
+0050    CALL     3   2   3
+0051    MOV      2   3
+0052    UGET     3   0      ; UIManager
+0053    MOV      4   3
+0054    TGETS    3   3  19  ; "show"
+0055    MOV      5   2
+0056    CALL     3   1   3
+0057    UCLO     0 => 0058
+0058 => RET0     0   1
+
+-- BYTECODE -- filemanagercollection.lua:78-82
+0001    UGET     0   0      ; ReadCollection
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "removeItem"
+0004    UGET     2   1      ; item
+0005    TGETS    2   2   1  ; "file"
+0006    UGET     3   2      ; self
+0007    TGETS    3   3   2  ; "_manager"
+0008    TGETS    3   3   3  ; "coll_menu"
+0009    TGETS    3   3   4  ; "collection"
+0010    CALL     0   1   4
+0011    UGET     0   2      ; self
+0012    TGETS    0   0   2  ; "_manager"
+0013    MOV      1   0
+0014    TGETS    0   0   5  ; "updateItemTable"
+0015    CALL     0   1   2
+0016    UGET     0   3      ; UIManager
+0017    MOV      1   0
+0018    TGETS    0   0   6  ; "close"
+0019    UGET     2   2      ; self
+0020    TGETS    2   2   7  ; "collfile_dialog"
+0021    CALL     0   1   3
+0022    RET0     0   1
+
+-- BYTECODE -- filemanagercollection.lua:89-92
+0001    UGET     0   0      ; FileManagerBookInfo
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; item
+0005    TGETS    2   2   1  ; "file"
+0006    CALL     0   1   3
+0007    UGET     0   2      ; UIManager
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "close"
+0010    UGET     2   3      ; self
+0011    TGETS    2   2   3  ; "collfile_dialog"
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- filemanagercollection.lua:110-123
+0001    GGET     0   0      ; "os"
+0002    TGETS    0   0   1  ; "execute"
+0003    UGET     1   0      ; BaseUtil
+0004    TGETS    1   1   2  ; "realpath"
+0005    UGET     2   1      ; item
+0006    TGETS    2   2   3  ; "file"
+0007    CALL     1   0   2
+0008    CALLM    0   2   0
+0009    UGET     1   2      ; UIManager
+0010    MOV      2   1
+0011    TGETS    1   1   4  ; "close"
+0012    UGET     3   3      ; script_is_running_msg
+0013    CALL     1   1   3
+0014    ISNEN    0   0      ; 0
+0015    JMP      1 => 0030
+0016    UGET     1   2      ; UIManager
+0017    MOV      2   1
+0018    TGETS    1   1   5  ; "show"
+0019    UGET     3   4      ; InfoMessage
+0020    MOV      4   3
+0021    TGETS    3   3   6  ; "new"
+0022    TDUP     5   8
+0023    UGET     6   5      ; _
+0024    KSTR     7   7      ; "The script exited successfully."
+0025    CALL     6   2   2
+0026    TSETS    6   5   9  ; "text"
+0027    CALL     3   0   3
+0028    CALLM    1   1   1
+0029    JMP      1 => 0050
+0030 => UGET     1   2      ; UIManager
+0031    MOV      2   1
+0032    TGETS    1   1   5  ; "show"
+0033    UGET     3   4      ; InfoMessage
+0034    MOV      4   3
+0035    TGETS    3   3   6  ; "new"
+0036    TDUP     5  13
+0037    UGET     6   6      ; T
+0038    UGET     7   5      ; _
+0039    KSTR     8  10      ; "The script returned a non-zero status co"~
+0040    CALL     7   2   2
+0041    GGET     8  11      ; "bit"
+0042    TGETS    8   8  12  ; "rshift"
+0043    MOV      9   0
+0044    KSHORT  10   8
+0045    CALL     8   0   3
+0046    CALLM    6   2   1
+0047    TSETS    6   5   9  ; "text"
+0048    CALL     3   0   3
+0049    CALLM    1   1   1
+0050 => RET0     0   1
+
+-- BYTECODE -- filemanagercollection.lua:103-124
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "collfile_dialog"
+0006    CALL     0   1   3
+0007    UGET     0   2      ; InfoMessage
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "new"
+0010    TDUP     2   8
+0011    UGET     3   3      ; T
+0012    UGET     4   4      ; _
+0013    KSTR     5   3      ; "Running %1 script %2…"
+0014    CALL     4   2   2
+0015    UGET     5   5      ; util
+0016    TGETS    5   5   4  ; "getScriptType"
+0017    UGET     6   6      ; item
+0018    TGETS    6   6   5  ; "file"
+0019    CALL     5   2   2
+0020    UGET     6   7      ; BD
+0021    TGETS    6   6   6  ; "filename"
+0022    UGET     7   8      ; BaseUtil
+0023    TGETS    7   7   7  ; "basename"
+0024    UGET     8   6      ; item
+0025    TGETS    8   8   5  ; "file"
+0026    CALL     7   0   2
+0027    CALLM    6   0   0
+0028    CALLM    3   2   2
+0029    TSETS    3   2   9  ; "text"
+0030    CALL     0   2   3
+0031    UGET     1   0      ; UIManager
+0032    MOV      2   1
+0033    TGETS    1   1  10  ; "show"
+0034    MOV      3   0
+0035    CALL     1   1   3
+0036    UGET     1   0      ; UIManager
+0037    MOV      2   1
+0038    TGETS    1   1  11  ; "scheduleIn"
+0039    KNUM     3   0      ; 0.5
+0040    FNEW     4  12      ; filemanagercollection.lua:110
+0041    CALL     1   1   4
+0042    UCLO     0 => 0043
+0043 => RET0     0   1
+
+-- BYTECODE -- filemanagercollection.lua:43-136
+0001    KPRI     2   0
+0002    TSETS    2   0   0  ; "collfile_dialog"
+0003    TNEW     2   3
+0004    TNEW     3   3
+0005    TDUP     4   2
+0006    UGET     5   0      ; _
+0007    KSTR     6   1      ; "Sort"
+0008    CALL     5   2   2
+0009    TSETS    5   4   3  ; "text"
+0010    FNEW     5   4      ; filemanagercollection.lua:49
+0011    TSETS    5   4   5  ; "callback"
+0012    TSETB    4   3   1
+0013    TDUP     4   7
+0014    UGET     5   0      ; _
+0015    KSTR     6   6      ; "Remove from collection"
+0016    CALL     5   2   2
+0017    TSETS    5   4   3  ; "text"
+0018    FNEW     5   8      ; filemanagercollection.lua:78
+0019    TSETS    5   4   5  ; "callback"
+0020    TSETB    4   3   2
+0021    TSETB    3   2   1
+0022    TNEW     3   3
+0023    TDUP     4  10
+0024    UGET     5   0      ; _
+0025    KSTR     6   9      ; "Book information"
+0026    CALL     5   2   2
+0027    TSETS    5   4   3  ; "text"
+0028    UGET     5   3      ; FileManagerBookInfo
+0029    MOV      6   5
+0030    TGETS    5   5  11  ; "isSupported"
+0031    TGETS    7   1  12  ; "file"
+0032    CALL     5   2   3
+0033    TSETS    5   4  13  ; "enabled"
+0034    FNEW     5  14      ; filemanagercollection.lua:89
+0035    TSETS    5   4   5  ; "callback"
+0036    TSETB    4   3   1
+0037    TSETB    3   2   2
+0038    UGET     3   4      ; Device
+0039    MOV      4   3
+0040    TGETS    3   3  15  ; "isAndroid"
+0041    CALL     3   2   2
+0042    IST          3
+0043    JMP      3 => 0069
+0044    UGET     3   5      ; util
+0045    TGETS    3   3  16  ; "isAllowedScript"
+0046    TGETS    4   1  12  ; "file"
+0047    CALL     3   2   2
+0048    ISF          3
+0049    JMP      4 => 0069
+0050    GGET     3  17      ; "table"
+0051    TGETS    3   3  18  ; "insert"
+0052    MOV      4   2
+0053    TNEW     5   3
+0054    TDUP     6  21
+0055    UGET     7   6      ; T
+0056    UGET     8   0      ; _
+0057    KSTR     9  19      ; "Execute %1 script"
+0058    CALL     8   2   2
+0059    UGET     9   5      ; util
+0060    TGETS    9   9  20  ; "getScriptType"
+0061    TGETS   10   1  12  ; "file"
+0062    CALL     9   0   2
+0063    CALLM    7   2   1
+0064    TSETS    7   6   3  ; "text"
+0065    FNEW     7  22      ; filemanagercollection.lua:103
+0066    TSETS    7   6   5  ; "callback"
+0067    TSETB    6   5   1
+0068    CALL     3   1   3
+0069 => UGET     3  10      ; ButtonDialogTitle
+0070    MOV      4   3
+0071    TGETS    3   3  23  ; "new"
+0072    TDUP     5  26
+0073    TGETS    6   1   3  ; "text"
+0074    MOV      7   6
+0075    TGETS    6   6  24  ; "match"
+0076    KSTR     8  25      ; "([^/]+)$"
+0077    CALL     6   2   3
+0078    TSETS    6   5  27  ; "title"
+0079    TSETS    2   5  28  ; "buttons"
+0080    CALL     3   2   3
+0081    TSETS    3   0   0  ; "collfile_dialog"
+0082    UGET     3   1      ; UIManager
+0083    MOV      4   3
+0084    TGETS    3   3  29  ; "show"
+0085    TGETS    5   0   0  ; "collfile_dialog"
+0086    CALL     3   1   3
+0087    KPRI     3   2
+0088    UCLO     0 => 0089
+0089 => RET1     3   2
+
+-- BYTECODE -- filemanagercollection.lua:155-157
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "coll_menu"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- filemanagercollection.lua:151-158
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "nextTick"
+0004    FNEW     2   1      ; filemanagercollection.lua:155
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagercollection.lua:138-161
+0001    UGET     2   0      ; Menu
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "new"
+0004    TDUP     4   3
+0005    TGETS    5   0   2  ; "ui"
+0006    TSETS    5   4   2  ; "ui"
+0007    UGET     5   1      ; Screen
+0008    MOV      6   5
+0009    TGETS    5   5   4  ; "getWidth"
+0010    CALL     5   2   2
+0011    TSETS    5   4   5  ; "width"
+0012    UGET     5   1      ; Screen
+0013    MOV      6   5
+0014    TGETS    5   5   6  ; "getHeight"
+0015    CALL     5   2   2
+0016    TSETS    5   4   7  ; "height"
+0017    TGETS    5   0   8  ; "onMenuHold"
+0018    TSETS    5   4   8  ; "onMenuHold"
+0019    TSETS    0   4   9  ; "_manager"
+0020    TSETS    1   4  10  ; "collection"
+0021    CALL     2   2   3
+0022    TSETS    2   0   0  ; "coll_menu"
+0023    MOV      3   0
+0024    TGETS    2   0  11  ; "updateItemTable"
+0025    CALL     2   1   2
+0026    TGETS    2   0   0  ; "coll_menu"
+0027    FNEW     3  13      ; filemanagercollection.lua:151
+0028    TSETS    3   2  12  ; "close_callback"
+0029    UGET     2   2      ; UIManager
+0030    MOV      3   2
+0031    TGETS    2   2  14  ; "show"
+0032    TGETS    4   0   0  ; "coll_menu"
+0033    CALL     2   1   3
+0034    KPRI     2   2
+0035    UCLO     0 => 0036
+0036 => RET1     2   2
+
+-- BYTECODE -- filemanagercollection.lua:0-164
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/buttondialogtitle"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "device"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "apps/filemanager/filemanagerbookinfo"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/infomessage"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/container/inputcontainer"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/menu"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "readcollection"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/uimanager"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10   3      ; "device"
+0030    CALL     9   2   2
+0031    TGETS    9   9  10  ; "screen"
+0032    GGET    10   0      ; "require"
+0033    KSTR    11  11      ; "ffi/util"
+0034    CALL    10   2   2
+0035    GGET    11   0      ; "require"
+0036    KSTR    12  12      ; "util"
+0037    CALL    11   2   2
+0038    GGET    12   0      ; "require"
+0039    KSTR    13  13      ; "gettext"
+0040    CALL    12   2   2
+0041    GGET    13   0      ; "require"
+0042    KSTR    14  11      ; "ffi/util"
+0043    CALL    13   2   2
+0044    TGETS   13  13  14  ; "template"
+0045    MOV     15   5
+0046    TGETS   14   5  15  ; "extend"
+0047    TDUP    16  17
+0048    MOV     17  12
+0049    KSTR    18  16      ; "Favorites"
+0050    CALL    17   2   2
+0051    TSETS   17  16  18  ; "coll_menu_title"
+0052    CALL    14   2   3
+0053    FNEW    15  20      ; filemanagercollection.lua:20
+0054    TSETS   15  14  19  ; "init"
+0055    FNEW    15  22      ; filemanagercollection.lua:24
+0056    TSETS   15  14  21  ; "addToMainMenu"
+0057    FNEW    15  24      ; filemanagercollection.lua:33
+0058    TSETS   15  14  23  ; "updateItemTable"
+0059    FNEW    15  26      ; filemanagercollection.lua:43
+0060    TSETS   15  14  25  ; "onMenuHold"
+0061    FNEW    15  28      ; filemanagercollection.lua:138
+0062    TSETS   15  14  27  ; "onShowColl"
+0063    UCLO     0 => 0064
+0064 => RET1    14   2
+

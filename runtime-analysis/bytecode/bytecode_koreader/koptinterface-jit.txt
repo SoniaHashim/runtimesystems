@@ -1,0 +1,3258 @@
+-- BYTECODE -- koptinterface.lua:29-35
+0001    TGETS    1   0   0  ; "kctx"
+0002    TGETS    1   1   1  ; "free"
+0003    ISF          1
+0004    JMP      2 => 0019
+0005    UGET     1   0      ; KoptInterface
+0006    MOV      2   1
+0007    TGETS    1   1   2  ; "waitForContext"
+0008    TGETS    3   0   0  ; "kctx"
+0009    CALL     1   1   3
+0010    UGET     1   1      ; logger
+0011    TGETS    1   1   3  ; "dbg"
+0012    KSTR     2   4      ; "free koptcontext"
+0013    TGETS    3   0   0  ; "kctx"
+0014    CALL     1   1   3
+0015    TGETS    1   0   0  ; "kctx"
+0016    MOV      2   1
+0017    TGETS    1   1   1  ; "free"
+0018    CALL     1   1   2
+0019 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:37-42
+0001    TGETS    2   0   0  ; "kctx"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "isPreCache"
+0004    CALL     2   2   2
+0005    ISNEN    2   0      ; 0
+0006    JMP      2 => 0021
+0007    UGET     2   0      ; logger
+0008    TGETS    2   2   2  ; "dbg"
+0009    KSTR     3   3      ; "dumping koptcontext to"
+0010    MOV      4   1
+0011    CALL     2   1   3
+0012    UGET     2   1      ; serial
+0013    TGETS    2   2   4  ; "dump"
+0014    TGETS    3   0   5  ; "size"
+0015    UGET     4   2      ; KOPTContext
+0016    TGETS    4   4   6  ; "totable"
+0017    TGETS    5   0   0  ; "kctx"
+0018    CALL     4   2   2
+0019    MOV      5   1
+0020    CALLT    2   4
+0021 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:44-49
+0001    UGET     2   0      ; logger
+0002    TGETS    2   2   0  ; "dbg"
+0003    KSTR     3   1      ; "loading koptcontext from"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    UGET     2   1      ; serial
+0007    TGETS    2   2   2  ; "load"
+0008    MOV      3   1
+0009    CALL     2   3   2
+0010    TSETS    2   0   3  ; "size"
+0011    UGET     4   2      ; KOPTContext
+0012    TGETS    4   4   5  ; "fromtable"
+0013    MOV      5   3
+0014    CALL     4   2   2
+0015    TSETS    4   0   4  ; "kctx"
+0016    RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:53-58
+0001    TGETS    1   0   0  ; "ocrengine"
+0002    TGETS    1   1   1  ; "freeOCR"
+0003    ISF          1
+0004    JMP      2 => 0014
+0005    UGET     1   0      ; logger
+0006    TGETS    1   1   2  ; "dbg"
+0007    KSTR     2   3      ; "free OCREngine"
+0008    TGETS    3   0   0  ; "ocrengine"
+0009    CALL     1   1   3
+0010    TGETS    1   0   0  ; "ocrengine"
+0011    MOV      2   1
+0012    TGETS    1   1   1  ; "freeOCR"
+0013    CALL     1   1   2
+0014 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:60-76
+0001    GGET     2   1      ; "DKOPTREADER_CONFIG_DOC_DEFAULT_LANG_CODE"
+0002    TSETS    2   1   0  ; "doc_language"
+0003    GGET     2   3      ; "DKOPTREADER_CONFIG_TRIM_PAGE"
+0004    TSETS    2   1   2  ; "trim_page"
+0005    GGET     2   5      ; "DKOPTREADER_CONFIG_TEXT_WRAP"
+0006    TSETS    2   1   4  ; "text_wrap"
+0007    GGET     2   7      ; "DKOPTREADER_CONFIG_DETECT_INDENT"
+0008    TSETS    2   1   6  ; "detect_indent"
+0009    GGET     2   9      ; "DKOPTREADER_CONFIG_MAX_COLUMNS"
+0010    TSETS    2   1   8  ; "max_columns"
+0011    GGET     2  11      ; "DKOPTREADER_CONFIG_AUTO_STRAIGHTEN"
+0012    TSETS    2   1  10  ; "auto_straighten"
+0013    GGET     2  13      ; "DKOPTREADER_CONFIG_JUSTIFICATION"
+0014    TSETS    2   1  12  ; "justification"
+0015    KSHORT   2   0
+0016    TSETS    2   1  14  ; "writing_direction"
+0017    GGET     2  16      ; "DKOPTREADER_CONFIG_FONT_SIZE"
+0018    TSETS    2   1  15  ; "font_size"
+0019    GGET     2  18      ; "DKOPTREADER_CONFIG_PAGE_MARGIN"
+0020    TSETS    2   1  17  ; "page_margin"
+0021    GGET     2  20      ; "DKOPTREADER_CONFIG_RENDER_QUALITY"
+0022    TSETS    2   1  19  ; "quality"
+0023    GGET     2  22      ; "DKOPTREADER_CONFIG_CONTRAST"
+0024    TSETS    2   1  21  ; "contrast"
+0025    GGET     2  24      ; "DKOPTREADER_CONFIG_DEFECT_SIZE"
+0026    TSETS    2   1  23  ; "defect_size"
+0027    GGET     2  26      ; "DKOPTREADER_CONFIG_LINE_SPACING"
+0028    TSETS    2   1  25  ; "line_spacing"
+0029    GGET     2  28      ; "DKOPTREADER_CONFIG_DEFAULT_WORD_SPACING"
+0030    TSETS    2   1  27  ; "word_spacing"
+0031    RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:78-86
+0001 => ISF          1
+0002    JMP      2 => 0018
+0003    MOV      3   1
+0004    TGETS    2   1   0  ; "isPreCache"
+0005    CALL     2   2   2
+0006    ISNEN    2   0      ; 1
+0007    JMP      2 => 0018
+0008    LOOP     2 => 0018
+0009    UGET     2   0      ; logger
+0010    TGETS    2   2   1  ; "dbg"
+0011    KSTR     3   2      ; "waiting for background rendering"
+0012    CALL     2   1   2
+0013    UGET     2   1      ; util
+0014    TGETS    2   2   3  ; "usleep"
+0015    KNUM     3   1      ; 100000
+0016    CALL     2   1   2
+0017    JMP      2 => 0001
+0018 => RET1     1   2
+
+-- BYTECODE -- koptinterface.lua:91-128
+0001    UGET     4   0      ; KOPTContext
+0002    TGETS    4   4   0  ; "new"
+0003    CALL     4   2   1
+0004    UGET     5   1      ; CanvasContext
+0005    MOV      6   5
+0006    TGETS    5   5   1  ; "getSize"
+0007    CALL     5   2   2
+0008    TGETS    6   1   2  ; "configurable"
+0009    TGETS    6   6   3  ; "doc_language"
+0010    ISEQS    6   4      ; "chi_sim"
+0011    JMP      7 => 0018
+0012    ISEQS    6   5      ; "chi_tra"
+0013    JMP      7 => 0018
+0014    ISEQS    6   6      ; "jpn"
+0015    JMP      7 => 0018
+0016    ISNES    6   7      ; "kor"
+0017    JMP      7 => 0021
+0018 => MOV      8   4
+0019    TGETS    7   4   8  ; "setCJKChar"
+0020    CALL     7   1   2
+0021 => MOV      8   4
+0022    TGETS    7   4   9  ; "setLanguage"
+0023    MOV      9   6
+0024    CALL     7   1   3
+0025    MOV      8   4
+0026    TGETS    7   4  10  ; "setTrim"
+0027    TGETS    9   1   2  ; "configurable"
+0028    TGETS    9   9  11  ; "trim_page"
+0029    CALL     7   1   3
+0030    MOV      8   4
+0031    TGETS    7   4  12  ; "setWrap"
+0032    TGETS    9   1   2  ; "configurable"
+0033    TGETS    9   9  13  ; "text_wrap"
+0034    CALL     7   1   3
+0035    MOV      8   4
+0036    TGETS    7   4  14  ; "setIndent"
+0037    TGETS    9   1   2  ; "configurable"
+0038    TGETS    9   9  15  ; "detect_indent"
+0039    CALL     7   1   3
+0040    MOV      8   4
+0041    TGETS    7   4  16  ; "setColumns"
+0042    TGETS    9   1   2  ; "configurable"
+0043    TGETS    9   9  17  ; "max_columns"
+0044    CALL     7   1   3
+0045    MOV      8   4
+0046    TGETS    7   4  18  ; "setDeviceDim"
+0047    TGETS    9   5  19  ; "w"
+0048    TGETS   10   5  20  ; "h"
+0049    CALL     7   1   4
+0050    MOV      8   4
+0051    TGETS    7   4  21  ; "setDeviceDPI"
+0052    UGET     9   1      ; CanvasContext
+0053    MOV     10   9
+0054    TGETS    9   9  22  ; "getDPI"
+0055    CALL     9   0   2
+0056    CALLM    7   1   1
+0057    MOV      8   4
+0058    TGETS    7   4  23  ; "setStraighten"
+0059    TGETS    9   1   2  ; "configurable"
+0060    TGETS    9   9  24  ; "auto_straighten"
+0061    CALL     7   1   3
+0062    MOV      8   4
+0063    TGETS    7   4  25  ; "setJustification"
+0064    TGETS    9   1   2  ; "configurable"
+0065    TGETS    9   9  26  ; "justification"
+0066    CALL     7   1   3
+0067    MOV      8   4
+0068    TGETS    7   4  27  ; "setWritingDirection"
+0069    TGETS    9   1   2  ; "configurable"
+0070    TGETS    9   9  28  ; "writing_direction"
+0071    CALL     7   1   3
+0072    MOV      8   4
+0073    TGETS    7   4  29  ; "setZoom"
+0074    TGETS    9   1   2  ; "configurable"
+0075    TGETS    9   9  30  ; "font_size"
+0076    CALL     7   1   3
+0077    MOV      8   4
+0078    TGETS    7   4  31  ; "setMargin"
+0079    TGETS    9   1   2  ; "configurable"
+0080    TGETS    9   9  32  ; "page_margin"
+0081    CALL     7   1   3
+0082    MOV      8   4
+0083    TGETS    7   4  33  ; "setQuality"
+0084    TGETS    9   1   2  ; "configurable"
+0085    TGETS    9   9  34  ; "quality"
+0086    CALL     7   1   3
+0087    MOV      8   4
+0088    TGETS    7   4  35  ; "setContrast"
+0089    TGETS    9   1   2  ; "configurable"
+0090    TGETS    9   9  36  ; "contrast"
+0091    CALL     7   1   3
+0092    MOV      8   4
+0093    TGETS    7   4  37  ; "setDefectSize"
+0094    TGETS    9   1   2  ; "configurable"
+0095    TGETS    9   9  38  ; "defect_size"
+0096    CALL     7   1   3
+0097    MOV      8   4
+0098    TGETS    7   4  39  ; "setLineSpacing"
+0099    TGETS    9   1   2  ; "configurable"
+0100    TGETS    9   9  40  ; "line_spacing"
+0101    CALL     7   1   3
+0102    MOV      8   4
+0103    TGETS    7   4  41  ; "setWordSpacing"
+0104    TGETS    9   1   2  ; "configurable"
+0105    TGETS    9   9  42  ; "word_spacing"
+0106    CALL     7   1   3
+0107    ISF          3
+0108    JMP      7 => 0137
+0109    TGETS    7   3  43  ; "x0"
+0110    TGETS    8   3  44  ; "x1"
+0111    ISLE     8   7
+0112    JMP      7 => 0117
+0113    TGETS    7   3  45  ; "y0"
+0114    TGETS    8   3  46  ; "y1"
+0115    ISGT     8   7
+0116    JMP      7 => 0130
+0117 => UGET     7   2      ; Document
+0118    TGETS    7   7  47  ; "getNativePageDimensions"
+0119    MOV      8   1
+0120    MOV      9   2
+0121    CALL     7   2   3
+0122    KSHORT   8   0
+0123    KSHORT   9   0
+0124    TSETS    9   3  45  ; "y0"
+0125    TSETS    8   3  43  ; "x0"
+0126    TGETS    8   7  19  ; "w"
+0127    TGETS    9   7  20  ; "h"
+0128    TSETS    9   3  46  ; "y1"
+0129    TSETS    8   3  44  ; "x1"
+0130 => MOV      8   4
+0131    TGETS    7   4  48  ; "setBBox"
+0132    TGETS    9   3  43  ; "x0"
+0133    TGETS   10   3  45  ; "y0"
+0134    TGETS   11   3  44  ; "x1"
+0135    TGETS   12   3  46  ; "y1"
+0136    CALL     7   1   6
+0137 => UGET     7   3      ; DEBUG
+0138    TGETS    7   7  49  ; "is_on"
+0139    ISF          7
+0140    JMP      8 => 0144
+0141    MOV      8   4
+0142    TGETS    7   4  50  ; "setDebug"
+0143    CALL     7   1   2
+0144 => RET1     4   2
+
+-- BYTECODE -- koptinterface.lua:130-136
+0001    UGET     4   0      ; CanvasContext
+0002    MOV      5   4
+0003    TGETS    4   4   0  ; "getSize"
+0004    CALL     4   2   2
+0005    TGETS    5   4   1  ; "w"
+0006    KSTR     6   2      ; "|"
+0007    TGETS    7   4   3  ; "h"
+0008    CAT      5   5   7
+0009    TGETS    6   3   4  ; "x0"
+0010    KSTR     7   2      ; "|"
+0011    TGETS    8   3   5  ; "y0"
+0012    KSTR     9   2      ; "|"
+0013    TGETS   10   3   6  ; "x1"
+0014    KSTR    11   2      ; "|"
+0015    TGETS   12   3   7  ; "y1"
+0016    CAT      6   6  12
+0017    TGETS    7   1   8  ; "file"
+0018    KSTR     8   2      ; "|"
+0019    TGETS    9   1   9  ; "mod_time"
+0020    KSTR    10   2      ; "|"
+0021    MOV     11   2
+0022    KSTR    12   2      ; "|"
+0023    TGETS   13   1  10  ; "configurable"
+0024    MOV     14  13
+0025    TGETS   13  13  11  ; "hash"
+0026    KSTR    15   2      ; "|"
+0027    CALL    13   2   3
+0028    KSTR    14   2      ; "|"
+0029    MOV     15   6
+0030    KSTR    16   2      ; "|"
+0031    MOV     17   5
+0032    CAT      7   7  17
+0033    RET1     7   2
+
+-- BYTECODE -- koptinterface.lua:138-149
+0001    TGETS    3   1   0  ; "configurable"
+0002    TGETS    3   3   1  ; "text_wrap"
+0003    ISEQN    3   0      ; 1
+0004    JMP      3 => 0015
+0005    TGETS    3   1   0  ; "configurable"
+0006    TGETS    3   3   2  ; "trim_page"
+0007    ISNEN    3   0      ; 1
+0008    JMP      3 => 0015
+0009    MOV      4   0
+0010    TGETS    3   0   3  ; "getAutoBBox"
+0011    MOV      5   1
+0012    MOV      6   2
+0013    CALLT    3   4
+0014    JMP      3 => 0034
+0015 => TGETS    3   1   0  ; "configurable"
+0016    TGETS    3   3   1  ; "text_wrap"
+0017    ISEQN    3   0      ; 1
+0018    JMP      3 => 0029
+0019    TGETS    3   1   0  ; "configurable"
+0020    TGETS    3   3   2  ; "trim_page"
+0021    ISNEN    3   1      ; 2
+0022    JMP      3 => 0029
+0023    MOV      4   0
+0024    TGETS    3   0   4  ; "getSemiAutoBBox"
+0025    MOV      5   1
+0026    MOV      6   2
+0027    CALLT    3   4
+0028    JMP      3 => 0034
+0029 => UGET     3   0      ; Document
+0030    TGETS    3   3   5  ; "getPageBBox"
+0031    MOV      4   1
+0032    MOV      5   2
+0033    CALLT    3   3
+0034 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:154-182
+0001    UGET     3   0      ; Document
+0002    TGETS    3   3   0  ; "getNativePageDimensions"
+0003    MOV      4   1
+0004    MOV      5   2
+0005    CALL     3   2   3
+0006    TDUP     4   1
+0007    TGETS    5   3   2  ; "w"
+0008    TSETS    5   4   3  ; "x1"
+0009    TGETS    5   3   4  ; "h"
+0010    TSETS    5   4   5  ; "y1"
+0011    MOV      6   0
+0012    TGETS    5   0   6  ; "getContextHash"
+0013    MOV      7   1
+0014    MOV      8   2
+0015    MOV      9   4
+0016    CALL     5   2   5
+0017    KSTR     6   7      ; "autobbox|"
+0018    MOV      7   5
+0019    CAT      6   6   7
+0020    UGET     7   1      ; Cache
+0021    MOV      8   7
+0022    TGETS    7   7   8  ; "check"
+0023    MOV      9   6
+0024    CALL     7   2   3
+0025    IST          7
+0026    JMP      8 => 0090
+0027    TGETS    8   1   9  ; "_document"
+0028    MOV      9   8
+0029    TGETS    8   8  10  ; "openPage"
+0030    MOV     10   2
+0031    CALL     8   2   3
+0032    MOV     10   0
+0033    TGETS    9   0  11  ; "createContext"
+0034    MOV     11   1
+0035    MOV     12   2
+0036    MOV     13   4
+0037    CALL     9   2   5
+0038    MOV     11   8
+0039    TGETS   10   8  12  ; "getPagePix"
+0040    MOV     12   9
+0041    CALL    10   1   3
+0042    MOV     11   9
+0043    TGETS   10   9  13  ; "getAutoBBox"
+0044    CALL    10   5   2
+0045    TGETS   14   3   2  ; "w"
+0046    TGETS   15   3   4  ; "h"
+0047    SUBVV   16  12  10
+0048    DIVVV   16  16  14
+0049    KNUM    17   0      ; 0.1
+0050    ISLT    17  16
+0051    JMP     16 => 0057
+0052    SUBVV   16  13  11
+0053    DIVVV   16  16  15
+0054    KNUM    17   0      ; 0.1
+0055    ISGE    17  16
+0056    JMP     16 => 0065
+0057 => MOV     16  10
+0058    MOV     17  11
+0059    MOV     18  12
+0060    TSETS   13   4   5  ; "y1"
+0061    TSETS   18   4   3  ; "x1"
+0062    TSETS   17   4  15  ; "y0"
+0063    TSETS   16   4  14  ; "x0"
+0064    JMP     16 => 0071
+0065 => UGET    16   0      ; Document
+0066    TGETS   16  16  16  ; "getPageBBox"
+0067    MOV     17   1
+0068    MOV     18   2
+0069    CALL    16   2   3
+0070    MOV      4  16
+0071 => UGET    16   1      ; Cache
+0072    MOV     17  16
+0073    TGETS   16  16  17  ; "insert"
+0074    MOV     18   6
+0075    UGET    19   2      ; CacheItem
+0076    MOV     20  19
+0077    TGETS   19  19  18  ; "new"
+0078    TDUP    21  19
+0079    TSETS    4  21  20  ; "autobbox"
+0080    CALL    19   0   3
+0081    CALLM   16   1   2
+0082    MOV     17   8
+0083    TGETS   16   8  21  ; "close"
+0084    CALL    16   1   2
+0085    MOV     17   9
+0086    TGETS   16   9  22  ; "free"
+0087    CALL    16   1   2
+0088    RET1     4   2
+0089    JMP      8 => 0092
+0090 => TGETS    8   7  20  ; "autobbox"
+0091    RET1     8   2
+0092 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:187-216
+0001    UGET     3   0      ; Document
+0002    TGETS    3   3   0  ; "getPageBBox"
+0003    MOV      4   1
+0004    MOV      5   2
+0005    CALL     3   2   3
+0006    MOV      5   0
+0007    TGETS    4   0   1  ; "getContextHash"
+0008    MOV      6   1
+0009    MOV      7   2
+0010    MOV      8   3
+0011    CALL     4   2   5
+0012    KSTR     5   2      ; "semiautobbox|"
+0013    MOV      6   4
+0014    CAT      5   5   6
+0015    UGET     6   1      ; Cache
+0016    MOV      7   6
+0017    TGETS    6   6   3  ; "check"
+0018    MOV      8   5
+0019    CALL     6   2   3
+0020    IST          6
+0021    JMP      7 => 0111
+0022    TGETS    7   1   4  ; "_document"
+0023    MOV      8   7
+0024    TGETS    7   7   5  ; "openPage"
+0025    MOV      9   2
+0026    CALL     7   2   3
+0027    MOV      9   0
+0028    TGETS    8   0   6  ; "createContext"
+0029    MOV     10   1
+0030    MOV     11   2
+0031    MOV     12   3
+0032    CALL     8   2   5
+0033    TNEW     9   0
+0034    MOV     11   7
+0035    TGETS   10   7   7  ; "getPagePix"
+0036    MOV     12   8
+0037    CALL    10   1   3
+0038    MOV     11   8
+0039    TGETS   10   8  12  ; "getAutoBBox"
+0040    CALL    10   5   2
+0041    TSETS   13   9  11  ; "y1"
+0042    TSETS   12   9  10  ; "x1"
+0043    TSETS   11   9   9  ; "y0"
+0044    TSETS   10   9   8  ; "x0"
+0045    TGETS   10   9   8  ; "x0"
+0046    TGETS   11   3   8  ; "x0"
+0047    ADDVV   10  10  11
+0048    TSETS   10   9   8  ; "x0"
+0049    TGETS   10   9   9  ; "y0"
+0050    TGETS   11   3   9  ; "y0"
+0051    ADDVV   10  10  11
+0052    TSETS   10   9   9  ; "y0"
+0053    TGETS   10   9  10  ; "x1"
+0054    TGETS   11   3   8  ; "x0"
+0055    ADDVV   10  10  11
+0056    TSETS   10   9  10  ; "x1"
+0057    TGETS   10   9  11  ; "y1"
+0058    TGETS   11   3   9  ; "y0"
+0059    ADDVV   10  10  11
+0060    TSETS   10   9  11  ; "y1"
+0061    UGET    10   2      ; logger
+0062    TGETS   10  10  13  ; "dbg"
+0063    KSTR    11  14      ; "Semi-auto detected bbox"
+0064    MOV     12   9
+0065    CALL    10   1   3
+0066    UGET    10   0      ; Document
+0067    TGETS   10  10  15  ; "getNativePageDimensions"
+0068    MOV     11   1
+0069    MOV     12   2
+0070    CALL    10   2   3
+0071    TGETS   11   9  10  ; "x1"
+0072    TGETS   12   9   8  ; "x0"
+0073    SUBVV   11  11  12
+0074    TGETS   12  10  16  ; "w"
+0075    DIVVV   11  11  12
+0076    KNUM    12   0      ; 0.1
+0077    ISGE    11  12
+0078    JMP     11 => 0092
+0079    TGETS   11   9  11  ; "y1"
+0080    TGETS   12   9   9  ; "y0"
+0081    SUBVV   11  11  12
+0082    TGETS   12  10  17  ; "h"
+0083    DIVVV   11  11  12
+0084    KNUM    12   0      ; 0.1
+0085    ISGE    11  12
+0086    JMP     11 => 0092
+0087    UGET    11   2      ; logger
+0088    TGETS   11  11  13  ; "dbg"
+0089    KSTR    12  18      ; "Semi-auto detected bbox too small, using"~
+0090    CALL    11   1   2
+0091    MOV      9   3
+0092 => MOV     12   7
+0093    TGETS   11   7  19  ; "close"
+0094    CALL    11   1   2
+0095    UGET    11   1      ; Cache
+0096    MOV     12  11
+0097    TGETS   11  11  20  ; "insert"
+0098    MOV     13   5
+0099    UGET    14   3      ; CacheItem
+0100    MOV     15  14
+0101    TGETS   14  14  21  ; "new"
+0102    TDUP    16  22
+0103    TSETS    9  16  23  ; "semiautobbox"
+0104    CALL    14   0   3
+0105    CALLM   11   1   2
+0106    MOV     12   8
+0107    TGETS   11   8  24  ; "free"
+0108    CALL    11   1   2
+0109    RET1     9   2
+0110    JMP      7 => 0113
+0111 => TGETS    7   6  23  ; "semiautobbox"
+0112    RET1     7   2
+0113 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:224-257
+0001    MOV      4   1
+0002    TGETS    3   1   0  ; "getPageBBox"
+0003    MOV      5   2
+0004    CALL     3   2   3
+0005    MOV      5   0
+0006    TGETS    4   0   1  ; "getContextHash"
+0007    MOV      6   1
+0008    MOV      7   2
+0009    MOV      8   3
+0010    CALL     4   2   5
+0011    KSTR     5   2      ; "kctx|"
+0012    MOV      6   4
+0013    CAT      5   5   6
+0014    UGET     6   0      ; Cache
+0015    MOV      7   6
+0016    TGETS    6   6   3  ; "check"
+0017    MOV      8   5
+0018    UGET     9   1      ; ContextCacheItem
+0019    CALL     6   2   4
+0020    IST          6
+0021    JMP      7 => 0077
+0022    MOV      8   0
+0023    TGETS    7   0   4  ; "createContext"
+0024    MOV      9   1
+0025    MOV     10   2
+0026    MOV     11   3
+0027    CALL     7   2   5
+0028    TGETS    8   1   5  ; "_document"
+0029    MOV      9   8
+0030    TGETS    8   8   6  ; "openPage"
+0031    MOV     10   2
+0032    CALL     8   2   3
+0033    UGET     9   2      ; logger
+0034    TGETS    9   9   7  ; "dbg"
+0035    KSTR    10   8      ; "reflowing page"
+0036    MOV     11   2
+0037    KSTR    12   9      ; "in foreground"
+0038    CALL     9   1   4
+0039    MOV     10   8
+0040    TGETS    9   8  10  ; "reflow"
+0041    MOV     11   7
+0042    KSHORT  12   0
+0043    CALL     9   1   4
+0044    MOV     10   8
+0045    TGETS    9   8  11  ; "close"
+0046    CALL     9   1   2
+0047    MOV     10   7
+0048    TGETS    9   7  12  ; "getPageDim"
+0049    CALL     9   3   2
+0050    UGET    11   2      ; logger
+0051    TGETS   11  11   7  ; "dbg"
+0052    KSTR    12  13      ; "reflowed page"
+0053    MOV     13   2
+0054    KSTR    14  14      ; "fullwidth:"
+0055    MOV     15   9
+0056    KSTR    16  15      ; "fullheight:"
+0057    MOV     17  10
+0058    CALL    11   1   7
+0059    MULVV   11   9  10
+0060    ADDVN   11  11   0  ; 128
+0061    TSETS   11   0  16  ; "last_context_size"
+0062    UGET    11   0      ; Cache
+0063    MOV     12  11
+0064    TGETS   11  11  17  ; "insert"
+0065    MOV     13   5
+0066    UGET    14   1      ; ContextCacheItem
+0067    MOV     15  14
+0068    TGETS   14  14  18  ; "new"
+0069    TDUP    16  19
+0070    TGETS   17   0  16  ; "last_context_size"
+0071    TSETS   17  16  20  ; "size"
+0072    TSETS    7  16  21  ; "kctx"
+0073    CALL    14   0   3
+0074    CALLM   11   1   2
+0075    RET1     7   2
+0076    JMP      7 => 0088
+0077 => MOV      8   0
+0078    TGETS    7   0  22  ; "waitForContext"
+0079    TGETS    9   6  21  ; "kctx"
+0080    CALL     7   2   3
+0081    MOV      9   7
+0082    TGETS    8   7  12  ; "getPageDim"
+0083    CALL     8   3   2
+0084    MULVV   10   8   9
+0085    ADDVN   10  10   0  ; 128
+0086    TSETS   10   0  16  ; "last_context_size"
+0087    RET1     7   2
+0088 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:262-268
+0001    TGETS    5   1   0  ; "configurable"
+0002    TGETS    5   5   1  ; "text_wrap"
+0003    ISNEN    5   0      ; 1
+0004    JMP      5 => 0013
+0005    MOV      6   0
+0006    TGETS    5   0   2  ; "getRFPageDimensions"
+0007    MOV      7   1
+0008    MOV      8   2
+0009    MOV      9   3
+0010    MOV     10   4
+0011    CALLT    5   6
+0012    JMP      5 => 0020
+0013 => UGET     5   0      ; Document
+0014    TGETS    5   5   3  ; "getPageDimensions"
+0015    MOV      6   1
+0016    MOV      7   2
+0017    MOV      8   3
+0018    MOV      9   4
+0019    CALLT    5   5
+0020 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:273-277
+0001    MOV      6   0
+0002    TGETS    5   0   0  ; "getCachedContext"
+0003    MOV      7   1
+0004    MOV      8   2
+0005    CALL     5   2   4
+0006    MOV      7   5
+0007    TGETS    6   5   1  ; "getPageDim"
+0008    CALL     6   3   2
+0009    UGET     8   0      ; Geom
+0010    MOV      9   8
+0011    TGETS    8   8   2  ; "new"
+0012    TDUP    10   3
+0013    TSETS    6  10   4  ; "w"
+0014    TSETS    7  10   5  ; "h"
+0015    CALLT    8   3
+
+-- BYTECODE -- koptinterface.lua:282-290
+0001    UGET     2   0      ; Document
+0002    TGETS    2   2   0  ; "getNativePageDimensions"
+0003    MOV      3   1
+0004    KSHORT   4   1
+0005    CALL     2   2   3
+0006    UGET     3   1      ; CanvasContext
+0007    MOV      4   3
+0008    TGETS    3   3   1  ; "getSize"
+0009    CALL     3   2   2
+0010    GGET     4   2      ; "math"
+0011    TGETS    4   4   3  ; "min"
+0012    TGETS    5   3   4  ; "w"
+0013    TGETS    6   2   4  ; "w"
+0014    DIVVV    5   5   6
+0015    TGETS    6   3   5  ; "h"
+0016    TGETS    7   2   5  ; "h"
+0017    DIVVV    6   6   7
+0018    CALL     4   2   3
+0019    UGET     5   0      ; Document
+0020    TGETS    5   5   6  ; "renderPage"
+0021    MOV      6   1
+0022    KSHORT   7   1
+0023    KPRI     8   0
+0024    MOV      9   4
+0025    KSHORT  10   0
+0026    KSHORT  11   1
+0027    KSHORT  12   0
+0028    CALL     5   2   8
+0029    ISF          5
+0030    JMP      6 => 0035
+0031    TGETS    6   5   7  ; "bb"
+0032    MOV      7   6
+0033    TGETS    6   6   8  ; "copy"
+0034    CALLT    6   2
+0035 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:292-300
+0001    TGETS    8   1   0  ; "configurable"
+0002    TGETS    8   8   1  ; "text_wrap"
+0003    ISNEN    8   0      ; 1
+0004    JMP      8 => 0015
+0005    MOV      9   0
+0006    TGETS    8   0   2  ; "renderReflowedPage"
+0007    MOV     10   1
+0008    MOV     11   2
+0009    MOV     12   3
+0010    MOV     13   4
+0011    MOV     14   5
+0012    MOV     15   7
+0013    CALLT    8   8
+0014    JMP      8 => 0039
+0015 => TGETS    8   1   0  ; "configurable"
+0016    TGETS    8   8   3  ; "page_opt"
+0017    ISNEN    8   0      ; 1
+0018    JMP      8 => 0029
+0019    MOV      9   0
+0020    TGETS    8   0   4  ; "renderOptimizedPage"
+0021    MOV     10   1
+0022    MOV     11   2
+0023    MOV     12   3
+0024    MOV     13   4
+0025    MOV     14   5
+0026    MOV     15   7
+0027    CALLT    8   8
+0028    JMP      8 => 0039
+0029 => UGET     8   0      ; Document
+0030    TGETS    8   8   5  ; "renderPage"
+0031    MOV      9   1
+0032    MOV     10   2
+0033    MOV     11   3
+0034    MOV     12   4
+0035    MOV     13   5
+0036    MOV     14   6
+0037    MOV     15   7
+0038    CALLT    8   8
+0039 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:307-334
+0001    TSETS    6   1   0  ; "render_mode"
+0002    MOV      8   1
+0003    TGETS    7   1   1  ; "getPageBBox"
+0004    MOV      9   2
+0005    CALL     7   2   3
+0006    MOV      9   0
+0007    TGETS    8   0   2  ; "getContextHash"
+0008    MOV     10   1
+0009    MOV     11   2
+0010    MOV     12   7
+0011    CALL     8   2   5
+0012    KSTR     9   3      ; "renderpg|"
+0013    MOV     10   8
+0014    CAT      9   9  10
+0015    UGET    10   0      ; Cache
+0016    MOV     11  10
+0017    TGETS   10  10   4  ; "check"
+0018    MOV     12   9
+0019    CALL    10   2   3
+0020    IST         10
+0021    JMP     11 => 0070
+0022    MOV     12   0
+0023    TGETS   11   0   5  ; "getCachedContext"
+0024    MOV     13   1
+0025    MOV     14   2
+0026    CALL    11   2   4
+0027    MOV     13  11
+0028    TGETS   12  11   6  ; "getPageDim"
+0029    CALL    12   3   2
+0030    UGET    14   0      ; Cache
+0031    MOV     15  14
+0032    TGETS   14  14   7  ; "willAccept"
+0033    MULVV   16  12  13
+0034    DIVVN   16  16   0  ; 2
+0035    CALL    14   2   3
+0036    IST         14
+0037    JMP     14 => 0041
+0038    GGET    14   8      ; "error"
+0039    KSTR    15   9      ; "aborting, since we don't have enough cac"~
+0040    CALL    14   1   2
+0041 => UGET    14   1      ; TileCacheItem
+0042    MOV     15  14
+0043    TGETS   14  14  10  ; "new"
+0044    TDUP    16  11
+0045    MULVV   17  12  13
+0046    ADDVN   17  17   1  ; 64
+0047    TSETS   17  16  12  ; "size"
+0048    UGET    17   2      ; Geom
+0049    MOV     18  17
+0050    TGETS   17  17  10  ; "new"
+0051    TDUP    19  13
+0052    TSETS   12  19  14  ; "w"
+0053    TSETS   13  19  15  ; "h"
+0054    CALL    17   2   3
+0055    TSETS   17  16  16  ; "excerpt"
+0056    TSETS    2  16  17  ; "pageno"
+0057    CALL    14   2   3
+0058    MOV     16  11
+0059    TGETS   15  11  19  ; "dstToBlitBuffer"
+0060    CALL    15   2   2
+0061    TSETS   15  14  18  ; "bb"
+0062    UGET    15   0      ; Cache
+0063    MOV     16  15
+0064    TGETS   15  15  20  ; "insert"
+0065    MOV     17   9
+0066    MOV     18  14
+0067    CALL    15   1   4
+0068    RET1    14   2
+0069    JMP     11 => 0071
+0070 => RET1    10   2
+0071 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:341-381
+0001    TSETS    6   1   0  ; "render_mode"
+0002    MOV      8   1
+0003    TGETS    7   1   1  ; "getPageBBox"
+0004    MOV      9   2
+0005    CALL     7   2   3
+0006    MOV      9   0
+0007    TGETS    8   0   2  ; "getContextHash"
+0008    MOV     10   1
+0009    MOV     11   2
+0010    MOV     12   7
+0011    CALL     8   2   5
+0012    KSTR     9   3      ; "renderoptpg|"
+0013    MOV     10   8
+0014    MOV     11   4
+0015    CAT      9   9  11
+0016    UGET    10   0      ; Cache
+0017    MOV     11  10
+0018    TGETS   10  10   4  ; "check"
+0019    MOV     12   9
+0020    UGET    13   1      ; TileCacheItem
+0021    CALL    10   2   4
+0022    IST         10
+0023    JMP     11 => 0099
+0024    UGET    11   2      ; Document
+0025    TGETS   11  11   5  ; "getNativePageDimensions"
+0026    MOV     12   1
+0027    MOV     13   2
+0028    CALL    11   2   3
+0029    TDUP    12   6
+0030    TGETS   13  11   7  ; "w"
+0031    TSETS   13  12   8  ; "x1"
+0032    TGETS   13  11   9  ; "h"
+0033    TSETS   13  12  10  ; "y1"
+0034    MOV     14   0
+0035    TGETS   13   0  11  ; "createContext"
+0036    MOV     15   1
+0037    MOV     16   2
+0038    MOV     17  12
+0039    CALL    13   2   5
+0040    TGETS   14   1  12  ; "_document"
+0041    MOV     15  14
+0042    TGETS   14  14  13  ; "openPage"
+0043    MOV     16   2
+0044    CALL    14   2   3
+0045    MOV     16  13
+0046    TGETS   15  13  14  ; "setZoom"
+0047    MOV     17   4
+0048    CALL    15   1   3
+0049    MOV     16  14
+0050    TGETS   15  14  15  ; "getPagePix"
+0051    MOV     17  13
+0052    CALL    15   1   3
+0053    MOV     16  14
+0054    TGETS   15  14  16  ; "close"
+0055    CALL    15   1   2
+0056    UGET    15   3      ; logger
+0057    TGETS   15  15  17  ; "dbg"
+0058    KSTR    16  18      ; "optimizing page"
+0059    MOV     17   2
+0060    CALL    15   1   3
+0061    MOV     16  13
+0062    TGETS   15  13  19  ; "optimizePage"
+0063    CALL    15   1   2
+0064    MOV     16  13
+0065    TGETS   15  13  20  ; "getPageDim"
+0066    CALL    15   3   2
+0067    UGET    17   1      ; TileCacheItem
+0068    MOV     18  17
+0069    TGETS   17  17  21  ; "new"
+0070    TDUP    19  22
+0071    MULVV   20  15  16
+0072    ADDVN   20  20   0  ; 64
+0073    TSETS   20  19  23  ; "size"
+0074    UGET    20   4      ; Geom
+0075    MOV     21  20
+0076    TGETS   20  20  21  ; "new"
+0077    TDUP    22  24
+0078    TSETS   15  22   7  ; "w"
+0079    TSETS   16  22   9  ; "h"
+0080    CALL    20   2   3
+0081    TSETS   20  19  25  ; "excerpt"
+0082    TSETS    2  19  26  ; "pageno"
+0083    CALL    17   2   3
+0084    MOV     19  13
+0085    TGETS   18  13  28  ; "dstToBlitBuffer"
+0086    CALL    18   2   2
+0087    TSETS   18  17  27  ; "bb"
+0088    MOV     19  13
+0089    TGETS   18  13  29  ; "free"
+0090    CALL    18   1   2
+0091    UGET    18   0      ; Cache
+0092    MOV     19  18
+0093    TGETS   18  18  30  ; "insert"
+0094    MOV     20   9
+0095    MOV     21  17
+0096    CALL    18   1   4
+0097    RET1    17   2
+0098    JMP     11 => 0100
+0099 => RET1    10   2
+0100 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:383-391
+0001    TGETS    7   1   0  ; "configurable"
+0002    TGETS    7   7   1  ; "text_wrap"
+0003    ISNEN    7   0      ; 1
+0004    JMP      7 => 0015
+0005    MOV      8   0
+0006    TGETS    7   0   2  ; "hintReflowedPage"
+0007    MOV      9   1
+0008    MOV     10   2
+0009    MOV     11   3
+0010    MOV     12   4
+0011    MOV     13   5
+0012    MOV     14   6
+0013    CALL     7   1   8
+0014    JMP      7 => 0039
+0015 => TGETS    7   1   0  ; "configurable"
+0016    TGETS    7   7   3  ; "page_opt"
+0017    ISNEN    7   0      ; 1
+0018    JMP      7 => 0030
+0019    MOV      8   0
+0020    TGETS    7   0   4  ; "renderOptimizedPage"
+0021    MOV      9   1
+0022    MOV     10   2
+0023    KPRI    11   0
+0024    MOV     12   3
+0025    MOV     13   4
+0026    MOV     14   5
+0027    MOV     15   6
+0028    CALL     7   1   9
+0029    JMP      7 => 0039
+0030 => UGET     7   0      ; Document
+0031    TGETS    7   7   5  ; "hintPage"
+0032    MOV      8   1
+0033    MOV      9   2
+0034    MOV     10   3
+0035    MOV     11   4
+0036    MOV     12   5
+0037    MOV     13   6
+0038    CALL     7   1   7
+0039 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:402-420
+0001    MOV      8   1
+0002    TGETS    7   1   0  ; "getPageBBox"
+0003    MOV      9   2
+0004    CALL     7   2   3
+0005    MOV      9   0
+0006    TGETS    8   0   1  ; "getContextHash"
+0007    MOV     10   1
+0008    MOV     11   2
+0009    MOV     12   7
+0010    CALL     8   2   5
+0011    KSTR     9   2      ; "kctx|"
+0012    MOV     10   8
+0013    CAT      9   9  10
+0014    UGET    10   0      ; Cache
+0015    MOV     11  10
+0016    TGETS   10  10   3  ; "check"
+0017    MOV     12   9
+0018    CALL    10   2   3
+0019    IST         10
+0020    JMP     11 => 0065
+0021    MOV     12   0
+0022    TGETS   11   0   4  ; "createContext"
+0023    MOV     13   1
+0024    MOV     14   2
+0025    MOV     15   7
+0026    CALL    11   2   5
+0027    TGETS   12   1   5  ; "_document"
+0028    MOV     13  12
+0029    TGETS   12  12   6  ; "openPage"
+0030    MOV     14   2
+0031    CALL    12   2   3
+0032    UGET    13   1      ; logger
+0033    TGETS   13  13   7  ; "dbg"
+0034    KSTR    14   8      ; "hinting page"
+0035    MOV     15   2
+0036    KSTR    16   9      ; "in background"
+0037    CALL    13   1   4
+0038    MOV     14  11
+0039    TGETS   13  11  10  ; "setPreCache"
+0040    CALL    13   1   2
+0041    MOV     14  12
+0042    TGETS   13  12  11  ; "reflow"
+0043    MOV     15  11
+0044    KSHORT  16   0
+0045    CALL    13   1   4
+0046    MOV     14  12
+0047    TGETS   13  12  12  ; "close"
+0048    CALL    13   1   2
+0049    UGET    13   0      ; Cache
+0050    MOV     14  13
+0051    TGETS   13  13  13  ; "insert"
+0052    MOV     15   9
+0053    UGET    16   2      ; ContextCacheItem
+0054    MOV     17  16
+0055    TGETS   16  16  14  ; "new"
+0056    TDUP    18  17
+0057    TGETS   19   0  15  ; "last_context_size"
+0058    IST         19
+0059    JMP     20 => 0061
+0060    TGETS   19   0  16  ; "default_context_size"
+0061 => TSETS   19  18  18  ; "size"
+0062    TSETS   11  18  19  ; "kctx"
+0063    CALL    16   0   3
+0064    CALLM   13   1   2
+0065 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:422-430
+0001    TGETS   11   1   0  ; "configurable"
+0002    TGETS   11  11   1  ; "text_wrap"
+0003    ISNEN   11   0      ; 1
+0004    JMP     11 => 0018
+0005    MOV     12   0
+0006    TGETS   11   0   2  ; "drawContextPage"
+0007    MOV     13   1
+0008    MOV     14   2
+0009    MOV     15   3
+0010    MOV     16   4
+0011    MOV     17   5
+0012    MOV     18   6
+0013    MOV     19   7
+0014    MOV     20   8
+0015    MOV     21  10
+0016    CALL    11   1  11
+0017    JMP     11 => 0048
+0018 => TGETS   11   1   0  ; "configurable"
+0019    TGETS   11  11   3  ; "page_opt"
+0020    ISNEN   11   0      ; 1
+0021    JMP     11 => 0035
+0022    MOV     12   0
+0023    TGETS   11   0   2  ; "drawContextPage"
+0024    MOV     13   1
+0025    MOV     14   2
+0026    MOV     15   3
+0027    MOV     16   4
+0028    MOV     17   5
+0029    MOV     18   6
+0030    MOV     19   7
+0031    MOV     20   8
+0032    MOV     21  10
+0033    CALL    11   1  11
+0034    JMP     11 => 0048
+0035 => UGET    11   0      ; Document
+0036    TGETS   11  11   4  ; "drawPage"
+0037    MOV     12   1
+0038    MOV     13   2
+0039    MOV     14   3
+0040    MOV     15   4
+0041    MOV     16   5
+0042    MOV     17   6
+0043    MOV     18   7
+0044    MOV     19   8
+0045    MOV     20   9
+0046    MOV     21  10
+0047    CALL    11   1  11
+0048 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:437-444
+0001    MOV     11   0
+0002    TGETS   10   0   0  ; "renderPage"
+0003    MOV     12   1
+0004    MOV     13   6
+0005    MOV     14   5
+0006    MOV     15   7
+0007    MOV     16   8
+0008    MOV     17   9
+0009    CALL    10   2   8
+0010    MOV     12   2
+0011    TGETS   11   2   1  ; "blitFrom"
+0012    TGETS   13  10   2  ; "bb"
+0013    MOV     14   3
+0014    MOV     15   4
+0015    TGETS   16   5   3  ; "x"
+0016    TGETS   17  10   4  ; "excerpt"
+0017    TGETS   17  17   3  ; "x"
+0018    SUBVV   16  16  17
+0019    TGETS   17   5   5  ; "y"
+0020    TGETS   18  10   4  ; "excerpt"
+0021    TGETS   18  18   5  ; "y"
+0022    SUBVV   17  17  18
+0023    TGETS   18   5   6  ; "w"
+0024    TGETS   19   5   7  ; "h"
+0025    CALL    11   1   9
+0026    RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:451-464
+0001    MOV      4   1
+0002    TGETS    3   1   0  ; "getPageTextBoxes"
+0003    MOV      5   2
+0004    CALL     3   2   3
+0005    ISF          3
+0006    JMP      4 => 0017
+0007    LEN      4   3
+0008    KSHORT   5   1
+0009    ISGE     5   4
+0010    JMP      4 => 0017
+0011    TGETS    4   1   1  ; "configurable"
+0012    TGETS    4   4   2  ; "forced_ocr"
+0013    ISEQN    4   0      ; 1
+0014    JMP      4 => 0017
+0015    RET1     3   2
+0016    JMP      4 => 0032
+0017 => TGETS    4   1   1  ; "configurable"
+0018    TGETS    4   4   3  ; "text_wrap"
+0019    ISNEN    4   0      ; 1
+0020    JMP      4 => 0027
+0021    MOV      5   0
+0022    TGETS    4   0   4  ; "getNativeTextBoxes"
+0023    MOV      6   1
+0024    MOV      7   2
+0025    CALLT    4   4
+0026    JMP      4 => 0032
+0027 => MOV      5   0
+0028    TGETS    4   0   5  ; "getNativeTextBoxesFromScratch"
+0029    MOV      6   1
+0030    MOV      7   2
+0031    CALLT    4   4
+0032 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:469-488
+0001    MOV      4   1
+0002    TGETS    3   1   0  ; "getPageBBox"
+0003    MOV      5   2
+0004    CALL     3   2   3
+0005    MOV      5   0
+0006    TGETS    4   0   1  ; "getContextHash"
+0007    MOV      6   1
+0008    MOV      7   2
+0009    MOV      8   3
+0010    CALL     4   2   5
+0011    KSTR     5   2      ; "rfpgboxes|"
+0012    MOV      6   4
+0013    CAT      5   5   6
+0014    UGET     6   0      ; Cache
+0015    MOV      7   6
+0016    TGETS    6   6   3  ; "check"
+0017    MOV      8   5
+0018    CALL     6   2   3
+0019    IST          6
+0020    JMP      7 => 0060
+0021    KSTR     7   4      ; "kctx|"
+0022    MOV      8   4
+0023    CAT      7   7   8
+0024    UGET     8   0      ; Cache
+0025    MOV      9   8
+0026    TGETS    8   8   3  ; "check"
+0027    MOV     10   7
+0028    CALL     8   2   3
+0029    MOV      6   8
+0030    ISF          6
+0031    JMP      8 => 0062
+0032    MOV      9   0
+0033    TGETS    8   0   5  ; "waitForContext"
+0034    TGETS   10   6   6  ; "kctx"
+0035    CALL     8   2   3
+0036    MOV     10   8
+0037    TGETS    9   8   7  ; "getPageDim"
+0038    CALL     9   3   2
+0039    MOV     12   8
+0040    TGETS   11   8   8  ; "getReflowedWordBoxes"
+0041    KSTR    13   9      ; "dst"
+0042    KSHORT  14   0
+0043    KSHORT  15   0
+0044    MOV     16   9
+0045    MOV     17  10
+0046    CALL    11   2   7
+0047    UGET    12   0      ; Cache
+0048    MOV     13  12
+0049    TGETS   12  12  10  ; "insert"
+0050    MOV     14   5
+0051    UGET    15   1      ; CacheItem
+0052    MOV     16  15
+0053    TGETS   15  15  11  ; "new"
+0054    TDUP    17  12
+0055    TSETS   11  17  13  ; "rfpgboxes"
+0056    CALL    15   0   3
+0057    CALLM   12   1   2
+0058    RET1    11   2
+0059    JMP      7 => 0062
+0060 => TGETS    7   6  13  ; "rfpgboxes"
+0061    RET1     7   2
+0062 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:493-512
+0001    MOV      4   1
+0002    TGETS    3   1   0  ; "getPageBBox"
+0003    MOV      5   2
+0004    CALL     3   2   3
+0005    MOV      5   0
+0006    TGETS    4   0   1  ; "getContextHash"
+0007    MOV      6   1
+0008    MOV      7   2
+0009    MOV      8   3
+0010    CALL     4   2   5
+0011    KSTR     5   2      ; "nativepgboxes|"
+0012    MOV      6   4
+0013    CAT      5   5   6
+0014    UGET     6   0      ; Cache
+0015    MOV      7   6
+0016    TGETS    6   6   3  ; "check"
+0017    MOV      8   5
+0018    CALL     6   2   3
+0019    IST          6
+0020    JMP      7 => 0060
+0021    KSTR     7   4      ; "kctx|"
+0022    MOV      8   4
+0023    CAT      7   7   8
+0024    UGET     8   0      ; Cache
+0025    MOV      9   8
+0026    TGETS    8   8   3  ; "check"
+0027    MOV     10   7
+0028    CALL     8   2   3
+0029    MOV      6   8
+0030    ISF          6
+0031    JMP      8 => 0062
+0032    MOV      9   0
+0033    TGETS    8   0   5  ; "waitForContext"
+0034    TGETS   10   6   6  ; "kctx"
+0035    CALL     8   2   3
+0036    MOV     10   8
+0037    TGETS    9   8   7  ; "getPageDim"
+0038    CALL     9   3   2
+0039    MOV     12   8
+0040    TGETS   11   8   8  ; "getNativeWordBoxes"
+0041    KSTR    13   9      ; "dst"
+0042    KSHORT  14   0
+0043    KSHORT  15   0
+0044    MOV     16   9
+0045    MOV     17  10
+0046    CALL    11   2   7
+0047    UGET    12   0      ; Cache
+0048    MOV     13  12
+0049    TGETS   12  12  10  ; "insert"
+0050    MOV     14   5
+0051    UGET    15   1      ; CacheItem
+0052    MOV     16  15
+0053    TGETS   15  15  11  ; "new"
+0054    TDUP    17  12
+0055    TSETS   11  17  13  ; "nativepgboxes"
+0056    CALL    15   0   3
+0057    CALLM   12   1   2
+0058    RET1    11   2
+0059    JMP      7 => 0062
+0060 => TGETS    7   6  13  ; "nativepgboxes"
+0061    RET1     7   2
+0062 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:519-540
+0001    MOV      4   1
+0002    TGETS    3   1   0  ; "getPageBBox"
+0003    MOV      5   2
+0004    CALL     3   2   3
+0005    MOV      5   0
+0006    TGETS    4   0   1  ; "getContextHash"
+0007    MOV      6   1
+0008    MOV      7   2
+0009    MOV      8   3
+0010    CALL     4   2   5
+0011    KSTR     5   2      ; "scratchrfpgboxes|"
+0012    MOV      6   4
+0013    CAT      5   5   6
+0014    UGET     6   0      ; Cache
+0015    MOV      7   6
+0016    TGETS    6   6   3  ; "check"
+0017    MOV      8   5
+0018    CALL     6   2   3
+0019    IST          6
+0020    JMP      7 => 0072
+0021    KSTR     7   4      ; "kctx|"
+0022    MOV      8   4
+0023    CAT      7   7   8
+0024    UGET     8   0      ; Cache
+0025    MOV      9   8
+0026    TGETS    8   8   3  ; "check"
+0027    MOV     10   7
+0028    CALL     8   2   3
+0029    MOV      6   8
+0030    ISF          6
+0031    JMP      8 => 0074
+0032    MOV      9   0
+0033    TGETS    8   0   5  ; "waitForContext"
+0034    TGETS   10   6   6  ; "kctx"
+0035    CALL     8   2   3
+0036    MOV     10   8
+0037    TGETS    9   8   7  ; "getPageDim"
+0038    CALL     9   3   2
+0039    MOV     12   0
+0040    TGETS   11   0   8  ; "createContext"
+0041    MOV     13   1
+0042    MOV     14   2
+0043    CALL    11   2   4
+0044    MOV     13  11
+0045    TGETS   12  11   9  ; "copyDestBMP"
+0046    MOV     14   8
+0047    CALL    12   1   3
+0048    MOV     13  11
+0049    TGETS   12  11  10  ; "getNativeWordBoxes"
+0050    KSTR    14  11      ; "dst"
+0051    KSHORT  15   0
+0052    KSHORT  16   0
+0053    MOV     17   9
+0054    MOV     18  10
+0055    CALL    12   2   7
+0056    UGET    13   0      ; Cache
+0057    MOV     14  13
+0058    TGETS   13  13  12  ; "insert"
+0059    MOV     15   5
+0060    UGET    16   1      ; CacheItem
+0061    MOV     17  16
+0062    TGETS   16  16  13  ; "new"
+0063    TDUP    18  14
+0064    TSETS   12  18  15  ; "scratchrfpgboxes"
+0065    CALL    16   0   3
+0066    CALLM   13   1   2
+0067    MOV     14  11
+0068    TGETS   13  11  16  ; "free"
+0069    CALL    13   1   2
+0070    RET1    12   2
+0071    JMP      7 => 0074
+0072 => TGETS    7   6  15  ; "scratchrfpgboxes"
+0073    RET1     7   2
+0074 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:547-569
+0001    KSTR     3   0      ; "scratchnativepgboxes|"
+0002    TGETS    4   1   1  ; "file"
+0003    KSTR     5   2      ; "|"
+0004    MOV      6   2
+0005    CAT      3   3   6
+0006    UGET     4   0      ; Cache
+0007    MOV      5   4
+0008    TGETS    4   4   3  ; "check"
+0009    MOV      6   3
+0010    CALL     4   2   3
+0011    IST          4
+0012    JMP      5 => 0069
+0013    UGET     5   1      ; Document
+0014    TGETS    5   5   4  ; "getNativePageDimensions"
+0015    MOV      6   1
+0016    MOV      7   2
+0017    CALL     5   2   3
+0018    TDUP     6   5
+0019    TGETS    7   5   6  ; "w"
+0020    TSETS    7   6   7  ; "x1"
+0021    TGETS    7   5   8  ; "h"
+0022    TSETS    7   6   9  ; "y1"
+0023    MOV      8   0
+0024    TGETS    7   0  10  ; "createContext"
+0025    MOV      9   1
+0026    MOV     10   2
+0027    MOV     11   6
+0028    CALL     7   2   5
+0029    MOV      9   7
+0030    TGETS    8   7  11  ; "setZoom"
+0031    KSHORT  10   1
+0032    CALL     8   1   3
+0033    TGETS    8   1  12  ; "_document"
+0034    MOV      9   8
+0035    TGETS    8   8  13  ; "openPage"
+0036    MOV     10   2
+0037    CALL     8   2   3
+0038    MOV     10   8
+0039    TGETS    9   8  14  ; "getPagePix"
+0040    MOV     11   7
+0041    CALL     9   1   3
+0042    MOV     10   7
+0043    TGETS    9   7  15  ; "getNativeWordBoxes"
+0044    KSTR    11  16      ; "src"
+0045    KSHORT  12   0
+0046    KSHORT  13   0
+0047    TGETS   14   5   6  ; "w"
+0048    TGETS   15   5   8  ; "h"
+0049    CALL     9   2   7
+0050    UGET    10   0      ; Cache
+0051    MOV     11  10
+0052    TGETS   10  10  17  ; "insert"
+0053    MOV     12   3
+0054    UGET    13   2      ; CacheItem
+0055    MOV     14  13
+0056    TGETS   13  13  18  ; "new"
+0057    TDUP    15  19
+0058    TSETS    9  15  20  ; "scratchnativepgboxes"
+0059    CALL    13   0   3
+0060    CALLM   10   1   2
+0061    MOV     11   8
+0062    TGETS   10   8  21  ; "close"
+0063    CALL    10   1   2
+0064    MOV     11   7
+0065    TGETS   10   7  22  ; "free"
+0066    CALL    10   1   2
+0067    RET1     9   2
+0068    JMP      5 => 0071
+0069 => TGETS    5   4  20  ; "scratchnativepgboxes"
+0070    RET1     5   2
+0071 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:574-600
+0001    KPRI     5   0
+0002    MOV      7   1
+0003    TGETS    6   1   0  ; "getPageBBox"
+0004    MOV      8   2
+0005    CALL     6   2   3
+0006    MOV      8   0
+0007    TGETS    7   0   1  ; "getContextHash"
+0008    MOV      9   1
+0009    MOV     10   2
+0010    MOV     11   6
+0011    CALL     7   2   5
+0012    KSTR     8   2      ; "pageblocks|"
+0013    MOV      9   7
+0014    CAT      8   8   9
+0015    UGET     9   0      ; Cache
+0016    MOV     10   9
+0017    TGETS    9   9   3  ; "check"
+0018    MOV     11   8
+0019    CALL     9   2   3
+0020    IST          9
+0021    JMP     10 => 0081
+0022    UGET    10   1      ; Document
+0023    TGETS   10  10   4  ; "getNativePageDimensions"
+0024    MOV     11   1
+0025    MOV     12   2
+0026    CALL    10   2   3
+0027    TDUP    11   5
+0028    TGETS   12  10   6  ; "w"
+0029    TSETS   12  11   7  ; "x1"
+0030    TGETS   12  10   8  ; "h"
+0031    TSETS   12  11   9  ; "y1"
+0032    MOV     13   0
+0033    TGETS   12   0  10  ; "createContext"
+0034    MOV     14   1
+0035    MOV     15   2
+0036    MOV     16  11
+0037    CALL    12   2   5
+0038    MOV     14  12
+0039    TGETS   13  12  11  ; "setZoom"
+0040    UGET    15   2      ; CanvasContext
+0041    MOV     16  15
+0042    TGETS   15  15  12  ; "getWidth"
+0043    CALL    15   2   2
+0044    TGETS   16  10   6  ; "w"
+0045    DIVVV   15  15  16
+0046    MULVN   15  15   0  ; 300
+0047    UGET    16   2      ; CanvasContext
+0048    MOV     17  16
+0049    TGETS   16  16  13  ; "getDPI"
+0050    CALL    16   2   2
+0051    DIVVV   15  15  16
+0052    CALL    13   1   3
+0053    TGETS   13   1  14  ; "_document"
+0054    MOV     14  13
+0055    TGETS   13  13  15  ; "openPage"
+0056    MOV     15   2
+0057    CALL    13   2   3
+0058    MOV     15  13
+0059    TGETS   14  13  16  ; "getPagePix"
+0060    MOV     16  12
+0061    CALL    14   1   3
+0062    MOV     15  12
+0063    TGETS   14  12  17  ; "findPageBlocks"
+0064    CALL    14   1   2
+0065    UGET    14   0      ; Cache
+0066    MOV     15  14
+0067    TGETS   14  14  18  ; "insert"
+0068    MOV     16   8
+0069    UGET    17   3      ; CacheItem
+0070    MOV     18  17
+0071    TGETS   17  17  19  ; "new"
+0072    TDUP    19  20
+0073    TSETS   12  19  21  ; "kctx"
+0074    CALL    17   0   3
+0075    CALLM   14   1   2
+0076    MOV     15  13
+0077    TGETS   14  13  22  ; "close"
+0078    CALL    14   1   2
+0079    MOV      5  12
+0080    JMP     10 => 0082
+0081 => TGETS    5   9  21  ; "kctx"
+0082 => MOV     11   5
+0083    TGETS   10   5  23  ; "getPageBlock"
+0084    MOV     12   3
+0085    MOV     13   4
+0086    CALLT   10   4
+
+-- BYTECODE -- koptinterface.lua:605-614
+0001    UGET     4   0      ; Cache
+0002    MOV      5   4
+0003    TGETS    4   4   0  ; "check"
+0004    TGETS    6   0   1  ; "ocrengine"
+0005    CALL     4   2   3
+0006    IST          4
+0007    JMP      4 => 0022
+0008    UGET     4   0      ; Cache
+0009    MOV      5   4
+0010    TGETS    4   4   2  ; "insert"
+0011    TGETS    6   0   1  ; "ocrengine"
+0012    UGET     7   1      ; OCREngine
+0013    MOV      8   7
+0014    TGETS    7   7   3  ; "new"
+0015    TDUP     9   4
+0016    UGET    10   2      ; KOPTContext
+0017    TGETS   10  10   3  ; "new"
+0018    CALL    10   2   1
+0019    TSETS   10   9   1  ; "ocrengine"
+0020    CALL     7   0   3
+0021    CALLM    4   1   2
+0022 => TGETS    4   1   5  ; "configurable"
+0023    TGETS    4   4   6  ; "text_wrap"
+0024    ISNEN    4   0      ; 1
+0025    JMP      4 => 0033
+0026    MOV      5   0
+0027    TGETS    4   0   7  ; "getReflewOCRWord"
+0028    MOV      6   1
+0029    MOV      7   2
+0030    TGETS    8   3   8  ; "sbox"
+0031    CALLT    4   5
+0032    JMP      4 => 0039
+0033 => MOV      5   0
+0034    TGETS    4   0   9  ; "getNativeOCRWord"
+0035    MOV      6   1
+0036    MOV      7   2
+0037    TGETS    8   3   8  ; "sbox"
+0038    CALLT    4   5
+0039 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:619-640
+0001    TGETS    4   1   1  ; "configurable"
+0002    TGETS    4   4   2  ; "doc_language"
+0003    TSETS    4   0   0  ; "ocr_lang"
+0004    MOV      5   1
+0005    TGETS    4   1   3  ; "getPageBBox"
+0006    MOV      6   2
+0007    CALL     4   2   3
+0008    MOV      6   0
+0009    TGETS    5   0   4  ; "getContextHash"
+0010    MOV      7   1
+0011    MOV      8   2
+0012    MOV      9   4
+0013    CALL     5   2   5
+0014    KSTR     6   5      ; "rfocrword|"
+0015    MOV      7   5
+0016    TGETS    8   3   6  ; "x"
+0017    TGETS    9   3   7  ; "y"
+0018    TGETS   10   3   8  ; "w"
+0019    TGETS   11   3   9  ; "h"
+0020    CAT      6   6  11
+0021    UGET     7   0      ; Cache
+0022    MOV      8   7
+0023    TGETS    7   7  10  ; "check"
+0024    MOV      9   6
+0025    CALL     7   2   3
+0026    IST          7
+0027    JMP      8 => 0070
+0028    KSTR     8  11      ; "kctx|"
+0029    MOV      9   5
+0030    CAT      8   8   9
+0031    UGET     9   0      ; Cache
+0032    MOV     10   9
+0033    TGETS    9   9  10  ; "check"
+0034    MOV     11   8
+0035    CALL     9   2   3
+0036    MOV      7   9
+0037    ISF          7
+0038    JMP      9 => 0072
+0039    MOV     10   0
+0040    TGETS    9   0  12  ; "waitForContext"
+0041    TGETS   11   7  13  ; "kctx"
+0042    CALL     9   2   3
+0043    GGET    10  14      ; "pcall"
+0044    TGETS   11   9  15  ; "getTOCRWord"
+0045    MOV     12   9
+0046    KSTR    13  16      ; "dst"
+0047    TGETS   14   3   6  ; "x"
+0048    TGETS   15   3   7  ; "y"
+0049    TGETS   16   3   8  ; "w"
+0050    TGETS   17   3   9  ; "h"
+0051    TGETS   18   0  17  ; "tessocr_data"
+0052    TGETS   19   0   0  ; "ocr_lang"
+0053    TGETS   20   0  18  ; "ocr_type"
+0054    KSHORT  21   0
+0055    KSHORT  22   1
+0056    CALL    10   3  13
+0057    UGET    12   0      ; Cache
+0058    MOV     13  12
+0059    TGETS   12  12  19  ; "insert"
+0060    MOV     14   6
+0061    UGET    15   1      ; CacheItem
+0062    MOV     16  15
+0063    TGETS   15  15  20  ; "new"
+0064    TDUP    17  21
+0065    TSETS   11  17  22  ; "rfocrword"
+0066    CALL    15   0   3
+0067    CALLM   12   1   2
+0068    RET1    11   2
+0069    JMP      8 => 0072
+0070 => TGETS    8   7  22  ; "rfocrword"
+0071    RET1     8   2
+0072 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:645-675
+0001    TGETS    4   1   1  ; "configurable"
+0002    TGETS    4   4   2  ; "doc_language"
+0003    TSETS    4   0   0  ; "ocr_lang"
+0004    KSTR     4   3      ; "ocrword|"
+0005    TGETS    5   1   4  ; "file"
+0006    KSTR     6   5      ; "|"
+0007    MOV      7   2
+0008    TGETS    8   3   6  ; "x"
+0009    TGETS    9   3   7  ; "y"
+0010    TGETS   10   3   8  ; "w"
+0011    TGETS   11   3   9  ; "h"
+0012    CAT      4   4  11
+0013    UGET     5   0      ; logger
+0014    TGETS    5   5  10  ; "dbg"
+0015    KSTR     6  11      ; "hash"
+0016    MOV      7   4
+0017    CALL     5   1   3
+0018    UGET     5   1      ; Cache
+0019    MOV      6   5
+0020    TGETS    5   5  12  ; "check"
+0021    MOV      7   4
+0022    CALL     5   2   3
+0023    IST          5
+0024    JMP      6 => 0123
+0025    TDUP     6  15
+0026    TGETS    7   3   6  ; "x"
+0027    GGET     8  13      ; "math"
+0028    TGETS    8   8  14  ; "floor"
+0029    TGETS    9   3   9  ; "h"
+0030    MULVN    9   9   0  ; 0.3
+0031    CALL     8   2   2
+0032    SUBVV    7   7   8
+0033    TSETS    7   6  16  ; "x0"
+0034    TGETS    7   3   7  ; "y"
+0035    GGET     8  13      ; "math"
+0036    TGETS    8   8  14  ; "floor"
+0037    TGETS    9   3   9  ; "h"
+0038    MULVN    9   9   0  ; 0.3
+0039    CALL     8   2   2
+0040    SUBVV    7   7   8
+0041    TSETS    7   6  17  ; "y0"
+0042    TGETS    7   3   6  ; "x"
+0043    TGETS    8   3   8  ; "w"
+0044    ADDVV    7   7   8
+0045    GGET     8  13      ; "math"
+0046    TGETS    8   8  14  ; "floor"
+0047    TGETS    9   3   9  ; "h"
+0048    MULVN    9   9   0  ; 0.3
+0049    CALL     8   2   2
+0050    ADDVV    7   7   8
+0051    TSETS    7   6  18  ; "x1"
+0052    TGETS    7   3   7  ; "y"
+0053    TGETS    8   3   9  ; "h"
+0054    ADDVV    7   7   8
+0055    GGET     8  13      ; "math"
+0056    TGETS    8   8  14  ; "floor"
+0057    TGETS    9   3   9  ; "h"
+0058    MULVN    9   9   0  ; 0.3
+0059    CALL     8   2   2
+0060    ADDVV    7   7   8
+0061    TSETS    7   6  19  ; "y1"
+0062    MOV      8   0
+0063    TGETS    7   0  20  ; "createContext"
+0064    MOV      9   1
+0065    MOV     10   2
+0066    MOV     11   6
+0067    CALL     7   2   5
+0068    MOV      9   7
+0069    TGETS    8   7  21  ; "setZoom"
+0070    TGETS   10   3   9  ; "h"
+0071    DIVNV   10  10   1  ; 30
+0072    CALL     8   1   3
+0073    TGETS    8   1  22  ; "_document"
+0074    MOV      9   8
+0075    TGETS    8   8  23  ; "openPage"
+0076    MOV     10   2
+0077    CALL     8   2   3
+0078    MOV     10   8
+0079    TGETS    9   8  24  ; "getPagePix"
+0080    MOV     11   7
+0081    CALL     9   1   3
+0082    MOV     10   7
+0083    TGETS    9   7  25  ; "getPageDim"
+0084    CALL     9   3   2
+0085    GGET    11  26      ; "pcall"
+0086    TGETS   12   7  27  ; "getTOCRWord"
+0087    MOV     13   7
+0088    KSTR    14  28      ; "src"
+0089    KSHORT  15   0
+0090    KSHORT  16   0
+0091    MOV     17   9
+0092    MOV     18  10
+0093    TGETS   19   0  29  ; "tessocr_data"
+0094    TGETS   20   0   0  ; "ocr_lang"
+0095    TGETS   21   0  30  ; "ocr_type"
+0096    KSHORT  22   0
+0097    KSHORT  23   1
+0098    CALL    11   3  13
+0099    UGET    13   1      ; Cache
+0100    MOV     14  13
+0101    TGETS   13  13  31  ; "insert"
+0102    MOV     15   4
+0103    UGET    16   2      ; CacheItem
+0104    MOV     17  16
+0105    TGETS   16  16  32  ; "new"
+0106    TDUP    18  33
+0107    TSETS   12  18  34  ; "ocrword"
+0108    CALL    16   0   3
+0109    CALLM   13   1   2
+0110    UGET    13   0      ; logger
+0111    TGETS   13  13  10  ; "dbg"
+0112    KSTR    14  35      ; "word"
+0113    MOV     15  12
+0114    CALL    13   1   3
+0115    MOV     14   8
+0116    TGETS   13   8  36  ; "close"
+0117    CALL    13   1   2
+0118    MOV     14   7
+0119    TGETS   13   7  37  ; "free"
+0120    CALL    13   1   2
+0121    RET1    12   2
+0122    JMP      6 => 0125
+0123 => TGETS    6   5  34  ; "ocrword"
+0124    RET1     6   2
+0125 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:680-685
+0001    UGET     4   0      ; Cache
+0002    MOV      5   4
+0003    TGETS    4   4   0  ; "check"
+0004    TGETS    6   0   1  ; "ocrengine"
+0005    CALL     4   2   3
+0006    IST          4
+0007    JMP      4 => 0022
+0008    UGET     4   0      ; Cache
+0009    MOV      5   4
+0010    TGETS    4   4   2  ; "insert"
+0011    TGETS    6   0   1  ; "ocrengine"
+0012    UGET     7   1      ; OCREngine
+0013    MOV      8   7
+0014    TGETS    7   7   3  ; "new"
+0015    TDUP     9   4
+0016    UGET    10   2      ; KOPTContext
+0017    TGETS   10  10   3  ; "new"
+0018    CALL    10   2   1
+0019    TSETS   10   9   1  ; "ocrengine"
+0020    CALL     7   0   3
+0021    CALLM    4   1   2
+0022 => UGET     4   3      ; logger
+0023    TGETS    4   4   5  ; "info"
+0024    KSTR     5   6      ; "Not implemented yet"
+0025    CALL     4   1   2
+0026    RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:687-720
+0001    GGET     6   0      ; "assert"
+0002    TGETS    7   2   1  ; "page"
+0003    TGETS    8   3   1  ; "page"
+0004    ISEQV    7   8
+0005    JMP      7 => 0008
+0006    KPRI     7   1
+0007    JMP      8 => 0009
+0008 => KPRI     7   2
+0009 => CALL     6   1   2
+0010    GGET     6   0      ; "assert"
+0011    TGETS    7   2   2  ; "zoom"
+0012    TGETS    8   3   2  ; "zoom"
+0013    ISEQV    7   8
+0014    JMP      7 => 0017
+0015    KPRI     7   1
+0016    JMP      8 => 0018
+0017 => KPRI     7   2
+0018 => CALL     6   1   2
+0019    KPRI     6   0
+0020    ISF          4
+0021    JMP      7 => 0057
+0022    LEN      7   4
+0023    KSHORT   8   0
+0024    ISGE     8   7
+0025    JMP      7 => 0057
+0026    TGETB    7   4   1
+0027    UGET     8   0      ; Geom
+0028    MOV      9   8
+0029    TGETS    8   8   3  ; "new"
+0030    TDUP    10   5
+0031    TGETS   11   7   4  ; "x"
+0032    TSETS   11  10   4  ; "x"
+0033    TGETS   11   7   6  ; "y"
+0034    TSETS   11  10   6  ; "y"
+0035    TGETS   11   7   7  ; "w"
+0036    TSETS   11  10   7  ; "w"
+0037    TGETS   11   7   8  ; "h"
+0038    TSETS   11  10   8  ; "h"
+0039    CALL     8   2   3
+0040    MOV      6   8
+0041    GGET     8   9      ; "ipairs"
+0042    MOV      9   4
+0043    CALL     8   4   2
+0044    JMP     11 => 0054
+0045 => MOV     14   6
+0046    TGETS   13   6  10  ; "combine"
+0047    UGET    15   0      ; Geom
+0048    MOV     16  15
+0049    TGETS   15  15   3  ; "new"
+0050    MOV     17  12
+0051    CALL    15   0   3
+0052    CALLM   13   2   1
+0053    MOV      6  13
+0054 => ITERC   11   3   3
+0055    ITERL   11 => 0045
+0056    JMP      7 => 0093
+0057 => TGETS    7   2   2  ; "zoom"
+0058    IST          7
+0059    JMP      8 => 0061
+0060    KSHORT   7   1
+0061 => TDUP     8  13
+0062    GGET     9  11      ; "math"
+0063    TGETS    9   9  12  ; "min"
+0064    TGETS   10   2   4  ; "x"
+0065    TGETS   11   3   4  ; "x"
+0066    CALL     9   2   3
+0067    DIVVV    9   9   7
+0068    TSETS    9   8   4  ; "x"
+0069    GGET     9  11      ; "math"
+0070    TGETS    9   9  12  ; "min"
+0071    TGETS   10   2   6  ; "y"
+0072    TGETS   11   3   6  ; "y"
+0073    CALL     9   2   3
+0074    DIVVV    9   9   7
+0075    TSETS    9   8   6  ; "y"
+0076    GGET     9  11      ; "math"
+0077    TGETS    9   9  14  ; "abs"
+0078    TGETS   10   2   4  ; "x"
+0079    TGETS   11   3   4  ; "x"
+0080    SUBVV   10  10  11
+0081    CALL     9   2   2
+0082    DIVVV    9   9   7
+0083    TSETS    9   8   7  ; "w"
+0084    GGET     9  11      ; "math"
+0085    TGETS    9   9  14  ; "abs"
+0086    TGETS   10   2   6  ; "y"
+0087    TGETS   11   3   6  ; "y"
+0088    SUBVV   10  10  11
+0089    CALL     9   2   2
+0090    DIVVV    9   9   7
+0091    TSETS    9   8   8  ; "h"
+0092    MOV      6   8
+0093 => TDUP     7  15
+0094    TGETS    8   6   4  ; "x"
+0095    TSETS    8   7  16  ; "x0"
+0096    TGETS    8   6   6  ; "y"
+0097    TSETS    8   7  17  ; "y0"
+0098    TGETS    8   6   4  ; "x"
+0099    TGETS    9   6   7  ; "w"
+0100    ADDVV    8   8   9
+0101    TSETS    8   7  18  ; "x1"
+0102    TGETS    8   6   6  ; "y"
+0103    TGETS    9   6   8  ; "h"
+0104    ADDVV    8   8   9
+0105    TSETS    8   7  19  ; "y1"
+0106    MOV      9   0
+0107    TGETS    8   0  20  ; "createContext"
+0108    MOV     10   1
+0109    TGETS   11   2   1  ; "page"
+0110    MOV     12   7
+0111    CALL     8   2   5
+0112    TGETS    9   1  21  ; "_document"
+0113    MOV     10   9
+0114    TGETS    9   9  22  ; "openPage"
+0115    TGETS   11   2   1  ; "page"
+0116    CALL     9   2   3
+0117    MOV     11   9
+0118    TGETS   10   9  23  ; "getPagePix"
+0119    MOV     12   8
+0120    CALL    10   1   3
+0121    MOV     11   9
+0122    TGETS   10   9  24  ; "close"
+0123    CALL    10   1   2
+0124    MOV     10   8
+0125    MOV     11   6
+0126    RET     10   3
+
+-- BYTECODE -- koptinterface.lua:722-726
+0001    MOV      8   0
+0002    TGETS    7   0   0  ; "getClipPageContext"
+0003    MOV      9   1
+0004    MOV     10   2
+0005    MOV     11   3
+0006    MOV     12   4
+0007    MOV     13   5
+0008    CALL     7   2   7
+0009    MOV      9   7
+0010    TGETS    8   7   1  ; "exportSrcPNGFile"
+0011    MOV     10   4
+0012    MOV     11   5
+0013    MOV     12   6
+0014    CALL     8   1   5
+0015    MOV      9   7
+0016    TGETS    8   7   2  ; "free"
+0017    CALL     8   1   2
+0018    RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:728-746
+0001    MOV      7   0
+0002    TGETS    6   0   0  ; "getClipPageContext"
+0003    MOV      8   1
+0004    MOV      9   2
+0005    MOV     10   3
+0006    MOV     11   4
+0007    MOV     12   5
+0008    CALL     6   2   7
+0009    KPRI     7   0
+0010    UGET     8   0      ; util
+0011    TGETS    8   8   1  ; "isAndroid"
+0012    CALL     8   2   1
+0013    ISF          8
+0014    JMP      9 => 0038
+0015    KSTR     8   2      ; "cache/tmpclippng.png"
+0016    MOV     10   6
+0017    TGETS    9   6   3  ; "exportSrcPNGFile"
+0018    MOV     11   4
+0019    MOV     12   5
+0020    MOV     13   8
+0021    CALL     9   1   5
+0022    GGET     9   4      ; "io"
+0023    TGETS    9   9   5  ; "open"
+0024    MOV     10   8
+0025    KSTR    11   6      ; "rb"
+0026    CALL     9   2   3
+0027    ISF          9
+0028    JMP     10 => 0044
+0029    MOV     11   9
+0030    TGETS   10   9   7  ; "read"
+0031    KSTR    12   8      ; "*all"
+0032    CALL    10   2   3
+0033    MOV      7  10
+0034    MOV     11   9
+0035    TGETS   10   9   9  ; "close"
+0036    CALL    10   1   2
+0037    JMP      8 => 0044
+0038 => MOV      9   6
+0039    TGETS    8   6  10  ; "exportSrcPNGString"
+0040    MOV     10   4
+0041    MOV     11   5
+0042    CALL     8   2   4
+0043    MOV      7   8
+0044 => MOV      9   6
+0045    TGETS    8   6  11  ; "free"
+0046    CALL     8   1   2
+0047    RET1     7   2
+
+-- BYTECODE -- koptinterface.lua:751-757
+0001    TGETS    2   1   0  ; "x"
+0002    TGETS    3   1   1  ; "y"
+0003    TGETS    4   0   2  ; "x0"
+0004    ISGT     4   2
+0005    JMP      4 => 0017
+0006    TGETS    4   0   3  ; "y0"
+0007    ISGT     4   3
+0008    JMP      4 => 0017
+0009    TGETS    4   0   4  ; "x1"
+0010    ISGT     2   4
+0011    JMP      4 => 0017
+0012    TGETS    4   0   5  ; "y1"
+0013    ISGT     3   4
+0014    JMP      4 => 0017
+0015    KPRI     4   2
+0016    RET1     4   2
+0017 => KPRI     4   1
+0018    RET1     4   2
+
+-- BYTECODE -- koptinterface.lua:759-767
+0001    UGET     2   0      ; inside_box
+0002    MOV      3   0
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISF          2
+0006    JMP      3 => 0010
+0007    KSHORT   2   0
+0008    RET1     2   2
+0009    JMP      2 => 0028
+0010 => TGETS    2   1   0  ; "x"
+0011    TGETS    3   1   1  ; "y"
+0012    TGETS    4   0   2  ; "x0"
+0013    TGETS    5   0   3  ; "x1"
+0014    ADDVV    4   4   5
+0015    DIVVN    4   4   0  ; 2
+0016    TGETS    5   0   4  ; "y0"
+0017    TGETS    6   0   5  ; "y1"
+0018    ADDVV    5   5   6
+0019    DIVVN    5   5   0  ; 2
+0020    SUBVV    6   2   4
+0021    SUBVV    7   2   4
+0022    MULVV    6   6   7
+0023    SUBVV    7   3   5
+0024    SUBVV    8   3   5
+0025    MULVV    7   7   8
+0026    ADDVV    6   6   7
+0027    RET1     6   2
+0028 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:769-779
+0001    KSHORT   2   1
+0002    KSHORT   3   1
+0003    KSHORT   4   1
+0004    LEN      5   0
+0005    KSHORT   6   1
+0006    FORI     4 => 0029
+0007 => KSHORT   8   1
+0008    TGETV    9   0   7
+0009    LEN      9   9
+0010    KSHORT  10   1
+0011    FORI     8 => 0028
+0012 => UGET    12   0      ; box_distance
+0013    TGETV   13   0   7
+0014    TGETV   13  13  11
+0015    MOV     14   1
+0016    CALL    12   2   3
+0017    UGET    13   0      ; box_distance
+0018    TGETV   14   0   2
+0019    TGETV   14  14   3
+0020    MOV     15   1
+0021    CALL    13   2   3
+0022    ISGE    12  13
+0023    JMP     12 => 0027
+0024    MOV     12   7
+0025    MOV      3  11
+0026    MOV      2  12
+0027 => FORL     8 => 0012
+0028 => FORL     4 => 0007
+0029 => MOV      4   2
+0030    MOV      5   3
+0031    RET      4   3
+
+-- BYTECODE -- koptinterface.lua:784-800
+0001    ISF          2
+0002    JMP      3 => 0006
+0003    LEN      3   1
+0004    ISNEN    3   0      ; 0
+0005    JMP      3 => 0008
+0006 => TNEW     3   0
+0007    RET1     3   2
+0008 => UGET     3   0      ; getWordBoxIndices
+0009    MOV      4   1
+0010    MOV      5   2
+0011    CALL     3   3   3
+0012    TGETV    5   1   3
+0013    TGETV    6   1   3
+0014    TGETV    6   6   4
+0015    ISF          5
+0016    JMP      7 => 0041
+0017    ISF          6
+0018    JMP      7 => 0041
+0019    UGET     7   1      ; Geom
+0020    MOV      8   7
+0021    TGETS    7   7   0  ; "new"
+0022    TDUP     9   2
+0023    TGETS   10   6   1  ; "x0"
+0024    TSETS   10   9   3  ; "x"
+0025    TGETS   10   5   4  ; "y0"
+0026    TSETS   10   9   5  ; "y"
+0027    TGETS   10   6   6  ; "x1"
+0028    TGETS   11   6   1  ; "x0"
+0029    SUBVV   10  10  11
+0030    TSETS   10   9   7  ; "w"
+0031    TGETS   10   5   8  ; "y1"
+0032    TGETS   11   5   4  ; "y0"
+0033    SUBVV   10  10  11
+0034    TSETS   10   9   9  ; "h"
+0035    CALL     7   2   3
+0036    TDUP     8  11
+0037    TGETS    9   6  10  ; "word"
+0038    TSETS    9   8  10  ; "word"
+0039    TSETS    7   8  12  ; "box"
+0040    RET1     8   2
+0041 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:805-869
+0001    ISF          2
+0002    JMP      4 => 0008
+0003    ISF          3
+0004    JMP      4 => 0008
+0005    LEN      4   1
+0006    ISNEN    4   0      ; 0
+0007    JMP      4 => 0010
+0008 => TNEW     4   0
+0009    RET1     4   2
+0010 => KSTR     4   0      ; ""
+0011    TNEW     5   0
+0012    UGET     6   0      ; getWordBoxIndices
+0013    MOV      7   1
+0014    MOV      8   2
+0015    CALL     6   3   3
+0016    UGET     8   0      ; getWordBoxIndices
+0017    MOV      9   1
+0018    MOV     10   3
+0019    CALL     8   3   3
+0020    ISNEV    6   8
+0021    JMP     10 => 0024
+0022    ISLT     9   7
+0023    JMP     10 => 0026
+0024 => ISGE     8   6
+0025    JMP     10 => 0032
+0026 => MOV     10   8
+0027    MOV      8   6
+0028    MOV      6  10
+0029    MOV     10   9
+0030    MOV      9   7
+0031    MOV      7  10
+0032 => MOV     10   6
+0033    MOV     11   8
+0034    KSHORT  12   1
+0035    FORI    10 => 0197
+0036 => ISNEV    6   8
+0037    JMP     14 => 0043
+0038    TGETV   14   1  13
+0039    LEN     14  14
+0040    ISNEN   14   0      ; 0
+0041    JMP     14 => 0043
+0042    JMP     10 => 0197
+0043 => ISGE     6  13
+0044    JMP     14 => 0047
+0045    KSHORT  14   1
+0046    JMP     15 => 0048
+0047 => MOV     14   7
+0048 => ISGE    13   8
+0049    JMP     15 => 0054
+0050    TGETV   15   1  13
+0051    LEN     15  15
+0052    IST         15
+0053    JMP     16 => 0055
+0054 => MOV     15   9
+0055 => MOV     16  14
+0056    MOV     17  15
+0057    KSHORT  18   1
+0058    FORI    16 => 0080
+0059 => TGETV   20   1  13
+0060    TGETV   20  20  19
+0061    TGETS   20  20   1  ; "word"
+0062    ISF         20
+0063    JMP     21 => 0079
+0064    MOV     22  20
+0065    TGETS   21  20   2  ; "match"
+0066    KSTR    23   3      ; "[%zÂ-ô][€-¿]*$"
+0067    CALL    21   2   3
+0068    IST         21
+0069    JMP     22 => 0072
+0070    ISNEV   19  15
+0071    JMP     21 => 0074
+0072 => KSTR    21   0      ; ""
+0073    JMP     22 => 0075
+0074 => KSTR    21   4      ; " "
+0075 => MOV     22   4
+0076    MOV     23  20
+0077    MOV     24  21
+0078    CAT      4  22  24
+0079 => FORL    16 => 0059
+0080 => TGETV   16   1  13
+0081    ISGE     6  13
+0082    JMP     17 => 0108
+0083    ISGE    13   8
+0084    JMP     17 => 0108
+0085    UGET    17   1      ; Geom
+0086    MOV     18  17
+0087    TGETS   17  17   5  ; "new"
+0088    TDUP    19   7
+0089    TGETS   20  16   6  ; "x0"
+0090    TSETS   20  19   8  ; "x"
+0091    TGETS   20  16   9  ; "y0"
+0092    TSETS   20  19  10  ; "y"
+0093    TGETS   20  16  11  ; "x1"
+0094    TGETS   21  16   6  ; "x0"
+0095    SUBVV   20  20  21
+0096    TSETS   20  19  12  ; "w"
+0097    TGETS   20  16  13  ; "y1"
+0098    TGETS   21  16   9  ; "y0"
+0099    SUBVV   20  20  21
+0100    TSETS   20  19  14  ; "h"
+0101    CALL    17   2   3
+0102    GGET    18  15      ; "table"
+0103    TGETS   18  18  16  ; "insert"
+0104    MOV     19   5
+0105    MOV     20  17
+0106    CALL    18   1   3
+0107    JMP     17 => 0196
+0108 => ISNEV   13   6
+0109    JMP     17 => 0137
+0110    ISGE    13   8
+0111    JMP     17 => 0137
+0112    TGETV   17   1  13
+0113    TGETV   17  17   7
+0114    UGET    18   1      ; Geom
+0115    MOV     19  18
+0116    TGETS   18  18   5  ; "new"
+0117    TDUP    20  17
+0118    TGETS   21  17   6  ; "x0"
+0119    TSETS   21  20   8  ; "x"
+0120    TGETS   21  16   9  ; "y0"
+0121    TSETS   21  20  10  ; "y"
+0122    TGETS   21  16  11  ; "x1"
+0123    TGETS   22  17   6  ; "x0"
+0124    SUBVV   21  21  22
+0125    TSETS   21  20  12  ; "w"
+0126    TGETS   21  16  13  ; "y1"
+0127    TGETS   22  16   9  ; "y0"
+0128    SUBVV   21  21  22
+0129    TSETS   21  20  14  ; "h"
+0130    CALL    18   2   3
+0131    GGET    19  15      ; "table"
+0132    TGETS   19  19  16  ; "insert"
+0133    MOV     20   5
+0134    MOV     21  18
+0135    CALL    19   1   3
+0136    JMP     17 => 0196
+0137 => ISGE     6  13
+0138    JMP     17 => 0166
+0139    ISNEV   13   8
+0140    JMP     17 => 0166
+0141    TGETV   17   1  13
+0142    TGETV   17  17   9
+0143    UGET    18   1      ; Geom
+0144    MOV     19  18
+0145    TGETS   18  18   5  ; "new"
+0146    TDUP    20  18
+0147    TGETS   21  16   6  ; "x0"
+0148    TSETS   21  20   8  ; "x"
+0149    TGETS   21  16   9  ; "y0"
+0150    TSETS   21  20  10  ; "y"
+0151    TGETS   21  17  11  ; "x1"
+0152    TGETS   22  16   6  ; "x0"
+0153    SUBVV   21  21  22
+0154    TSETS   21  20  12  ; "w"
+0155    TGETS   21  16  13  ; "y1"
+0156    TGETS   22  16   9  ; "y0"
+0157    SUBVV   21  21  22
+0158    TSETS   21  20  14  ; "h"
+0159    CALL    18   2   3
+0160    GGET    19  15      ; "table"
+0161    TGETS   19  19  16  ; "insert"
+0162    MOV     20   5
+0163    MOV     21  18
+0164    CALL    19   1   3
+0165    JMP     17 => 0196
+0166 => ISNEV   13   6
+0167    JMP     17 => 0196
+0168    ISNEV   13   8
+0169    JMP     17 => 0196
+0170    TGETV   17   1  13
+0171    TGETV   17  17   7
+0172    TGETV   18   1  13
+0173    TGETV   18  18   9
+0174    UGET    19   1      ; Geom
+0175    MOV     20  19
+0176    TGETS   19  19   5  ; "new"
+0177    TDUP    21  19
+0178    TGETS   22  17   6  ; "x0"
+0179    TSETS   22  21   8  ; "x"
+0180    TGETS   22  16   9  ; "y0"
+0181    TSETS   22  21  10  ; "y"
+0182    TGETS   22  18  11  ; "x1"
+0183    TGETS   23  17   6  ; "x0"
+0184    SUBVV   22  22  23
+0185    TSETS   22  21  12  ; "w"
+0186    TGETS   22  16  13  ; "y1"
+0187    TGETS   23  16   9  ; "y0"
+0188    SUBVV   22  22  23
+0189    TSETS   22  21  14  ; "h"
+0190    CALL    19   2   3
+0191    GGET    20  15      ; "table"
+0192    TGETS   20  20  16  ; "insert"
+0193    MOV     21   5
+0194    MOV     22  19
+0195    CALL    20   1   3
+0196 => FORL    10 => 0036
+0197 => TDUP    10  20
+0198    TSETS    4  10  21  ; "text"
+0199    TSETS    5  10  22  ; "boxes"
+0200    RET1    10   2
+
+-- BYTECODE -- koptinterface.lua:874-883
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "getTextBoxes"
+0003    MOV      5   1
+0004    TGETS    6   2   1  ; "page"
+0005    CALL     3   2   4
+0006    ISF          3
+0007    JMP      4 => 0025
+0008    TGETS    4   1   2  ; "configurable"
+0009    TGETS    4   4   3  ; "text_wrap"
+0010    ISNEN    4   0      ; 1
+0011    JMP      4 => 0019
+0012    MOV      5   0
+0013    TGETS    4   0   4  ; "getWordFromReflowPosition"
+0014    MOV      6   1
+0015    MOV      7   3
+0016    MOV      8   2
+0017    CALLT    4   5
+0018    JMP      4 => 0025
+0019 => MOV      5   0
+0020    TGETS    4   0   5  ; "getWordFromNativePosition"
+0021    MOV      6   1
+0022    MOV      7   3
+0023    MOV      8   2
+0024    CALLT    4   5
+0025 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:885-891
+0001    TNEW     2   0
+0002    MOV      4   0
+0003    TGETS    3   0   0  ; "center"
+0004    CALL     3   2   2
+0005    TGETS    4   3   1  ; "x"
+0006    TGETS    5   1   1  ; "x"
+0007    SUBVV    4   4   5
+0008    TGETS    5   1   2  ; "w"
+0009    DIVVV    4   4   5
+0010    TSETS    4   2   1  ; "x"
+0011    TGETS    4   3   3  ; "y"
+0012    TGETS    5   1   3  ; "y"
+0013    SUBVV    4   4   5
+0014    TGETS    5   1   4  ; "h"
+0015    DIVVV    4   4   5
+0016    TSETS    4   2   3  ; "y"
+0017    RET1     2   2
+
+-- BYTECODE -- koptinterface.lua:896-918
+0001    TGETS    4   3   0  ; "page"
+0002    MOV      6   0
+0003    TGETS    5   0   1  ; "getReflowedTextBoxesFromScratch"
+0004    MOV      7   1
+0005    MOV      8   4
+0006    CALL     5   2   4
+0007    MOV      7   0
+0008    TGETS    6   0   2  ; "getWordFromBoxes"
+0009    MOV      8   5
+0010    MOV      9   3
+0011    CALL     6   2   4
+0012    MOV      8   0
+0013    TGETS    7   0   3  ; "getReflowedTextBoxes"
+0014    MOV      9   1
+0015    MOV     10   4
+0016    CALL     7   2   4
+0017    MOV      9   0
+0018    TGETS    8   0   2  ; "getWordFromBoxes"
+0019    MOV     10   7
+0020    MOV     11   3
+0021    CALL     8   2   4
+0022    TGETS    9   6   4  ; "box"
+0023    MOV     10   9
+0024    TGETS    9   9   5  ; "center"
+0025    CALL     9   2   2
+0026    UGET    10   0      ; getBoxRelativePosition
+0027    TGETS   11   6   4  ; "box"
+0028    TGETS   12   8   4  ; "box"
+0029    CALL    10   2   3
+0030    MOV     12   0
+0031    TGETS   11   0   6  ; "reflowToNativePosTransform"
+0032    MOV     13   1
+0033    MOV     14   4
+0034    MOV     15   9
+0035    MOV     16  10
+0036    CALL    11   2   6
+0037    MOV     13   0
+0038    TGETS   12   0   2  ; "getWordFromBoxes"
+0039    MOV     14   2
+0040    MOV     15  11
+0041    CALL    12   2   4
+0042    TDUP    13   8
+0043    TGETS   14  12   7  ; "word"
+0044    TSETS   14  13   7  ; "word"
+0045    TGETS   14  12   4  ; "box"
+0046    TSETS   14  13   9  ; "pbox"
+0047    TGETS   14   6   4  ; "box"
+0048    TSETS   14  13  10  ; "sbox"
+0049    TSETS   11  13  11  ; "pos"
+0050    RET1    13   2
+
+-- BYTECODE -- koptinterface.lua:923-932
+0001    MOV      5   0
+0002    TGETS    4   0   0  ; "getWordFromBoxes"
+0003    MOV      6   2
+0004    MOV      7   3
+0005    CALL     4   2   4
+0006    TDUP     5   2
+0007    TGETS    6   4   1  ; "word"
+0008    TSETS    6   5   1  ; "word"
+0009    TGETS    6   4   3  ; "box"
+0010    TSETS    6   5   4  ; "pbox"
+0011    TGETS    6   4   3  ; "box"
+0012    TSETS    6   5   5  ; "sbox"
+0013    TSETS    3   5   6  ; "pos"
+0014    RET1     5   2
+
+-- BYTECODE -- koptinterface.lua:938-947
+0001    ISF          0
+0002    JMP      2 => 0023
+0003    TGETS    2   0   0  ; "x"
+0004    TGETS    3   0   1  ; "y"
+0005    TGETS    4   1   0  ; "x"
+0006    ISGT     4   2
+0007    JMP      4 => 0023
+0008    TGETS    4   1   1  ; "y"
+0009    ISGT     4   3
+0010    JMP      4 => 0023
+0011    TGETS    4   1   0  ; "x"
+0012    TGETS    5   1   2  ; "w"
+0013    ADDVV    4   4   5
+0014    ISGT     2   4
+0015    JMP      4 => 0023
+0016    TGETS    4   1   1  ; "y"
+0017    TGETS    5   1   3  ; "h"
+0018    ADDVV    4   4   5
+0019    ISGT     3   4
+0020    JMP      4 => 0023
+0021    KPRI     4   2
+0022    RET1     4   2
+0023 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:937-971
+0001    FNEW     4   0      ; koptinterface.lua:938
+0002    MOV      6   1
+0003    TGETS    5   1   1  ; "getPageLinks"
+0004    MOV      7   2
+0005    CALL     5   2   3
+0006    ISF          5
+0007    JMP      6 => 0067
+0008    TGETS    6   1   2  ; "configurable"
+0009    TGETS    6   6   3  ; "text_wrap"
+0010    ISNEN    6   0      ; 1
+0011    JMP      6 => 0020
+0012    MOV      7   0
+0013    TGETS    6   0   4  ; "reflowToNativePosTransform"
+0014    MOV      8   1
+0015    MOV      9   2
+0016    MOV     10   3
+0017    TDUP    11   5
+0018    CALL     6   2   6
+0019    MOV      3   6
+0020 => UGET     6   0      ; CanvasContext
+0021    MOV      7   6
+0022    TGETS    6   6   6  ; "scaleBySize"
+0023    KSHORT   8   5
+0024    CALL     6   2   3
+0025    UGET     7   0      ; CanvasContext
+0026    MOV      8   7
+0027    TGETS    7   7   6  ; "scaleBySize"
+0028    KSHORT   9  10
+0029    CALL     7   2   3
+0030    KSHORT   8   1
+0031    LEN      9   5
+0032    KSHORT  10   1
+0033    FORI     8 => 0067
+0034 => TGETV   12   5  11
+0035    UGET    13   1      ; Geom
+0036    MOV     14  13
+0037    TGETS   13  13   7  ; "new"
+0038    TDUP    15   9
+0039    TGETS   16  12   8  ; "x0"
+0040    SUBVV   16  16   6
+0041    TSETS   16  15  10  ; "x"
+0042    TGETS   16  12  11  ; "y0"
+0043    SUBVV   16  16   6
+0044    TSETS   16  15  12  ; "y"
+0045    TGETS   16  12  13  ; "x1"
+0046    TGETS   17  12   8  ; "x0"
+0047    SUBVV   16  16  17
+0048    ADDVV   16  16   7
+0049    TSETS   16  15  14  ; "w"
+0050    TGETS   16  12  15  ; "y1"
+0051    TGETS   17  12  11  ; "y0"
+0052    SUBVV   16  16  17
+0053    ADDVV   16  16   7
+0054    TSETS   16  15  16  ; "h"
+0055    CALL    13   2   3
+0056    MOV     14   4
+0057    MOV     15   3
+0058    MOV     16  13
+0059    CALL    14   2   3
+0060    ISF         14
+0061    JMP     15 => 0066
+0062    MOV     14  12
+0063    MOV     15  13
+0064    UCLO     0 => 0065
+0065 => RET     14   3
+0066 => FORL     8 => 0034
+0067 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:976-981
+0001    MOV      5   0
+0002    TGETS    4   0   0  ; "getCachedContext"
+0003    MOV      6   1
+0004    MOV      7   2
+0005    CALL     4   2   4
+0006    TNEW     5   0
+0007    MOV      7   4
+0008    TGETS    6   4   3  ; "nativeToReflowPosTransform"
+0009    TGETS    8   3   1  ; "x"
+0010    TGETS    9   3   2  ; "y"
+0011    CALL     6   3   4
+0012    TSETS    7   5   2  ; "y"
+0013    TSETS    6   5   1  ; "x"
+0014    RET1     5   2
+
+-- BYTECODE -- koptinterface.lua:986-991
+0001    MOV      6   0
+0002    TGETS    5   0   0  ; "getCachedContext"
+0003    MOV      7   1
+0004    MOV      8   2
+0005    CALL     5   2   4
+0006    TNEW     6   0
+0007    MOV      8   5
+0008    TGETS    7   5   3  ; "reflowToNativePosTransform"
+0009    TGETS    9   3   1  ; "x"
+0010    TGETS   10   3   2  ; "y"
+0011    TGETS   11   4   1  ; "x"
+0012    TGETS   12   4   2  ; "y"
+0013    CALL     7   3   6
+0014    TSETS    8   6   2  ; "y"
+0015    TSETS    7   6   1  ; "x"
+0016    RET1     6   2
+
+-- BYTECODE -- koptinterface.lua:996-1005
+0001    MOV      5   0
+0002    TGETS    4   0   0  ; "getTextBoxes"
+0003    MOV      6   1
+0004    TGETS    7   2   1  ; "page"
+0005    CALL     4   2   4
+0006    ISF          4
+0007    JMP      5 => 0027
+0008    TGETS    5   1   2  ; "configurable"
+0009    TGETS    5   5   3  ; "text_wrap"
+0010    ISNEN    5   0      ; 1
+0011    JMP      5 => 0020
+0012    MOV      6   0
+0013    TGETS    5   0   4  ; "getTextFromReflowPositions"
+0014    MOV      7   1
+0015    MOV      8   4
+0016    MOV      9   2
+0017    MOV     10   3
+0018    CALLT    5   6
+0019    JMP      5 => 0027
+0020 => MOV      6   0
+0021    TGETS    5   0   5  ; "getTextFromNativePositions"
+0022    MOV      7   1
+0023    MOV      8   4
+0024    MOV      9   2
+0025    MOV     10   3
+0026    CALLT    5   6
+0027 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:1010-1039
+0001    TGETS    5   3   0  ; "page"
+0002    MOV      7   0
+0003    TGETS    6   0   1  ; "getReflowedTextBoxesFromScratch"
+0004    MOV      8   1
+0005    MOV      9   5
+0006    CALL     6   2   4
+0007    MOV      8   0
+0008    TGETS    7   0   2  ; "getReflowedTextBoxes"
+0009    MOV      9   1
+0010    MOV     10   5
+0011    CALL     7   2   4
+0012    MOV      9   0
+0013    TGETS    8   0   3  ; "getWordFromBoxes"
+0014    MOV     10   6
+0015    MOV     11   3
+0016    CALL     8   2   4
+0017    MOV     10   0
+0018    TGETS    9   0   3  ; "getWordFromBoxes"
+0019    MOV     11   7
+0020    MOV     12   3
+0021    CALL     9   2   4
+0022    MOV     11   0
+0023    TGETS   10   0   3  ; "getWordFromBoxes"
+0024    MOV     12   6
+0025    MOV     13   4
+0026    CALL    10   2   4
+0027    MOV     12   0
+0028    TGETS   11   0   3  ; "getWordFromBoxes"
+0029    MOV     13   7
+0030    MOV     14   4
+0031    CALL    11   2   4
+0032    TGETS   12   8   4  ; "box"
+0033    MOV     13  12
+0034    TGETS   12  12   5  ; "center"
+0035    CALL    12   2   2
+0036    UGET    13   0      ; getBoxRelativePosition
+0037    TGETS   14   8   4  ; "box"
+0038    TGETS   15   9   4  ; "box"
+0039    CALL    13   2   3
+0040    TGETS   14  10   4  ; "box"
+0041    MOV     15  14
+0042    TGETS   14  14   5  ; "center"
+0043    CALL    14   2   2
+0044    UGET    15   0      ; getBoxRelativePosition
+0045    TGETS   16  10   4  ; "box"
+0046    TGETS   17  11   4  ; "box"
+0047    CALL    15   2   3
+0048    MOV     17   0
+0049    TGETS   16   0   6  ; "reflowToNativePosTransform"
+0050    MOV     18   1
+0051    MOV     19   5
+0052    MOV     20  12
+0053    MOV     21  13
+0054    CALL    16   2   6
+0055    MOV     18   0
+0056    TGETS   17   0   6  ; "reflowToNativePosTransform"
+0057    MOV     19   1
+0058    MOV     20   5
+0059    MOV     21  14
+0060    MOV     22  15
+0061    CALL    17   2   6
+0062    MOV     19   0
+0063    TGETS   18   0   7  ; "getTextFromBoxes"
+0064    MOV     20   7
+0065    MOV     21   3
+0066    MOV     22   4
+0067    CALL    18   2   5
+0068    MOV     20   0
+0069    TGETS   19   0   7  ; "getTextFromBoxes"
+0070    MOV     21   2
+0071    MOV     22  16
+0072    MOV     23  17
+0073    CALL    19   2   5
+0074    TDUP    20   9
+0075    TGETS   21  19   8  ; "text"
+0076    TSETS   21  20   8  ; "text"
+0077    TGETS   21  19  10  ; "boxes"
+0078    TSETS   21  20  11  ; "pboxes"
+0079    TGETS   21  18  10  ; "boxes"
+0080    TSETS   21  20  12  ; "sboxes"
+0081    TSETS   16  20  13  ; "pos0"
+0082    TSETS   17  20  14  ; "pos1"
+0083    RET1    20   2
+
+-- BYTECODE -- koptinterface.lua:1044-1054
+0001    MOV      6   0
+0002    TGETS    5   0   0  ; "getTextFromBoxes"
+0003    MOV      7   2
+0004    MOV      8   3
+0005    MOV      9   4
+0006    CALL     5   2   5
+0007    TDUP     6   2
+0008    TGETS    7   5   1  ; "text"
+0009    TSETS    7   6   1  ; "text"
+0010    TGETS    7   5   3  ; "boxes"
+0011    TSETS    7   6   4  ; "pboxes"
+0012    TGETS    7   5   3  ; "boxes"
+0013    TSETS    7   6   5  ; "sboxes"
+0014    TSETS    3   6   6  ; "pos0"
+0015    TSETS    4   6   7  ; "pos1"
+0016    RET1     6   2
+
+-- BYTECODE -- koptinterface.lua:1060-1081
+0001    ISF          3
+0002    JMP      5 => 0005
+0003    IST          4
+0004    JMP      5 => 0006
+0005 => RET0     0   1
+0006 => TGETS    5   1   0  ; "configurable"
+0007    TGETS    5   5   1  ; "text_wrap"
+0008    ISNEN    5   0      ; 1
+0009    JMP      5 => 0043
+0010    MOV      6   0
+0011    TGETS    5   0   2  ; "nativeToReflowPosTransform"
+0012    MOV      7   1
+0013    MOV      8   2
+0014    MOV      9   3
+0015    CALL     5   2   5
+0016    MOV      7   0
+0017    TGETS    6   0   2  ; "nativeToReflowPosTransform"
+0018    MOV      8   1
+0019    MOV      9   2
+0020    MOV     10   4
+0021    CALL     6   2   5
+0022    MOV      8   0
+0023    TGETS    7   0   3  ; "getReflowedTextBoxes"
+0024    MOV      9   1
+0025    MOV     10   2
+0026    CALL     7   2   4
+0027    IST          7
+0028    JMP      8 => 0034
+0029    UGET     8   0      ; logger
+0030    TGETS    8   8   4  ; "warn"
+0031    KSTR     9   5      ; "KoptInterface: missing page_boxes"
+0032    CALL     8   1   2
+0033    RET0     0   1
+0034 => MOV      9   0
+0035    TGETS    8   0   6  ; "getTextFromBoxes"
+0036    MOV     10   7
+0037    MOV     11   5
+0038    MOV     12   6
+0039    CALL     8   2   5
+0040    TGETS    9   8   7  ; "boxes"
+0041    RET1     9   2
+0042    JMP      5 => 0063
+0043 => MOV      6   0
+0044    TGETS    5   0   8  ; "getTextBoxes"
+0045    MOV      7   1
+0046    MOV      8   2
+0047    CALL     5   2   4
+0048    IST          5
+0049    JMP      6 => 0055
+0050    UGET     6   0      ; logger
+0051    TGETS    6   6   4  ; "warn"
+0052    KSTR     7   5      ; "KoptInterface: missing page_boxes"
+0053    CALL     6   1   2
+0054    RET0     0   1
+0055 => MOV      7   0
+0056    TGETS    6   0   6  ; "getTextFromBoxes"
+0057    MOV      8   5
+0058    MOV      9   3
+0059    MOV     10   4
+0060    CALL     6   2   5
+0061    TGETS    7   6   7  ; "boxes"
+0062    RET1     7   2
+0063 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:1086-1107
+0001    TGETS    4   1   0  ; "configurable"
+0002    TGETS    4   4   1  ; "text_wrap"
+0003    ISNEN    4   0      ; 1
+0004    JMP      4 => 0049
+0005    TDUP     4   3
+0006    TGETS    5   3   2  ; "x"
+0007    ADDVN    5   5   1  ; 5
+0008    TSETS    5   4   2  ; "x"
+0009    TGETS    5   3   4  ; "y"
+0010    ADDVN    5   5   1  ; 5
+0011    TSETS    5   4   4  ; "y"
+0012    TDUP     5   6
+0013    TGETS    6   3   2  ; "x"
+0014    TGETS    7   3   5  ; "w"
+0015    ADDVV    6   6   7
+0016    SUBVN    6   6   1  ; 5
+0017    TSETS    6   5   2  ; "x"
+0018    TGETS    6   3   4  ; "y"
+0019    TGETS    7   3   7  ; "h"
+0020    ADDVV    6   6   7
+0021    SUBVN    6   6   1  ; 5
+0022    TSETS    6   5   4  ; "y"
+0023    MOV      7   0
+0024    TGETS    6   0   8  ; "getPageBoxesFromPositions"
+0025    MOV      8   1
+0026    MOV      9   2
+0027    MOV     10   4
+0028    MOV     11   5
+0029    CALL     6   2   6
+0030    KPRI     7   0
+0031    LEN      8   6
+0032    KSHORT   9   0
+0033    ISGE     9   8
+0034    JMP      8 => 0047
+0035    TGETB    7   6   1
+0036    GGET     8   9      ; "pairs"
+0037    MOV      9   6
+0038    CALL     8   4   2
+0039    ISNEXT  11 => 0045
+0040 => MOV     14   7
+0041    TGETS   13   7  10  ; "combine"
+0042    MOV     15  12
+0043    CALL    13   2   3
+0044    MOV      7  13
+0045 => ITERN   11   3   3
+0046    ITERL   11 => 0040
+0047 => RET1     7   2
+0048    JMP      4 => 0050
+0049 => RET1     3   2
+0050 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:1120-1144
+0001    KSHORT   2   1
+0002    TNEW     3   0
+0003    UGET     4   0      ; plist
+0004    LEN      4   4
+0005    ISNEN    4   0      ; 0
+0006    JMP      4 => 0008
+0007    RET0     0   1
+0008 => LOOP     4 => 0062
+0009    UGET     4   1      ; boxes
+0010    TGETV    4   4   0
+0011    LEN      4   4
+0012    ISGE     4   1
+0013    JMP      4 => 0019
+0014    UGET     4   1      ; boxes
+0015    TGETV    4   4   0
+0016    LEN      4   4
+0017    SUBVV    1   1   4
+0018    ADDVN    0   0   1  ; 1
+0019 => UGET     4   1      ; boxes
+0020    LEN      4   4
+0021    ISGE     4   0
+0022    JMP      4 => 0024
+0023    JMP      4 => 0062
+0024 => UGET     4   1      ; boxes
+0025    TGETV    4   4   0
+0026    TGETV    4   4   1
+0027    UGET     5   2      ; caseInsensitive
+0028    ISF          5
+0029    JMP      6 => 0036
+0030    TGETS    5   4   0  ; "word"
+0031    MOV      6   5
+0032    TGETS    5   5   1  ; "lower"
+0033    CALL     5   2   2
+0034    IST          5
+0035    JMP      6 => 0037
+0036 => TGETS    5   4   0  ; "word"
+0037 => MOV      7   5
+0038    TGETS    6   5   2  ; "match"
+0039    UGET     8   0      ; plist
+0040    TGETV    8   8   2
+0041    CALL     6   2   3
+0042    ISF          6
+0043    JMP      7 => 0062
+0044    GGET     6   3      ; "table"
+0045    TGETS    6   6   4  ; "insert"
+0046    MOV      7   3
+0047    TNEW     8   3
+0048    TSETB    0   8   1
+0049    TSETB    1   8   2
+0050    CALL     6   1   3
+0051    UGET     6   0      ; plist
+0052    LEN      6   6
+0053    ISNEV    2   6
+0054    JMP      6 => 0057
+0055    RET1     3   2
+0056    JMP      6 => 0008
+0057 => ADDVN    1   1   1  ; 1
+0058    ADDVN    2   2   1  ; 1
+0059    JMP      6 => 0008
+0060    JMP      4 => 0062
+0061    JMP      4 => 0008
+0062 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:1145-1154
+0001    GGET     0   0      ; "ipairs"
+0002    UGET     1   0      ; boxes
+0003    CALL     0   4   2
+0004    JMP      3 => 0021
+0005 => GGET     5   0      ; "ipairs"
+0006    MOV      6   4
+0007    CALL     5   4   2
+0008    JMP      8 => 0019
+0009 => UGET    10   1      ; match
+0010    MOV     11   3
+0011    MOV     12   8
+0012    CALL    10   2   3
+0013    ISF         10
+0014    JMP     11 => 0019
+0015    GGET    11   1      ; "coroutine"
+0016    TGETS   11  11   2  ; "yield"
+0017    MOV     12  10
+0018    CALL    11   1   2
+0019 => ITERC    8   3   3
+0020    ITERL    8 => 0009
+0021 => ITERC    3   3   3
+0022    ITERL    3 => 0005
+0023    RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:1109-1155
+0001    TNEW     3   0
+0002    MOV      5   1
+0003    TGETS    4   1   0  ; "gmatch"
+0004    KSTR     6   1      ; "[ -\127À-ÿ]+[€-¿]*"
+0005    CALL     4   4   3
+0006    JMP      7 => 0026
+0007 => MOV      9   7
+0008    TGETS    8   7   0  ; "gmatch"
+0009    KSTR    10   2      ; "[^%s]+"
+0010    CALL     8   4   3
+0011    JMP     11 => 0024
+0012 => GGET    12   3      ; "table"
+0013    TGETS   12  12   4  ; "insert"
+0014    MOV     13   3
+0015    ISF          2
+0016    JMP     14 => 0022
+0017    MOV     15  11
+0018    TGETS   14  11   5  ; "lower"
+0019    CALL    14   2   2
+0020    IST         14
+0021    JMP     15 => 0023
+0022 => MOV     14  11
+0023 => CALL    12   1   3
+0024 => ITERC   11   2   3
+0025    ITERL   11 => 0012
+0026 => ITERC    7   2   3
+0027    ITERL    7 => 0007
+0028    FNEW     4   6      ; koptinterface.lua:1120
+0029    GGET     5   7      ; "coroutine"
+0030    TGETS    5   5   8  ; "wrap"
+0031    FNEW     6   9      ; koptinterface.lua:1145
+0032    UCLO     0 => 0033
+0033 => CALLT    5   2
+
+-- BYTECODE -- koptinterface.lua:1157-1175
+0001    MOV      6   1
+0002    TGETS    5   1   0  ; "getPageTextBoxes"
+0003    MOV      7   4
+0004    CALL     5   2   3
+0005    IST          5
+0006    JMP      6 => 0008
+0007    RET0     0   1
+0008 => TNEW     6   0
+0009    UGET     7   0      ; all_matches
+0010    ISTC     8   5
+0011    JMP      8 => 0013
+0012    TNEW     8   0
+0013 => MOV      9   2
+0014    MOV     10   3
+0015    CALL     7   4   4
+0016    JMP     10 => 0051
+0017 => GGET    11   1      ; "ipairs"
+0018    MOV     12  10
+0019    CALL    11   4   2
+0020    JMP     14 => 0049
+0021 => GGET    16   2      ; "unpack"
+0022    MOV     17  15
+0023    CALL    16   3   2
+0024    TGETV   18   5  16
+0025    TGETV   18  18  17
+0026    TDUP    19   4
+0027    TGETS   20  18   3  ; "x0"
+0028    TSETS   20  19   5  ; "x"
+0029    TGETS   20  18   6  ; "y0"
+0030    TSETS   20  19   7  ; "y"
+0031    TGETS   20  18   8  ; "x1"
+0032    TGETS   21  18   3  ; "x0"
+0033    SUBVV   20  20  21
+0034    TSETS   20  19   9  ; "w"
+0035    TGETS   20  18  10  ; "y1"
+0036    TGETS   21  18   6  ; "y0"
+0037    SUBVV   20  20  21
+0038    TSETS   20  19  11  ; "h"
+0039    GGET    20  12      ; "table"
+0040    TGETS   20  20  13  ; "insert"
+0041    MOV     21   6
+0042    MOV     23   0
+0043    TGETS   22   0  14  ; "nativeToPageRectTransform"
+0044    MOV     24   1
+0045    MOV     25   4
+0046    MOV     26  19
+0047    CALL    22   0   5
+0048    CALLM   20   1   1
+0049 => ITERC   14   3   3
+0050    ITERL   14 => 0021
+0051 => ITERC   10   2   3
+0052    ITERL   10 => 0017
+0053    RET1     6   2
+
+-- BYTECODE -- koptinterface.lua:1177-1212
+0001    UGET     7   0      ; logger
+0002    TGETS    7   7   0  ; "dbg"
+0003    KSTR     8   1      ; "Koptinterface: find text"
+0004    MOV      9   2
+0005    MOV     10   3
+0006    MOV     11   4
+0007    MOV     12   5
+0008    MOV     13   6
+0009    CALL     7   1   7
+0010    MOV      8   1
+0011    TGETS    7   1   2  ; "getPageCount"
+0012    CALL     7   2   2
+0013    KNIL     8   9
+0014    ISNEN    4   0      ; 1
+0015    JMP     10 => 0034
+0016    ISNEN    3   1      ; 0
+0017    JMP     10 => 0022
+0018    MOV     10   6
+0019    KSHORT   9   1
+0020    MOV      8  10
+0021    JMP     10 => 0051
+0022 => ISNEN    3   2      ; -1
+0023    JMP     10 => 0028
+0024    MOV     10   7
+0025    ADDVN    9   6   0  ; 1
+0026    MOV      8  10
+0027    JMP     10 => 0051
+0028 => ISNEN    3   0      ; 1
+0029    JMP     10 => 0051
+0030    SUBVN   10   6   0  ; 1
+0031    KSHORT   9   1
+0032    MOV      8  10
+0033    JMP     10 => 0051
+0034 => ISNEN    3   1      ; 0
+0035    JMP     10 => 0040
+0036    MOV     10   6
+0037    MOV      9   7
+0038    MOV      8  10
+0039    JMP     10 => 0051
+0040 => ISNEN    3   2      ; -1
+0041    JMP     10 => 0046
+0042    KSHORT  10   1
+0043    SUBVN    9   6   0  ; 1
+0044    MOV      8  10
+0045    JMP     10 => 0051
+0046 => ISNEN    3   0      ; 1
+0047    JMP     10 => 0051
+0048    ADDVN   10   6   0  ; 1
+0049    MOV      9   7
+0050    MOV      8  10
+0051 => MOV     10   8
+0052    MOV     11   9
+0053    ISNEN    4   0      ; 1
+0054    JMP     12 => 0057
+0055    KSHORT  12  -1
+0056    JMP     13 => 0058
+0057 => KSHORT  12   1
+0058 => FORI    10 => 0073
+0059 => MOV     15   0
+0060    TGETS   14   0   3  ; "findAllMatches"
+0061    MOV     16   1
+0062    MOV     17   2
+0063    MOV     18   5
+0064    MOV     19  13
+0065    CALL    14   2   6
+0066    LEN     15  14
+0067    KSHORT  16   0
+0068    ISGE    16  15
+0069    JMP     15 => 0072
+0070    TSETS   13  14   4  ; "page"
+0071    RET1    14   2
+0072 => FORL    10 => 0059
+0073 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:1217-1226
+0001    GGET     3   0      ; "io"
+0002    TGETS    3   3   1  ; "open"
+0003    KSTR     4   2      ; "reflow_dur_log.txt"
+0004    KSTR     5   3      ; "a+"
+0005    CALL     3   2   3
+0006    ISF          3
+0007    JMP      4 => 0030
+0008    MOV      5   3
+0009    TGETS    4   3   4  ; "seek"
+0010    KSTR     6   5      ; "end"
+0011    CALL     4   2   3
+0012    ISNEN    4   0      ; 0
+0013    JMP      4 => 0018
+0014    MOV      5   3
+0015    TGETS    4   3   6  ; "write"
+0016    KSTR     6   7      ; "PAGE\tDUR\n"
+0017    CALL     4   1   3
+0018 => MOV      5   3
+0019    TGETS    4   3   6  ; "write"
+0020    GGET     6   8      ; "string"
+0021    TGETS    6   6   9  ; "format"
+0022    KSTR     7  10      ; "%s\t%s\n"
+0023    MOV      8   1
+0024    MOV      9   2
+0025    CALL     6   0   4
+0026    CALLM    4   1   1
+0027    MOV      5   3
+0028    TGETS    4   3  11  ; "close"
+0029    CALL     4   1   2
+0030 => RET0     0   1
+
+-- BYTECODE -- koptinterface.lua:0-1229
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "cache"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "cacheitem"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "document/canvascontext"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "datastorage"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "dbg"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "document/document"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/geometry"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ffi/koptcontext"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "document/tilecacheitem"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "logger"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "serialize"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ffi/util"
+0036    CALL    11   2   2
+0037    TDUP    12  13
+0038    MOV     14   3
+0039    TGETS   13   3  14  ; "getDataDir"
+0040    CALL    13   2   2
+0041    KSTR    14  15      ; "/data"
+0042    CAT     13  13  14
+0043    TSETS   13  12  16  ; "tessocr_data"
+0044    MOV     14   1
+0045    TGETS   13   1  17  ; "new"
+0046    TNEW    15   0
+0047    CALL    13   2   3
+0048    FNEW    14  19      ; koptinterface.lua:29
+0049    TSETS   14  13  18  ; "onFree"
+0050    FNEW    14  21      ; koptinterface.lua:37
+0051    TSETS   14  13  20  ; "dump"
+0052    FNEW    14  23      ; koptinterface.lua:44
+0053    TSETS   14  13  22  ; "load"
+0054    MOV     15   1
+0055    TGETS   14   1  17  ; "new"
+0056    TNEW    16   0
+0057    CALL    14   2   3
+0058    FNEW    15  24      ; koptinterface.lua:53
+0059    TSETS   15  14  18  ; "onFree"
+0060    FNEW    15  26      ; koptinterface.lua:60
+0061    TSETS   15  12  25  ; "setDefaultConfigurable"
+0062    FNEW    15  28      ; koptinterface.lua:78
+0063    TSETS   15  12  27  ; "waitForContext"
+0064    FNEW    15  30      ; koptinterface.lua:91
+0065    TSETS   15  12  29  ; "createContext"
+0066    FNEW    15  32      ; koptinterface.lua:130
+0067    TSETS   15  12  31  ; "getContextHash"
+0068    FNEW    15  34      ; koptinterface.lua:138
+0069    TSETS   15  12  33  ; "getPageBBox"
+0070    FNEW    15  36      ; koptinterface.lua:154
+0071    TSETS   15  12  35  ; "getAutoBBox"
+0072    FNEW    15  38      ; koptinterface.lua:187
+0073    TSETS   15  12  37  ; "getSemiAutoBBox"
+0074    FNEW    15  40      ; koptinterface.lua:224
+0075    TSETS   15  12  39  ; "getCachedContext"
+0076    FNEW    15  42      ; koptinterface.lua:262
+0077    TSETS   15  12  41  ; "getPageDimensions"
+0078    FNEW    15  44      ; koptinterface.lua:273
+0079    TSETS   15  12  43  ; "getRFPageDimensions"
+0080    FNEW    15  46      ; koptinterface.lua:282
+0081    TSETS   15  12  45  ; "getCoverPageImage"
+0082    FNEW    15  48      ; koptinterface.lua:292
+0083    TSETS   15  12  47  ; "renderPage"
+0084    FNEW    15  50      ; koptinterface.lua:307
+0085    TSETS   15  12  49  ; "renderReflowedPage"
+0086    FNEW    15  52      ; koptinterface.lua:341
+0087    TSETS   15  12  51  ; "renderOptimizedPage"
+0088    FNEW    15  54      ; koptinterface.lua:383
+0089    TSETS   15  12  53  ; "hintPage"
+0090    FNEW    15  56      ; koptinterface.lua:402
+0091    TSETS   15  12  55  ; "hintReflowedPage"
+0092    FNEW    15  58      ; koptinterface.lua:422
+0093    TSETS   15  12  57  ; "drawPage"
+0094    FNEW    15  60      ; koptinterface.lua:437
+0095    TSETS   15  12  59  ; "drawContextPage"
+0096    FNEW    15  62      ; koptinterface.lua:451
+0097    TSETS   15  12  61  ; "getTextBoxes"
+0098    FNEW    15  64      ; koptinterface.lua:469
+0099    TSETS   15  12  63  ; "getReflowedTextBoxes"
+0100    FNEW    15  66      ; koptinterface.lua:493
+0101    TSETS   15  12  65  ; "getNativeTextBoxes"
+0102    FNEW    15  68      ; koptinterface.lua:519
+0103    TSETS   15  12  67  ; "getReflowedTextBoxesFromScratch"
+0104    FNEW    15  70      ; koptinterface.lua:547
+0105    TSETS   15  12  69  ; "getNativeTextBoxesFromScratch"
+0106    FNEW    15  72      ; koptinterface.lua:574
+0107    TSETS   15  12  71  ; "getPageBlock"
+0108    FNEW    15  74      ; koptinterface.lua:605
+0109    TSETS   15  12  73  ; "getOCRWord"
+0110    FNEW    15  76      ; koptinterface.lua:619
+0111    TSETS   15  12  75  ; "getReflewOCRWord"
+0112    FNEW    15  78      ; koptinterface.lua:645
+0113    TSETS   15  12  77  ; "getNativeOCRWord"
+0114    FNEW    15  80      ; koptinterface.lua:680
+0115    TSETS   15  12  79  ; "getOCRText"
+0116    FNEW    15  82      ; koptinterface.lua:687
+0117    TSETS   15  12  81  ; "getClipPageContext"
+0118    FNEW    15  84      ; koptinterface.lua:722
+0119    TSETS   15  12  83  ; "clipPagePNGFile"
+0120    FNEW    15  86      ; koptinterface.lua:728
+0121    TSETS   15  12  85  ; "clipPagePNGString"
+0122    FNEW    15  87      ; koptinterface.lua:751
+0123    FNEW    16  88      ; koptinterface.lua:759
+0124    FNEW    17  89      ; koptinterface.lua:769
+0125    FNEW    18  91      ; koptinterface.lua:784
+0126    TSETS   18  12  90  ; "getWordFromBoxes"
+0127    FNEW    18  93      ; koptinterface.lua:805
+0128    TSETS   18  12  92  ; "getTextFromBoxes"
+0129    FNEW    18  95      ; koptinterface.lua:874
+0130    TSETS   18  12  94  ; "getWordFromPosition"
+0131    FNEW    18  96      ; koptinterface.lua:885
+0132    FNEW    19  98      ; koptinterface.lua:896
+0133    TSETS   19  12  97  ; "getWordFromReflowPosition"
+0134    FNEW    19 100      ; koptinterface.lua:923
+0135    TSETS   19  12  99  ; "getWordFromNativePosition"
+0136    FNEW    19 102      ; koptinterface.lua:937
+0137    TSETS   19  12 101  ; "getLinkFromPosition"
+0138    FNEW    19 104      ; koptinterface.lua:976
+0139    TSETS   19  12 103  ; "nativeToReflowPosTransform"
+0140    FNEW    19 106      ; koptinterface.lua:986
+0141    TSETS   19  12 105  ; "reflowToNativePosTransform"
+0142    FNEW    19 108      ; koptinterface.lua:996
+0143    TSETS   19  12 107  ; "getTextFromPositions"
+0144    FNEW    19 110      ; koptinterface.lua:1010
+0145    TSETS   19  12 109  ; "getTextFromReflowPositions"
+0146    FNEW    19 112      ; koptinterface.lua:1044
+0147    TSETS   19  12 111  ; "getTextFromNativePositions"
+0148    FNEW    19 114      ; koptinterface.lua:1060
+0149    TSETS   19  12 113  ; "getPageBoxesFromPositions"
+0150    FNEW    19 116      ; koptinterface.lua:1086
+0151    TSETS   19  12 115  ; "nativeToPageRectTransform"
+0152    FNEW    19 117      ; koptinterface.lua:1109
+0153    FNEW    20 119      ; koptinterface.lua:1157
+0154    TSETS   20  12 118  ; "findAllMatches"
+0155    FNEW    20 121      ; koptinterface.lua:1177
+0156    TSETS   20  12 120  ; "findText"
+0157    FNEW    20 123      ; koptinterface.lua:1217
+0158    TSETS   20  12 122  ; "logReflowDuration"
+0159    UCLO     0 => 0160
+0160 => RET1    12   2
+

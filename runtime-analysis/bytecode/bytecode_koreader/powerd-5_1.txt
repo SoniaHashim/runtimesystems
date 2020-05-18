@@ -1,0 +1,804 @@
+
+main <./frontend/device/kobo/powerd.lua:0,0> (67 instructions, 268 bytes at 0x7fc9e1c068d0)
+0+ params, 10 slots, 0 upvalues, 6 locals, 39 constants, 14 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "device/generic/powerd"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "device/kobo/nickel_conf"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "pluginshare"
+	9	[3]	CALL     	2 2 2
+	10	[4]	GETGLOBAL	3 -1	; require
+	11	[4]	LOADK    	4 -5	; "device/sysfs_light"
+	12	[4]	CALL     	3 2 2
+	13	[7]	LOADK    	4 -6	; "/sys/devices/platform/pmic_battery.1/power_supply/mc13892_bat/"
+	14	[14]	SELF     	5 0 -7	; "new"
+	15	[14]	NEWTABLE 	7 0 11
+	16	[15]	SETTABLE 	7 -8 -9	; "fl_min" 0
+	17	[15]	SETTABLE 	7 -10 -11	; "fl_max" 100
+	18	[16]	SETTABLE 	7 -12 -13	; "fl" nil
+	19	[18]	MOVE     	8 4
+	20	[18]	LOADK    	9 -15	; "capacity"
+	21	[18]	CONCAT   	8 8 9
+	22	[18]	SETTABLE 	7 -14 8	; "batt_capacity_file" -
+	23	[19]	MOVE     	8 4
+	24	[19]	LOADK    	9 -17	; "status"
+	25	[19]	CONCAT   	8 8 9
+	26	[19]	SETTABLE 	7 -16 8	; "is_charging_file" -
+	27	[20]	SETTABLE 	7 -18 -9	; "fl_warmth_min" 0
+	28	[20]	SETTABLE 	7 -19 -11	; "fl_warmth_max" 100
+	29	[21]	SETTABLE 	7 -20 -13	; "fl_warmth" nil
+	30	[22]	SETTABLE 	7 -21 -22	; "auto_warmth" false
+	31	[23]	SETTABLE 	7 -23 -24	; "max_warmth_hour" 23
+	32	[24]	SETTABLE 	7 -25 -13	; "fl_was_on" nil
+	33	[14]	CALL     	5 3 2
+	34	[106]	CLOSURE  	6 0	; 0x7fc9e1c06d90
+	35	[106]	MOVE     	0 1
+	36	[28]	SETTABLE 	5 -26 6	; "_syncKoboLightOnStart" -
+	37	[169]	CLOSURE  	6 1	; 0x7fc9e1c075e0
+	38	[169]	MOVE     	0 3
+	39	[108]	SETTABLE 	5 -27 6	; "init" -
+	40	[216]	CLOSURE  	6 2	; 0x7fc9e1c08220
+	41	[216]	MOVE     	0 1
+	42	[171]	SETTABLE 	5 -28 6	; "saveSettings" -
+	43	[220]	CLOSURE  	6 3	; 0x7fc9e1c08cb0
+	44	[218]	SETTABLE 	5 -29 6	; "frontlightIntensityHW" -
+	45	[231]	CLOSURE  	6 4	; 0x7fc9e1c08660
+	46	[222]	SETTABLE 	5 -30 6	; "isFrontlightOnHW" -
+	47	[247]	CLOSURE  	6 5	; 0x7fc9e1c08bb0
+	48	[233]	SETTABLE 	5 -31 6	; "setIntensityHW" -
+	49	[261]	CLOSURE  	6 6	; 0x7fc9e1c097b0
+	50	[249]	SETTABLE 	5 -32 6	; "setWarmth" -
+	51	[308]	CLOSURE  	6 7	; 0x7fc9e1c09e10
+	52	[308]	MOVE     	0 2
+	53	[265]	SETTABLE 	5 -33 6	; "calculateAutoWarmth" -
+	54	[312]	CLOSURE  	6 8	; 0x7fc9e1c0a560
+	55	[310]	SETTABLE 	5 -34 6	; "getCapacityHW" -
+	56	[316]	CLOSURE  	6 9	; 0x7fc9e1c0acd0
+	57	[314]	SETTABLE 	5 -35 6	; "isChargingHW" -
+	58	[350]	CLOSURE  	6 10	; 0x7fc9e1c0b000
+	59	[318]	SETTABLE 	5 -36 6	; "turnOffFrontlightHW" -
+	60	[389]	CLOSURE  	6 11	; 0x7fc9e1c0b160
+	61	[351]	SETTABLE 	5 -37 6	; "turnOnFrontlightHW" -
+	62	[398]	CLOSURE  	6 12	; 0x7fc9e1c0b430
+	63	[392]	SETTABLE 	5 -38 6	; "beforeSuspend" -
+	64	[415]	CLOSURE  	6 13	; 0x7fc9e1c0b3b0
+	65	[401]	SETTABLE 	5 -39 6	; "afterResume" -
+	66	[417]	RETURN   	5 2
+	67	[417]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:28,106> (122 instructions, 488 bytes at 0x7fc9e1c06d90)
+1 param, 9 slots, 1 upvalue, 8 locals, 32 constants, 0 functions
+	1	[33]	GETGLOBAL	5 -1	; tonumber
+	2	[33]	GETGLOBAL	6 -2	; KOBO_LIGHT_ON_START
+	3	[33]	CALL     	5 2 2
+	4	[34]	TEST     	5 0 0
+	5	[34]	JMP      	87	; to 93
+	6	[35]	LT       	0 -3 5	; 0 -
+	7	[35]	JMP      	8	; to 16
+	8	[36]	GETGLOBAL	6 -4	; math
+	9	[36]	GETTABLE 	6 6 -5	; "min"
+	10	[36]	MOVE     	7 5
+	11	[36]	LOADK    	8 -6	; 100
+	12	[36]	CALL     	6 3 2
+	13	[36]	MOVE     	1 6
+	14	[37]	LOADBOOL 	2 1 0
+	15	[37]	JMP      	77	; to 93
+	16	[38]	EQ       	0 5 -3	; - 0
+	17	[38]	JMP      	3	; to 21
+	18	[39]	LOADK    	1 -3	; 0
+	19	[40]	LOADBOOL 	2 0 0
+	20	[40]	JMP      	72	; to 93
+	21	[41]	EQ       	0 5 -7	; - -2
+	22	[41]	JMP      	47	; to 70
+	23	[42]	GETUPVAL 	6 0	; NickelConf
+	24	[42]	GETTABLE 	6 6 -8	; "frontLightLevel"
+	25	[42]	GETTABLE 	6 6 -9	; "get"
+	26	[42]	CALL     	6 1 2
+	27	[42]	MOVE     	1 6
+	28	[43]	GETUPVAL 	6 0	; NickelConf
+	29	[43]	GETTABLE 	6 6 -10	; "frontLightState"
+	30	[43]	SELF     	6 6 -9	; "get"
+	31	[43]	CALL     	6 2 2
+	32	[43]	MOVE     	2 6
+	33	[44]	GETTABLE 	6 0 -11	; "fl_warmth"
+	34	[44]	EQ       	1 6 -12	; - nil
+	35	[44]	JMP      	17	; to 53
+	36	[45]	GETUPVAL 	6 0	; NickelConf
+	37	[45]	GETTABLE 	6 6 -13	; "colorSetting"
+	38	[45]	GETTABLE 	6 6 -9	; "get"
+	39	[45]	CALL     	6 1 2
+	40	[46]	EQ       	1 6 -12	; - nil
+	41	[46]	JMP      	6	; to 48
+	42	[50]	GETGLOBAL	7 -4	; math
+	43	[50]	GETTABLE 	7 7 -14	; "floor"
+	44	[50]	SUB      	8 6 -15	; - 1500
+	45	[50]	DIV      	8 8 -16	; - 49
+	46	[50]	CALL     	7 2 2
+	47	[50]	SUB      	3 -6 7	; 100 -
+	48	[52]	GETUPVAL 	7 0	; NickelConf
+	49	[52]	GETTABLE 	7 7 -17	; "autoColorEnabled"
+	50	[52]	GETTABLE 	7 7 -9	; "get"
+	51	[52]	CALL     	7 1 2
+	52	[52]	MOVE     	4 7
+	53	[54]	EQ       	0 2 -12	; - nil
+	54	[54]	JMP      	5	; to 60
+	55	[57]	LT       	0 -3 1	; 0 -
+	56	[57]	JMP      	2	; to 59
+	57	[58]	LOADBOOL 	2 1 0
+	58	[58]	JMP      	1	; to 60
+	59	[60]	LOADBOOL 	2 0 0
+	60	[63]	EQ       	0 2 -18	; - false
+	61	[63]	JMP      	31	; to 93
+	62	[63]	EQ       	0 1 -3	; - 0
+	63	[63]	JMP      	29	; to 93
+	64	[67]	GETGLOBAL	6 -19	; G_reader_settings
+	65	[67]	SELF     	6 6 -20	; "readSetting"
+	66	[67]	LOADK    	8 -21	; "frontlight_intensity"
+	67	[67]	CALL     	6 3 2
+	68	[67]	MOVE     	1 6
+	69	[68]	JMP      	23	; to 93
+	70	[72]	GETGLOBAL	6 -19	; G_reader_settings
+	71	[72]	SELF     	6 6 -20	; "readSetting"
+	72	[72]	LOADK    	8 -21	; "frontlight_intensity"
+	73	[72]	CALL     	6 3 2
+	74	[72]	MOVE     	1 6
+	75	[73]	GETGLOBAL	6 -19	; G_reader_settings
+	76	[73]	SELF     	6 6 -20	; "readSetting"
+	77	[73]	LOADK    	8 -22	; "is_frontlight_on"
+	78	[73]	CALL     	6 3 2
+	79	[73]	MOVE     	2 6
+	80	[74]	GETTABLE 	6 0 -11	; "fl_warmth"
+	81	[74]	EQ       	1 6 -12	; - nil
+	82	[74]	JMP      	10	; to 93
+	83	[75]	GETGLOBAL	6 -19	; G_reader_settings
+	84	[75]	SELF     	6 6 -20	; "readSetting"
+	85	[75]	LOADK    	8 -23	; "frontlight_warmth"
+	86	[75]	CALL     	6 3 2
+	87	[75]	MOVE     	3 6
+	88	[76]	GETGLOBAL	6 -19	; G_reader_settings
+	89	[76]	SELF     	6 6 -20	; "readSetting"
+	90	[76]	LOADK    	8 -24	; "frontlight_auto_warmth"
+	91	[76]	CALL     	6 3 2
+	92	[76]	MOVE     	4 6
+	93	[81]	EQ       	1 1 -12	; - nil
+	94	[81]	JMP      	1	; to 96
+	95	[82]	SETTABLE 	0 -25 1	; "hw_intensity" -
+	96	[84]	EQ       	1 2 -12	; - nil
+	97	[84]	JMP      	1	; to 99
+	98	[86]	SETTABLE 	0 -26 2	; "initial_is_fl_on" -
+	99	[91]	GETGLOBAL	6 -19	; G_reader_settings
+	100	[91]	SELF     	6 6 -20	; "readSetting"
+	101	[91]	LOADK    	8 -27	; "frontlight_max_warmth_hour"
+	102	[91]	CALL     	6 3 2
+	103	[92]	TEST     	6 0 0
+	104	[92]	JMP      	1	; to 106
+	105	[93]	SETTABLE 	0 -28 6	; "max_warmth_hour" -
+	106	[95]	TEST     	4 0 0
+	107	[95]	JMP      	4	; to 112
+	108	[96]	SETTABLE 	0 -29 -30	; "auto_warmth" true
+	109	[97]	SELF     	7 0 -31	; "calculateAutoWarmth"
+	110	[97]	CALL     	7 2 1
+	111	[97]	JMP      	3	; to 115
+	112	[98]	EQ       	1 3 -12	; - nil
+	113	[98]	JMP      	1	; to 115
+	114	[99]	SETTABLE 	0 -11 3	; "fl_warmth" -
+	115	[103]	GETTABLE 	7 0 -26	; "initial_is_fl_on"
+	116	[103]	EQ       	0 7 -18	; - false
+	117	[103]	JMP      	4	; to 122
+	118	[103]	GETTABLE 	7 0 -25	; "hw_intensity"
+	119	[103]	EQ       	0 7 -3	; - 0
+	120	[103]	JMP      	1	; to 122
+	121	[104]	SETTABLE 	0 -25 -32	; "hw_intensity" 1
+	122	[106]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:108,169> (102 instructions, 408 bytes at 0x7fc9e1c075e0)
+1 param, 8 slots, 1 upvalue, 13 locals, 34 constants, 0 functions
+	1	[112]	SETTABLE 	0 -1 -2	; "hw_intensity" 20
+	2	[113]	SETTABLE 	0 -3 -4	; "initial_is_fl_on" true
+	3	[114]	SETTABLE 	0 -5 -6	; "autowarmth_job_running" false
+	4	[116]	GETTABLE 	1 0 -7	; "device"
+	5	[116]	SELF     	1 1 -8	; "hasFrontlight"
+	6	[116]	CALL     	1 2 2
+	7	[116]	TEST     	1 0 0
+	8	[116]	JMP      	93	; to 102
+	9	[121]	GETTABLE 	1 0 -7	; "device"
+	10	[121]	SELF     	1 1 -9	; "hasNaturalLight"
+	11	[121]	CALL     	1 2 2
+	12	[121]	TEST     	1 0 0
+	13	[121]	JMP      	55	; to 69
+	14	[122]	GETGLOBAL	1 -10	; G_reader_settings
+	15	[122]	SELF     	1 1 -11	; "readSetting"
+	16	[122]	LOADK    	3 -12	; "natural_light_config"
+	17	[122]	CALL     	1 3 2
+	18	[123]	TEST     	1 0 0
+	19	[123]	JMP      	9	; to 29
+	20	[124]	GETGLOBAL	2 -13	; pairs
+	21	[124]	MOVE     	3 1
+	22	[124]	CALL     	2 2 4
+	23	[124]	JMP      	3	; to 27
+	24	[125]	GETTABLE 	7 0 -7	; "device"
+	25	[125]	GETTABLE 	7 7 -14	; "frontlight_settings"
+	26	[125]	SETTABLE 	7 5 6
+	27	[124]	TFORLOOP 	2 2
+	28	[125]	JMP      	-5	; to 24
+	29	[129]	GETTABLE 	2 0 -7	; "device"
+	30	[129]	GETTABLE 	2 2 -14	; "frontlight_settings"
+	31	[129]	GETTABLE 	2 2 -16	; "nl_min"
+	32	[129]	TEST     	2 0 1
+	33	[129]	JMP      	1	; to 35
+	34	[129]	GETTABLE 	2 0 -15	; "fl_warmth_min"
+	35	[129]	SETTABLE 	0 -15 2	; "fl_warmth_min" -
+	36	[130]	GETTABLE 	2 0 -7	; "device"
+	37	[130]	GETTABLE 	2 2 -14	; "frontlight_settings"
+	38	[130]	GETTABLE 	2 2 -18	; "nl_max"
+	39	[130]	TEST     	2 0 1
+	40	[130]	JMP      	1	; to 42
+	41	[130]	GETTABLE 	2 0 -17	; "fl_warmth_max"
+	42	[130]	SETTABLE 	0 -17 2	; "fl_warmth_max" -
+	43	[132]	GETTABLE 	2 0 -7	; "device"
+	44	[132]	SELF     	2 2 -19	; "hasNaturalLightMixer"
+	45	[132]	CALL     	2 2 2
+	46	[132]	TEST     	2 0 0
+	47	[132]	JMP      	11	; to 59
+	48	[133]	GETGLOBAL	2 -20	; require
+	49	[133]	LOADK    	3 -21	; "ffi/kobolight"
+	50	[133]	CALL     	2 2 2
+	51	[134]	GETGLOBAL	3 -22	; pcall
+	52	[134]	GETTABLE 	4 2 -23	; "open"
+	53	[134]	CALL     	3 2 3
+	54	[135]	TEST     	3 0 0
+	55	[135]	JMP      	3	; to 59
+	56	[136]	GETTABLE 	5 0 -7	; "device"
+	57	[136]	GETTABLE 	5 5 -14	; "frontlight_settings"
+	58	[136]	SETTABLE 	5 -24 4	; "frontlight_ioctl" -
+	59	[139]	GETUPVAL 	2 0	; SysfsLight
+	60	[139]	SELF     	2 2 -26	; "new"
+	61	[139]	GETTABLE 	4 0 -7	; "device"
+	62	[139]	GETTABLE 	4 4 -14	; "frontlight_settings"
+	63	[139]	CALL     	2 3 2
+	64	[139]	SETTABLE 	0 -25 2	; "fl" -
+	65	[140]	SETTABLE 	0 -27 -28	; "fl_warmth" 0
+	66	[141]	SELF     	2 0 -29	; "_syncKoboLightOnStart"
+	67	[141]	CALL     	2 2 1
+	68	[141]	JMP      	11	; to 80
+	69	[143]	GETGLOBAL	1 -20	; require
+	70	[143]	LOADK    	2 -21	; "ffi/kobolight"
+	71	[143]	CALL     	1 2 2
+	72	[144]	GETGLOBAL	2 -22	; pcall
+	73	[144]	GETTABLE 	3 1 -23	; "open"
+	74	[144]	CALL     	2 2 3
+	75	[145]	TEST     	2 0 0
+	76	[145]	JMP      	3	; to 80
+	77	[146]	SETTABLE 	0 -25 3	; "fl" -
+	78	[147]	SELF     	4 0 -29	; "_syncKoboLightOnStart"
+	79	[147]	CALL     	4 2 1
+	80	[152]	SELF     	1 0 -30	; "isFrontlightOnHW"
+	81	[152]	CALL     	1 2 2
+	82	[152]	TEST     	1 0 0
+	83	[152]	JMP      	13	; to 97
+	84	[154]	GETTABLE 	1 0 -7	; "device"
+	85	[154]	SELF     	1 1 -19	; "hasNaturalLightMixer"
+	86	[154]	CALL     	1 2 2
+	87	[154]	TEST     	1 0 0
+	88	[154]	JMP      	3	; to 92
+	89	[155]	SELF     	1 0 -31	; "setWarmth"
+	90	[155]	GETTABLE 	3 0 -27	; "fl_warmth"
+	91	[155]	CALL     	1 3 1
+	92	[158]	SELF     	1 0 -32	; "setIntensity"
+	93	[158]	SELF     	3 0 -33	; "frontlightIntensityHW"
+	94	[158]	CALL     	3 2 0
+	95	[158]	CALL     	1 0 1
+	96	[158]	JMP      	5	; to 102
+	97	[161]	GETTABLE 	1 0 -25	; "fl"
+	98	[161]	SELF     	1 1 -34	; "setBrightness"
+	99	[161]	LOADK    	3 -28	; 0
+	100	[161]	CALL     	1 3 1
+	101	[163]	SETTABLE 	0 -3 -6	; "initial_is_fl_on" false
+	102	[169]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:171,216> (106 instructions, 424 bytes at 0x7fc9e1c08220)
+1 param, 10 slots, 1 upvalue, 7 locals, 27 constants, 0 functions
+	1	[172]	GETTABLE 	1 0 -1	; "device"
+	2	[172]	SELF     	1 1 -2	; "hasFrontlight"
+	3	[172]	CALL     	1 2 2
+	4	[172]	TEST     	1 0 0
+	5	[172]	JMP      	100	; to 106
+	6	[176]	GETTABLE 	1 0 -3	; "fl_intensity"
+	7	[179]	GETTABLE 	2 0 -4	; "is_fl_on"
+	8	[179]	TEST     	2 0 1
+	9	[179]	JMP      	4	; to 14
+	10	[179]	GETTABLE 	2 0 -5	; "fl_was_on"
+	11	[179]	TEST     	2 0 1
+	12	[179]	JMP      	1	; to 14
+	13	[179]	LOADBOOL 	2 0 0
+	14	[180]	GETTABLE 	3 0 -6	; "fl_warmth"
+	15	[181]	GETTABLE 	4 0 -7	; "auto_warmth"
+	16	[182]	GETTABLE 	5 0 -8	; "max_warmth_hour"
+	17	[184]	GETGLOBAL	6 -9	; G_reader_settings
+	18	[184]	SELF     	6 6 -10	; "saveSetting"
+	19	[184]	LOADK    	8 -11	; "frontlight_intensity"
+	20	[184]	MOVE     	9 1
+	21	[184]	CALL     	6 4 1
+	22	[185]	GETGLOBAL	6 -9	; G_reader_settings
+	23	[185]	SELF     	6 6 -10	; "saveSetting"
+	24	[185]	LOADK    	8 -12	; "is_frontlight_on"
+	25	[185]	MOVE     	9 2
+	26	[185]	CALL     	6 4 1
+	27	[186]	EQ       	1 3 -13	; - nil
+	28	[186]	JMP      	15	; to 44
+	29	[187]	GETGLOBAL	6 -9	; G_reader_settings
+	30	[187]	SELF     	6 6 -10	; "saveSetting"
+	31	[187]	LOADK    	8 -14	; "frontlight_warmth"
+	32	[187]	MOVE     	9 3
+	33	[187]	CALL     	6 4 1
+	34	[188]	GETGLOBAL	6 -9	; G_reader_settings
+	35	[188]	SELF     	6 6 -10	; "saveSetting"
+	36	[188]	LOADK    	8 -15	; "frontlight_auto_warmth"
+	37	[188]	MOVE     	9 4
+	38	[188]	CALL     	6 4 1
+	39	[189]	GETGLOBAL	6 -9	; G_reader_settings
+	40	[189]	SELF     	6 6 -10	; "saveSetting"
+	41	[189]	LOADK    	8 -16	; "frontlight_max_warmth_hour"
+	42	[189]	MOVE     	9 5
+	43	[189]	CALL     	6 4 1
+	44	[192]	GETGLOBAL	6 -17	; KOBO_SYNC_BRIGHTNESS_WITH_NICKEL
+	45	[192]	TEST     	6 0 0
+	46	[192]	JMP      	59	; to 106
+	47	[193]	GETUPVAL 	6 0	; NickelConf
+	48	[193]	GETTABLE 	6 6 -18	; "frontLightState"
+	49	[193]	GETTABLE 	6 6 -19	; "get"
+	50	[193]	CALL     	6 1 2
+	51	[193]	EQ       	1 6 -13	; - nil
+	52	[193]	JMP      	12	; to 65
+	53	[194]	GETUPVAL 	6 0	; NickelConf
+	54	[194]	GETTABLE 	6 6 -18	; "frontLightState"
+	55	[194]	GETTABLE 	6 6 -19	; "get"
+	56	[194]	CALL     	6 1 2
+	57	[194]	EQ       	1 6 2
+	58	[194]	JMP      	9	; to 68
+	59	[195]	GETUPVAL 	6 0	; NickelConf
+	60	[195]	GETTABLE 	6 6 -18	; "frontLightState"
+	61	[195]	GETTABLE 	6 6 -20	; "set"
+	62	[195]	MOVE     	7 2
+	63	[195]	CALL     	6 2 1
+	64	[196]	JMP      	3	; to 68
+	65	[198]	TEST     	2 0 1
+	66	[198]	JMP      	1	; to 68
+	67	[199]	GETTABLE 	1 0 -21	; "fl_min"
+	68	[202]	GETUPVAL 	6 0	; NickelConf
+	69	[202]	GETTABLE 	6 6 -22	; "frontLightLevel"
+	70	[202]	GETTABLE 	6 6 -19	; "get"
+	71	[202]	CALL     	6 1 2
+	72	[202]	EQ       	1 6 1
+	73	[202]	JMP      	5	; to 79
+	74	[203]	GETUPVAL 	6 0	; NickelConf
+	75	[203]	GETTABLE 	6 6 -22	; "frontLightLevel"
+	76	[203]	GETTABLE 	6 6 -20	; "set"
+	77	[203]	MOVE     	7 1
+	78	[203]	CALL     	6 2 1
+	79	[205]	EQ       	1 3 -13	; - nil
+	80	[205]	JMP      	25	; to 106
+	81	[206]	SUB      	6 -23 3	; 100 -
+	82	[206]	MUL      	6 6 -24	; - 49
+	83	[206]	ADD      	6 6 -25	; - 1500
+	84	[207]	GETUPVAL 	7 0	; NickelConf
+	85	[207]	GETTABLE 	7 7 -26	; "colorSetting"
+	86	[207]	GETTABLE 	7 7 -19	; "get"
+	87	[207]	CALL     	7 1 2
+	88	[207]	EQ       	1 7 6
+	89	[207]	JMP      	5	; to 95
+	90	[208]	GETUPVAL 	7 0	; NickelConf
+	91	[208]	GETTABLE 	7 7 -26	; "colorSetting"
+	92	[208]	GETTABLE 	7 7 -20	; "set"
+	93	[208]	MOVE     	8 6
+	94	[208]	CALL     	7 2 1
+	95	[210]	GETUPVAL 	7 0	; NickelConf
+	96	[210]	GETTABLE 	7 7 -27	; "autoColorEnabled"
+	97	[210]	GETTABLE 	7 7 -19	; "get"
+	98	[210]	CALL     	7 1 2
+	99	[210]	EQ       	1 7 4
+	100	[210]	JMP      	5	; to 106
+	101	[211]	GETUPVAL 	7 0	; NickelConf
+	102	[211]	GETTABLE 	7 7 -27	; "autoColorEnabled"
+	103	[211]	GETTABLE 	7 7 -20	; "set"
+	104	[211]	MOVE     	8 4
+	105	[211]	CALL     	7 2 1
+	106	[216]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:218,220> (3 instructions, 12 bytes at 0x7fc9e1c08cb0)
+1 param, 2 slots, 0 upvalues, 1 local, 1 constant, 0 functions
+	1	[219]	GETTABLE 	1 0 -1	; "hw_intensity"
+	2	[219]	RETURN   	1 2
+	3	[220]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:222,231> (13 instructions, 52 bytes at 0x7fc9e1c08660)
+1 param, 2 slots, 0 upvalues, 2 locals, 4 constants, 0 functions
+	1	[223]	GETTABLE 	1 0 -1	; "initial_is_fl_on"
+	2	[223]	EQ       	1 1 -2	; - nil
+	3	[223]	JMP      	3	; to 7
+	4	[226]	GETTABLE 	1 0 -1	; "initial_is_fl_on"
+	5	[227]	SETTABLE 	0 -1 -2	; "initial_is_fl_on" nil
+	6	[228]	RETURN   	1 2
+	7	[230]	GETTABLE 	1 0 -3	; "hw_intensity"
+	8	[230]	LT       	1 -4 1	; 0 -
+	9	[230]	JMP      	1	; to 11
+	10	[230]	LOADBOOL 	1 0 1
+	11	[230]	LOADBOOL 	1 1 0
+	12	[230]	RETURN   	1 2
+	13	[231]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:233,247> (26 instructions, 104 bytes at 0x7fc9e1c08bb0)
+2 params, 6 slots, 0 upvalues, 2 locals, 9 constants, 0 functions
+	1	[234]	GETTABLE 	2 0 -1	; "fl"
+	2	[234]	EQ       	0 2 -2	; - nil
+	3	[234]	JMP      	1	; to 5
+	4	[234]	RETURN   	0 1
+	5	[235]	GETTABLE 	2 0 -3	; "fl_warmth"
+	6	[235]	EQ       	1 2 -2	; - nil
+	7	[235]	JMP      	5	; to 13
+	8	[235]	GETTABLE 	2 0 -4	; "device"
+	9	[235]	SELF     	2 2 -5	; "hasNaturalLightMixer"
+	10	[235]	CALL     	2 2 2
+	11	[235]	TEST     	2 0 0
+	12	[235]	JMP      	5	; to 18
+	13	[237]	GETTABLE 	2 0 -1	; "fl"
+	14	[237]	SELF     	2 2 -6	; "setBrightness"
+	15	[237]	MOVE     	4 1
+	16	[237]	CALL     	2 3 1
+	17	[237]	JMP      	5	; to 23
+	18	[240]	GETTABLE 	2 0 -1	; "fl"
+	19	[240]	SELF     	2 2 -7	; "setNaturalBrightness"
+	20	[240]	MOVE     	4 1
+	21	[240]	GETTABLE 	5 0 -3	; "fl_warmth"
+	22	[240]	CALL     	2 4 1
+	23	[242]	SETTABLE 	0 -8 1	; "hw_intensity" -
+	24	[246]	SELF     	2 0 -9	; "_decideFrontlightState"
+	25	[246]	CALL     	2 2 1
+	26	[247]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:249,261> (29 instructions, 116 bytes at 0x7fc9e1c097b0)
+2 params, 5 slots, 0 upvalues, 2 locals, 9 constants, 0 functions
+	1	[250]	GETTABLE 	2 0 -1	; "fl"
+	2	[250]	EQ       	0 2 -2	; - nil
+	3	[250]	JMP      	1	; to 5
+	4	[250]	RETURN   	0 1
+	5	[251]	TEST     	1 0 1
+	6	[251]	JMP      	5	; to 12
+	7	[251]	GETTABLE 	2 0 -3	; "auto_warmth"
+	8	[251]	TEST     	2 0 0
+	9	[251]	JMP      	2	; to 12
+	10	[252]	SELF     	2 0 -4	; "calculateAutoWarmth"
+	11	[252]	CALL     	2 2 1
+	12	[254]	TESTSET  	2 1 1
+	13	[254]	JMP      	1	; to 15
+	14	[254]	GETTABLE 	2 0 -5	; "fl_warmth"
+	15	[254]	SETTABLE 	0 -5 2	; "fl_warmth" -
+	16	[258]	GETTABLE 	2 0 -6	; "device"
+	17	[258]	SELF     	2 2 -7	; "hasNaturalLightMixer"
+	18	[258]	CALL     	2 2 2
+	19	[258]	TEST     	2 0 1
+	20	[258]	JMP      	4	; to 25
+	21	[258]	SELF     	2 0 -8	; "isFrontlightOnHW"
+	22	[258]	CALL     	2 2 2
+	23	[258]	TEST     	2 0 0
+	24	[258]	JMP      	4	; to 29
+	25	[259]	GETTABLE 	2 0 -1	; "fl"
+	26	[259]	SELF     	2 2 -9	; "setWarmth"
+	27	[259]	GETTABLE 	4 0 -5	; "fl_warmth"
+	28	[259]	CALL     	2 3 1
+	29	[261]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:265,308> (65 instructions, 260 bytes at 0x7fc9e1c09e10)
+1 param, 8 slots, 1 upvalue, 4 locals, 30 constants, 1 function
+	1	[266]	GETGLOBAL	1 -1	; os
+	2	[266]	GETTABLE 	1 1 -2	; "date"
+	3	[266]	LOADK    	2 -3	; "%H"
+	4	[266]	CALL     	1 2 2
+	5	[266]	GETGLOBAL	2 -1	; os
+	6	[266]	GETTABLE 	2 2 -2	; "date"
+	7	[266]	LOADK    	3 -4	; "%M"
+	8	[266]	CALL     	2 2 2
+	9	[266]	DIV      	2 2 -5	; - 60
+	10	[266]	ADD      	1 1 2
+	11	[267]	GETTABLE 	2 0 -6	; "max_warmth_hour"
+	12	[268]	SUB      	3 2 1
+	13	[269]	LT       	0 3 -7	; - 0
+	14	[269]	JMP      	1	; to 16
+	15	[270]	ADD      	3 3 -8	; - 24
+	16	[272]	LT       	0 3 -9	; - 12
+	17	[272]	JMP      	8	; to 26
+	18	[274]	GETGLOBAL	4 -11	; math
+	19	[274]	GETTABLE 	4 4 -12	; "max"
+	20	[274]	SUB      	5 -13 3	; 5 -
+	21	[274]	MUL      	5 -14 5	; 20 -
+	22	[274]	LOADK    	6 -7	; 0
+	23	[274]	CALL     	4 3 2
+	24	[274]	SETTABLE 	0 -10 4	; "fl_warmth" -
+	25	[274]	JMP      	12	; to 38
+	26	[275]	LT       	0 -15 3	; 22 -
+	27	[275]	JMP      	2	; to 30
+	28	[277]	SETTABLE 	0 -10 -16	; "fl_warmth" 100
+	29	[277]	JMP      	8	; to 38
+	30	[280]	GETGLOBAL	4 -11	; math
+	31	[280]	GETTABLE 	4 4 -12	; "max"
+	32	[280]	SUB      	5 -15 3	; 22 -
+	33	[280]	MUL      	5 -17 5	; 50 -
+	34	[280]	SUB      	5 -16 5	; 100 -
+	35	[280]	LOADK    	6 -7	; 0
+	36	[280]	CALL     	4 3 2
+	37	[280]	SETTABLE 	0 -10 4	; "fl_warmth" -
+	38	[282]	GETGLOBAL	4 -11	; math
+	39	[282]	GETTABLE 	4 4 -18	; "floor"
+	40	[282]	GETTABLE 	5 0 -10	; "fl_warmth"
+	41	[282]	ADD      	5 5 -19	; - 0.5
+	42	[282]	CALL     	4 2 2
+	43	[282]	SETTABLE 	0 -10 4	; "fl_warmth" -
+	44	[292]	GETTABLE 	4 0 -20	; "fl"
+	45	[292]	TEST     	4 0 0
+	46	[292]	JMP      	3	; to 50
+	47	[293]	GETTABLE 	4 0 -20	; "fl"
+	48	[293]	GETTABLE 	5 0 -10	; "fl_warmth"
+	49	[293]	SETTABLE 	4 -21 5	; "current_warmth" -
+	50	[296]	GETTABLE 	4 0 -22	; "autowarmth_job_running"
+	51	[296]	TEST     	4 0 1
+	52	[296]	JMP      	12	; to 65
+	53	[297]	GETGLOBAL	4 -23	; table
+	54	[297]	GETTABLE 	4 4 -24	; "insert"
+	55	[297]	GETUPVAL 	5 0	; PluginShare
+	56	[297]	GETTABLE 	5 5 -25	; "backgroundJobs"
+	57	[297]	NEWTABLE 	6 0 3
+	58	[298]	SETTABLE 	6 -26 -27	; "when" 180
+	59	[299]	SETTABLE 	6 -28 -29	; "repeated" true
+	60	[304]	CLOSURE  	7 0	; 0x7fc9e1c0a110
+	61	[304]	MOVE     	0 0
+	62	[304]	SETTABLE 	6 -30 7	; "executable" -
+	63	[297]	CALL     	4 3 1
+	64	[306]	SETTABLE 	0 -22 -29	; "autowarmth_job_running" true
+	65	[308]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:300,304> (8 instructions, 32 bytes at 0x7fc9e1c0a110)
+0 params, 2 slots, 1 upvalue, 0 locals, 2 constants, 0 functions
+	1	[301]	GETUPVAL 	0 0	; self
+	2	[301]	GETTABLE 	0 0 -1	; "auto_warmth"
+	3	[301]	TEST     	0 0 0
+	4	[301]	JMP      	3	; to 8
+	5	[302]	GETUPVAL 	0 0	; self
+	6	[302]	SELF     	0 0 -2	; "setWarmth"
+	7	[302]	CALL     	0 2 1
+	8	[304]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:310,312> (5 instructions, 20 bytes at 0x7fc9e1c0a560)
+1 param, 4 slots, 0 upvalues, 1 local, 2 constants, 0 functions
+	1	[311]	SELF     	1 0 -1	; "read_int_file"
+	2	[311]	GETTABLE 	3 0 -2	; "batt_capacity_file"
+	3	[311]	TAILCALL 	1 3 0
+	4	[311]	RETURN   	1 0
+	5	[312]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:314,316> (9 instructions, 36 bytes at 0x7fc9e1c0acd0)
+1 param, 4 slots, 0 upvalues, 1 local, 3 constants, 0 functions
+	1	[315]	SELF     	1 0 -1	; "read_str_file"
+	2	[315]	GETTABLE 	3 0 -2	; "is_charging_file"
+	3	[315]	CALL     	1 3 2
+	4	[315]	EQ       	1 1 -3	; - "Charging\n"
+	5	[315]	JMP      	1	; to 7
+	6	[315]	LOADBOOL 	1 0 1
+	7	[315]	LOADBOOL 	1 1 0
+	8	[315]	RETURN   	1 2
+	9	[316]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:318,350> (42 instructions, 168 bytes at 0x7fc9e1c0b000)
+1 param, 9 slots, 0 upvalues, 4 locals, 17 constants, 1 function
+	1	[319]	SELF     	1 0 -1	; "isFrontlightOnHW"
+	2	[319]	CALL     	1 2 2
+	3	[319]	TEST     	1 0 1
+	4	[319]	JMP      	1	; to 6
+	5	[320]	RETURN   	0 1
+	6	[322]	GETGLOBAL	1 -2	; require
+	7	[322]	LOADK    	2 -3	; "ffi/util"
+	8	[322]	CALL     	1 2 2
+	9	[323]	GETTABLE 	2 1 -4	; "runInSubProcess"
+	10	[334]	CLOSURE  	3 0	; 0x7fc9e1c0b1f0
+	11	[334]	MOVE     	0 0
+	12	[334]	MOVE     	0 1
+	13	[334]	LOADBOOL 	4 0 0
+	14	[334]	LOADBOOL 	5 1 0
+	15	[323]	CALL     	2 4 1
+	16	[338]	GETTABLE 	2 0 -6	; "fl_min"
+	17	[338]	SETTABLE 	0 -5 2	; "hw_intensity" -
+	18	[340]	GETTABLE 	2 0 -7	; "fl"
+	19	[340]	TEST     	2 0 0
+	20	[340]	JMP      	3	; to 24
+	21	[341]	GETTABLE 	2 0 -7	; "fl"
+	22	[341]	GETTABLE 	3 0 -6	; "fl_min"
+	23	[341]	SETTABLE 	2 -8 3	; "current_brightness" -
+	24	[343]	SELF     	2 0 -9	; "_decideFrontlightState"
+	25	[343]	CALL     	2 2 1
+	26	[345]	GETGLOBAL	2 -10	; package
+	27	[345]	GETTABLE 	2 2 -11	; "loaded"
+	28	[345]	GETTABLE 	2 2 -12	; "ui/uimanager"
+	29	[345]	EQ       	1 2 -13	; - nil
+	30	[345]	JMP      	11	; to 42
+	31	[346]	GETGLOBAL	2 -2	; require
+	32	[346]	LOADK    	3 -14	; "ui/event"
+	33	[346]	CALL     	2 2 2
+	34	[347]	GETGLOBAL	3 -2	; require
+	35	[347]	LOADK    	4 -12	; "ui/uimanager"
+	36	[347]	CALL     	3 2 2
+	37	[348]	SELF     	4 3 -15	; "broadcastEvent"
+	38	[348]	SELF     	6 2 -16	; "new"
+	39	[348]	LOADK    	8 -17	; "FrontlightStateChanged"
+	40	[348]	CALL     	6 3 0
+	41	[348]	CALL     	4 0 1
+	42	[350]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:323,334> (31 instructions, 124 bytes at 0x7fc9e1c0b1f0)
+0 params, 9 slots, 2 upvalues, 4 locals, 10 constants, 0 functions
+	1	[324]	LOADK    	0 -1	; 1
+	2	[324]	LOADK    	1 -2	; 5
+	3	[324]	LOADK    	2 -1	; 1
+	4	[324]	FORPREP  	0 25	; to 30
+	5	[325]	GETUPVAL 	4 0	; self
+	6	[325]	SELF     	4 4 -3	; "_setIntensity"
+	7	[325]	GETGLOBAL	6 -4	; math
+	8	[325]	GETTABLE 	6 6 -5	; "floor"
+	9	[325]	GETUPVAL 	7 0	; self
+	10	[325]	GETTABLE 	7 7 -6	; "fl_intensity"
+	11	[325]	GETUPVAL 	8 0	; self
+	12	[325]	GETTABLE 	8 8 -6	; "fl_intensity"
+	13	[325]	DIV      	8 8 -2	; - 5
+	14	[325]	MUL      	8 8 3
+	15	[325]	SUB      	7 7 8
+	16	[325]	CALL     	6 2 0
+	17	[325]	CALL     	4 0 1
+	18	[328]	GETUPVAL 	4 0	; self
+	19	[328]	GETTABLE 	4 4 -7	; "device"
+	20	[328]	SELF     	4 4 -8	; "hasNaturalLight"
+	21	[328]	CALL     	4 2 2
+	22	[328]	TEST     	4 0 1
+	23	[328]	JMP      	6	; to 30
+	24	[329]	LT       	0 3 -2	; - 5
+	25	[329]	JMP      	4	; to 30
+	26	[330]	GETUPVAL 	4 1	; util
+	27	[330]	GETTABLE 	4 4 -9	; "usleep"
+	28	[330]	LOADK    	5 -10	; 35000
+	29	[330]	CALL     	4 2 1
+	30	[324]	FORLOOP  	0 -26	; to 5
+	31	[334]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:351,389> (55 instructions, 220 bytes at 0x7fc9e1c0b160)
+1 param, 9 slots, 0 upvalues, 4 locals, 20 constants, 1 function
+	1	[355]	GETTABLE 	1 0 -1	; "is_fl_on"
+	2	[355]	EQ       	0 1 -2	; - false
+	3	[355]	JMP      	10	; to 14
+	4	[355]	GETTABLE 	1 0 -3	; "hw_intensity"
+	5	[355]	GETTABLE 	2 0 -4	; "fl_min"
+	6	[355]	LT       	0 2 1
+	7	[355]	JMP      	6	; to 14
+	8	[355]	GETTABLE 	1 0 -3	; "hw_intensity"
+	9	[355]	GETTABLE 	2 0 -5	; "fl_intensity"
+	10	[355]	EQ       	0 1 2
+	11	[355]	JMP      	2	; to 14
+	12	[356]	GETTABLE 	1 0 -4	; "fl_min"
+	13	[356]	SETTABLE 	0 -3 1	; "hw_intensity" -
+	14	[358]	SELF     	1 0 -6	; "isFrontlightOnHW"
+	15	[358]	CALL     	1 2 2
+	16	[358]	TEST     	1 0 0
+	17	[358]	JMP      	1	; to 19
+	18	[359]	RETURN   	0 1
+	19	[361]	GETGLOBAL	1 -7	; require
+	20	[361]	LOADK    	2 -8	; "ffi/util"
+	21	[361]	CALL     	1 2 2
+	22	[362]	GETTABLE 	2 1 -9	; "runInSubProcess"
+	23	[373]	CLOSURE  	3 0	; 0x7fc9e1c0bb60
+	24	[373]	MOVE     	0 0
+	25	[373]	MOVE     	0 1
+	26	[373]	LOADBOOL 	4 0 0
+	27	[373]	LOADBOOL 	5 1 0
+	28	[362]	CALL     	2 4 1
+	29	[377]	GETTABLE 	2 0 -5	; "fl_intensity"
+	30	[377]	SETTABLE 	0 -3 2	; "hw_intensity" -
+	31	[379]	GETTABLE 	2 0 -10	; "fl"
+	32	[379]	TEST     	2 0 0
+	33	[379]	JMP      	3	; to 37
+	34	[380]	GETTABLE 	2 0 -10	; "fl"
+	35	[380]	GETTABLE 	3 0 -5	; "fl_intensity"
+	36	[380]	SETTABLE 	2 -11 3	; "current_brightness" -
+	37	[382]	SELF     	2 0 -12	; "_decideFrontlightState"
+	38	[382]	CALL     	2 2 1
+	39	[384]	GETGLOBAL	2 -13	; package
+	40	[384]	GETTABLE 	2 2 -14	; "loaded"
+	41	[384]	GETTABLE 	2 2 -15	; "ui/uimanager"
+	42	[384]	EQ       	1 2 -16	; - nil
+	43	[384]	JMP      	11	; to 55
+	44	[385]	GETGLOBAL	2 -7	; require
+	45	[385]	LOADK    	3 -17	; "ui/event"
+	46	[385]	CALL     	2 2 2
+	47	[386]	GETGLOBAL	3 -7	; require
+	48	[386]	LOADK    	4 -15	; "ui/uimanager"
+	49	[386]	CALL     	3 2 2
+	50	[387]	SELF     	4 3 -18	; "broadcastEvent"
+	51	[387]	SELF     	6 2 -19	; "new"
+	52	[387]	LOADK    	8 -20	; "FrontlightStateChanged"
+	53	[387]	CALL     	6 3 0
+	54	[387]	CALL     	4 0 1
+	55	[389]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:362,373> (31 instructions, 124 bytes at 0x7fc9e1c0bb60)
+0 params, 9 slots, 2 upvalues, 4 locals, 11 constants, 0 functions
+	1	[363]	LOADK    	0 -1	; 1
+	2	[363]	LOADK    	1 -2	; 5
+	3	[363]	LOADK    	2 -1	; 1
+	4	[363]	FORPREP  	0 25	; to 30
+	5	[364]	GETUPVAL 	4 0	; self
+	6	[364]	SELF     	4 4 -3	; "_setIntensity"
+	7	[364]	GETGLOBAL	6 -4	; math
+	8	[364]	GETTABLE 	6 6 -5	; "ceil"
+	9	[364]	GETUPVAL 	7 0	; self
+	10	[364]	GETTABLE 	7 7 -6	; "fl_min"
+	11	[364]	GETUPVAL 	8 0	; self
+	12	[364]	GETTABLE 	8 8 -7	; "fl_intensity"
+	13	[364]	DIV      	8 8 -2	; - 5
+	14	[364]	MUL      	8 8 3
+	15	[364]	ADD      	7 7 8
+	16	[364]	CALL     	6 2 0
+	17	[364]	CALL     	4 0 1
+	18	[367]	GETUPVAL 	4 0	; self
+	19	[367]	GETTABLE 	4 4 -8	; "device"
+	20	[367]	SELF     	4 4 -9	; "hasNaturalLight"
+	21	[367]	CALL     	4 2 2
+	22	[367]	TEST     	4 0 1
+	23	[367]	JMP      	6	; to 30
+	24	[368]	LT       	0 3 -2	; - 5
+	25	[368]	JMP      	4	; to 30
+	26	[369]	GETUPVAL 	4 1	; util
+	27	[369]	GETTABLE 	4 4 -10	; "usleep"
+	28	[369]	LOADK    	5 -11	; 35000
+	29	[369]	CALL     	4 2 1
+	30	[363]	FORLOOP  	0 -26	; to 5
+	31	[373]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:392,398> (9 instructions, 36 bytes at 0x7fc9e1c0b430)
+1 param, 3 slots, 0 upvalues, 1 local, 5 constants, 0 functions
+	1	[393]	GETTABLE 	1 0 -1	; "fl"
+	2	[393]	EQ       	0 1 -2	; - nil
+	3	[393]	JMP      	1	; to 5
+	4	[393]	RETURN   	0 1
+	5	[395]	GETTABLE 	1 0 -4	; "is_fl_on"
+	6	[395]	SETTABLE 	0 -3 1	; "fl_was_on" -
+	7	[397]	SELF     	1 0 -5	; "turnOffFrontlight"
+	8	[397]	CALL     	1 2 1
+	9	[398]	RETURN   	0 1
+
+function <./frontend/device/kobo/powerd.lua:401,415> (27 instructions, 108 bytes at 0x7fc9e1c0b3b0)
+1 param, 4 slots, 0 upvalues, 1 local, 10 constants, 0 functions
+	1	[402]	GETTABLE 	1 0 -1	; "fl"
+	2	[402]	EQ       	0 1 -2	; - nil
+	3	[402]	JMP      	1	; to 5
+	4	[402]	RETURN   	0 1
+	5	[404]	GETTABLE 	1 0 -3	; "fl_was_on"
+	6	[404]	TEST     	1 0 1
+	7	[404]	JMP      	1	; to 9
+	8	[404]	RETURN   	0 1
+	9	[406]	GETTABLE 	1 0 -4	; "fl_warmth"
+	10	[406]	EQ       	1 1 -2	; - nil
+	11	[406]	JMP      	13	; to 25
+	12	[406]	GETTABLE 	1 0 -5	; "auto_warmth"
+	13	[406]	TEST     	1 0 0
+	14	[406]	JMP      	10	; to 25
+	15	[407]	SELF     	1 0 -6	; "calculateAutoWarmth"
+	16	[407]	CALL     	1 2 1
+	17	[409]	GETTABLE 	1 0 -7	; "device"
+	18	[409]	SELF     	1 1 -8	; "hasNaturalLightMixer"
+	19	[409]	CALL     	1 2 2
+	20	[409]	TEST     	1 0 0
+	21	[409]	JMP      	3	; to 25
+	22	[410]	SELF     	1 0 -9	; "setWarmth"
+	23	[410]	GETTABLE 	3 0 -4	; "fl_warmth"
+	24	[410]	CALL     	1 3 1
+	25	[414]	SELF     	1 0 -10	; "turnOnFrontlight"
+	26	[414]	CALL     	1 2 1
+	27	[415]	RETURN   	0 1

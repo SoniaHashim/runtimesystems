@@ -1,0 +1,366 @@
+-- BYTECODE -- upload.lua:11-30
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "command"
+0003    KSTR     3   1      ; "upload"
+0004    KSTR     4   2      ; "Pack a source rock file (.src.rock exten"~
+0005    KSTR     5   3      ; "and upload it and the rockspec to the pu"~
+0006    CAT      4   4   5
+0007    UGET     5   0      ; util
+0008    TGETS    5   5   4  ; "see_also"
+0009    CALL     5   0   1
+0010    CALLM    1   2   3
+0011    MOV      2   1
+0012    TGETS    1   1   5  ; "summary"
+0013    KSTR     3   6      ; "Upload a rockspec to the public rocks re"~
+0014    CALL     1   2   3
+0015    MOV      3   1
+0016    TGETS    2   1   7  ; "argument"
+0017    KSTR     4   8      ; "rockspec"
+0018    KSTR     5   9      ; "Rockspec for the rock to upload."
+0019    CALL     2   1   4
+0020    MOV      3   1
+0021    TGETS    2   1  10  ; "flag"
+0022    KSTR     4  11      ; "--skip-pack"
+0023    KSTR     5  12      ; "Do not pack and send source rock."
+0024    CALL     2   1   4
+0025    MOV      3   1
+0026    TGETS    2   1  13  ; "option"
+0027    KSTR     4  14      ; "--api-key"
+0028    KSTR     5  15      ; "Pass an API key. It will be stored for s"~
+0029    CALL     2   2   4
+0030    MOV      3   2
+0031    TGETS    2   2  16  ; "argname"
+0032    KSTR     4  17      ; "<key>"
+0033    CALL     2   1   3
+0034    MOV      3   1
+0035    TGETS    2   1  13  ; "option"
+0036    KSTR     4  18      ; "--temp-key"
+0037    KSTR     5  19      ; "Use the given a temporary API key in thi"~
+0038    KSTR     6  20      ; "invocation only. It will not be stored."
+0039    CAT      5   5   6
+0040    CALL     2   2   4
+0041    MOV      3   2
+0042    TGETS    2   2  16  ; "argname"
+0043    KSTR     4  17      ; "<key>"
+0044    CALL     2   1   3
+0045    MOV      3   1
+0046    TGETS    2   1  10  ; "flag"
+0047    KSTR     4  21      ; "--force"
+0048    KSTR     5  22      ; "Replace existing rockspec if the same re"~
+0049    KSTR     6  23      ; "module already exists. This should be us"~
+0050    KSTR     7  24      ; "mistakes: when updating a rockspec, incr"~
+0051    KSTR     8  25      ; "instead."
+0052    CAT      5   5   8
+0053    CALL     2   1   4
+0054    MOV      3   1
+0055    TGETS    2   1  10  ; "flag"
+0056    KSTR     4  26      ; "--sign"
+0057    KSTR     5  27      ; "Upload a signature file alongside each f"~
+0058    CALL     2   1   4
+0059    MOV      3   1
+0060    TGETS    2   1  10  ; "flag"
+0061    KSTR     4  28      ; "--debug"
+0062    CALL     2   2   3
+0063    MOV      3   2
+0064    TGETS    2   2  29  ; "hidden"
+0065    KPRI     4   2
+0066    CALL     2   1   3
+0067    RET0     0   1
+
+-- BYTECODE -- upload.lua:32-34
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "match"
+0003    KSTR     3   1      ; "^dev"
+0004    CALL     1   2   3
+0005    IST          1
+0006    JMP      2 => 0011
+0007    MOV      2   0
+0008    TGETS    1   0   0  ; "match"
+0009    KSTR     3   2      ; "^scm"
+0010    CALL     1   2   3
+0011 => RET1     1   2
+
+-- BYTECODE -- upload.lua:36-121
+0001    UGET     1   0      ; Api
+0002    TGETS    1   1   0  ; "new"
+0003    MOV      2   0
+0004    CALL     1   3   2
+0005    IST          1
+0006    JMP      3 => 0010
+0007    KPRI     3   0
+0008    MOV      4   2
+0009    RET      3   3
+0010 => UGET     3   1      ; cfg
+0011    TGETS    3   3   1  ; "verbose"
+0012    ISF          3
+0013    JMP      4 => 0016
+0014    KPRI     3   2
+0015    TSETS    3   1   2  ; "debug"
+0016 => UGET     3   2      ; fetch
+0017    TGETS    3   3   3  ; "load_rockspec"
+0018    TGETS    4   0   4  ; "rockspec"
+0019    CALL     3   4   2
+0020    ISF          4
+0021    JMP      6 => 0026
+0022    KPRI     6   0
+0023    MOV      7   4
+0024    MOV      8   5
+0025    RET      6   4
+0026 => UGET     6   3      ; util
+0027    TGETS    6   6   5  ; "printout"
+0028    KSTR     7   6      ; "Sending "
+0029    GGET     8   7      ; "tostring"
+0030    TGETS    9   0   4  ; "rockspec"
+0031    CALL     8   2   2
+0032    KSTR     9   8      ; " ..."
+0033    CAT      7   7   9
+0034    CALL     6   1   2
+0035    MOV      7   1
+0036    TGETS    6   1   9  ; "method"
+0037    KSTR     8  10      ; "check_rockspec"
+0038    TDUP     9  12
+0039    TGETS   10   3  11  ; "package"
+0040    TSETS   10   9  11  ; "package"
+0041    TGETS   10   3  13  ; "version"
+0042    TSETS   10   9  13  ; "version"
+0043    CALL     6   3   4
+0044    IST          6
+0045    JMP      8 => 0049
+0046    KPRI     8   0
+0047    MOV      9   7
+0048    RET      8   3
+0049 => TGETS    8   6  14  ; "module"
+0050    IST          8
+0051    JMP      8 => 0061
+0052    UGET     8   3      ; util
+0053    TGETS    8   8   5  ; "printout"
+0054    KSTR     9  15      ; "Will create new module ("
+0055    GGET    10   7      ; "tostring"
+0056    TGETS   11   3  11  ; "package"
+0057    CALL    10   2   2
+0058    KSTR    11  16      ; ")"
+0059    CAT      9   9  11
+0060    CALL     8   1   2
+0061 => TGETS    8   6  13  ; "version"
+0062    ISF          8
+0063    JMP      9 => 0077
+0064    TGETS    8   0  17  ; "force"
+0065    IST          8
+0066    JMP      8 => 0077
+0067    KPRI     8   0
+0068    KSTR     9  18      ; "Revision "
+0069    TGETS   10   3  13  ; "version"
+0070    KSTR    11  19      ; " already exists on the server. "
+0071    UGET    12   3      ; util
+0072    TGETS   12  12  20  ; "see_help"
+0073    KSTR    13  21      ; "upload"
+0074    CALL    12   2   2
+0075    CAT      9   9  12
+0076    RET      8   3
+0077 => KNIL     8   9
+0078    TGETS   10   0  22  ; "sign"
+0079    ISF         10
+0080    JMP     11 => 0100
+0081    UGET    10   4      ; signing
+0082    TGETS   10  10  23  ; "sign_file"
+0083    TGETS   11   0   4  ; "rockspec"
+0084    CALL    10   3   2
+0085    MOV      7  11
+0086    MOV      8  10
+0087    ISF          7
+0088    JMP     10 => 0094
+0089    KPRI    10   0
+0090    KSTR    11  24      ; "Failed signing rockspec: "
+0091    MOV     12   7
+0092    CAT     11  11  12
+0093    RET     10   3
+0094 => UGET    10   3      ; util
+0095    TGETS   10  10   5  ; "printout"
+0096    KSTR    11  25      ; "Signed rockspec: "
+0097    MOV     12   8
+0098    CAT     11  11  12
+0099    CALL    10   1   2
+0100 => KPRI    10   0
+0101    TGETS   11   0  26  ; "skip_pack"
+0102    IST         11
+0103    JMP     11 => 0150
+0104    UGET    11   5      ; is_dev_version
+0105    TGETS   12   3  13  ; "version"
+0106    CALL    11   2   2
+0107    IST         11
+0108    JMP     11 => 0150
+0109    UGET    11   3      ; util
+0110    TGETS   11  11   5  ; "printout"
+0111    KSTR    12  27      ; "Packing "
+0112    GGET    13   7      ; "tostring"
+0113    TGETS   14   3  11  ; "package"
+0114    CALL    13   2   2
+0115    CAT     12  12  13
+0116    CALL    11   1   2
+0117    UGET    11   6      ; pack
+0118    TGETS   11  11  28  ; "pack_source_rock"
+0119    TGETS   12   0   4  ; "rockspec"
+0120    CALL    11   3   2
+0121    MOV      7  12
+0122    MOV     10  11
+0123    IST         10
+0124    JMP     11 => 0128
+0125    KPRI    11   0
+0126    MOV     12   7
+0127    RET     11   3
+0128 => TGETS   11   0  22  ; "sign"
+0129    ISF         11
+0130    JMP     12 => 0150
+0131    UGET    11   4      ; signing
+0132    TGETS   11  11  23  ; "sign_file"
+0133    MOV     12  10
+0134    CALL    11   3   2
+0135    MOV      7  12
+0136    MOV      9  11
+0137    ISF          7
+0138    JMP     11 => 0144
+0139    KPRI    11   0
+0140    KSTR    12  29      ; "Failed signing rock: "
+0141    MOV     13   7
+0142    CAT     12  12  13
+0143    RET     11   3
+0144 => UGET    11   3      ; util
+0145    TGETS   11  11   5  ; "printout"
+0146    KSTR    12  30      ; "Signed packed rock: "
+0147    MOV     13   9
+0148    CAT     12  12  13
+0149    CALL    11   1   2
+0150 => GGET    11  31      ; "require"
+0151    KSTR    12  32      ; "luarocks.upload.multipart"
+0152    CALL    11   2   2
+0153    MOV     13   1
+0154    TGETS   12   1   9  ; "method"
+0155    KSTR    14  21      ; "upload"
+0156    KPRI    15   0
+0157    TDUP    16  34
+0158    TGETS   17  11  33  ; "new_file"
+0159    TGETS   18   0   4  ; "rockspec"
+0160    CALL    17   2   2
+0161    TSETS   17  16  35  ; "rockspec_file"
+0162    ISFC    17   8
+0163    JMP     17 => 0167
+0164    TGETS   17  11  33  ; "new_file"
+0165    MOV     18   8
+0166    CALL    17   2   2
+0167 => TSETS   17  16  36  ; "rockspec_sig"
+0168    CALL    12   3   5
+0169    MOV      7  13
+0170    MOV      6  12
+0171    IST          6
+0172    JMP     12 => 0176
+0173    KPRI    12   0
+0174    MOV     13   7
+0175    RET     12   3
+0176 => TGETS   12   6  37  ; "is_new"
+0177    ISF         12
+0178    JMP     13 => 0187
+0179    TGETS   12   6  38  ; "manifests"
+0180    LEN     12  12
+0181    ISNEN   12   0      ; 0
+0182    JMP     12 => 0187
+0183    UGET    12   3      ; util
+0184    TGETS   12  12  39  ; "printerr"
+0185    KSTR    13  40      ; "Warning: module not added to root manife"~
+0186    CALL    12   1   2
+0187 => TGETS   12   6  41  ; "module_url"
+0188    ISF         10
+0189    JMP     13 => 0239
+0190    TGETS   13   6  13  ; "version"
+0191    ISF         13
+0192    JMP     13 => 0197
+0193    TGETS   13   6  13  ; "version"
+0194    TGETS   13  13  42  ; "id"
+0195    IST         13
+0196    JMP     13 => 0200
+0197 => KPRI    13   0
+0198    KSTR    14  43      ; "Invalid response from server."
+0199    RET     13   3
+0200 => UGET    13   3      ; util
+0201    TGETS   13  13   5  ; "printout"
+0202    KSTR    14   6      ; "Sending "
+0203    GGET    15   7      ; "tostring"
+0204    MOV     16  10
+0205    CALL    15   2   2
+0206    KSTR    16   8      ; " ..."
+0207    CAT     14  14  16
+0208    CALL    13   1   2
+0209    MOV     14   1
+0210    TGETS   13   1   9  ; "method"
+0211    KSTR    15  44      ; "upload_rock/"
+0212    KSTR    16  45      ; "%d"
+0213    MOV     17  16
+0214    TGETS   16  16  46  ; "format"
+0215    TGETS   18   6  13  ; "version"
+0216    TGETS   18  18  42  ; "id"
+0217    CALL    16   2   3
+0218    CAT     15  15  16
+0219    KPRI    16   0
+0220    TDUP    17  47
+0221    TGETS   18  11  33  ; "new_file"
+0222    MOV     19  10
+0223    CALL    18   2   2
+0224    TSETS   18  17  48  ; "rock_file"
+0225    ISFC    18   9
+0226    JMP     18 => 0230
+0227    TGETS   18  11  33  ; "new_file"
+0228    MOV     19   9
+0229    CALL    18   2   2
+0230 => TSETS   18  17  49  ; "rock_sig"
+0231    CALL    13   3   5
+0232    MOV      7  14
+0233    MOV      6  13
+0234    IST          6
+0235    JMP     13 => 0239
+0236    KPRI    13   0
+0237    MOV     14   7
+0238    RET     13   3
+0239 => UGET    13   3      ; util
+0240    TGETS   13  13   5  ; "printout"
+0241    CALL    13   1   1
+0242    UGET    13   3      ; util
+0243    TGETS   13  13   5  ; "printout"
+0244    KSTR    14  50      ; "Done: "
+0245    GGET    15   7      ; "tostring"
+0246    MOV     16  12
+0247    CALL    15   2   2
+0248    CAT     14  14  15
+0249    CALL    13   1   2
+0250    UGET    13   3      ; util
+0251    TGETS   13  13   5  ; "printout"
+0252    CALL    13   1   1
+0253    KPRI    13   2
+0254    RET1    13   2
+
+-- BYTECODE -- upload.lua:0-124
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.signing"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.util"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.fetch"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.pack"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.core.cfg"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.upload.api"
+0019    CALL     6   2   2
+0020    FNEW     7   8      ; upload.lua:11
+0021    TSETS    7   0   7  ; "add_to_parser"
+0022    FNEW     7   9      ; upload.lua:32
+0023    FNEW     8  11      ; upload.lua:36
+0024    TSETS    8   0  10  ; "command"
+0025    UCLO     0 => 0026
+0026 => RET1     0   2
+

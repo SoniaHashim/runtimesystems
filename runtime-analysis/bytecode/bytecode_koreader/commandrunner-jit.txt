@@ -1,0 +1,250 @@
+-- BYTECODE -- commandrunner.lua:8-18
+0001    ISNEP    1   0
+0002    JMP      2 => 0005
+0003    KSTR     2   0      ; ""
+0004    RET1     2   2
+0005 => KSTR     2   0      ; ""
+0006    GGET     3   1      ; "pairs"
+0007    MOV      4   1
+0008    CALL     3   4   2
+0009    ISNEXT   6 => 0016
+0010 => MOV      8   2
+0011    MOV      9   6
+0012    KSTR    10   2      ; "="
+0013    MOV     11   7
+0014    KSTR    12   3      ; " "
+0015    CAT      2   8  12
+0016 => ITERN    6   3   3
+0017    ITERL    6 => 0010
+0018    GGET     3   4      ; "string"
+0019    TGETS    3   3   5  ; "len"
+0020    MOV      4   2
+0021    CALL     3   2   2
+0022    KSHORT   4   0
+0023    ISGE     4   3
+0024    JMP      3 => 0029
+0025    KSTR     3   6      ; "export "
+0026    MOV      4   2
+0027    KSTR     5   7      ; ";"
+0028    CAT      2   3   5
+0029 => RET1     2   2
+
+-- BYTECODE -- commandrunner.lua:20-31
+0001    GGET     1   0      ; "type"
+0002    TGETS    2   0   1  ; "job"
+0003    TGETS    2   2   2  ; "environment"
+0004    CALL     1   2   2
+0005    ISNES    1   3      ; "table"
+0006    JMP      1 => 0012
+0007    MOV      2   0
+0008    TGETS    1   0   4  ; "createEnvironmentFromTable"
+0009    TGETS    3   0   1  ; "job"
+0010    TGETS    3   3   2  ; "environment"
+0011    CALLT    1   3
+0012 => GGET     1   0      ; "type"
+0013    TGETS    2   0   1  ; "job"
+0014    TGETS    2   2   2  ; "environment"
+0015    CALL     1   2   2
+0016    ISNES    1   5      ; "function"
+0017    JMP      1 => 0028
+0018    GGET     1   6      ; "pcall"
+0019    TGETS    2   0   1  ; "job"
+0020    TGETS    2   2   2  ; "environment"
+0021    CALL     1   3   2
+0022    ISF          1
+0023    JMP      3 => 0028
+0024    MOV      4   0
+0025    TGETS    3   0   4  ; "createEnvironmentFromTable"
+0026    MOV      5   2
+0027    CALLT    3   3
+0028 => KSTR     1   7      ; ""
+0029    RET1     1   2
+
+-- BYTECODE -- commandrunner.lua:33-45
+0001    GGET     2   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      3 => 0006
+0004    KPRI     3   1
+0005    JMP      4 => 0007
+0006 => KPRI     3   2
+0007 => CALL     2   1   2
+0008    GGET     2   0      ; "assert"
+0009    TGETS    3   0   1  ; "pio"
+0010    ISEQP    3   0
+0011    JMP      3 => 0014
+0012    KPRI     3   1
+0013    JMP      4 => 0015
+0014 => KPRI     3   2
+0015 => CALL     2   1   2
+0016    GGET     2   0      ; "assert"
+0017    TGETS    3   0   2  ; "job"
+0018    ISEQP    3   0
+0019    JMP      3 => 0022
+0020    KPRI     3   1
+0021    JMP      4 => 0023
+0022 => KPRI     3   2
+0023 => CALL     2   1   2
+0024    TSETS    1   0   2  ; "job"
+0025    TGETS    2   0   2  ; "job"
+0026    GGET     3   4      ; "os"
+0027    TGETS    3   3   5  ; "time"
+0028    CALL     3   2   1
+0029    TSETS    3   2   3  ; "start_sec"
+0030    GGET     2   0      ; "assert"
+0031    GGET     3   6      ; "type"
+0032    TGETS    4   0   2  ; "job"
+0033    TGETS    4   4   7  ; "executable"
+0034    CALL     3   2   2
+0035    ISEQS    3   8      ; "string"
+0036    JMP      3 => 0039
+0037    KPRI     3   1
+0038    JMP      4 => 0040
+0039 => KPRI     3   2
+0040 => CALL     2   1   2
+0041    MOV      3   0
+0042    TGETS    2   0   9  ; "createEnvironment"
+0043    CALL     2   2   2
+0044    KSTR     3  10      ; " "
+0045    KSTR     4  11      ; "sh plugins/backgroundrunner.koplugin/lua"~
+0046    KSTR     5  12      ; """
+0047    TGETS    6   0   2  ; "job"
+0048    TGETS    6   6   7  ; "executable"
+0049    KSTR     7  12      ; """
+0050    CAT      2   2   7
+0051    UGET     3   0      ; logger
+0052    TGETS    3   3  13  ; "dbg"
+0053    KSTR     4  14      ; "CommandRunner: Will execute command "
+0054    MOV      5   2
+0055    CAT      4   4   5
+0056    CALL     3   1   2
+0057    GGET     3  15      ; "io"
+0058    TGETS    3   3  16  ; "popen"
+0059    MOV      4   2
+0060    CALL     3   2   2
+0061    TSETS    3   0   1  ; "pio"
+0062    RET0     0   1
+
+-- BYTECODE -- commandrunner.lua:50-81
+0001    GGET     1   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      2 => 0006
+0004    KPRI     2   1
+0005    JMP      3 => 0007
+0006 => KPRI     2   2
+0007 => CALL     1   1   2
+0008    GGET     1   0      ; "assert"
+0009    TGETS    2   0   1  ; "pio"
+0010    ISNEP    2   0
+0011    JMP      2 => 0014
+0012    KPRI     2   1
+0013    JMP      3 => 0015
+0014 => KPRI     2   2
+0015 => CALL     1   1   2
+0016    GGET     1   0      ; "assert"
+0017    TGETS    2   0   2  ; "job"
+0018    ISNEP    2   0
+0019    JMP      2 => 0022
+0020    KPRI     2   1
+0021    JMP      3 => 0023
+0022 => KPRI     2   2
+0023 => CALL     1   1   2
+0024    TGETS    1   0   1  ; "pio"
+0025    MOV      2   1
+0026    TGETS    1   1   3  ; "read"
+0027    CALL     1   2   2
+0028    ISNES    1   4      ; ""
+0029    JMP      2 => 0033
+0030    KPRI     2   0
+0031    RET1     2   2
+0032    JMP      2 => 0088
+0033 => ISNEP    1   0
+0034    JMP      2 => 0039
+0035    TGETS    2   0   2  ; "job"
+0036    KSHORT   3 223
+0037    TSETS    3   2   5  ; "result"
+0038    JMP      2 => 0073
+0039 => MOV      2   1
+0040    TGETS    3   0   1  ; "pio"
+0041    MOV      4   3
+0042    TGETS    3   3   3  ; "read"
+0043    KSTR     5   6      ; "*a"
+0044    CALL     3   2   3
+0045    CAT      1   2   3
+0046    UGET     2   0      ; logger
+0047    TGETS    2   2   7  ; "dbg"
+0048    KSTR     3   8      ; "CommandRunner: Receive output "
+0049    MOV      4   1
+0050    CAT      3   3   4
+0051    CALL     2   1   2
+0052    GGET     2   9      ; "pcall"
+0053    GGET     3  10      ; "loadstring"
+0054    MOV      4   1
+0055    CALL     3   0   2
+0056    CALLM    2   3   0
+0057    ISF          2
+0058    JMP      4 => 0070
+0059    ISEQP    3   0
+0060    JMP      4 => 0070
+0061    GGET     4  11      ; "pairs"
+0062    MOV      5   3
+0063    CALL     4   4   2
+0064    ISNEXT   7 => 0067
+0065 => TGETS    9   0   2  ; "job"
+0066    TSETV    8   9   7
+0067 => ITERN    7   3   3
+0068    ITERL    7 => 0065
+0069    JMP      4 => 0073
+0070 => TGETS    4   0   2  ; "job"
+0071    KSHORT   5 222
+0072    TSETS    5   4   5  ; "result"
+0073 => TGETS    2   0   1  ; "pio"
+0074    MOV      3   2
+0075    TGETS    2   2  12  ; "close"
+0076    CALL     2   1   2
+0077    KPRI     2   0
+0078    TSETS    2   0   1  ; "pio"
+0079    TGETS    2   0   2  ; "job"
+0080    GGET     3  14      ; "os"
+0081    TGETS    3   3  15  ; "time"
+0082    CALL     3   2   1
+0083    TSETS    3   2  13  ; "end_sec"
+0084    TGETS    2   0   2  ; "job"
+0085    KPRI     3   0
+0086    TSETS    3   0   2  ; "job"
+0087    RET1     2   2
+0088 => RET0     0   1
+
+-- BYTECODE -- commandrunner.lua:85-88
+0001    GGET     1   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      2 => 0006
+0004    KPRI     2   1
+0005    JMP      3 => 0007
+0006 => KPRI     2   2
+0007 => CALL     1   1   2
+0008    TGETS    1   0   1  ; "pio"
+0009    ISNEP    1   0
+0010    JMP      1 => 0013
+0011    KPRI     1   1
+0012    JMP      2 => 0014
+0013 => KPRI     1   2
+0014 => RET1     1   2
+
+-- BYTECODE -- commandrunner.lua:0-91
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "logger"
+0003    CALL     0   2   2
+0004    TDUP     1   2
+0005    FNEW     2   4      ; commandrunner.lua:8
+0006    TSETS    2   1   3  ; "createEnvironmentFromTable"
+0007    FNEW     2   6      ; commandrunner.lua:20
+0008    TSETS    2   1   5  ; "createEnvironment"
+0009    FNEW     2   8      ; commandrunner.lua:33
+0010    TSETS    2   1   7  ; "start"
+0011    FNEW     2  10      ; commandrunner.lua:50
+0012    TSETS    2   1   9  ; "poll"
+0013    FNEW     2  12      ; commandrunner.lua:85
+0014    TSETS    2   1  11  ; "pending"
+0015    UCLO     0 => 0016
+0016 => RET1     1   2
+

@@ -1,0 +1,2024 @@
+
+main <./frontend/device/gesturedetector.lua:0,0> (203 instructions, 812 bytes at 0x7fe976c068d0)
+0+ params, 16 slots, 0 upvalues, 15 locals, 67 constants, 27 functions
+	1	[45]	GETGLOBAL	0 -1	; require
+	2	[45]	LOADK    	1 -2	; "ui/geometry"
+	3	[45]	CALL     	0 2 2
+	4	[46]	GETGLOBAL	1 -1	; require
+	5	[46]	LOADK    	2 -3	; "ui/timeval"
+	6	[46]	CALL     	1 2 2
+	7	[47]	GETGLOBAL	2 -1	; require
+	8	[47]	LOADK    	3 -4	; "logger"
+	9	[47]	CALL     	2 2 2
+	10	[48]	GETGLOBAL	3 -1	; require
+	11	[48]	LOADK    	4 -5	; "util"
+	12	[48]	CALL     	3 2 2
+	13	[51]	GETGLOBAL	4 -6	; G_reader_settings
+	14	[51]	SELF     	4 4 -7	; "readSetting"
+	15	[51]	LOADK    	6 -8	; "ges_double_tap_interval"
+	16	[51]	CALL     	4 3 2
+	17	[51]	TEST     	4 0 1
+	18	[51]	JMP      	1	; to 20
+	19	[51]	LOADK    	4 -9	; 300000
+	20	[52]	GETGLOBAL	5 -6	; G_reader_settings
+	21	[52]	SELF     	5 5 -7	; "readSetting"
+	22	[52]	LOADK    	7 -10	; "ges_two_finger_tap_duration"
+	23	[52]	CALL     	5 3 2
+	24	[52]	TEST     	5 0 1
+	25	[52]	JMP      	1	; to 27
+	26	[52]	LOADK    	5 -9	; 300000
+	27	[53]	GETGLOBAL	6 -6	; G_reader_settings
+	28	[53]	SELF     	6 6 -7	; "readSetting"
+	29	[53]	LOADK    	8 -11	; "ges_hold_interval"
+	30	[53]	CALL     	6 3 2
+	31	[53]	TEST     	6 0 1
+	32	[53]	JMP      	1	; to 34
+	33	[53]	LOADK    	6 -12	; 500000
+	34	[54]	GETGLOBAL	7 -6	; G_reader_settings
+	35	[54]	SELF     	7 7 -7	; "readSetting"
+	36	[54]	LOADK    	9 -13	; "ges_pan_delayed_interval"
+	37	[54]	CALL     	7 3 2
+	38	[54]	TEST     	7 0 1
+	39	[54]	JMP      	1	; to 41
+	40	[54]	LOADK    	7 -12	; 500000
+	41	[55]	GETGLOBAL	8 -6	; G_reader_settings
+	42	[55]	SELF     	8 8 -7	; "readSetting"
+	43	[55]	LOADK    	10 -14	; "ges_swipe_interval"
+	44	[55]	CALL     	8 3 2
+	45	[55]	TEST     	8 0 1
+	46	[55]	JMP      	1	; to 48
+	47	[55]	LOADK    	8 -15	; 900000
+	48	[57]	NEWTABLE 	9 0 15
+	49	[59]	SETTABLE 	9 -16 -17	; "input" nil
+	50	[61]	SETTABLE 	9 -18 -9	; "DOUBLE_TAP_INTERVAL" 300000
+	51	[62]	SETTABLE 	9 -19 -9	; "TWO_FINGER_TAP_DURATION" 300000
+	52	[63]	SETTABLE 	9 -20 -12	; "HOLD_INTERVAL" 500000
+	53	[64]	SETTABLE 	9 -21 -12	; "PAN_DELAYED_INTERVAL" 500000
+	54	[65]	SETTABLE 	9 -22 -15	; "SWIPE_INTERVAL" 900000
+	55	[67]	NEWTABLE 	10 0 8
+	56	[68]	SETTABLE 	10 -24 -25	; "east" "horizontal"
+	57	[69]	SETTABLE 	10 -26 -25	; "west" "horizontal"
+	58	[70]	SETTABLE 	10 -27 -28	; "north" "vertical"
+	59	[71]	SETTABLE 	10 -29 -28	; "south" "vertical"
+	60	[72]	SETTABLE 	10 -30 -31	; "northeast" "diagonal"
+	61	[73]	SETTABLE 	10 -32 -31	; "northwest" "diagonal"
+	62	[74]	SETTABLE 	10 -33 -31	; "southeast" "diagonal"
+	63	[75]	SETTABLE 	10 -34 -31	; "southwest" "diagonal"
+	64	[76]	SETTABLE 	9 -23 10	; "DIRECTION_TABLE" -
+	65	[78]	NEWTABLE 	10 0 0
+	66	[78]	SETTABLE 	9 -35 10	; "states" -
+	67	[79]	NEWTABLE 	10 0 0
+	68	[79]	SETTABLE 	9 -36 10	; "track_ids" -
+	69	[80]	NEWTABLE 	10 0 0
+	70	[80]	SETTABLE 	9 -37 10	; "tev_stacks" -
+	71	[82]	NEWTABLE 	10 0 0
+	72	[82]	SETTABLE 	9 -38 10	; "last_tevs" -
+	73	[83]	NEWTABLE 	10 0 0
+	74	[83]	SETTABLE 	9 -39 10	; "first_tevs" -
+	75	[85]	NEWTABLE 	10 0 0
+	76	[85]	SETTABLE 	9 -40 10	; "multiswipe_directions" -
+	77	[87]	NEWTABLE 	10 0 0
+	78	[87]	SETTABLE 	9 -41 10	; "detectings" -
+	79	[89]	NEWTABLE 	10 0 0
+	80	[89]	SETTABLE 	9 -42 10	; "last_taps" -
+	81	[98]	CLOSURE  	10 0	; 0x7fe976c06bc0
+	82	[92]	SETTABLE 	9 -43 10	; "new" -
+	83	[107]	CLOSURE  	10 1	; 0x7fe976c075d0
+	84	[100]	SETTABLE 	9 -44 10	; "init" -
+	85	[128]	CLOSURE  	10 2	; 0x7fe976c07cd0
+	86	[112]	SETTABLE 	9 -45 10	; "feedEvent" -
+	87	[141]	CLOSURE  	10 3	; 0x7fe976c08310
+	88	[141]	MOVE     	0 1
+	89	[130]	SETTABLE 	9 -46 10	; "deepCopyEv" -
+	90	[153]	CLOSURE  	10 4	; 0x7fe976c08aa0
+	91	[153]	MOVE     	0 4
+	92	[146]	SETTABLE 	9 -47 10	; "isDoubleTap" -
+	93	[173]	CLOSURE  	10 5	; 0x7fe976c067b0
+	94	[173]	MOVE     	0 5
+	95	[155]	SETTABLE 	9 -48 10	; "isTwoFingerTap" -
+	96	[205]	CLOSURE  	10 6	; 0x7fe976c079b0
+	97	[182]	SETTABLE 	9 -49 10	; "getPath" -
+	98	[217]	CLOSURE  	10 7	; 0x7fe976c078d0
+	99	[217]	MOVE     	0 8
+	100	[207]	SETTABLE 	9 -50 10	; "isSwipe" -
+	101	[224]	CLOSURE  	10 8	; 0x7fe976c09310
+	102	[219]	SETTABLE 	9 -51 10	; "getRotate" -
+	103	[233]	CLOSURE  	10 9	; 0x7fe976c09dc0
+	104	[230]	SETTABLE 	9 -52 10	; "switchState" -
+	105	[242]	CLOSURE  	10 10	; 0x7fe976c09ed0
+	106	[235]	SETTABLE 	9 -53 10	; "clearState" -
+	107	[256]	CLOSURE  	10 11	; 0x7fe976c0a1d0
+	108	[256]	MOVE     	0 4
+	109	[256]	MOVE     	0 5
+	110	[256]	MOVE     	0 6
+	111	[256]	MOVE     	0 7
+	112	[256]	MOVE     	0 8
+	113	[244]	SETTABLE 	9 -54 10	; "setNewInterval" -
+	114	[270]	CLOSURE  	10 12	; 0x7fe976c0aca0
+	115	[270]	MOVE     	0 4
+	116	[270]	MOVE     	0 5
+	117	[270]	MOVE     	0 6
+	118	[270]	MOVE     	0 7
+	119	[270]	MOVE     	0 8
+	120	[258]	SETTABLE 	9 -55 10	; "getInterval" -
+	121	[275]	CLOSURE  	10 13	; 0x7fe976c0ad40
+	122	[272]	SETTABLE 	9 -56 10	; "clearStates" -
+	123	[296]	CLOSURE  	10 14	; 0x7fe976c0b250
+	124	[277]	SETTABLE 	9 -57 10	; "initialState" -
+	125	[348]	CLOSURE  	10 15	; 0x7fe976c0b690
+	126	[348]	MOVE     	0 2
+	127	[348]	MOVE     	0 0
+	128	[301]	SETTABLE 	9 -58 10	; "tapState" -
+	129	[402]	CLOSURE  	10 16	; 0x7fe976c0a600
+	130	[402]	MOVE     	0 0
+	131	[402]	MOVE     	0 2
+	132	[402]	MOVE     	0 1
+	133	[402]	MOVE     	0 4
+	134	[350]	SETTABLE 	9 -59 10	; "handleDoubleTap" -
+	135	[440]	CLOSURE  	10 17	; 0x7fe976c09d40
+	136	[440]	MOVE     	0 2
+	137	[440]	MOVE     	0 1
+	138	[440]	MOVE     	0 6
+	139	[440]	MOVE     	0 0
+	140	[404]	SETTABLE 	9 -60 10	; "handleNonTap" -
+	141	[474]	CLOSURE  	10 18	; 0x7fe976c06f30
+	142	[474]	MOVE     	0 2
+	143	[442]	SETTABLE 	9 -61 10	; "panState" -
+	144	[517]	CLOSURE  	10 19	; 0x7fe976c06eb0
+	145	[517]	MOVE     	0 0
+	146	[517]	MOVE     	0 2
+	147	[476]	SETTABLE 	9 -62 10	; "handleSwipe" -
+	148	[618]	CLOSURE  	10 20	; 0x7fe976c0dff0
+	149	[618]	MOVE     	0 7
+	150	[618]	MOVE     	0 0
+	151	[618]	MOVE     	0 3
+	152	[519]	SETTABLE 	9 -63 10	; "handlePan" -
+	153	[678]	CLOSURE  	10 21	; 0x7fe976c0e900
+	154	[678]	MOVE     	0 0
+	155	[678]	MOVE     	0 2
+	156	[620]	SETTABLE 	9 -64 10	; "handleTwoFingerPan" -
+	157	[701]	CLOSURE  	10 22	; 0x7fe976c0eba0
+	158	[701]	MOVE     	0 0
+	159	[701]	MOVE     	0 2
+	160	[680]	SETTABLE 	9 -65 10	; "handlePanRelease" -
+	161	[739]	CLOSURE  	10 23	; 0x7fe976c0ef40
+	162	[739]	MOVE     	0 2
+	163	[739]	MOVE     	0 0
+	164	[703]	SETTABLE 	9 -66 10	; "holdState" -
+	165	[741]	NEWTABLE 	10 0 8
+	166	[742]	SETTABLE 	10 -27 -26	; "north" "west"
+	167	[743]	SETTABLE 	10 -29 -24	; "south" "east"
+	168	[744]	SETTABLE 	10 -24 -27	; "east" "north"
+	169	[745]	SETTABLE 	10 -26 -29	; "west" "south"
+	170	[746]	SETTABLE 	10 -30 -32	; "northeast" "northwest"
+	171	[747]	SETTABLE 	10 -32 -34	; "northwest" "southwest"
+	172	[748]	SETTABLE 	10 -33 -30	; "southeast" "northeast"
+	173	[749]	SETTABLE 	10 -34 -33	; "southwest" "southeast"
+	174	[751]	NEWTABLE 	11 0 8
+	175	[752]	SETTABLE 	11 -27 -29	; "north" "south"
+	176	[753]	SETTABLE 	11 -29 -27	; "south" "north"
+	177	[754]	SETTABLE 	11 -24 -26	; "east" "west"
+	178	[755]	SETTABLE 	11 -26 -24	; "west" "east"
+	179	[756]	SETTABLE 	11 -30 -34	; "northeast" "southwest"
+	180	[757]	SETTABLE 	11 -32 -33	; "northwest" "southeast"
+	181	[758]	SETTABLE 	11 -33 -32	; "southeast" "northwest"
+	182	[759]	SETTABLE 	11 -34 -30	; "southwest" "northeast"
+	183	[761]	NEWTABLE 	12 0 8
+	184	[762]	SETTABLE 	12 -27 -24	; "north" "east"
+	185	[763]	SETTABLE 	12 -29 -26	; "south" "west"
+	186	[764]	SETTABLE 	12 -24 -29	; "east" "south"
+	187	[765]	SETTABLE 	12 -26 -27	; "west" "north"
+	188	[766]	SETTABLE 	12 -30 -33	; "northeast" "southeast"
+	189	[767]	SETTABLE 	12 -32 -30	; "northwest" "northeast"
+	190	[768]	SETTABLE 	12 -33 -34	; "southeast" "southwest"
+	191	[769]	SETTABLE 	12 -34 -32	; "southwest" "northwest"
+	192	[773]	CLOSURE  	13 24	; 0x7fe976c0f3e0
+	193	[776]	CLOSURE  	14 25	; 0x7fe976c0f950
+	194	[869]	CLOSURE  	15 26	; 0x7fe976c0f770
+	195	[869]	MOVE     	0 13
+	196	[869]	MOVE     	0 12
+	197	[869]	MOVE     	0 14
+	198	[869]	MOVE     	0 10
+	199	[869]	MOVE     	0 11
+	200	[869]	MOVE     	0 2
+	201	[784]	SETTABLE 	9 -67 15	; "adjustGesCoordinate" -
+	202	[871]	RETURN   	9 2
+	203	[871]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:92,98> (16 instructions, 64 bytes at 0x7fe976c06bc0)
+2 params, 5 slots, 0 upvalues, 2 locals, 3 constants, 0 functions
+	1	[93]	TEST     	1 0 1
+	2	[93]	JMP      	2	; to 5
+	3	[93]	NEWTABLE 	2 0 0
+	4	[93]	MOVE     	1 2
+	5	[94]	GETGLOBAL	2 -1	; setmetatable
+	6	[94]	MOVE     	3 1
+	7	[94]	MOVE     	4 0
+	8	[94]	CALL     	2 3 1
+	9	[95]	SETTABLE 	0 -2 0	; "__index" -
+	10	[96]	GETTABLE 	2 1 -3	; "init"
+	11	[96]	TEST     	2 0 0
+	12	[96]	JMP      	2	; to 15
+	13	[96]	SELF     	2 1 -3	; "init"
+	14	[96]	CALL     	2 2 1
+	15	[97]	RETURN   	1 2
+	16	[98]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:100,107> (13 instructions, 52 bytes at 0x7fe976c075d0)
+1 param, 3 slots, 0 upvalues, 2 locals, 9 constants, 0 functions
+	1	[101]	GETTABLE 	1 0 -1	; "screen"
+	2	[101]	SELF     	1 1 -2	; "getDPI"
+	3	[101]	CALL     	1 2 2
+	4	[101]	DIV      	1 1 -3	; - 167
+	5	[103]	MUL      	2 -5 1	; 20 -
+	6	[103]	SETTABLE 	0 -4 2	; "TWO_FINGER_TAP_REGION" -
+	7	[104]	MUL      	2 -7 1	; 50 -
+	8	[104]	SETTABLE 	0 -6 2	; "DOUBLE_TAP_DISTANCE" -
+	9	[105]	GETTABLE 	2 0 -6	; "DOUBLE_TAP_DISTANCE"
+	10	[105]	SETTABLE 	0 -8 2	; "PAN_THRESHOLD" -
+	11	[106]	GETTABLE 	2 0 -6	; "DOUBLE_TAP_DISTANCE"
+	12	[106]	SETTABLE 	0 -9 2	; "MULTISWIPE_THRESHOLD" -
+	13	[107]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:112,128> (30 instructions, 120 bytes at 0x7fe976c07cd0)
+2 params, 7 slots, 0 upvalues, 5 locals, 9 constants, 0 functions
+	1	[114]	GETGLOBAL	2 -1	; table
+	2	[114]	GETTABLE 	2 2 -2	; "remove"
+	3	[114]	MOVE     	3 1
+	4	[114]	CALL     	2 2 2
+	5	[115]	TEST     	2 0 0
+	6	[115]	JMP      	21	; to 28
+	7	[116]	GETTABLE 	3 2 -3	; "slot"
+	8	[117]	GETTABLE 	4 0 -4	; "states"
+	9	[117]	GETTABLE 	4 4 3
+	10	[117]	TEST     	4 0 1
+	11	[117]	JMP      	3	; to 15
+	12	[118]	SELF     	4 0 -5	; "clearState"
+	13	[118]	MOVE     	6 3
+	14	[118]	CALL     	4 3 1
+	15	[120]	GETTABLE 	4 0 -4	; "states"
+	16	[120]	GETTABLE 	4 4 3
+	17	[120]	MOVE     	5 0
+	18	[120]	MOVE     	6 2
+	19	[120]	CALL     	4 3 2
+	20	[121]	GETTABLE 	5 2 -6	; "id"
+	21	[121]	EQ       	1 5 -7	; - -1
+	22	[121]	JMP      	2	; to 25
+	23	[122]	GETTABLE 	5 0 -8	; "last_tevs"
+	24	[122]	SETTABLE 	5 3 2
+	25	[125]	TEST     	4 0 0
+	26	[125]	JMP      	1	; to 28
+	27	[125]	RETURN   	4 2
+	28	[127]	EQ       	0 2 -9	; - nil
+	29	[127]	JMP      	-29	; to 1
+	30	[128]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:130,141> (22 instructions, 88 bytes at 0x7fe976c08310)
+2 params, 7 slots, 1 upvalue, 2 locals, 8 constants, 0 functions
+	1	[131]	NEWTABLE 	2 0 5
+	2	[132]	GETTABLE 	3 1 -1	; "x"
+	3	[132]	SETTABLE 	2 -1 3	; "x" -
+	4	[133]	GETTABLE 	3 1 -2	; "y"
+	5	[133]	SETTABLE 	2 -2 3	; "y" -
+	6	[134]	GETTABLE 	3 1 -3	; "id"
+	7	[134]	SETTABLE 	2 -3 3	; "id" -
+	8	[135]	GETTABLE 	3 1 -4	; "slot"
+	9	[135]	SETTABLE 	2 -4 3	; "slot" -
+	10	[136]	GETUPVAL 	3 0	; TimeVal
+	11	[136]	SELF     	3 3 -6	; "new"
+	12	[136]	NEWTABLE 	5 0 2
+	13	[137]	GETTABLE 	6 1 -5	; "timev"
+	14	[137]	GETTABLE 	6 6 -7	; "sec"
+	15	[137]	SETTABLE 	5 -7 6	; "sec" -
+	16	[138]	GETTABLE 	6 1 -5	; "timev"
+	17	[138]	GETTABLE 	6 6 -8	; "usec"
+	18	[138]	SETTABLE 	5 -8 6	; "usec" -
+	19	[136]	CALL     	3 3 2
+	20	[139]	SETTABLE 	2 -5 3	; "timev" -
+	21	[140]	RETURN   	2 2
+	22	[141]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:146,153> (32 instructions, 128 bytes at 0x7fe976c08aa0)
+3 params, 7 slots, 1 upvalue, 4 locals, 9 constants, 0 functions
+	1	[147]	GETTABLE 	3 2 -1	; "timev"
+	2	[147]	GETTABLE 	4 1 -1	; "timev"
+	3	[147]	SUB      	3 3 4
+	4	[149]	GETGLOBAL	4 -2	; math
+	5	[149]	GETTABLE 	4 4 -3	; "abs"
+	6	[149]	GETTABLE 	5 1 -4	; "x"
+	7	[149]	GETTABLE 	6 2 -4	; "x"
+	8	[149]	SUB      	5 5 6
+	9	[149]	CALL     	4 2 2
+	10	[149]	GETTABLE 	5 0 -5	; "DOUBLE_TAP_DISTANCE"
+	11	[149]	LT       	0 4 5
+	12	[149]	JMP      	16	; to 29
+	13	[150]	GETGLOBAL	4 -2	; math
+	14	[150]	GETTABLE 	4 4 -3	; "abs"
+	15	[150]	GETTABLE 	5 1 -6	; "y"
+	16	[150]	GETTABLE 	6 2 -6	; "y"
+	17	[150]	SUB      	5 5 6
+	18	[150]	CALL     	4 2 2
+	19	[150]	GETTABLE 	5 0 -5	; "DOUBLE_TAP_DISTANCE"
+	20	[150]	LT       	0 4 5
+	21	[150]	JMP      	7	; to 29
+	22	[151]	GETTABLE 	4 3 -7	; "sec"
+	23	[151]	EQ       	0 4 -8	; - 0
+	24	[151]	JMP      	4	; to 29
+	25	[151]	GETTABLE 	4 3 -9	; "usec"
+	26	[151]	GETUPVAL 	5 0	; ges_double_tap_interval
+	27	[151]	LT       	1 4 5
+	28	[151]	JMP      	1	; to 30
+	29	[152]	LOADBOOL 	4 0 1
+	30	[152]	LOADBOOL 	4 1 0
+	31	[152]	RETURN   	4 2
+	32	[153]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:155,173> (94 instructions, 376 bytes at 0x7fe976c067b0)
+1 param, 9 slots, 1 upvalue, 7 locals, 13 constants, 0 functions
+	1	[156]	GETTABLE 	1 0 -1	; "last_tevs"
+	2	[156]	GETTABLE 	1 1 -2	; 0
+	3	[156]	EQ       	1 1 -3	; - nil
+	4	[156]	JMP      	4	; to 9
+	5	[156]	GETTABLE 	1 0 -1	; "last_tevs"
+	6	[156]	GETTABLE 	1 1 -4	; 1
+	7	[156]	EQ       	0 1 -3	; - nil
+	8	[156]	JMP      	2	; to 11
+	9	[157]	LOADBOOL 	1 0 0
+	10	[157]	RETURN   	1 2
+	11	[159]	GETGLOBAL	1 -5	; math
+	12	[159]	GETTABLE 	1 1 -6	; "abs"
+	13	[159]	GETTABLE 	2 0 -1	; "last_tevs"
+	14	[159]	GETTABLE 	2 2 -2	; 0
+	15	[159]	GETTABLE 	2 2 -7	; "x"
+	16	[159]	GETTABLE 	3 0 -8	; "first_tevs"
+	17	[159]	GETTABLE 	3 3 -2	; 0
+	18	[159]	GETTABLE 	3 3 -7	; "x"
+	19	[159]	SUB      	2 2 3
+	20	[159]	CALL     	1 2 2
+	21	[160]	GETGLOBAL	2 -5	; math
+	22	[160]	GETTABLE 	2 2 -6	; "abs"
+	23	[160]	GETTABLE 	3 0 -1	; "last_tevs"
+	24	[160]	GETTABLE 	3 3 -4	; 1
+	25	[160]	GETTABLE 	3 3 -7	; "x"
+	26	[160]	GETTABLE 	4 0 -8	; "first_tevs"
+	27	[160]	GETTABLE 	4 4 -4	; 1
+	28	[160]	GETTABLE 	4 4 -7	; "x"
+	29	[160]	SUB      	3 3 4
+	30	[160]	CALL     	2 2 2
+	31	[161]	GETGLOBAL	3 -5	; math
+	32	[161]	GETTABLE 	3 3 -6	; "abs"
+	33	[161]	GETTABLE 	4 0 -1	; "last_tevs"
+	34	[161]	GETTABLE 	4 4 -2	; 0
+	35	[161]	GETTABLE 	4 4 -9	; "y"
+	36	[161]	GETTABLE 	5 0 -8	; "first_tevs"
+	37	[161]	GETTABLE 	5 5 -2	; 0
+	38	[161]	GETTABLE 	5 5 -9	; "y"
+	39	[161]	SUB      	4 4 5
+	40	[161]	CALL     	3 2 2
+	41	[162]	GETGLOBAL	4 -5	; math
+	42	[162]	GETTABLE 	4 4 -6	; "abs"
+	43	[162]	GETTABLE 	5 0 -1	; "last_tevs"
+	44	[162]	GETTABLE 	5 5 -4	; 1
+	45	[162]	GETTABLE 	5 5 -9	; "y"
+	46	[162]	GETTABLE 	6 0 -8	; "first_tevs"
+	47	[162]	GETTABLE 	6 6 -4	; 1
+	48	[162]	GETTABLE 	6 6 -9	; "y"
+	49	[162]	SUB      	5 5 6
+	50	[162]	CALL     	4 2 2
+	51	[163]	GETTABLE 	5 0 -1	; "last_tevs"
+	52	[163]	GETTABLE 	5 5 -2	; 0
+	53	[163]	GETTABLE 	5 5 -10	; "timev"
+	54	[163]	GETTABLE 	6 0 -8	; "first_tevs"
+	55	[163]	GETTABLE 	6 6 -2	; 0
+	56	[163]	GETTABLE 	6 6 -10	; "timev"
+	57	[163]	SUB      	5 5 6
+	58	[164]	GETTABLE 	6 0 -1	; "last_tevs"
+	59	[164]	GETTABLE 	6 6 -4	; 1
+	60	[164]	GETTABLE 	6 6 -10	; "timev"
+	61	[164]	GETTABLE 	7 0 -8	; "first_tevs"
+	62	[164]	GETTABLE 	7 7 -4	; 1
+	63	[164]	GETTABLE 	7 7 -10	; "timev"
+	64	[164]	SUB      	6 6 7
+	65	[166]	GETTABLE 	7 0 -11	; "TWO_FINGER_TAP_REGION"
+	66	[166]	LT       	0 1 7
+	67	[166]	JMP      	23	; to 91
+	68	[167]	GETTABLE 	7 0 -11	; "TWO_FINGER_TAP_REGION"
+	69	[167]	LT       	0 2 7
+	70	[167]	JMP      	20	; to 91
+	71	[168]	GETTABLE 	7 0 -11	; "TWO_FINGER_TAP_REGION"
+	72	[168]	LT       	0 3 7
+	73	[168]	JMP      	17	; to 91
+	74	[169]	GETTABLE 	7 0 -11	; "TWO_FINGER_TAP_REGION"
+	75	[169]	LT       	0 4 7
+	76	[169]	JMP      	14	; to 91
+	77	[170]	GETTABLE 	7 5 -12	; "sec"
+	78	[170]	EQ       	0 7 -2	; - 0
+	79	[170]	JMP      	11	; to 91
+	80	[170]	GETTABLE 	7 5 -13	; "usec"
+	81	[170]	GETUPVAL 	8 0	; ges_two_finger_tap_duration
+	82	[170]	LT       	0 7 8
+	83	[170]	JMP      	7	; to 91
+	84	[171]	GETTABLE 	7 6 -12	; "sec"
+	85	[171]	EQ       	0 7 -2	; - 0
+	86	[171]	JMP      	4	; to 91
+	87	[171]	GETTABLE 	7 6 -13	; "usec"
+	88	[171]	GETUPVAL 	8 0	; ges_two_finger_tap_duration
+	89	[171]	LT       	1 7 8
+	90	[171]	JMP      	1	; to 92
+	91	[172]	LOADBOOL 	7 0 1
+	92	[172]	LOADBOOL 	7 1 0
+	93	[172]	RETURN   	7 2
+	94	[173]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:182,205> (87 instructions, 348 bytes at 0x7fe976c079b0)
+5 params, 14 slots, 0 upvalues, 11 locals, 14 constants, 0 functions
+	1	[183]	TEST     	4 0 1
+	2	[183]	JMP      	1	; to 4
+	3	[183]	GETTABLE 	4 0 -1	; "first_tevs"
+	4	[185]	GETTABLE 	5 0 -2	; "last_tevs"
+	5	[185]	GETTABLE 	5 5 1
+	6	[185]	GETTABLE 	5 5 -3	; "x"
+	7	[185]	GETTABLE 	6 4 1
+	8	[185]	GETTABLE 	6 6 -3	; "x"
+	9	[185]	SUB      	5 5 6
+	10	[186]	GETTABLE 	6 0 -2	; "last_tevs"
+	11	[186]	GETTABLE 	6 6 1
+	12	[186]	GETTABLE 	6 6 -4	; "y"
+	13	[186]	GETTABLE 	7 4 1
+	14	[186]	GETTABLE 	7 7 -4	; "y"
+	15	[186]	SUB      	6 6 7
+	16	[187]	LOADNIL  	7 7
+	17	[188]	GETGLOBAL	8 -5	; math
+	18	[188]	GETTABLE 	8 8 -6	; "sqrt"
+	19	[188]	MUL      	9 5 5
+	20	[188]	MUL      	10 6 6
+	21	[188]	ADD      	9 9 10
+	22	[188]	CALL     	8 2 2
+	23	[189]	EQ       	0 5 -7	; - 0
+	24	[189]	JMP      	2	; to 27
+	25	[189]	EQ       	1 6 -7	; - 0
+	26	[189]	JMP      	57	; to 84
+	27	[190]	LT       	0 6 -7	; - 0
+	28	[190]	JMP      	3	; to 32
+	29	[190]	LOADK    	9 -8	; "north"
+	30	[190]	TEST     	9 0 1
+	31	[190]	JMP      	1	; to 33
+	32	[190]	LOADK    	9 -9	; "south"
+	33	[191]	LT       	0 5 -7	; - 0
+	34	[191]	JMP      	3	; to 38
+	35	[191]	LOADK    	10 -10	; "west"
+	36	[191]	TEST     	10 0 1
+	37	[191]	JMP      	1	; to 39
+	38	[191]	LOADK    	10 -11	; "east"
+	39	[193]	TEST     	2 0 1
+	40	[193]	JMP      	22	; to 63
+	41	[193]	GETGLOBAL	11 -5	; math
+	42	[193]	GETTABLE 	11 11 -12	; "abs"
+	43	[193]	MOVE     	12 6
+	44	[193]	CALL     	11 2 2
+	45	[193]	GETGLOBAL	12 -5	; math
+	46	[193]	GETTABLE 	12 12 -12	; "abs"
+	47	[193]	MOVE     	13 5
+	48	[193]	CALL     	12 2 2
+	49	[193]	MUL      	12 -13 12	; 0.577 -
+	50	[193]	LT       	0 12 11
+	51	[193]	JMP      	11	; to 63
+	52	[194]	GETGLOBAL	11 -5	; math
+	53	[194]	GETTABLE 	11 11 -12	; "abs"
+	54	[194]	MOVE     	12 6
+	55	[194]	CALL     	11 2 2
+	56	[194]	GETGLOBAL	12 -5	; math
+	57	[194]	GETTABLE 	12 12 -12	; "abs"
+	58	[194]	MOVE     	13 5
+	59	[194]	CALL     	12 2 2
+	60	[194]	MUL      	12 -14 12	; 1.732 -
+	61	[194]	LT       	1 11 12
+	62	[194]	JMP      	4	; to 67
+	63	[195]	TEST     	2 0 0
+	64	[195]	JMP      	6	; to 71
+	65	[195]	TEST     	3 0 0
+	66	[195]	JMP      	4	; to 71
+	67	[197]	MOVE     	11 9
+	68	[197]	MOVE     	12 10
+	69	[197]	CONCAT   	7 11 12
+	70	[197]	JMP      	13	; to 84
+	71	[198]	GETGLOBAL	11 -5	; math
+	72	[198]	GETTABLE 	11 11 -12	; "abs"
+	73	[198]	MOVE     	12 5
+	74	[198]	CALL     	11 2 2
+	75	[198]	GETGLOBAL	12 -5	; math
+	76	[198]	GETTABLE 	12 12 -12	; "abs"
+	77	[198]	MOVE     	13 6
+	78	[198]	CALL     	12 2 2
+	79	[198]	LT       	0 12 11
+	80	[198]	JMP      	2	; to 83
+	81	[199]	MOVE     	7 10
+	82	[199]	JMP      	1	; to 84
+	83	[201]	MOVE     	7 9
+	84	[204]	MOVE     	9 7
+	85	[204]	MOVE     	10 8
+	86	[204]	RETURN   	9 3
+	87	[205]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:207,217> (44 instructions, 176 bytes at 0x7fe976c078d0)
+2 params, 6 slots, 1 upvalue, 5 locals, 8 constants, 0 functions
+	1	[208]	GETTABLE 	2 0 -1	; "first_tevs"
+	2	[208]	GETTABLE 	2 2 1
+	3	[208]	TEST     	2 0 0
+	4	[208]	JMP      	4	; to 9
+	5	[208]	GETTABLE 	2 0 -2	; "last_tevs"
+	6	[208]	GETTABLE 	2 2 1
+	7	[208]	TEST     	2 0 1
+	8	[208]	JMP      	1	; to 10
+	9	[208]	RETURN   	0 1
+	10	[209]	GETTABLE 	2 0 -2	; "last_tevs"
+	11	[209]	GETTABLE 	2 2 1
+	12	[209]	GETTABLE 	2 2 -3	; "timev"
+	13	[209]	GETTABLE 	3 0 -1	; "first_tevs"
+	14	[209]	GETTABLE 	3 3 1
+	15	[209]	GETTABLE 	3 3 -3	; "timev"
+	16	[209]	SUB      	2 2 3
+	17	[210]	GETTABLE 	3 2 -4	; "sec"
+	18	[210]	EQ       	0 3 -5	; - 0
+	19	[210]	JMP      	24	; to 44
+	20	[210]	GETTABLE 	3 2 -6	; "usec"
+	21	[210]	GETUPVAL 	4 0	; ges_swipe_interval
+	22	[210]	LT       	0 3 4
+	23	[210]	JMP      	20	; to 44
+	24	[211]	GETTABLE 	3 0 -2	; "last_tevs"
+	25	[211]	GETTABLE 	3 3 1
+	26	[211]	GETTABLE 	3 3 -7	; "x"
+	27	[211]	GETTABLE 	4 0 -1	; "first_tevs"
+	28	[211]	GETTABLE 	4 4 1
+	29	[211]	GETTABLE 	4 4 -7	; "x"
+	30	[211]	SUB      	3 3 4
+	31	[212]	GETTABLE 	4 0 -2	; "last_tevs"
+	32	[212]	GETTABLE 	4 4 1
+	33	[212]	GETTABLE 	4 4 -8	; "y"
+	34	[212]	GETTABLE 	5 0 -1	; "first_tevs"
+	35	[212]	GETTABLE 	5 5 1
+	36	[212]	GETTABLE 	5 5 -8	; "y"
+	37	[212]	SUB      	4 4 5
+	38	[213]	EQ       	0 3 -5	; - 0
+	39	[213]	JMP      	2	; to 42
+	40	[213]	EQ       	1 4 -5	; - 0
+	41	[213]	JMP      	2	; to 44
+	42	[214]	LOADBOOL 	5 1 0
+	43	[214]	RETURN   	5 2
+	44	[217]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:219,224> (26 instructions, 104 bytes at 0x7fe976c09310)
+4 params, 10 slots, 0 upvalues, 7 locals, 6 constants, 0 functions
+	1	[220]	SELF     	4 1 -1	; "distance"
+	2	[220]	MOVE     	6 2
+	3	[220]	CALL     	4 3 2
+	4	[221]	SELF     	5 1 -1	; "distance"
+	5	[221]	MOVE     	7 3
+	6	[221]	CALL     	5 3 2
+	7	[222]	SELF     	6 2 -1	; "distance"
+	8	[222]	MOVE     	8 3
+	9	[222]	CALL     	6 3 2
+	10	[223]	GETGLOBAL	7 -2	; math
+	11	[223]	GETTABLE 	7 7 -3	; "acos"
+	12	[223]	MUL      	8 4 4
+	13	[223]	MUL      	9 5 5
+	14	[223]	ADD      	8 8 9
+	15	[223]	MUL      	9 6 6
+	16	[223]	SUB      	8 8 9
+	17	[223]	MUL      	9 -4 4	; 2 -
+	18	[223]	MUL      	9 9 5
+	19	[223]	DIV      	8 8 9
+	20	[223]	CALL     	7 2 2
+	21	[223]	MUL      	7 7 -5	; - 180
+	22	[223]	GETGLOBAL	8 -2	; math
+	23	[223]	GETTABLE 	8 8 -6	; "pi"
+	24	[223]	DIV      	7 7 8
+	25	[223]	RETURN   	7 2
+	26	[224]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:230,233> (7 instructions, 28 bytes at 0x7fe976c09dc0)
+4 params, 8 slots, 0 upvalues, 4 locals, 0 constants, 0 functions
+	1	[232]	GETTABLE 	4 0 1
+	2	[232]	MOVE     	5 0
+	3	[232]	MOVE     	6 2
+	4	[232]	MOVE     	7 3
+	5	[232]	TAILCALL 	4 4 0
+	6	[232]	RETURN   	4 0
+	7	[233]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:235,242> (13 instructions, 52 bytes at 0x7fe976c09ed0)
+2 params, 4 slots, 0 upvalues, 2 locals, 9 constants, 0 functions
+	1	[236]	GETTABLE 	2 0 -1	; "states"
+	2	[236]	GETTABLE 	3 0 -2	; "initialState"
+	3	[236]	SETTABLE 	2 1 3
+	4	[237]	GETTABLE 	2 0 -3	; "detectings"
+	5	[237]	SETTABLE 	2 1 -4	; - false
+	6	[238]	GETTABLE 	2 0 -5	; "first_tevs"
+	7	[238]	SETTABLE 	2 1 -6	; - nil
+	8	[239]	GETTABLE 	2 0 -7	; "last_tevs"
+	9	[239]	SETTABLE 	2 1 -6	; - nil
+	10	[240]	NEWTABLE 	2 0 0
+	11	[240]	SETTABLE 	0 -8 2	; "multiswipe_directions" -
+	12	[241]	SETTABLE 	0 -9 -6	; "multiswipe_type" nil
+	13	[242]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:244,256> (20 instructions, 80 bytes at 0x7fe976c0a1d0)
+3 params, 3 slots, 5 upvalues, 3 locals, 5 constants, 0 functions
+	1	[245]	EQ       	0 1 -1	; - "ges_double_tap_interval"
+	2	[245]	JMP      	2	; to 5
+	3	[246]	SETUPVAL 	2 0	; ges_double_tap_interval
+	4	[246]	JMP      	15	; to 20
+	5	[247]	EQ       	0 1 -2	; - "ges_two_finger_tap_duration"
+	6	[247]	JMP      	2	; to 9
+	7	[248]	SETUPVAL 	2 1	; ges_two_finger_tap_duration
+	8	[248]	JMP      	11	; to 20
+	9	[249]	EQ       	0 1 -3	; - "ges_hold_interval"
+	10	[249]	JMP      	2	; to 13
+	11	[250]	SETUPVAL 	2 2	; ges_hold_interval
+	12	[250]	JMP      	7	; to 20
+	13	[251]	EQ       	0 1 -4	; - "ges_pan_delayed_interval"
+	14	[251]	JMP      	2	; to 17
+	15	[252]	SETUPVAL 	2 3	; ges_pan_delayed_interval
+	16	[252]	JMP      	3	; to 20
+	17	[253]	EQ       	0 1 -5	; - "ges_swipe_interval"
+	18	[253]	JMP      	1	; to 20
+	19	[254]	SETUPVAL 	2 4	; ges_swipe_interval
+	20	[256]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:258,270> (25 instructions, 100 bytes at 0x7fe976c0aca0)
+2 params, 3 slots, 5 upvalues, 2 locals, 5 constants, 0 functions
+	1	[259]	EQ       	0 1 -1	; - "ges_double_tap_interval"
+	2	[259]	JMP      	3	; to 6
+	3	[260]	GETUPVAL 	2 0	; ges_double_tap_interval
+	4	[260]	RETURN   	2 2
+	5	[260]	JMP      	19	; to 25
+	6	[261]	EQ       	0 1 -2	; - "ges_two_finger_tap_duration"
+	7	[261]	JMP      	3	; to 11
+	8	[262]	GETUPVAL 	2 1	; ges_two_finger_tap_duration
+	9	[262]	RETURN   	2 2
+	10	[262]	JMP      	14	; to 25
+	11	[263]	EQ       	0 1 -3	; - "ges_hold_interval"
+	12	[263]	JMP      	3	; to 16
+	13	[264]	GETUPVAL 	2 2	; ges_hold_interval
+	14	[264]	RETURN   	2 2
+	15	[264]	JMP      	9	; to 25
+	16	[265]	EQ       	0 1 -4	; - "ges_pan_delayed_interval"
+	17	[265]	JMP      	3	; to 21
+	18	[266]	GETUPVAL 	2 3	; ges_pan_delayed_interval
+	19	[266]	RETURN   	2 2
+	20	[266]	JMP      	4	; to 25
+	21	[267]	EQ       	0 1 -5	; - "ges_swipe_interval"
+	22	[267]	JMP      	2	; to 25
+	23	[268]	GETUPVAL 	2 4	; ges_swipe_interval
+	24	[268]	RETURN   	2 2
+	25	[270]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:272,275> (7 instructions, 28 bytes at 0x7fe976c0ad40)
+1 param, 4 slots, 0 upvalues, 1 local, 3 constants, 0 functions
+	1	[273]	SELF     	1 0 -1	; "clearState"
+	2	[273]	LOADK    	3 -2	; 0
+	3	[273]	CALL     	1 3 1
+	4	[274]	SELF     	1 0 -1	; "clearState"
+	5	[274]	LOADK    	3 -3	; 1
+	6	[274]	CALL     	1 3 1
+	7	[275]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:277,296> (36 instructions, 144 bytes at 0x7fe976c0b250)
+2 params, 7 slots, 0 upvalues, 3 locals, 13 constants, 0 functions
+	1	[278]	GETTABLE 	2 1 -1	; "slot"
+	2	[279]	GETTABLE 	3 1 -2	; "id"
+	3	[279]	TEST     	3 0 0
+	4	[279]	JMP      	31	; to 36
+	5	[281]	GETTABLE 	3 1 -2	; "id"
+	6	[281]	EQ       	0 3 -3	; - -1
+	7	[281]	JMP      	3	; to 11
+	8	[282]	GETTABLE 	3 0 -4	; "detectings"
+	9	[282]	SETTABLE 	3 2 -5	; - false
+	10	[282]	JMP      	25	; to 36
+	11	[284]	GETTABLE 	3 0 -6	; "track_ids"
+	12	[284]	GETTABLE 	4 1 -2	; "id"
+	13	[284]	SETTABLE 	3 2 4
+	14	[285]	GETTABLE 	3 1 -7	; "x"
+	15	[285]	TEST     	3 0 0
+	16	[285]	JMP      	19	; to 36
+	17	[285]	GETTABLE 	3 1 -8	; "y"
+	18	[285]	TEST     	3 0 0
+	19	[285]	JMP      	16	; to 36
+	20	[287]	GETTABLE 	3 0 -4	; "detectings"
+	21	[287]	GETTABLE 	3 3 2
+	22	[287]	TEST     	3 0 1
+	23	[287]	JMP      	12	; to 36
+	24	[288]	GETTABLE 	3 0 -4	; "detectings"
+	25	[288]	SETTABLE 	3 2 -9	; - true
+	26	[289]	GETTABLE 	3 0 -10	; "first_tevs"
+	27	[289]	SELF     	4 0 -11	; "deepCopyEv"
+	28	[289]	MOVE     	6 1
+	29	[289]	CALL     	4 3 2
+	30	[289]	SETTABLE 	3 2 4
+	31	[291]	SELF     	3 0 -12	; "switchState"
+	32	[291]	LOADK    	5 -13	; "tapState"
+	33	[291]	MOVE     	6 1
+	34	[291]	TAILCALL 	3 4 0
+	35	[291]	RETURN   	3 0
+	36	[296]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:301,348> (107 instructions, 428 bytes at 0x7fe976c0b690)
+2 params, 10 slots, 2 upvalues, 6 locals, 30 constants, 0 functions
+	1	[302]	GETUPVAL 	2 0	; logger
+	2	[302]	GETTABLE 	2 2 -1	; "dbg"
+	3	[302]	LOADK    	3 -2	; "in tap state..."
+	4	[302]	CALL     	2 2 1
+	5	[303]	GETTABLE 	2 1 -3	; "slot"
+	6	[304]	GETTABLE 	3 1 -4	; "id"
+	7	[304]	EQ       	0 3 -5	; - -1
+	8	[304]	JMP      	94	; to 103
+	9	[306]	GETTABLE 	3 0 -6	; "detectings"
+	10	[306]	GETTABLE 	3 3 -7	; 0
+	11	[306]	TEST     	3 0 0
+	12	[306]	JMP      	61	; to 74
+	13	[306]	GETTABLE 	3 0 -6	; "detectings"
+	14	[306]	GETTABLE 	3 3 -8	; 1
+	15	[306]	TEST     	3 0 0
+	16	[306]	JMP      	57	; to 74
+	17	[307]	SELF     	3 0 -9	; "isTwoFingerTap"
+	18	[307]	CALL     	3 2 2
+	19	[307]	TEST     	3 0 0
+	20	[307]	JMP      	49	; to 70
+	21	[308]	GETUPVAL 	3 1	; Geom
+	22	[308]	SELF     	3 3 -10	; "new"
+	23	[308]	NEWTABLE 	5 0 4
+	24	[309]	GETTABLE 	6 0 -12	; "last_tevs"
+	25	[309]	GETTABLE 	6 6 -7	; 0
+	26	[309]	GETTABLE 	6 6 -11	; "x"
+	27	[309]	SETTABLE 	5 -11 6	; "x" -
+	28	[310]	GETTABLE 	6 0 -12	; "last_tevs"
+	29	[310]	GETTABLE 	6 6 -7	; 0
+	30	[310]	GETTABLE 	6 6 -13	; "y"
+	31	[310]	SETTABLE 	5 -13 6	; "y" -
+	32	[311]	SETTABLE 	5 -14 -7	; "w" 0
+	33	[311]	SETTABLE 	5 -15 -7	; "h" 0
+	34	[308]	CALL     	3 3 2
+	35	[313]	GETUPVAL 	4 1	; Geom
+	36	[313]	SELF     	4 4 -10	; "new"
+	37	[313]	NEWTABLE 	6 0 4
+	38	[314]	GETTABLE 	7 0 -12	; "last_tevs"
+	39	[314]	GETTABLE 	7 7 -8	; 1
+	40	[314]	GETTABLE 	7 7 -11	; "x"
+	41	[314]	SETTABLE 	6 -11 7	; "x" -
+	42	[315]	GETTABLE 	7 0 -12	; "last_tevs"
+	43	[315]	GETTABLE 	7 7 -8	; 1
+	44	[315]	GETTABLE 	7 7 -13	; "y"
+	45	[315]	SETTABLE 	6 -13 7	; "y" -
+	46	[316]	SETTABLE 	6 -14 -7	; "w" 0
+	47	[316]	SETTABLE 	6 -15 -7	; "h" 0
+	48	[313]	CALL     	4 3 2
+	49	[318]	SELF     	5 3 -16	; "distance"
+	50	[318]	MOVE     	7 4
+	51	[318]	CALL     	5 3 2
+	52	[319]	GETUPVAL 	6 0	; logger
+	53	[319]	GETTABLE 	6 6 -1	; "dbg"
+	54	[319]	LOADK    	7 -17	; "two-finger tap detected with span"
+	55	[319]	MOVE     	8 5
+	56	[319]	CALL     	6 3 1
+	57	[320]	SELF     	6 0 -18	; "clearStates"
+	58	[320]	CALL     	6 2 1
+	59	[321]	NEWTABLE 	6 0 4
+	60	[322]	SETTABLE 	6 -19 -20	; "ges" "two_finger_tap"
+	61	[323]	SELF     	7 3 -22	; "midpoint"
+	62	[323]	MOVE     	9 4
+	63	[323]	CALL     	7 3 2
+	64	[323]	SETTABLE 	6 -21 7	; "pos" -
+	65	[324]	SETTABLE 	6 -23 5	; "span" -
+	66	[325]	GETTABLE 	7 1 -25	; "timev"
+	67	[325]	SETTABLE 	6 -24 7	; "time" -
+	68	[326]	RETURN   	6 2
+	69	[326]	JMP      	37	; to 107
+	70	[328]	SELF     	3 0 -26	; "clearState"
+	71	[328]	MOVE     	5 2
+	72	[328]	CALL     	3 3 1
+	73	[329]	JMP      	33	; to 107
+	74	[330]	GETTABLE 	3 0 -12	; "last_tevs"
+	75	[330]	GETTABLE 	3 3 2
+	76	[330]	EQ       	1 3 -27	; - nil
+	77	[330]	JMP      	5	; to 83
+	78	[331]	SELF     	3 0 -28	; "handleDoubleTap"
+	79	[331]	MOVE     	5 1
+	80	[331]	TAILCALL 	3 3 0
+	81	[331]	RETURN   	3 0
+	82	[331]	JMP      	24	; to 107
+	83	[334]	SELF     	3 0 -26	; "clearState"
+	84	[334]	MOVE     	5 2
+	85	[334]	CALL     	3 3 1
+	86	[335]	NEWTABLE 	3 0 3
+	87	[336]	SETTABLE 	3 -19 -29	; "ges" "tap"
+	88	[337]	GETUPVAL 	4 1	; Geom
+	89	[337]	SELF     	4 4 -10	; "new"
+	90	[337]	NEWTABLE 	6 0 4
+	91	[338]	GETTABLE 	7 1 -11	; "x"
+	92	[338]	SETTABLE 	6 -11 7	; "x" -
+	93	[339]	GETTABLE 	7 1 -13	; "y"
+	94	[339]	SETTABLE 	6 -13 7	; "y" -
+	95	[340]	SETTABLE 	6 -14 -7	; "w" 0
+	96	[340]	SETTABLE 	6 -15 -7	; "h" 0
+	97	[337]	CALL     	4 3 2
+	98	[341]	SETTABLE 	3 -21 4	; "pos" -
+	99	[342]	GETTABLE 	4 1 -25	; "timev"
+	100	[342]	SETTABLE 	3 -24 4	; "time" -
+	101	[343]	RETURN   	3 2
+	102	[344]	JMP      	4	; to 107
+	103	[346]	SELF     	3 0 -30	; "handleNonTap"
+	104	[346]	MOVE     	5 1
+	105	[346]	TAILCALL 	3 3 0
+	106	[346]	RETURN   	3 0
+	107	[348]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:350,402> (89 instructions, 356 bytes at 0x7fe976c0a600)
+2 params, 10 slots, 4 upvalues, 6 locals, 26 constants, 1 function
+	1	[351]	GETTABLE 	2 1 -1	; "slot"
+	2	[352]	NEWTABLE 	3 0 3
+	3	[354]	SETTABLE 	3 -2 -3	; "ges" "tap"
+	4	[355]	GETUPVAL 	4 0	; Geom
+	5	[355]	SELF     	4 4 -5	; "new"
+	6	[355]	NEWTABLE 	6 0 4
+	7	[356]	GETTABLE 	7 0 -7	; "last_tevs"
+	8	[356]	GETTABLE 	7 7 2
+	9	[356]	GETTABLE 	7 7 -6	; "x"
+	10	[356]	SETTABLE 	6 -6 7	; "x" -
+	11	[357]	GETTABLE 	7 0 -7	; "last_tevs"
+	12	[357]	GETTABLE 	7 7 2
+	13	[357]	GETTABLE 	7 7 -8	; "y"
+	14	[357]	SETTABLE 	6 -8 7	; "y" -
+	15	[358]	SETTABLE 	6 -9 -10	; "w" 0
+	16	[358]	SETTABLE 	6 -11 -10	; "h" 0
+	17	[355]	CALL     	4 3 2
+	18	[359]	SETTABLE 	3 -4 4	; "pos" -
+	19	[360]	GETTABLE 	4 1 -13	; "timev"
+	20	[360]	SETTABLE 	3 -12 4	; "time" -
+	21	[363]	NEWTABLE 	4 0 3
+	22	[364]	GETTABLE 	5 1 -6	; "x"
+	23	[364]	SETTABLE 	4 -6 5	; "x" -
+	24	[365]	GETTABLE 	5 1 -8	; "y"
+	25	[365]	SETTABLE 	4 -8 5	; "y" -
+	26	[366]	GETTABLE 	5 1 -13	; "timev"
+	27	[366]	SETTABLE 	4 -13 5	; "timev" -
+	28	[369]	GETTABLE 	5 0 -14	; "input"
+	29	[369]	GETTABLE 	5 5 -15	; "disable_double_tap"
+	30	[369]	TEST     	5 0 1
+	31	[369]	JMP      	23	; to 55
+	32	[369]	GETTABLE 	5 0 -16	; "last_taps"
+	33	[369]	GETTABLE 	5 5 2
+	34	[369]	EQ       	1 5 -17	; - nil
+	35	[369]	JMP      	19	; to 55
+	36	[370]	SELF     	5 0 -18	; "isDoubleTap"
+	37	[370]	GETTABLE 	7 0 -16	; "last_taps"
+	38	[370]	GETTABLE 	7 7 2
+	39	[370]	MOVE     	8 4
+	40	[370]	CALL     	5 4 2
+	41	[370]	TEST     	5 0 0
+	42	[370]	JMP      	12	; to 55
+	43	[372]	SELF     	5 0 -19	; "clearState"
+	44	[372]	MOVE     	7 2
+	45	[372]	CALL     	5 3 1
+	46	[373]	SETTABLE 	3 -2 -20	; "ges" "double_tap"
+	47	[374]	GETTABLE 	5 0 -16	; "last_taps"
+	48	[374]	SETTABLE 	5 2 -17	; - nil
+	49	[375]	GETUPVAL 	5 1	; logger
+	50	[375]	GETTABLE 	5 5 -21	; "dbg"
+	51	[375]	LOADK    	6 -22	; "double tap detected in slot"
+	52	[375]	MOVE     	7 2
+	53	[375]	CALL     	5 3 1
+	54	[376]	RETURN   	3 2
+	55	[380]	GETTABLE 	5 0 -16	; "last_taps"
+	56	[380]	SETTABLE 	5 2 4
+	57	[382]	GETUPVAL 	5 1	; logger
+	58	[382]	GETTABLE 	5 5 -21	; "dbg"
+	59	[382]	LOADK    	6 -23	; "set up tap timer"
+	60	[382]	CALL     	5 2 1
+	61	[384]	GETTABLE 	5 4 -13	; "timev"
+	62	[384]	GETUPVAL 	6 2	; TimeVal
+	63	[384]	SELF     	6 6 -5	; "new"
+	64	[384]	NEWTABLE 	8 0 2
+	65	[385]	SETTABLE 	8 -24 -10	; "sec" 0
+	66	[386]	GETTABLE 	9 0 -14	; "input"
+	67	[386]	GETTABLE 	9 9 -15	; "disable_double_tap"
+	68	[386]	TEST     	9 0 1
+	69	[386]	JMP      	3	; to 73
+	70	[386]	GETUPVAL 	9 3	; ges_double_tap_interval
+	71	[386]	TEST     	9 0 1
+	72	[386]	JMP      	1	; to 74
+	73	[386]	LOADK    	9 -10	; 0
+	74	[386]	SETTABLE 	8 -25 9	; "usec" -
+	75	[384]	CALL     	6 3 2
+	76	[387]	ADD      	5 5 6
+	77	[388]	GETTABLE 	6 0 -14	; "input"
+	78	[388]	SELF     	6 6 -26	; "setTimeout"
+	79	[398]	CLOSURE  	8 0	; 0x7fe976c0b590
+	80	[398]	GETUPVAL 	0 1	; logger
+	81	[398]	MOVE     	0 0
+	82	[398]	MOVE     	0 2
+	83	[398]	MOVE     	0 3
+	84	[398]	MOVE     	9 5
+	85	[388]	CALL     	6 4 1
+	86	[401]	SELF     	6 0 -19	; "clearState"
+	87	[401]	MOVE     	8 2
+	88	[401]	CALL     	6 3 1
+	89	[402]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:388,398> (32 instructions, 128 bytes at 0x7fe976c0b590)
+0 params, 4 slots, 4 upvalues, 0 locals, 6 constants, 0 functions
+	1	[389]	GETUPVAL 	0 0	; logger
+	2	[389]	GETTABLE 	0 0 -1	; "dbg"
+	3	[389]	LOADK    	1 -2	; "in tap timer"
+	4	[389]	GETUPVAL 	2 1	; self
+	5	[389]	GETTABLE 	2 2 -3	; "last_taps"
+	6	[389]	GETUPVAL 	3 2	; slot
+	7	[389]	GETTABLE 	2 2 3
+	8	[389]	EQ       	0 2 -4	; - nil
+	9	[389]	JMP      	1	; to 11
+	10	[389]	LOADBOOL 	2 0 1
+	11	[389]	LOADBOOL 	2 1 0
+	12	[389]	CALL     	0 3 1
+	13	[392]	GETUPVAL 	0 1	; self
+	14	[392]	GETTABLE 	0 0 -3	; "last_taps"
+	15	[392]	GETUPVAL 	1 2	; slot
+	16	[392]	GETTABLE 	0 0 1
+	17	[392]	EQ       	1 0 -4	; - nil
+	18	[392]	JMP      	13	; to 32
+	19	[393]	GETUPVAL 	0 1	; self
+	20	[393]	GETTABLE 	0 0 -3	; "last_taps"
+	21	[393]	GETUPVAL 	1 2	; slot
+	22	[393]	SETTABLE 	0 1 -4	; - nil
+	23	[395]	GETUPVAL 	0 0	; logger
+	24	[395]	GETTABLE 	0 0 -1	; "dbg"
+	25	[395]	LOADK    	1 -5	; "single tap detected in slot"
+	26	[395]	GETUPVAL 	2 2	; slot
+	27	[395]	GETUPVAL 	3 3	; ges_ev
+	28	[395]	GETTABLE 	3 3 -6	; "pos"
+	29	[395]	CALL     	0 4 1
+	30	[396]	GETUPVAL 	0 3	; ges_ev
+	31	[396]	RETURN   	0 2
+	32	[398]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:404,440> (82 instructions, 328 bytes at 0x7fe976c09d40)
+2 params, 9 slots, 4 upvalues, 4 locals, 26 constants, 1 function
+	1	[405]	GETTABLE 	2 1 -1	; "slot"
+	2	[406]	GETTABLE 	3 0 -2	; "states"
+	3	[406]	GETTABLE 	3 3 2
+	4	[406]	GETTABLE 	4 0 -3	; "tapState"
+	5	[406]	EQ       	1 3 4
+	6	[406]	JMP      	42	; to 49
+	7	[409]	GETTABLE 	3 0 -2	; "states"
+	8	[409]	GETTABLE 	4 0 -3	; "tapState"
+	9	[409]	SETTABLE 	3 2 4
+	10	[410]	GETUPVAL 	3 0	; logger
+	11	[410]	GETTABLE 	3 3 -4	; "dbg"
+	12	[410]	LOADK    	4 -5	; "set up hold timer"
+	13	[410]	CALL     	3 2 1
+	14	[411]	GETTABLE 	3 1 -6	; "timev"
+	15	[411]	GETUPVAL 	4 1	; TimeVal
+	16	[411]	SELF     	4 4 -7	; "new"
+	17	[411]	NEWTABLE 	6 0 2
+	18	[412]	SETTABLE 	6 -8 -9	; "sec" 0
+	19	[412]	GETUPVAL 	7 2	; ges_hold_interval
+	20	[412]	SETTABLE 	6 -10 7	; "usec" -
+	21	[411]	CALL     	4 3 2
+	22	[413]	ADD      	3 3 4
+	23	[414]	GETTABLE 	4 0 -11	; "input"
+	24	[414]	SELF     	4 4 -12	; "setTimeout"
+	25	[420]	CLOSURE  	6 0	; 0x7fe976c073e0
+	26	[420]	MOVE     	0 0
+	27	[420]	MOVE     	0 2
+	28	[420]	GETUPVAL 	0 0	; logger
+	29	[420]	MOVE     	0 1
+	30	[420]	MOVE     	7 3
+	31	[414]	CALL     	4 4 1
+	32	[421]	NEWTABLE 	4 0 3
+	33	[422]	SETTABLE 	4 -13 -14	; "ges" "touch"
+	34	[423]	GETUPVAL 	5 3	; Geom
+	35	[423]	SELF     	5 5 -7	; "new"
+	36	[423]	NEWTABLE 	7 0 4
+	37	[424]	GETTABLE 	8 1 -16	; "x"
+	38	[424]	SETTABLE 	7 -16 8	; "x" -
+	39	[425]	GETTABLE 	8 1 -17	; "y"
+	40	[425]	SETTABLE 	7 -17 8	; "y" -
+	41	[426]	SETTABLE 	7 -18 -9	; "w" 0
+	42	[426]	SETTABLE 	7 -19 -9	; "h" 0
+	43	[423]	CALL     	5 3 2
+	44	[427]	SETTABLE 	4 -15 5	; "pos" -
+	45	[428]	GETTABLE 	5 1 -6	; "timev"
+	46	[428]	SETTABLE 	4 -20 5	; "time" -
+	47	[429]	RETURN   	4 2
+	48	[429]	JMP      	33	; to 82
+	49	[433]	GETTABLE 	3 1 -16	; "x"
+	50	[433]	TEST     	3 0 0
+	51	[433]	JMP      	11	; to 63
+	52	[433]	GETGLOBAL	3 -21	; math
+	53	[433]	GETTABLE 	3 3 -22	; "abs"
+	54	[433]	GETTABLE 	4 1 -16	; "x"
+	55	[433]	GETTABLE 	5 0 -23	; "first_tevs"
+	56	[433]	GETTABLE 	5 5 2
+	57	[433]	GETTABLE 	5 5 -16	; "x"
+	58	[433]	SUB      	4 4 5
+	59	[433]	CALL     	3 2 2
+	60	[433]	GETTABLE 	4 0 -24	; "PAN_THRESHOLD"
+	61	[433]	LE       	1 4 3
+	62	[433]	JMP      	14	; to 77
+	63	[434]	GETTABLE 	3 1 -17	; "y"
+	64	[434]	TEST     	3 0 0
+	65	[434]	JMP      	16	; to 82
+	66	[434]	GETGLOBAL	3 -21	; math
+	67	[434]	GETTABLE 	3 3 -22	; "abs"
+	68	[434]	GETTABLE 	4 1 -17	; "y"
+	69	[434]	GETTABLE 	5 0 -23	; "first_tevs"
+	70	[434]	GETTABLE 	5 5 2
+	71	[434]	GETTABLE 	5 5 -17	; "y"
+	72	[434]	SUB      	4 4 5
+	73	[434]	CALL     	3 2 2
+	74	[434]	GETTABLE 	4 0 -24	; "PAN_THRESHOLD"
+	75	[434]	LE       	0 4 3
+	76	[434]	JMP      	5	; to 82
+	77	[437]	SELF     	3 0 -25	; "switchState"
+	78	[437]	LOADK    	5 -26	; "panState"
+	79	[437]	MOVE     	6 1
+	80	[437]	TAILCALL 	3 4 0
+	81	[437]	RETURN   	3 0
+	82	[440]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:414,420> (21 instructions, 84 bytes at 0x7fe976c073e0)
+0 params, 5 slots, 4 upvalues, 0 locals, 6 constants, 0 functions
+	1	[415]	GETUPVAL 	0 0	; self
+	2	[415]	GETTABLE 	0 0 -1	; "states"
+	3	[415]	GETUPVAL 	1 1	; slot
+	4	[415]	GETTABLE 	0 0 1
+	5	[415]	GETUPVAL 	1 0	; self
+	6	[415]	GETTABLE 	1 1 -2	; "tapState"
+	7	[415]	EQ       	0 0 1
+	8	[415]	JMP      	12	; to 21
+	9	[417]	GETUPVAL 	0 2	; logger
+	10	[417]	GETTABLE 	0 0 -3	; "dbg"
+	11	[417]	LOADK    	1 -4	; "hold gesture detected in slot"
+	12	[417]	GETUPVAL 	2 1	; slot
+	13	[417]	CALL     	0 3 1
+	14	[418]	GETUPVAL 	0 0	; self
+	15	[418]	SELF     	0 0 -5	; "switchState"
+	16	[418]	LOADK    	2 -6	; "holdState"
+	17	[418]	GETUPVAL 	3 3	; tev
+	18	[418]	LOADBOOL 	4 1 0
+	19	[418]	TAILCALL 	0 5 0
+	20	[418]	RETURN   	0 0
+	21	[420]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:442,474> (74 instructions, 296 bytes at 0x7fe976c06f30)
+2 params, 9 slots, 1 upvalue, 4 locals, 26 constants, 0 functions
+	1	[443]	GETUPVAL 	2 0	; logger
+	2	[443]	GETTABLE 	2 2 -1	; "dbg"
+	3	[443]	LOADK    	3 -2	; "in pan state..."
+	4	[443]	CALL     	2 2 1
+	5	[444]	GETTABLE 	2 1 -3	; "slot"
+	6	[445]	GETTABLE 	3 1 -4	; "id"
+	7	[445]	EQ       	0 3 -5	; - -1
+	8	[445]	JMP      	53	; to 62
+	9	[447]	SELF     	3 0 -6	; "isSwipe"
+	10	[447]	MOVE     	5 2
+	11	[447]	CALL     	3 3 2
+	12	[447]	TEST     	3 0 0
+	13	[447]	JMP      	43	; to 57
+	14	[448]	GETTABLE 	3 0 -7	; "detectings"
+	15	[448]	GETTABLE 	3 3 -8	; 0
+	16	[448]	TEST     	3 0 0
+	17	[448]	JMP      	34	; to 52
+	18	[448]	GETTABLE 	3 0 -7	; "detectings"
+	19	[448]	GETTABLE 	3 3 -9	; 1
+	20	[448]	TEST     	3 0 0
+	21	[448]	JMP      	30	; to 52
+	22	[449]	SELF     	3 0 -10	; "handleTwoFingerPan"
+	23	[449]	MOVE     	5 1
+	24	[449]	CALL     	3 3 2
+	25	[450]	SELF     	4 0 -11	; "clearStates"
+	26	[450]	CALL     	4 2 1
+	27	[451]	TEST     	3 0 0
+	28	[451]	JMP      	21	; to 50
+	29	[452]	GETTABLE 	4 3 -12	; "ges"
+	30	[452]	EQ       	0 4 -13	; - "two_finger_pan"
+	31	[452]	JMP      	2	; to 34
+	32	[453]	SETTABLE 	3 -12 -14	; "ges" "two_finger_swipe"
+	33	[453]	JMP      	9	; to 43
+	34	[454]	GETTABLE 	4 3 -12	; "ges"
+	35	[454]	EQ       	0 4 -15	; - "inward_pan"
+	36	[454]	JMP      	2	; to 39
+	37	[455]	SETTABLE 	3 -12 -16	; "ges" "pinch"
+	38	[455]	JMP      	4	; to 43
+	39	[456]	GETTABLE 	4 3 -12	; "ges"
+	40	[456]	EQ       	0 4 -17	; - "outward_pan"
+	41	[456]	JMP      	1	; to 43
+	42	[457]	SETTABLE 	3 -12 -18	; "ges" "spread"
+	43	[459]	GETUPVAL 	4 0	; logger
+	44	[459]	GETTABLE 	4 4 -1	; "dbg"
+	45	[459]	GETTABLE 	5 3 -12	; "ges"
+	46	[459]	GETTABLE 	6 3 -19	; "direction"
+	47	[459]	GETTABLE 	7 3 -20	; "distance"
+	48	[459]	LOADK    	8 -21	; "detected"
+	49	[459]	CALL     	4 5 1
+	50	[461]	RETURN   	3 2
+	51	[461]	JMP      	22	; to 74
+	52	[463]	SELF     	3 0 -22	; "handleSwipe"
+	53	[463]	MOVE     	5 1
+	54	[463]	TAILCALL 	3 3 0
+	55	[463]	RETURN   	3 0
+	56	[464]	JMP      	17	; to 74
+	57	[466]	SELF     	3 0 -23	; "handlePanRelease"
+	58	[466]	MOVE     	5 1
+	59	[466]	TAILCALL 	3 3 0
+	60	[466]	RETURN   	3 0
+	61	[467]	JMP      	12	; to 74
+	62	[469]	GETTABLE 	3 0 -24	; "states"
+	63	[469]	GETTABLE 	3 3 2
+	64	[469]	GETTABLE 	4 0 -25	; "panState"
+	65	[469]	EQ       	1 3 4
+	66	[469]	JMP      	3	; to 70
+	67	[470]	GETTABLE 	3 0 -24	; "states"
+	68	[470]	GETTABLE 	4 0 -25	; "panState"
+	69	[470]	SETTABLE 	3 2 4
+	70	[472]	SELF     	3 0 -26	; "handlePan"
+	71	[472]	MOVE     	5 1
+	72	[472]	TAILCALL 	3 3 0
+	73	[472]	RETURN   	3 0
+	74	[474]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:476,517> (79 instructions, 316 bytes at 0x7fe976c06eb0)
+2 params, 17 slots, 2 upvalues, 14 locals, 29 constants, 0 functions
+	1	[477]	GETTABLE 	2 1 -1	; "slot"
+	2	[478]	SELF     	3 0 -2	; "getPath"
+	3	[478]	MOVE     	5 2
+	4	[478]	CALL     	3 3 3
+	5	[479]	GETUPVAL 	5 0	; Geom
+	6	[479]	SELF     	5 5 -3	; "new"
+	7	[479]	NEWTABLE 	7 0 4
+	8	[480]	GETTABLE 	8 0 -5	; "first_tevs"
+	9	[480]	GETTABLE 	8 8 2
+	10	[480]	GETTABLE 	8 8 -4	; "x"
+	11	[480]	SETTABLE 	7 -4 8	; "x" -
+	12	[481]	GETTABLE 	8 0 -5	; "first_tevs"
+	13	[481]	GETTABLE 	8 8 2
+	14	[481]	GETTABLE 	8 8 -6	; "y"
+	15	[481]	SETTABLE 	7 -6 8	; "y" -
+	16	[482]	SETTABLE 	7 -7 -8	; "w" 0
+	17	[482]	SETTABLE 	7 -9 -8	; "h" 0
+	18	[479]	CALL     	5 3 2
+	19	[484]	LOADK    	6 -10	; "swipe"
+	20	[485]	LOADNIL  	7 7
+	21	[487]	GETTABLE 	8 0 -11	; "multiswipe_directions"
+	22	[487]	LEN      	8 8
+	23	[487]	LT       	0 -12 8	; 1 -
+	24	[487]	JMP      	21	; to 46
+	25	[488]	LOADK    	6 -13	; "multiswipe"
+	26	[489]	LOADK    	7 -14	; ""
+	27	[490]	GETGLOBAL	8 -15	; pairs
+	28	[490]	GETTABLE 	9 0 -11	; "multiswipe_directions"
+	29	[490]	CALL     	8 2 4
+	30	[490]	JMP      	8	; to 39
+	31	[491]	LOADK    	13 -14	; ""
+	32	[492]	LT       	0 -12 11	; 1 -
+	33	[492]	JMP      	1	; to 35
+	34	[493]	LOADK    	13 -16	; " "
+	35	[495]	MOVE     	14 7
+	36	[495]	MOVE     	15 13
+	37	[495]	GETTABLE 	16 12 -12	; 1
+	38	[495]	CONCAT   	7 14 16
+	39	[490]	TFORLOOP 	8 2
+	40	[495]	JMP      	-10	; to 31
+	41	[497]	GETUPVAL 	8 1	; logger
+	42	[497]	GETTABLE 	8 8 -17	; "dbg"
+	43	[497]	LOADK    	9 -13	; "multiswipe"
+	44	[497]	MOVE     	10 7
+	45	[497]	CALL     	8 3 1
+	46	[501]	EQ       	0 3 -18	; - "west"
+	47	[501]	JMP      	5	; to 53
+	48	[501]	GETGLOBAL	8 -19	; DCHANGE_WEST_SWIPE_TO_EAST
+	49	[501]	TEST     	8 0 0
+	50	[501]	JMP      	2	; to 53
+	51	[502]	LOADK    	3 -20	; "east"
+	52	[502]	JMP      	6	; to 59
+	53	[503]	EQ       	0 3 -20	; - "east"
+	54	[503]	JMP      	4	; to 59
+	55	[503]	GETGLOBAL	8 -21	; DCHANGE_EAST_SWIPE_TO_WEST
+	56	[503]	TEST     	8 0 0
+	57	[503]	JMP      	1	; to 59
+	58	[504]	LOADK    	3 -18	; "west"
+	59	[506]	GETUPVAL 	8 1	; logger
+	60	[506]	GETTABLE 	8 8 -17	; "dbg"
+	61	[506]	LOADK    	9 -10	; "swipe"
+	62	[506]	MOVE     	10 3
+	63	[506]	MOVE     	11 4
+	64	[506]	LOADK    	12 -22	; "detected in slot"
+	65	[506]	MOVE     	13 2
+	66	[506]	CALL     	8 6 1
+	67	[507]	SELF     	8 0 -23	; "clearState"
+	68	[507]	MOVE     	10 2
+	69	[507]	CALL     	8 3 1
+	70	[508]	NEWTABLE 	8 0 6
+	71	[509]	SETTABLE 	8 -24 6	; "ges" -
+	72	[511]	SETTABLE 	8 -25 5	; "pos" -
+	73	[512]	SETTABLE 	8 -26 3	; "direction" -
+	74	[513]	SETTABLE 	8 -11 7	; "multiswipe_directions" -
+	75	[514]	SETTABLE 	8 -27 4	; "distance" -
+	76	[515]	GETTABLE 	9 1 -29	; "timev"
+	77	[515]	SETTABLE 	8 -28 9	; "time" -
+	78	[516]	RETURN   	8 2
+	79	[517]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:519,618> (181 instructions, 724 bytes at 0x7fe976c0dff0)
+2 params, 19 slots, 3 upvalues, 14 locals, 40 constants, 0 functions
+	1	[520]	GETTABLE 	2 1 -1	; "slot"
+	2	[521]	GETTABLE 	3 0 -2	; "detectings"
+	3	[521]	GETTABLE 	3 3 -3	; 0
+	4	[521]	TEST     	3 0 0
+	5	[521]	JMP      	9	; to 15
+	6	[521]	GETTABLE 	3 0 -2	; "detectings"
+	7	[521]	GETTABLE 	3 3 -4	; 1
+	8	[521]	TEST     	3 0 0
+	9	[521]	JMP      	5	; to 15
+	10	[522]	SELF     	3 0 -5	; "handleTwoFingerPan"
+	11	[522]	MOVE     	5 1
+	12	[522]	TAILCALL 	3 3 0
+	13	[522]	RETURN   	3 0
+	14	[522]	JMP      	166	; to 181
+	15	[524]	SELF     	3 0 -6	; "getPath"
+	16	[524]	MOVE     	5 2
+	17	[524]	CALL     	3 3 3
+	18	[525]	GETTABLE 	5 0 -7	; "last_tevs"
+	19	[525]	GETTABLE 	5 5 2
+	20	[525]	GETTABLE 	5 5 -8	; "timev"
+	21	[525]	GETTABLE 	6 0 -9	; "first_tevs"
+	22	[525]	GETTABLE 	6 6 2
+	23	[525]	GETTABLE 	6 6 -8	; "timev"
+	24	[525]	SUB      	5 5 6
+	25	[527]	NEWTABLE 	6 0 8
+	26	[528]	SETTABLE 	6 -10 -11	; "ges" "pan"
+	27	[529]	NEWTABLE 	7 0 2
+	28	[531]	SETTABLE 	7 -13 -3	; "x" 0
+	29	[532]	SETTABLE 	7 -14 -3	; "y" 0
+	30	[533]	SETTABLE 	6 -12 7	; "relative" -
+	31	[534]	NEWTABLE 	7 0 2
+	32	[536]	SETTABLE 	7 -13 -3	; "x" 0
+	33	[537]	SETTABLE 	7 -14 -3	; "y" 0
+	34	[538]	SETTABLE 	6 -15 7	; "relative_delayed" -
+	35	[539]	SETTABLE 	6 -16 -17	; "pos" nil
+	36	[540]	SETTABLE 	6 -18 3	; "direction" -
+	37	[541]	SETTABLE 	6 -19 4	; "distance" -
+	38	[542]	SETTABLE 	6 -20 -3	; "distance_delayed" 0
+	39	[543]	GETTABLE 	7 1 -8	; "timev"
+	40	[543]	SETTABLE 	6 -21 7	; "time" -
+	41	[547]	GETTABLE 	7 6 -12	; "relative"
+	42	[547]	GETTABLE 	8 1 -13	; "x"
+	43	[547]	GETTABLE 	9 0 -9	; "first_tevs"
+	44	[547]	GETTABLE 	9 9 2
+	45	[547]	GETTABLE 	9 9 -13	; "x"
+	46	[547]	SUB      	8 8 9
+	47	[547]	SETTABLE 	7 -13 8	; "x" -
+	48	[548]	GETTABLE 	7 6 -12	; "relative"
+	49	[548]	GETTABLE 	8 1 -14	; "y"
+	50	[548]	GETTABLE 	9 0 -9	; "first_tevs"
+	51	[548]	GETTABLE 	9 9 2
+	52	[548]	GETTABLE 	9 9 -14	; "y"
+	53	[548]	SUB      	8 8 9
+	54	[548]	SETTABLE 	7 -14 8	; "y" -
+	55	[552]	GETTABLE 	7 5 -22	; "sec"
+	56	[552]	EQ       	0 7 -3	; - 0
+	57	[552]	JMP      	4	; to 62
+	58	[552]	GETTABLE 	7 5 -23	; "usec"
+	59	[552]	GETUPVAL 	8 0	; ges_pan_delayed_interval
+	60	[552]	LT       	1 7 8
+	61	[552]	JMP      	15	; to 77
+	62	[553]	GETTABLE 	7 6 -15	; "relative_delayed"
+	63	[553]	GETTABLE 	8 1 -13	; "x"
+	64	[553]	GETTABLE 	9 0 -9	; "first_tevs"
+	65	[553]	GETTABLE 	9 9 2
+	66	[553]	GETTABLE 	9 9 -13	; "x"
+	67	[553]	SUB      	8 8 9
+	68	[553]	SETTABLE 	7 -13 8	; "x" -
+	69	[554]	GETTABLE 	7 6 -15	; "relative_delayed"
+	70	[554]	GETTABLE 	8 1 -14	; "y"
+	71	[554]	GETTABLE 	9 0 -9	; "first_tevs"
+	72	[554]	GETTABLE 	9 9 2
+	73	[554]	GETTABLE 	9 9 -14	; "y"
+	74	[554]	SUB      	8 8 9
+	75	[554]	SETTABLE 	7 -14 8	; "y" -
+	76	[555]	SETTABLE 	6 -20 4	; "distance_delayed" -
+	77	[558]	GETUPVAL 	7 1	; Geom
+	78	[558]	SELF     	7 7 -24	; "new"
+	79	[558]	NEWTABLE 	9 0 4
+	80	[559]	GETTABLE 	10 0 -7	; "last_tevs"
+	81	[559]	GETTABLE 	10 10 2
+	82	[559]	GETTABLE 	10 10 -13	; "x"
+	83	[559]	SETTABLE 	9 -13 10	; "x" -
+	84	[560]	GETTABLE 	10 0 -7	; "last_tevs"
+	85	[560]	GETTABLE 	10 10 2
+	86	[560]	GETTABLE 	10 10 -14	; "y"
+	87	[560]	SETTABLE 	9 -14 10	; "y" -
+	88	[561]	SETTABLE 	9 -25 -3	; "w" 0
+	89	[561]	SETTABLE 	9 -26 -3	; "h" 0
+	90	[558]	CALL     	7 3 2
+	91	[562]	SETTABLE 	6 -16 7	; "pos" -
+	92	[564]	GETTABLE 	7 0 -27	; "multiswipe_directions"
+	93	[564]	LEN      	7 7
+	94	[565]	LT       	0 -3 7	; 0 -
+	95	[565]	JMP      	5	; to 101
+	96	[565]	GETTABLE 	8 0 -27	; "multiswipe_directions"
+	97	[565]	GETTABLE 	8 8 7
+	98	[565]	GETTABLE 	8 8 -4	; 1
+	99	[565]	TEST     	8 0 1
+	100	[565]	JMP      	1	; to 102
+	101	[565]	LOADK    	8 -28	; ""
+	102	[566]	LOADNIL  	9 10
+	103	[568]	EQ       	0 7 -3	; - 0
+	104	[568]	JMP      	11	; to 116
+	105	[570]	SETTABLE 	0 -29 -30	; "multiswipe_type" "straight"
+	106	[571]	EQ       	1 3 -31	; - "north"
+	107	[571]	JMP      	24	; to 132
+	108	[571]	EQ       	1 3 -32	; - "south"
+	109	[571]	JMP      	22	; to 132
+	110	[572]	EQ       	1 3 -33	; - "east"
+	111	[572]	JMP      	20	; to 132
+	112	[572]	EQ       	1 3 -34	; - "west"
+	113	[572]	JMP      	18	; to 132
+	114	[573]	SETTABLE 	0 -29 -35	; "multiswipe_type" "diagonal"
+	115	[574]	JMP      	16	; to 132
+	116	[576]	LT       	0 -3 7	; 0 -
+	117	[576]	JMP      	14	; to 132
+	118	[577]	GETTABLE 	11 0 -27	; "multiswipe_directions"
+	119	[577]	GETTABLE 	11 11 7
+	120	[577]	GETTABLE 	9 11 -36	; 2
+	121	[578]	NEWTABLE 	11 0 1
+	122	[579]	NEWTABLE 	12 0 3
+	123	[580]	GETTABLE 	13 9 -16	; "pos"
+	124	[580]	GETTABLE 	13 13 -13	; "x"
+	125	[580]	SETTABLE 	12 -13 13	; "x" -
+	126	[581]	GETTABLE 	13 9 -16	; "pos"
+	127	[581]	GETTABLE 	13 13 -14	; "y"
+	128	[581]	SETTABLE 	12 -14 13	; "y" -
+	129	[582]	SETTABLE 	12 -1 2	; "slot" -
+	130	[583]	SETTABLE 	11 2 12
+	131	[584]	MOVE     	10 11
+	132	[588]	LOADNIL  	11 12
+	133	[589]	GETTABLE 	13 0 -29	; "multiswipe_type"
+	134	[589]	EQ       	0 13 -30	; - "straight"
+	135	[589]	JMP      	9	; to 145
+	136	[590]	SELF     	13 0 -6	; "getPath"
+	137	[590]	MOVE     	15 2
+	138	[590]	LOADBOOL 	16 1 0
+	139	[590]	LOADBOOL 	17 0 0
+	140	[590]	MOVE     	18 10
+	141	[590]	CALL     	13 6 3
+	142	[590]	MOVE     	12 14
+	143	[590]	MOVE     	11 13
+	144	[590]	JMP      	8	; to 153
+	145	[592]	SELF     	13 0 -6	; "getPath"
+	146	[592]	MOVE     	15 2
+	147	[592]	LOADBOOL 	16 1 0
+	148	[592]	LOADBOOL 	17 1 0
+	149	[592]	MOVE     	18 10
+	150	[592]	CALL     	13 6 3
+	151	[592]	MOVE     	12 14
+	152	[592]	MOVE     	11 13
+	153	[595]	GETTABLE 	13 0 -37	; "MULTISWIPE_THRESHOLD"
+	154	[595]	LT       	0 13 12
+	155	[595]	JMP      	24	; to 180
+	156	[596]	MOVE     	13 6
+	157	[599]	GETTABLE 	14 0 -38	; "screen"
+	158	[599]	GETTABLE 	14 14 -39	; "cur_rotation_mode"
+	159	[599]	LT       	0 -3 14	; 0 -
+	160	[599]	JMP      	5	; to 166
+	161	[600]	GETUPVAL 	14 2	; util
+	162	[600]	GETTABLE 	14 14 -40	; "tableDeepCopy"
+	163	[600]	MOVE     	15 6
+	164	[600]	CALL     	14 2 2
+	165	[600]	MOVE     	13 14
+	166	[602]	EQ       	1 11 8
+	167	[602]	JMP      	7	; to 175
+	168	[603]	GETTABLE 	14 0 -27	; "multiswipe_directions"
+	169	[603]	ADD      	15 7 -4	; - 1
+	170	[603]	NEWTABLE 	16 0 2
+	171	[604]	SETTABLE 	16 -4 11	; 1 -
+	172	[605]	SETTABLE 	16 -36 13	; 2 -
+	173	[606]	SETTABLE 	14 15 16
+	174	[606]	JMP      	5	; to 180
+	175	[609]	GETTABLE 	14 0 -27	; "multiswipe_directions"
+	176	[609]	NEWTABLE 	15 0 2
+	177	[610]	SETTABLE 	15 -4 11	; 1 -
+	178	[611]	SETTABLE 	15 -36 13	; 2 -
+	179	[612]	SETTABLE 	14 7 15
+	180	[616]	RETURN   	6 2
+	181	[618]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:620,678> (134 instructions, 536 bytes at 0x7fe976c0e900)
+2 params, 20 slots, 2 upvalues, 16 locals, 30 constants, 0 functions
+	1	[622]	GETTABLE 	2 1 -1	; "slot"
+	2	[624]	EQ       	0 2 -2	; - 1
+	3	[624]	JMP      	3	; to 7
+	4	[624]	LOADK    	3 -3	; 0
+	5	[624]	TEST     	3 0 1
+	6	[624]	JMP      	1	; to 8
+	7	[624]	LOADK    	3 -2	; 1
+	8	[625]	SELF     	4 0 -4	; "getPath"
+	9	[625]	MOVE     	6 2
+	10	[625]	CALL     	4 3 3
+	11	[626]	GETUPVAL 	6 0	; Geom
+	12	[626]	SELF     	6 6 -5	; "new"
+	13	[626]	NEWTABLE 	8 0 4
+	14	[627]	GETTABLE 	9 0 -7	; "first_tevs"
+	15	[627]	GETTABLE 	9 9 2
+	16	[627]	GETTABLE 	9 9 -6	; "x"
+	17	[627]	SETTABLE 	8 -6 9	; "x" -
+	18	[628]	GETTABLE 	9 0 -7	; "first_tevs"
+	19	[628]	GETTABLE 	9 9 2
+	20	[628]	GETTABLE 	9 9 -8	; "y"
+	21	[628]	SETTABLE 	8 -8 9	; "y" -
+	22	[629]	SETTABLE 	8 -9 -3	; "w" 0
+	23	[629]	SETTABLE 	8 -10 -3	; "h" 0
+	24	[626]	CALL     	6 3 2
+	25	[631]	GETUPVAL 	7 0	; Geom
+	26	[631]	SELF     	7 7 -5	; "new"
+	27	[631]	NEWTABLE 	9 0 4
+	28	[632]	GETTABLE 	10 0 -11	; "last_tevs"
+	29	[632]	GETTABLE 	10 10 2
+	30	[632]	GETTABLE 	10 10 -6	; "x"
+	31	[632]	SETTABLE 	9 -6 10	; "x" -
+	32	[633]	GETTABLE 	10 0 -11	; "last_tevs"
+	33	[633]	GETTABLE 	10 10 2
+	34	[633]	GETTABLE 	10 10 -8	; "y"
+	35	[633]	SETTABLE 	9 -8 10	; "y" -
+	36	[634]	SETTABLE 	9 -9 -3	; "w" 0
+	37	[634]	SETTABLE 	9 -10 -3	; "h" 0
+	38	[631]	CALL     	7 3 2
+	39	[636]	GETUPVAL 	8 0	; Geom
+	40	[636]	SELF     	8 8 -5	; "new"
+	41	[636]	NEWTABLE 	10 0 4
+	42	[637]	GETTABLE 	11 0 -7	; "first_tevs"
+	43	[637]	GETTABLE 	11 11 3
+	44	[637]	GETTABLE 	11 11 -6	; "x"
+	45	[637]	SETTABLE 	10 -6 11	; "x" -
+	46	[638]	GETTABLE 	11 0 -7	; "first_tevs"
+	47	[638]	GETTABLE 	11 11 3
+	48	[638]	GETTABLE 	11 11 -8	; "y"
+	49	[638]	SETTABLE 	10 -8 11	; "y" -
+	50	[639]	SETTABLE 	10 -9 -3	; "w" 0
+	51	[639]	SETTABLE 	10 -10 -3	; "h" 0
+	52	[636]	CALL     	8 3 2
+	53	[641]	GETTABLE 	9 0 -12	; "states"
+	54	[641]	GETTABLE 	9 9 3
+	55	[641]	GETTABLE 	10 0 -13	; "panState"
+	56	[641]	EQ       	0 9 10
+	57	[641]	JMP      	53	; to 111
+	58	[642]	SELF     	9 0 -4	; "getPath"
+	59	[642]	MOVE     	11 3
+	60	[642]	CALL     	9 3 3
+	61	[643]	GETUPVAL 	11 0	; Geom
+	62	[643]	SELF     	11 11 -5	; "new"
+	63	[643]	NEWTABLE 	13 0 4
+	64	[644]	GETTABLE 	14 0 -11	; "last_tevs"
+	65	[644]	GETTABLE 	14 14 3
+	66	[644]	GETTABLE 	14 14 -6	; "x"
+	67	[644]	SETTABLE 	13 -6 14	; "x" -
+	68	[645]	GETTABLE 	14 0 -11	; "last_tevs"
+	69	[645]	GETTABLE 	14 14 3
+	70	[645]	GETTABLE 	14 14 -8	; "y"
+	71	[645]	SETTABLE 	13 -8 14	; "y" -
+	72	[646]	SETTABLE 	13 -9 -3	; "w" 0
+	73	[646]	SETTABLE 	13 -10 -3	; "h" 0
+	74	[643]	CALL     	11 3 2
+	75	[648]	SELF     	12 6 -14	; "distance"
+	76	[648]	MOVE     	14 8
+	77	[648]	CALL     	12 3 2
+	78	[649]	SELF     	13 7 -14	; "distance"
+	79	[649]	MOVE     	15 11
+	80	[649]	CALL     	13 3 2
+	81	[650]	NEWTABLE 	14 0 5
+	82	[651]	SETTABLE 	14 -15 -16	; "ges" "two_finger_pan"
+	83	[653]	SELF     	15 6 -18	; "midpoint"
+	84	[653]	MOVE     	17 8
+	85	[653]	CALL     	15 3 2
+	86	[653]	SETTABLE 	14 -17 15	; "pos" -
+	87	[654]	ADD      	15 5 10
+	88	[654]	SETTABLE 	14 -14 15	; "distance" -
+	89	[655]	SETTABLE 	14 -19 4	; "direction" -
+	90	[656]	GETTABLE 	15 1 -21	; "timev"
+	91	[656]	SETTABLE 	14 -20 15	; "time" -
+	92	[658]	EQ       	1 4 9
+	93	[658]	JMP      	8	; to 102
+	94	[659]	LT       	0 13 12
+	95	[659]	JMP      	2	; to 98
+	96	[660]	SETTABLE 	14 -15 -22	; "ges" "inward_pan"
+	97	[660]	JMP      	1	; to 99
+	98	[662]	SETTABLE 	14 -15 -23	; "ges" "outward_pan"
+	99	[664]	GETTABLE 	15 0 -24	; "DIRECTION_TABLE"
+	100	[664]	GETTABLE 	15 15 4
+	101	[664]	SETTABLE 	14 -19 15	; "direction" -
+	102	[666]	GETUPVAL 	15 1	; logger
+	103	[666]	GETTABLE 	15 15 -25	; "dbg"
+	104	[666]	GETTABLE 	16 14 -15	; "ges"
+	105	[666]	GETTABLE 	17 14 -19	; "direction"
+	106	[666]	GETTABLE 	18 14 -14	; "distance"
+	107	[666]	LOADK    	19 -26	; "detected"
+	108	[666]	CALL     	15 5 1
+	109	[667]	RETURN   	14 2
+	110	[667]	JMP      	23	; to 134
+	111	[668]	GETTABLE 	9 0 -12	; "states"
+	112	[668]	GETTABLE 	9 9 3
+	113	[668]	GETTABLE 	10 0 -27	; "holdState"
+	114	[668]	EQ       	0 9 10
+	115	[668]	JMP      	18	; to 134
+	116	[669]	SELF     	9 0 -28	; "getRotate"
+	117	[669]	MOVE     	11 8
+	118	[669]	MOVE     	12 6
+	119	[669]	MOVE     	13 7
+	120	[669]	CALL     	9 5 2
+	121	[670]	GETUPVAL 	10 1	; logger
+	122	[670]	GETTABLE 	10 10 -25	; "dbg"
+	123	[670]	LOADK    	11 -29	; "rotate"
+	124	[670]	MOVE     	12 9
+	125	[670]	LOADK    	13 -26	; "detected"
+	126	[670]	CALL     	10 4 1
+	127	[671]	NEWTABLE 	10 0 4
+	128	[672]	SETTABLE 	10 -15 -29	; "ges" "rotate"
+	129	[673]	SETTABLE 	10 -17 8	; "pos" -
+	130	[674]	SETTABLE 	10 -30 9	; "angle" -
+	131	[675]	GETTABLE 	11 1 -21	; "timev"
+	132	[675]	SETTABLE 	10 -20 11	; "time" -
+	133	[676]	RETURN   	10 2
+	134	[678]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:680,701> (46 instructions, 184 bytes at 0x7fe976c0eba0)
+2 params, 8 slots, 2 upvalues, 5 locals, 21 constants, 0 functions
+	1	[681]	GETTABLE 	2 1 -1	; "slot"
+	2	[682]	GETUPVAL 	3 0	; Geom
+	3	[682]	SELF     	3 3 -2	; "new"
+	4	[682]	NEWTABLE 	5 0 4
+	5	[683]	GETTABLE 	6 0 -4	; "last_tevs"
+	6	[683]	GETTABLE 	6 6 2
+	7	[683]	GETTABLE 	6 6 -3	; "x"
+	8	[683]	SETTABLE 	5 -3 6	; "x" -
+	9	[684]	GETTABLE 	6 0 -4	; "last_tevs"
+	10	[684]	GETTABLE 	6 6 2
+	11	[684]	GETTABLE 	6 6 -5	; "y"
+	12	[684]	SETTABLE 	5 -5 6	; "y" -
+	13	[685]	SETTABLE 	5 -6 -7	; "w" 0
+	14	[685]	SETTABLE 	5 -8 -7	; "h" 0
+	15	[682]	CALL     	3 3 2
+	16	[687]	NEWTABLE 	4 0 3
+	17	[688]	SETTABLE 	4 -9 -10	; "ges" "pan_release"
+	18	[689]	SETTABLE 	4 -11 3	; "pos" -
+	19	[690]	GETTABLE 	5 1 -13	; "timev"
+	20	[690]	SETTABLE 	4 -12 5	; "time" -
+	21	[692]	GETTABLE 	5 0 -14	; "detectings"
+	22	[692]	GETTABLE 	5 5 -7	; 0
+	23	[692]	TEST     	5 0 0
+	24	[692]	JMP      	12	; to 37
+	25	[692]	GETTABLE 	5 0 -14	; "detectings"
+	26	[692]	GETTABLE 	5 5 -15	; 1
+	27	[692]	TEST     	5 0 0
+	28	[692]	JMP      	8	; to 37
+	29	[693]	GETUPVAL 	5 1	; logger
+	30	[693]	GETTABLE 	5 5 -16	; "dbg"
+	31	[693]	LOADK    	6 -17	; "two finger pan release detected"
+	32	[693]	CALL     	5 2 1
+	33	[694]	SETTABLE 	4 -9 -18	; "ges" "two_finger_pan_release"
+	34	[695]	SELF     	5 0 -19	; "clearStates"
+	35	[695]	CALL     	5 2 1
+	36	[695]	JMP      	8	; to 45
+	37	[697]	GETUPVAL 	5 1	; logger
+	38	[697]	GETTABLE 	5 5 -16	; "dbg"
+	39	[697]	LOADK    	6 -20	; "pan release detected in slot"
+	40	[697]	MOVE     	7 2
+	41	[697]	CALL     	5 3 1
+	42	[698]	SELF     	5 0 -21	; "clearState"
+	43	[698]	MOVE     	7 2
+	44	[698]	CALL     	5 3 1
+	45	[700]	RETURN   	4 2
+	46	[701]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:703,739> (116 instructions, 464 bytes at 0x7fe976c0ef40)
+3 params, 10 slots, 2 upvalues, 7 locals, 29 constants, 0 functions
+	1	[704]	GETUPVAL 	3 0	; logger
+	2	[704]	GETTABLE 	3 3 -1	; "dbg"
+	3	[704]	LOADK    	4 -2	; "in hold state..."
+	4	[704]	CALL     	3 2 1
+	5	[705]	GETTABLE 	3 1 -3	; "slot"
+	6	[707]	GETTABLE 	4 1 -4	; "id"
+	7	[707]	EQ       	1 4 -5	; - -1
+	8	[707]	JMP      	36	; to 45
+	9	[707]	TEST     	2 0 0
+	10	[707]	JMP      	34	; to 45
+	11	[707]	GETTABLE 	4 0 -6	; "last_tevs"
+	12	[707]	GETTABLE 	4 4 3
+	13	[707]	GETTABLE 	4 4 -7	; "x"
+	14	[707]	TEST     	4 0 0
+	15	[707]	JMP      	29	; to 45
+	16	[707]	GETTABLE 	4 0 -6	; "last_tevs"
+	17	[707]	GETTABLE 	4 4 3
+	18	[707]	GETTABLE 	4 4 -8	; "y"
+	19	[707]	TEST     	4 0 0
+	20	[707]	JMP      	24	; to 45
+	21	[708]	GETTABLE 	4 0 -9	; "states"
+	22	[708]	GETTABLE 	5 0 -10	; "holdState"
+	23	[708]	SETTABLE 	4 3 5
+	24	[709]	NEWTABLE 	4 0 3
+	25	[710]	SETTABLE 	4 -11 -12	; "ges" "hold"
+	26	[711]	GETUPVAL 	5 1	; Geom
+	27	[711]	SELF     	5 5 -14	; "new"
+	28	[711]	NEWTABLE 	7 0 4
+	29	[712]	GETTABLE 	8 0 -6	; "last_tevs"
+	30	[712]	GETTABLE 	8 8 3
+	31	[712]	GETTABLE 	8 8 -7	; "x"
+	32	[712]	SETTABLE 	7 -7 8	; "x" -
+	33	[713]	GETTABLE 	8 0 -6	; "last_tevs"
+	34	[713]	GETTABLE 	8 8 3
+	35	[713]	GETTABLE 	8 8 -8	; "y"
+	36	[713]	SETTABLE 	7 -8 8	; "y" -
+	37	[714]	SETTABLE 	7 -15 -16	; "w" 0
+	38	[714]	SETTABLE 	7 -17 -16	; "h" 0
+	39	[711]	CALL     	5 3 2
+	40	[715]	SETTABLE 	4 -13 5	; "pos" -
+	41	[716]	GETTABLE 	5 1 -19	; "timev"
+	42	[716]	SETTABLE 	4 -18 5	; "time" -
+	43	[717]	RETURN   	4 2
+	44	[717]	JMP      	71	; to 116
+	45	[718]	GETTABLE 	4 1 -4	; "id"
+	46	[718]	EQ       	0 4 -5	; - -1
+	47	[718]	JMP      	33	; to 81
+	48	[718]	GETTABLE 	4 0 -6	; "last_tevs"
+	49	[718]	GETTABLE 	4 4 3
+	50	[718]	EQ       	1 4 -20	; - nil
+	51	[718]	JMP      	29	; to 81
+	52	[720]	GETUPVAL 	4 0	; logger
+	53	[720]	GETTABLE 	4 4 -1	; "dbg"
+	54	[720]	LOADK    	5 -21	; "hold_release detected in slot"
+	55	[720]	MOVE     	6 3
+	56	[720]	CALL     	4 3 1
+	57	[721]	GETTABLE 	4 0 -6	; "last_tevs"
+	58	[721]	GETTABLE 	4 4 3
+	59	[721]	GETTABLE 	4 4 -7	; "x"
+	60	[722]	GETTABLE 	5 0 -6	; "last_tevs"
+	61	[722]	GETTABLE 	5 5 3
+	62	[722]	GETTABLE 	5 5 -8	; "y"
+	63	[723]	SELF     	6 0 -22	; "clearState"
+	64	[723]	MOVE     	8 3
+	65	[723]	CALL     	6 3 1
+	66	[724]	NEWTABLE 	6 0 3
+	67	[725]	SETTABLE 	6 -11 -23	; "ges" "hold_release"
+	68	[726]	GETUPVAL 	7 1	; Geom
+	69	[726]	SELF     	7 7 -14	; "new"
+	70	[726]	NEWTABLE 	9 0 4
+	71	[727]	SETTABLE 	9 -7 4	; "x" -
+	72	[728]	SETTABLE 	9 -8 5	; "y" -
+	73	[729]	SETTABLE 	9 -15 -16	; "w" 0
+	74	[729]	SETTABLE 	9 -17 -16	; "h" 0
+	75	[726]	CALL     	7 3 2
+	76	[730]	SETTABLE 	6 -13 7	; "pos" -
+	77	[731]	GETTABLE 	7 1 -19	; "timev"
+	78	[731]	SETTABLE 	6 -18 7	; "time" -
+	79	[732]	RETURN   	6 2
+	80	[732]	JMP      	35	; to 116
+	81	[733]	GETTABLE 	4 1 -7	; "x"
+	82	[733]	TEST     	4 0 0
+	83	[733]	JMP      	11	; to 95
+	84	[733]	GETGLOBAL	4 -24	; math
+	85	[733]	GETTABLE 	4 4 -25	; "abs"
+	86	[733]	GETTABLE 	5 1 -7	; "x"
+	87	[733]	GETTABLE 	6 0 -26	; "first_tevs"
+	88	[733]	GETTABLE 	6 6 3
+	89	[733]	GETTABLE 	6 6 -7	; "x"
+	90	[733]	SUB      	5 5 6
+	91	[733]	CALL     	4 2 2
+	92	[733]	GETTABLE 	5 0 -27	; "PAN_THRESHOLD"
+	93	[733]	LE       	1 5 4
+	94	[733]	JMP      	14	; to 109
+	95	[734]	GETTABLE 	4 1 -8	; "y"
+	96	[734]	TEST     	4 0 0
+	97	[734]	JMP      	18	; to 116
+	98	[734]	GETGLOBAL	4 -24	; math
+	99	[734]	GETTABLE 	4 4 -25	; "abs"
+	100	[734]	GETTABLE 	5 1 -8	; "y"
+	101	[734]	GETTABLE 	6 0 -26	; "first_tevs"
+	102	[734]	GETTABLE 	6 6 3
+	103	[734]	GETTABLE 	6 6 -8	; "y"
+	104	[734]	SUB      	5 5 6
+	105	[734]	CALL     	4 2 2
+	106	[734]	GETTABLE 	5 0 -27	; "PAN_THRESHOLD"
+	107	[734]	LE       	0 5 4
+	108	[734]	JMP      	7	; to 116
+	109	[735]	SELF     	4 0 -28	; "handlePan"
+	110	[735]	MOVE     	6 1
+	111	[735]	CALL     	4 3 2
+	112	[736]	EQ       	1 4 -20	; - nil
+	113	[736]	JMP      	1	; to 115
+	114	[736]	SETTABLE 	4 -11 -29	; "ges" "hold_pan"
+	115	[737]	RETURN   	4 2
+	116	[739]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:771,773> (3 instructions, 12 bytes at 0x7fe976c0f3e0)
+2 params, 3 slots, 0 upvalues, 2 locals, 0 constants, 0 functions
+	1	[772]	GETTABLE 	2 1 0
+	2	[772]	RETURN   	2 2
+	3	[773]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:774,776> (6 instructions, 24 bytes at 0x7fe976c0f950)
+2 params, 6 slots, 0 upvalues, 2 locals, 2 constants, 0 functions
+	1	[775]	SELF     	2 0 -1	; "gsub"
+	2	[775]	LOADK    	4 -2	; "%S+"
+	3	[775]	MOVE     	5 1
+	4	[775]	TAILCALL 	2 4 0
+	5	[775]	RETURN   	2 0
+	6	[776]	RETURN   	0 1
+
+function <./frontend/device/gesturedetector.lua:784,869> (289 instructions, 1156 bytes at 0x7fe976c0f770)
+2 params, 7 slots, 6 upvalues, 2 locals, 28 constants, 0 functions
+	1	[785]	GETTABLE 	2 0 -1	; "screen"
+	2	[785]	GETTABLE 	2 2 -2	; "cur_rotation_mode"
+	3	[785]	EQ       	0 2 -3	; - 1
+	4	[785]	JMP      	87	; to 92
+	5	[787]	GETTABLE 	2 1 -4	; "pos"
+	6	[787]	TEST     	2 0 0
+	7	[787]	JMP      	12	; to 20
+	8	[788]	GETTABLE 	2 1 -4	; "pos"
+	9	[788]	GETTABLE 	3 1 -4	; "pos"
+	10	[788]	GETTABLE 	4 0 -1	; "screen"
+	11	[788]	SELF     	4 4 -7	; "getWidth"
+	12	[788]	CALL     	4 2 2
+	13	[788]	GETTABLE 	5 1 -4	; "pos"
+	14	[788]	GETTABLE 	5 5 -6	; "y"
+	15	[788]	SUB      	4 4 5
+	16	[788]	GETTABLE 	5 1 -4	; "pos"
+	17	[788]	GETTABLE 	5 5 -5	; "x"
+	18	[788]	SETTABLE 	3 -6 5	; "y" -
+	19	[788]	SETTABLE 	2 -5 4	; "x" -
+	20	[790]	GETTABLE 	2 1 -8	; "ges"
+	21	[790]	EQ       	1 2 -9	; - "swipe"
+	22	[790]	JMP      	12	; to 35
+	23	[790]	GETTABLE 	2 1 -8	; "ges"
+	24	[790]	EQ       	1 2 -10	; - "pan"
+	25	[790]	JMP      	9	; to 35
+	26	[791]	GETTABLE 	2 1 -8	; "ges"
+	27	[791]	EQ       	1 2 -11	; - "multiswipe"
+	28	[791]	JMP      	6	; to 35
+	29	[792]	GETTABLE 	2 1 -8	; "ges"
+	30	[792]	EQ       	1 2 -12	; - "two_finger_swipe"
+	31	[792]	JMP      	3	; to 35
+	32	[793]	GETTABLE 	2 1 -8	; "ges"
+	33	[793]	EQ       	0 2 -13	; - "two_finger_pan"
+	34	[793]	JMP      	35	; to 70
+	35	[795]	GETUPVAL 	2 0	; translateGesDirCoordinate
+	36	[795]	GETTABLE 	3 1 -14	; "direction"
+	37	[795]	GETUPVAL 	4 1	; ges_coordinate_translation_270
+	38	[795]	CALL     	2 3 2
+	39	[795]	SETTABLE 	1 -14 2	; "direction" -
+	40	[796]	GETTABLE 	2 1 -8	; "ges"
+	41	[796]	EQ       	0 2 -11	; - "multiswipe"
+	42	[796]	JMP      	5	; to 48
+	43	[797]	GETUPVAL 	2 2	; translateMultiswipeGesDirCoordinate
+	44	[797]	GETTABLE 	3 1 -15	; "multiswipe_directions"
+	45	[797]	GETUPVAL 	4 1	; ges_coordinate_translation_270
+	46	[797]	CALL     	2 3 2
+	47	[797]	SETTABLE 	1 -15 2	; "multiswipe_directions" -
+	48	[799]	GETTABLE 	2 1 -16	; "relative"
+	49	[799]	TEST     	2 0 0
+	50	[799]	JMP      	228	; to 279
+	51	[800]	GETTABLE 	2 1 -16	; "relative"
+	52	[800]	GETTABLE 	3 1 -16	; "relative"
+	53	[800]	GETTABLE 	4 1 -16	; "relative"
+	54	[800]	GETTABLE 	4 4 -6	; "y"
+	55	[800]	UNM      	4 4
+	56	[800]	GETTABLE 	5 1 -16	; "relative"
+	57	[800]	GETTABLE 	5 5 -5	; "x"
+	58	[800]	SETTABLE 	3 -6 5	; "y" -
+	59	[800]	SETTABLE 	2 -5 4	; "x" -
+	60	[801]	GETTABLE 	2 1 -17	; "relative_delayed"
+	61	[801]	GETTABLE 	3 1 -17	; "relative_delayed"
+	62	[801]	GETTABLE 	4 1 -17	; "relative_delayed"
+	63	[801]	GETTABLE 	4 4 -6	; "y"
+	64	[801]	UNM      	4 4
+	65	[801]	GETTABLE 	5 1 -17	; "relative_delayed"
+	66	[801]	GETTABLE 	5 5 -5	; "x"
+	67	[801]	SETTABLE 	3 -6 5	; "y" -
+	68	[801]	SETTABLE 	2 -5 4	; "x" -
+	69	[802]	JMP      	209	; to 279
+	70	[803]	GETTABLE 	2 1 -8	; "ges"
+	71	[803]	EQ       	1 2 -18	; - "pinch"
+	72	[803]	JMP      	9	; to 82
+	73	[803]	GETTABLE 	2 1 -8	; "ges"
+	74	[803]	EQ       	1 2 -19	; - "spread"
+	75	[803]	JMP      	6	; to 82
+	76	[804]	GETTABLE 	2 1 -8	; "ges"
+	77	[804]	EQ       	1 2 -20	; - "inward_pan"
+	78	[804]	JMP      	3	; to 82
+	79	[805]	GETTABLE 	2 1 -8	; "ges"
+	80	[805]	EQ       	0 2 -21	; - "outward_pan"
+	81	[805]	JMP      	197	; to 279
+	82	[806]	GETTABLE 	2 1 -14	; "direction"
+	83	[806]	EQ       	0 2 -22	; - "horizontal"
+	84	[806]	JMP      	2	; to 87
+	85	[807]	SETTABLE 	1 -14 -23	; "direction" "vertical"
+	86	[807]	JMP      	192	; to 279
+	87	[808]	GETTABLE 	2 1 -14	; "direction"
+	88	[808]	EQ       	0 2 -23	; - "vertical"
+	89	[808]	JMP      	189	; to 279
+	90	[809]	SETTABLE 	1 -14 -22	; "direction" "horizontal"
+	91	[811]	JMP      	187	; to 279
+	92	[812]	GETTABLE 	2 0 -1	; "screen"
+	93	[812]	GETTABLE 	2 2 -2	; "cur_rotation_mode"
+	94	[812]	EQ       	0 2 -24	; - 3
+	95	[812]	JMP      	87	; to 183
+	96	[814]	GETTABLE 	2 1 -4	; "pos"
+	97	[814]	TEST     	2 0 0
+	98	[814]	JMP      	12	; to 111
+	99	[815]	GETTABLE 	2 1 -4	; "pos"
+	100	[815]	GETTABLE 	3 1 -4	; "pos"
+	101	[815]	GETTABLE 	4 1 -4	; "pos"
+	102	[815]	GETTABLE 	4 4 -6	; "y"
+	103	[815]	GETTABLE 	5 0 -1	; "screen"
+	104	[815]	SELF     	5 5 -25	; "getHeight"
+	105	[815]	CALL     	5 2 2
+	106	[815]	GETTABLE 	6 1 -4	; "pos"
+	107	[815]	GETTABLE 	6 6 -5	; "x"
+	108	[815]	SUB      	5 5 6
+	109	[815]	SETTABLE 	3 -6 5	; "y" -
+	110	[815]	SETTABLE 	2 -5 4	; "x" -
+	111	[817]	GETTABLE 	2 1 -8	; "ges"
+	112	[817]	EQ       	1 2 -9	; - "swipe"
+	113	[817]	JMP      	12	; to 126
+	114	[817]	GETTABLE 	2 1 -8	; "ges"
+	115	[817]	EQ       	1 2 -10	; - "pan"
+	116	[817]	JMP      	9	; to 126
+	117	[818]	GETTABLE 	2 1 -8	; "ges"
+	118	[818]	EQ       	1 2 -11	; - "multiswipe"
+	119	[818]	JMP      	6	; to 126
+	120	[819]	GETTABLE 	2 1 -8	; "ges"
+	121	[819]	EQ       	1 2 -12	; - "two_finger_swipe"
+	122	[819]	JMP      	3	; to 126
+	123	[820]	GETTABLE 	2 1 -8	; "ges"
+	124	[820]	EQ       	0 2 -13	; - "two_finger_pan"
+	125	[820]	JMP      	35	; to 161
+	126	[822]	GETUPVAL 	2 0	; translateGesDirCoordinate
+	127	[822]	GETTABLE 	3 1 -14	; "direction"
+	128	[822]	GETUPVAL 	4 3	; ges_coordinate_translation_90
+	129	[822]	CALL     	2 3 2
+	130	[822]	SETTABLE 	1 -14 2	; "direction" -
+	131	[823]	GETTABLE 	2 1 -8	; "ges"
+	132	[823]	EQ       	0 2 -11	; - "multiswipe"
+	133	[823]	JMP      	5	; to 139
+	134	[824]	GETUPVAL 	2 2	; translateMultiswipeGesDirCoordinate
+	135	[824]	GETTABLE 	3 1 -15	; "multiswipe_directions"
+	136	[824]	GETUPVAL 	4 3	; ges_coordinate_translation_90
+	137	[824]	CALL     	2 3 2
+	138	[824]	SETTABLE 	1 -15 2	; "multiswipe_directions" -
+	139	[826]	GETTABLE 	2 1 -16	; "relative"
+	140	[826]	TEST     	2 0 0
+	141	[826]	JMP      	137	; to 279
+	142	[827]	GETTABLE 	2 1 -16	; "relative"
+	143	[827]	GETTABLE 	3 1 -16	; "relative"
+	144	[827]	GETTABLE 	4 1 -16	; "relative"
+	145	[827]	GETTABLE 	4 4 -6	; "y"
+	146	[827]	GETTABLE 	5 1 -16	; "relative"
+	147	[827]	GETTABLE 	5 5 -5	; "x"
+	148	[827]	UNM      	5 5
+	149	[827]	SETTABLE 	3 -6 5	; "y" -
+	150	[827]	SETTABLE 	2 -5 4	; "x" -
+	151	[828]	GETTABLE 	2 1 -17	; "relative_delayed"
+	152	[828]	GETTABLE 	3 1 -17	; "relative_delayed"
+	153	[828]	GETTABLE 	4 1 -17	; "relative_delayed"
+	154	[828]	GETTABLE 	4 4 -6	; "y"
+	155	[828]	GETTABLE 	5 1 -17	; "relative_delayed"
+	156	[828]	GETTABLE 	5 5 -5	; "x"
+	157	[828]	UNM      	5 5
+	158	[828]	SETTABLE 	3 -6 5	; "y" -
+	159	[828]	SETTABLE 	2 -5 4	; "x" -
+	160	[829]	JMP      	118	; to 279
+	161	[830]	GETTABLE 	2 1 -8	; "ges"
+	162	[830]	EQ       	1 2 -18	; - "pinch"
+	163	[830]	JMP      	9	; to 173
+	164	[830]	GETTABLE 	2 1 -8	; "ges"
+	165	[830]	EQ       	1 2 -19	; - "spread"
+	166	[830]	JMP      	6	; to 173
+	167	[831]	GETTABLE 	2 1 -8	; "ges"
+	168	[831]	EQ       	1 2 -20	; - "inward_pan"
+	169	[831]	JMP      	3	; to 173
+	170	[832]	GETTABLE 	2 1 -8	; "ges"
+	171	[832]	EQ       	0 2 -21	; - "outward_pan"
+	172	[832]	JMP      	106	; to 279
+	173	[833]	GETTABLE 	2 1 -14	; "direction"
+	174	[833]	EQ       	0 2 -22	; - "horizontal"
+	175	[833]	JMP      	2	; to 178
+	176	[834]	SETTABLE 	1 -14 -23	; "direction" "vertical"
+	177	[834]	JMP      	101	; to 279
+	178	[835]	GETTABLE 	2 1 -14	; "direction"
+	179	[835]	EQ       	0 2 -23	; - "vertical"
+	180	[835]	JMP      	98	; to 279
+	181	[836]	SETTABLE 	1 -14 -22	; "direction" "horizontal"
+	182	[838]	JMP      	96	; to 279
+	183	[839]	GETTABLE 	2 0 -1	; "screen"
+	184	[839]	GETTABLE 	2 2 -2	; "cur_rotation_mode"
+	185	[839]	EQ       	0 2 -26	; - 2
+	186	[839]	JMP      	92	; to 279
+	187	[841]	GETTABLE 	2 1 -4	; "pos"
+	188	[841]	TEST     	2 0 0
+	189	[841]	JMP      	16	; to 206
+	190	[842]	GETTABLE 	2 1 -4	; "pos"
+	191	[842]	GETTABLE 	3 1 -4	; "pos"
+	192	[842]	GETTABLE 	4 0 -1	; "screen"
+	193	[842]	SELF     	4 4 -7	; "getWidth"
+	194	[842]	CALL     	4 2 2
+	195	[842]	GETTABLE 	5 1 -4	; "pos"
+	196	[842]	GETTABLE 	5 5 -5	; "x"
+	197	[842]	SUB      	4 4 5
+	198	[842]	GETTABLE 	5 0 -1	; "screen"
+	199	[842]	SELF     	5 5 -25	; "getHeight"
+	200	[842]	CALL     	5 2 2
+	201	[842]	GETTABLE 	6 1 -4	; "pos"
+	202	[842]	GETTABLE 	6 6 -6	; "y"
+	203	[842]	SUB      	5 5 6
+	204	[842]	SETTABLE 	3 -6 5	; "y" -
+	205	[842]	SETTABLE 	2 -5 4	; "x" -
+	206	[844]	GETTABLE 	2 1 -8	; "ges"
+	207	[844]	EQ       	1 2 -9	; - "swipe"
+	208	[844]	JMP      	12	; to 221
+	209	[844]	GETTABLE 	2 1 -8	; "ges"
+	210	[844]	EQ       	1 2 -10	; - "pan"
+	211	[844]	JMP      	9	; to 221
+	212	[845]	GETTABLE 	2 1 -8	; "ges"
+	213	[845]	EQ       	1 2 -11	; - "multiswipe"
+	214	[845]	JMP      	6	; to 221
+	215	[846]	GETTABLE 	2 1 -8	; "ges"
+	216	[846]	EQ       	1 2 -12	; - "two_finger_swipe"
+	217	[846]	JMP      	3	; to 221
+	218	[847]	GETTABLE 	2 1 -8	; "ges"
+	219	[847]	EQ       	0 2 -13	; - "two_finger_pan"
+	220	[847]	JMP      	37	; to 258
+	221	[849]	GETUPVAL 	2 0	; translateGesDirCoordinate
+	222	[849]	GETTABLE 	3 1 -14	; "direction"
+	223	[849]	GETUPVAL 	4 4	; ges_coordinate_translation_180
+	224	[849]	CALL     	2 3 2
+	225	[849]	SETTABLE 	1 -14 2	; "direction" -
+	226	[850]	GETTABLE 	2 1 -8	; "ges"
+	227	[850]	EQ       	0 2 -11	; - "multiswipe"
+	228	[850]	JMP      	5	; to 234
+	229	[851]	GETUPVAL 	2 2	; translateMultiswipeGesDirCoordinate
+	230	[851]	GETTABLE 	3 1 -15	; "multiswipe_directions"
+	231	[851]	GETUPVAL 	4 4	; ges_coordinate_translation_180
+	232	[851]	CALL     	2 3 2
+	233	[851]	SETTABLE 	1 -15 2	; "multiswipe_directions" -
+	234	[853]	GETTABLE 	2 1 -16	; "relative"
+	235	[853]	TEST     	2 0 0
+	236	[853]	JMP      	42	; to 279
+	237	[854]	GETTABLE 	2 1 -16	; "relative"
+	238	[854]	GETTABLE 	3 1 -16	; "relative"
+	239	[854]	GETTABLE 	4 1 -16	; "relative"
+	240	[854]	GETTABLE 	4 4 -5	; "x"
+	241	[854]	UNM      	4 4
+	242	[854]	GETTABLE 	5 1 -16	; "relative"
+	243	[854]	GETTABLE 	5 5 -6	; "y"
+	244	[854]	UNM      	5 5
+	245	[854]	SETTABLE 	3 -6 5	; "y" -
+	246	[854]	SETTABLE 	2 -5 4	; "x" -
+	247	[855]	GETTABLE 	2 1 -17	; "relative_delayed"
+	248	[855]	GETTABLE 	3 1 -17	; "relative_delayed"
+	249	[855]	GETTABLE 	4 1 -17	; "relative_delayed"
+	250	[855]	GETTABLE 	4 4 -5	; "x"
+	251	[855]	UNM      	4 4
+	252	[855]	GETTABLE 	5 1 -17	; "relative_delayed"
+	253	[855]	GETTABLE 	5 5 -6	; "y"
+	254	[855]	UNM      	5 5
+	255	[855]	SETTABLE 	3 -6 5	; "y" -
+	256	[855]	SETTABLE 	2 -5 4	; "x" -
+	257	[856]	JMP      	21	; to 279
+	258	[857]	GETTABLE 	2 1 -8	; "ges"
+	259	[857]	EQ       	1 2 -18	; - "pinch"
+	260	[857]	JMP      	9	; to 270
+	261	[857]	GETTABLE 	2 1 -8	; "ges"
+	262	[857]	EQ       	1 2 -19	; - "spread"
+	263	[857]	JMP      	6	; to 270
+	264	[858]	GETTABLE 	2 1 -8	; "ges"
+	265	[858]	EQ       	1 2 -20	; - "inward_pan"
+	266	[858]	JMP      	3	; to 270
+	267	[859]	GETTABLE 	2 1 -8	; "ges"
+	268	[859]	EQ       	0 2 -21	; - "outward_pan"
+	269	[859]	JMP      	9	; to 279
+	270	[860]	GETTABLE 	2 1 -14	; "direction"
+	271	[860]	EQ       	0 2 -22	; - "horizontal"
+	272	[860]	JMP      	2	; to 275
+	273	[861]	SETTABLE 	1 -14 -22	; "direction" "horizontal"
+	274	[861]	JMP      	4	; to 279
+	275	[862]	GETTABLE 	2 1 -14	; "direction"
+	276	[862]	EQ       	0 2 -23	; - "vertical"
+	277	[862]	JMP      	1	; to 279
+	278	[863]	SETTABLE 	1 -14 -23	; "direction" "vertical"
+	279	[867]	GETUPVAL 	2 5	; logger
+	280	[867]	GETTABLE 	2 2 -27	; "dbg"
+	281	[867]	LOADK    	3 -28	; "adjusted ges:"
+	282	[867]	GETTABLE 	4 1 -8	; "ges"
+	283	[867]	GETTABLE 	5 1 -15	; "multiswipe_directions"
+	284	[867]	TEST     	5 0 1
+	285	[867]	JMP      	1	; to 287
+	286	[867]	GETTABLE 	5 1 -14	; "direction"
+	287	[867]	CALL     	2 4 1
+	288	[868]	RETURN   	1 2
+	289	[869]	RETURN   	0 1

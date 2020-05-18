@@ -1,0 +1,234 @@
+
+main <./frontend/ui/widget/listview.lua:0,0> (55 instructions, 220 bytes at 0x7f9bb7c068d0)
+0+ params, 12 slots, 0 upvalues, 10 locals, 22 constants, 5 functions
+	1	[39]	GETGLOBAL	0 -1	; require
+	2	[39]	LOADK    	1 -2	; "ui/bidi"
+	3	[39]	CALL     	0 2 2
+	4	[40]	GETGLOBAL	1 -1	; require
+	5	[40]	LOADK    	2 -3	; "ffi/blitbuffer"
+	6	[40]	CALL     	1 2 2
+	7	[41]	GETGLOBAL	2 -1	; require
+	8	[41]	LOADK    	3 -4	; "device"
+	9	[41]	CALL     	2 2 2
+	10	[42]	GETGLOBAL	3 -1	; require
+	11	[42]	LOADK    	4 -5	; "ui/widget/container/framecontainer"
+	12	[42]	CALL     	3 2 2
+	13	[43]	GETGLOBAL	4 -1	; require
+	14	[43]	LOADK    	5 -6	; "ui/geometry"
+	15	[43]	CALL     	4 2 2
+	16	[44]	GETGLOBAL	5 -1	; require
+	17	[44]	LOADK    	6 -7	; "ui/gesturerange"
+	18	[44]	CALL     	5 2 2
+	19	[45]	GETGLOBAL	6 -1	; require
+	20	[45]	LOADK    	7 -8	; "ui/widget/container/inputcontainer"
+	21	[45]	CALL     	6 2 2
+	22	[46]	GETGLOBAL	7 -1	; require
+	23	[46]	LOADK    	8 -9	; "ui/size"
+	24	[46]	CALL     	7 2 2
+	25	[47]	GETGLOBAL	8 -1	; require
+	26	[47]	LOADK    	9 -10	; "ui/widget/verticalgroup"
+	27	[47]	CALL     	8 2 2
+	28	[49]	SELF     	9 6 -11	; "new"
+	29	[49]	NEWTABLE 	11 0 5
+	30	[50]	SETTABLE 	11 -12 -13	; "width" nil
+	31	[51]	SETTABLE 	11 -14 -13	; "height" nil
+	32	[52]	SETTABLE 	11 -15 -13	; "padding" nil
+	33	[53]	SETTABLE 	11 -16 -13	; "item_height" nil
+	34	[54]	SETTABLE 	11 -17 -13	; "itmes" nil
+	35	[49]	CALL     	9 3 2
+	36	[85]	CLOSURE  	10 0	; 0x7f9bb7c07070
+	37	[85]	MOVE     	0 4
+	38	[85]	MOVE     	0 2
+	39	[85]	MOVE     	0 5
+	40	[85]	MOVE     	0 7
+	41	[85]	MOVE     	0 8
+	42	[85]	MOVE     	0 3
+	43	[85]	MOVE     	0 1
+	44	[57]	SETTABLE 	9 -18 10	; "init" -
+	45	[98]	CLOSURE  	10 1	; 0x7f9bb7c078d0
+	46	[88]	SETTABLE 	9 -19 10	; "_populateItems" -
+	47	[106]	CLOSURE  	10 2	; 0x7f9bb7c08330
+	48	[100]	SETTABLE 	9 -20 10	; "nextPage" -
+	49	[114]	CLOSURE  	10 3	; 0x7f9bb7c08180
+	50	[108]	SETTABLE 	9 -21 10	; "prevPage" -
+	51	[125]	CLOSURE  	10 4	; 0x7f9bb7c08ab0
+	52	[125]	MOVE     	0 0
+	53	[116]	SETTABLE 	9 -22 10	; "onSwipe" -
+	54	[127]	RETURN   	9 2
+	55	[127]	RETURN   	0 1
+
+function <./frontend/ui/widget/listview.lua:57,85> (81 instructions, 324 bytes at 0x7f9bb7c07070)
+1 param, 7 slots, 7 upvalues, 2 locals, 30 constants, 0 functions
+	1	[58]	GETTABLE 	1 0 -1	; "items"
+	2	[58]	LEN      	1 1
+	3	[58]	LE       	0 1 -2	; - 0
+	4	[58]	JMP      	1	; to 6
+	5	[58]	RETURN   	0 1
+	6	[60]	SETTABLE 	0 -3 -4	; "show_page" 1
+	7	[61]	GETUPVAL 	1 0	; Geom
+	8	[61]	SELF     	1 1 -6	; "new"
+	9	[61]	NEWTABLE 	3 0 2
+	10	[61]	GETTABLE 	4 0 -8	; "width"
+	11	[61]	SETTABLE 	3 -7 4	; "w" -
+	12	[61]	GETTABLE 	4 0 -10	; "height"
+	13	[61]	SETTABLE 	3 -9 4	; "h" -
+	14	[61]	CALL     	1 3 2
+	15	[61]	SETTABLE 	0 -5 1	; "dimen" -
+	16	[63]	GETUPVAL 	1 1	; Device
+	17	[63]	SELF     	1 1 -11	; "isTouchDevice"
+	18	[63]	CALL     	1 2 2
+	19	[63]	TEST     	1 0 0
+	20	[63]	JMP      	11	; to 32
+	21	[64]	GETTABLE 	1 0 -12	; "ges_events"
+	22	[64]	NEWTABLE 	2 0 0
+	23	[65]	GETUPVAL 	3 2	; GestureRange
+	24	[65]	SELF     	3 3 -6	; "new"
+	25	[65]	NEWTABLE 	5 0 2
+	26	[66]	SETTABLE 	5 -14 -15	; "ges" "swipe"
+	27	[67]	GETTABLE 	6 0 -5	; "dimen"
+	28	[67]	SETTABLE 	5 -16 6	; "range" -
+	29	[65]	CALL     	3 3 0
+	30	[69]	SETLIST  	2 0 1	; 1
+	31	[69]	SETTABLE 	1 -13 2	; "Swipe" -
+	32	[72]	GETTABLE 	1 0 -17	; "padding"
+	33	[72]	TEST     	1 0 1
+	34	[72]	JMP      	3	; to 38
+	35	[72]	GETUPVAL 	1 3	; Size
+	36	[72]	GETTABLE 	1 1 -17	; "padding"
+	37	[72]	GETTABLE 	1 1 -18	; "large"
+	38	[73]	GETTABLE 	2 0 -19	; "item_height"
+	39	[73]	TEST     	2 0 1
+	40	[73]	JMP      	5	; to 46
+	41	[73]	GETTABLE 	2 0 -1	; "items"
+	42	[73]	GETTABLE 	2 2 -4	; 1
+	43	[73]	SELF     	2 2 -20	; "getSize"
+	44	[73]	CALL     	2 2 2
+	45	[73]	GETTABLE 	2 2 -9	; "h"
+	46	[73]	SETTABLE 	0 -19 2	; "item_height" -
+	47	[74]	GETTABLE 	2 0 -5	; "dimen"
+	48	[74]	GETTABLE 	2 2 -7	; "w"
+	49	[74]	MUL      	3 -22 1	; 2 -
+	50	[74]	SUB      	2 2 3
+	51	[74]	SETTABLE 	0 -21 2	; "item_width" -
+	52	[75]	GETGLOBAL	2 -24	; math
+	53	[75]	GETTABLE 	2 2 -25	; "floor"
+	54	[75]	GETTABLE 	3 0 -10	; "height"
+	55	[75]	GETTABLE 	4 0 -19	; "item_height"
+	56	[75]	DIV      	3 3 4
+	57	[75]	CALL     	2 2 2
+	58	[75]	SETTABLE 	0 -23 2	; "items_per_page" -
+	59	[76]	GETUPVAL 	2 4	; VerticalGroup
+	60	[76]	SELF     	2 2 -6	; "new"
+	61	[76]	NEWTABLE 	4 0 0
+	62	[76]	CALL     	2 3 2
+	63	[76]	SETTABLE 	0 -26 2	; "main_content" -
+	64	[77]	SELF     	2 0 -27	; "_populateItems"
+	65	[77]	CALL     	2 2 1
+	66	[78]	GETUPVAL 	2 5	; FrameContainer
+	67	[78]	SELF     	2 2 -6	; "new"
+	68	[78]	NEWTABLE 	4 1 4
+	69	[79]	GETTABLE 	5 0 -5	; "dimen"
+	70	[79]	GETTABLE 	5 5 -9	; "h"
+	71	[79]	SETTABLE 	4 -10 5	; "height" -
+	72	[80]	SETTABLE 	4 -17 1	; "padding" -
+	73	[81]	SETTABLE 	4 -28 -2	; "bordersize" 0
+	74	[82]	GETUPVAL 	5 6	; Blitbuffer
+	75	[82]	GETTABLE 	5 5 -30	; "COLOR_WHITE"
+	76	[82]	SETTABLE 	4 -29 5	; "background" -
+	77	[84]	GETTABLE 	5 0 -26	; "main_content"
+	78	[84]	SETLIST  	4 1 1	; 1
+	79	[78]	CALL     	2 3 2
+	80	[84]	SETTABLE 	0 -4 2	; 1 -
+	81	[85]	RETURN   	0 1
+
+function <./frontend/ui/widget/listview.lua:88,98> (36 instructions, 144 bytes at 0x7f9bb7c078d0)
+1 param, 10 slots, 0 upvalues, 7 locals, 13 constants, 0 functions
+	1	[89]	GETGLOBAL	1 -2	; math
+	2	[89]	GETTABLE 	1 1 -3	; "ceil"
+	3	[89]	GETTABLE 	2 0 -4	; "items"
+	4	[89]	LEN      	2 2
+	5	[89]	GETTABLE 	3 0 -5	; "items_per_page"
+	6	[89]	DIV      	2 2 3
+	7	[89]	CALL     	1 2 2
+	8	[89]	SETTABLE 	0 -1 1	; "pages" -
+	9	[90]	GETTABLE 	1 0 -6	; "main_content"
+	10	[90]	SELF     	1 1 -7	; "clear"
+	11	[90]	CALL     	1 2 1
+	12	[91]	GETTABLE 	1 0 -8	; "show_page"
+	13	[91]	SUB      	1 1 -9	; - 1
+	14	[91]	GETTABLE 	2 0 -5	; "items_per_page"
+	15	[91]	MUL      	1 1 2
+	16	[92]	LOADK    	2 -9	; 1
+	17	[92]	GETTABLE 	3 0 -5	; "items_per_page"
+	18	[92]	LOADK    	4 -9	; 1
+	19	[92]	FORPREP  	2 11	; to 31
+	20	[93]	GETTABLE 	6 0 -4	; "items"
+	21	[93]	ADD      	7 1 5
+	22	[93]	GETTABLE 	6 6 7
+	23	[94]	EQ       	0 6 -10	; - nil
+	24	[94]	JMP      	1	; to 26
+	25	[94]	JMP      	6	; to 32
+	26	[95]	GETGLOBAL	7 -11	; table
+	27	[95]	GETTABLE 	7 7 -12	; "insert"
+	28	[95]	GETTABLE 	8 0 -6	; "main_content"
+	29	[95]	MOVE     	9 6
+	30	[95]	CALL     	7 3 1
+	31	[92]	FORLOOP  	2 -12	; to 20
+	32	[97]	GETTABLE 	2 0 -13	; "page_update_cb"
+	33	[97]	GETTABLE 	3 0 -8	; "show_page"
+	34	[97]	GETTABLE 	4 0 -1	; "pages"
+	35	[97]	CALL     	2 3 1
+	36	[98]	RETURN   	0 1
+
+function <./frontend/ui/widget/listview.lua:100,106> (13 instructions, 52 bytes at 0x7f9bb7c08330)
+1 param, 4 slots, 0 upvalues, 2 locals, 6 constants, 0 functions
+	1	[101]	GETGLOBAL	1 -1	; math
+	2	[101]	GETTABLE 	1 1 -2	; "min"
+	3	[101]	GETTABLE 	2 0 -3	; "show_page"
+	4	[101]	ADD      	2 2 -4	; - 1
+	5	[101]	GETTABLE 	3 0 -5	; "pages"
+	6	[101]	CALL     	1 3 2
+	7	[102]	GETTABLE 	2 0 -3	; "show_page"
+	8	[102]	LT       	0 2 1
+	9	[102]	JMP      	3	; to 13
+	10	[103]	SETTABLE 	0 -3 1	; "show_page" -
+	11	[104]	SELF     	2 0 -6	; "_populateItems"
+	12	[104]	CALL     	2 2 1
+	13	[106]	RETURN   	0 1
+
+function <./frontend/ui/widget/listview.lua:108,114> (13 instructions, 52 bytes at 0x7f9bb7c08180)
+1 param, 4 slots, 0 upvalues, 2 locals, 5 constants, 0 functions
+	1	[109]	GETGLOBAL	1 -1	; math
+	2	[109]	GETTABLE 	1 1 -2	; "max"
+	3	[109]	GETTABLE 	2 0 -3	; "show_page"
+	4	[109]	SUB      	2 2 -4	; - 1
+	5	[109]	LOADK    	3 -4	; 1
+	6	[109]	CALL     	1 3 2
+	7	[110]	GETTABLE 	2 0 -3	; "show_page"
+	8	[110]	LT       	0 1 2
+	9	[110]	JMP      	3	; to 13
+	10	[111]	SETTABLE 	0 -3 1	; "show_page" -
+	11	[112]	SELF     	2 0 -5	; "_populateItems"
+	12	[112]	CALL     	2 2 1
+	13	[114]	RETURN   	0 1
+
+function <./frontend/ui/widget/listview.lua:116,125> (18 instructions, 72 bytes at 0x7f9bb7c08ab0)
+3 params, 6 slots, 1 upvalue, 4 locals, 6 constants, 0 functions
+	1	[117]	GETUPVAL 	3 0	; BD
+	2	[117]	GETTABLE 	3 3 -1	; "flipDirectionIfMirroredUILayout"
+	3	[117]	GETTABLE 	4 2 -2	; "direction"
+	4	[117]	CALL     	3 2 2
+	5	[118]	EQ       	0 3 -3	; - "west"
+	6	[118]	JMP      	5	; to 12
+	7	[119]	SELF     	4 0 -4	; "nextPage"
+	8	[119]	CALL     	4 2 1
+	9	[120]	LOADBOOL 	4 1 0
+	10	[120]	RETURN   	4 2
+	11	[120]	JMP      	6	; to 18
+	12	[121]	EQ       	0 3 -5	; - "east"
+	13	[121]	JMP      	4	; to 18
+	14	[122]	SELF     	4 0 -6	; "prevPage"
+	15	[122]	CALL     	4 2 1
+	16	[123]	LOADBOOL 	4 1 0
+	17	[123]	RETURN   	4 2
+	18	[125]	RETURN   	0 1

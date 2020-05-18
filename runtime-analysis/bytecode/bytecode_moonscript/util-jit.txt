@@ -1,0 +1,476 @@
+-- BYTECODE -- util.lua:6-8
+0001    UGET     1   0      ; type
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISNES    1   0      ; "table"
+0005    JMP      1 => 0008
+0006    TGETS    1   0   1  ; "__class"
+0007    JMP      2 => 0011
+0008 => KPRI     1   1
+0009    JMP      2 => 0011
+0010    KPRI     1   2
+0011 => RET1     1   2
+
+-- BYTECODE -- util.lua:9-21
+0001    UGET     2   0      ; type
+0002    MOV      3   0
+0003    CALL     2   2   2
+0004    ISEQS    2   0      ; "table"
+0005    JMP      2 => 0008
+0006    KPRI     2   1
+0007    RET1     2   2
+0008 => TGETS    2   0   1  ; "__class"
+0009 => ISF          2
+0010    JMP      3 => 0018
+0011    LOOP     3 => 0018
+0012    ISNEV    2   1
+0013    JMP      3 => 0016
+0014    KPRI     3   2
+0015    RET1     3   2
+0016 => TGETS    2   2   2  ; "__parent"
+0017    JMP      3 => 0009
+0018 => KPRI     3   1
+0019    RET1     3   2
+
+-- BYTECODE -- util.lua:22-31
+0001    UGET     1   0      ; type
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISNES    1   0      ; "table"
+0005    JMP      2 => 0010
+0006    TGETS    2   0   1  ; "__class"
+0007    ISF          2
+0008    JMP      3 => 0010
+0009    RET1     2   2
+0010 => RET1     1   2
+
+-- BYTECODE -- util.lua:34-40
+0001    KSHORT   2   1
+0002    MOV      4   0
+0003    TGETS    3   0   0  ; "sub"
+0004    KSHORT   5   1
+0005    MOV      6   1
+0006    CALL     3   2   4
+0007    MOV      4   3
+0008    TGETS    3   3   1  ; "gmatch"
+0009    KSTR     5   2      ; "\n"
+0010    CALL     3   4   3
+0011    JMP      6 => 0013
+0012 => ADDVN    2   2   0  ; 1
+0013 => ITERC    6   2   3
+0014    ITERL    6 => 0012
+0015    RET1     2   2
+
+-- BYTECODE -- util.lua:42-44
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "match"
+0003    KSTR     3   1      ; "^%s*(.-)%s*$"
+0004    CALLT    1   3
+
+-- BYTECODE -- util.lua:46-53
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "gmatch"
+0003    KSTR     4   1      ; "([^\n]*)\n?"
+0004    CALL     2   4   3
+0005    JMP      5 => 0010
+0006 => ISNEN    1   0      ; 1
+0007    JMP      6 => 0009
+0008    RET1     5   2
+0009 => SUBVN    1   1   0  ; 1
+0010 => ITERC    5   2   3
+0011    ITERL    5 => 0006
+0012    RET0     0   1
+
+-- BYTECODE -- util.lua:55-62
+0001    UGET     2   0      ; get_line
+0002    MOV      3   0
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISF          2
+0006    JMP      3 => 0012
+0007    UGET     3   1      ; trim
+0008    MOV      4   2
+0009    CALL     3   2   2
+0010    ISNES    3   0      ; ""
+0011    JMP      3 => 0020
+0012 => KSHORT   3   1
+0013    ISGE     3   1
+0014    JMP      3 => 0020
+0015    UGET     3   2      ; get_closest_line
+0016    MOV      4   0
+0017    SUBVN    5   1   0  ; 1
+0018    CALLT    3   3
+0019    JMP      3 => 0023
+0020 => MOV      3   2
+0021    MOV      4   1
+0022    RET      3   3
+0023 => RET0     0   1
+
+-- BYTECODE -- util.lua:64-76
+0001    ISNES    0   0      ; ""
+0002    JMP      2 => 0005
+0003    TNEW     2   0
+0004    RET1     2   2
+0005 => MOV      2   0
+0006    MOV      3   1
+0007    CAT      0   2   3
+0008    TNEW     2   0
+0009    KSHORT   3   1
+0010    MOV      5   0
+0011    TGETS    4   0   1  ; "gmatch"
+0012    KSTR     6   2      ; "(.-)"
+0013    MOV      7   1
+0014    CAT      6   6   7
+0015    CALL     4   4   3
+0016    JMP      7 => 0019
+0017 => TSETV    7   2   3
+0018    ADDVN    3   3   0  ; 1
+0019 => ITERC    7   2   3
+0020    ITERL    7 => 0017
+0021    RET1     2   2
+
+-- BYTECODE -- util.lua:81-109
+0001    ISNEP    1   0
+0002    JMP      2 => 0004
+0003    KSHORT   1   0
+0004 => UGET     2   0      ; type
+0005    MOV      3   0
+0006    CALL     2   2   2
+0007    ISNES    2   0      ; "string"
+0008    JMP      3 => 0015
+0009    KSTR     3   1      ; """
+0010    MOV      4   0
+0011    KSTR     5   2      ; ""\n"
+0012    CAT      3   3   5
+0013    RET1     3   2
+0014    JMP      3 => 0082
+0015 => ISNES    2   3      ; "table"
+0016    JMP      3 => 0076
+0017    UGET     3   1      ; seen
+0018    TGETV    3   3   0
+0019    ISF          3
+0020    JMP      4 => 0028
+0021    KSTR     3   4      ; "recursion("
+0022    GGET     4   5      ; "tostring"
+0023    MOV      5   0
+0024    CALL     4   2   2
+0025    KSTR     5   6      ; ")...\n"
+0026    CAT      3   3   5
+0027    RET1     3   2
+0028 => UGET     3   1      ; seen
+0029    KPRI     4   2
+0030    TSETV    4   3   0
+0031    ADDVN    1   1   0  ; 1
+0032    KPRI     3   0
+0033    TNEW     4   0
+0034    KSHORT   5   1
+0035    GGET     6   7      ; "pairs"
+0036    MOV      7   0
+0037    CALL     6   4   2
+0038    ISNEXT   9 => 0056
+0039 => KSTR    11   8      ; " "
+0040    MOV     12  11
+0041    TGETS   11  11   9  ; "rep"
+0042    MULVN   13   1   1  ; 4
+0043    CALL    11   2   3
+0044    KSTR    12  10      ; "["
+0045    GGET    13   5      ; "tostring"
+0046    MOV     14   9
+0047    CALL    13   2   2
+0048    KSTR    14  11      ; "] = "
+0049    UGET    15   2      ; _dump
+0050    MOV     16  10
+0051    MOV     17   1
+0052    CALL    15   2   3
+0053    CAT     11  11  15
+0054    TSETV   11   4   5
+0055    ADDVN    5   5   0  ; 1
+0056 => ITERN    9   3   3
+0057    ITERL    9 => 0039
+0058    MOV      3   4
+0059    UGET     4   1      ; seen
+0060    KPRI     5   1
+0061    TSETV    5   4   0
+0062    KSTR     4  12      ; "{\n"
+0063    UGET     5   3      ; concat
+0064    MOV      6   3
+0065    CALL     5   2   2
+0066    KSTR     6   8      ; " "
+0067    MOV      7   6
+0068    TGETS    6   6   9  ; "rep"
+0069    SUBVN    8   1   0  ; 1
+0070    MULVN    8   8   1  ; 4
+0071    CALL     6   2   3
+0072    KSTR     7  13      ; "}\n"
+0073    CAT      4   4   7
+0074    RET1     4   2
+0075    JMP      3 => 0082
+0076 => GGET     3   5      ; "tostring"
+0077    MOV      4   0
+0078    CALL     3   2   2
+0079    KSTR     4  14      ; "\n"
+0080    CAT      3   3   4
+0081    RET1     3   2
+0082 => RET0     0   1
+
+-- BYTECODE -- util.lua:78-111
+0001    TNEW     1   0
+0002    KPRI     2   0
+0003    FNEW     2   0      ; util.lua:81
+0004    MOV      3   2
+0005    MOV      4   0
+0006    UCLO     0 => 0007
+0007 => CALLT    3   2
+
+-- BYTECODE -- util.lua:127-129
+0001    TGETB    2   0   1
+0002    TGETB    3   1   1
+0003    ISLT     2   3
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    JMP      3 => 0008
+0007 => KPRI     2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- util.lua:113-147
+0001    KPRI     3   0
+0002    TNEW     4   0
+0003    KSHORT   5   1
+0004    GGET     6   0      ; "pairs"
+0005    MOV      7   0
+0006    CALL     6   4   2
+0007    ISNEXT   9 => 0013
+0008 => TNEW    11   3
+0009    TSETB    9  11   1
+0010    TSETB   10  11   2
+0011    TSETV   11   4   5
+0012    ADDVN    5   5   0  ; 1
+0013 => ITERN    9   3   3
+0014    ITERL    9 => 0008
+0015    MOV      3   4
+0016    GGET     4   1      ; "table"
+0017    TGETS    4   4   2  ; "sort"
+0018    MOV      5   3
+0019    FNEW     6   3      ; util.lua:127
+0020    CALL     4   1   3
+0021    KPRI     4   0
+0022    TNEW     5   0
+0023    KSHORT   6   1
+0024    KSHORT   7   1
+0025    LEN      8   3
+0026    KSHORT   9   1
+0027    FORI     7 => 0072
+0028 => TGETV   11   3  10
+0029    UGET    12   0      ; unpack
+0030    MOV     13  11
+0031    CALL    12   3   2
+0032    UGET    14   1      ; pos_to_line
+0033    MOV     15   1
+0034    MOV     16  13
+0035    CALL    14   2   3
+0036    UGET    15   2      ; get_line
+0037    MOV     16   2
+0038    MOV     17  12
+0039    CALL    15   2   3
+0040    UGET    16   3      ; get_closest_line
+0041    MOV     17   1
+0042    MOV     18  14
+0043    CALL    16   2   3
+0044    GGET    17   4      ; "tostring"
+0045    MOV     18  13
+0046    CALL    17   2   2
+0047    KSTR    18   5      ; "\t "
+0048    GGET    19   4      ; "tostring"
+0049    MOV     20  12
+0050    CALL    19   2   2
+0051    KSTR    20   6      ; ":[ "
+0052    GGET    21   4      ; "tostring"
+0053    UGET    22   4      ; trim
+0054    MOV     23  15
+0055    CALL    22   0   2
+0056    CALLM   21   2   0
+0057    KSTR    22   7      ; " ] >> "
+0058    GGET    23   4      ; "tostring"
+0059    MOV     24  14
+0060    CALL    23   2   2
+0061    KSTR    24   6      ; ":[ "
+0062    GGET    25   4      ; "tostring"
+0063    UGET    26   4      ; trim
+0064    MOV     27  16
+0065    CALL    26   0   2
+0066    CALLM   25   2   0
+0067    KSTR    26   8      ; " ]"
+0068    CAT     17  17  26
+0069    TSETV   17   5   6
+0070    ADDVN    6   6   0  ; 1
+0071    FORL     7 => 0028
+0072 => MOV      4   5
+0073    UGET     5   5      ; concat
+0074    MOV      6   4
+0075    KSTR     7   9      ; "\n"
+0076    UCLO     0 => 0077
+0077 => CALLT    5   3
+
+-- BYTECODE -- util.lua:159-161
+0001    UGET     0   0      ; env
+0002    RET1     0   2
+
+-- BYTECODE -- util.lua:148-164
+0001    KPRI     2   0
+0002    KSHORT   3   1
+0003 => LOOP     4 => 0017
+0004    GGET     4   0      ; "debug"
+0005    TGETS    4   4   1  ; "getupvalue"
+0006    MOV      5   0
+0007    MOV      6   3
+0008    CALL     4   2   3
+0009    MOV      2   4
+0010    ISF          2
+0011    JMP      4 => 0017
+0012    ISNES    2   2      ; "_ENV"
+0013    JMP      4 => 0015
+0014    JMP      4 => 0017
+0015 => ADDVN    3   3   0  ; 1
+0016    JMP      4 => 0003
+0017 => ISF          2
+0018    JMP      4 => 0026
+0019    GGET     4   0      ; "debug"
+0020    TGETS    4   4   3  ; "upvaluejoin"
+0021    MOV      5   0
+0022    MOV      6   3
+0023    FNEW     7   4      ; util.lua:159
+0024    KSHORT   8   1
+0025    CALL     4   1   5
+0026 => UCLO     0 => 0027
+0027 => RET1     0   2
+
+-- BYTECODE -- util.lua:165-178
+0001    KSHORT   1   1
+0002 => LOOP     2 => 0016
+0003    GGET     2   0      ; "debug"
+0004    TGETS    2   2   1  ; "getupvalue"
+0005    MOV      3   0
+0006    MOV      4   1
+0007    CALL     2   3   3
+0008    IST          2
+0009    JMP      4 => 0011
+0010    JMP      2 => 0016
+0011 => ISNES    2   2      ; "_ENV"
+0012    JMP      4 => 0014
+0013    RET1     3   2
+0014 => ADDVN    1   1   0  ; 1
+0015    JMP      2 => 0002
+0016 => KPRI     2   0
+0017    RET1     2   2
+
+-- BYTECODE -- util.lua:180-190
+0001    GGET     0   0      ; "select"
+0002    KSTR     1   1      ; "#"
+0003    VARG     2   0   0
+0004    CALLM    0   2   1
+0005    GGET     1   0      ; "select"
+0006    MOV      2   0
+0007    VARG     3   0   0
+0008    CALLM    1   2   1
+0009    UGET     2   0      ; type
+0010    MOV      3   1
+0011    CALL     2   2   2
+0012    ISNES    2   2      ; "table"
+0013    JMP      2 => 0024
+0014    MOV      2   1
+0015    UGET     3   1      ; unpack
+0016    TNEW     4   3
+0017    VARG     5   0   0
+0018    TSETM    5   0      ; 1
+0019    KPRI     5   0
+0020    SUBVN    6   0   1  ; 1
+0021    CALL     3   0   4
+0022    RETM     2   1
+0023    JMP      2 => 0027
+0024 => TNEW     2   0
+0025    VARG     3   0   0
+0026    RETM     2   1
+0027 => RET0     0   1
+
+-- BYTECODE -- util.lua:194-196
+0001    GGET     2   0      ; "error"
+0002    KSTR     3   1      ; "Attempted to import non-existent `"
+0003    GGET     4   2      ; "tostring"
+0004    MOV      5   1
+0005    CALL     4   2   2
+0006    KSTR     5   3      ; "` from "
+0007    GGET     6   2      ; "tostring"
+0008    UGET     7   0      ; name
+0009    CALL     6   2   2
+0010    CAT      3   3   6
+0011    CALLT    2   2
+
+-- BYTECODE -- util.lua:192-198
+0001    GGET     2   0      ; "setmetatable"
+0002    MOV      3   1
+0003    TDUP     4   2
+0004    FNEW     5   1      ; util.lua:194
+0005    TSETS    5   4   3  ; "__index"
+0006    UCLO     0 => 0007
+0007 => CALLT    2   3
+
+-- BYTECODE -- util.lua:0-214
+0001    KPRI     0   0
+0002    GGET     1   0      ; "table"
+0003    TGETS    0   1   1  ; "concat"
+0004    GGET     1   2      ; "unpack"
+0005    IST          1
+0006    JMP      2 => 0009
+0007    GGET     1   0      ; "table"
+0008    TGETS    1   1   2  ; "unpack"
+0009 => GGET     2   3      ; "type"
+0010    TDUP     3   5
+0011    FNEW     4   4      ; util.lua:6
+0012    TSETS    4   3   6  ; "is_object"
+0013    FNEW     4   7      ; util.lua:9
+0014    TSETS    4   3   8  ; "is_a"
+0015    FNEW     4   9      ; util.lua:22
+0016    TSETS    4   3   3  ; "type"
+0017    KPRI     4   0
+0018    FNEW     4  10      ; util.lua:34
+0019    KPRI     5   0
+0020    FNEW     5  11      ; util.lua:42
+0021    KPRI     6   0
+0022    FNEW     6  12      ; util.lua:46
+0023    KPRI     7   0
+0024    FNEW     7  13      ; util.lua:55
+0025    KPRI     8   0
+0026    FNEW     8  14      ; util.lua:64
+0027    KPRI     9   0
+0028    FNEW     9  15      ; util.lua:78
+0029    KPRI    10   0
+0030    FNEW    10  16      ; util.lua:113
+0031    GGET    11  17      ; "setfenv"
+0032    IST         11
+0033    JMP     12 => 0035
+0034    FNEW    11  18      ; util.lua:148
+0035 => GGET    12  19      ; "getfenv"
+0036    IST         12
+0037    JMP     13 => 0039
+0038    FNEW    12  20      ; util.lua:165
+0039 => KPRI    13   0
+0040    FNEW    13  21      ; util.lua:180
+0041    KPRI    14   0
+0042    FNEW    14  22      ; util.lua:192
+0043    TDUP    15  23
+0044    TSETS    3  15  24  ; "moon"
+0045    TSETS    4  15  25  ; "pos_to_line"
+0046    TSETS    7  15  26  ; "get_closest_line"
+0047    TSETS    6  15  27  ; "get_line"
+0048    TSETS    5  15  28  ; "trim"
+0049    TSETS    8  15  29  ; "split"
+0050    TSETS    9  15  30  ; "dump"
+0051    TSETS   10  15  31  ; "debug_posmap"
+0052    TSETS   12  15  19  ; "getfenv"
+0053    TSETS   11  15  17  ; "setfenv"
+0054    TSETS   13  15  32  ; "get_options"
+0055    TSETS    1  15   2  ; "unpack"
+0056    TSETS   14  15  33  ; "safe_module"
+0057    UCLO     0 => 0058
+0058 => RET1    15   2
+

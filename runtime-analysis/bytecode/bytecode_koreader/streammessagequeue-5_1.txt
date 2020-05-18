@@ -1,0 +1,269 @@
+
+main <./frontend/ui/message/streammessagequeue.lua:0,0> (48 instructions, 192 bytes at 0x7f8507c068f0)
+0+ params, 10 slots, 0 upvalues, 8 locals, 18 constants, 5 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "ffi"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "logger"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "ui/message/messagequeue"
+	9	[3]	CALL     	2 2 2
+	10	[5]	GETGLOBAL	3 -1	; require
+	11	[5]	LOADK    	4 -5	; "ffi/zeromq_h"
+	12	[5]	CALL     	3 2 2
+	13	[6]	GETTABLE 	4 0 -6	; "load"
+	14	[6]	LOADK    	5 -7	; "libs/libzmq.so.4"
+	15	[6]	CALL     	4 2 2
+	16	[7]	GETTABLE 	5 0 -6	; "load"
+	17	[7]	LOADK    	6 -8	; "libs/libczmq.so.1"
+	18	[7]	CALL     	5 2 2
+	19	[8]	GETTABLE 	6 0 -9	; "C"
+	20	[10]	SELF     	7 2 -10	; "new"
+	21	[10]	NEWTABLE 	9 0 2
+	22	[11]	SETTABLE 	9 -11 -12	; "host" nil
+	23	[12]	SETTABLE 	9 -13 -12	; "port" nil
+	24	[10]	CALL     	7 3 2
+	25	[31]	CLOSURE  	8 0	; 0x7f8507c06d80
+	26	[31]	MOVE     	0 5
+	27	[31]	MOVE     	0 6
+	28	[31]	MOVE     	0 1
+	29	[31]	MOVE     	0 0
+	30	[31]	MOVE     	0 4
+	31	[15]	SETTABLE 	7 -14 8	; "start" -
+	32	[43]	CLOSURE  	8 1	; 0x7f8507c072c0
+	33	[43]	MOVE     	0 5
+	34	[43]	MOVE     	0 0
+	35	[33]	SETTABLE 	7 -15 8	; "stop" -
+	36	[56]	CLOSURE  	8 2	; 0x7f8507c07080
+	37	[56]	MOVE     	0 5
+	38	[56]	MOVE     	0 0
+	39	[45]	SETTABLE 	7 -16 8	; "handleZframe" -
+	40	[80]	CLOSURE  	8 3	; 0x7f8507c07100
+	41	[80]	MOVE     	0 5
+	42	[58]	SETTABLE 	7 -17 8	; "waitEvent" -
+	43	[87]	CLOSURE  	8 4	; 0x7f8507c083c0
+	44	[87]	MOVE     	0 5
+	45	[87]	MOVE     	0 0
+	46	[82]	SETTABLE 	7 -18 8	; "send" -
+	47	[89]	RETURN   	7 2
+	48	[89]	RETURN   	0 1
+
+function <./frontend/ui/message/streammessagequeue.lua:15,31> (72 instructions, 288 bytes at 0x7f8507c06d80)
+1 param, 10 slots, 5 upvalues, 5 locals, 26 constants, 0 functions
+	1	[16]	GETUPVAL 	1 0	; czmq
+	2	[16]	GETTABLE 	1 1 -2	; "zctx_new"
+	3	[16]	CALL     	1 1 2
+	4	[16]	SETTABLE 	0 -1 1	; "context" -
+	5	[17]	GETUPVAL 	1 0	; czmq
+	6	[17]	GETTABLE 	1 1 -4	; "zsocket_new"
+	7	[17]	GETTABLE 	2 0 -1	; "context"
+	8	[17]	GETUPVAL 	3 1	; C
+	9	[17]	GETTABLE 	3 3 -5	; "ZMQ_STREAM"
+	10	[17]	CALL     	1 3 2
+	11	[17]	SETTABLE 	0 -3 1	; "socket" -
+	12	[18]	GETUPVAL 	1 0	; czmq
+	13	[18]	GETTABLE 	1 1 -7	; "zpoller_new"
+	14	[18]	GETTABLE 	2 0 -3	; "socket"
+	15	[18]	LOADNIL  	3 3
+	16	[18]	CALL     	1 3 2
+	17	[18]	SETTABLE 	0 -6 1	; "poller" -
+	18	[19]	GETGLOBAL	1 -8	; string
+	19	[19]	GETTABLE 	1 1 -9	; "format"
+	20	[19]	LOADK    	2 -10	; "tcp://%s:%d"
+	21	[19]	GETTABLE 	3 0 -11	; "host"
+	22	[19]	GETTABLE 	4 0 -12	; "port"
+	23	[19]	CALL     	1 4 2
+	24	[20]	GETUPVAL 	2 2	; logger
+	25	[20]	GETTABLE 	2 2 -13	; "warn"
+	26	[20]	LOADK    	3 -14	; "connect to endpoint"
+	27	[20]	MOVE     	4 1
+	28	[20]	CALL     	2 3 1
+	29	[21]	GETUPVAL 	2 0	; czmq
+	30	[21]	GETTABLE 	2 2 -15	; "zsocket_connect"
+	31	[21]	GETTABLE 	3 0 -3	; "socket"
+	32	[21]	MOVE     	4 1
+	33	[21]	CALL     	2 3 2
+	34	[22]	EQ       	1 2 -16	; - 0
+	35	[22]	JMP      	5	; to 41
+	36	[23]	GETGLOBAL	3 -17	; error
+	37	[23]	LOADK    	4 -18	; "cannot connect to "
+	38	[23]	MOVE     	5 1
+	39	[23]	CONCAT   	4 4 5
+	40	[23]	CALL     	3 2 1
+	41	[25]	GETUPVAL 	3 3	; ffi
+	42	[25]	GETTABLE 	3 3 -19	; "new"
+	43	[25]	LOADK    	4 -20	; "size_t[1]"
+	44	[25]	LOADK    	5 -21	; 256
+	45	[25]	CALL     	3 3 2
+	46	[26]	GETUPVAL 	4 3	; ffi
+	47	[26]	GETTABLE 	4 4 -19	; "new"
+	48	[26]	LOADK    	5 -22	; "uint8_t[?]"
+	49	[26]	GETTABLE 	6 3 -16	; 0
+	50	[26]	CALL     	4 3 2
+	51	[28]	GETUPVAL 	5 4	; zmq
+	52	[28]	GETTABLE 	5 5 -23	; "zmq_getsockopt"
+	53	[28]	GETTABLE 	6 0 -3	; "socket"
+	54	[28]	GETUPVAL 	7 1	; C
+	55	[28]	GETTABLE 	7 7 -24	; "ZMQ_IDENTITY"
+	56	[28]	MOVE     	8 4
+	57	[28]	MOVE     	9 3
+	58	[28]	CALL     	5 5 1
+	59	[29]	GETUPVAL 	5 3	; ffi
+	60	[29]	GETTABLE 	5 5 -8	; "string"
+	61	[29]	MOVE     	6 4
+	62	[29]	GETTABLE 	7 3 -16	; 0
+	63	[29]	CALL     	5 3 2
+	64	[29]	SETTABLE 	0 -25 5	; "id" -
+	65	[30]	GETUPVAL 	5 2	; logger
+	66	[30]	GETTABLE 	5 5 -26	; "dbg"
+	67	[30]	LOADK    	6 -25	; "id"
+	68	[30]	GETTABLE 	7 0 -25	; "id"
+	69	[30]	LEN      	7 7
+	70	[30]	GETTABLE 	8 0 -25	; "id"
+	71	[30]	CALL     	5 4 1
+	72	[31]	RETURN   	0 1
+
+function <./frontend/ui/message/streammessagequeue.lua:33,43> (31 instructions, 124 bytes at 0x7f8507c072c0)
+1 param, 5 slots, 2 upvalues, 1 local, 10 constants, 0 functions
+	1	[34]	GETTABLE 	1 0 -1	; "poller"
+	2	[34]	EQ       	1 1 -2	; - nil
+	3	[34]	JMP      	8	; to 12
+	4	[35]	GETUPVAL 	1 0	; czmq
+	5	[35]	GETTABLE 	1 1 -3	; "zpoller_destroy"
+	6	[35]	GETUPVAL 	2 1	; ffi
+	7	[35]	GETTABLE 	2 2 -4	; "new"
+	8	[35]	LOADK    	3 -5	; "zpoller_t *[1]"
+	9	[35]	GETTABLE 	4 0 -1	; "poller"
+	10	[35]	CALL     	2 3 0
+	11	[35]	CALL     	1 0 1
+	12	[37]	GETTABLE 	1 0 -6	; "socket"
+	13	[37]	EQ       	1 1 -2	; - nil
+	14	[37]	JMP      	5	; to 20
+	15	[38]	GETUPVAL 	1 0	; czmq
+	16	[38]	GETTABLE 	1 1 -7	; "zsocket_destroy"
+	17	[38]	GETTABLE 	2 0 -8	; "context"
+	18	[38]	GETTABLE 	3 0 -6	; "socket"
+	19	[38]	CALL     	1 3 1
+	20	[40]	GETTABLE 	1 0 -8	; "context"
+	21	[40]	EQ       	1 1 -2	; - nil
+	22	[40]	JMP      	8	; to 31
+	23	[41]	GETUPVAL 	1 0	; czmq
+	24	[41]	GETTABLE 	1 1 -9	; "zctx_destroy"
+	25	[41]	GETUPVAL 	2 1	; ffi
+	26	[41]	GETTABLE 	2 2 -4	; "new"
+	27	[41]	LOADK    	3 -10	; "zctx_t *[1]"
+	28	[41]	GETTABLE 	4 0 -8	; "context"
+	29	[41]	CALL     	2 3 0
+	30	[41]	CALL     	1 0 1
+	31	[43]	RETURN   	0 1
+
+function <./frontend/ui/message/streammessagequeue.lua:45,56> (29 instructions, 116 bytes at 0x7f8507c07080)
+2 params, 8 slots, 2 upvalues, 5 locals, 8 constants, 0 functions
+	1	[46]	GETUPVAL 	2 0	; czmq
+	2	[46]	GETTABLE 	2 2 -1	; "zframe_size"
+	3	[46]	MOVE     	3 1
+	4	[46]	CALL     	2 2 2
+	5	[47]	LOADNIL  	3 3
+	6	[48]	LT       	0 -2 2	; 0 -
+	7	[48]	JMP      	12	; to 20
+	8	[49]	GETUPVAL 	4 0	; czmq
+	9	[49]	GETTABLE 	4 4 -3	; "zframe_data"
+	10	[49]	MOVE     	5 1
+	11	[49]	CALL     	4 2 2
+	12	[50]	EQ       	1 4 -4	; - nil
+	13	[50]	JMP      	6	; to 20
+	14	[51]	GETUPVAL 	5 1	; ffi
+	15	[51]	GETTABLE 	5 5 -5	; "string"
+	16	[51]	MOVE     	6 4
+	17	[51]	MOVE     	7 2
+	18	[51]	CALL     	5 3 2
+	19	[51]	MOVE     	3 5
+	20	[54]	GETUPVAL 	4 0	; czmq
+	21	[54]	GETTABLE 	4 4 -6	; "zframe_destroy"
+	22	[54]	GETUPVAL 	5 1	; ffi
+	23	[54]	GETTABLE 	5 5 -7	; "new"
+	24	[54]	LOADK    	6 -8	; "zframe_t *[1]"
+	25	[54]	MOVE     	7 1
+	26	[54]	CALL     	5 3 0
+	27	[54]	CALL     	4 0 1
+	28	[55]	RETURN   	3 2
+	29	[56]	RETURN   	0 1
+
+function <./frontend/ui/message/streammessagequeue.lua:58,80> (45 instructions, 180 bytes at 0x7f8507c07100)
+1 param, 9 slots, 1 upvalue, 5 locals, 11 constants, 0 functions
+	1	[59]	LOADK    	1 -1	; ""
+	2	[65]	LOADK    	2 -2	; 10
+	3	[66]	GETUPVAL 	3 0	; czmq
+	4	[66]	GETTABLE 	3 3 -3	; "zpoller_wait"
+	5	[66]	GETTABLE 	4 0 -4	; "poller"
+	6	[66]	LOADK    	5 -5	; 0
+	7	[66]	CALL     	3 3 2
+	8	[66]	EQ       	1 3 -6	; - nil
+	9	[66]	JMP      	27	; to 37
+	10	[66]	LT       	0 -5 2	; 0 -
+	11	[66]	JMP      	25	; to 37
+	12	[67]	GETUPVAL 	3 0	; czmq
+	13	[67]	GETTABLE 	3 3 -7	; "zframe_recv"
+	14	[67]	GETTABLE 	4 0 -8	; "socket"
+	15	[67]	CALL     	3 2 2
+	16	[68]	EQ       	1 3 -6	; - nil
+	17	[68]	JMP      	3	; to 21
+	18	[69]	SELF     	4 0 -9	; "handleZframe"
+	19	[69]	MOVE     	6 3
+	20	[69]	CALL     	4 3 1
+	21	[71]	GETUPVAL 	4 0	; czmq
+	22	[71]	GETTABLE 	4 4 -7	; "zframe_recv"
+	23	[71]	GETTABLE 	5 0 -8	; "socket"
+	24	[71]	CALL     	4 2 2
+	25	[72]	EQ       	1 4 -6	; - nil
+	26	[72]	JMP      	8	; to 35
+	27	[73]	MOVE     	5 1
+	28	[73]	SELF     	6 0 -9	; "handleZframe"
+	29	[73]	MOVE     	8 4
+	30	[73]	CALL     	6 3 2
+	31	[73]	TEST     	6 0 1
+	32	[73]	JMP      	1	; to 34
+	33	[73]	LOADK    	6 -1	; ""
+	34	[73]	CONCAT   	1 5 6
+	35	[75]	SUB      	2 2 -10	; - 1
+	36	[75]	JMP      	-34	; to 3
+	37	[77]	GETTABLE 	3 0 -11	; "receiveCallback"
+	38	[77]	TEST     	3 0 0
+	39	[77]	JMP      	5	; to 45
+	40	[77]	EQ       	1 1 -1	; - ""
+	41	[77]	JMP      	3	; to 45
+	42	[78]	GETTABLE 	3 0 -11	; "receiveCallback"
+	43	[78]	MOVE     	4 1
+	44	[78]	CALL     	3 2 1
+	45	[80]	RETURN   	0 1
+
+function <./frontend/ui/message/streammessagequeue.lua:82,87> (26 instructions, 104 bytes at 0x7f8507c083c0)
+2 params, 7 slots, 2 upvalues, 3 locals, 7 constants, 0 functions
+	1	[83]	GETUPVAL 	2 0	; czmq
+	2	[83]	GETTABLE 	2 2 -1	; "zmsg_new"
+	3	[83]	CALL     	2 1 2
+	4	[84]	GETUPVAL 	3 0	; czmq
+	5	[84]	GETTABLE 	3 3 -2	; "zmsg_addmem"
+	6	[84]	MOVE     	4 2
+	7	[84]	GETTABLE 	5 0 -3	; "id"
+	8	[84]	GETTABLE 	6 0 -3	; "id"
+	9	[84]	LEN      	6 6
+	10	[84]	CALL     	3 4 1
+	11	[85]	GETUPVAL 	3 0	; czmq
+	12	[85]	GETTABLE 	3 3 -2	; "zmsg_addmem"
+	13	[85]	MOVE     	4 2
+	14	[85]	MOVE     	5 1
+	15	[85]	LEN      	6 1
+	16	[85]	CALL     	3 4 1
+	17	[86]	GETUPVAL 	3 0	; czmq
+	18	[86]	GETTABLE 	3 3 -4	; "zmsg_send"
+	19	[86]	GETUPVAL 	4 1	; ffi
+	20	[86]	GETTABLE 	4 4 -5	; "new"
+	21	[86]	LOADK    	5 -6	; "zmsg_t *[1]"
+	22	[86]	MOVE     	6 2
+	23	[86]	CALL     	4 3 2
+	24	[86]	GETTABLE 	5 0 -7	; "socket"
+	25	[86]	CALL     	3 3 1
+	26	[87]	RETURN   	0 1

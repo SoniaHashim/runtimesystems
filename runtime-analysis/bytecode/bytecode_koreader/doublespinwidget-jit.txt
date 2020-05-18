@@ -1,0 +1,816 @@
+-- BYTECODE -- doublespinwidget.lua:53-78
+0001    UGET     1   0      ; Font
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getFace"
+0004    KSTR     3   2      ; "ffont"
+0005    CALL     1   2   3
+0006    TSETS    1   0   0  ; "medium_font_face"
+0007    UGET     1   1      ; Screen
+0008    MOV      2   1
+0009    TGETS    1   1   4  ; "getWidth"
+0010    CALL     1   2   2
+0011    TSETS    1   0   3  ; "screen_width"
+0012    UGET     1   1      ; Screen
+0013    MOV      2   1
+0014    TGETS    1   1   6  ; "getHeight"
+0015    CALL     1   2   2
+0016    TSETS    1   0   5  ; "screen_height"
+0017    TGETS    1   0   7  ; "width"
+0018    IST          1
+0019    JMP      2 => 0022
+0020    TGETS    1   0   3  ; "screen_width"
+0021    MULVN    1   1   0  ; 0.8
+0022 => TSETS    1   0   7  ; "width"
+0023    TGETS    1   0   3  ; "screen_width"
+0024    MULVN    1   1   1  ; 0.25
+0025    TSETS    1   0   8  ; "picker_width"
+0026    UGET     1   2      ; Device
+0027    MOV      2   1
+0028    TGETS    1   1   9  ; "hasKeys"
+0029    CALL     1   2   2
+0030    ISF          1
+0031    JMP      2 => 0038
+0032    TDUP     1  13
+0033    TDUP     2  12
+0034    TDUP     3  11
+0035    TSETB    3   2   1
+0036    TSETS    2   1  14  ; "Close"
+0037    TSETS    1   0  10  ; "key_events"
+0038 => UGET     1   2      ; Device
+0039    MOV      2   1
+0040    TGETS    1   1  15  ; "isTouchDevice"
+0041    CALL     1   2   2
+0042    ISF          1
+0043    JMP      2 => 0064
+0044    TDUP     1  23
+0045    TNEW     2   3
+0046    UGET     3   3      ; GestureRange
+0047    MOV      4   3
+0048    TGETS    3   3  17  ; "new"
+0049    TDUP     5  18
+0050    UGET     6   4      ; Geom
+0051    MOV      7   6
+0052    TGETS    6   6  17  ; "new"
+0053    TDUP     8  19
+0054    TGETS    9   0   3  ; "screen_width"
+0055    TSETS    9   8  20  ; "w"
+0056    TGETS    9   0   5  ; "screen_height"
+0057    TSETS    9   8  21  ; "h"
+0058    CALL     6   2   3
+0059    TSETS    6   5  22  ; "range"
+0060    CALL     3   0   3
+0061    TSETM    3   2      ; 1
+0062    TSETS    2   1  24  ; "TapClose"
+0063    TSETS    1   0  16  ; "ges_events"
+0064 => MOV      2   0
+0065    TGETS    1   0  25  ; "update"
+0066    CALL     1   1   2
+0067    RET0     0   1
+
+-- BYTECODE -- doublespinwidget.lua:85-85
+0001    RET0     0   1
+
+-- BYTECODE -- doublespinwidget.lua:95-95
+0001    UGET     0   0      ; picker_update_callback
+0002    CALL     0   1   1
+0003    RET0     0   1
+
+-- BYTECODE -- doublespinwidget.lua:106-106
+0001    UGET     0   0      ; picker_update_callback
+0002    CALL     0   1   1
+0003    RET0     0   1
+
+-- BYTECODE -- doublespinwidget.lua:184-186
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onClose"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- doublespinwidget.lua:190-197
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "callback"
+0003    ISF          0
+0004    JMP      1 => 0016
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   0  ; "callback"
+0007    UGET     1   1      ; left_widget
+0008    MOV      2   1
+0009    TGETS    1   1   1  ; "getValue"
+0010    CALL     1   2   2
+0011    UGET     2   2      ; right_widget
+0012    MOV      3   2
+0013    TGETS    2   2   1  ; "getValue"
+0014    CALL     2   0   2
+0015    CALLM    0   1   1
+0016 => UGET     0   0      ; self
+0017    TGETS    0   0   2  ; "keep_shown_on_apply"
+0018    IST          0
+0019    JMP      0 => 0024
+0020    UGET     0   0      ; self
+0021    MOV      1   0
+0022    TGETS    0   0   3  ; "onClose"
+0023    CALL     0   1   2
+0024 => RET0     0   1
+
+-- BYTECODE -- doublespinwidget.lua:205-211
+0001    UGET     0   0      ; left_widget
+0002    UGET     1   1      ; self
+0003    TGETS    1   1   1  ; "left_default"
+0004    TSETS    1   0   0  ; "value"
+0005    UGET     0   2      ; right_widget
+0006    UGET     1   1      ; self
+0007    TGETS    1   1   2  ; "right_default"
+0008    TSETS    1   0   0  ; "value"
+0009    UGET     0   0      ; left_widget
+0010    MOV      1   0
+0011    TGETS    0   0   3  ; "update"
+0012    CALL     0   1   2
+0013    UGET     0   2      ; right_widget
+0014    MOV      1   0
+0015    TGETS    0   0   3  ; "update"
+0016    CALL     0   1   2
+0017    UGET     0   1      ; self
+0018    TGETS    0   0   4  ; "callback"
+0019    KNIL     1   2
+0020    CALL     0   1   3
+0021    RET0     0   1
+
+-- BYTECODE -- doublespinwidget.lua:219-226
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "extra_callback"
+0003    ISF          0
+0004    JMP      1 => 0016
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   0  ; "extra_callback"
+0007    UGET     1   1      ; left_widget
+0008    MOV      2   1
+0009    TGETS    1   1   1  ; "getValue"
+0010    CALL     1   2   2
+0011    UGET     2   2      ; right_widget
+0012    MOV      3   2
+0013    TGETS    2   2   1  ; "getValue"
+0014    CALL     2   0   2
+0015    CALLM    0   1   1
+0016 => UGET     0   0      ; self
+0017    TGETS    0   0   2  ; "keep_shown_on_apply"
+0018    IST          0
+0019    JMP      0 => 0024
+0020    UGET     0   0      ; self
+0021    MOV      1   0
+0022    TGETS    0   0   3  ; "onClose"
+0023    CALL     0   1   2
+0024 => RET0     0   1
+
+-- BYTECODE -- doublespinwidget.lua:278-280
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "widget_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- doublespinwidget.lua:282-284
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "movable"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- doublespinwidget.lua:281-287
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setDirty"
+0004    KSTR     2   1      ; "all"
+0005    FNEW     3   2      ; doublespinwidget.lua:282
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- doublespinwidget.lua:80-288
+0001    FNEW     1   0      ; doublespinwidget.lua:85
+0002    UGET     2   0      ; NumberPickerWidget
+0003    MOV      3   2
+0004    TGETS    2   2   1  ; "new"
+0005    TDUP     4   2
+0006    TSETS    0   4   3  ; "show_parent"
+0007    TGETS    5   0   4  ; "picker_width"
+0008    TSETS    5   4   5  ; "width"
+0009    TGETS    5   0   6  ; "left_value"
+0010    TSETS    5   4   7  ; "value"
+0011    TGETS    5   0   8  ; "left_min"
+0012    TSETS    5   4   9  ; "value_min"
+0013    TGETS    5   0  10  ; "left_max"
+0014    TSETS    5   4  11  ; "value_max"
+0015    TGETS    5   0  12  ; "left_step"
+0016    TSETS    5   4  13  ; "value_step"
+0017    TGETS    5   0  14  ; "left_hold_step"
+0018    TSETS    5   4  15  ; "value_hold_step"
+0019    FNEW     5  16      ; doublespinwidget.lua:95
+0020    TSETS    5   4  17  ; "update_callback"
+0021    CALL     2   2   3
+0022    UGET     3   0      ; NumberPickerWidget
+0023    MOV      4   3
+0024    TGETS    3   3   1  ; "new"
+0025    TDUP     5  18
+0026    TSETS    0   5   3  ; "show_parent"
+0027    TGETS    6   0   4  ; "picker_width"
+0028    TSETS    6   5   5  ; "width"
+0029    TGETS    6   0  19  ; "right_value"
+0030    TSETS    6   5   7  ; "value"
+0031    TGETS    6   0  20  ; "right_min"
+0032    TSETS    6   5   9  ; "value_min"
+0033    TGETS    6   0  21  ; "right_max"
+0034    TSETS    6   5  11  ; "value_max"
+0035    TGETS    6   0  22  ; "right_step"
+0036    TSETS    6   5  13  ; "value_step"
+0037    TGETS    6   0  23  ; "right_hold_step"
+0038    TSETS    6   5  15  ; "value_hold_step"
+0039    FNEW     6  24      ; doublespinwidget.lua:106
+0040    TSETS    6   5  17  ; "update_callback"
+0041    CALL     3   2   3
+0042    UGET     4   1      ; VerticalGroup
+0043    MOV      5   4
+0044    TGETS    4   4   1  ; "new"
+0045    TDUP     6  25
+0046    UGET     7   2      ; VerticalSpan
+0047    MOV      8   7
+0048    TGETS    7   7   1  ; "new"
+0049    TDUP     9  28
+0050    UGET    10   3      ; Size
+0051    TGETS   10  10  26  ; "span"
+0052    TGETS   10  10  27  ; "vertical_large"
+0053    TSETS   10   9   5  ; "width"
+0054    CALL     7   2   3
+0055    TSETB    7   6   1
+0056    UGET     7   4      ; TextWidget
+0057    MOV      8   7
+0058    TGETS    7   7   1  ; "new"
+0059    TDUP     9  30
+0060    TGETS   10   0  29  ; "left_text"
+0061    TSETS   10   9  31  ; "text"
+0062    TGETS   10   0  32  ; "title_face"
+0063    TSETS   10   9  33  ; "face"
+0064    TGETS   10   0   5  ; "width"
+0065    MULNV   10  10   0  ; 0.95
+0066    DIVVN   10  10   1  ; 2
+0067    TSETS   10   9  34  ; "max_width"
+0068    CALL     7   2   3
+0069    TSETB    7   6   2
+0070    TSETB    2   6   3
+0071    CALL     4   2   3
+0072    UGET     5   1      ; VerticalGroup
+0073    MOV      6   5
+0074    TGETS    5   5   1  ; "new"
+0075    TDUP     7  35
+0076    UGET     8   2      ; VerticalSpan
+0077    MOV      9   8
+0078    TGETS    8   8   1  ; "new"
+0079    TDUP    10  36
+0080    UGET    11   3      ; Size
+0081    TGETS   11  11  26  ; "span"
+0082    TGETS   11  11  27  ; "vertical_large"
+0083    TSETS   11  10   5  ; "width"
+0084    CALL     8   2   3
+0085    TSETB    8   7   1
+0086    UGET     8   4      ; TextWidget
+0087    MOV      9   8
+0088    TGETS    8   8   1  ; "new"
+0089    TDUP    10  38
+0090    TGETS   11   0  37  ; "right_text"
+0091    TSETS   11  10  31  ; "text"
+0092    TGETS   11   0  32  ; "title_face"
+0093    TSETS   11  10  33  ; "face"
+0094    TGETS   11   0   5  ; "width"
+0095    MULNV   11  11   0  ; 0.95
+0096    DIVVN   11  11   1  ; 2
+0097    TSETS   11  10  34  ; "max_width"
+0098    CALL     8   2   3
+0099    TSETB    8   7   2
+0100    TSETB    3   7   3
+0101    CALL     5   2   3
+0102    UGET     6   5      ; HorizontalGroup
+0103    MOV      7   6
+0104    TGETS    6   6   1  ; "new"
+0105    TDUP     8  39
+0106    UGET     9   6      ; CenterContainer
+0107    MOV     10   9
+0108    TGETS    9   9   1  ; "new"
+0109    TDUP    11  44
+0110    UGET    12   7      ; Geom
+0111    MOV     13  12
+0112    TGETS   12  12   1  ; "new"
+0113    TDUP    14  40
+0114    TGETS   15   0   5  ; "width"
+0115    DIVVN   15  15   1  ; 2
+0116    TSETS   15  14  41  ; "w"
+0117    MOV     16   4
+0118    TGETS   15   4  42  ; "getSize"
+0119    CALL    15   2   2
+0120    TGETS   15  15  43  ; "h"
+0121    TSETS   15  14  43  ; "h"
+0122    CALL    12   2   3
+0123    TSETS   12  11  45  ; "dimen"
+0124    TSETB    4  11   1
+0125    CALL     9   2   3
+0126    TSETB    9   8   1
+0127    UGET     9   6      ; CenterContainer
+0128    MOV     10   9
+0129    TGETS    9   9   1  ; "new"
+0130    TDUP    11  47
+0131    UGET    12   7      ; Geom
+0132    MOV     13  12
+0133    TGETS   12  12   1  ; "new"
+0134    TDUP    14  46
+0135    TGETS   15   0   5  ; "width"
+0136    DIVVN   15  15   1  ; 2
+0137    TSETS   15  14  41  ; "w"
+0138    MOV     16   5
+0139    TGETS   15   5  42  ; "getSize"
+0140    CALL    15   2   2
+0141    TGETS   15  15  43  ; "h"
+0142    TSETS   15  14  43  ; "h"
+0143    CALL    12   2   3
+0144    TSETS   12  11  45  ; "dimen"
+0145    TSETB    5  11   1
+0146    CALL     9   0   3
+0147    TSETM    9   2      ; 2
+0148    CALL     6   2   3
+0149    UGET     7   8      ; FrameContainer
+0150    MOV      8   7
+0151    TGETS    7   7   1  ; "new"
+0152    TDUP     9  50
+0153    UGET    10   3      ; Size
+0154    TGETS   10  10  48  ; "padding"
+0155    TGETS   10  10  49  ; "default"
+0156    TSETS   10   9  48  ; "padding"
+0157    UGET    10   3      ; Size
+0158    TGETS   10  10  51  ; "margin"
+0159    TGETS   10  10  52  ; "title"
+0160    TSETS   10   9  51  ; "margin"
+0161    UGET    10   4      ; TextWidget
+0162    MOV     11  10
+0163    TGETS   10  10   1  ; "new"
+0164    TDUP    12  54
+0165    TGETS   13   0  53  ; "title_text"
+0166    TSETS   13  12  31  ; "text"
+0167    TGETS   13   0  32  ; "title_face"
+0168    TSETS   13  12  33  ; "face"
+0169    TGETS   13   0   5  ; "width"
+0170    TSETS   13  12   5  ; "width"
+0171    CALL    10   0   3
+0172    TSETM   10   3      ; 1
+0173    CALL     7   2   3
+0174    UGET     8   9      ; LineWidget
+0175    MOV      9   8
+0176    TGETS    8   8   1  ; "new"
+0177    TDUP    10  58
+0178    UGET    11   7      ; Geom
+0179    MOV     12  11
+0180    TGETS   11  11   1  ; "new"
+0181    TDUP    13  55
+0182    TGETS   14   0   5  ; "width"
+0183    TSETS   14  13  41  ; "w"
+0184    UGET    14   3      ; Size
+0185    TGETS   14  14  56  ; "line"
+0186    TGETS   14  14  57  ; "thick"
+0187    TSETS   14  13  43  ; "h"
+0188    CALL    11   2   3
+0189    TSETS   11  10  45  ; "dimen"
+0190    CALL     8   2   3
+0191    UGET     9  10      ; OverlapGroup
+0192    MOV     10   9
+0193    TGETS    9   9   1  ; "new"
+0194    TDUP    11  60
+0195    TDUP    12  59
+0196    TGETS   13   0   5  ; "width"
+0197    TSETS   13  12  41  ; "w"
+0198    MOV     14   7
+0199    TGETS   13   7  42  ; "getSize"
+0200    CALL    13   2   2
+0201    TGETS   13  13  43  ; "h"
+0202    TSETS   13  12  43  ; "h"
+0203    TSETS   12  11  45  ; "dimen"
+0204    TSETB    7  11   1
+0205    UGET    12  11      ; CloseButton
+0206    MOV     13  12
+0207    TGETS   12  12   1  ; "new"
+0208    TDUP    14  61
+0209    TSETS    0  14  62  ; "window"
+0210    UGET    15   3      ; Size
+0211    TGETS   15  15  51  ; "margin"
+0212    TGETS   15  15  52  ; "title"
+0213    TSETS   15  14  63  ; "padding_top"
+0214    CALL    12   0   3
+0215    TSETM   12   2      ; 2
+0216    CALL     9   2   3
+0217    UGET    10   8      ; FrameContainer
+0218    MOV     11  10
+0219    TGETS   10  10   1  ; "new"
+0220    TDUP    12  64
+0221    UGET    13   3      ; Size
+0222    TGETS   13  13  48  ; "padding"
+0223    TGETS   13  13  49  ; "default"
+0224    TSETS   13  12  48  ; "padding"
+0225    UGET    13   3      ; Size
+0226    TGETS   13  13  51  ; "margin"
+0227    TGETS   13  13  65  ; "small"
+0228    TSETS   13  12  51  ; "margin"
+0229    UGET    13  12      ; TextBoxWidget
+0230    MOV     14  13
+0231    TGETS   13  13   1  ; "new"
+0232    TDUP    15  67
+0233    TGETS   16   0  66  ; "info_text"
+0234    IST         16
+0235    JMP     17 => 0237
+0236    KSTR    16  68      ; ""
+0237 => TSETS   16  15  31  ; "text"
+0238    UGET    16  13      ; Font
+0239    MOV     17  16
+0240    TGETS   16  16  69  ; "getFace"
+0241    KSTR    18  70      ; "x_smallinfofont"
+0242    CALL    16   2   3
+0243    TSETS   16  15  33  ; "face"
+0244    TGETS   16   0   5  ; "width"
+0245    MULVN   16  16   4  ; 0.9
+0246    TSETS   16  15   5  ; "width"
+0247    CALL    13   0   3
+0248    TSETM   13   3      ; 1
+0249    CALL    10   2   3
+0250    TNEW    11   3
+0251    TNEW    12   3
+0252    TDUP    13  72
+0253    TGETS   14   0  71  ; "cancel_text"
+0254    TSETS   14  13  31  ; "text"
+0255    FNEW    14  73      ; doublespinwidget.lua:184
+0256    TSETS   14  13  74  ; "callback"
+0257    TSETB   13  12   1
+0258    TDUP    13  76
+0259    TGETS   14   0  75  ; "ok_text"
+0260    TSETS   14  13  31  ; "text"
+0261    FNEW    14  77      ; doublespinwidget.lua:190
+0262    TSETS   14  13  74  ; "callback"
+0263    TSETB   13  12   2
+0264    TSETB   12  11   1
+0265    TGETS   12   0  78  ; "default_values"
+0266    ISF         12
+0267    JMP     13 => 0279
+0268    GGET    12  79      ; "table"
+0269    TGETS   12  12  80  ; "insert"
+0270    MOV     13  11
+0271    TNEW    14   3
+0272    TDUP    15  82
+0273    TGETS   16   0  81  ; "default_text"
+0274    TSETS   16  15  31  ; "text"
+0275    FNEW    16  83      ; doublespinwidget.lua:205
+0276    TSETS   16  15  74  ; "callback"
+0277    TSETB   15  14   1
+0278    CALL    12   1   3
+0279 => TGETS   12   0  84  ; "extra_text"
+0280    ISF         12
+0281    JMP     13 => 0293
+0282    GGET    12  79      ; "table"
+0283    TGETS   12  12  80  ; "insert"
+0284    MOV     13  11
+0285    TNEW    14   3
+0286    TDUP    15  85
+0287    TGETS   16   0  84  ; "extra_text"
+0288    TSETS   16  15  31  ; "text"
+0289    FNEW    16  86      ; doublespinwidget.lua:219
+0290    TSETS   16  15  74  ; "callback"
+0291    TSETB   15  14   1
+0292    CALL    12   1   3
+0293 => UGET    12  14      ; ButtonTable
+0294    MOV     13  12
+0295    TGETS   12  12   1  ; "new"
+0296    TDUP    14  87
+0297    TGETS   15   0   5  ; "width"
+0298    UGET    16   3      ; Size
+0299    TGETS   16  16  48  ; "padding"
+0300    TGETS   16  16  49  ; "default"
+0301    MULNV   16  16   1  ; 2
+0302    SUBVV   15  15  16
+0303    TSETS   15  14   5  ; "width"
+0304    TSETS   11  14  88  ; "buttons"
+0305    TSETS    0  14   3  ; "show_parent"
+0306    CALL    12   2   3
+0307    UGET    13   8      ; FrameContainer
+0308    MOV     14  13
+0309    TGETS   13  13   1  ; "new"
+0310    TDUP    15  91
+0311    UGET    16   3      ; Size
+0312    TGETS   16  16  90  ; "radius"
+0313    TGETS   16  16  62  ; "window"
+0314    TSETS   16  15  90  ; "radius"
+0315    UGET    16  15      ; Blitbuffer
+0316    TGETS   16  16  92  ; "COLOR_WHITE"
+0317    TSETS   16  15  93  ; "background"
+0318    UGET    16   1      ; VerticalGroup
+0319    MOV     17  16
+0320    TGETS   16  16   1  ; "new"
+0321    TDUP    18  94
+0322    TSETB    9  18   1
+0323    TSETB    8  18   2
+0324    TSETB   10  18   3
+0325    UGET    19   2      ; VerticalSpan
+0326    MOV     20  19
+0327    TGETS   19  19   1  ; "new"
+0328    TDUP    21  95
+0329    UGET    22   3      ; Size
+0330    TGETS   22  22  26  ; "span"
+0331    TGETS   22  22  27  ; "vertical_large"
+0332    TSETS   22  21   5  ; "width"
+0333    CALL    19   2   3
+0334    TSETB   19  18   4
+0335    UGET    19   6      ; CenterContainer
+0336    MOV     20  19
+0337    TGETS   19  19   1  ; "new"
+0338    TDUP    21  97
+0339    UGET    22   7      ; Geom
+0340    MOV     23  22
+0341    TGETS   22  22   1  ; "new"
+0342    TDUP    24  96
+0343    TGETS   25   0   5  ; "width"
+0344    TSETS   25  24  41  ; "w"
+0345    MOV     26   6
+0346    TGETS   25   6  42  ; "getSize"
+0347    CALL    25   2   2
+0348    TGETS   25  25  43  ; "h"
+0349    TSETS   25  24  43  ; "h"
+0350    CALL    22   2   3
+0351    TSETS   22  21  45  ; "dimen"
+0352    TSETB    6  21   1
+0353    CALL    19   2   3
+0354    TSETB   19  18   5
+0355    UGET    19   2      ; VerticalSpan
+0356    MOV     20  19
+0357    TGETS   19  19   1  ; "new"
+0358    TDUP    21  98
+0359    UGET    22   3      ; Size
+0360    TGETS   22  22  26  ; "span"
+0361    TGETS   22  22  27  ; "vertical_large"
+0362    TSETS   22  21   5  ; "width"
+0363    CALL    19   2   3
+0364    TSETB   19  18   6
+0365    UGET    19   6      ; CenterContainer
+0366    MOV     20  19
+0367    TGETS   19  19   1  ; "new"
+0368    TDUP    21 100
+0369    UGET    22   7      ; Geom
+0370    MOV     23  22
+0371    TGETS   22  22   1  ; "new"
+0372    TDUP    24  99
+0373    TGETS   25   0   5  ; "width"
+0374    TSETS   25  24  41  ; "w"
+0375    MOV     26  12
+0376    TGETS   25  12  42  ; "getSize"
+0377    CALL    25   2   2
+0378    TGETS   25  25  43  ; "h"
+0379    TSETS   25  24  43  ; "h"
+0380    CALL    22   2   3
+0381    TSETS   22  21  45  ; "dimen"
+0382    TSETB   12  21   1
+0383    CALL    19   0   3
+0384    TSETM   19   5      ; 7
+0385    CALL    16   0   3
+0386    TSETM   16   3      ; 1
+0387    CALL    13   2   3
+0388    TSETS   13   0  89  ; "widget_frame"
+0389    UGET    13  16      ; MovableContainer
+0390    MOV     14  13
+0391    TGETS   13  13   1  ; "new"
+0392    TNEW    15   3
+0393    TGETS   16   0  89  ; "widget_frame"
+0394    TSETB   16  15   1
+0395    CALL    13   2   3
+0396    TSETS   13   0 101  ; "movable"
+0397    UGET    13  17      ; WidgetContainer
+0398    MOV     14  13
+0399    TGETS   13  13   1  ; "new"
+0400    TDUP    15 102
+0401    UGET    16   7      ; Geom
+0402    MOV     17  16
+0403    TGETS   16  16   1  ; "new"
+0404    TDUP    18 103
+0405    TGETS   19   0 104  ; "screen_width"
+0406    TSETS   19  18  41  ; "w"
+0407    TGETS   19   0 105  ; "screen_height"
+0408    TSETS   19  18  43  ; "h"
+0409    CALL    16   2   3
+0410    TSETS   16  15  45  ; "dimen"
+0411    TGETS   16   0 101  ; "movable"
+0412    TSETB   16  15   1
+0413    CALL    13   2   3
+0414    TSETB   13   0   1
+0415    UGET    13  18      ; UIManager
+0416    MOV     14  13
+0417    TGETS   13  13 106  ; "setDirty"
+0418    MOV     15   0
+0419    FNEW    16 107      ; doublespinwidget.lua:278
+0420    CALL    13   1   4
+0421    FNEW     1 108      ; doublespinwidget.lua:281
+0422    UCLO     0 => 0423
+0423 => RET0     0   1
+
+-- BYTECODE -- doublespinwidget.lua:290-293
+0001    TGETS    1   0   0  ; "movable"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getMovedOffset"
+0004    CALL     1   2   2
+0005    TGETS    2   1   2  ; "x"
+0006    ISNEN    2   0      ; 0
+0007    JMP      2 => 0013
+0008    TGETS    2   1   3  ; "y"
+0009    ISNEN    2   0      ; 0
+0010    JMP      2 => 0013
+0011    KPRI     2   1
+0012    JMP      3 => 0014
+0013 => KPRI     2   2
+0014 => RET1     2   2
+
+-- BYTECODE -- doublespinwidget.lua:296-298
+0001    KSTR     0   0      ; "partial"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "widget_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- doublespinwidget.lua:295-300
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    KPRI     3   0
+0005    FNEW     4   1      ; doublespinwidget.lua:296
+0006    CALL     1   1   4
+0007    KPRI     1   2
+0008    UCLO     0 => 0009
+0009 => RET1     1   2
+
+-- BYTECODE -- doublespinwidget.lua:303-305
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "widget_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- doublespinwidget.lua:302-307
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    MOV      3   0
+0005    FNEW     4   1      ; doublespinwidget.lua:303
+0006    CALL     1   1   4
+0007    KPRI     1   2
+0008    UCLO     0 => 0009
+0009 => RET1     1   2
+
+-- BYTECODE -- doublespinwidget.lua:309-312
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- doublespinwidget.lua:314-319
+0001    TGETS    3   2   0  ; "pos"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "notIntersectWith"
+0004    TGETS    5   0   2  ; "widget_frame"
+0005    TGETS    5   5   3  ; "dimen"
+0006    CALL     3   2   3
+0007    ISF          3
+0008    JMP      4 => 0012
+0009    MOV      4   0
+0010    TGETS    3   0   4  ; "onClose"
+0011    CALL     3   1   2
+0012 => KPRI     3   2
+0013    RET1     3   2
+
+-- BYTECODE -- doublespinwidget.lua:321-324
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- doublespinwidget.lua:0-327
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/blitbuffer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/buttontable"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/container/centercontainer"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/closebutton"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "device"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/container/framecontainer"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/geometry"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/gesturerange"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/font"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/widget/horizontalgroup"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/widget/container/inputcontainer"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/linewidget"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/container/movablecontainer"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/widget/overlapgroup"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/widget/numberpickerwidget"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/size"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "ui/widget/textboxwidget"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/widget/textwidget"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "ui/uimanager"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "ui/widget/verticalgroup"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "ui/widget/verticalspan"
+0063    CALL    20   2   2
+0064    GGET    21   0      ; "require"
+0065    KSTR    22  22      ; "ui/widget/container/widgetcontainer"
+0066    CALL    21   2   2
+0067    GGET    22   0      ; "require"
+0068    KSTR    23  23      ; "gettext"
+0069    CALL    22   2   2
+0070    TGETS   23   4  24  ; "screen"
+0071    MOV     25  10
+0072    TGETS   24  10  25  ; "new"
+0073    TDUP    26  26
+0074    MOV     28   8
+0075    TGETS   27   8  27  ; "getFace"
+0076    KSTR    29  28      ; "x_smalltfont"
+0077    CALL    27   2   3
+0078    TSETS   27  26  29  ; "title_face"
+0079    MOV     27  22
+0080    KSTR    28  30      ; "Left"
+0081    CALL    27   2   2
+0082    TSETS   27  26  31  ; "left_text"
+0083    MOV     27  22
+0084    KSTR    28  32      ; "Right"
+0085    CALL    27   2   2
+0086    TSETS   27  26  33  ; "right_text"
+0087    MOV     27  22
+0088    KSTR    28  34      ; "Close"
+0089    CALL    27   2   2
+0090    TSETS   27  26  35  ; "cancel_text"
+0091    MOV     27  22
+0092    KSTR    28  36      ; "Apply"
+0093    CALL    27   2   2
+0094    TSETS   27  26  37  ; "ok_text"
+0095    MOV     27  22
+0096    KSTR    28  38      ; "Use defaults"
+0097    CALL    27   2   2
+0098    TSETS   27  26  39  ; "default_text"
+0099    CALL    24   2   3
+0100    FNEW    25  41      ; doublespinwidget.lua:53
+0101    TSETS   25  24  40  ; "init"
+0102    FNEW    25  43      ; doublespinwidget.lua:80
+0103    TSETS   25  24  42  ; "update"
+0104    FNEW    25  45      ; doublespinwidget.lua:290
+0105    TSETS   25  24  44  ; "hasMoved"
+0106    FNEW    25  47      ; doublespinwidget.lua:295
+0107    TSETS   25  24  46  ; "onCloseWidget"
+0108    FNEW    25  49      ; doublespinwidget.lua:302
+0109    TSETS   25  24  48  ; "onShow"
+0110    FNEW    25  51      ; doublespinwidget.lua:309
+0111    TSETS   25  24  50  ; "onAnyKeyPressed"
+0112    FNEW    25  53      ; doublespinwidget.lua:314
+0113    TSETS   25  24  52  ; "onTapClose"
+0114    FNEW    25  55      ; doublespinwidget.lua:321
+0115    TSETS   25  24  54  ; "onClose"
+0116    UCLO     0 => 0117
+0117 => RET1    24   2
+

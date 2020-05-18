@@ -1,0 +1,420 @@
+-- BYTECODE -- font.lua:123-125
+0001    TGETS    2   0   0  ; "bold_font_variant"
+0002    TGETV    2   2   1
+0003    ISF          2
+0004    JMP      3 => 0007
+0005    KPRI     2   2
+0006    JMP      3 => 0008
+0007 => KPRI     2   1
+0008 => RET1     2   2
+
+-- BYTECODE -- font.lua:127-129
+0001    TGETS    2   0   0  ; "bold_font_variant"
+0002    TGETV    2   2   1
+0003    RET1     2   2
+
+-- BYTECODE -- font.lua:131-133
+0001    TGETS    2   0   0  ; "regular_font_variant"
+0002    TGETV    2   2   1
+0003    ISF          2
+0004    JMP      3 => 0007
+0005    KPRI     2   2
+0006    JMP      3 => 0008
+0007 => KPRI     2   1
+0008 => RET1     2   2
+
+-- BYTECODE -- font.lua:135-137
+0001    TGETS    2   0   0  ; "regular_font_variant"
+0002    TGETV    2   2   1
+0003    IST          2
+0004    JMP      3 => 0006
+0005    MOV      2   1
+0006 => RET1     2   2
+
+-- BYTECODE -- font.lua:145-150
+0001    TGETS    1   0   0  ; "embolden_half_strength"
+0002    IST          1
+0003    JMP      1 => 0010
+0004    TGETS    1   0   1  ; "ftface"
+0005    MOV      2   1
+0006    TGETS    1   1   2  ; "getEmboldenHalfStrength"
+0007    UGET     3   0      ; bold_strength_factor
+0008    CALL     1   2   3
+0009    TSETS    1   0   0  ; "embolden_half_strength"
+0010 => RET0     0   1
+
+-- BYTECODE -- font.lua:156-212
+0001    ISF          1
+0002    JMP      2 => 0005
+0003    ISNEN    1   0      ; 0
+0004    JMP      2 => 0009
+0005 => UGET     2   0      ; _completeFaceProperties
+0006    MOV      3   0
+0007    CALL     2   1   2
+0008    RET1     0   2
+0009 => TGETS    2   0   0  ; "fallbacks"
+0010    IST          2
+0011    JMP      2 => 0014
+0012    TNEW     2   0
+0013    TSETS    2   0   0  ; "fallbacks"
+0014 => TGETS    2   0   0  ; "fallbacks"
+0015    TGETV    2   2   1
+0016    ISEQP    2   0
+0017    JMP      2 => 0021
+0018    TGETS    2   0   0  ; "fallbacks"
+0019    TGETV    2   2   1
+0020    RET1     2   2
+0021 => TGETS    2   0   0  ; "fallbacks"
+0022    LEN      2   2
+0023    ADDVN    2   2   1  ; 1
+0024    KSHORT   3   0
+0025    TGETS    4   0   1  ; "realname"
+0026    TGETS    5   0   2  ; "is_real_bold"
+0027    ISF          5
+0028    JMP      6 => 0035
+0029    UGET     5   1      ; Font
+0030    MOV      6   5
+0031    TGETS    5   5   3  ; "getRegularVariantName"
+0032    MOV      7   4
+0033    CALL     5   2   3
+0034    MOV      4   5
+0035 => GGET     5   4      ; "pairs"
+0036    UGET     6   1      ; Font
+0037    TGETS    6   6   0  ; "fallbacks"
+0038    CALL     5   4   2
+0039    ISNEXT   8 => 0089
+0040 => ISEQV    9   4
+0041    JMP     10 => 0089
+0042    TGETS   10   0   2  ; "is_real_bold"
+0043    IST         10
+0044    JMP     11 => 0048
+0045    TGETS   10   0   5  ; "wants_bold"
+0046    ISNEP   10   2
+0047    JMP     10 => 0072
+0048 => UGET    10   1      ; Font
+0049    MOV     11  10
+0050    TGETS   10  10   6  ; "getBoldVariantName"
+0051    MOV     12   9
+0052    CALL    10   2   3
+0053    ISF         10
+0054    JMP     11 => 0072
+0055    UGET    11   1      ; Font
+0056    MOV     12  11
+0057    TGETS   11  11   7  ; "getFace"
+0058    MOV     13  10
+0059    TGETS   14   0   8  ; "orig_size"
+0060    CALL    11   2   4
+0061    ISEQP   11   0
+0062    JMP     12 => 0072
+0063    ADDVN    3   3   1  ; 1
+0064    ISNEV    3   2
+0065    JMP     12 => 0072
+0066    UGET    12   0      ; _completeFaceProperties
+0067    MOV     13  11
+0068    CALL    12   1   2
+0069    TGETS   12   0   0  ; "fallbacks"
+0070    TSETV   11  12   2
+0071    RET1    11   2
+0072 => UGET    10   1      ; Font
+0073    MOV     11  10
+0074    TGETS   10  10   7  ; "getFace"
+0075    MOV     12   9
+0076    TGETS   13   0   8  ; "orig_size"
+0077    CALL    10   2   4
+0078    ISEQP   10   0
+0079    JMP     11 => 0089
+0080    ADDVN    3   3   1  ; 1
+0081    ISNEV    3   2
+0082    JMP     11 => 0089
+0083    UGET    11   0      ; _completeFaceProperties
+0084    MOV     12  10
+0085    CALL    11   1   2
+0086    TGETS   11   0   0  ; "fallbacks"
+0087    TSETV   10  11   2
+0088    RET1    10   2
+0089 => ITERN    8   3   3
+0090    ITERL    8 => 0040
+0091    TGETS    5   0   0  ; "fallbacks"
+0092    KPRI     6   1
+0093    TSETV    6   5   2
+0094    KPRI     5   1
+0095    RET1     5   2
+
+-- BYTECODE -- font.lua:284-286
+0001    UGET     1   0      ; _getFallbackFont
+0002    UGET     2   1      ; face_obj
+0003    MOV      3   0
+0004    CALLT    1   3
+
+-- BYTECODE -- font.lua:218-304
+0001    IST          1
+0002    JMP      3 => 0004
+0003    TGETS    1   0   0  ; "cfont"
+0004 => IST          2
+0005    JMP      3 => 0008
+0006    TGETS    3   0   1  ; "sizemap"
+0007    TGETV    2   3   1
+0008 => MOV      3   2
+0009    UGET     4   0      ; Screen
+0010    MOV      5   4
+0011    TGETS    4   4   2  ; "scaleBySize"
+0012    MOV      6   2
+0013    CALL     4   2   3
+0014    MOV      2   4
+0015    TGETS    4   0   3  ; "fontmap"
+0016    TGETV    4   4   1
+0017    IST          4
+0018    JMP      5 => 0020
+0019    MOV      4   1
+0020 => MOV      6   0
+0021    TGETS    5   0   4  ; "isRealBoldFont"
+0022    MOV      7   4
+0023    CALL     5   2   3
+0024    MOV      6   4
+0025    MOV      7   2
+0026    CAT      6   6   7
+0027    TGETS    7   0   5  ; "faces"
+0028    TGETV    7   7   6
+0029    IST          7
+0030    JMP      8 => 0111
+0031    UGET     8   1      ; FontList
+0032    TGETS    8   8   6  ; "fontdir"
+0033    KSTR     9   7      ; "/"
+0034    MOV     10   4
+0035    CAT      8   8  10
+0036    GGET     9   8      ; "pcall"
+0037    UGET    10   2      ; Freetype
+0038    TGETS   10  10   9  ; "newFace"
+0039    MOV     11   8
+0040    MOV     12   2
+0041    CALL     9   3   4
+0042    IST          9
+0043    JMP     11 => 0083
+0044    UGET    11   1      ; FontList
+0045    MOV     12  11
+0046    TGETS   11  11  10  ; "getFontList"
+0047    CALL    11   2   2
+0048    MOV     13   4
+0049    TGETS   12   4  11  ; "gsub"
+0050    KSTR    14  12      ; "[-]"
+0051    KSTR    15  13      ; "%%-"
+0052    CALL    12   2   4
+0053    GGET    13  14      ; "ipairs"
+0054    MOV     14  11
+0055    CALL    13   4   2
+0056    JMP     16 => 0081
+0057 => MOV     19  17
+0058    TGETS   18  17  15  ; "find"
+0059    MOV     20  12
+0060    CALL    18   2   3
+0061    ISF         18
+0062    JMP     19 => 0081
+0063    UGET    18   3      ; logger
+0064    TGETS   18  18  16  ; "dbg"
+0065    KSTR    19  17      ; "Found font:"
+0066    MOV     20   4
+0067    KSTR    21  18      ; "in"
+0068    MOV     22  17
+0069    CALL    18   1   5
+0070    GGET    18   8      ; "pcall"
+0071    UGET    19   2      ; Freetype
+0072    TGETS   19  19   9  ; "newFace"
+0073    MOV     20  17
+0074    MOV     21   2
+0075    CALL    18   3   4
+0076    MOV     10  19
+0077    MOV      9  18
+0078    ISF          9
+0079    JMP     18 => 0081
+0080    JMP     13 => 0083
+0081 => ITERC   16   3   3
+0082    ITERL   16 => 0057
+0083 => IST          9
+0084    JMP     11 => 0096
+0085    UGET    11   3      ; logger
+0086    TGETS   11  11  19  ; "err"
+0087    KSTR    12  20      ; "#! Font "
+0088    MOV     13   1
+0089    KSTR    14  21      ; " ("
+0090    MOV     15   4
+0091    KSTR    16  22      ; ") not supported: "
+0092    MOV     17  10
+0093    CALL    11   1   7
+0094    KPRI    11   0
+0095    UCLO     0 => 0113
+0096 => TDUP    11  23
+0097    TSETS    1  11  24  ; "orig_font"
+0098    TSETS    4  11  25  ; "realname"
+0099    TSETS    2  11  26  ; "size"
+0100    TSETS    3  11  27  ; "orig_size"
+0101    TSETS   10  11  28  ; "ftface"
+0102    TSETS    6  11  29  ; "hash"
+0103    TSETS    5  11  30  ; "is_real_bold"
+0104    MOV      7  11
+0105    TGETS   11   0   5  ; "faces"
+0106    TSETV    7  11   6
+0107    FNEW    11  32      ; font.lua:284
+0108    TSETS   11   7  31  ; "getFallbackFont"
+0109    TDUP    11  34
+0110    TSETS   11   7  33  ; "hb_features"
+0111 => UCLO     0 => 0112
+0112 => RET1     7   2
+0113 => RET1    11   2
+
+-- BYTECODE -- font.lua:379-381
+0001    UGET     1   0      ; _getFallbackFont
+0002    UGET     2   1      ; face_obj
+0003    MOV      3   0
+0004    CALLT    1   3
+
+-- BYTECODE -- font.lua:321-384
+0001    TGETS    3   1   0  ; "is_real_bold"
+0002    ISF          3
+0003    JMP      4 => 0007
+0004    MOV      3   1
+0005    KPRI     4   2
+0006    UCLO     0 => 0078
+0007 => IST          2
+0008    JMP      3 => 0012
+0009    MOV      3   1
+0010    KPRI     4   1
+0011    UCLO     0 => 0079
+0012 => TGETS    3   0   1  ; "use_bold_font_for_bold"
+0013    IST          3
+0014    JMP      3 => 0017
+0015    UGET     3   0      ; Font
+0016    TGETS    2   3   2  ; "FORCE_SYNTHETIZED_BOLD"
+0017 => UGET     3   0      ; Font
+0018    TGETS    3   3   2  ; "FORCE_SYNTHETIZED_BOLD"
+0019    ISEQV    2   3
+0020    JMP      3 => 0037
+0021    MOV      4   0
+0022    TGETS    3   0   3  ; "getBoldVariantName"
+0023    TGETS    5   1   4  ; "realname"
+0024    CALL     3   2   3
+0025    ISF          3
+0026    JMP      4 => 0037
+0027    UGET     4   0      ; Font
+0028    MOV      5   4
+0029    TGETS    4   4   5  ; "getFace"
+0030    MOV      6   3
+0031    TGETS    7   1   6  ; "orig_size"
+0032    CALL     4   2   4
+0033    MOV      1   4
+0034    MOV      4   1
+0035    KPRI     5   2
+0036    UCLO     0 => 0080
+0037 => TGETS    3   1   7  ; "hash"
+0038    UGET     4   0      ; Font
+0039    TGETS    4   4   2  ; "FORCE_SYNTHETIZED_BOLD"
+0040    ISNEV    2   4
+0041    JMP      4 => 0044
+0042    KSTR     4   8      ; "synthbold"
+0043    JMP      5 => 0045
+0044 => KSTR     4   9      ; "realbold"
+0045 => CAT      3   3   4
+0046    TGETS    4   0  10  ; "faces"
+0047    TGETV    4   4   3
+0048    ISF          4
+0049    JMP      5 => 0053
+0050    MOV      5   4
+0051    MOV      6   2
+0052    UCLO     0 => 0081
+0053 => TDUP     5  12
+0054    TGETS    6   1  11  ; "orig_font"
+0055    TSETS    6   5  11  ; "orig_font"
+0056    TGETS    6   1   4  ; "realname"
+0057    TSETS    6   5   4  ; "realname"
+0058    TGETS    6   1  13  ; "size"
+0059    TSETS    6   5  13  ; "size"
+0060    TGETS    6   1   6  ; "orig_size"
+0061    TSETS    6   5   6  ; "orig_size"
+0062    TGETS    6   1  14  ; "ftface"
+0063    TSETS    6   5  14  ; "ftface"
+0064    TGETS    6   1   7  ; "hash"
+0065    TSETS    6   5   7  ; "hash"
+0066    TGETS    6   1  15  ; "hb_features"
+0067    TSETS    6   5  15  ; "hb_features"
+0068    TSETS    2   5  16  ; "wants_bold"
+0069    MOV      4   5
+0070    FNEW     5  18      ; font.lua:379
+0071    TSETS    5   4  17  ; "getFallbackFont"
+0072    TGETS    5   0  10  ; "faces"
+0073    TSETV    4   5   3
+0074    MOV      5   4
+0075    MOV      6   2
+0076    UCLO     0 => 0077
+0077 => RET      5   3
+0078 => RET      3   3
+0079 => RET      3   3
+0080 => RET      4   3
+0081 => RET      5   3
+
+-- BYTECODE -- font.lua:0-387
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "fontlist"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/freetype"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "device"
+0009    CALL     2   2   2
+0010    TGETS    2   2   4  ; "screen"
+0011    GGET     3   0      ; "require"
+0012    KSTR     4   5      ; "logger"
+0013    CALL     3   2   2
+0014    TNEW     4   0
+0015    KSTR     5   7      ; "NotoSans-Bold.ttf"
+0016    TSETS    5   4   6  ; "NotoSans-Regular.ttf"
+0017    KSTR     5   9      ; "NotoSans-BoldItalic.ttf"
+0018    TSETS    5   4   8  ; "NotoSans-Italic.ttf"
+0019    KSTR     5  11      ; "NotoSansArabicUI-Bold.ttf"
+0020    TSETS    5   4  10  ; "NotoSansArabicUI-Regular.ttf"
+0021    KSTR     5  13      ; "NotoSerif-Bold.ttf"
+0022    TSETS    5   4  12  ; "NotoSerif-Regular.ttf"
+0023    KSTR     5  15      ; "NotoSerif-BoldItalic.ttf"
+0024    TSETS    5   4  14  ; "NotoSerif-Italic.ttf"
+0025    TNEW     5   0
+0026    GGET     6  16      ; "pairs"
+0027    MOV      7   4
+0028    CALL     6   4   2
+0029    ISNEXT   9 => 0031
+0030 => TSETV    9   5  10
+0031 => ITERN    9   3   3
+0032    ITERL    9 => 0030
+0033    TDUP     6  17
+0034    TSETS    4   6  18  ; "bold_font_variant"
+0035    TSETS    5   6  19  ; "regular_font_variant"
+0036    GGET     7  20      ; "G_reader_settings"
+0037    MOV      8   7
+0038    TGETS    7   7  21  ; "nilOrTrue"
+0039    KSTR     9  22      ; "use_bold_font_for_bold"
+0040    CALL     7   2   3
+0041    TSETS    7   6  22  ; "use_bold_font_for_bold"
+0042    TDUP     7  23
+0043    TSETS    7   6  24  ; "fontmap"
+0044    TDUP     7  25
+0045    TSETS    7   6  26  ; "sizemap"
+0046    TDUP     7  27
+0047    TSETS    7   6  28  ; "fallbacks"
+0048    TNEW     7   0
+0049    TSETS    7   6  29  ; "faces"
+0050    FNEW     7  31      ; font.lua:123
+0051    TSETS    7   6  30  ; "hasBoldVariant"
+0052    FNEW     7  33      ; font.lua:127
+0053    TSETS    7   6  32  ; "getBoldVariantName"
+0054    FNEW     7  35      ; font.lua:131
+0055    TSETS    7   6  34  ; "isRealBoldFont"
+0056    FNEW     7  37      ; font.lua:135
+0057    TSETS    7   6  36  ; "getRegularVariantName"
+0058    KNUM     7   0      ; 0.375
+0059    FNEW     8  38      ; font.lua:145
+0060    FNEW     9  39      ; font.lua:156
+0061    FNEW    10  41      ; font.lua:218
+0062    TSETS   10   6  40  ; "getFace"
+0063    FNEW    10  43      ; font.lua:321
+0064    TSETS   10   6  42  ; "getAdjustedFace"
+0065    UCLO     0 => 0066
+0066 => RET1     6   2
+

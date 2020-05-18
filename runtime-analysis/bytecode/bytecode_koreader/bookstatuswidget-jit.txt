@@ -1,0 +1,1642 @@
+-- BYTECODE -- bookstatuswidget.lua:115-115
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "dimen"
+0003    RET1     0   2
+
+-- BYTECODE -- bookstatuswidget.lua:58-132
+0001    TGETS    1   0   0  ; "settings"
+0002    ISF          1
+0003    JMP      2 => 0025
+0004    TDUP     1   1
+0005    TGETS    2   0   0  ; "settings"
+0006    MOV      3   2
+0007    TGETS    2   2   2  ; "readSetting"
+0008    KSTR     4   3      ; "summary"
+0009    CALL     2   2   3
+0010    ISF          2
+0011    JMP      3 => 0024
+0012    TGETS    3   2   4  ; "modified"
+0013    ISF          3
+0014    JMP      4 => 0017
+0015    TSETS    2   0   3  ; "summary"
+0016    JMP      3 => 0025
+0017 => TSETS    1   0   3  ; "summary"
+0018    UGET     3   0      ; util
+0019    TGETS    3   3   5  ; "tableMerge"
+0020    TGETS    4   0   3  ; "summary"
+0021    MOV      5   2
+0022    CALL     3   1   3
+0023    JMP      3 => 0025
+0024 => TSETS    1   0   3  ; "summary"
+0025 => TGETS    1   0   7  ; "view"
+0026    TGETS    1   1   8  ; "document"
+0027    MOV      2   1
+0028    TGETS    1   1   9  ; "getPageCount"
+0029    CALL     1   2   2
+0030    TSETS    1   0   6  ; "total_pages"
+0031    MOV      2   0
+0032    TGETS    1   0  10  ; "getStats"
+0033    CALL     1   2   2
+0034    USETV    1   1      ; stats_book
+0035    UGET     1   2      ; Font
+0036    MOV      2   1
+0037    TGETS    1   1  12  ; "getFace"
+0038    KSTR     3  13      ; "smallffont"
+0039    CALL     1   2   3
+0040    TSETS    1   0  11  ; "small_font_face"
+0041    UGET     1   2      ; Font
+0042    MOV      2   1
+0043    TGETS    1   1  12  ; "getFace"
+0044    KSTR     3  15      ; "ffont"
+0045    CALL     1   2   3
+0046    TSETS    1   0  14  ; "medium_font_face"
+0047    UGET     1   2      ; Font
+0048    MOV      2   1
+0049    TGETS    1   1  12  ; "getFace"
+0050    KSTR     3  17      ; "largeffont"
+0051    CALL     1   2   3
+0052    TSETS    1   0  16  ; "large_font_face"
+0053    KPRI     1   2
+0054    TGETS    2   0  18  ; "readonly"
+0055    ISF          2
+0056    JMP      3 => 0058
+0057    KPRI     1   1
+0058 => UGET     2   3      ; Button
+0059    MOV      3   2
+0060    TGETS    2   2  20  ; "new"
+0061    TDUP     4  21
+0062    TSETS    1   4  22  ; "enabled"
+0063    TSETS    0   4  23  ; "show_parent"
+0064    TGETS    5   0  18  ; "readonly"
+0065    TSETS    5   4  18  ; "readonly"
+0066    CALL     2   2   3
+0067    TSETS    2   0  19  ; "star"
+0068    UGET     2   4      ; Device
+0069    MOV      3   2
+0070    TGETS    2   2  24  ; "hasKeys"
+0071    CALL     2   2   2
+0072    ISF          2
+0073    JMP      3 => 0085
+0074    TDUP     2  30
+0075    TDUP     3  29
+0076    TNEW     4   3
+0077    UGET     5   4      ; Device
+0078    TGETS    5   5  26  ; "input"
+0079    TGETS    5   5  27  ; "group"
+0080    TGETS    5   5  28  ; "Any"
+0081    TSETB    5   4   1
+0082    TSETB    4   3   1
+0083    TSETS    3   2  31  ; "AnyKeyPressed"
+0084    TSETS    2   0  25  ; "key_events"
+0085 => UGET     2   4      ; Device
+0086    MOV      3   2
+0087    TGETS    2   2  32  ; "isTouchDevice"
+0088    CALL     2   2   2
+0089    ISF          2
+0090    JMP      3 => 0102
+0091    TGETS    2   0  33  ; "ges_events"
+0092    TNEW     3   3
+0093    UGET     4   5      ; GestureRange
+0094    MOV      5   4
+0095    TGETS    4   4  20  ; "new"
+0096    TDUP     6  35
+0097    FNEW     7  36      ; bookstatuswidget.lua:115
+0098    TSETS    7   6  37  ; "range"
+0099    CALL     4   0   3
+0100    TSETM    4   0      ; 1
+0101    TSETS    3   2  34  ; "Swipe"
+0102 => UGET     2   6      ; Screen
+0103    MOV      3   2
+0104    TGETS    2   2  38  ; "getSize"
+0105    CALL     2   2   2
+0106    KPRI     3   2
+0107    TSETS    3   0  39  ; "covers_fullscreen"
+0108    UGET     3   7      ; FrameContainer
+0109    MOV      4   3
+0110    TGETS    3   3  20  ; "new"
+0111    TDUP     5  41
+0112    TGETS    6   2  40  ; "w"
+0113    TSETS    6   5  42  ; "width"
+0114    TGETS    6   2  43  ; "h"
+0115    TSETS    6   5  44  ; "height"
+0116    UGET     6   8      ; Blitbuffer
+0117    TGETS    6   6  45  ; "COLOR_WHITE"
+0118    TSETS    6   5  46  ; "background"
+0119    MOV      7   0
+0120    TGETS    6   0  47  ; "getStatusContent"
+0121    TGETS    8   2  40  ; "w"
+0122    CALL     6   0   3
+0123    TSETM    6   0      ; 1
+0124    CALL     3   2   3
+0125    TSETB    3   0   1
+0126    KPRI     3   2
+0127    TSETS    3   0  48  ; "dithered"
+0128    UCLO     0 => 0129
+0129 => RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:134-136
+0001    TNEW     1   0
+0002    RET1     1   2
+
+-- BYTECODE -- bookstatuswidget.lua:138-144
+0001    UGET     1   0      ; stats_book
+0002    TGETS    1   1   0  ; "days"
+0003    ISF          1
+0004    JMP      2 => 0010
+0005    GGET     1   1      ; "tostring"
+0006    UGET     2   0      ; stats_book
+0007    TGETS    2   2   0  ; "days"
+0008    CALLT    1   2
+0009    JMP      1 => 0013
+0010 => UGET     1   1      ; _
+0011    KSTR     2   2      ; "N/A"
+0012    CALLT    1   2
+0013 => RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:146-152
+0001    UGET     1   0      ; stats_book
+0002    TGETS    1   1   0  ; "time"
+0003    ISF          1
+0004    JMP      2 => 0012
+0005    UGET     1   1      ; util
+0006    TGETS    1   1   1  ; "secondsToClock"
+0007    UGET     2   0      ; stats_book
+0008    TGETS    2   2   0  ; "time"
+0009    KPRI     3   1
+0010    CALLT    1   3
+0011    JMP      1 => 0015
+0012 => UGET     1   2      ; _
+0013    KSTR     2   2      ; "N/A"
+0014    CALLT    1   2
+0015 => RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:154-160
+0001    UGET     1   0      ; stats_book
+0002    TGETS    1   1   0  ; "pages"
+0003    ISF          1
+0004    JMP      2 => 0013
+0005    GGET     1   1      ; "string"
+0006    TGETS    1   1   2  ; "format"
+0007    KSTR     2   3      ; "%s/%s"
+0008    UGET     3   0      ; stats_book
+0009    TGETS    3   3   0  ; "pages"
+0010    TGETS    4   0   4  ; "total_pages"
+0011    CALLT    1   4
+0012    JMP      1 => 0016
+0013 => UGET     1   1      ; _
+0014    KSTR     2   5      ; "N/A"
+0015    CALLT    1   2
+0016 => RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:162-185
+0001    KPRI     2   0
+0002    MOV      4   0
+0003    TGETS    3   0   0  ; "genHeader"
+0004    UGET     5   0      ; _
+0005    KSTR     6   1      ; "Book Status"
+0006    CALL     5   0   2
+0007    CALLM    3   2   1
+0008    TGETS    4   0   2  ; "readonly"
+0009    ISEQP    4   2
+0010    JMP      4 => 0025
+0011    UGET     4   1      ; CloseButton
+0012    MOV      5   4
+0013    TGETS    4   4   3  ; "new"
+0014    TDUP     6   4
+0015    TSETS    0   6   5  ; "window"
+0016    CALL     4   2   3
+0017    MOV      2   4
+0018    MOV      5   0
+0019    TGETS    4   0   0  ; "genHeader"
+0020    UGET     6   0      ; _
+0021    KSTR     7   6      ; "Update Status"
+0022    CALL     6   0   2
+0023    CALLM    4   2   1
+0024    MOV      3   4
+0025 => UGET     4   2      ; VerticalGroup
+0026    MOV      5   4
+0027    TGETS    4   4   3  ; "new"
+0028    TDUP     6   7
+0029    UGET     7   3      ; OverlapGroup
+0030    MOV      8   7
+0031    TGETS    7   7   3  ; "new"
+0032    TDUP     9  13
+0033    UGET    10   4      ; Geom
+0034    MOV     11  10
+0035    TGETS   10  10   3  ; "new"
+0036    TDUP    12   8
+0037    TSETS    1  12   9  ; "w"
+0038    UGET    13   5      ; Size
+0039    TGETS   13  13  10  ; "item"
+0040    TGETS   13  13  11  ; "height_default"
+0041    TSETS   13  12  12  ; "h"
+0042    CALL    10   2   3
+0043    TSETS   10   9  14  ; "dimen"
+0044    TSETB    2   9   1
+0045    CALL     7   2   3
+0046    TSETB    7   6   1
+0047    MOV      8   0
+0048    TGETS    7   0  15  ; "genBookInfoGroup"
+0049    CALL     7   2   2
+0050    TSETB    7   6   2
+0051    MOV      8   0
+0052    TGETS    7   0   0  ; "genHeader"
+0053    UGET     9   0      ; _
+0054    KSTR    10  16      ; "Statistics"
+0055    CALL     9   0   2
+0056    CALLM    7   2   1
+0057    TSETB    7   6   3
+0058    MOV      8   0
+0059    TGETS    7   0  17  ; "genStatisticsGroup"
+0060    MOV      9   1
+0061    CALL     7   2   3
+0062    TSETB    7   6   4
+0063    MOV      8   0
+0064    TGETS    7   0   0  ; "genHeader"
+0065    UGET     9   0      ; _
+0066    KSTR    10  18      ; "Review"
+0067    CALL     9   0   2
+0068    CALLM    7   2   1
+0069    TSETB    7   6   5
+0070    MOV      8   0
+0071    TGETS    7   0  19  ; "genSummaryGroup"
+0072    MOV      9   1
+0073    CALL     7   2   3
+0074    TSETB    7   6   6
+0075    TSETB    3   6   7
+0076    MOV      8   0
+0077    TGETS    7   0  20  ; "generateSwitchGroup"
+0078    MOV      9   1
+0079    CALL     7   0   3
+0080    TSETM    7   0      ; 8
+0081    CALL     4   2   3
+0082    RET1     4   2
+
+-- BYTECODE -- bookstatuswidget.lua:187-231
+0001    UGET     2   0      ; Screen
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "getWidth"
+0004    CALL     2   2   2
+0005    UGET     3   1      ; Size
+0006    TGETS    3   3   1  ; "item"
+0007    TGETS    3   3   2  ; "height_default"
+0008    UGET     4   2      ; TextWidget
+0009    MOV      5   4
+0010    TGETS    4   4   3  ; "new"
+0011    TDUP     6   4
+0012    TSETS    1   6   5  ; "text"
+0013    TGETS    7   0   6  ; "medium_font_face"
+0014    TSETS    7   6   7  ; "face"
+0015    UGET     7   3      ; Blitbuffer
+0016    TGETS    7   7   8  ; "COLOR_WEB_GRAY"
+0017    TSETS    7   6   9  ; "fgcolor"
+0018    CALL     4   2   3
+0019    UGET     5   4      ; HorizontalSpan
+0020    MOV      6   5
+0021    TGETS    5   5   3  ; "new"
+0022    TDUP     7  11
+0023    TGETS    8   0  10  ; "padding"
+0024    TSETS    8   7  12  ; "width"
+0025    CALL     5   2   3
+0026    MOV      7   4
+0027    TGETS    6   4  13  ; "getSize"
+0028    CALL     6   2   2
+0029    TGETS    6   6  14  ; "w"
+0030    SUBVV    6   2   6
+0031    DIVVN    6   6   0  ; 2
+0032    TGETS    7   0  10  ; "padding"
+0033    MULVN    7   7   0  ; 2
+0034    SUBVV    6   6   7
+0035    UGET     7   5      ; LeftContainer
+0036    MOV      8   7
+0037    TGETS    7   7   3  ; "new"
+0038    TDUP     9  17
+0039    UGET    10   6      ; Geom
+0040    MOV     11  10
+0041    TGETS   10  10   3  ; "new"
+0042    TDUP    12  15
+0043    TSETS    6  12  14  ; "w"
+0044    TSETS    3  12  16  ; "h"
+0045    CALL    10   2   3
+0046    TSETS   10   9  18  ; "dimen"
+0047    UGET    10   7      ; LineWidget
+0048    MOV     11  10
+0049    TGETS   10  10   3  ; "new"
+0050    TDUP    12  20
+0051    UGET    13   3      ; Blitbuffer
+0052    TGETS   13  13  19  ; "COLOR_LIGHT_GRAY"
+0053    TSETS   13  12  21  ; "background"
+0054    UGET    13   6      ; Geom
+0055    MOV     14  13
+0056    TGETS   13  13   3  ; "new"
+0057    TDUP    15  22
+0058    TSETS    6  15  14  ; "w"
+0059    UGET    16   1      ; Size
+0060    TGETS   16  16  23  ; "line"
+0061    TGETS   16  16  24  ; "thick"
+0062    TSETS   16  15  16  ; "h"
+0063    CALL    13   2   3
+0064    TSETS   13  12  18  ; "dimen"
+0065    CALL    10   0   3
+0066    TSETM   10   1      ; 1
+0067    CALL     7   2   3
+0068    KNIL     8   9
+0069    UGET    10   0      ; Screen
+0070    MOV     11  10
+0071    TGETS   10  10  25  ; "getScreenMode"
+0072    CALL    10   2   2
+0073    ISNES   10  26      ; "landscape"
+0074    JMP     10 => 0096
+0075    UGET    10   8      ; VerticalSpan
+0076    MOV     11  10
+0077    TGETS   10  10   3  ; "new"
+0078    TDUP    12  29
+0079    UGET    13   1      ; Size
+0080    TGETS   13  13  27  ; "span"
+0081    TGETS   13  13  28  ; "horizontal_default"
+0082    TSETS   13  12  12  ; "width"
+0083    CALL    10   2   3
+0084    MOV      8  10
+0085    UGET    10   8      ; VerticalSpan
+0086    MOV     11  10
+0087    TGETS   10  10   3  ; "new"
+0088    TDUP    12  30
+0089    UGET    13   1      ; Size
+0090    TGETS   13  13  27  ; "span"
+0091    TGETS   13  13  28  ; "horizontal_default"
+0092    TSETS   13  12  12  ; "width"
+0093    CALL    10   2   3
+0094    MOV      9  10
+0095    JMP     10 => 0116
+0096 => UGET    10   8      ; VerticalSpan
+0097    MOV     11  10
+0098    TGETS   10  10   3  ; "new"
+0099    TDUP    12  31
+0100    UGET    13   1      ; Size
+0101    TGETS   13  13   1  ; "item"
+0102    TGETS   13  13   2  ; "height_default"
+0103    TSETS   13  12  12  ; "width"
+0104    CALL    10   2   3
+0105    MOV      8  10
+0106    UGET    10   8      ; VerticalSpan
+0107    MOV     11  10
+0108    TGETS   10  10   3  ; "new"
+0109    TDUP    12  33
+0110    UGET    13   1      ; Size
+0111    TGETS   13  13  27  ; "span"
+0112    TGETS   13  13  32  ; "vertical_large"
+0113    TSETS   13  12  12  ; "width"
+0114    CALL    10   2   3
+0115    MOV      9  10
+0116 => UGET    10   9      ; VerticalGroup
+0117    MOV     11  10
+0118    TGETS   10  10   3  ; "new"
+0119    TNEW    12   4
+0120    TSETB    8  12   1
+0121    UGET    13  10      ; HorizontalGroup
+0122    MOV     14  13
+0123    TGETS   13  13   3  ; "new"
+0124    TDUP    15  34
+0125    TSETB    5  15   1
+0126    TSETB    7  15   2
+0127    TSETB    5  15   3
+0128    TSETB    4  15   4
+0129    TSETB    5  15   5
+0130    TSETB    7  15   6
+0131    TSETB    5  15   7
+0132    CALL    13   2   3
+0133    TSETB   13  12   2
+0134    TSETB    9  12   3
+0135    CALLT   10   3
+
+-- BYTECODE -- bookstatuswidget.lua:233-239
+0001    UGET     3   0      ; TimeVal
+0002    MOV      4   3
+0003    TGETS    3   3   0  ; "now"
+0004    CALL     3   2   2
+0005    TGETS    4   0   1  ; "summary"
+0006    TGETV    5   1   2
+0007    TSETS    5   4   2  ; "status"
+0008    TGETS    4   0   1  ; "summary"
+0009    GGET     5   4      ; "os"
+0010    TGETS    5   5   5  ; "date"
+0011    KSTR     6   6      ; "%Y-%m-%d"
+0012    TGETS    7   3   7  ; "sec"
+0013    CALL     5   2   3
+0014    TSETS    5   4   3  ; "modified"
+0015    MOV      5   0
+0016    TGETS    4   0   8  ; "saveSummary"
+0017    CALL     4   1   2
+0018    KPRI     4   2
+0019    RET1     4   2
+
+-- BYTECODE -- bookstatuswidget.lua:241-248
+0001    UGET     4   0      ; CenterContainer
+0002    MOV      5   4
+0003    TGETS    4   4   1  ; "new"
+0004    TDUP     6   5
+0005    UGET     7   1      ; Geom
+0006    MOV      8   7
+0007    TGETS    7   7   1  ; "new"
+0008    TDUP     9   2
+0009    TSETS    1   9   3  ; "w"
+0010    TSETS    2   9   4  ; "h"
+0011    CALL     7   2   3
+0012    TSETS    7   6   6  ; "dimen"
+0013    CALL     4   2   3
+0014    TSETS    4   0   0  ; "stars_container"
+0015    MOV      5   0
+0016    TGETS    4   0   7  ; "setStar"
+0017    MOV      6   3
+0018    CALL     4   1   3
+0019    TGETS    4   0   0  ; "stars_container"
+0020    RET1     4   2
+
+-- BYTECODE -- bookstatuswidget.lua:262-262
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setStar"
+0004    UGET     2   1      ; i
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:270-270
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setStar"
+0004    UGET     2   1      ; i
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:250-279
+0001    TGETS    2   0   0  ; "stars_container"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "clear"
+0004    CALL     2   1   2
+0005    UGET     2   0      ; HorizontalGroup
+0006    MOV      3   2
+0007    TGETS    2   2   2  ; "new"
+0008    TDUP     4   3
+0009    CALL     2   2   3
+0010    ISF          1
+0011    JMP      3 => 0035
+0012    TGETS    3   0   4  ; "summary"
+0013    TSETS    1   3   5  ; "rating"
+0014    MOV      4   0
+0015    TGETS    3   0   6  ; "saveSummary"
+0016    CALL     3   1   2
+0017    KSHORT   3   1
+0018    MOV      4   1
+0019    KSHORT   5   1
+0020    FORI     3 => 0034
+0021 => GGET     7   7      ; "table"
+0022    TGETS    7   7   8  ; "insert"
+0023    MOV      8   2
+0024    TGETS    9   0   9  ; "star"
+0025    MOV     10   9
+0026    TGETS    9   9   2  ; "new"
+0027    TDUP    11  10
+0028    FNEW    12  11      ; bookstatuswidget.lua:262
+0029    TSETS   12  11  12  ; "callback"
+0030    CALL     9   0   3
+0031    CALLM    7   1   1
+0032    UCLO     6 => 0033
+0033 => FORL     3 => 0021
+0034 => JMP      3 => 0036
+0035 => KSHORT   1   0
+0036 => ADDVN    3   1   0  ; 1
+0037    KSHORT   4   5
+0038    KSHORT   5   1
+0039    FORI     3 => 0053
+0040 => GGET     7   7      ; "table"
+0041    TGETS    7   7   8  ; "insert"
+0042    MOV      8   2
+0043    TGETS    9   0   9  ; "star"
+0044    MOV     10   9
+0045    TGETS    9   9   2  ; "new"
+0046    TDUP    11  14
+0047    FNEW    12  13      ; bookstatuswidget.lua:270
+0048    TSETS   12  11  12  ; "callback"
+0049    CALL     9   0   3
+0050    CALLM    7   1   1
+0051    UCLO     6 => 0052
+0052 => FORL     3 => 0040
+0053 => GGET     3   7      ; "table"
+0054    TGETS    3   3   8  ; "insert"
+0055    TGETS    4   0   0  ; "stars_container"
+0056    MOV      5   2
+0057    CALL     3   1   3
+0058    UGET     3   1      ; UIManager
+0059    MOV      4   3
+0060    TGETS    3   3  15  ; "setDirty"
+0061    MOV      5   0
+0062    KSTR     6  16      ; "ui"
+0063    KPRI     7   0
+0064    KPRI     8   2
+0065    CALL     3   1   6
+0066    KPRI     3   2
+0067    UCLO     0 => 0068
+0068 => RET1     3   2
+
+-- BYTECODE -- bookstatuswidget.lua:281-398
+0001    UGET     1   0      ; Screen
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "getWidth"
+0004    CALL     1   2   2
+0005    MULVN    2   1   0  ; 0.05
+0006    KNIL     3   4
+0007    UGET     5   0      ; Screen
+0008    MOV      6   5
+0009    TGETS    5   5   1  ; "getScreenMode"
+0010    CALL     5   2   2
+0011    ISNES    5   2      ; "landscape"
+0012    JMP      5 => 0026
+0013    UGET     5   0      ; Screen
+0014    MOV      6   5
+0015    TGETS    5   5   3  ; "scaleBySize"
+0016    KSHORT   7 132
+0017    CALL     5   2   3
+0018    MOV      3   5
+0019    UGET     5   0      ; Screen
+0020    MOV      6   5
+0021    TGETS    5   5   3  ; "scaleBySize"
+0022    KSHORT   7 184
+0023    CALL     5   2   3
+0024    MOV      4   5
+0025    JMP      5 => 0038
+0026 => UGET     5   0      ; Screen
+0027    MOV      6   5
+0028    TGETS    5   5   3  ; "scaleBySize"
+0029    KSHORT   7 198
+0030    CALL     5   2   3
+0031    MOV      3   5
+0032    UGET     5   0      ; Screen
+0033    MOV      6   5
+0034    TGETS    5   5   3  ; "scaleBySize"
+0035    KSHORT   7 276
+0036    CALL     5   2   3
+0037    MOV      4   5
+0038 => MOV      5   4
+0039    SUBVV    6   1   2
+0040    SUBVV    6   6   3
+0041    KPRI     7   0
+0042    TGETS    8   0   4  ; "props"
+0043    TGETS    8   8   5  ; "language"
+0044    ISF          8
+0045    JMP      9 => 0052
+0046    TGETS    8   0   4  ; "props"
+0047    TGETS    8   8   5  ; "language"
+0048    ISEQS    8   6      ; ""
+0049    JMP      8 => 0052
+0050    TGETS    8   0   4  ; "props"
+0051    TGETS    7   8   5  ; "language"
+0052 => UGET     8   1      ; VerticalGroup
+0053    MOV      9   8
+0054    TGETS    8   8   7  ; "new"
+0055    TDUP    10   8
+0056    UGET    11   2      ; VerticalSpan
+0057    MOV     12  11
+0058    TGETS   11  11   7  ; "new"
+0059    TDUP    13   9
+0060    MULVN   14   5   1  ; 0.2
+0061    TSETS   14  13  10  ; "width"
+0062    CALL    11   2   3
+0063    TSETB   11  10   1
+0064    UGET    11   3      ; TextBoxWidget
+0065    MOV     12  11
+0066    TGETS   11  11   7  ; "new"
+0067    TDUP    13  12
+0068    TGETS   14   0   4  ; "props"
+0069    TGETS   14  14  11  ; "title"
+0070    TSETS   14  13  13  ; "text"
+0071    TSETS    7  13  14  ; "lang"
+0072    TSETS    6  13  10  ; "width"
+0073    TGETS   14   0  15  ; "medium_font_face"
+0074    TSETS   14  13  16  ; "face"
+0075    CALL    11   0   3
+0076    TSETM   11   2      ; 2
+0077    CALL     8   2   3
+0078    UGET     9   3      ; TextBoxWidget
+0079    MOV     10   9
+0080    TGETS    9   9   7  ; "new"
+0081    TDUP    11  18
+0082    TGETS   12   0   4  ; "props"
+0083    TGETS   12  12  17  ; "authors"
+0084    TSETS   12  11  13  ; "text"
+0085    TSETS    7  11  14  ; "lang"
+0086    TGETS   12   0  19  ; "small_font_face"
+0087    TSETS   12  11  16  ; "face"
+0088    TSETS    6  11  10  ; "width"
+0089    CALL     9   2   3
+0090    GGET    10  20      ; "table"
+0091    TGETS   10  10  21  ; "insert"
+0092    MOV     11   8
+0093    UGET    12   4      ; CenterContainer
+0094    MOV     13  12
+0095    TGETS   12  12   7  ; "new"
+0096    TDUP    14  26
+0097    UGET    15   5      ; Geom
+0098    MOV     16  15
+0099    TGETS   15  15   7  ; "new"
+0100    TDUP    17  22
+0101    TSETS    6  17  23  ; "w"
+0102    MOV     19   9
+0103    TGETS   18   9  24  ; "getSize"
+0104    CALL    18   2   2
+0105    TGETS   18  18  25  ; "h"
+0106    TSETS   18  17  25  ; "h"
+0107    CALL    15   2   3
+0108    TSETS   15  14  27  ; "dimen"
+0109    TSETB    9  14   1
+0110    CALL    12   0   3
+0111    CALLM   10   1   1
+0112    TGETS   10   0  28  ; "view"
+0113    TGETS   10  10  29  ; "state"
+0114    TGETS   10  10  30  ; "page"
+0115    TGETS   11   0  31  ; "total_pages"
+0116    DIVVV   10  10  11
+0117    UGET    11   6      ; ProgressWidget
+0118    MOV     12  11
+0119    TGETS   11  11   7  ; "new"
+0120    TDUP    13  32
+0121    MULVN   14   6   3  ; 0.7
+0122    TSETS   14  13  10  ; "width"
+0123    UGET    14   0      ; Screen
+0124    MOV     15  14
+0125    TGETS   14  14   3  ; "scaleBySize"
+0126    KSHORT  16  10
+0127    CALL    14   2   3
+0128    TSETS   14  13  33  ; "height"
+0129    TSETS   10  13  34  ; "percentage"
+0130    CALL    11   2   3
+0131    GGET    12  20      ; "table"
+0132    TGETS   12  12  21  ; "insert"
+0133    MOV     13   8
+0134    UGET    14   4      ; CenterContainer
+0135    MOV     15  14
+0136    TGETS   14  14   7  ; "new"
+0137    TDUP    16  36
+0138    UGET    17   5      ; Geom
+0139    MOV     18  17
+0140    TGETS   17  17   7  ; "new"
+0141    TDUP    19  35
+0142    TSETS    6  19  23  ; "w"
+0143    MOV     21  11
+0144    TGETS   20  11  24  ; "getSize"
+0145    CALL    20   2   2
+0146    TGETS   20  20  25  ; "h"
+0147    TSETS   20  19  25  ; "h"
+0148    CALL    17   2   3
+0149    TSETS   17  16  27  ; "dimen"
+0150    TSETB   11  16   1
+0151    CALL    14   0   3
+0152    CALLM   12   1   1
+0153    UGET    12   7      ; TextWidget
+0154    MOV     13  12
+0155    TGETS   12  12   7  ; "new"
+0156    TDUP    14  41
+0157    UGET    15   8      ; T
+0158    UGET    16   9      ; _
+0159    KSTR    17  37      ; "%1% Completed"
+0160    CALL    16   2   2
+0161    GGET    17  38      ; "string"
+0162    TGETS   17  17  39  ; "format"
+0163    KSTR    18  40      ; "%1.f"
+0164    MULVN   19  10   4  ; 100
+0165    CALL    17   0   3
+0166    CALLM   15   2   1
+0167    TSETS   15  14  13  ; "text"
+0168    TGETS   15   0  19  ; "small_font_face"
+0169    TSETS   15  14  16  ; "face"
+0170    CALL    12   2   3
+0171    GGET    13  20      ; "table"
+0172    TGETS   13  13  21  ; "insert"
+0173    MOV     14   8
+0174    UGET    15   4      ; CenterContainer
+0175    MOV     16  15
+0176    TGETS   15  15   7  ; "new"
+0177    TDUP    17  43
+0178    UGET    18   5      ; Geom
+0179    MOV     19  18
+0180    TGETS   18  18   7  ; "new"
+0181    TDUP    20  42
+0182    TSETS    6  20  23  ; "w"
+0183    MOV     22  12
+0184    TGETS   21  12  24  ; "getSize"
+0185    CALL    21   2   2
+0186    TGETS   21  21  25  ; "h"
+0187    TSETS   21  20  25  ; "h"
+0188    CALL    18   2   3
+0189    TSETS   18  17  27  ; "dimen"
+0190    TSETB   12  17   1
+0191    CALL    15   0   3
+0192    CALLM   13   1   1
+0193    GGET    13  20      ; "table"
+0194    TGETS   13  13  21  ; "insert"
+0195    MOV     14   8
+0196    UGET    15   2      ; VerticalSpan
+0197    MOV     16  15
+0198    TGETS   15  15   7  ; "new"
+0199    TDUP    17  44
+0200    UGET    18   0      ; Screen
+0201    MOV     19  18
+0202    TGETS   18  18   3  ; "scaleBySize"
+0203    KSHORT  20  30
+0204    CALL    18   2   3
+0205    TSETS   18  17  10  ; "width"
+0206    CALL    15   0   3
+0207    CALLM   13   1   1
+0208    UGET    13   0      ; Screen
+0209    MOV     14  13
+0210    TGETS   13  13   3  ; "scaleBySize"
+0211    KSHORT  15  60
+0212    CALL    13   2   3
+0213    GGET    14  20      ; "table"
+0214    TGETS   14  14  21  ; "insert"
+0215    MOV     15   8
+0216    MOV     17   0
+0217    TGETS   16   0  45  ; "generateRateGroup"
+0218    MOV     18   1
+0219    MOV     19  13
+0220    TGETS   20   0  46  ; "summary"
+0221    TGETS   20  20  47  ; "rating"
+0222    CALL    16   0   5
+0223    CALLM   14   1   1
+0224    UGET    14  10      ; HorizontalGroup
+0225    MOV     15  14
+0226    TGETS   14  14   7  ; "new"
+0227    TDUP    16  48
+0228    UGET    17  11      ; HorizontalSpan
+0229    MOV     18  17
+0230    TGETS   17  17   7  ; "new"
+0231    TDUP    19  49
+0232    TSETS    2  19  10  ; "width"
+0233    CALL    17   0   3
+0234    TSETM   17   5      ; 1
+0235    CALL    14   2   3
+0236    TGETS   15   0  50  ; "thumbnail"
+0237    ISF         15
+0238    JMP     16 => 0300
+0239    TGETS   15   0  50  ; "thumbnail"
+0240    MOV     16  15
+0241    TGETS   15  15   0  ; "getWidth"
+0242    CALL    15   2   2
+0243    TGETS   16   0  50  ; "thumbnail"
+0244    MOV     17  16
+0245    TGETS   16  16  51  ; "getHeight"
+0246    CALL    16   2   2
+0247    ISLT     3  15
+0248    JMP     17 => 0251
+0249    ISGE     4  16
+0250    JMP     17 => 0285
+0251 => GGET    17  52      ; "math"
+0252    TGETS   17  17  53  ; "min"
+0253    DIVVV   18   3  15
+0254    DIVVV   19   4  16
+0255    CALL    17   2   3
+0256    GGET    18  52      ; "math"
+0257    TGETS   18  18  53  ; "min"
+0258    GGET    19  52      ; "math"
+0259    TGETS   19  19  54  ; "floor"
+0260    MULVV   20  15  17
+0261    CALL    19   2   2
+0262    ADDVN   19  19   6  ; 1
+0263    MOV     20   3
+0264    CALL    18   2   3
+0265    MOV     15  18
+0266    GGET    18  52      ; "math"
+0267    TGETS   18  18  53  ; "min"
+0268    GGET    19  52      ; "math"
+0269    TGETS   19  19  54  ; "floor"
+0270    MULVV   20  16  17
+0271    CALL    19   2   2
+0272    ADDVN   19  19   6  ; 1
+0273    MOV     20   4
+0274    CALL    18   2   3
+0275    MOV     16  18
+0276    UGET    18  12      ; RenderImage
+0277    MOV     19  18
+0278    TGETS   18  18  55  ; "scaleBlitBuffer"
+0279    TGETS   20   0  50  ; "thumbnail"
+0280    MOV     21  15
+0281    MOV     22  16
+0282    KPRI    23   2
+0283    CALL    18   2   6
+0284    TSETS   18   0  50  ; "thumbnail"
+0285 => GGET    17  20      ; "table"
+0286    TGETS   17  17  21  ; "insert"
+0287    MOV     18  14
+0288    UGET    19  13      ; ImageWidget
+0289    MOV     20  19
+0290    TGETS   19  19   7  ; "new"
+0291    TDUP    21  56
+0292    TGETS   22   0  50  ; "thumbnail"
+0293    TSETS   22  21  57  ; "image"
+0294    TSETS   15  21  10  ; "width"
+0295    TSETS   16  21  33  ; "height"
+0296    CALL    19   0   3
+0297    CALLM   17   1   1
+0298    KPRI    17   0
+0299    TSETS   17   0  50  ; "thumbnail"
+0300 => GGET    15  20      ; "table"
+0301    TGETS   15  15  21  ; "insert"
+0302    MOV     16  14
+0303    UGET    17   4      ; CenterContainer
+0304    MOV     18  17
+0305    TGETS   17  17   7  ; "new"
+0306    TDUP    19  59
+0307    UGET    20   5      ; Geom
+0308    MOV     21  20
+0309    TGETS   20  20   7  ; "new"
+0310    TDUP    22  58
+0311    TSETS    6  22  23  ; "w"
+0312    TSETS    5  22  25  ; "h"
+0313    CALL    20   2   3
+0314    TSETS   20  19  27  ; "dimen"
+0315    TSETB    8  19   1
+0316    CALL    17   0   3
+0317    CALLM   15   1   1
+0318    UGET    15   4      ; CenterContainer
+0319    MOV     16  15
+0320    TGETS   15  15   7  ; "new"
+0321    TDUP    17  61
+0322    UGET    18   5      ; Geom
+0323    MOV     19  18
+0324    TGETS   18  18   7  ; "new"
+0325    TDUP    20  60
+0326    TSETS    1  20  23  ; "w"
+0327    TSETS    4  20  25  ; "h"
+0328    CALL    18   2   3
+0329    TSETS   18  17  27  ; "dimen"
+0330    TSETB   14  17   1
+0331    CALLT   15   3
+
+-- BYTECODE -- bookstatuswidget.lua:400-466
+0001    UGET     2   0      ; Screen
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "scaleBySize"
+0004    KSHORT   4  60
+0005    CALL     2   2   3
+0006    UGET     3   1      ; CenterContainer
+0007    MOV      4   3
+0008    TGETS    3   3   1  ; "new"
+0009    TDUP     5   5
+0010    UGET     6   2      ; Geom
+0011    MOV      7   6
+0012    TGETS    6   6   1  ; "new"
+0013    TDUP     8   2
+0014    TSETS    1   8   3  ; "w"
+0015    TSETS    2   8   4  ; "h"
+0016    CALL     6   2   3
+0017    TSETS    6   5   6  ; "dimen"
+0018    CALL     3   2   3
+0019    UGET     4   3      ; VerticalGroup
+0020    MOV      5   4
+0021    TGETS    4   4   1  ; "new"
+0022    TDUP     6   7
+0023    CALL     4   2   3
+0024    DIVVN    5   1   0  ; 3
+0025    DIVVN    6   2   1  ; 2
+0026    UGET     7   4      ; HorizontalGroup
+0027    MOV      8   7
+0028    TGETS    7   7   1  ; "new"
+0029    TDUP     9   8
+0030    UGET    10   1      ; CenterContainer
+0031    MOV     11  10
+0032    TGETS   10  10   1  ; "new"
+0033    TDUP    12  10
+0034    UGET    13   2      ; Geom
+0035    MOV     14  13
+0036    TGETS   13  13   1  ; "new"
+0037    TDUP    15   9
+0038    TSETS    5  15   3  ; "w"
+0039    TSETS    6  15   4  ; "h"
+0040    CALL    13   2   3
+0041    TSETS   13  12   6  ; "dimen"
+0042    UGET    13   5      ; TextWidget
+0043    MOV     14  13
+0044    TGETS   13  13   1  ; "new"
+0045    TDUP    15  12
+0046    UGET    16   6      ; _
+0047    KSTR    17  11      ; "Days"
+0048    CALL    16   2   2
+0049    TSETS   16  15  13  ; "text"
+0050    TGETS   16   0  14  ; "small_font_face"
+0051    TSETS   16  15  15  ; "face"
+0052    CALL    13   0   3
+0053    TSETM   13   2      ; 1
+0054    CALL    10   2   3
+0055    TSETB   10   9   1
+0056    UGET    10   1      ; CenterContainer
+0057    MOV     11  10
+0058    TGETS   10  10   1  ; "new"
+0059    TDUP    12  17
+0060    UGET    13   2      ; Geom
+0061    MOV     14  13
+0062    TGETS   13  13   1  ; "new"
+0063    TDUP    15  16
+0064    TSETS    5  15   3  ; "w"
+0065    TSETS    6  15   4  ; "h"
+0066    CALL    13   2   3
+0067    TSETS   13  12   6  ; "dimen"
+0068    UGET    13   5      ; TextWidget
+0069    MOV     14  13
+0070    TGETS   13  13   1  ; "new"
+0071    TDUP    15  19
+0072    UGET    16   6      ; _
+0073    KSTR    17  18      ; "Time"
+0074    CALL    16   2   2
+0075    TSETS   16  15  13  ; "text"
+0076    TGETS   16   0  14  ; "small_font_face"
+0077    TSETS   16  15  15  ; "face"
+0078    CALL    13   0   3
+0079    TSETM   13   2      ; 1
+0080    CALL    10   2   3
+0081    TSETB   10   9   2
+0082    UGET    10   1      ; CenterContainer
+0083    MOV     11  10
+0084    TGETS   10  10   1  ; "new"
+0085    TDUP    12  21
+0086    UGET    13   2      ; Geom
+0087    MOV     14  13
+0088    TGETS   13  13   1  ; "new"
+0089    TDUP    15  20
+0090    TSETS    5  15   3  ; "w"
+0091    TSETS    6  15   4  ; "h"
+0092    CALL    13   2   3
+0093    TSETS   13  12   6  ; "dimen"
+0094    UGET    13   5      ; TextWidget
+0095    MOV     14  13
+0096    TGETS   13  13   1  ; "new"
+0097    TDUP    15  23
+0098    UGET    16   6      ; _
+0099    KSTR    17  22      ; "Read pages"
+0100    CALL    16   2   2
+0101    TSETS   16  15  13  ; "text"
+0102    TGETS   16   0  14  ; "small_font_face"
+0103    TSETS   16  15  15  ; "face"
+0104    CALL    13   0   3
+0105    TSETM   13   2      ; 1
+0106    CALL    10   0   3
+0107    TSETM   10   3      ; 3
+0108    CALL     7   2   3
+0109    UGET     8   4      ; HorizontalGroup
+0110    MOV      9   8
+0111    TGETS    8   8   1  ; "new"
+0112    TDUP    10  24
+0113    UGET    11   1      ; CenterContainer
+0114    MOV     12  11
+0115    TGETS   11  11   1  ; "new"
+0116    TDUP    13  26
+0117    UGET    14   2      ; Geom
+0118    MOV     15  14
+0119    TGETS   14  14   1  ; "new"
+0120    TDUP    16  25
+0121    TSETS    5  16   3  ; "w"
+0122    TSETS    6  16   4  ; "h"
+0123    CALL    14   2   3
+0124    TSETS   14  13   6  ; "dimen"
+0125    UGET    14   5      ; TextWidget
+0126    MOV     15  14
+0127    TGETS   14  14   1  ; "new"
+0128    TDUP    16  28
+0129    MOV     18   0
+0130    TGETS   17   0  27  ; "getStatDays"
+0131    CALL    17   2   2
+0132    TSETS   17  16  13  ; "text"
+0133    TGETS   17   0  29  ; "medium_font_face"
+0134    TSETS   17  16  15  ; "face"
+0135    CALL    14   0   3
+0136    TSETM   14   2      ; 1
+0137    CALL    11   2   3
+0138    TSETB   11  10   1
+0139    UGET    11   1      ; CenterContainer
+0140    MOV     12  11
+0141    TGETS   11  11   1  ; "new"
+0142    TDUP    13  31
+0143    UGET    14   2      ; Geom
+0144    MOV     15  14
+0145    TGETS   14  14   1  ; "new"
+0146    TDUP    16  30
+0147    TSETS    5  16   3  ; "w"
+0148    TSETS    6  16   4  ; "h"
+0149    CALL    14   2   3
+0150    TSETS   14  13   6  ; "dimen"
+0151    UGET    14   5      ; TextWidget
+0152    MOV     15  14
+0153    TGETS   14  14   1  ; "new"
+0154    TDUP    16  33
+0155    MOV     18   0
+0156    TGETS   17   0  32  ; "getStatHours"
+0157    CALL    17   2   2
+0158    TSETS   17  16  13  ; "text"
+0159    TGETS   17   0  29  ; "medium_font_face"
+0160    TSETS   17  16  15  ; "face"
+0161    CALL    14   0   3
+0162    TSETM   14   2      ; 1
+0163    CALL    11   2   3
+0164    TSETB   11  10   2
+0165    UGET    11   1      ; CenterContainer
+0166    MOV     12  11
+0167    TGETS   11  11   1  ; "new"
+0168    TDUP    13  35
+0169    UGET    14   2      ; Geom
+0170    MOV     15  14
+0171    TGETS   14  14   1  ; "new"
+0172    TDUP    16  34
+0173    TSETS    5  16   3  ; "w"
+0174    TSETS    6  16   4  ; "h"
+0175    CALL    14   2   3
+0176    TSETS   14  13   6  ; "dimen"
+0177    UGET    14   5      ; TextWidget
+0178    MOV     15  14
+0179    TGETS   14  14   1  ; "new"
+0180    TDUP    16  37
+0181    MOV     18   0
+0182    TGETS   17   0  36  ; "getStatReadPages"
+0183    CALL    17   2   2
+0184    TSETS   17  16  13  ; "text"
+0185    TGETS   17   0  29  ; "medium_font_face"
+0186    TSETS   17  16  15  ; "face"
+0187    CALL    14   0   3
+0188    TSETM   14   2      ; 1
+0189    CALL    11   0   3
+0190    TSETM   11   3      ; 3
+0191    CALL     8   2   3
+0192    GGET     9  38      ; "table"
+0193    TGETS    9   9  39  ; "insert"
+0194    MOV     10   4
+0195    MOV     11   7
+0196    CALL     9   1   3
+0197    GGET     9  38      ; "table"
+0198    TGETS    9   9  39  ; "insert"
+0199    MOV     10   4
+0200    MOV     11   8
+0201    CALL     9   1   3
+0202    GGET     9  38      ; "table"
+0203    TGETS    9   9  39  ; "insert"
+0204    MOV     10   3
+0205    MOV     11   4
+0206    CALL     9   1   3
+0207    RET1     3   2
+
+-- BYTECODE -- bookstatuswidget.lua:468-498
+0001    KPRI     2   0
+0002    UGET     3   0      ; Screen
+0003    MOV      4   3
+0004    TGETS    3   3   0  ; "getScreenMode"
+0005    CALL     3   2   2
+0006    ISNES    3   1      ; "landscape"
+0007    JMP      3 => 0015
+0008    UGET     3   0      ; Screen
+0009    MOV      4   3
+0010    TGETS    3   3   2  ; "scaleBySize"
+0011    KSHORT   5  80
+0012    CALL     3   2   3
+0013    MOV      2   3
+0014    JMP      3 => 0021
+0015 => UGET     3   0      ; Screen
+0016    MOV      4   3
+0017    TGETS    3   3   2  ; "scaleBySize"
+0018    KSHORT   5 160
+0019    CALL     3   2   3
+0020    MOV      2   3
+0021 => UGET     3   1      ; Size
+0022    TGETS    3   3   3  ; "padding"
+0023    TGETS    3   3   4  ; "default"
+0024    UGET     4   2      ; InputText
+0025    MOV      5   4
+0026    TGETS    4   4   6  ; "new"
+0027    TDUP     6   9
+0028    TGETS    7   0   7  ; "summary"
+0029    TGETS    7   7   8  ; "note"
+0030    TSETS    7   6  10  ; "text"
+0031    TGETS    7   0  11  ; "medium_font_face"
+0032    TSETS    7   6  12  ; "face"
+0033    TGETS    7   0   3  ; "padding"
+0034    MULVN    7   7   0  ; 3
+0035    SUBVV    7   1   7
+0036    TSETS    7   6  13  ; "width"
+0037    MULVN    7   2   1  ; 0.75
+0038    TSETS    7   6  14  ; "height"
+0039    UGET     7   1      ; Size
+0040    TGETS    7   7  15  ; "border"
+0041    TGETS    7   7   4  ; "default"
+0042    TSETS    7   6  16  ; "bordersize"
+0043    TSETS    3   6   3  ; "padding"
+0044    TSETS    0   6  17  ; "parent"
+0045    TGETS    7   0  18  ; "readonly"
+0046    TSETS    7   6  18  ; "readonly"
+0047    UGET     7   3      ; _
+0048    KSTR     8  19      ; "A few words about the book"
+0049    CALL     7   2   2
+0050    TSETS    7   6  20  ; "hint"
+0051    CALL     4   2   3
+0052    TSETS    4   0   5  ; "input_note"
+0053    UGET     4   4      ; VerticalGroup
+0054    MOV      5   4
+0055    TGETS    4   4   6  ; "new"
+0056    TNEW     6   3
+0057    UGET     7   5      ; VerticalSpan
+0058    MOV      8   7
+0059    TGETS    7   7   6  ; "new"
+0060    TDUP     9  23
+0061    UGET    10   1      ; Size
+0062    TGETS   10  10  21  ; "span"
+0063    TGETS   10  10  22  ; "vertical_large"
+0064    TSETS   10   9  13  ; "width"
+0065    CALL     7   2   3
+0066    TSETB    7   6   1
+0067    UGET     7   6      ; CenterContainer
+0068    MOV      8   7
+0069    TGETS    7   7   6  ; "new"
+0070    TDUP     9  27
+0071    UGET    10   7      ; Geom
+0072    MOV     11  10
+0073    TGETS   10  10   6  ; "new"
+0074    TDUP    12  24
+0075    TSETS    1  12  25  ; "w"
+0076    TSETS    2  12  26  ; "h"
+0077    CALL    10   2   3
+0078    TSETS   10   9  28  ; "dimen"
+0079    TGETS   10   0   5  ; "input_note"
+0080    TSETB   10   9   1
+0081    CALL     7   0   3
+0082    TSETM    7   2      ; 2
+0083    CALLT    4   3
+
+-- BYTECODE -- bookstatuswidget.lua:500-504
+0001    TGETS    1   0   0  ; "summary"
+0002    TGETS    2   0   2  ; "input_note"
+0003    MOV      3   2
+0004    TGETS    2   2   3  ; "getText"
+0005    CALL     2   2   2
+0006    TSETS    2   1   1  ; "note"
+0007    MOV      2   0
+0008    TGETS    1   0   4  ; "saveSummary"
+0009    CALL     1   1   2
+0010    KPRI     1   2
+0011    RET1     1   2
+
+-- BYTECODE -- bookstatuswidget.lua:506-511
+0001    TGETS    1   0   0  ; "summary"
+0002    ISF          1
+0003    JMP      2 => 0014
+0004    TGETS    1   0   1  ; "settings"
+0005    MOV      2   1
+0006    TGETS    1   1   2  ; "saveSetting"
+0007    KSTR     3   0      ; "summary"
+0008    TGETS    4   0   0  ; "summary"
+0009    CALL     1   1   4
+0010    TGETS    1   0   1  ; "settings"
+0011    MOV      2   1
+0012    TGETS    1   1   3  ; "flush"
+0013    CALL     1   1   2
+0014 => RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:513-574
+0001    KPRI     2   0
+0002    UGET     3   0      ; Screen
+0003    MOV      4   3
+0004    TGETS    3   3   0  ; "getScreenMode"
+0005    CALL     3   2   2
+0006    ISNES    3   1      ; "landscape"
+0007    JMP      3 => 0015
+0008    UGET     3   0      ; Screen
+0009    MOV      4   3
+0010    TGETS    3   3   2  ; "scaleBySize"
+0011    KSHORT   5  60
+0012    CALL     3   2   3
+0013    MOV      2   3
+0014    JMP      3 => 0021
+0015 => UGET     3   0      ; Screen
+0016    MOV      4   3
+0017    TGETS    3   3   2  ; "scaleBySize"
+0018    KSHORT   5 105
+0019    CALL     3   2   3
+0020    MOV      2   3
+0021 => TDUP     3   3
+0022    TGETS    4   0   4  ; "summary"
+0023    TGETS    4   4   5  ; "status"
+0024    KSHORT   5   2
+0025    GGET     6   6      ; "pairs"
+0026    MOV      7   3
+0027    CALL     6   4   2
+0028    ISNEXT   9 => 0032
+0029 => ISNEV   10   4
+0030    JMP     11 => 0032
+0031    MOV      5   9
+0032 => ITERN    9   3   3
+0033    ITERL    9 => 0029
+0034    TDUP     6   7
+0035    TSETS    3   6   8  ; "args"
+0036    TNEW     7   4
+0037    UGET     8   1      ; _
+0038    KSTR     9   9      ; "Finished"
+0039    CALL     8   2   2
+0040    TSETB    8   7   1
+0041    UGET     8   1      ; _
+0042    KSTR     9  10      ; "Reading"
+0043    CALL     8   2   2
+0044    TSETB    8   7   2
+0045    UGET     8   1      ; _
+0046    KSTR     9  11      ; "On hold"
+0047    CALL     8   0   2
+0048    TSETM    8   0      ; 3
+0049    TSETS    7   6  12  ; "toggle"
+0050    TDUP     7  13
+0051    TSETS    7   6  14  ; "values"
+0052    TGETS    7   0  15  ; "readonly"
+0053    ISF          7
+0054    JMP      8 => 0057
+0055    KPRI     7   1
+0056    TSETS    7   6  16  ; "enable"
+0057 => UGET     7   2      ; ToggleSwitch
+0058    MOV      8   7
+0059    TGETS    7   7  17  ; "new"
+0060    TDUP     9  18
+0061    MULVN   10   1   1  ; 0.6
+0062    TSETS   10   9  19  ; "width"
+0063    TGETS   10   6  20  ; "default_value"
+0064    TSETS   10   9  20  ; "default_value"
+0065    TGETS   10   6  21  ; "name"
+0066    TSETS   10   9  21  ; "name"
+0067    TGETS   10   6  22  ; "name_text"
+0068    TSETS   10   9  22  ; "name_text"
+0069    TGETS   10   6  23  ; "event"
+0070    TSETS   10   9  23  ; "event"
+0071    TGETS   10   6  12  ; "toggle"
+0072    TSETS   10   9  12  ; "toggle"
+0073    TGETS   10   6   8  ; "args"
+0074    TSETS   10   9   8  ; "args"
+0075    TGETS   10   6  24  ; "alternate"
+0076    TSETS   10   9  24  ; "alternate"
+0077    TGETS   10   6  25  ; "default_arg"
+0078    TSETS   10   9  25  ; "default_arg"
+0079    TGETS   10   6  14  ; "values"
+0080    TSETS   10   9  14  ; "values"
+0081    TGETS   10   6  16  ; "enable"
+0082    TSETS   10   9  26  ; "enabled"
+0083    TSETS    0   9  27  ; "config"
+0084    TGETS   10   0  15  ; "readonly"
+0085    TSETS   10   9  15  ; "readonly"
+0086    CALL     7   2   3
+0087    MOV      9   7
+0088    TGETS    8   7  28  ; "setPosition"
+0089    MOV     10   5
+0090    CALL     8   1   3
+0091    UGET     8   3      ; VerticalGroup
+0092    MOV      9   8
+0093    TGETS    8   8  17  ; "new"
+0094    TNEW    10   3
+0095    UGET    11   4      ; VerticalSpan
+0096    MOV     12  11
+0097    TGETS   11  11  17  ; "new"
+0098    TDUP    13  29
+0099    UGET    14   0      ; Screen
+0100    MOV     15  14
+0101    TGETS   14  14   2  ; "scaleBySize"
+0102    KSHORT  16  10
+0103    CALL    14   2   3
+0104    TSETS   14  13  19  ; "width"
+0105    CALL    11   2   3
+0106    TSETB   11  10   1
+0107    UGET    11   5      ; CenterContainer
+0108    MOV     12  11
+0109    TGETS   11  11  17  ; "new"
+0110    TDUP    13  30
+0111    UGET    14   6      ; Geom
+0112    MOV     15  14
+0113    TGETS   14  14  17  ; "new"
+0114    TDUP    16  31
+0115    TSETS    1  16  32  ; "w"
+0116    TSETS    2  16  33  ; "h"
+0117    CALL    14   2   3
+0118    TSETS   14  13  34  ; "dimen"
+0119    TSETB    7  13   1
+0120    CALL    11   0   3
+0121    TSETM   11   2      ; 2
+0122    CALLT    8   3
+
+-- BYTECODE -- bookstatuswidget.lua:577-582
+0001    UGET     0   0      ; values
+0002    ISF          0
+0003    JMP      1 => 0010
+0004    UGET     0   1      ; self
+0005    MOV      1   0
+0006    TGETS    0   0   0  ; "onChangeBookStatus"
+0007    UGET     2   2      ; args
+0008    UGET     3   3      ; position
+0009    CALL     0   1   4
+0010 => UGET     0   4      ; UIManager
+0011    MOV      1   0
+0012    TGETS    0   0   1  ; "setDirty"
+0013    KPRI     2   0
+0014    KSTR     3   2      ; "ui"
+0015    KPRI     4   0
+0016    KPRI     5   2
+0017    CALL     0   1   6
+0018    RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:576-583
+0001    UGET     7   0      ; UIManager
+0002    MOV      8   7
+0003    TGETS    7   7   0  ; "tickAfterNext"
+0004    FNEW     9   1      ; bookstatuswidget.lua:577
+0005    CALL     7   1   3
+0006    UCLO     0 => 0007
+0007 => RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:586-588
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "onClose"
+0003    CALLT    1   2
+
+-- BYTECODE -- bookstatuswidget.lua:590-604
+0001    TGETS    3   2   0  ; "direction"
+0002    ISNES    3   1      ; "south"
+0003    JMP      3 => 0008
+0004    MOV      4   0
+0005    TGETS    3   0   2  ; "onClose"
+0006    CALL     3   1   2
+0007    JMP      3 => 0028
+0008 => TGETS    3   2   0  ; "direction"
+0009    ISEQS    3   3      ; "east"
+0010    JMP      3 => 0028
+0011    TGETS    3   2   0  ; "direction"
+0012    ISEQS    3   4      ; "west"
+0013    JMP      3 => 0028
+0014    TGETS    3   2   0  ; "direction"
+0015    ISNES    3   5      ; "north"
+0016    JMP      3 => 0018
+0017    JMP      3 => 0028
+0018 => UGET     3   0      ; UIManager
+0019    MOV      4   3
+0020    TGETS    3   3   6  ; "setDirty"
+0021    KPRI     5   0
+0022    KSTR     6   7      ; "full"
+0023    KPRI     7   0
+0024    KPRI     8   2
+0025    CALL     3   1   6
+0026    KPRI     3   1
+0027    RET1     3   2
+0028 => RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:606-611
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "saveSummary"
+0003    CALL     1   1   2
+0004    UGET     1   0      ; UIManager
+0005    MOV      2   1
+0006    TGETS    1   1   1  ; "close"
+0007    MOV      3   0
+0008    KSTR     4   2      ; "flashpartial"
+0009    CALL     1   1   4
+0010    KPRI     1   2
+0011    RET1     1   2
+
+-- BYTECODE -- bookstatuswidget.lua:626-628
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "closeInputDialog"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:633-637
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "input_note"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "setText"
+0005    UGET     2   0      ; self
+0006    TGETS    2   2   2  ; "note_dialog"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "getInputText"
+0009    CALL     2   0   2
+0010    CALLM    0   1   1
+0011    UGET     0   0      ; self
+0012    MOV      1   0
+0013    TGETS    0   0   4  ; "closeInputDialog"
+0014    CALL     0   1   2
+0015    UGET     0   0      ; self
+0016    MOV      1   0
+0017    TGETS    0   0   5  ; "onUpdateNote"
+0018    CALL     0   1   2
+0019    RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:613-644
+0001    UGET     2   0      ; InputDialog
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "new"
+0004    TDUP     4   3
+0005    UGET     5   1      ; _
+0006    KSTR     6   2      ; "Review"
+0007    CALL     5   2   2
+0008    TSETS    5   4   4  ; "title"
+0009    TGETS    5   0   5  ; "input_note"
+0010    MOV      6   5
+0011    TGETS    5   5   6  ; "getText"
+0012    CALL     5   2   2
+0013    TSETS    5   4   7  ; "input"
+0014    UGET     5   2      ; Screen
+0015    MOV      6   5
+0016    TGETS    5   5   8  ; "scaleBySize"
+0017    KSHORT   7 150
+0018    CALL     5   2   3
+0019    TSETS    5   4   9  ; "text_height"
+0020    TNEW     5   3
+0021    TNEW     6   3
+0022    TDUP     7  11
+0023    UGET     8   1      ; _
+0024    KSTR     9  10      ; "Cancel"
+0025    CALL     8   2   2
+0026    TSETS    8   7  12  ; "text"
+0027    FNEW     8  13      ; bookstatuswidget.lua:626
+0028    TSETS    8   7  14  ; "callback"
+0029    TSETB    7   6   1
+0030    TDUP     7  16
+0031    UGET     8   1      ; _
+0032    KSTR     9  15      ; "Save review"
+0033    CALL     8   2   2
+0034    TSETS    8   7  12  ; "text"
+0035    FNEW     8  17      ; bookstatuswidget.lua:633
+0036    TSETS    8   7  14  ; "callback"
+0037    TSETB    7   6   2
+0038    TSETB    6   5   1
+0039    TSETS    5   4  18  ; "buttons"
+0040    CALL     2   2   3
+0041    TSETS    2   0   0  ; "note_dialog"
+0042    UGET     2   3      ; UIManager
+0043    MOV      3   2
+0044    TGETS    2   2  19  ; "show"
+0045    TGETS    4   0   0  ; "note_dialog"
+0046    CALL     2   1   3
+0047    TGETS    2   0   0  ; "note_dialog"
+0048    MOV      3   2
+0049    TGETS    2   2  20  ; "onShowKeyboard"
+0050    CALL     2   1   2
+0051    UCLO     0 => 0052
+0052 => RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:646-648
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    TGETS    3   0   1  ; "note_dialog"
+0005    CALL     1   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- bookstatuswidget.lua:0-651
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi/blitbuffer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/button"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/container/centercontainer"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/closebutton"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "device"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/font"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/container/framecontainer"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/geometry"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/gesturerange"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/widget/horizontalgroup"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/widget/horizontalspan"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/imagewidget"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/container/inputcontainer"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/widget/inputdialog"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/widget/inputtext"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/widget/container/leftcontainer"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "ui/widget/linewidget"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/widget/overlapgroup"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "ui/widget/progresswidget"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "ui/renderimage"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "ui/size"
+0063    CALL    20   2   2
+0064    GGET    21   0      ; "require"
+0065    KSTR    22  22      ; "ui/widget/textboxwidget"
+0066    CALL    21   2   2
+0067    GGET    22   0      ; "require"
+0068    KSTR    23  23      ; "ui/widget/textwidget"
+0069    CALL    22   2   2
+0070    GGET    23   0      ; "require"
+0071    KSTR    24  24      ; "ui/timeval"
+0072    CALL    23   2   2
+0073    GGET    24   0      ; "require"
+0074    KSTR    25  25      ; "ui/widget/toggleswitch"
+0075    CALL    24   2   2
+0076    GGET    25   0      ; "require"
+0077    KSTR    26  26      ; "ui/uimanager"
+0078    CALL    25   2   2
+0079    GGET    26   0      ; "require"
+0080    KSTR    27  27      ; "ui/widget/verticalgroup"
+0081    CALL    26   2   2
+0082    GGET    27   0      ; "require"
+0083    KSTR    28  28      ; "ui/widget/verticalspan"
+0084    CALL    27   2   2
+0085    GGET    28   0      ; "require"
+0086    KSTR    29  29      ; "util"
+0087    CALL    28   2   2
+0088    GGET    29   0      ; "require"
+0089    KSTR    30  30      ; "gettext"
+0090    CALL    29   2   2
+0091    TGETS   30   4  31  ; "screen"
+0092    GGET    31   0      ; "require"
+0093    KSTR    32  32      ; "ffi/util"
+0094    CALL    31   2   2
+0095    TGETS   31  31  33  ; "template"
+0096    TNEW    32   0
+0097    MOV     34  12
+0098    TGETS   33  12  34  ; "new"
+0099    TDUP    35  37
+0100    TGETS   36  20  35  ; "padding"
+0101    TGETS   36  36  36  ; "fullscreen"
+0102    TSETS   36  35  35  ; "padding"
+0103    TNEW    36   0
+0104    TSETS   36  35  38  ; "star"
+0105    TDUP    36  39
+0106    TSETS   36  35  40  ; "summary"
+0107    CALL    33   2   3
+0108    FNEW    34  42      ; bookstatuswidget.lua:58
+0109    TSETS   34  33  41  ; "init"
+0110    FNEW    34  44      ; bookstatuswidget.lua:134
+0111    TSETS   34  33  43  ; "getStats"
+0112    FNEW    34  46      ; bookstatuswidget.lua:138
+0113    TSETS   34  33  45  ; "getStatDays"
+0114    FNEW    34  48      ; bookstatuswidget.lua:146
+0115    TSETS   34  33  47  ; "getStatHours"
+0116    FNEW    34  50      ; bookstatuswidget.lua:154
+0117    TSETS   34  33  49  ; "getStatReadPages"
+0118    FNEW    34  52      ; bookstatuswidget.lua:162
+0119    TSETS   34  33  51  ; "getStatusContent"
+0120    FNEW    34  54      ; bookstatuswidget.lua:187
+0121    TSETS   34  33  53  ; "genHeader"
+0122    FNEW    34  56      ; bookstatuswidget.lua:233
+0123    TSETS   34  33  55  ; "onChangeBookStatus"
+0124    FNEW    34  58      ; bookstatuswidget.lua:241
+0125    TSETS   34  33  57  ; "generateRateGroup"
+0126    FNEW    34  60      ; bookstatuswidget.lua:250
+0127    TSETS   34  33  59  ; "setStar"
+0128    FNEW    34  62      ; bookstatuswidget.lua:281
+0129    TSETS   34  33  61  ; "genBookInfoGroup"
+0130    FNEW    34  64      ; bookstatuswidget.lua:400
+0131    TSETS   34  33  63  ; "genStatisticsGroup"
+0132    FNEW    34  66      ; bookstatuswidget.lua:468
+0133    TSETS   34  33  65  ; "genSummaryGroup"
+0134    FNEW    34  68      ; bookstatuswidget.lua:500
+0135    TSETS   34  33  67  ; "onUpdateNote"
+0136    FNEW    34  70      ; bookstatuswidget.lua:506
+0137    TSETS   34  33  69  ; "saveSummary"
+0138    FNEW    34  72      ; bookstatuswidget.lua:513
+0139    TSETS   34  33  71  ; "generateSwitchGroup"
+0140    FNEW    34  74      ; bookstatuswidget.lua:576
+0141    TSETS   34  33  73  ; "onConfigChoose"
+0142    FNEW    34  76      ; bookstatuswidget.lua:586
+0143    TSETS   34  33  75  ; "onAnyKeyPressed"
+0144    FNEW    34  78      ; bookstatuswidget.lua:590
+0145    TSETS   34  33  77  ; "onSwipe"
+0146    FNEW    34  80      ; bookstatuswidget.lua:606
+0147    TSETS   34  33  79  ; "onClose"
+0148    FNEW    34  82      ; bookstatuswidget.lua:613
+0149    TSETS   34  33  81  ; "onSwitchFocus"
+0150    FNEW    34  84      ; bookstatuswidget.lua:646
+0151    TSETS   34  33  83  ; "closeInputDialog"
+0152    UCLO     0 => 0153
+0153 => RET1    33   2
+

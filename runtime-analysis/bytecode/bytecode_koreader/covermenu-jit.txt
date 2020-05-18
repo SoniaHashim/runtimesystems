@@ -1,0 +1,1748 @@
+-- BYTECODE -- covermenu.lua:104-109
+0001    UGET     0   0      ; old_dimen
+0002    ISF          0
+0003    JMP      1 => 0012
+0004    UGET     0   0      ; old_dimen
+0005    MOV      1   0
+0006    TGETS    0   0   0  ; "combine"
+0007    UGET     2   1      ; self
+0008    TGETS    2   2   1  ; "dimen"
+0009    CALL     0   2   3
+0010    IST          0
+0011    JMP      1 => 0014
+0012 => UGET     0   1      ; self
+0013    TGETS    0   0   1  ; "dimen"
+0014 => KSTR     1   2      ; "ui"
+0015    MOV      2   0
+0016    UGET     3   1      ; self
+0017    TGETS    3   3   3  ; "show_parent"
+0018    TGETS    3   3   4  ; "dithered"
+0019    RET      1   4
+
+-- BYTECODE -- covermenu.lua:127-139
+0001    UGET     0   0      ; BookInfoManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "extractInBackground"
+0004    UGET     2   1      ; files_to_index
+0005    CALL     0   2   3
+0006    IST          0
+0007    JMP      1 => 0034
+0008    UGET     1   2      ; self
+0009    TGETS    1   1   1  ; "items_update_action"
+0010    ISF          1
+0011    JMP      2 => 0021
+0012    UGET     1   3      ; UIManager
+0013    MOV      2   1
+0014    TGETS    1   1   2  ; "unschedule"
+0015    UGET     3   2      ; self
+0016    TGETS    3   3   1  ; "items_update_action"
+0017    CALL     1   1   3
+0018    UGET     1   2      ; self
+0019    KPRI     2   0
+0020    TSETS    2   1   1  ; "items_update_action"
+0021 => UGET     1   3      ; UIManager
+0022    MOV      2   1
+0023    TGETS    1   1   3  ; "show"
+0024    UGET     3   4      ; InfoMessage
+0025    MOV      4   3
+0026    TGETS    3   3   4  ; "new"
+0027    TDUP     5   6
+0028    UGET     6   5      ; _
+0029    KSTR     7   5      ; "Start-up of background extraction job fa"~
+0030    CALL     6   2   2
+0031    TSETS    6   5   7  ; "text"
+0032    CALL     3   0   3
+0033    CALLM    1   1   1
+0034 => RET0     0   1
+
+-- BYTECODE -- covermenu.lua:152-160
+0001    UGET     0   0      ; item
+0002    TGETS    0   0   0  ; "refresh_dimen"
+0003    ISF          0
+0004    JMP      1 => 0013
+0005    KSTR     0   1      ; "ui"
+0006    UGET     1   0      ; item
+0007    TGETS    1   1   0  ; "refresh_dimen"
+0008    UGET     2   1      ; self
+0009    TGETS    2   2   2  ; "show_parent"
+0010    TGETS    2   2   3  ; "dithered"
+0011    RET      0   4
+0012    JMP      0 => 0021
+0013 => KSTR     0   1      ; "ui"
+0014    UGET     1   0      ; item
+0015    TGETB    1   1   1
+0016    TGETS    1   1   4  ; "dimen"
+0017    UGET     2   1      ; self
+0018    TGETS    2   2   2  ; "show_parent"
+0019    TGETS    2   2   3  ; "dithered"
+0020    RET      0   4
+0021 => RET0     0   1
+
+-- BYTECODE -- covermenu.lua:142-178
+0001    UGET     0   0      ; logger
+0002    TGETS    0   0   0  ; "dbg"
+0003    KSTR     1   1      ; "Scheduled items update:"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   2  ; "items_to_update"
+0006    LEN      2   2
+0007    KSTR     3   3      ; "waiting"
+0008    CALL     0   1   4
+0009    UGET     0   2      ; BookInfoManager
+0010    MOV      1   0
+0011    TGETS    0   0   4  ; "isExtractingInBackground"
+0012    CALL     0   2   2
+0013    KSHORT   1   1
+0014 => UGET     2   1      ; self
+0015    TGETS    2   2   2  ; "items_to_update"
+0016    LEN      2   2
+0017    ISGT     1   2
+0018    JMP      2 => 0060
+0019    LOOP     2 => 0060
+0020    UGET     2   1      ; self
+0021    TGETS    2   2   2  ; "items_to_update"
+0022    TGETV    2   2   1
+0023    MOV      4   2
+0024    TGETS    3   2   5  ; "update"
+0025    CALL     3   1   2
+0026    TGETS    3   2   6  ; "bookinfo_found"
+0027    ISF          3
+0028    JMP      4 => 0053
+0029    UGET     3   0      ; logger
+0030    TGETS    3   3   0  ; "dbg"
+0031    KSTR     4   7      ; "  found"
+0032    TGETS    5   2   8  ; "text"
+0033    CALL     3   1   3
+0034    UGET     3   1      ; self
+0035    TGETS    3   3   9  ; "show_parent"
+0036    TGETS    4   2  11  ; "_has_cover_image"
+0037    TSETS    4   3  10  ; "dithered"
+0038    FNEW     3  12      ; covermenu.lua:152
+0039    UGET     4   3      ; UIManager
+0040    MOV      5   4
+0041    TGETS    4   4  13  ; "setDirty"
+0042    UGET     6   1      ; self
+0043    TGETS    6   6   9  ; "show_parent"
+0044    MOV      7   3
+0045    CALL     4   1   4
+0046    GGET     4  14      ; "table"
+0047    TGETS    4   4  15  ; "remove"
+0048    UGET     5   1      ; self
+0049    TGETS    5   5   2  ; "items_to_update"
+0050    MOV      6   1
+0051    CALL     4   1   3
+0052    JMP      3 => 0059
+0053 => UGET     3   0      ; logger
+0054    TGETS    3   3   0  ; "dbg"
+0055    KSTR     4  16      ; "  not yet found"
+0056    TGETS    5   2   8  ; "text"
+0057    CALL     3   1   3
+0058    ADDVN    1   1   0  ; 1
+0059 => UCLO     2 => 0014
+0060 => UGET     2   1      ; self
+0061    TGETS    2   2   2  ; "items_to_update"
+0062    LEN      2   2
+0063    KSHORT   3   0
+0064    ISGE     3   2
+0065    JMP      2 => 0089
+0066    ISF          0
+0067    JMP      2 => 0084
+0068    UGET     2   0      ; logger
+0069    TGETS    2   2   0  ; "dbg"
+0070    KSTR     3  17      ; "re-scheduling items update:"
+0071    UGET     4   1      ; self
+0072    TGETS    4   4   2  ; "items_to_update"
+0073    LEN      4   4
+0074    KSTR     5  18      ; "still waiting"
+0075    CALL     2   1   4
+0076    UGET     2   3      ; UIManager
+0077    MOV      3   2
+0078    TGETS    2   2  19  ; "scheduleIn"
+0079    KSHORT   4   1
+0080    UGET     5   1      ; self
+0081    TGETS    5   5  20  ; "items_update_action"
+0082    CALL     2   1   4
+0083    JMP      2 => 0093
+0084 => UGET     2   0      ; logger
+0085    TGETS    2   2   0  ; "dbg"
+0086    KSTR     3  21      ; "Not all items found, but background extr"~
+0087    CALL     2   1   2
+0088    JMP      2 => 0093
+0089 => UGET     2   0      ; logger
+0090    TGETS    2   2   0  ; "dbg"
+0091    KSTR     3  22      ; "items update completed"
+0092    CALL     2   1   2
+0093 => RET0     0   1
+
+-- BYTECODE -- covermenu.lua:226-229
+0001    UGET     0   0      ; FileManagerBookInfo
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; file
+0005    UGET     3   2      ; bookinfo
+0006    CALL     0   1   4
+0007    UGET     0   3      ; UIManager
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "close"
+0010    UGET     2   4      ; self
+0011    TGETS    2   2   2  ; "file_dialog"
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:233-240
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "cover_info_cache"
+0003    ISF          0
+0004    JMP      1 => 0016
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   0  ; "cover_info_cache"
+0007    UGET     1   1      ; file
+0008    TGETV    0   0   1
+0009    ISF          0
+0010    JMP      1 => 0016
+0011    UGET     0   0      ; self
+0012    TGETS    0   0   0  ; "cover_info_cache"
+0013    UGET     1   1      ; file
+0014    KPRI     2   0
+0015    TSETV    2   0   1
+0016 => UGET     0   2      ; orig_purge_callback
+0017    CALL     0   1   1
+0018    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:245-258
+0001    KPRI     0   0
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "cover_info_cache"
+0004    ISF          1
+0005    JMP      2 => 0019
+0006    UGET     1   0      ; self
+0007    TGETS    1   1   0  ; "cover_info_cache"
+0008    UGET     2   1      ; file
+0009    TGETV    1   1   2
+0010    ISF          1
+0011    JMP      2 => 0019
+0012    GGET     1   1      ; "unpack"
+0013    UGET     2   0      ; self
+0014    TGETS    2   2   0  ; "cover_info_cache"
+0015    UGET     3   1      ; file
+0016    TGETV    2   2   3
+0017    CALL     1   4   2
+0018    MOV      0   3
+0019 => ISNES    0   2      ; "complete"
+0020    JMP      1 => 0026
+0021    UGET     1   2      ; _
+0022    KSTR     2   3      ; "Mark as reading"
+0023    CALL     1   2   2
+0024    IST          1
+0025    JMP      2 => 0029
+0026 => UGET     1   2      ; _
+0027    KSTR     2   4      ; "Mark as read"
+0028    CALL     1   2   2
+0029 => RET1     1   2
+
+-- BYTECODE -- covermenu.lua:260-294
+0001    KPRI     0   0
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "cover_info_cache"
+0004    ISF          1
+0005    JMP      2 => 0032
+0006    UGET     1   0      ; self
+0007    TGETS    1   1   0  ; "cover_info_cache"
+0008    UGET     2   1      ; file
+0009    TGETV    1   1   2
+0010    ISF          1
+0011    JMP      2 => 0032
+0012    GGET     1   1      ; "unpack"
+0013    UGET     2   0      ; self
+0014    TGETS    2   2   0  ; "cover_info_cache"
+0015    UGET     3   1      ; file
+0016    TGETV    2   2   3
+0017    CALL     1   4   2
+0018    ISNES    3   2      ; "complete"
+0019    JMP      4 => 0022
+0020    KSTR     0   3      ; "reading"
+0021    JMP      4 => 0023
+0022 => KSTR     0   2      ; "complete"
+0023 => UGET     4   0      ; self
+0024    TGETS    4   4   0  ; "cover_info_cache"
+0025    UGET     5   1      ; file
+0026    TNEW     6   4
+0027    TSETB    1   6   1
+0028    TSETB    2   6   2
+0029    TSETB    0   6   3
+0030    TSETV    6   4   5
+0031    JMP      1 => 0033
+0032 => KSTR     0   2      ; "complete"
+0033 => UGET     1   2      ; DocSettings
+0034    MOV      2   1
+0035    TGETS    1   1   4  ; "open"
+0036    UGET     3   1      ; file
+0037    CALL     1   2   3
+0038    TGETS    2   1   5  ; "data"
+0039    TGETS    2   2   6  ; "summary"
+0040    ISF          2
+0041    JMP      3 => 0051
+0042    TGETS    2   1   5  ; "data"
+0043    TGETS    2   2   6  ; "summary"
+0044    TGETS    2   2   7  ; "status"
+0045    ISF          2
+0046    JMP      3 => 0051
+0047    TGETS    2   1   5  ; "data"
+0048    TGETS    2   2   6  ; "summary"
+0049    TSETS    0   2   7  ; "status"
+0050    JMP      2 => 0073
+0051 => TGETS    2   1   5  ; "data"
+0052    TGETS    2   2   6  ; "summary"
+0053    ISF          2
+0054    JMP      3 => 0066
+0055    TDUP     2   8
+0056    TSETS    0   2   7  ; "status"
+0057    GGET     3   9      ; "require"
+0058    KSTR     4  10      ; "util"
+0059    CALL     3   2   2
+0060    TGETS    3   3  11  ; "tableMerge"
+0061    TGETS    4   1   5  ; "data"
+0062    TGETS    4   4   6  ; "summary"
+0063    MOV      5   2
+0064    CALL     3   1   3
+0065    JMP      2 => 0073
+0066 => TDUP     2  12
+0067    TSETS    0   2   7  ; "status"
+0068    MOV      4   1
+0069    TGETS    3   1  13  ; "saveSetting"
+0070    KSTR     5   6      ; "summary"
+0071    MOV      6   2
+0072    CALL     3   1   4
+0073 => MOV      3   1
+0074    TGETS    2   1  14  ; "flush"
+0075    CALL     2   1   2
+0076    UGET     2   3      ; UIManager
+0077    MOV      3   2
+0078    TGETS    2   2  15  ; "close"
+0079    UGET     4   0      ; self
+0080    TGETS    4   4  16  ; "file_dialog"
+0081    CALL     2   1   3
+0082    UGET     2   0      ; self
+0083    MOV      3   2
+0084    TGETS    2   2  17  ; "updateItems"
+0085    CALL     2   1   2
+0086    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:303-325
+0001    UGET     0   0      ; DocumentRegistry
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "openDocument"
+0004    UGET     2   1      ; file
+0005    CALL     0   2   3
+0006    ISF          0
+0007    JMP      1 => 0056
+0008    TGETS    1   0   1  ; "loadDocument"
+0009    ISF          1
+0010    JMP      2 => 0015
+0011    MOV      2   0
+0012    TGETS    1   0   1  ; "loadDocument"
+0013    KPRI     3   1
+0014    CALL     1   1   3
+0015 => MOV      2   0
+0016    TGETS    1   0   2  ; "getCoverPageImage"
+0017    CALL     1   2   2
+0018    ISF          1
+0019    JMP      2 => 0032
+0020    UGET     2   2      ; ImageViewer
+0021    MOV      3   2
+0022    TGETS    2   2   3  ; "new"
+0023    TDUP     4   4
+0024    TSETS    1   4   5  ; "image"
+0025    CALL     2   2   3
+0026    UGET     3   3      ; UIManager
+0027    MOV      4   3
+0028    TGETS    3   3   6  ; "show"
+0029    MOV      5   2
+0030    CALL     3   1   3
+0031    JMP      2 => 0045
+0032 => UGET     2   3      ; UIManager
+0033    MOV      3   2
+0034    TGETS    2   2   6  ; "show"
+0035    UGET     4   4      ; InfoMessage
+0036    MOV      5   4
+0037    TGETS    4   4   3  ; "new"
+0038    TDUP     6   8
+0039    UGET     7   5      ; _
+0040    KSTR     8   7      ; "No cover image available."
+0041    CALL     7   2   2
+0042    TSETS    7   6   9  ; "text"
+0043    CALL     4   0   3
+0044    CALLM    2   1   1
+0045 => UGET     2   3      ; UIManager
+0046    MOV      3   2
+0047    TGETS    2   2  10  ; "close"
+0048    UGET     4   6      ; self
+0049    TGETS    4   4  11  ; "file_dialog"
+0050    CALL     2   1   3
+0051    UGET     2   0      ; DocumentRegistry
+0052    MOV      3   2
+0053    TGETS    2   2  12  ; "closeDocument"
+0054    UGET     4   1      ; file
+0055    CALL     2   1   3
+0056 => RET0     0   1
+
+-- BYTECODE -- covermenu.lua:330-338
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "util"
+0003    CALL     0   2   2
+0004    TGETS    0   0   2  ; "htmlToPlainTextIfHtml"
+0005    UGET     1   0      ; bookinfo
+0006    TGETS    1   1   3  ; "description"
+0007    CALL     0   2   2
+0008    UGET     1   1      ; TextViewer
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "new"
+0011    TDUP     3   6
+0012    UGET     4   0      ; bookinfo
+0013    TGETS    4   4   5  ; "title"
+0014    TSETS    4   3   5  ; "title"
+0015    TSETS    0   3   7  ; "text"
+0016    CALL     1   2   3
+0017    UGET     2   2      ; UIManager
+0018    MOV      3   2
+0019    TGETS    2   2   8  ; "close"
+0020    UGET     4   3      ; self
+0021    TGETS    4   4   9  ; "file_dialog"
+0022    CALL     2   1   3
+0023    UGET     2   2      ; UIManager
+0024    MOV      3   2
+0025    TGETS    2   2  10  ; "show"
+0026    MOV      4   1
+0027    CALL     2   1   3
+0028    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:345-351
+0001    UGET     0   0      ; BookInfoManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setBookInfoProperties"
+0004    UGET     2   1      ; file
+0005    TDUP     3   3
+0006    UGET     4   2      ; bookinfo
+0007    TGETS    4   4   1  ; "ignore_cover"
+0008    IST          4
+0009    JMP      4 => 0012
+0010    KSTR     4   2      ; "Y"
+0011    JMP      5 => 0013
+0012 => KPRI     4   1
+0013 => TSETS    4   3   1  ; "ignore_cover"
+0014    CALL     0   1   4
+0015    UGET     0   3      ; UIManager
+0016    MOV      1   0
+0017    TGETS    0   0   4  ; "close"
+0018    UGET     2   4      ; self
+0019    TGETS    2   2   5  ; "file_dialog"
+0020    CALL     0   1   3
+0021    UGET     0   4      ; self
+0022    MOV      1   0
+0023    TGETS    0   0   6  ; "updateItems"
+0024    CALL     0   1   2
+0025    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:356-362
+0001    UGET     0   0      ; BookInfoManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setBookInfoProperties"
+0004    UGET     2   1      ; file
+0005    TDUP     3   3
+0006    UGET     4   2      ; bookinfo
+0007    TGETS    4   4   1  ; "ignore_meta"
+0008    IST          4
+0009    JMP      4 => 0012
+0010    KSTR     4   2      ; "Y"
+0011    JMP      5 => 0013
+0012 => KPRI     4   1
+0013 => TSETS    4   3   1  ; "ignore_meta"
+0014    CALL     0   1   4
+0015    UGET     0   3      ; UIManager
+0016    MOV      1   0
+0017    TGETS    0   0   4  ; "close"
+0018    UGET     2   4      ; self
+0019    TGETS    2   2   5  ; "file_dialog"
+0020    CALL     0   1   3
+0021    UGET     0   4      ; self
+0022    MOV      1   0
+0023    TGETS    0   0   6  ; "updateItems"
+0024    CALL     0   1   2
+0025    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:369-377
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "cover_info_cache"
+0003    ISF          0
+0004    JMP      1 => 0016
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   0  ; "cover_info_cache"
+0007    UGET     1   1      ; file
+0008    TGETV    0   0   1
+0009    ISF          0
+0010    JMP      1 => 0016
+0011    UGET     0   0      ; self
+0012    TGETS    0   0   0  ; "cover_info_cache"
+0013    UGET     1   1      ; file
+0014    KPRI     2   0
+0015    TSETV    2   0   1
+0016 => UGET     0   2      ; BookInfoManager
+0017    MOV      1   0
+0018    TGETS    0   0   1  ; "deleteBookInfo"
+0019    UGET     2   1      ; file
+0020    CALL     0   1   3
+0021    UGET     0   3      ; UIManager
+0022    MOV      1   0
+0023    TGETS    0   0   2  ; "close"
+0024    UGET     2   0      ; self
+0025    TGETS    2   2   3  ; "file_dialog"
+0026    CALL     0   1   3
+0027    UGET     0   0      ; self
+0028    MOV      1   0
+0029    TGETS    0   0   4  ; "updateItems"
+0030    CALL     0   1   2
+0031    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:204-390
+0001    TGETS    2   0   0  ; "onFileHold_orig"
+0002    MOV      3   0
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    UGET     2   0      ; BookInfoManager
+0006    MOV      3   2
+0007    TGETS    2   2   1  ; "getBookInfo"
+0008    MOV      4   1
+0009    CALL     2   2   3
+0010    ISF          2
+0011    JMP      3 => 0015
+0012    TGETS    3   2   2  ; "_is_directory"
+0013    ISF          3
+0014    JMP      4 => 0017
+0015 => KPRI     3   2
+0016    UCLO     0 => 0185
+0017 => TGETS    3   0   3  ; "file_dialog"
+0018    TGETS    3   3   4  ; "title"
+0019    TGETS    4   0   3  ; "file_dialog"
+0020    TGETS    4   4   5  ; "title_align"
+0021    TGETS    5   0   3  ; "file_dialog"
+0022    TGETS    5   5   6  ; "buttons"
+0023    UGET     6   1      ; UIManager
+0024    MOV      7   6
+0025    TGETS    6   6   7  ; "close"
+0026    TGETS    8   0   3  ; "file_dialog"
+0027    CALL     6   1   3
+0028    UGET     6   1      ; UIManager
+0029    MOV      7   6
+0030    TGETS    6   6   8  ; "clearRenderStack"
+0031    CALL     6   1   2
+0032    TGETB    6   5   4
+0033    TGETB    6   6   2
+0034    FNEW     7  10      ; covermenu.lua:226
+0035    TSETS    7   6   9  ; "callback"
+0036    TGETB    6   5   1
+0037    TGETB    6   6   3
+0038    TGETS    6   6   9  ; "callback"
+0039    TGETB    7   5   1
+0040    TGETB    7   7   3
+0041    FNEW     8  11      ; covermenu.lua:233
+0042    TSETS    8   7   9  ; "callback"
+0043    GGET     7  12      ; "table"
+0044    TGETS    7   7  13  ; "insert"
+0045    TGETB    8   5   5
+0046    KSHORT   9   1
+0047    TDUP    10  15
+0048    FNEW    11  14      ; covermenu.lua:245
+0049    TSETS   11  10  16  ; "text_func"
+0050    FNEW    11  17      ; covermenu.lua:260
+0051    TSETS   11  10   9  ; "callback"
+0052    CALL     7   1   4
+0053    GGET     7  12      ; "table"
+0054    TGETS    7   7  13  ; "insert"
+0055    MOV      8   5
+0056    TNEW     9   3
+0057    TDUP    10  19
+0058    UGET    11   3      ; _
+0059    KSTR    12  18      ; "View full size cover"
+0060    CALL    11   2   2
+0061    TSETS   11  10  20  ; "text"
+0062    TGETS   11   2  21  ; "has_cover"
+0063    ISF         11
+0064    JMP     12 => 0067
+0065    KPRI    11   2
+0066    JMP     12 => 0068
+0067 => KPRI    11   1
+0068 => TSETS   11  10  22  ; "enabled"
+0069    FNEW    11  23      ; covermenu.lua:303
+0070    TSETS   11  10   9  ; "callback"
+0071    TSETB   10   9   1
+0072    TDUP    10  27
+0073    TGETS   11   2  24  ; "description"
+0074    ISF         11
+0075    JMP     12 => 0081
+0076    UGET    11   3      ; _
+0077    KSTR    12  25      ; "View book description"
+0078    CALL    11   2   2
+0079    IST         11
+0080    JMP     12 => 0084
+0081 => UGET    11   3      ; _
+0082    KSTR    12  26      ; "No book description"
+0083    CALL    11   2   2
+0084 => TSETS   11  10  20  ; "text"
+0085    TGETS   11   2  24  ; "description"
+0086    ISF         11
+0087    JMP     12 => 0090
+0088    KPRI    11   2
+0089    JMP     12 => 0091
+0090 => KPRI    11   1
+0091 => TSETS   11  10  22  ; "enabled"
+0092    FNEW    11  28      ; covermenu.lua:330
+0093    TSETS   11  10   9  ; "callback"
+0094    TSETB   10   9   2
+0095    CALL     7   1   3
+0096    GGET     7  12      ; "table"
+0097    TGETS    7   7  13  ; "insert"
+0098    MOV      8   5
+0099    TNEW     9   3
+0100    TDUP    10  32
+0101    TGETS   11   2  29  ; "ignore_cover"
+0102    ISF         11
+0103    JMP     12 => 0109
+0104    UGET    11   3      ; _
+0105    KSTR    12  30      ; "Unignore cover"
+0106    CALL    11   2   2
+0107    IST         11
+0108    JMP     12 => 0112
+0109 => UGET    11   3      ; _
+0110    KSTR    12  31      ; "Ignore cover"
+0111    CALL    11   2   2
+0112 => TSETS   11  10  20  ; "text"
+0113    TGETS   11   2  21  ; "has_cover"
+0114    ISF         11
+0115    JMP     12 => 0118
+0116    KPRI    11   2
+0117    JMP     12 => 0119
+0118 => KPRI    11   1
+0119 => TSETS   11  10  22  ; "enabled"
+0120    FNEW    11  33      ; covermenu.lua:345
+0121    TSETS   11  10   9  ; "callback"
+0122    TSETB   10   9   1
+0123    TDUP    10  37
+0124    TGETS   11   2  34  ; "ignore_meta"
+0125    ISF         11
+0126    JMP     12 => 0132
+0127    UGET    11   3      ; _
+0128    KSTR    12  35      ; "Unignore metadata"
+0129    CALL    11   2   2
+0130    IST         11
+0131    JMP     12 => 0135
+0132 => UGET    11   3      ; _
+0133    KSTR    12  36      ; "Ignore metadata"
+0134    CALL    11   2   2
+0135 => TSETS   11  10  20  ; "text"
+0136    TGETS   11   2  38  ; "has_meta"
+0137    ISF         11
+0138    JMP     12 => 0141
+0139    KPRI    11   2
+0140    JMP     12 => 0142
+0141 => KPRI    11   1
+0142 => TSETS   11  10  22  ; "enabled"
+0143    FNEW    11  39      ; covermenu.lua:356
+0144    TSETS   11  10   9  ; "callback"
+0145    TSETB   10   9   2
+0146    CALL     7   1   3
+0147    GGET     7  12      ; "table"
+0148    TGETS    7   7  13  ; "insert"
+0149    MOV      8   5
+0150    TNEW     9   3
+0151    TDUP    10  41
+0152    UGET    11   3      ; _
+0153    KSTR    12  40      ; "Refresh cached book information"
+0154    CALL    11   2   2
+0155    TSETS   11  10  20  ; "text"
+0156    ISF          2
+0157    JMP     11 => 0160
+0158    KPRI    11   2
+0159    JMP     12 => 0161
+0160 => KPRI    11   1
+0161 => TSETS   11  10  22  ; "enabled"
+0162    FNEW    11  42      ; covermenu.lua:369
+0163    TSETS   11  10   9  ; "callback"
+0164    TSETB   10   9   1
+0165    CALL     7   1   3
+0166    GGET     7  43      ; "require"
+0167    KSTR     8  44      ; "ui/widget/buttondialogtitle"
+0168    CALL     7   2   2
+0169    MOV      9   7
+0170    TGETS    8   7  45  ; "new"
+0171    TDUP    10  46
+0172    TSETS    3  10   4  ; "title"
+0173    TSETS    4  10   5  ; "title_align"
+0174    TSETS    5  10   6  ; "buttons"
+0175    CALL     8   2   3
+0176    TSETS    8   0   3  ; "file_dialog"
+0177    UGET     8   1      ; UIManager
+0178    MOV      9   8
+0179    TGETS    8   8  47  ; "show"
+0180    TGETS   10   0   3  ; "file_dialog"
+0181    CALL     8   1   3
+0182    KPRI     8   2
+0183    UCLO     0 => 0184
+0184 => RET1     8   2
+0185 => RET1     3   2
+
+-- BYTECODE -- covermenu.lua:197-394
+0001    UGET     0   0      ; self
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "onFileHold"
+0004    TSETS    1   0   0  ; "onFileHold_orig"
+0005    UGET     0   0      ; self
+0006    FNEW     1   2      ; covermenu.lua:204
+0007    TSETS    1   0   1  ; "onFileHold"
+0008    UGET     0   0      ; self
+0009    UGET     1   0      ; self
+0010    TGETS    1   1   1  ; "onFileHold"
+0011    TSETS    1   0   3  ; "onFileHold_ours"
+0012    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:41-396
+0001    TGETS    2   0   0  ; "dimen"
+0002    ISF          2
+0003    JMP      3 => 0008
+0004    TGETS    2   0   0  ; "dimen"
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "copy"
+0007    CALL     2   2   2
+0008 => TNEW     3   0
+0009    TSETS    3   0   2  ; "layout"
+0010    TGETS    3   0   3  ; "item_group"
+0011    MOV      4   3
+0012    TGETS    3   3   4  ; "free"
+0013    CALL     3   1   2
+0014    TGETS    3   0   3  ; "item_group"
+0015    MOV      4   3
+0016    TGETS    3   3   5  ; "clear"
+0017    CALL     3   1   2
+0018    MOV      4   0
+0019    TGETS    3   0   6  ; "_recalculateDimen"
+0020    CALL     3   1   2
+0021    TGETS    3   0   7  ; "page_info"
+0022    MOV      4   3
+0023    TGETS    3   3   8  ; "resetLayout"
+0024    CALL     3   1   2
+0025    TGETS    3   0   9  ; "return_button"
+0026    MOV      4   3
+0027    TGETS    3   3   8  ; "resetLayout"
+0028    CALL     3   1   2
+0029    TGETS    3   0  10  ; "vertical_span"
+0030    MOV      4   3
+0031    TGETS    3   3   5  ; "clear"
+0032    CALL     3   1   2
+0033    TGETS    3   0  11  ; "content_group"
+0034    MOV      4   3
+0035    TGETS    3   3   8  ; "resetLayout"
+0036    CALL     3   1   2
+0037    IST          1
+0038    JMP      3 => 0040
+0039    KSHORT   1   1
+0040 => TNEW     3   0
+0041    TSETS    3   0  12  ; "items_to_update"
+0042    TGETS    3   0  13  ; "items_update_action"
+0043    ISF          3
+0044    JMP      4 => 0052
+0045    UGET     3   0      ; UIManager
+0046    MOV      4   3
+0047    TGETS    3   3  14  ; "unschedule"
+0048    TGETS    5   0  13  ; "items_update_action"
+0049    CALL     3   1   3
+0050    KPRI     3   0
+0051    TSETS    3   0  13  ; "items_update_action"
+0052 => GGET     3  15      ; "collectgarbage"
+0053    CALL     3   1   1
+0054    GGET     3  15      ; "collectgarbage"
+0055    CALL     3   1   1
+0056    KPRI     3   1
+0057    TSETS    3   0  16  ; "_has_cover_images"
+0058    MOV      4   0
+0059    TGETS    3   0  17  ; "_updateItemsBuildUI"
+0060    CALL     3   1   2
+0061    TGETS    3   0  18  ; "path"
+0062    ISF          3
+0063    JMP      4 => 0068
+0064    TGETS    3   0  18  ; "path"
+0065    USETV    1   3      ; current_path
+0066    TGETS    3   0  19  ; "cover_specs"
+0067    USETV    2   3      ; current_cover_specs
+0068 => MOV      4   0
+0069    TGETS    3   0  20  ; "updatePageInfo"
+0070    MOV      5   1
+0071    CALL     3   1   3
+0072    TGETS    3   0  21  ; "show_path"
+0073    ISF          3
+0074    JMP      4 => 0083
+0075    TGETS    3   0  22  ; "path_text"
+0076    MOV      4   3
+0077    TGETS    3   3  23  ; "setText"
+0078    UGET     5   3      ; BD
+0079    TGETS    5   5  24  ; "directory"
+0080    TGETS    6   0  18  ; "path"
+0081    CALL     5   0   2
+0082    CALLM    3   1   1
+0083 => TGETS    3   0  25  ; "show_parent"
+0084    TGETS    4   0  16  ; "_has_cover_images"
+0085    TSETS    4   3  26  ; "dithered"
+0086    UGET     3   0      ; UIManager
+0087    MOV      4   3
+0088    TGETS    3   3  27  ; "setDirty"
+0089    TGETS    5   0  25  ; "show_parent"
+0090    FNEW     6  28      ; covermenu.lua:104
+0091    CALL     3   1   4
+0092    TGETS    3   0  29  ; "path_items"
+0093    ISF          3
+0094    JMP      4 => 0106
+0095    TGETS    3   0  29  ; "path_items"
+0096    TGETS    4   0  18  ; "path"
+0097    TGETS    5   0  30  ; "page"
+0098    SUBVN    5   5   0  ; 1
+0099    TGETS    6   0  31  ; "perpage"
+0100    MULVV    5   5   6
+0101    ISTC     6   1
+0102    JMP      6 => 0104
+0103    KSHORT   6   1
+0104 => ADDVV    5   5   6
+0105    TSETV    5   3   4
+0106 => TGETS    3   0  12  ; "items_to_update"
+0107    LEN      3   3
+0108    KSHORT   4   0
+0109    ISGE     4   3
+0110    JMP      3 => 0145
+0111    TNEW     3   0
+0112    KSHORT   4   1
+0113    TGETS    5   0  12  ; "items_to_update"
+0114    LEN      5   5
+0115    KSHORT   6   1
+0116    FORI     4 => 0131
+0117 => GGET     8  32      ; "table"
+0118    TGETS    8   8  33  ; "insert"
+0119    MOV      9   3
+0120    TDUP    10  35
+0121    TGETS   11   0  12  ; "items_to_update"
+0122    TGETV   11  11   7
+0123    TGETS   11  11  34  ; "filepath"
+0124    TSETS   11  10  34  ; "filepath"
+0125    TGETS   11   0  12  ; "items_to_update"
+0126    TGETV   11  11   7
+0127    TGETS   11  11  19  ; "cover_specs"
+0128    TSETS   11  10  19  ; "cover_specs"
+0129    CALL     8   1   3
+0130    FORL     4 => 0117
+0131 => UGET     4   0      ; UIManager
+0132    MOV      5   4
+0133    TGETS    4   4  36  ; "nextTick"
+0134    FNEW     6  37      ; covermenu.lua:127
+0135    CALL     4   1   3
+0136    FNEW     4  38      ; covermenu.lua:142
+0137    TSETS    4   0  13  ; "items_update_action"
+0138    UGET     4   0      ; UIManager
+0139    MOV      5   4
+0140    TGETS    4   4  39  ; "scheduleIn"
+0141    KSHORT   6   1
+0142    TGETS    7   0  13  ; "items_update_action"
+0143    CALL     4   1   4
+0144    UCLO     3 => 0145
+0145 => TGETS    3   0  40  ; "onFileHold_ours"
+0146    ISF          3
+0147    JMP      3 => 0152
+0148    TGETS    3   0  41  ; "onFileHold"
+0149    TGETS    4   0  40  ; "onFileHold_ours"
+0150    ISEQV    3   4
+0151    JMP      3 => 0157
+0152 => UGET     3   0      ; UIManager
+0153    MOV      4   3
+0154    TGETS    3   3  36  ; "nextTick"
+0155    FNEW     5  42      ; covermenu.lua:197
+0156    CALL     3   1   3
+0157 => UCLO     0 => 0158
+0158 => RET0     0   1
+
+-- BYTECODE -- covermenu.lua:422-425
+0001    UGET     0   0      ; FileManagerBookInfo
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; file
+0005    UGET     3   2      ; bookinfo
+0006    CALL     0   1   4
+0007    UGET     0   3      ; UIManager
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "close"
+0010    UGET     2   4      ; self
+0011    TGETS    2   2   2  ; "histfile_dialog"
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:436-458
+0001    UGET     0   0      ; DocumentRegistry
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "openDocument"
+0004    UGET     2   1      ; file
+0005    CALL     0   2   3
+0006    ISF          0
+0007    JMP      1 => 0056
+0008    TGETS    1   0   1  ; "loadDocument"
+0009    ISF          1
+0010    JMP      2 => 0015
+0011    MOV      2   0
+0012    TGETS    1   0   1  ; "loadDocument"
+0013    KPRI     3   1
+0014    CALL     1   1   3
+0015 => MOV      2   0
+0016    TGETS    1   0   2  ; "getCoverPageImage"
+0017    CALL     1   2   2
+0018    ISF          1
+0019    JMP      2 => 0032
+0020    UGET     2   2      ; ImageViewer
+0021    MOV      3   2
+0022    TGETS    2   2   3  ; "new"
+0023    TDUP     4   4
+0024    TSETS    1   4   5  ; "image"
+0025    CALL     2   2   3
+0026    UGET     3   3      ; UIManager
+0027    MOV      4   3
+0028    TGETS    3   3   6  ; "show"
+0029    MOV      5   2
+0030    CALL     3   1   3
+0031    JMP      2 => 0045
+0032 => UGET     2   3      ; UIManager
+0033    MOV      3   2
+0034    TGETS    2   2   6  ; "show"
+0035    UGET     4   4      ; InfoMessage
+0036    MOV      5   4
+0037    TGETS    4   4   3  ; "new"
+0038    TDUP     6   8
+0039    UGET     7   5      ; _
+0040    KSTR     8   7      ; "No cover image available."
+0041    CALL     7   2   2
+0042    TSETS    7   6   9  ; "text"
+0043    CALL     4   0   3
+0044    CALLM    2   1   1
+0045 => UGET     2   3      ; UIManager
+0046    MOV      3   2
+0047    TGETS    2   2  10  ; "close"
+0048    UGET     4   6      ; self
+0049    TGETS    4   4  11  ; "histfile_dialog"
+0050    CALL     2   1   3
+0051    UGET     2   0      ; DocumentRegistry
+0052    MOV      3   2
+0053    TGETS    2   2  12  ; "closeDocument"
+0054    UGET     4   1      ; file
+0055    CALL     2   1   3
+0056 => RET0     0   1
+
+-- BYTECODE -- covermenu.lua:463-471
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "util"
+0003    CALL     0   2   2
+0004    TGETS    0   0   2  ; "htmlToPlainTextIfHtml"
+0005    UGET     1   0      ; bookinfo
+0006    TGETS    1   1   3  ; "description"
+0007    CALL     0   2   2
+0008    UGET     1   1      ; TextViewer
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "new"
+0011    TDUP     3   6
+0012    UGET     4   0      ; bookinfo
+0013    TGETS    4   4   5  ; "title"
+0014    TSETS    4   3   5  ; "title"
+0015    TSETS    0   3   7  ; "text"
+0016    CALL     1   2   3
+0017    UGET     2   2      ; UIManager
+0018    MOV      3   2
+0019    TGETS    2   2   8  ; "close"
+0020    UGET     4   3      ; self
+0021    TGETS    4   4   9  ; "histfile_dialog"
+0022    CALL     2   1   3
+0023    UGET     2   2      ; UIManager
+0024    MOV      3   2
+0025    TGETS    2   2  10  ; "show"
+0026    MOV      4   1
+0027    CALL     2   1   3
+0028    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:478-484
+0001    UGET     0   0      ; BookInfoManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setBookInfoProperties"
+0004    UGET     2   1      ; file
+0005    TDUP     3   3
+0006    UGET     4   2      ; bookinfo
+0007    TGETS    4   4   1  ; "ignore_cover"
+0008    IST          4
+0009    JMP      4 => 0012
+0010    KSTR     4   2      ; "Y"
+0011    JMP      5 => 0013
+0012 => KPRI     4   1
+0013 => TSETS    4   3   1  ; "ignore_cover"
+0014    CALL     0   1   4
+0015    UGET     0   3      ; UIManager
+0016    MOV      1   0
+0017    TGETS    0   0   4  ; "close"
+0018    UGET     2   4      ; self
+0019    TGETS    2   2   5  ; "histfile_dialog"
+0020    CALL     0   1   3
+0021    UGET     0   4      ; self
+0022    MOV      1   0
+0023    TGETS    0   0   6  ; "updateItems"
+0024    CALL     0   1   2
+0025    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:489-495
+0001    UGET     0   0      ; BookInfoManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setBookInfoProperties"
+0004    UGET     2   1      ; file
+0005    TDUP     3   3
+0006    UGET     4   2      ; bookinfo
+0007    TGETS    4   4   1  ; "ignore_meta"
+0008    IST          4
+0009    JMP      4 => 0012
+0010    KSTR     4   2      ; "Y"
+0011    JMP      5 => 0013
+0012 => KPRI     4   1
+0013 => TSETS    4   3   1  ; "ignore_meta"
+0014    CALL     0   1   4
+0015    UGET     0   3      ; UIManager
+0016    MOV      1   0
+0017    TGETS    0   0   4  ; "close"
+0018    UGET     2   4      ; self
+0019    TGETS    2   2   5  ; "histfile_dialog"
+0020    CALL     0   1   3
+0021    UGET     0   4      ; self
+0022    MOV      1   0
+0023    TGETS    0   0   6  ; "updateItems"
+0024    CALL     0   1   2
+0025    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:502-506
+0001    UGET     0   0      ; BookInfoManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "deleteBookInfo"
+0004    UGET     2   1      ; file
+0005    CALL     0   1   3
+0006    UGET     0   2      ; UIManager
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "close"
+0009    UGET     2   3      ; self
+0010    TGETS    2   2   2  ; "histfile_dialog"
+0011    CALL     0   1   3
+0012    UGET     0   3      ; self
+0013    MOV      1   0
+0014    TGETS    0   0   3  ; "updateItems"
+0015    CALL     0   1   2
+0016    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:400-522
+0001    TGETS    2   0   0  ; "onMenuHold_orig"
+0002    MOV      3   0
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    TGETS    2   1   1  ; "file"
+0006    UGET     3   0      ; BookInfoManager
+0007    MOV      4   3
+0008    TGETS    3   3   2  ; "getBookInfo"
+0009    MOV      5   2
+0010    CALL     3   2   3
+0011    IST          3
+0012    JMP      4 => 0015
+0013    KPRI     4   2
+0014    UCLO     0 => 0180
+0015 => TGETS    4   0   3  ; "histfile_dialog"
+0016    TGETS    4   4   4  ; "title"
+0017    TGETS    5   0   3  ; "histfile_dialog"
+0018    TGETS    5   5   5  ; "title_align"
+0019    TGETS    6   0   3  ; "histfile_dialog"
+0020    TGETS    6   6   6  ; "buttons"
+0021    UGET     7   1      ; UIManager
+0022    MOV      8   7
+0023    TGETS    7   7   7  ; "close"
+0024    TGETS    9   0   3  ; "histfile_dialog"
+0025    CALL     7   1   3
+0026    UGET     7   1      ; UIManager
+0027    MOV      8   7
+0028    TGETS    7   7   8  ; "clearRenderStack"
+0029    CALL     7   1   2
+0030    TGETB    7   6   2
+0031    TGETB    7   7   2
+0032    FNEW     8  10      ; covermenu.lua:422
+0033    TSETS    8   7   9  ; "callback"
+0034    GGET     7  11      ; "table"
+0035    TGETS    7   7  12  ; "remove"
+0036    MOV      8   6
+0037    CALL     7   2   2
+0038    GGET     8  11      ; "table"
+0039    TGETS    8   8  13  ; "insert"
+0040    MOV      9   6
+0041    TNEW    10   3
+0042    TDUP    11  15
+0043    UGET    12   3      ; _
+0044    KSTR    13  14      ; "View full size cover"
+0045    CALL    12   2   2
+0046    TSETS   12  11  16  ; "text"
+0047    TGETS   12   3  17  ; "has_cover"
+0048    ISF         12
+0049    JMP     13 => 0052
+0050    KPRI    12   2
+0051    JMP     13 => 0053
+0052 => KPRI    12   1
+0053 => TSETS   12  11  18  ; "enabled"
+0054    FNEW    12  19      ; covermenu.lua:436
+0055    TSETS   12  11   9  ; "callback"
+0056    TSETB   11  10   1
+0057    TDUP    11  23
+0058    TGETS   12   3  20  ; "description"
+0059    ISF         12
+0060    JMP     13 => 0066
+0061    UGET    12   3      ; _
+0062    KSTR    13  21      ; "View book description"
+0063    CALL    12   2   2
+0064    IST         12
+0065    JMP     13 => 0069
+0066 => UGET    12   3      ; _
+0067    KSTR    13  22      ; "No book description"
+0068    CALL    12   2   2
+0069 => TSETS   12  11  16  ; "text"
+0070    TGETS   12   3  20  ; "description"
+0071    ISF         12
+0072    JMP     13 => 0075
+0073    KPRI    12   2
+0074    JMP     13 => 0076
+0075 => KPRI    12   1
+0076 => TSETS   12  11  18  ; "enabled"
+0077    FNEW    12  24      ; covermenu.lua:463
+0078    TSETS   12  11   9  ; "callback"
+0079    TSETB   11  10   2
+0080    CALL     8   1   3
+0081    GGET     8  11      ; "table"
+0082    TGETS    8   8  13  ; "insert"
+0083    MOV      9   6
+0084    TNEW    10   3
+0085    TDUP    11  28
+0086    TGETS   12   3  25  ; "ignore_cover"
+0087    ISF         12
+0088    JMP     13 => 0094
+0089    UGET    12   3      ; _
+0090    KSTR    13  26      ; "Unignore cover"
+0091    CALL    12   2   2
+0092    IST         12
+0093    JMP     13 => 0097
+0094 => UGET    12   3      ; _
+0095    KSTR    13  27      ; "Ignore cover"
+0096    CALL    12   2   2
+0097 => TSETS   12  11  16  ; "text"
+0098    TGETS   12   3  17  ; "has_cover"
+0099    ISF         12
+0100    JMP     13 => 0103
+0101    KPRI    12   2
+0102    JMP     13 => 0104
+0103 => KPRI    12   1
+0104 => TSETS   12  11  18  ; "enabled"
+0105    FNEW    12  29      ; covermenu.lua:478
+0106    TSETS   12  11   9  ; "callback"
+0107    TSETB   11  10   1
+0108    TDUP    11  33
+0109    TGETS   12   3  30  ; "ignore_meta"
+0110    ISF         12
+0111    JMP     13 => 0117
+0112    UGET    12   3      ; _
+0113    KSTR    13  31      ; "Unignore metadata"
+0114    CALL    12   2   2
+0115    IST         12
+0116    JMP     13 => 0120
+0117 => UGET    12   3      ; _
+0118    KSTR    13  32      ; "Ignore metadata"
+0119    CALL    12   2   2
+0120 => TSETS   12  11  16  ; "text"
+0121    TGETS   12   3  34  ; "has_meta"
+0122    ISF         12
+0123    JMP     13 => 0126
+0124    KPRI    12   2
+0125    JMP     13 => 0127
+0126 => KPRI    12   1
+0127 => TSETS   12  11  18  ; "enabled"
+0128    FNEW    12  35      ; covermenu.lua:489
+0129    TSETS   12  11   9  ; "callback"
+0130    TSETB   11  10   2
+0131    CALL     8   1   3
+0132    GGET     8  11      ; "table"
+0133    TGETS    8   8  13  ; "insert"
+0134    MOV      9   6
+0135    TNEW    10   3
+0136    TDUP    11  37
+0137    UGET    12   3      ; _
+0138    KSTR    13  36      ; "Refresh cached book information"
+0139    CALL    12   2   2
+0140    TSETS   12  11  16  ; "text"
+0141    ISF          3
+0142    JMP     12 => 0145
+0143    KPRI    12   2
+0144    JMP     13 => 0146
+0145 => KPRI    12   1
+0146 => TSETS   12  11  18  ; "enabled"
+0147    FNEW    12  38      ; covermenu.lua:502
+0148    TSETS   12  11   9  ; "callback"
+0149    TSETB   11  10   1
+0150    CALL     8   1   3
+0151    GGET     8  11      ; "table"
+0152    TGETS    8   8  13  ; "insert"
+0153    MOV      9   6
+0154    TNEW    10   0
+0155    CALL     8   1   3
+0156    GGET     8  11      ; "table"
+0157    TGETS    8   8  13  ; "insert"
+0158    MOV      9   6
+0159    MOV     10   7
+0160    CALL     8   1   3
+0161    GGET     8  39      ; "require"
+0162    KSTR     9  40      ; "ui/widget/buttondialogtitle"
+0163    CALL     8   2   2
+0164    MOV     10   8
+0165    TGETS    9   8  41  ; "new"
+0166    TDUP    11  42
+0167    TSETS    4  11   4  ; "title"
+0168    TSETS    5  11   5  ; "title_align"
+0169    TSETS    6  11   6  ; "buttons"
+0170    CALL     9   2   3
+0171    TSETS    9   0   3  ; "histfile_dialog"
+0172    UGET     9   1      ; UIManager
+0173    MOV     10   9
+0174    TGETS    9   9  43  ; "show"
+0175    TGETS   11   0   3  ; "histfile_dialog"
+0176    CALL     9   1   3
+0177    KPRI     9   2
+0178    UCLO     0 => 0179
+0179 => RET1     9   2
+0180 => RET1     4   2
+
+-- BYTECODE -- covermenu.lua:548-551
+0001    UGET     0   0      ; FileManagerBookInfo
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; file
+0005    UGET     3   2      ; bookinfo
+0006    CALL     0   1   4
+0007    UGET     0   3      ; UIManager
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "close"
+0010    UGET     2   4      ; self
+0011    TGETS    2   2   2  ; "collfile_dialog"
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:558-580
+0001    UGET     0   0      ; DocumentRegistry
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "openDocument"
+0004    UGET     2   1      ; file
+0005    CALL     0   2   3
+0006    ISF          0
+0007    JMP      1 => 0056
+0008    TGETS    1   0   1  ; "loadDocument"
+0009    ISF          1
+0010    JMP      2 => 0015
+0011    MOV      2   0
+0012    TGETS    1   0   1  ; "loadDocument"
+0013    KPRI     3   1
+0014    CALL     1   1   3
+0015 => MOV      2   0
+0016    TGETS    1   0   2  ; "getCoverPageImage"
+0017    CALL     1   2   2
+0018    ISF          1
+0019    JMP      2 => 0032
+0020    UGET     2   2      ; ImageViewer
+0021    MOV      3   2
+0022    TGETS    2   2   3  ; "new"
+0023    TDUP     4   4
+0024    TSETS    1   4   5  ; "image"
+0025    CALL     2   2   3
+0026    UGET     3   3      ; UIManager
+0027    MOV      4   3
+0028    TGETS    3   3   6  ; "show"
+0029    MOV      5   2
+0030    CALL     3   1   3
+0031    JMP      2 => 0045
+0032 => UGET     2   3      ; UIManager
+0033    MOV      3   2
+0034    TGETS    2   2   6  ; "show"
+0035    UGET     4   4      ; InfoMessage
+0036    MOV      5   4
+0037    TGETS    4   4   3  ; "new"
+0038    TDUP     6   8
+0039    UGET     7   5      ; _
+0040    KSTR     8   7      ; "No cover image available."
+0041    CALL     7   2   2
+0042    TSETS    7   6   9  ; "text"
+0043    CALL     4   0   3
+0044    CALLM    2   1   1
+0045 => UGET     2   3      ; UIManager
+0046    MOV      3   2
+0047    TGETS    2   2  10  ; "close"
+0048    UGET     4   6      ; self
+0049    TGETS    4   4  11  ; "collfile_dialog"
+0050    CALL     2   1   3
+0051    UGET     2   0      ; DocumentRegistry
+0052    MOV      3   2
+0053    TGETS    2   2  12  ; "closeDocument"
+0054    UGET     4   1      ; file
+0055    CALL     2   1   3
+0056 => RET0     0   1
+
+-- BYTECODE -- covermenu.lua:585-593
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "util"
+0003    CALL     0   2   2
+0004    TGETS    0   0   2  ; "htmlToPlainTextIfHtml"
+0005    UGET     1   0      ; bookinfo
+0006    TGETS    1   1   3  ; "description"
+0007    CALL     0   2   2
+0008    UGET     1   1      ; TextViewer
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "new"
+0011    TDUP     3   6
+0012    UGET     4   0      ; bookinfo
+0013    TGETS    4   4   5  ; "title"
+0014    TSETS    4   3   5  ; "title"
+0015    TSETS    0   3   7  ; "text"
+0016    CALL     1   2   3
+0017    UGET     2   2      ; UIManager
+0018    MOV      3   2
+0019    TGETS    2   2   8  ; "close"
+0020    UGET     4   3      ; self
+0021    TGETS    4   4   9  ; "collfile_dialog"
+0022    CALL     2   1   3
+0023    UGET     2   2      ; UIManager
+0024    MOV      3   2
+0025    TGETS    2   2  10  ; "show"
+0026    MOV      4   1
+0027    CALL     2   1   3
+0028    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:600-606
+0001    UGET     0   0      ; BookInfoManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setBookInfoProperties"
+0004    UGET     2   1      ; file
+0005    TDUP     3   3
+0006    UGET     4   2      ; bookinfo
+0007    TGETS    4   4   1  ; "ignore_cover"
+0008    IST          4
+0009    JMP      4 => 0012
+0010    KSTR     4   2      ; "Y"
+0011    JMP      5 => 0013
+0012 => KPRI     4   1
+0013 => TSETS    4   3   1  ; "ignore_cover"
+0014    CALL     0   1   4
+0015    UGET     0   3      ; UIManager
+0016    MOV      1   0
+0017    TGETS    0   0   4  ; "close"
+0018    UGET     2   4      ; self
+0019    TGETS    2   2   5  ; "collfile_dialog"
+0020    CALL     0   1   3
+0021    UGET     0   4      ; self
+0022    MOV      1   0
+0023    TGETS    0   0   6  ; "updateItems"
+0024    CALL     0   1   2
+0025    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:611-617
+0001    UGET     0   0      ; BookInfoManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setBookInfoProperties"
+0004    UGET     2   1      ; file
+0005    TDUP     3   3
+0006    UGET     4   2      ; bookinfo
+0007    TGETS    4   4   1  ; "ignore_meta"
+0008    IST          4
+0009    JMP      4 => 0012
+0010    KSTR     4   2      ; "Y"
+0011    JMP      5 => 0013
+0012 => KPRI     4   1
+0013 => TSETS    4   3   1  ; "ignore_meta"
+0014    CALL     0   1   4
+0015    UGET     0   3      ; UIManager
+0016    MOV      1   0
+0017    TGETS    0   0   4  ; "close"
+0018    UGET     2   4      ; self
+0019    TGETS    2   2   5  ; "collfile_dialog"
+0020    CALL     0   1   3
+0021    UGET     0   4      ; self
+0022    MOV      1   0
+0023    TGETS    0   0   6  ; "updateItems"
+0024    CALL     0   1   2
+0025    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:624-628
+0001    UGET     0   0      ; BookInfoManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "deleteBookInfo"
+0004    UGET     2   1      ; file
+0005    CALL     0   1   3
+0006    UGET     0   2      ; UIManager
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "close"
+0009    UGET     2   3      ; self
+0010    TGETS    2   2   2  ; "collfile_dialog"
+0011    CALL     0   1   3
+0012    UGET     0   3      ; self
+0013    MOV      1   0
+0014    TGETS    0   0   3  ; "updateItems"
+0015    CALL     0   1   2
+0016    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:526-640
+0001    TGETS    2   0   0  ; "onMenuHold_orig"
+0002    MOV      3   0
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    TGETS    2   1   1  ; "file"
+0006    UGET     3   0      ; BookInfoManager
+0007    MOV      4   3
+0008    TGETS    3   3   2  ; "getBookInfo"
+0009    MOV      5   2
+0010    CALL     3   2   3
+0011    IST          3
+0012    JMP      4 => 0015
+0013    KPRI     4   2
+0014    UCLO     0 => 0166
+0015 => TGETS    4   0   3  ; "collfile_dialog"
+0016    TGETS    4   4   4  ; "title"
+0017    TGETS    5   0   3  ; "collfile_dialog"
+0018    TGETS    5   5   5  ; "title_align"
+0019    TGETS    6   0   3  ; "collfile_dialog"
+0020    TGETS    6   6   6  ; "buttons"
+0021    UGET     7   1      ; UIManager
+0022    MOV      8   7
+0023    TGETS    7   7   7  ; "close"
+0024    TGETS    9   0   3  ; "collfile_dialog"
+0025    CALL     7   1   3
+0026    UGET     7   1      ; UIManager
+0027    MOV      8   7
+0028    TGETS    7   7   8  ; "clearRenderStack"
+0029    CALL     7   1   2
+0030    TGETB    7   6   2
+0031    TGETB    7   7   1
+0032    FNEW     8  10      ; covermenu.lua:548
+0033    TSETS    8   7   9  ; "callback"
+0034    GGET     7  11      ; "table"
+0035    TGETS    7   7  12  ; "insert"
+0036    MOV      8   6
+0037    TNEW     9   3
+0038    TDUP    10  14
+0039    UGET    11   3      ; _
+0040    KSTR    12  13      ; "View full size cover"
+0041    CALL    11   2   2
+0042    TSETS   11  10  15  ; "text"
+0043    TGETS   11   3  16  ; "has_cover"
+0044    ISF         11
+0045    JMP     12 => 0048
+0046    KPRI    11   2
+0047    JMP     12 => 0049
+0048 => KPRI    11   1
+0049 => TSETS   11  10  17  ; "enabled"
+0050    FNEW    11  18      ; covermenu.lua:558
+0051    TSETS   11  10   9  ; "callback"
+0052    TSETB   10   9   1
+0053    TDUP    10  22
+0054    TGETS   11   3  19  ; "description"
+0055    ISF         11
+0056    JMP     12 => 0062
+0057    UGET    11   3      ; _
+0058    KSTR    12  20      ; "View book description"
+0059    CALL    11   2   2
+0060    IST         11
+0061    JMP     12 => 0065
+0062 => UGET    11   3      ; _
+0063    KSTR    12  21      ; "No book description"
+0064    CALL    11   2   2
+0065 => TSETS   11  10  15  ; "text"
+0066    TGETS   11   3  19  ; "description"
+0067    ISF         11
+0068    JMP     12 => 0071
+0069    KPRI    11   2
+0070    JMP     12 => 0072
+0071 => KPRI    11   1
+0072 => TSETS   11  10  17  ; "enabled"
+0073    FNEW    11  23      ; covermenu.lua:585
+0074    TSETS   11  10   9  ; "callback"
+0075    TSETB   10   9   2
+0076    CALL     7   1   3
+0077    GGET     7  11      ; "table"
+0078    TGETS    7   7  12  ; "insert"
+0079    MOV      8   6
+0080    TNEW     9   3
+0081    TDUP    10  27
+0082    TGETS   11   3  24  ; "ignore_cover"
+0083    ISF         11
+0084    JMP     12 => 0090
+0085    UGET    11   3      ; _
+0086    KSTR    12  25      ; "Unignore cover"
+0087    CALL    11   2   2
+0088    IST         11
+0089    JMP     12 => 0093
+0090 => UGET    11   3      ; _
+0091    KSTR    12  26      ; "Ignore cover"
+0092    CALL    11   2   2
+0093 => TSETS   11  10  15  ; "text"
+0094    TGETS   11   3  16  ; "has_cover"
+0095    ISF         11
+0096    JMP     12 => 0099
+0097    KPRI    11   2
+0098    JMP     12 => 0100
+0099 => KPRI    11   1
+0100 => TSETS   11  10  17  ; "enabled"
+0101    FNEW    11  28      ; covermenu.lua:600
+0102    TSETS   11  10   9  ; "callback"
+0103    TSETB   10   9   1
+0104    TDUP    10  32
+0105    TGETS   11   3  29  ; "ignore_meta"
+0106    ISF         11
+0107    JMP     12 => 0113
+0108    UGET    11   3      ; _
+0109    KSTR    12  30      ; "Unignore metadata"
+0110    CALL    11   2   2
+0111    IST         11
+0112    JMP     12 => 0116
+0113 => UGET    11   3      ; _
+0114    KSTR    12  31      ; "Ignore metadata"
+0115    CALL    11   2   2
+0116 => TSETS   11  10  15  ; "text"
+0117    TGETS   11   3  33  ; "has_meta"
+0118    ISF         11
+0119    JMP     12 => 0122
+0120    KPRI    11   2
+0121    JMP     12 => 0123
+0122 => KPRI    11   1
+0123 => TSETS   11  10  17  ; "enabled"
+0124    FNEW    11  34      ; covermenu.lua:611
+0125    TSETS   11  10   9  ; "callback"
+0126    TSETB   10   9   2
+0127    CALL     7   1   3
+0128    GGET     7  11      ; "table"
+0129    TGETS    7   7  12  ; "insert"
+0130    MOV      8   6
+0131    TNEW     9   3
+0132    TDUP    10  36
+0133    UGET    11   3      ; _
+0134    KSTR    12  35      ; "Refresh cached book information"
+0135    CALL    11   2   2
+0136    TSETS   11  10  15  ; "text"
+0137    ISF          3
+0138    JMP     11 => 0141
+0139    KPRI    11   2
+0140    JMP     12 => 0142
+0141 => KPRI    11   1
+0142 => TSETS   11  10  17  ; "enabled"
+0143    FNEW    11  37      ; covermenu.lua:624
+0144    TSETS   11  10   9  ; "callback"
+0145    TSETB   10   9   1
+0146    CALL     7   1   3
+0147    GGET     7  38      ; "require"
+0148    KSTR     8  39      ; "ui/widget/buttondialogtitle"
+0149    CALL     7   2   2
+0150    MOV      9   7
+0151    TGETS    8   7  40  ; "new"
+0152    TDUP    10  41
+0153    TSETS    4  10   4  ; "title"
+0154    TSETS    5  10   5  ; "title_align"
+0155    TSETS    6  10   6  ; "buttons"
+0156    CALL     8   2   3
+0157    TSETS    8   0   3  ; "collfile_dialog"
+0158    UGET     8   1      ; UIManager
+0159    MOV      9   8
+0160    TGETS    8   8  42  ; "show"
+0161    TGETS   10   0   3  ; "collfile_dialog"
+0162    CALL     8   1   3
+0163    KPRI     8   2
+0164    UCLO     0 => 0165
+0165 => RET1     8   2
+0166 => RET1     4   2
+
+-- BYTECODE -- covermenu.lua:642-671
+0001    UGET     1   0      ; logger
+0002    TGETS    1   1   0  ; "dbg"
+0003    KSTR     2   1      ; "CoverMenu:onCloseWidget: terminating job"~
+0004    CALL     1   1   2
+0005    UGET     1   1      ; BookInfoManager
+0006    MOV      2   1
+0007    TGETS    1   1   2  ; "terminateBackgroundJobs"
+0008    CALL     1   1   2
+0009    UGET     1   1      ; BookInfoManager
+0010    MOV      2   1
+0011    TGETS    1   1   3  ; "closeDbConnection"
+0012    CALL     1   1   2
+0013    UGET     1   1      ; BookInfoManager
+0014    MOV      2   1
+0015    TGETS    1   1   4  ; "cleanUp"
+0016    CALL     1   1   2
+0017    TGETS    1   0   5  ; "items_update_action"
+0018    ISF          1
+0019    JMP      2 => 0031
+0020    UGET     1   0      ; logger
+0021    TGETS    1   1   0  ; "dbg"
+0022    KSTR     2   6      ; "CoverMenu:onCloseWidget: unscheduling it"~
+0023    CALL     1   1   2
+0024    UGET     1   2      ; UIManager
+0025    MOV      2   1
+0026    TGETS    1   1   7  ; "unschedule"
+0027    TGETS    3   0   5  ; "items_update_action"
+0028    CALL     1   1   3
+0029    KPRI     1   0
+0030    TSETS    1   0   5  ; "items_update_action"
+0031 => TGETS    1   0   8  ; "item_group"
+0032    MOV      2   1
+0033    TGETS    1   1   9  ; "free"
+0034    CALL     1   1   2
+0035    KPRI     1   0
+0036    TSETS    1   0  10  ; "cover_info_cache"
+0037    GGET     1  11      ; "collectgarbage"
+0038    CALL     1   1   1
+0039    GGET     1  11      ; "collectgarbage"
+0040    CALL     1   1   1
+0041    UGET     1   3      ; Menu
+0042    TGETS    1   1  12  ; "onCloseWidget"
+0043    MOV      2   0
+0044    CALL     1   1   2
+0045    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:695-697
+0001    UGET     0   0      ; BookInfoManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "extractBooksInDirectory"
+0004    UGET     2   1      ; current_path
+0005    UGET     3   2      ; current_cover_specs
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:692-698
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "file_dialog"
+0006    CALL     0   1   3
+0007    GGET     0   2      ; "require"
+0008    KSTR     1   3      ; "ui/trapper"
+0009    CALL     0   2   2
+0010    MOV      2   0
+0011    TGETS    1   0   4  ; "wrap"
+0012    FNEW     3   5      ; covermenu.lua:695
+0013    CALL     1   1   3
+0014    RET0     0   1
+
+-- BYTECODE -- covermenu.lua:673-711
+0001    UGET     1   0      ; CoverMenu
+0002    TGETS    1   1   0  ; "_FileManager_tapPlus_orig"
+0003    MOV      2   0
+0004    CALL     1   1   2
+0005    TGETS    1   0   1  ; "file_dialog"
+0006    TGETS    1   1   2  ; "title"
+0007    TGETS    2   0   1  ; "file_dialog"
+0008    TGETS    2   2   3  ; "title_align"
+0009    TGETS    3   0   1  ; "file_dialog"
+0010    TGETS    3   3   4  ; "buttons"
+0011    UGET     4   1      ; UIManager
+0012    MOV      5   4
+0013    TGETS    4   4   5  ; "close"
+0014    TGETS    6   0   1  ; "file_dialog"
+0015    CALL     4   1   3
+0016    UGET     4   1      ; UIManager
+0017    MOV      5   4
+0018    TGETS    4   4   6  ; "clearRenderStack"
+0019    CALL     4   1   2
+0020    GGET     4   7      ; "table"
+0021    TGETS    4   4   8  ; "insert"
+0022    MOV      5   3
+0023    TNEW     6   0
+0024    CALL     4   1   3
+0025    GGET     4   7      ; "table"
+0026    TGETS    4   4   8  ; "insert"
+0027    MOV      5   3
+0028    TNEW     6   3
+0029    TDUP     7  10
+0030    UGET     8   2      ; _
+0031    KSTR     9   9      ; "Extract and cache book information"
+0032    CALL     8   2   2
+0033    TSETS    8   7  11  ; "text"
+0034    FNEW     8  12      ; covermenu.lua:692
+0035    TSETS    8   7  13  ; "callback"
+0036    TSETB    7   6   1
+0037    CALL     4   1   3
+0038    GGET     4  14      ; "require"
+0039    KSTR     5  15      ; "ui/widget/buttondialogtitle"
+0040    CALL     4   2   2
+0041    MOV      6   4
+0042    TGETS    5   4  16  ; "new"
+0043    TDUP     7  17
+0044    TSETS    1   7   2  ; "title"
+0045    TSETS    2   7   3  ; "title_align"
+0046    TSETS    3   7   4  ; "buttons"
+0047    CALL     5   2   3
+0048    TSETS    5   0   1  ; "file_dialog"
+0049    UGET     5   1      ; UIManager
+0050    MOV      6   5
+0051    TGETS    5   5  18  ; "show"
+0052    TGETS    7   0   1  ; "file_dialog"
+0053    CALL     5   1   3
+0054    KPRI     5   2
+0055    UCLO     0 => 0056
+0056 => RET1     5   2
+
+-- BYTECODE -- covermenu.lua:0-714
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "document/documentregistry"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "docsettings"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "apps/filemanager/filemanagerbookinfo"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/imageviewer"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/infomessage"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/menu"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/widget/textviewer"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/uimanager"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "logger"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "gettext"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "bookinfomanager"
+0036    CALL    11   2   2
+0037    KPRI    12   0
+0038    KPRI    13   1
+0039    TNEW    14   0
+0040    FNEW    15  14      ; covermenu.lua:41
+0041    TSETS   15  14  13  ; "updateItems"
+0042    FNEW    15  16      ; covermenu.lua:400
+0043    TSETS   15  14  15  ; "onHistoryMenuHold"
+0044    FNEW    15  18      ; covermenu.lua:526
+0045    TSETS   15  14  17  ; "onCollectionsMenuHold"
+0046    FNEW    15  20      ; covermenu.lua:642
+0047    TSETS   15  14  19  ; "onCloseWidget"
+0048    FNEW    15  22      ; covermenu.lua:673
+0049    TSETS   15  14  21  ; "tapPlus"
+0050    UCLO     0 => 0051
+0051 => RET1    14   2
+

@@ -1,0 +1,450 @@
+-- BYTECODE -- readergoto.lua:14-16
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "menu"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "registerToMainMenu"
+0005    MOV      3   0
+0006    CALL     1   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readergoto.lua:22-24
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onShowGotoDialog"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readergoto.lua:28-30
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onShowSkimtoDialog"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readergoto.lua:18-32
+0001    TDUP     2   2
+0002    TGETS    3   0   1  ; "goto_menu_title"
+0003    TSETS    3   2   3  ; "text"
+0004    FNEW     3   4      ; readergoto.lua:22
+0005    TSETS    3   2   5  ; "callback"
+0006    TSETS    2   1   0  ; "go_to"
+0007    TDUP     2   8
+0008    TGETS    3   0   7  ; "skim_menu_title"
+0009    TSETS    3   2   3  ; "text"
+0010    FNEW     3   9      ; readergoto.lua:28
+0011    TSETS    3   2   5  ; "callback"
+0012    TSETS    2   1   6  ; "skim_to"
+0013    UCLO     0 => 0014
+0014 => RET0     0   1
+
+-- BYTECODE -- readergoto.lua:41-41
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "gotoPage"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readergoto.lua:49-49
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "gotoPage"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readergoto.lua:70-72
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readergoto.lua:82-85
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "skimto"
+0006    CALL     0   1   3
+0007    UGET     0   1      ; self
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "onShowGotoDialog"
+0010    CALL     0   1   2
+0011    RET0     0   1
+
+-- BYTECODE -- readergoto.lua:77-89
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    CALL     0   1   2
+0005    UGET     0   0      ; self
+0006    UGET     1   1      ; SkimToWidget
+0007    MOV      2   1
+0008    TGETS    1   1   2  ; "new"
+0009    TDUP     3   4
+0010    UGET     4   0      ; self
+0011    TGETS    4   4   3  ; "document"
+0012    TSETS    4   3   3  ; "document"
+0013    UGET     4   0      ; self
+0014    TGETS    4   4   5  ; "ui"
+0015    TSETS    4   3   5  ; "ui"
+0016    FNEW     4   6      ; readergoto.lua:82
+0017    TSETS    4   3   7  ; "callback_switch_to_goto"
+0018    CALL     1   2   3
+0019    TSETS    1   0   1  ; "skimto"
+0020    UGET     0   2      ; UIManager
+0021    MOV      1   0
+0022    TGETS    0   0   8  ; "show"
+0023    UGET     2   0      ; self
+0024    TGETS    2   2   1  ; "skimto"
+0025    CALL     0   1   3
+0026    RET0     0   1
+
+-- BYTECODE -- readergoto.lua:34-98
+0001    KNIL     1   3
+0002    TGETS    4   0   0  ; "document"
+0003    TGETS    4   4   1  ; "info"
+0004    TGETS    4   4   2  ; "has_pages"
+0005    ISF          4
+0006    JMP      5 => 0023
+0007    UGET     4   0      ; _
+0008    KSTR     5   3      ; "Go to Page"
+0009    CALL     4   2   2
+0010    MOV      1   4
+0011    TDUP     4   4
+0012    UGET     5   0      ; _
+0013    KSTR     6   5      ; "Page"
+0014    CALL     5   2   2
+0015    TSETS    5   4   6  ; "text"
+0016    FNEW     5   7      ; readergoto.lua:41
+0017    TSETS    5   4   8  ; "callback"
+0018    MOV      2   4
+0019    TGETS    4   0   9  ; "ui"
+0020    TGETS    4   4  10  ; "paging"
+0021    TGETS    3   4  11  ; "current_page"
+0022    JMP      4 => 0040
+0023 => UGET     4   0      ; _
+0024    KSTR     5  12      ; "Go to Location"
+0025    CALL     4   2   2
+0026    MOV      1   4
+0027    TDUP     4  13
+0028    UGET     5   0      ; _
+0029    KSTR     6  14      ; "Location"
+0030    CALL     5   2   2
+0031    TSETS    5   4   6  ; "text"
+0032    FNEW     5  15      ; readergoto.lua:49
+0033    TSETS    5   4   8  ; "callback"
+0034    MOV      2   4
+0035    TGETS    4   0   0  ; "document"
+0036    MOV      5   4
+0037    TGETS    4   4  16  ; "getCurrentPage"
+0038    CALL     4   2   2
+0039    MOV      3   4
+0040 => KPRI     4   0
+0041    TGETS    5   0   9  ; "ui"
+0042    TGETS    5   5  17  ; "pagemap"
+0043    ISF          5
+0044    JMP      6 => 0075
+0045    TGETS    5   0   9  ; "ui"
+0046    TGETS    5   5  17  ; "pagemap"
+0047    MOV      6   5
+0048    TGETS    5   5  18  ; "wantsPageLabels"
+0049    CALL     5   2   2
+0050    ISF          5
+0051    JMP      6 => 0075
+0052    UGET     5   1      ; T
+0053    KSTR     6  19      ; "@%1 (%2 - %3)"
+0054    TGETS    7   0   9  ; "ui"
+0055    TGETS    7   7  17  ; "pagemap"
+0056    MOV      8   7
+0057    TGETS    7   7  20  ; "getCurrentPageLabel"
+0058    KPRI     9   2
+0059    CALL     7   2   3
+0060    TGETS    8   0   9  ; "ui"
+0061    TGETS    8   8  17  ; "pagemap"
+0062    MOV      9   8
+0063    TGETS    8   8  21  ; "getFirstPageLabel"
+0064    KPRI    10   2
+0065    CALL     8   2   3
+0066    TGETS    9   0   9  ; "ui"
+0067    TGETS    9   9  17  ; "pagemap"
+0068    MOV     10   9
+0069    TGETS    9   9  22  ; "getLastPageLabel"
+0070    KPRI    11   2
+0071    CALL     9   0   3
+0072    CALLM    5   2   3
+0073    MOV      4   5
+0074    JMP      5 => 0084
+0075 => UGET     5   1      ; T
+0076    KSTR     6  23      ; "@%1 (1 - %2)"
+0077    MOV      7   3
+0078    TGETS    8   0   0  ; "document"
+0079    MOV      9   8
+0080    TGETS    8   8  24  ; "getPageCount"
+0081    CALL     8   0   2
+0082    CALLM    5   2   2
+0083    MOV      4   5
+0084 => UGET     5   2      ; InputDialog
+0085    MOV      6   5
+0086    TGETS    5   5  26  ; "new"
+0087    TDUP     7  27
+0088    TSETS    1   7  28  ; "title"
+0089    TSETS    4   7  29  ; "input_hint"
+0090    TNEW     8   3
+0091    TNEW     9   4
+0092    TDUP    10  31
+0093    UGET    11   0      ; _
+0094    KSTR    12  30      ; "Cancel"
+0095    CALL    11   2   2
+0096    TSETS   11  10   6  ; "text"
+0097    FNEW    11  32      ; readergoto.lua:70
+0098    TSETS   11  10   8  ; "callback"
+0099    TSETB   10   9   1
+0100    TDUP    10  34
+0101    UGET    11   0      ; _
+0102    KSTR    12  33      ; "Skim mode"
+0103    CALL    11   2   2
+0104    TSETS   11  10   6  ; "text"
+0105    FNEW    11  35      ; readergoto.lua:77
+0106    TSETS   11  10   8  ; "callback"
+0107    TSETB   10   9   2
+0108    TSETB    2   9   3
+0109    TSETB    9   8   1
+0110    TSETS    8   7  36  ; "buttons"
+0111    CALL     5   2   3
+0112    TSETS    5   0  25  ; "goto_dialog"
+0113    UGET     5   4      ; UIManager
+0114    MOV      6   5
+0115    TGETS    5   5  37  ; "show"
+0116    TGETS    7   0  25  ; "goto_dialog"
+0117    CALL     5   1   3
+0118    TGETS    5   0  25  ; "goto_dialog"
+0119    MOV      6   5
+0120    TGETS    5   5  38  ; "onShowKeyboard"
+0121    CALL     5   1   2
+0122    UCLO     0 => 0123
+0123 => RET0     0   1
+
+-- BYTECODE -- readergoto.lua:104-107
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "skimto"
+0006    CALL     0   1   3
+0007    UGET     0   1      ; self
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "onShowGotoDialog"
+0010    CALL     0   1   2
+0011    RET0     0   1
+
+-- BYTECODE -- readergoto.lua:100-110
+0001    UGET     1   0      ; SkimToWidget
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "new"
+0004    TDUP     3   3
+0005    TGETS    4   0   2  ; "document"
+0006    TSETS    4   3   2  ; "document"
+0007    TGETS    4   0   4  ; "ui"
+0008    TSETS    4   3   4  ; "ui"
+0009    FNEW     4   5      ; readergoto.lua:104
+0010    TSETS    4   3   6  ; "callback_switch_to_goto"
+0011    CALL     1   2   3
+0012    TSETS    1   0   0  ; "skimto"
+0013    UGET     1   1      ; UIManager
+0014    MOV      2   1
+0015    TGETS    1   1   7  ; "show"
+0016    TGETS    3   0   0  ; "skimto"
+0017    CALL     1   1   3
+0018    UCLO     0 => 0019
+0019 => RET0     0   1
+
+-- BYTECODE -- readergoto.lua:112-114
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    TGETS    3   0   1  ; "goto_dialog"
+0005    CALL     1   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readergoto.lua:116-138
+0001    TGETS    1   0   0  ; "goto_dialog"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getInputText"
+0004    CALL     1   2   2
+0005    MOV      3   1
+0006    TGETS    2   1   2  ; "sub"
+0007    KSHORT   4   1
+0008    KSHORT   5   1
+0009    CALL     2   2   4
+0010    GGET     3   3      ; "tonumber"
+0011    MOV      4   1
+0012    CALL     3   2   2
+0013    ISF          3
+0014    JMP      4 => 0082
+0015    TGETS    4   0   4  ; "ui"
+0016    TGETS    4   4   5  ; "link"
+0017    MOV      5   4
+0018    TGETS    4   4   6  ; "addCurrentLocationToStack"
+0019    CALL     4   1   2
+0020    ISEQS    2   7      ; "+"
+0021    JMP      4 => 0024
+0022    ISNES    2   8      ; "-"
+0023    JMP      4 => 0035
+0024 => TGETS    4   0   4  ; "ui"
+0025    MOV      5   4
+0026    TGETS    4   4   9  ; "handleEvent"
+0027    UGET     6   0      ; Event
+0028    MOV      7   6
+0029    TGETS    6   6  10  ; "new"
+0030    KSTR     8  11      ; "GotoRelativePage"
+0031    MOV      9   3
+0032    CALL     6   0   4
+0033    CALLM    4   1   1
+0034    JMP      4 => 0079
+0035 => TGETS    4   0   4  ; "ui"
+0036    TGETS    4   4  12  ; "pagemap"
+0037    ISF          4
+0038    JMP      5 => 0069
+0039    TGETS    4   0   4  ; "ui"
+0040    TGETS    4   4  12  ; "pagemap"
+0041    MOV      5   4
+0042    TGETS    4   4  13  ; "wantsPageLabels"
+0043    CALL     4   2   2
+0044    ISF          4
+0045    JMP      5 => 0069
+0046    TGETS    4   0   4  ; "ui"
+0047    TGETS    4   4  12  ; "pagemap"
+0048    MOV      5   4
+0049    TGETS    4   4  14  ; "getRenderedPageNumber"
+0050    MOV      6   1
+0051    KPRI     7   2
+0052    CALL     4   2   4
+0053    MOV      3   4
+0054    ISF          3
+0055    JMP      4 => 0067
+0056    TGETS    4   0   4  ; "ui"
+0057    MOV      5   4
+0058    TGETS    4   4   9  ; "handleEvent"
+0059    UGET     6   0      ; Event
+0060    MOV      7   6
+0061    TGETS    6   6  10  ; "new"
+0062    KSTR     8  15      ; "GotoPage"
+0063    MOV      9   3
+0064    CALL     6   0   4
+0065    CALLM    4   1   1
+0066    JMP      4 => 0079
+0067 => RET0     0   1
+0068    JMP      4 => 0079
+0069 => TGETS    4   0   4  ; "ui"
+0070    MOV      5   4
+0071    TGETS    4   4   9  ; "handleEvent"
+0072    UGET     6   0      ; Event
+0073    MOV      7   6
+0074    TGETS    6   6  10  ; "new"
+0075    KSTR     8  15      ; "GotoPage"
+0076    MOV      9   3
+0077    CALL     6   0   4
+0078    CALLM    4   1   1
+0079 => MOV      5   0
+0080    TGETS    4   0  16  ; "close"
+0081    CALL     4   1   2
+0082 => RET0     0   1
+
+-- BYTECODE -- readergoto.lua:140-144
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "link"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "addCurrentLocationToStack"
+0005    CALL     1   1   2
+0006    TGETS    1   0   0  ; "ui"
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "handleEvent"
+0009    UGET     3   0      ; Event
+0010    MOV      4   3
+0011    TGETS    3   3   4  ; "new"
+0012    KSTR     5   5      ; "GotoPage"
+0013    KSHORT   6   1
+0014    CALL     3   0   4
+0015    CALLM    1   1   1
+0016    KPRI     1   2
+0017    RET1     1   2
+
+-- BYTECODE -- readergoto.lua:146-153
+0001    TGETS    1   0   0  ; "document"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getPageCount"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0022
+0007    TGETS    2   0   2  ; "ui"
+0008    TGETS    2   2   3  ; "link"
+0009    MOV      3   2
+0010    TGETS    2   2   4  ; "addCurrentLocationToStack"
+0011    CALL     2   1   2
+0012    TGETS    2   0   2  ; "ui"
+0013    MOV      3   2
+0014    TGETS    2   2   5  ; "handleEvent"
+0015    UGET     4   0      ; Event
+0016    MOV      5   4
+0017    TGETS    4   4   6  ; "new"
+0018    KSTR     6   7      ; "GotoPage"
+0019    MOV      7   1
+0020    CALL     4   0   4
+0021    CALLM    2   1   1
+0022 => KPRI     2   2
+0023    RET1     2   2
+
+-- BYTECODE -- readergoto.lua:0-156
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/event"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/container/inputcontainer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/inputdialog"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "apps/reader/skimtowidget"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/uimanager"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "gettext"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ffi/util"
+0021    CALL     6   2   2
+0022    TGETS    6   6   8  ; "template"
+0023    MOV      8   1
+0024    TGETS    7   1   9  ; "new"
+0025    TDUP     9  11
+0026    MOV     10   5
+0027    KSTR    11  10      ; "Go to"
+0028    CALL    10   2   2
+0029    TSETS   10   9  12  ; "goto_menu_title"
+0030    MOV     10   5
+0031    KSTR    11  13      ; "Skim document"
+0032    CALL    10   2   2
+0033    TSETS   10   9  14  ; "skim_menu_title"
+0034    CALL     7   2   3
+0035    FNEW     8  16      ; readergoto.lua:14
+0036    TSETS    8   7  15  ; "init"
+0037    FNEW     8  18      ; readergoto.lua:18
+0038    TSETS    8   7  17  ; "addToMainMenu"
+0039    FNEW     8  20      ; readergoto.lua:34
+0040    TSETS    8   7  19  ; "onShowGotoDialog"
+0041    FNEW     8  22      ; readergoto.lua:100
+0042    TSETS    8   7  21  ; "onShowSkimtoDialog"
+0043    FNEW     8  24      ; readergoto.lua:112
+0044    TSETS    8   7  23  ; "close"
+0045    FNEW     8  26      ; readergoto.lua:116
+0046    TSETS    8   7  25  ; "gotoPage"
+0047    FNEW     8  28      ; readergoto.lua:140
+0048    TSETS    8   7  27  ; "onGoToBeginning"
+0049    FNEW     8  30      ; readergoto.lua:146
+0050    TSETS    8   7  29  ; "onGoToEnd"
+0051    UCLO     0 => 0052
+0052 => RET1     7   2
+

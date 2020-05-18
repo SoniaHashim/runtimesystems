@@ -1,0 +1,166 @@
+-- BYTECODE -- logger.lua:37-37
+0001    RET0     0   1
+
+-- BYTECODE -- logger.lua:43-66
+0001    KSTR     2   0      ; ""
+0002    GGET     3   1      ; "ipairs"
+0003    TNEW     4   3
+0004    VARG     5   0   2
+0005    TSETM    5   0      ; 1
+0006    CALL     3   4   2
+0007    JMP      6 => 0027
+0008 => GGET     8   2      ; "type"
+0009    MOV      9   7
+0010    CALL     8   2   2
+0011    ISNES    8   3      ; "table"
+0012    JMP      8 => 0021
+0013    MOV      8   2
+0014    KSTR     9   4      ; " "
+0015    UGET    10   0      ; dump
+0016    MOV     11   7
+0017    MOV     12   1
+0018    CALL    10   2   3
+0019    CAT      2   8  10
+0020    JMP      8 => 0027
+0021 => MOV      8   2
+0022    KSTR     9   4      ; " "
+0023    GGET    10   5      ; "tostring"
+0024    MOV     11   7
+0025    CALL    10   2   2
+0026    CAT      2   8  10
+0027 => ITERC    6   3   3
+0028    ITERL    6 => 0008
+0029    UGET     3   1      ; isAndroid
+0030    ISF          3
+0031    JMP      4 => 0060
+0032    ISNES    0   6      ; "dbg"
+0033    JMP      3 => 0039
+0034    UGET     3   2      ; android
+0035    TGETS    3   3   7  ; "LOGV"
+0036    MOV      4   2
+0037    CALL     3   1   2
+0038    JMP      3 => 0079
+0039 => ISNES    0   8      ; "info"
+0040    JMP      3 => 0046
+0041    UGET     3   2      ; android
+0042    TGETS    3   3   9  ; "LOGI"
+0043    MOV      4   2
+0044    CALL     3   1   2
+0045    JMP      3 => 0079
+0046 => ISNES    0  10      ; "warn"
+0047    JMP      3 => 0053
+0048    UGET     3   2      ; android
+0049    TGETS    3   3  11  ; "LOGW"
+0050    MOV      4   2
+0051    CALL     3   1   2
+0052    JMP      3 => 0079
+0053 => ISNES    0  12      ; "err"
+0054    JMP      3 => 0079
+0055    UGET     3   2      ; android
+0056    TGETS    3   3  13  ; "LOGE"
+0057    MOV      4   2
+0058    CALL     3   1   2
+0059    JMP      3 => 0079
+0060 => GGET     3  14      ; "io"
+0061    TGETS    3   3  15  ; "stdout"
+0062    MOV      4   3
+0063    TGETS    3   3  16  ; "write"
+0064    GGET     5  17      ; "os"
+0065    TGETS    5   5  18  ; "date"
+0066    KSTR     6  19      ; "%x-%X"
+0067    CALL     5   2   2
+0068    KSTR     6   4      ; " "
+0069    UGET     7   3      ; LOG_PREFIX
+0070    TGETV    7   7   0
+0071    MOV      8   2
+0072    KSTR     9  20      ; "\n"
+0073    CALL     3   1   7
+0074    GGET     3  14      ; "io"
+0075    TGETS    3   3  15  ; "stdout"
+0076    MOV      4   3
+0077    TGETS    3   3  21  ; "flush"
+0078    CALL     3   1   2
+0079 => RET0     0   1
+
+-- BYTECODE -- logger.lua:69-69
+0001    UGET     0   0      ; log
+0002    KSTR     1   0      ; "dbg"
+0003    UGET     2   1      ; DEFAULT_DUMP_LVL
+0004    VARG     3   0   0
+0005    CALLM    0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- logger.lua:70-70
+0001    UGET     0   0      ; log
+0002    KSTR     1   0      ; "info"
+0003    UGET     2   1      ; DEFAULT_DUMP_LVL
+0004    VARG     3   0   0
+0005    CALLM    0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- logger.lua:71-71
+0001    UGET     0   0      ; log
+0002    KSTR     1   0      ; "warn"
+0003    UGET     2   1      ; DEFAULT_DUMP_LVL
+0004    VARG     3   0   0
+0005    CALLM    0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- logger.lua:72-72
+0001    UGET     0   0      ; log
+0002    KSTR     1   0      ; "err"
+0003    UGET     2   1      ; DEFAULT_DUMP_LVL
+0004    VARG     3   0   0
+0005    CALLM    0   1   2
+0006    RET0     0   1
+
+-- BYTECODE -- logger.lua:84-92
+0001    GGET     2   0      ; "pairs"
+0002    UGET     3   0      ; LOG_LVL
+0003    CALL     2   4   2
+0004    ISNEXT   5 => 0013
+0005 => ISGT     1   6
+0006    JMP      7 => 0011
+0007    UGET     7   1      ; LVL_FUNCTIONS
+0008    TGETV    7   7   5
+0009    TSETV    7   0   5
+0010    JMP      7 => 0013
+0011 => UGET     7   2      ; noop
+0012    TSETV    7   0   5
+0013 => ITERN    5   3   3
+0014    ITERL    5 => 0005
+0015    RET0     0   1
+
+-- BYTECODE -- logger.lua:0-97
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "dump"
+0003    CALL     0   2   2
+0004    GGET     1   2      ; "pcall"
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   3      ; "android"
+0007    CALL     1   3   3
+0008    KSHORT   3  10
+0009    TDUP     4   4
+0010    TDUP     5   5
+0011    FNEW     6   6      ; logger.lua:37
+0012    TDUP     7   7
+0013    TSETS    4   7   8  ; "levels"
+0014    FNEW     8   9      ; logger.lua:43
+0015    TDUP     9  11
+0016    FNEW    10  10      ; logger.lua:69
+0017    TSETS   10   9  12  ; "dbg"
+0018    FNEW    10  13      ; logger.lua:70
+0019    TSETS   10   9  14  ; "info"
+0020    FNEW    10  15      ; logger.lua:71
+0021    TSETS   10   9  16  ; "warn"
+0022    FNEW    10  17      ; logger.lua:72
+0023    TSETS   10   9  18  ; "err"
+0024    FNEW    10  20      ; logger.lua:84
+0025    TSETS   10   7  19  ; "setLevel"
+0026    MOV     11   7
+0027    TGETS   10   7  19  ; "setLevel"
+0028    TGETS   12   4  14  ; "info"
+0029    CALL    10   1   3
+0030    UCLO     0 => 0031
+0031 => RET1     7   2
+

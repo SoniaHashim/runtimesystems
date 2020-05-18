@@ -1,0 +1,836 @@
+-- BYTECODE -- xml.lua:169-172
+0001    GGET     2   0      ; "error"
+0002    GGET     3   1      ; "string"
+0003    TGETS    3   3   2  ; "format"
+0004    KSTR     4   3      ; "%s [char=%d]\n"
+0005    ISTC     5   0
+0006    JMP      5 => 0008
+0007    KSTR     5   4      ; "Parse Error"
+0008 => MOV      6   1
+0009    CALL     3   0   4
+0010    CALLM    2   1   0
+0011    RET0     0   1
+
+-- BYTECODE -- xml.lua:177-342
+0001    ISNEP    2   0
+0002    JMP      3 => 0004
+0003    KPRI     2   2
+0004 => TGETS    3   0   0  ; "_handler"
+0005    TSETS    2   3   1  ; "parseAttributes"
+0006    KSHORT   3   0
+0007    KSHORT   4   0
+0008    KSHORT   5   1
+0009    KNIL     6  17
+0010 => ISF          3
+0011    JMP     18 => 0471
+0012    LOOP    18 => 0471
+0013    GGET    18   2      ; "string"
+0014    TGETS   18  18   3  ; "find"
+0015    MOV     19   1
+0016    TGETS   20   0   4  ; "_XML"
+0017    MOV     21   5
+0018    CALL    18   7   4
+0019    MOV      8  23
+0020    MOV      9  22
+0021    MOV      7  21
+0022    MOV      6  20
+0023    MOV      4  19
+0024    MOV      3  18
+0025    IST          3
+0026    JMP     18 => 0054
+0027    GGET    18   2      ; "string"
+0028    TGETS   18  18   3  ; "find"
+0029    MOV     19   1
+0030    TGETS   20   0   5  ; "_WS"
+0031    MOV     21   5
+0032    CALL    18   2   4
+0033    ISF         18
+0034    JMP     19 => 0048
+0035    TGETS   18   0   6  ; "_stack"
+0036    LEN     18  18
+0037    ISEQN   18   0      ; 0
+0038    JMP     18 => 0471
+0039    MOV     19   0
+0040    TGETS   18   0   7  ; "_err"
+0041    TGETS   20   0   8  ; "_errstr"
+0042    TGETS   20  20   9  ; "incompleteXmlErr"
+0043    MOV     21   5
+0044    CALL    18   1   4
+0045    JMP     18 => 0054
+0046    JMP     18 => 0471
+0047    JMP     18 => 0054
+0048 => MOV     19   0
+0049    TGETS   18   0   7  ; "_err"
+0050    TGETS   20   0   8  ; "_errstr"
+0051    TGETS   20  20  10  ; "xmlErr"
+0052    MOV     21   5
+0053    CALL    18   1   4
+0054 => MOV     12   3
+0055    GGET    18   2      ; "string"
+0056    TGETS   18  18  11  ; "len"
+0057    MOV     19   6
+0058    CALL    18   2   2
+0059    ADDVV   18   3  18
+0060    SUBVN   13  18   1  ; 1
+0061    GGET    18   2      ; "string"
+0062    TGETS   18  18  11  ; "len"
+0063    MOV     19   6
+0064    CALL    18   2   2
+0065    ADDVV    3   3  18
+0066    MOV     19   0
+0067    TGETS   18   0  12  ; "_parseEntities"
+0068    MOV     21   0
+0069    TGETS   20   0  13  ; "_stripWS"
+0070    MOV     22   6
+0071    CALL    20   0   3
+0072    CALLM   18   2   1
+0073    MOV      6  18
+0074    ISEQS    6  14      ; ""
+0075    JMP     18 => 0088
+0076    TGETS   18   0   0  ; "_handler"
+0077    TGETS   18  18  15  ; "text"
+0078    ISF         18
+0079    JMP     19 => 0088
+0080    TGETS   18   0   0  ; "_handler"
+0081    MOV     19  18
+0082    TGETS   18  18  15  ; "text"
+0083    MOV     20   6
+0084    KPRI    21   0
+0085    MOV     22   3
+0086    MOV     23  13
+0087    CALL    18   1   6
+0088 => GGET    18   2      ; "string"
+0089    TGETS   18  18   3  ; "find"
+0090    GGET    19   2      ; "string"
+0091    TGETS   19  19  16  ; "sub"
+0092    MOV     20   9
+0093    KSHORT  21   1
+0094    KSHORT  22   5
+0095    CALL    19   2   4
+0096    KSTR    20  17      ; "?xml%s"
+0097    CALL    18   2   3
+0098    ISF         18
+0099    JMP     19 => 0153
+0100    GGET    18   2      ; "string"
+0101    TGETS   18  18   3  ; "find"
+0102    MOV     19   1
+0103    TGETS   20   0  18  ; "_PI"
+0104    MOV     21   5
+0105    CALL    18   4   4
+0106    MOV      6  20
+0107    MOV      4  19
+0108    MOV      3  18
+0109    IST          3
+0110    JMP     18 => 0117
+0111    MOV     19   0
+0112    TGETS   18   0   7  ; "_err"
+0113    TGETS   20   0   8  ; "_errstr"
+0114    TGETS   20  20  19  ; "declErr"
+0115    MOV     21   5
+0116    CALL    18   1   4
+0117 => ISEQN    3   1      ; 1
+0118    JMP     18 => 0125
+0119    MOV     19   0
+0120    TGETS   18   0   7  ; "_err"
+0121    TGETS   20   0   8  ; "_errstr"
+0122    TGETS   20  20  20  ; "declStartErr"
+0123    MOV     21   5
+0124    CALL    18   1   4
+0125 => MOV     19   0
+0126    TGETS   18   0  21  ; "_parseTag"
+0127    MOV     20   6
+0128    CALL    18   3   3
+0129    MOV     11  19
+0130    MOV     10  18
+0131    TGETS   18  11  22  ; "version"
+0132    ISNEP   18   0
+0133    JMP     18 => 0140
+0134    MOV     19   0
+0135    TGETS   18   0   7  ; "_err"
+0136    TGETS   20   0   8  ; "_errstr"
+0137    TGETS   20  20  23  ; "declAttrErr"
+0138    MOV     21   5
+0139    CALL    18   1   4
+0140 => TGETS   18   0   0  ; "_handler"
+0141    TGETS   18  18  24  ; "decl"
+0142    ISF         18
+0143    JMP     19 => 0469
+0144    TGETS   18   0   0  ; "_handler"
+0145    MOV     19  18
+0146    TGETS   18  18  24  ; "decl"
+0147    MOV     20  10
+0148    MOV     21  11
+0149    MOV     22   3
+0150    MOV     23   4
+0151    CALL    18   1   6
+0152    JMP     18 => 0469
+0153 => GGET    18   2      ; "string"
+0154    TGETS   18  18  16  ; "sub"
+0155    MOV     19   9
+0156    KSHORT  20   1
+0157    KSHORT  21   1
+0158    CALL    18   2   4
+0159    ISNES   18  25      ; "?"
+0160    JMP     18 => 0215
+0161    GGET    18   2      ; "string"
+0162    TGETS   18  18   3  ; "find"
+0163    MOV     19   1
+0164    TGETS   20   0  18  ; "_PI"
+0165    MOV     21   5
+0166    CALL    18   4   4
+0167    MOV      6  20
+0168    MOV      4  19
+0169    MOV      3  18
+0170    IST          3
+0171    JMP     18 => 0178
+0172    MOV     19   0
+0173    TGETS   18   0   7  ; "_err"
+0174    TGETS   20   0   8  ; "_errstr"
+0175    TGETS   20  20  26  ; "piErr"
+0176    MOV     21   5
+0177    CALL    18   1   4
+0178 => TGETS   18   0   0  ; "_handler"
+0179    TGETS   18  18  27  ; "pi"
+0180    ISF         18
+0181    JMP     19 => 0469
+0182    MOV     19   0
+0183    TGETS   18   0  21  ; "_parseTag"
+0184    MOV     20   6
+0185    CALL    18   3   3
+0186    MOV     11  19
+0187    MOV     10  18
+0188    GGET    18   2      ; "string"
+0189    TGETS   18  18  16  ; "sub"
+0190    MOV     19   6
+0191    GGET    20   2      ; "string"
+0192    TGETS   20  20  11  ; "len"
+0193    MOV     21  10
+0194    CALL    20   2   2
+0195    ADDVN   20  20   1  ; 1
+0196    CALL    18   2   3
+0197    ISEQS   18  14      ; ""
+0198    JMP     19 => 0206
+0199    ISF         11
+0200    JMP     19 => 0203
+0201    TSETS   18  11  28  ; "_text"
+0202    JMP     19 => 0206
+0203 => TDUP    19  29
+0204    TSETS   18  19  28  ; "_text"
+0205    MOV     11  19
+0206 => TGETS   19   0   0  ; "_handler"
+0207    MOV     20  19
+0208    TGETS   19  19  27  ; "pi"
+0209    MOV     21  10
+0210    MOV     22  11
+0211    MOV     23   3
+0212    MOV     24   4
+0213    CALL    19   1   6
+0214    JMP     18 => 0469
+0215 => GGET    18   2      ; "string"
+0216    TGETS   18  18  16  ; "sub"
+0217    MOV     19   9
+0218    KSHORT  20   1
+0219    KSHORT  21   3
+0220    CALL    18   2   4
+0221    ISNES   18  30      ; "!--"
+0222    JMP     18 => 0261
+0223    GGET    18   2      ; "string"
+0224    TGETS   18  18   3  ; "find"
+0225    MOV     19   1
+0226    TGETS   20   0  31  ; "_COMMENT"
+0227    MOV     21   5
+0228    CALL    18   4   4
+0229    MOV      6  20
+0230    MOV      4  19
+0231    MOV      3  18
+0232    IST          3
+0233    JMP     18 => 0240
+0234    MOV     19   0
+0235    TGETS   18   0   7  ; "_err"
+0236    TGETS   20   0   8  ; "_errstr"
+0237    TGETS   20  20  32  ; "commentErr"
+0238    MOV     21   5
+0239    CALL    18   1   4
+0240 => TGETS   18   0   0  ; "_handler"
+0241    TGETS   18  18  33  ; "comment"
+0242    ISF         18
+0243    JMP     19 => 0469
+0244    MOV     19   0
+0245    TGETS   18   0  12  ; "_parseEntities"
+0246    MOV     21   0
+0247    TGETS   20   0  13  ; "_stripWS"
+0248    MOV     22   6
+0249    CALL    20   0   3
+0250    CALLM   18   2   1
+0251    MOV      6  18
+0252    TGETS   18   0   0  ; "_handler"
+0253    MOV     19  18
+0254    TGETS   18  18  33  ; "comment"
+0255    MOV     20   6
+0256    GGET    21  34      ; "next"
+0257    MOV     22   3
+0258    MOV     23   4
+0259    CALL    18   1   6
+0260    JMP     18 => 0469
+0261 => GGET    18   2      ; "string"
+0262    TGETS   18  18  16  ; "sub"
+0263    MOV     19   9
+0264    KSHORT  20   1
+0265    KSHORT  21   8
+0266    CALL    18   2   4
+0267    ISNES   18  35      ; "!DOCTYPE"
+0268    JMP     18 => 0298
+0269    MOV     19   0
+0270    TGETS   18   0  36  ; "_parseDTD"
+0271    GGET    20   2      ; "string"
+0272    MOV     21   5
+0273    CALL    18   4   4
+0274    MOV     11  20
+0275    MOV      4  19
+0276    MOV      3  18
+0277    IST          3
+0278    JMP     18 => 0285
+0279    MOV     19   0
+0280    TGETS   18   0   7  ; "_err"
+0281    TGETS   20   0   8  ; "_errstr"
+0282    TGETS   20  20  37  ; "dtdErr"
+0283    MOV     21   5
+0284    CALL    18   1   4
+0285 => TGETS   18   0   0  ; "_handler"
+0286    TGETS   18  18  38  ; "dtd"
+0287    ISF         18
+0288    JMP     19 => 0469
+0289    TGETS   18   0   0  ; "_handler"
+0290    MOV     19  18
+0291    TGETS   18  18  38  ; "dtd"
+0292    TGETS   20  11  39  ; "_root"
+0293    MOV     21  11
+0294    MOV     22   3
+0295    MOV     23   4
+0296    CALL    18   1   6
+0297    JMP     18 => 0469
+0298 => GGET    18   2      ; "string"
+0299    TGETS   18  18  16  ; "sub"
+0300    MOV     19   9
+0301    KSHORT  20   1
+0302    KSHORT  21   8
+0303    CALL    18   2   4
+0304    ISNES   18  40      ; "![CDATA["
+0305    JMP     18 => 0336
+0306    GGET    18   2      ; "string"
+0307    TGETS   18  18   3  ; "find"
+0308    MOV     19   1
+0309    TGETS   20   0  41  ; "_CDATA"
+0310    MOV     21   5
+0311    CALL    18   4   4
+0312    MOV      6  20
+0313    MOV      4  19
+0314    MOV      3  18
+0315    IST          3
+0316    JMP     18 => 0323
+0317    MOV     19   0
+0318    TGETS   18   0   7  ; "_err"
+0319    TGETS   20   0   8  ; "_errstr"
+0320    TGETS   20  20  42  ; "cdataErr"
+0321    MOV     21   5
+0322    CALL    18   1   4
+0323 => TGETS   18   0   0  ; "_handler"
+0324    TGETS   18  18  43  ; "cdata"
+0325    ISF         18
+0326    JMP     19 => 0469
+0327    TGETS   18   0   0  ; "_handler"
+0328    MOV     19  18
+0329    TGETS   18  18  43  ; "cdata"
+0330    MOV     20   6
+0331    KPRI    21   0
+0332    MOV     22   3
+0333    MOV     23   4
+0334    CALL    18   1   6
+0335    JMP     18 => 0469
+0336 => LOOP    18 => 0383
+0337    GGET    18   2      ; "string"
+0338    TGETS   18  18   3  ; "find"
+0339    MOV     19   9
+0340    TGETS   20   0  44  ; "_ATTRERR1"
+0341    CALL    18   3   3
+0342    MOV     15  19
+0343    MOV     14  18
+0344    ISNEP   15   0
+0345    JMP     18 => 0356
+0346    GGET    18   2      ; "string"
+0347    TGETS   18  18   3  ; "find"
+0348    MOV     19   9
+0349    TGETS   20   0  45  ; "_ATTRERR2"
+0350    CALL    18   3   3
+0351    MOV     15  19
+0352    MOV     14  18
+0353    ISNEP   15   0
+0354    JMP     18 => 0356
+0355    JMP     18 => 0383
+0356 => GGET    18   2      ; "string"
+0357    TGETS   18  18   3  ; "find"
+0358    MOV     19   1
+0359    TGETS   20   0  46  ; "_TAGEXT"
+0360    ADDVN   21   4   1  ; 1
+0361    CALL    18   4   4
+0362    MOV      8  20
+0363    MOV     17  19
+0364    MOV     16  18
+0365    MOV     18   9
+0366    GGET    19   2      ; "string"
+0367    TGETS   19  19  16  ; "sub"
+0368    GGET    20   2      ; "string"
+0369    MOV     21   4
+0370    SUBVN   22  17   1  ; 1
+0371    CALL    19   2   4
+0372    CAT      9  18  19
+0373    IST          3
+0374    JMP     18 => 0381
+0375    MOV     19   0
+0376    TGETS   18   0   7  ; "_err"
+0377    TGETS   20   0   8  ; "_errstr"
+0378    TGETS   20  20  10  ; "xmlErr"
+0379    MOV     21   5
+0380    CALL    18   1   4
+0381 => MOV      4  17
+0382    JMP     18 => 0336
+0383 => MOV     19   0
+0384    TGETS   18   0  21  ; "_parseTag"
+0385    MOV     20   9
+0386    CALL    18   3   3
+0387    MOV     11  19
+0388    MOV     10  18
+0389    ISNES    7  47      ; "/"
+0390    JMP     18 => 0434
+0391    TGETS   18   0   0  ; "_handler"
+0392    TGETS   18  18  48  ; "endtag"
+0393    ISF         18
+0394    JMP     19 => 0469
+0395    ISF         11
+0396    JMP     18 => 0408
+0397    MOV     19   0
+0398    TGETS   18   0   7  ; "_err"
+0399    GGET    20   2      ; "string"
+0400    TGETS   20  20  49  ; "format"
+0401    KSTR    21  50      ; "%s (/%s)"
+0402    TGETS   22   0   8  ; "_errstr"
+0403    TGETS   22  22  51  ; "endTagErr"
+0404    MOV     23  10
+0405    CALL    20   2   4
+0406    MOV     21   5
+0407    CALL    18   1   4
+0408 => GGET    18  52      ; "table"
+0409    TGETS   18  18  53  ; "remove"
+0410    TGETS   19   0   6  ; "_stack"
+0411    CALL    18   2   2
+0412    ISEQV   18  10
+0413    JMP     18 => 0425
+0414    MOV     19   0
+0415    TGETS   18   0   7  ; "_err"
+0416    GGET    20   2      ; "string"
+0417    TGETS   20  20  49  ; "format"
+0418    KSTR    21  50      ; "%s (/%s)"
+0419    TGETS   22   0   8  ; "_errstr"
+0420    TGETS   22  22  54  ; "unmatchedTagErr"
+0421    MOV     23  10
+0422    CALL    20   2   4
+0423    MOV     21   5
+0424    CALL    18   1   4
+0425 => TGETS   18   0   0  ; "_handler"
+0426    MOV     19  18
+0427    TGETS   18  18  48  ; "endtag"
+0428    MOV     20  10
+0429    KPRI    21   0
+0430    MOV     22   3
+0431    MOV     23   4
+0432    CALL    18   1   6
+0433    JMP     18 => 0469
+0434 => GGET    18  52      ; "table"
+0435    TGETS   18  18  55  ; "insert"
+0436    TGETS   19   0   6  ; "_stack"
+0437    MOV     20  10
+0438    CALL    18   1   3
+0439    TGETS   18   0   0  ; "_handler"
+0440    TGETS   18  18  56  ; "starttag"
+0441    ISF         18
+0442    JMP     19 => 0451
+0443    TGETS   18   0   0  ; "_handler"
+0444    MOV     19  18
+0445    TGETS   18  18  56  ; "starttag"
+0446    MOV     20  10
+0447    MOV     21  11
+0448    MOV     22   3
+0449    MOV     23   4
+0450    CALL    18   1   6
+0451 => ISNES    8  47      ; "/"
+0452    JMP     18 => 0469
+0453    GGET    18  52      ; "table"
+0454    TGETS   18  18  53  ; "remove"
+0455    TGETS   19   0   6  ; "_stack"
+0456    CALL    18   1   2
+0457    TGETS   18   0   0  ; "_handler"
+0458    TGETS   18  18  48  ; "endtag"
+0459    ISF         18
+0460    JMP     19 => 0469
+0461    TGETS   18   0   0  ; "_handler"
+0462    MOV     19  18
+0463    TGETS   18  18  48  ; "endtag"
+0464    MOV     20  10
+0465    KPRI    21   0
+0466    MOV     22   3
+0467    MOV     23   4
+0468    CALL    18   1   6
+0469 => ADDVN    5   4   1  ; 1
+0470    JMP     18 => 0010
+0471 => RET0     0   1
+
+-- BYTECODE -- xml.lua:374-381
+0001    GGET     1   0      ; "tonumber"
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    KSHORT   2   0
+0005    ISGT     2   1
+0006    JMP      2 => 0015
+0007    KSHORT   2 256
+0008    ISGE     1   2
+0009    JMP      2 => 0015
+0010    GGET     2   1      ; "string"
+0011    TGETS    2   2   2  ; "char"
+0012    MOV      3   1
+0013    CALLT    2   2
+0014    JMP      2 => 0020
+0015 => KSTR     2   3      ; "&#"
+0016    MOV      3   1
+0017    KSTR     4   4      ; ";"
+0018    CAT      2   2   4
+0019    RET1     2   2
+0020 => RET0     0   1
+
+-- BYTECODE -- xml.lua:382-389
+0001    GGET     1   0      ; "tonumber"
+0002    MOV      2   0
+0003    KSHORT   3  16
+0004    CALL     1   2   3
+0005    KSHORT   2   0
+0006    ISGT     2   1
+0007    JMP      2 => 0016
+0008    KSHORT   2 256
+0009    ISGE     1   2
+0010    JMP      2 => 0016
+0011    GGET     2   1      ; "string"
+0012    TGETS    2   2   2  ; "char"
+0013    MOV      3   1
+0014    CALLT    2   2
+0015    JMP      2 => 0021
+0016 => KSTR     2   3      ; "&#x"
+0017    MOV      3   0
+0018    KSTR     4   4      ; ";"
+0019    CAT      2   2   4
+0020    RET1     2   2
+0021 => RET0     0   1
+
+-- BYTECODE -- xml.lua:392-396
+0001    TGETS    3   0   0  ; "options"
+0002    TGETS    3   3   1  ; "errorHandler"
+0003    ISF          3
+0004    JMP      4 => 0010
+0005    TGETS    3   0   0  ; "options"
+0006    TGETS    3   3   1  ; "errorHandler"
+0007    MOV      4   1
+0008    MOV      5   2
+0009    CALL     3   1   3
+0010 => RET0     0   1
+
+-- BYTECODE -- xml.lua:411-417
+0001    TGETS    2   0   0  ; "options"
+0002    TGETS    2   2   1  ; "stripWS"
+0003    ISF          2
+0004    JMP      3 => 0019
+0005    GGET     2   2      ; "string"
+0006    TGETS    2   2   3  ; "gsub"
+0007    MOV      3   1
+0008    KSTR     4   4      ; "^%s+"
+0009    KSTR     5   5      ; ""
+0010    CALL     2   2   4
+0011    MOV      1   2
+0012    GGET     2   2      ; "string"
+0013    TGETS    2   2   3  ; "gsub"
+0014    MOV      3   1
+0015    KSTR     4   6      ; "%s+$"
+0016    KSTR     5   5      ; ""
+0017    CALL     2   2   4
+0018    MOV      1   2
+0019 => RET1     1   2
+
+-- BYTECODE -- xml.lua:419-428
+0001    TGETS    2   0   0  ; "options"
+0002    TGETS    2   2   1  ; "expandEntities"
+0003    ISF          2
+0004    JMP      3 => 0018
+0005    GGET     2   2      ; "pairs"
+0006    TGETS    3   0   3  ; "_ENTITIES"
+0007    CALL     2   4   2
+0008    ISNEXT   5 => 0016
+0009 => GGET     7   4      ; "string"
+0010    TGETS    7   7   5  ; "gsub"
+0011    MOV      8   1
+0012    MOV      9   5
+0013    MOV     10   6
+0014    CALL     7   2   4
+0015    MOV      1   7
+0016 => ITERN    5   3   3
+0017    ITERL    5 => 0009
+0018 => RET1     1   2
+
+-- BYTECODE -- xml.lua:430-454
+0001    KNIL     3   9
+0002    GGET    10   0      ; "string"
+0003    TGETS   10  10   1  ; "find"
+0004    MOV     11   1
+0005    TGETS   12   0   2  ; "_DTD1"
+0006    MOV     13   2
+0007    CALL    10   7   4
+0008    MOV      9  15
+0009    MOV      8  14
+0010    MOV      6  13
+0011    MOV      5  12
+0012    MOV      4  11
+0013    MOV      3  10
+0014    ISF          3
+0015    JMP     10 => 0024
+0016    MOV     10   3
+0017    MOV     11   4
+0018    TDUP    12   3
+0019    TSETS    5  12   4  ; "_root"
+0020    TSETS    6  12   5  ; "_type"
+0021    TSETS    8  12   6  ; "_uri"
+0022    TSETS    9  12   7  ; "_internal"
+0023    RET     10   4
+0024 => GGET    10   0      ; "string"
+0025    TGETS   10  10   1  ; "find"
+0026    MOV     11   1
+0027    TGETS   12   0   8  ; "_DTD2"
+0028    MOV     13   2
+0029    CALL    10   8   4
+0030    MOV      9  16
+0031    MOV      8  15
+0032    MOV      7  14
+0033    MOV      6  13
+0034    MOV      5  12
+0035    MOV      4  11
+0036    MOV      3  10
+0037    ISF          3
+0038    JMP     10 => 0048
+0039    MOV     10   3
+0040    MOV     11   4
+0041    TDUP    12   9
+0042    TSETS    5  12   4  ; "_root"
+0043    TSETS    6  12   5  ; "_type"
+0044    TSETS    7  12  10  ; "_name"
+0045    TSETS    8  12   6  ; "_uri"
+0046    TSETS    9  12   7  ; "_internal"
+0047    RET     10   4
+0048 => GGET    10   0      ; "string"
+0049    TGETS   10  10   1  ; "find"
+0050    MOV     11   1
+0051    TGETS   12   0  11  ; "_DTD3"
+0052    MOV     13   2
+0053    CALL    10   5   4
+0054    MOV      9  13
+0055    MOV      5  12
+0056    MOV      4  11
+0057    MOV      3  10
+0058    ISF          3
+0059    JMP     10 => 0066
+0060    MOV     10   3
+0061    MOV     11   4
+0062    TDUP    12  12
+0063    TSETS    5  12   4  ; "_root"
+0064    TSETS    9  12   7  ; "_internal"
+0065    RET     10   4
+0066 => GGET    10   0      ; "string"
+0067    TGETS   10  10   1  ; "find"
+0068    MOV     11   1
+0069    TGETS   12   0  13  ; "_DTD4"
+0070    MOV     13   2
+0071    CALL    10   6   4
+0072    MOV      8  14
+0073    MOV      6  13
+0074    MOV      5  12
+0075    MOV      4  11
+0076    MOV      3  10
+0077    ISF          3
+0078    JMP     10 => 0086
+0079    MOV     10   3
+0080    MOV     11   4
+0081    TDUP    12  14
+0082    TSETS    5  12   4  ; "_root"
+0083    TSETS    6  12   5  ; "_type"
+0084    TSETS    8  12   6  ; "_uri"
+0085    RET     10   4
+0086 => GGET    10   0      ; "string"
+0087    TGETS   10  10   1  ; "find"
+0088    MOV     11   1
+0089    TGETS   12   0  15  ; "_DTD5"
+0090    MOV     13   2
+0091    CALL    10   7   4
+0092    MOV      8  15
+0093    MOV      7  14
+0094    MOV      6  13
+0095    MOV      5  12
+0096    MOV      4  11
+0097    MOV      3  10
+0098    ISF          3
+0099    JMP     10 => 0108
+0100    MOV     10   3
+0101    MOV     11   4
+0102    TDUP    12  16
+0103    TSETS    5  12   4  ; "_root"
+0104    TSETS    6  12   5  ; "_type"
+0105    TSETS    7  12  10  ; "_name"
+0106    TSETS    8  12   6  ; "_uri"
+0107    RET     10   4
+0108 => KPRI    10   0
+0109    RET1    10   2
+
+-- BYTECODE -- xml.lua:463-466
+0001    UGET     2   0      ; attrs
+0002    GGET     3   0      ; "string"
+0003    TGETS    3   3   1  ; "lower"
+0004    MOV      4   0
+0005    CALL     3   2   2
+0006    UGET     4   1      ; self
+0007    MOV      5   4
+0008    TGETS    4   4   2  ; "_parseEntities"
+0009    MOV      6   1
+0010    CALL     4   2   3
+0011    TSETV    4   2   3
+0012    UGET     2   0      ; attrs
+0013    KSHORT   3   1
+0014    TSETS    3   2   3  ; "_"
+0015    RET0     0   1
+
+-- BYTECODE -- xml.lua:467-470
+0001    UGET     2   0      ; attrs
+0002    GGET     3   0      ; "string"
+0003    TGETS    3   3   1  ; "lower"
+0004    MOV      4   0
+0005    CALL     3   2   2
+0006    UGET     4   1      ; self
+0007    MOV      5   4
+0008    TGETS    4   4   2  ; "_parseEntities"
+0009    MOV      6   1
+0010    CALL     4   2   3
+0011    TSETV    4   2   3
+0012    UGET     2   0      ; attrs
+0013    KSHORT   3   1
+0014    TSETS    3   2   3  ; "_"
+0015    RET0     0   1
+
+-- BYTECODE -- xml.lua:460-477
+0001    TNEW     2   0
+0002    GGET     3   0      ; "string"
+0003    TGETS    3   3   1  ; "gsub"
+0004    MOV      4   1
+0005    TGETS    5   0   2  ; "_TAG"
+0006    KSTR     6   3      ; "%1"
+0007    CALL     3   2   4
+0008    GGET     4   0      ; "string"
+0009    TGETS    4   4   1  ; "gsub"
+0010    MOV      5   1
+0011    TGETS    6   0   4  ; "_ATTR1"
+0012    FNEW     7   5      ; xml.lua:463
+0013    CALL     4   1   4
+0014    GGET     4   0      ; "string"
+0015    TGETS    4   4   1  ; "gsub"
+0016    MOV      5   1
+0017    TGETS    6   0   6  ; "_ATTR2"
+0018    FNEW     7   7      ; xml.lua:467
+0019    CALL     4   1   4
+0020    TGETS    4   2   8  ; "_"
+0021    ISF          4
+0022    JMP      5 => 0026
+0023    KPRI     4   0
+0024    TSETS    4   2   8  ; "_"
+0025    JMP      4 => 0027
+0026 => KPRI     2   0
+0027 => MOV      4   3
+0028    MOV      5   2
+0029    UCLO     0 => 0030
+0030 => RET      4   3
+
+-- BYTECODE -- xml.lua:162-481
+0001    TNEW     1   0
+0002    TDUP     2   1
+0003    FNEW     3   2      ; xml.lua:169
+0004    TSETS    3   2   3  ; "errorHandler"
+0005    TSETS    2   1   0  ; "options"
+0006    FNEW     2   5      ; xml.lua:177
+0007    TSETS    2   1   4  ; "parse"
+0008    TSETS    0   1   6  ; "_handler"
+0009    TNEW     2   0
+0010    TSETS    2   1   7  ; "_stack"
+0011    KSTR     2   9      ; "^([^<]*)<(%/?)([^>]-)(%/?)>"
+0012    TSETS    2   1   8  ; "_XML"
+0013    KSTR     2  11      ; "([%w-:_]+)%s*=%s*"(.-)""
+0014    TSETS    2   1  10  ; "_ATTR1"
+0015    KSTR     2  13      ; "([%w-:_]+)%s*=%s*'(.-)'"
+0016    TSETS    2   1  12  ; "_ATTR2"
+0017    KSTR     2  15      ; "<%!%[CDATA%[(.-)%]%]>"
+0018    TSETS    2   1  14  ; "_CDATA"
+0019    KSTR     2  17      ; "<%?(.-)%?>"
+0020    TSETS    2   1  16  ; "_PI"
+0021    KSTR     2  19      ; "<!%-%-(.-)%-%->"
+0022    TSETS    2   1  18  ; "_COMMENT"
+0023    KSTR     2  21      ; "^(.-)%s.*"
+0024    TSETS    2   1  20  ; "_TAG"
+0025    KSTR     2  23      ; "^%s+"
+0026    TSETS    2   1  22  ; "_LEADINGWS"
+0027    KSTR     2  25      ; "%s+$"
+0028    TSETS    2   1  24  ; "_TRAILINGWS"
+0029    KSTR     2  27      ; "^%s*$"
+0030    TSETS    2   1  26  ; "_WS"
+0031    KSTR     2  29      ; "<!DOCTYPE%s+(.-)%s+(SYSTEM)%s+["'](.-)[""~
+0032    TSETS    2   1  28  ; "_DTD1"
+0033    KSTR     2  31      ; "<!DOCTYPE%s+(.-)%s+(PUBLIC)%s+["'](.-)[""~
+0034    TSETS    2   1  30  ; "_DTD2"
+0035    KSTR     2  33      ; "<!DOCTYPE%s+(.-)%s*(%b[])%s*>"
+0036    TSETS    2   1  32  ; "_DTD3"
+0037    KSTR     2  35      ; "<!DOCTYPE%s+(.-)%s+(SYSTEM)%s+["'](.-)[""~
+0038    TSETS    2   1  34  ; "_DTD4"
+0039    KSTR     2  37      ; "<!DOCTYPE%s+(.-)%s+(PUBLIC)%s+["'](.-)[""~
+0040    TSETS    2   1  36  ; "_DTD5"
+0041    KSTR     2  39      ; "=%s*"[^"]*$"
+0042    TSETS    2   1  38  ; "_ATTRERR1"
+0043    KSTR     2  41      ; "=%s*'[^']*$"
+0044    TSETS    2   1  40  ; "_ATTRERR2"
+0045    KSTR     2  43      ; "(%/?)>"
+0046    TSETS    2   1  42  ; "_TAGEXT"
+0047    TDUP     2  45
+0048    FNEW     3  46      ; xml.lua:374
+0049    TSETS    3   2  47  ; "&#(%d+);"
+0050    FNEW     3  48      ; xml.lua:382
+0051    TSETS    3   2  49  ; "&#x(%x+);"
+0052    TSETS    2   1  44  ; "_ENTITIES"
+0053    FNEW     2  51      ; xml.lua:392
+0054    TSETS    2   1  50  ; "_err"
+0055    TDUP     2  53
+0056    TSETS    2   1  52  ; "_errstr"
+0057    FNEW     2  55      ; xml.lua:411
+0058    TSETS    2   1  54  ; "_stripWS"
+0059    FNEW     2  57      ; xml.lua:419
+0060    TSETS    2   1  56  ; "_parseEntities"
+0061    FNEW     2  59      ; xml.lua:430
+0062    TSETS    2   1  58  ; "_parseDTD"
+0063    FNEW     2  61      ; xml.lua:460
+0064    TSETS    2   1  60  ; "_parseTag"
+0065    UCLO     0 => 0066
+0066 => RET1     1   2
+
+-- BYTECODE -- xml.lua:0-484
+0001    FNEW     0   0      ; xml.lua:162
+0002    TDUP     1   1
+0003    TSETS    0   1   2  ; "xmlParser"
+0004    UCLO     0 => 0005
+0005 => RET1     1   2
+

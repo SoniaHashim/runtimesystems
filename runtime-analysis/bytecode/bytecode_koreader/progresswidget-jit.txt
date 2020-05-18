@@ -1,0 +1,357 @@
+-- BYTECODE -- progresswidget.lua:55-57
+0001    TDUP     1   1
+0002    TGETS    2   0   0  ; "width"
+0003    TSETS    2   1   2  ; "w"
+0004    TGETS    2   0   3  ; "height"
+0005    TSETS    2   1   4  ; "h"
+0006    RET1     1   2
+
+-- BYTECODE -- progresswidget.lua:59-106
+0001    MOV      5   0
+0002    TGETS    4   0   0  ; "getSize"
+0003    CALL     4   2   2
+0004    UGET     5   0      ; Geom
+0005    MOV      6   5
+0006    TGETS    5   5   2  ; "new"
+0007    TDUP     7   3
+0008    TSETS    2   7   4  ; "x"
+0009    TSETS    3   7   5  ; "y"
+0010    TGETS    8   4   6  ; "w"
+0011    TSETS    8   7   6  ; "w"
+0012    TGETS    8   4   7  ; "h"
+0013    TSETS    8   7   7  ; "h"
+0014    CALL     5   2   3
+0015    TSETS    5   0   1  ; "dimen"
+0016    TGETS    5   0   1  ; "dimen"
+0017    TGETS    5   5   6  ; "w"
+0018    ISEQN    5   0      ; 0
+0019    JMP      5 => 0024
+0020    TGETS    5   0   1  ; "dimen"
+0021    TGETS    5   5   7  ; "h"
+0022    ISNEN    5   0      ; 0
+0023    JMP      5 => 0025
+0024 => RET0     0   1
+0025 => MOV      6   1
+0026    TGETS    5   1   8  ; "paintRoundedRect"
+0027    MOV      7   2
+0028    MOV      8   3
+0029    TGETS    9   4   6  ; "w"
+0030    TGETS   10   4   7  ; "h"
+0031    TGETS   11   0   9  ; "bgcolor"
+0032    TGETS   12   0  10  ; "radius"
+0033    CALL     5   1   8
+0034    MOV      6   1
+0035    TGETS    5   1  11  ; "paintBorder"
+0036    MOV      7   2
+0037    MOV      8   3
+0038    TGETS    9   4   6  ; "w"
+0039    TGETS   10   4   7  ; "h"
+0040    TGETS   11   0  12  ; "bordersize"
+0041    TGETS   12   0  13  ; "bordercolor"
+0042    TGETS   13   0  10  ; "radius"
+0043    CALL     5   1   9
+0044    TGETS    5   0  14  ; "percentage"
+0045    KSHORT   6   0
+0046    ISGT     6   5
+0047    JMP      5 => 0129
+0048    TGETS    5   0  14  ; "percentage"
+0049    KSHORT   6   1
+0050    ISGT     5   6
+0051    JMP      5 => 0129
+0052    TGETS    5   0  15  ; "fill_from_right"
+0053    IST          5
+0054    JMP      6 => 0061
+0055    TGETS    5   0  16  ; "_mirroredUI"
+0056    ISF          5
+0057    JMP      6 => 0101
+0058    TGETS    5   0  15  ; "fill_from_right"
+0059    IST          5
+0060    JMP      5 => 0101
+0061 => MOV      6   1
+0062    TGETS    5   1  17  ; "paintRect"
+0063    TGETS    7   0  18  ; "margin_h"
+0064    ADDVV    7   2   7
+0065    GGET     8  19      ; "math"
+0066    TGETS    8   8  20  ; "ceil"
+0067    TGETS    9   4   6  ; "w"
+0068    TGETS   10   0  18  ; "margin_h"
+0069    MULNV   10  10   1  ; 2
+0070    SUBVV    9   9  10
+0071    TGETS   10   0  14  ; "percentage"
+0072    SUBNV   10  10   2  ; 1
+0073    MULVV    9   9  10
+0074    CALL     8   2   2
+0075    ADDVV    7   7   8
+0076    GGET     8  19      ; "math"
+0077    TGETS    8   8  20  ; "ceil"
+0078    TGETS    9   0  21  ; "margin_v"
+0079    ADDVV    9   3   9
+0080    TGETS   10   0  12  ; "bordersize"
+0081    ADDVV    9   9  10
+0082    CALL     8   2   2
+0083    GGET     9  19      ; "math"
+0084    TGETS    9   9  20  ; "ceil"
+0085    TGETS   10   4   6  ; "w"
+0086    TGETS   11   0  18  ; "margin_h"
+0087    MULNV   11  11   1  ; 2
+0088    SUBVV   10  10  11
+0089    TGETS   11   0  14  ; "percentage"
+0090    MULVV   10  10  11
+0091    CALL     9   2   2
+0092    TGETS   10   4   7  ; "h"
+0093    TGETS   11   0  21  ; "margin_v"
+0094    TGETS   12   0  12  ; "bordersize"
+0095    ADDVV   11  11  12
+0096    MULNV   11  11   1  ; 2
+0097    SUBVV   10  10  11
+0098    TGETS   11   0  22  ; "rectcolor"
+0099    CALL     5   1   7
+0100    JMP      5 => 0129
+0101 => MOV      6   1
+0102    TGETS    5   1  17  ; "paintRect"
+0103    TGETS    7   0  18  ; "margin_h"
+0104    ADDVV    7   2   7
+0105    GGET     8  19      ; "math"
+0106    TGETS    8   8  20  ; "ceil"
+0107    TGETS    9   0  21  ; "margin_v"
+0108    ADDVV    9   3   9
+0109    TGETS   10   0  12  ; "bordersize"
+0110    ADDVV    9   9  10
+0111    CALL     8   2   2
+0112    GGET     9  19      ; "math"
+0113    TGETS    9   9  20  ; "ceil"
+0114    TGETS   10   4   6  ; "w"
+0115    TGETS   11   0  18  ; "margin_h"
+0116    MULNV   11  11   1  ; 2
+0117    SUBVV   10  10  11
+0118    TGETS   11   0  14  ; "percentage"
+0119    MULVV   10  10  11
+0120    CALL     9   2   2
+0121    TGETS   10   4   7  ; "h"
+0122    TGETS   11   0  21  ; "margin_v"
+0123    TGETS   12   0  12  ; "bordersize"
+0124    ADDVV   11  11  12
+0125    MULNV   11  11   1  ; 2
+0126    SUBVV   10  10  11
+0127    TGETS   11   0  22  ; "rectcolor"
+0128    CALL     5   1   7
+0129 => TGETS    5   0  23  ; "ticks"
+0130    ISF          5
+0131    JMP      6 => 0178
+0132    TGETS    5   0  24  ; "last"
+0133    ISF          5
+0134    JMP      6 => 0178
+0135    TGETS    5   0  24  ; "last"
+0136    KSHORT   6   0
+0137    ISGE     6   5
+0138    JMP      5 => 0178
+0139    TGETS    5   4   6  ; "w"
+0140    TGETS    6   0  18  ; "margin_h"
+0141    MULNV    6   6   1  ; 2
+0142    SUBVV    5   5   6
+0143    TGETS    6   0  21  ; "margin_v"
+0144    ADDVV    6   3   6
+0145    TGETS    7   0  12  ; "bordersize"
+0146    ADDVV    6   6   7
+0147    TGETS    7   4   7  ; "h"
+0148    TGETS    8   0  21  ; "margin_v"
+0149    TGETS    9   0  12  ; "bordersize"
+0150    ADDVV    8   8   9
+0151    MULNV    8   8   1  ; 2
+0152    SUBVV    7   7   8
+0153    KSHORT   8   1
+0154    TGETS    9   0  23  ; "ticks"
+0155    LEN      9   9
+0156    KSHORT  10   1
+0157    FORI     8 => 0178
+0158 => TGETS   12   0  23  ; "ticks"
+0159    TGETV   12  12  11
+0160    TGETS   13   0  24  ; "last"
+0161    DIVVV   12  12  13
+0162    MULVV   12   5  12
+0163    TGETS   13   0  16  ; "_mirroredUI"
+0164    ISF         13
+0165    JMP     14 => 0167
+0166    SUBVV   12   5  12
+0167 => MOV     14   1
+0168    TGETS   13   1  17  ; "paintRect"
+0169    TGETS   15   0  18  ; "margin_h"
+0170    ADDVV   15   2  15
+0171    ADDVV   15  15  12
+0172    MOV     16   6
+0173    TGETS   17   0  25  ; "tick_width"
+0174    MOV     18   7
+0175    TGETS   19   0  13  ; "bordercolor"
+0176    CALL    13   1   7
+0177    FORL     8 => 0158
+0178 => RET0     0   1
+
+-- BYTECODE -- progresswidget.lua:108-110
+0001    TSETS    1   0   0  ; "percentage"
+0002    RET0     0   1
+
+-- BYTECODE -- progresswidget.lua:112-125
+0001    ISF          1
+0002    JMP      2 => 0006
+0003    TGETS    2   1   0  ; "x"
+0004    IST          2
+0005    JMP      2 => 0008
+0006 => KPRI     2   0
+0007    RET1     2   2
+0008 => TGETS    2   0   1  ; "dimen"
+0009    TGETS    2   2   2  ; "w"
+0010    TGETS    3   0   3  ; "margin_h"
+0011    MULNV    3   3   0  ; 2
+0012    SUBVV    2   2   3
+0013    TGETS    3   1   0  ; "x"
+0014    TGETS    4   0   1  ; "dimen"
+0015    TGETS    4   4   0  ; "x"
+0016    SUBVV    3   3   4
+0017    TGETS    4   0   3  ; "margin_h"
+0018    SUBVV    3   3   4
+0019    KSHORT   4   0
+0020    ISLT     3   4
+0021    JMP      4 => 0024
+0022    ISGE     2   3
+0023    JMP      4 => 0026
+0024 => KPRI     4   0
+0025    RET1     4   2
+0026 => UGET     4   0      ; BD
+0027    TGETS    4   4   4  ; "mirroredUILayout"
+0028    CALL     4   2   1
+0029    ISF          4
+0030    JMP      5 => 0032
+0031    SUBVV    3   2   3
+0032 => DIVVV    4   3   2
+0033    RET1     4   2
+
+-- BYTECODE -- progresswidget.lua:127-148
+0001    ISF          1
+0002    JMP      3 => 0039
+0003    ISF          2
+0004    JMP      3 => 0011
+0005    UGET     3   0      ; Screen
+0006    MOV      4   3
+0007    TGETS    3   3   1  ; "scaleBySize"
+0008    MOV      5   2
+0009    CALL     3   2   3
+0010    TSETS    3   0   0  ; "height"
+0011 => UGET     3   0      ; Screen
+0012    MOV      4   3
+0013    TGETS    3   3   1  ; "scaleBySize"
+0014    KSHORT   5   3
+0015    CALL     3   2   3
+0016    TSETS    3   0   2  ; "margin_h"
+0017    UGET     3   0      ; Screen
+0018    MOV      4   3
+0019    TGETS    3   3   1  ; "scaleBySize"
+0020    KSHORT   5   1
+0021    CALL     3   2   3
+0022    TSETS    3   0   3  ; "margin_v"
+0023    UGET     3   0      ; Screen
+0024    MOV      4   3
+0025    TGETS    3   3   1  ; "scaleBySize"
+0026    KSHORT   5   1
+0027    CALL     3   2   3
+0028    TSETS    3   0   4  ; "bordersize"
+0029    UGET     3   0      ; Screen
+0030    MOV      4   3
+0031    TGETS    3   3   1  ; "scaleBySize"
+0032    KSHORT   5   2
+0033    CALL     3   2   3
+0034    TSETS    3   0   5  ; "radius"
+0035    UGET     3   1      ; Blitbuffer
+0036    TGETS    3   3   7  ; "COLOR_WHITE"
+0037    TSETS    3   0   6  ; "bgcolor"
+0038    JMP      3 => 0060
+0039 => ISF          2
+0040    JMP      3 => 0047
+0041    UGET     3   0      ; Screen
+0042    MOV      4   3
+0043    TGETS    3   3   1  ; "scaleBySize"
+0044    MOV      5   2
+0045    CALL     3   2   3
+0046    TSETS    3   0   0  ; "height"
+0047 => KSHORT   3   0
+0048    TSETS    3   0   2  ; "margin_h"
+0049    KSHORT   3   0
+0050    TSETS    3   0   3  ; "margin_v"
+0051    KSHORT   3   0
+0052    TSETS    3   0   4  ; "bordersize"
+0053    KSHORT   3   0
+0054    TSETS    3   0   5  ; "radius"
+0055    UGET     3   1      ; Blitbuffer
+0056    TGETS    3   3   8  ; "COLOR_GRAY"
+0057    TSETS    3   0   6  ; "bgcolor"
+0058    KPRI     3   0
+0059    TSETS    3   0   9  ; "ticks"
+0060 => RET0     0   1
+
+-- BYTECODE -- progresswidget.lua:0-151
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/blitbuffer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/geometry"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/widget"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "device"
+0015    CALL     4   2   2
+0016    TGETS    4   4   6  ; "screen"
+0017    MOV      6   3
+0018    TGETS    5   3   7  ; "new"
+0019    TDUP     7   8
+0020    MOV      9   4
+0021    TGETS    8   4   9  ; "scaleBySize"
+0022    KSHORT  10   3
+0023    CALL     8   2   3
+0024    TSETS    8   7  10  ; "margin_h"
+0025    MOV      9   4
+0026    TGETS    8   4   9  ; "scaleBySize"
+0027    KSHORT  10   1
+0028    CALL     8   2   3
+0029    TSETS    8   7  11  ; "margin_v"
+0030    MOV      9   4
+0031    TGETS    8   4   9  ; "scaleBySize"
+0032    KSHORT  10   2
+0033    CALL     8   2   3
+0034    TSETS    8   7  12  ; "radius"
+0035    MOV      9   4
+0036    TGETS    8   4   9  ; "scaleBySize"
+0037    KSHORT  10   1
+0038    CALL     8   2   3
+0039    TSETS    8   7  13  ; "bordersize"
+0040    TGETS    8   1  14  ; "COLOR_BLACK"
+0041    TSETS    8   7  15  ; "bordercolor"
+0042    TGETS    8   1  16  ; "COLOR_WHITE"
+0043    TSETS    8   7  17  ; "bgcolor"
+0044    TGETS    8   1  18  ; "COLOR_DIM_GRAY"
+0045    TSETS    8   7  19  ; "rectcolor"
+0046    MOV      9   4
+0047    TGETS    8   4   9  ; "scaleBySize"
+0048    KSHORT  10   3
+0049    CALL     8   2   3
+0050    TSETS    8   7  20  ; "tick_width"
+0051    TGETS    8   0  21  ; "mirroredUILayout"
+0052    CALL     8   2   1
+0053    TSETS    8   7  22  ; "_mirroredUI"
+0054    CALL     5   2   3
+0055    FNEW     6  24      ; progresswidget.lua:55
+0056    TSETS    6   5  23  ; "getSize"
+0057    FNEW     6  26      ; progresswidget.lua:59
+0058    TSETS    6   5  25  ; "paintTo"
+0059    FNEW     6  28      ; progresswidget.lua:108
+0060    TSETS    6   5  27  ; "setPercentage"
+0061    FNEW     6  30      ; progresswidget.lua:112
+0062    TSETS    6   5  29  ; "getPercentageFromPosition"
+0063    FNEW     6  32      ; progresswidget.lua:127
+0064    TSETS    6   5  31  ; "updateStyle"
+0065    UCLO     0 => 0066
+0066 => RET1     5   2
+

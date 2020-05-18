@@ -1,0 +1,120 @@
+-- BYTECODE -- translator_spec.lua:5-8
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "ui/translator"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; Translator
+0008    RET0     0   1
+
+-- BYTECODE -- translator_spec.lua:9-16
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is"
+0003    TGETS    0   0   2  ; "same"
+0004    KSTR     1   3      ; "https://translate.googleapis.com/"
+0005    UGET     2   0      ; Translator
+0006    MOV      3   2
+0007    TGETS    2   2   4  ; "getTransServer"
+0008    CALL     2   0   2
+0009    CALLM    0   1   1
+0010    GGET     0   5      ; "G_reader_settings"
+0011    MOV      1   0
+0012    TGETS    0   0   6  ; "saveSetting"
+0013    KSTR     2   7      ; "trans_server"
+0014    KSTR     3   8      ; "http://translate.google.nl"
+0015    CALL     0   1   4
+0016    GGET     0   5      ; "G_reader_settings"
+0017    MOV      1   0
+0018    TGETS    0   0   9  ; "flush"
+0019    CALL     0   1   2
+0020    GGET     0   0      ; "assert"
+0021    TGETS    0   0   1  ; "is"
+0022    TGETS    0   0   2  ; "same"
+0023    KSTR     1   8      ; "http://translate.google.nl"
+0024    UGET     2   0      ; Translator
+0025    MOV      3   2
+0026    TGETS    2   2   4  ; "getTransServer"
+0027    CALL     2   0   2
+0028    CALLM    0   1   1
+0029    GGET     0   5      ; "G_reader_settings"
+0030    MOV      1   0
+0031    TGETS    0   0  10  ; "delSetting"
+0032    KSTR     2   7      ; "trans_server"
+0033    CALL     0   1   3
+0034    GGET     0   5      ; "G_reader_settings"
+0035    MOV      1   0
+0036    TGETS    0   0   9  ; "flush"
+0037    CALL     0   1   2
+0038    RET0     0   1
+
+-- BYTECODE -- translator_spec.lua:18-24
+0001    UGET     0   0      ; Translator
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "translate"
+0004    UGET     2   1      ; dutch_wikipedia_text
+0005    KSTR     3   1      ; "en"
+0006    CALL     0   2   4
+0007    GGET     1   2      ; "assert"
+0008    TGETS    1   1   3  ; "is"
+0009    TGETS    1   1   4  ; "truthy"
+0010    MOV      2   0
+0011    CALL     1   1   2
+0012    GGET     1   2      ; "assert"
+0013    TGETS    1   1   5  ; "is_true"
+0014    LEN      2   0
+0015    KSHORT   3  50
+0016    ISGE     3   2
+0017    JMP      2 => 0022
+0018    LEN      2   0
+0019    KSHORT   3 200
+0020    ISLT     2   3
+0021    JMP      2 => 0024
+0022 => KPRI     2   1
+0023    JMP      3 => 0025
+0024 => KPRI     2   2
+0025 => CALL     1   1   2
+0026    RET0     0   1
+
+-- BYTECODE -- translator_spec.lua:25-28
+0001    UGET     0   0      ; Translator
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "detect"
+0004    UGET     2   1      ; dutch_wikipedia_text
+0005    CALL     0   2   3
+0006    GGET     1   1      ; "assert"
+0007    TGETS    1   1   2  ; "is"
+0008    TGETS    1   1   3  ; "same"
+0009    KSTR     2   4      ; "nl"
+0010    MOV      3   0
+0011    CALL     1   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- translator_spec.lua:4-29
+0001    GGET     0   0      ; "setup"
+0002    FNEW     1   1      ; translator_spec.lua:5
+0003    CALL     0   1   2
+0004    GGET     0   2      ; "it"
+0005    KSTR     1   3      ; "should return server"
+0006    FNEW     2   4      ; translator_spec.lua:9
+0007    CALL     0   1   3
+0008    GGET     0   2      ; "it"
+0009    KSTR     1   5      ; "should return translation"
+0010    FNEW     2   6      ; translator_spec.lua:18
+0011    CALL     0   1   3
+0012    GGET     0   2      ; "it"
+0013    KSTR     1   7      ; "should autodetect language"
+0014    FNEW     2   8      ; translator_spec.lua:25
+0015    CALL     0   1   3
+0016    RET0     0   1
+
+-- BYTECODE -- translator_spec.lua:0-30
+0001    KSTR     0   0      ; "Wikipedia is een meertalige encyclopedie"~
+0002    KPRI     1   0
+0003    GGET     2   1      ; "describe"
+0004    KSTR     3   2      ; "Translator module"
+0005    FNEW     4   3      ; translator_spec.lua:4
+0006    CALL     2   1   3
+0007    UCLO     0 => 0008
+0008 => RET0     0   1
+

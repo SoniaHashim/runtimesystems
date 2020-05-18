@@ -1,0 +1,468 @@
+-- BYTECODE -- new_version.lua:14-50
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "command"
+0003    KSTR     3   1      ; "new_version"
+0004    KSTR     4   2      ; "This is a utility function that writes a"~
+0005    UGET     5   0      ; util
+0006    TGETS    5   5   3  ; "see_also"
+0007    CALL     5   0   1
+0008    CALLM    1   2   3
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "summary"
+0011    KSTR     3   5      ; "Auto-write a rockspec for a new version "~
+0012    CALL     1   2   3
+0013    MOV      3   1
+0014    TGETS    2   1   6  ; "argument"
+0015    KSTR     4   7      ; "rock"
+0016    KSTR     5   8      ; "Package name or rockspec."
+0017    CALL     2   2   4
+0018    MOV      3   2
+0019    TGETS    2   2   9  ; "args"
+0020    KSTR     4  10      ; "?"
+0021    CALL     2   1   3
+0022    MOV      3   1
+0023    TGETS    2   1   6  ; "argument"
+0024    KSTR     4   1      ; "new_version"
+0025    KSTR     5  11      ; "New version of the rock."
+0026    CALL     2   2   4
+0027    MOV      3   2
+0028    TGETS    2   2   9  ; "args"
+0029    KSTR     4  10      ; "?"
+0030    CALL     2   1   3
+0031    MOV      3   1
+0032    TGETS    2   1   6  ; "argument"
+0033    KSTR     4  12      ; "new_url"
+0034    KSTR     5  13      ; "New URL of the rock."
+0035    CALL     2   2   4
+0036    MOV      3   2
+0037    TGETS    2   2   9  ; "args"
+0038    KSTR     4  10      ; "?"
+0039    CALL     2   1   3
+0040    MOV      3   1
+0041    TGETS    2   1  14  ; "option"
+0042    KSTR     4  15      ; "--dir"
+0043    KSTR     5  16      ; "Output directory for the new rockspec."
+0044    CALL     2   1   4
+0045    MOV      3   1
+0046    TGETS    2   1  14  ; "option"
+0047    KSTR     4  17      ; "--tag"
+0048    KSTR     5  18      ; "New SCM tag."
+0049    CALL     2   1   4
+0050    RET0     0   1
+
+-- BYTECODE -- new_version.lua:53-65
+0001    TGETV    4   0   1
+0002    IST          4
+0003    JMP      4 => 0006
+0004    KPRI     4   1
+0005    RET1     4   2
+0006 => TGETV    4   0   1
+0007    TGETV    5   0   1
+0008    MOV      6   5
+0009    TGETS    5   5   0  ; "gsub"
+0010    MOV      7   2
+0011    MOV      8   3
+0012    CALL     5   2   4
+0013    ISEQV    5   4
+0014    JMP      6 => 0026
+0015    UGET     6   0      ; util
+0016    TGETS    6   6   1  ; "printout"
+0017    KSTR     7   2      ; "Guessing new '"
+0018    MOV      8   1
+0019    KSTR     9   3      ; "' field as "
+0020    MOV     10   5
+0021    CAT      7   7  10
+0022    CALL     6   1   2
+0023    TSETV    5   0   1
+0024    KPRI     6   2
+0025    RET1     6   2
+0026 => KPRI     6   1
+0027    RET1     6   2
+
+-- BYTECODE -- new_version.lua:71-102
+0001    UGET     1   0      ; fetch
+0002    TGETS    1   1   0  ; "fetch_url_at_temp_dir"
+0003    TGETS    2   0   1  ; "source"
+0004    TGETS    2   2   2  ; "url"
+0005    KSTR     3   3      ; "luarocks-new-version-"
+0006    TGETS    4   0   4  ; "package"
+0007    CAT      3   3   4
+0008    CALL     1   3   3
+0009    IST          1
+0010    JMP      3 => 0020
+0011    UGET     3   1      ; util
+0012    TGETS    3   3   5  ; "warning"
+0013    KSTR     4   6      ; "invalid URL - "
+0014    MOV      5   2
+0015    CAT      4   4   5
+0016    CALL     3   1   2
+0017    KPRI     3   2
+0018    KPRI     4   1
+0019    RET      3   3
+0020 => UGET     3   0      ; fetch
+0021    TGETS    3   3   7  ; "find_base_dir"
+0022    MOV      4   1
+0023    MOV      5   2
+0024    TGETS    6   0   1  ; "source"
+0025    TGETS    6   6   2  ; "url"
+0026    TGETS    7   0   1  ; "source"
+0027    TGETS    7   7   8  ; "dir"
+0028    CALL     3   3   5
+0029    IST          3
+0030    JMP      5 => 0034
+0031    KPRI     5   0
+0032    MOV      6   4
+0033    RET      5   3
+0034 => ISF          4
+0035    JMP      5 => 0040
+0036    ISEQV    4   3
+0037    JMP      5 => 0040
+0038    TGETS    5   0   1  ; "source"
+0039    TSETS    4   5   8  ; "dir"
+0040 => ISF          1
+0041    JMP      5 => 0078
+0042    TGETS    5   0   1  ; "source"
+0043    TGETS    5   5   9  ; "md5"
+0044    ISF          5
+0045    JMP      6 => 0071
+0046    UGET     5   1      ; util
+0047    TGETS    5   5  10  ; "printout"
+0048    KSTR     6  11      ; "File successfully downloaded. Updating M"~
+0049    CALL     5   1   2
+0050    UGET     5   2      ; fs
+0051    TGETS    5   5  12  ; "get_md5"
+0052    MOV      6   1
+0053    CALL     5   3   2
+0054    IST          5
+0055    JMP      7 => 0059
+0056    KPRI     7   0
+0057    MOV      8   6
+0058    RET      7   3
+0059 => TGETS    7   0   1  ; "source"
+0060    TGETS    7   7   9  ; "md5"
+0061    TGETS    8   0   1  ; "source"
+0062    TSETS    5   8   9  ; "md5"
+0063    KPRI     8   2
+0064    ISNEV    5   7
+0065    JMP      9 => 0068
+0066    KPRI     9   1
+0067    JMP     10 => 0069
+0068 => KPRI     9   2
+0069 => RET      8   3
+0070    JMP      5 => 0078
+0071 => UGET     5   1      ; util
+0072    TGETS    5   5  10  ; "printout"
+0073    KSTR     6  13      ; "File successfully downloaded."
+0074    CALL     5   1   2
+0075    KPRI     5   2
+0076    KPRI     6   1
+0077    RET      5   3
+0078 => RET0     0   1
+
+-- BYTECODE -- new_version.lua:104-136
+0001    ISF          2
+0002    JMP      5 => 0005
+0003    TGETS    5   0   0  ; "source"
+0004    TSETS    2   5   1  ; "tag"
+0005 => ISF          1
+0006    JMP      5 => 0012
+0007    TGETS    5   0   0  ; "source"
+0008    TSETS    1   5   2  ; "url"
+0009    UGET     5   0      ; check_url_and_update_md5
+0010    MOV      6   0
+0011    CALLT    5   2
+0012 => ISNEV    4   3
+0013    JMP      5 => 0016
+0014    KPRI     5   2
+0015    RET1     5   2
+0016 => TGETS    5   0   0  ; "source"
+0017    TGETS    5   5   3  ; "dir"
+0018    ISF          5
+0019    JMP      6 => 0026
+0020    UGET     5   1      ; try_replace
+0021    TGETS    6   0   0  ; "source"
+0022    KSTR     7   3      ; "dir"
+0023    MOV      8   3
+0024    MOV      9   4
+0025    CALL     5   1   5
+0026 => TGETS    5   0   0  ; "source"
+0027    TGETS    5   5   4  ; "file"
+0028    ISF          5
+0029    JMP      6 => 0036
+0030    UGET     5   1      ; try_replace
+0031    TGETS    6   0   0  ; "source"
+0032    KSTR     7   4      ; "file"
+0033    MOV      8   3
+0034    MOV      9   4
+0035    CALL     5   1   5
+0036 => UGET     5   1      ; try_replace
+0037    TGETS    6   0   0  ; "source"
+0038    KSTR     7   2      ; "url"
+0039    MOV      8   3
+0040    MOV      9   4
+0041    CALL     5   2   5
+0042    ISF          5
+0043    JMP      6 => 0047
+0044    UGET     5   0      ; check_url_and_update_md5
+0045    MOV      6   0
+0046    CALLT    5   2
+0047 => IST          2
+0048    JMP      5 => 0057
+0049    UGET     5   1      ; try_replace
+0050    TGETS    6   0   0  ; "source"
+0051    KSTR     7   1      ; "tag"
+0052    MOV      8   3
+0053    MOV      9   4
+0054    CALL     5   2   5
+0055    ISF          5
+0056    JMP      6 => 0059
+0057 => KPRI     5   2
+0058    RET1     5   2
+0059 => UGET     5   0      ; check_url_and_update_md5
+0060    MOV      6   0
+0061    CALL     5   3   2
+0062    IST          5
+0063    JMP      7 => 0067
+0064    KPRI     7   0
+0065    MOV      8   6
+0066    RET      7   3
+0067 => ISF          6
+0068    JMP      7 => 0073
+0069    UGET     7   2      ; util
+0070    TGETS    7   7   5  ; "warning"
+0071    KSTR     8   6      ; "URL is the same, but MD5 has changed. Ol"~
+0072    CALL     7   1   2
+0073 => KPRI     7   2
+0074    RET1     7   2
+
+-- BYTECODE -- new_version.lua:138-216
+0001    TGETS    1   0   0  ; "rock"
+0002    IST          1
+0003    JMP      1 => 0016
+0004    KPRI     1   0
+0005    UGET     2   0      ; util
+0006    TGETS    2   2   1  ; "get_default_rockspec"
+0007    CALL     2   3   1
+0008    MOV      1   3
+0009    TSETS    2   0   0  ; "rock"
+0010    TGETS    2   0   0  ; "rock"
+0011    IST          2
+0012    JMP      2 => 0016
+0013    KPRI     2   0
+0014    MOV      3   1
+0015    RET      2   3
+0016 => KNIL     1   2
+0017    TGETS    3   0   0  ; "rock"
+0018    MOV      4   3
+0019    TGETS    3   3   2  ; "match"
+0020    KSTR     5   3      ; "rockspec$"
+0021    CALL     3   2   3
+0022    ISF          3
+0023    JMP      4 => 0036
+0024    UGET     3   1      ; fetch
+0025    TGETS    3   3   4  ; "fetch_url"
+0026    TGETS    4   0   0  ; "rock"
+0027    CALL     3   3   2
+0028    MOV      2   4
+0029    MOV      1   3
+0030    IST          1
+0031    JMP      3 => 0051
+0032    KPRI     3   0
+0033    MOV      4   2
+0034    RET      3   3
+0035    JMP      3 => 0051
+0036 => UGET     3   2      ; download
+0037    TGETS    3   3   5  ; "download"
+0038    KSTR     4   6      ; "rockspec"
+0039    TGETS    5   0   0  ; "rock"
+0040    MOV      6   5
+0041    TGETS    5   5   7  ; "lower"
+0042    CALL     5   0   2
+0043    CALLM    3   3   1
+0044    MOV      2   4
+0045    MOV      1   3
+0046    IST          1
+0047    JMP      3 => 0051
+0048    KPRI     3   0
+0049    MOV      4   2
+0050    RET      3   3
+0051 => UGET     3   1      ; fetch
+0052    TGETS    3   3   8  ; "load_rockspec"
+0053    MOV      4   1
+0054    CALL     3   3   2
+0055    IST          3
+0056    JMP      5 => 0060
+0057    KPRI     5   0
+0058    MOV      6   4
+0059    RET      5   3
+0060 => TGETS    5   3   9  ; "version"
+0061    MOV      6   5
+0062    TGETS    5   5   2  ; "match"
+0063    KSTR     7  10      ; "(.*)%-(%d+)$"
+0064    CALL     5   3   3
+0065    KNIL     7   8
+0066    TGETS    9   0  11  ; "tag"
+0067    ISF          9
+0068    JMP     10 => 0079
+0069    TGETS    9   0  12  ; "new_version"
+0070    IST          9
+0071    JMP      9 => 0079
+0072    TGETS    9   0  11  ; "tag"
+0073    MOV     10   9
+0074    TGETS    9   9  13  ; "gsub"
+0075    KSTR    11  14      ; "^v"
+0076    KSTR    12  15      ; ""
+0077    CALL     9   2   4
+0078    TSETS    9   0  12  ; "new_version"
+0079 => KPRI     9   0
+0080    TGETS   10   0  16  ; "dir"
+0081    ISF         10
+0082    JMP     11 => 0088
+0083    UGET    10   3      ; dir
+0084    TGETS   10  10  17  ; "normalize"
+0085    TGETS   11   0  16  ; "dir"
+0086    CALL    10   2   2
+0087    MOV      9  10
+0088 => TGETS   10   0  12  ; "new_version"
+0089    ISF         10
+0090    JMP     11 => 0107
+0091    TGETS   10   0  12  ; "new_version"
+0092    MOV     11  10
+0093    TGETS   10  10   2  ; "match"
+0094    KSTR    12  10      ; "(.*)%-(%d+)$"
+0095    CALL    10   3   3
+0096    MOV      8  11
+0097    MOV      7  10
+0098    GGET    10  18      ; "tonumber"
+0099    MOV     11   8
+0100    CALL    10   2   2
+0101    MOV      8  10
+0102    IST          8
+0103    JMP     10 => 0112
+0104    TGETS    7   0  12  ; "new_version"
+0105    KSHORT   8   1
+0106    JMP     10 => 0112
+0107 => MOV      7   5
+0108    GGET    10  18      ; "tonumber"
+0109    MOV     11   6
+0110    CALL    10   2   2
+0111    ADDVN    8  10   0  ; 1
+0112 => MOV     11   7
+0113    TGETS   10   7  13  ; "gsub"
+0114    KSTR    12  19      ; "-"
+0115    KSTR    13  15      ; ""
+0116    CALL    10   2   4
+0117    UGET    11   4      ; persist
+0118    TGETS   11  11  20  ; "load_into_table"
+0119    MOV     12   1
+0120    CALL    11   3   2
+0121    TGETS   13  11  21  ; "package"
+0122    MOV     14  13
+0123    TGETS   13  13   7  ; "lower"
+0124    CALL    13   2   2
+0125    MOV     14  10
+0126    KSTR    15  19      ; "-"
+0127    MOV     16   8
+0128    CAT     14  14  16
+0129    TSETS   14  11   9  ; "version"
+0130    UGET    14   5      ; update_source_section
+0131    MOV     15  11
+0132    TGETS   16   0  22  ; "new_url"
+0133    TGETS   17   0  11  ; "tag"
+0134    MOV     18   5
+0135    MOV     19   7
+0136    CALL    14   3   6
+0137    IST         14
+0138    JMP     16 => 0142
+0139    KPRI    16   0
+0140    MOV     17  15
+0141    RET     16   3
+0142 => TGETS   16  11  23  ; "build"
+0143    ISF         16
+0144    JMP     17 => 0152
+0145    TGETS   16  11  23  ; "build"
+0146    TGETS   16  16  24  ; "type"
+0147    ISNES   16  25      ; "module"
+0148    JMP     16 => 0152
+0149    TGETS   16  11  23  ; "build"
+0150    KSTR    17  26      ; "builtin"
+0151    TSETS   17  16  24  ; "type"
+0152 => MOV     16  13
+0153    KSTR    17  19      ; "-"
+0154    MOV     18  10
+0155    KSTR    19  19      ; "-"
+0156    MOV     20   8
+0157    KSTR    21  27      ; ".rockspec"
+0158    CAT     16  16  21
+0159    ISF          9
+0160    JMP     17 => 0171
+0161    UGET    17   3      ; dir
+0162    TGETS   17  17  28  ; "path"
+0163    MOV     18   9
+0164    MOV     19  16
+0165    CALL    17   2   3
+0166    MOV     16  17
+0167    UGET    17   6      ; fs
+0168    TGETS   17  17  29  ; "make_dir"
+0169    MOV     18   9
+0170    CALL    17   1   2
+0171 => UGET    17   4      ; persist
+0172    TGETS   17  17  30  ; "save_from_table"
+0173    MOV     18  16
+0174    MOV     19  11
+0175    UGET    20   7      ; type_rockspec
+0176    TGETS   20  20  31  ; "order"
+0177    CALL    17   1   4
+0178    UGET    17   0      ; util
+0179    TGETS   17  17  32  ; "printout"
+0180    KSTR    18  33      ; "Wrote "
+0181    MOV     19  16
+0182    CAT     18  18  19
+0183    CALL    17   1   2
+0184    UGET    17   1      ; fetch
+0185    TGETS   17  17  34  ; "load_local_rockspec"
+0186    MOV     18  16
+0187    CALL    17   3   2
+0188    IST         17
+0189    JMP     19 => 0195
+0190    KPRI    19   0
+0191    KSTR    20  35      ; "Failed loading generated rockspec: "
+0192    MOV     21  18
+0193    CAT     20  20  21
+0194    RET     19   3
+0195 => KPRI    19   2
+0196    RET1    19   2
+
+-- BYTECODE -- new_version.lua:0-219
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.util"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.download"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.fetch"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.persist"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.fs"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.dir"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   7      ; "luarocks.type.rockspec"
+0022    CALL     7   2   2
+0023    FNEW     8   9      ; new_version.lua:14
+0024    TSETS    8   0   8  ; "add_to_parser"
+0025    FNEW     8  10      ; new_version.lua:53
+0026    FNEW     9  11      ; new_version.lua:71
+0027    FNEW    10  12      ; new_version.lua:104
+0028    FNEW    11  14      ; new_version.lua:138
+0029    TSETS   11   0  13  ; "command"
+0030    UCLO     0 => 0031
+0031 => RET1     0   2
+

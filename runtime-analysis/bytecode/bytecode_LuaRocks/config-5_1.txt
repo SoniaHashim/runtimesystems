@@ -1,0 +1,805 @@
+
+main <./cmd/config.lua:0,0> (69 instructions, 276 bytes at 0x7fc3c8c068a0)
+0+ params, 18 slots, 0 upvalues, 17 locals, 15 constants, 11 functions
+	1	[3]	NEWTABLE 	0 0 0
+	2	[5]	GETGLOBAL	1 -1	; require
+	3	[5]	LOADK    	2 -2	; "luarocks.persist"
+	4	[5]	CALL     	1 2 2
+	5	[6]	GETGLOBAL	2 -1	; require
+	6	[6]	LOADK    	3 -3	; "luarocks.core.cfg"
+	7	[6]	CALL     	2 2 2
+	8	[7]	GETGLOBAL	3 -1	; require
+	9	[7]	LOADK    	4 -4	; "luarocks.util"
+	10	[7]	CALL     	3 2 2
+	11	[8]	GETGLOBAL	4 -1	; require
+	12	[8]	LOADK    	5 -5	; "luarocks.deps"
+	13	[8]	CALL     	4 2 2
+	14	[9]	GETGLOBAL	5 -1	; require
+	15	[9]	LOADK    	6 -6	; "luarocks.dir"
+	16	[9]	CALL     	5 2 2
+	17	[10]	GETGLOBAL	6 -1	; require
+	18	[10]	LOADK    	7 -7	; "luarocks.fs"
+	19	[10]	CALL     	6 2 2
+	20	[74]	CLOSURE  	7 0	; 0x7fc3c8c06ce0
+	21	[74]	MOVE     	0 3
+	22	[12]	SETTABLE 	0 -8 7	; "add_to_parser" -
+	23	[83]	CLOSURE  	7 1	; 0x7fc3c8c071a0
+	24	[83]	MOVE     	0 5
+	25	[85]	NEWTABLE 	8 0 5
+	26	[86]	SETTABLE 	8 -9 -10	; "errorcodes" true
+	27	[87]	SETTABLE 	8 -11 -10	; "flags" true
+	28	[88]	SETTABLE 	8 -12 -10	; "platforms" true
+	29	[89]	SETTABLE 	8 -13 -10	; "root_dir" true
+	30	[90]	SETTABLE 	8 -14 -10	; "upload_servers" true
+	31	[95]	CLOSURE  	9 2	; 0x7fc3c8c06f50
+	32	[95]	MOVE     	0 8
+	33	[105]	CLOSURE  	10 3	; 0x7fc3c8c07d70
+	34	[105]	MOVE     	0 9
+	35	[136]	CLOSURE  	11 4	; 0x7fc3c8c07060
+	36	[136]	MOVE     	0 11
+	37	[146]	CLOSURE  	12 5	; 0x7fc3c8c08b70
+	38	[146]	MOVE     	0 3
+	39	[166]	CLOSURE  	13 6	; 0x7fc3c8c09250
+	40	[166]	MOVE     	0 11
+	41	[166]	MOVE     	0 9
+	42	[166]	MOVE     	0 12
+	43	[166]	MOVE     	0 1
+	44	[176]	CLOSURE  	14 7	; 0x7fc3c8c09a00
+	45	[176]	MOVE     	0 11
+	46	[176]	MOVE     	0 2
+	47	[229]	CLOSURE  	15 8	; 0x7fc3c8c09ee0
+	48	[229]	MOVE     	0 2
+	49	[229]	MOVE     	0 1
+	50	[229]	MOVE     	0 3
+	51	[229]	MOVE     	0 11
+	52	[229]	MOVE     	0 14
+	53	[237]	CLOSURE  	16 9	; 0x7fc3c8c07f40
+	54	[237]	MOVE     	0 2
+	55	[319]	CLOSURE  	17 10	; 0x7fc3c8c09420
+	56	[319]	MOVE     	0 4
+	57	[319]	MOVE     	0 2
+	58	[319]	MOVE     	0 7
+	59	[319]	MOVE     	0 3
+	60	[319]	MOVE     	0 5
+	61	[319]	MOVE     	0 16
+	62	[319]	MOVE     	0 1
+	63	[319]	MOVE     	0 15
+	64	[319]	MOVE     	0 13
+	65	[319]	MOVE     	0 10
+	66	[319]	MOVE     	0 12
+	67	[241]	SETTABLE 	0 -15 17	; "command" -
+	68	[321]	RETURN   	0 2
+	69	[321]	RETURN   	0 1
+
+function <./cmd/config.lua:12,74> (85 instructions, 340 bytes at 0x7fc3c8c06ce0)
+1 param, 9 slots, 1 upvalue, 2 locals, 36 constants, 0 functions
+	1	[13]	SELF     	1 0 -1	; "command"
+	2	[13]	LOADK    	3 -2	; "config"
+	3	[48]	LOADK    	4 -3	; "Query information about the LuaRocks configuration.\n\n* When given a configuration key, it prints the value of that key according to\n  the currently active configuration (taking into account all config files and\n  any command-line flags passed)\n\n  Examples:\n     luarocks config lua_interpreter\n     luarocks config variables.LUA_INCDIR\n     luarocks config lua_version\n\n* When given a configuration key and a value, it overwrites the config file (see\n  the --scope option below to determine which) and replaces the value of the\n  given key with the given value.\n\n  * `lua_dir` is a special key as it checks for a valid Lua installation\n    (equivalent to --lua-dir) and sets several keys at once.\n  * `lua_version` is a special key as it changes the default Lua version\n    used by LuaRocks commands (eqivalent to passing --lua-version). \n\n  Examples:\n     luarocks config variables.OPENSSL_DIR /usr/local/openssl\n     luarocks config lua_dir /usr/local\n     luarocks config lua_version 5.3\n\n* When given a configuration key and --unset, it overwrites the config file (see\n  the --scope option below to determine which) and deletes that key from the\n  file.\n\n  Example: luarocks config variables.OPENSSL_DIR --unset\n\n* When given no arguments, it prints the entire currently active configuration,\n  resulting from reading the config files from all scopes.\n\n  Example: luarocks config"
+	4	[48]	GETUPVAL 	5 0	; util
+	5	[48]	GETTABLE 	5 5 -4	; "see_also"
+	6	[51]	LOADK    	6 -5	; "   https://github.com/luarocks/luarocks/wiki/Config-file-format\n   for detailed information on the LuaRocks config file format.\n"
+	7	[48]	CALL     	5 2 0
+	8	[13]	CALL     	1 0 2
+	9	[52]	SELF     	1 1 -6	; "summary"
+	10	[52]	LOADK    	3 -7	; "Query information about the LuaRocks configuration."
+	11	[52]	CALL     	1 3 2
+	12	[54]	SELF     	2 1 -8	; "argument"
+	13	[54]	LOADK    	4 -9	; "key"
+	14	[54]	LOADK    	5 -10	; "The configuration key."
+	15	[54]	CALL     	2 4 2
+	16	[55]	SELF     	2 2 -11	; "args"
+	17	[55]	LOADK    	4 -12	; "?"
+	18	[55]	CALL     	2 3 1
+	19	[56]	SELF     	2 1 -8	; "argument"
+	20	[56]	LOADK    	4 -13	; "value"
+	21	[56]	LOADK    	5 -14	; "The configuration value."
+	22	[56]	CALL     	2 4 2
+	23	[57]	SELF     	2 2 -11	; "args"
+	24	[57]	LOADK    	4 -12	; "?"
+	25	[57]	CALL     	2 3 1
+	26	[59]	SELF     	2 1 -15	; "option"
+	27	[59]	LOADK    	4 -16	; "--scope"
+	28	[59]	LOADK    	5 -17	; "The scope indicates which config file should be rewritten.\n"
+	29	[60]	LOADK    	6 -18	; "* Using a wrapper created with `luarocks init`, the default is \"project\".\n"
+	30	[61]	LOADK    	7 -19	; "* Using --local (or when `local_by_default` is `true`), the default is \"user\".\n"
+	31	[62]	LOADK    	8 -20	; "* Otherwise, the default is \"system\"."
+	32	[62]	CONCAT   	5 5 8
+	33	[59]	CALL     	2 4 2
+	34	[63]	SELF     	2 2 -21	; "choices"
+	35	[63]	NEWTABLE 	4 3 0
+	36	[63]	LOADK    	5 -22	; "system"
+	37	[63]	LOADK    	6 -23	; "user"
+	38	[63]	LOADK    	7 -24	; "project"
+	39	[63]	SETLIST  	4 3 1	; 1
+	40	[63]	CALL     	2 3 1
+	41	[64]	SELF     	2 1 -25	; "flag"
+	42	[64]	LOADK    	4 -26	; "--unset"
+	43	[64]	LOADK    	5 -27	; "Delete the key from the configuration file."
+	44	[64]	CALL     	2 4 1
+	45	[65]	SELF     	2 1 -25	; "flag"
+	46	[65]	LOADK    	4 -28	; "--json"
+	47	[65]	LOADK    	5 -29	; "Output as JSON."
+	48	[65]	CALL     	2 4 1
+	49	[68]	SELF     	2 1 -25	; "flag"
+	50	[68]	LOADK    	4 -30	; "--lua-incdir"
+	51	[68]	CALL     	2 3 2
+	52	[68]	SELF     	2 2 -31	; "hidden"
+	53	[68]	LOADBOOL 	4 1 0
+	54	[68]	CALL     	2 3 1
+	55	[69]	SELF     	2 1 -25	; "flag"
+	56	[69]	LOADK    	4 -32	; "--lua-libdir"
+	57	[69]	CALL     	2 3 2
+	58	[69]	SELF     	2 2 -31	; "hidden"
+	59	[69]	LOADBOOL 	4 1 0
+	60	[69]	CALL     	2 3 1
+	61	[70]	SELF     	2 1 -25	; "flag"
+	62	[70]	LOADK    	4 -33	; "--lua-ver"
+	63	[70]	CALL     	2 3 2
+	64	[70]	SELF     	2 2 -31	; "hidden"
+	65	[70]	LOADBOOL 	4 1 0
+	66	[70]	CALL     	2 3 1
+	67	[71]	SELF     	2 1 -25	; "flag"
+	68	[71]	LOADK    	4 -34	; "--system-config"
+	69	[71]	CALL     	2 3 2
+	70	[71]	SELF     	2 2 -31	; "hidden"
+	71	[71]	LOADBOOL 	4 1 0
+	72	[71]	CALL     	2 3 1
+	73	[72]	SELF     	2 1 -25	; "flag"
+	74	[72]	LOADK    	4 -35	; "--user-config"
+	75	[72]	CALL     	2 3 2
+	76	[72]	SELF     	2 2 -31	; "hidden"
+	77	[72]	LOADBOOL 	4 1 0
+	78	[72]	CALL     	2 3 1
+	79	[73]	SELF     	2 1 -25	; "flag"
+	80	[73]	LOADK    	4 -36	; "--rock-trees"
+	81	[73]	CALL     	2 3 2
+	82	[73]	SELF     	2 2 -31	; "hidden"
+	83	[73]	LOADBOOL 	4 1 0
+	84	[73]	CALL     	2 3 1
+	85	[74]	RETURN   	0 1
+
+function <./cmd/config.lua:76,83> (16 instructions, 64 bytes at 0x7fc3c8c071a0)
+1 param, 4 slots, 1 upvalue, 1 local, 5 constants, 0 functions
+	1	[77]	GETGLOBAL	1 -1	; print
+	2	[77]	GETUPVAL 	2 0	; dir
+	3	[77]	GETTABLE 	2 2 -2	; "normalize"
+	4	[77]	GETTABLE 	3 0 -3	; "file"
+	5	[77]	CALL     	2 2 0
+	6	[77]	CALL     	1 0 1
+	7	[78]	GETTABLE 	1 0 -4	; "found"
+	8	[78]	TEST     	1 0 0
+	9	[78]	JMP      	3	; to 13
+	10	[79]	LOADBOOL 	1 1 0
+	11	[79]	RETURN   	1 2
+	12	[79]	JMP      	3	; to 16
+	13	[81]	LOADNIL  	1 1
+	14	[81]	LOADK    	2 -5	; "file not found"
+	15	[81]	RETURN   	1 3
+	16	[83]	RETURN   	0 1
+
+function <./cmd/config.lua:93,95> (12 instructions, 48 bytes at 0x7fc3c8c06f50)
+2 params, 4 slots, 1 upvalue, 2 locals, 2 constants, 0 functions
+	1	[94]	GETGLOBAL	2 -1	; type
+	2	[94]	MOVE     	3 1
+	3	[94]	CALL     	2 2 2
+	4	[94]	EQ       	1 2 -2	; - "function"
+	5	[94]	JMP      	4	; to 10
+	6	[94]	GETUPVAL 	2 0	; cfg_skip
+	7	[94]	GETTABLE 	2 2 0
+	8	[94]	JMP      	2	; to 11
+	9	[94]	LOADBOOL 	2 0 1
+	10	[94]	LOADBOOL 	2 1 0
+	11	[94]	RETURN   	2 2
+	12	[95]	RETURN   	0 1
+
+function <./cmd/config.lua:97,105> (16 instructions, 64 bytes at 0x7fc3c8c07d70)
+1 param, 10 slots, 1 upvalue, 7 locals, 1 constant, 0 functions
+	1	[98]	NEWTABLE 	1 0 0
+	2	[99]	GETGLOBAL	2 -1	; pairs
+	3	[99]	MOVE     	3 0
+	4	[99]	CALL     	2 2 4
+	5	[99]	JMP      	7	; to 13
+	6	[100]	GETUPVAL 	7 0	; should_skip
+	7	[100]	MOVE     	8 5
+	8	[100]	MOVE     	9 6
+	9	[100]	CALL     	7 3 2
+	10	[100]	TEST     	7 0 1
+	11	[100]	JMP      	1	; to 13
+	12	[101]	SETTABLE 	1 5 6
+	13	[99]	TFORLOOP 	2 2
+	14	[102]	JMP      	-9	; to 6
+	15	[104]	RETURN   	1 2
+	16	[105]	RETURN   	0 1
+
+function <./cmd/config.lua:107,136> (64 instructions, 256 bytes at 0x7fc3c8c07060)
+4 params, 11 slots, 1 upvalue, 7 locals, 7 constants, 0 functions
+	1	[108]	SELF     	4 0 -1	; "match"
+	2	[108]	LOADK    	6 -2	; "^%[([0-9]+)%]%.(.*)$"
+	3	[108]	CALL     	4 3 3
+	4	[109]	TEST     	4 0 0
+	5	[109]	JMP      	5	; to 11
+	6	[110]	GETGLOBAL	6 -3	; tonumber
+	7	[110]	MOVE     	7 4
+	8	[110]	CALL     	6 2 2
+	9	[110]	MOVE     	4 6
+	10	[110]	JMP      	12	; to 23
+	11	[112]	SELF     	6 0 -1	; "match"
+	12	[112]	LOADK    	8 -4	; "^([^.[]+)%.(.*)$"
+	13	[112]	CALL     	6 3 3
+	14	[112]	MOVE     	5 7
+	15	[112]	MOVE     	4 6
+	16	[113]	TEST     	4 0 1
+	17	[113]	JMP      	5	; to 23
+	18	[114]	SELF     	6 0 -1	; "match"
+	19	[114]	LOADK    	8 -5	; "^([^[]+)(%[.*)$"
+	20	[114]	CALL     	6 3 3
+	21	[114]	MOVE     	5 7
+	22	[114]	MOVE     	4 6
+	23	[118]	TEST     	4 0 0
+	24	[118]	JMP      	25	; to 50
+	25	[119]	GETTABLE 	6 1 4
+	26	[119]	TEST     	6 0 1
+	27	[119]	JMP      	6	; to 34
+	28	[119]	TEST     	3 0 0
+	29	[119]	JMP      	4	; to 34
+	30	[120]	MOVE     	6 3
+	31	[120]	MOVE     	7 1
+	32	[120]	MOVE     	8 4
+	33	[120]	CALL     	6 3 1
+	34	[123]	GETTABLE 	6 1 4
+	35	[123]	TEST     	6 0 0
+	36	[123]	JMP      	8	; to 45
+	37	[124]	GETUPVAL 	6 0	; traverse_varstring
+	38	[124]	MOVE     	7 5
+	39	[124]	GETTABLE 	8 1 4
+	40	[124]	MOVE     	9 2
+	41	[124]	MOVE     	10 3
+	42	[124]	TAILCALL 	6 5 0
+	43	[124]	RETURN   	6 0
+	44	[124]	JMP      	5	; to 50
+	45	[126]	LOADNIL  	6 6
+	46	[126]	LOADK    	7 -6	; "Unknown entry "
+	47	[126]	MOVE     	8 4
+	48	[126]	CONCAT   	7 7 8
+	49	[126]	RETURN   	6 3
+	50	[130]	SELF     	6 0 -1	; "match"
+	51	[130]	LOADK    	8 -7	; "^%[([0-9]+)%]$"
+	52	[130]	CALL     	6 3 2
+	53	[131]	TEST     	6 0 0
+	54	[131]	JMP      	4	; to 59
+	55	[132]	GETGLOBAL	7 -3	; tonumber
+	56	[132]	MOVE     	8 6
+	57	[132]	CALL     	7 2 2
+	58	[132]	MOVE     	0 7
+	59	[135]	MOVE     	7 2
+	60	[135]	MOVE     	8 1
+	61	[135]	MOVE     	9 0
+	62	[135]	TAILCALL 	7 3 0
+	63	[135]	RETURN   	7 0
+	64	[136]	RETURN   	0 1
+
+function <./cmd/config.lua:138,146> (18 instructions, 72 bytes at 0x7fc3c8c08b70)
+1 param, 6 slots, 1 upvalue, 3 locals, 4 constants, 0 functions
+	1	[139]	GETUPVAL 	1 0	; util
+	2	[139]	GETTABLE 	1 1 -1	; "require_json"
+	3	[139]	CALL     	1 1 3
+	4	[140]	TEST     	1 0 1
+	5	[140]	JMP      	5	; to 11
+	6	[141]	LOADNIL  	3 3
+	7	[141]	LOADK    	4 -2	; "A JSON library is required for this command. "
+	8	[141]	MOVE     	5 2
+	9	[141]	CONCAT   	4 4 5
+	10	[141]	RETURN   	3 3
+	11	[144]	GETGLOBAL	3 -3	; print
+	12	[144]	GETTABLE 	4 2 -4	; "encode"
+	13	[144]	MOVE     	5 0
+	14	[144]	CALL     	4 2 0
+	15	[144]	CALL     	3 0 1
+	16	[145]	LOADBOOL 	3 1 0
+	17	[145]	RETURN   	3 2
+	18	[146]	RETURN   	0 1
+
+function <./cmd/config.lua:148,166> (12 instructions, 48 bytes at 0x7fc3c8c09250)
+3 params, 7 slots, 4 upvalues, 3 locals, 0 constants, 1 function
+	1	[149]	GETUPVAL 	3 0	; traverse_varstring
+	2	[149]	MOVE     	4 0
+	3	[149]	MOVE     	5 1
+	4	[165]	CLOSURE  	6 0	; 0x7fc3c8c09570
+	5	[165]	GETUPVAL 	0 1	; should_skip
+	6	[165]	MOVE     	0 0
+	7	[165]	MOVE     	0 2
+	8	[165]	GETUPVAL 	0 2	; print_json
+	9	[165]	GETUPVAL 	0 3	; persist
+	10	[149]	TAILCALL 	3 4 0
+	11	[165]	RETURN   	3 0
+	12	[166]	RETURN   	0 1
+
+function <./cmd/config.lua:149,165> (41 instructions, 164 bytes at 0x7fc3c8c09570)
+2 params, 6 slots, 5 upvalues, 3 locals, 7 constants, 0 functions
+	1	[150]	GETTABLE 	2 0 1
+	2	[150]	TEST     	2 0 1
+	3	[150]	JMP      	5	; to 9
+	4	[151]	LOADNIL  	2 2
+	5	[151]	LOADK    	3 -1	; "Unknown entry "
+	6	[151]	MOVE     	4 1
+	7	[151]	CONCAT   	3 3 4
+	8	[151]	RETURN   	2 3
+	9	[153]	GETTABLE 	2 0 1
+	10	[155]	GETUPVAL 	3 0	; should_skip
+	11	[155]	GETUPVAL 	4 1	; var
+	12	[155]	MOVE     	5 2
+	13	[155]	CALL     	3 3 2
+	14	[155]	TEST     	3 0 1
+	15	[155]	JMP      	23	; to 39
+	16	[156]	GETUPVAL 	3 2	; is_json
+	17	[156]	TEST     	3 0 0
+	18	[156]	JMP      	5	; to 24
+	19	[157]	GETUPVAL 	3 3	; print_json
+	20	[157]	MOVE     	4 2
+	21	[157]	TAILCALL 	3 2 0
+	22	[157]	RETURN   	3 0
+	23	[157]	JMP      	15	; to 39
+	24	[158]	GETGLOBAL	3 -2	; type
+	25	[158]	MOVE     	4 2
+	26	[158]	CALL     	3 2 2
+	27	[158]	EQ       	0 3 -3	; - "string"
+	28	[158]	JMP      	4	; to 33
+	29	[159]	GETGLOBAL	3 -4	; print
+	30	[159]	MOVE     	4 2
+	31	[159]	CALL     	3 2 1
+	32	[159]	JMP      	6	; to 39
+	33	[161]	GETUPVAL 	3 4	; persist
+	34	[161]	GETTABLE 	3 3 -5	; "write_value"
+	35	[161]	GETGLOBAL	4 -6	; io
+	36	[161]	GETTABLE 	4 4 -7	; "stdout"
+	37	[161]	MOVE     	5 2
+	38	[161]	CALL     	3 3 1
+	39	[164]	LOADBOOL 	3 1 0
+	40	[164]	RETURN   	3 2
+	41	[165]	RETURN   	0 1
+
+function <./cmd/config.lua:168,176> (8 instructions, 32 bytes at 0x7fc3c8c09a00)
+1 param, 6 slots, 2 upvalues, 2 locals, 0 constants, 1 function
+	1	[170]	GETUPVAL 	2 0	; traverse_varstring
+	2	[170]	MOVE     	3 0
+	3	[170]	GETUPVAL 	4 1	; cfg
+	4	[174]	CLOSURE  	5 0	; 0x7fc3c8c09d90
+	5	[174]	MOVE     	0 1
+	6	[170]	CALL     	2 4 1
+	7	[175]	RETURN   	1 2
+	8	[176]	RETURN   	0 1
+
+function <./cmd/config.lua:170,174> (8 instructions, 32 bytes at 0x7fc3c8c09d90)
+2 params, 4 slots, 1 upvalue, 2 locals, 2 constants, 0 functions
+	1	[171]	GETTABLE 	2 0 1
+	2	[171]	EQ       	1 2 -1	; - nil
+	3	[171]	JMP      	4	; to 8
+	4	[172]	GETGLOBAL	2 -2	; type
+	5	[172]	GETTABLE 	3 0 1
+	6	[172]	CALL     	2 2 2
+	7	[172]	SETUPVAL 	2 0	; typ
+	8	[174]	RETURN   	0 1
+
+function <./cmd/config.lua:178,229> (106 instructions, 424 bytes at 0x7fc3c8c09ee0)
+3 params, 17 slots, 5 upvalues, 17 locals, 16 constants, 2 functions
+	1	[179]	EQ       	0 1 -1	; - "project"
+	2	[179]	JMP      	8	; to 11
+	3	[179]	GETUPVAL 	3 0	; cfg
+	4	[179]	GETTABLE 	3 3 -2	; "config_files"
+	5	[179]	GETTABLE 	3 3 -1	; "project"
+	6	[179]	TEST     	3 0 1
+	7	[179]	JMP      	3	; to 11
+	8	[180]	LOADNIL  	3 3
+	9	[180]	LOADK    	4 -3	; "Current directory is not part of a project. You may want to run `luarocks init`."
+	10	[180]	RETURN   	3 3
+	11	[183]	GETUPVAL 	3 1	; persist
+	12	[183]	GETTABLE 	3 3 -4	; "load_config_file_if_basic"
+	13	[183]	GETUPVAL 	4 0	; cfg
+	14	[183]	GETTABLE 	4 4 -2	; "config_files"
+	15	[183]	GETTABLE 	4 4 1
+	16	[183]	GETTABLE 	4 4 -5	; "file"
+	17	[183]	GETUPVAL 	5 0	; cfg
+	18	[183]	CALL     	3 3 3
+	19	[184]	TEST     	3 0 1
+	20	[184]	JMP      	3	; to 24
+	21	[185]	LOADNIL  	5 5
+	22	[185]	MOVE     	6 4
+	23	[185]	RETURN   	5 3
+	24	[188]	GETUPVAL 	5 2	; util
+	25	[188]	GETTABLE 	5 5 -6	; "sortedpairs"
+	26	[188]	MOVE     	6 0
+	27	[188]	CALL     	5 2 4
+	28	[188]	JMP      	12	; to 41
+	29	[189]	GETUPVAL 	10 3	; traverse_varstring
+	30	[189]	MOVE     	11 8
+	31	[189]	MOVE     	12 3
+	32	[208]	CLOSURE  	13 0	; 0x7fc3c8c0a400
+	33	[208]	MOVE     	0 2
+	34	[208]	GETUPVAL 	0 4	; infer_type
+	35	[208]	MOVE     	0 8
+	36	[208]	MOVE     	0 9
+	37	[208]	MOVE     	0 0
+	38	[210]	CLOSURE  	14 1	; 0x7fc3c8c0a580
+	39	[189]	CALL     	10 5 1
+	40	[210]	CLOSE    	8
+	41	[188]	TFORLOOP 	5 2
+	42	[210]	JMP      	-14	; to 29
+	43	[213]	GETUPVAL 	5 1	; persist
+	44	[213]	GETTABLE 	5 5 -7	; "save_from_table"
+	45	[213]	GETUPVAL 	6 0	; cfg
+	46	[213]	GETTABLE 	6 6 -2	; "config_files"
+	47	[213]	GETTABLE 	6 6 1
+	48	[213]	GETTABLE 	6 6 -5	; "file"
+	49	[213]	MOVE     	7 3
+	50	[213]	CALL     	5 3 3
+	51	[214]	TEST     	5 0 0
+	52	[214]	JMP      	50	; to 103
+	53	[215]	GETGLOBAL	7 -8	; print
+	54	[215]	TEST     	2 0 0
+	55	[215]	JMP      	3	; to 59
+	56	[215]	LOADK    	8 -9	; "Removed"
+	57	[215]	TEST     	8 0 1
+	58	[215]	JMP      	1	; to 60
+	59	[215]	LOADK    	8 -10	; "Wrote"
+	60	[215]	CALL     	7 2 1
+	61	[216]	GETUPVAL 	7 2	; util
+	62	[216]	GETTABLE 	7 7 -6	; "sortedpairs"
+	63	[216]	MOVE     	8 0
+	64	[216]	CALL     	7 2 4
+	65	[216]	JMP      	16	; to 82
+	66	[217]	TEST     	2 0 0
+	67	[217]	JMP      	7	; to 75
+	68	[218]	GETGLOBAL	12 -8	; print
+	69	[218]	LOADK    	13 -11	; "\t%s"
+	70	[218]	SELF     	13 13 -12	; "format"
+	71	[218]	MOVE     	15 10
+	72	[218]	CALL     	13 3 0
+	73	[218]	CALL     	12 0 1
+	74	[218]	JMP      	7	; to 82
+	75	[220]	GETGLOBAL	12 -8	; print
+	76	[220]	LOADK    	13 -13	; "\t%s = %q"
+	77	[220]	SELF     	13 13 -12	; "format"
+	78	[220]	MOVE     	15 10
+	79	[220]	MOVE     	16 11
+	80	[220]	CALL     	13 4 0
+	81	[220]	CALL     	12 0 1
+	82	[216]	TFORLOOP 	7 2
+	83	[221]	JMP      	-18	; to 66
+	84	[223]	GETGLOBAL	7 -8	; print
+	85	[223]	TEST     	2 0 0
+	86	[223]	JMP      	3	; to 90
+	87	[223]	LOADK    	8 -14	; "from"
+	88	[223]	TEST     	8 0 1
+	89	[223]	JMP      	1	; to 91
+	90	[223]	LOADK    	8 -15	; "to"
+	91	[223]	CALL     	7 2 1
+	92	[224]	GETGLOBAL	7 -8	; print
+	93	[224]	LOADK    	8 -16	; "\t"
+	94	[224]	GETUPVAL 	9 0	; cfg
+	95	[224]	GETTABLE 	9 9 -2	; "config_files"
+	96	[224]	GETTABLE 	9 9 1
+	97	[224]	GETTABLE 	9 9 -5	; "file"
+	98	[224]	CONCAT   	8 8 9
+	99	[224]	CALL     	7 2 1
+	100	[225]	LOADBOOL 	7 1 0
+	101	[225]	RETURN   	7 2
+	102	[225]	JMP      	3	; to 106
+	103	[227]	LOADNIL  	7 7
+	104	[227]	MOVE     	8 6
+	105	[227]	RETURN   	7 3
+	106	[229]	RETURN   	0 1
+
+function <./cmd/config.lua:189,208> (43 instructions, 172 bytes at 0x7fc3c8c0a400)
+2 params, 6 slots, 5 upvalues, 4 locals, 6 constants, 0 functions
+	1	[190]	GETUPVAL 	2 0	; do_unset
+	2	[190]	TEST     	2 0 0
+	3	[190]	JMP      	2	; to 6
+	4	[191]	SETTABLE 	0 1 -1	; - nil
+	5	[191]	JMP      	35	; to 41
+	6	[193]	GETUPVAL 	2 1	; infer_type
+	7	[193]	GETUPVAL 	3 2	; var
+	8	[193]	CALL     	2 2 2
+	9	[194]	LOADNIL  	3 3
+	10	[195]	EQ       	0 2 -2	; - "number"
+	11	[195]	JMP      	10	; to 22
+	12	[195]	GETGLOBAL	4 -3	; tonumber
+	13	[195]	GETUPVAL 	5 3	; val
+	14	[195]	CALL     	4 2 2
+	15	[195]	TEST     	4 0 0
+	16	[195]	JMP      	5	; to 22
+	17	[196]	GETGLOBAL	4 -3	; tonumber
+	18	[196]	GETUPVAL 	5 3	; val
+	19	[196]	CALL     	4 2 2
+	20	[196]	MOVE     	3 4
+	21	[196]	JMP      	15	; to 37
+	22	[197]	EQ       	0 2 -4	; - "boolean"
+	23	[197]	JMP      	5	; to 29
+	24	[197]	GETUPVAL 	4 3	; val
+	25	[197]	EQ       	0 4 -5	; - "true"
+	26	[197]	JMP      	2	; to 29
+	27	[198]	LOADBOOL 	3 1 0
+	28	[198]	JMP      	8	; to 37
+	29	[199]	EQ       	0 2 -4	; - "boolean"
+	30	[199]	JMP      	5	; to 36
+	31	[199]	GETUPVAL 	4 3	; val
+	32	[199]	EQ       	0 4 -6	; - "false"
+	33	[199]	JMP      	2	; to 36
+	34	[200]	LOADBOOL 	3 0 0
+	35	[200]	JMP      	1	; to 37
+	36	[202]	GETUPVAL 	3 3	; val
+	37	[204]	SETTABLE 	0 1 3
+	38	[205]	GETUPVAL 	4 4	; keys
+	39	[205]	GETUPVAL 	5 2	; var
+	40	[205]	SETTABLE 	4 5 3
+	41	[207]	LOADBOOL 	2 1 0
+	42	[207]	RETURN   	2 2
+	43	[208]	RETURN   	0 1
+
+function <./cmd/config.lua:208,210> (3 instructions, 12 bytes at 0x7fc3c8c0a580)
+2 params, 3 slots, 0 upvalues, 2 locals, 0 constants, 0 functions
+	1	[209]	NEWTABLE 	2 0 0
+	2	[209]	SETTABLE 	0 1 2
+	3	[210]	RETURN   	0 1
+
+function <./cmd/config.lua:231,237> (25 instructions, 100 bytes at 0x7fc3c8c07f40)
+1 param, 2 slots, 1 upvalue, 1 local, 7 constants, 0 functions
+	1	[233]	GETTABLE 	1 0 -1	; "scope"
+	2	[233]	TEST     	1 0 1
+	3	[233]	JMP      	20	; to 24
+	4	[233]	GETTABLE 	1 0 -2	; "local"
+	5	[233]	TEST     	1 0 0
+	6	[233]	JMP      	3	; to 10
+	7	[234]	LOADK    	1 -3	; "user"
+	8	[234]	TEST     	1 0 1
+	9	[234]	JMP      	14	; to 24
+	10	[234]	GETTABLE 	1 0 -4	; "project_tree"
+	11	[234]	TEST     	1 0 0
+	12	[234]	JMP      	3	; to 16
+	13	[235]	LOADK    	1 -5	; "project"
+	14	[235]	TEST     	1 0 1
+	15	[235]	JMP      	8	; to 24
+	16	[235]	GETUPVAL 	1 0	; cfg
+	17	[235]	GETTABLE 	1 1 -6	; "local_by_default"
+	18	[235]	TEST     	1 0 0
+	19	[235]	JMP      	3	; to 23
+	20	[236]	LOADK    	1 -3	; "user"
+	21	[236]	TEST     	1 0 1
+	22	[236]	JMP      	1	; to 24
+	23	[236]	LOADK    	1 -7	; "system"
+	24	[236]	RETURN   	1 2
+	25	[237]	RETURN   	0 1
+
+function <./cmd/config.lua:241,319> (231 instructions, 924 bytes at 0x7fc3c8c09420)
+1 param, 10 slots, 11 upvalues, 15 locals, 47 constants, 0 functions
+	1	[242]	GETUPVAL 	1 0	; deps
+	2	[242]	GETTABLE 	1 1 -1	; "check_lua_incdir"
+	3	[242]	GETUPVAL 	2 1	; cfg
+	4	[242]	GETTABLE 	2 2 -2	; "variables"
+	5	[242]	CALL     	1 2 1
+	6	[243]	GETUPVAL 	1 0	; deps
+	7	[243]	GETTABLE 	1 1 -3	; "check_lua_libdir"
+	8	[243]	GETUPVAL 	2 1	; cfg
+	9	[243]	GETTABLE 	2 2 -2	; "variables"
+	10	[243]	CALL     	1 2 1
+	11	[246]	GETTABLE 	1 0 -4	; "lua_incdir"
+	12	[246]	TEST     	1 0 0
+	13	[246]	JMP      	7	; to 21
+	14	[247]	GETGLOBAL	1 -5	; print
+	15	[247]	GETUPVAL 	2 1	; cfg
+	16	[247]	GETTABLE 	2 2 -2	; "variables"
+	17	[247]	GETTABLE 	2 2 -6	; "LUA_INCDIR"
+	18	[247]	CALL     	1 2 1
+	19	[248]	LOADBOOL 	1 1 0
+	20	[248]	RETURN   	1 2
+	21	[250]	GETTABLE 	1 0 -7	; "lua_libdir"
+	22	[250]	TEST     	1 0 0
+	23	[250]	JMP      	7	; to 31
+	24	[251]	GETGLOBAL	1 -5	; print
+	25	[251]	GETUPVAL 	2 1	; cfg
+	26	[251]	GETTABLE 	2 2 -2	; "variables"
+	27	[251]	GETTABLE 	2 2 -8	; "LUA_LIBDIR"
+	28	[251]	CALL     	1 2 1
+	29	[252]	LOADBOOL 	1 1 0
+	30	[252]	RETURN   	1 2
+	31	[254]	GETTABLE 	1 0 -9	; "lua_ver"
+	32	[254]	TEST     	1 0 0
+	33	[254]	JMP      	6	; to 40
+	34	[255]	GETGLOBAL	1 -5	; print
+	35	[255]	GETUPVAL 	2 1	; cfg
+	36	[255]	GETTABLE 	2 2 -10	; "lua_version"
+	37	[255]	CALL     	1 2 1
+	38	[256]	LOADBOOL 	1 1 0
+	39	[256]	RETURN   	1 2
+	40	[258]	GETTABLE 	1 0 -11	; "system_config"
+	41	[258]	TEST     	1 0 0
+	42	[258]	JMP      	6	; to 49
+	43	[259]	GETUPVAL 	1 2	; config_file
+	44	[259]	GETUPVAL 	2 1	; cfg
+	45	[259]	GETTABLE 	2 2 -12	; "config_files"
+	46	[259]	GETTABLE 	2 2 -13	; "system"
+	47	[259]	TAILCALL 	1 2 0
+	48	[259]	RETURN   	1 0
+	49	[261]	GETTABLE 	1 0 -14	; "user_config"
+	50	[261]	TEST     	1 0 0
+	51	[261]	JMP      	6	; to 58
+	52	[262]	GETUPVAL 	1 2	; config_file
+	53	[262]	GETUPVAL 	2 1	; cfg
+	54	[262]	GETTABLE 	2 2 -12	; "config_files"
+	55	[262]	GETTABLE 	2 2 -15	; "user"
+	56	[262]	TAILCALL 	1 2 0
+	57	[262]	RETURN   	1 0
+	58	[264]	GETTABLE 	1 0 -16	; "rock_trees"
+	59	[264]	TEST     	1 0 0
+	60	[264]	JMP      	40	; to 101
+	61	[265]	GETGLOBAL	1 -17	; ipairs
+	62	[265]	GETUPVAL 	2 1	; cfg
+	63	[265]	GETTABLE 	2 2 -18	; "rocks_trees"
+	64	[265]	CALL     	1 2 4
+	65	[265]	JMP      	31	; to 97
+	66	[266]	GETGLOBAL	6 -19	; type
+	67	[266]	MOVE     	7 5
+	68	[266]	CALL     	6 2 2
+	69	[266]	EQ       	0 6 -20	; - "string"
+	70	[266]	JMP      	8	; to 79
+	71	[267]	GETUPVAL 	6 3	; util
+	72	[267]	GETTABLE 	6 6 -21	; "printout"
+	73	[267]	GETUPVAL 	7 4	; dir
+	74	[267]	GETTABLE 	7 7 -22	; "normalize"
+	75	[267]	MOVE     	8 5
+	76	[267]	CALL     	7 2 0
+	77	[267]	CALL     	6 0 1
+	78	[267]	JMP      	18	; to 97
+	79	[269]	GETTABLE 	6 5 -23	; "name"
+	80	[269]	TEST     	6 0 0
+	81	[269]	JMP      	5	; to 87
+	82	[269]	LOADK    	6 -24	; "\t"
+	83	[269]	GETTABLE 	7 5 -23	; "name"
+	84	[269]	CONCAT   	6 6 7
+	85	[269]	TEST     	6 0 1
+	86	[269]	JMP      	1	; to 88
+	87	[269]	LOADK    	6 -25	; ""
+	88	[270]	GETUPVAL 	7 3	; util
+	89	[270]	GETTABLE 	7 7 -21	; "printout"
+	90	[270]	GETUPVAL 	8 4	; dir
+	91	[270]	GETTABLE 	8 8 -22	; "normalize"
+	92	[270]	GETTABLE 	9 5 -26	; "root"
+	93	[270]	CALL     	8 2 2
+	94	[270]	MOVE     	9 6
+	95	[270]	CONCAT   	8 8 9
+	96	[270]	CALL     	7 2 1
+	97	[265]	TFORLOOP 	1 2
+	98	[271]	JMP      	-33	; to 66
+	99	[273]	LOADBOOL 	1 1 0
+	100	[273]	RETURN   	1 2
+	101	[276]	GETTABLE 	1 0 -27	; "key"
+	102	[276]	EQ       	0 1 -10	; - "lua_version"
+	103	[276]	JMP      	42	; to 146
+	104	[276]	GETTABLE 	1 0 -28	; "value"
+	105	[276]	TEST     	1 0 0
+	106	[276]	JMP      	39	; to 146
+	107	[277]	GETUPVAL 	1 5	; get_scope
+	108	[277]	MOVE     	2 0
+	109	[277]	CALL     	1 2 2
+	110	[278]	EQ       	0 1 -29	; - "project"
+	111	[278]	JMP      	8	; to 120
+	112	[278]	GETUPVAL 	2 1	; cfg
+	113	[278]	GETTABLE 	2 2 -12	; "config_files"
+	114	[278]	GETTABLE 	2 2 -29	; "project"
+	115	[278]	TEST     	2 0 1
+	116	[278]	JMP      	3	; to 120
+	117	[279]	LOADNIL  	2 2
+	118	[279]	LOADK    	3 -30	; "Current directory is not part of a project. You may want to run `luarocks init`."
+	119	[279]	RETURN   	2 3
+	120	[282]	GETUPVAL 	2 4	; dir
+	121	[282]	GETTABLE 	2 2 -31	; "dir_name"
+	122	[282]	GETUPVAL 	3 1	; cfg
+	123	[282]	GETTABLE 	3 3 -12	; "config_files"
+	124	[282]	GETTABLE 	3 3 1
+	125	[282]	GETTABLE 	3 3 -32	; "file"
+	126	[282]	CALL     	2 2 2
+	127	[283]	GETUPVAL 	3 6	; persist
+	128	[283]	GETTABLE 	3 3 -33	; "save_default_lua_version"
+	129	[283]	MOVE     	4 2
+	130	[283]	GETTABLE 	5 0 -28	; "value"
+	131	[283]	CALL     	3 3 3
+	132	[284]	TEST     	3 0 1
+	133	[284]	JMP      	5	; to 139
+	134	[285]	LOADNIL  	5 5
+	135	[285]	LOADK    	6 -34	; "could not set default Lua version: "
+	136	[285]	MOVE     	7 4
+	137	[285]	CONCAT   	6 6 7
+	138	[285]	RETURN   	5 3
+	139	[287]	GETGLOBAL	5 -5	; print
+	140	[287]	LOADK    	6 -35	; "Lua version will default to "
+	141	[287]	GETTABLE 	7 0 -28	; "value"
+	142	[287]	LOADK    	8 -36	; " in "
+	143	[287]	MOVE     	9 2
+	144	[287]	CONCAT   	6 6 9
+	145	[287]	CALL     	5 2 1
+	146	[290]	GETTABLE 	1 0 -27	; "key"
+	147	[290]	EQ       	0 1 -37	; - "lua_dir"
+	148	[290]	JMP      	32	; to 181
+	149	[290]	GETTABLE 	1 0 -28	; "value"
+	150	[290]	TEST     	1 0 0
+	151	[290]	JMP      	29	; to 181
+	152	[291]	GETUPVAL 	1 5	; get_scope
+	153	[291]	MOVE     	2 0
+	154	[291]	CALL     	1 2 2
+	155	[292]	NEWTABLE 	2 0 5
+	156	[293]	GETUPVAL 	3 1	; cfg
+	157	[293]	GETTABLE 	3 3 -2	; "variables"
+	158	[293]	GETTABLE 	3 3 -39	; "LUA_DIR"
+	159	[293]	SETTABLE 	2 -38 3	; "variables.LUA_DIR" -
+	160	[294]	GETUPVAL 	3 1	; cfg
+	161	[294]	GETTABLE 	3 3 -2	; "variables"
+	162	[294]	GETTABLE 	3 3 -41	; "LUA_BINDIR"
+	163	[294]	SETTABLE 	2 -40 3	; "variables.LUA_BINDIR" -
+	164	[295]	GETUPVAL 	3 1	; cfg
+	165	[295]	GETTABLE 	3 3 -2	; "variables"
+	166	[295]	GETTABLE 	3 3 -6	; "LUA_INCDIR"
+	167	[295]	SETTABLE 	2 -42 3	; "variables.LUA_INCDIR" -
+	168	[296]	GETUPVAL 	3 1	; cfg
+	169	[296]	GETTABLE 	3 3 -2	; "variables"
+	170	[296]	GETTABLE 	3 3 -8	; "LUA_LIBDIR"
+	171	[296]	SETTABLE 	2 -43 3	; "variables.LUA_LIBDIR" -
+	172	[297]	GETUPVAL 	3 1	; cfg
+	173	[297]	GETTABLE 	3 3 -44	; "lua_interpreter"
+	174	[297]	SETTABLE 	2 -44 3	; "lua_interpreter" -
+	175	[299]	GETUPVAL 	3 7	; write_entries
+	176	[299]	MOVE     	4 2
+	177	[299]	MOVE     	5 1
+	178	[299]	GETTABLE 	6 0 -45	; "unset"
+	179	[299]	TAILCALL 	3 4 0
+	180	[299]	RETURN   	3 0
+	181	[302]	GETTABLE 	1 0 -27	; "key"
+	182	[302]	TEST     	1 0 0
+	183	[302]	JMP      	28	; to 212
+	184	[303]	GETTABLE 	1 0 -28	; "value"
+	185	[303]	TEST     	1 0 1
+	186	[303]	JMP      	3	; to 190
+	187	[303]	GETTABLE 	1 0 -45	; "unset"
+	188	[303]	TEST     	1 0 0
+	189	[303]	JMP      	16	; to 206
+	190	[304]	GETUPVAL 	1 5	; get_scope
+	191	[304]	MOVE     	2 0
+	192	[304]	CALL     	1 2 2
+	193	[305]	GETUPVAL 	2 7	; write_entries
+	194	[305]	NEWTABLE 	3 0 1
+	195	[305]	GETTABLE 	4 0 -27	; "key"
+	196	[305]	GETTABLE 	5 0 -28	; "value"
+	197	[305]	TEST     	5 0 1
+	198	[305]	JMP      	1	; to 200
+	199	[305]	GETTABLE 	5 0 -45	; "unset"
+	200	[305]	SETTABLE 	3 4 5
+	201	[305]	MOVE     	4 1
+	202	[305]	GETTABLE 	5 0 -45	; "unset"
+	203	[305]	TAILCALL 	2 4 0
+	204	[305]	RETURN   	2 0
+	205	[305]	JMP      	6	; to 212
+	206	[307]	GETUPVAL 	1 8	; print_entry
+	207	[307]	GETTABLE 	2 0 -27	; "key"
+	208	[307]	GETUPVAL 	3 1	; cfg
+	209	[307]	GETTABLE 	4 0 -46	; "json"
+	210	[307]	TAILCALL 	1 4 0
+	211	[307]	RETURN   	1 0
+	212	[311]	GETUPVAL 	1 9	; cleanup
+	213	[311]	GETUPVAL 	2 1	; cfg
+	214	[311]	CALL     	1 2 2
+	215	[313]	GETTABLE 	2 0 -46	; "json"
+	216	[313]	TEST     	2 0 0
+	217	[313]	JMP      	5	; to 223
+	218	[314]	GETUPVAL 	2 10	; print_json
+	219	[314]	MOVE     	3 1
+	220	[314]	TAILCALL 	2 2 0
+	221	[314]	RETURN   	2 0
+	222	[314]	JMP      	8	; to 231
+	223	[316]	GETGLOBAL	2 -5	; print
+	224	[316]	GETUPVAL 	3 6	; persist
+	225	[316]	GETTABLE 	3 3 -47	; "save_from_table_to_string"
+	226	[316]	MOVE     	4 1
+	227	[316]	CALL     	3 2 0
+	228	[316]	CALL     	2 0 1
+	229	[317]	LOADBOOL 	2 1 0
+	230	[317]	RETURN   	2 2
+	231	[319]	RETURN   	0 1

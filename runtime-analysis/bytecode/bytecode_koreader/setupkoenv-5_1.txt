@@ -1,0 +1,79 @@
+
+main <./setupkoenv.lua:0,0> (30 instructions, 120 bytes at 0x7f871bc068a0)
+0+ params, 5 slots, 0 upvalues, 4 locals, 14 constants, 1 function
+	1	[2]	GETGLOBAL	0 -1	; package
+	2	[3]	LOADK    	1 -3	; "common/?.lua;rocks/share/lua/5.1/?.lua;frontend/?.lua;"
+	3	[4]	GETGLOBAL	2 -1	; package
+	4	[4]	GETTABLE 	2 2 -2	; "path"
+	5	[4]	CONCAT   	1 1 2
+	6	[4]	SETTABLE 	0 -2 1	; "path" -
+	7	[5]	GETGLOBAL	0 -1	; package
+	8	[6]	LOADK    	1 -5	; "common/?.so;common/?.dll;/usr/lib/lua/?.so;rocks/lib/lua/5.1/?.so;"
+	9	[7]	GETGLOBAL	2 -1	; package
+	10	[7]	GETTABLE 	2 2 -4	; "cpath"
+	11	[7]	CONCAT   	1 1 2
+	12	[7]	SETTABLE 	0 -4 1	; "cpath" -
+	13	[10]	GETGLOBAL	0 -6	; require
+	14	[10]	LOADK    	1 -7	; "ffi"
+	15	[10]	CALL     	0 2 2
+	16	[11]	GETGLOBAL	1 -6	; require
+	17	[11]	LOADK    	2 -8	; "ffi/posix_h"
+	18	[11]	CALL     	1 2 2
+	19	[12]	GETTABLE 	2 0 -9	; "C"
+	20	[13]	GETTABLE 	3 0 -10	; "os"
+	21	[13]	EQ       	0 3 -11	; - "Windows"
+	22	[13]	JMP      	3	; to 26
+	23	[14]	GETTABLE 	3 2 -12	; "_putenv"
+	24	[14]	LOADK    	4 -13	; "PATH=libs;common;"
+	25	[14]	CALL     	3 2 1
+	26	[16]	GETTABLE 	3 0 -14	; "load"
+	27	[32]	CLOSURE  	4 0	; 0x7f871bc06dd0
+	28	[32]	MOVE     	0 3
+	29	[32]	SETTABLE 	0 -14 4	; "load" -
+	30	[32]	RETURN   	0 1
+
+function <./setupkoenv.lua:18,32> (43 instructions, 172 bytes at 0x7f871bc06dd0)
+1 param, 8 slots, 1 upvalue, 4 locals, 12 constants, 0 functions
+	1	[19]	GETGLOBAL	1 -1	; io
+	2	[19]	GETTABLE 	1 1 -2	; "write"
+	3	[19]	LOADK    	2 -3	; "ffi.load: "
+	4	[19]	MOVE     	3 0
+	5	[19]	LOADK    	4 -4	; "\n"
+	6	[19]	CALL     	1 4 1
+	7	[20]	GETGLOBAL	1 -5	; pcall
+	8	[20]	GETUPVAL 	2 0	; ffi_load
+	9	[20]	MOVE     	3 0
+	10	[20]	CALL     	1 3 3
+	11	[21]	TEST     	1 0 0
+	12	[21]	JMP      	1	; to 14
+	13	[21]	RETURN   	2 2
+	14	[23]	GETGLOBAL	3 -6	; package
+	15	[23]	GETTABLE 	3 3 -7	; "searchpath"
+	16	[23]	MOVE     	4 0
+	17	[23]	LOADK    	5 -8	; "./lib?.so;./libs/lib?.so;./libs/lib?.so.1"
+	18	[23]	CALL     	3 3 2
+	19	[25]	TEST     	3 0 1
+	20	[25]	JMP      	12	; to 33
+	21	[26]	GETGLOBAL	4 -1	; io
+	22	[26]	GETTABLE 	4 4 -2	; "write"
+	23	[26]	LOADK    	5 -9	; "ffi.load (warning): "
+	24	[26]	MOVE     	6 2
+	25	[26]	LOADK    	7 -4	; "\n"
+	26	[26]	CALL     	4 4 1
+	27	[27]	GETGLOBAL	4 -10	; error
+	28	[27]	LOADK    	5 -11	; "Not able to load dynamic library: "
+	29	[27]	MOVE     	6 0
+	30	[27]	CONCAT   	5 5 6
+	31	[27]	CALL     	4 2 1
+	32	[27]	JMP      	10	; to 43
+	33	[29]	GETGLOBAL	4 -1	; io
+	34	[29]	GETTABLE 	4 4 -2	; "write"
+	35	[29]	LOADK    	5 -12	; "ffi.load (assisted searchpath): "
+	36	[29]	MOVE     	6 3
+	37	[29]	LOADK    	7 -4	; "\n"
+	38	[29]	CALL     	4 4 1
+	39	[30]	GETUPVAL 	4 0	; ffi_load
+	40	[30]	MOVE     	5 3
+	41	[30]	TAILCALL 	4 2 0
+	42	[30]	RETURN   	4 0
+	43	[32]	RETURN   	0 1

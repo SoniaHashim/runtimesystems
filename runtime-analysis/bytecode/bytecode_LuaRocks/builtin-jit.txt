@@ -1,0 +1,1111 @@
+-- BYTECODE -- builtin.lua:13-43
+0001    ISF          0
+0002    JMP      1 => 0006
+0003    TGETS    1   0   0  ; "modules"
+0004    IST          1
+0005    JMP      1 => 0008
+0006 => KPRI     1   0
+0007    RET1     1   2
+0008 => TNEW     1   0
+0009    KPRI     2   1
+0010    GGET     3   1      ; "pairs"
+0011    TGETS    4   0   0  ; "modules"
+0012    CALL     3   4   2
+0013    ISNEXT   6 => 0080
+0014 => GGET     8   2      ; "type"
+0015    MOV      9   7
+0016    CALL     8   2   2
+0017    ISNES    8   3      ; "table"
+0018    JMP      8 => 0080
+0019    TGETS    8   7   4  ; "libraries"
+0020    ISF          8
+0021    JMP      9 => 0080
+0022    TGETS    8   7   4  ; "libraries"
+0023    GGET     9   2      ; "type"
+0024    MOV     10   8
+0025    CALL     9   2   2
+0026    ISNES    9   5      ; "string"
+0027    JMP      9 => 0031
+0028    TNEW     9   3
+0029    TSETB    8   9   1
+0030    MOV      8   9
+0031 => TNEW     9   0
+0032    TNEW    10   0
+0033    GGET    11   6      ; "ipairs"
+0034    MOV     12   8
+0035    CALL    11   4   2
+0036    JMP     14 => 0070
+0037 => MOV     17  15
+0038    TGETS   16  15   7  ; "upper"
+0039    CALL    16   2   2
+0040    MOV     17  16
+0041    TGETS   16  16   8  ; "gsub"
+0042    KSTR    18   9      ; "%+"
+0043    KSTR    19  10      ; "P"
+0044    CALL    16   2   4
+0045    MOV     17  16
+0046    TGETS   16  16   8  ; "gsub"
+0047    KSTR    18  11      ; "[^%w]"
+0048    KSTR    19  12      ; "_"
+0049    CALL    16   2   4
+0050    KPRI     2   2
+0051    TDUP    17  13
+0052    TSETS   15  17  14  ; "library"
+0053    TSETV   17   1  16
+0054    GGET    17   3      ; "table"
+0055    TGETS   17  17  15  ; "insert"
+0056    MOV     18   9
+0057    KSTR    19  16      ; "$("
+0058    MOV     20  16
+0059    KSTR    21  17      ; "_INCDIR)"
+0060    CAT     19  19  21
+0061    CALL    17   1   3
+0062    GGET    17   3      ; "table"
+0063    TGETS   17  17  15  ; "insert"
+0064    MOV     18  10
+0065    KSTR    19  16      ; "$("
+0066    MOV     20  16
+0067    KSTR    21  18      ; "_LIBDIR)"
+0068    CAT     19  19  21
+0069    CALL    17   1   3
+0070 => ITERC   14   3   3
+0071    ITERL   14 => 0037
+0072    TGETS   11   7  19  ; "incdirs"
+0073    IST         11
+0074    JMP     11 => 0076
+0075    TSETS    9   7  19  ; "incdirs"
+0076 => TGETS   11   7  20  ; "libdirs"
+0077    IST         11
+0078    JMP     11 => 0080
+0079    TSETS   10   7  20  ; "libdirs"
+0080 => ITERN    6   3   3
+0081    ITERL    6 => 0014
+0082    ISF          2
+0083    JMP      3 => 0086
+0084    ISTC     3   1
+0085    JMP      3 => 0087
+0086 => KPRI     3   0
+0087 => RET1     3   2
+
+-- BYTECODE -- builtin.lua:45-60
+0001    IST          0
+0002    JMP      2 => 0005
+0003    KNIL     2   4
+0004    RET      2   4
+0005 => TNEW     2   0
+0006    TNEW     3   0
+0007    TNEW     4   0
+0008    GGET     5   0      ; "pairs"
+0009    MOV      6   0
+0010    CALL     5   4   2
+0011    ISNEXT   8 => 0036
+0012 => TGETS   10   9   1  ; "library"
+0013    ISF         10
+0014    JMP     11 => 0036
+0015    GGET    10   2      ; "table"
+0016    TGETS   10  10   3  ; "insert"
+0017    MOV     11   2
+0018    TGETS   12   9   1  ; "library"
+0019    CALL    10   1   3
+0020    GGET    10   2      ; "table"
+0021    TGETS   10  10   3  ; "insert"
+0022    MOV     11   3
+0023    MOV     12   8
+0024    KSTR    13   4      ; "_INCDIR"
+0025    CAT     12  12  13
+0026    TGETV   12   1  12
+0027    CALL    10   1   3
+0028    GGET    10   2      ; "table"
+0029    TGETS   10  10   3  ; "insert"
+0030    MOV     11   4
+0031    MOV     12   8
+0032    KSTR    13   5      ; "_LIBDIR"
+0033    CAT     12  12  13
+0034    TGETV   12   1  12
+0035    CALL    10   1   3
+0036 => ITERN    8   3   3
+0037    ITERL    8 => 0012
+0038    MOV      5   2
+0039    MOV      6   3
+0040    MOV      7   4
+0041    RET      5   4
+
+-- BYTECODE -- builtin.lua:63-69
+0001    GGET     1   0      ; "io"
+0002    TGETS    1   1   1  ; "open"
+0003    UGET     2   0      ; dir
+0004    TGETS    2   2   2  ; "path"
+0005    UGET     3   1      ; fs
+0006    TGETS    3   3   3  ; "current_dir"
+0007    CALL     3   2   1
+0008    MOV      4   0
+0009    CALL     2   2   3
+0010    KSTR     3   4      ; "r"
+0011    CALL     1   2   3
+0012    IST          1
+0013    JMP      2 => 0016
+0014    KPRI     2   0
+0015    RET1     2   2
+0016 => MOV      3   1
+0017    TGETS    2   1   5  ; "read"
+0018    KSTR     4   6      ; "*a"
+0019    CALL     2   2   3
+0020    MOV      4   1
+0021    TGETS    3   1   7  ; "close"
+0022    CALL     3   1   2
+0023    MOV      4   2
+0024    TGETS    3   2   8  ; "match"
+0025    KSTR     5   9      ; "int%s+luaopen_([a-zA-Z0-9_]+)"
+0026    CALL     3   2   3
+0027    RET1     3   2
+
+-- BYTECODE -- builtin.lua:79-137
+0001    TNEW     3   0
+0002    KNIL     4   5
+0003    KSTR     6   0      ; ""
+0004    GGET     7   1      ; "ipairs"
+0005    TDUP     8   2
+0006    CALL     7   4   2
+0007    JMP     10 => 0022
+0008 => UGET    12   0      ; fs
+0009    TGETS   12  12   3  ; "is_dir"
+0010    MOV     13  11
+0011    CALL    12   2   2
+0012    ISF         12
+0013    JMP     13 => 0022
+0014    UGET    12   0      ; fs
+0015    TGETS   12  12   4  ; "change_dir"
+0016    MOV     13  11
+0017    CALL    12   1   2
+0018    MOV     12  11
+0019    KSTR    13   5      ; "/"
+0020    CAT      6  12  13
+0021    JMP      7 => 0024
+0022 => ITERC   10   3   3
+0023    ITERL   10 => 0008
+0024 => GGET     7   1      ; "ipairs"
+0025    UGET     8   0      ; fs
+0026    TGETS    8   8   6  ; "find"
+0027    CALL     8   0   1
+0028    CALLM    7   4   0
+0029    JMP     10 => 0081
+0030 => MOV     13  11
+0031    TGETS   12  11   7  ; "match"
+0032    KSTR    14   8      ; "^([^\/]*)"
+0033    CALL    12   2   3
+0034    UGET    13   1      ; skiplist
+0035    TGETV   13  13  12
+0036    IST         13
+0037    JMP     13 => 0081
+0038    MOV     14  11
+0039    TGETS   13  11   7  ; "match"
+0040    KSTR    15   9      ; "(.*)%.lua$"
+0041    CALL    13   2   3
+0042    ISF         13
+0043    JMP     14 => 0053
+0044    UGET    14   2      ; path
+0045    TGETS   14  14  10  ; "path_to_module"
+0046    MOV     15  11
+0047    CALL    14   2   2
+0048    MOV     15   6
+0049    MOV     16  11
+0050    CAT     15  15  16
+0051    TSETV   15   3  14
+0052    JMP     14 => 0081
+0053 => MOV     15  11
+0054    TGETS   14  11   7  ; "match"
+0055    KSTR    16  11      ; "(.*)%.c$"
+0056    CALL    14   2   3
+0057    ISF         14
+0058    JMP     15 => 0081
+0059    UGET    15   3      ; get_cmod_name
+0060    MOV     16  11
+0061    CALL    15   2   2
+0062    IST         15
+0063    JMP     16 => 0072
+0064    UGET    15   2      ; path
+0065    TGETS   15  15  10  ; "path_to_module"
+0066    MOV     17  11
+0067    TGETS   16  11  12  ; "gsub"
+0068    KSTR    18  13      ; "%.c$"
+0069    KSTR    19  14      ; ".lua"
+0070    CALL    16   0   4
+0071    CALLM   15   2   0
+0072 => TDUP    16  15
+0073    MOV     17   6
+0074    MOV     18  11
+0075    CAT     17  17  18
+0076    TSETS   17  16  16  ; "sources"
+0077    TSETS    0  16  17  ; "libraries"
+0078    TSETS    1  16  18  ; "incdirs"
+0079    TSETS    2  16  19  ; "libdirs"
+0080    TSETV   16   3  15
+0081 => ITERC   10   3   3
+0082    ITERL   10 => 0030
+0083    ISEQS    6   0      ; ""
+0084    JMP      7 => 0088
+0085    UGET     7   0      ; fs
+0086    TGETS    7   7  20  ; "pop_dir"
+0087    CALL     7   1   1
+0088 => UGET     7   0      ; fs
+0089    TGETS    7   7   3  ; "is_dir"
+0090    KSTR     8  21      ; "src/bin"
+0091    CALL     7   2   2
+0092    ISF          7
+0093    JMP      8 => 0096
+0094    KSTR     7  21      ; "src/bin"
+0095    JMP      8 => 0103
+0096 => UGET     7   0      ; fs
+0097    TGETS    7   7   3  ; "is_dir"
+0098    KSTR     8  22      ; "bin"
+0099    CALL     7   2   2
+0100    ISF          7
+0101    JMP      8 => 0103
+0102    KSTR     7  22      ; "bin"
+0103 => ISF          7
+0104    JMP      8 => 0127
+0105    TDUP     8  23
+0106    TNEW     9   0
+0107    TSETS    9   8  22  ; "bin"
+0108    MOV      4   8
+0109    GGET     8   1      ; "ipairs"
+0110    UGET     9   0      ; fs
+0111    TGETS    9   9  24  ; "list_dir"
+0112    MOV     10   7
+0113    CALL     9   0   2
+0114    CALLM    8   4   0
+0115    JMP     11 => 0125
+0116 => GGET    13  25      ; "table"
+0117    TGETS   13  13  26  ; "insert"
+0118    TGETS   14   4  22  ; "bin"
+0119    UGET    15   4      ; dir
+0120    TGETS   15  15  27  ; "path"
+0121    MOV     16   7
+0122    MOV     17  12
+0123    CALL    15   0   3
+0124    CALLM   13   1   1
+0125 => ITERC   11   3   3
+0126    ITERL   11 => 0116
+0127 => GGET     8   1      ; "ipairs"
+0128    TDUP     9  28
+0129    CALL     8   4   2
+0130    JMP     11 => 0145
+0131 => UGET    13   0      ; fs
+0132    TGETS   13  13   3  ; "is_dir"
+0133    MOV     14  12
+0134    CALL    13   2   2
+0135    ISF         13
+0136    JMP     14 => 0145
+0137    IST          5
+0138    JMP     13 => 0140
+0139    TNEW     5   0
+0140 => GGET    13  25      ; "table"
+0141    TGETS   13  13  26  ; "insert"
+0142    MOV     14   5
+0143    MOV     15  12
+0144    CALL    13   1   3
+0145 => ITERC   11   3   3
+0146    ITERL   11 => 0131
+0147    MOV      8   3
+0148    MOV      9   4
+0149    MOV     10   5
+0150    RET      8   4
+
+-- BYTECODE -- builtin.lua:143-146
+0001    GGET     0   0      ; "io"
+0002    TGETS    0   0   1  ; "stdout"
+0003    MOV      1   0
+0004    TGETS    0   0   2  ; "write"
+0005    GGET     2   3      ; "table"
+0006    TGETS    2   2   4  ; "concat"
+0007    TNEW     3   3
+0008    VARG     4   0   0
+0009    TSETM    4   0      ; 1
+0010    KSTR     4   5      ; " "
+0011    CALL     2   2   3
+0012    KSTR     3   6      ; "\n"
+0013    CAT      2   2   3
+0014    CALL     0   1   3
+0015    UGET     0   0      ; fs
+0016    TGETS    0   0   7  ; "execute"
+0017    VARG     1   0   0
+0018    CALLMT   0   0
+
+-- BYTECODE -- builtin.lua:160-170
+0001    ISF          2
+0002    JMP      3 => 0033
+0003    GGET     3   0      ; "type"
+0004    MOV      4   2
+0005    CALL     3   2   2
+0006    ISEQS    3   1      ; "table"
+0007    JMP      3 => 0014
+0008    TNEW     3   3
+0009    GGET     4   2      ; "tostring"
+0010    MOV      5   2
+0011    CALL     4   0   2
+0012    TSETM    4   0      ; 1
+0013    MOV      2   3
+0014 => UGET     3   0      ; util
+0015    TGETS    3   3   3  ; "variable_substitutions"
+0016    MOV      4   2
+0017    UGET     5   1      ; variables
+0018    CALL     3   1   3
+0019    GGET     3   4      ; "ipairs"
+0020    MOV      4   2
+0021    CALL     3   4   2
+0022    JMP      6 => 0031
+0023 => GGET     8   1      ; "table"
+0024    TGETS    8   8   5  ; "insert"
+0025    MOV      9   0
+0026    MOV     11   1
+0027    TGETS   10   1   6  ; "format"
+0028    MOV     12   7
+0029    CALL    10   0   3
+0030    CALLM    8   1   1
+0031 => ITERC    6   3   3
+0032    ITERL    6 => 0023
+0033 => RET0     0   1
+
+-- BYTECODE -- builtin.lua:173-178
+0001    TNEW     4   0
+0002    UGET     5   0      ; add_flags
+0003    MOV      6   4
+0004    KSTR     7   0      ; "-D%s"
+0005    MOV      8   2
+0006    CALL     5   1   4
+0007    UGET     5   0      ; add_flags
+0008    MOV      6   4
+0009    KSTR     7   1      ; "-I%s"
+0010    MOV      8   3
+0011    CALL     5   1   4
+0012    UGET     5   1      ; execute
+0013    UGET     6   2      ; variables
+0014    TGETS    6   6   2  ; "CC"
+0015    KSTR     7   3      ; " "
+0016    UGET     8   2      ; variables
+0017    TGETS    8   8   4  ; "CFLAGS"
+0018    CAT      6   6   8
+0019    KSTR     7   5      ; "-c"
+0020    KSTR     8   6      ; "-o"
+0021    MOV      9   0
+0022    KSTR    10   7      ; "-I"
+0023    UGET    11   2      ; variables
+0024    TGETS   11  11   8  ; "LUA_INCDIR"
+0025    CAT     10  10  11
+0026    MOV     11   1
+0027    UGET    12   3      ; unpack
+0028    MOV     13   4
+0029    CALL    12   0   2
+0030    CALLMT   5   6
+
+-- BYTECODE -- builtin.lua:179-187
+0001    TNEW     4   3
+0002    UGET     5   0      ; unpack
+0003    MOV      6   1
+0004    CALL     5   0   2
+0005    TSETM    5   0      ; 1
+0006    UGET     5   1      ; add_flags
+0007    MOV      6   4
+0008    KSTR     7   0      ; "-L%s"
+0009    MOV      8   3
+0010    CALL     5   1   4
+0011    UGET     5   1      ; add_flags
+0012    MOV      6   4
+0013    KSTR     7   1      ; "-l%s"
+0014    MOV      8   2
+0015    CALL     5   1   4
+0016    LEN      5   4
+0017    ADDVN    5   5   1  ; 1
+0018    UGET     6   2      ; dir
+0019    TGETS    6   6   2  ; "path"
+0020    UGET     7   3      ; variables
+0021    TGETS    7   7   3  ; "LUA_LIBDIR"
+0022    UGET     8   3      ; variables
+0023    TGETS    8   8   4  ; "LUALIB"
+0024    CALL     6   2   3
+0025    TSETV    6   4   5
+0026    LEN      5   4
+0027    ADDVN    5   5   1  ; 1
+0028    KSTR     6   5      ; "-l"
+0029    UGET     7   3      ; variables
+0030    TGETS    7   7   6  ; "MSVCRT"
+0031    IST          7
+0032    JMP      8 => 0034
+0033    KSTR     7   7      ; "m"
+0034 => CAT      6   6   7
+0035    TSETV    6   4   5
+0036    UGET     5   4      ; execute
+0037    UGET     6   3      ; variables
+0038    TGETS    6   6   8  ; "LD"
+0039    KSTR     7   9      ; " "
+0040    UGET     8   3      ; variables
+0041    TGETS    8   8  10  ; "LIBFLAG"
+0042    CAT      6   6   8
+0043    KSTR     7  11      ; "-o"
+0044    MOV      8   0
+0045    UGET     9   0      ; unpack
+0046    MOV     10   4
+0047    CALL     9   0   2
+0048    CALLM    5   2   3
+0049    RET1     5   2
+
+-- BYTECODE -- builtin.lua:198-203
+0001    TNEW     4   0
+0002    UGET     5   0      ; add_flags
+0003    MOV      6   4
+0004    KSTR     7   0      ; "-D%s"
+0005    MOV      8   2
+0006    CALL     5   1   4
+0007    UGET     5   0      ; add_flags
+0008    MOV      6   4
+0009    KSTR     7   1      ; "-I%s"
+0010    MOV      8   3
+0011    CALL     5   1   4
+0012    UGET     5   1      ; execute
+0013    UGET     6   2      ; variables
+0014    TGETS    6   6   2  ; "CC"
+0015    KSTR     7   3      ; " "
+0016    UGET     8   2      ; variables
+0017    TGETS    8   8   4  ; "CFLAGS"
+0018    CAT      6   6   8
+0019    KSTR     7   5      ; "-c"
+0020    KSTR     8   6      ; "-Fo"
+0021    MOV      9   0
+0022    CAT      8   8   9
+0023    KSTR     9   7      ; "-I"
+0024    UGET    10   2      ; variables
+0025    TGETS   10  10   8  ; "LUA_INCDIR"
+0026    CAT      9   9  10
+0027    MOV     10   1
+0028    UGET    11   3      ; unpack
+0029    MOV     12   4
+0030    CALL    11   0   2
+0031    CALLMT   5   5
+
+-- BYTECODE -- builtin.lua:204-228
+0001    TNEW     5   3
+0002    UGET     6   0      ; unpack
+0003    MOV      7   1
+0004    CALL     6   0   2
+0005    TSETM    6   0      ; 1
+0006    UGET     6   1      ; add_flags
+0007    MOV      7   5
+0008    KSTR     8   0      ; "-libpath:%s"
+0009    MOV      9   3
+0010    CALL     6   1   4
+0011    UGET     6   1      ; add_flags
+0012    MOV      7   5
+0013    KSTR     8   1      ; "%s.lib"
+0014    MOV      9   2
+0015    CALL     6   1   4
+0016    UGET     6   2      ; dir
+0017    TGETS    6   6   2  ; "base_name"
+0018    MOV      7   0
+0019    CALL     6   2   2
+0020    MOV      7   6
+0021    TGETS    6   6   3  ; "gsub"
+0022    KSTR     8   4      ; ".[^.]*$"
+0023    KSTR     9   5      ; ""
+0024    CALL     6   2   4
+0025    MOV      7   6
+0026    KSTR     8   6      ; ".def"
+0027    CAT      7   7   8
+0028    GGET     8   7      ; "io"
+0029    TGETS    8   8   8  ; "open"
+0030    UGET     9   2      ; dir
+0031    TGETS    9   9   9  ; "path"
+0032    UGET    10   3      ; fs
+0033    TGETS   10  10  10  ; "current_dir"
+0034    CALL    10   2   1
+0035    MOV     11   7
+0036    CALL     9   2   3
+0037    KSTR    10  11      ; "w+"
+0038    CALL     8   2   3
+0039    MOV     10   4
+0040    TGETS    9   4   3  ; "gsub"
+0041    KSTR    11  12      ; "%."
+0042    KSTR    12  13      ; "_"
+0043    CALL     9   2   4
+0044    MOV     11   9
+0045    TGETS   10   9  14  ; "match"
+0046    KSTR    12  15      ; "^[^%-]+%-(.+)$"
+0047    CALL    10   2   3
+0048    ISTC     9  10
+0049    JMP     11 => 0050
+0050 => MOV     11   8
+0051    TGETS   10   8  16  ; "write"
+0052    KSTR    12  17      ; "EXPORTS\n"
+0053    CALL    10   1   3
+0054    MOV     11   8
+0055    TGETS   10   8  16  ; "write"
+0056    KSTR    12  18      ; "luaopen_"
+0057    MOV     13   9
+0058    KSTR    14  19      ; "\n"
+0059    CAT     12  12  14
+0060    CALL    10   1   3
+0061    MOV     11   8
+0062    TGETS   10   8  20  ; "close"
+0063    CALL    10   1   2
+0064    UGET    10   4      ; execute
+0065    UGET    11   5      ; variables
+0066    TGETS   11  11  21  ; "LD"
+0067    KSTR    12  22      ; "-dll"
+0068    KSTR    13  23      ; "-def:"
+0069    MOV     14   7
+0070    CAT     13  13  14
+0071    KSTR    14  24      ; "-out:"
+0072    MOV     15   0
+0073    CAT     14  14  15
+0074    UGET    15   2      ; dir
+0075    TGETS   15  15   9  ; "path"
+0076    UGET    16   5      ; variables
+0077    TGETS   16  16  25  ; "LUA_LIBDIR"
+0078    UGET    17   5      ; variables
+0079    TGETS   17  17  26  ; "LUALIB"
+0080    CALL    15   2   3
+0081    UGET    16   0      ; unpack
+0082    MOV     17   5
+0083    CALL    16   0   2
+0084    CALLM   10   2   5
+0085    KSTR    11   5      ; ""
+0086    MOV     13   4
+0087    TGETS   12   4  27  ; "find"
+0088    KSTR    14  12      ; "%."
+0089    CALL    12   2   3
+0090    ISEQP   12   0
+0091    JMP     12 => 0104
+0092    MOV     13   4
+0093    TGETS   12   4   3  ; "gsub"
+0094    KSTR    14  28      ; "%.%w+$"
+0095    KSTR    15  29      ; "\"
+0096    CALL    12   2   4
+0097    MOV     11  12
+0098    MOV     13  11
+0099    TGETS   12  11   3  ; "gsub"
+0100    KSTR    14  12      ; "%."
+0101    KSTR    15  29      ; "\"
+0102    CALL    12   2   4
+0103    MOV     11  12
+0104 => MOV     12  11
+0105    MOV     13   6
+0106    KSTR    14  30      ; ".dll.manifest"
+0107    CAT     12  12  14
+0108    ISF         10
+0109    JMP     13 => 0128
+0110    UGET    13   3      ; fs
+0111    TGETS   13  13  31  ; "exists"
+0112    MOV     14  12
+0113    CALL    13   2   2
+0114    ISF         13
+0115    JMP     14 => 0128
+0116    UGET    13   4      ; execute
+0117    UGET    14   5      ; variables
+0118    TGETS   14  14  32  ; "MT"
+0119    KSTR    15  33      ; "-manifest"
+0120    MOV     16  12
+0121    KSTR    17  34      ; "-outputresource:"
+0122    MOV     18  11
+0123    MOV     19   6
+0124    KSTR    20  35      ; ".dll;2"
+0125    CAT     17  17  20
+0126    CALL    13   2   5
+0127    MOV     10  13
+0128 => RET1    10   2
+
+-- BYTECODE -- builtin.lua:236-241
+0001    TNEW     4   0
+0002    UGET     5   0      ; add_flags
+0003    MOV      6   4
+0004    KSTR     7   0      ; "-D%s"
+0005    MOV      8   2
+0006    CALL     5   1   4
+0007    UGET     5   0      ; add_flags
+0008    MOV      6   4
+0009    KSTR     7   1      ; "-I%s"
+0010    MOV      8   3
+0011    CALL     5   1   4
+0012    UGET     5   1      ; execute
+0013    UGET     6   2      ; variables
+0014    TGETS    6   6   2  ; "CC"
+0015    KSTR     7   3      ; " "
+0016    UGET     8   2      ; variables
+0017    TGETS    8   8   4  ; "CFLAGS"
+0018    CAT      6   6   8
+0019    KSTR     7   5      ; "-I"
+0020    UGET     8   2      ; variables
+0021    TGETS    8   8   6  ; "LUA_INCDIR"
+0022    CAT      7   7   8
+0023    KSTR     8   7      ; "-c"
+0024    MOV      9   1
+0025    KSTR    10   8      ; "-o"
+0026    MOV     11   0
+0027    UGET    12   3      ; unpack
+0028    MOV     13   4
+0029    CALL    12   0   2
+0030    CALLMT   5   6
+
+-- BYTECODE -- builtin.lua:242-254
+0001    TNEW     4   3
+0002    UGET     5   0      ; unpack
+0003    MOV      6   1
+0004    CALL     5   0   2
+0005    TSETM    5   0      ; 1
+0006    UGET     5   1      ; add_flags
+0007    MOV      6   4
+0008    KSTR     7   0      ; "-L%s"
+0009    MOV      8   3
+0010    CALL     5   1   4
+0011    UGET     5   2      ; cfg
+0012    TGETS    5   5   1  ; "gcc_rpath"
+0013    ISF          5
+0014    JMP      6 => 0020
+0015    UGET     5   1      ; add_flags
+0016    MOV      6   4
+0017    KSTR     7   2      ; "-Wl,-rpath,%s"
+0018    MOV      8   3
+0019    CALL     5   1   4
+0020 => UGET     5   1      ; add_flags
+0021    MOV      6   4
+0022    KSTR     7   3      ; "-l%s"
+0023    MOV      8   2
+0024    CALL     5   1   4
+0025    UGET     5   2      ; cfg
+0026    TGETS    5   5   4  ; "link_lua_explicitly"
+0027    ISF          5
+0028    JMP      6 => 0040
+0029    LEN      5   4
+0030    ADDVN    5   5   1  ; 1
+0031    KSTR     6   5      ; "-L"
+0032    UGET     7   3      ; variables
+0033    TGETS    7   7   6  ; "LUA_LIBDIR"
+0034    CAT      6   6   7
+0035    TSETV    6   4   5
+0036    LEN      5   4
+0037    ADDVN    5   5   1  ; 1
+0038    KSTR     6   7      ; "-llua"
+0039    TSETV    6   4   5
+0040 => UGET     5   4      ; execute
+0041    UGET     6   3      ; variables
+0042    TGETS    6   6   8  ; "LD"
+0043    KSTR     7   9      ; " "
+0044    UGET     8   3      ; variables
+0045    TGETS    8   8  10  ; "LIBFLAG"
+0046    CAT      6   6   8
+0047    KSTR     7  11      ; "-o"
+0048    MOV      8   0
+0049    UGET     9   0      ; unpack
+0050    MOV     10   4
+0051    CALL     9   0   2
+0052    CALLMT   5   3
+
+-- BYTECODE -- builtin.lua:255-261
+0001    UGET     5   0      ; execute
+0002    UGET     6   1      ; variables
+0003    TGETS    6   6   0  ; "AR"
+0004    KSTR     7   1      ; "rc"
+0005    MOV      8   0
+0006    UGET     9   2      ; unpack
+0007    MOV     10   1
+0008    CALL     9   0   2
+0009    CALLM    5   2   3
+0010    ISF          5
+0011    JMP      6 => 0018
+0012    UGET     6   0      ; execute
+0013    UGET     7   1      ; variables
+0014    TGETS    7   7   2  ; "RANLIB"
+0015    MOV      8   0
+0016    CALL     6   2   3
+0017    MOV      5   6
+0018 => RET1     5   2
+
+-- BYTECODE -- builtin.lua:152-363
+0001    GGET     1   0      ; "assert"
+0002    MOV      3   0
+0003    TGETS    2   0   1  ; "type"
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "rockspec"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => CALL     1   1   2
+0011    KNIL     1   3
+0012    TGETS    4   0   3  ; "build"
+0013    TGETS    5   0   4  ; "variables"
+0014    KPRI     6   1
+0015    FNEW     7   5      ; builtin.lua:160
+0016    UGET     8   1      ; cfg
+0017    TGETS    8   8   6  ; "is_platform"
+0018    KSTR     9   7      ; "mingw32"
+0019    CALL     8   2   2
+0020    ISF          8
+0021    JMP      9 => 0025
+0022    FNEW     1   8      ; builtin.lua:173
+0023    FNEW     2   9      ; builtin.lua:179
+0024    JMP      8 => 0037
+0025 => UGET     8   1      ; cfg
+0026    TGETS    8   8   6  ; "is_platform"
+0027    KSTR     9  10      ; "win32"
+0028    CALL     8   2   2
+0029    ISF          8
+0030    JMP      9 => 0034
+0031    FNEW     1  11      ; builtin.lua:198
+0032    FNEW     2  12      ; builtin.lua:204
+0033    JMP      8 => 0037
+0034 => FNEW     1  13      ; builtin.lua:236
+0035    FNEW     2  14      ; builtin.lua:242
+0036    FNEW     3  15      ; builtin.lua:255
+0037 => KNIL     8   9
+0038    TNEW    10   0
+0039    TNEW    11   0
+0040    UGET    12   6      ; path
+0041    TGETS   12  12  16  ; "lua_dir"
+0042    TGETS   13   0  17  ; "name"
+0043    TGETS   14   0  18  ; "version"
+0044    CALL    12   2   3
+0045    UGET    13   6      ; path
+0046    TGETS   13  13  19  ; "lib_dir"
+0047    TGETS   14   0  17  ; "name"
+0048    TGETS   15   0  18  ; "version"
+0049    CALL    13   2   3
+0050    TGETS   14   4  20  ; "modules"
+0051    IST         14
+0052    JMP     14 => 0088
+0053    MOV     15   0
+0054    TGETS   14   0  21  ; "format_is_at_least"
+0055    KSTR    16  22      ; "3.0"
+0056    CALL    14   2   3
+0057    ISF         14
+0058    JMP     15 => 0084
+0059    UGET    14   7      ; autoextract_libs
+0060    TGETS   15   0  23  ; "external_dependencies"
+0061    TGETS   16   0   4  ; "variables"
+0062    CALL    14   4   3
+0063    KNIL    17  18
+0064    UGET    19   8      ; builtin
+0065    TGETS   19  19  24  ; "autodetect_modules"
+0066    MOV     20  14
+0067    MOV     21  15
+0068    MOV     22  16
+0069    CALL    19   4   4
+0070    MOV     18  21
+0071    MOV     17  20
+0072    TSETS   19   4  20  ; "modules"
+0073    TGETS   19   4  25  ; "install"
+0074    IST         19
+0075    JMP     20 => 0077
+0076    MOV     19  17
+0077 => TSETS   19   4  25  ; "install"
+0078    TGETS   19   4  26  ; "copy_directories"
+0079    IST         19
+0080    JMP     20 => 0082
+0081    MOV     19  18
+0082 => TSETS   19   4  26  ; "copy_directories"
+0083    JMP     14 => 0088
+0084 => KPRI    14   0
+0085    KSTR    15  27      ; "Missing build.modules table"
+0086    UCLO     0 => 0087
+0087 => RET     14   3
+0088 => GGET    14  28      ; "pairs"
+0089    TGETS   15   4  20  ; "modules"
+0090    CALL    14   4   2
+0091    ISNEXT  17 => 0283
+0092 => UGET    19   6      ; path
+0093    TGETS   19  19  29  ; "module_to_path"
+0094    MOV     20  17
+0095    CALL    19   2   2
+0096    GGET    20   1      ; "type"
+0097    MOV     21  18
+0098    CALL    20   2   2
+0099    ISNES   20  30      ; "string"
+0100    JMP     20 => 0145
+0101    MOV     21  18
+0102    TGETS   20  18  31  ; "match"
+0103    KSTR    22  32      ; "%.([^.]+)$"
+0104    CALL    20   2   3
+0105    ISNES   20  33      ; "lua"
+0106    JMP     21 => 0142
+0107    UGET    21   4      ; dir
+0108    TGETS   21  21  34  ; "base_name"
+0109    MOV     22  18
+0110    CALL    21   2   2
+0111    ISNES   21  35      ; "init.lua"
+0112    JMP     22 => 0127
+0113    MOV     23  17
+0114    TGETS   22  17  31  ; "match"
+0115    KSTR    24  36      ; "%.init$"
+0116    CALL    22   2   3
+0117    IST         22
+0118    JMP     22 => 0127
+0119    UGET    22   6      ; path
+0120    TGETS   22  22  29  ; "module_to_path"
+0121    MOV     23  17
+0122    KSTR    24  37      ; ".init"
+0123    CAT     23  23  24
+0124    CALL    22   2   2
+0125    MOV     19  22
+0126    JMP     22 => 0134
+0127 => MOV     23  17
+0128    TGETS   22  17  31  ; "match"
+0129    KSTR    24  38      ; "([^.]+)$"
+0130    CALL    22   2   3
+0131    MOV     23  22
+0132    KSTR    24  39      ; ".lua"
+0133    CAT     21  23  24
+0134 => UGET    22   4      ; dir
+0135    TGETS   22  22  40  ; "path"
+0136    MOV     23  12
+0137    MOV     24  19
+0138    MOV     25  21
+0139    CALL    22   2   4
+0140    TSETV   22  10  18
+0141    JMP     21 => 0145
+0142 => TNEW    21   3
+0143    TSETB   18  21   1
+0144    MOV     18  21
+0145 => GGET    20   1      ; "type"
+0146    MOV     21  18
+0147    CALL    20   2   2
+0148    ISNES   20  41      ; "table"
+0149    JMP     20 => 0283
+0150    IST          6
+0151    JMP     20 => 0175
+0152    TGETS   20   5  42  ; "LUA_INCDIR"
+0153    KSTR    21  43      ; "lua.h"
+0154    UGET    22   5      ; fs
+0155    TGETS   22  22  44  ; "exists"
+0156    UGET    23   4      ; dir
+0157    TGETS   23  23  40  ; "path"
+0158    MOV     24  20
+0159    MOV     25  21
+0160    CALL    23   0   3
+0161    CALLM   22   2   0
+0162    IST         22
+0163    JMP     22 => 0174
+0164    KPRI    22   0
+0165    KSTR    23  45      ; "Lua header file "
+0166    MOV     24  21
+0167    KSTR    25  46      ; " not found (looked in "
+0168    MOV     26  20
+0169    KSTR    27  47      ; "). \n"
+0170    KSTR    28  48      ; "You need to install the Lua development "~
+0171    CAT     23  23  28
+0172    UCLO     0 => 0173
+0173 => RET     22   3
+0174 => KPRI     6   2
+0175 => TNEW    20   0
+0176    TGETS   21  18  49  ; "sources"
+0177    TGETB   22  18   1
+0178    ISF         22
+0179    JMP     23 => 0181
+0180    MOV     21  18
+0181 => GGET    22   1      ; "type"
+0182    MOV     23  21
+0183    CALL    22   2   2
+0184    ISNES   22  30      ; "string"
+0185    JMP     22 => 0189
+0186    TNEW    22   3
+0187    TSETB   21  22   1
+0188    MOV     21  22
+0189 => GGET    22  50      ; "ipairs"
+0190    MOV     23  21
+0191    CALL    22   4   2
+0192    JMP     25 => 0228
+0193 => MOV     28  26
+0194    TGETS   27  26  51  ; "gsub"
+0195    KSTR    29  52      ; "%.[^.]*$"
+0196    KSTR    30  53      ; "."
+0197    UGET    31   1      ; cfg
+0198    TGETS   31  31  54  ; "obj_extension"
+0199    CAT     30  30  31
+0200    CALL    27   2   4
+0201    IST         27
+0202    JMP     28 => 0208
+0203    MOV     28  26
+0204    KSTR    29  53      ; "."
+0205    UGET    30   1      ; cfg
+0206    TGETS   30  30  54  ; "obj_extension"
+0207    CAT     27  28  30
+0208 => MOV     28   1
+0209    MOV     29  27
+0210    MOV     30  26
+0211    TGETS   31  18  55  ; "defines"
+0212    TGETS   32  18  56  ; "incdirs"
+0213    CALL    28   2   5
+0214    MOV      8  28
+0215    IST          8
+0216    JMP     28 => 0223
+0217    KPRI    28   0
+0218    KSTR    29  57      ; "Failed compiling object "
+0219    MOV     30  27
+0220    CAT     29  29  30
+0221    UCLO     0 => 0222
+0222 => RET     28   3
+0223 => GGET    28  41      ; "table"
+0224    TGETS   28  28  58  ; "insert"
+0225    MOV     29  20
+0226    MOV     30  27
+0227    CALL    28   1   3
+0228 => ITERC   25   3   3
+0229    ITERL   25 => 0193
+0230    MOV     23  17
+0231    TGETS   22  17  31  ; "match"
+0232    KSTR    24  59      ; "([^.]*)$"
+0233    CALL    22   2   3
+0234    KSTR    23  53      ; "."
+0235    UGET    24   0      ; util
+0236    TGETS   24  24  60  ; "matchquote"
+0237    UGET    25   1      ; cfg
+0238    TGETS   25  25  61  ; "lib_extension"
+0239    CALL    24   2   2
+0240    CAT     22  22  24
+0241    ISEQS   19  62      ; ""
+0242    JMP     23 => 0261
+0243    UGET    23   4      ; dir
+0244    TGETS   23  23  40  ; "path"
+0245    MOV     24  19
+0246    MOV     25  22
+0247    CALL    23   2   3
+0248    MOV     22  23
+0249    UGET    23   5      ; fs
+0250    TGETS   23  23  63  ; "make_dir"
+0251    MOV     24  19
+0252    CALL    23   3   2
+0253    MOV      9  24
+0254    MOV      8  23
+0255    IST          8
+0256    JMP     23 => 0261
+0257    KPRI    23   0
+0258    MOV     24   9
+0259    UCLO     0 => 0260
+0260 => RET     23   3
+0261 => UGET    23   4      ; dir
+0262    TGETS   23  23  40  ; "path"
+0263    MOV     24  13
+0264    MOV     25  22
+0265    CALL    23   2   3
+0266    TSETV   23  11  22
+0267    MOV     23   2
+0268    MOV     24  22
+0269    MOV     25  20
+0270    TGETS   26  18  64  ; "libraries"
+0271    TGETS   27  18  65  ; "libdirs"
+0272    MOV     28  17
+0273    CALL    23   2   6
+0274    MOV      8  23
+0275    IST          8
+0276    JMP     23 => 0283
+0277    KPRI    23   0
+0278    KSTR    24  66      ; "Failed compiling module "
+0279    MOV     25  22
+0280    CAT     24  24  25
+0281    UCLO     0 => 0282
+0282 => RET     23   3
+0283 => ITERN   17   3   3
+0284    ITERL   17 => 0092
+0285    GGET    14  50      ; "ipairs"
+0286    TNEW    15   3
+0287    TDUP    16  67
+0288    TSETS   10  16  68  ; "tbl"
+0289    TSETB   16  15   1
+0290    TDUP    16  69
+0291    TSETS   11  16  68  ; "tbl"
+0292    TSETB   16  15   2
+0293    CALL    14   4   2
+0294    JMP     17 => 0328
+0295 => GGET    19  28      ; "pairs"
+0296    TGETS   20  18  68  ; "tbl"
+0297    CALL    19   4   2
+0298    ISNEXT  22 => 0326
+0299 => UGET    24   5      ; fs
+0300    TGETS   24  24  63  ; "make_dir"
+0301    UGET    25   4      ; dir
+0302    TGETS   25  25  70  ; "dir_name"
+0303    MOV     26  23
+0304    CALL    25   0   2
+0305    CALLM   24   1   0
+0306    UGET    24   5      ; fs
+0307    TGETS   24  24  71  ; "copy"
+0308    MOV     25  22
+0309    MOV     26  23
+0310    TGETS   27  18  72  ; "perms"
+0311    CALL    24   3   4
+0312    MOV      9  25
+0313    MOV      8  24
+0314    IST          8
+0315    JMP     24 => 0326
+0316    KPRI    24   0
+0317    KSTR    25  73      ; "Failed installing "
+0318    MOV     26  22
+0319    KSTR    27  74      ; " in "
+0320    MOV     28  23
+0321    KSTR    29  75      ; ": "
+0322    MOV     30   9
+0323    CAT     25  25  30
+0324    UCLO     0 => 0325
+0325 => RET     24   3
+0326 => ITERN   22   3   3
+0327    ITERL   22 => 0299
+0328 => ITERC   17   3   3
+0329    ITERL   17 => 0295
+0330    UGET    14   5      ; fs
+0331    TGETS   14  14  76  ; "is_dir"
+0332    KSTR    15  33      ; "lua"
+0333    CALL    14   2   2
+0334    ISF         14
+0335    JMP     15 => 0351
+0336    UGET    14   5      ; fs
+0337    TGETS   14  14  77  ; "copy_contents"
+0338    KSTR    15  33      ; "lua"
+0339    MOV     16  12
+0340    CALL    14   3   3
+0341    MOV      9  15
+0342    MOV      8  14
+0343    IST          8
+0344    JMP     14 => 0351
+0345    KPRI    14   0
+0346    KSTR    15  78      ; "Failed copying contents of 'lua' directo"~
+0347    MOV     16   9
+0348    CAT     15  15  16
+0349    UCLO     0 => 0350
+0350 => RET     14   3
+0351 => KPRI    14   2
+0352    UCLO     0 => 0353
+0353 => RET1    14   2
+
+-- BYTECODE -- builtin.lua:0-366
+0001    TNEW     0   0
+0002    GGET     1   0      ; "unpack"
+0003    IST          1
+0004    JMP      2 => 0007
+0005    GGET     1   1      ; "table"
+0006    TGETS    1   1   0  ; "unpack"
+0007 => GGET     2   2      ; "require"
+0008    KSTR     3   3      ; "luarocks.fs"
+0009    CALL     2   2   2
+0010    GGET     3   2      ; "require"
+0011    KSTR     4   4      ; "luarocks.path"
+0012    CALL     3   2   2
+0013    GGET     4   2      ; "require"
+0014    KSTR     5   5      ; "luarocks.util"
+0015    CALL     4   2   2
+0016    GGET     5   2      ; "require"
+0017    KSTR     6   6      ; "luarocks.core.cfg"
+0018    CALL     5   2   2
+0019    GGET     6   2      ; "require"
+0020    KSTR     7   7      ; "luarocks.dir"
+0021    CALL     6   2   2
+0022    FNEW     7   9      ; builtin.lua:13
+0023    TSETS    7   0   8  ; "autodetect_external_dependencies"
+0024    FNEW     7  10      ; builtin.lua:45
+0025    FNEW     8  11      ; builtin.lua:63
+0026    TDUP     9  12
+0027    FNEW    10  14      ; builtin.lua:79
+0028    TSETS   10   0  13  ; "autodetect_modules"
+0029    UCLO     8 => 0030
+0030 => FNEW     8  15      ; builtin.lua:143
+0031    FNEW     9  17      ; builtin.lua:152
+0032    TSETS    9   0  16  ; "run"
+0033    UCLO     0 => 0034
+0034 => RET1     0   2
+

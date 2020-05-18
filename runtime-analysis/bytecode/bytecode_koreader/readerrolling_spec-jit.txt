@@ -1,0 +1,883 @@
+-- BYTECODE -- readerrolling_spec.lua:5-16
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "document/documentregistry"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; DocumentRegistry
+0008    GGET     0   0      ; "require"
+0009    KSTR     1   3      ; "apps/reader/readerui"
+0010    CALL     0   2   2
+0011    USETV    1   0      ; ReaderUI
+0012    GGET     0   0      ; "require"
+0013    KSTR     1   4      ; "ui/event"
+0014    CALL     0   2   2
+0015    USETV    2   0      ; Event
+0016    KSTR     0   5      ; "spec/front/unit/data/juliet.epub"
+0017    UGET     1   1      ; ReaderUI
+0018    MOV      2   1
+0019    TGETS    1   1   6  ; "new"
+0020    TDUP     3   8
+0021    UGET     4   0      ; DocumentRegistry
+0022    MOV      5   4
+0023    TGETS    4   4   7  ; "openDocument"
+0024    MOV      6   0
+0025    CALL     4   2   3
+0026    TSETS    4   3   9  ; "document"
+0027    CALL     1   2   3
+0028    USETV    3   1      ; readerui
+0029    UGET     1   3      ; readerui
+0030    TGETS    1   1  10  ; "rolling"
+0031    USETV    4   1      ; rolling
+0032    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:19-21
+0001    UGET     0   0      ; readerui
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "handleEvent"
+0004    UGET     2   1      ; Event
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    KSTR     4   2      ; "ChangeScreenMode"
+0008    KSTR     5   3      ; "portrait"
+0009    CALL     2   0   4
+0010    CALLM    0   1   1
+0011    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:23-28
+0001    KSHORT   0   1
+0002    KSHORT   1  10
+0003    KSHORT   2   5
+0004    FORI     0 => 0018
+0005 => UGET     4   0      ; rolling
+0006    MOV      5   4
+0007    TGETS    4   4   0  ; "onGotoPage"
+0008    MOV      6   3
+0009    CALL     4   1   3
+0010    GGET     4   1      ; "assert"
+0011    TGETS    4   4   2  ; "are"
+0012    TGETS    4   4   3  ; "same"
+0013    MOV      5   3
+0014    UGET     6   0      ; rolling
+0015    TGETS    6   6   4  ; "current_page"
+0016    CALL     4   1   3
+0017    FORL     0 => 0005
+0018 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:30-38
+0001    KSHORT   0  20
+0002    KSHORT   1  40
+0003    KSHORT   2   5
+0004    FORI     0 => 0035
+0005 => UGET     4   0      ; rolling
+0006    MOV      5   4
+0007    TGETS    4   4   0  ; "onGotoPage"
+0008    MOV      6   3
+0009    CALL     4   1   3
+0010    UGET     4   0      ; rolling
+0011    MOV      5   4
+0012    TGETS    4   4   1  ; "onGotoViewRel"
+0013    KSHORT   6   1
+0014    CALL     4   1   3
+0015    GGET     4   2      ; "assert"
+0016    TGETS    4   4   3  ; "are"
+0017    TGETS    4   4   4  ; "same"
+0018    ADDVN    5   3   0  ; 1
+0019    UGET     6   0      ; rolling
+0020    TGETS    6   6   5  ; "current_page"
+0021    CALL     4   1   3
+0022    UGET     4   0      ; rolling
+0023    MOV      5   4
+0024    TGETS    4   4   1  ; "onGotoViewRel"
+0025    KSHORT   6  -1
+0026    CALL     4   1   3
+0027    GGET     4   2      ; "assert"
+0028    TGETS    4   4   3  ; "are"
+0029    TGETS    4   4   4  ; "same"
+0030    MOV      5   3
+0031    UGET     6   0      ; rolling
+0032    TGETS    6   6   5  ; "current_page"
+0033    CALL     4   1   3
+0034    FORL     0 => 0005
+0035 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:40-47
+0001    UGET     0   0      ; readerui
+0002    TGETS    0   0   0  ; "toc"
+0003    KSHORT   1  30
+0004    KSHORT   2  50
+0005    KSHORT   3   5
+0006    FORI     1 => 0028
+0007 => UGET     5   1      ; rolling
+0008    MOV      6   5
+0009    TGETS    5   5   1  ; "onGotoPage"
+0010    MOV      7   4
+0011    CALL     5   1   3
+0012    UGET     5   1      ; rolling
+0013    MOV      6   5
+0014    TGETS    5   5   2  ; "onGotoNextChapter"
+0015    CALL     5   1   2
+0016    GGET     5   3      ; "assert"
+0017    TGETS    5   5   4  ; "are"
+0018    TGETS    5   5   5  ; "same"
+0019    MOV      7   0
+0020    TGETS    6   0   6  ; "getNextChapter"
+0021    MOV      8   4
+0022    KSHORT   9   0
+0023    CALL     6   2   4
+0024    UGET     7   1      ; rolling
+0025    TGETS    7   7   7  ; "current_page"
+0026    CALL     5   1   3
+0027    FORL     1 => 0007
+0028 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:49-56
+0001    UGET     0   0      ; readerui
+0002    TGETS    0   0   0  ; "toc"
+0003    KSHORT   1  60
+0004    KSHORT   2  80
+0005    KSHORT   3   5
+0006    FORI     1 => 0028
+0007 => UGET     5   1      ; rolling
+0008    MOV      6   5
+0009    TGETS    5   5   1  ; "onGotoPage"
+0010    MOV      7   4
+0011    CALL     5   1   3
+0012    UGET     5   1      ; rolling
+0013    MOV      6   5
+0014    TGETS    5   5   2  ; "onGotoPrevChapter"
+0015    CALL     5   1   2
+0016    GGET     5   3      ; "assert"
+0017    TGETS    5   5   4  ; "are"
+0018    TGETS    5   5   5  ; "same"
+0019    MOV      7   0
+0020    TGETS    6   0   6  ; "getPreviousChapter"
+0021    MOV      8   4
+0022    KSHORT   9   0
+0023    CALL     6   2   4
+0024    UGET     7   1      ; rolling
+0025    TGETS    7   7   7  ; "current_page"
+0026    CALL     5   1   3
+0027    FORL     1 => 0007
+0028 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:60-62
+0001    USETP    0   2      ; called
+0002    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:58-77
+0001    KPRI     0   1
+0002    UGET     1   0      ; readerui
+0003    FNEW     2   1      ; readerrolling_spec.lua:60
+0004    TSETS    2   1   0  ; "onEndOfBook"
+0005    UGET     1   1      ; rolling
+0006    MOV      2   1
+0007    TGETS    1   1   2  ; "onGotoPage"
+0008    KSHORT   3   1
+0009    CALL     1   1   3
+0010    GGET     1   3      ; "assert"
+0011    TGETS    1   1   4  ; "is"
+0012    TGETS    1   1   5  ; "falsy"
+0013    MOV      2   0
+0014    CALL     1   1   2
+0015    UGET     1   1      ; rolling
+0016    MOV      2   1
+0017    TGETS    1   1   6  ; "onGotoViewRel"
+0018    KSHORT   3  -1
+0019    CALL     1   1   3
+0020    UGET     1   1      ; rolling
+0021    MOV      2   1
+0022    TGETS    1   1   6  ; "onGotoViewRel"
+0023    KSHORT   3  -1
+0024    CALL     1   1   3
+0025    GGET     1   3      ; "assert"
+0026    TGETS    1   1   4  ; "is"
+0027    TGETS    1   1   5  ; "falsy"
+0028    MOV      2   0
+0029    CALL     1   1   2
+0030    UGET     1   1      ; rolling
+0031    MOV      2   1
+0032    TGETS    1   1   2  ; "onGotoPage"
+0033    UGET     3   0      ; readerui
+0034    TGETS    3   3   7  ; "document"
+0035    MOV      4   3
+0036    TGETS    3   3   8  ; "getPageCount"
+0037    CALL     3   0   2
+0038    CALLM    1   1   1
+0039    GGET     1   3      ; "assert"
+0040    TGETS    1   1   4  ; "is"
+0041    TGETS    1   1   5  ; "falsy"
+0042    MOV      2   0
+0043    CALL     1   1   2
+0044    UGET     1   1      ; rolling
+0045    MOV      2   1
+0046    TGETS    1   1   6  ; "onGotoViewRel"
+0047    KSHORT   3   1
+0048    CALL     1   1   3
+0049    GGET     1   3      ; "assert"
+0050    TGETS    1   1   4  ; "is"
+0051    TGETS    1   1   9  ; "truthy"
+0052    MOV      2   0
+0053    CALL     1   1   2
+0054    UGET     1   1      ; rolling
+0055    MOV      2   1
+0056    TGETS    1   1   6  ; "onGotoViewRel"
+0057    KSHORT   3   1
+0058    CALL     1   1   3
+0059    GGET     1   3      ; "assert"
+0060    TGETS    1   1   4  ; "is"
+0061    TGETS    1   1   9  ; "truthy"
+0062    MOV      2   0
+0063    CALL     1   1   2
+0064    UGET     1   0      ; readerui
+0065    KPRI     2   0
+0066    TSETS    2   1   0  ; "onEndOfBook"
+0067    UCLO     0 => 0068
+0068 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:85-87
+0001    USETP    0   2      ; called
+0002    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:79-106
+0001    KSTR     0   0      ; "spec/front/unit/data/sample.txt"
+0002    UGET     1   0      ; ReaderUI
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "new"
+0005    TDUP     3   3
+0006    UGET     4   1      ; DocumentRegistry
+0007    MOV      5   4
+0008    TGETS    4   4   2  ; "openDocument"
+0009    MOV      6   0
+0010    CALL     4   2   3
+0011    TSETS    4   3   4  ; "document"
+0012    CALL     1   2   3
+0013    KPRI     2   1
+0014    FNEW     3   6      ; readerrolling_spec.lua:85
+0015    TSETS    3   1   5  ; "onEndOfBook"
+0016    TGETS    3   1   7  ; "rolling"
+0017    MOV      5   3
+0018    TGETS    4   3   8  ; "onGotoPage"
+0019    KSHORT   6   1
+0020    CALL     4   1   3
+0021    GGET     4   9      ; "assert"
+0022    TGETS    4   4  10  ; "is"
+0023    TGETS    4   4  11  ; "falsy"
+0024    MOV      5   2
+0025    CALL     4   1   2
+0026    MOV      5   3
+0027    TGETS    4   3  12  ; "onGotoViewRel"
+0028    KSHORT   6  -1
+0029    CALL     4   1   3
+0030    MOV      5   3
+0031    TGETS    4   3  12  ; "onGotoViewRel"
+0032    KSHORT   6  -1
+0033    CALL     4   1   3
+0034    GGET     4   9      ; "assert"
+0035    TGETS    4   4  10  ; "is"
+0036    TGETS    4   4  11  ; "falsy"
+0037    MOV      5   2
+0038    CALL     4   1   2
+0039    MOV      5   3
+0040    TGETS    4   3   8  ; "onGotoPage"
+0041    KSHORT   6   3
+0042    CALL     4   1   3
+0043    GGET     4   9      ; "assert"
+0044    TGETS    4   4  10  ; "is"
+0045    TGETS    4   4  11  ; "falsy"
+0046    MOV      5   2
+0047    CALL     4   1   2
+0048    MOV      5   3
+0049    TGETS    4   3  12  ; "onGotoViewRel"
+0050    KSHORT   6   1
+0051    CALL     4   1   3
+0052    GGET     4   9      ; "assert"
+0053    TGETS    4   4  10  ; "is"
+0054    TGETS    4   4  11  ; "falsy"
+0055    MOV      5   2
+0056    CALL     4   1   2
+0057    MOV      5   3
+0058    TGETS    4   3   8  ; "onGotoPage"
+0059    TGETS    6   1   4  ; "document"
+0060    MOV      7   6
+0061    TGETS    6   6  13  ; "getPageCount"
+0062    CALL     6   0   2
+0063    CALLM    4   1   1
+0064    GGET     4   9      ; "assert"
+0065    TGETS    4   4  10  ; "is"
+0066    TGETS    4   4  11  ; "falsy"
+0067    MOV      5   2
+0068    CALL     4   1   2
+0069    MOV      5   3
+0070    TGETS    4   3  12  ; "onGotoViewRel"
+0071    KSHORT   6   1
+0072    CALL     4   1   3
+0073    GGET     4   9      ; "assert"
+0074    TGETS    4   4  10  ; "is"
+0075    TGETS    4   4  14  ; "truthy"
+0076    MOV      5   2
+0077    CALL     4   1   2
+0078    UGET     4   2      ; readerui
+0079    KPRI     5   0
+0080    TSETS    5   4   5  ; "onEndOfBook"
+0081    UCLO     0 => 0082
+0082 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:18-107
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should goto portrait screen mode"
+0003    FNEW     2   2      ; readerrolling_spec.lua:19
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should goto certain page"
+0007    FNEW     2   4      ; readerrolling_spec.lua:23
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should goto relative page"
+0011    FNEW     2   6      ; readerrolling_spec.lua:30
+0012    CALL     0   1   3
+0013    GGET     0   0      ; "it"
+0014    KSTR     1   7      ; "should goto next chapter"
+0015    FNEW     2   8      ; readerrolling_spec.lua:40
+0016    CALL     0   1   3
+0017    GGET     0   0      ; "it"
+0018    KSTR     1   9      ; "should goto previous chapter"
+0019    FNEW     2  10      ; readerrolling_spec.lua:49
+0020    CALL     0   1   3
+0021    GGET     0   0      ; "it"
+0022    KSTR     1  11      ; "should emit EndOfBook event at the end o"~
+0023    FNEW     2  12      ; readerrolling_spec.lua:58
+0024    CALL     0   1   3
+0025    GGET     0   0      ; "it"
+0026    KSTR     1  13      ; "should emit EndOfBook event at the end s"~
+0027    FNEW     2  14      ; readerrolling_spec.lua:79
+0028    CALL     0   1   3
+0029    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:110-112
+0001    UGET     0   0      ; readerui
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "handleEvent"
+0004    UGET     2   1      ; Event
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    KSTR     4   2      ; "ChangeScreenMode"
+0008    KSTR     5   3      ; "landscape"
+0009    CALL     2   0   4
+0010    CALLM    0   1   1
+0011    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:113-118
+0001    KSHORT   0   1
+0002    KSHORT   1  10
+0003    KSHORT   2   5
+0004    FORI     0 => 0018
+0005 => UGET     4   0      ; rolling
+0006    MOV      5   4
+0007    TGETS    4   4   0  ; "onGotoPage"
+0008    MOV      6   3
+0009    CALL     4   1   3
+0010    GGET     4   1      ; "assert"
+0011    TGETS    4   4   2  ; "are"
+0012    TGETS    4   4   3  ; "same"
+0013    MOV      5   3
+0014    UGET     6   0      ; rolling
+0015    TGETS    6   6   4  ; "current_page"
+0016    CALL     4   1   3
+0017    FORL     0 => 0005
+0018 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:119-127
+0001    KSHORT   0  20
+0002    KSHORT   1  40
+0003    KSHORT   2   5
+0004    FORI     0 => 0035
+0005 => UGET     4   0      ; rolling
+0006    MOV      5   4
+0007    TGETS    4   4   0  ; "onGotoPage"
+0008    MOV      6   3
+0009    CALL     4   1   3
+0010    UGET     4   0      ; rolling
+0011    MOV      5   4
+0012    TGETS    4   4   1  ; "onGotoViewRel"
+0013    KSHORT   6   1
+0014    CALL     4   1   3
+0015    GGET     4   2      ; "assert"
+0016    TGETS    4   4   3  ; "are"
+0017    TGETS    4   4   4  ; "same"
+0018    ADDVN    5   3   0  ; 1
+0019    UGET     6   0      ; rolling
+0020    TGETS    6   6   5  ; "current_page"
+0021    CALL     4   1   3
+0022    UGET     4   0      ; rolling
+0023    MOV      5   4
+0024    TGETS    4   4   1  ; "onGotoViewRel"
+0025    KSHORT   6  -1
+0026    CALL     4   1   3
+0027    GGET     4   2      ; "assert"
+0028    TGETS    4   4   3  ; "are"
+0029    TGETS    4   4   4  ; "same"
+0030    MOV      5   3
+0031    UGET     6   0      ; rolling
+0032    TGETS    6   6   5  ; "current_page"
+0033    CALL     4   1   3
+0034    FORL     0 => 0005
+0035 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:128-135
+0001    UGET     0   0      ; readerui
+0002    TGETS    0   0   0  ; "toc"
+0003    KSHORT   1  30
+0004    KSHORT   2  50
+0005    KSHORT   3   5
+0006    FORI     1 => 0028
+0007 => UGET     5   1      ; rolling
+0008    MOV      6   5
+0009    TGETS    5   5   1  ; "onGotoPage"
+0010    MOV      7   4
+0011    CALL     5   1   3
+0012    UGET     5   1      ; rolling
+0013    MOV      6   5
+0014    TGETS    5   5   2  ; "onGotoNextChapter"
+0015    CALL     5   1   2
+0016    GGET     5   3      ; "assert"
+0017    TGETS    5   5   4  ; "are"
+0018    TGETS    5   5   5  ; "same"
+0019    MOV      7   0
+0020    TGETS    6   0   6  ; "getNextChapter"
+0021    MOV      8   4
+0022    KSHORT   9   0
+0023    CALL     6   2   4
+0024    UGET     7   1      ; rolling
+0025    TGETS    7   7   7  ; "current_page"
+0026    CALL     5   1   3
+0027    FORL     1 => 0007
+0028 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:136-143
+0001    UGET     0   0      ; readerui
+0002    TGETS    0   0   0  ; "toc"
+0003    KSHORT   1  60
+0004    KSHORT   2  80
+0005    KSHORT   3   5
+0006    FORI     1 => 0028
+0007 => UGET     5   1      ; rolling
+0008    MOV      6   5
+0009    TGETS    5   5   1  ; "onGotoPage"
+0010    MOV      7   4
+0011    CALL     5   1   3
+0012    UGET     5   1      ; rolling
+0013    MOV      6   5
+0014    TGETS    5   5   2  ; "onGotoPrevChapter"
+0015    CALL     5   1   2
+0016    GGET     5   3      ; "assert"
+0017    TGETS    5   5   4  ; "are"
+0018    TGETS    5   5   5  ; "same"
+0019    MOV      7   0
+0020    TGETS    6   0   6  ; "getPreviousChapter"
+0021    MOV      8   4
+0022    KSHORT   9   0
+0023    CALL     6   2   4
+0024    UGET     7   1      ; rolling
+0025    TGETS    7   7   7  ; "current_page"
+0026    CALL     5   1   3
+0027    FORL     1 => 0007
+0028 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:147-149
+0001    USETP    0   2      ; called
+0002    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:144-154
+0001    UGET     0   0      ; rolling
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onGotoPage"
+0004    UGET     2   1      ; readerui
+0005    TGETS    2   2   1  ; "document"
+0006    MOV      3   2
+0007    TGETS    2   2   2  ; "getPageCount"
+0008    CALL     2   0   2
+0009    CALLM    0   1   1
+0010    KPRI     0   1
+0011    UGET     1   1      ; readerui
+0012    FNEW     2   4      ; readerrolling_spec.lua:147
+0013    TSETS    2   1   3  ; "onEndOfBook"
+0014    UGET     1   0      ; rolling
+0015    MOV      2   1
+0016    TGETS    1   1   5  ; "onGotoViewRel"
+0017    KSHORT   3   1
+0018    CALL     1   1   3
+0019    UGET     1   0      ; rolling
+0020    MOV      2   1
+0021    TGETS    1   1   5  ; "onGotoViewRel"
+0022    KSHORT   3   1
+0023    CALL     1   1   3
+0024    GGET     1   6      ; "assert"
+0025    TGETS    1   1   7  ; "is"
+0026    TGETS    1   1   8  ; "truthy"
+0027    MOV      2   0
+0028    CALL     1   1   2
+0029    UGET     1   1      ; readerui
+0030    KPRI     2   0
+0031    TSETS    2   1   3  ; "onEndOfBook"
+0032    UCLO     0 => 0033
+0033 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:109-155
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should go to landscape screen mode"
+0003    FNEW     2   2      ; readerrolling_spec.lua:110
+0004    CALL     0   1   3
+0005    GGET     0   0      ; "it"
+0006    KSTR     1   3      ; "should goto certain page"
+0007    FNEW     2   4      ; readerrolling_spec.lua:113
+0008    CALL     0   1   3
+0009    GGET     0   0      ; "it"
+0010    KSTR     1   5      ; "should goto relative page"
+0011    FNEW     2   6      ; readerrolling_spec.lua:119
+0012    CALL     0   1   3
+0013    GGET     0   0      ; "it"
+0014    KSTR     1   7      ; "should goto next chapter"
+0015    FNEW     2   8      ; readerrolling_spec.lua:128
+0016    CALL     0   1   3
+0017    GGET     0   0      ; "it"
+0018    KSTR     1   9      ; "should goto previous chapter"
+0019    FNEW     2  10      ; readerrolling_spec.lua:136
+0020    CALL     0   1   3
+0021    GGET     0   0      ; "it"
+0022    KSTR     1  11      ; "should emit EndOfBook event at the end"
+0023    FNEW     2  12      ; readerrolling_spec.lua:144
+0024    CALL     0   1   3
+0025    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:158-160
+0001    UGET     0   0      ; readerui
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "handleEvent"
+0004    UGET     2   1      ; Event
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    KSTR     4   2      ; "ChangeScreenMode"
+0008    KSTR     5   3      ; "portrait"
+0009    CALL     2   0   4
+0010    CALLM    0   1   1
+0011    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:161-171
+0001    KSHORT   0  80
+0002    KSHORT   1 100
+0003    KSHORT   2  10
+0004    FORI     0 => 0062
+0005 => UGET     4   0      ; readerui
+0006    MOV      5   4
+0007    TGETS    4   4   0  ; "handleEvent"
+0008    UGET     6   1      ; Event
+0009    MOV      7   6
+0010    TGETS    6   6   1  ; "new"
+0011    KSTR     8   2      ; "ChangeScreenMode"
+0012    KSTR     9   3      ; "portrait"
+0013    CALL     6   0   4
+0014    CALLM    4   1   1
+0015    UGET     4   2      ; rolling
+0016    MOV      5   4
+0017    TGETS    4   4   4  ; "onGotoPage"
+0018    MOV      6   3
+0019    CALL     4   1   3
+0020    GGET     4   5      ; "assert"
+0021    TGETS    4   4   6  ; "are"
+0022    TGETS    4   4   7  ; "same"
+0023    MOV      5   3
+0024    UGET     6   2      ; rolling
+0025    TGETS    6   6   8  ; "current_page"
+0026    CALL     4   1   3
+0027    UGET     4   0      ; readerui
+0028    MOV      5   4
+0029    TGETS    4   4   0  ; "handleEvent"
+0030    UGET     6   1      ; Event
+0031    MOV      7   6
+0032    TGETS    6   6   1  ; "new"
+0033    KSTR     8   2      ; "ChangeScreenMode"
+0034    KSTR     9   9      ; "landscape"
+0035    CALL     6   0   4
+0036    CALLM    4   1   1
+0037    GGET     4   5      ; "assert"
+0038    TGETS    4   4  10  ; "are_not"
+0039    TGETS    4   4   7  ; "same"
+0040    MOV      5   3
+0041    UGET     6   2      ; rolling
+0042    TGETS    6   6   8  ; "current_page"
+0043    CALL     4   1   3
+0044    UGET     4   0      ; readerui
+0045    MOV      5   4
+0046    TGETS    4   4   0  ; "handleEvent"
+0047    UGET     6   1      ; Event
+0048    MOV      7   6
+0049    TGETS    6   6   1  ; "new"
+0050    KSTR     8   2      ; "ChangeScreenMode"
+0051    KSTR     9   3      ; "portrait"
+0052    CALL     6   0   4
+0053    CALLM    4   1   1
+0054    GGET     4   5      ; "assert"
+0055    TGETS    4   4   6  ; "are"
+0056    TGETS    4   4   7  ; "same"
+0057    MOV      5   3
+0058    UGET     6   2      ; rolling
+0059    TGETS    6   6   8  ; "current_page"
+0060    CALL     4   1   3
+0061    FORL     0 => 0005
+0062 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:172-182
+0001    KSHORT   0 110
+0002    KSHORT   1 130
+0003    KSHORT   2  10
+0004    FORI     0 => 0062
+0005 => UGET     4   0      ; readerui
+0006    MOV      5   4
+0007    TGETS    4   4   0  ; "handleEvent"
+0008    UGET     6   1      ; Event
+0009    MOV      7   6
+0010    TGETS    6   6   1  ; "new"
+0011    KSTR     8   2      ; "ChangeScreenMode"
+0012    KSTR     9   3      ; "landscape"
+0013    CALL     6   0   4
+0014    CALLM    4   1   1
+0015    UGET     4   2      ; rolling
+0016    MOV      5   4
+0017    TGETS    4   4   4  ; "onGotoPage"
+0018    MOV      6   3
+0019    CALL     4   1   3
+0020    GGET     4   5      ; "assert"
+0021    TGETS    4   4   6  ; "are"
+0022    TGETS    4   4   7  ; "same"
+0023    MOV      5   3
+0024    UGET     6   2      ; rolling
+0025    TGETS    6   6   8  ; "current_page"
+0026    CALL     4   1   3
+0027    UGET     4   0      ; readerui
+0028    MOV      5   4
+0029    TGETS    4   4   0  ; "handleEvent"
+0030    UGET     6   1      ; Event
+0031    MOV      7   6
+0032    TGETS    6   6   1  ; "new"
+0033    KSTR     8   2      ; "ChangeScreenMode"
+0034    KSTR     9   9      ; "portrait"
+0035    CALL     6   0   4
+0036    CALLM    4   1   1
+0037    GGET     4   5      ; "assert"
+0038    TGETS    4   4  10  ; "are_not"
+0039    TGETS    4   4   7  ; "same"
+0040    MOV      5   3
+0041    UGET     6   2      ; rolling
+0042    TGETS    6   6   8  ; "current_page"
+0043    CALL     4   1   3
+0044    UGET     4   0      ; readerui
+0045    MOV      5   4
+0046    TGETS    4   4   0  ; "handleEvent"
+0047    UGET     6   1      ; Event
+0048    MOV      7   6
+0049    TGETS    6   6   1  ; "new"
+0050    KSTR     8   2      ; "ChangeScreenMode"
+0051    KSTR     9   3      ; "landscape"
+0052    CALL     6   0   4
+0053    CALLM    4   1   1
+0054    GGET     4   5      ; "assert"
+0055    TGETS    4   4   6  ; "are"
+0056    TGETS    4   4   7  ; "same"
+0057    MOV      5   3
+0058    UGET     6   2      ; rolling
+0059    TGETS    6   6   8  ; "current_page"
+0060    CALL     4   1   3
+0061    FORL     0 => 0005
+0062 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:157-183
+0001    GGET     0   0      ; "teardown"
+0002    FNEW     1   1      ; readerrolling_spec.lua:158
+0003    CALL     0   1   2
+0004    GGET     0   2      ; "it"
+0005    KSTR     1   3      ; "for portrait-landscape-portrait switchin"~
+0006    FNEW     2   4      ; readerrolling_spec.lua:161
+0007    CALL     0   1   3
+0008    GGET     0   2      ; "it"
+0009    KSTR     1   5      ; "for landscape-portrait-landscape switchi"~
+0010    FNEW     2   6      ; readerrolling_spec.lua:172
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:186-196
+0001    UGET     0   0      ; readerui
+0002    TGETS    0   0   0  ; "document"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "setWordSpacing"
+0005    TDUP     2   2
+0006    CALL     0   1   3
+0007    UGET     0   0      ; readerui
+0008    MOV      1   0
+0009    TGETS    0   0   3  ; "handleEvent"
+0010    UGET     2   1      ; Event
+0011    MOV      3   2
+0012    TGETS    2   2   4  ; "new"
+0013    KSTR     4   5      ; "ChangeScreenMode"
+0014    KSTR     5   6      ; "portrait"
+0015    CALL     2   0   4
+0016    CALLM    0   1   1
+0017    GGET     0   7      ; "assert"
+0018    TGETS    0   0   8  ; "are"
+0019    TGETS    0   0   9  ; "same"
+0020    KSHORT   1 252
+0021    UGET     2   0      ; readerui
+0022    TGETS    2   2   0  ; "document"
+0023    MOV      3   2
+0024    TGETS    2   2  10  ; "getPageCount"
+0025    CALL     2   0   2
+0026    CALLM    0   1   1
+0027    UGET     0   0      ; readerui
+0028    TGETS    0   0   0  ; "document"
+0029    MOV      1   0
+0030    TGETS    0   0   1  ; "setWordSpacing"
+0031    TDUP     2  11
+0032    CALL     0   1   3
+0033    UGET     0   0      ; readerui
+0034    MOV      1   0
+0035    TGETS    0   0   3  ; "handleEvent"
+0036    UGET     2   1      ; Event
+0037    MOV      3   2
+0038    TGETS    2   2   4  ; "new"
+0039    KSTR     4   5      ; "ChangeScreenMode"
+0040    KSTR     5   6      ; "portrait"
+0041    CALL     2   0   4
+0042    CALLM    0   1   1
+0043    GGET     0   7      ; "assert"
+0044    TGETS    0   0   8  ; "are"
+0045    TGETS    0   0   9  ; "same"
+0046    KSHORT   1 241
+0047    UGET     2   0      ; readerui
+0048    TGETS    2   2   0  ; "document"
+0049    MOV      3   2
+0050    TGETS    2   2  10  ; "getPageCount"
+0051    CALL     2   0   2
+0052    CALLM    0   1   1
+0053    UGET     0   0      ; readerui
+0054    TGETS    0   0   0  ; "document"
+0055    MOV      1   0
+0056    TGETS    0   0   1  ; "setWordSpacing"
+0057    TDUP     2  12
+0058    CALL     0   1   3
+0059    UGET     0   0      ; readerui
+0060    MOV      1   0
+0061    TGETS    0   0   3  ; "handleEvent"
+0062    UGET     2   1      ; Event
+0063    MOV      3   2
+0064    TGETS    2   2   4  ; "new"
+0065    KSTR     4   5      ; "ChangeScreenMode"
+0066    KSTR     5   6      ; "portrait"
+0067    CALL     2   0   4
+0068    CALLM    0   1   1
+0069    GGET     0   7      ; "assert"
+0070    TGETS    0   0   8  ; "are"
+0071    TGETS    0   0   9  ; "same"
+0072    KSHORT   1 231
+0073    UGET     2   0      ; readerui
+0074    TGETS    2   2   0  ; "document"
+0075    MOV      3   2
+0076    TGETS    2   2  10  ; "getPageCount"
+0077    CALL     2   0   2
+0078    CALLM    0   1   1
+0079    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:185-197
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should show pages for different word gap"
+0003    FNEW     2   2      ; readerrolling_spec.lua:186
+0004    CALL     0   1   3
+0005    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:203-205
+0001    GGET     1   0      ; "assert"
+0002    TGETS    1   1   1  ; "are"
+0003    TGETS    1   1   2  ; "same"
+0004    KSHORT   2   6
+0005    TGETS    3   0   3  ; "ui"
+0006    TGETS    3   3   4  ; "document"
+0007    MOV      4   3
+0008    TGETS    3   3   5  ; "getPageCount"
+0009    CALL     3   0   2
+0010    CALLM    1   1   1
+0011    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:200-212
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "apps/reader/modules/readerview"
+0003    CALL     0   2   2
+0004    TGETS    1   0   2  ; "onPageUpdate"
+0005    FNEW     2   3      ; readerrolling_spec.lua:203
+0006    TSETS    2   0   2  ; "onPageUpdate"
+0007    KSTR     2   4      ; "spec/front/unit/data/sample.txt"
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   5      ; "docsettings"
+0010    CALL     3   2   2
+0011    MOV      4   3
+0012    TGETS    3   3   6  ; "open"
+0013    MOV      5   2
+0014    CALL     3   2   3
+0015    MOV      4   3
+0016    TGETS    3   3   7  ; "purge"
+0017    CALL     3   1   2
+0018    UGET     3   0      ; ReaderUI
+0019    MOV      4   3
+0020    TGETS    3   3   8  ; "new"
+0021    TDUP     5  10
+0022    UGET     6   1      ; DocumentRegistry
+0023    MOV      7   6
+0024    TGETS    6   6   9  ; "openDocument"
+0025    MOV      8   2
+0026    CALL     6   2   3
+0027    TSETS    6   5  11  ; "document"
+0028    CALL     3   1   3
+0029    TSETS    1   0   2  ; "onPageUpdate"
+0030    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:199-213
+0001    GGET     0   0      ; "it"
+0002    KSTR     1   1      ; "should emit PageUpdate event after book "~
+0003    FNEW     2   2      ; readerrolling_spec.lua:200
+0004    CALL     0   1   3
+0005    RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:1-214
+0001    KNIL     0   4
+0002    GGET     5   0      ; "setup"
+0003    FNEW     6   1      ; readerrolling_spec.lua:5
+0004    CALL     5   1   2
+0005    GGET     5   2      ; "describe"
+0006    KSTR     6   3      ; "test in portrait screen mode"
+0007    FNEW     7   4      ; readerrolling_spec.lua:18
+0008    CALL     5   1   3
+0009    GGET     5   2      ; "describe"
+0010    KSTR     6   5      ; "test in landscape screen mode"
+0011    FNEW     7   6      ; readerrolling_spec.lua:109
+0012    CALL     5   1   3
+0013    GGET     5   2      ; "describe"
+0014    KSTR     6   7      ; "switching screen mode should not change "~
+0015    FNEW     7   8      ; readerrolling_spec.lua:157
+0016    CALL     5   1   3
+0017    GGET     5   2      ; "describe"
+0018    KSTR     6   9      ; "test changing word gap - space condensin"~
+0019    FNEW     7  10      ; readerrolling_spec.lua:185
+0020    CALL     5   1   3
+0021    GGET     5   2      ; "describe"
+0022    KSTR     6  11      ; "test initialization"
+0023    FNEW     7  12      ; readerrolling_spec.lua:199
+0024    CALL     5   1   3
+0025    UCLO     0 => 0026
+0026 => RET0     0   1
+
+-- BYTECODE -- readerrolling_spec.lua:0-215
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "Readerrolling module"
+0003    FNEW     2   2      ; readerrolling_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

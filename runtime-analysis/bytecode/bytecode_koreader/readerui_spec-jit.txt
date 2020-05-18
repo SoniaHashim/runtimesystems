@@ -1,0 +1,207 @@
+-- BYTECODE -- readerui_spec.lua:5-15
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "document/documentregistry"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; DocumentRegistry
+0008    GGET     0   0      ; "require"
+0009    KSTR     1   3      ; "apps/reader/readerui"
+0010    CALL     0   2   2
+0011    USETV    1   0      ; ReaderUI
+0012    GGET     0   0      ; "require"
+0013    KSTR     1   4      ; "docsettings"
+0014    CALL     0   2   2
+0015    USETV    2   0      ; DocSettings
+0016    GGET     0   0      ; "require"
+0017    KSTR     1   5      ; "ui/uimanager"
+0018    CALL     0   2   2
+0019    USETV    3   0      ; UIManager
+0020    UGET     0   1      ; ReaderUI
+0021    MOV      1   0
+0022    TGETS    0   0   6  ; "new"
+0023    TDUP     2   8
+0024    UGET     3   0      ; DocumentRegistry
+0025    MOV      4   3
+0026    TGETS    3   3   7  ; "openDocument"
+0027    UGET     5   5      ; sample_epub
+0028    CALL     3   2   3
+0029    TSETS    3   2   9  ; "document"
+0030    CALL     0   2   3
+0031    USETV    4   0      ; readerui
+0032    RET0     0   1
+
+-- BYTECODE -- readerui_spec.lua:16-27
+0001    UGET     0   0      ; DocSettings
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "open"
+0004    UGET     2   1      ; sample_epub
+0005    CALL     0   2   3
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "purge"
+0008    CALL     0   1   2
+0009    UGET     0   0      ; DocSettings
+0010    MOV      1   0
+0011    TGETS    0   0   0  ; "open"
+0012    UGET     2   1      ; sample_epub
+0013    CALL     0   2   3
+0014    GGET     1   2      ; "assert"
+0015    TGETS    1   1   3  ; "are"
+0016    TGETS    1   1   4  ; "same"
+0017    TGETS    2   0   5  ; "data"
+0018    TNEW     3   0
+0019    CALL     1   1   3
+0020    UGET     1   2      ; readerui
+0021    MOV      2   1
+0022    TGETS    1   1   6  ; "saveSettings"
+0023    CALL     1   1   2
+0024    GGET     1   2      ; "assert"
+0025    TGETS    1   1   7  ; "are_not"
+0026    TGETS    1   1   4  ; "same"
+0027    UGET     2   2      ; readerui
+0028    TGETS    2   2   8  ; "doc_settings"
+0029    TGETS    2   2   5  ; "data"
+0030    TNEW     3   0
+0031    CALL     1   1   3
+0032    UGET     1   0      ; DocSettings
+0033    MOV      2   1
+0034    TGETS    1   1   0  ; "open"
+0035    UGET     3   1      ; sample_epub
+0036    CALL     1   2   3
+0037    MOV      0   1
+0038    GGET     1   2      ; "assert"
+0039    TGETS    1   1   9  ; "truthy"
+0040    TGETS    2   0   5  ; "data"
+0041    TGETS    2   2  10  ; "last_xpointer"
+0042    CALL     1   1   2
+0043    GGET     1   2      ; "assert"
+0044    TGETS    1   1   3  ; "are"
+0045    TGETS    1   1   4  ; "same"
+0046    TGETS    2   0   5  ; "data"
+0047    TGETS    2   2  10  ; "last_xpointer"
+0048    UGET     3   2      ; readerui
+0049    TGETS    3   3   8  ; "doc_settings"
+0050    TGETS    3   3   5  ; "data"
+0051    TGETS    3   3  10  ; "last_xpointer"
+0052    CALL     1   1   3
+0053    RET0     0   1
+
+-- BYTECODE -- readerui_spec.lua:31-31
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; readerui
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readerui_spec.lua:28-33
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    UGET     0   0      ; UIManager
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "show"
+0008    UGET     2   1      ; readerui
+0009    CALL     0   1   3
+0010    UGET     0   0      ; UIManager
+0011    MOV      1   0
+0012    TGETS    0   0   2  ; "scheduleIn"
+0013    KSHORT   2   1
+0014    FNEW     3   3      ; readerui_spec.lua:31
+0015    CALL     0   1   4
+0016    UGET     0   0      ; UIManager
+0017    MOV      1   0
+0018    TGETS    0   0   4  ; "run"
+0019    CALL     0   1   2
+0020    RET0     0   1
+
+-- BYTECODE -- readerui_spec.lua:34-37
+0001    UGET     0   0      ; readerui
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "closeDocument"
+0004    CALL     0   1   2
+0005    GGET     0   1      ; "assert"
+0006    UGET     1   0      ; readerui
+0007    TGETS    1   1   2  ; "document"
+0008    ISEQP    1   0
+0009    JMP      1 => 0012
+0010    KPRI     1   1
+0011    JMP      2 => 0013
+0012 => KPRI     1   2
+0013 => CALL     0   1   2
+0014    RET0     0   1
+
+-- BYTECODE -- readerui_spec.lua:38-47
+0001    UGET     0   0      ; ReaderUI
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "doShowReader"
+0004    UGET     2   1      ; sample_epub
+0005    CALL     0   1   3
+0006    UGET     0   0      ; ReaderUI
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "_getRunningInstance"
+0009    CALL     0   2   2
+0010    GGET     1   2      ; "assert"
+0011    TGETS    1   1   3  ; "is"
+0012    TGETS    1   1   4  ; "truthy"
+0013    TGETS    2   0   5  ; "document"
+0014    CALL     1   1   2
+0015    UGET     1   0      ; ReaderUI
+0016    MOV      2   1
+0017    TGETS    1   1   6  ; "new"
+0018    TDUP     3   8
+0019    UGET     4   2      ; DocumentRegistry
+0020    MOV      5   4
+0021    TGETS    4   4   7  ; "openDocument"
+0022    UGET     6   1      ; sample_epub
+0023    CALL     4   2   3
+0024    TSETS    4   3   5  ; "document"
+0025    CALL     1   2   3
+0026    MOV      2   1
+0027    TGETS    1   1   9  ; "onClose"
+0028    CALL     1   1   2
+0029    GGET     1   2      ; "assert"
+0030    TGETS    1   1   3  ; "is"
+0031    TGETS    1   1   4  ; "truthy"
+0032    TGETS    2   0   5  ; "document"
+0033    CALL     1   1   2
+0034    MOV      2   0
+0035    TGETS    1   0   9  ; "onClose"
+0036    CALL     1   1   2
+0037    RET0     0   1
+
+-- BYTECODE -- readerui_spec.lua:1-48
+0001    KNIL     0   3
+0002    KSTR     4   0      ; "spec/front/unit/data/leaves.epub"
+0003    KPRI     5   0
+0004    GGET     6   1      ; "setup"
+0005    FNEW     7   2      ; readerui_spec.lua:5
+0006    CALL     6   1   2
+0007    GGET     6   3      ; "it"
+0008    KSTR     7   4      ; "should save settings"
+0009    FNEW     8   5      ; readerui_spec.lua:16
+0010    CALL     6   1   3
+0011    GGET     6   3      ; "it"
+0012    KSTR     7   6      ; "should show reader"
+0013    FNEW     8   7      ; readerui_spec.lua:28
+0014    CALL     6   1   3
+0015    GGET     6   3      ; "it"
+0016    KSTR     7   8      ; "should close document"
+0017    FNEW     8   9      ; readerui_spec.lua:34
+0018    CALL     6   1   3
+0019    GGET     6   3      ; "it"
+0020    KSTR     7  10      ; "should not reset running_instance by mis"~
+0021    FNEW     8  11      ; readerui_spec.lua:38
+0022    CALL     6   1   3
+0023    UCLO     0 => 0024
+0024 => RET0     0   1
+
+-- BYTECODE -- readerui_spec.lua:0-49
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "Readerui module"
+0003    FNEW     2   2      ; readerui_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

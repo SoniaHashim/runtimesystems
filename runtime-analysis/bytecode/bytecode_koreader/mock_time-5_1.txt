@@ -1,0 +1,172 @@
+
+main <./spec/unit/mock_time.lua:0,0> (28 instructions, 112 bytes at 0x7fad40c068c0)
+0+ params, 3 slots, 0 upvalues, 2 locals, 13 constants, 4 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "commonrequire"
+	3	[1]	CALL     	0 2 1
+	4	[2]	GETGLOBAL	0 -1	; require
+	5	[2]	LOADK    	1 -3	; "logger"
+	6	[2]	CALL     	0 2 2
+	7	[4]	NEWTABLE 	1 0 3
+	8	[5]	GETGLOBAL	2 -5	; os
+	9	[5]	GETTABLE 	2 2 -6	; "time"
+	10	[5]	SETTABLE 	1 -4 2	; "original_os_time" -
+	11	[6]	SETTABLE 	1 -7 -8	; "original_util_time" nil
+	12	[7]	GETGLOBAL	2 -5	; os
+	13	[7]	GETTABLE 	2 2 -6	; "time"
+	14	[7]	CALL     	2 1 2
+	15	[7]	SETTABLE 	1 -9 2	; "value" -
+	16	[25]	CLOSURE  	2 0	; 0x7fad40c06d20
+	17	[25]	MOVE     	0 0
+	18	[10]	SETTABLE 	1 -10 2	; "install" -
+	19	[34]	CLOSURE  	2 1	; 0x7fad40c07d40
+	20	[27]	SETTABLE 	1 -11 2	; "uninstall" -
+	21	[44]	CLOSURE  	2 2	; 0x7fad40c08050
+	22	[44]	MOVE     	0 0
+	23	[36]	SETTABLE 	1 -12 2	; "set" -
+	24	[54]	CLOSURE  	2 3	; 0x7fad40c081c0
+	25	[54]	MOVE     	0 0
+	26	[46]	SETTABLE 	1 -13 2	; "increase" -
+	27	[56]	RETURN   	1 2
+	28	[56]	RETURN   	0 1
+
+function <./spec/unit/mock_time.lua:10,25> (31 instructions, 124 bytes at 0x7fad40c06d20)
+1 param, 4 slots, 1 upvalue, 2 locals, 8 constants, 2 functions
+	1	[11]	GETGLOBAL	1 -1	; assert
+	2	[11]	EQ       	0 0 -2	; - nil
+	3	[11]	JMP      	1	; to 5
+	4	[11]	LOADBOOL 	2 0 1
+	5	[11]	LOADBOOL 	2 1 0
+	6	[11]	CALL     	1 2 1
+	7	[12]	GETGLOBAL	1 -3	; require
+	8	[12]	LOADK    	2 -4	; "ffi/util"
+	9	[12]	CALL     	1 2 2
+	10	[13]	GETTABLE 	2 0 -5	; "original_util_time"
+	11	[13]	EQ       	0 2 -2	; - nil
+	12	[13]	JMP      	9	; to 22
+	13	[14]	GETTABLE 	2 1 -6	; "gettime"
+	14	[14]	SETTABLE 	0 -5 2	; "original_util_time" -
+	15	[15]	GETGLOBAL	2 -1	; assert
+	16	[15]	GETTABLE 	3 0 -5	; "original_util_time"
+	17	[15]	EQ       	0 3 -2	; - nil
+	18	[15]	JMP      	1	; to 20
+	19	[15]	LOADBOOL 	3 0 1
+	20	[15]	LOADBOOL 	3 1 0
+	21	[15]	CALL     	2 2 1
+	22	[17]	GETGLOBAL	2 -7	; os
+	23	[20]	CLOSURE  	3 0	; 0x7fad40c07640
+	24	[20]	GETUPVAL 	0 0	; logger
+	25	[20]	MOVE     	0 0
+	26	[20]	SETTABLE 	2 -8 3	; "time" -
+	27	[24]	CLOSURE  	2 1	; 0x7fad40c078e0
+	28	[24]	GETUPVAL 	0 0	; logger
+	29	[24]	MOVE     	0 0
+	30	[24]	SETTABLE 	1 -6 2	; "gettime" -
+	31	[25]	RETURN   	0 1
+
+function <./spec/unit/mock_time.lua:17,20> (10 instructions, 40 bytes at 0x7fad40c07640)
+0 params, 3 slots, 2 upvalues, 0 locals, 3 constants, 0 functions
+	1	[18]	GETUPVAL 	0 0	; logger
+	2	[18]	GETTABLE 	0 0 -1	; "dbg"
+	3	[18]	LOADK    	1 -2	; "MockTime:os.time: "
+	4	[18]	GETUPVAL 	2 1	; self
+	5	[18]	GETTABLE 	2 2 -3	; "value"
+	6	[18]	CALL     	0 3 1
+	7	[19]	GETUPVAL 	0 1	; self
+	8	[19]	GETTABLE 	0 0 -3	; "value"
+	9	[19]	RETURN   	0 2
+	10	[20]	RETURN   	0 1
+
+function <./spec/unit/mock_time.lua:21,24> (11 instructions, 44 bytes at 0x7fad40c078e0)
+0 params, 3 slots, 2 upvalues, 0 locals, 4 constants, 0 functions
+	1	[22]	GETUPVAL 	0 0	; logger
+	2	[22]	GETTABLE 	0 0 -1	; "dbg"
+	3	[22]	LOADK    	1 -2	; "MockTime:util.gettime: "
+	4	[22]	GETUPVAL 	2 1	; self
+	5	[22]	GETTABLE 	2 2 -3	; "value"
+	6	[22]	CALL     	0 3 1
+	7	[23]	GETUPVAL 	0 1	; self
+	8	[23]	GETTABLE 	0 0 -3	; "value"
+	9	[23]	LOADK    	1 -4	; 0
+	10	[23]	RETURN   	0 3
+	11	[24]	RETURN   	0 1
+
+function <./spec/unit/mock_time.lua:27,34> (18 instructions, 72 bytes at 0x7fad40c07d40)
+1 param, 4 slots, 0 upvalues, 2 locals, 9 constants, 0 functions
+	1	[28]	GETGLOBAL	1 -1	; assert
+	2	[28]	EQ       	0 0 -2	; - nil
+	3	[28]	JMP      	1	; to 5
+	4	[28]	LOADBOOL 	2 0 1
+	5	[28]	LOADBOOL 	2 1 0
+	6	[28]	CALL     	1 2 1
+	7	[29]	GETGLOBAL	1 -3	; require
+	8	[29]	LOADK    	2 -4	; "ffi/util"
+	9	[29]	CALL     	1 2 2
+	10	[30]	GETGLOBAL	2 -5	; os
+	11	[30]	GETTABLE 	3 0 -7	; "original_os_time"
+	12	[30]	SETTABLE 	2 -6 3	; "time" -
+	13	[31]	GETTABLE 	2 0 -8	; "original_util_time"
+	14	[31]	EQ       	1 2 -2	; - nil
+	15	[31]	JMP      	2	; to 18
+	16	[32]	GETTABLE 	2 0 -8	; "original_util_time"
+	17	[32]	SETTABLE 	1 -9 2	; "gettime" -
+	18	[34]	RETURN   	0 1
+
+function <./spec/unit/mock_time.lua:36,44> (26 instructions, 104 bytes at 0x7fad40c08050)
+2 params, 5 slots, 1 upvalue, 2 locals, 9 constants, 0 functions
+	1	[37]	GETGLOBAL	2 -1	; assert
+	2	[37]	EQ       	0 0 -2	; - nil
+	3	[37]	JMP      	1	; to 5
+	4	[37]	LOADBOOL 	3 0 1
+	5	[37]	LOADBOOL 	3 1 0
+	6	[37]	CALL     	2 2 1
+	7	[38]	GETGLOBAL	2 -3	; type
+	8	[38]	MOVE     	3 1
+	9	[38]	CALL     	2 2 2
+	10	[38]	EQ       	1 2 -4	; - "number"
+	11	[38]	JMP      	2	; to 14
+	12	[39]	LOADBOOL 	2 0 0
+	13	[39]	RETURN   	2 2
+	14	[41]	GETGLOBAL	2 -6	; math
+	15	[41]	GETTABLE 	2 2 -7	; "floor"
+	16	[41]	MOVE     	3 1
+	17	[41]	CALL     	2 2 2
+	18	[41]	SETTABLE 	0 -5 2	; "value" -
+	19	[42]	GETUPVAL 	2 0	; logger
+	20	[42]	GETTABLE 	2 2 -8	; "dbg"
+	21	[42]	LOADK    	3 -9	; "MockTime:set "
+	22	[42]	GETTABLE 	4 0 -5	; "value"
+	23	[42]	CALL     	2 3 1
+	24	[43]	LOADBOOL 	2 1 0
+	25	[43]	RETURN   	2 2
+	26	[44]	RETURN   	0 1
+
+function <./spec/unit/mock_time.lua:46,54> (27 instructions, 108 bytes at 0x7fad40c081c0)
+2 params, 5 slots, 1 upvalue, 2 locals, 9 constants, 0 functions
+	1	[47]	GETGLOBAL	2 -1	; assert
+	2	[47]	EQ       	0 0 -2	; - nil
+	3	[47]	JMP      	1	; to 5
+	4	[47]	LOADBOOL 	3 0 1
+	5	[47]	LOADBOOL 	3 1 0
+	6	[47]	CALL     	2 2 1
+	7	[48]	GETGLOBAL	2 -3	; type
+	8	[48]	MOVE     	3 1
+	9	[48]	CALL     	2 2 2
+	10	[48]	EQ       	1 2 -4	; - "number"
+	11	[48]	JMP      	2	; to 14
+	12	[49]	LOADBOOL 	2 0 0
+	13	[49]	RETURN   	2 2
+	14	[51]	GETGLOBAL	2 -6	; math
+	15	[51]	GETTABLE 	2 2 -7	; "floor"
+	16	[51]	GETTABLE 	3 0 -5	; "value"
+	17	[51]	ADD      	3 3 1
+	18	[51]	CALL     	2 2 2
+	19	[51]	SETTABLE 	0 -5 2	; "value" -
+	20	[52]	GETUPVAL 	2 0	; logger
+	21	[52]	GETTABLE 	2 2 -8	; "dbg"
+	22	[52]	LOADK    	3 -9	; "MockTime:increase "
+	23	[52]	GETTABLE 	4 0 -5	; "value"
+	24	[52]	CALL     	2 3 1
+	25	[53]	LOADBOOL 	2 1 0
+	26	[53]	RETURN   	2 2
+	27	[54]	RETURN   	0 1

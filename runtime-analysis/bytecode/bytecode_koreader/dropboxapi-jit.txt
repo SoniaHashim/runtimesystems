@@ -1,0 +1,429 @@
+-- BYTECODE -- dropboxapi.lua:17-39
+0001    TNEW     2   0
+0002    TNEW     3   0
+0003    UGET     4   0      ; url
+0004    TGETS    4   4   0  ; "parse"
+0005    UGET     5   1      ; API_URL_INFO
+0006    CALL     4   2   2
+0007    UGET     5   1      ; API_URL_INFO
+0008    TSETS    5   2   1  ; "url"
+0009    KSTR     5   3      ; "POST"
+0010    TSETS    5   2   2  ; "method"
+0011    TDUP     5   5
+0012    KSTR     6   4      ; "Bearer "
+0013    MOV      7   1
+0014    CAT      6   6   7
+0015    TSETS    6   5   6  ; "Authorization"
+0016    TSETS    5   2   7  ; "headers"
+0017    UGET     6   2      ; ltn12
+0018    TGETS    6   6   8  ; "sink"
+0019    TGETS    6   6   9  ; "table"
+0020    MOV      7   3
+0021    CALL     6   2   2
+0022    TSETS    6   2   8  ; "sink"
+0023    UGET     6   3      ; http
+0024    KSHORT   7   5
+0025    TSETS    7   6  10  ; "TIMEOUT"
+0026    UGET     6   4      ; https
+0027    KSHORT   7   5
+0028    TSETS    7   6  10  ; "TIMEOUT"
+0029    TGETS    6   4  11  ; "scheme"
+0030    ISNES    6  12      ; "http"
+0031    JMP      6 => 0036
+0032    UGET     6   3      ; http
+0033    TGETS    6   6  13  ; "request"
+0034    IST          6
+0035    JMP      7 => 0038
+0036 => UGET     6   4      ; https
+0037    TGETS    6   6  13  ; "request"
+0038 => UGET     7   5      ; socket
+0039    TGETS    7   7  14  ; "skip"
+0040    KSHORT   8   1
+0041    MOV      9   6
+0042    MOV     10   2
+0043    CALL     9   0   2
+0044    CALLM    7   2   1
+0045    GGET     8   9      ; "table"
+0046    TGETS    8   8  15  ; "concat"
+0047    MOV      9   3
+0048    CALL     8   2   2
+0049    ISNEP    7   0
+0050    JMP      9 => 0053
+0051    KPRI     9   0
+0052    RET1     9   2
+0053 => ISEQS    8  16      ; ""
+0054    JMP      9 => 0062
+0055    GGET     9  17      ; "pcall"
+0056    UGET    10   6      ; JSON
+0057    TGETS   10  10  18  ; "decode"
+0058    MOV     11   8
+0059    CALL     9   3   3
+0060    RET1    10   2
+0061    JMP      9 => 0064
+0062 => KPRI     9   0
+0063    RET1     9   2
+0064 => RET0     0   1
+
+-- BYTECODE -- dropboxapi.lua:41-73
+0001    TNEW     3   0
+0002    TNEW     4   0
+0003    ISEQP    1   0
+0004    JMP      5 => 0007
+0005    ISNES    1   0      ; "/"
+0006    JMP      5 => 0008
+0007 => KSTR     1   1      ; ""
+0008 => UGET     5   0      ; url
+0009    TGETS    5   5   2  ; "parse"
+0010    UGET     6   1      ; API_LIST_FOLDER
+0011    CALL     5   2   2
+0012    UGET     6   1      ; API_LIST_FOLDER
+0013    TSETS    6   3   3  ; "url"
+0014    KSTR     6   5      ; "POST"
+0015    TSETS    6   3   4  ; "method"
+0016    KSTR     6   6      ; "{"path": ""
+0017    MOV      7   1
+0018    KSTR     8   7      ; "","recursive": false,"include_media_info"~
+0019    KSTR     9   8      ; ""include_deleted": false,"include_has_ex"~
+0020    CAT      6   6   9
+0021    TDUP     7  10
+0022    KSTR     8   9      ; "Bearer "
+0023    MOV      9   2
+0024    CAT      8   8   9
+0025    TSETS    8   7  11  ; "Authorization"
+0026    LEN      8   6
+0027    TSETS    8   7  12  ; "Content-Length"
+0028    TSETS    7   3  13  ; "headers"
+0029    UGET     8   2      ; ltn12
+0030    TGETS    8   8  14  ; "source"
+0031    TGETS    8   8  15  ; "string"
+0032    MOV      9   6
+0033    CALL     8   2   2
+0034    TSETS    8   3  14  ; "source"
+0035    UGET     8   2      ; ltn12
+0036    TGETS    8   8  16  ; "sink"
+0037    TGETS    8   8  17  ; "table"
+0038    MOV      9   4
+0039    CALL     8   2   2
+0040    TSETS    8   3  16  ; "sink"
+0041    UGET     8   3      ; http
+0042    KSHORT   9   5
+0043    TSETS    9   8  18  ; "TIMEOUT"
+0044    UGET     8   4      ; https
+0045    KSHORT   9   5
+0046    TSETS    9   8  18  ; "TIMEOUT"
+0047    TGETS    8   5  19  ; "scheme"
+0048    ISNES    8  20      ; "http"
+0049    JMP      8 => 0054
+0050    UGET     8   3      ; http
+0051    TGETS    8   8  21  ; "request"
+0052    IST          8
+0053    JMP      9 => 0056
+0054 => UGET     8   4      ; https
+0055    TGETS    8   8  21  ; "request"
+0056 => UGET     9   5      ; socket
+0057    TGETS    9   9  22  ; "skip"
+0058    KSHORT  10   1
+0059    MOV     11   8
+0060    MOV     12   3
+0061    CALL    11   0   2
+0062    CALLM    9   2   1
+0063    ISNEP    9   0
+0064    JMP     10 => 0067
+0065    KPRI    10   0
+0066    RET1    10   2
+0067 => GGET    10  17      ; "table"
+0068    TGETS   10  10  23  ; "concat"
+0069    MOV     11   4
+0070    CALL    10   2   2
+0071    ISEQS   10   1      ; ""
+0072    JMP     11 => 0085
+0073    GGET    11  24      ; "pcall"
+0074    UGET    12   6      ; JSON
+0075    TGETS   12  12  25  ; "decode"
+0076    MOV     13  10
+0077    CALL    11   3   3
+0078    ISF         11
+0079    JMP     13 => 0082
+0080    RET1    12   2
+0081    JMP     13 => 0087
+0082 => KPRI    13   0
+0083    RET1    13   2
+0084    JMP     11 => 0087
+0085 => KPRI    11   0
+0086    RET1    11   2
+0087 => RET0     0   1
+
+-- BYTECODE -- dropboxapi.lua:75-91
+0001    UGET     4   0      ; url
+0002    TGETS    4   4   0  ; "parse"
+0003    UGET     5   1      ; API_DOWNLOAD_FILE
+0004    CALL     4   2   2
+0005    UGET     5   1      ; API_DOWNLOAD_FILE
+0006    KSTR     6   1      ; "{"path": ""
+0007    MOV      7   1
+0008    KSTR     8   2      ; ""}"
+0009    CAT      6   6   8
+0010    TDUP     7   4
+0011    KSTR     8   3      ; "Bearer "
+0012    MOV      9   2
+0013    CAT      8   8   9
+0014    TSETS    8   7   5  ; "Authorization"
+0015    TSETS    6   7   6  ; "Dropbox-API-Arg"
+0016    UGET     8   2      ; http
+0017    KSHORT   9   5
+0018    TSETS    9   8   7  ; "TIMEOUT"
+0019    UGET     8   3      ; https
+0020    KSHORT   9   5
+0021    TSETS    9   8   7  ; "TIMEOUT"
+0022    TGETS    8   4   8  ; "scheme"
+0023    ISNES    8   9      ; "http"
+0024    JMP      8 => 0029
+0025    UGET     8   2      ; http
+0026    TGETS    8   8  10  ; "request"
+0027    IST          8
+0028    JMP      9 => 0031
+0029 => UGET     8   3      ; https
+0030    TGETS    8   8  10  ; "request"
+0031 => MOV      9   8
+0032    TDUP    10  11
+0033    TSETS    5  10  12  ; "url"
+0034    TSETS    7  10  13  ; "headers"
+0035    UGET    11   4      ; ltn12
+0036    TGETS   11  11  14  ; "sink"
+0037    TGETS   11  11  15  ; "file"
+0038    GGET    12  16      ; "io"
+0039    TGETS   12  12  17  ; "open"
+0040    MOV     13   3
+0041    KSTR    14  18      ; "w"
+0042    CALL    12   0   3
+0043    CALLM   11   2   0
+0044    TSETS   11  10  14  ; "sink"
+0045    CALL     9   4   2
+0046    RET1    10   2
+
+-- BYTECODE -- dropboxapi.lua:123-125
+0001    TGETS    2   0   0  ; "text"
+0002    TGETS    3   1   0  ; "text"
+0003    ISLT     2   3
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    JMP      3 => 0008
+0007 => KPRI     2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- dropboxapi.lua:126-128
+0001    TGETS    2   0   0  ; "text"
+0002    TGETS    3   1   0  ; "text"
+0003    ISLT     2   3
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    JMP      3 => 0008
+0007 => KPRI     2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- dropboxapi.lua:95-145
+0001    TNEW     4   0
+0002    TNEW     5   0
+0003    KNIL     6   7
+0004    MOV      9   0
+0005    TGETS    8   0   0  ; "fetchListFolders"
+0006    MOV     10   1
+0007    MOV     11   2
+0008    CALL     8   2   4
+0009    ISEQP    8   0
+0010    JMP      9 => 0014
+0011    TGETS    9   8   1  ; "entries"
+0012    ISNEP    9   0
+0013    JMP      9 => 0016
+0014 => KPRI     9   1
+0015    UCLO     0 => 0111
+0016 => GGET     9   2      ; "ipairs"
+0017    TGETS   10   8   1  ; "entries"
+0018    CALL     9   4   2
+0019    JMP     12 => 0067
+0020 => TGETS    7  13   3  ; "name"
+0021    TGETS    6  13   4  ; ".tag"
+0022    ISNES    6   5      ; "folder"
+0023    JMP     14 => 0040
+0024    MOV     14   7
+0025    KSTR    15   6      ; "/"
+0026    CAT      7  14  15
+0027    ISF          3
+0028    JMP     14 => 0030
+0029    KSTR     6   7      ; "folder_long_press"
+0030 => GGET    14   8      ; "table"
+0031    TGETS   14  14   9  ; "insert"
+0032    MOV     15   4
+0033    TDUP    16  10
+0034    TSETS    7  16  11  ; "text"
+0035    TGETS   17  13  12  ; "path_display"
+0036    TSETS   17  16  13  ; "url"
+0037    TSETS    6  16  14  ; "type"
+0038    CALL    14   1   3
+0039    JMP     14 => 0067
+0040 => ISNES    6  15      ; "file"
+0041    JMP     14 => 0067
+0042    UGET    14   0      ; DocumentRegistry
+0043    MOV     15  14
+0044    TGETS   14  14  16  ; "hasProvider"
+0045    MOV     16   7
+0046    CALL    14   2   3
+0047    IST         14
+0048    JMP     15 => 0056
+0049    GGET    14  17      ; "G_reader_settings"
+0050    MOV     15  14
+0051    TGETS   14  14  18  ; "isTrue"
+0052    KSTR    16  19      ; "show_unsupported"
+0053    CALL    14   2   3
+0054    ISF         14
+0055    JMP     15 => 0067
+0056 => IST          3
+0057    JMP     14 => 0067
+0058    GGET    14   8      ; "table"
+0059    TGETS   14  14   9  ; "insert"
+0060    MOV     15   5
+0061    TDUP    16  20
+0062    TSETS    7  16  11  ; "text"
+0063    TGETS   17  13  12  ; "path_display"
+0064    TSETS   17  16  13  ; "url"
+0065    TSETS    6  16  14  ; "type"
+0066    CALL    14   1   3
+0067 => ITERC   12   3   3
+0068    ITERL   12 => 0020
+0069    GGET     9   8      ; "table"
+0070    TGETS    9   9  21  ; "sort"
+0071    MOV     10   4
+0072    FNEW    11  22      ; dropboxapi.lua:123
+0073    CALL     9   1   3
+0074    GGET     9   8      ; "table"
+0075    TGETS    9   9  21  ; "sort"
+0076    MOV     10   5
+0077    FNEW    11  23      ; dropboxapi.lua:126
+0078    CALL     9   1   3
+0079    ISF          3
+0080    JMP      9 => 0092
+0081    GGET     9   8      ; "table"
+0082    TGETS    9   9   9  ; "insert"
+0083    MOV     10   4
+0084    KSHORT  11   1
+0085    TDUP    12  25
+0086    UGET    13   1      ; _
+0087    KSTR    14  24      ; "Long-press to select current directory"
+0088    CALL    13   2   2
+0089    TSETS   13  12  11  ; "text"
+0090    TSETS    1  12  13  ; "url"
+0091    CALL     9   1   4
+0092 => GGET     9   2      ; "ipairs"
+0093    MOV     10   5
+0094    CALL     9   4   2
+0095    JMP     12 => 0107
+0096 => GGET    14   8      ; "table"
+0097    TGETS   14  14   9  ; "insert"
+0098    MOV     15   4
+0099    TDUP    16  26
+0100    TGETS   17  13  11  ; "text"
+0101    TSETS   17  16  11  ; "text"
+0102    TGETS   17  13  13  ; "url"
+0103    TSETS   17  16  13  ; "url"
+0104    TGETS   17  13  14  ; "type"
+0105    TSETS   17  16  14  ; "type"
+0106    CALL    14   1   3
+0107 => ITERC   12   3   3
+0108    ITERL   12 => 0096
+0109    UCLO     0 => 0110
+0110 => RET1     4   2
+0111 => RET1     9   2
+
+-- BYTECODE -- dropboxapi.lua:147-164
+0001    TNEW     3   0
+0002    KNIL     4   5
+0003    MOV      7   0
+0004    TGETS    6   0   0  ; "fetchListFolders"
+0005    MOV      8   1
+0006    MOV      9   2
+0007    CALL     6   2   4
+0008    ISEQP    6   0
+0009    JMP      7 => 0013
+0010    TGETS    7   6   1  ; "entries"
+0011    ISNEP    7   0
+0012    JMP      7 => 0015
+0013 => KPRI     7   1
+0014    RET1     7   2
+0015 => GGET     7   2      ; "ipairs"
+0016    TGETS    8   6   1  ; "entries"
+0017    CALL     7   4   2
+0018    JMP     10 => 0047
+0019 => TGETS    5  11   3  ; "name"
+0020    TGETS    4  11   4  ; ".tag"
+0021    ISNES    4   5      ; "file"
+0022    JMP     12 => 0047
+0023    UGET    12   0      ; DocumentRegistry
+0024    MOV     13  12
+0025    TGETS   12  12   6  ; "hasProvider"
+0026    MOV     14   5
+0027    CALL    12   2   3
+0028    IST         12
+0029    JMP     13 => 0037
+0030    GGET    12   7      ; "G_reader_settings"
+0031    MOV     13  12
+0032    TGETS   12  12   8  ; "isTrue"
+0033    KSTR    14   9      ; "show_unsupported"
+0034    CALL    12   2   3
+0035    ISF         12
+0036    JMP     13 => 0047
+0037 => GGET    12  10      ; "table"
+0038    TGETS   12  12  11  ; "insert"
+0039    MOV     13   3
+0040    TDUP    14  12
+0041    TSETS    5  14  13  ; "text"
+0042    TGETS   15  11  14  ; "path_display"
+0043    TSETS   15  14  15  ; "url"
+0044    TGETS   15  11  16  ; "size"
+0045    TSETS   15  14  16  ; "size"
+0046    CALL    12   1   3
+0047 => ITERC   10   3   3
+0048    ITERL   10 => 0019
+0049    RET1     3   2
+
+-- BYTECODE -- dropboxapi.lua:0-167
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "document/documentregistry"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "json"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "socket.http"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ssl.https"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ltn12"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "socket"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "socket.url"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "gettext"
+0024    CALL     7   2   2
+0025    TNEW     8   0
+0026    KSTR     9   9      ; "https://api.dropboxapi.com/2/users/get_c"~
+0027    KSTR    10  10      ; "https://api.dropboxapi.com/2/files/list_"~
+0028    KSTR    11  11      ; "https://content.dropboxapi.com/2/files/d"~
+0029    FNEW    12  13      ; dropboxapi.lua:17
+0030    TSETS   12   8  12  ; "fetchInfo"
+0031    FNEW    12  15      ; dropboxapi.lua:41
+0032    TSETS   12   8  14  ; "fetchListFolders"
+0033    FNEW    12  17      ; dropboxapi.lua:75
+0034    TSETS   12   8  16  ; "downloadFile"
+0035    FNEW    12  19      ; dropboxapi.lua:95
+0036    TSETS   12   8  18  ; "listFolder"
+0037    FNEW    12  21      ; dropboxapi.lua:147
+0038    TSETS   12   8  20  ; "showFiles"
+0039    UCLO     0 => 0040
+0040 => RET1     8   2
+

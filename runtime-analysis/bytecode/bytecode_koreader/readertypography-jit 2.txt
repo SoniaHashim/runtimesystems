@@ -1,0 +1,2695 @@
+-- BYTECODE -- readertypography.lua:176-180
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; InfoMessage
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   2
+0008    UGET     5   2      ; info_text
+0009    TSETS    5   4   3  ; "text"
+0010    CALL     2   0   3
+0011    CALLM    0   1   1
+0012    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:181-236
+0001    TNEW     0   0
+0002    TNEW     1   0
+0003    GGET     2   0      ; "cre"
+0004    TGETS    2   2   1  ; "getTextLangStatus"
+0005    CALL     2   4   1
+0006    TGETV    5   4   2
+0007    GGET     6   2      ; "table"
+0008    TGETS    6   6   3  ; "insert"
+0009    MOV      7   0
+0010    UGET     8   0      ; _
+0011    KSTR     9   4      ; "Current main language tag:"
+0012    CALL     8   0   2
+0013    CALLM    6   1   1
+0014    GGET     6   2      ; "table"
+0015    TGETS    6   6   3  ; "insert"
+0016    MOV      7   0
+0017    GGET     8   5      ; "string"
+0018    TGETS    8   8   6  ; "format"
+0019    KSTR     9   7      ; "%s\t\t(%s - %s - %s)"
+0020    MOV     10   2
+0021    TGETS   11   5   8  ; "hyph_dict_name"
+0022    UGET    12   1      ; util
+0023    TGETS   12  12   9  ; "getFormattedSize"
+0024    TGETS   13   5  10  ; "hyph_nb_patterns"
+0025    CALL    12   2   2
+0026    UGET    13   1      ; util
+0027    TGETS   13  13  11  ; "getFriendlySize"
+0028    TGETS   14   5  12  ; "hyph_mem_size"
+0029    CALL    13   0   2
+0030    CALLM    8   0   4
+0031    CALLM    6   1   1
+0032    TGETS    6   5   8  ; "hyph_dict_name"
+0033    KPRI     7   2
+0034    TSETV    7   1   6
+0035    KPRI     6   1
+0036    TNEW     7   0
+0037    GGET     8  13      ; "pairs"
+0038    MOV      9   4
+0039    CALL     8   4   2
+0040    ISNEXT  11 => 0047
+0041 => KPRI     6   2
+0042    GGET    12   2      ; "table"
+0043    TGETS   12  12   3  ; "insert"
+0044    MOV     13   7
+0045    MOV     14  11
+0046    CALL    12   1   3
+0047 => ITERN   11   2   3
+0048    ITERL   11 => 0041
+0049    ISF          6
+0050    JMP      8 => 0113
+0051    GGET     8   2      ; "table"
+0052    TGETS    8   8  14  ; "sort"
+0053    MOV      9   7
+0054    CALL     8   1   2
+0055    GGET     8   2      ; "table"
+0056    TGETS    8   8   3  ; "insert"
+0057    MOV      9   0
+0058    KSTR    10  15      ; ""
+0059    CALL     8   1   3
+0060    GGET     8   2      ; "table"
+0061    TGETS    8   8   3  ; "insert"
+0062    MOV      9   0
+0063    UGET    10   0      ; _
+0064    KSTR    11  16      ; "Other language tags:"
+0065    CALL    10   0   2
+0066    CALLM    8   1   1
+0067    GGET     8  17      ; "ipairs"
+0068    MOV      9   7
+0069    CALL     8   4   2
+0070    JMP     11 => 0111
+0071 => TGETV   13   4  12
+0072    ISNEV   12   2
+0073    JMP     14 => 0075
+0074    JMP     14 => 0111
+0075 => TGETS   14  13   8  ; "hyph_dict_name"
+0076    TGETV   14   1  14
+0077    ISF         14
+0078    JMP     15 => 0090
+0079    GGET    14   2      ; "table"
+0080    TGETS   14  14   3  ; "insert"
+0081    MOV     15   0
+0082    GGET    16   5      ; "string"
+0083    TGETS   16  16   6  ; "format"
+0084    KSTR    17  18      ; "%s\t\t(%s)"
+0085    MOV     18  12
+0086    TGETS   19  13   8  ; "hyph_dict_name"
+0087    CALL    16   0   4
+0088    CALLM   14   1   1
+0089    JMP     14 => 0111
+0090 => GGET    14   2      ; "table"
+0091    TGETS   14  14   3  ; "insert"
+0092    MOV     15   0
+0093    GGET    16   5      ; "string"
+0094    TGETS   16  16   6  ; "format"
+0095    KSTR    17   7      ; "%s\t\t(%s - %s - %s)"
+0096    MOV     18  12
+0097    TGETS   19  13   8  ; "hyph_dict_name"
+0098    UGET    20   1      ; util
+0099    TGETS   20  20   9  ; "getFormattedSize"
+0100    TGETS   21  13  10  ; "hyph_nb_patterns"
+0101    CALL    20   2   2
+0102    UGET    21   1      ; util
+0103    TGETS   21  21  11  ; "getFriendlySize"
+0104    TGETS   22  13  12  ; "hyph_mem_size"
+0105    CALL    21   0   2
+0106    CALLM   16   0   4
+0107    CALLM   14   1   1
+0108    TGETS   14  13   8  ; "hyph_dict_name"
+0109    KPRI    15   2
+0110    TSETV   15   1  14
+0111 => ITERC   11   3   3
+0112    ITERL   11 => 0071
+0113 => GGET     8   2      ; "table"
+0114    TGETS    8   8  19  ; "concat"
+0115    MOV      9   0
+0116    KSTR    10  20      ; "\n"
+0117    CALL     8   2   3
+0118    GGET     9  21      ; "require"
+0119    KSTR    10  22      ; "ui/widget/textviewer"
+0120    CALL     9   2   2
+0121    GGET    10  21      ; "require"
+0122    KSTR    11  23      ; "ui/font"
+0123    CALL    10   2   2
+0124    UGET    11   2      ; UIManager
+0125    MOV     12  11
+0126    TGETS   11  11  24  ; "show"
+0127    MOV     14   9
+0128    TGETS   13   9  25  ; "new"
+0129    TDUP    15  27
+0130    UGET    16   0      ; _
+0131    KSTR    17  26      ; "Language tags (and hyphenation dictionar"~
+0132    CALL    16   2   2
+0133    TSETS   16  15  28  ; "title"
+0134    TSETS    8  15  29  ; "text"
+0135    MOV     17  10
+0136    TGETS   16  10  30  ; "getFace"
+0137    KSTR    18  31      ; "smallinfont"
+0138    CALL    16   2   3
+0139    TSETS   16  15  32  ; "text_face"
+0140    UGET    16   3      ; Screen
+0141    MOV     17  16
+0142    TGETS   16  16  33  ; "getHeight"
+0143    CALL    16   2   2
+0144    MULVN   16  16   0  ; 4
+0145    DIVVN   16  16   1  ; 5
+0146    TSETS   16  15  34  ; "height"
+0147    CALL    13   0   3
+0148    CALLM   11   1   1
+0149    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:245-266
+0001    UGET     0   0      ; lang_name
+0002    KSTR     1   0      ; ""
+0003    UGET     2   1      ; lang_features
+0004    MOV      3   2
+0005    TGETS    2   2   1  ; "find"
+0006    KSTR     4   2      ; "H"
+0007    CALL     2   2   3
+0008    ISF          2
+0009    JMP      3 => 0013
+0010    MOV      2   1
+0011    KSTR     3   3      ; "‐ "
+0012    CAT      1   2   3
+0013 => UGET     2   1      ; lang_features
+0014    MOV      3   2
+0015    TGETS    2   2   1  ; "find"
+0016    KSTR     4   4      ; "b"
+0017    CALL     2   2   3
+0018    ISF          2
+0019    JMP      3 => 0024
+0020    MOV      2   1
+0021    KSTR     3   5      ; ""
+0022    CAT      1   2   3
+0023    JMP      2 => 0034
+0024 => UGET     2   1      ; lang_features
+0025    MOV      3   2
+0026    TGETS    2   2   1  ; "find"
+0027    KSTR     4   6      ; "B"
+0028    CALL     2   2   3
+0029    ISF          2
+0030    JMP      3 => 0034
+0031    MOV      2   1
+0032    KSTR     3   7      ; ""
+0033    CAT      1   2   3
+0034 => MOV      2   0
+0035    KSTR     3   8      ; "   "
+0036    MOV      4   1
+0037    CAT      0   2   4
+0038    UGET     2   2      ; lang_tag
+0039    GGET     3   9      ; "G_reader_settings"
+0040    MOV      4   3
+0041    TGETS    3   3  10  ; "readSetting"
+0042    KSTR     5  11      ; "text_lang_default"
+0043    CALL     3   2   3
+0044    ISNEV    2   3
+0045    JMP      2 => 0049
+0046    MOV      2   0
+0047    KSTR     3  12      ; "   ★"
+0048    CAT      0   2   3
+0049 => UGET     2   2      ; lang_tag
+0050    GGET     3   9      ; "G_reader_settings"
+0051    MOV      4   3
+0052    TGETS    3   3  10  ; "readSetting"
+0053    KSTR     5  13      ; "text_lang_fallback"
+0054    CALL     3   2   3
+0055    ISNEV    2   3
+0056    JMP      2 => 0060
+0057    MOV      2   0
+0058    KSTR     3  14      ; "   �"
+0059    CAT      0   2   3
+0060 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:267-274
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; InfoMessage
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   4
+0008    UGET     5   2      ; T
+0009    UGET     6   3      ; _
+0010    KSTR     7   2      ; "Changed language for typography rules to"~
+0011    CALL     6   2   2
+0012    UGET     7   4      ; BD
+0013    TGETS    7   7   3  ; "wrap"
+0014    UGET     8   5      ; lang_name
+0015    CALL     7   0   2
+0016    CALLM    5   2   1
+0017    TSETS    5   4   5  ; "text"
+0018    CALL     2   0   3
+0019    CALLM    0   1   1
+0020    UGET     0   6      ; self
+0021    UGET     1   7      ; lang_tag
+0022    TSETS    1   0   6  ; "text_lang_tag"
+0023    UGET     0   6      ; self
+0024    TGETS    0   0   7  ; "ui"
+0025    TGETS    0   0   8  ; "document"
+0026    MOV      1   0
+0027    TGETS    0   0   9  ; "setTextMainLang"
+0028    UGET     2   7      ; lang_tag
+0029    CALL     0   1   3
+0030    UGET     0   6      ; self
+0031    TGETS    0   0   7  ; "ui"
+0032    MOV      1   0
+0033    TGETS    0   0  10  ; "handleEvent"
+0034    UGET     2   8      ; Event
+0035    MOV      3   2
+0036    TGETS    2   2   1  ; "new"
+0037    KSTR     4  11      ; "UpdatePos"
+0038    CALL     2   0   3
+0039    CALLM    0   1   1
+0040    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:284-288
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "text_lang_default"
+0005    UGET     3   0      ; lang_tag
+0006    CALL     0   1   4
+0007    GGET     0   0      ; "G_reader_settings"
+0008    MOV      1   0
+0009    TGETS    0   0   3  ; "delSetting"
+0010    KSTR     2   4      ; "text_lang_fallback"
+0011    CALL     0   1   3
+0012    UGET     0   1      ; touchmenu_instance
+0013    ISF          0
+0014    JMP      1 => 0019
+0015    UGET     0   1      ; touchmenu_instance
+0016    MOV      1   0
+0017    TGETS    0   0   5  ; "updateItems"
+0018    CALL     0   1   2
+0019 => RET0     0   1
+
+-- BYTECODE -- readertypography.lua:290-294
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "text_lang_fallback"
+0005    UGET     3   0      ; lang_tag
+0006    CALL     0   1   4
+0007    GGET     0   0      ; "G_reader_settings"
+0008    MOV      1   0
+0009    TGETS    0   0   3  ; "delSetting"
+0010    KSTR     2   4      ; "text_lang_default"
+0011    CALL     0   1   3
+0012    UGET     0   1      ; touchmenu_instance
+0013    ISF          0
+0014    JMP      1 => 0019
+0015    UGET     0   1      ; touchmenu_instance
+0016    MOV      1   0
+0017    TGETS    0   0   5  ; "updateItems"
+0018    CALL     0   1   2
+0019 => RET0     0   1
+
+-- BYTECODE -- readertypography.lua:275-296
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "show"
+0004    UGET     3   1      ; MultiConfirmBox
+0005    MOV      4   3
+0006    TGETS    3   3   1  ; "new"
+0007    TDUP     5   4
+0008    UGET     6   2      ; T
+0009    UGET     7   3      ; _
+0010    KSTR     8   2      ; "Would you like %1 to be used as the defa"~
+0011    CALL     7   2   2
+0012    UGET     8   4      ; BD
+0013    TGETS    8   8   3  ; "wrap"
+0014    UGET     9   5      ; lang_name
+0015    CALL     8   0   2
+0016    CALLM    6   2   1
+0017    TSETS    6   5   5  ; "text"
+0018    UGET     6   3      ; _
+0019    KSTR     7   6      ; "Default"
+0020    CALL     6   2   2
+0021    TSETS    6   5   7  ; "choice1_text"
+0022    FNEW     6   8      ; readertypography.lua:284
+0023    TSETS    6   5   9  ; "choice1_callback"
+0024    UGET     6   7      ; C_
+0025    KSTR     7  10      ; "Typography"
+0026    KSTR     8  11      ; "Fallback"
+0027    CALL     6   2   3
+0028    TSETS    6   5  12  ; "choice2_text"
+0029    FNEW     6  13      ; readertypography.lua:290
+0030    TSETS    6   5  14  ; "choice2_callback"
+0031    CALL     3   0   3
+0032    CALLM    1   1   1
+0033    UCLO     0 => 0034
+0034 => RET0     0   1
+
+-- BYTECODE -- readertypography.lua:297-299
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "text_lang_tag"
+0003    UGET     1   1      ; lang_tag
+0004    ISEQV    0   1
+0005    JMP      0 => 0008
+0006    KPRI     0   1
+0007    JMP      1 => 0009
+0008 => KPRI     0   2
+0009 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:305-308
+0001    UGET     0   0      ; LANG_TAG_TO_LANG_NAME
+0002    UGET     1   1      ; self
+0003    TGETS    1   1   0  ; "text_lang_tag"
+0004    TGETV    0   0   1
+0005    IST          0
+0006    JMP      1 => 0009
+0007    UGET     0   1      ; self
+0008    TGETS    0   0   0  ; "text_lang_tag"
+0009 => UGET     1   2      ; T
+0010    UGET     2   3      ; _
+0011    KSTR     3   1      ; "Typography rules: %1"
+0012    CALL     2   2   2
+0013    MOV      3   0
+0014    CALLT    1   3
+
+-- BYTECODE -- readertypography.lua:314-318
+0001    UGET     0   0      ; self
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "text_lang_embedded_langs"
+0004    NOT      1   1
+0005    TSETS    1   0   0  ; "text_lang_embedded_langs"
+0006    UGET     0   0      ; self
+0007    TGETS    0   0   1  ; "ui"
+0008    TGETS    0   0   2  ; "document"
+0009    MOV      1   0
+0010    TGETS    0   0   3  ; "setTextEmbeddedLangs"
+0011    UGET     2   0      ; self
+0012    TGETS    2   2   0  ; "text_lang_embedded_langs"
+0013    CALL     0   1   3
+0014    UGET     0   0      ; self
+0015    TGETS    0   0   1  ; "ui"
+0016    MOV      1   0
+0017    TGETS    0   0   4  ; "handleEvent"
+0018    UGET     2   1      ; Event
+0019    MOV      3   2
+0020    TGETS    2   2   5  ; "new"
+0021    KSTR     4   6      ; "UpdatePos"
+0022    CALL     2   0   3
+0023    CALLM    0   1   1
+0024    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:324-326
+0001    UGET     0   0      ; text_lang_embedded_langs
+0002    ISF          0
+0003    JMP      1 => 0009
+0004    UGET     0   1      ; _
+0005    KSTR     1   0      ; "Ignore"
+0006    CALL     0   2   2
+0007    IST          0
+0008    JMP      1 => 0012
+0009 => UGET     0   1      ; _
+0010    KSTR     1   1      ; "Ignore (★)"
+0011    CALL     0   2   2
+0012 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:327-329
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "text_lang_embedded_langs"
+0005    KPRI     3   1
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:330-332
+0001    UGET     0   0      ; text_lang_embedded_langs
+0002    ISF          0
+0003    JMP      1 => 0009
+0004    UGET     0   1      ; _
+0005    KSTR     1   0      ; "Respect (★)"
+0006    CALL     0   2   2
+0007    IST          0
+0008    JMP      1 => 0012
+0009 => UGET     0   1      ; _
+0010    KSTR     1   1      ; "Respect"
+0011    CALL     0   2   2
+0012 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:333-335
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "text_lang_embedded_langs"
+0005    KPRI     3   2
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:319-337
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "nilOrTrue"
+0004    KSTR     2   2      ; "text_lang_embedded_langs"
+0005    CALL     0   2   3
+0006    UGET     1   0      ; UIManager
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "show"
+0009    UGET     3   1      ; MultiConfirmBox
+0010    MOV      4   3
+0011    TGETS    3   3   4  ; "new"
+0012    TDUP     5   7
+0013    ISF          0
+0014    JMP      6 => 0020
+0015    UGET     6   2      ; _
+0016    KSTR     7   5      ; "Would you like to respect or ignore embe"~
+0017    CALL     6   2   2
+0018    IST          6
+0019    JMP      7 => 0023
+0020 => UGET     6   2      ; _
+0021    KSTR     7   6      ; "Would you like to respect or ignore embe"~
+0022    CALL     6   2   2
+0023 => TSETS    6   5   8  ; "text"
+0024    FNEW     6   9      ; readertypography.lua:324
+0025    TSETS    6   5  10  ; "choice1_text_func"
+0026    FNEW     6  11      ; readertypography.lua:327
+0027    TSETS    6   5  12  ; "choice1_callback"
+0028    FNEW     6  13      ; readertypography.lua:330
+0029    TSETS    6   5  14  ; "choice2_text_func"
+0030    FNEW     6  15      ; readertypography.lua:333
+0031    TSETS    6   5  16  ; "choice2_callback"
+0032    CALL     3   0   3
+0033    CALLM    1   1   1
+0034    UCLO     0 => 0035
+0035 => RET0     0   1
+
+-- BYTECODE -- readertypography.lua:338-340
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "text_lang_embedded_langs"
+0003    RET1     0   2
+
+-- BYTECODE -- readertypography.lua:347-351
+0001    UGET     0   0      ; self
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "hyphenation"
+0004    NOT      1   1
+0005    TSETS    1   0   0  ; "hyphenation"
+0006    UGET     0   0      ; self
+0007    TGETS    0   0   1  ; "ui"
+0008    TGETS    0   0   2  ; "document"
+0009    MOV      1   0
+0010    TGETS    0   0   3  ; "setTextHyphenation"
+0011    UGET     2   0      ; self
+0012    TGETS    2   2   0  ; "hyphenation"
+0013    CALL     0   1   3
+0014    UGET     0   0      ; self
+0015    TGETS    0   0   1  ; "ui"
+0016    MOV      1   0
+0017    TGETS    0   0   4  ; "handleEvent"
+0018    UGET     2   1      ; Event
+0019    MOV      3   2
+0020    TGETS    2   2   5  ; "new"
+0021    KSTR     4   6      ; "UpdatePos"
+0022    CALL     2   0   3
+0023    CALLM    0   1   1
+0024    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:357-359
+0001    UGET     0   0      ; hyphenation
+0002    ISF          0
+0003    JMP      1 => 0009
+0004    UGET     0   1      ; _
+0005    KSTR     1   0      ; "Disable"
+0006    CALL     0   2   2
+0007    IST          0
+0008    JMP      1 => 0012
+0009 => UGET     0   1      ; _
+0010    KSTR     1   1      ; "Disable (★)"
+0011    CALL     0   2   2
+0012 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:360-362
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "hyphenation"
+0005    KPRI     3   1
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:363-365
+0001    UGET     0   0      ; hyphenation
+0002    ISF          0
+0003    JMP      1 => 0009
+0004    UGET     0   1      ; _
+0005    KSTR     1   0      ; "Enable (★)"
+0006    CALL     0   2   2
+0007    IST          0
+0008    JMP      1 => 0012
+0009 => UGET     0   1      ; _
+0010    KSTR     1   1      ; "Enable"
+0011    CALL     0   2   2
+0012 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:366-368
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "hyphenation"
+0005    KPRI     3   2
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:352-370
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "nilOrTrue"
+0004    KSTR     2   2      ; "hyphenation"
+0005    CALL     0   2   3
+0006    UGET     1   0      ; UIManager
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "show"
+0009    UGET     3   1      ; MultiConfirmBox
+0010    MOV      4   3
+0011    TGETS    3   3   4  ; "new"
+0012    TDUP     5   7
+0013    ISF          0
+0014    JMP      6 => 0020
+0015    UGET     6   2      ; _
+0016    KSTR     7   5      ; "Would you like to enable or disable hyph"~
+0017    CALL     6   2   2
+0018    IST          6
+0019    JMP      7 => 0023
+0020 => UGET     6   2      ; _
+0021    KSTR     7   6      ; "Would you like to enable or disable hyph"~
+0022    CALL     6   2   2
+0023 => TSETS    6   5   8  ; "text"
+0024    FNEW     6   9      ; readertypography.lua:357
+0025    TSETS    6   5  10  ; "choice1_text_func"
+0026    FNEW     6  11      ; readertypography.lua:360
+0027    TSETS    6   5  12  ; "choice1_callback"
+0028    FNEW     6  13      ; readertypography.lua:363
+0029    TSETS    6   5  14  ; "choice2_text_func"
+0030    FNEW     6  15      ; readertypography.lua:366
+0031    TSETS    6   5  16  ; "choice2_callback"
+0032    CALL     3   0   3
+0033    CALLM    1   1   1
+0034    UCLO     0 => 0035
+0035 => RET0     0   1
+
+-- BYTECODE -- readertypography.lua:371-373
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "hyphenation"
+0003    RET1     0   2
+
+-- BYTECODE -- readertypography.lua:376-387
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "readSetting"
+0004    KSTR     2   2      ; "hyph_left_hyphen_min"
+0005    CALL     0   2   3
+0006    IST          0
+0007    JMP      1 => 0015
+0008    GGET     0   0      ; "G_reader_settings"
+0009    MOV      1   0
+0010    TGETS    0   0   1  ; "readSetting"
+0011    KSTR     2   3      ; "hyph_right_hyphen_min"
+0012    CALL     0   2   3
+0013    ISF          0
+0014    JMP      1 => 0030
+0015 => UGET     0   0      ; T
+0016    UGET     1   1      ; _
+0017    KSTR     2   4      ; "Left/right minimal sizes: %1 - %2"
+0018    CALL     1   2   2
+0019    GGET     2   0      ; "G_reader_settings"
+0020    MOV      3   2
+0021    TGETS    2   2   1  ; "readSetting"
+0022    KSTR     4   2      ; "hyph_left_hyphen_min"
+0023    CALL     2   2   3
+0024    GGET     3   0      ; "G_reader_settings"
+0025    MOV      4   3
+0026    TGETS    3   3   1  ; "readSetting"
+0027    KSTR     5   3      ; "hyph_right_hyphen_min"
+0028    CALL     3   0   3
+0029    CALLMT   0   2
+0030 => UGET     0   1      ; _
+0031    KSTR     1   5      ; "Left/right minimal sizes: language defau"~
+0032    CALLT    0   2
+
+-- BYTECODE -- readertypography.lua:424-431
+0001    GGET     2   0      ; "G_reader_settings"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "saveSetting"
+0004    KSTR     4   2      ; "hyph_left_hyphen_min"
+0005    MOV      5   0
+0006    CALL     2   1   4
+0007    GGET     2   0      ; "G_reader_settings"
+0008    MOV      3   2
+0009    TGETS    2   2   1  ; "saveSetting"
+0010    KSTR     4   3      ; "hyph_right_hyphen_min"
+0011    MOV      5   1
+0012    CALL     2   1   4
+0013    UGET     2   0      ; self
+0014    TGETS    2   2   4  ; "ui"
+0015    TGETS    2   2   5  ; "document"
+0016    MOV      3   2
+0017    TGETS    2   2   6  ; "setHyphLeftHyphenMin"
+0018    GGET     4   0      ; "G_reader_settings"
+0019    MOV      5   4
+0020    TGETS    4   4   7  ; "readSetting"
+0021    KSTR     6   2      ; "hyph_left_hyphen_min"
+0022    CALL     4   2   3
+0023    IST          4
+0024    JMP      5 => 0026
+0025    KSHORT   4   0
+0026 => CALL     2   1   3
+0027    UGET     2   0      ; self
+0028    TGETS    2   2   4  ; "ui"
+0029    TGETS    2   2   5  ; "document"
+0030    MOV      3   2
+0031    TGETS    2   2   8  ; "setHyphRightHyphenMin"
+0032    GGET     4   0      ; "G_reader_settings"
+0033    MOV      5   4
+0034    TGETS    4   4   7  ; "readSetting"
+0035    KSTR     6   3      ; "hyph_right_hyphen_min"
+0036    CALL     4   2   3
+0037    IST          4
+0038    JMP      5 => 0040
+0039    KSHORT   4   0
+0040 => CALL     2   1   3
+0041    UGET     2   0      ; self
+0042    TGETS    2   2   4  ; "ui"
+0043    MOV      3   2
+0044    TGETS    2   2   9  ; "handleEvent"
+0045    UGET     4   1      ; Event
+0046    MOV      5   4
+0047    TGETS    4   4  10  ; "new"
+0048    KSTR     6  11      ; "UpdatePos"
+0049    CALL     4   0   3
+0050    CALLM    2   1   1
+0051    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:388-434
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "/ui/widget/doublespinwidget"
+0003    CALL     0   2   2
+0004    KSHORT   1   2
+0005    KSHORT   2   2
+0006    GGET     3   2      ; "cre"
+0007    TGETS    3   3   3  ; "getSelectedHyphDict"
+0008    CALL     3   2   1
+0009    UGET     4   0      ; HYPH_DICT_NAME_TO_LANG_NAME_TAG
+0010    TGETV    4   4   3
+0011    ISF          4
+0012    JMP      5 => 0021
+0013    TGETB    5   4   3
+0014    ISTC     1   5
+0015    JMP      6 => 0017
+0016    KSHORT   1   2
+0017 => TGETB    5   4   4
+0018    ISTC     2   5
+0019    JMP      6 => 0021
+0020    KSHORT   2   2
+0021 => MOV      6   0
+0022    TGETS    5   0   4  ; "new"
+0023    TDUP     7   8
+0024    GGET     8   5      ; "G_reader_settings"
+0025    MOV      9   8
+0026    TGETS    8   8   6  ; "readSetting"
+0027    KSTR    10   7      ; "hyph_left_hyphen_min"
+0028    CALL     8   2   3
+0029    IST          8
+0030    JMP      9 => 0032
+0031    MOV      8   1
+0032 => TSETS    8   7   9  ; "left_value"
+0033    GGET     8   5      ; "G_reader_settings"
+0034    MOV      9   8
+0035    TGETS    8   8   6  ; "readSetting"
+0036    KSTR    10  10      ; "hyph_right_hyphen_min"
+0037    CALL     8   2   3
+0038    IST          8
+0039    JMP      9 => 0041
+0040    MOV      8   2
+0041 => TSETS    8   7  11  ; "right_value"
+0042    TSETS    1   7  12  ; "left_default"
+0043    TSETS    2   7  13  ; "right_default"
+0044    UGET     8   1      ; Screen
+0045    MOV      9   8
+0046    TGETS    8   8  14  ; "getWidth"
+0047    CALL     8   2   2
+0048    MULVN    8   8   0  ; 0.6
+0049    TSETS    8   7  15  ; "width"
+0050    UGET     8   2      ; _
+0051    KSTR     9  16      ; "Use language defaults"
+0052    CALL     8   2   2
+0053    TSETS    8   7  17  ; "default_text"
+0054    UGET     8   2      ; _
+0055    KSTR     9  18      ; "Hyphenation limits"
+0056    CALL     8   2   2
+0057    TSETS    8   7  19  ; "title_text"
+0058    UGET     8   2      ; _
+0059    KSTR     9  20      ; "Set minimum length before hyphenation oc"~
+0060    CALL     8   2   2
+0061    TSETS    8   7  21  ; "info_text"
+0062    FNEW     8  22      ; readertypography.lua:424
+0063    TSETS    8   7  23  ; "callback"
+0064    CALL     5   2   3
+0065    UGET     6   5      ; UIManager
+0066    MOV      7   6
+0067    TGETS    6   6  24  ; "show"
+0068    MOV      8   5
+0069    CALL     6   1   3
+0070    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:435-437
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "hyphenation"
+0003    RET1     0   2
+
+-- BYTECODE -- readertypography.lua:441-445
+0001    UGET     0   0      ; self
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "hyph_trust_soft_hyphens"
+0004    NOT      1   1
+0005    TSETS    1   0   0  ; "hyph_trust_soft_hyphens"
+0006    UGET     0   0      ; self
+0007    TGETS    0   0   1  ; "ui"
+0008    TGETS    0   0   2  ; "document"
+0009    MOV      1   0
+0010    TGETS    0   0   3  ; "setTrustSoftHyphens"
+0011    UGET     2   0      ; self
+0012    TGETS    2   2   0  ; "hyph_trust_soft_hyphens"
+0013    CALL     0   1   3
+0014    UGET     0   0      ; self
+0015    TGETS    0   0   1  ; "ui"
+0016    MOV      1   0
+0017    TGETS    0   0   4  ; "handleEvent"
+0018    UGET     2   1      ; Event
+0019    MOV      3   2
+0020    TGETS    2   2   5  ; "new"
+0021    KSTR     4   6      ; "UpdatePos"
+0022    CALL     2   0   3
+0023    CALLM    0   1   1
+0024    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:451-453
+0001    UGET     0   0      ; hyph_trust_soft_hyphens
+0002    ISF          0
+0003    JMP      1 => 0009
+0004    UGET     0   1      ; _
+0005    KSTR     1   0      ; "Disable"
+0006    CALL     0   2   2
+0007    IST          0
+0008    JMP      1 => 0012
+0009 => UGET     0   1      ; _
+0010    KSTR     1   1      ; "Disable (★)"
+0011    CALL     0   2   2
+0012 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:454-456
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "hyph_trust_soft_hyphens"
+0005    KPRI     3   1
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:457-459
+0001    UGET     0   0      ; hyph_trust_soft_hyphens
+0002    ISF          0
+0003    JMP      1 => 0009
+0004    UGET     0   1      ; _
+0005    KSTR     1   0      ; "Enable (★)"
+0006    CALL     0   2   2
+0007    IST          0
+0008    JMP      1 => 0012
+0009 => UGET     0   1      ; _
+0010    KSTR     1   1      ; "Enable"
+0011    CALL     0   2   2
+0012 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:460-462
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "hyph_trust_soft_hyphens"
+0005    KPRI     3   2
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:446-464
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "hyph_trust_soft_hyphens"
+0005    CALL     0   2   3
+0006    UGET     1   0      ; UIManager
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "show"
+0009    UGET     3   1      ; MultiConfirmBox
+0010    MOV      4   3
+0011    TGETS    3   3   4  ; "new"
+0012    TDUP     5   7
+0013    ISF          0
+0014    JMP      6 => 0020
+0015    UGET     6   2      ; _
+0016    KSTR     7   5      ; "Would you like to enable or disable trus"~
+0017    CALL     6   2   2
+0018    IST          6
+0019    JMP      7 => 0023
+0020 => UGET     6   2      ; _
+0021    KSTR     7   6      ; "Would you like to enable or disable trus"~
+0022    CALL     6   2   2
+0023 => TSETS    6   5   8  ; "text"
+0024    FNEW     6   9      ; readertypography.lua:451
+0025    TSETS    6   5  10  ; "choice1_text_func"
+0026    FNEW     6  11      ; readertypography.lua:454
+0027    TSETS    6   5  12  ; "choice1_callback"
+0028    FNEW     6  13      ; readertypography.lua:457
+0029    TSETS    6   5  14  ; "choice2_text_func"
+0030    FNEW     6  15      ; readertypography.lua:460
+0031    TSETS    6   5  16  ; "choice2_callback"
+0032    CALL     3   0   3
+0033    CALLM    1   1   1
+0034    UCLO     0 => 0035
+0035 => RET0     0   1
+
+-- BYTECODE -- readertypography.lua:465-467
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "hyphenation"
+0003    ISF          0
+0004    JMP      1 => 0011
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   1  ; "hyph_trust_soft_hyphens"
+0007    IST          0
+0008    JMP      1 => 0011
+0009    UGET     0   0      ; self
+0010    TGETS    0   0   2  ; "hyph_soft_hyphens_only"
+0011 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:468-470
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "hyphenation"
+0003    ISF          0
+0004    JMP      1 => 0008
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   1  ; "hyph_soft_hyphens_only"
+0007    NOT      0   0
+0008 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:474-477
+0001    UGET     0   0      ; T
+0002    UGET     1   1      ; _
+0003    KSTR     2   0      ; "Hyphenation dictionary: %1"
+0004    CALL     1   2   2
+0005    UGET     2   2      ; self
+0006    MOV      3   2
+0007    TGETS    2   2   1  ; "getCurrentDefaultHyphDictLanguage"
+0008    CALL     2   0   2
+0009    CALLMT   0   1
+
+-- BYTECODE -- readertypography.lua:478-484
+0001    UGET     0   0      ; self
+0002    KPRI     1   1
+0003    TSETS    1   0   0  ; "hyph_soft_hyphens_only"
+0004    UGET     0   0      ; self
+0005    KPRI     1   1
+0006    TSETS    1   0   1  ; "hyph_force_algorithmic"
+0007    UGET     0   0      ; self
+0008    TGETS    0   0   2  ; "ui"
+0009    TGETS    0   0   3  ; "document"
+0010    MOV      1   0
+0011    TGETS    0   0   4  ; "setTextHyphenationSoftHyphensOnly"
+0012    UGET     2   0      ; self
+0013    TGETS    2   2   0  ; "hyph_soft_hyphens_only"
+0014    CALL     0   1   3
+0015    UGET     0   0      ; self
+0016    TGETS    0   0   2  ; "ui"
+0017    TGETS    0   0   3  ; "document"
+0018    MOV      1   0
+0019    TGETS    0   0   5  ; "setTextHyphenationForceAlgorithmic"
+0020    UGET     2   0      ; self
+0021    TGETS    2   2   1  ; "hyph_force_algorithmic"
+0022    CALL     0   1   3
+0023    UGET     0   0      ; self
+0024    TGETS    0   0   2  ; "ui"
+0025    MOV      1   0
+0026    TGETS    0   0   6  ; "handleEvent"
+0027    UGET     2   1      ; Event
+0028    MOV      3   2
+0029    TGETS    2   2   7  ; "new"
+0030    KSTR     4   8      ; "UpdatePos"
+0031    CALL     2   0   3
+0032    CALLM    0   1   1
+0033    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:486-489
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "hyphenation"
+0003    ISF          0
+0004    JMP      1 => 0016
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   1  ; "hyph_soft_hyphens_only"
+0007    IST          0
+0008    JMP      0 => 0013
+0009    UGET     0   0      ; self
+0010    TGETS    0   0   2  ; "hyph_force_algorithmic"
+0011    NOT      0   0
+0012    JMP      1 => 0016
+0013 => KPRI     0   1
+0014    JMP      1 => 0016
+0015    KPRI     0   2
+0016 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:490-492
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "hyphenation"
+0003    RET1     0   2
+
+-- BYTECODE -- readertypography.lua:496-502
+0001    UGET     0   0      ; self
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "hyph_force_algorithmic"
+0004    NOT      1   1
+0005    TSETS    1   0   0  ; "hyph_force_algorithmic"
+0006    UGET     0   0      ; self
+0007    KPRI     1   1
+0008    TSETS    1   0   1  ; "hyph_soft_hyphens_only"
+0009    UGET     0   0      ; self
+0010    TGETS    0   0   2  ; "ui"
+0011    TGETS    0   0   3  ; "document"
+0012    MOV      1   0
+0013    TGETS    0   0   4  ; "setTextHyphenationSoftHyphensOnly"
+0014    UGET     2   0      ; self
+0015    TGETS    2   2   1  ; "hyph_soft_hyphens_only"
+0016    CALL     0   1   3
+0017    UGET     0   0      ; self
+0018    TGETS    0   0   2  ; "ui"
+0019    TGETS    0   0   3  ; "document"
+0020    MOV      1   0
+0021    TGETS    0   0   5  ; "setTextHyphenationForceAlgorithmic"
+0022    UGET     2   0      ; self
+0023    TGETS    2   2   0  ; "hyph_force_algorithmic"
+0024    CALL     0   1   3
+0025    UGET     0   0      ; self
+0026    TGETS    0   0   2  ; "ui"
+0027    MOV      1   0
+0028    TGETS    0   0   6  ; "handleEvent"
+0029    UGET     2   1      ; Event
+0030    MOV      3   2
+0031    TGETS    2   2   7  ; "new"
+0032    KSTR     4   8      ; "UpdatePos"
+0033    CALL     2   0   3
+0034    CALLM    0   1   1
+0035    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:508-510
+0001    UGET     0   0      ; hyph_force_algorithmic
+0002    ISF          0
+0003    JMP      1 => 0009
+0004    UGET     0   1      ; _
+0005    KSTR     1   0      ; "Disable"
+0006    CALL     0   2   2
+0007    IST          0
+0008    JMP      1 => 0012
+0009 => UGET     0   1      ; _
+0010    KSTR     1   1      ; "Disable (★)"
+0011    CALL     0   2   2
+0012 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:511-513
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "hyph_force_algorithmic"
+0005    KPRI     3   1
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:514-516
+0001    UGET     0   0      ; hyph_force_algorithmic
+0002    ISF          0
+0003    JMP      1 => 0009
+0004    UGET     0   1      ; _
+0005    KSTR     1   0      ; "Enable (★)"
+0006    CALL     0   2   2
+0007    IST          0
+0008    JMP      1 => 0012
+0009 => UGET     0   1      ; _
+0010    KSTR     1   1      ; "Enable"
+0011    CALL     0   2   2
+0012 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:517-519
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "hyph_force_algorithmic"
+0005    KPRI     3   2
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:503-521
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "hyph_force_algorithmic"
+0005    CALL     0   2   3
+0006    UGET     1   0      ; UIManager
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "show"
+0009    UGET     3   1      ; MultiConfirmBox
+0010    MOV      4   3
+0011    TGETS    3   3   4  ; "new"
+0012    TDUP     5   7
+0013    ISF          0
+0014    JMP      6 => 0020
+0015    UGET     6   2      ; _
+0016    KSTR     7   5      ; "Would you like to enable or disable algo"~
+0017    CALL     6   2   2
+0018    IST          6
+0019    JMP      7 => 0023
+0020 => UGET     6   2      ; _
+0021    KSTR     7   6      ; "Would you like to enable or disable algo"~
+0022    CALL     6   2   2
+0023 => TSETS    6   5   8  ; "text"
+0024    FNEW     6   9      ; readertypography.lua:508
+0025    TSETS    6   5  10  ; "choice1_text_func"
+0026    FNEW     6  11      ; readertypography.lua:511
+0027    TSETS    6   5  12  ; "choice1_callback"
+0028    FNEW     6  13      ; readertypography.lua:514
+0029    TSETS    6   5  14  ; "choice2_text_func"
+0030    FNEW     6  15      ; readertypography.lua:517
+0031    TSETS    6   5  16  ; "choice2_callback"
+0032    CALL     3   0   3
+0033    CALLM    1   1   1
+0034    UCLO     0 => 0035
+0035 => RET0     0   1
+
+-- BYTECODE -- readertypography.lua:522-526
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "hyphenation"
+0003    ISF          0
+0004    JMP      1 => 0015
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   1  ; "hyph_soft_hyphens_only"
+0007    IST          0
+0008    JMP      0 => 0012
+0009    UGET     0   0      ; self
+0010    TGETS    0   0   2  ; "hyph_force_algorithmic"
+0011    JMP      1 => 0015
+0012 => KPRI     0   1
+0013    JMP      1 => 0015
+0014    KPRI     0   2
+0015 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:527-529
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "hyphenation"
+0003    RET1     0   2
+
+-- BYTECODE -- readertypography.lua:533-539
+0001    UGET     0   0      ; self
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "hyph_soft_hyphens_only"
+0004    NOT      1   1
+0005    TSETS    1   0   0  ; "hyph_soft_hyphens_only"
+0006    UGET     0   0      ; self
+0007    KPRI     1   1
+0008    TSETS    1   0   1  ; "hyph_force_algorithmic"
+0009    UGET     0   0      ; self
+0010    TGETS    0   0   2  ; "ui"
+0011    TGETS    0   0   3  ; "document"
+0012    MOV      1   0
+0013    TGETS    0   0   4  ; "setTextHyphenationSoftHyphensOnly"
+0014    UGET     2   0      ; self
+0015    TGETS    2   2   0  ; "hyph_soft_hyphens_only"
+0016    CALL     0   1   3
+0017    UGET     0   0      ; self
+0018    TGETS    0   0   2  ; "ui"
+0019    TGETS    0   0   3  ; "document"
+0020    MOV      1   0
+0021    TGETS    0   0   5  ; "setTextHyphenationForceAlgorithmic"
+0022    UGET     2   0      ; self
+0023    TGETS    2   2   1  ; "hyph_force_algorithmic"
+0024    CALL     0   1   3
+0025    UGET     0   0      ; self
+0026    TGETS    0   0   2  ; "ui"
+0027    MOV      1   0
+0028    TGETS    0   0   6  ; "handleEvent"
+0029    UGET     2   1      ; Event
+0030    MOV      3   2
+0031    TGETS    2   2   7  ; "new"
+0032    KSTR     4   8      ; "UpdatePos"
+0033    CALL     2   0   3
+0034    CALLM    0   1   1
+0035    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:545-547
+0001    UGET     0   0      ; hyph_soft_hyphens_only
+0002    ISF          0
+0003    JMP      1 => 0009
+0004    UGET     0   1      ; _
+0005    KSTR     1   0      ; "Disable"
+0006    CALL     0   2   2
+0007    IST          0
+0008    JMP      1 => 0012
+0009 => UGET     0   1      ; _
+0010    KSTR     1   1      ; "Disable (★)"
+0011    CALL     0   2   2
+0012 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:548-550
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "hyph_soft_hyphens_only"
+0005    KPRI     3   1
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:551-553
+0001    UGET     0   0      ; hyph_soft_hyphens_only
+0002    ISF          0
+0003    JMP      1 => 0009
+0004    UGET     0   1      ; _
+0005    KSTR     1   0      ; "Enable (★)"
+0006    CALL     0   2   2
+0007    IST          0
+0008    JMP      1 => 0012
+0009 => UGET     0   1      ; _
+0010    KSTR     1   1      ; "Enable"
+0011    CALL     0   2   2
+0012 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:554-556
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "hyph_soft_hyphens_only"
+0005    KPRI     3   2
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:540-558
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "hyph_soft_hyphens_only"
+0005    CALL     0   2   3
+0006    UGET     1   0      ; UIManager
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "show"
+0009    UGET     3   1      ; MultiConfirmBox
+0010    MOV      4   3
+0011    TGETS    3   3   4  ; "new"
+0012    TDUP     5   7
+0013    ISF          0
+0014    JMP      6 => 0020
+0015    UGET     6   2      ; _
+0016    KSTR     7   5      ; "Would you like to enable or disable hyph"~
+0017    CALL     6   2   2
+0018    IST          6
+0019    JMP      7 => 0023
+0020 => UGET     6   2      ; _
+0021    KSTR     7   6      ; "Would you like to enable or disable hyph"~
+0022    CALL     6   2   2
+0023 => TSETS    6   5   8  ; "text"
+0024    FNEW     6   9      ; readertypography.lua:545
+0025    TSETS    6   5  10  ; "choice1_text_func"
+0026    FNEW     6  11      ; readertypography.lua:548
+0027    TSETS    6   5  12  ; "choice1_callback"
+0028    FNEW     6  13      ; readertypography.lua:551
+0029    TSETS    6   5  14  ; "choice2_text_func"
+0030    FNEW     6  15      ; readertypography.lua:554
+0031    TSETS    6   5  16  ; "choice2_callback"
+0032    CALL     3   0   3
+0033    CALLM    1   1   1
+0034    UCLO     0 => 0035
+0035 => RET0     0   1
+
+-- BYTECODE -- readertypography.lua:559-561
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "hyphenation"
+0003    ISF          0
+0004    JMP      1 => 0007
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   1  ; "hyph_soft_hyphens_only"
+0007 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:562-564
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "hyphenation"
+0003    RET1     0   2
+
+-- BYTECODE -- readertypography.lua:568-582
+0001    KPRI     0   0
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "hyphenation"
+0004    IST          1
+0005    JMP      1 => 0011
+0006    UGET     1   1      ; _
+0007    KSTR     2   1      ; "disabled"
+0008    CALL     1   2   2
+0009    MOV      0   1
+0010    JMP      1 => 0034
+0011 => UGET     1   0      ; self
+0012    TGETS    1   1   2  ; "hyph_soft_hyphens_only"
+0013    ISF          1
+0014    JMP      2 => 0020
+0015    UGET     1   1      ; _
+0016    KSTR     2   3      ; "soft-hyphens only"
+0017    CALL     1   2   2
+0018    MOV      0   1
+0019    JMP      1 => 0034
+0020 => UGET     1   0      ; self
+0021    TGETS    1   1   4  ; "hyph_force_algorithmic"
+0022    ISF          1
+0023    JMP      2 => 0029
+0024    UGET     1   1      ; _
+0025    KSTR     2   5      ; "algorithmic"
+0026    CALL     1   2   2
+0027    MOV      0   1
+0028    JMP      1 => 0034
+0029 => UGET     1   0      ; self
+0030    MOV      2   1
+0031    TGETS    1   1   6  ; "getCurrentDefaultHyphDictLanguage"
+0032    CALL     1   2   2
+0033    MOV      0   1
+0034 => UGET     1   2      ; T
+0035    UGET     2   1      ; _
+0036    KSTR     3   7      ; "Hyphenation: %1"
+0037    CALL     2   2   2
+0038    MOV      3   0
+0039    CALLT    1   3
+
+-- BYTECODE -- readertypography.lua:113-587
+0001    TNEW     1   0
+0002    TSETS    1   0   0  ; "menu_table"
+0003    TNEW     1   0
+0004    TSETS    1   0   1  ; "language_submenu"
+0005    KPRI     1   0
+0006    TSETS    1   0   2  ; "book_lang_tag"
+0007    KPRI     1   0
+0008    TSETS    1   0   3  ; "text_lang_tag"
+0009    KPRI     1   2
+0010    TSETS    1   0   4  ; "text_lang_embedded_langs"
+0011    KPRI     1   2
+0012    TSETS    1   0   5  ; "hyphenation"
+0013    KPRI     1   1
+0014    TSETS    1   0   6  ; "hyph_trust_soft_hyphens"
+0015    KPRI     1   1
+0016    TSETS    1   0   7  ; "hyph_soft_hyphens_only"
+0017    KPRI     1   1
+0018    TSETS    1   0   8  ; "hyph_force_algorithmic"
+0019    GGET     1   9      ; "G_reader_settings"
+0020    MOV      2   1
+0021    TGETS    1   1  10  ; "readSetting"
+0022    KSTR     3  11      ; "text_lang_default"
+0023    CALL     1   2   3
+0024    IST          1
+0025    JMP      1 => 0106
+0026    GGET     1   9      ; "G_reader_settings"
+0027    MOV      2   1
+0028    TGETS    1   1  10  ; "readSetting"
+0029    KSTR     3  12      ; "text_lang_fallback"
+0030    CALL     1   2   3
+0031    IST          1
+0032    JMP      1 => 0106
+0033    KPRI     1   1
+0034    GGET     2   9      ; "G_reader_settings"
+0035    MOV      3   2
+0036    TGETS    2   2  10  ; "readSetting"
+0037    KSTR     4  13      ; "hyph_alg_default"
+0038    CALL     2   2   3
+0039    ISF          2
+0040    JMP      3 => 0078
+0041    UGET     3   0      ; HYPH_DICT_NAME_TO_LANG_NAME_TAG
+0042    TGETV    3   3   2
+0043    ISF          3
+0044    JMP      4 => 0078
+0045    GGET     4   9      ; "G_reader_settings"
+0046    MOV      5   4
+0047    TGETS    4   4  14  ; "saveSetting"
+0048    KSTR     6  11      ; "text_lang_default"
+0049    TGETB    7   3   2
+0050    CALL     4   1   4
+0051    KPRI     1   2
+0052    ISNES    2  15      ; "@none"
+0053    JMP      4 => 0061
+0054    GGET     4   9      ; "G_reader_settings"
+0055    MOV      5   4
+0056    TGETS    4   4  14  ; "saveSetting"
+0057    KSTR     6   5      ; "hyphenation"
+0058    KPRI     7   1
+0059    CALL     4   1   4
+0060    JMP      4 => 0078
+0061 => ISNES    2  16      ; "@softhyphens"
+0062    JMP      4 => 0070
+0063    GGET     4   9      ; "G_reader_settings"
+0064    MOV      5   4
+0065    TGETS    4   4  14  ; "saveSetting"
+0066    KSTR     6   7      ; "hyph_soft_hyphens_only"
+0067    KPRI     7   2
+0068    CALL     4   1   4
+0069    JMP      4 => 0078
+0070 => ISNES    2  17      ; "@algorithm"
+0071    JMP      4 => 0078
+0072    GGET     4   9      ; "G_reader_settings"
+0073    MOV      5   4
+0074    TGETS    4   4  14  ; "saveSetting"
+0075    KSTR     6   8      ; "hyph_force_algorithmic"
+0076    KPRI     7   2
+0077    CALL     4   1   4
+0078 => GGET     3   9      ; "G_reader_settings"
+0079    MOV      4   3
+0080    TGETS    3   3  10  ; "readSetting"
+0081    KSTR     5  18      ; "hyph_alg_fallback"
+0082    CALL     3   2   3
+0083    IST          1
+0084    JMP      4 => 0098
+0085    ISF          3
+0086    JMP      4 => 0098
+0087    UGET     4   0      ; HYPH_DICT_NAME_TO_LANG_NAME_TAG
+0088    TGETV    4   4   3
+0089    ISF          4
+0090    JMP      5 => 0098
+0091    GGET     5   9      ; "G_reader_settings"
+0092    MOV      6   5
+0093    TGETS    5   5  14  ; "saveSetting"
+0094    KSTR     7  12      ; "text_lang_fallback"
+0095    TGETB    8   4   2
+0096    CALL     5   1   4
+0097    KPRI     1   2
+0098 => IST          1
+0099    JMP      4 => 0106
+0100    GGET     4   9      ; "G_reader_settings"
+0101    MOV      5   4
+0102    TGETS    4   4  14  ; "saveSetting"
+0103    KSTR     6  12      ; "text_lang_fallback"
+0104    UGET     7   1      ; DEFAULT_LANG_TAG
+0105    CALL     4   1   4
+0106 => UGET     1   2      ; _
+0107    KSTR     2  19      ; "Some languages have specific typographic"~
+0108    CALL     1   2   2
+0109    GGET     2  20      ; "table"
+0110    TGETS    2   2  21  ; "insert"
+0111    TGETS    3   0   0  ; "menu_table"
+0112    TDUP     4  23
+0113    UGET     5   2      ; _
+0114    KSTR     6  22      ; "About typography rules"
+0115    CALL     5   2   2
+0116    TSETS    5   4  24  ; "text"
+0117    FNEW     5  25      ; readertypography.lua:176
+0118    TSETS    5   4  26  ; "callback"
+0119    FNEW     5  27      ; readertypography.lua:181
+0120    TSETS    5   4  28  ; "hold_callback"
+0121    CALL     2   1   3
+0122    GGET     2  29      ; "ipairs"
+0123    UGET     3   7      ; LANGUAGES
+0124    CALL     2   4   2
+0125    JMP      5 => 0143
+0126 => GGET     7  30      ; "unpack"
+0127    MOV      8   6
+0128    CALL     7   5   2
+0129    GGET    11  20      ; "table"
+0130    TGETS   11  11  21  ; "insert"
+0131    TGETS   12   0   1  ; "language_submenu"
+0132    TDUP    13  32
+0133    FNEW    14  31      ; readertypography.lua:245
+0134    TSETS   14  13  33  ; "text_func"
+0135    FNEW    14  34      ; readertypography.lua:267
+0136    TSETS   14  13  26  ; "callback"
+0137    FNEW    14  35      ; readertypography.lua:275
+0138    TSETS   14  13  28  ; "hold_callback"
+0139    FNEW    14  36      ; readertypography.lua:297
+0140    TSETS   14  13  37  ; "checked_func"
+0141    CALL    11   1   3
+0142    UCLO     7 => 0143
+0143 => ITERC    5   3   3
+0144    ITERL    5 => 0126
+0145    TGETS    2   0   1  ; "language_submenu"
+0146    KSHORT   3   5
+0147    TSETS    3   2  38  ; "max_per_page"
+0148    GGET     2  20      ; "table"
+0149    TGETS    2   2  21  ; "insert"
+0150    TGETS    3   0   0  ; "menu_table"
+0151    TDUP     4  40
+0152    FNEW     5  39      ; readertypography.lua:305
+0153    TSETS    5   4  33  ; "text_func"
+0154    TGETS    5   0   1  ; "language_submenu"
+0155    TSETS    5   4  41  ; "sub_item_table"
+0156    CALL     2   1   3
+0157    GGET     2  20      ; "table"
+0158    TGETS    2   2  21  ; "insert"
+0159    TGETS    3   0   0  ; "menu_table"
+0160    TDUP     4  43
+0161    UGET     5   2      ; _
+0162    KSTR     6  42      ; "Respect embedded lang tags"
+0163    CALL     5   2   2
+0164    TSETS    5   4  24  ; "text"
+0165    FNEW     5  44      ; readertypography.lua:314
+0166    TSETS    5   4  26  ; "callback"
+0167    FNEW     5  45      ; readertypography.lua:319
+0168    TSETS    5   4  28  ; "hold_callback"
+0169    FNEW     5  46      ; readertypography.lua:338
+0170    TSETS    5   4  37  ; "checked_func"
+0171    CALL     2   1   3
+0172    TNEW     2   0
+0173    GGET     3  20      ; "table"
+0174    TGETS    3   3  21  ; "insert"
+0175    MOV      4   2
+0176    TDUP     5  48
+0177    UGET     6   2      ; _
+0178    KSTR     7  47      ; "Enable hyphenation"
+0179    CALL     6   2   2
+0180    TSETS    6   5  24  ; "text"
+0181    FNEW     6  49      ; readertypography.lua:347
+0182    TSETS    6   5  26  ; "callback"
+0183    FNEW     6  50      ; readertypography.lua:352
+0184    TSETS    6   5  28  ; "hold_callback"
+0185    FNEW     6  51      ; readertypography.lua:371
+0186    TSETS    6   5  37  ; "checked_func"
+0187    CALL     3   1   3
+0188    GGET     3  20      ; "table"
+0189    TGETS    3   3  21  ; "insert"
+0190    MOV      4   2
+0191    TDUP     5  53
+0192    FNEW     6  52      ; readertypography.lua:376
+0193    TSETS    6   5  33  ; "text_func"
+0194    FNEW     6  54      ; readertypography.lua:388
+0195    TSETS    6   5  26  ; "callback"
+0196    FNEW     6  55      ; readertypography.lua:435
+0197    TSETS    6   5  56  ; "enabled_func"
+0198    CALL     3   1   3
+0199    GGET     3  20      ; "table"
+0200    TGETS    3   3  21  ; "insert"
+0201    MOV      4   2
+0202    TDUP     5  58
+0203    UGET     6   2      ; _
+0204    KSTR     7  57      ; "Trust soft hyphens"
+0205    CALL     6   2   2
+0206    TSETS    6   5  24  ; "text"
+0207    FNEW     6  59      ; readertypography.lua:441
+0208    TSETS    6   5  26  ; "callback"
+0209    FNEW     6  60      ; readertypography.lua:446
+0210    TSETS    6   5  28  ; "hold_callback"
+0211    FNEW     6  61      ; readertypography.lua:465
+0212    TSETS    6   5  37  ; "checked_func"
+0213    FNEW     6  62      ; readertypography.lua:468
+0214    TSETS    6   5  56  ; "enabled_func"
+0215    CALL     3   1   3
+0216    GGET     3  20      ; "table"
+0217    TGETS    3   3  21  ; "insert"
+0218    MOV      4   2
+0219    TDUP     5  64
+0220    FNEW     6  63      ; readertypography.lua:474
+0221    TSETS    6   5  33  ; "text_func"
+0222    FNEW     6  65      ; readertypography.lua:478
+0223    TSETS    6   5  26  ; "callback"
+0224    FNEW     6  66      ; readertypography.lua:486
+0225    TSETS    6   5  37  ; "checked_func"
+0226    FNEW     6  67      ; readertypography.lua:490
+0227    TSETS    6   5  56  ; "enabled_func"
+0228    CALL     3   1   3
+0229    GGET     3  20      ; "table"
+0230    TGETS    3   3  21  ; "insert"
+0231    MOV      4   2
+0232    TDUP     5  69
+0233    UGET     6   2      ; _
+0234    KSTR     7  68      ; "Algorithmic hyphenation"
+0235    CALL     6   2   2
+0236    TSETS    6   5  24  ; "text"
+0237    FNEW     6  70      ; readertypography.lua:496
+0238    TSETS    6   5  26  ; "callback"
+0239    FNEW     6  71      ; readertypography.lua:503
+0240    TSETS    6   5  28  ; "hold_callback"
+0241    FNEW     6  72      ; readertypography.lua:522
+0242    TSETS    6   5  37  ; "checked_func"
+0243    FNEW     6  73      ; readertypography.lua:527
+0244    TSETS    6   5  56  ; "enabled_func"
+0245    CALL     3   1   3
+0246    GGET     3  20      ; "table"
+0247    TGETS    3   3  21  ; "insert"
+0248    MOV      4   2
+0249    TDUP     5  75
+0250    UGET     6   2      ; _
+0251    KSTR     7  74      ; "Soft-hyphens only"
+0252    CALL     6   2   2
+0253    TSETS    6   5  24  ; "text"
+0254    FNEW     6  76      ; readertypography.lua:533
+0255    TSETS    6   5  26  ; "callback"
+0256    FNEW     6  77      ; readertypography.lua:540
+0257    TSETS    6   5  28  ; "hold_callback"
+0258    FNEW     6  78      ; readertypography.lua:559
+0259    TSETS    6   5  37  ; "checked_func"
+0260    FNEW     6  79      ; readertypography.lua:562
+0261    TSETS    6   5  56  ; "enabled_func"
+0262    CALL     3   1   3
+0263    GGET     3  20      ; "table"
+0264    TGETS    3   3  21  ; "insert"
+0265    TGETS    4   0   0  ; "menu_table"
+0266    TDUP     5  81
+0267    FNEW     6  80      ; readertypography.lua:568
+0268    TSETS    6   5  33  ; "text_func"
+0269    TSETS    2   5  41  ; "sub_item_table"
+0270    CALL     3   1   3
+0271    TGETS    3   0  82  ; "ui"
+0272    TGETS    3   3  83  ; "menu"
+0273    MOV      4   3
+0274    TGETS    3   3  84  ; "registerToMainMenu"
+0275    MOV      5   0
+0276    CALL     3   1   3
+0277    UCLO     0 => 0278
+0278 => RET0     0   1
+
+-- BYTECODE -- readertypography.lua:593-596
+0001    UGET     0   0      ; LANG_TAG_TO_LANG_NAME
+0002    UGET     1   1      ; self
+0003    TGETS    1   1   0  ; "text_lang_tag"
+0004    TGETV    0   0   1
+0005    IST          0
+0006    JMP      1 => 0009
+0007    UGET     0   1      ; self
+0008    TGETS    0   0   0  ; "text_lang_tag"
+0009 => UGET     1   2      ; T
+0010    UGET     2   3      ; _
+0011    KSTR     3   1      ; "Typography rules: %1"
+0012    CALL     2   2   2
+0013    MOV      3   0
+0014    CALLT    1   3
+
+-- BYTECODE -- readertypography.lua:589-599
+0001    TGETS    2   0   0  ; "menu_table"
+0002    KSHORT   3   7
+0003    TSETS    3   2   1  ; "max_per_page"
+0004    TDUP     2   4
+0005    FNEW     3   3      ; readertypography.lua:593
+0006    TSETS    3   2   5  ; "text_func"
+0007    TGETS    3   0   0  ; "menu_table"
+0008    TSETS    3   2   6  ; "sub_item_table"
+0009    TSETS    2   1   2  ; "typography"
+0010    UCLO     0 => 0011
+0011 => RET0     0   1
+
+-- BYTECODE -- readertypography.lua:601-610
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "document"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "getTextMainLangDefaultHyphDictionary"
+0005    CALL     1   2   2
+0006    UGET     2   0      ; HYPH_DICT_NAME_TO_LANG_NAME_TAG
+0007    TGETV    2   2   1
+0008    ISF          2
+0009    JMP      3 => 0012
+0010    TGETB    1   2   1
+0011    JMP      3 => 0018
+0012 => MOV      4   1
+0013    TGETS    3   1   3  ; "gsub"
+0014    KSTR     5   4      ; ".pattern$"
+0015    KSTR     6   5      ; ""
+0016    CALL     3   2   4
+0017    MOV      1   3
+0018 => RET1     1   2
+
+-- BYTECODE -- readertypography.lua:612-628
+0001    KNIL     2   3
+0002    UGET     4   0      ; util
+0003    TGETS    4   4   0  ; "gsplit"
+0004    MOV      5   1
+0005    KSTR     6   1      ; "-"
+0006    KPRI     7   1
+0007    CALL     4   4   4
+0008    JMP      7 => 0035
+0009 => IST          2
+0010    JMP      8 => 0017
+0011    GGET     8   2      ; "string"
+0012    TGETS    8   8   3  ; "lower"
+0013    MOV      9   7
+0014    CALL     8   2   2
+0015    MOV      2   8
+0016    JMP      8 => 0035
+0017 => GGET     8   2      ; "string"
+0018    TGETS    8   8   4  ; "len"
+0019    MOV      9   7
+0020    CALL     8   2   2
+0021    ISNEN    8   0      ; 2
+0022    JMP      8 => 0035
+0023    GGET     8   2      ; "string"
+0024    TGETS    8   8   5  ; "match"
+0025    MOV      9   7
+0026    KSTR    10   6      ; "[^%a]"
+0027    CALL     8   2   3
+0028    IST          8
+0029    JMP      8 => 0035
+0030    GGET     8   2      ; "string"
+0031    TGETS    8   8   7  ; "upper"
+0032    MOV      9   7
+0033    CALL     8   2   2
+0034    MOV      3   8
+0035 => ITERC    7   2   3
+0036    ITERL    7 => 0009
+0037    MOV      4   2
+0038    MOV      5   3
+0039    RET      4   3
+
+-- BYTECODE -- readertypography.lua:630-653
+0001    ISF          1
+0002    JMP      2 => 0005
+0003    ISNES    1   0      ; ""
+0004    JMP      2 => 0007
+0005 => KPRI     2   0
+0006    RET1     2   2
+0007 => UGET     2   0      ; LANG_ALIAS_TO_LANG_TAG
+0008    TGETV    2   2   1
+0009    ISF          2
+0010    JMP      3 => 0013
+0011    UGET     2   0      ; LANG_ALIAS_TO_LANG_TAG
+0012    TGETV    1   2   1
+0013 => RET1     1   2
+
+-- BYTECODE -- readertypography.lua:663-750
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "readSetting"
+0003    KSTR     4   1      ; "text_lang"
+0004    CALL     2   2   3
+0005    IST          2
+0006    JMP      2 => 0049
+0007    MOV      3   1
+0008    TGETS    2   1   0  ; "readSetting"
+0009    KSTR     4   2      ; "hyph_alg"
+0010    CALL     2   2   3
+0011    ISF          2
+0012    JMP      3 => 0049
+0013    MOV      3   1
+0014    TGETS    2   1   0  ; "readSetting"
+0015    KSTR     4   2      ; "hyph_alg"
+0016    CALL     2   2   3
+0017    UGET     3   0      ; HYPH_DICT_NAME_TO_LANG_NAME_TAG
+0018    TGETV    3   3   2
+0019    ISF          3
+0020    JMP      4 => 0049
+0021    MOV      5   1
+0022    TGETS    4   1   3  ; "saveSetting"
+0023    KSTR     6   1      ; "text_lang"
+0024    TGETB    7   3   2
+0025    CALL     4   1   4
+0026    ISNES    2   4      ; "@none"
+0027    JMP      4 => 0034
+0028    MOV      5   1
+0029    TGETS    4   1   3  ; "saveSetting"
+0030    KSTR     6   5      ; "hyphenation"
+0031    KPRI     7   1
+0032    CALL     4   1   4
+0033    JMP      4 => 0049
+0034 => ISNES    2   6      ; "@softhyphens"
+0035    JMP      4 => 0042
+0036    MOV      5   1
+0037    TGETS    4   1   3  ; "saveSetting"
+0038    KSTR     6   7      ; "hyph_soft_hyphens_only"
+0039    KPRI     7   2
+0040    CALL     4   1   4
+0041    JMP      4 => 0049
+0042 => ISNES    2   8      ; "@algorithm"
+0043    JMP      4 => 0049
+0044    MOV      5   1
+0045    TGETS    4   1   3  ; "saveSetting"
+0046    KSTR     6   9      ; "hyph_force_algorithmic"
+0047    KPRI     7   2
+0048    CALL     4   1   4
+0049 => MOV      3   1
+0050    TGETS    2   1   0  ; "readSetting"
+0051    KSTR     4  10      ; "text_lang_embedded_langs"
+0052    CALL     2   2   3
+0053    TSETS    2   0  10  ; "text_lang_embedded_langs"
+0054    TGETS    2   0  10  ; "text_lang_embedded_langs"
+0055    ISNEP    2   0
+0056    JMP      2 => 0063
+0057    GGET     2  11      ; "G_reader_settings"
+0058    MOV      3   2
+0059    TGETS    2   2  12  ; "nilOrTrue"
+0060    KSTR     4  10      ; "text_lang_embedded_langs"
+0061    CALL     2   2   3
+0062    TSETS    2   0  10  ; "text_lang_embedded_langs"
+0063 => TGETS    2   0  13  ; "ui"
+0064    TGETS    2   2  14  ; "document"
+0065    MOV      3   2
+0066    TGETS    2   2  15  ; "setTextEmbeddedLangs"
+0067    TGETS    4   0  10  ; "text_lang_embedded_langs"
+0068    CALL     2   1   3
+0069    MOV      3   1
+0070    TGETS    2   1   0  ; "readSetting"
+0071    KSTR     4   5      ; "hyphenation"
+0072    CALL     2   2   3
+0073    TSETS    2   0   5  ; "hyphenation"
+0074    TGETS    2   0   5  ; "hyphenation"
+0075    ISNEP    2   0
+0076    JMP      2 => 0083
+0077    GGET     2  11      ; "G_reader_settings"
+0078    MOV      3   2
+0079    TGETS    2   2  12  ; "nilOrTrue"
+0080    KSTR     4   5      ; "hyphenation"
+0081    CALL     2   2   3
+0082    TSETS    2   0   5  ; "hyphenation"
+0083 => TGETS    2   0  13  ; "ui"
+0084    TGETS    2   2  14  ; "document"
+0085    MOV      3   2
+0086    TGETS    2   2  16  ; "setTextHyphenation"
+0087    TGETS    4   0   5  ; "hyphenation"
+0088    CALL     2   1   3
+0089    MOV      3   1
+0090    TGETS    2   1   0  ; "readSetting"
+0091    KSTR     4  17      ; "hyph_trust_soft_hyphens"
+0092    CALL     2   2   3
+0093    TSETS    2   0  17  ; "hyph_trust_soft_hyphens"
+0094    TGETS    2   0  17  ; "hyph_trust_soft_hyphens"
+0095    ISNEP    2   0
+0096    JMP      2 => 0103
+0097    GGET     2  11      ; "G_reader_settings"
+0098    MOV      3   2
+0099    TGETS    2   2  18  ; "isTrue"
+0100    KSTR     4  17      ; "hyph_trust_soft_hyphens"
+0101    CALL     2   2   3
+0102    TSETS    2   0  17  ; "hyph_trust_soft_hyphens"
+0103 => TGETS    2   0  13  ; "ui"
+0104    TGETS    2   2  14  ; "document"
+0105    MOV      3   2
+0106    TGETS    2   2  19  ; "setTrustSoftHyphens"
+0107    TGETS    4   0  17  ; "hyph_trust_soft_hyphens"
+0108    CALL     2   1   3
+0109    MOV      3   1
+0110    TGETS    2   1   0  ; "readSetting"
+0111    KSTR     4   7      ; "hyph_soft_hyphens_only"
+0112    CALL     2   2   3
+0113    TSETS    2   0   7  ; "hyph_soft_hyphens_only"
+0114    TGETS    2   0   7  ; "hyph_soft_hyphens_only"
+0115    ISNEP    2   0
+0116    JMP      2 => 0123
+0117    GGET     2  11      ; "G_reader_settings"
+0118    MOV      3   2
+0119    TGETS    2   2  18  ; "isTrue"
+0120    KSTR     4   7      ; "hyph_soft_hyphens_only"
+0121    CALL     2   2   3
+0122    TSETS    2   0   7  ; "hyph_soft_hyphens_only"
+0123 => TGETS    2   0  13  ; "ui"
+0124    TGETS    2   2  14  ; "document"
+0125    MOV      3   2
+0126    TGETS    2   2  20  ; "setTextHyphenationSoftHyphensOnly"
+0127    TGETS    4   0   7  ; "hyph_soft_hyphens_only"
+0128    CALL     2   1   3
+0129    MOV      3   1
+0130    TGETS    2   1   0  ; "readSetting"
+0131    KSTR     4   9      ; "hyph_force_algorithmic"
+0132    CALL     2   2   3
+0133    TSETS    2   0   9  ; "hyph_force_algorithmic"
+0134    TGETS    2   0   9  ; "hyph_force_algorithmic"
+0135    ISNEP    2   0
+0136    JMP      2 => 0143
+0137    GGET     2  11      ; "G_reader_settings"
+0138    MOV      3   2
+0139    TGETS    2   2  18  ; "isTrue"
+0140    KSTR     4   9      ; "hyph_force_algorithmic"
+0141    CALL     2   2   3
+0142    TSETS    2   0   9  ; "hyph_force_algorithmic"
+0143 => TGETS    2   0  13  ; "ui"
+0144    TGETS    2   2  14  ; "document"
+0145    MOV      3   2
+0146    TGETS    2   2  21  ; "setTextHyphenationForceAlgorithmic"
+0147    TGETS    4   0   9  ; "hyph_force_algorithmic"
+0148    CALL     2   1   3
+0149    TGETS    2   0  13  ; "ui"
+0150    TGETS    2   2  14  ; "document"
+0151    MOV      3   2
+0152    TGETS    2   2  22  ; "setHyphLeftHyphenMin"
+0153    GGET     4  11      ; "G_reader_settings"
+0154    MOV      5   4
+0155    TGETS    4   4   0  ; "readSetting"
+0156    KSTR     6  23      ; "hyph_left_hyphen_min"
+0157    CALL     4   2   3
+0158    IST          4
+0159    JMP      5 => 0161
+0160    KSHORT   4   0
+0161 => CALL     2   1   3
+0162    TGETS    2   0  13  ; "ui"
+0163    TGETS    2   2  14  ; "document"
+0164    MOV      3   2
+0165    TGETS    2   2  24  ; "setHyphRightHyphenMin"
+0166    GGET     4  11      ; "G_reader_settings"
+0167    MOV      5   4
+0168    TGETS    4   4   0  ; "readSetting"
+0169    KSTR     6  25      ; "hyph_right_hyphen_min"
+0170    CALL     4   2   3
+0171    IST          4
+0172    JMP      5 => 0174
+0173    KSHORT   4   0
+0174 => CALL     2   1   3
+0175    KPRI     2   1
+0176    TSETS    2   0  26  ; "allow_doc_lang_tag_override"
+0177    MOV      3   1
+0178    TGETS    2   1   0  ; "readSetting"
+0179    KSTR     4   1      ; "text_lang"
+0180    CALL     2   2   3
+0181    TSETS    2   0  27  ; "text_lang_tag"
+0182    TGETS    2   0  27  ; "text_lang_tag"
+0183    ISF          2
+0184    JMP      3 => 0198
+0185    UGET     2   1      ; logger
+0186    TGETS    2   2  28  ; "dbg"
+0187    KSTR     3  29      ; "Typography lang: using"
+0188    TGETS    4   0  27  ; "text_lang_tag"
+0189    KSTR     5  30      ; "from doc settings"
+0190    CALL     2   1   4
+0191    TGETS    2   0  13  ; "ui"
+0192    TGETS    2   2  14  ; "document"
+0193    MOV      3   2
+0194    TGETS    2   2  31  ; "setTextMainLang"
+0195    TGETS    4   0  27  ; "text_lang_tag"
+0196    CALL     2   1   3
+0197    RET0     0   1
+0198 => GGET     2  11      ; "G_reader_settings"
+0199    MOV      3   2
+0200    TGETS    2   2   0  ; "readSetting"
+0201    KSTR     4  32      ; "text_lang_default"
+0202    CALL     2   2   3
+0203    TSETS    2   0  27  ; "text_lang_tag"
+0204    TGETS    2   0  27  ; "text_lang_tag"
+0205    ISF          2
+0206    JMP      3 => 0219
+0207    UGET     2   1      ; logger
+0208    TGETS    2   2  28  ; "dbg"
+0209    KSTR     3  33      ; "Typography lang: using default "
+0210    TGETS    4   0  27  ; "text_lang_tag"
+0211    CALL     2   1   3
+0212    TGETS    2   0  13  ; "ui"
+0213    TGETS    2   2  14  ; "document"
+0214    MOV      3   2
+0215    TGETS    2   2  31  ; "setTextMainLang"
+0216    TGETS    4   0  27  ; "text_lang_tag"
+0217    CALL     2   1   3
+0218    RET0     0   1
+0219 => KPRI     2   2
+0220    TSETS    2   0  26  ; "allow_doc_lang_tag_override"
+0221    GGET     2  11      ; "G_reader_settings"
+0222    MOV      3   2
+0223    TGETS    2   2   0  ; "readSetting"
+0224    KSTR     4  34      ; "text_lang_fallback"
+0225    CALL     2   2   3
+0226    TSETS    2   0  27  ; "text_lang_tag"
+0227    TGETS    2   0  27  ; "text_lang_tag"
+0228    ISF          2
+0229    JMP      3 => 0243
+0230    UGET     2   1      ; logger
+0231    TGETS    2   2  28  ; "dbg"
+0232    KSTR     3  35      ; "Typography lang: using fallback "
+0233    TGETS    4   0  27  ; "text_lang_tag"
+0234    KSTR     5  36      ; ", might be overriden by doc language"
+0235    CALL     2   1   4
+0236    TGETS    2   0  13  ; "ui"
+0237    TGETS    2   2  14  ; "document"
+0238    MOV      3   2
+0239    TGETS    2   2  31  ; "setTextMainLang"
+0240    TGETS    4   0  27  ; "text_lang_tag"
+0241    CALL     2   1   3
+0242    RET0     0   1
+0243 => UGET     2   2      ; DEFAULT_LANG_TAG
+0244    TSETS    2   0  27  ; "text_lang_tag"
+0245    UGET     2   1      ; logger
+0246    TGETS    2   2  28  ; "dbg"
+0247    KSTR     3  37      ; "Typography lang: no lang set, using"
+0248    TGETS    4   0  27  ; "text_lang_tag"
+0249    CALL     2   1   3
+0250    TGETS    2   0  13  ; "ui"
+0251    TGETS    2   2  14  ; "document"
+0252    MOV      3   2
+0253    TGETS    2   2  31  ; "setTextMainLang"
+0254    TGETS    4   0  27  ; "text_lang_tag"
+0255    CALL     2   1   3
+0256    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:763-771
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; InfoMessage
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   5
+0008    UGET     5   2      ; T
+0009    UGET     6   3      ; _
+0010    KSTR     7   2      ; "Changed language for typography rules to"~
+0011    CALL     6   2   2
+0012    UGET     7   4      ; BD
+0013    TGETS    7   7   3  ; "wrap"
+0014    UGET     8   5      ; self
+0015    TGETS    8   8   4  ; "book_lang_tag"
+0016    CALL     7   0   2
+0017    CALLM    5   2   1
+0018    TSETS    5   4   6  ; "text"
+0019    CALL     2   0   3
+0020    CALLM    0   1   1
+0021    UGET     0   5      ; self
+0022    UGET     1   5      ; self
+0023    TGETS    1   1   4  ; "book_lang_tag"
+0024    TSETS    1   0   7  ; "text_lang_tag"
+0025    UGET     0   5      ; self
+0026    TGETS    0   0   8  ; "ui"
+0027    TGETS    0   0   9  ; "doc_settings"
+0028    MOV      1   0
+0029    TGETS    0   0  10  ; "saveSetting"
+0030    KSTR     2  11      ; "text_lang"
+0031    UGET     3   5      ; self
+0032    TGETS    3   3   7  ; "text_lang_tag"
+0033    CALL     0   1   4
+0034    UGET     0   5      ; self
+0035    TGETS    0   0   8  ; "ui"
+0036    TGETS    0   0  12  ; "document"
+0037    MOV      1   0
+0038    TGETS    0   0  13  ; "setTextMainLang"
+0039    UGET     2   5      ; self
+0040    TGETS    2   2   7  ; "text_lang_tag"
+0041    CALL     0   1   3
+0042    UGET     0   5      ; self
+0043    TGETS    0   0   8  ; "ui"
+0044    MOV      1   0
+0045    TGETS    0   0  14  ; "handleEvent"
+0046    UGET     2   6      ; Event
+0047    MOV      3   2
+0048    TGETS    2   2   1  ; "new"
+0049    KSTR     4  15      ; "UpdatePos"
+0050    CALL     2   0   3
+0051    CALLM    0   1   1
+0052    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:772-774
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "book_lang_tag"
+0003    ISNEP    0   0
+0004    JMP      0 => 0007
+0005    KPRI     0   1
+0006    JMP      1 => 0008
+0007 => KPRI     0   2
+0008 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:775-777
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "text_lang_tag"
+0003    UGET     1   0      ; self
+0004    TGETS    1   1   1  ; "book_lang_tag"
+0005    ISEQV    0   1
+0006    JMP      0 => 0009
+0007    KPRI     0   1
+0008    JMP      1 => 0010
+0009 => KPRI     0   2
+0010 => RET1     0   2
+
+-- BYTECODE -- readertypography.lua:752-800
+0001    TGETS    2   0   0  ; "ui"
+0002    TGETS    2   2   1  ; "document"
+0003    MOV      3   2
+0004    TGETS    2   2   2  ; "getProps"
+0005    CALL     2   2   2
+0006    TGETS    2   2   3  ; "language"
+0007    MOV      4   0
+0008    TGETS    3   0   5  ; "fixLangTag"
+0009    MOV      5   2
+0010    CALL     3   2   3
+0011    TSETS    3   0   4  ; "book_lang_tag"
+0012    TGETS    3   0   4  ; "book_lang_tag"
+0013    ISF          3
+0014    JMP      4 => 0023
+0015    UGET     3   0      ; LANG_TAG_TO_LANG_NAME
+0016    TGETS    4   0   4  ; "book_lang_tag"
+0017    TGETV    3   3   4
+0018    ISNEP    3   0
+0019    JMP      3 => 0022
+0020    KPRI     3   1
+0021    JMP      4 => 0023
+0022 => KPRI     3   2
+0023 => GGET     4   6      ; "table"
+0024    TGETS    4   4   7  ; "insert"
+0025    TGETS    5   0   8  ; "language_submenu"
+0026    KSHORT   6   1
+0027    TDUP     7  11
+0028    UGET     8   1      ; T
+0029    UGET     9   2      ; _
+0030    KSTR    10   9      ; "Book language: %1"
+0031    CALL     9   2   2
+0032    TGETS   10   0   4  ; "book_lang_tag"
+0033    IST         10
+0034    JMP     11 => 0038
+0035    UGET    10   2      ; _
+0036    KSTR    11  10      ; "n/a"
+0037    CALL    10   2   2
+0038 => CALL     8   2   3
+0039    TSETS    8   7  12  ; "text"
+0040    FNEW     8  13      ; readertypography.lua:763
+0041    TSETS    8   7  14  ; "callback"
+0042    FNEW     8  15      ; readertypography.lua:772
+0043    TSETS    8   7  16  ; "enabled_func"
+0044    FNEW     8  17      ; readertypography.lua:775
+0045    TSETS    8   7  18  ; "checked_func"
+0046    CALL     4   1   4
+0047    TGETS    4   0  19  ; "allow_doc_lang_tag_override"
+0048    IST          4
+0049    JMP      4 => 0064
+0050    UGET     4   7      ; logger
+0051    TGETS    4   4  20  ; "dbg"
+0052    KSTR     5  21      ; "Typography lang: not overriding"
+0053    TGETS    6   0  22  ; "text_lang_tag"
+0054    KSTR     7  23      ; "with doc language:"
+0055    TGETS    8   0   4  ; "book_lang_tag"
+0056    ISF          8
+0057    JMP      9 => 0061
+0058    TGETS    8   0   4  ; "book_lang_tag"
+0059    IST          8
+0060    JMP      9 => 0062
+0061 => KSTR     8  24      ; "none"
+0062 => CALL     4   1   5
+0063    JMP      4 => 0112
+0064 => TGETS    4   0   4  ; "book_lang_tag"
+0065    IST          4
+0066    JMP      4 => 0073
+0067    UGET     4   7      ; logger
+0068    TGETS    4   4  20  ; "dbg"
+0069    KSTR     5  25      ; "Typography lang: no doc language, keepin"~
+0070    TGETS    6   0  22  ; "text_lang_tag"
+0071    CALL     4   1   3
+0072    JMP      4 => 0112
+0073 => ISF          3
+0074    JMP      4 => 0096
+0075    TGETS    4   0   4  ; "book_lang_tag"
+0076    TGETS    5   0  22  ; "text_lang_tag"
+0077    ISNEV    4   5
+0078    JMP      4 => 0086
+0079    UGET     4   7      ; logger
+0080    TGETS    4   4  20  ; "dbg"
+0081    KSTR     5  26      ; "Typography lang: current"
+0082    TGETS    6   0  22  ; "text_lang_tag"
+0083    KSTR     7  27      ; "is same as doc language"
+0084    CALL     4   1   4
+0085    JMP      4 => 0104
+0086 => UGET     4   7      ; logger
+0087    TGETS    4   4  20  ; "dbg"
+0088    KSTR     5  28      ; "Typography lang: updating for doc langua"~
+0089    MOV      6   2
+0090    KSTR     7  29      ; ":"
+0091    TGETS    8   0  22  ; "text_lang_tag"
+0092    KSTR     9  30      ; "=>"
+0093    TGETS   10   0   4  ; "book_lang_tag"
+0094    CALL     4   1   7
+0095    JMP      4 => 0104
+0096 => UGET     4   7      ; logger
+0097    TGETS    4   4  31  ; "info"
+0098    KSTR     5  28      ; "Typography lang: updating for doc langua"~
+0099    MOV      6   2
+0100    KSTR     7  29      ; ":"
+0101    TGETS    8   0   4  ; "book_lang_tag"
+0102    KSTR     9  32      ; "(not a preset)"
+0103    CALL     4   1   6
+0104 => TGETS    4   0   4  ; "book_lang_tag"
+0105    TSETS    4   0  22  ; "text_lang_tag"
+0106    TGETS    4   0   0  ; "ui"
+0107    TGETS    4   4   1  ; "document"
+0108    MOV      5   4
+0109    TGETS    4   4  33  ; "setTextMainLang"
+0110    TGETS    6   0  22  ; "text_lang_tag"
+0111    CALL     4   1   3
+0112 => UCLO     0 => 0113
+0113 => RET0     0   1
+
+-- BYTECODE -- readertypography.lua:802-809
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "doc_settings"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "saveSetting"
+0005    KSTR     3   3      ; "text_lang"
+0006    TGETS    4   0   4  ; "text_lang_tag"
+0007    CALL     1   1   4
+0008    TGETS    1   0   0  ; "ui"
+0009    TGETS    1   1   1  ; "doc_settings"
+0010    MOV      2   1
+0011    TGETS    1   1   2  ; "saveSetting"
+0012    KSTR     3   5      ; "text_lang_embedded_langs"
+0013    TGETS    4   0   5  ; "text_lang_embedded_langs"
+0014    CALL     1   1   4
+0015    TGETS    1   0   0  ; "ui"
+0016    TGETS    1   1   1  ; "doc_settings"
+0017    MOV      2   1
+0018    TGETS    1   1   2  ; "saveSetting"
+0019    KSTR     3   6      ; "hyphenation"
+0020    TGETS    4   0   6  ; "hyphenation"
+0021    CALL     1   1   4
+0022    TGETS    1   0   0  ; "ui"
+0023    TGETS    1   1   1  ; "doc_settings"
+0024    MOV      2   1
+0025    TGETS    1   1   2  ; "saveSetting"
+0026    KSTR     3   7      ; "hyph_trust_soft_hyphens"
+0027    TGETS    4   0   7  ; "hyph_trust_soft_hyphens"
+0028    CALL     1   1   4
+0029    TGETS    1   0   0  ; "ui"
+0030    TGETS    1   1   1  ; "doc_settings"
+0031    MOV      2   1
+0032    TGETS    1   1   2  ; "saveSetting"
+0033    KSTR     3   8      ; "hyph_soft_hyphens_only"
+0034    TGETS    4   0   8  ; "hyph_soft_hyphens_only"
+0035    CALL     1   1   4
+0036    TGETS    1   0   0  ; "ui"
+0037    TGETS    1   1   1  ; "doc_settings"
+0038    MOV      2   1
+0039    TGETS    1   1   2  ; "saveSetting"
+0040    KSTR     3   9      ; "hyph_force_algorithmic"
+0041    TGETS    4   0   9  ; "hyph_force_algorithmic"
+0042    CALL     1   1   4
+0043    RET0     0   1
+
+-- BYTECODE -- readertypography.lua:0-812
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "device"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/event"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/infomessage"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/container/inputcontainer"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/multiconfirmbox"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/uimanager"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "logger"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "util"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "gettext"
+0030    CALL     9   2   2
+0031    TGETS   10   9  11  ; "pgettext"
+0032    GGET    11   0      ; "require"
+0033    KSTR    12  12      ; "ffi/util"
+0034    CALL    11   2   2
+0035    TGETS   11  11  13  ; "template"
+0036    TGETS   12   1  14  ; "screen"
+0037    TDUP    13  16
+0038    TDUP    14  15
+0039    TSETS   14  13  17  ; "@none"
+0040    TDUP    14  18
+0041    TSETS   14  13  19  ; "@softhyphens"
+0042    TDUP    14  20
+0043    TSETS   14  13  21  ; "@algorithm"
+0044    TDUP    14  23
+0045    MOV     15   9
+0046    KSTR    16  22      ; "Bulgarian"
+0047    CALL    15   2   2
+0048    TSETB   15  14   1
+0049    TSETS   14  13  24  ; "Bulgarian.pattern"
+0050    TDUP    14  26
+0051    MOV     15   9
+0052    KSTR    16  25      ; "Catalan"
+0053    CALL    15   2   2
+0054    TSETB   15  14   1
+0055    TSETS   14  13  27  ; "Catalan.pattern"
+0056    TDUP    14  29
+0057    MOV     15   9
+0058    KSTR    16  28      ; "Czech"
+0059    CALL    15   2   2
+0060    TSETB   15  14   1
+0061    TSETS   14  13  30  ; "Czech.pattern"
+0062    TDUP    14  32
+0063    MOV     15   9
+0064    KSTR    16  31      ; "Danish"
+0065    CALL    15   2   2
+0066    TSETB   15  14   1
+0067    TSETS   14  13  33  ; "Danish.pattern"
+0068    TDUP    14  35
+0069    MOV     15   9
+0070    KSTR    16  34      ; "Dutch"
+0071    CALL    15   2   2
+0072    TSETB   15  14   1
+0073    TSETS   14  13  36  ; "Dutch.pattern"
+0074    TDUP    14  38
+0075    MOV     15   9
+0076    KSTR    16  37      ; "English (UK)"
+0077    CALL    15   2   2
+0078    TSETB   15  14   1
+0079    TSETS   14  13  39  ; "English_GB.pattern"
+0080    TDUP    14  41
+0081    MOV     15   9
+0082    KSTR    16  40      ; "English (US)"
+0083    CALL    15   2   2
+0084    TSETB   15  14   1
+0085    TSETS   14  13  42  ; "English_US.pattern"
+0086    TDUP    14  44
+0087    MOV     15   9
+0088    KSTR    16  43      ; "Finnish"
+0089    CALL    15   2   2
+0090    TSETB   15  14   1
+0091    TSETS   14  13  45  ; "Finnish.pattern"
+0092    TDUP    14  47
+0093    MOV     15   9
+0094    KSTR    16  46      ; "French"
+0095    CALL    15   2   2
+0096    TSETB   15  14   1
+0097    TSETS   14  13  48  ; "French.pattern"
+0098    TDUP    14  50
+0099    MOV     15   9
+0100    KSTR    16  49      ; "Galician"
+0101    CALL    15   2   2
+0102    TSETB   15  14   1
+0103    TSETS   14  13  51  ; "Galician.pattern"
+0104    TDUP    14  53
+0105    MOV     15   9
+0106    KSTR    16  52      ; "German"
+0107    CALL    15   2   2
+0108    TSETB   15  14   1
+0109    TSETS   14  13  54  ; "German.pattern"
+0110    TDUP    14  56
+0111    MOV     15   9
+0112    KSTR    16  55      ; "Greek"
+0113    CALL    15   2   2
+0114    TSETB   15  14   1
+0115    TSETS   14  13  57  ; "Greek.pattern"
+0116    TDUP    14  59
+0117    MOV     15   9
+0118    KSTR    16  58      ; "Hungarian"
+0119    CALL    15   2   2
+0120    TSETB   15  14   1
+0121    TSETS   14  13  60  ; "Hungarian.pattern"
+0122    TDUP    14  62
+0123    MOV     15   9
+0124    KSTR    16  61      ; "Icelandic"
+0125    CALL    15   2   2
+0126    TSETB   15  14   1
+0127    TSETS   14  13  63  ; "Icelandic.pattern"
+0128    TDUP    14  65
+0129    MOV     15   9
+0130    KSTR    16  64      ; "Irish"
+0131    CALL    15   2   2
+0132    TSETB   15  14   1
+0133    TSETS   14  13  66  ; "Irish.pattern"
+0134    TDUP    14  68
+0135    MOV     15   9
+0136    KSTR    16  67      ; "Italian"
+0137    CALL    15   2   2
+0138    TSETB   15  14   1
+0139    TSETS   14  13  69  ; "Italian.pattern"
+0140    TDUP    14  71
+0141    MOV     15   9
+0142    KSTR    16  70      ; "Norwegian"
+0143    CALL    15   2   2
+0144    TSETB   15  14   1
+0145    TSETS   14  13  72  ; "Norwegian.pattern"
+0146    TDUP    14  74
+0147    MOV     15   9
+0148    KSTR    16  73      ; "Polish"
+0149    CALL    15   2   2
+0150    TSETB   15  14   1
+0151    TSETS   14  13  75  ; "Polish.pattern"
+0152    TDUP    14  77
+0153    MOV     15   9
+0154    KSTR    16  76      ; "Portuguese"
+0155    CALL    15   2   2
+0156    TSETB   15  14   1
+0157    TSETS   14  13  78  ; "Portuguese.pattern"
+0158    TDUP    14  80
+0159    MOV     15   9
+0160    KSTR    16  79      ; "Romanian"
+0161    CALL    15   2   2
+0162    TSETB   15  14   1
+0163    TSETS   14  13  81  ; "Roman.pattern"
+0164    TDUP    14  83
+0165    MOV     15   9
+0166    KSTR    16  82      ; "Russian + English (UK)"
+0167    CALL    15   2   2
+0168    TSETB   15  14   1
+0169    TSETS   14  13  84  ; "Russian_EnGB.pattern"
+0170    TDUP    14  86
+0171    MOV     15   9
+0172    KSTR    16  85      ; "Russian + English (US)"
+0173    CALL    15   2   2
+0174    TSETB   15  14   1
+0175    TSETS   14  13  87  ; "Russian_EnUS.pattern"
+0176    TDUP    14  89
+0177    MOV     15   9
+0178    KSTR    16  88      ; "Russian"
+0179    CALL    15   2   2
+0180    TSETB   15  14   1
+0181    TSETS   14  13  90  ; "Russian.pattern"
+0182    TDUP    14  92
+0183    MOV     15   9
+0184    KSTR    16  91      ; "Slovak"
+0185    CALL    15   2   2
+0186    TSETB   15  14   1
+0187    TSETS   14  13  93  ; "Slovak.pattern"
+0188    TDUP    14  95
+0189    MOV     15   9
+0190    KSTR    16  94      ; "Slovenian"
+0191    CALL    15   2   2
+0192    TSETB   15  14   1
+0193    TSETS   14  13  96  ; "Slovenian.pattern"
+0194    TDUP    14  98
+0195    MOV     15   9
+0196    KSTR    16  97      ; "Spanish"
+0197    CALL    15   2   2
+0198    TSETB   15  14   1
+0199    TSETS   14  13  99  ; "Spanish.pattern"
+0200    TDUP    14 101
+0201    MOV     15   9
+0202    KSTR    16 100      ; "Swedish"
+0203    CALL    15   2   2
+0204    TSETB   15  14   1
+0205    TSETS   14  13 102  ; "Swedish.pattern"
+0206    TDUP    14 104
+0207    MOV     15   9
+0208    KSTR    16 103      ; "Turkish"
+0209    CALL    15   2   2
+0210    TSETB   15  14   1
+0211    TSETS   14  13 105  ; "Turkish.pattern"
+0212    TDUP    14 107
+0213    MOV     15   9
+0214    KSTR    16 106      ; "Ukrainian"
+0215    CALL    15   2   2
+0216    TSETB   15  14   1
+0217    TSETS   14  13 108  ; "Ukrain.pattern"
+0218    TNEW    14  34
+0219    TDUP    15 109
+0220    TDUP    16 110
+0221    TSETB   16  15   2
+0222    MOV     16   9
+0223    KSTR    17  22      ; "Bulgarian"
+0224    CALL    16   0   2
+0225    TSETM   16   0      ; 4
+0226    TSETB   15  14   1
+0227    TDUP    15 111
+0228    TDUP    16 112
+0229    TSETB   16  15   2
+0230    MOV     16   9
+0231    KSTR    17  25      ; "Catalan"
+0232    CALL    16   0   2
+0233    TSETM   16   0      ; 4
+0234    TSETB   15  14   2
+0235    TDUP    15 113
+0236    TDUP    16 114
+0237    TSETB   16  15   2
+0238    MOV     16   9
+0239    KSTR    17 115      ; "Chinese (Simplified)"
+0240    CALL    16   0   2
+0241    TSETM   16   0      ; 4
+0242    TSETB   15  14   3
+0243    TDUP    15 116
+0244    TDUP    16 117
+0245    TSETB   16  15   2
+0246    MOV     16   9
+0247    KSTR    17 118      ; "Chinese (Traditional)"
+0248    CALL    16   0   2
+0249    TSETM   16   0      ; 4
+0250    TSETB   15  14   4
+0251    TDUP    15 119
+0252    TDUP    16 120
+0253    TSETB   16  15   2
+0254    MOV     16   9
+0255    KSTR    17  28      ; "Czech"
+0256    CALL    16   0   2
+0257    TSETM   16   0      ; 4
+0258    TSETB   15  14   5
+0259    TDUP    15 121
+0260    TDUP    16 122
+0261    TSETB   16  15   2
+0262    MOV     16   9
+0263    KSTR    17  31      ; "Danish"
+0264    CALL    16   0   2
+0265    TSETM   16   0      ; 4
+0266    TSETB   15  14   6
+0267    TDUP    15 123
+0268    TDUP    16 124
+0269    TSETB   16  15   2
+0270    MOV     16   9
+0271    KSTR    17  34      ; "Dutch"
+0272    CALL    16   0   2
+0273    TSETM   16   0      ; 4
+0274    TSETB   15  14   7
+0275    TDUP    15 125
+0276    TNEW    16   0
+0277    TSETB   16  15   2
+0278    MOV     16   9
+0279    KSTR    17  37      ; "English (UK)"
+0280    CALL    16   0   2
+0281    TSETM   16   0      ; 4
+0282    TSETB   15  14   8
+0283    TDUP    15 126
+0284    TDUP    16 127
+0285    TSETB   16  15   2
+0286    MOV     16   9
+0287    KSTR    17  40      ; "English (US)"
+0288    CALL    16   0   2
+0289    TSETM   16   0      ; 4
+0290    TSETB   15  14   9
+0291    TDUP    15 128
+0292    TDUP    16 129
+0293    TSETB   16  15   2
+0294    MOV     16   9
+0295    KSTR    17  43      ; "Finnish"
+0296    CALL    16   0   2
+0297    TSETM   16   0      ; 4
+0298    TSETB   15  14  10
+0299    TDUP    15 130
+0300    TDUP    16 131
+0301    TSETB   16  15   2
+0302    MOV     16   9
+0303    KSTR    17  46      ; "French"
+0304    CALL    16   0   2
+0305    TSETM   16   0      ; 4
+0306    TSETB   15  14  11
+0307    TDUP    15 132
+0308    TDUP    16 133
+0309    TSETB   16  15   2
+0310    MOV     16   9
+0311    KSTR    17  49      ; "Galician"
+0312    CALL    16   0   2
+0313    TSETM   16   0      ; 4
+0314    TSETB   15  14  12
+0315    TDUP    15 134
+0316    TDUP    16 135
+0317    TSETB   16  15   2
+0318    MOV     16   9
+0319    KSTR    17  52      ; "German"
+0320    CALL    16   0   2
+0321    TSETM   16   0      ; 4
+0322    TSETB   15  14  13
+0323    TDUP    15 136
+0324    TDUP    16 137
+0325    TSETB   16  15   2
+0326    MOV     16   9
+0327    KSTR    17  55      ; "Greek"
+0328    CALL    16   0   2
+0329    TSETM   16   0      ; 4
+0330    TSETB   15  14  14
+0331    TDUP    15 138
+0332    TDUP    16 139
+0333    TSETB   16  15   2
+0334    MOV     16   9
+0335    KSTR    17  58      ; "Hungarian"
+0336    CALL    16   0   2
+0337    TSETM   16   0      ; 4
+0338    TSETB   15  14  15
+0339    TDUP    15 140
+0340    TDUP    16 141
+0341    TSETB   16  15   2
+0342    MOV     16   9
+0343    KSTR    17  61      ; "Icelandic"
+0344    CALL    16   0   2
+0345    TSETM   16   0      ; 4
+0346    TSETB   15  14  16
+0347    TDUP    15 142
+0348    TDUP    16 143
+0349    TSETB   16  15   2
+0350    MOV     16   9
+0351    KSTR    17  64      ; "Irish"
+0352    CALL    16   0   2
+0353    TSETM   16   0      ; 4
+0354    TSETB   15  14  17
+0355    TDUP    15 144
+0356    TDUP    16 145
+0357    TSETB   16  15   2
+0358    MOV     16   9
+0359    KSTR    17  67      ; "Italian"
+0360    CALL    16   0   2
+0361    TSETM   16   0      ; 4
+0362    TSETB   15  14  18
+0363    TDUP    15 146
+0364    TNEW    16   0
+0365    TSETB   16  15   2
+0366    MOV     16   9
+0367    KSTR    17 147      ; "Japanese"
+0368    CALL    16   0   2
+0369    TSETM   16   0      ; 4
+0370    TSETB   15  14  19
+0371    TDUP    15 148
+0372    TNEW    16   0
+0373    TSETB   16  15   2
+0374    MOV     16   9
+0375    KSTR    17 149      ; "Korean"
+0376    CALL    16   0   2
+0377    TSETM   16   0      ; 4
+0378    TSETB   15  14  20
+0379    TDUP    15 150
+0380    TDUP    16 151
+0381    TSETB   16  15   2
+0382    MOV     16   9
+0383    KSTR    17  70      ; "Norwegian"
+0384    CALL    16   0   2
+0385    TSETM   16   0      ; 4
+0386    TSETB   15  14  21
+0387    TDUP    15 152
+0388    TDUP    16 153
+0389    TSETB   16  15   2
+0390    MOV     16   9
+0391    KSTR    17  73      ; "Polish"
+0392    CALL    16   0   2
+0393    TSETM   16   0      ; 4
+0394    TSETB   15  14  22
+0395    TDUP    15 154
+0396    TDUP    16 155
+0397    TSETB   16  15   2
+0398    MOV     16   9
+0399    KSTR    17  76      ; "Portuguese"
+0400    CALL    16   0   2
+0401    TSETM   16   0      ; 4
+0402    TSETB   15  14  23
+0403    TDUP    15 156
+0404    TDUP    16 157
+0405    TSETB   16  15   2
+0406    MOV     16   9
+0407    KSTR    17  79      ; "Romanian"
+0408    CALL    16   0   2
+0409    TSETM   16   0      ; 4
+0410    TSETB   15  14  24
+0411    TDUP    15 158
+0412    TNEW    16   0
+0413    TSETB   16  15   2
+0414    MOV     16   9
+0415    KSTR    17  82      ; "Russian + English (UK)"
+0416    CALL    16   0   2
+0417    TSETM   16   0      ; 4
+0418    TSETB   15  14  25
+0419    TDUP    15 159
+0420    TNEW    16   0
+0421    TSETB   16  15   2
+0422    MOV     16   9
+0423    KSTR    17  85      ; "Russian + English (US)"
+0424    CALL    16   0   2
+0425    TSETM   16   0      ; 4
+0426    TSETB   15  14  26
+0427    TDUP    15 160
+0428    TDUP    16 161
+0429    TSETB   16  15   2
+0430    MOV     16   9
+0431    KSTR    17  88      ; "Russian"
+0432    CALL    16   0   2
+0433    TSETM   16   0      ; 4
+0434    TSETB   15  14  27
+0435    TDUP    15 162
+0436    TDUP    16 163
+0437    TSETB   16  15   2
+0438    MOV     16   9
+0439    KSTR    17  91      ; "Slovak"
+0440    CALL    16   0   2
+0441    TSETM   16   0      ; 4
+0442    TSETB   15  14  28
+0443    TDUP    15 164
+0444    TDUP    16 165
+0445    TSETB   16  15   2
+0446    MOV     16   9
+0447    KSTR    17  94      ; "Slovenian"
+0448    CALL    16   0   2
+0449    TSETM   16   0      ; 4
+0450    TSETB   15  14  29
+0451    TDUP    15 166
+0452    TDUP    16 167
+0453    TSETB   16  15   2
+0454    MOV     16   9
+0455    KSTR    17  97      ; "Spanish"
+0456    CALL    16   0   2
+0457    TSETM   16   0      ; 4
+0458    TSETB   15  14  30
+0459    TDUP    15 168
+0460    TDUP    16 169
+0461    TSETB   16  15   2
+0462    MOV     16   9
+0463    KSTR    17 100      ; "Swedish"
+0464    CALL    16   0   2
+0465    TSETM   16   0      ; 4
+0466    TSETB   15  14  31
+0467    TDUP    15 170
+0468    TDUP    16 171
+0469    TSETB   16  15   2
+0470    MOV     16   9
+0471    KSTR    17 103      ; "Turkish"
+0472    CALL    16   0   2
+0473    TSETM   16   0      ; 4
+0474    TSETB   15  14  32
+0475    TDUP    15 172
+0476    TDUP    16 173
+0477    TSETB   16  15   2
+0478    MOV     16   9
+0479    KSTR    17 106      ; "Ukrainian"
+0480    CALL    16   0   2
+0481    TSETM   16   0      ; 4
+0482    TSETB   15  14  33
+0483    KSTR    15 174      ; "en-US"
+0484    TNEW    16   0
+0485    TNEW    17   0
+0486    GGET    18 175      ; "ipairs"
+0487    MOV     19  14
+0488    CALL    18   4   2
+0489    JMP     21 => 0507
+0490 => GGET    23 176      ; "unpack"
+0491    MOV     24  22
+0492    CALL    23   5   2
+0493    TSETV   26  16  23
+0494    ISF         24
+0495    JMP     27 => 0507
+0496    LEN     27  24
+0497    KSHORT  28   0
+0498    ISGE    28  27
+0499    JMP     27 => 0507
+0500    GGET    27 175      ; "ipairs"
+0501    MOV     28  24
+0502    CALL    27   4   2
+0503    JMP     30 => 0505
+0504 => TSETV   23  17  31
+0505 => ITERC   30   3   3
+0506    ITERL   30 => 0504
+0507 => ITERC   21   3   3
+0508    ITERL   21 => 0490
+0509    MOV     19   4
+0510    TGETS   18   4 177  ; "new"
+0511    TNEW    20   0
+0512    CALL    18   2   3
+0513    FNEW    19 179      ; readertypography.lua:113
+0514    TSETS   19  18 178  ; "init"
+0515    FNEW    19 181      ; readertypography.lua:589
+0516    TSETS   19  18 180  ; "addToMainMenu"
+0517    FNEW    19 183      ; readertypography.lua:601
+0518    TSETS   19  18 182  ; "getCurrentDefaultHyphDictLanguage"
+0519    FNEW    19 185      ; readertypography.lua:612
+0520    TSETS   19  18 184  ; "parseLanguageTag"
+0521    FNEW    19 187      ; readertypography.lua:630
+0522    TSETS   19  18 186  ; "fixLangTag"
+0523    FNEW    19 189      ; readertypography.lua:663
+0524    TSETS   19  18 188  ; "onReadSettings"
+0525    FNEW    19 191      ; readertypography.lua:752
+0526    TSETS   19  18 190  ; "onPreRenderDocument"
+0527    FNEW    19 193      ; readertypography.lua:802
+0528    TSETS   19  18 192  ; "onSaveSettings"
+0529    UCLO     0 => 0530
+0530 => RET1    18   2
+

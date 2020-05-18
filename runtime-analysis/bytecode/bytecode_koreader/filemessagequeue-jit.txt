@@ -1,0 +1,129 @@
+-- BYTECODE -- filemessagequeue.lua:13-25
+0001    TGETS    1   0   0  ; "client"
+0002    ISEQP    1   0
+0003    JMP      1 => 0019
+0004    UGET     1   0      ; filemq
+0005    TGETS    1   1   2  ; "fmq_client_recv"
+0006    TSETS    1   0   1  ; "fmq_recv"
+0007    TGETS    1   0   0  ; "client"
+0008    TSETS    1   0   3  ; "filemq"
+0009    UGET     1   1      ; czmq
+0010    TGETS    1   1   5  ; "zpoller_new"
+0011    UGET     2   0      ; filemq
+0012    TGETS    2   2   6  ; "fmq_client_handle"
+0013    TGETS    3   0   0  ; "client"
+0014    CALL     2   2   2
+0015    KPRI     3   0
+0016    CALL     1   2   3
+0017    TSETS    1   0   4  ; "poller"
+0018    JMP      1 => 0024
+0019 => TGETS    1   0   7  ; "server"
+0020    ISEQP    1   0
+0021    JMP      1 => 0024
+0022    TGETS    1   0   7  ; "server"
+0023    TSETS    1   0   3  ; "filemq"
+0024 => RET0     0   1
+
+-- BYTECODE -- filemessagequeue.lua:27-39
+0001    TGETS    1   0   0  ; "client"
+0002    ISEQP    1   0
+0003    JMP      1 => 0016
+0004    UGET     1   0      ; logger
+0005    TGETS    1   1   1  ; "dbg"
+0006    KSTR     2   2      ; "stop filemq client"
+0007    CALL     1   1   2
+0008    UGET     1   1      ; filemq
+0009    TGETS    1   1   3  ; "fmq_client_destroy"
+0010    UGET     2   2      ; ffi
+0011    TGETS    2   2   4  ; "new"
+0012    KSTR     3   5      ; "fmq_client_t *[1]"
+0013    TGETS    4   0   0  ; "client"
+0014    CALL     2   0   3
+0015    CALLM    1   1   0
+0016 => TGETS    1   0   6  ; "server"
+0017    ISEQP    1   0
+0018    JMP      1 => 0031
+0019    UGET     1   0      ; logger
+0020    TGETS    1   1   1  ; "dbg"
+0021    KSTR     2   7      ; "stop filemq server"
+0022    CALL     1   1   2
+0023    UGET     1   1      ; filemq
+0024    TGETS    1   1   8  ; "fmq_server_destroy"
+0025    UGET     2   2      ; ffi
+0026    TGETS    2   2   4  ; "new"
+0027    KSTR     3   9      ; "fmq_server_t *[1]"
+0028    TGETS    4   0   6  ; "server"
+0029    CALL     2   0   3
+0030    CALLM    1   1   0
+0031 => TGETS    1   0  10  ; "poller"
+0032    ISEQP    1   0
+0033    JMP      1 => 0042
+0034    UGET     1   3      ; czmq
+0035    TGETS    1   1  11  ; "zpoller_destroy"
+0036    UGET     2   2      ; ffi
+0037    TGETS    2   2   4  ; "new"
+0038    KSTR     3  12      ; "zpoller_t *[1]"
+0039    TGETS    4   0  10  ; "poller"
+0040    CALL     2   0   3
+0041    CALLM    1   1   0
+0042 => RET0     0   1
+
+-- BYTECODE -- filemessagequeue.lua:41-50
+0001    TGETS    1   0   0  ; "poller"
+0002    IST          1
+0003    JMP      1 => 0005
+0004    RET0     0   1
+0005 => UGET     1   0      ; czmq
+0006    TGETS    1   1   1  ; "zpoller_wait"
+0007    TGETS    2   0   0  ; "poller"
+0008    KSHORT   3   0
+0009    CALL     1   2   3
+0010    ISEQP    1   0
+0011    JMP      1 => 0022
+0012    TGETS    1   0   2  ; "fmq_recv"
+0013    TGETS    2   0   3  ; "filemq"
+0014    CALL     1   2   2
+0015    ISEQP    1   0
+0016    JMP      2 => 0022
+0017    GGET     2   4      ; "table"
+0018    TGETS    2   2   5  ; "insert"
+0019    TGETS    3   0   6  ; "messages"
+0020    MOV      4   1
+0021    CALL     2   1   3
+0022 => MOV      2   0
+0023    TGETS    1   0   7  ; "handleZMsgs"
+0024    TGETS    3   0   6  ; "messages"
+0025    CALLT    1   3
+
+-- BYTECODE -- filemessagequeue.lua:0-53
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "logger"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/message/messagequeue"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ffi/zeromq_h"
+0012    CALL     3   2   2
+0013    TGETS    4   0   5  ; "load"
+0014    KSTR     5   6      ; "libs/libczmq.so.1"
+0015    CALL     4   2   2
+0016    TGETS    5   0   5  ; "load"
+0017    KSTR     6   7      ; "libs/libfmq.so.1"
+0018    CALL     5   2   2
+0019    MOV      7   2
+0020    TGETS    6   2   8  ; "new"
+0021    TDUP     8   9
+0022    CALL     6   2   3
+0023    FNEW     7  11      ; filemessagequeue.lua:13
+0024    TSETS    7   6  10  ; "init"
+0025    FNEW     7  13      ; filemessagequeue.lua:27
+0026    TSETS    7   6  12  ; "stop"
+0027    FNEW     7  15      ; filemessagequeue.lua:41
+0028    TSETS    7   6  14  ; "waitEvent"
+0029    UCLO     0 => 0030
+0030 => RET1     6   2
+

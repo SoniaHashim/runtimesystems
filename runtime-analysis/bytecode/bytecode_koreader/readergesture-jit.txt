@@ -1,0 +1,5022 @@
+-- BYTECODE -- readergesture.lua:168-276
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "isTouchDevice"
+0004    CALL     1   2   2
+0005    IST          1
+0006    JMP      1 => 0008
+0007    RET0     0   1
+0008 => GGET     1   2      ; "G_reader_settings"
+0009    MOV      2   1
+0010    TGETS    1   1   3  ; "readSetting"
+0011    KSTR     3   1      ; "ignore_hold_corners"
+0012    CALL     1   2   3
+0013    TSETS    1   0   1  ; "ignore_hold_corners"
+0014    GGET     1   2      ; "G_reader_settings"
+0015    MOV      2   1
+0016    TGETS    1   1   3  ; "readSetting"
+0017    KSTR     3   4      ; "multiswipes_enabled"
+0018    CALL     1   2   3
+0019    TSETS    1   0   4  ; "multiswipes_enabled"
+0020    TGETS    1   0   6  ; "ui"
+0021    ISEQP    1   0
+0022    JMP      1 => 0029
+0023    TGETS    1   0   6  ; "ui"
+0024    TGETS    1   1   7  ; "document"
+0025    ISEQP    1   0
+0026    JMP      1 => 0029
+0027    KPRI     1   1
+0028    JMP      2 => 0030
+0029 => KPRI     1   2
+0030 => TSETS    1   0   5  ; "is_docless"
+0031    TGETS    1   0   5  ; "is_docless"
+0032    ISF          1
+0033    JMP      2 => 0036
+0034    KSTR     1   9      ; "gesture_fm"
+0035    JMP      2 => 0037
+0036 => KSTR     1  10      ; "gesture_reader"
+0037 => TSETS    1   0   8  ; "ges_mode"
+0038    TDUP     1  13
+0039    TGETS    2   0   8  ; "ges_mode"
+0040    ISNES    2  10      ; "gesture_reader"
+0041    JMP      2 => 0044
+0042    KSTR     2  12      ; "toggle_page_flipping"
+0043    JMP      3 => 0045
+0044 => KSTR     2  14      ; "ignore"
+0045 => TSETS    2   1  15  ; "tap_top_left_corner"
+0046    TGETS    2   0   8  ; "ges_mode"
+0047    ISNES    2  10      ; "gesture_reader"
+0048    JMP      2 => 0051
+0049    KSTR     2  16      ; "toggle_bookmark"
+0050    JMP      3 => 0052
+0051 => KSTR     2  17      ; "show_plus_menu"
+0052 => TSETS    2   1  18  ; "tap_top_right_corner"
+0053    UGET     2   0      ; Device
+0054    MOV      3   2
+0055    TGETS    2   2  19  ; "hasFrontlight"
+0056    CALL     2   2   2
+0057    ISF          2
+0058    JMP      3 => 0061
+0059    KSTR     2  20      ; "toggle_frontlight"
+0060    JMP      3 => 0062
+0061 => KSTR     2  14      ; "ignore"
+0062 => TSETS    2   1  21  ; "tap_left_bottom_corner"
+0063    UGET     2   0      ; Device
+0064    MOV      3   2
+0065    TGETS    2   2  19  ; "hasFrontlight"
+0066    CALL     2   2   2
+0067    ISF          2
+0068    JMP      3 => 0071
+0069    KSTR     2  22      ; "decrease_frontlight"
+0070    JMP      3 => 0072
+0071 => KSTR     2  14      ; "ignore"
+0072 => TSETS    2   1  23  ; "one_finger_swipe_left_edge_down"
+0073    UGET     2   0      ; Device
+0074    MOV      3   2
+0075    TGETS    2   2  19  ; "hasFrontlight"
+0076    CALL     2   2   2
+0077    ISF          2
+0078    JMP      3 => 0081
+0079    KSTR     2  24      ; "increase_frontlight"
+0080    JMP      3 => 0082
+0081 => KSTR     2  14      ; "ignore"
+0082 => TSETS    2   1  25  ; "one_finger_swipe_left_edge_up"
+0083    UGET     2   0      ; Device
+0084    MOV      3   2
+0085    TGETS    2   2  26  ; "hasNaturalLight"
+0086    CALL     2   2   2
+0087    ISF          2
+0088    JMP      3 => 0091
+0089    KSTR     2  27      ; "decrease_frontlight_warmth"
+0090    JMP      3 => 0092
+0091 => KSTR     2  14      ; "ignore"
+0092 => TSETS    2   1  28  ; "one_finger_swipe_right_edge_down"
+0093    UGET     2   0      ; Device
+0094    MOV      3   2
+0095    TGETS    2   2  26  ; "hasNaturalLight"
+0096    CALL     2   2   2
+0097    ISF          2
+0098    JMP      3 => 0101
+0099    KSTR     2  29      ; "increase_frontlight_warmth"
+0100    JMP      3 => 0102
+0101 => KSTR     2  14      ; "ignore"
+0102 => TSETS    2   1  30  ; "one_finger_swipe_right_edge_up"
+0103    TGETS    2   0   8  ; "ges_mode"
+0104    ISNES    2  10      ; "gesture_reader"
+0105    JMP      2 => 0108
+0106    KSTR     2  31      ; "previous_location"
+0107    JMP      3 => 0109
+0108 => KSTR     2  32      ; "nothing"
+0109 => TSETS    2   1  33  ; "multiswipe_west_east"
+0110    TGETS    2   0   8  ; "ges_mode"
+0111    ISNES    2  10      ; "gesture_reader"
+0112    JMP      2 => 0115
+0113    KSTR     2  34      ; "latest_bookmark"
+0114    JMP      3 => 0116
+0115 => KSTR     2  32      ; "nothing"
+0116 => TSETS    2   1  35  ; "multiswipe_east_west"
+0117    TGETS    2   0   8  ; "ges_mode"
+0118    ISNES    2  10      ; "gesture_reader"
+0119    JMP      2 => 0122
+0120    KSTR     2  36      ; "toc"
+0121    JMP      3 => 0123
+0122 => KSTR     2  32      ; "nothing"
+0123 => TSETS    2   1  37  ; "multiswipe_north_east"
+0124    TGETS    2   0   8  ; "ges_mode"
+0125    ISNES    2  10      ; "gesture_reader"
+0126    JMP      2 => 0129
+0127    KSTR     2  38      ; "bookmarks"
+0128    JMP      3 => 0130
+0129 => KSTR     2  39      ; "folder_shortcuts"
+0130 => TSETS    2   1  40  ; "multiswipe_north_west"
+0131    TGETS    2   0   8  ; "ges_mode"
+0132    ISNES    2  10      ; "gesture_reader"
+0133    JMP      2 => 0136
+0134    KSTR     2  32      ; "nothing"
+0135    JMP      3 => 0137
+0136 => KSTR     2  41      ; "folder_up"
+0137 => TSETS    2   1  42  ; "multiswipe_north_south"
+0138    TGETS    2   0   8  ; "ges_mode"
+0139    ISNES    2  10      ; "gesture_reader"
+0140    JMP      2 => 0143
+0141    KSTR     2  43      ; "book_status"
+0142    JMP      3 => 0144
+0143 => KSTR     2  32      ; "nothing"
+0144 => TSETS    2   1  44  ; "multiswipe_west_north"
+0145    TGETS    2   0   8  ; "ges_mode"
+0146    ISNES    2  10      ; "gesture_reader"
+0147    JMP      2 => 0150
+0148    KSTR     2  45      ; "skim"
+0149    JMP      3 => 0151
+0150 => KSTR     2  32      ; "nothing"
+0151 => TSETS    2   1  46  ; "multiswipe_south_north"
+0152    TGETS    2   0   8  ; "ges_mode"
+0153    ISNES    2  10      ; "gesture_reader"
+0154    JMP      2 => 0157
+0155    KSTR     2  47      ; "toggle_reflow"
+0156    JMP      3 => 0158
+0157 => KSTR     2  32      ; "nothing"
+0158 => TSETS    2   1  48  ; "multiswipe_south_east"
+0159    TGETS    2   0   8  ; "ges_mode"
+0160    ISNES    2  10      ; "gesture_reader"
+0161    JMP      2 => 0164
+0162    KSTR     2  49      ; "prev_chapter"
+0163    JMP      3 => 0165
+0164 => KSTR     2  32      ; "nothing"
+0165 => TSETS    2   1  50  ; "multiswipe_north_south_north"
+0166    TGETS    2   0   8  ; "ges_mode"
+0167    ISNES    2  10      ; "gesture_reader"
+0168    JMP      2 => 0171
+0169    KSTR     2  51      ; "next_chapter"
+0170    JMP      3 => 0172
+0171 => KSTR     2  32      ; "nothing"
+0172 => TSETS    2   1  52  ; "multiswipe_south_north_south"
+0173    TGETS    2   0   8  ; "ges_mode"
+0174    ISNES    2  10      ; "gesture_reader"
+0175    JMP      2 => 0178
+0176    KSTR     2  53      ; "zoom_contentwidth"
+0177    JMP      3 => 0179
+0178 => KSTR     2  32      ; "nothing"
+0179 => TSETS    2   1  54  ; "multiswipe_east_north_west"
+0180    TGETS    2   0   8  ; "ges_mode"
+0181    ISNES    2  10      ; "gesture_reader"
+0182    JMP      2 => 0185
+0183    KSTR     2  55      ; "zoom_contentheight"
+0184    JMP      3 => 0186
+0185 => KSTR     2  32      ; "nothing"
+0186 => TSETS    2   1  56  ; "multiswipe_south_east_north"
+0187    TGETS    2   0   8  ; "ges_mode"
+0188    ISNES    2  10      ; "gesture_reader"
+0189    JMP      2 => 0192
+0190    KSTR     2  57      ; "zoom_pagewidth"
+0191    JMP      3 => 0193
+0192 => KSTR     2  32      ; "nothing"
+0193 => TSETS    2   1  58  ; "multiswipe_east_north_west_east"
+0194    TGETS    2   0   8  ; "ges_mode"
+0195    ISNES    2  10      ; "gesture_reader"
+0196    JMP      2 => 0199
+0197    KSTR     2  59      ; "zoom_pageheight"
+0198    JMP      3 => 0200
+0199 => KSTR     2  32      ; "nothing"
+0200 => TSETS    2   1  60  ; "multiswipe_south_east_north_south"
+0201    TGETS    2   0   8  ; "ges_mode"
+0202    ISNES    2  10      ; "gesture_reader"
+0203    JMP      2 => 0206
+0204    KSTR     2  61      ; "follow_nearest_link"
+0205    JMP      3 => 0207
+0206 => KSTR     2  32      ; "nothing"
+0207 => TSETS    2   1  62  ; "multiswipe_southeast_northeast"
+0208    UGET     2   0      ; Device
+0209    MOV      3   2
+0210    TGETS    2   2  63  ; "hasWifiToggle"
+0211    CALL     2   2   2
+0212    ISF          2
+0213    JMP      3 => 0216
+0214    KSTR     2  64      ; "toggle_wifi"
+0215    JMP      3 => 0217
+0216 => KSTR     2  32      ; "nothing"
+0217 => TSETS    2   1  65  ; "multiswipe_northwest_southwest_northwest"
+0218    UGET     2   0      ; Device
+0219    MOV      3   2
+0220    TGETS    2   2  63  ; "hasWifiToggle"
+0221    CALL     2   2   2
+0222    ISF          2
+0223    JMP      3 => 0226
+0224    KSTR     2  66      ; "wifi_off"
+0225    JMP      3 => 0227
+0226 => KSTR     2  32      ; "nothing"
+0227 => TSETS    2   1  67  ; "multiswipe_southeast_southwest_northwest"
+0228    UGET     2   0      ; Device
+0229    MOV      3   2
+0230    TGETS    2   2  63  ; "hasWifiToggle"
+0231    CALL     2   2   2
+0232    ISF          2
+0233    JMP      3 => 0236
+0234    KSTR     2  68      ; "wifi_on"
+0235    JMP      3 => 0237
+0236 => KSTR     2  32      ; "nothing"
+0237 => TSETS    2   1  69  ; "multiswipe_southeast_northeast_northwest"
+0238    TGETS    2   0   8  ; "ges_mode"
+0239    ISNES    2  10      ; "gesture_reader"
+0240    JMP      2 => 0243
+0241    KSTR     2  36      ; "toc"
+0242    JMP      3 => 0244
+0243 => KSTR     2  14      ; "ignore"
+0244 => TSETS    2   1  70  ; "two_finger_swipe_east"
+0245    TGETS    2   0   8  ; "ges_mode"
+0246    ISNES    2  10      ; "gesture_reader"
+0247    JMP      2 => 0250
+0248    KSTR     2  38      ; "bookmarks"
+0249    JMP      3 => 0251
+0250 => KSTR     2  39      ; "folder_shortcuts"
+0251 => TSETS    2   1  71  ; "two_finger_swipe_west"
+0252    UGET     2   0      ; Device
+0253    MOV      3   2
+0254    TGETS    2   2  19  ; "hasFrontlight"
+0255    CALL     2   2   2
+0256    ISF          2
+0257    JMP      3 => 0260
+0258    KSTR     2  22      ; "decrease_frontlight"
+0259    JMP      3 => 0261
+0260 => KSTR     2  14      ; "ignore"
+0261 => TSETS    2   1  72  ; "two_finger_swipe_south"
+0262    UGET     2   0      ; Device
+0263    MOV      3   2
+0264    TGETS    2   2  19  ; "hasFrontlight"
+0265    CALL     2   2   2
+0266    ISF          2
+0267    JMP      3 => 0270
+0268    KSTR     2  24      ; "increase_frontlight"
+0269    JMP      3 => 0271
+0270 => KSTR     2  14      ; "ignore"
+0271 => TSETS    2   1  73  ; "two_finger_swipe_north"
+0272    TGETS    2   0   8  ; "ges_mode"
+0273    ISNES    2  10      ; "gesture_reader"
+0274    JMP      2 => 0277
+0275    KSTR     2  74      ; "increase_font"
+0276    JMP      3 => 0278
+0277 => KSTR     2  14      ; "ignore"
+0278 => TSETS    2   1  75  ; "spread_gesture"
+0279    TGETS    2   0   8  ; "ges_mode"
+0280    ISNES    2  10      ; "gesture_reader"
+0281    JMP      2 => 0284
+0282    KSTR     2  76      ; "decrease_font"
+0283    JMP      3 => 0285
+0284 => KSTR     2  14      ; "ignore"
+0285 => TSETS    2   1  77  ; "pinch_gesture"
+0286    TSETS    1   0  11  ; "default_gesture"
+0287    GGET     1   2      ; "G_reader_settings"
+0288    MOV      2   1
+0289    TGETS    1   1   3  ; "readSetting"
+0290    TGETS    3   0   8  ; "ges_mode"
+0291    CALL     1   2   3
+0292    ISNEP    1   0
+0293    JMP      2 => 0300
+0294    GGET     2   2      ; "G_reader_settings"
+0295    MOV      3   2
+0296    TGETS    2   2  78  ; "saveSetting"
+0297    TGETS    4   0   8  ; "ges_mode"
+0298    TNEW     5   0
+0299    CALL     2   1   4
+0300 => TDUP     2  79
+0301    UGET     3   1      ; BD
+0302    TGETS    3   3  80  ; "mirroredUILayout"
+0303    CALL     3   2   1
+0304    ISF          3
+0305    JMP      4 => 0320
+0306    GGET     4  81      ; "pairs"
+0307    MOV      5   2
+0308    CALL     4   4   2
+0309    ISNEXT   7 => 0318
+0310 => TGETS    9   0  11  ; "default_gesture"
+0311    TGETS   10   0  11  ; "default_gesture"
+0312    TGETS   11   0  11  ; "default_gesture"
+0313    TGETV   11  11   8
+0314    TGETS   12   0  11  ; "default_gesture"
+0315    TGETV   12  12   7
+0316    TSETV   12  10   8
+0317    TSETV   11   9   7
+0318 => ITERN    7   3   3
+0319    ITERL    7 => 0310
+0320 => TGETS    4   0   8  ; "ges_mode"
+0321    KSTR     5  82      ; "ui_lang_direction_rtl"
+0322    CAT      4   4   5
+0323    GGET     5   2      ; "G_reader_settings"
+0324    MOV      6   5
+0325    TGETS    5   5  83  ; "isTrue"
+0326    MOV      7   4
+0327    CALL     5   2   3
+0328    ISF          3
+0329    JMP      6 => 0332
+0330    ISF          5
+0331    JMP      6 => 0336
+0332 => IST          3
+0333    JMP      6 => 0372
+0334    ISF          5
+0335    JMP      6 => 0372
+0336 => KPRI     6   1
+0337    GGET     7  81      ; "pairs"
+0338    MOV      8   2
+0339    CALL     7   4   2
+0340    ISNEXT  10 => 0359
+0341 => TGETV   12   1  10
+0342    TGETS   13   0  11  ; "default_gesture"
+0343    TGETV   13  13  11
+0344    ISNEV   12  13
+0345    JMP     12 => 0350
+0346    TGETS   12   0  11  ; "default_gesture"
+0347    TGETV   12  12  10
+0348    TSETV   12   1  10
+0349    KPRI     6   2
+0350 => TGETV   12   1  11
+0351    TGETS   13   0  11  ; "default_gesture"
+0352    TGETV   13  13  10
+0353    ISNEV   12  13
+0354    JMP     12 => 0359
+0355    TGETS   12   0  11  ; "default_gesture"
+0356    TGETV   12  12  11
+0357    TSETV   12   1  11
+0358    KPRI     6   2
+0359 => ITERN   10   3   3
+0360    ITERL   10 => 0341
+0361    ISF          6
+0362    JMP      7 => 0367
+0363    UGET     7   2      ; logger
+0364    TGETS    7   7  84  ; "info"
+0365    KSTR     8  85      ; "UI language direction changed: resetting"~
+0366    CALL     7   1   2
+0367 => GGET     7   2      ; "G_reader_settings"
+0368    MOV      8   7
+0369    TGETS    7   7  86  ; "flipNilOrFalse"
+0370    MOV      9   4
+0371    CALL     7   1   3
+0372 => TGETS    6   0   6  ; "ui"
+0373    TGETS    6   6  87  ; "menu"
+0374    MOV      7   6
+0375    TGETS    6   6  88  ; "registerToMainMenu"
+0376    MOV      8   0
+0377    CALL     6   1   3
+0378    MOV      7   0
+0379    TGETS    6   0  89  ; "initGesture"
+0380    CALL     6   1   2
+0381    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:278-289
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "readSetting"
+0004    TGETS    3   0   2  ; "ges_mode"
+0005    CALL     1   2   3
+0006    GGET     2   3      ; "pairs"
+0007    TGETS    3   0   4  ; "default_gesture"
+0008    CALL     2   4   2
+0009    ISNEXT   5 => 0014
+0010 => TGETV    7   1   5
+0011    IST          7
+0012    JMP      7 => 0014
+0013    TSETV    6   1   5
+0014 => ITERN    5   3   3
+0015    ITERL    5 => 0010
+0016    GGET     2   3      ; "pairs"
+0017    MOV      3   1
+0018    CALL     2   4   2
+0019    ISNEXT   5 => 0025
+0020 => MOV      8   0
+0021    TGETS    7   0   5  ; "setupGesture"
+0022    MOV      9   5
+0023    MOV     10   6
+0024    CALL     7   1   4
+0025 => ITERN    5   3   3
+0026    ITERL    5 => 0020
+0027    GGET     2   0      ; "G_reader_settings"
+0028    MOV      3   2
+0029    TGETS    2   2   6  ; "saveSetting"
+0030    TGETS    4   0   2  ; "ges_mode"
+0031    MOV      5   1
+0032    CALL     2   1   4
+0033    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:295-295
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "multiswipes_enabled"
+0003    RET1     0   2
+
+-- BYTECODE -- readergesture.lua:291-298
+0001    TDUP     1   1
+0002    UGET     2   0      ; _
+0003    KSTR     3   0      ; "Multiswipe"
+0004    CALL     2   2   2
+0005    TSETS    2   1   2  ; "text"
+0006    MOV      3   0
+0007    TGETS    2   0   3  ; "buildMultiswipeMenu"
+0008    CALL     2   2   2
+0009    TSETS    2   1   4  ; "sub_item_table"
+0010    FNEW     2   5      ; readergesture.lua:295
+0011    TSETS    2   1   6  ; "enabled_func"
+0012    UCLO     0 => 0013
+0013 => RET1     1   2
+
+-- BYTECODE -- readergesture.lua:303-306
+0001    UGET     2   0      ; gesture_manager
+0002    TGETV    2   2   0
+0003    ISEQS    2   0      ; "nothing"
+0004    JMP      2 => 0011
+0005    UGET     2   1      ; action_strings
+0006    UGET     3   0      ; gesture_manager
+0007    TGETV    3   3   0
+0008    TGETV    2   2   3
+0009    IST          2
+0010    JMP      3 => 0014
+0011 => UGET     2   2      ; _
+0012    KSTR     3   1      ; "Available"
+0013    CALL     2   2   2
+0014 => UGET     3   3      ; T
+0015    UGET     4   2      ; _
+0016    KSTR     5   2      ; "%1   (%2)"
+0017    CALL     4   2   2
+0018    MOV      5   1
+0019    MOV      6   2
+0020    CALLT    3   4
+
+-- BYTECODE -- readergesture.lua:311-311
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "tap_top_left_corner"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Top left"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:312-312
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ges_mode"
+0003    ISEQS    0   1      ; "gesture_reader"
+0004    JMP      0 => 0007
+0005    KPRI     0   1
+0006    JMP      1 => 0008
+0007 => KPRI     0   2
+0008 => RET1     0   2
+
+-- BYTECODE -- readergesture.lua:316-316
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "tap_top_right_corner"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Top right"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:320-320
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "tap_left_bottom_corner"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Bottom left"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:324-324
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "tap_right_bottom_corner"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Bottom right"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:334-334
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "hold_top_left_corner"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Top left"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:335-335
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ges_mode"
+0003    ISEQS    0   1      ; "gesture_reader"
+0004    JMP      0 => 0007
+0005    KPRI     0   1
+0006    JMP      1 => 0008
+0007 => KPRI     0   2
+0008 => RET1     0   2
+
+-- BYTECODE -- readergesture.lua:339-339
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "hold_top_right_corner"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Top right"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:343-343
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "hold_bottom_left_corner"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Bottom left"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:347-347
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "hold_bottom_right_corner"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Bottom right"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:357-357
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "multiswipes_enabled"
+0003    RET1     0   2
+
+-- BYTECODE -- readergesture.lua:358-361
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "multiswipes_enabled"
+0005    UGET     3   0      ; self
+0006    TGETS    3   3   2  ; "multiswipes_enabled"
+0007    NOT      3   3
+0008    CALL     0   1   4
+0009    UGET     0   0      ; self
+0010    GGET     1   0      ; "G_reader_settings"
+0011    MOV      2   1
+0012    TGETS    1   1   3  ; "isTrue"
+0013    KSTR     3   2      ; "multiswipes_enabled"
+0014    CALL     1   2   3
+0015    TSETS    1   0   2  ; "multiswipes_enabled"
+0016    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:366-366
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "multiswipes_enabled"
+0003    RET1     0   2
+
+-- BYTECODE -- readergesture.lua:377-379
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; multiswipe_recorder
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:384-405
+0001    UGET     0   0      ; multiswipe_recorder
+0002    TGETS    0   0   0  ; "_raw_multiswipe"
+0003    IST          0
+0004    JMP      1 => 0006
+0005    RET0     0   1
+0006 => UGET     1   1      ; logger
+0007    TGETS    1   1   1  ; "dbg"
+0008    KSTR     2   2      ; "Multiswipe recorder detected:"
+0009    MOV      3   0
+0010    CALL     1   1   3
+0011    GGET     1   3      ; "pairs"
+0012    UGET     2   2      ; multiswipes
+0013    CALL     1   4   2
+0014    ISNEXT   4 => 0031
+0015 => ISNEV    0   5
+0016    JMP      6 => 0031
+0017    UGET     6   3      ; UIManager
+0018    MOV      7   6
+0019    TGETS    6   6   4  ; "show"
+0020    UGET     8   4      ; InfoMessage
+0021    MOV      9   8
+0022    TGETS    8   8   5  ; "new"
+0023    TDUP    10   7
+0024    UGET    11   5      ; _
+0025    KSTR    12   6      ; "Recorded multiswipe already exists."
+0026    CALL    11   2   2
+0027    TSETS   11  10   8  ; "text"
+0028    CALL     8   0   3
+0029    CALLM    6   1   1
+0030    RET0     0   1
+0031 => ITERN    4   3   3
+0032    ITERL    4 => 0015
+0033    UGET     1   6      ; custom_multiswipes
+0034    MOV      2   1
+0035    TGETS    1   1   9  ; "addTableItem"
+0036    KSTR     3  10      ; "multiswipes"
+0037    MOV      4   0
+0038    CALL     1   1   4
+0039    UGET     1   7      ; touchmenu_instance
+0040    TGETS    1   1  11  ; "item_table"
+0041    UGET     2   8      ; self
+0042    MOV      3   2
+0043    TGETS    2   2  12  ; "genMultiswipeSubmenu"
+0044    CALL     2   2   2
+0045    TSETB    2   1   3
+0046    UGET     1   7      ; touchmenu_instance
+0047    MOV      2   1
+0048    TGETS    1   1  13  ; "updateItems"
+0049    CALL     1   1   2
+0050    UGET     1   3      ; UIManager
+0051    MOV      2   1
+0052    TGETS    1   1  14  ; "close"
+0053    UGET     3   0      ; multiswipe_recorder
+0054    CALL     1   1   3
+0055    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:423-426
+0001    UGET     3   0      ; multiswipe_recorder
+0002    TGETS    4   2   1  ; "multiswipe_directions"
+0003    TSETS    4   3   0  ; "_raw_multiswipe"
+0004    UGET     3   0      ; multiswipe_recorder
+0005    MOV      4   3
+0006    TGETS    3   3   2  ; "setInputText"
+0007    UGET     5   1      ; ReaderGesture
+0008    MOV      6   5
+0009    TGETS    5   5   3  ; "friendlyMultiswipeName"
+0010    UGET     7   0      ; multiswipe_recorder
+0011    TGETS    7   7   0  ; "_raw_multiswipe"
+0012    CALL     5   0   3
+0013    CALLM    3   1   1
+0014    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:368-429
+0001    KPRI     1   0
+0002    UGET     2   0      ; InputDialog
+0003    MOV      3   2
+0004    TGETS    2   2   0  ; "new"
+0005    TDUP     4   2
+0006    UGET     5   1      ; _
+0007    KSTR     6   1      ; "Multiswipe recorder"
+0008    CALL     5   2   2
+0009    TSETS    5   4   3  ; "title"
+0010    UGET     5   1      ; _
+0011    KSTR     6   4      ; "Make a multiswipe gesture"
+0012    CALL     5   2   2
+0013    TSETS    5   4   5  ; "input_hint"
+0014    TNEW     5   3
+0015    TNEW     6   3
+0016    TDUP     7   7
+0017    UGET     8   1      ; _
+0018    KSTR     9   6      ; "Cancel"
+0019    CALL     8   2   2
+0020    TSETS    8   7   8  ; "text"
+0021    FNEW     8   9      ; readergesture.lua:377
+0022    TSETS    8   7  10  ; "callback"
+0023    TSETB    7   6   1
+0024    TDUP     7  12
+0025    UGET     8   1      ; _
+0026    KSTR     9  11      ; "Save"
+0027    CALL     8   2   2
+0028    TSETS    8   7   8  ; "text"
+0029    FNEW     8  13      ; readergesture.lua:384
+0030    TSETS    8   7  10  ; "callback"
+0031    TSETB    7   6   2
+0032    TSETB    6   5   1
+0033    TSETS    5   4  14  ; "buttons"
+0034    CALL     2   2   3
+0035    MOV      1   2
+0036    TGETS    2   1  15  ; "ges_events"
+0037    TNEW     3   3
+0038    UGET     4   8      ; GestureRange
+0039    MOV      5   4
+0040    TGETS    4   4   0  ; "new"
+0041    TDUP     6  17
+0042    UGET     7   9      ; Geom
+0043    MOV      8   7
+0044    TGETS    7   7   0  ; "new"
+0045    TDUP     9  18
+0046    UGET    10  10      ; Screen
+0047    MOV     11  10
+0048    TGETS   10  10  19  ; "getWidth"
+0049    CALL    10   2   2
+0050    TSETS   10   9  20  ; "w"
+0051    UGET    10  10      ; Screen
+0052    MOV     11  10
+0053    TGETS   10  10  21  ; "getHeight"
+0054    CALL    10   2   2
+0055    TSETS   10   9  22  ; "h"
+0056    CALL     7   2   3
+0057    TSETS    7   6  23  ; "range"
+0058    CALL     4   0   3
+0059    TSETM    4   0      ; 1
+0060    TSETS    3   2  16  ; "Multiswipe"
+0061    FNEW     2  25      ; readergesture.lua:423
+0062    TSETS    2   1  24  ; "onMultiswipe"
+0063    UGET     2   2      ; UIManager
+0064    MOV      3   2
+0065    TGETS    2   2  26  ; "show"
+0066    MOV      4   1
+0067    CALL     2   1   3
+0068    UCLO     0 => 0069
+0069 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:444-444
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "one_finger_swipe_left_edge_down"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Left edge down"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:448-448
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "one_finger_swipe_left_edge_up"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Left edge up"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:452-452
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "one_finger_swipe_right_edge_down"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Right edge down"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:456-456
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "one_finger_swipe_right_edge_up"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Right edge up"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:460-460
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "one_finger_swipe_top_edge_right"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Top edge right"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:464-464
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "one_finger_swipe_top_edge_left"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Top edge left"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:468-468
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "one_finger_swipe_bottom_edge_right"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Bottom edge right"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:472-472
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "one_finger_swipe_bottom_edge_left"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Bottom edge left"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:501-504
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "saveSetting"
+0004    KSTR     3   2      ; "ges_double_tap_interval"
+0005    TGETS    4   0   3  ; "value"
+0006    MULVN    4   4   0  ; 1000
+0007    CALL     1   1   4
+0008    UGET     1   0      ; GestureDetector
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "setNewInterval"
+0011    KSTR     3   2      ; "ges_double_tap_interval"
+0012    TGETS    4   0   3  ; "value"
+0013    MULVN    4   4   0  ; 1000
+0014    CALL     1   1   4
+0015    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:484-507
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/spinwidget"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "device/gesturedetector"
+0006    CALL     1   2   2
+0007    MOV      3   0
+0008    TGETS    2   0   3  ; "new"
+0009    TDUP     4   6
+0010    UGET     5   0      ; T
+0011    UGET     6   1      ; _
+0012    KSTR     7   4      ; "Set double tap interval in milliseconds."~
+0013    CALL     6   2   2
+0014    TGETS    7   1   5  ; "DOUBLE_TAP_INTERVAL"
+0015    DIVVN    7   7   0  ; 1000
+0016    CALL     5   2   3
+0017    TSETS    5   4   7  ; "text"
+0018    UGET     5   2      ; Screen
+0019    MOV      6   5
+0020    TGETS    5   5   8  ; "getWidth"
+0021    CALL     5   2   2
+0022    MULVN    5   5   1  ; 0.6
+0023    TSETS    5   4   9  ; "width"
+0024    MOV      6   1
+0025    TGETS    5   1  10  ; "getInterval"
+0026    KSTR     7  11      ; "ges_double_tap_interval"
+0027    CALL     5   2   3
+0028    DIVVN    5   5   0  ; 1000
+0029    TSETS    5   4  12  ; "value"
+0030    UGET     5   1      ; _
+0031    KSTR     6  13      ; "Set interval"
+0032    CALL     5   2   2
+0033    TSETS    5   4  14  ; "ok_text"
+0034    UGET     5   1      ; _
+0035    KSTR     6  15      ; "Double tap interval"
+0036    CALL     5   2   2
+0037    TSETS    5   4  16  ; "title_text"
+0038    TGETS    5   1   5  ; "DOUBLE_TAP_INTERVAL"
+0039    DIVVN    5   5   0  ; 1000
+0040    TSETS    5   4  17  ; "default_value"
+0041    FNEW     5  18      ; readergesture.lua:501
+0042    TSETS    5   4  19  ; "callback"
+0043    CALL     2   2   3
+0044    UGET     3   3      ; UIManager
+0045    MOV      4   3
+0046    TGETS    3   3  20  ; "show"
+0047    MOV      5   2
+0048    CALL     3   1   3
+0049    UCLO     0 => 0050
+0050 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:528-531
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "saveSetting"
+0004    KSTR     3   2      ; "ges_two_finger_tap_duration"
+0005    TGETS    4   0   3  ; "value"
+0006    MULVN    4   4   0  ; 1000
+0007    CALL     1   1   4
+0008    UGET     1   0      ; GestureDetector
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "setNewInterval"
+0011    KSTR     3   2      ; "ges_two_finger_tap_duration"
+0012    TGETS    4   0   3  ; "value"
+0013    MULVN    4   4   0  ; 1000
+0014    CALL     1   1   4
+0015    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:511-534
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/spinwidget"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "device/gesturedetector"
+0006    CALL     1   2   2
+0007    MOV      3   0
+0008    TGETS    2   0   3  ; "new"
+0009    TDUP     4   6
+0010    UGET     5   0      ; T
+0011    UGET     6   1      ; _
+0012    KSTR     7   4      ; "Set two finger tap duration in milliseco"~
+0013    CALL     6   2   2
+0014    TGETS    7   1   5  ; "TWO_FINGER_TAP_DURATION"
+0015    DIVVN    7   7   0  ; 1000
+0016    CALL     5   2   3
+0017    TSETS    5   4   7  ; "text"
+0018    UGET     5   2      ; Screen
+0019    MOV      6   5
+0020    TGETS    5   5   8  ; "getWidth"
+0021    CALL     5   2   2
+0022    MULVN    5   5   1  ; 0.6
+0023    TSETS    5   4   9  ; "width"
+0024    MOV      6   1
+0025    TGETS    5   1  10  ; "getInterval"
+0026    KSTR     7  11      ; "ges_two_finger_tap_duration"
+0027    CALL     5   2   3
+0028    DIVVN    5   5   0  ; 1000
+0029    TSETS    5   4  12  ; "value"
+0030    UGET     5   1      ; _
+0031    KSTR     6  13      ; "Set duration"
+0032    CALL     5   2   2
+0033    TSETS    5   4  14  ; "ok_text"
+0034    UGET     5   1      ; _
+0035    KSTR     6  15      ; "Two finger tap duration"
+0036    CALL     5   2   2
+0037    TSETS    5   4  16  ; "title_text"
+0038    TGETS    5   1   5  ; "TWO_FINGER_TAP_DURATION"
+0039    DIVVN    5   5   0  ; 1000
+0040    TSETS    5   4  17  ; "default_value"
+0041    FNEW     5  18      ; readergesture.lua:528
+0042    TSETS    5   4  19  ; "callback"
+0043    CALL     2   2   3
+0044    UGET     3   3      ; UIManager
+0045    MOV      4   3
+0046    TGETS    3   3  20  ; "show"
+0047    MOV      5   2
+0048    CALL     3   1   3
+0049    UCLO     0 => 0050
+0050 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:555-558
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "saveSetting"
+0004    KSTR     3   2      ; "ges_hold_interval"
+0005    TGETS    4   0   3  ; "value"
+0006    MULVN    4   4   0  ; 1000
+0007    CALL     1   1   4
+0008    UGET     1   0      ; GestureDetector
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "setNewInterval"
+0011    KSTR     3   2      ; "ges_hold_interval"
+0012    TGETS    4   0   3  ; "value"
+0013    MULVN    4   4   0  ; 1000
+0014    CALL     1   1   4
+0015    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:538-561
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/spinwidget"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "device/gesturedetector"
+0006    CALL     1   2   2
+0007    MOV      3   0
+0008    TGETS    2   0   3  ; "new"
+0009    TDUP     4   6
+0010    UGET     5   0      ; T
+0011    UGET     6   1      ; _
+0012    KSTR     7   4      ; "Set hold interval in milliseconds.\nThe "~
+0013    CALL     6   2   2
+0014    TGETS    7   1   5  ; "HOLD_INTERVAL"
+0015    DIVVN    7   7   0  ; 1000
+0016    CALL     5   2   3
+0017    TSETS    5   4   7  ; "text"
+0018    UGET     5   2      ; Screen
+0019    MOV      6   5
+0020    TGETS    5   5   8  ; "getWidth"
+0021    CALL     5   2   2
+0022    MULVN    5   5   1  ; 0.6
+0023    TSETS    5   4   9  ; "width"
+0024    MOV      6   1
+0025    TGETS    5   1  10  ; "getInterval"
+0026    KSTR     7  11      ; "ges_hold_interval"
+0027    CALL     5   2   3
+0028    DIVVN    5   5   0  ; 1000
+0029    TSETS    5   4  12  ; "value"
+0030    UGET     5   1      ; _
+0031    KSTR     6  13      ; "Set interval"
+0032    CALL     5   2   2
+0033    TSETS    5   4  14  ; "ok_text"
+0034    UGET     5   1      ; _
+0035    KSTR     6  15      ; "Hold interval"
+0036    CALL     5   2   2
+0037    TSETS    5   4  16  ; "title_text"
+0038    TGETS    5   1   5  ; "HOLD_INTERVAL"
+0039    DIVVN    5   5   0  ; 1000
+0040    TSETS    5   4  17  ; "default_value"
+0041    FNEW     5  18      ; readergesture.lua:555
+0042    TSETS    5   4  19  ; "callback"
+0043    CALL     2   2   3
+0044    UGET     3   3      ; UIManager
+0045    MOV      4   3
+0046    TGETS    3   3  20  ; "show"
+0047    MOV      5   2
+0048    CALL     3   1   3
+0049    UCLO     0 => 0050
+0050 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:582-585
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "saveSetting"
+0004    KSTR     3   2      ; "ges_pan_delayed_interval"
+0005    TGETS    4   0   3  ; "value"
+0006    MULVN    4   4   0  ; 1000
+0007    CALL     1   1   4
+0008    UGET     1   0      ; GestureDetector
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "setNewInterval"
+0011    KSTR     3   2      ; "ges_pan_delayed_interval"
+0012    TGETS    4   0   3  ; "value"
+0013    MULVN    4   4   0  ; 1000
+0014    CALL     1   1   4
+0015    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:565-588
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/spinwidget"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "device/gesturedetector"
+0006    CALL     1   2   2
+0007    MOV      3   0
+0008    TGETS    2   0   3  ; "new"
+0009    TDUP     4   6
+0010    UGET     5   0      ; T
+0011    UGET     6   1      ; _
+0012    KSTR     7   4      ; "Set pan delay interval in milliseconds.\"~
+0013    CALL     6   2   2
+0014    TGETS    7   1   5  ; "PAN_DELAYED_INTERVAL"
+0015    DIVVN    7   7   0  ; 1000
+0016    CALL     5   2   3
+0017    TSETS    5   4   7  ; "text"
+0018    UGET     5   2      ; Screen
+0019    MOV      6   5
+0020    TGETS    5   5   8  ; "getWidth"
+0021    CALL     5   2   2
+0022    MULVN    5   5   1  ; 0.6
+0023    TSETS    5   4   9  ; "width"
+0024    MOV      6   1
+0025    TGETS    5   1  10  ; "getInterval"
+0026    KSTR     7  11      ; "ges_pan_delayed_interval"
+0027    CALL     5   2   3
+0028    DIVVN    5   5   0  ; 1000
+0029    TSETS    5   4  12  ; "value"
+0030    UGET     5   1      ; _
+0031    KSTR     6  13      ; "Set interval"
+0032    CALL     5   2   2
+0033    TSETS    5   4  14  ; "ok_text"
+0034    UGET     5   1      ; _
+0035    KSTR     6  15      ; "Pan delay interval"
+0036    CALL     5   2   2
+0037    TSETS    5   4  16  ; "title_text"
+0038    TGETS    5   1   5  ; "PAN_DELAYED_INTERVAL"
+0039    DIVVN    5   5   0  ; 1000
+0040    TSETS    5   4  17  ; "default_value"
+0041    FNEW     5  18      ; readergesture.lua:582
+0042    TSETS    5   4  19  ; "callback"
+0043    CALL     2   2   3
+0044    UGET     3   3      ; UIManager
+0045    MOV      4   3
+0046    TGETS    3   3  20  ; "show"
+0047    MOV      5   2
+0048    CALL     3   1   3
+0049    UCLO     0 => 0050
+0050 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:609-612
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "saveSetting"
+0004    KSTR     3   2      ; "ges_swipe_interval"
+0005    TGETS    4   0   3  ; "value"
+0006    MULVN    4   4   0  ; 1000
+0007    CALL     1   1   4
+0008    UGET     1   0      ; GestureDetector
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "setNewInterval"
+0011    KSTR     3   2      ; "ges_swipe_interval"
+0012    TGETS    4   0   3  ; "value"
+0013    MULVN    4   4   0  ; 1000
+0014    CALL     1   1   4
+0015    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:592-615
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/spinwidget"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "device/gesturedetector"
+0006    CALL     1   2   2
+0007    MOV      3   0
+0008    TGETS    2   0   3  ; "new"
+0009    TDUP     4   6
+0010    UGET     5   0      ; T
+0011    UGET     6   1      ; _
+0012    KSTR     7   4      ; "Set swipe interval in milliseconds.\nThe"~
+0013    CALL     6   2   2
+0014    TGETS    7   1   5  ; "SWIPE_INTERVAL"
+0015    DIVVN    7   7   0  ; 1000
+0016    CALL     5   2   3
+0017    TSETS    5   4   7  ; "text"
+0018    UGET     5   2      ; Screen
+0019    MOV      6   5
+0020    TGETS    5   5   8  ; "getWidth"
+0021    CALL     5   2   2
+0022    MULVN    5   5   1  ; 0.6
+0023    TSETS    5   4   9  ; "width"
+0024    MOV      6   1
+0025    TGETS    5   1  10  ; "getInterval"
+0026    KSTR     7  11      ; "ges_swipe_interval"
+0027    CALL     5   2   3
+0028    DIVVN    5   5   0  ; 1000
+0029    TSETS    5   4  12  ; "value"
+0030    UGET     5   1      ; _
+0031    KSTR     6  13      ; "Set interval"
+0032    CALL     5   2   2
+0033    TSETS    5   4  14  ; "ok_text"
+0034    UGET     5   1      ; _
+0035    KSTR     6  15      ; "Swipe interval"
+0036    CALL     5   2   2
+0037    TSETS    5   4  16  ; "title_text"
+0038    TGETS    5   1   5  ; "SWIPE_INTERVAL"
+0039    DIVVN    5   5   0  ; 1000
+0040    TSETS    5   4  17  ; "default_value"
+0041    FNEW     5  18      ; readergesture.lua:609
+0042    TSETS    5   4  19  ; "callback"
+0043    CALL     2   2   3
+0044    UGET     3   3      ; UIManager
+0045    MOV      4   3
+0046    TGETS    3   3  20  ; "show"
+0047    MOV      5   2
+0048    CALL     3   1   3
+0049    UCLO     0 => 0050
+0050 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:620-623
+0001    UGET     2   0      ; gesture_manager
+0002    TGETV    2   2   0
+0003    ISEQS    2   0      ; "nothing"
+0004    JMP      2 => 0011
+0005    UGET     2   1      ; action_strings
+0006    UGET     3   0      ; gesture_manager
+0007    TGETV    3   3   0
+0008    TGETV    2   2   3
+0009    IST          2
+0010    JMP      3 => 0014
+0011 => UGET     2   2      ; _
+0012    KSTR     3   1      ; "Available"
+0013    CALL     2   2   2
+0014 => UGET     3   3      ; T
+0015    UGET     4   2      ; _
+0016    KSTR     5   2      ; "%1   (%2)"
+0017    CALL     4   2   2
+0018    MOV      5   1
+0019    MOV      6   2
+0020    CALLT    3   4
+
+-- BYTECODE -- readergesture.lua:630-630
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "two_finger_tap_top_left_corner"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Top left"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:634-634
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "two_finger_tap_top_right_corner"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Top right"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:638-638
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "two_finger_tap_bottom_left_corner"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Bottom left"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:642-642
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "two_finger_tap_bottom_right_corner"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Bottom right"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:652-652
+0001    UGET     0   0      ; twoFingerSwipeTextFunc
+0002    KSTR     1   0      ; "two_finger_swipe_east"
+0003    KSTR     2   1      ; "⇒"
+0004    CALLT    0   3
+
+-- BYTECODE -- readergesture.lua:656-656
+0001    UGET     0   0      ; twoFingerSwipeTextFunc
+0002    KSTR     1   0      ; "two_finger_swipe_west"
+0003    KSTR     2   1      ; "⇐"
+0004    CALLT    0   3
+
+-- BYTECODE -- readergesture.lua:660-660
+0001    UGET     0   0      ; twoFingerSwipeTextFunc
+0002    KSTR     1   0      ; "two_finger_swipe_south"
+0003    KSTR     2   1      ; "⇓"
+0004    CALLT    0   3
+
+-- BYTECODE -- readergesture.lua:664-664
+0001    UGET     0   0      ; twoFingerSwipeTextFunc
+0002    KSTR     1   0      ; "two_finger_swipe_north"
+0003    KSTR     2   1      ; "⇑"
+0004    CALLT    0   3
+
+-- BYTECODE -- readergesture.lua:668-668
+0001    UGET     0   0      ; twoFingerSwipeTextFunc
+0002    KSTR     1   0      ; "two_finger_swipe_northeast"
+0003    KSTR     2   1      ; "⇗"
+0004    CALLT    0   3
+
+-- BYTECODE -- readergesture.lua:672-672
+0001    UGET     0   0      ; twoFingerSwipeTextFunc
+0002    KSTR     1   0      ; "two_finger_swipe_northwest"
+0003    KSTR     2   1      ; "⇖"
+0004    CALLT    0   3
+
+-- BYTECODE -- readergesture.lua:676-676
+0001    UGET     0   0      ; twoFingerSwipeTextFunc
+0002    KSTR     1   0      ; "two_finger_swipe_southeast"
+0003    KSTR     2   1      ; "⇘"
+0004    CALLT    0   3
+
+-- BYTECODE -- readergesture.lua:680-680
+0001    UGET     0   0      ; twoFingerSwipeTextFunc
+0002    KSTR     1   0      ; "two_finger_swipe_southwest"
+0003    KSTR     2   1      ; "⇙"
+0004    CALLT    0   3
+
+-- BYTECODE -- readergesture.lua:689-689
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "spread_gesture"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Spread"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:693-693
+0001    UGET     0   0      ; actionTextFunc
+0002    KSTR     1   0      ; "pinch_gesture"
+0003    UGET     2   1      ; _
+0004    KSTR     3   1      ; "Pinch"
+0005    CALL     2   0   2
+0006    CALLMT   0   1
+
+-- BYTECODE -- readergesture.lua:300-699
+0001    GGET     2   0      ; "G_reader_settings"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "readSetting"
+0004    TGETS    4   0   2  ; "ges_mode"
+0005    CALL     2   2   3
+0006    FNEW     3   3      ; readergesture.lua:303
+0007    TDUP     4   5
+0008    UGET     5   1      ; _
+0009    KSTR     6   4      ; "Tap corner"
+0010    CALL     5   2   2
+0011    TSETS    5   4   6  ; "text"
+0012    TNEW     5   5
+0013    TDUP     6   8
+0014    FNEW     7   7      ; readergesture.lua:311
+0015    TSETS    7   6   9  ; "text_func"
+0016    FNEW     7  10      ; readergesture.lua:312
+0017    TSETS    7   6  11  ; "enabled_func"
+0018    MOV      8   0
+0019    TGETS    7   0  12  ; "buildMenu"
+0020    KSTR     9  13      ; "tap_top_left_corner"
+0021    TGETS   10   0  14  ; "default_gesture"
+0022    TGETS   10  10  13  ; "tap_top_left_corner"
+0023    CALL     7   2   4
+0024    TSETS    7   6  15  ; "sub_item_table"
+0025    TSETB    6   5   1
+0026    TDUP     6  17
+0027    FNEW     7  16      ; readergesture.lua:316
+0028    TSETS    7   6   9  ; "text_func"
+0029    MOV      8   0
+0030    TGETS    7   0  12  ; "buildMenu"
+0031    KSTR     9  18      ; "tap_top_right_corner"
+0032    TGETS   10   0  14  ; "default_gesture"
+0033    TGETS   10  10  18  ; "tap_top_right_corner"
+0034    CALL     7   2   4
+0035    TSETS    7   6  15  ; "sub_item_table"
+0036    TSETB    6   5   2
+0037    TDUP     6  20
+0038    FNEW     7  19      ; readergesture.lua:320
+0039    TSETS    7   6   9  ; "text_func"
+0040    MOV      8   0
+0041    TGETS    7   0  12  ; "buildMenu"
+0042    KSTR     9  21      ; "tap_left_bottom_corner"
+0043    TGETS   10   0  14  ; "default_gesture"
+0044    TGETS   10  10  21  ; "tap_left_bottom_corner"
+0045    CALL     7   2   4
+0046    TSETS    7   6  15  ; "sub_item_table"
+0047    TSETB    6   5   3
+0048    TDUP     6  23
+0049    FNEW     7  22      ; readergesture.lua:324
+0050    TSETS    7   6   9  ; "text_func"
+0051    MOV      8   0
+0052    TGETS    7   0  12  ; "buildMenu"
+0053    KSTR     9  24      ; "tap_right_bottom_corner"
+0054    TGETS   10   0  14  ; "default_gesture"
+0055    TGETS   10  10  24  ; "tap_right_bottom_corner"
+0056    CALL     7   2   4
+0057    TSETS    7   6  15  ; "sub_item_table"
+0058    TSETB    6   5   4
+0059    TSETS    5   4  15  ; "sub_item_table"
+0060    TDUP     5  26
+0061    UGET     6   1      ; _
+0062    KSTR     7  25      ; "Hold corner"
+0063    CALL     6   2   2
+0064    TSETS    6   5   6  ; "text"
+0065    TNEW     6   5
+0066    TDUP     7  28
+0067    FNEW     8  27      ; readergesture.lua:334
+0068    TSETS    8   7   9  ; "text_func"
+0069    FNEW     8  29      ; readergesture.lua:335
+0070    TSETS    8   7  11  ; "enabled_func"
+0071    MOV      9   0
+0072    TGETS    8   0  12  ; "buildMenu"
+0073    KSTR    10  30      ; "hold_top_left_corner"
+0074    TGETS   11   0  14  ; "default_gesture"
+0075    TGETS   11  11  30  ; "hold_top_left_corner"
+0076    CALL     8   2   4
+0077    TSETS    8   7  15  ; "sub_item_table"
+0078    TSETB    7   6   1
+0079    TDUP     7  32
+0080    FNEW     8  31      ; readergesture.lua:339
+0081    TSETS    8   7   9  ; "text_func"
+0082    MOV      9   0
+0083    TGETS    8   0  12  ; "buildMenu"
+0084    KSTR    10  33      ; "hold_top_right_corner"
+0085    TGETS   11   0  14  ; "default_gesture"
+0086    TGETS   11  11  33  ; "hold_top_right_corner"
+0087    CALL     8   2   4
+0088    TSETS    8   7  15  ; "sub_item_table"
+0089    TSETB    7   6   2
+0090    TDUP     7  35
+0091    FNEW     8  34      ; readergesture.lua:343
+0092    TSETS    8   7   9  ; "text_func"
+0093    MOV      9   0
+0094    TGETS    8   0  12  ; "buildMenu"
+0095    KSTR    10  36      ; "hold_bottom_left_corner"
+0096    TGETS   11   0  14  ; "default_gesture"
+0097    TGETS   11  11  36  ; "hold_bottom_left_corner"
+0098    CALL     8   2   4
+0099    TSETS    8   7  15  ; "sub_item_table"
+0100    TSETB    7   6   3
+0101    TDUP     7  38
+0102    FNEW     8  37      ; readergesture.lua:347
+0103    TSETS    8   7   9  ; "text_func"
+0104    MOV      9   0
+0105    TGETS    8   0  12  ; "buildMenu"
+0106    KSTR    10  39      ; "hold_bottom_right_corner"
+0107    TGETS   11   0  14  ; "default_gesture"
+0108    TGETS   11  11  39  ; "hold_bottom_right_corner"
+0109    CALL     8   2   4
+0110    TSETS    8   7  15  ; "sub_item_table"
+0111    TSETB    7   6   4
+0112    TSETS    6   5  15  ; "sub_item_table"
+0113    TDUP     6  42
+0114    UGET     7   1      ; _
+0115    KSTR     8  41      ; "Gesture manager"
+0116    CALL     7   2   2
+0117    TSETS    7   6   6  ; "text"
+0118    TNEW     7   8
+0119    TDUP     8  44
+0120    UGET     9   1      ; _
+0121    KSTR    10  43      ; "Turn on multiswipes"
+0122    CALL     9   2   2
+0123    TSETS    9   8   6  ; "text"
+0124    FNEW     9  45      ; readergesture.lua:357
+0125    TSETS    9   8  46  ; "checked_func"
+0126    FNEW     9  47      ; readergesture.lua:358
+0127    TSETS    9   8  48  ; "callback"
+0128    UGET     9   3      ; multiswipes_info_text
+0129    TSETS    9   8  49  ; "help_text"
+0130    TSETB    8   7   1
+0131    TDUP     8  51
+0132    UGET     9   1      ; _
+0133    KSTR    10  50      ; "Multiswipe recorder"
+0134    CALL     9   2   2
+0135    TSETS    9   8   6  ; "text"
+0136    FNEW     9  52      ; readergesture.lua:366
+0137    TSETS    9   8  11  ; "enabled_func"
+0138    FNEW     9  53      ; readergesture.lua:368
+0139    TSETS    9   8  48  ; "callback"
+0140    UGET     9   1      ; _
+0141    KSTR    10  54      ; "The number of possible multiswipe gestur"~
+0142    CALL     9   2   2
+0143    TSETS    9   8  49  ; "help_text"
+0144    TSETB    8   7   2
+0145    MOV      9   0
+0146    TGETS    8   0  55  ; "genMultiswipeSubmenu"
+0147    CALL     8   2   2
+0148    TSETB    8   7   3
+0149    TSETB    4   7   4
+0150    TSETB    5   7   5
+0151    TDUP     8  57
+0152    UGET     9   1      ; _
+0153    KSTR    10  56      ; "Short diagonal swipe"
+0154    CALL     9   2   2
+0155    TSETS    9   8   6  ; "text"
+0156    MOV     10   0
+0157    TGETS    9   0  12  ; "buildMenu"
+0158    KSTR    11  58      ; "short_diagonal_swipe"
+0159    TGETS   12   0  14  ; "default_gesture"
+0160    TGETS   12  12  58  ; "short_diagonal_swipe"
+0161    CALL     9   2   4
+0162    TSETS    9   8  15  ; "sub_item_table"
+0163    TSETB    8   7   6
+0164    TDUP     8  60
+0165    UGET     9   1      ; _
+0166    KSTR    10  59      ; "One-finger swipe"
+0167    CALL     9   2   2
+0168    TSETS    9   8   6  ; "text"
+0169    TNEW     9   9
+0170    TDUP    10  62
+0171    FNEW    11  61      ; readergesture.lua:444
+0172    TSETS   11  10   9  ; "text_func"
+0173    MOV     12   0
+0174    TGETS   11   0  12  ; "buildMenu"
+0175    KSTR    13  63      ; "one_finger_swipe_left_edge_down"
+0176    TGETS   14   0  14  ; "default_gesture"
+0177    TGETS   14  14  63  ; "one_finger_swipe_left_edge_down"
+0178    CALL    11   2   4
+0179    TSETS   11  10  15  ; "sub_item_table"
+0180    TSETB   10   9   1
+0181    TDUP    10  65
+0182    FNEW    11  64      ; readergesture.lua:448
+0183    TSETS   11  10   9  ; "text_func"
+0184    MOV     12   0
+0185    TGETS   11   0  12  ; "buildMenu"
+0186    KSTR    13  66      ; "one_finger_swipe_left_edge_up"
+0187    TGETS   14   0  14  ; "default_gesture"
+0188    TGETS   14  14  66  ; "one_finger_swipe_left_edge_up"
+0189    CALL    11   2   4
+0190    TSETS   11  10  15  ; "sub_item_table"
+0191    TSETB   10   9   2
+0192    TDUP    10  68
+0193    FNEW    11  67      ; readergesture.lua:452
+0194    TSETS   11  10   9  ; "text_func"
+0195    MOV     12   0
+0196    TGETS   11   0  12  ; "buildMenu"
+0197    KSTR    13  69      ; "one_finger_swipe_right_edge_down"
+0198    TGETS   14   0  14  ; "default_gesture"
+0199    TGETS   14  14  69  ; "one_finger_swipe_right_edge_down"
+0200    CALL    11   2   4
+0201    TSETS   11  10  15  ; "sub_item_table"
+0202    TSETB   10   9   3
+0203    TDUP    10  71
+0204    FNEW    11  70      ; readergesture.lua:456
+0205    TSETS   11  10   9  ; "text_func"
+0206    MOV     12   0
+0207    TGETS   11   0  12  ; "buildMenu"
+0208    KSTR    13  72      ; "one_finger_swipe_right_edge_up"
+0209    TGETS   14   0  14  ; "default_gesture"
+0210    TGETS   14  14  72  ; "one_finger_swipe_right_edge_up"
+0211    CALL    11   2   4
+0212    TSETS   11  10  15  ; "sub_item_table"
+0213    TSETB   10   9   4
+0214    TDUP    10  74
+0215    FNEW    11  73      ; readergesture.lua:460
+0216    TSETS   11  10   9  ; "text_func"
+0217    MOV     12   0
+0218    TGETS   11   0  12  ; "buildMenu"
+0219    KSTR    13  75      ; "one_finger_swipe_top_edge_right"
+0220    TGETS   14   0  14  ; "default_gesture"
+0221    TGETS   14  14  75  ; "one_finger_swipe_top_edge_right"
+0222    CALL    11   2   4
+0223    TSETS   11  10  15  ; "sub_item_table"
+0224    TSETB   10   9   5
+0225    TDUP    10  77
+0226    FNEW    11  76      ; readergesture.lua:464
+0227    TSETS   11  10   9  ; "text_func"
+0228    MOV     12   0
+0229    TGETS   11   0  12  ; "buildMenu"
+0230    KSTR    13  78      ; "one_finger_swipe_top_edge_left"
+0231    TGETS   14   0  14  ; "default_gesture"
+0232    TGETS   14  14  78  ; "one_finger_swipe_top_edge_left"
+0233    CALL    11   2   4
+0234    TSETS   11  10  15  ; "sub_item_table"
+0235    TSETB   10   9   6
+0236    TDUP    10  80
+0237    FNEW    11  79      ; readergesture.lua:468
+0238    TSETS   11  10   9  ; "text_func"
+0239    MOV     12   0
+0240    TGETS   11   0  12  ; "buildMenu"
+0241    KSTR    13  81      ; "one_finger_swipe_bottom_edge_right"
+0242    TGETS   14   0  14  ; "default_gesture"
+0243    TGETS   14  14  81  ; "one_finger_swipe_bottom_edge_right"
+0244    CALL    11   2   4
+0245    TSETS   11  10  15  ; "sub_item_table"
+0246    TSETB   10   9   7
+0247    TDUP    10  83
+0248    FNEW    11  82      ; readergesture.lua:472
+0249    TSETS   11  10   9  ; "text_func"
+0250    MOV     12   0
+0251    TGETS   11   0  12  ; "buildMenu"
+0252    KSTR    13  84      ; "one_finger_swipe_bottom_edge_left"
+0253    TGETS   14   0  14  ; "default_gesture"
+0254    TGETS   14  14  84  ; "one_finger_swipe_bottom_edge_left"
+0255    CALL    11   2   4
+0256    TSETS   11  10  15  ; "sub_item_table"
+0257    TSETB   10   9   8
+0258    TSETS    9   8  15  ; "sub_item_table"
+0259    TSETB    8   7   7
+0260    TSETS    7   6  15  ; "sub_item_table"
+0261    TSETS    6   1  40  ; "gesture_manager"
+0262    TDUP     6  87
+0263    UGET     7   1      ; _
+0264    KSTR     8  86      ; "Gesture intervals"
+0265    CALL     7   2   2
+0266    TSETS    7   6   6  ; "text"
+0267    TNEW     7   6
+0268    TDUP     8  89
+0269    UGET     9   1      ; _
+0270    KSTR    10  88      ; "Double tap interval"
+0271    CALL     9   2   2
+0272    TSETS    9   8   6  ; "text"
+0273    FNEW     9  90      ; readergesture.lua:484
+0274    TSETS    9   8  48  ; "callback"
+0275    TSETB    8   7   1
+0276    TDUP     8  92
+0277    UGET     9   1      ; _
+0278    KSTR    10  91      ; "Two finger tap duration"
+0279    CALL     9   2   2
+0280    TSETS    9   8   6  ; "text"
+0281    FNEW     9  93      ; readergesture.lua:511
+0282    TSETS    9   8  48  ; "callback"
+0283    TSETB    8   7   2
+0284    TDUP     8  95
+0285    UGET     9   1      ; _
+0286    KSTR    10  94      ; "Hold interval"
+0287    CALL     9   2   2
+0288    TSETS    9   8   6  ; "text"
+0289    FNEW     9  96      ; readergesture.lua:538
+0290    TSETS    9   8  48  ; "callback"
+0291    TSETB    8   7   3
+0292    TDUP     8  98
+0293    UGET     9   1      ; _
+0294    KSTR    10  97      ; "Pan delay interval"
+0295    CALL     9   2   2
+0296    TSETS    9   8   6  ; "text"
+0297    FNEW     9  99      ; readergesture.lua:565
+0298    TSETS    9   8  48  ; "callback"
+0299    TSETB    8   7   4
+0300    TDUP     8 101
+0301    UGET     9   1      ; _
+0302    KSTR    10 100      ; "Swipe interval"
+0303    CALL     9   2   2
+0304    TSETS    9   8   6  ; "text"
+0305    FNEW     9 102      ; readergesture.lua:592
+0306    TSETS    9   8  48  ; "callback"
+0307    TSETB    8   7   5
+0308    TSETS    7   6  15  ; "sub_item_table"
+0309    TSETS    6   1  85  ; "gesture_intervals"
+0310    FNEW     6 103      ; readergesture.lua:620
+0311    UGET     7  14      ; Device
+0312    MOV      8   7
+0313    TGETS    7   7 104  ; "hasMultitouch"
+0314    CALL     7   2   2
+0315    ISF          7
+0316    JMP      8 => 0508
+0317    TDUP     7 106
+0318    UGET     8   1      ; _
+0319    KSTR     9 105      ; "Two-finger tap corner"
+0320    CALL     8   2   2
+0321    TSETS    8   7   6  ; "text"
+0322    TNEW     8   5
+0323    TDUP     9 108
+0324    FNEW    10 107      ; readergesture.lua:630
+0325    TSETS   10   9   9  ; "text_func"
+0326    MOV     11   0
+0327    TGETS   10   0  12  ; "buildMenu"
+0328    KSTR    12 109      ; "two_finger_tap_top_left_corner"
+0329    TGETS   13   0  14  ; "default_gesture"
+0330    TGETS   13  13 109  ; "two_finger_tap_top_left_corner"
+0331    CALL    10   2   4
+0332    TSETS   10   9  15  ; "sub_item_table"
+0333    TSETB    9   8   1
+0334    TDUP     9 111
+0335    FNEW    10 110      ; readergesture.lua:634
+0336    TSETS   10   9   9  ; "text_func"
+0337    MOV     11   0
+0338    TGETS   10   0  12  ; "buildMenu"
+0339    KSTR    12 112      ; "two_finger_tap_top_right_corner"
+0340    TGETS   13   0  14  ; "default_gesture"
+0341    TGETS   13  13 112  ; "two_finger_tap_top_right_corner"
+0342    CALL    10   2   4
+0343    TSETS   10   9  15  ; "sub_item_table"
+0344    TSETB    9   8   2
+0345    TDUP     9 114
+0346    FNEW    10 113      ; readergesture.lua:638
+0347    TSETS   10   9   9  ; "text_func"
+0348    MOV     11   0
+0349    TGETS   10   0  12  ; "buildMenu"
+0350    KSTR    12 115      ; "two_finger_tap_bottom_left_corner"
+0351    TGETS   13   0  14  ; "default_gesture"
+0352    TGETS   13  13 115  ; "two_finger_tap_bottom_left_corner"
+0353    CALL    10   2   4
+0354    TSETS   10   9  15  ; "sub_item_table"
+0355    TSETB    9   8   3
+0356    TDUP     9 117
+0357    FNEW    10 116      ; readergesture.lua:642
+0358    TSETS   10   9   9  ; "text_func"
+0359    MOV     11   0
+0360    TGETS   10   0  12  ; "buildMenu"
+0361    KSTR    12 118      ; "two_finger_tap_bottom_right_corner"
+0362    TGETS   13   0  14  ; "default_gesture"
+0363    TGETS   13  13 118  ; "two_finger_tap_bottom_right_corner"
+0364    CALL    10   2   4
+0365    TSETS   10   9  15  ; "sub_item_table"
+0366    TSETB    9   8   4
+0367    TSETS    8   7  15  ; "sub_item_table"
+0368    GGET     8 119      ; "table"
+0369    TGETS    8   8 120  ; "insert"
+0370    TGETS    9   1  40  ; "gesture_manager"
+0371    TGETS    9   9  15  ; "sub_item_table"
+0372    MOV     10   7
+0373    CALL     8   1   3
+0374    GGET     8 119      ; "table"
+0375    TGETS    8   8 120  ; "insert"
+0376    TGETS    9   1  40  ; "gesture_manager"
+0377    TGETS    9   9  15  ; "sub_item_table"
+0378    TDUP    10 122
+0379    UGET    11   1      ; _
+0380    KSTR    12 121      ; "Two-finger swipe"
+0381    CALL    11   2   2
+0382    TSETS   11  10   6  ; "text"
+0383    TNEW    11   9
+0384    TDUP    12 124
+0385    FNEW    13 123      ; readergesture.lua:652
+0386    TSETS   13  12   9  ; "text_func"
+0387    MOV     14   0
+0388    TGETS   13   0  12  ; "buildMenu"
+0389    KSTR    15 125      ; "two_finger_swipe_east"
+0390    TGETS   16   0  14  ; "default_gesture"
+0391    TGETS   16  16 125  ; "two_finger_swipe_east"
+0392    CALL    13   2   4
+0393    TSETS   13  12  15  ; "sub_item_table"
+0394    TSETB   12  11   1
+0395    TDUP    12 127
+0396    FNEW    13 126      ; readergesture.lua:656
+0397    TSETS   13  12   9  ; "text_func"
+0398    MOV     14   0
+0399    TGETS   13   0  12  ; "buildMenu"
+0400    KSTR    15 128      ; "two_finger_swipe_west"
+0401    TGETS   16   0  14  ; "default_gesture"
+0402    TGETS   16  16 128  ; "two_finger_swipe_west"
+0403    CALL    13   2   4
+0404    TSETS   13  12  15  ; "sub_item_table"
+0405    TSETB   12  11   2
+0406    TDUP    12 130
+0407    FNEW    13 129      ; readergesture.lua:660
+0408    TSETS   13  12   9  ; "text_func"
+0409    MOV     14   0
+0410    TGETS   13   0  12  ; "buildMenu"
+0411    KSTR    15 131      ; "two_finger_swipe_south"
+0412    TGETS   16   0  14  ; "default_gesture"
+0413    TGETS   16  16 131  ; "two_finger_swipe_south"
+0414    CALL    13   2   4
+0415    TSETS   13  12  15  ; "sub_item_table"
+0416    TSETB   12  11   3
+0417    TDUP    12 133
+0418    FNEW    13 132      ; readergesture.lua:664
+0419    TSETS   13  12   9  ; "text_func"
+0420    MOV     14   0
+0421    TGETS   13   0  12  ; "buildMenu"
+0422    KSTR    15 134      ; "two_finger_swipe_north"
+0423    TGETS   16   0  14  ; "default_gesture"
+0424    TGETS   16  16 134  ; "two_finger_swipe_north"
+0425    CALL    13   2   4
+0426    TSETS   13  12  15  ; "sub_item_table"
+0427    TSETB   12  11   4
+0428    TDUP    12 136
+0429    FNEW    13 135      ; readergesture.lua:668
+0430    TSETS   13  12   9  ; "text_func"
+0431    MOV     14   0
+0432    TGETS   13   0  12  ; "buildMenu"
+0433    KSTR    15 137      ; "two_finger_swipe_northeast"
+0434    TGETS   16   0  14  ; "default_gesture"
+0435    TGETS   16  16 137  ; "two_finger_swipe_northeast"
+0436    CALL    13   2   4
+0437    TSETS   13  12  15  ; "sub_item_table"
+0438    TSETB   12  11   5
+0439    TDUP    12 139
+0440    FNEW    13 138      ; readergesture.lua:672
+0441    TSETS   13  12   9  ; "text_func"
+0442    MOV     14   0
+0443    TGETS   13   0  12  ; "buildMenu"
+0444    KSTR    15 140      ; "two_finger_swipe_northwest"
+0445    TGETS   16   0  14  ; "default_gesture"
+0446    TGETS   16  16 140  ; "two_finger_swipe_northwest"
+0447    CALL    13   2   4
+0448    TSETS   13  12  15  ; "sub_item_table"
+0449    TSETB   12  11   6
+0450    TDUP    12 142
+0451    FNEW    13 141      ; readergesture.lua:676
+0452    TSETS   13  12   9  ; "text_func"
+0453    MOV     14   0
+0454    TGETS   13   0  12  ; "buildMenu"
+0455    KSTR    15 143      ; "two_finger_swipe_southeast"
+0456    TGETS   16   0  14  ; "default_gesture"
+0457    TGETS   16  16 143  ; "two_finger_swipe_southeast"
+0458    CALL    13   2   4
+0459    TSETS   13  12  15  ; "sub_item_table"
+0460    TSETB   12  11   7
+0461    TDUP    12 145
+0462    FNEW    13 144      ; readergesture.lua:680
+0463    TSETS   13  12   9  ; "text_func"
+0464    MOV     14   0
+0465    TGETS   13   0  12  ; "buildMenu"
+0466    KSTR    15 146      ; "two_finger_swipe_southwest"
+0467    TGETS   16   0  14  ; "default_gesture"
+0468    TGETS   16  16 146  ; "two_finger_swipe_southwest"
+0469    CALL    13   2   4
+0470    TSETS   13  12  15  ; "sub_item_table"
+0471    TSETB   12  11   8
+0472    TSETS   11  10  15  ; "sub_item_table"
+0473    CALL     8   1   3
+0474    GGET     8 119      ; "table"
+0475    TGETS    8   8 120  ; "insert"
+0476    TGETS    9   1  40  ; "gesture_manager"
+0477    TGETS    9   9  15  ; "sub_item_table"
+0478    TDUP    10 148
+0479    UGET    11   1      ; _
+0480    KSTR    12 147      ; "Spread and pinch"
+0481    CALL    11   2   2
+0482    TSETS   11  10   6  ; "text"
+0483    TNEW    11   3
+0484    TDUP    12 150
+0485    FNEW    13 149      ; readergesture.lua:689
+0486    TSETS   13  12   9  ; "text_func"
+0487    MOV     14   0
+0488    TGETS   13   0  12  ; "buildMenu"
+0489    KSTR    15 151      ; "spread_gesture"
+0490    TGETS   16   0  14  ; "default_gesture"
+0491    TGETS   16  16 151  ; "spread_gesture"
+0492    CALL    13   2   4
+0493    TSETS   13  12  15  ; "sub_item_table"
+0494    TSETB   12  11   1
+0495    TDUP    12 153
+0496    FNEW    13 152      ; readergesture.lua:693
+0497    TSETS   13  12   9  ; "text_func"
+0498    MOV     14   0
+0499    TGETS   13   0  12  ; "buildMenu"
+0500    KSTR    15 154      ; "pinch_gesture"
+0501    TGETS   16   0  14  ; "default_gesture"
+0502    TGETS   16  16 154  ; "pinch_gesture"
+0503    CALL    13   2   4
+0504    TSETS   13  12  15  ; "sub_item_table"
+0505    TSETB   12  11   2
+0506    TSETS   11  10  15  ; "sub_item_table"
+0507    CALL     8   1   3
+0508 => UCLO     0 => 0509
+0509 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:701-822
+0001    GGET     3   0      ; "G_reader_settings"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "readSetting"
+0004    TGETS    5   0   2  ; "ges_mode"
+0005    CALL     3   2   3
+0006    TNEW     4  80
+0007    TDUP     5   3
+0008    TSETB    5   4   1
+0009    TDUP     5   4
+0010    TSETB    5   4   2
+0011    TDUP     5   5
+0012    TGETS    6   0   6  ; "is_docless"
+0013    NOT      6   6
+0014    TSETB    6   5   2
+0015    TSETB    5   4   3
+0016    TDUP     5   7
+0017    TGETS    6   0   6  ; "is_docless"
+0018    NOT      6   6
+0019    TSETB    6   5   2
+0020    TSETB    5   4   4
+0021    TDUP     5   8
+0022    TGETS    6   0   6  ; "is_docless"
+0023    NOT      6   6
+0024    TSETB    6   5   2
+0025    TSETB    5   4   5
+0026    TDUP     5   9
+0027    TGETS    6   0   6  ; "is_docless"
+0028    NOT      6   6
+0029    TSETB    6   5   2
+0030    TSETB    5   4   6
+0031    TDUP     5  10
+0032    TGETS    6   0   6  ; "is_docless"
+0033    NOT      6   6
+0034    TSETB    6   5   2
+0035    TSETB    5   4   7
+0036    TDUP     5  11
+0037    TGETS    6   0   6  ; "is_docless"
+0038    NOT      6   6
+0039    TSETB    6   5   2
+0040    TSETB    5   4   8
+0041    TDUP     5  12
+0042    TGETS    6   0   6  ; "is_docless"
+0043    NOT      6   6
+0044    TSETB    6   5   2
+0045    TSETB    5   4   9
+0046    TDUP     5  13
+0047    TGETS    6   0   6  ; "is_docless"
+0048    NOT      6   6
+0049    TSETB    6   5   2
+0050    TSETB    5   4  10
+0051    TDUP     5  14
+0052    TGETS    6   0   6  ; "is_docless"
+0053    NOT      6   6
+0054    TSETB    6   5   2
+0055    TSETB    5   4  11
+0056    TDUP     5  15
+0057    TGETS    6   0   6  ; "is_docless"
+0058    NOT      6   6
+0059    TSETB    6   5   2
+0060    TSETB    5   4  12
+0061    TDUP     5  16
+0062    TSETB    5   4  13
+0063    TDUP     5  17
+0064    TGETS    6   0   6  ; "is_docless"
+0065    NOT      6   6
+0066    TSETB    6   5   2
+0067    TSETB    5   4  14
+0068    TDUP     5  18
+0069    TSETB    5   4  15
+0070    TDUP     5  19
+0071    TGETS    6   0   6  ; "is_docless"
+0072    NOT      6   6
+0073    TSETB    6   5   2
+0074    TSETB    5   4  16
+0075    TDUP     5  20
+0076    TGETS    6   0   6  ; "is_docless"
+0077    NOT      6   6
+0078    TSETB    6   5   2
+0079    TSETB    5   4  17
+0080    TDUP     5  21
+0081    TGETS    6   0   6  ; "is_docless"
+0082    NOT      6   6
+0083    TSETB    6   5   2
+0084    TSETB    5   4  18
+0085    TDUP     5  22
+0086    TGETS    6   0   6  ; "is_docless"
+0087    NOT      6   6
+0088    TSETB    6   5   2
+0089    TSETB    5   4  19
+0090    TDUP     5  23
+0091    TGETS    6   0   6  ; "is_docless"
+0092    NOT      6   6
+0093    TSETB    6   5   2
+0094    TSETB    5   4  20
+0095    TDUP     5  24
+0096    TGETS    6   0   6  ; "is_docless"
+0097    TSETB    6   5   2
+0098    TSETB    5   4  21
+0099    TDUP     5  25
+0100    TGETS    6   0   6  ; "is_docless"
+0101    TSETB    6   5   2
+0102    TSETB    5   4  22
+0103    TDUP     5  26
+0104    TSETB    5   4  23
+0105    TDUP     5  27
+0106    TGETS    6   0   6  ; "is_docless"
+0107    NOT      6   6
+0108    TSETB    6   5   2
+0109    TSETB    5   4  24
+0110    TDUP     5  28
+0111    TGETS    6   0   6  ; "is_docless"
+0112    NOT      6   6
+0113    TSETB    6   5   2
+0114    TSETB    5   4  25
+0115    TDUP     5  29
+0116    UGET     6   0      ; ReaderGesture
+0117    TGETS    6   6  30  ; "getReaderProgress"
+0118    ISNEP    6   0
+0119    JMP      6 => 0122
+0120    KPRI     6   1
+0121    JMP      7 => 0123
+0122 => KPRI     6   2
+0123 => TSETB    6   5   2
+0124    TSETB    5   4  26
+0125    TDUP     5  31
+0126    TGETS    6   0   6  ; "is_docless"
+0127    NOT      6   6
+0128    TSETB    6   5   2
+0129    TSETB    5   4  27
+0130    TDUP     5  32
+0131    TGETS    6   0   6  ; "is_docless"
+0132    NOT      6   6
+0133    TSETB    6   5   2
+0134    TSETB    5   4  28
+0135    TDUP     5  33
+0136    TGETS    6   0   6  ; "is_docless"
+0137    NOT      6   6
+0138    TSETB    6   5   2
+0139    TSETB    5   4  29
+0140    TDUP     5  34
+0141    TGETS    6   0   6  ; "is_docless"
+0142    NOT      6   6
+0143    TSETB    6   5   2
+0144    TSETB    5   4  30
+0145    TDUP     5  35
+0146    TGETS    6   0   6  ; "is_docless"
+0147    NOT      6   6
+0148    TSETB    6   5   2
+0149    TSETB    5   4  31
+0150    TDUP     5  36
+0151    TSETB    5   4  32
+0152    TDUP     5  37
+0153    TSETB    5   4  33
+0154    TDUP     5  38
+0155    TSETB    5   4  34
+0156    TDUP     5  39
+0157    TGETS    6   0   6  ; "is_docless"
+0158    NOT      6   6
+0159    TSETB    6   5   2
+0160    TSETB    5   4  35
+0161    TDUP     5  40
+0162    TSETB    5   4  36
+0163    TDUP     5  41
+0164    TSETB    5   4  37
+0165    TDUP     5  42
+0166    TSETB    5   4  38
+0167    TDUP     5  43
+0168    TGETS    6   0   6  ; "is_docless"
+0169    NOT      6   6
+0170    TSETB    6   5   2
+0171    TSETB    5   4  39
+0172    TDUP     5  44
+0173    TSETB    5   4  40
+0174    TDUP     5  45
+0175    TSETB    5   4  41
+0176    TDUP     5  46
+0177    TSETB    5   4  42
+0178    TDUP     5  47
+0179    TSETB    5   4  43
+0180    TDUP     5  48
+0181    TSETB    5   4  44
+0182    TDUP     5  49
+0183    UGET     6   1      ; Device
+0184    MOV      7   6
+0185    TGETS    6   6  50  ; "canRestart"
+0186    CALL     6   0   2
+0187    TSETM    6   0      ; 2
+0188    TSETB    5   4  45
+0189    TDUP     5  51
+0190    UGET     6   1      ; Device
+0191    MOV      7   6
+0192    TGETS    6   6  52  ; "canReboot"
+0193    CALL     6   0   2
+0194    TSETM    6   0      ; 2
+0195    TSETB    5   4  46
+0196    TDUP     5  53
+0197    UGET     6   1      ; Device
+0198    MOV      7   6
+0199    TGETS    6   6  54  ; "canPowerOff"
+0200    CALL     6   0   2
+0201    TSETM    6   0      ; 2
+0202    TSETB    5   4  47
+0203    TDUP     5  55
+0204    TSETB    5   4  48
+0205    TDUP     5  56
+0206    TGETS    6   0   6  ; "is_docless"
+0207    NOT      6   6
+0208    TSETB    6   5   2
+0209    TSETB    5   4  49
+0210    TDUP     5  57
+0211    UGET     6   1      ; Device
+0212    MOV      7   6
+0213    TGETS    6   6  58  ; "hasFrontlight"
+0214    CALL     6   0   2
+0215    TSETM    6   0      ; 2
+0216    TSETB    5   4  50
+0217    TDUP     5  59
+0218    UGET     6   1      ; Device
+0219    MOV      7   6
+0220    TGETS    6   6  58  ; "hasFrontlight"
+0221    CALL     6   0   2
+0222    TSETM    6   0      ; 2
+0223    TSETB    5   4  51
+0224    TDUP     5  60
+0225    UGET     6   1      ; Device
+0226    MOV      7   6
+0227    TGETS    6   6  58  ; "hasFrontlight"
+0228    CALL     6   0   2
+0229    TSETM    6   0      ; 2
+0230    TSETB    5   4  52
+0231    TDUP     5  61
+0232    UGET     6   1      ; Device
+0233    MOV      7   6
+0234    TGETS    6   6  58  ; "hasFrontlight"
+0235    CALL     6   2   2
+0236    TSETB    6   5   2
+0237    TSETB    5   4  53
+0238    TDUP     5  62
+0239    UGET     6   1      ; Device
+0240    MOV      7   6
+0241    TGETS    6   6  63  ; "hasNaturalLight"
+0242    CALL     6   0   2
+0243    TSETM    6   0      ; 2
+0244    TSETB    5   4  54
+0245    TDUP     5  64
+0246    UGET     6   1      ; Device
+0247    MOV      7   6
+0248    TGETS    6   6  63  ; "hasNaturalLight"
+0249    CALL     6   2   2
+0250    TSETB    6   5   2
+0251    TSETB    5   4  55
+0252    TDUP     5  65
+0253    TSETB    5   4  56
+0254    TDUP     5  66
+0255    UGET     6   1      ; Device
+0256    MOV      7   6
+0257    TGETS    6   6  67  ; "canToggleGSensor"
+0258    CALL     6   0   2
+0259    TSETM    6   0      ; 2
+0260    TSETB    5   4  57
+0261    TDUP     5  68
+0262    TGETS    6   0   6  ; "is_docless"
+0263    NOT      6   6
+0264    TSETB    6   5   2
+0265    TSETB    5   4  58
+0266    TDUP     5  69
+0267    UGET     6   1      ; Device
+0268    MOV      7   6
+0269    TGETS    6   6  70  ; "hasWifiToggle"
+0270    CALL     6   0   2
+0271    TSETM    6   0      ; 2
+0272    TSETB    5   4  59
+0273    TDUP     5  71
+0274    UGET     6   1      ; Device
+0275    MOV      7   6
+0276    TGETS    6   6  70  ; "hasWifiToggle"
+0277    CALL     6   0   2
+0278    TSETM    6   0      ; 2
+0279    TSETB    5   4  60
+0280    TDUP     5  72
+0281    UGET     6   1      ; Device
+0282    MOV      7   6
+0283    TGETS    6   6  70  ; "hasWifiToggle"
+0284    CALL     6   2   2
+0285    TSETB    6   5   2
+0286    TSETB    5   4  61
+0287    TDUP     5  73
+0288    TGETS    6   0   6  ; "is_docless"
+0289    NOT      6   6
+0290    TSETB    6   5   2
+0291    TSETB    5   4  62
+0292    TDUP     5  74
+0293    TGETS    6   0   6  ; "is_docless"
+0294    NOT      6   6
+0295    TSETB    6   5   2
+0296    TSETB    5   4  63
+0297    TDUP     5  75
+0298    TGETS    6   0   6  ; "is_docless"
+0299    NOT      6   6
+0300    TSETB    6   5   2
+0301    TSETB    5   4  64
+0302    TDUP     5  76
+0303    TGETS    6   0   6  ; "is_docless"
+0304    NOT      6   6
+0305    TSETB    6   5   2
+0306    TSETB    5   4  65
+0307    TDUP     5  77
+0308    TGETS    6   0   6  ; "is_docless"
+0309    NOT      6   6
+0310    TSETB    6   5   2
+0311    TSETB    5   4  66
+0312    TDUP     5  78
+0313    TGETS    6   0   6  ; "is_docless"
+0314    NOT      6   6
+0315    TSETB    6   5   2
+0316    TSETB    5   4  67
+0317    TDUP     5  79
+0318    TGETS    6   0   6  ; "is_docless"
+0319    NOT      6   6
+0320    TSETB    6   5   2
+0321    TSETB    5   4  68
+0322    TDUP     5  80
+0323    TGETS    6   0   6  ; "is_docless"
+0324    NOT      6   6
+0325    TSETB    6   5   2
+0326    TSETB    5   4  69
+0327    TDUP     5  81
+0328    TGETS    6   0   6  ; "is_docless"
+0329    NOT      6   6
+0330    TSETB    6   5   2
+0331    TSETB    5   4  70
+0332    TDUP     5  82
+0333    TGETS    6   0   6  ; "is_docless"
+0334    NOT      6   6
+0335    TSETB    6   5   2
+0336    TSETB    5   4  71
+0337    TDUP     5  83
+0338    TGETS    6   0   6  ; "is_docless"
+0339    NOT      6   6
+0340    TSETB    6   5   2
+0341    TSETB    5   4  72
+0342    TDUP     5  84
+0343    TGETS    6   0   6  ; "is_docless"
+0344    NOT      6   6
+0345    TSETB    6   5   2
+0346    TSETB    5   4  73
+0347    TDUP     5  85
+0348    TGETS    6   0   6  ; "is_docless"
+0349    NOT      6   6
+0350    TSETB    6   5   2
+0351    TSETB    5   4  74
+0352    TDUP     5  86
+0353    TGETS    6   0   6  ; "is_docless"
+0354    NOT      6   6
+0355    TSETB    6   5   2
+0356    TSETB    5   4  75
+0357    TDUP     5  87
+0358    TGETS    6   0   6  ; "is_docless"
+0359    NOT      6   6
+0360    TSETB    6   5   2
+0361    TSETB    5   4  76
+0362    TDUP     5  88
+0363    TGETS    6   0  89  ; "ui"
+0364    TGETS    6   6  90  ; "wallabag"
+0365    ISNEP    6   0
+0366    JMP      6 => 0369
+0367    KPRI     6   1
+0368    JMP      7 => 0370
+0369 => KPRI     6   2
+0370 => TSETB    6   5   2
+0371    TSETB    5   4  77
+0372    TDUP     5  91
+0373    TGETS    6   0   6  ; "is_docless"
+0374    NOT      6   6
+0375    TSETB    6   5   2
+0376    TSETB    5   4  78
+0377    TDUP     5  92
+0378    TGETS    6   0   6  ; "is_docless"
+0379    NOT      6   6
+0380    TSETB    6   5   2
+0381    TSETB    5   4  79
+0382    TNEW     5   0
+0383    GGET     6  93      ; "pairs"
+0384    MOV      7   4
+0385    CALL     6   4   2
+0386    ISNEXT   9 => 0420
+0387 => TGETB   11  10   1
+0388    ISNEV   11   2
+0389    JMP     11 => 0420
+0390    UGET    11   2      ; T
+0391    UGET    12   3      ; _
+0392    KSTR    13  94      ; "%1 (default)"
+0393    CALL    12   2   2
+0394    UGET    13   4      ; action_strings
+0395    TGETB   14  10   1
+0396    TGETV   13  13  14
+0397    CALL    11   2   3
+0398    GGET    12  95      ; "table"
+0399    TGETS   12  12  96  ; "insert"
+0400    MOV     13   5
+0401    MOV     15   0
+0402    TGETS   14   0  97  ; "createSubMenu"
+0403    MOV     16  11
+0404    TGETB   17  10   1
+0405    MOV     18   1
+0406    KPRI    19   2
+0407    CALL    14   0   6
+0408    CALLM   12   1   1
+0409    TGETV   12   3   1
+0410    IST         12
+0411    JMP     12 => 0422
+0412    TSETV    2   3   1
+0413    GGET    12   0      ; "G_reader_settings"
+0414    MOV     13  12
+0415    TGETS   12  12  98  ; "saveSetting"
+0416    TGETS   14   0   2  ; "ges_mode"
+0417    MOV     15   3
+0418    CALL    12   1   4
+0419    JMP      6 => 0422
+0420 => ITERN    9   3   3
+0421    ITERL    9 => 0387
+0422 => GGET     6  93      ; "pairs"
+0423    MOV      7   4
+0424    CALL     6   4   2
+0425    ISNEXT   9 => 0469
+0426 => TGETB   11  10   2
+0427    IST         11
+0428    JMP     11 => 0441
+0429    TGETV   11   3   1
+0430    TGETB   12  10   1
+0431    ISNEV   11  12
+0432    JMP     11 => 0441
+0433    KSTR    11  99      ; "nothing"
+0434    TSETV   11   3   1
+0435    GGET    11   0      ; "G_reader_settings"
+0436    MOV     12  11
+0437    TGETS   11  11  98  ; "saveSetting"
+0438    TGETS   13   0   2  ; "ges_mode"
+0439    MOV     14   3
+0440    CALL    11   1   4
+0441 => TGETB   11  10   1
+0442    ISEQV   11   2
+0443    JMP     11 => 0469
+0444    TGETB   11  10   2
+0445    ISF         11
+0446    JMP     12 => 0469
+0447    TGETB   11  10   1
+0448    ISEQS   11  99      ; "nothing"
+0449    JMP     11 => 0455
+0450    TGETB   11  10   3
+0451    ISEQP   11   2
+0452    JMP     11 => 0455
+0453    KPRI    11   1
+0454    JMP     12 => 0456
+0455 => KPRI    11   2
+0456 => GGET    12  95      ; "table"
+0457    TGETS   12  12  96  ; "insert"
+0458    MOV     13   5
+0459    MOV     15   0
+0460    TGETS   14   0  97  ; "createSubMenu"
+0461    UGET    16   4      ; action_strings
+0462    TGETB   17  10   1
+0463    TGETV   16  16  17
+0464    TGETB   17  10   1
+0465    MOV     18   1
+0466    MOV     19  11
+0467    CALL    14   0   6
+0468    CALLM   12   1   1
+0469 => ITERN    9   3   3
+0470    ITERL    9 => 0426
+0471    RET1     5   2
+
+-- BYTECODE -- readergesture.lua:872-875
+0001    UGET     0   0      ; gesture_manager
+0002    UGET     1   1      ; safe_multiswipe_name
+0003    TGETV    0   0   1
+0004    ISEQS    0   0      ; "nothing"
+0005    JMP      0 => 0013
+0006    UGET     0   2      ; action_strings
+0007    UGET     1   0      ; gesture_manager
+0008    UGET     2   1      ; safe_multiswipe_name
+0009    TGETV    1   1   2
+0010    TGETV    0   0   1
+0011    IST          0
+0012    JMP      1 => 0016
+0013 => UGET     0   3      ; _
+0014    KSTR     1   1      ; "Available"
+0015    CALL     0   2   2
+0016 => UGET     1   4      ; T
+0017    UGET     2   3      ; _
+0018    KSTR     3   2      ; "%1   (%2)"
+0019    CALL     2   2   2
+0020    UGET     3   5      ; friendly_multiswipe_name
+0021    MOV      4   0
+0022    CALLT    1   4
+
+-- BYTECODE -- readergesture.lua:882-899
+0001    UGET     0   0      ; gesture_manager
+0002    UGET     1   1      ; safe_multiswipe_name
+0003    KPRI     2   0
+0004    TSETV    2   0   1
+0005    UGET     0   2      ; custom_multiswipes
+0006    MOV      1   0
+0007    TGETS    0   0   0  ; "removeTableItem"
+0008    KSTR     2   1      ; "multiswipes"
+0009    UGET     3   3      ; i
+0010    UGET     4   4      ; default_multiswipes
+0011    LEN      4   4
+0012    SUBVV    3   3   4
+0013    SUBVN    3   3   0  ; 1
+0014    CALL     0   1   4
+0015    UGET     0   5      ; touchmenu_instance
+0016    TGETS    0   0   2  ; "item_table"
+0017 => LEN      1   0
+0018    KSHORT   2   0
+0019    ISGE     2   1
+0020    JMP      1 => 0028
+0021    LOOP     1 => 0028
+0022    GGET     1   3      ; "table"
+0023    TGETS    1   1   4  ; "remove"
+0024    MOV      2   0
+0025    LEN      3   0
+0026    CALL     1   1   3
+0027    JMP      1 => 0017
+0028 => GGET     1   5      ; "ipairs"
+0029    UGET     2   6      ; self
+0030    MOV      3   2
+0031    TGETS    2   2   6  ; "buildMultiswipeMenu"
+0032    CALL     2   0   2
+0033    CALLM    1   4   0
+0034    JMP      4 => 0040
+0035 => GGET     6   3      ; "table"
+0036    TGETS    6   6   7  ; "insert"
+0037    MOV      7   0
+0038    MOV      8   5
+0039    CALL     6   1   3
+0040 => ITERC    4   3   3
+0041    ITERL    4 => 0035
+0042    UGET     1   5      ; touchmenu_instance
+0043    MOV      2   1
+0044    TGETS    1   1   8  ; "updateItems"
+0045    CALL     1   1   2
+0046    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:877-902
+0001    UGET     1   0      ; i
+0002    UGET     2   1      ; default_multiswipes
+0003    LEN      2   2
+0004    ADDVN    2   2   0  ; 1
+0005    ISGE     2   1
+0006    JMP      1 => 0029
+0007    UGET     1   2      ; UIManager
+0008    MOV      2   1
+0009    TGETS    1   1   0  ; "show"
+0010    UGET     3   3      ; ConfirmBox
+0011    MOV      4   3
+0012    TGETS    3   3   1  ; "new"
+0013    TDUP     5   3
+0014    UGET     6   4      ; T
+0015    UGET     7   5      ; _
+0016    KSTR     8   2      ; "Remove custom multiswipe %1?"
+0017    CALL     7   2   2
+0018    UGET     8   6      ; friendly_multiswipe_name
+0019    CALL     6   2   3
+0020    TSETS    6   5   4  ; "text"
+0021    UGET     6   5      ; _
+0022    KSTR     7   5      ; "Remove"
+0023    CALL     6   2   2
+0024    TSETS    6   5   6  ; "ok_text"
+0025    FNEW     6   7      ; readergesture.lua:882
+0026    TSETS    6   5   8  ; "ok_callback"
+0027    CALL     3   0   3
+0028    CALLM    1   1   1
+0029 => UCLO     0 => 0030
+0030 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:824-909
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "readSetting"
+0004    TGETS    3   0   2  ; "ges_mode"
+0005    CALL     1   2   3
+0006    TNEW     2   0
+0007    TNEW     3   0
+0008    USETV    0   3      ; multiswipes
+0009    TNEW     3   0
+0010    GGET     4   3      ; "pairs"
+0011    MOV      5   1
+0012    CALL     4   4   2
+0013    ISNEXT   7 => 0032
+0014 => MOV     10   7
+0015    TGETS    9   7   4  ; "sub"
+0016    KSHORT  11   1
+0017    KSHORT  12  11
+0018    CALL     9   2   4
+0019    ISNES    9   5      ; "multiswipe_"
+0020    JMP      9 => 0032
+0021    MOV     10   7
+0022    TGETS    9   7   4  ; "sub"
+0023    KSHORT  11  12
+0024    CALL     9   2   3
+0025    MOV     10   9
+0026    TGETS    9   9   6  ; "gsub"
+0027    KSTR    11   7      ; "_"
+0028    KSTR    12   8      ; " "
+0029    CALL     9   2   4
+0030    MOV      7   9
+0031    TSETV    8   3   7
+0032 => ITERN    7   3   3
+0033    ITERL    7 => 0014
+0034    GGET     4   3      ; "pairs"
+0035    UGET     5   1      ; default_multiswipes
+0036    CALL     4   4   2
+0037    ISNEXT   7 => 0045
+0038 => GGET     9   9      ; "table"
+0039    TGETS    9   9  10  ; "insert"
+0040    UGET    10   0      ; multiswipes
+0041    MOV     11   8
+0042    CALL     9   1   3
+0043    KPRI     9   0
+0044    TSETV    9   3   8
+0045 => ITERN    7   3   3
+0046    ITERL    7 => 0038
+0047    UGET     4   2      ; custom_multiswipes_table
+0048    ISF          4
+0049    JMP      5 => 0073
+0050    UGET     4   2      ; custom_multiswipes_table
+0051    LEN      4   4
+0052    KSHORT   5   0
+0053    ISGE     5   4
+0054    JMP      4 => 0073
+0055    GGET     4   9      ; "table"
+0056    TGETS    4   4  10  ; "insert"
+0057    UGET     5   0      ; multiswipes
+0058    KPRI     6   2
+0059    CALL     4   1   3
+0060    GGET     4   3      ; "pairs"
+0061    UGET     5   2      ; custom_multiswipes_table
+0062    CALL     4   4   2
+0063    ISNEXT   7 => 0071
+0064 => GGET     9   9      ; "table"
+0065    TGETS    9   9  10  ; "insert"
+0066    UGET    10   0      ; multiswipes
+0067    MOV     11   8
+0068    CALL     9   1   3
+0069    KPRI     9   0
+0070    TSETV    9   3   8
+0071 => ITERN    7   3   3
+0072    ITERL    7 => 0064
+0073 => GGET     4  11      ; "next"
+0074    MOV      5   3
+0075    CALL     4   2   2
+0076    ISF          4
+0077    JMP      5 => 0094
+0078    GGET     4   9      ; "table"
+0079    TGETS    4   4  10  ; "insert"
+0080    UGET     5   0      ; multiswipes
+0081    KPRI     6   2
+0082    CALL     4   1   3
+0083    GGET     4   3      ; "pairs"
+0084    MOV      5   3
+0085    CALL     4   4   2
+0086    ISNEXT   7 => 0092
+0087 => GGET     9   9      ; "table"
+0088    TGETS    9   9  10  ; "insert"
+0089    UGET    10   0      ; multiswipes
+0090    MOV     11   7
+0091    CALL     9   1   3
+0092 => ITERN    7   3   3
+0093    ITERL    7 => 0087
+0094 => KSHORT   4   1
+0095    UGET     5   0      ; multiswipes
+0096    LEN      5   5
+0097    KSHORT   6   1
+0098    FORI     4 => 0156
+0099 => KPRI     8   1
+0100    UGET     9   0      ; multiswipes
+0101    LEN      9   9
+0102    ISGE     7   9
+0103    JMP      9 => 0110
+0104    UGET     9   0      ; multiswipes
+0105    ADDVN   10   7   0  ; 1
+0106    TGETV    9   9  10
+0107    ISNEP    9   2
+0108    JMP      9 => 0110
+0109    KPRI     8   2
+0110 => GGET     9  12      ; "type"
+0111    UGET    10   0      ; multiswipes
+0112    TGETV   10  10   7
+0113    CALL     9   2   2
+0114    ISNES    9  13      ; "string"
+0115    JMP      9 => 0154
+0116    UGET     9   0      ; multiswipes
+0117    TGETV    9   9   7
+0118    MOV     11   0
+0119    TGETS   10   0  14  ; "friendlyMultiswipeName"
+0120    MOV     12   9
+0121    CALL    10   2   3
+0122    KSTR    11   5      ; "multiswipe_"
+0123    MOV     13   0
+0124    TGETS   12   0  15  ; "safeMultiswipeName"
+0125    MOV     14   9
+0126    CALL    12   2   3
+0127    CAT     11  11  12
+0128    TGETS   12   0  16  ; "default_gesture"
+0129    TGETV   12  12  11
+0130    ISF         12
+0131    JMP     13 => 0136
+0132    TGETS   12   0  16  ; "default_gesture"
+0133    TGETV   12  12  11
+0134    IST         12
+0135    JMP     13 => 0137
+0136 => KSTR    12  17      ; "nothing"
+0137 => GGET    13   9      ; "table"
+0138    TGETS   13  13  10  ; "insert"
+0139    MOV     14   2
+0140    TDUP    15  19
+0141    FNEW    16  18      ; readergesture.lua:872
+0142    TSETS   16  15  20  ; "text_func"
+0143    MOV     17   0
+0144    TGETS   16   0  21  ; "buildMenu"
+0145    MOV     18  11
+0146    MOV     19  12
+0147    CALL    16   2   4
+0148    TSETS   16  15  22  ; "sub_item_table"
+0149    FNEW    16  23      ; readergesture.lua:877
+0150    TSETS   16  15  24  ; "hold_callback"
+0151    TSETS    8  15  25  ; "separator"
+0152    CALL    13   1   3
+0153    UCLO     9 => 0154
+0154 => UCLO     7 => 0155
+0155 => FORL     4 => 0099
+0156 => UCLO     0 => 0157
+0157 => RET1     2   2
+
+-- BYTECODE -- readergesture.lua:915-917
+0001    UGET     0   0      ; gesture_manager
+0002    UGET     1   1      ; ges
+0003    TGETV    0   0   1
+0004    UGET     1   2      ; action
+0005    ISEQV    0   1
+0006    JMP      0 => 0009
+0007    KPRI     0   1
+0008    JMP      1 => 0010
+0009 => KPRI     0   2
+0010 => RET1     0   2
+
+-- BYTECODE -- readergesture.lua:918-922
+0001    UGET     0   0      ; gesture_manager
+0002    UGET     1   1      ; ges
+0003    UGET     2   2      ; action
+0004    TSETV    2   0   1
+0005    GGET     0   0      ; "G_reader_settings"
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "saveSetting"
+0008    UGET     2   3      ; self
+0009    TGETS    2   2   2  ; "ges_mode"
+0010    UGET     3   0      ; gesture_manager
+0011    CALL     0   1   4
+0012    UGET     0   3      ; self
+0013    MOV      1   0
+0014    TGETS    0   0   3  ; "setupGesture"
+0015    UGET     2   1      ; ges
+0016    UGET     3   2      ; action
+0017    CALL     0   1   4
+0018    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:911-925
+0001    GGET     5   0      ; "G_reader_settings"
+0002    MOV      6   5
+0003    TGETS    5   5   1  ; "readSetting"
+0004    TGETS    7   0   2  ; "ges_mode"
+0005    CALL     5   2   3
+0006    TDUP     6   3
+0007    TSETS    1   6   4  ; "text"
+0008    FNEW     7   5      ; readergesture.lua:915
+0009    TSETS    7   6   6  ; "checked_func"
+0010    FNEW     7   7      ; readergesture.lua:918
+0011    TSETS    7   6   8  ; "callback"
+0012    ISTC     7   4
+0013    JMP      7 => 0015
+0014    KPRI     7   1
+0015 => TSETS    7   6   9  ; "separator"
+0016    UCLO     0 => 0017
+0017 => RET1     6   2
+
+-- BYTECODE -- readergesture.lua:937-939
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "gsub"
+0003    KSTR     4   1      ; "%S+"
+0004    UGET     5   0      ; multiswipe_to_arrow
+0005    CALLT    2   4
+
+-- BYTECODE -- readergesture.lua:941-943
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "gsub"
+0003    KSTR     4   1      ; " "
+0004    KSTR     5   2      ; "_"
+0005    CALLT    2   4
+
+-- BYTECODE -- readergesture.lua:945-1227
+0001    KNIL     3   7
+0002    TDUP     8   0
+0003    TDUP     9   1
+0004    TDUP    10   2
+0005    TDUP    11   3
+0006    TDUP    12   4
+0007    GGET    13   5      ; "DTAP_ZONE_FLIPPING"
+0008    ISF         13
+0009    JMP     14 => 0013
+0010    GGET    13   5      ; "DTAP_ZONE_FLIPPING"
+0011    IST         13
+0012    JMP     14 => 0014
+0013 => GGET    13   6      ; "DTAP_ZONE_TOP_LEFT"
+0014 => TDUP    14   8
+0015    TGETS   15  13   7  ; "x"
+0016    TSETS   15  14   9  ; "ratio_x"
+0017    TGETS   15  13  10  ; "y"
+0018    TSETS   15  14  11  ; "ratio_y"
+0019    TGETS   15  13  12  ; "w"
+0020    TSETS   15  14  13  ; "ratio_w"
+0021    TGETS   15  13  14  ; "h"
+0022    TSETS   15  14  15  ; "ratio_h"
+0023    GGET    15  16      ; "DTAP_ZONE_BOOKMARK"
+0024    ISF         15
+0025    JMP     16 => 0029
+0026    GGET    15  16      ; "DTAP_ZONE_BOOKMARK"
+0027    IST         15
+0028    JMP     16 => 0030
+0029 => GGET    15  17      ; "DTAP_ZONE_TOP_RIGHT"
+0030 => TDUP    16  18
+0031    TGETS   17  15   7  ; "x"
+0032    TSETS   17  16   9  ; "ratio_x"
+0033    TGETS   17  15  10  ; "y"
+0034    TSETS   17  16  11  ; "ratio_y"
+0035    TGETS   17  15  12  ; "w"
+0036    TSETS   17  16  13  ; "ratio_w"
+0037    TGETS   17  15  14  ; "h"
+0038    TSETS   17  16  15  ; "ratio_h"
+0039    TDUP    17  20
+0040    GGET    18  19      ; "DTAP_ZONE_BOTTOM_LEFT"
+0041    TGETS   18  18   7  ; "x"
+0042    TSETS   18  17   9  ; "ratio_x"
+0043    GGET    18  19      ; "DTAP_ZONE_BOTTOM_LEFT"
+0044    TGETS   18  18  10  ; "y"
+0045    TSETS   18  17  11  ; "ratio_y"
+0046    GGET    18  19      ; "DTAP_ZONE_BOTTOM_LEFT"
+0047    TGETS   18  18  12  ; "w"
+0048    TSETS   18  17  13  ; "ratio_w"
+0049    GGET    18  19      ; "DTAP_ZONE_BOTTOM_LEFT"
+0050    TGETS   18  18  14  ; "h"
+0051    TSETS   18  17  15  ; "ratio_h"
+0052    TDUP    18  22
+0053    GGET    19  21      ; "DTAP_ZONE_BOTTOM_RIGHT"
+0054    TGETS   19  19   7  ; "x"
+0055    TSETS   19  18   9  ; "ratio_x"
+0056    GGET    19  21      ; "DTAP_ZONE_BOTTOM_RIGHT"
+0057    TGETS   19  19  10  ; "y"
+0058    TSETS   19  18  11  ; "ratio_y"
+0059    GGET    19  21      ; "DTAP_ZONE_BOTTOM_RIGHT"
+0060    TGETS   19  19  12  ; "w"
+0061    TSETS   19  18  13  ; "ratio_w"
+0062    GGET    19  21      ; "DTAP_ZONE_BOTTOM_RIGHT"
+0063    TGETS   19  19  14  ; "h"
+0064    TSETS   19  18  15  ; "ratio_h"
+0065    KNIL    19  26
+0066    TGETS   27   0  23  ; "is_docless"
+0067    ISF         27
+0068    JMP     28 => 0072
+0069    TDUP    19  24
+0070    TDUP    22  25
+0071    JMP     27 => 0078
+0072 => TDUP    19  26
+0073    TDUP    20  27
+0074    TDUP    21  28
+0075    TDUP    22  29
+0076    TDUP    23  30
+0077    TDUP    24  31
+0078 => ISNES    1  32      ; "multiswipe"
+0079    JMP     27 => 0084
+0080    KSTR     3  32      ; "multiswipe"
+0081    MOV      4   8
+0082    TDUP     6  33
+0083    JMP     27 => 0296
+0084 => ISNES    1  34      ; "tap_top_left_corner"
+0085    JMP     27 => 0090
+0086    KSTR     3  35      ; "tap"
+0087    MOV      4  14
+0088    MOV      5  19
+0089    JMP     27 => 0296
+0090 => ISNES    1  36      ; "tap_top_right_corner"
+0091    JMP     27 => 0096
+0092    KSTR     3  35      ; "tap"
+0093    MOV      4  16
+0094    MOV      5  19
+0095    JMP     27 => 0296
+0096 => ISNES    1  37      ; "tap_right_bottom_corner"
+0097    JMP     27 => 0102
+0098    KSTR     3  35      ; "tap"
+0099    MOV      4  18
+0100    MOV      5  19
+0101    JMP     27 => 0296
+0102 => ISNES    1  38      ; "tap_left_bottom_corner"
+0103    JMP     27 => 0108
+0104    KSTR     3  35      ; "tap"
+0105    MOV      4  17
+0106    MOV      5  19
+0107    JMP     27 => 0296
+0108 => ISNES    1  39      ; "hold_top_left_corner"
+0109    JMP     27 => 0114
+0110    KSTR     3  40      ; "hold"
+0111    MOV      4  14
+0112    MOV      5  20
+0113    JMP     27 => 0296
+0114 => ISNES    1  41      ; "hold_top_right_corner"
+0115    JMP     27 => 0120
+0116    KSTR     3  40      ; "hold"
+0117    MOV      4  16
+0118    MOV      5  20
+0119    JMP     27 => 0296
+0120 => ISNES    1  42      ; "hold_bottom_right_corner"
+0121    JMP     27 => 0126
+0122    KSTR     3  40      ; "hold"
+0123    MOV      4  18
+0124    MOV      5  20
+0125    JMP     27 => 0296
+0126 => ISNES    1  43      ; "hold_bottom_left_corner"
+0127    JMP     27 => 0132
+0128    KSTR     3  40      ; "hold"
+0129    MOV      4  17
+0130    MOV      5  20
+0131    JMP     27 => 0296
+0132 => ISNES    1  44      ; "one_finger_swipe_left_edge_down"
+0133    JMP     27 => 0141
+0134    KSTR     3  45      ; "swipe"
+0135    MOV      4   9
+0136    TDUP     6  46
+0137    MOV      5  21
+0138    MOV     25  23
+0139    MOV     26  24
+0140    JMP     27 => 0296
+0141 => ISNES    1  47      ; "one_finger_swipe_left_edge_up"
+0142    JMP     27 => 0150
+0143    KSTR     3  45      ; "swipe"
+0144    MOV      4   9
+0145    TDUP     6  48
+0146    MOV      5  21
+0147    MOV     25  23
+0148    MOV     26  24
+0149    JMP     27 => 0296
+0150 => ISNES    1  49      ; "one_finger_swipe_right_edge_down"
+0151    JMP     27 => 0159
+0152    KSTR     3  45      ; "swipe"
+0153    MOV      4  10
+0154    TDUP     6  50
+0155    MOV      5  21
+0156    MOV     25  23
+0157    MOV     26  24
+0158    JMP     27 => 0296
+0159 => ISNES    1  51      ; "one_finger_swipe_right_edge_up"
+0160    JMP     27 => 0168
+0161    KSTR     3  45      ; "swipe"
+0162    MOV      4  10
+0163    TDUP     6  52
+0164    MOV      5  21
+0165    MOV     25  23
+0166    MOV     26  24
+0167    JMP     27 => 0296
+0168 => ISNES    1  53      ; "one_finger_swipe_top_edge_right"
+0169    JMP     27 => 0177
+0170    KSTR     3  45      ; "swipe"
+0171    MOV      4  11
+0172    TDUP     6  54
+0173    MOV      5  22
+0174    MOV     25  23
+0175    MOV     26  24
+0176    JMP     27 => 0296
+0177 => ISNES    1  55      ; "one_finger_swipe_top_edge_left"
+0178    JMP     27 => 0186
+0179    KSTR     3  45      ; "swipe"
+0180    MOV      4  11
+0181    TDUP     6  56
+0182    MOV      5  22
+0183    MOV     25  23
+0184    MOV     26  24
+0185    JMP     27 => 0296
+0186 => ISNES    1  57      ; "one_finger_swipe_bottom_edge_right"
+0187    JMP     27 => 0195
+0188    KSTR     3  45      ; "swipe"
+0189    MOV      4  12
+0190    TDUP     6  58
+0191    MOV      5  22
+0192    MOV     25  23
+0193    MOV     26  24
+0194    JMP     27 => 0296
+0195 => ISNES    1  59      ; "one_finger_swipe_bottom_edge_left"
+0196    JMP     27 => 0204
+0197    KSTR     3  45      ; "swipe"
+0198    MOV      4  12
+0199    TDUP     6  60
+0200    MOV      5  22
+0201    MOV     25  23
+0202    MOV     26  24
+0203    JMP     27 => 0296
+0204 => ISNES    1  61      ; "two_finger_tap_top_left_corner"
+0205    JMP     27 => 0209
+0206    KSTR     3  62      ; "two_finger_tap"
+0207    MOV      4  14
+0208    JMP     27 => 0296
+0209 => ISNES    1  63      ; "two_finger_tap_top_right_corner"
+0210    JMP     27 => 0214
+0211    KSTR     3  62      ; "two_finger_tap"
+0212    MOV      4  16
+0213    JMP     27 => 0296
+0214 => ISNES    1  64      ; "two_finger_tap_bottom_right_corner"
+0215    JMP     27 => 0219
+0216    KSTR     3  62      ; "two_finger_tap"
+0217    MOV      4  18
+0218    JMP     27 => 0296
+0219 => ISNES    1  65      ; "two_finger_tap_bottom_left_corner"
+0220    JMP     27 => 0224
+0221    KSTR     3  62      ; "two_finger_tap"
+0222    MOV      4  17
+0223    JMP     27 => 0296
+0224 => ISNES    1  66      ; "two_finger_swipe_west"
+0225    JMP     27 => 0230
+0226    KSTR     3  67      ; "two_finger_swipe"
+0227    MOV      4   8
+0228    TDUP     6  68
+0229    JMP     27 => 0296
+0230 => ISNES    1  69      ; "two_finger_swipe_east"
+0231    JMP     27 => 0236
+0232    KSTR     3  67      ; "two_finger_swipe"
+0233    MOV      4   8
+0234    TDUP     6  70
+0235    JMP     27 => 0296
+0236 => ISNES    1  71      ; "two_finger_swipe_south"
+0237    JMP     27 => 0242
+0238    KSTR     3  67      ; "two_finger_swipe"
+0239    MOV      4   8
+0240    TDUP     6  72
+0241    JMP     27 => 0296
+0242 => ISNES    1  73      ; "two_finger_swipe_north"
+0243    JMP     27 => 0248
+0244    KSTR     3  67      ; "two_finger_swipe"
+0245    MOV      4   8
+0246    TDUP     6  74
+0247    JMP     27 => 0296
+0248 => ISNES    1  75      ; "two_finger_swipe_northwest"
+0249    JMP     27 => 0254
+0250    KSTR     3  67      ; "two_finger_swipe"
+0251    MOV      4   8
+0252    TDUP     6  76
+0253    JMP     27 => 0296
+0254 => ISNES    1  77      ; "two_finger_swipe_northeast"
+0255    JMP     27 => 0260
+0256    KSTR     3  67      ; "two_finger_swipe"
+0257    MOV      4   8
+0258    TDUP     6  78
+0259    JMP     27 => 0296
+0260 => ISNES    1  79      ; "two_finger_swipe_southwest"
+0261    JMP     27 => 0266
+0262    KSTR     3  67      ; "two_finger_swipe"
+0263    MOV      4   8
+0264    TDUP     6  80
+0265    JMP     27 => 0296
+0266 => ISNES    1  81      ; "two_finger_swipe_southeast"
+0267    JMP     27 => 0272
+0268    KSTR     3  67      ; "two_finger_swipe"
+0269    MOV      4   8
+0270    TDUP     6  82
+0271    JMP     27 => 0296
+0272 => ISNES    1  83      ; "short_diagonal_swipe"
+0273    JMP     27 => 0285
+0274    KSTR     3  45      ; "swipe"
+0275    TDUP     4  84
+0276    TDUP     6  85
+0277    KSTR     7  86      ; "short"
+0278    TGETS   27   0  23  ; "is_docless"
+0279    ISF         27
+0280    JMP     28 => 0283
+0281    TDUP     5  87
+0282    JMP     27 => 0296
+0283 => TDUP     5  88
+0284    JMP     27 => 0296
+0285 => ISNES    1  89      ; "spread_gesture"
+0286    JMP     27 => 0290
+0287    KSTR     3  90      ; "spread"
+0288    MOV      4   8
+0289    JMP     27 => 0296
+0290 => ISNES    1  91      ; "pinch_gesture"
+0291    JMP     27 => 0295
+0292    KSTR     3  92      ; "pinch"
+0293    MOV      4   8
+0294    JMP     27 => 0296
+0295 => RET0     0   1
+0296 => MOV     28   0
+0297    TGETS   27   0  93  ; "registerGesture"
+0298    MOV     29   1
+0299    MOV     30   2
+0300    MOV     31   3
+0301    MOV     32   4
+0302    MOV     33   5
+0303    MOV     34   6
+0304    MOV     35   7
+0305    CALL    27   1   9
+0306    ISNES    3  45      ; "swipe"
+0307    JMP     27 => 0336
+0308    ISEQS    1  83      ; "short_diagonal_swipe"
+0309    JMP     27 => 0336
+0310    MOV     27   1
+0311    KSTR    28  94      ; "_pan"
+0312    CAT     27  27  28
+0313    MOV     28   1
+0314    KSTR    29  95      ; "_pan_release"
+0315    CAT     28  28  29
+0316    MOV     30   0
+0317    TGETS   29   0  93  ; "registerGesture"
+0318    MOV     31  27
+0319    KSTR    32  96      ; ""
+0320    KSTR    33  97      ; "pan"
+0321    MOV     34   4
+0322    MOV     35  25
+0323    MOV     36   6
+0324    MOV     37   7
+0325    CALL    29   1   9
+0326    MOV     30   0
+0327    TGETS   29   0  93  ; "registerGesture"
+0328    MOV     31  28
+0329    KSTR    32  96      ; ""
+0330    KSTR    33  98      ; "pan_release"
+0331    MOV     34   4
+0332    MOV     35  26
+0333    MOV     36   6
+0334    MOV     37   7
+0335    CALL    29   1   9
+0336 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:1244-1247
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "multiswipes_enabled"
+0005    KPRI     3   2
+0006    CALL     0   1   4
+0007    UGET     0   0      ; self
+0008    KPRI     1   2
+0009    TSETS    1   0   2  ; "multiswipes_enabled"
+0010    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:1249-1252
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "multiswipes_enabled"
+0005    KPRI     3   1
+0006    CALL     0   1   4
+0007    UGET     0   0      ; self
+0008    KPRI     1   1
+0009    TSETS    1   0   2  ; "multiswipes_enabled"
+0010    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:1235-1261
+0001    UGET     1   0      ; distance
+0002    ISNES    1   0      ; "short"
+0003    JMP      1 => 0013
+0004    TGETS    1   0   1  ; "distance"
+0005    UGET     2   1      ; Screen
+0006    MOV      3   2
+0007    TGETS    2   2   2  ; "scaleBySize"
+0008    KSHORT   4 300
+0009    CALL     2   2   3
+0010    ISGE     2   1
+0011    JMP      1 => 0013
+0012    UCLO     0 => 0074
+0013 => UGET     1   2      ; direction
+0014    ISF          1
+0015    JMP      2 => 0022
+0016    UGET     1   2      ; direction
+0017    TGETS    2   0   3  ; "direction"
+0018    TGETV    1   1   2
+0019    IST          1
+0020    JMP      1 => 0022
+0021    UCLO     0 => 0075
+0022 => UGET     1   3      ; ges
+0023    ISNES    1   4      ; "multiswipe"
+0024    JMP      1 => 0067
+0025    UGET     1   4      ; self
+0026    TGETS    1   1   5  ; "multiswipes_enabled"
+0027    ISNEP    1   0
+0028    JMP      1 => 0060
+0029    UGET     1   5      ; UIManager
+0030    MOV      2   1
+0031    TGETS    1   1   6  ; "show"
+0032    UGET     3   6      ; ConfirmBox
+0033    MOV      4   3
+0034    TGETS    3   3   7  ; "new"
+0035    TDUP     5  10
+0036    UGET     6   7      ; _
+0037    KSTR     7   8      ; "You have just performed your first multi"~
+0038    CALL     6   2   2
+0039    KSTR     7   9      ; "\n\n"
+0040    UGET     8   8      ; multiswipes_info_text
+0041    CAT      6   6   8
+0042    TSETS    6   5  11  ; "text"
+0043    UGET     6   7      ; _
+0044    KSTR     7  12      ; "Turn on"
+0045    CALL     6   2   2
+0046    TSETS    6   5  13  ; "ok_text"
+0047    FNEW     6  14      ; readergesture.lua:1244
+0048    TSETS    6   5  15  ; "ok_callback"
+0049    UGET     6   7      ; _
+0050    KSTR     7  16      ; "Turn off"
+0051    CALL     6   2   2
+0052    TSETS    6   5  17  ; "cancel_text"
+0053    FNEW     6  18      ; readergesture.lua:1249
+0054    TSETS    6   5  19  ; "cancel_callback"
+0055    CALL     3   0   3
+0056    CALLM    1   1   1
+0057    UCLO     0 => 0058
+0058 => RET0     0   1
+0059    JMP      1 => 0067
+0060 => UGET     1   4      ; self
+0061    MOV      2   1
+0062    TGETS    1   1  20  ; "multiswipeAction"
+0063    TGETS    3   0  21  ; "multiswipe_directions"
+0064    MOV      4   0
+0065    UCLO     0 => 0066
+0066 => CALLT    1   4
+0067 => UGET     1   4      ; self
+0068    MOV      2   1
+0069    TGETS    1   1  22  ; "gestureAction"
+0070    UGET     3   9      ; action
+0071    MOV      4   0
+0072    UCLO     0 => 0073
+0073 => CALLT    1   4
+0074 => RET0     0   1
+0075 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:1229-1265
+0001    TGETS    8   0   0  ; "ui"
+0002    MOV      9   8
+0003    TGETS    8   8   1  ; "registerTouchZones"
+0004    TNEW    10   3
+0005    TDUP    11   2
+0006    TSETS    1  11   3  ; "id"
+0007    TSETS    3  11   4  ; "ges"
+0008    TSETS    4  11   5  ; "screen_zone"
+0009    FNEW    12   6      ; readergesture.lua:1235
+0010    TSETS   12  11   7  ; "handler"
+0011    TSETS    5  11   8  ; "overrides"
+0012    TSETB   11  10   1
+0013    CALL     8   1   3
+0014    UCLO     0 => 0015
+0015 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:1267-1269
+0001    UGET     0   0      ; Device
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "hasLightLevelFallback"
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0012
+0007    GGET     0   1      ; "G_reader_settings"
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "nilOrTrue"
+0010    KSTR     2   3      ; "light_fallback"
+0011    CALL     0   2   3
+0012 => RET1     0   2
+
+-- BYTECODE -- readergesture.lua:1542-1542
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "restartKOReader"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:1547-1549
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "nextTick"
+0004    UGET     2   0      ; UIManager
+0005    TGETS    2   2   1  ; "reboot_action"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:1555-1557
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "nextTick"
+0004    UGET     2   0      ; UIManager
+0005    TGETS    2   2   1  ; "poweroff_action"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readergesture.lua:1271-1585
+0001    ISEQS    1   0      ; "ignore"
+0002    JMP      3 => 0009
+0003    TGETS    3   2   1  ; "ges"
+0004    ISNES    3   2      ; "hold"
+0005    JMP      3 => 0011
+0006    TGETS    3   0   3  ; "ignore_hold_corners"
+0007    ISF          3
+0008    JMP      4 => 0011
+0009 => UCLO     0 => 1337
+0010    JMP      3 => 1334
+0011 => ISNES    1   4      ; "reading_progress"
+0012    JMP      3 => 0025
+0013    UGET     3   0      ; ReaderGesture
+0014    TGETS    3   3   5  ; "getReaderProgress"
+0015    ISF          3
+0016    JMP      4 => 0025
+0017    UGET     3   1      ; UIManager
+0018    MOV      4   3
+0019    TGETS    3   3   6  ; "show"
+0020    UGET     5   0      ; ReaderGesture
+0021    TGETS    5   5   5  ; "getReaderProgress"
+0022    CALL     5   0   1
+0023    CALLM    3   1   1
+0024    JMP      3 => 1334
+0025 => ISNES    1   7      ; "book_statistics"
+0026    JMP      3 => 0039
+0027    UGET     3   0      ; ReaderGesture
+0028    TGETS    3   3   8  ; "getBookStats"
+0029    ISF          3
+0030    JMP      4 => 0039
+0031    UGET     3   1      ; UIManager
+0032    MOV      4   3
+0033    TGETS    3   3   6  ; "show"
+0034    UGET     5   0      ; ReaderGesture
+0035    TGETS    5   5   8  ; "getBookStats"
+0036    CALL     5   0   1
+0037    CALLM    3   1   1
+0038    JMP      3 => 1334
+0039 => ISNES    1   9      ; "stats_calendar_view"
+0040    JMP      3 => 0053
+0041    UGET     3   0      ; ReaderGesture
+0042    TGETS    3   3  10  ; "getCalendarView"
+0043    ISF          3
+0044    JMP      4 => 0053
+0045    UGET     3   1      ; UIManager
+0046    MOV      4   3
+0047    TGETS    3   3   6  ; "show"
+0048    UGET     5   0      ; ReaderGesture
+0049    TGETS    5   5  10  ; "getCalendarView"
+0050    CALL     5   0   1
+0051    CALLM    3   1   1
+0052    JMP      3 => 1334
+0053 => ISNES    1  11      ; "toc"
+0054    JMP      3 => 0065
+0055    TGETS    3   0  12  ; "ui"
+0056    MOV      4   3
+0057    TGETS    3   3  13  ; "handleEvent"
+0058    UGET     5   2      ; Event
+0059    MOV      6   5
+0060    TGETS    5   5  14  ; "new"
+0061    KSTR     7  15      ; "ShowToc"
+0062    CALL     5   0   3
+0063    CALLM    3   1   1
+0064    JMP      3 => 1334
+0065 => ISNES    1  16      ; "night_mode"
+0066    JMP      3 => 0089
+0067    GGET     3  17      ; "G_reader_settings"
+0068    MOV      4   3
+0069    TGETS    3   3  18  ; "isTrue"
+0070    KSTR     5  16      ; "night_mode"
+0071    CALL     3   2   3
+0072    UGET     4   3      ; Screen
+0073    MOV      5   4
+0074    TGETS    4   4  19  ; "toggleNightMode"
+0075    CALL     4   1   2
+0076    UGET     4   1      ; UIManager
+0077    MOV      5   4
+0078    TGETS    4   4  20  ; "setDirty"
+0079    KSTR     6  21      ; "all"
+0080    KSTR     7  22      ; "full"
+0081    CALL     4   1   4
+0082    GGET     4  17      ; "G_reader_settings"
+0083    MOV      5   4
+0084    TGETS    4   4  23  ; "saveSetting"
+0085    KSTR     6  16      ; "night_mode"
+0086    NOT      7   3
+0087    CALL     4   1   4
+0088    JMP      3 => 1334
+0089 => ISNES    1  24      ; "full_refresh"
+0090    JMP      3 => 0106
+0091    TGETS    3   0  25  ; "view"
+0092    ISF          3
+0093    JMP      4 => 0099
+0094    TGETS    3   0  25  ; "view"
+0095    TGETS    3   3  26  ; "footer"
+0096    MOV      4   3
+0097    TGETS    3   3  27  ; "updateFooter"
+0098    CALL     3   1   2
+0099 => UGET     3   1      ; UIManager
+0100    MOV      4   3
+0101    TGETS    3   3  20  ; "setDirty"
+0102    KSTR     5  21      ; "all"
+0103    KSTR     6  22      ; "full"
+0104    CALL     3   1   4
+0105    JMP      3 => 1334
+0106 => ISNES    1  28      ; "bookmarks"
+0107    JMP      3 => 0118
+0108    TGETS    3   0  12  ; "ui"
+0109    MOV      4   3
+0110    TGETS    3   3  13  ; "handleEvent"
+0111    UGET     5   2      ; Event
+0112    MOV      6   5
+0113    TGETS    5   5  14  ; "new"
+0114    KSTR     7  29      ; "ShowBookmark"
+0115    CALL     5   0   3
+0116    CALLM    3   1   1
+0117    JMP      3 => 1334
+0118 => ISNES    1  30      ; "history"
+0119    JMP      3 => 0130
+0120    TGETS    3   0  12  ; "ui"
+0121    MOV      4   3
+0122    TGETS    3   3  13  ; "handleEvent"
+0123    UGET     5   2      ; Event
+0124    MOV      6   5
+0125    TGETS    5   5  14  ; "new"
+0126    KSTR     7  31      ; "ShowHist"
+0127    CALL     5   0   3
+0128    CALLM    3   1   1
+0129    JMP      3 => 1334
+0130 => ISNES    1  32      ; "favorites"
+0131    JMP      3 => 0143
+0132    TGETS    3   0  12  ; "ui"
+0133    MOV      4   3
+0134    TGETS    3   3  13  ; "handleEvent"
+0135    UGET     5   2      ; Event
+0136    MOV      6   5
+0137    TGETS    5   5  14  ; "new"
+0138    KSTR     7  33      ; "ShowColl"
+0139    KSTR     8  32      ; "favorites"
+0140    CALL     5   0   4
+0141    CALLM    3   1   1
+0142    JMP      3 => 1334
+0143 => ISNES    1  34      ; "book_info"
+0144    JMP      3 => 0155
+0145    TGETS    3   0  12  ; "ui"
+0146    MOV      4   3
+0147    TGETS    3   3  13  ; "handleEvent"
+0148    UGET     5   2      ; Event
+0149    MOV      6   5
+0150    TGETS    5   5  14  ; "new"
+0151    KSTR     7  35      ; "ShowBookInfo"
+0152    CALL     5   0   3
+0153    CALLM    3   1   1
+0154    JMP      3 => 1334
+0155 => ISNES    1  36      ; "book_description"
+0156    JMP      3 => 0167
+0157    TGETS    3   0  12  ; "ui"
+0158    MOV      4   3
+0159    TGETS    3   3  13  ; "handleEvent"
+0160    UGET     5   2      ; Event
+0161    MOV      6   5
+0162    TGETS    5   5  14  ; "new"
+0163    KSTR     7  37      ; "ShowBookDescription"
+0164    CALL     5   0   3
+0165    CALLM    3   1   1
+0166    JMP      3 => 1334
+0167 => ISNES    1  38      ; "book_cover"
+0168    JMP      3 => 0179
+0169    TGETS    3   0  12  ; "ui"
+0170    MOV      4   3
+0171    TGETS    3   3  13  ; "handleEvent"
+0172    UGET     5   2      ; Event
+0173    MOV      6   5
+0174    TGETS    5   5  14  ; "new"
+0175    KSTR     7  39      ; "ShowBookCover"
+0176    CALL     5   0   3
+0177    CALLM    3   1   1
+0178    JMP      3 => 1334
+0179 => ISNES    1  40      ; "book_status"
+0180    JMP      3 => 0191
+0181    TGETS    3   0  12  ; "ui"
+0182    MOV      4   3
+0183    TGETS    3   3  13  ; "handleEvent"
+0184    UGET     5   2      ; Event
+0185    MOV      6   5
+0186    TGETS    5   5  14  ; "new"
+0187    KSTR     7  41      ; "ShowBookStatus"
+0188    CALL     5   0   3
+0189    CALLM    3   1   1
+0190    JMP      3 => 1334
+0191 => ISNES    1  42      ; "page_jmp_fwd_10"
+0192    JMP      3 => 0198
+0193    MOV      4   0
+0194    TGETS    3   0  43  ; "pageUpdate"
+0195    KSHORT   5  10
+0196    CALL     3   1   3
+0197    JMP      3 => 1334
+0198 => ISNES    1  44      ; "page_jmp_fwd_1"
+0199    JMP      3 => 0211
+0200    TGETS    3   0  12  ; "ui"
+0201    MOV      4   3
+0202    TGETS    3   3  13  ; "handleEvent"
+0203    UGET     5   2      ; Event
+0204    MOV      6   5
+0205    TGETS    5   5  14  ; "new"
+0206    KSTR     7  45      ; "GotoViewRel"
+0207    KSHORT   8   1
+0208    CALL     5   0   4
+0209    CALLM    3   1   1
+0210    JMP      3 => 1334
+0211 => ISNES    1  46      ; "page_jmp_back_10"
+0212    JMP      3 => 0218
+0213    MOV      4   0
+0214    TGETS    3   0  43  ; "pageUpdate"
+0215    KSHORT   5 -10
+0216    CALL     3   1   3
+0217    JMP      3 => 1334
+0218 => ISNES    1  47      ; "page_jmp_back_1"
+0219    JMP      3 => 0231
+0220    TGETS    3   0  12  ; "ui"
+0221    MOV      4   3
+0222    TGETS    3   3  13  ; "handleEvent"
+0223    UGET     5   2      ; Event
+0224    MOV      6   5
+0225    TGETS    5   5  14  ; "new"
+0226    KSTR     7  45      ; "GotoViewRel"
+0227    KSHORT   8  -1
+0228    CALL     5   0   4
+0229    CALLM    3   1   1
+0230    JMP      3 => 1334
+0231 => ISNES    1  48      ; "next_chapter"
+0232    JMP      3 => 0243
+0233    TGETS    3   0  12  ; "ui"
+0234    MOV      4   3
+0235    TGETS    3   3  13  ; "handleEvent"
+0236    UGET     5   2      ; Event
+0237    MOV      6   5
+0238    TGETS    5   5  14  ; "new"
+0239    KSTR     7  49      ; "GotoNextChapter"
+0240    CALL     5   0   3
+0241    CALLM    3   1   1
+0242    JMP      3 => 1334
+0243 => ISNES    1  50      ; "first_page"
+0244    JMP      3 => 0256
+0245    TGETS    3   0  12  ; "ui"
+0246    MOV      4   3
+0247    TGETS    3   3  13  ; "handleEvent"
+0248    UGET     5   2      ; Event
+0249    MOV      6   5
+0250    TGETS    5   5  14  ; "new"
+0251    KSTR     7  51      ; "GotoPage"
+0252    KSHORT   8   1
+0253    CALL     5   0   4
+0254    CALLM    3   1   1
+0255    JMP      3 => 1334
+0256 => ISNES    1  52      ; "last_page"
+0257    JMP      3 => 0277
+0258    TGETS    3   0  25  ; "view"
+0259    TGETS    3   3  53  ; "document"
+0260    ISF          3
+0261    JMP      4 => 1334
+0262    TGETS    3   0  12  ; "ui"
+0263    MOV      4   3
+0264    TGETS    3   3  13  ; "handleEvent"
+0265    UGET     5   2      ; Event
+0266    MOV      6   5
+0267    TGETS    5   5  14  ; "new"
+0268    KSTR     7  51      ; "GotoPage"
+0269    TGETS    8   0  25  ; "view"
+0270    TGETS    8   8  53  ; "document"
+0271    MOV      9   8
+0272    TGETS    8   8  54  ; "getPageCount"
+0273    CALL     8   0   2
+0274    CALLM    5   0   2
+0275    CALLM    3   1   1
+0276    JMP      3 => 1334
+0277 => ISNES    1  55      ; "prev_chapter"
+0278    JMP      3 => 0289
+0279    TGETS    3   0  12  ; "ui"
+0280    MOV      4   3
+0281    TGETS    3   3  13  ; "handleEvent"
+0282    UGET     5   2      ; Event
+0283    MOV      6   5
+0284    TGETS    5   5  14  ; "new"
+0285    KSTR     7  56      ; "GotoPrevChapter"
+0286    CALL     5   0   3
+0287    CALLM    3   1   1
+0288    JMP      3 => 1334
+0289 => ISNES    1  57      ; "next_bookmark"
+0290    JMP      3 => 0301
+0291    TGETS    3   0  12  ; "ui"
+0292    MOV      4   3
+0293    TGETS    3   3  13  ; "handleEvent"
+0294    UGET     5   2      ; Event
+0295    MOV      6   5
+0296    TGETS    5   5  14  ; "new"
+0297    KSTR     7  58      ; "GotoNextBookmarkFromPage"
+0298    CALL     5   0   3
+0299    CALLM    3   1   1
+0300    JMP      3 => 1334
+0301 => ISNES    1  59      ; "prev_bookmark"
+0302    JMP      3 => 0313
+0303    TGETS    3   0  12  ; "ui"
+0304    MOV      4   3
+0305    TGETS    3   3  13  ; "handleEvent"
+0306    UGET     5   2      ; Event
+0307    MOV      6   5
+0308    TGETS    5   5  14  ; "new"
+0309    KSTR     7  60      ; "GotoPreviousBookmarkFromPage"
+0310    CALL     5   0   3
+0311    CALLM    3   1   1
+0312    JMP      3 => 1334
+0313 => ISNES    1  61      ; "go_to"
+0314    JMP      3 => 0325
+0315    TGETS    3   0  12  ; "ui"
+0316    MOV      4   3
+0317    TGETS    3   3  13  ; "handleEvent"
+0318    UGET     5   2      ; Event
+0319    MOV      6   5
+0320    TGETS    5   5  14  ; "new"
+0321    KSTR     7  62      ; "ShowGotoDialog"
+0322    CALL     5   0   3
+0323    CALLM    3   1   1
+0324    JMP      3 => 1334
+0325 => ISNES    1  63      ; "skim"
+0326    JMP      3 => 0337
+0327    TGETS    3   0  12  ; "ui"
+0328    MOV      4   3
+0329    TGETS    3   3  13  ; "handleEvent"
+0330    UGET     5   2      ; Event
+0331    MOV      6   5
+0332    TGETS    5   5  14  ; "new"
+0333    KSTR     7  64      ; "ShowSkimtoDialog"
+0334    CALL     5   0   3
+0335    CALLM    3   1   1
+0336    JMP      3 => 1334
+0337 => ISNES    1  65      ; "back"
+0338    JMP      3 => 0349
+0339    TGETS    3   0  12  ; "ui"
+0340    MOV      4   3
+0341    TGETS    3   3  13  ; "handleEvent"
+0342    UGET     5   2      ; Event
+0343    MOV      6   5
+0344    TGETS    5   5  14  ; "new"
+0345    KSTR     7  66      ; "Back"
+0346    CALL     5   0   3
+0347    CALLM    3   1   1
+0348    JMP      3 => 1334
+0349 => ISNES    1  67      ; "previous_location"
+0350    JMP      3 => 0362
+0351    TGETS    3   0  12  ; "ui"
+0352    MOV      4   3
+0353    TGETS    3   3  13  ; "handleEvent"
+0354    UGET     5   2      ; Event
+0355    MOV      6   5
+0356    TGETS    5   5  14  ; "new"
+0357    KSTR     7  68      ; "GoBackLink"
+0358    KPRI     8   2
+0359    CALL     5   0   4
+0360    CALLM    3   1   1
+0361    JMP      3 => 1334
+0362 => ISNES    1  69      ; "latest_bookmark"
+0363    JMP      3 => 0374
+0364    TGETS    3   0  12  ; "ui"
+0365    MOV      4   3
+0366    TGETS    3   3  13  ; "handleEvent"
+0367    UGET     5   2      ; Event
+0368    MOV      6   5
+0369    TGETS    5   5  14  ; "new"
+0370    KSTR     7  70      ; "GoToLatestBookmark"
+0371    CALL     5   0   3
+0372    CALLM    3   1   1
+0373    JMP      3 => 1334
+0374 => ISNES    1  71      ; "follow_nearest_link"
+0375    JMP      3 => 0393
+0376    TGETS    3   0  12  ; "ui"
+0377    MOV      4   3
+0378    TGETS    3   3  13  ; "handleEvent"
+0379    UGET     5   2      ; Event
+0380    MOV      6   5
+0381    TGETS    5   5  14  ; "new"
+0382    KSTR     7  72      ; "GoToPageLink"
+0383    MOV      8   2
+0384    KPRI     9   1
+0385    GGET    10  17      ; "G_reader_settings"
+0386    MOV     11  10
+0387    TGETS   10  10  18  ; "isTrue"
+0388    KSTR    12  73      ; "footnote_link_in_popup"
+0389    CALL    10   0   3
+0390    CALLM    5   0   4
+0391    CALLM    3   1   1
+0392    JMP      3 => 1334
+0393 => ISNES    1  74      ; "follow_nearest_internal_link"
+0394    JMP      3 => 0412
+0395    TGETS    3   0  12  ; "ui"
+0396    MOV      4   3
+0397    TGETS    3   3  13  ; "handleEvent"
+0398    UGET     5   2      ; Event
+0399    MOV      6   5
+0400    TGETS    5   5  14  ; "new"
+0401    KSTR     7  72      ; "GoToPageLink"
+0402    MOV      8   2
+0403    KPRI     9   2
+0404    GGET    10  17      ; "G_reader_settings"
+0405    MOV     11  10
+0406    TGETS   10  10  18  ; "isTrue"
+0407    KSTR    12  73      ; "footnote_link_in_popup"
+0408    CALL    10   0   3
+0409    CALLM    5   0   4
+0410    CALLM    3   1   1
+0411    JMP      3 => 1334
+0412 => ISNES    1  75      ; "clear_location_history"
+0413    JMP      3 => 0425
+0414    TGETS    3   0  12  ; "ui"
+0415    MOV      4   3
+0416    TGETS    3   3  13  ; "handleEvent"
+0417    UGET     5   2      ; Event
+0418    MOV      6   5
+0419    TGETS    5   5  14  ; "new"
+0420    KSTR     7  76      ; "ClearLocationStack"
+0421    KPRI     8   2
+0422    CALL     5   0   4
+0423    CALLM    3   1   1
+0424    JMP      3 => 1334
+0425 => ISNES    1  77      ; "filemanager"
+0426    JMP      3 => 0436
+0427    TGETS    3   0  12  ; "ui"
+0428    MOV      4   3
+0429    TGETS    3   3  78  ; "onClose"
+0430    CALL     3   1   2
+0431    TGETS    3   0  12  ; "ui"
+0432    MOV      4   3
+0433    TGETS    3   3  79  ; "showFileManager"
+0434    CALL     3   1   2
+0435    JMP      3 => 1334
+0436 => ISNES    1  80      ; "file_search"
+0437    JMP      3 => 0469
+0438    TGETS    3   0  81  ; "ges_mode"
+0439    ISNES    3  82      ; "gesture_fm"
+0440    JMP      3 => 0454
+0441    TGETS    3   0  12  ; "ui"
+0442    MOV      4   3
+0443    TGETS    3   3  13  ; "handleEvent"
+0444    UGET     5   2      ; Event
+0445    MOV      6   5
+0446    TGETS    5   5  14  ; "new"
+0447    KSTR     7  83      ; "ShowFileSearch"
+0448    TGETS    8   0  12  ; "ui"
+0449    TGETS    8   8  84  ; "file_chooser"
+0450    TGETS    8   8  85  ; "path"
+0451    CALL     5   0   4
+0452    CALLM    3   1   1
+0453    JMP      3 => 1334
+0454 => TGETS    3   0  12  ; "ui"
+0455    MOV      4   3
+0456    TGETS    3   3  86  ; "getLastDirFile"
+0457    CALL     3   2   2
+0458    TGETS    4   0  12  ; "ui"
+0459    MOV      5   4
+0460    TGETS    4   4  13  ; "handleEvent"
+0461    UGET     6   2      ; Event
+0462    MOV      7   6
+0463    TGETS    6   6  14  ; "new"
+0464    KSTR     8  83      ; "ShowFileSearch"
+0465    MOV      9   3
+0466    CALL     6   0   4
+0467    CALLM    4   1   1
+0468    JMP      3 => 1334
+0469 => ISNES    1  87      ; "folder_up"
+0470    JMP      3 => 0484
+0471    TGETS    3   0  12  ; "ui"
+0472    TGETS    3   3  84  ; "file_chooser"
+0473    MOV      4   3
+0474    TGETS    3   3  88  ; "changeToPath"
+0475    GGET     5  89      ; "string"
+0476    TGETS    5   5  90  ; "format"
+0477    KSTR     6  91      ; "%s/.."
+0478    TGETS    7   0  12  ; "ui"
+0479    TGETS    7   7  84  ; "file_chooser"
+0480    TGETS    7   7  85  ; "path"
+0481    CALL     5   0   3
+0482    CALLM    3   1   1
+0483    JMP      3 => 1334
+0484 => ISNES    1  92      ; "show_plus_menu"
+0485    JMP      3 => 0496
+0486    TGETS    3   0  12  ; "ui"
+0487    MOV      4   3
+0488    TGETS    3   3  13  ; "handleEvent"
+0489    UGET     5   2      ; Event
+0490    MOV      6   5
+0491    TGETS    5   5  14  ; "new"
+0492    KSTR     7  93      ; "ShowPlusMenu"
+0493    CALL     5   0   3
+0494    CALLM    3   1   1
+0495    JMP      3 => 1334
+0496 => ISNES    1  94      ; "folder_shortcuts"
+0497    JMP      3 => 0508
+0498    TGETS    3   0  12  ; "ui"
+0499    MOV      4   3
+0500    TGETS    3   3  13  ; "handleEvent"
+0501    UGET     5   2      ; Event
+0502    MOV      6   5
+0503    TGETS    5   5  14  ; "new"
+0504    KSTR     7  95      ; "ShowFolderShortcutsDialog"
+0505    CALL     5   0   3
+0506    CALLM    3   1   1
+0507    JMP      3 => 1334
+0508 => ISNES    1  96      ; "open_previous_document"
+0509    JMP      3 => 0546
+0510    TGETS    3   0  12  ; "ui"
+0511    TGETS    3   3  97  ; "menu"
+0512    TGETS    3   3  98  ; "openLastDoc"
+0513    ISF          3
+0514    JMP      4 => 0528
+0515    GGET     3  17      ; "G_reader_settings"
+0516    MOV      4   3
+0517    TGETS    3   3  99  ; "readSetting"
+0518    KSTR     5 100      ; "lastfile"
+0519    CALL     3   2   3
+0520    ISEQP    3   0
+0521    JMP      3 => 0528
+0522    TGETS    3   0  12  ; "ui"
+0523    TGETS    3   3  97  ; "menu"
+0524    MOV      4   3
+0525    TGETS    3   3  98  ; "openLastDoc"
+0526    CALL     3   1   2
+0527    JMP      3 => 1334
+0528 => TGETS    3   0  12  ; "ui"
+0529    TGETS    3   3 101  ; "switchDocument"
+0530    ISF          3
+0531    JMP      4 => 1334
+0532    TGETS    3   0  12  ; "ui"
+0533    TGETS    3   3  97  ; "menu"
+0534    ISF          3
+0535    JMP      4 => 1334
+0536    TGETS    3   0  12  ; "ui"
+0537    MOV      4   3
+0538    TGETS    3   3 101  ; "switchDocument"
+0539    TGETS    5   0  12  ; "ui"
+0540    TGETS    5   5  97  ; "menu"
+0541    MOV      6   5
+0542    TGETS    5   5 102  ; "getPreviousFile"
+0543    CALL     5   0   2
+0544    CALLM    3   1   1
+0545    JMP      3 => 1334
+0546 => ISNES    1 103      ; "dictionary_lookup"
+0547    JMP      3 => 0558
+0548    TGETS    3   0  12  ; "ui"
+0549    MOV      4   3
+0550    TGETS    3   3  13  ; "handleEvent"
+0551    UGET     5   2      ; Event
+0552    MOV      6   5
+0553    TGETS    5   5  14  ; "new"
+0554    KSTR     7 104      ; "ShowDictionaryLookup"
+0555    CALL     5   0   3
+0556    CALLM    3   1   1
+0557    JMP      3 => 1334
+0558 => ISNES    1 105      ; "wikipedia_lookup"
+0559    JMP      3 => 0570
+0560    TGETS    3   0  12  ; "ui"
+0561    MOV      4   3
+0562    TGETS    3   3  13  ; "handleEvent"
+0563    UGET     5   2      ; Event
+0564    MOV      6   5
+0565    TGETS    5   5  14  ; "new"
+0566    KSTR     7 106      ; "ShowWikipediaLookup"
+0567    CALL     5   0   3
+0568    CALLM    3   1   1
+0569    JMP      3 => 1334
+0570 => ISNES    1 107      ; "fulltext_search"
+0571    JMP      3 => 0582
+0572    TGETS    3   0  12  ; "ui"
+0573    MOV      4   3
+0574    TGETS    3   3  13  ; "handleEvent"
+0575    UGET     5   2      ; Event
+0576    MOV      6   5
+0577    TGETS    5   5  14  ; "new"
+0578    KSTR     7 108      ; "ShowFulltextSearchInput"
+0579    CALL     5   0   3
+0580    CALLM    3   1   1
+0581    JMP      3 => 1334
+0582 => ISNES    1 109      ; "show_menu"
+0583    JMP      3 => 0607
+0584    TGETS    3   0  81  ; "ges_mode"
+0585    ISNES    3  82      ; "gesture_fm"
+0586    JMP      3 => 0597
+0587    TGETS    3   0  12  ; "ui"
+0588    MOV      4   3
+0589    TGETS    3   3  13  ; "handleEvent"
+0590    UGET     5   2      ; Event
+0591    MOV      6   5
+0592    TGETS    5   5  14  ; "new"
+0593    KSTR     7 110      ; "ShowMenu"
+0594    CALL     5   0   3
+0595    CALLM    3   1   1
+0596    JMP      3 => 1334
+0597 => TGETS    3   0  12  ; "ui"
+0598    MOV      4   3
+0599    TGETS    3   3  13  ; "handleEvent"
+0600    UGET     5   2      ; Event
+0601    MOV      6   5
+0602    TGETS    5   5  14  ; "new"
+0603    KSTR     7 111      ; "ShowReaderMenu"
+0604    CALL     5   0   3
+0605    CALLM    3   1   1
+0606    JMP      3 => 1334
+0607 => ISNES    1 112      ; "show_config_menu"
+0608    JMP      3 => 0619
+0609    TGETS    3   0  12  ; "ui"
+0610    MOV      4   3
+0611    TGETS    3   3  13  ; "handleEvent"
+0612    UGET     5   2      ; Event
+0613    MOV      6   5
+0614    TGETS    5   5  14  ; "new"
+0615    KSTR     7 113      ; "ShowConfigMenu"
+0616    CALL     5   0   3
+0617    CALLM    3   1   1
+0618    JMP      3 => 1334
+0619 => ISNES    1 114      ; "show_frontlight_dialog"
+0620    JMP      3 => 0641
+0621    TGETS    3   0  81  ; "ges_mode"
+0622    ISNES    3  82      ; "gesture_fm"
+0623    JMP      3 => 0631
+0624    GGET     3 115      ; "require"
+0625    KSTR     4 116      ; "apps/reader/modules/readerfrontlight"
+0626    CALL     3   2   2
+0627    MOV      5   3
+0628    TGETS    4   3 117  ; "onShowFlDialog"
+0629    CALL     4   1   2
+0630    JMP      3 => 1334
+0631 => TGETS    3   0  12  ; "ui"
+0632    MOV      4   3
+0633    TGETS    3   3  13  ; "handleEvent"
+0634    UGET     5   2      ; Event
+0635    MOV      6   5
+0636    TGETS    5   5  14  ; "new"
+0637    KSTR     7 118      ; "ShowFlDialog"
+0638    CALL     5   0   3
+0639    CALLM    3   1   1
+0640    JMP      3 => 1334
+0641 => ISNES    1 119      ; "increase_frontlight"
+0642    JMP      3 => 0686
+0643    UGET     3   4      ; lightFrontlight
+0644    CALL     3   2   1
+0645    ISF          3
+0646    JMP      4 => 0662
+0647    UGET     3   1      ; UIManager
+0648    MOV      4   3
+0649    TGETS    3   3   6  ; "show"
+0650    UGET     5   5      ; Notification
+0651    MOV      6   5
+0652    TGETS    5   5  14  ; "new"
+0653    TDUP     7 121
+0654    UGET     8   6      ; _
+0655    KSTR     9 120      ; "Frontlight controlled by system settings"~
+0656    CALL     8   2   2
+0657    TSETS    8   7 122  ; "text"
+0658    CALL     5   0   3
+0659    CALLM    3   1   1
+0660    KPRI     3   2
+0661    UCLO     0 => 1338
+0662 => TGETS    3   0  81  ; "ges_mode"
+0663    ISNES    3  82      ; "gesture_fm"
+0664    JMP      3 => 0674
+0665    GGET     3 115      ; "require"
+0666    KSTR     4 116      ; "apps/reader/modules/readerfrontlight"
+0667    CALL     3   2   2
+0668    MOV      5   3
+0669    TGETS    4   3 123  ; "onChangeFlIntensity"
+0670    MOV      6   2
+0671    KSHORT   7   1
+0672    CALL     4   1   4
+0673    JMP      3 => 1334
+0674 => TGETS    3   0  12  ; "ui"
+0675    MOV      4   3
+0676    TGETS    3   3  13  ; "handleEvent"
+0677    UGET     5   2      ; Event
+0678    MOV      6   5
+0679    TGETS    5   5  14  ; "new"
+0680    KSTR     7 124      ; "ChangeFlIntensity"
+0681    MOV      8   2
+0682    KSHORT   9   1
+0683    CALL     5   0   5
+0684    CALLM    3   1   1
+0685    JMP      3 => 1334
+0686 => ISNES    1 125      ; "decrease_frontlight"
+0687    JMP      3 => 0731
+0688    UGET     3   4      ; lightFrontlight
+0689    CALL     3   2   1
+0690    ISF          3
+0691    JMP      4 => 0707
+0692    UGET     3   1      ; UIManager
+0693    MOV      4   3
+0694    TGETS    3   3   6  ; "show"
+0695    UGET     5   5      ; Notification
+0696    MOV      6   5
+0697    TGETS    5   5  14  ; "new"
+0698    TDUP     7 126
+0699    UGET     8   6      ; _
+0700    KSTR     9 120      ; "Frontlight controlled by system settings"~
+0701    CALL     8   2   2
+0702    TSETS    8   7 122  ; "text"
+0703    CALL     5   0   3
+0704    CALLM    3   1   1
+0705    KPRI     3   2
+0706    UCLO     0 => 1339
+0707 => TGETS    3   0  81  ; "ges_mode"
+0708    ISNES    3  82      ; "gesture_fm"
+0709    JMP      3 => 0719
+0710    GGET     3 115      ; "require"
+0711    KSTR     4 116      ; "apps/reader/modules/readerfrontlight"
+0712    CALL     3   2   2
+0713    MOV      5   3
+0714    TGETS    4   3 123  ; "onChangeFlIntensity"
+0715    MOV      6   2
+0716    KSHORT   7  -1
+0717    CALL     4   1   4
+0718    JMP      3 => 1334
+0719 => TGETS    3   0  12  ; "ui"
+0720    MOV      4   3
+0721    TGETS    3   3  13  ; "handleEvent"
+0722    UGET     5   2      ; Event
+0723    MOV      6   5
+0724    TGETS    5   5  14  ; "new"
+0725    KSTR     7 124      ; "ChangeFlIntensity"
+0726    MOV      8   2
+0727    KSHORT   9  -1
+0728    CALL     5   0   5
+0729    CALLM    3   1   1
+0730    JMP      3 => 1334
+0731 => ISNES    1 127      ; "increase_frontlight_warmth"
+0732    JMP      3 => 0757
+0733    TGETS    3   0  81  ; "ges_mode"
+0734    ISNES    3  82      ; "gesture_fm"
+0735    JMP      3 => 0745
+0736    GGET     3 115      ; "require"
+0737    KSTR     4 116      ; "apps/reader/modules/readerfrontlight"
+0738    CALL     3   2   2
+0739    MOV      5   3
+0740    TGETS    4   3 128  ; "onChangeFlWarmth"
+0741    MOV      6   2
+0742    KSHORT   7   1
+0743    CALL     4   1   4
+0744    JMP      3 => 1334
+0745 => TGETS    3   0  12  ; "ui"
+0746    MOV      4   3
+0747    TGETS    3   3  13  ; "handleEvent"
+0748    UGET     5   2      ; Event
+0749    MOV      6   5
+0750    TGETS    5   5  14  ; "new"
+0751    KSTR     7 129      ; "ChangeFlWarmth"
+0752    MOV      8   2
+0753    KSHORT   9   1
+0754    CALL     5   0   5
+0755    CALLM    3   1   1
+0756    JMP      3 => 1334
+0757 => ISNES    1 130      ; "decrease_frontlight_warmth"
+0758    JMP      3 => 0783
+0759    TGETS    3   0  81  ; "ges_mode"
+0760    ISNES    3  82      ; "gesture_fm"
+0761    JMP      3 => 0771
+0762    GGET     3 115      ; "require"
+0763    KSTR     4 116      ; "apps/reader/modules/readerfrontlight"
+0764    CALL     3   2   2
+0765    MOV      5   3
+0766    TGETS    4   3 128  ; "onChangeFlWarmth"
+0767    MOV      6   2
+0768    KSHORT   7  -1
+0769    CALL     4   1   4
+0770    JMP      3 => 1334
+0771 => TGETS    3   0  12  ; "ui"
+0772    MOV      4   3
+0773    TGETS    3   3  13  ; "handleEvent"
+0774    UGET     5   2      ; Event
+0775    MOV      6   5
+0776    TGETS    5   5  14  ; "new"
+0777    KSTR     7 129      ; "ChangeFlWarmth"
+0778    MOV      8   2
+0779    KSHORT   9  -1
+0780    CALL     5   0   5
+0781    CALLM    3   1   1
+0782    JMP      3 => 1334
+0783 => ISNES    1 131      ; "toggle_bookmark"
+0784    JMP      3 => 0795
+0785    TGETS    3   0  12  ; "ui"
+0786    MOV      4   3
+0787    TGETS    3   3  13  ; "handleEvent"
+0788    UGET     5   2      ; Event
+0789    MOV      6   5
+0790    TGETS    5   5  14  ; "new"
+0791    KSTR     7 132      ; "ToggleBookmark"
+0792    CALL     5   0   3
+0793    CALLM    3   1   1
+0794    JMP      3 => 1334
+0795 => ISNES    1 133      ; "toggle_inverse_reading_order"
+0796    JMP      3 => 0801
+0797    MOV      4   0
+0798    TGETS    3   0 134  ; "onToggleReadingOrder"
+0799    CALL     3   1   2
+0800    JMP      3 => 1334
+0801 => ISNES    1 135      ; "toggle_frontlight"
+0802    JMP      3 => 0833
+0803    UGET     3   4      ; lightFrontlight
+0804    CALL     3   2   1
+0805    ISF          3
+0806    JMP      4 => 0822
+0807    UGET     3   1      ; UIManager
+0808    MOV      4   3
+0809    TGETS    3   3   6  ; "show"
+0810    UGET     5   5      ; Notification
+0811    MOV      6   5
+0812    TGETS    5   5  14  ; "new"
+0813    TDUP     7 136
+0814    UGET     8   6      ; _
+0815    KSTR     9 120      ; "Frontlight controlled by system settings"~
+0816    CALL     8   2   2
+0817    TSETS    8   7 122  ; "text"
+0818    CALL     5   0   3
+0819    CALLM    3   1   1
+0820    KPRI     3   2
+0821    UCLO     0 => 1340
+0822 => UGET     3   7      ; Device
+0823    MOV      4   3
+0824    TGETS    3   3 137  ; "getPowerDevice"
+0825    CALL     3   2   2
+0826    MOV      4   3
+0827    TGETS    3   3 138  ; "toggleFrontlight"
+0828    CALL     3   1   2
+0829    MOV      4   0
+0830    TGETS    3   0 139  ; "onShowFLOnOff"
+0831    CALL     3   1   2
+0832    JMP      3 => 1334
+0833 => ISNES    1 140      ; "toggle_hold_corners"
+0834    JMP      3 => 0839
+0835    MOV      4   0
+0836    TGETS    3   0 141  ; "onIgnoreHoldCorners"
+0837    CALL     3   1   2
+0838    JMP      3 => 1334
+0839 => ISNES    1 142      ; "toggle_gsensor"
+0840    JMP      3 => 0860
+0841    GGET     3  17      ; "G_reader_settings"
+0842    MOV      4   3
+0843    TGETS    3   3 143  ; "flipNilOrFalse"
+0844    KSTR     5 144      ; "input_ignore_gsensor"
+0845    CALL     3   1   3
+0846    UGET     3   7      ; Device
+0847    MOV      4   3
+0848    TGETS    3   3 145  ; "toggleGSensor"
+0849    GGET     5  17      ; "G_reader_settings"
+0850    MOV      6   5
+0851    TGETS    5   5  18  ; "isTrue"
+0852    KSTR     7 144      ; "input_ignore_gsensor"
+0853    CALL     5   2   3
+0854    NOT      5   5
+0855    CALL     3   1   3
+0856    MOV      4   0
+0857    TGETS    3   0 146  ; "onGSensorToggle"
+0858    CALL     3   1   2
+0859    JMP      3 => 1334
+0860 => ISNES    1 147      ; "toggle_page_flipping"
+0861    JMP      3 => 0880
+0862    TGETS    3   0  12  ; "ui"
+0863    TGETS    3   3  53  ; "document"
+0864    TGETS    3   3 148  ; "info"
+0865    TGETS    3   3 149  ; "has_pages"
+0866    IST          3
+0867    JMP      3 => 0870
+0868    KPRI     3   1
+0869    UCLO     0 => 1341
+0870 => TGETS    3   0  12  ; "ui"
+0871    MOV      4   3
+0872    TGETS    3   3  13  ; "handleEvent"
+0873    UGET     5   2      ; Event
+0874    MOV      6   5
+0875    TGETS    5   5  14  ; "new"
+0876    KSTR     7 150      ; "TogglePageFlipping"
+0877    CALL     5   0   3
+0878    CALLM    3   1   1
+0879    JMP      3 => 1334
+0880 => ISNES    1 151      ; "toggle_reflow"
+0881    JMP      3 => 0930
+0882    TGETS    3   0  53  ; "document"
+0883    TGETS    3   3 148  ; "info"
+0884    TGETS    3   3 149  ; "has_pages"
+0885    IST          3
+0886    JMP      3 => 0888
+0887    UCLO     0 => 1342
+0888 => TGETS    3   0  53  ; "document"
+0889    TGETS    3   3 152  ; "configurable"
+0890    TGETS    3   3 153  ; "text_wrap"
+0891    ISNEN    3   0      ; 1
+0892    JMP      3 => 0898
+0893    TGETS    3   0  53  ; "document"
+0894    TGETS    3   3 152  ; "configurable"
+0895    KSHORT   4   0
+0896    TSETS    4   3 153  ; "text_wrap"
+0897    JMP      3 => 0902
+0898 => TGETS    3   0  53  ; "document"
+0899    TGETS    3   3 152  ; "configurable"
+0900    KSHORT   4   1
+0901    TSETS    4   3 153  ; "text_wrap"
+0902 => TGETS    3   0  12  ; "ui"
+0903    MOV      4   3
+0904    TGETS    3   3  13  ; "handleEvent"
+0905    UGET     5   2      ; Event
+0906    MOV      6   5
+0907    TGETS    5   5  14  ; "new"
+0908    KSTR     7 154      ; "RedrawCurrentPage"
+0909    CALL     5   0   3
+0910    CALLM    3   1   1
+0911    TGETS    3   0  12  ; "ui"
+0912    MOV      4   3
+0913    TGETS    3   3  13  ; "handleEvent"
+0914    UGET     5   2      ; Event
+0915    MOV      6   5
+0916    TGETS    5   5  14  ; "new"
+0917    KSTR     7 155      ; "RestoreZoomMode"
+0918    CALL     5   0   3
+0919    CALLM    3   1   1
+0920    TGETS    3   0  12  ; "ui"
+0921    MOV      4   3
+0922    TGETS    3   3  13  ; "handleEvent"
+0923    UGET     5   2      ; Event
+0924    MOV      6   5
+0925    TGETS    5   5  14  ; "new"
+0926    KSTR     7 156      ; "InitScrollPageStates"
+0927    CALL     5   0   3
+0928    CALLM    3   1   1
+0929    JMP      3 => 1334
+0930 => ISNES    1 157      ; "toggle_rotation"
+0931    JMP      3 => 0960
+0932    TGETS    3   0  53  ; "document"
+0933    TGETS    3   3 148  ; "info"
+0934    TGETS    3   3 149  ; "has_pages"
+0935    ISF          3
+0936    JMP      4 => 0939
+0937    KSTR     3 158      ; "SwapScreenMode"
+0938    JMP      4 => 0940
+0939 => KSTR     3 159      ; "ChangeScreenMode"
+0940 => UGET     4   3      ; Screen
+0941    MOV      5   4
+0942    TGETS    4   4 160  ; "getScreenMode"
+0943    CALL     4   2   2
+0944    ISNES    4 161      ; "portrait"
+0945    JMP      4 => 0948
+0946    KSTR     4 162      ; "landscape"
+0947    JMP      5 => 0949
+0948 => KSTR     4 161      ; "portrait"
+0949 => TGETS    5   0  12  ; "ui"
+0950    MOV      6   5
+0951    TGETS    5   5  13  ; "handleEvent"
+0952    UGET     7   2      ; Event
+0953    MOV      8   7
+0954    TGETS    7   7  14  ; "new"
+0955    MOV      9   3
+0956    MOV     10   4
+0957    CALL     7   0   4
+0958    CALLM    5   1   1
+0959    JMP      3 => 1334
+0960 => ISNES    1 163      ; "toggle_wifi"
+0961    JMP      3 => 1004
+0962    GGET     3 115      ; "require"
+0963    KSTR     4 164      ; "ui/network/manager"
+0964    CALL     3   2   2
+0965    MOV      5   3
+0966    TGETS    4   3 165  ; "isOnline"
+0967    CALL     4   2   2
+0968    IST          4
+0969    JMP      4 => 0987
+0970    UGET     4   1      ; UIManager
+0971    MOV      5   4
+0972    TGETS    4   4   6  ; "show"
+0973    UGET     6   8      ; InfoMessage
+0974    MOV      7   6
+0975    TGETS    6   6  14  ; "new"
+0976    TDUP     8 167
+0977    UGET     9   6      ; _
+0978    KSTR    10 166      ; "Turning on Wi-Fi…"
+0979    CALL     9   2   2
+0980    TSETS    9   8 122  ; "text"
+0981    CALL     6   0   3
+0982    CALLM    4   1   1
+0983    MOV      5   3
+0984    TGETS    4   3 168  ; "turnOnWifi"
+0985    CALL     4   1   2
+0986    JMP      4 => 1334
+0987 => MOV      5   3
+0988    TGETS    4   3 169  ; "turnOffWifi"
+0989    CALL     4   1   2
+0990    UGET     4   1      ; UIManager
+0991    MOV      5   4
+0992    TGETS    4   4   6  ; "show"
+0993    UGET     6   8      ; InfoMessage
+0994    MOV      7   6
+0995    TGETS    6   6  14  ; "new"
+0996    TDUP     8 171
+0997    UGET     9   6      ; _
+0998    KSTR    10 170      ; "Wi-Fi off."
+0999    CALL     9   2   2
+1000    TSETS    9   8 122  ; "text"
+1001    CALL     6   0   3
+1002    CALLM    4   1   1
+1003    JMP      3 => 1334
+1004 => ISNES    1 172      ; "wifi_off"
+1005    JMP      3 => 1026
+1006    GGET     3 115      ; "require"
+1007    KSTR     4 164      ; "ui/network/manager"
+1008    CALL     3   2   2
+1009    MOV      5   3
+1010    TGETS    4   3 169  ; "turnOffWifi"
+1011    CALL     4   1   2
+1012    UGET     4   1      ; UIManager
+1013    MOV      5   4
+1014    TGETS    4   4   6  ; "show"
+1015    UGET     6   8      ; InfoMessage
+1016    MOV      7   6
+1017    TGETS    6   6  14  ; "new"
+1018    TDUP     8 173
+1019    UGET     9   6      ; _
+1020    KSTR    10 170      ; "Wi-Fi off."
+1021    CALL     9   2   2
+1022    TSETS    9   8 122  ; "text"
+1023    CALL     6   0   3
+1024    CALLM    4   1   1
+1025    JMP      3 => 1334
+1026 => ISNES    1 174      ; "wifi_on"
+1027    JMP      3 => 1088
+1028    GGET     3 115      ; "require"
+1029    KSTR     4 164      ; "ui/network/manager"
+1030    CALL     3   2   2
+1031    MOV      5   3
+1032    TGETS    4   3 165  ; "isOnline"
+1033    CALL     4   2   2
+1034    IST          4
+1035    JMP      4 => 1053
+1036    UGET     4   1      ; UIManager
+1037    MOV      5   4
+1038    TGETS    4   4   6  ; "show"
+1039    UGET     6   8      ; InfoMessage
+1040    MOV      7   6
+1041    TGETS    6   6  14  ; "new"
+1042    TDUP     8 176
+1043    UGET     9   6      ; _
+1044    KSTR    10 175      ; "Enabling wifi…"
+1045    CALL     9   2   2
+1046    TSETS    9   8 122  ; "text"
+1047    CALL     6   0   3
+1048    CALLM    4   1   1
+1049    MOV      5   3
+1050    TGETS    4   3 168  ; "turnOnWifi"
+1051    CALL     4   1   2
+1052    JMP      4 => 1334
+1053 => KPRI     4   0
+1054    MOV      6   3
+1055    TGETS    5   3 177  ; "getCurrentNetwork"
+1056    CALL     5   2   2
+1057    ISF          5
+1058    JMP      6 => 1073
+1059    TGETS    6   5 178  ; "ssid"
+1060    ISF          6
+1061    JMP      7 => 1073
+1062    UGET     6   9      ; T
+1063    UGET     7   6      ; _
+1064    KSTR     8 179      ; "Already connected to network %1."
+1065    CALL     7   2   2
+1066    UGET     8  10      ; BD
+1067    TGETS    8   8 180  ; "wrap"
+1068    TGETS    9   5 178  ; "ssid"
+1069    CALL     8   0   2
+1070    CALLM    6   2   1
+1071    MOV      4   6
+1072    JMP      6 => 1077
+1073 => UGET     6   6      ; _
+1074    KSTR     7 181      ; "Already connected."
+1075    CALL     6   2   2
+1076    MOV      4   6
+1077 => UGET     6   1      ; UIManager
+1078    MOV      7   6
+1079    TGETS    6   6   6  ; "show"
+1080    UGET     8   8      ; InfoMessage
+1081    MOV      9   8
+1082    TGETS    8   8  14  ; "new"
+1083    TDUP    10 182
+1084    TSETS    4  10 122  ; "text"
+1085    CALL     8   0   3
+1086    CALLM    6   1   1
+1087    JMP      3 => 1334
+1088 => ISNES    1 183      ; "increase_font"
+1089    JMP      3 => 1102
+1090    TGETS    3   0  12  ; "ui"
+1091    MOV      4   3
+1092    TGETS    3   3  13  ; "handleEvent"
+1093    UGET     5   2      ; Event
+1094    MOV      6   5
+1095    TGETS    5   5  14  ; "new"
+1096    KSTR     7 184      ; "AdjustFontSize"
+1097    MOV      8   2
+1098    KSHORT   9   1
+1099    CALL     5   0   5
+1100    CALLM    3   1   1
+1101    JMP      3 => 1334
+1102 => ISNES    1 185      ; "decrease_font"
+1103    JMP      3 => 1116
+1104    TGETS    3   0  12  ; "ui"
+1105    MOV      4   3
+1106    TGETS    3   3  13  ; "handleEvent"
+1107    UGET     5   2      ; Event
+1108    MOV      6   5
+1109    TGETS    5   5  14  ; "new"
+1110    KSTR     7 184      ; "AdjustFontSize"
+1111    MOV      8   2
+1112    KSHORT   9  -1
+1113    CALL     5   0   5
+1114    CALLM    3   1   1
+1115    JMP      3 => 1334
+1116 => ISNES    1 186      ; "suspend"
+1117    JMP      3 => 1123
+1118    UGET     3   1      ; UIManager
+1119    MOV      4   3
+1120    TGETS    3   3 186  ; "suspend"
+1121    CALL     3   1   2
+1122    JMP      3 => 1334
+1123 => ISNES    1 187      ; "exit"
+1124    JMP      3 => 1131
+1125    TGETS    3   0  12  ; "ui"
+1126    TGETS    3   3  97  ; "menu"
+1127    MOV      4   3
+1128    TGETS    3   3 188  ; "exitOrRestart"
+1129    CALL     3   1   2
+1130    JMP      3 => 1334
+1131 => ISNES    1 189      ; "restart"
+1132    JMP      3 => 1140
+1133    TGETS    3   0  12  ; "ui"
+1134    TGETS    3   3  97  ; "menu"
+1135    MOV      4   3
+1136    TGETS    3   3 188  ; "exitOrRestart"
+1137    FNEW     5 190      ; readergesture.lua:1542
+1138    CALL     3   1   3
+1139    JMP      3 => 1334
+1140 => ISNES    1 191      ; "reboot"
+1141    JMP      3 => 1162
+1142    UGET     3   1      ; UIManager
+1143    MOV      4   3
+1144    TGETS    3   3   6  ; "show"
+1145    UGET     5  11      ; ConfirmBox
+1146    MOV      6   5
+1147    TGETS    5   5  14  ; "new"
+1148    TDUP     7 193
+1149    UGET     8   6      ; _
+1150    KSTR     9 192      ; "Are you sure you want to reboot the devi"~
+1151    CALL     8   2   2
+1152    TSETS    8   7 122  ; "text"
+1153    UGET     8   6      ; _
+1154    KSTR     9 194      ; "Reboot"
+1155    CALL     8   2   2
+1156    TSETS    8   7 195  ; "ok_text"
+1157    FNEW     8 196      ; readergesture.lua:1547
+1158    TSETS    8   7 197  ; "ok_callback"
+1159    CALL     5   0   3
+1160    CALLM    3   1   1
+1161    JMP      3 => 1334
+1162 => ISNES    1 198      ; "poweroff"
+1163    JMP      3 => 1184
+1164    UGET     3   1      ; UIManager
+1165    MOV      4   3
+1166    TGETS    3   3   6  ; "show"
+1167    UGET     5  11      ; ConfirmBox
+1168    MOV      6   5
+1169    TGETS    5   5  14  ; "new"
+1170    TDUP     7 200
+1171    UGET     8   6      ; _
+1172    KSTR     9 199      ; "Are you sure you want to power off the d"~
+1173    CALL     8   2   2
+1174    TSETS    8   7 122  ; "text"
+1175    UGET     8   6      ; _
+1176    KSTR     9 201      ; "Power off"
+1177    CALL     8   2   2
+1178    TSETS    8   7 195  ; "ok_text"
+1179    FNEW     8 202      ; readergesture.lua:1555
+1180    TSETS    8   7 197  ; "ok_callback"
+1181    CALL     5   0   3
+1182    CALLM    3   1   1
+1183    JMP      3 => 1334
+1184 => ISNES    1 203      ; "zoom_contentwidth"
+1185    JMP      3 => 1197
+1186    TGETS    3   0  12  ; "ui"
+1187    MOV      4   3
+1188    TGETS    3   3  13  ; "handleEvent"
+1189    UGET     5   2      ; Event
+1190    MOV      6   5
+1191    TGETS    5   5  14  ; "new"
+1192    KSTR     7 204      ; "SetZoomMode"
+1193    KSTR     8 205      ; "contentwidth"
+1194    CALL     5   0   4
+1195    CALLM    3   1   1
+1196    JMP      3 => 1334
+1197 => ISNES    1 206      ; "zoom_contentheight"
+1198    JMP      3 => 1210
+1199    TGETS    3   0  12  ; "ui"
+1200    MOV      4   3
+1201    TGETS    3   3  13  ; "handleEvent"
+1202    UGET     5   2      ; Event
+1203    MOV      6   5
+1204    TGETS    5   5  14  ; "new"
+1205    KSTR     7 204      ; "SetZoomMode"
+1206    KSTR     8 207      ; "contentheight"
+1207    CALL     5   0   4
+1208    CALLM    3   1   1
+1209    JMP      3 => 1334
+1210 => ISNES    1 208      ; "zoom_pagewidth"
+1211    JMP      3 => 1223
+1212    TGETS    3   0  12  ; "ui"
+1213    MOV      4   3
+1214    TGETS    3   3  13  ; "handleEvent"
+1215    UGET     5   2      ; Event
+1216    MOV      6   5
+1217    TGETS    5   5  14  ; "new"
+1218    KSTR     7 204      ; "SetZoomMode"
+1219    KSTR     8 209      ; "pagewidth"
+1220    CALL     5   0   4
+1221    CALLM    3   1   1
+1222    JMP      3 => 1334
+1223 => ISNES    1 210      ; "zoom_pageheight"
+1224    JMP      3 => 1236
+1225    TGETS    3   0  12  ; "ui"
+1226    MOV      4   3
+1227    TGETS    3   3  13  ; "handleEvent"
+1228    UGET     5   2      ; Event
+1229    MOV      6   5
+1230    TGETS    5   5  14  ; "new"
+1231    KSTR     7 204      ; "SetZoomMode"
+1232    KSTR     8 211      ; "pageheight"
+1233    CALL     5   0   4
+1234    CALLM    3   1   1
+1235    JMP      3 => 1334
+1236 => ISNES    1 212      ; "zoom_column"
+1237    JMP      3 => 1249
+1238    TGETS    3   0  12  ; "ui"
+1239    MOV      4   3
+1240    TGETS    3   3  13  ; "handleEvent"
+1241    UGET     5   2      ; Event
+1242    MOV      6   5
+1243    TGETS    5   5  14  ; "new"
+1244    KSTR     7 204      ; "SetZoomMode"
+1245    KSTR     8 213      ; "column"
+1246    CALL     5   0   4
+1247    CALLM    3   1   1
+1248    JMP      3 => 1334
+1249 => ISNES    1 214      ; "zoom_content"
+1250    JMP      3 => 1262
+1251    TGETS    3   0  12  ; "ui"
+1252    MOV      4   3
+1253    TGETS    3   3  13  ; "handleEvent"
+1254    UGET     5   2      ; Event
+1255    MOV      6   5
+1256    TGETS    5   5  14  ; "new"
+1257    KSTR     7 204      ; "SetZoomMode"
+1258    KSTR     8 215      ; "content"
+1259    CALL     5   0   4
+1260    CALLM    3   1   1
+1261    JMP      3 => 1334
+1262 => ISNES    1 216      ; "zoom_page"
+1263    JMP      3 => 1275
+1264    TGETS    3   0  12  ; "ui"
+1265    MOV      4   3
+1266    TGETS    3   3  13  ; "handleEvent"
+1267    UGET     5   2      ; Event
+1268    MOV      6   5
+1269    TGETS    5   5  14  ; "new"
+1270    KSTR     7 204      ; "SetZoomMode"
+1271    KSTR     8 217      ; "page"
+1272    CALL     5   0   4
+1273    CALLM    3   1   1
+1274    JMP      3 => 1334
+1275 => ISNES    1 218      ; "wallabag_download"
+1276    JMP      3 => 1287
+1277    TGETS    3   0  12  ; "ui"
+1278    MOV      4   3
+1279    TGETS    3   3  13  ; "handleEvent"
+1280    UGET     5   2      ; Event
+1281    MOV      6   5
+1282    TGETS    5   5  14  ; "new"
+1283    KSTR     7 219      ; "SynchronizeWallabag"
+1284    CALL     5   0   3
+1285    CALLM    3   1   1
+1286    JMP      3 => 1334
+1287 => ISNES    1 220      ; "cycle_highlight_action"
+1288    JMP      3 => 1299
+1289    TGETS    3   0  12  ; "ui"
+1290    MOV      4   3
+1291    TGETS    3   3  13  ; "handleEvent"
+1292    UGET     5   2      ; Event
+1293    MOV      6   5
+1294    TGETS    5   5  14  ; "new"
+1295    KSTR     7 221      ; "CycleHighlightAction"
+1296    CALL     5   0   3
+1297    CALLM    3   1   1
+1298    JMP      3 => 1334
+1299 => ISNES    1 222      ; "cycle_highlight_style"
+1300    JMP      3 => 1311
+1301    TGETS    3   0  12  ; "ui"
+1302    MOV      4   3
+1303    TGETS    3   3  13  ; "handleEvent"
+1304    UGET     5   2      ; Event
+1305    MOV      6   5
+1306    TGETS    5   5  14  ; "new"
+1307    KSTR     7 223      ; "CycleHighlightStyle"
+1308    CALL     5   0   3
+1309    CALLM    3   1   1
+1310    JMP      3 => 1334
+1311 => ISNES    1 224      ; "kosync_push_progress"
+1312    JMP      3 => 1323
+1313    TGETS    3   0  12  ; "ui"
+1314    MOV      4   3
+1315    TGETS    3   3  13  ; "handleEvent"
+1316    UGET     5   2      ; Event
+1317    MOV      6   5
+1318    TGETS    5   5  14  ; "new"
+1319    KSTR     7 225      ; "KOSyncPushProgress"
+1320    CALL     5   0   3
+1321    CALLM    3   1   1
+1322    JMP      3 => 1334
+1323 => ISNES    1 226      ; "kosync_pull_progress"
+1324    JMP      3 => 1334
+1325    TGETS    3   0  12  ; "ui"
+1326    MOV      4   3
+1327    TGETS    3   3  13  ; "handleEvent"
+1328    UGET     5   2      ; Event
+1329    MOV      6   5
+1330    TGETS    5   5  14  ; "new"
+1331    KSTR     7 227      ; "KOSyncPullProgress"
+1332    CALL     5   0   3
+1333    CALLM    3   1   1
+1334 => KPRI     3   2
+1335    UCLO     0 => 1336
+1336 => RET1     3   2
+1337 => RET0     0   1
+1338 => RET1     3   2
+1339 => RET1     3   2
+1340 => RET1     3   2
+1341 => RET1     3   2
+1342 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:1587-1595
+0001    TGETS    3   0   0  ; "multiswipes_enabled"
+0002    IST          3
+0003    JMP      3 => 0005
+0004    RET0     0   1
+0005 => GGET     3   1      ; "G_reader_settings"
+0006    MOV      4   3
+0007    TGETS    3   3   2  ; "readSetting"
+0008    TGETS    5   0   3  ; "ges_mode"
+0009    CALL     3   2   3
+0010    KSTR     4   4      ; "multiswipe_"
+0011    MOV      6   0
+0012    TGETS    5   0   5  ; "safeMultiswipeName"
+0013    MOV      7   1
+0014    CALL     5   2   3
+0015    CAT      4   4   5
+0016    TGETV    5   3   4
+0017    ISF          5
+0018    JMP      6 => 0026
+0019    ISEQS    5   6      ; "nothing"
+0020    JMP      6 => 0026
+0021    MOV      7   0
+0022    TGETS    6   0   7  ; "gestureAction"
+0023    MOV      8   5
+0024    MOV      9   2
+0025    CALLT    6   4
+0026 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:1597-1604
+0001    TGETS    2   0   0  ; "ui"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "getCurrentPage"
+0004    CALL     2   2   2
+0005    ISF          2
+0006    JMP      3 => 0020
+0007    ISF          1
+0008    JMP      3 => 0020
+0009    ADDVV    2   2   1
+0010    TGETS    3   0   0  ; "ui"
+0011    MOV      4   3
+0012    TGETS    3   3   2  ; "handleEvent"
+0013    UGET     5   0      ; Event
+0014    MOV      6   5
+0015    TGETS    5   5   3  ; "new"
+0016    KSTR     7   4      ; "GotoPage"
+0017    MOV      8   2
+0018    CALL     5   0   4
+0019    CALLM    3   1   1
+0020 => RET0     0   1
+
+-- BYTECODE -- readergesture.lua:1606-1614
+0001    ISNEP    1   0
+0002    JMP      2 => 0009
+0003    GGET     2   0      ; "G_reader_settings"
+0004    MOV      3   2
+0005    TGETS    2   2   1  ; "flipNilOrFalse"
+0006    KSTR     4   2      ; "ignore_hold_corners"
+0007    CALL     2   1   3
+0008    JMP      2 => 0015
+0009 => GGET     2   0      ; "G_reader_settings"
+0010    MOV      3   2
+0011    TGETS    2   2   3  ; "saveSetting"
+0012    KSTR     4   2      ; "ignore_hold_corners"
+0013    MOV      5   1
+0014    CALL     2   1   4
+0015 => GGET     2   0      ; "G_reader_settings"
+0016    MOV      3   2
+0017    TGETS    2   2   4  ; "isTrue"
+0018    KSTR     4   2      ; "ignore_hold_corners"
+0019    CALL     2   2   3
+0020    TSETS    2   0   2  ; "ignore_hold_corners"
+0021    KPRI     2   2
+0022    RET1     2   2
+
+-- BYTECODE -- readergesture.lua:1616-1629
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "getPowerDevice"
+0004    CALL     1   2   2
+0005    KPRI     2   0
+0006    TGETS    3   1   1  ; "is_fl_on"
+0007    ISF          3
+0008    JMP      4 => 0014
+0009    UGET     3   1      ; _
+0010    KSTR     4   2      ; "Frontlight on."
+0011    CALL     3   2   2
+0012    MOV      2   3
+0013    JMP      3 => 0018
+0014 => UGET     3   1      ; _
+0015    KSTR     4   3      ; "Frontlight off."
+0016    CALL     3   2   2
+0017    MOV      2   3
+0018 => UGET     3   2      ; UIManager
+0019    MOV      4   3
+0020    TGETS    3   3   4  ; "show"
+0021    UGET     5   3      ; Notification
+0022    MOV      6   5
+0023    TGETS    5   5   5  ; "new"
+0024    TDUP     7   6
+0025    TSETS    2   7   7  ; "text"
+0026    CALL     5   0   3
+0027    CALLM    3   1   1
+0028    KPRI     3   2
+0029    RET1     3   2
+
+-- BYTECODE -- readergesture.lua:1631-1643
+0001    KPRI     1   0
+0002    GGET     2   0      ; "G_reader_settings"
+0003    MOV      3   2
+0004    TGETS    2   2   1  ; "isTrue"
+0005    KSTR     4   2      ; "input_ignore_gsensor"
+0006    CALL     2   2   3
+0007    ISF          2
+0008    JMP      3 => 0014
+0009    UGET     2   0      ; _
+0010    KSTR     3   3      ; "Accelerometer rotation events off."
+0011    CALL     2   2   2
+0012    MOV      1   2
+0013    JMP      2 => 0018
+0014 => UGET     2   0      ; _
+0015    KSTR     3   4      ; "Accelerometer rotation events on."
+0016    CALL     2   2   2
+0017    MOV      1   2
+0018 => UGET     2   1      ; UIManager
+0019    MOV      3   2
+0020    TGETS    2   2   5  ; "show"
+0021    UGET     4   2      ; Notification
+0022    MOV      5   4
+0023    TGETS    4   4   6  ; "new"
+0024    TDUP     6   7
+0025    TSETS    1   6   8  ; "text"
+0026    CALL     4   0   3
+0027    CALLM    2   1   1
+0028    KPRI     2   2
+0029    RET1     2   2
+
+-- BYTECODE -- readergesture.lua:1645-1658
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "document"
+0003    TGETS    1   1   2  ; "info"
+0004    TGETS    1   1   3  ; "has_pages"
+0005    ISF          1
+0006    JMP      2 => 0011
+0007    TGETS    1   0   0  ; "ui"
+0008    TGETS    1   1   4  ; "paging"
+0009    IST          1
+0010    JMP      2 => 0013
+0011 => TGETS    1   0   0  ; "ui"
+0012    TGETS    1   1   5  ; "rolling"
+0013 => TGETS    2   1   6  ; "inverse_reading_order"
+0014    NOT      2   2
+0015    TSETS    2   1   6  ; "inverse_reading_order"
+0016    MOV      3   1
+0017    TGETS    2   1   7  ; "setupTouchZones"
+0018    CALL     2   1   2
+0019    UGET     2   0      ; BD
+0020    TGETS    2   2   8  ; "mirroredUILayout"
+0021    CALL     2   2   1
+0022    TGETS    3   1   6  ; "inverse_reading_order"
+0023    ISF          3
+0024    JMP      4 => 0026
+0025    NOT      2   2
+0026 => UGET     3   1      ; UIManager
+0027    MOV      4   3
+0028    TGETS    3   3   9  ; "show"
+0029    UGET     5   2      ; Notification
+0030    MOV      6   5
+0031    TGETS    5   5  10  ; "new"
+0032    TDUP     7  13
+0033    ISF          2
+0034    JMP      8 => 0040
+0035    UGET     8   3      ; _
+0036    KSTR     9  11      ; "RTL page turning."
+0037    CALL     8   2   2
+0038    IST          8
+0039    JMP      9 => 0043
+0040 => UGET     8   3      ; _
+0041    KSTR     9  12      ; "LTR page turning."
+0042    CALL     8   2   2
+0043 => TSETS    8   7  14  ; "text"
+0044    CALL     5   0   3
+0045    CALLM    3   1   1
+0046    KPRI     3   2
+0047    RET1     3   2
+
+-- BYTECODE -- readergesture.lua:0-1661
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/confirmbox"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "datastorage"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "device"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/event"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/geometry"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/gesturerange"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/widget/infomessage"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/widget/container/inputcontainer"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/widget/inputdialog"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "luadata"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/notification"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13   4      ; "device"
+0039    CALL    12   2   2
+0040    TGETS   12  12  13  ; "screen"
+0041    GGET    13   0      ; "require"
+0042    KSTR    14  14      ; "ui/uimanager"
+0043    CALL    13   2   2
+0044    GGET    14   0      ; "require"
+0045    KSTR    15  15      ; "ffi/util"
+0046    CALL    14   2   2
+0047    TGETS   14  14  16  ; "template"
+0048    GGET    15   0      ; "require"
+0049    KSTR    16  17      ; "gettext"
+0050    CALL    15   2   2
+0051    GGET    16   0      ; "require"
+0052    KSTR    17  18      ; "logger"
+0053    CALL    16   2   2
+0054    MOV     18   8
+0055    TGETS   17   8  19  ; "new"
+0056    TNEW    19   0
+0057    CALL    17   2   3
+0058    TDUP    18  21
+0059    MOV     19  15
+0060    KSTR    20  20      ; "Nothing"
+0061    CALL    19   2   2
+0062    TSETS   19  18  22  ; "nothing"
+0063    MOV     19  15
+0064    KSTR    20  23      ; "Pass through"
+0065    CALL    19   2   2
+0066    TSETS   19  18  24  ; "ignore"
+0067    MOV     19  15
+0068    KSTR    20  25      ; "Back 10 pages"
+0069    CALL    19   2   2
+0070    TSETS   19  18  26  ; "page_jmp_back_10"
+0071    MOV     19  15
+0072    KSTR    20  27      ; "Previous page"
+0073    CALL    19   2   2
+0074    TSETS   19  18  28  ; "page_jmp_back_1"
+0075    MOV     19  15
+0076    KSTR    20  29      ; "Forward 10 pages"
+0077    CALL    19   2   2
+0078    TSETS   19  18  30  ; "page_jmp_fwd_10"
+0079    MOV     19  15
+0080    KSTR    20  31      ; "Next page"
+0081    CALL    19   2   2
+0082    TSETS   19  18  32  ; "page_jmp_fwd_1"
+0083    MOV     19  15
+0084    KSTR    20  33      ; "Previous chapter"
+0085    CALL    19   2   2
+0086    TSETS   19  18  34  ; "prev_chapter"
+0087    MOV     19  15
+0088    KSTR    20  35      ; "Next chapter"
+0089    CALL    19   2   2
+0090    TSETS   19  18  36  ; "next_chapter"
+0091    MOV     19  15
+0092    KSTR    20  37      ; "First page"
+0093    CALL    19   2   2
+0094    TSETS   19  18  38  ; "first_page"
+0095    MOV     19  15
+0096    KSTR    20  39      ; "Last page"
+0097    CALL    19   2   2
+0098    TSETS   19  18  40  ; "last_page"
+0099    MOV     19  15
+0100    KSTR    20  41      ; "Previous bookmark"
+0101    CALL    19   2   2
+0102    TSETS   19  18  42  ; "prev_bookmark"
+0103    MOV     19  15
+0104    KSTR    20  43      ; "Next bookmark"
+0105    CALL    19   2   2
+0106    TSETS   19  18  44  ; "next_bookmark"
+0107    MOV     19  15
+0108    KSTR    20  45      ; "Go to"
+0109    CALL    19   2   2
+0110    TSETS   19  18  46  ; "go_to"
+0111    MOV     19  15
+0112    KSTR    20  47      ; "Skim"
+0113    CALL    19   2   2
+0114    TSETS   19  18  48  ; "skim"
+0115    MOV     19  15
+0116    KSTR    20  49      ; "Back"
+0117    CALL    19   2   2
+0118    TSETS   19  18  50  ; "back"
+0119    MOV     19  15
+0120    KSTR    20  51      ; "Back to previous location"
+0121    CALL    19   2   2
+0122    TSETS   19  18  52  ; "previous_location"
+0123    MOV     19  15
+0124    KSTR    20  53      ; "Go to latest bookmark"
+0125    CALL    19   2   2
+0126    TSETS   19  18  54  ; "latest_bookmark"
+0127    MOV     19  15
+0128    KSTR    20  55      ; "Follow nearest link"
+0129    CALL    19   2   2
+0130    TSETS   19  18  56  ; "follow_nearest_link"
+0131    MOV     19  15
+0132    KSTR    20  57      ; "Follow nearest internal link"
+0133    CALL    19   2   2
+0134    TSETS   19  18  58  ; "follow_nearest_internal_link"
+0135    MOV     19  15
+0136    KSTR    20  59      ; "Clear location history"
+0137    CALL    19   2   2
+0138    TSETS   19  18  60  ; "clear_location_history"
+0139    MOV     19  15
+0140    KSTR    20  61      ; "Table of contents"
+0141    CALL    19   2   2
+0142    TSETS   19  18  62  ; "toc"
+0143    MOV     19  15
+0144    KSTR    20  63      ; "Bookmarks"
+0145    CALL    19   2   2
+0146    TSETS   19  18  64  ; "bookmarks"
+0147    MOV     19  15
+0148    KSTR    20  65      ; "Reading progress"
+0149    CALL    19   2   2
+0150    TSETS   19  18  66  ; "reading_progress"
+0151    MOV     19  15
+0152    KSTR    20  67      ; "Book statistics"
+0153    CALL    19   2   2
+0154    TSETS   19  18  68  ; "book_statistics"
+0155    MOV     19  15
+0156    KSTR    20  69      ; "Book status"
+0157    CALL    19   2   2
+0158    TSETS   19  18  70  ; "book_status"
+0159    MOV     19  15
+0160    KSTR    20  71      ; "Book information"
+0161    CALL    19   2   2
+0162    TSETS   19  18  72  ; "book_info"
+0163    MOV     19  15
+0164    KSTR    20  73      ; "Book description"
+0165    CALL    19   2   2
+0166    TSETS   19  18  74  ; "book_description"
+0167    MOV     19  15
+0168    KSTR    20  75      ; "Book cover"
+0169    CALL    19   2   2
+0170    TSETS   19  18  76  ; "book_cover"
+0171    MOV     19  15
+0172    KSTR    20  77      ; "Statistics calendar view"
+0173    CALL    19   2   2
+0174    TSETS   19  18  78  ; "stats_calendar_view"
+0175    MOV     19  15
+0176    KSTR    20  79      ; "History"
+0177    CALL    19   2   2
+0178    TSETS   19  18  80  ; "history"
+0179    MOV     19  15
+0180    KSTR    20  81      ; "Open previous document"
+0181    CALL    19   2   2
+0182    TSETS   19  18  82  ; "open_previous_document"
+0183    MOV     19  15
+0184    KSTR    20  83      ; "File browser"
+0185    CALL    19   2   2
+0186    TSETS   19  18  84  ; "filemanager"
+0187    MOV     19  15
+0188    KSTR    20  85      ; "Favorites"
+0189    CALL    19   2   2
+0190    TSETS   19  18  86  ; "favorites"
+0191    MOV     19  15
+0192    KSTR    20  87      ; "Dictionary lookup"
+0193    CALL    19   2   2
+0194    TSETS   19  18  88  ; "dictionary_lookup"
+0195    MOV     19  15
+0196    KSTR    20  89      ; "Wikipedia lookup"
+0197    CALL    19   2   2
+0198    TSETS   19  18  90  ; "wikipedia_lookup"
+0199    MOV     19  15
+0200    KSTR    20  91      ; "Fulltext search"
+0201    CALL    19   2   2
+0202    TSETS   19  18  92  ; "fulltext_search"
+0203    MOV     19  15
+0204    KSTR    20  93      ; "File search"
+0205    CALL    19   2   2
+0206    TSETS   19  18  94  ; "file_search"
+0207    MOV     19  15
+0208    KSTR    20  95      ; "Full screen refresh"
+0209    CALL    19   2   2
+0210    TSETS   19  18  96  ; "full_refresh"
+0211    MOV     19  15
+0212    KSTR    20  97      ; "Night mode"
+0213    CALL    19   2   2
+0214    TSETS   19  18  98  ; "night_mode"
+0215    MOV     19  15
+0216    KSTR    20  99      ; "Suspend"
+0217    CALL    19   2   2
+0218    TSETS   19  18 100  ; "suspend"
+0219    MOV     19  15
+0220    KSTR    20 101      ; "Exit KOReader"
+0221    CALL    19   2   2
+0222    TSETS   19  18 102  ; "exit"
+0223    MOV     19  15
+0224    KSTR    20 103      ; "Restart KOReader"
+0225    CALL    19   2   2
+0226    TSETS   19  18 104  ; "restart"
+0227    MOV     19  15
+0228    KSTR    20 105      ; "Reboot the device"
+0229    CALL    19   2   2
+0230    TSETS   19  18 106  ; "reboot"
+0231    MOV     19  15
+0232    KSTR    20 107      ; "Power off"
+0233    CALL    19   2   2
+0234    TSETS   19  18 108  ; "poweroff"
+0235    MOV     19  15
+0236    KSTR    20 109      ; "Show menu"
+0237    CALL    19   2   2
+0238    TSETS   19  18 110  ; "show_menu"
+0239    MOV     19  15
+0240    KSTR    20 111      ; "Show bottom menu"
+0241    CALL    19   2   2
+0242    TSETS   19  18 112  ; "show_config_menu"
+0243    MOV     19  15
+0244    KSTR    20 113      ; "Show frontlight dialog"
+0245    CALL    19   2   2
+0246    TSETS   19  18 114  ; "show_frontlight_dialog"
+0247    MOV     19  15
+0248    KSTR    20 115      ; "Toggle frontlight"
+0249    CALL    19   2   2
+0250    TSETS   19  18 116  ; "toggle_frontlight"
+0251    MOV     19  15
+0252    KSTR    20 117      ; "Increase frontlight brightness"
+0253    CALL    19   2   2
+0254    TSETS   19  18 118  ; "increase_frontlight"
+0255    MOV     19  15
+0256    KSTR    20 119      ; "Decrease frontlight brightness"
+0257    CALL    19   2   2
+0258    TSETS   19  18 120  ; "decrease_frontlight"
+0259    MOV     19  15
+0260    KSTR    20 121      ; "Increase frontlight warmth"
+0261    CALL    19   2   2
+0262    TSETS   19  18 122  ; "increase_frontlight_warmth"
+0263    MOV     19  15
+0264    KSTR    20 123      ; "Decrease frontlight warmth"
+0265    CALL    19   2   2
+0266    TSETS   19  18 124  ; "decrease_frontlight_warmth"
+0267    MOV     19  15
+0268    KSTR    20 125      ; "Toggle hold corners"
+0269    CALL    19   2   2
+0270    TSETS   19  18 126  ; "toggle_hold_corners"
+0271    MOV     19  15
+0272    KSTR    20 127      ; "Toggle accelerometer"
+0273    CALL    19   2   2
+0274    TSETS   19  18 128  ; "toggle_gsensor"
+0275    MOV     19  15
+0276    KSTR    20 129      ; "Toggle rotation"
+0277    CALL    19   2   2
+0278    TSETS   19  18 130  ; "toggle_rotation"
+0279    MOV     19  15
+0280    KSTR    20 131      ; "Turn on Wi-Fi"
+0281    CALL    19   2   2
+0282    TSETS   19  18 132  ; "wifi_on"
+0283    MOV     19  15
+0284    KSTR    20 133      ; "Turn off Wi-Fi"
+0285    CALL    19   2   2
+0286    TSETS   19  18 134  ; "wifi_off"
+0287    MOV     19  15
+0288    KSTR    20 135      ; "Toggle Wi-Fi"
+0289    CALL    19   2   2
+0290    TSETS   19  18 136  ; "toggle_wifi"
+0291    MOV     19  15
+0292    KSTR    20 137      ; "Toggle bookmark"
+0293    CALL    19   2   2
+0294    TSETS   19  18 138  ; "toggle_bookmark"
+0295    MOV     19  15
+0296    KSTR    20 139      ; "Toggle page flipping"
+0297    CALL    19   2   2
+0298    TSETS   19  18 140  ; "toggle_page_flipping"
+0299    MOV     19  15
+0300    KSTR    20 141      ; "Toggle reflow"
+0301    CALL    19   2   2
+0302    TSETS   19  18 142  ; "toggle_reflow"
+0303    MOV     19  15
+0304    KSTR    20 143      ; "Toggle page turn direction"
+0305    CALL    19   2   2
+0306    TSETS   19  18 144  ; "toggle_inverse_reading_order"
+0307    MOV     19  15
+0308    KSTR    20 145      ; "Zoom to fit content width"
+0309    CALL    19   2   2
+0310    TSETS   19  18 146  ; "zoom_contentwidth"
+0311    MOV     19  15
+0312    KSTR    20 147      ; "Zoom to fit content height"
+0313    CALL    19   2   2
+0314    TSETS   19  18 148  ; "zoom_contentheight"
+0315    MOV     19  15
+0316    KSTR    20 149      ; "Zoom to fit page width"
+0317    CALL    19   2   2
+0318    TSETS   19  18 150  ; "zoom_pagewidth"
+0319    MOV     19  15
+0320    KSTR    20 151      ; "Zoom to fit page height"
+0321    CALL    19   2   2
+0322    TSETS   19  18 152  ; "zoom_pageheight"
+0323    MOV     19  15
+0324    KSTR    20 153      ; "Zoom to fit column"
+0325    CALL    19   2   2
+0326    TSETS   19  18 154  ; "zoom_column"
+0327    MOV     19  15
+0328    KSTR    20 155      ; "Zoom to fit content"
+0329    CALL    19   2   2
+0330    TSETS   19  18 156  ; "zoom_content"
+0331    MOV     19  15
+0332    KSTR    20 157      ; "Zoom to fit page"
+0333    CALL    19   2   2
+0334    TSETS   19  18 158  ; "zoom_page"
+0335    MOV     19  15
+0336    KSTR    20 159      ; "Increase font size"
+0337    CALL    19   2   2
+0338    TSETS   19  18 160  ; "increase_font"
+0339    MOV     19  15
+0340    KSTR    20 161      ; "Decrease font size"
+0341    CALL    19   2   2
+0342    TSETS   19  18 162  ; "decrease_font"
+0343    MOV     19  15
+0344    KSTR    20 163      ; "Folder up"
+0345    CALL    19   2   2
+0346    TSETS   19  18 164  ; "folder_up"
+0347    MOV     19  15
+0348    KSTR    20 165      ; "Show plus menu"
+0349    CALL    19   2   2
+0350    TSETS   19  18 166  ; "show_plus_menu"
+0351    MOV     19  15
+0352    KSTR    20 167      ; "Folder shortcuts"
+0353    CALL    19   2   2
+0354    TSETS   19  18 168  ; "folder_shortcuts"
+0355    MOV     19  15
+0356    KSTR    20 169      ; "Cycle highlight action"
+0357    CALL    19   2   2
+0358    TSETS   19  18 170  ; "cycle_highlight_action"
+0359    MOV     19  15
+0360    KSTR    20 171      ; "Cycle highlight style"
+0361    CALL    19   2   2
+0362    TSETS   19  18 172  ; "cycle_highlight_style"
+0363    MOV     19  15
+0364    KSTR    20 173      ; "Wallabag retrieval"
+0365    CALL    19   2   2
+0366    TSETS   19  18 174  ; "wallabag_download"
+0367    MOV     19  15
+0368    KSTR    20 175      ; "Push progress from this device"
+0369    CALL    19   2   2
+0370    TSETS   19  18 176  ; "kosync_push_progress"
+0371    MOV     19  15
+0372    KSTR    20 177      ; "Pull progress from other devices"
+0373    CALL    19   2   2
+0374    TSETS   19  18 178  ; "kosync_pull_progress"
+0375    MOV     20   2
+0376    TGETS   19   2 179  ; "getSettingsDir"
+0377    CALL    19   2   2
+0378    KSTR    20 180      ; "/multiswipes.lua"
+0379    CAT     19  19  20
+0380    MOV     21  10
+0381    TGETS   20  10 181  ; "open"
+0382    MOV     22  19
+0383    TDUP    23 182
+0384    CALL    20   2   4
+0385    MOV     22  20
+0386    TGETS   21  20 183  ; "readSetting"
+0387    KSTR    23 184      ; "multiswipes"
+0388    CALL    21   2   3
+0389    TDUP    22 185
+0390    TNEW    23   0
+0391    MOV     24  15
+0392    KSTR    25 186      ; "Multiswipes allow you to perform complex"~
+0393    CALL    24   2   2
+0394    FNEW    25 188      ; readergesture.lua:168
+0395    TSETS   25  17 187  ; "init"
+0396    FNEW    25 190      ; readergesture.lua:278
+0397    TSETS   25  17 189  ; "initGesture"
+0398    FNEW    25 192      ; readergesture.lua:291
+0399    TSETS   25  17 191  ; "genMultiswipeSubmenu"
+0400    FNEW    25 194      ; readergesture.lua:300
+0401    TSETS   25  17 193  ; "addToMainMenu"
+0402    FNEW    25 196      ; readergesture.lua:701
+0403    TSETS   25  17 195  ; "buildMenu"
+0404    FNEW    25 198      ; readergesture.lua:824
+0405    TSETS   25  17 197  ; "buildMultiswipeMenu"
+0406    FNEW    25 200      ; readergesture.lua:911
+0407    TSETS   25  17 199  ; "createSubMenu"
+0408    TDUP    25 201
+0409    FNEW    26 203      ; readergesture.lua:937
+0410    TSETS   26  17 202  ; "friendlyMultiswipeName"
+0411    FNEW    26 205      ; readergesture.lua:941
+0412    TSETS   26  17 204  ; "safeMultiswipeName"
+0413    FNEW    26 207      ; readergesture.lua:945
+0414    TSETS   26  17 206  ; "setupGesture"
+0415    FNEW    26 209      ; readergesture.lua:1229
+0416    TSETS   26  17 208  ; "registerGesture"
+0417    FNEW    26 210      ; readergesture.lua:1267
+0418    FNEW    27 212      ; readergesture.lua:1271
+0419    TSETS   27  17 211  ; "gestureAction"
+0420    FNEW    27 214      ; readergesture.lua:1587
+0421    TSETS   27  17 213  ; "multiswipeAction"
+0422    FNEW    27 216      ; readergesture.lua:1597
+0423    TSETS   27  17 215  ; "pageUpdate"
+0424    FNEW    27 218      ; readergesture.lua:1606
+0425    TSETS   27  17 217  ; "onIgnoreHoldCorners"
+0426    FNEW    27 220      ; readergesture.lua:1616
+0427    TSETS   27  17 219  ; "onShowFLOnOff"
+0428    FNEW    27 222      ; readergesture.lua:1631
+0429    TSETS   27  17 221  ; "onGSensorToggle"
+0430    FNEW    27 224      ; readergesture.lua:1645
+0431    TSETS   27  17 223  ; "onToggleReadingOrder"
+0432    UCLO     0 => 0433
+0433 => RET1    17   2
+

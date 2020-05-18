@@ -1,0 +1,614 @@
+-- BYTECODE -- docsettings.lua:17-24
+0001    ISF          0
+0002    JMP      1 => 0020
+0003    UGET     1   0      ; lfs
+0004    TGETS    1   1   0  ; "attributes"
+0005    MOV      2   0
+0006    KSTR     3   1      ; "mode"
+0007    CALL     1   2   3
+0008    ISNES    1   2      ; "file"
+0009    JMP      1 => 0020
+0010    TNEW     1   3
+0011    TSETB    0   1   1
+0012    UGET     2   0      ; lfs
+0013    TGETS    2   2   0  ; "attributes"
+0014    MOV      3   0
+0015    KSTR     4   3      ; "modification"
+0016    CALL     2   0   3
+0017    TSETM    2   0      ; 2
+0018    RET1     1   2
+0019    JMP      1 => 0022
+0020 => KPRI     1   0
+0021    RET1     1   2
+0022 => RET0     0   1
+
+-- BYTECODE -- docsettings.lua:31-38
+0001    ISEQP    1   0
+0002    JMP      2 => 0005
+0003    ISNES    1   0      ; ""
+0004    JMP      2 => 0007
+0005 => KSTR     2   0      ; ""
+0006    RET1     2   2
+0007 => MOV      3   1
+0008    TGETS    2   1   1  ; "match"
+0009    KSTR     4   2      ; "(.*)%."
+0010    CALL     2   2   3
+0011    ISF          2
+0012    JMP      3 => 0017
+0013    MOV      3   2
+0014    KSTR     4   3      ; ".sdr"
+0015    CAT      3   3   4
+0016    RET1     3   2
+0017 => MOV      3   1
+0018    KSTR     4   3      ; ".sdr"
+0019    CAT      3   3   4
+0020    RET1     3   2
+
+-- BYTECODE -- docsettings.lua:43-52
+0001    ISEQP    1   0
+0002    JMP      2 => 0005
+0003    ISNES    1   0      ; ""
+0004    JMP      2 => 0007
+0005 => KSTR     2   0      ; ""
+0006    RET1     2   2
+0007 => MOV      3   1
+0008    TGETS    2   1   1  ; "match"
+0009    KSTR     4   2      ; ".*%.(.+)"
+0010    CALL     2   2   3
+0011    ISNEP    2   0
+0012    JMP      3 => 0014
+0013    KSTR     2   0      ; ""
+0014 => MOV      4   0
+0015    TGETS    3   0   3  ; "getSidecarDir"
+0016    MOV      5   1
+0017    CALL     3   2   3
+0018    KSTR     4   4      ; "/metadata."
+0019    MOV      5   2
+0020    KSTR     6   5      ; ".lua"
+0021    CAT      3   3   6
+0022    RET1     3   2
+
+-- BYTECODE -- docsettings.lua:57-59
+0001    UGET     2   0      ; lfs
+0002    TGETS    2   2   0  ; "attributes"
+0003    MOV      4   0
+0004    TGETS    3   0   1  ; "getSidecarFile"
+0005    MOV      5   1
+0006    CALL     3   2   3
+0007    KSTR     4   2      ; "mode"
+0008    CALL     2   2   3
+0009    ISEQS    2   3      ; "file"
+0010    JMP      2 => 0013
+0011    KPRI     2   1
+0012    JMP      3 => 0014
+0013 => KPRI     2   2
+0014 => RET1     2   2
+
+-- BYTECODE -- docsettings.lua:61-63
+0001    UGET     2   0      ; HISTORY_DIR
+0002    KSTR     3   0      ; "/["
+0003    MOV      5   1
+0004    TGETS    4   1   1  ; "gsub"
+0005    KSTR     6   2      ; "(.*/)([^/]+)"
+0006    KSTR     7   3      ; "%1] %2"
+0007    CALL     4   2   4
+0008    MOV      5   4
+0009    TGETS    4   4   1  ; "gsub"
+0010    KSTR     6   4      ; "/"
+0011    KSTR     7   5      ; "#"
+0012    CALL     4   2   4
+0013    KSTR     5   6      ; ".lua"
+0014    CAT      2   2   5
+0015    RET1     2   2
+
+-- BYTECODE -- docsettings.lua:65-74
+0001    ISEQP    1   0
+0002    JMP      2 => 0005
+0003    ISNES    1   0      ; ""
+0004    JMP      2 => 0007
+0005 => KSTR     2   0      ; ""
+0006    RET1     2   2
+0007 => MOV      3   1
+0008    TGETS    2   1   1  ; "sub"
+0009    KSHORT   4  -4
+0010    CALL     2   2   3
+0011    ISEQS    2   2      ; ".lua"
+0012    JMP      2 => 0015
+0013    KSTR     2   0      ; ""
+0014    RET1     2   2
+0015 => GGET     2   3      ; "string"
+0016    TGETS    2   2   4  ; "match"
+0017    MOV      3   1
+0018    KSTR     4   5      ; "%b[]"
+0019    CALL     2   2   3
+0020    ISEQP    2   0
+0021    JMP      3 => 0024
+0022    ISNES    2   0      ; ""
+0023    JMP      3 => 0026
+0024 => KSTR     3   0      ; ""
+0025    RET1     3   2
+0026 => GGET     3   3      ; "string"
+0027    TGETS    3   3   6  ; "gsub"
+0028    GGET     4   3      ; "string"
+0029    TGETS    4   4   1  ; "sub"
+0030    MOV      5   2
+0031    KSHORT   6   2
+0032    KSHORT   7  -3
+0033    CALL     4   2   4
+0034    KSTR     5   7      ; "#"
+0035    KSTR     6   8      ; "/"
+0036    CALLT    3   4
+
+-- BYTECODE -- docsettings.lua:76-84
+0001    ISEQP    1   0
+0002    JMP      2 => 0005
+0003    ISNES    1   0      ; ""
+0004    JMP      2 => 0007
+0005 => KSTR     2   0      ; ""
+0006    RET1     2   2
+0007 => MOV      3   1
+0008    TGETS    2   1   1  ; "sub"
+0009    KSHORT   4  -4
+0010    CALL     2   2   3
+0011    ISEQS    2   2      ; ".lua"
+0012    JMP      2 => 0015
+0013    KSTR     2   0      ; ""
+0014    RET1     2   2
+0015 => GGET     2   3      ; "string"
+0016    TGETS    2   2   4  ; "match"
+0017    MOV      3   1
+0018    KSTR     4   5      ; "%b[]"
+0019    CALL     2   2   3
+0020    ISEQP    2   0
+0021    JMP      3 => 0024
+0022    ISNES    2   0      ; ""
+0023    JMP      3 => 0026
+0024 => KSTR     3   0      ; ""
+0025    RET1     3   2
+0026 => GGET     3   3      ; "string"
+0027    TGETS    3   3   1  ; "sub"
+0028    MOV      4   1
+0029    GGET     5   3      ; "string"
+0030    TGETS    5   5   6  ; "len"
+0031    MOV      6   2
+0032    CALL     5   2   2
+0033    ADDVN    5   5   0  ; 2
+0034    KSHORT   6  -5
+0035    CALLT    3   4
+
+-- BYTECODE -- docsettings.lua:86-90
+0001    UGET     2   0      ; lfs
+0002    TGETS    2   2   0  ; "attributes"
+0003    MOV      3   1
+0004    KSTR     4   1      ; "mode"
+0005    CALL     2   2   3
+0006    ISEQS    2   2      ; "directory"
+0007    JMP      2 => 0012
+0008    UGET     2   0      ; lfs
+0009    TGETS    2   2   3  ; "mkdir"
+0010    MOV      3   1
+0011    CALL     2   1   2
+0012 => RET0     0   1
+
+-- BYTECODE -- docsettings.lua:126-134
+0001    ISNEP    0   0
+0002    JMP      2 => 0006
+0003    KPRI     2   1
+0004    RET1     2   2
+0005    JMP      2 => 0019
+0006 => ISNEP    1   0
+0007    JMP      2 => 0011
+0008    KPRI     2   2
+0009    RET1     2   2
+0010    JMP      2 => 0019
+0011 => TGETB    2   0   2
+0012    TGETB    3   1   2
+0013    ISLT     3   2
+0014    JMP      2 => 0017
+0015    KPRI     2   1
+0016    JMP      3 => 0018
+0017 => KPRI     2   2
+0018 => RET1     2   2
+0019 => RET0     0   1
+
+-- BYTECODE -- docsettings.lua:95-159
+0001    TNEW     2   0
+0002    MOV      4   0
+0003    TGETS    3   0   1  ; "getHistoryPath"
+0004    MOV      5   1
+0005    CALL     3   2   3
+0006    TSETS    3   2   0  ; "history_file"
+0007    MOV      4   0
+0008    TGETS    3   0   2  ; "getSidecarDir"
+0009    MOV      5   1
+0010    CALL     3   2   3
+0011    TSETS    3   2   3  ; "sidecar"
+0012    UGET     4   0      ; DocSettings
+0013    MOV      5   4
+0014    TGETS    4   4   4  ; "ensureSidecar"
+0015    MOV      6   3
+0016    CALL     4   1   3
+0017    UGET     4   1      ; lfs
+0018    TGETS    4   4   5  ; "attributes"
+0019    MOV      5   3
+0020    KSTR     6   6      ; "mode"
+0021    CALL     4   2   3
+0022    ISNES    4   7      ; "directory"
+0023    JMP      4 => 0038
+0024    MOV      5   0
+0025    TGETS    4   0   9  ; "getSidecarFile"
+0026    MOV      6   1
+0027    CALL     4   2   3
+0028    TSETS    4   2   8  ; "sidecar_file"
+0029    MOV      4   3
+0030    KSTR     5  11      ; "/"
+0031    MOV      7   1
+0032    TGETS    6   1  12  ; "match"
+0033    KSTR     8  13      ; "([^%/]+%..+)"
+0034    CALL     6   2   3
+0035    KSTR     7  14      ; ".lua"
+0036    CAT      4   4   7
+0037    TSETS    4   2  10  ; "legacy_sidecar_file"
+0038 => TNEW     4   0
+0039    GGET     5  15      ; "table"
+0040    TGETS    5   5  16  ; "insert"
+0041    MOV      6   4
+0042    UGET     7   2      ; buildCandidate
+0043    TGETS    8   2   8  ; "sidecar_file"
+0044    CALL     7   0   2
+0045    CALLM    5   1   1
+0046    GGET     5  15      ; "table"
+0047    TGETS    5   5  16  ; "insert"
+0048    MOV      6   4
+0049    UGET     7   2      ; buildCandidate
+0050    TGETS    8   2   8  ; "sidecar_file"
+0051    ISF          8
+0052    JMP      9 => 0056
+0053    TGETS    8   2   8  ; "sidecar_file"
+0054    KSTR     9  17      ; ".old"
+0055    CAT      8   8   9
+0056 => CALL     7   0   2
+0057    CALLM    5   1   1
+0058    GGET     5  15      ; "table"
+0059    TGETS    5   5  16  ; "insert"
+0060    MOV      6   4
+0061    UGET     7   2      ; buildCandidate
+0062    TGETS    8   2  10  ; "legacy_sidecar_file"
+0063    CALL     7   0   2
+0064    CALLM    5   1   1
+0065    GGET     5  15      ; "table"
+0066    TGETS    5   5  16  ; "insert"
+0067    MOV      6   4
+0068    UGET     7   2      ; buildCandidate
+0069    TGETS    8   2   0  ; "history_file"
+0070    CALL     7   0   2
+0071    CALLM    5   1   1
+0072    GGET     5  15      ; "table"
+0073    TGETS    5   5  16  ; "insert"
+0074    MOV      6   4
+0075    UGET     7   2      ; buildCandidate
+0076    TGETS    8   2   0  ; "history_file"
+0077    KSTR     9  17      ; ".old"
+0078    CAT      8   8   9
+0079    CALL     7   0   2
+0080    CALLM    5   1   1
+0081    GGET     5  15      ; "table"
+0082    TGETS    5   5  16  ; "insert"
+0083    MOV      6   4
+0084    UGET     7   2      ; buildCandidate
+0085    MOV      8   1
+0086    KSTR     9  18      ; ".kpdfview.lua"
+0087    CAT      8   8   9
+0088    CALL     7   0   2
+0089    CALLM    5   1   1
+0090    GGET     5  15      ; "table"
+0091    TGETS    5   5  19  ; "sort"
+0092    MOV      6   4
+0093    FNEW     7  20      ; docsettings.lua:126
+0094    CALL     5   1   3
+0095    KNIL     5   7
+0096    GGET     8  21      ; "pairs"
+0097    MOV      9   4
+0098    CALL     8   4   2
+0099    ISNEXT  11 => 0137
+0100 => UGET    13   1      ; lfs
+0101    TGETS   13  13   5  ; "attributes"
+0102    TGETB   14  12   1
+0103    KSTR    15  22      ; "size"
+0104    CALL    13   2   3
+0105    KSHORT  14   0
+0106    ISGE    14  13
+0107    JMP     13 => 0128
+0108    GGET    13  23      ; "pcall"
+0109    GGET    14  24      ; "dofile"
+0110    TGETB   15  12   1
+0111    CALL    13   3   3
+0112    MOV      6  14
+0113    MOV      5  13
+0114    ISF          5
+0115    JMP     13 => 0128
+0116    GGET    13  25      ; "next"
+0117    MOV     14   6
+0118    CALL    13   2   2
+0119    ISEQP   13   0
+0120    JMP     13 => 0128
+0121    UGET    13   3      ; logger
+0122    TGETS   13  13  26  ; "dbg"
+0123    KSTR    14  27      ; "data is read from "
+0124    TGETB   15  12   1
+0125    CALL    13   1   3
+0126    TGETB    7  12   1
+0127    JMP      8 => 0139
+0128 => UGET    13   3      ; logger
+0129    TGETS   13  13  26  ; "dbg"
+0130    TGETB   14  12   1
+0131    KSTR    15  28      ; " is invalid, remove."
+0132    CALL    13   1   3
+0133    GGET    13  29      ; "os"
+0134    TGETS   13  13  30  ; "remove"
+0135    TGETB   14  12   1
+0136    CALL    13   1   2
+0137 => ITERN   11   3   3
+0138    ITERL   11 => 0100
+0139 => ISF          5
+0140    JMP      8 => 0147
+0141    ISF          6
+0142    JMP      8 => 0147
+0143    TSETS    6   2  31  ; "data"
+0144    TSETS    4   2  32  ; "candidates"
+0145    TSETS    7   2  33  ; "filepath"
+0146    JMP      8 => 0149
+0147 => TNEW     8   0
+0148    TSETS    8   2  31  ; "data"
+0149 => GGET     8  34      ; "setmetatable"
+0150    MOV      9   2
+0151    TDUP    10  35
+0152    UGET    11   0      ; DocSettings
+0153    TSETS   11  10  36  ; "__index"
+0154    UCLO     0 => 0155
+0155 => CALLT    8   3
+
+-- BYTECODE -- docsettings.lua:162-164
+0001    TGETS    2   0   0  ; "data"
+0002    TGETV    2   2   1
+0003    RET1     2   2
+
+-- BYTECODE -- docsettings.lua:167-169
+0001    TGETS    3   0   0  ; "data"
+0002    TSETV    2   3   1
+0003    RET0     0   1
+
+-- BYTECODE -- docsettings.lua:172-174
+0001    TGETS    2   0   0  ; "data"
+0002    KPRI     3   0
+0003    TSETV    3   2   1
+0004    RET0     0   1
+
+-- BYTECODE -- docsettings.lua:177-235
+0001    TGETS    1   0   0  ; "history_file"
+0002    IST          1
+0003    JMP      1 => 0008
+0004    TGETS    1   0   1  ; "sidecar_file"
+0005    IST          1
+0006    JMP      1 => 0008
+0007    RET0     0   1
+0008 => TNEW     1   3
+0009    TGETS    2   0   1  ; "sidecar_file"
+0010    TSETB    2   1   1
+0011    TGETS    2   0   0  ; "history_file"
+0012    TSETB    2   1   2
+0013    MOV      3   0
+0014    TGETS    2   0   2  ; "ensureSidecar"
+0015    TGETS    4   0   3  ; "sidecar"
+0016    CALL     2   1   3
+0017    UGET     2   0      ; dump
+0018    TGETS    3   0   4  ; "data"
+0019    CALL     2   2   2
+0020    GGET     3   5      ; "os"
+0021    TGETS    3   3   6  ; "setlocale"
+0022    KSTR     4   7      ; "C"
+0023    KSTR     5   8      ; "numeric"
+0024    CALL     3   1   3
+0025    GGET     3   9      ; "pairs"
+0026    MOV      4   1
+0027    CALL     3   4   2
+0028    ISNEXT   6 => 0137
+0029 => KPRI     8   1
+0030    UGET     9   1      ; lfs
+0031    TGETS    9   9  10  ; "attributes"
+0032    MOV     10   7
+0033    KSTR    11  11      ; "mode"
+0034    CALL     9   2   3
+0035    ISNES    9  12      ; "file"
+0036    JMP      9 => 0065
+0037    UGET     9   1      ; lfs
+0038    TGETS    9   9  10  ; "attributes"
+0039    MOV     10   7
+0040    KSTR    11  13      ; "modification"
+0041    CALL     9   2   3
+0042    GGET    10   5      ; "os"
+0043    TGETS   10  10  14  ; "time"
+0044    CALL    10   2   1
+0045    SUBVN   10  10   0  ; 60
+0046    ISGE     9  10
+0047    JMP     10 => 0065
+0048    UGET    10   2      ; logger
+0049    TGETS   10  10  15  ; "dbg"
+0050    KSTR    11  16      ; "Rename "
+0051    MOV     12   7
+0052    KSTR    13  17      ; " to "
+0053    MOV     14   7
+0054    KSTR    15  18      ; ".old"
+0055    CAT     14  14  15
+0056    CALL    10   1   5
+0057    GGET    10   5      ; "os"
+0058    TGETS   10  10  19  ; "rename"
+0059    MOV     11   7
+0060    MOV     12   7
+0061    KSTR    13  18      ; ".old"
+0062    CAT     12  12  13
+0063    CALL    10   1   3
+0064    KPRI     8   2
+0065 => UGET     9   2      ; logger
+0066    TGETS    9   9  15  ; "dbg"
+0067    KSTR    10  20      ; "Write to "
+0068    MOV     11   7
+0069    CALL     9   1   3
+0070    GGET     9  21      ; "io"
+0071    TGETS    9   9  22  ; "open"
+0072    MOV     10   7
+0073    KSTR    11  23      ; "w"
+0074    CALL     9   2   3
+0075    ISEQP    9   0
+0076    JMP     10 => 0137
+0077    MOV     11   9
+0078    TGETS   10   9  24  ; "write"
+0079    KSTR    12  25      ; "-- we can read Lua syntax here!\nreturn "
+0080    CALL    10   1   3
+0081    MOV     11   9
+0082    TGETS   10   9  24  ; "write"
+0083    MOV     12   2
+0084    CALL    10   1   3
+0085    MOV     11   9
+0086    TGETS   10   9  24  ; "write"
+0087    KSTR    12  26      ; "\n"
+0088    CALL    10   1   3
+0089    UGET    10   3      ; ffiutil
+0090    TGETS   10  10  27  ; "fsyncOpenedFile"
+0091    MOV     11   9
+0092    CALL    10   1   2
+0093    MOV     11   9
+0094    TGETS   10   9  28  ; "close"
+0095    CALL    10   1   2
+0096    TGETS   10   0  29  ; "candidates"
+0097    ISEQP   10   0
+0098    JMP     10 => 0130
+0099    GGET    10  30      ; "G_reader_settings"
+0100    MOV     11  10
+0101    TGETS   10  10  31  ; "readSetting"
+0102    KSTR    12  32      ; "preserve_legacy_docsetting"
+0103    CALL    10   2   3
+0104    IST         10
+0105    JMP     10 => 0130
+0106    GGET    10   9      ; "pairs"
+0107    TGETS   11   0  29  ; "candidates"
+0108    CALL    10   4   2
+0109    ISNEXT  13 => 0128
+0110 => TGETB   15  14   1
+0111    ISEQV   15   7
+0112    JMP     15 => 0128
+0113    TGETB   15  14   1
+0114    MOV     16   7
+0115    KSTR    17  18      ; ".old"
+0116    CAT     16  16  17
+0117    ISEQV   15  16
+0118    JMP     15 => 0128
+0119    UGET    15   2      ; logger
+0120    TGETS   15  15  15  ; "dbg"
+0121    KSTR    16  33      ; "Remove legacy file "
+0122    TGETB   17  14   1
+0123    CALL    15   1   3
+0124    GGET    15   5      ; "os"
+0125    TGETS   15  15  34  ; "remove"
+0126    TGETB   16  14   1
+0127    CALL    15   1   2
+0128 => ITERN   13   3   3
+0129    ITERL   13 => 0110
+0130 => ISF          8
+0131    JMP     10 => 0139
+0132    UGET    10   3      ; ffiutil
+0133    TGETS   10  10  35  ; "fsyncDirectory"
+0134    MOV     11   7
+0135    CALL    10   1   2
+0136    JMP      3 => 0139
+0137 => ITERN    6   3   3
+0138    ITERL    6 => 0029
+0139 => RET0     0   1
+
+-- BYTECODE -- docsettings.lua:237-239
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "flush"
+0003    CALL     1   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- docsettings.lua:241-243
+0001    TGETS    1   0   0  ; "filepath"
+0002    RET1     1   2
+
+-- BYTECODE -- docsettings.lua:246-254
+0001    TGETS    1   0   0  ; "history_file"
+0002    ISF          1
+0003    JMP      2 => 0008
+0004    GGET     1   1      ; "os"
+0005    TGETS    1   1   2  ; "remove"
+0006    TGETS    2   0   0  ; "history_file"
+0007    CALL     1   1   2
+0008 => UGET     1   0      ; lfs
+0009    TGETS    1   1   3  ; "attributes"
+0010    TGETS    2   0   4  ; "sidecar"
+0011    KSTR     3   5      ; "mode"
+0012    CALL     1   2   3
+0013    ISNES    1   6      ; "directory"
+0014    JMP      1 => 0019
+0015    UGET     1   1      ; ffiutil
+0016    TGETS    1   1   7  ; "purgeDir"
+0017    TGETS    2   0   4  ; "sidecar"
+0018    CALL     1   1   2
+0019 => TNEW     1   0
+0020    TSETS    1   0   8  ; "data"
+0021    RET0     0   1
+
+-- BYTECODE -- docsettings.lua:0-257
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "datastorage"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "dump"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ffi/util"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "libs/libkoreader-lfs"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "logger"
+0015    CALL     4   2   2
+0016    TNEW     5   0
+0017    MOV      7   0
+0018    TGETS    6   0   6  ; "getHistoryDir"
+0019    CALL     6   2   2
+0020    FNEW     7   7      ; docsettings.lua:17
+0021    FNEW     8   9      ; docsettings.lua:31
+0022    TSETS    8   5   8  ; "getSidecarDir"
+0023    FNEW     8  11      ; docsettings.lua:43
+0024    TSETS    8   5  10  ; "getSidecarFile"
+0025    FNEW     8  13      ; docsettings.lua:57
+0026    TSETS    8   5  12  ; "hasSidecarFile"
+0027    FNEW     8  15      ; docsettings.lua:61
+0028    TSETS    8   5  14  ; "getHistoryPath"
+0029    FNEW     8  17      ; docsettings.lua:65
+0030    TSETS    8   5  16  ; "getPathFromHistory"
+0031    FNEW     8  19      ; docsettings.lua:76
+0032    TSETS    8   5  18  ; "getNameFromHistory"
+0033    FNEW     8  21      ; docsettings.lua:86
+0034    TSETS    8   5  20  ; "ensureSidecar"
+0035    FNEW     8  23      ; docsettings.lua:95
+0036    TSETS    8   5  22  ; "open"
+0037    FNEW     8  25      ; docsettings.lua:162
+0038    TSETS    8   5  24  ; "readSetting"
+0039    FNEW     8  27      ; docsettings.lua:167
+0040    TSETS    8   5  26  ; "saveSetting"
+0041    FNEW     8  29      ; docsettings.lua:172
+0042    TSETS    8   5  28  ; "delSetting"
+0043    FNEW     8  31      ; docsettings.lua:177
+0044    TSETS    8   5  30  ; "flush"
+0045    FNEW     8  33      ; docsettings.lua:237
+0046    TSETS    8   5  32  ; "close"
+0047    FNEW     8  35      ; docsettings.lua:241
+0048    TSETS    8   5  34  ; "getFilePath"
+0049    FNEW     8  37      ; docsettings.lua:246
+0050    TSETS    8   5  36  ; "purge"
+0051    UCLO     0 => 0052
+0052 => RET1     5   2
+

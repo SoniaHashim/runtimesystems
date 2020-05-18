@@ -1,0 +1,256 @@
+-- BYTECODE -- cache.lua:11-17
+0001    IST          0
+0002    JMP      1 => 0005
+0003    UGET     1   0      ; cfg
+0004    TGETS    0   1   0  ; "upload_server"
+0005 => IST          0
+0006    JMP      1 => 0010
+0007    KPRI     1   0
+0008    KSTR     2   1      ; "No server specified and no default confi"~
+0009    RET      1   3
+0010 => MOV      1   0
+0011    UGET     2   0      ; cfg
+0012    TGETS    2   2   2  ; "upload_servers"
+0013    ISF          2
+0014    JMP      3 => 0018
+0015    UGET     2   0      ; cfg
+0016    TGETS    2   2   2  ; "upload_servers"
+0017    TGETV    2   2   0
+0018 => RET      1   3
+
+-- BYTECODE -- cache.lua:19-33
+0001    MOV      2   0
+0002    KPRI     3   0
+0003    ISF          1
+0004    JMP      4 => 0038
+0005    TGETS    4   1   0  ; "rsync"
+0006    ISF          4
+0007    JMP      5 => 0012
+0008    KSTR     4   1      ; "rsync://"
+0009    TGETS    5   1   0  ; "rsync"
+0010    CAT      2   4   5
+0011    JMP      4 => 0025
+0012 => TGETS    4   1   2  ; "http"
+0013    ISF          4
+0014    JMP      5 => 0019
+0015    KSTR     4   3      ; "http://"
+0016    TGETS    5   1   2  ; "http"
+0017    CAT      2   4   5
+0018    JMP      4 => 0025
+0019 => TGETS    4   1   4  ; "ftp"
+0020    ISF          4
+0021    JMP      5 => 0025
+0022    KSTR     4   5      ; "ftp://"
+0023    TGETS    5   1   4  ; "ftp"
+0024    CAT      2   4   5
+0025 => TGETS    4   1   4  ; "ftp"
+0026    ISF          4
+0027    JMP      5 => 0032
+0028    KSTR     4   5      ; "ftp://"
+0029    TGETS    5   1   4  ; "ftp"
+0030    CAT      3   4   5
+0031    JMP      4 => 0038
+0032 => TGETS    4   1   6  ; "sftp"
+0033    ISF          4
+0034    JMP      5 => 0038
+0035    KSTR     4   7      ; "sftp://"
+0036    TGETS    5   1   6  ; "sftp"
+0037    CAT      3   4   5
+0038 => MOV      4   2
+0039    MOV      5   3
+0040    RET      4   3
+
+-- BYTECODE -- cache.lua:35-50
+0001    UGET     3   0      ; dir
+0002    TGETS    3   3   0  ; "split_url"
+0003    MOV      4   0
+0004    CALL     3   3   2
+0005    ISNES    3   1      ; "file"
+0006    JMP      5 => 0013
+0007    UGET     5   1      ; fs
+0008    TGETS    5   5   2  ; "absolute_name"
+0009    MOV      6   4
+0010    CALL     5   2   2
+0011    MOV      4   5
+0012    JMP      5 => 0040
+0013 => MOV      6   4
+0014    TGETS    5   4   3  ; "match"
+0015    KSTR     7   4      ; "@"
+0016    CALL     5   2   3
+0017    ISF          5
+0018    JMP      6 => 0040
+0019    KPRI     5   0
+0020    MOV      7   4
+0021    TGETS    6   4   3  ; "match"
+0022    KSTR     8   5      ; "([^@]*)@(.*)"
+0023    CALL     6   3   3
+0024    MOV      4   7
+0025    MOV      5   6
+0026    MOV      7   5
+0027    TGETS    6   5   3  ; "match"
+0028    KSTR     8   6      ; ":"
+0029    CALL     6   2   3
+0030    ISF          6
+0031    JMP      7 => 0039
+0032    MOV      7   5
+0033    TGETS    6   5   3  ; "match"
+0034    KSTR     8   7      ; "([^:]*):(.*)"
+0035    CALL     6   3   3
+0036    MOV      2   7
+0037    MOV      1   6
+0038    JMP      6 => 0040
+0039 => MOV      1   5
+0040 => UGET     5   2      ; cfg
+0041    TGETS    5   5   8  ; "local_cache"
+0042    KSTR     6   9      ; "/"
+0043    MOV      8   4
+0044    TGETS    7   4  10  ; "gsub"
+0045    KSTR     9  11      ; "[\/]"
+0046    KSTR    10  12      ; "_"
+0047    CALL     7   2   4
+0048    CAT      5   5   7
+0049    MOV      6   5
+0050    MOV      7   3
+0051    MOV      8   4
+0052    MOV      9   1
+0053    MOV     10   2
+0054    RET      6   6
+
+-- BYTECODE -- cache.lua:52-66
+0001    GGET     4   0      ; "os"
+0002    TGETS    4   4   1  ; "remove"
+0003    KSTR     5   2      ; "index.html"
+0004    CALL     4   1   2
+0005    ISNES    0   3      ; "rsync"
+0006    JMP      4 => 0030
+0007    MOV      5   1
+0008    TGETS    4   1   4  ; "match"
+0009    KSTR     6   5      ; "([^/]+)(/.+)"
+0010    CALL     4   3   3
+0011    UGET     6   0      ; fs
+0012    TGETS    6   6   6  ; "execute"
+0013    UGET     7   1      ; cfg
+0014    TGETS    7   7   7  ; "variables"
+0015    TGETS    7   7   8  ; "RSYNC"
+0016    KSTR     8   9      ; " "
+0017    UGET     9   1      ; cfg
+0018    TGETS    9   9   7  ; "variables"
+0019    TGETS    9   9  10  ; "RSYNCFLAGS"
+0020    KSTR    10  11      ; " -e ssh "
+0021    MOV     11   2
+0022    KSTR    12  12      ; "@"
+0023    MOV     13   4
+0024    KSTR    14  13      ; ":"
+0025    MOV     15   5
+0026    KSTR    16  14      ; "/ ./"
+0027    CAT      7   7  16
+0028    CALLT    6   2
+0029    JMP      4 => 0062
+0030 => ISNES    0  15      ; "file"
+0031    JMP      4 => 0038
+0032    UGET     4   0      ; fs
+0033    TGETS    4   4  16  ; "copy_contents"
+0034    MOV      5   1
+0035    KSTR     6  17      ; "."
+0036    CALLT    4   3
+0037    JMP      4 => 0062
+0038 => KSTR     4  18      ; ""
+0039    ISF          2
+0040    JMP      5 => 0044
+0041    KSTR     5  19      ; " --user="
+0042    MOV      6   2
+0043    CAT      4   5   6
+0044 => ISF          3
+0045    JMP      5 => 0050
+0046    MOV      5   4
+0047    KSTR     6  20      ; " --password="
+0048    MOV      7   3
+0049    CAT      4   5   7
+0050 => UGET     5   0      ; fs
+0051    TGETS    5   5   6  ; "execute"
+0052    UGET     6   1      ; cfg
+0053    TGETS    6   6   7  ; "variables"
+0054    TGETS    6   6  21  ; "WGET"
+0055    KSTR     7  22      ; " --no-cache -q -m -np -nd "
+0056    MOV      8   0
+0057    KSTR     9  23      ; "://"
+0058    MOV     10   1
+0059    MOV     11   4
+0060    CAT      6   6  11
+0061    CALLT    5   2
+0062 => RET0     0   1
+
+-- BYTECODE -- cache.lua:68-86
+0001    UGET     3   0      ; cache
+0002    TGETS    3   3   0  ; "split_server_url"
+0003    MOV      4   0
+0004    MOV      5   1
+0005    MOV      6   2
+0006    CALL     3   6   4
+0007    UGET     8   1      ; fs
+0008    TGETS    8   8   1  ; "make_dir"
+0009    MOV      9   3
+0010    CALL     8   3   2
+0011    IST          8
+0012    JMP     10 => 0018
+0013    KPRI    10   0
+0014    KSTR    11   2      ; "Failed creating local cache dir: "
+0015    MOV     12   9
+0016    CAT     11  11  12
+0017    RET     10   3
+0018 => UGET    10   1      ; fs
+0019    TGETS   10  10   3  ; "change_dir"
+0020    MOV     11   3
+0021    CALL    10   1   2
+0022    UGET    10   2      ; util
+0023    TGETS   10  10   4  ; "printout"
+0024    KSTR    11   5      ; "Refreshing cache "
+0025    MOV     12   3
+0026    KSTR    13   6      ; "..."
+0027    CAT     11  11  13
+0028    CALL    10   1   2
+0029    UGET    10   3      ; download_cache
+0030    MOV     11   4
+0031    MOV     12   5
+0032    MOV     13   6
+0033    MOV     14   7
+0034    CALL    10   2   5
+0035    MOV      8  10
+0036    IST          8
+0037    JMP     10 => 0041
+0038    KPRI    10   0
+0039    KSTR    11   7      ; "Failed downloading cache."
+0040    RET     10   3
+0041 => MOV     10   3
+0042    MOV     11   4
+0043    MOV     12   5
+0044    MOV     13   6
+0045    MOV     14   7
+0046    RET     10   6
+
+-- BYTECODE -- cache.lua:0-89
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.fs"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.core.cfg"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.dir"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.util"
+0013    CALL     4   2   2
+0014    FNEW     5   6      ; cache.lua:11
+0015    TSETS    5   0   5  ; "get_upload_server"
+0016    FNEW     5   8      ; cache.lua:19
+0017    TSETS    5   0   7  ; "get_server_urls"
+0018    FNEW     5  10      ; cache.lua:35
+0019    TSETS    5   0   9  ; "split_server_url"
+0020    FNEW     5  11      ; cache.lua:52
+0021    FNEW     6  13      ; cache.lua:68
+0022    TSETS    6   0  12  ; "refresh_local_cache"
+0023    UCLO     0 => 0024
+0024 => RET1     0   2
+

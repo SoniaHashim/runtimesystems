@@ -1,0 +1,718 @@
+-- BYTECODE -- luxl.lua:226-240
+0001    TGETS    3   0   0  ; "ix"
+0002    TGETS    4   0   1  ; "bufsz"
+0003    ISGT     4   3
+0004    JMP      4 => 0010
+0005    UGET     4   0      ; EVENT_END_DOC
+0006    KSHORT   5   0
+0007    MOV      6   3
+0008    MOV      7   1
+0009    RET      4   5
+0010 => TSETS    3   0   2  ; "i"
+0011    UGET     4   1      ; band
+0012    TGETS    5   0   3  ; "buf"
+0013    TGETV    5   5   3
+0014    KSHORT   6 255
+0015    CALL     4   2   3
+0016    ADDVN    5   3   0  ; 1
+0017    TSETS    5   0   0  ; "ix"
+0018    ISF          2
+0019    JMP      5 => 0026
+0020    MOV      5   2
+0021    MOV      6   3
+0022    UGET     7   2      ; STATE_FUNCS
+0023    TGETV    7   7   1
+0024    MOV      8   4
+0025    CALL     5   1   4
+0026 => MOV      5   1
+0027    MOV      6   0
+0028    MOV      7   4
+0029    MOV      8   2
+0030    CALLT    5   4
+
+-- BYTECODE -- luxl.lua:244-248
+0001    KSHORT   0   1
+0002    GGET     1   0      ; "select"
+0003    KSTR     2   1      ; "#"
+0004    VARG     3   0   0
+0005    CALLM    1   2   1
+0006    KSHORT   2   1
+0007    FORI     0 => 0018
+0008 => UGET     4   0      ; fsm_code
+0009    GGET     5   2      ; "tostring"
+0010    GGET     6   0      ; "select"
+0011    MOV      7   3
+0012    VARG     8   0   0
+0013    CALLM    6   0   1
+0014    CALLM    5   2   0
+0015    CAT      4   4   5
+0016    USETV    0   4      ; fsm_code
+0017    FORL     0 => 0008
+0018 => RET0     0   1
+
+-- BYTECODE -- luxl.lua:278-288
+0001    UGET     2   0      ; STATE_NAMES
+0002    TGETS    3   1   0  ; "next_state"
+0003    TGETV    2   2   3
+0004    TGETS    3   1   1  ; "event"
+0005    UGET     4   1      ; EVENT_MARK
+0006    ISNEV    3   4
+0007    JMP      3 => 0013
+0008    UGET     3   2      ; code
+0009    MOV      4   0
+0010    KSTR     5   2      ; "if(ps.mark == 0) then ps.mark = ps.i end"~
+0011    CALL     3   1   3
+0012    JMP      3 => 0033
+0013 => TGETS    3   1   1  ; "event"
+0014    UGET     4   3      ; EVENT_NONE
+0015    ISEQV    3   4
+0016    JMP      3 => 0033
+0017    UGET     3   2      ; code
+0018    MOV      4   0
+0019    KSTR     5   3      ; "if(ps.mark > 0) then\n"
+0020    CALL     3   1   3
+0021    UGET     3   2      ; code
+0022    MOV      4   0
+0023    KSTR     5   4      ; "  return "
+0024    TGETS    6   1   1  ; "event"
+0025    KSTR     7   5      ; ", "
+0026    MOV      8   2
+0027    KSTR     9   6      ; "_f\n"
+0028    CALL     3   1   7
+0029    UGET     3   2      ; code
+0030    MOV      4   0
+0031    KSTR     5   7      ; "end\n"
+0032    CALL     3   1   3
+0033 => UGET     3   2      ; code
+0034    MOV      4   0
+0035    KSTR     5   8      ; "return next_char(ps, "
+0036    MOV      6   2
+0037    KSTR     7   9      ; "_f, verbose)\n"
+0038    CALL     3   1   5
+0039    RET0     0   1
+
+-- BYTECODE -- luxl.lua:343-366
+0001    TDUP     2   2
+0002    UGET     3   0      ; ffi
+0003    TGETS    3   3   0  ; "cast"
+0004    KSTR     4   1      ; "const uint8_t *"
+0005    MOV      5   0
+0006    CALL     3   2   3
+0007    TSETS    3   2   3  ; "buf"
+0008    TSETS    1   2   4  ; "bufsz"
+0009    UGET     3   1      ; ST_START
+0010    TSETS    3   2   5  ; "state"
+0011    UGET     3   2      ; EVENT_NONE
+0012    TSETS    3   2   6  ; "event"
+0013    UGET     3   0      ; ffi
+0014    TGETS    3   3   7  ; "new"
+0015    KSTR     4   8      ; "struct parse_state"
+0016    TDUP     5   9
+0017    TSETS    0   5   3  ; "buf"
+0018    TSETS    1   5   4  ; "bufsz"
+0019    CALL     3   2   3
+0020    TSETS    3   2  10  ; "ps"
+0021    GGET     3  11      ; "setmetatable"
+0022    MOV      4   2
+0023    UGET     5   3      ; luxl_mt
+0024    CALL     3   1   3
+0025    RET1     2   2
+
+-- BYTECODE -- luxl.lua:368-382
+0001    TSETS    1   0   0  ; "buf"
+0002    TSETS    2   0   1  ; "bufsz"
+0003    UGET     3   0      ; ST_START
+0004    TSETS    3   0   2  ; "state"
+0005    UGET     3   1      ; EVENT_NONE
+0006    TSETS    3   0   3  ; "event"
+0007    KSHORT   3   0
+0008    TSETS    3   0   4  ; "err"
+0009    KSHORT   3   0
+0010    TSETS    3   0   5  ; "markix"
+0011    KSHORT   3   0
+0012    TSETS    3   0   6  ; "marksz"
+0013    TGETS    3   0   7  ; "ps"
+0014    TSETS    1   3   0  ; "buf"
+0015    TSETS    2   3   1  ; "bufsz"
+0016    KSHORT   4   0
+0017    TSETS    4   3   8  ; "mark"
+0018    KSHORT   4   0
+0019    TSETS    4   3   9  ; "i"
+0020    KSHORT   4   0
+0021    TSETS    4   3  10  ; "ix"
+0022    RET0     0   1
+
+-- BYTECODE -- luxl.lua:384-386
+0001    TSETS    1   0   0  ; "MsgHandler"
+0002    RET0     0   1
+
+-- BYTECODE -- luxl.lua:403-432
+0001    KNIL     1   3
+0002    TGETS    4   0   0  ; "ps"
+0003    KSHORT   5   0
+0004    TSETS    5   4   1  ; "mark"
+0005    UGET     5   0      ; STATE_FUNCS
+0006    TGETS    6   0   2  ; "state"
+0007    TGETV    2   5   6
+0008 => LOOP     5 => 0035
+0009    UGET     5   1      ; next_char
+0010    MOV      6   4
+0011    MOV      7   2
+0012    TGETS    8   0   3  ; "MsgHandler"
+0013    CALL     5   4   4
+0014    MOV      3   7
+0015    MOV      2   6
+0016    MOV      1   5
+0017    UGET     5   0      ; STATE_FUNCS
+0018    TGETV    5   5   2
+0019    TSETS    5   0   2  ; "state"
+0020    IST          1
+0021    JMP      5 => 0033
+0022    TGETS    5   0   4  ; "err"
+0023    ADDVN    5   5   0  ; 1
+0024    TSETS    5   0   4  ; "err"
+0025    TGETS    5   0   5  ; "ErrHandler"
+0026    ISF          5
+0027    JMP      6 => 0033
+0028    TGETS    5   0   5  ; "ErrHandler"
+0029    TGETS    6   4   6  ; "i"
+0030    TGETS    7   0   2  ; "state"
+0031    MOV      8   3
+0032    CALL     5   1   4
+0033 => ISF          1
+0034    JMP      5 => 0008
+0035 => TSETS    1   0   7  ; "event"
+0036    TGETS    5   4   1  ; "mark"
+0037    TGETS    6   4   6  ; "i"
+0038    TGETS    7   4   1  ; "mark"
+0039    SUBVV    6   6   7
+0040    TSETS    5   0   8  ; "markix"
+0041    TSETS    6   0   9  ; "marksz"
+0042    TGETS    7   0  10  ; "EventHandler"
+0043    ISF          7
+0044    JMP      8 => 0050
+0045    TGETS    7   0  10  ; "EventHandler"
+0046    MOV      8   1
+0047    MOV      9   5
+0048    MOV     10   6
+0049    CALL     7   1   4
+0050 => MOV      7   1
+0051    MOV      8   5
+0052    MOV      9   6
+0053    RET      7   4
+
+-- BYTECODE -- luxl.lua:435-442
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "GetNext"
+0004    CALL     0   4   2
+0005    UGET     3   1      ; EVENT_END_DOC
+0006    ISNEV    0   3
+0007    JMP      3 => 0011
+0008    KPRI     3   0
+0009    RET1     3   2
+0010    JMP      3 => 0015
+0011 => MOV      3   0
+0012    MOV      4   1
+0013    MOV      5   2
+0014    RET      3   4
+0015 => RET0     0   1
+
+-- BYTECODE -- luxl.lua:434-443
+0001    FNEW     1   0      ; luxl.lua:435
+0002    UCLO     0 => 0003
+0003 => RET1     1   2
+
+-- BYTECODE -- luxl.lua:0-446
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "bit"
+0006    CALL     1   2   2
+0007    TGETS    2   1   3  ; "band"
+0008    TGETS    3   0   4  ; "new"
+0009    KSTR     4   5      ; "const int[256]"
+0010    TDUP     5   6
+0011    CALL     3   2   3
+0012    KSHORT   4   0
+0013    KSHORT   5   1
+0014    KSHORT   6   2
+0015    KSHORT   7   3
+0016    KSHORT   8   4
+0017    KSHORT   9   5
+0018    KSHORT  10   6
+0019    KSHORT  11   7
+0020    KSHORT  12   8
+0021    KSHORT  13   9
+0022    KSHORT  14  10
+0023    KSHORT  15  11
+0024    KSHORT  16  12
+0025    KSHORT  17  13
+0026    KSHORT  18  14
+0027    KSHORT  19   0
+0028    KSHORT  20   1
+0029    KSHORT  21   2
+0030    KSHORT  22   3
+0031    KSHORT  23   4
+0032    KSHORT  24   5
+0033    KSHORT  25   6
+0034    KSHORT  26   7
+0035    KSHORT  27   8
+0036    KSHORT  28   0
+0037    KSHORT  29   1
+0038    KSHORT  30   2
+0039    KSHORT  31   3
+0040    KSHORT  32   4
+0041    KSHORT  33   5
+0042    KSHORT  34   6
+0043    KSHORT  35   7
+0044    TDUP    36   7
+0045    TNEW    37 8192
+0046    KSTR    38   8      ; "ST_START"
+0047    TSETV   38  37   4
+0048    KSTR    38   9      ; "ST_TEXT"
+0049    TSETV   38  37   5
+0050    KSTR    38  10      ; "ST_START_TAG"
+0051    TSETV   38  37   6
+0052    KSTR    38  11      ; "ST_START_TAGNAME"
+0053    TSETV   38  37   7
+0054    KSTR    38  12      ; "ST_START_TAGNAME_END"
+0055    TSETV   38  37   8
+0056    KSTR    38  13      ; "ST_END_TAG"
+0057    TSETV   38  37   9
+0058    KSTR    38  14      ; "ST_END_TAGNAME"
+0059    TSETV   38  37  10
+0060    KSTR    38  15      ; "ST_END_TAGNAME_END"
+0061    TSETV   38  37  11
+0062    KSTR    38  16      ; "ST_EMPTY_TAG"
+0063    TSETV   38  37  12
+0064    KSTR    38  17      ; "ST_SPACE"
+0065    TSETV   38  37  13
+0066    KSTR    38  18      ; "ST_ATTR_NAME"
+0067    TSETV   38  37  14
+0068    KSTR    38  19      ; "ST_ATTR_NAME_END"
+0069    TSETV   38  37  15
+0070    KSTR    38  20      ; "ST_ATTR_VAL"
+0071    TSETV   38  37  16
+0072    KSTR    38  21      ; "ST_ATTR_VAL2"
+0073    TSETV   38  37  17
+0074    KSTR    38  22      ; "ST_ERROR"
+0075    TSETV   38  37  18
+0076    TNEW    38  40
+0077    TDUP    39  23
+0078    TSETS    4  39  24  ; "state"
+0079    TSETS   26  39  25  ; "cclass"
+0080    TSETS   13  39  26  ; "next_state"
+0081    TSETS   35  39  27  ; "event"
+0082    TSETB   39  38   1
+0083    TDUP    39  28
+0084    TSETS    4  39  24  ; "state"
+0085    TSETS   20  39  25  ; "cclass"
+0086    TSETS    6  39  26  ; "next_state"
+0087    TSETS   35  39  27  ; "event"
+0088    TSETB   39  38   2
+0089    TDUP    39  29
+0090    TSETS    4  39  24  ; "state"
+0091    TSETS   27  39  25  ; "cclass"
+0092    TSETS    5  39  26  ; "next_state"
+0093    TSETS   34  39  27  ; "event"
+0094    TSETB   39  38   3
+0095    TDUP    39  30
+0096    TSETS   13  39  24  ; "state"
+0097    TSETS   26  39  25  ; "cclass"
+0098    TSETS   13  39  26  ; "next_state"
+0099    TSETS   35  39  27  ; "event"
+0100    TSETB   39  38   4
+0101    TDUP    39  31
+0102    TSETS   13  39  24  ; "state"
+0103    TSETS   20  39  25  ; "cclass"
+0104    TSETS    6  39  26  ; "next_state"
+0105    TSETS   30  39  27  ; "event"
+0106    TSETB   39  38   5
+0107    TDUP    39  32
+0108    TSETS   13  39  24  ; "state"
+0109    TSETS   27  39  25  ; "cclass"
+0110    TSETS    5  39  26  ; "next_state"
+0111    TSETS   34  39  27  ; "event"
+0112    TSETB   39  38   6
+0113    TDUP    39  33
+0114    TSETS    6  39  24  ; "state"
+0115    TSETS   25  39  25  ; "cclass"
+0116    TSETS    7  39  26  ; "next_state"
+0117    TSETS   34  39  27  ; "event"
+0118    TSETB   39  38   7
+0119    TDUP    39  34
+0120    TSETS    6  39  24  ; "state"
+0121    TSETS   21  39  25  ; "cclass"
+0122    TSETS    9  39  26  ; "next_state"
+0123    TSETS   34  39  27  ; "event"
+0124    TSETB   39  38   8
+0125    TDUP    39  35
+0126    TSETS    6  39  24  ; "state"
+0127    TSETS   26  39  25  ; "cclass"
+0128    TSETS    6  39  26  ; "next_state"
+0129    TSETS   35  39  27  ; "event"
+0130    TSETB   39  38   9
+0131    TDUP    39  36
+0132    TSETS    7  39  24  ; "state"
+0133    TSETS   25  39  25  ; "cclass"
+0134    TSETS    7  39  26  ; "next_state"
+0135    TSETS   35  39  27  ; "event"
+0136    TSETB   39  38  10
+0137    TDUP    39  37
+0138    TSETS    7  39  24  ; "state"
+0139    TSETS   26  39  25  ; "cclass"
+0140    TSETS    8  39  26  ; "next_state"
+0141    TSETS   28  39  27  ; "event"
+0142    TSETB   39  38  11
+0143    TDUP    39  38
+0144    TSETS    7  39  24  ; "state"
+0145    TSETS   21  39  25  ; "cclass"
+0146    TSETS   12  39  26  ; "next_state"
+0147    TSETS   29  39  27  ; "event"
+0148    TSETB   39  38  12
+0149    TDUP    39  39
+0150    TSETS    7  39  24  ; "state"
+0151    TSETS   22  39  25  ; "cclass"
+0152    TSETS    4  39  26  ; "next_state"
+0153    TSETS   28  39  27  ; "event"
+0154    TSETB   39  38  13
+0155    TDUP    39  40
+0156    TSETS    8  39  24  ; "state"
+0157    TSETS   25  39  25  ; "cclass"
+0158    TSETS   14  39  26  ; "next_state"
+0159    TSETS   34  39  27  ; "event"
+0160    TSETB   39  38  14
+0161    TDUP    39  41
+0162    TSETS    8  39  24  ; "state"
+0163    TSETS   26  39  25  ; "cclass"
+0164    TSETS    8  39  26  ; "next_state"
+0165    TSETS   35  39  27  ; "event"
+0166    TSETB   39  38  15
+0167    TDUP    39  42
+0168    TSETS    8  39  24  ; "state"
+0169    TSETS   22  39  25  ; "cclass"
+0170    TSETS    4  39  26  ; "next_state"
+0171    TSETS   28  39  27  ; "event"
+0172    TSETB   39  38  16
+0173    TDUP    39  43
+0174    TSETS    8  39  24  ; "state"
+0175    TSETS   21  39  25  ; "cclass"
+0176    TSETS   12  39  26  ; "next_state"
+0177    TSETS   34  39  27  ; "event"
+0178    TSETB   39  38  17
+0179    TDUP    39  44
+0180    TSETS   12  39  24  ; "state"
+0181    TSETS   22  39  25  ; "cclass"
+0182    TSETS    4  39  26  ; "next_state"
+0183    TSETS   29  39  27  ; "event"
+0184    TSETB   39  38  18
+0185    TDUP    39  45
+0186    TSETS    9  39  24  ; "state"
+0187    TSETS   25  39  25  ; "cclass"
+0188    TSETS   10  39  26  ; "next_state"
+0189    TSETS   35  39  27  ; "event"
+0190    TSETB   39  38  19
+0191    TDUP    39  46
+0192    TSETS   10  39  24  ; "state"
+0193    TSETS   25  39  25  ; "cclass"
+0194    TSETS   10  39  26  ; "next_state"
+0195    TSETS   35  39  27  ; "event"
+0196    TSETB   39  38  20
+0197    TDUP    39  47
+0198    TSETS   10  39  24  ; "state"
+0199    TSETS   22  39  25  ; "cclass"
+0200    TSETS    4  39  26  ; "next_state"
+0201    TSETS   29  39  27  ; "event"
+0202    TSETB   39  38  21
+0203    TDUP    39  48
+0204    TSETS   10  39  24  ; "state"
+0205    TSETS   26  39  25  ; "cclass"
+0206    TSETS   11  39  26  ; "next_state"
+0207    TSETS   29  39  27  ; "event"
+0208    TSETB   39  38  22
+0209    TDUP    39  49
+0210    TSETS   11  39  24  ; "state"
+0211    TSETS   26  39  25  ; "cclass"
+0212    TSETS   11  39  26  ; "next_state"
+0213    TSETS   35  39  27  ; "event"
+0214    TSETB   39  38  23
+0215    TDUP    39  50
+0216    TSETS   11  39  24  ; "state"
+0217    TSETS   22  39  25  ; "cclass"
+0218    TSETS    4  39  26  ; "next_state"
+0219    TSETS   35  39  27  ; "event"
+0220    TSETB   39  38  24
+0221    TDUP    39  51
+0222    TSETS    5  39  24  ; "state"
+0223    TSETS   26  39  25  ; "cclass"
+0224    TSETS   13  39  26  ; "next_state"
+0225    TSETS   35  39  27  ; "event"
+0226    TSETB   39  38  25
+0227    TDUP    39  52
+0228    TSETS    5  39  24  ; "state"
+0229    TSETS   20  39  25  ; "cclass"
+0230    TSETS    6  39  26  ; "next_state"
+0231    TSETS   30  39  27  ; "event"
+0232    TSETB   39  38  26
+0233    TDUP    39  53
+0234    TSETS    5  39  24  ; "state"
+0235    TSETS   27  39  25  ; "cclass"
+0236    TSETS    5  39  26  ; "next_state"
+0237    TSETS   35  39  27  ; "event"
+0238    TSETB   39  38  27
+0239    TDUP    39  54
+0240    TSETS   14  39  24  ; "state"
+0241    TSETS   25  39  25  ; "cclass"
+0242    TSETS   14  39  26  ; "next_state"
+0243    TSETS   34  39  27  ; "event"
+0244    TSETB   39  38  28
+0245    TDUP    39  55
+0246    TSETS   14  39  24  ; "state"
+0247    TSETS   26  39  25  ; "cclass"
+0248    TSETS   15  39  26  ; "next_state"
+0249    TSETS   31  39  27  ; "event"
+0250    TSETB   39  38  29
+0251    TDUP    39  56
+0252    TSETS   14  39  24  ; "state"
+0253    TSETS   23  39  25  ; "cclass"
+0254    TSETS   16  39  26  ; "next_state"
+0255    TSETS   31  39  27  ; "event"
+0256    TSETB   39  38  30
+0257    TDUP    39  57
+0258    TSETS   15  39  24  ; "state"
+0259    TSETS   26  39  25  ; "cclass"
+0260    TSETS   15  39  26  ; "next_state"
+0261    TSETS   35  39  27  ; "event"
+0262    TSETB   39  38  31
+0263    TDUP    39  58
+0264    TSETS   15  39  24  ; "state"
+0265    TSETS   25  39  25  ; "cclass"
+0266    TSETS   14  39  26  ; "next_state"
+0267    TSETS   34  39  27  ; "event"
+0268    TSETB   39  38  32
+0269    TDUP    39  59
+0270    TSETS   15  39  24  ; "state"
+0271    TSETS   23  39  25  ; "cclass"
+0272    TSETS   16  39  26  ; "next_state"
+0273    TSETS   35  39  27  ; "event"
+0274    TSETB   39  38  33
+0275    TDUP    39  60
+0276    TSETS   16  39  24  ; "state"
+0277    TSETS   24  39  25  ; "cclass"
+0278    TSETS   17  39  26  ; "next_state"
+0279    TSETS   35  39  27  ; "event"
+0280    TSETB   39  38  34
+0281    TDUP    39  61
+0282    TSETS   16  39  24  ; "state"
+0283    TSETS   26  39  25  ; "cclass"
+0284    TSETS   16  39  26  ; "next_state"
+0285    TSETS   35  39  27  ; "event"
+0286    TSETB   39  38  35
+0287    TDUP    39  62
+0288    TSETS   17  39  24  ; "state"
+0289    TSETS   24  39  25  ; "cclass"
+0290    TSETS    8  39  26  ; "next_state"
+0291    TSETS   32  39  27  ; "event"
+0292    TSETB   39  38  36
+0293    TDUP    39  63
+0294    TSETS   17  39  24  ; "state"
+0295    TSETS   25  39  25  ; "cclass"
+0296    TSETS   17  39  26  ; "next_state"
+0297    TSETS   34  39  27  ; "event"
+0298    TSETB   39  38  37
+0299    TDUP    39  64
+0300    TSETS   17  39  24  ; "state"
+0301    TSETS   21  39  25  ; "cclass"
+0302    TSETS   17  39  26  ; "next_state"
+0303    TSETS   34  39  27  ; "event"
+0304    TSETB   39  38  38
+0305    TDUP    39  65
+0306    TSETS   18  39  24  ; "state"
+0307    TSETS   19  39  25  ; "cclass"
+0308    TSETS   18  39  26  ; "next_state"
+0309    TSETS   35  39  27  ; "event"
+0310    TSETB   39  38  39
+0311    TGETS   39   0  66  ; "cdef"
+0312    KSTR    40  67      ; "struct parse_state {\n    const char* bu"~
+0313    CALL    39   1   2
+0314    TNEW    39 6144
+0315    KSTR    40  68      ; "(ctype == 1 or ctype == 2)"
+0316    TSETV   40  39  25
+0317    KSTR    40  69      ; "(c == T_LT)"
+0318    TSETV   40  39  20
+0319    KSTR    40  70      ; "(c == T_SLASH)"
+0320    TSETV   40  39  21
+0321    KSTR    40  71      ; "(c == T_GT)"
+0322    TSETV   40  39  22
+0323    KSTR    40  72      ; "(c == T_EQ)"
+0324    TSETV   40  39  23
+0325    KSTR    40  73      ; "(c == T_QUOTE)"
+0326    TSETV   40  39  24
+0327    KSTR    40  74      ; "(ctype == 3)"
+0328    TSETV   40  39  26
+0329    KSTR    40  75      ; "true"
+0330    TSETV   40  39  27
+0331    TNEW    40   0
+0332    TNEW    41   0
+0333    FNEW    42  76      ; luxl.lua:226
+0334    KSTR    43  77      ; ""
+0335    FNEW    44  78      ; luxl.lua:244
+0336    MOV     45  44
+0337    KSTR    46  79      ; "local STATES, next_char, char_type = ..."~
+0338    CALL    45   1   2
+0339    KSHORT  45   0
+0340    LEN     46  37
+0341    KSHORT  47   1
+0342    FORI    45 => 0350
+0343 => TGETV   49  37  48
+0344    MOV     50  44
+0345    KSTR    51  80      ; "local "
+0346    MOV     52  49
+0347    KSTR    53  81      ; "_f\n"
+0348    CALL    50   1   4
+0349    FORL    45 => 0343
+0350 => KSHORT  45   1
+0351    LEN     46  38
+0352    KSHORT  47   1
+0353    FORI    45 => 0374
+0354 => TGETV   49  38  48
+0355    TGETS   50  49  24  ; "state"
+0356    TGETV   50  40  50
+0357    KPRI    51   0
+0358    IST         50
+0359    JMP     52 => 0369
+0360    TNEW    51   0
+0361    TDUP    52  82
+0362    TGETS   53  49  24  ; "state"
+0363    TSETS   53  52  24  ; "state"
+0364    TSETS   51  52  83  ; "cclasses"
+0365    MOV     50  52
+0366    TGETS   52  49  24  ; "state"
+0367    TSETV   50  40  52
+0368    JMP     52 => 0370
+0369 => TGETS   51  50  83  ; "cclasses"
+0370 => LEN     52  51
+0371    ADDVN   52  52   0  ; 1
+0372    TSETV   49  51  52
+0373    FORL    45 => 0354
+0374 => FNEW    45  84      ; luxl.lua:278
+0375    KSHORT  46   0
+0376    LEN     47  37
+0377    KSHORT  48   1
+0378    FORI    46 => 0457
+0379 => TGETV   50  37  49
+0380    TGETV   51  40  49
+0381    TGETS   52  51  83  ; "cclasses"
+0382    MOV     53  44
+0383    KSTR    54  85      ; "function "
+0384    MOV     55  50
+0385    KSTR    56  86      ; "_f(ps, c, verbose)\n"
+0386    CALL    53   1   4
+0387    MOV     53  44
+0388    KSTR    54  87      ; "  local ctype = char_type[c]\n"
+0389    CALL    53   1   2
+0390    KPRI    53   0
+0391    KSHORT  54   1
+0392    LEN     55  52
+0393    KSHORT  56   1
+0394    FORI    54 => 0424
+0395 => TGETV   58  52  57
+0396    TGETS   59  58  25  ; "cclass"
+0397    TGETV   60  39  59
+0398    ISNEV   59  27
+0399    JMP     61 => 0402
+0400    MOV     53  58
+0401    JMP     61 => 0423
+0402 => ISNEN   57   0      ; 1
+0403    JMP     61 => 0414
+0404    MOV     61  44
+0405    KSTR    62  88      ; "  if "
+0406    MOV     63  60
+0407    KSTR    64  89      ; " then\n"
+0408    CALL    61   1   4
+0409    MOV     61  45
+0410    KSTR    62  90      ; "    "
+0411    MOV     63  58
+0412    CALL    61   1   3
+0413    JMP     61 => 0423
+0414 => MOV     61  44
+0415    KSTR    62  91      ; "  elseif "
+0416    MOV     63  60
+0417    KSTR    64  89      ; " then\n"
+0418    CALL    61   1   4
+0419    MOV     61  45
+0420    KSTR    62  90      ; "    "
+0421    MOV     63  58
+0422    CALL    61   1   3
+0423 => FORL    54 => 0395
+0424 => MOV     54  44
+0425    KSTR    55  92      ; "  end\n"
+0426    CALL    54   1   2
+0427    ISF         53
+0428    JMP     54 => 0434
+0429    MOV     54  45
+0430    KSTR    55  93      ; "  "
+0431    MOV     56  53
+0432    CALL    54   1   3
+0433    JMP     54 => 0439
+0434 => MOV     54  44
+0435    KSTR    55  94      ; "  return nil, "
+0436    MOV     56  50
+0437    KSTR    57  95      ; "_f, c\n"
+0438    CALL    54   1   4
+0439 => MOV     54  44
+0440    KSTR    55  96      ; "end\n"
+0441    CALL    54   1   2
+0442    MOV     54  44
+0443    KSTR    55  97      ; "STATES["
+0444    MOV     56  49
+0445    KSTR    57  98      ; "] = "
+0446    MOV     58  50
+0447    KSTR    59  81      ; "_f\n"
+0448    CALL    54   1   6
+0449    MOV     54  44
+0450    KSTR    55  97      ; "STATES["
+0451    MOV     56  50
+0452    KSTR    57  99      ; "_f] = "
+0453    MOV     58  49
+0454    KSTR    59 100      ; "\n"
+0455    CALL    54   1   6
+0456    FORL    46 => 0379
+0457 => GGET    46 101      ; "assert"
+0458    GGET    47 102      ; "loadstring"
+0459    MOV     48  43
+0460    KSTR    49 103      ; "luxl FSM code"
+0461    CALL    47   0   3
+0462    CALLM   46   2   0
+0463    MOV     47  46
+0464    MOV     48  41
+0465    MOV     49  42
+0466    MOV     50   3
+0467    CALL    47   1   4
+0468    KPRI    43   0
+0469    TDUP    47 104
+0470    TSETS   28  47 105  ; "EVENT_START"
+0471    TSETS   29  47 106  ; "EVENT_END"
+0472    TSETS   30  47 107  ; "EVENT_TEXT"
+0473    TSETS   31  47 108  ; "EVENT_ATTR_NAME"
+0474    TSETS   32  47 109  ; "EVENT_ATTR_VAL"
+0475    TSETS   33  47 110  ; "EVENT_END_DOC"
+0476    TSETS   34  47 111  ; "EVENT_MARK"
+0477    TSETS   35  47 112  ; "EVENT_NONE"
+0478    TDUP    48 113
+0479    TSETS   47  48 114  ; "__index"
+0480    FNEW    49 115      ; luxl.lua:343
+0481    TSETS   49  47   4  ; "new"
+0482    FNEW    49 117      ; luxl.lua:368
+0483    TSETS   49  47 116  ; "Reset"
+0484    FNEW    49 119      ; luxl.lua:384
+0485    TSETS   49  47 118  ; "SetMessageHandler"
+0486    FNEW    49 121      ; luxl.lua:403
+0487    TSETS   49  47 120  ; "GetNext"
+0488    FNEW    49 123      ; luxl.lua:434
+0489    TSETS   49  47 122  ; "Lexemes"
+0490    UCLO     0 => 0491
+0491 => RET1    47   2
+

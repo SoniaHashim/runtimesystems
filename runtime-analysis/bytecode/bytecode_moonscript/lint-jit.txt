@@ -1,0 +1,625 @@
+-- BYTECODE -- lint.lua:58-66
+0001    TGETS    2   0   0  ; "lint_unused_names"
+0002    ISF          2
+0003    JMP      3 => 0012
+0004    TGETS    2   0   0  ; "lint_unused_names"
+0005    TGETV    2   2   1
+0006    ISF          2
+0007    JMP      3 => 0012
+0008    TGETS    2   0   0  ; "lint_unused_names"
+0009    KPRI     3   1
+0010    TSETV    3   2   1
+0011    RET0     0   1
+0012 => TGETS    2   0   1  ; "parent"
+0013    ISF          2
+0014    JMP      3 => 0020
+0015    TGETS    2   0   1  ; "parent"
+0016    MOV      3   2
+0017    TGETS    2   2   2  ; "lint_mark_used"
+0018    MOV      4   1
+0019    CALLT    2   3
+0020 => RET0     0   1
+
+-- BYTECODE -- lint.lua:100-102
+0001    TGETB    2   0   1
+0002    TGETB    3   1   1
+0003    ISLT     2   3
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    JMP      3 => 0008
+0007 => KPRI     2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- lint.lua:108-117
+0001    TNEW     0   0
+0002    KSHORT   1   1
+0003    KSHORT   2   1
+0004    UGET     3   0      ; names
+0005    LEN      3   3
+0006    KSHORT   4   1
+0007    FORI     2 => 0019
+0008 => UGET     6   0      ; names
+0009    TGETV    6   6   5
+0010    KSTR     7   0      ; "`"
+0011    GGET     8   1      ; "tostring"
+0012    MOV      9   6
+0013    CALL     8   2   2
+0014    KSTR     9   0      ; "`"
+0015    CAT      7   7   9
+0016    TSETV    7   0   1
+0017    ADDVN    1   1   0  ; 1
+0018    FORL     2 => 0008
+0019 => RET1     0   2
+
+-- BYTECODE -- lint.lua:67-121
+0001    TGETS    1   0   0  ; "lint_unused_names"
+0002    ISF          1
+0003    JMP      2 => 0009
+0004    GGET     1   1      ; "next"
+0005    TGETS    2   0   0  ; "lint_unused_names"
+0006    CALL     1   2   2
+0007    IST          1
+0008    JMP      1 => 0010
+0009 => UCLO     0 => 0087
+0010 => TNEW     1   0
+0011    GGET     2   2      ; "pairs"
+0012    TGETS    3   0   0  ; "lint_unused_names"
+0013    CALL     2   4   2
+0014    ISNEXT   5 => 0034
+0015 => KPRI     7   1
+0016    LOOP     8 => 0031
+0017    IST          6
+0018    JMP      8 => 0021
+0019    KPRI     7   2
+0020    JMP      8 => 0031
+0021 => TGETV    8   1   6
+0022    IST          8
+0023    JMP      9 => 0025
+0024    TNEW     8   0
+0025 => TSETV    8   1   6
+0026    UGET     8   0      ; insert
+0027    TGETV    9   1   6
+0028    MOV     10   5
+0029    CALL     8   1   3
+0030    KPRI     7   2
+0031 => IST          7
+0032    JMP      8 => 0034
+0033    JMP      2 => 0036
+0034 => ITERN    5   3   3
+0035    ITERL    5 => 0015
+0036 => KPRI     2   0
+0037    TNEW     3   0
+0038    KSHORT   4   1
+0039    GGET     5   2      ; "pairs"
+0040    MOV      6   1
+0041    CALL     5   4   2
+0042    ISNEXT   8 => 0048
+0043 => TNEW    10   3
+0044    TSETB    8  10   1
+0045    TSETB    9  10   2
+0046    TSETV   10   3   4
+0047    ADDVN    4   4   0  ; 1
+0048 => ITERN    8   3   3
+0049    ITERL    8 => 0043
+0050    MOV      2   3
+0051    GGET     3   3      ; "table"
+0052    TGETS    3   3   4  ; "sort"
+0053    MOV      4   2
+0054    FNEW     5   5      ; lint.lua:100
+0055    CALL     3   1   3
+0056    KSHORT   3   1
+0057    LEN      4   2
+0058    KSHORT   5   1
+0059    FORI     3 => 0086
+0060 => TGETV    7   2   6
+0061    KNIL     8   9
+0062    TGETB   10   7   1
+0063    TGETB    9   7   2
+0064    MOV      8  10
+0065    UGET    10   0      ; insert
+0066    MOV     12   0
+0067    TGETS   11   0   6  ; "get_root_block"
+0068    CALL    11   2   2
+0069    TGETS   11  11   7  ; "lint_errors"
+0070    TNEW    12   3
+0071    KSTR    13   8      ; "assigned but unused "
+0072    GGET    14   9      ; "tostring"
+0073    GGET    15   3      ; "table"
+0074    TGETS   15  15  10  ; "concat"
+0075    FNEW    16  11      ; lint.lua:108
+0076    CALL    16   2   1
+0077    KSTR    17  12      ; ", "
+0078    CALL    15   0   3
+0079    CALLM   14   2   0
+0080    CAT     13  13  14
+0081    TSETB   13  12   1
+0082    TSETB    8  12   2
+0083    CALL    10   1   3
+0084    UCLO     7 => 0085
+0085 => FORL     3 => 0060
+0086 => RET0     0   1
+0087 => RET0     0   1
+
+-- BYTECODE -- lint.lua:122-125
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "lint_check_unused"
+0003    CALL     1   1   2
+0004    UGET     1   0      ; _class_0
+0005    TGETS    1   1   1  ; "__parent"
+0006    TGETS    1   1   2  ; "__base"
+0007    TGETS    1   1   3  ; "render"
+0008    MOV      2   0
+0009    VARG     3   0   1
+0010    CALLMT   1   1
+
+-- BYTECODE -- lint.lua:126-138
+0001    UGET     1   0      ; _class_0
+0002    TGETS    1   1   0  ; "__parent"
+0003    TGETS    1   1   1  ; "__base"
+0004    TGETS    1   1   2  ; "block"
+0005    MOV      2   0
+0006    VARG     3   0   1
+0007    CALLM    1   2   1
+0008    TGETS    2   0   2  ; "block"
+0009    TSETS    2   1   2  ; "block"
+0010    TGETS    2   0   3  ; "render"
+0011    TSETS    2   1   3  ; "render"
+0012    TGETS    2   0   4  ; "get_root_block"
+0013    TSETS    2   1   4  ; "get_root_block"
+0014    TGETS    2   0   5  ; "lint_check_unused"
+0015    TSETS    2   1   5  ; "lint_check_unused"
+0016    TGETS    2   0   6  ; "lint_mark_used"
+0017    TSETS    2   1   6  ; "lint_mark_used"
+0018    TGETS    2   0   7  ; "value_compilers"
+0019    TSETS    2   1   7  ; "value_compilers"
+0020    TGETS    2   0   8  ; "statement_compilers"
+0021    TSETS    2   1   8  ; "statement_compilers"
+0022    RET1     1   2
+
+-- BYTECODE -- lint.lua:148-150
+0001    UGET     0   0      ; self
+0002    RET1     0   2
+
+-- BYTECODE -- lint.lua:154-164
+0001    TGETB    2   1   2
+0002    MOV      4   0
+0003    TGETS    3   0   0  ; "has_name"
+0004    MOV      5   2
+0005    CALL     3   2   3
+0006    IST          3
+0007    JMP      4 => 0033
+0008    UGET     3   0      ; whitelist_globals
+0009    TGETV    3   3   2
+0010    IST          3
+0011    JMP      4 => 0033
+0012    MOV      4   2
+0013    TGETS    3   2   1  ; "match"
+0014    KSTR     5   2      ; "%."
+0015    CALL     3   2   3
+0016    IST          3
+0017    JMP      3 => 0033
+0018    UGET     3   1      ; insert
+0019    UGET     4   2      ; self
+0020    TGETS    4   4   3  ; "lint_errors"
+0021    TNEW     5   3
+0022    KSTR     6   4      ; "accessing global `"
+0023    GGET     7   5      ; "tostring"
+0024    MOV      8   2
+0025    CALL     7   2   2
+0026    KSTR     8   6      ; "`"
+0027    CAT      6   6   8
+0028    TSETB    6   5   1
+0029    KSHORT   6  -1
+0030    TGETV    6   1   6
+0031    TSETB    6   5   2
+0032    CALL     3   1   3
+0033 => MOV      4   0
+0034    TGETS    3   0   7  ; "lint_mark_used"
+0035    MOV      5   2
+0036    CALL     3   1   3
+0037    UGET     3   3      ; vc
+0038    TGETS    3   3   8  ; "ref"
+0039    MOV      4   0
+0040    MOV      5   1
+0041    CALLT    3   3
+
+-- BYTECODE -- lint.lua:170-198
+0001    TGETB    2   1   2
+0002    KSHORT   3   1
+0003    LEN      4   2
+0004    KSHORT   5   1
+0005    FORI     3 => 0058
+0006 => KPRI     7   1
+0007    LOOP     8 => 0054
+0008    TGETV    8   2   6
+0009    GGET     9   0      ; "type"
+0010    MOV     10   8
+0011    CALL     9   2   2
+0012    ISNES    9   1      ; "table"
+0013    JMP      9 => 0019
+0014    TGETB    9   8   1
+0015    ISNES    9   2      ; "temp_name"
+0016    JMP      9 => 0019
+0017    KPRI     7   2
+0018    JMP      8 => 0054
+0019 => MOV     10   0
+0020    TGETS    9   0   3  ; "extract_assign_name"
+0021    MOV     11   8
+0022    CALL     9   3   3
+0023    IST         10
+0024    JMP     11 => 0037
+0025    ISF          9
+0026    JMP     11 => 0035
+0027    MOV     12   0
+0028    TGETS   11   0   4  ; "has_name"
+0029    MOV     13   9
+0030    KPRI    14   2
+0031    CALL    11   2   4
+0032    NOT     11  11
+0033    IST         11
+0034    JMP     11 => 0037
+0035 => KPRI     7   2
+0036    JMP      8 => 0054
+0037 => ISNES    9   5      ; "_"
+0038    JMP     11 => 0041
+0039    KPRI     7   2
+0040    JMP      8 => 0054
+0041 => TGETS   11   0   6  ; "lint_unused_names"
+0042    IST         11
+0043    JMP     12 => 0045
+0044    TNEW    11   0
+0045 => TSETS   11   0   6  ; "lint_unused_names"
+0046    TGETS   11   0   6  ; "lint_unused_names"
+0047    KSHORT  12  -1
+0048    TGETV   12   1  12
+0049    IST         12
+0050    JMP     13 => 0052
+0051    KSHORT  12   0
+0052 => TSETV   12  11   9
+0053    KPRI     7   2
+0054 => IST          7
+0055    JMP      8 => 0057
+0056    JMP      3 => 0058
+0057 => FORL     3 => 0006
+0058 => UGET     3   0      ; sc
+0059    TGETS    3   3   7  ; "assign"
+0060    MOV      4   0
+0061    MOV      5   1
+0062    CALLT    3   3
+
+-- BYTECODE -- lint.lua:143-202
+0001    ISNEP    1   0
+0002    JMP      2 => 0004
+0003    UGET     1   0      ; default_whitelist
+0004 => UGET     2   1      ; _class_0
+0005    TGETS    2   2   0  ; "__parent"
+0006    TGETS    2   2   1  ; "__init"
+0007    MOV      3   0
+0008    VARG     4   0   2
+0009    CALLM    2   1   1
+0010    FNEW     2   3      ; lint.lua:148
+0011    TSETS    2   0   2  ; "get_root_block"
+0012    TNEW     2   0
+0013    TSETS    2   0   4  ; "lint_errors"
+0014    TGETS    2   0   5  ; "value_compilers"
+0015    GGET     3   6      ; "setmetatable"
+0016    TDUP     4   8
+0017    FNEW     5   7      ; lint.lua:154
+0018    TSETS    5   4   9  ; "ref"
+0019    TDUP     5  10
+0020    TSETS    2   5  11  ; "__index"
+0021    CALL     3   2   3
+0022    TSETS    3   0   5  ; "value_compilers"
+0023    TGETS    3   0  12  ; "statement_compilers"
+0024    GGET     4   6      ; "setmetatable"
+0025    TDUP     5  14
+0026    FNEW     6  13      ; lint.lua:170
+0027    TSETS    6   5  15  ; "assign"
+0028    TDUP     6  16
+0029    TSETS    3   6  11  ; "__index"
+0030    CALL     4   2   3
+0031    TSETS    4   0  12  ; "statement_compilers"
+0032    UCLO     0 => 0033
+0033 => RET0     0   1
+
+-- BYTECODE -- lint.lua:207-217
+0001    GGET     2   0      ; "rawget"
+0002    UGET     3   0      ; _base_0
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISNEP    2   0
+0006    JMP      3 => 0016
+0007    GGET     3   0      ; "rawget"
+0008    MOV      4   0
+0009    KSTR     5   1      ; "__parent"
+0010    CALL     3   2   3
+0011    ISF          3
+0012    JMP      4 => 0017
+0013    TGETV    4   3   1
+0014    RET1     4   2
+0015    JMP      3 => 0017
+0016 => RET1     2   2
+0017 => RET0     0   1
+
+-- BYTECODE -- lint.lua:218-222
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    UGET     3   0      ; _base_0
+0004    CALL     1   2   3
+0005    TGETS    2   0   1  ; "__init"
+0006    MOV      3   1
+0007    VARG     4   0   1
+0008    CALLM    2   1   1
+0009    RET1     1   2
+
+-- BYTECODE -- lint.lua:231-269
+0001    GGET     3   0      ; "next"
+0002    MOV      4   0
+0003    CALL     3   2   2
+0004    IST          3
+0005    JMP      3 => 0007
+0006    RET0     0   1
+0007 => KNIL     3   4
+0008    GGET     5   1      ; "require"
+0009    KSTR     6   2      ; "moonscript.util"
+0010    CALL     5   2   2
+0011    TGETS    6   5   3  ; "pos_to_line"
+0012    TGETS    4   5   4  ; "get_line"
+0013    MOV      3   6
+0014    KPRI     5   0
+0015    TNEW     6   0
+0016    KSHORT   7   1
+0017    KSHORT   8   1
+0018    LEN      9   0
+0019    KSHORT  10   1
+0020    FORI     8 => 0070
+0021 => TGETV   12   0  11
+0022    KNIL    13  14
+0023    TGETB   15  12   1
+0024    TGETB   14  12   2
+0025    MOV     13  15
+0026    ISF         14
+0027    JMP     15 => 0067
+0028    MOV     15   3
+0029    MOV     16   1
+0030    MOV     17  14
+0031    CALL    15   2   3
+0032    KSTR    16   5      ; "line "
+0033    GGET    17   6      ; "tostring"
+0034    MOV     18  15
+0035    CALL    17   2   2
+0036    KSTR    18   7      ; ": "
+0037    GGET    19   6      ; "tostring"
+0038    MOV     20  13
+0039    CALL    19   2   2
+0040    CAT     13  16  19
+0041    KSTR    16   8      ; "> "
+0042    MOV     17   4
+0043    MOV     18   1
+0044    MOV     19  15
+0045    CALL    17   2   3
+0046    CAT     16  16  17
+0047    GGET    17   9      ; "math"
+0048    TGETS   17  17  10  ; "max"
+0049    LEN     18  13
+0050    LEN     19  16
+0051    CALL    17   2   3
+0052    GGET    18  11      ; "table"
+0053    TGETS   18  18  12  ; "concat"
+0054    TNEW    19   4
+0055    TSETB   13  19   1
+0056    KSTR    20  13      ; "="
+0057    MOV     21  20
+0058    TGETS   20  20  14  ; "rep"
+0059    MOV     22  17
+0060    CALL    20   2   3
+0061    TSETB   20  19   2
+0062    TSETB   16  19   3
+0063    KSTR    20  15      ; "\n"
+0064    CALL    18   2   3
+0065    TSETV   18   6   7
+0066    JMP     15 => 0068
+0067 => TSETV   13   6   7
+0068 => ADDVN    7   7   0  ; 1
+0069    FORL     8 => 0021
+0070 => MOV      5   6
+0071    ISF          2
+0072    JMP      6 => 0079
+0073    GGET     6  11      ; "table"
+0074    TGETS    6   6  16  ; "insert"
+0075    MOV      7   5
+0076    KSHORT   8   1
+0077    MOV      9   2
+0078    CALL     6   1   4
+0079 => GGET     6  11      ; "table"
+0080    TGETS    6   6  12  ; "concat"
+0081    MOV      7   5
+0082    KSTR     8  17      ; "\n\n"
+0083    CALLT    6   3
+
+-- BYTECODE -- lint.lua:276-278
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "lint_config"
+0003    CALL     0   2   2
+0004    USETV    0   0      ; lint_config
+0005    RET0     0   1
+
+-- BYTECODE -- lint.lua:273-295
+0001    UGET     1   0      ; lint_config
+0002    IST          1
+0003    JMP      1 => 0009
+0004    TNEW     1   0
+0005    USETV    0   1      ; lint_config
+0006    GGET     1   0      ; "pcall"
+0007    FNEW     2   1      ; lint.lua:276
+0008    CALL     1   1   2
+0009 => UGET     1   0      ; lint_config
+0010    TGETS    1   1   2  ; "whitelist_globals"
+0011    IST          1
+0012    JMP      1 => 0016
+0013    UGET     1   1      ; default_whitelist
+0014    UCLO     0 => 0015
+0015 => RET1     1   2
+0016 => TNEW     1   0
+0017    GGET     2   3      ; "pairs"
+0018    UGET     3   0      ; lint_config
+0019    TGETS    3   3   2  ; "whitelist_globals"
+0020    CALL     2   4   2
+0021    ISNEXT   5 => 0038
+0022 => MOV      8   0
+0023    TGETS    7   0   4  ; "match"
+0024    MOV      9   5
+0025    CALL     7   2   3
+0026    ISF          7
+0027    JMP      8 => 0038
+0028    KSHORT   7   1
+0029    LEN      8   6
+0030    KSHORT   9   1
+0031    FORI     7 => 0038
+0032 => TGETV   11   6  10
+0033    UGET    12   2      ; insert
+0034    MOV     13   1
+0035    MOV     14  11
+0036    CALL    12   1   3
+0037    FORL     7 => 0032
+0038 => ITERN    5   3   3
+0039    ITERL    5 => 0022
+0040    GGET     2   5      ; "setmetatable"
+0041    UGET     3   3      ; Set
+0042    MOV      4   1
+0043    CALL     3   2   2
+0044    TDUP     4   6
+0045    UGET     5   1      ; default_whitelist
+0046    TSETS    5   4   7  ; "__index"
+0047    UCLO     0 => 0048
+0048 => CALLT    2   3
+
+-- BYTECODE -- lint.lua:298-311
+0001    ISNEP    1   0
+0002    JMP      3 => 0004
+0003    KSTR     1   0      ; "string input"
+0004 => GGET     3   1      ; "require"
+0005    KSTR     4   2      ; "moonscript.parse"
+0006    CALL     3   2   2
+0007    TGETS    4   3   3  ; "string"
+0008    MOV      5   0
+0009    CALL     4   3   2
+0010    IST          4
+0011    JMP      6 => 0015
+0012    KPRI     6   0
+0013    MOV      7   5
+0014    RET      6   3
+0015 => UGET     6   0      ; LinterBlock
+0016    MOV      7   2
+0017    CALL     6   2   2
+0018    MOV      8   6
+0019    TGETS    7   6   4  ; "stms"
+0020    MOV      9   4
+0021    CALL     7   1   3
+0022    MOV      8   6
+0023    TGETS    7   6   5  ; "lint_check_unused"
+0024    CALL     7   1   2
+0025    UGET     7   1      ; format_lint
+0026    TGETS    8   6   6  ; "lint_errors"
+0027    MOV      9   0
+0028    MOV     10   1
+0029    CALLT    7   4
+
+-- BYTECODE -- lint.lua:313-319
+0001    GGET     1   0      ; "io"
+0002    TGETS    1   1   1  ; "open"
+0003    MOV      2   0
+0004    CALL     1   3   2
+0005    IST          1
+0006    JMP      3 => 0010
+0007    KPRI     3   0
+0008    MOV      4   2
+0009    RET      3   3
+0010 => UGET     3   0      ; lint_code
+0011    MOV      5   1
+0012    TGETS    4   1   2  ; "read"
+0013    KSTR     6   3      ; "*a"
+0014    CALL     4   2   3
+0015    MOV      5   0
+0016    UGET     6   1      ; whitelist_for_file
+0017    MOV      7   0
+0018    CALL     6   0   2
+0019    CALLMT   3   2
+
+-- BYTECODE -- lint.lua:0-324
+0001    KPRI     0   0
+0002    GGET     1   0      ; "table"
+0003    TGETS    0   1   1  ; "insert"
+0004    KPRI     1   0
+0005    GGET     2   2      ; "require"
+0006    KSTR     3   3      ; "moonscript.data"
+0007    CALL     2   2   2
+0008    TGETS    1   2   4  ; "Set"
+0009    KPRI     2   0
+0010    GGET     3   2      ; "require"
+0011    KSTR     4   5      ; "moonscript.compile"
+0012    CALL     3   2   2
+0013    TGETS    2   3   6  ; "Block"
+0014    KPRI     3   0
+0015    GGET     4   2      ; "require"
+0016    KSTR     5   7      ; "moonscript.util"
+0017    CALL     4   2   2
+0018    TGETS    4   4   8  ; "moon"
+0019    TGETS    3   4   9  ; "type"
+0020    MOV      4   1
+0021    TDUP     5  10
+0022    CALL     4   2   2
+0023    KNIL     5   6
+0024    MOV      7   2
+0025    TDUP     8  12
+0026    FNEW     9  11      ; lint.lua:58
+0027    TSETS    9   8  13  ; "lint_mark_used"
+0028    FNEW     9  14      ; lint.lua:67
+0029    TSETS    9   8  15  ; "lint_check_unused"
+0030    FNEW     9  16      ; lint.lua:122
+0031    TSETS    9   8  17  ; "render"
+0032    FNEW     9  18      ; lint.lua:126
+0033    TSETS    9   8  19  ; "block"
+0034    TSETS    8   8  20  ; "__index"
+0035    GGET     9  21      ; "setmetatable"
+0036    MOV     10   8
+0037    TGETS   11   7  22  ; "__base"
+0038    CALL     9   1   3
+0039    GGET     9  21      ; "setmetatable"
+0040    TDUP    10  24
+0041    FNEW    11  23      ; lint.lua:143
+0042    TSETS   11  10  25  ; "__init"
+0043    TSETS    8  10  22  ; "__base"
+0044    TSETS    7  10  26  ; "__parent"
+0045    TDUP    11  28
+0046    FNEW    12  27      ; lint.lua:207
+0047    TSETS   12  11  20  ; "__index"
+0048    FNEW    12  29      ; lint.lua:218
+0049    TSETS   12  11  30  ; "__call"
+0050    CALL     9   2   3
+0051    MOV      6   9
+0052    TSETS    6   8  31  ; "__class"
+0053    TGETS    9   7  32  ; "__inherited"
+0054    ISF          9
+0055    JMP     10 => 0060
+0056    TGETS    9   7  32  ; "__inherited"
+0057    MOV     10   7
+0058    MOV     11   6
+0059    CALL     9   1   3
+0060 => MOV      5   6
+0061    UCLO     6 => 0062
+0062 => KPRI     6   0
+0063    FNEW     6  33      ; lint.lua:231
+0064    KNIL     7   8
+0065    FNEW     7  34      ; lint.lua:273
+0066    UCLO     8 => 0067
+0067 => KPRI     8   0
+0068    FNEW     8  35      ; lint.lua:298
+0069    KPRI     9   0
+0070    FNEW     9  36      ; lint.lua:313
+0071    TDUP    10  37
+0072    TSETS    8  10  38  ; "lint_code"
+0073    TSETS    9  10  39  ; "lint_file"
+0074    UCLO     0 => 0075
+0075 => RET1    10   2
+

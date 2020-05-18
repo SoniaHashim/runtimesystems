@@ -1,0 +1,388 @@
+-- BYTECODE -- socket.lua:19-21
+0001    UGET     4   0      ; socket
+0002    TGETS    4   4   0  ; "connect"
+0003    MOV      5   0
+0004    MOV      6   1
+0005    MOV      7   2
+0006    MOV      8   3
+0007    KSTR     9   1      ; "inet"
+0008    CALLT    4   6
+
+-- BYTECODE -- socket.lua:23-25
+0001    UGET     4   0      ; socket
+0002    TGETS    4   4   0  ; "connect"
+0003    MOV      5   0
+0004    MOV      6   1
+0005    MOV      7   2
+0006    MOV      8   3
+0007    KSTR     9   1      ; "inet6"
+0008    CALLT    4   6
+
+-- BYTECODE -- socket.lua:27-54
+0001    ISNES    0   0      ; "*"
+0002    JMP      3 => 0004
+0003    KSTR     0   1      ; "0.0.0.0"
+0004 => UGET     3   0      ; socket
+0005    TGETS    3   3   2  ; "dns"
+0006    TGETS    3   3   3  ; "getaddrinfo"
+0007    MOV      4   0
+0008    CALL     3   3   2
+0009    IST          3
+0010    JMP      5 => 0014
+0011    KPRI     5   0
+0012    MOV      6   4
+0013    RET      5   3
+0014 => KNIL     5   6
+0015    KSTR     4   4      ; "no info on address"
+0016    UGET     7   1      ; base
+0017    TGETS    7   7   5  ; "ipairs"
+0018    MOV      8   3
+0019    CALL     7   4   2
+0020    JMP     10 => 0071
+0021 => TGETS   12  11   6  ; "family"
+0022    ISNES   12   7      ; "inet"
+0023    JMP     12 => 0030
+0024    UGET    12   0      ; socket
+0025    TGETS   12  12   8  ; "tcp"
+0026    CALL    12   3   1
+0027    MOV      4  13
+0028    MOV      5  12
+0029    JMP     12 => 0035
+0030 => UGET    12   0      ; socket
+0031    TGETS   12  12   9  ; "tcp6"
+0032    CALL    12   3   1
+0033    MOV      4  13
+0034    MOV      5  12
+0035 => IST          5
+0036    JMP     12 => 0040
+0037    KPRI    12   0
+0038    MOV     13   4
+0039    RET     12   3
+0040 => MOV     13   5
+0041    TGETS   12   5  10  ; "setoption"
+0042    KSTR    14  11      ; "reuseaddr"
+0043    KPRI    15   2
+0044    CALL    12   1   4
+0045    MOV     13   5
+0046    TGETS   12   5  12  ; "bind"
+0047    TGETS   14  11  13  ; "addr"
+0048    MOV     15   1
+0049    CALL    12   3   4
+0050    MOV      4  13
+0051    MOV      6  12
+0052    IST          6
+0053    JMP     12 => 0058
+0054    MOV     13   5
+0055    TGETS   12   5  14  ; "close"
+0056    CALL    12   1   2
+0057    JMP     12 => 0071
+0058 => MOV     13   5
+0059    TGETS   12   5  15  ; "listen"
+0060    MOV     14   2
+0061    CALL    12   3   3
+0062    MOV      4  13
+0063    MOV      6  12
+0064    IST          6
+0065    JMP     12 => 0070
+0066    MOV     13   5
+0067    TGETS   12   5  14  ; "close"
+0068    CALL    12   1   2
+0069    JMP     12 => 0071
+0070 => RET1     5   2
+0071 => ITERC   10   3   3
+0072    ITERL   10 => 0021
+0073    KPRI     7   0
+0074    MOV      8   4
+0075    RET      7   3
+
+-- BYTECODE -- socket.lua:59-66
+0001    UGET     3   0      ; base
+0002    TGETS    3   3   0  ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISEQS    3   1      ; "string"
+0006    JMP      3 => 0012
+0007    KSTR     3   2      ; "default"
+0008    MOV      4   0
+0009    MOV      2   1
+0010    MOV      1   4
+0011    MOV      0   3
+0012 => UGET     3   1      ; table
+0013    ISTC     4   0
+0014    JMP      4 => 0016
+0015    KSTR     4   3      ; "nil"
+0016 => TGETV    3   3   4
+0017    IST          3
+0018    JMP      4 => 0031
+0019    UGET     4   0      ; base
+0020    TGETS    4   4   4  ; "error"
+0021    KSTR     5   5      ; "unknown key ("
+0022    UGET     6   0      ; base
+0023    TGETS    6   6   6  ; "tostring"
+0024    MOV      7   0
+0025    CALL     6   2   2
+0026    KSTR     7   7      ; ")"
+0027    CAT      5   5   7
+0028    KSHORT   6   3
+0029    CALL     4   1   3
+0030    JMP      4 => 0035
+0031 => MOV      4   3
+0032    MOV      5   1
+0033    MOV      6   2
+0034    CALLT    4   3
+0035 => RET0     0   1
+
+-- BYTECODE -- socket.lua:58-67
+0001    FNEW     1   0      ; socket.lua:59
+0002    UCLO     0 => 0003
+0003 => RET1     1   2
+
+-- BYTECODE -- socket.lua:81-81
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getfd"
+0004    CALLT    0   2
+
+-- BYTECODE -- socket.lua:82-82
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "dirty"
+0004    CALLT    0   2
+
+-- BYTECODE -- socket.lua:84-89
+0001    IST          1
+0002    JMP      3 => 0010
+0003    UGET     3   0      ; sock
+0004    MOV      4   3
+0005    TGETS    3   3   0  ; "close"
+0006    CALL     3   1   2
+0007    KSHORT   3   1
+0008    RET1     3   2
+0009    JMP      3 => 0015
+0010 => UGET     3   0      ; sock
+0011    MOV      4   3
+0012    TGETS    3   3   1  ; "send"
+0013    MOV      5   1
+0014    CALLT    3   3
+0015 => RET0     0   1
+
+-- BYTECODE -- socket.lua:79-91
+0001    UGET     1   0      ; base
+0002    TGETS    1   1   0  ; "setmetatable"
+0003    TDUP     2   2
+0004    FNEW     3   1      ; socket.lua:81
+0005    TSETS    3   2   3  ; "getfd"
+0006    FNEW     3   4      ; socket.lua:82
+0007    TSETS    3   2   5  ; "dirty"
+0008    TDUP     3   7
+0009    FNEW     4   6      ; socket.lua:84
+0010    TSETS    4   3   8  ; "__call"
+0011    UCLO     0 => 0012
+0012 => CALLT    1   3
+
+-- BYTECODE -- socket.lua:95-95
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getfd"
+0004    CALLT    0   2
+
+-- BYTECODE -- socket.lua:96-96
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "dirty"
+0004    CALLT    0   2
+
+-- BYTECODE -- socket.lua:98-101
+0001    ISF          1
+0002    JMP      3 => 0009
+0003    UGET     3   0      ; sock
+0004    MOV      4   3
+0005    TGETS    3   3   0  ; "send"
+0006    MOV      5   1
+0007    CALLT    3   3
+0008    JMP      3 => 0011
+0009 => KSHORT   3   1
+0010    RET1     3   2
+0011 => RET0     0   1
+
+-- BYTECODE -- socket.lua:93-103
+0001    UGET     1   0      ; base
+0002    TGETS    1   1   0  ; "setmetatable"
+0003    TDUP     2   2
+0004    FNEW     3   1      ; socket.lua:95
+0005    TSETS    3   2   3  ; "getfd"
+0006    FNEW     3   4      ; socket.lua:96
+0007    TSETS    3   2   5  ; "dirty"
+0008    TDUP     3   7
+0009    FNEW     4   6      ; socket.lua:98
+0010    TSETS    4   3   8  ; "__call"
+0011    UCLO     0 => 0012
+0012 => CALLT    1   3
+
+-- BYTECODE -- socket.lua:111-111
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getfd"
+0004    CALLT    0   2
+
+-- BYTECODE -- socket.lua:112-112
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "dirty"
+0004    CALLT    0   2
+
+-- BYTECODE -- socket.lua:114-121
+0001    UGET     0   0      ; length
+0002    KSHORT   1   0
+0003    ISGT     0   1
+0004    JMP      0 => 0007
+0005    KPRI     0   0
+0006    RET1     0   2
+0007 => UGET     0   1      ; math
+0008    TGETS    0   0   0  ; "min"
+0009    UGET     1   2      ; socket
+0010    TGETS    1   1   1  ; "BLOCKSIZE"
+0011    UGET     2   0      ; length
+0012    CALL     0   2   3
+0013    UGET     1   3      ; sock
+0014    MOV      2   1
+0015    TGETS    1   1   2  ; "receive"
+0016    MOV      3   0
+0017    CALL     1   3   3
+0018    ISF          2
+0019    JMP      3 => 0023
+0020    KPRI     3   0
+0021    MOV      4   2
+0022    RET      3   3
+0023 => UGET     3   0      ; length
+0024    UGET     4   4      ; string
+0025    TGETS    4   4   3  ; "len"
+0026    MOV      5   1
+0027    CALL     4   2   2
+0028    SUBVV    3   3   4
+0029    USETV    0   3      ; length
+0030    RET1     1   2
+
+-- BYTECODE -- socket.lua:109-123
+0001    UGET     2   0      ; base
+0002    TGETS    2   2   0  ; "setmetatable"
+0003    TDUP     3   2
+0004    FNEW     4   1      ; socket.lua:111
+0005    TSETS    4   3   3  ; "getfd"
+0006    FNEW     4   4      ; socket.lua:112
+0007    TSETS    4   3   5  ; "dirty"
+0008    TDUP     4   7
+0009    FNEW     5   6      ; socket.lua:114
+0010    TSETS    5   4   8  ; "__call"
+0011    UCLO     0 => 0012
+0012 => CALLT    2   3
+
+-- BYTECODE -- socket.lua:128-128
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getfd"
+0004    CALLT    0   2
+
+-- BYTECODE -- socket.lua:129-129
+0001    UGET     0   0      ; sock
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "dirty"
+0004    CALLT    0   2
+
+-- BYTECODE -- socket.lua:131-140
+0001    UGET     0   0      ; done
+0002    ISF          0
+0003    JMP      1 => 0006
+0004    KPRI     0   0
+0005    RET1     0   2
+0006 => UGET     0   1      ; sock
+0007    MOV      1   0
+0008    TGETS    0   0   0  ; "receive"
+0009    UGET     2   2      ; socket
+0010    TGETS    2   2   1  ; "BLOCKSIZE"
+0011    CALL     0   4   3
+0012    IST          1
+0013    JMP      3 => 0016
+0014    RET1     0   2
+0015    JMP      3 => 0028
+0016 => ISNES    1   2      ; "closed"
+0017    JMP      3 => 0025
+0018    UGET     3   1      ; sock
+0019    MOV      4   3
+0020    TGETS    3   3   3  ; "close"
+0021    CALL     3   1   2
+0022    USETN    0   0      ; done ; 1
+0023    RET1     2   2
+0024    JMP      3 => 0028
+0025 => KPRI     3   0
+0026    MOV      4   1
+0027    RET      3   3
+0028 => RET0     0   1
+
+-- BYTECODE -- socket.lua:125-142
+0001    KPRI     1   0
+0002    UGET     2   0      ; base
+0003    TGETS    2   2   0  ; "setmetatable"
+0004    TDUP     3   2
+0005    FNEW     4   1      ; socket.lua:128
+0006    TSETS    4   3   3  ; "getfd"
+0007    FNEW     4   4      ; socket.lua:129
+0008    TSETS    4   3   5  ; "dirty"
+0009    TDUP     4   7
+0010    FNEW     5   6      ; socket.lua:131
+0011    TSETS    5   4   8  ; "__call"
+0012    UCLO     0 => 0013
+0013 => CALLT    2   3
+
+-- BYTECODE -- socket.lua:0-150
+0001    GGET     0   0      ; "_G"
+0002    GGET     1   1      ; "require"
+0003    KSTR     2   2      ; "string"
+0004    CALL     1   2   2
+0005    GGET     2   1      ; "require"
+0006    KSTR     3   3      ; "math"
+0007    CALL     2   2   2
+0008    GGET     3   1      ; "require"
+0009    KSTR     4   4      ; "socket.core"
+0010    CALL     3   2   2
+0011    MOV      4   3
+0012    FNEW     5   6      ; socket.lua:19
+0013    TSETS    5   4   5  ; "connect4"
+0014    FNEW     5   8      ; socket.lua:23
+0015    TSETS    5   4   7  ; "connect6"
+0016    FNEW     5  10      ; socket.lua:27
+0017    TSETS    5   4   9  ; "bind"
+0018    TGETS    5   4  12  ; "newtry"
+0019    CALL     5   2   1
+0020    TSETS    5   4  11  ; "try"
+0021    FNEW     5  14      ; socket.lua:58
+0022    TSETS    5   4  13  ; "choose"
+0023    TNEW     5   0
+0024    TNEW     6   0
+0025    TSETS    5   4  15  ; "sourcet"
+0026    TSETS    6   4  16  ; "sinkt"
+0027    KSHORT   7 2048
+0028    TSETS    7   4  17  ; "BLOCKSIZE"
+0029    FNEW     7  19      ; socket.lua:79
+0030    TSETS    7   6  18  ; "close-when-done"
+0031    FNEW     7  21      ; socket.lua:93
+0032    TSETS    7   6  20  ; "keep-open"
+0033    TGETS    7   6  20  ; "keep-open"
+0034    TSETS    7   6  22  ; "default"
+0035    TGETS    7   4  13  ; "choose"
+0036    MOV      8   6
+0037    CALL     7   2   2
+0038    TSETS    7   4  23  ; "sink"
+0039    FNEW     7  25      ; socket.lua:109
+0040    TSETS    7   5  24  ; "by-length"
+0041    FNEW     7  27      ; socket.lua:125
+0042    TSETS    7   5  26  ; "until-closed"
+0043    TGETS    7   5  26  ; "until-closed"
+0044    TSETS    7   5  22  ; "default"
+0045    TGETS    7   4  13  ; "choose"
+0046    MOV      8   5
+0047    CALL     7   2   2
+0048    TSETS    7   4  28  ; "source"
+0049    UCLO     0 => 0050
+0050 => RET1     4   2
+

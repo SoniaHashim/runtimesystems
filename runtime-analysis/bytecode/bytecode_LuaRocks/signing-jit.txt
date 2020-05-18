@@ -1,0 +1,98 @@
+-- BYTECODE -- signing.lua:6-14
+0001    UGET     0   0      ; cfg
+0002    TGETS    0   0   0  ; "variables"
+0003    TGETS    1   0   1  ; "GPG"
+0004    UGET     2   1      ; fs
+0005    TGETS    2   2   2  ; "is_tool_available"
+0006    MOV      3   1
+0007    KSTR     4   3      ; "gpg"
+0008    CALL     2   3   3
+0009    IST          2
+0010    JMP      4 => 0014
+0011    KPRI     4   0
+0012    MOV      5   3
+0013    RET      4   3
+0014 => RET1     1   2
+
+-- BYTECODE -- signing.lua:16-18
+0001    MOV      1   0
+0002    KSTR     2   0      ; ".asc"
+0003    CAT      1   1   2
+0004    RET1     1   2
+
+-- BYTECODE -- signing.lua:20-32
+0001    UGET     1   0      ; get_gpg
+0002    CALL     1   3   1
+0003    IST          1
+0004    JMP      3 => 0008
+0005    KPRI     3   0
+0006    MOV      4   2
+0007    RET      3   3
+0008 => MOV      3   0
+0009    KSTR     4   0      ; ".asc"
+0010    CAT      3   3   4
+0011    UGET     4   1      ; fs
+0012    TGETS    4   4   1  ; "execute"
+0013    MOV      5   1
+0014    KSTR     6   2      ; "--armor"
+0015    KSTR     7   3      ; "--output"
+0016    MOV      8   3
+0017    KSTR     9   4      ; "--detach-sign"
+0018    MOV     10   0
+0019    CALL     4   2   7
+0020    ISF          4
+0021    JMP      5 => 0024
+0022    RET1     3   2
+0023    JMP      4 => 0031
+0024 => KPRI     4   0
+0025    KSTR     5   5      ; "failed running "
+0026    MOV      6   1
+0027    KSTR     7   6      ; " to sign "
+0028    MOV      8   0
+0029    CAT      5   5   8
+0030    RET      4   3
+0031 => RET0     0   1
+
+-- BYTECODE -- signing.lua:34-46
+0001    UGET     2   0      ; get_gpg
+0002    CALL     2   3   1
+0003    IST          2
+0004    JMP      4 => 0008
+0005    KPRI     4   0
+0006    MOV      5   3
+0007    RET      4   3
+0008 => UGET     4   1      ; fs
+0009    TGETS    4   4   0  ; "execute"
+0010    MOV      5   2
+0011    KSTR     6   1      ; "--verify"
+0012    MOV      7   1
+0013    MOV      8   0
+0014    CALL     4   2   5
+0015    ISF          4
+0016    JMP      5 => 0020
+0017    KPRI     4   2
+0018    RET1     4   2
+0019    JMP      4 => 0023
+0020 => KPRI     4   0
+0021    KSTR     5   2      ; "GPG returned a verification error"
+0022    RET      4   3
+0023 => RET0     0   1
+
+-- BYTECODE -- signing.lua:0-49
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.core.cfg"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.fs"
+0007    CALL     2   2   2
+0008    FNEW     3   3      ; signing.lua:6
+0009    FNEW     4   5      ; signing.lua:16
+0010    TSETS    4   0   4  ; "signature_url"
+0011    FNEW     4   7      ; signing.lua:20
+0012    TSETS    4   0   6  ; "sign_file"
+0013    FNEW     4   9      ; signing.lua:34
+0014    TSETS    4   0   8  ; "verify_signature"
+0015    UCLO     0 => 0016
+0016 => RET1     0   2
+

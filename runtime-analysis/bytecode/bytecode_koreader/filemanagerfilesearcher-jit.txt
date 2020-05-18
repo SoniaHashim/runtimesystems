@@ -1,0 +1,557 @@
+-- BYTECODE -- filemanagerfilesearcher.lua:31-54
+0001    TNEW     1   3
+0002    TGETS    2   0   1  ; "path"
+0003    TSETB    2   1   1
+0004    TSETS    1   0   0  ; "dirs"
+0005    TNEW     1   0
+0006    TSETS    1   0   2  ; "files"
+0007 => TGETS    1   0   0  ; "dirs"
+0008    LEN      1   1
+0009    ISEQN    1   0      ; 0
+0010    JMP      1 => 0099
+0011    LOOP     1 => 0099
+0012    TNEW     1   0
+0013    GGET     2   3      ; "pairs"
+0014    TGETS    3   0   0  ; "dirs"
+0015    CALL     2   4   2
+0016    ISNEXT   5 => 0095
+0017 => UGET     7   0      ; lfs
+0018    TGETS    7   7   4  ; "dir"
+0019    MOV      8   6
+0020    CALL     7   4   2
+0021    JMP     10 => 0093
+0022 => MOV     11   6
+0023    KSTR    12   5      ; "/"
+0024    MOV     13  10
+0025    CAT     11  11  13
+0026    UGET    12   0      ; lfs
+0027    TGETS   12  12   6  ; "attributes"
+0028    MOV     13  11
+0029    CALL    12   2   2
+0030    IST         12
+0031    JMP     13 => 0033
+0032    TNEW    12   0
+0033 => TGETS   13  12   7  ; "mode"
+0034    ISNES   13   8      ; "directory"
+0035    JMP     13 => 0068
+0036    ISEQS   10   9      ; "."
+0037    JMP     13 => 0068
+0038    ISEQS   10  10      ; ".."
+0039    JMP     13 => 0068
+0040    GGET    13  11      ; "G_reader_settings"
+0041    MOV     14  13
+0042    TGETS   13  13  12  ; "isTrue"
+0043    KSTR    15  13      ; "show_hidden"
+0044    CALL    13   2   3
+0045    IST         13
+0046    JMP     14 => 0054
+0047    UGET    13   1      ; util
+0048    TGETS   13  13  14  ; "stringStartsWith"
+0049    MOV     14  10
+0050    KSTR    15   9      ; "."
+0051    CALL    13   2   3
+0052    IST         13
+0053    JMP     13 => 0068
+0054 => GGET    13  15      ; "table"
+0055    TGETS   13  13  16  ; "insert"
+0056    MOV     14   1
+0057    MOV     15  11
+0058    CALL    13   1   3
+0059    GGET    13  15      ; "table"
+0060    TGETS   13  13  16  ; "insert"
+0061    TGETS   14   0   2  ; "files"
+0062    TDUP    15  17
+0063    TSETS   10  15  18  ; "name"
+0064    TSETS   11  15   1  ; "path"
+0065    TSETS   12  15  19  ; "attr"
+0066    CALL    13   1   3
+0067    JMP     13 => 0093
+0068 => TGETS   13  12   7  ; "mode"
+0069    ISNES   13  20      ; "file"
+0070    JMP     13 => 0093
+0071    UGET    13   1      ; util
+0072    TGETS   13  13  14  ; "stringStartsWith"
+0073    MOV     14  10
+0074    KSTR    15  21      ; "._"
+0075    CALL    13   2   3
+0076    IST         13
+0077    JMP     13 => 0093
+0078    UGET    13   2      ; DocumentRegistry
+0079    MOV     14  13
+0080    TGETS   13  13  22  ; "hasProvider"
+0081    MOV     15  11
+0082    CALL    13   2   3
+0083    ISF         13
+0084    JMP     14 => 0093
+0085    GGET    13  15      ; "table"
+0086    TGETS   13  13  16  ; "insert"
+0087    TGETS   14   0   2  ; "files"
+0088    TDUP    15  23
+0089    TSETS   10  15  18  ; "name"
+0090    TSETS   11  15   1  ; "path"
+0091    TSETS   12  15  19  ; "attr"
+0092    CALL    13   1   3
+0093 => ITERC   10   2   3
+0094    ITERL   10 => 0022
+0095 => ITERN    5   3   3
+0096    ITERL    5 => 0017
+0097    TSETS    1   0   0  ; "dirs"
+0098    JMP      1 => 0007
+0099 => RET0     0   1
+
+-- BYTECODE -- filemanagerfilesearcher.lua:69-71
+0001    UGET     0   0      ; FileManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "showFiles"
+0004    UGET     2   1      ; f
+0005    TGETS    2   2   1  ; "path"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- filemanagerfilesearcher.lua:76-78
+0001    UGET     0   0      ; ReaderUI
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "showReader"
+0004    UGET     2   1      ; f
+0005    TGETS    2   2   1  ; "path"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- filemanagerfilesearcher.lua:56-86
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "apps/filemanager/filemanager"
+0003    CALL     1   2   2
+0004    GGET     2   0      ; "require"
+0005    KSTR     3   2      ; "apps/reader/readerui"
+0006    CALL     2   2   2
+0007    TGETS    3   0   3  ; "search_value"
+0008    TNEW     4   0
+0009    TSETS    4   0   4  ; "results"
+0010    ISNES    3   5      ; " "
+0011    JMP      4 => 0015
+0012    TGETS    4   0   6  ; "files"
+0013    TSETS    4   0   4  ; "results"
+0014    JMP      4 => 0071
+0015 => GGET     4   7      ; "pairs"
+0016    TGETS    5   0   6  ; "files"
+0017    CALL     4   4   2
+0018    ISNEXT   7 => 0069
+0019 => GGET     9   8      ; "string"
+0020    TGETS    9   9   9  ; "find"
+0021    GGET    10   8      ; "string"
+0022    TGETS   10  10  10  ; "lower"
+0023    TGETS   11   8  11  ; "name"
+0024    CALL    10   2   2
+0025    GGET    11   8      ; "string"
+0026    TGETS   11  11  10  ; "lower"
+0027    MOV     12   3
+0028    CALL    11   0   2
+0029    CALLM    9   2   1
+0030    ISF          9
+0031    JMP     10 => 0068
+0032    GGET     9   8      ; "string"
+0033    TGETS    9   9  12  ; "sub"
+0034    TGETS   10   8  11  ; "name"
+0035    KSHORT  11  -4
+0036    CALL     9   2   3
+0037    ISEQS    9  13      ; ".sdr"
+0038    JMP      9 => 0068
+0039    TGETS    9   8  14  ; "attr"
+0040    TGETS    9   9  15  ; "mode"
+0041    ISNES    9  16      ; "directory"
+0042    JMP      9 => 0057
+0043    TGETS    9   8  11  ; "name"
+0044    KSTR    10  18      ; "/"
+0045    CAT      9   9  10
+0046    TSETS    9   8  17  ; "text"
+0047    KPRI     9   0
+0048    TSETS    9   8  11  ; "name"
+0049    FNEW     9  20      ; filemanagerfilesearcher.lua:69
+0050    TSETS    9   8  19  ; "callback"
+0051    GGET     9  21      ; "table"
+0052    TGETS    9   9  22  ; "insert"
+0053    TGETS   10   0   4  ; "results"
+0054    MOV     11   8
+0055    CALL     9   1   3
+0056    JMP      9 => 0068
+0057 => TGETS    9   8  11  ; "name"
+0058    TSETS    9   8  17  ; "text"
+0059    KPRI     9   0
+0060    TSETS    9   8  11  ; "name"
+0061    FNEW     9  23      ; filemanagerfilesearcher.lua:76
+0062    TSETS    9   8  19  ; "callback"
+0063    GGET     9  21      ; "table"
+0064    TGETS    9   9  22  ; "insert"
+0065    TGETS   10   0   4  ; "results"
+0066    MOV     11   8
+0067    CALL     9   1   3
+0068 => UCLO     7 => 0069
+0069 => ITERN    7   3   3
+0070    ITERL    7 => 0019
+0071 => TSETS    3   0  24  ; "keywords"
+0072    TGETS    4   0   4  ; "results"
+0073    LEN      4   4
+0074    TSETS    4   0  25  ; "items"
+0075    UCLO     0 => 0076
+0076 => RET0     0   1
+
+-- BYTECODE -- filemanagerfilesearcher.lua:88-106
+0001    TGETS    1   0   0  ; "search_value"
+0002    ISF          1
+0003    JMP      2 => 0048
+0004    UGET     1   0      ; UIManager
+0005    MOV      2   1
+0006    TGETS    1   1   1  ; "close"
+0007    TGETS    3   0   2  ; "search_dialog"
+0008    CALL     1   1   3
+0009    GGET     1   3      ; "string"
+0010    TGETS    1   1   4  ; "len"
+0011    TGETS    2   0   0  ; "search_value"
+0012    CALL     1   2   2
+0013    KSHORT   2   0
+0014    ISGE     2   1
+0015    JMP      1 => 0048
+0016    MOV      2   0
+0017    TGETS    1   0   5  ; "readDir"
+0018    CALL     1   1   2
+0019    MOV      2   0
+0020    TGETS    1   0   6  ; "setSearchResults"
+0021    CALL     1   1   2
+0022    TGETS    1   0   7  ; "results"
+0023    LEN      1   1
+0024    KSHORT   2   0
+0025    ISGE     2   1
+0026    JMP      1 => 0031
+0027    MOV      2   0
+0028    TGETS    1   0   8  ; "showSearchResults"
+0029    CALL     1   1   2
+0030    JMP      1 => 0048
+0031 => UGET     1   0      ; UIManager
+0032    MOV      2   1
+0033    TGETS    1   1   9  ; "show"
+0034    UGET     3   1      ; InfoMessage
+0035    MOV      4   3
+0036    TGETS    3   3  10  ; "new"
+0037    TDUP     5  13
+0038    UGET     6   2      ; BaseUtil
+0039    TGETS    6   6  11  ; "template"
+0040    UGET     7   3      ; _
+0041    KSTR     8  12      ; "Found no files matching '%1'."
+0042    CALL     7   2   2
+0043    TGETS    8   0   0  ; "search_value"
+0044    CALL     6   2   3
+0045    TSETS    6   5  14  ; "text"
+0046    CALL     3   0   3
+0047    CALLM    1   1   1
+0048 => RET0     0   1
+
+-- BYTECODE -- filemanagerfilesearcher.lua:123-126
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "search_dialog"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "onClose"
+0005    CALL     0   1   2
+0006    UGET     0   1      ; UIManager
+0007    MOV      1   0
+0008    TGETS    0   0   2  ; "close"
+0009    UGET     2   0      ; self
+0010    TGETS    2   2   0  ; "search_dialog"
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- filemanagerfilesearcher.lua:131-140
+0001    UGET     0   0      ; self
+0002    UGET     1   1      ; search_path
+0003    IST          1
+0004    JMP      2 => 0008
+0005    UGET     1   2      ; lfs
+0006    TGETS    1   1   1  ; "currentdir"
+0007    CALL     1   2   1
+0008 => TSETS    1   0   0  ; "path"
+0009    UGET     0   0      ; self
+0010    UGET     1   0      ; self
+0011    TGETS    1   1   3  ; "search_dialog"
+0012    MOV      2   1
+0013    TGETS    1   1   4  ; "getInputText"
+0014    CALL     1   2   2
+0015    TSETS    1   0   2  ; "search_value"
+0016    UGET     0   0      ; self
+0017    TGETS    0   0   2  ; "search_value"
+0018    UGET     1   3      ; dummy
+0019    ISNEV    0   1
+0020    JMP      0 => 0025
+0021    UGET     0   0      ; self
+0022    KPRI     1   2
+0023    TSETS    1   0   5  ; "use_previous_search_results"
+0024    JMP      0 => 0028
+0025 => UGET     0   0      ; self
+0026    KPRI     1   1
+0027    TSETS    1   0   5  ; "use_previous_search_results"
+0028 => UGET     0   0      ; self
+0029    MOV      1   0
+0030    TGETS    0   0   6  ; "close"
+0031    CALL     0   1   2
+0032    RET0     0   1
+
+-- BYTECODE -- filemanagerfilesearcher.lua:145-154
+0001    UGET     0   0      ; self
+0002    GGET     1   1      ; "G_reader_settings"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "readSetting"
+0005    KSTR     3   3      ; "home_dir"
+0006    CALL     1   2   3
+0007    TSETS    1   0   0  ; "path"
+0008    UGET     0   0      ; self
+0009    UGET     1   0      ; self
+0010    TGETS    1   1   5  ; "search_dialog"
+0011    MOV      2   1
+0012    TGETS    1   1   6  ; "getInputText"
+0013    CALL     1   2   2
+0014    TSETS    1   0   4  ; "search_value"
+0015    UGET     0   0      ; self
+0016    TGETS    0   0   4  ; "search_value"
+0017    UGET     1   1      ; dummy
+0018    ISNEV    0   1
+0019    JMP      0 => 0024
+0020    UGET     0   0      ; self
+0021    KPRI     1   2
+0022    TSETS    1   0   7  ; "use_previous_search_results"
+0023    JMP      0 => 0027
+0024 => UGET     0   0      ; self
+0025    KPRI     1   1
+0026    TSETS    1   0   7  ; "use_previous_search_results"
+0027 => UGET     0   0      ; self
+0028    MOV      1   0
+0029    TGETS    0   0   8  ; "close"
+0030    CALL     0   1   2
+0031    RET0     0   1
+
+-- BYTECODE -- filemanagerfilesearcher.lua:108-161
+0001    TGETS    2   0   0  ; "search_value"
+0002    KPRI     3   2
+0003    GGET     4   1      ; "G_reader_settings"
+0004    MOV      5   4
+0005    TGETS    4   4   2  ; "readSetting"
+0006    KSTR     6   3      ; "home_dir"
+0007    CALL     4   2   3
+0008    IST          4
+0009    JMP      4 => 0011
+0010    KPRI     3   1
+0011 => UGET     4   0      ; InputDialog
+0012    MOV      5   4
+0013    TGETS    4   4   5  ; "new"
+0014    TDUP     6   7
+0015    UGET     7   1      ; _
+0016    KSTR     8   6      ; "Search for books by filename"
+0017    CALL     7   2   2
+0018    TSETS    7   6   8  ; "title"
+0019    TGETS    7   0   0  ; "search_value"
+0020    TSETS    7   6   9  ; "input"
+0021    UGET     7   2      ; Screen
+0022    MOV      8   7
+0023    TGETS    7   7  10  ; "getWidth"
+0024    CALL     7   2   2
+0025    MULVN    7   7   0  ; 0.9
+0026    TSETS    7   6  11  ; "width"
+0027    TNEW     7   3
+0028    TNEW     8   4
+0029    TDUP     9  13
+0030    UGET    10   1      ; _
+0031    KSTR    11  12      ; "Cancel"
+0032    CALL    10   2   2
+0033    TSETS   10   9  14  ; "text"
+0034    FNEW    10  15      ; filemanagerfilesearcher.lua:123
+0035    TSETS   10   9  16  ; "callback"
+0036    TSETB    9   8   1
+0037    TDUP     9  18
+0038    UGET    10   1      ; _
+0039    KSTR    11  17      ; "Current folder"
+0040    CALL    10   2   2
+0041    TSETS   10   9  14  ; "text"
+0042    FNEW    10  19      ; filemanagerfilesearcher.lua:131
+0043    TSETS   10   9  16  ; "callback"
+0044    TSETB    9   8   2
+0045    TDUP     9  21
+0046    UGET    10   1      ; _
+0047    KSTR    11  20      ; "Home folder"
+0048    CALL    10   2   2
+0049    TSETS   10   9  14  ; "text"
+0050    TSETS    3   9  22  ; "enabled"
+0051    FNEW    10  23      ; filemanagerfilesearcher.lua:145
+0052    TSETS   10   9  16  ; "callback"
+0053    TSETB    9   8   3
+0054    TSETB    8   7   1
+0055    TSETS    7   6  24  ; "buttons"
+0056    CALL     4   2   3
+0057    TSETS    4   0   4  ; "search_dialog"
+0058    UGET     4   3      ; UIManager
+0059    MOV      5   4
+0060    TGETS    4   4  25  ; "show"
+0061    TGETS    6   0   4  ; "search_dialog"
+0062    CALL     4   1   3
+0063    TGETS    4   0   4  ; "search_dialog"
+0064    MOV      5   4
+0065    TGETS    4   4  26  ; "onShowKeyboard"
+0066    CALL     4   1   2
+0067    UCLO     0 => 0068
+0068 => RET0     0   1
+
+-- BYTECODE -- filemanagerfilesearcher.lua:177-179
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; menu_container
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagerfilesearcher.lua:180-180
+0001    TGETS    2   0   0  ; "text"
+0002    TGETS    3   1   0  ; "text"
+0003    ISLT     2   3
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    JMP      3 => 0008
+0007 => KPRI     2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- filemanagerfilesearcher.lua:163-183
+0001    UGET     1   0      ; CenterContainer
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "new"
+0004    TDUP     3   2
+0005    UGET     4   1      ; Screen
+0006    MOV      5   4
+0007    TGETS    4   4   1  ; "getSize"
+0008    CALL     4   2   2
+0009    TSETS    4   3   3  ; "dimen"
+0010    CALL     1   2   3
+0011    UGET     2   2      ; Menu
+0012    MOV      3   2
+0013    TGETS    2   2   0  ; "new"
+0014    TDUP     4   6
+0015    UGET     5   1      ; Screen
+0016    MOV      6   5
+0017    TGETS    5   5   5  ; "getWidth"
+0018    CALL     5   2   2
+0019    SUBVN    5   5   0  ; 15
+0020    TSETS    5   4   7  ; "width"
+0021    UGET     5   1      ; Screen
+0022    MOV      6   5
+0023    TGETS    5   5   8  ; "getHeight"
+0024    CALL     5   2   2
+0025    SUBVN    5   5   0  ; 15
+0026    TSETS    5   4   9  ; "height"
+0027    TSETS    1   4  10  ; "show_parent"
+0028    TGETS    5   0  11  ; "onMenuHold"
+0029    TSETS    5   4  11  ; "onMenuHold"
+0030    UGET     5   3      ; Font
+0031    MOV      6   5
+0032    TGETS    5   5  12  ; "getFace"
+0033    KSTR     7  13      ; "smallinfofont"
+0034    CALL     5   2   3
+0035    TSETS    5   4  14  ; "cface"
+0036    GGET     5  15      ; "G_reader_settings"
+0037    MOV      6   5
+0038    TGETS    5   5  16  ; "readSetting"
+0039    KSTR     7  17      ; "items_per_page"
+0040    CALL     5   2   3
+0041    IST          5
+0042    JMP      6 => 0044
+0043    KSHORT   5  14
+0044 => TSETS    5   4  18  ; "perpage"
+0045    TSETS    0   4  19  ; "_manager"
+0046    CALL     2   2   3
+0047    TSETS    2   0   4  ; "search_menu"
+0048    GGET     2  20      ; "table"
+0049    TGETS    2   2  21  ; "insert"
+0050    MOV      3   1
+0051    TGETS    4   0   4  ; "search_menu"
+0052    CALL     2   1   3
+0053    TGETS    2   0   4  ; "search_menu"
+0054    FNEW     3  23      ; filemanagerfilesearcher.lua:177
+0055    TSETS    3   2  22  ; "close_callback"
+0056    GGET     2  20      ; "table"
+0057    TGETS    2   2  24  ; "sort"
+0058    TGETS    3   0  25  ; "results"
+0059    FNEW     4  26      ; filemanagerfilesearcher.lua:180
+0060    CALL     2   1   3
+0061    TGETS    2   0   4  ; "search_menu"
+0062    MOV      3   2
+0063    TGETS    2   2  27  ; "switchItemTable"
+0064    UGET     4   5      ; _
+0065    KSTR     5  28      ; "Search Results"
+0066    CALL     4   2   2
+0067    TGETS    5   0  25  ; "results"
+0068    CALL     2   1   4
+0069    UGET     2   4      ; UIManager
+0070    MOV      3   2
+0071    TGETS    2   2  29  ; "show"
+0072    MOV      4   1
+0073    CALL     2   1   3
+0074    UCLO     0 => 0075
+0075 => RET0     0   1
+
+-- BYTECODE -- filemanagerfilesearcher.lua:0-186
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/container/centercontainer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "document/documentregistry"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/font"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/infomessage"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/container/inputcontainer"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/inputdialog"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/menu"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/uimanager"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "libs/libkoreader-lfs"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ffi/util"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "util"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "gettext"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "device"
+0039    CALL    12   2   2
+0040    TGETS   12  12  14  ; "screen"
+0041    MOV     14   4
+0042    TGETS   13   4  15  ; "new"
+0043    TDUP    15  16
+0044    TNEW    16   0
+0045    TSETS   16  15  17  ; "dirs"
+0046    TNEW    16   0
+0047    TSETS   16  15  18  ; "files"
+0048    TNEW    16   0
+0049    TSETS   16  15  19  ; "results"
+0050    CALL    13   2   3
+0051    FNEW    14  21      ; filemanagerfilesearcher.lua:31
+0052    TSETS   14  13  20  ; "readDir"
+0053    FNEW    14  23      ; filemanagerfilesearcher.lua:56
+0054    TSETS   14  13  22  ; "setSearchResults"
+0055    FNEW    14  25      ; filemanagerfilesearcher.lua:88
+0056    TSETS   14  13  24  ; "close"
+0057    FNEW    14  27      ; filemanagerfilesearcher.lua:108
+0058    TSETS   14  13  26  ; "onShowFileSearch"
+0059    FNEW    14  29      ; filemanagerfilesearcher.lua:163
+0060    TSETS   14  13  28  ; "showSearchResults"
+0061    UCLO     0 => 0062
+0062 => RET1    13   2
+

@@ -1,0 +1,777 @@
+
+main <./reader.lua:0,0> (513 instructions, 2052 bytes at 0x7ff5ca4068a0)
+0+ params, 34 slots, 0 upvalues, 46 locals, 133 constants, 11 functions
+	1	[2]	GETGLOBAL	0 -1	; io
+	2	[2]	GETTABLE 	0 0 -2	; "stdout"
+	3	[2]	SELF     	0 0 -3	; "write"
+	4	[13]	LOADK    	2 -4	; "---------------------------------------------\n                launching...\n  _  _____  ____                _\n | |/ / _ \\|  _ \\ ___  __ _  __| | ___ _ __\n | ' / | | | |_) / _ \\/ _` |/ _` |/ _ \\ '__|\n | . \\ |_| |  _ <  __/ (_| | (_| |  __/ |\n |_|\\_\\___/|_| \\_\\___|\\__,_|\\__,_|\\___|_|\n\n It's a scroll... It's a codex... It's KOReader!\n\n [*] Current time: "
+	5	[13]	GETGLOBAL	3 -5	; os
+	6	[13]	GETTABLE 	3 3 -6	; "date"
+	7	[13]	LOADK    	4 -7	; "%x-%X"
+	8	[13]	CALL     	3 2 2
+	9	[13]	LOADK    	4 -8	; "\n"
+	10	[2]	CALL     	0 5 1
+	11	[14]	GETGLOBAL	0 -1	; io
+	12	[14]	GETTABLE 	0 0 -2	; "stdout"
+	13	[14]	SELF     	0 0 -9	; "flush"
+	14	[14]	CALL     	0 2 1
+	15	[17]	GETGLOBAL	0 -10	; require
+	16	[17]	LOADK    	1 -11	; "defaults"
+	17	[17]	CALL     	0 2 1
+	18	[18]	GETGLOBAL	0 -10	; require
+	19	[18]	LOADK    	1 -12	; "datastorage"
+	20	[18]	CALL     	0 2 2
+	21	[19]	GETGLOBAL	1 -13	; pcall
+	22	[19]	GETGLOBAL	2 -14	; dofile
+	23	[19]	SELF     	3 0 -15	; "getDataDir"
+	24	[19]	CALL     	3 2 2
+	25	[19]	LOADK    	4 -16	; "/defaults.persistent.lua"
+	26	[19]	CONCAT   	3 3 4
+	27	[19]	CALL     	1 3 1
+	28	[22]	GETGLOBAL	1 -10	; require
+	29	[22]	LOADK    	2 -17	; "setupkoenv"
+	30	[22]	CALL     	1 2 1
+	31	[24]	GETGLOBAL	1 -1	; io
+	32	[24]	GETTABLE 	1 1 -2	; "stdout"
+	33	[24]	SELF     	1 1 -3	; "write"
+	34	[24]	LOADK    	3 -18	; " [*] Version: "
+	35	[24]	GETGLOBAL	4 -10	; require
+	36	[24]	LOADK    	5 -19	; "version"
+	37	[24]	CALL     	4 2 2
+	38	[24]	SELF     	4 4 -20	; "getCurrentRevision"
+	39	[24]	CALL     	4 2 2
+	40	[24]	LOADK    	5 -21	; "\n\n"
+	41	[24]	CALL     	1 5 1
+	42	[25]	GETGLOBAL	1 -1	; io
+	43	[25]	GETTABLE 	1 1 -2	; "stdout"
+	44	[25]	SELF     	1 1 -9	; "flush"
+	45	[25]	CALL     	1 2 1
+	46	[30]	GETGLOBAL	1 -10	; require
+	47	[30]	LOADK    	2 -23	; "luasettings"
+	48	[30]	CALL     	1 2 2
+	49	[30]	SELF     	1 1 -24	; "open"
+	50	[31]	SELF     	3 0 -15	; "getDataDir"
+	51	[31]	CALL     	3 2 2
+	52	[31]	LOADK    	4 -25	; "/settings.reader.lua"
+	53	[31]	CONCAT   	3 3 4
+	54	[30]	CALL     	1 3 2
+	55	[31]	SETGLOBAL	1 -22	; G_reader_settings
+	56	[32]	GETGLOBAL	1 -22	; G_reader_settings
+	57	[32]	SELF     	1 1 -26	; "readSetting"
+	58	[32]	LOADK    	3 -27	; "language"
+	59	[32]	CALL     	1 3 2
+	60	[34]	GETGLOBAL	2 -5	; os
+	61	[34]	GETTABLE 	2 2 -28	; "getenv"
+	62	[34]	LOADK    	3 -29	; "KO_RTL"
+	63	[34]	CALL     	2 2 2
+	64	[34]	TEST     	2 0 0
+	65	[34]	JMP      	1	; to 67
+	66	[34]	LOADK    	1 -30	; "ar_AA"
+	67	[35]	GETGLOBAL	2 -10	; require
+	68	[35]	LOADK    	3 -31	; "gettext"
+	69	[35]	CALL     	2 2 2
+	70	[36]	TEST     	1 0 0
+	71	[36]	JMP      	3	; to 75
+	72	[37]	GETTABLE 	3 2 -32	; "changeLang"
+	73	[37]	MOVE     	4 1
+	74	[37]	CALL     	3 2 1
+	75	[41]	GETGLOBAL	3 -10	; require
+	76	[41]	LOADK    	4 -33	; "ffi"
+	77	[41]	CALL     	3 2 2
+	78	[42]	GETGLOBAL	4 -10	; require
+	79	[42]	LOADK    	5 -34	; "ffi/posix_h"
+	80	[42]	CALL     	4 2 2
+	81	[43]	GETTABLE 	5 3 -35	; "C"
+	82	[44]	GETGLOBAL	6 -22	; G_reader_settings
+	83	[44]	SELF     	6 6 -36	; "isTrue"
+	84	[44]	LOADK    	8 -37	; "dev_no_c_blitter"
+	85	[44]	CALL     	6 3 2
+	86	[44]	TEST     	6 0 0
+	87	[44]	JMP      	13	; to 101
+	88	[45]	GETTABLE 	6 3 -5	; "os"
+	89	[45]	EQ       	0 6 -38	; - "Windows"
+	90	[45]	JMP      	4	; to 95
+	91	[46]	GETTABLE 	6 5 -39	; "_putenv"
+	92	[46]	LOADK    	7 -40	; "KO_NO_CBB=true"
+	93	[46]	CALL     	6 2 1
+	94	[46]	JMP      	16	; to 111
+	95	[48]	GETTABLE 	6 5 -41	; "setenv"
+	96	[48]	LOADK    	7 -42	; "KO_NO_CBB"
+	97	[48]	LOADK    	8 -43	; "true"
+	98	[48]	LOADK    	9 -44	; 1
+	99	[48]	CALL     	6 4 1
+	100	[49]	JMP      	10	; to 111
+	101	[51]	GETTABLE 	6 3 -5	; "os"
+	102	[51]	EQ       	0 6 -38	; - "Windows"
+	103	[51]	JMP      	4	; to 108
+	104	[52]	GETTABLE 	6 5 -39	; "_putenv"
+	105	[52]	LOADK    	7 -45	; "KO_NO_CBB=false"
+	106	[52]	CALL     	6 2 1
+	107	[52]	JMP      	3	; to 111
+	108	[54]	GETTABLE 	6 5 -46	; "unsetenv"
+	109	[54]	LOADK    	7 -42	; "KO_NO_CBB"
+	110	[54]	CALL     	6 2 1
+	111	[60]	GETGLOBAL	6 -10	; require
+	112	[60]	LOADK    	7 -47	; "dbg"
+	113	[60]	CALL     	6 2 2
+	114	[61]	GETGLOBAL	7 -22	; G_reader_settings
+	115	[61]	SELF     	7 7 -36	; "isTrue"
+	116	[61]	LOADK    	9 -48	; "debug"
+	117	[61]	CALL     	7 3 2
+	118	[61]	TEST     	7 0 0
+	119	[61]	JMP      	2	; to 122
+	120	[61]	SELF     	7 6 -49	; "turnOn"
+	121	[61]	CALL     	7 2 1
+	122	[62]	GETGLOBAL	7 -22	; G_reader_settings
+	123	[62]	SELF     	7 7 -36	; "isTrue"
+	124	[62]	LOADK    	9 -48	; "debug"
+	125	[62]	CALL     	7 3 2
+	126	[62]	TEST     	7 0 0
+	127	[62]	JMP      	9	; to 137
+	128	[62]	GETGLOBAL	7 -22	; G_reader_settings
+	129	[62]	SELF     	7 7 -36	; "isTrue"
+	130	[62]	LOADK    	9 -50	; "debug_verbose"
+	131	[62]	CALL     	7 3 2
+	132	[62]	TEST     	7 0 0
+	133	[62]	JMP      	3	; to 137
+	134	[62]	SELF     	7 6 -51	; "setVerbose"
+	135	[62]	LOADBOOL 	9 1 0
+	136	[62]	CALL     	7 3 1
+	137	[65]	NEWTABLE 	7 0 3
+	138	[66]	SETTABLE 	7 -48 -52	; "debug" "d"
+	139	[67]	SETTABLE 	7 -53 -54	; "profile" "p"
+	140	[68]	SETTABLE 	7 -55 -56	; "help" "h"
+	141	[87]	CLOSURE  	8 0	; 0x7ff5ca407300
+	142	[89]	LOADNIL  	9 9
+	143	[90]	GETGLOBAL	10 -57	; arg
+	144	[91]	LOADK    	11 -44	; 1
+	145	[92]	LEN      	12 10
+	146	[92]	LE       	0 11 12
+	147	[92]	JMP      	50	; to 198
+	148	[93]	GETTABLE 	12 10 11
+	149	[94]	ADD      	11 11 -44	; - 1
+	150	[95]	EQ       	0 12 -58	; - "--"
+	151	[95]	JMP      	1	; to 153
+	152	[95]	JMP      	45	; to 198
+	153	[97]	SELF     	13 12 -59	; "sub"
+	154	[97]	LOADK    	15 -44	; 1
+	155	[97]	LOADK    	16 -60	; 2
+	156	[97]	CALL     	13 4 2
+	157	[97]	EQ       	0 13 -58	; - "--"
+	158	[97]	JMP      	9	; to 168
+	159	[98]	SELF     	13 12 -59	; "sub"
+	160	[98]	LOADK    	15 -61	; 3
+	161	[98]	CALL     	13 3 2
+	162	[98]	GETTABLE 	13 7 13
+	163	[99]	EQ       	1 13 -62	; - nil
+	164	[99]	JMP      	3	; to 168
+	165	[99]	LOADK    	14 -63	; "-"
+	166	[99]	MOVE     	15 13
+	167	[99]	CONCAT   	12 14 15
+	168	[102]	EQ       	0 12 -64	; - "-h"
+	169	[102]	JMP      	4	; to 174
+	170	[103]	MOVE     	13 8
+	171	[103]	TAILCALL 	13 1 0
+	172	[103]	RETURN   	13 0
+	173	[103]	JMP      	-29	; to 145
+	174	[104]	EQ       	0 12 -65	; - "-d"
+	175	[104]	JMP      	3	; to 179
+	176	[105]	SELF     	13 6 -49	; "turnOn"
+	177	[105]	CALL     	13 2 1
+	178	[105]	JMP      	-34	; to 145
+	179	[106]	EQ       	0 12 -66	; - "-v"
+	180	[106]	JMP      	4	; to 185
+	181	[107]	SELF     	13 6 -51	; "setVerbose"
+	182	[107]	LOADBOOL 	15 1 0
+	183	[107]	CALL     	13 3 1
+	184	[107]	JMP      	-40	; to 145
+	185	[108]	EQ       	0 12 -67	; - "-p"
+	186	[108]	JMP      	8	; to 195
+	187	[109]	GETGLOBAL	13 -10	; require
+	188	[109]	LOADK    	14 -68	; "jit.p"
+	189	[109]	CALL     	13 2 2
+	190	[109]	MOVE     	9 13
+	191	[110]	GETTABLE 	13 9 -69	; "start"
+	192	[110]	LOADK    	14 -70	; "la"
+	193	[110]	CALL     	13 2 1
+	194	[110]	JMP      	-50	; to 145
+	195	[113]	SUB      	11 11 -44	; - 1
+	196	[114]	JMP      	1	; to 198
+	197	[115]	JMP      	-53	; to 145
+	198	[119]	GETGLOBAL	12 -10	; require
+	199	[119]	LOADK    	13 -71	; "device"
+	200	[119]	CALL     	12 2 2
+	201	[121]	GETGLOBAL	13 -22	; G_reader_settings
+	202	[121]	SELF     	13 13 -26	; "readSetting"
+	203	[121]	LOADK    	15 -72	; "screen_dpi"
+	204	[121]	CALL     	13 3 2
+	205	[122]	EQ       	1 13 -62	; - nil
+	206	[122]	JMP      	3	; to 210
+	207	[123]	SELF     	14 12 -73	; "setScreenDPI"
+	208	[123]	MOVE     	16 13
+	209	[123]	CALL     	14 3 1
+	210	[126]	GETGLOBAL	14 -22	; G_reader_settings
+	211	[126]	SELF     	14 14 -36	; "isTrue"
+	212	[126]	LOADK    	16 -74	; "night_mode"
+	213	[126]	CALL     	14 3 2
+	214	[126]	TEST     	14 0 0
+	215	[126]	JMP      	3	; to 219
+	216	[127]	GETTABLE 	14 12 -75	; "screen"
+	217	[127]	SELF     	14 14 -76	; "toggleNightMode"
+	218	[127]	CALL     	14 2 1
+	219	[130]	SELF     	14 12 -77	; "hasEinkScreen"
+	220	[130]	CALL     	14 2 2
+	221	[130]	TEST     	14 0 0
+	222	[130]	JMP      	29	; to 252
+	223	[131]	GETTABLE 	14 12 -75	; "screen"
+	224	[131]	SELF     	14 14 -78	; "setupDithering"
+	225	[131]	CALL     	14 2 1
+	226	[132]	GETTABLE 	14 12 -75	; "screen"
+	227	[132]	GETTABLE 	14 14 -79	; "hw_dithering"
+	228	[132]	TEST     	14 0 0
+	229	[132]	JMP      	9	; to 239
+	230	[132]	GETGLOBAL	14 -22	; G_reader_settings
+	231	[132]	SELF     	14 14 -36	; "isTrue"
+	232	[132]	LOADK    	16 -80	; "dev_no_hw_dither"
+	233	[132]	CALL     	14 3 2
+	234	[132]	TEST     	14 0 0
+	235	[132]	JMP      	3	; to 239
+	236	[133]	GETTABLE 	14 12 -75	; "screen"
+	237	[133]	SELF     	14 14 -81	; "toggleHWDithering"
+	238	[133]	CALL     	14 2 1
+	239	[135]	GETTABLE 	14 12 -75	; "screen"
+	240	[135]	GETTABLE 	14 14 -82	; "sw_dithering"
+	241	[135]	TEST     	14 0 0
+	242	[135]	JMP      	9	; to 252
+	243	[135]	GETGLOBAL	14 -22	; G_reader_settings
+	244	[135]	SELF     	14 14 -36	; "isTrue"
+	245	[135]	LOADK    	16 -83	; "dev_no_sw_dither"
+	246	[135]	CALL     	14 3 2
+	247	[135]	TEST     	14 0 0
+	248	[135]	JMP      	3	; to 252
+	249	[136]	GETTABLE 	14 12 -75	; "screen"
+	250	[136]	SELF     	14 14 -84	; "toggleSWDithering"
+	251	[136]	CALL     	14 2 1
+	252	[141]	GETGLOBAL	14 -10	; require
+	253	[141]	LOADK    	15 -85	; "ui/data/settings_migration"
+	254	[141]	CALL     	14 2 2
+	255	[142]	SELF     	15 14 -86	; "migrateSettings"
+	256	[142]	GETGLOBAL	17 -22	; G_reader_settings
+	257	[142]	CALL     	15 3 1
+	258	[145]	GETGLOBAL	15 -10	; require
+	259	[145]	LOADK    	16 -87	; "document/canvascontext"
+	260	[145]	CALL     	15 2 2
+	261	[146]	SELF     	16 15 -88	; "init"
+	262	[146]	MOVE     	18 12
+	263	[146]	CALL     	16 3 1
+	264	[151]	SELF     	16 12 -89	; "needsTouchScreenProbe"
+	265	[151]	CALL     	16 2 2
+	266	[151]	TEST     	16 0 0
+	267	[151]	JMP      	2	; to 270
+	268	[152]	SELF     	16 12 -90	; "touchScreenProbe"
+	269	[152]	CALL     	16 2 1
+	270	[156]	GETGLOBAL	16 -10	; require
+	271	[156]	LOADK    	17 -91	; "ui/bidi"
+	272	[156]	CALL     	16 2 2
+	273	[157]	GETTABLE 	17 16 -92	; "setup"
+	274	[157]	MOVE     	18 1
+	275	[157]	CALL     	17 2 1
+	276	[163]	GETGLOBAL	17 -22	; G_reader_settings
+	277	[163]	SELF     	17 17 -26	; "readSetting"
+	278	[163]	LOADK    	19 -93	; "fontmap"
+	279	[163]	CALL     	17 3 2
+	280	[164]	EQ       	1 17 -62	; - nil
+	281	[164]	JMP      	11	; to 293
+	282	[165]	GETGLOBAL	18 -10	; require
+	283	[165]	LOADK    	19 -94	; "ui/font"
+	284	[165]	CALL     	18 2 2
+	285	[166]	GETGLOBAL	19 -95	; pairs
+	286	[166]	MOVE     	20 17
+	287	[166]	CALL     	19 2 4
+	288	[166]	JMP      	2	; to 291
+	289	[167]	GETTABLE 	24 18 -93	; "fontmap"
+	290	[167]	SETTABLE 	24 22 23
+	291	[166]	TFORLOOP 	19 2
+	292	[167]	JMP      	-4	; to 289
+	293	[171]	GETGLOBAL	18 -10	; require
+	294	[171]	LOADK    	19 -96	; "ui/uimanager"
+	295	[171]	CALL     	18 2 2
+	296	[176]	SELF     	19 12 -97	; "hasColorScreen"
+	297	[176]	CALL     	19 2 2
+	298	[176]	TEST     	19 0 0
+	299	[176]	JMP      	23	; to 323
+	300	[176]	GETGLOBAL	19 -22	; G_reader_settings
+	301	[176]	SELF     	19 19 -98	; "has"
+	302	[176]	LOADK    	21 -99	; "color_rendering"
+	303	[176]	CALL     	19 3 2
+	304	[176]	TEST     	19 0 1
+	305	[176]	JMP      	17	; to 323
+	306	[178]	GETGLOBAL	19 -22	; G_reader_settings
+	307	[178]	SELF     	19 19 -100	; "saveSetting"
+	308	[178]	LOADK    	21 -99	; "color_rendering"
+	309	[178]	LOADBOOL 	22 1 0
+	310	[178]	CALL     	19 4 1
+	311	[179]	GETGLOBAL	19 -10	; require
+	312	[179]	LOADK    	20 -101	; "ui/widget/infomessage"
+	313	[179]	CALL     	19 2 2
+	314	[180]	SELF     	20 18 -102	; "show"
+	315	[180]	SELF     	22 19 -103	; "new"
+	316	[180]	NEWTABLE 	24 0 1
+	317	[181]	MOVE     	25 2
+	318	[181]	LOADK    	26 -105	; "Documents will be rendered in color on this device.\nIf your device is grayscale, you can disable color rendering in the screen sub-menu for reduced memory usage."
+	319	[181]	CALL     	25 2 2
+	320	[181]	SETTABLE 	24 -104 25	; "text" -
+	321	[180]	CALL     	22 3 0
+	322	[180]	CALL     	20 0 1
+	323	[186]	GETGLOBAL	19 -22	; G_reader_settings
+	324	[186]	SELF     	19 19 -36	; "isTrue"
+	325	[186]	LOADK    	21 -99	; "color_rendering"
+	326	[186]	CALL     	19 3 2
+	327	[186]	TEST     	19 0 0
+	328	[186]	JMP      	30	; to 359
+	329	[186]	SELF     	19 12 -97	; "hasColorScreen"
+	330	[186]	CALL     	19 2 2
+	331	[186]	TEST     	19 0 1
+	332	[186]	JMP      	26	; to 359
+	333	[187]	GETGLOBAL	19 -10	; require
+	334	[187]	LOADK    	20 -106	; "ui/widget/confirmbox"
+	335	[187]	CALL     	19 2 2
+	336	[188]	SELF     	20 18 -102	; "show"
+	337	[188]	SELF     	22 19 -103	; "new"
+	338	[188]	NEWTABLE 	24 0 5
+	339	[189]	MOVE     	25 2
+	340	[189]	LOADK    	26 -107	; "Color rendering is mistakenly enabled on your grayscale device.\nThis will subtly break some features, and adversely affect performance."
+	341	[189]	CALL     	25 2 2
+	342	[189]	SETTABLE 	24 -104 25	; "text" -
+	343	[190]	MOVE     	25 2
+	344	[190]	LOADK    	26 -109	; "Ignore"
+	345	[190]	CALL     	25 2 2
+	346	[190]	SETTABLE 	24 -108 25	; "cancel_text" -
+	347	[193]	CLOSURE  	25 1	; 0x7ff5ca408c00
+	348	[193]	SETTABLE 	24 -110 25	; "cancel_callback" -
+	349	[194]	MOVE     	25 2
+	350	[194]	LOADK    	26 -112	; "Disable"
+	351	[194]	CALL     	25 2 2
+	352	[194]	SETTABLE 	24 -111 25	; "ok_text" -
+	353	[200]	CLOSURE  	25 2	; 0x7ff5ca408d80
+	354	[200]	MOVE     	0 15
+	355	[200]	MOVE     	0 18
+	356	[200]	SETTABLE 	24 -113 25	; "ok_callback" -
+	357	[188]	CALL     	22 3 0
+	358	[188]	CALL     	20 0 1
+	359	[205]	GETGLOBAL	19 -10	; require
+	360	[205]	LOADK    	20 -114	; "libs/libkoreader-lfs"
+	361	[205]	CALL     	19 2 2
+	362	[222]	CLOSURE  	20 3	; 0x7ff5ca409560
+	363	[222]	MOVE     	0 2
+	364	[222]	MOVE     	0 19
+	365	[222]	MOVE     	0 18
+	366	[222]	MOVE     	0 20
+	367	[238]	CLOSURE  	21 4	; 0x7ff5ca40a1f0
+	368	[241]	GETGLOBAL	22 -22	; G_reader_settings
+	369	[241]	SELF     	22 22 -26	; "readSetting"
+	370	[241]	LOADK    	24 -115	; "lastfile"
+	371	[241]	CALL     	22 3 2
+	372	[242]	GETGLOBAL	23 -22	; G_reader_settings
+	373	[242]	SELF     	23 23 -26	; "readSetting"
+	374	[242]	LOADK    	25 -116	; "start_with"
+	375	[242]	CALL     	23 3 2
+	376	[243]	EQ       	1 23 -117	; - "last"
+	377	[243]	JMP      	1	; to 379
+	378	[243]	LOADBOOL 	24 0 1
+	379	[243]	LOADBOOL 	24 1 0
+	380	[245]	TEST     	24 0 0
+	381	[245]	JMP      	14	; to 396
+	382	[245]	TEST     	22 0 0
+	383	[245]	JMP      	12	; to 396
+	384	[245]	GETTABLE 	25 19 -118	; "attributes"
+	385	[245]	MOVE     	26 22
+	386	[245]	LOADK    	27 -119	; "mode"
+	387	[245]	CALL     	25 3 2
+	388	[245]	EQ       	1 25 -120	; - "file"
+	389	[245]	JMP      	6	; to 396
+	390	[246]	SELF     	25 18 -102	; "show"
+	391	[246]	MOVE     	27 20
+	392	[246]	CALL     	27 1 0
+	393	[246]	CALL     	25 0 1
+	394	[247]	LOADNIL  	22 22
+	395	[247]	JMP      	11	; to 407
+	396	[249]	GETGLOBAL	25 -10	; require
+	397	[249]	LOADK    	26 -121	; "ui/quickstart"
+	398	[249]	CALL     	25 2 2
+	399	[250]	SELF     	26 25 -122	; "isShown"
+	400	[250]	CALL     	26 2 2
+	401	[250]	TEST     	26 0 1
+	402	[250]	JMP      	4	; to 407
+	403	[251]	LOADBOOL 	24 1 0
+	404	[252]	SELF     	26 25 -123	; "getQuickStart"
+	405	[252]	CALL     	26 2 2
+	406	[252]	MOVE     	22 26
+	407	[257]	LOADNIL  	25 25
+	408	[258]	GETTABLE 	26 10 11
+	409	[258]	TEST     	26 0 0
+	410	[258]	JMP      	78	; to 489
+	411	[258]	GETTABLE 	26 10 11
+	412	[258]	EQ       	1 26 -124	; - ""
+	413	[258]	JMP      	75	; to 489
+	414	[259]	LOADNIL  	26 26
+	415	[260]	MOVE     	27 21
+	416	[260]	GETTABLE 	28 10 11
+	417	[260]	CALL     	27 2 2
+	418	[261]	GETTABLE 	28 19 -118	; "attributes"
+	419	[261]	MOVE     	29 27
+	420	[261]	LOADK    	30 -119	; "mode"
+	421	[261]	CALL     	28 3 2
+	422	[261]	EQ       	0 28 -120	; - "file"
+	423	[261]	JMP      	2	; to 426
+	424	[262]	MOVE     	26 27
+	425	[262]	JMP      	5	; to 431
+	426	[263]	TEST     	24 0 0
+	427	[263]	JMP      	3	; to 431
+	428	[263]	TEST     	22 0 0
+	429	[263]	JMP      	1	; to 431
+	430	[264]	MOVE     	26 22
+	431	[268]	TEST     	26 0 0
+	432	[268]	JMP      	12	; to 445
+	433	[268]	EQ       	1 26 -124	; - ""
+	434	[268]	JMP      	10	; to 445
+	435	[269]	GETGLOBAL	28 -10	; require
+	436	[269]	LOADK    	29 -125	; "apps/reader/readerui"
+	437	[269]	CALL     	28 2 2
+	438	[270]	SELF     	29 18 -126	; "nextTick"
+	439	[272]	CLOSURE  	31 5	; 0x7ff5ca407bf0
+	440	[272]	MOVE     	0 28
+	441	[272]	MOVE     	0 26
+	442	[270]	CALL     	29 3 1
+	443	[272]	CLOSE    	28
+	444	[272]	JMP      	39	; to 484
+	445	[276]	GETGLOBAL	28 -10	; require
+	446	[276]	LOADK    	29 -127	; "apps/filemanager/filemanager"
+	447	[276]	CALL     	28 2 2
+	448	[278]	GETGLOBAL	29 -22	; G_reader_settings
+	449	[278]	SELF     	29 29 -26	; "readSetting"
+	450	[278]	LOADK    	31 -128	; "home_dir"
+	451	[278]	CALL     	29 3 2
+	452	[278]	TEST     	29 0 1
+	453	[278]	JMP      	1	; to 455
+	454	[278]	GETTABLE 	29 10 11
+	455	[279]	SELF     	30 18 -126	; "nextTick"
+	456	[281]	CLOSURE  	32 6	; 0x7ff5ca408530
+	457	[281]	MOVE     	0 28
+	458	[281]	MOVE     	0 29
+	459	[279]	CALL     	30 3 1
+	460	[284]	EQ       	0 23 -129	; - "history"
+	461	[284]	JMP      	10	; to 472
+	462	[285]	GETGLOBAL	30 -10	; require
+	463	[285]	LOADK    	31 -130	; "apps/filemanager/filemanagerhistory"
+	464	[285]	CALL     	30 2 2
+	465	[286]	SELF     	31 18 -126	; "nextTick"
+	466	[288]	CLOSURE  	33 7	; 0x7ff5ca40aad0
+	467	[288]	MOVE     	0 30
+	468	[288]	MOVE     	0 22
+	469	[286]	CALL     	31 3 1
+	470	[288]	CLOSE    	30
+	471	[288]	JMP      	11	; to 483
+	472	[289]	EQ       	0 23 -131	; - "folder_shortcuts"
+	473	[289]	JMP      	9	; to 483
+	474	[290]	GETGLOBAL	30 -10	; require
+	475	[290]	LOADK    	31 -132	; "apps/filemanager/filemanagershortcuts"
+	476	[290]	CALL     	30 2 2
+	477	[291]	SELF     	31 18 -126	; "nextTick"
+	478	[295]	CLOSURE  	33 8	; 0x7ff5ca40ad80
+	479	[295]	MOVE     	0 30
+	480	[295]	MOVE     	0 28
+	481	[291]	CALL     	31 3 1
+	482	[295]	CLOSE    	30
+	483	[296]	CLOSE    	28
+	484	[298]	SELF     	28 18 -133	; "run"
+	485	[298]	CALL     	28 2 2
+	486	[298]	MOVE     	25 28
+	487	[298]	CLOSE    	26
+	488	[298]	JMP      	18	; to 507
+	489	[299]	TEST     	22 0 0
+	490	[299]	JMP      	13	; to 504
+	491	[300]	GETGLOBAL	26 -10	; require
+	492	[300]	LOADK    	27 -125	; "apps/reader/readerui"
+	493	[300]	CALL     	26 2 2
+	494	[301]	SELF     	27 18 -126	; "nextTick"
+	495	[303]	CLOSURE  	29 9	; 0x7ff5ca40b1e0
+	496	[303]	MOVE     	0 26
+	497	[303]	MOVE     	0 22
+	498	[301]	CALL     	27 3 1
+	499	[304]	SELF     	27 18 -133	; "run"
+	500	[304]	CALL     	27 2 2
+	501	[304]	MOVE     	25 27
+	502	[304]	CLOSE    	26
+	503	[304]	JMP      	3	; to 507
+	504	[306]	MOVE     	26 8
+	505	[306]	TAILCALL 	26 1 0
+	506	[306]	RETURN   	26 0
+	507	[332]	CLOSURE  	26 10	; 0x7ff5ca40b390
+	508	[332]	MOVE     	0 12
+	509	[332]	MOVE     	0 9
+	510	[332]	MOVE     	0 25
+	511	[334]	MOVE     	27 26
+	512	[334]	CALL     	27 1 1
+	513	[334]	RETURN   	0 1
+
+function <./reader.lua:71,87> (46 instructions, 184 bytes at 0x7ff5ca407300)
+0 params, 2 slots, 0 upvalues, 0 locals, 13 constants, 0 functions
+	1	[72]	GETGLOBAL	0 -1	; print
+	2	[72]	LOADK    	1 -2	; "usage: ./reader.lua [OPTION] ... path"
+	3	[72]	CALL     	0 2 1
+	4	[73]	GETGLOBAL	0 -1	; print
+	5	[73]	LOADK    	1 -3	; "Read all the books on your E-Ink reader"
+	6	[73]	CALL     	0 2 1
+	7	[74]	GETGLOBAL	0 -1	; print
+	8	[74]	LOADK    	1 -4	; ""
+	9	[74]	CALL     	0 2 1
+	10	[75]	GETGLOBAL	0 -1	; print
+	11	[75]	LOADK    	1 -5	; "-d               start in debug mode"
+	12	[75]	CALL     	0 2 1
+	13	[76]	GETGLOBAL	0 -1	; print
+	14	[76]	LOADK    	1 -6	; "-v               debug in verbose mode"
+	15	[76]	CALL     	0 2 1
+	16	[77]	GETGLOBAL	0 -1	; print
+	17	[77]	LOADK    	1 -7	; "-p               enable Lua code profiling"
+	18	[77]	CALL     	0 2 1
+	19	[78]	GETGLOBAL	0 -1	; print
+	20	[78]	LOADK    	1 -8	; "-h               show this usage help"
+	21	[78]	CALL     	0 2 1
+	22	[79]	GETGLOBAL	0 -1	; print
+	23	[79]	LOADK    	1 -4	; ""
+	24	[79]	CALL     	0 2 1
+	25	[80]	GETGLOBAL	0 -1	; print
+	26	[80]	LOADK    	1 -9	; "If you give the name of a directory instead of a file path, a file"
+	27	[80]	CALL     	0 2 1
+	28	[81]	GETGLOBAL	0 -1	; print
+	29	[81]	LOADK    	1 -10	; "chooser will show up and let you select a file"
+	30	[81]	CALL     	0 2 1
+	31	[82]	GETGLOBAL	0 -1	; print
+	32	[82]	LOADK    	1 -4	; ""
+	33	[82]	CALL     	0 2 1
+	34	[83]	GETGLOBAL	0 -1	; print
+	35	[83]	LOADK    	1 -11	; "If you don't pass any path, the last viewed document will be opened"
+	36	[83]	CALL     	0 2 1
+	37	[84]	GETGLOBAL	0 -1	; print
+	38	[84]	LOADK    	1 -4	; ""
+	39	[84]	CALL     	0 2 1
+	40	[85]	GETGLOBAL	0 -1	; print
+	41	[85]	LOADK    	1 -12	; "This software is licensed under the AGPLv3."
+	42	[85]	CALL     	0 2 1
+	43	[86]	GETGLOBAL	0 -1	; print
+	44	[86]	LOADK    	1 -13	; "See http://github.com/koreader/koreader for more info."
+	45	[86]	CALL     	0 2 1
+	46	[87]	RETURN   	0 1
+
+function <./reader.lua:191,193> (2 instructions, 8 bytes at 0x7ff5ca408c00)
+0 params, 2 slots, 0 upvalues, 0 locals, 0 constants, 0 functions
+	1	[192]	RETURN   	0 1
+	2	[193]	RETURN   	0 1
+
+function <./reader.lua:195,200> (18 instructions, 72 bytes at 0x7ff5ca408d80)
+0 params, 6 slots, 2 upvalues, 1 local, 9 constants, 0 functions
+	1	[196]	GETGLOBAL	0 -1	; require
+	2	[196]	LOADK    	1 -2	; "ui/event"
+	3	[196]	CALL     	0 2 2
+	4	[197]	GETGLOBAL	1 -3	; G_reader_settings
+	5	[197]	SELF     	1 1 -4	; "delSetting"
+	6	[197]	LOADK    	3 -5	; "color_rendering"
+	7	[197]	CALL     	1 3 1
+	8	[198]	GETUPVAL 	1 0	; CanvasContext
+	9	[198]	SELF     	1 1 -6	; "setColorRenderingEnabled"
+	10	[198]	LOADBOOL 	3 0 0
+	11	[198]	CALL     	1 3 1
+	12	[199]	GETUPVAL 	1 1	; UIManager
+	13	[199]	SELF     	1 1 -7	; "broadcastEvent"
+	14	[199]	SELF     	3 0 -8	; "new"
+	15	[199]	LOADK    	5 -9	; "ColorRenderingUpdate"
+	16	[199]	CALL     	3 3 0
+	17	[199]	CALL     	1 0 1
+	18	[200]	RETURN   	0 1
+
+function <./reader.lua:206,222> (17 instructions, 68 bytes at 0x7ff5ca409560)
+0 params, 6 slots, 4 upvalues, 1 local, 6 constants, 1 function
+	1	[207]	GETGLOBAL	0 -1	; require
+	2	[207]	LOADK    	1 -2	; "ui/widget/confirmbox"
+	3	[207]	CALL     	0 2 2
+	4	[208]	SELF     	1 0 -3	; "new"
+	5	[208]	NEWTABLE 	3 0 2
+	6	[209]	GETUPVAL 	4 0	; _
+	7	[209]	LOADK    	5 -5	; "Cannot open last file.\nThis could be because it was deleted or because external storage is still being mounted.\nDo you want to retry?"
+	8	[209]	CALL     	4 2 2
+	9	[209]	SETTABLE 	3 -4 4	; "text" -
+	10	[220]	CLOSURE  	4 0	; 0x7ff5ca4097d0
+	11	[220]	GETUPVAL 	0 1	; lfs
+	12	[220]	GETUPVAL 	0 2	; UIManager
+	13	[220]	GETUPVAL 	0 3	; retryLastFile
+	14	[220]	SETTABLE 	3 -6 4	; "ok_callback" -
+	15	[208]	TAILCALL 	1 3 0
+	16	[221]	RETURN   	1 0
+	17	[222]	RETURN   	0 1
+
+function <./reader.lua:210,220> (28 instructions, 112 bytes at 0x7ff5ca4097d0)
+0 params, 5 slots, 3 upvalues, 2 locals, 10 constants, 1 function
+	1	[211]	GETGLOBAL	0 -1	; G_reader_settings
+	2	[211]	SELF     	0 0 -2	; "readSetting"
+	3	[211]	LOADK    	2 -3	; "lastfile"
+	4	[211]	CALL     	0 3 2
+	5	[212]	GETUPVAL 	1 0	; lfs
+	6	[212]	GETTABLE 	1 1 -4	; "attributes"
+	7	[212]	MOVE     	2 0
+	8	[212]	LOADK    	3 -5	; "mode"
+	9	[212]	CALL     	1 3 2
+	10	[212]	EQ       	0 1 -6	; - "file"
+	11	[212]	JMP      	11	; to 23
+	12	[213]	GETGLOBAL	1 -7	; require
+	13	[213]	LOADK    	2 -8	; "apps/reader/readerui"
+	14	[213]	CALL     	1 2 2
+	15	[214]	GETUPVAL 	2 1	; UIManager
+	16	[214]	SELF     	2 2 -9	; "nextTick"
+	17	[216]	CLOSURE  	4 0	; 0x7ff5ca409c70
+	18	[216]	MOVE     	0 1
+	19	[216]	MOVE     	0 0
+	20	[214]	CALL     	2 3 1
+	21	[216]	CLOSE    	1
+	22	[216]	JMP      	5	; to 28
+	23	[218]	GETUPVAL 	1 1	; UIManager
+	24	[218]	SELF     	1 1 -10	; "show"
+	25	[218]	GETUPVAL 	3 2	; retryLastFile
+	26	[218]	CALL     	3 1 0
+	27	[218]	CALL     	1 0 1
+	28	[220]	RETURN   	0 1
+
+function <./reader.lua:214,216> (5 instructions, 20 bytes at 0x7ff5ca409c70)
+0 params, 3 slots, 2 upvalues, 0 locals, 1 constant, 0 functions
+	1	[215]	GETUPVAL 	0 0	; ReaderUI
+	2	[215]	SELF     	0 0 -1	; "showReader"
+	3	[215]	GETUPVAL 	2 1	; last_file
+	4	[215]	CALL     	0 3 1
+	5	[216]	RETURN   	0 1
+
+function <./reader.lua:224,238> (20 instructions, 80 bytes at 0x7ff5ca40a1f0)
+1 param, 8 slots, 0 upvalues, 4 locals, 3 constants, 2 functions
+	1	[227]	CLOSURE  	1 0	; 0x7ff5ca40a360
+	2	[231]	CLOSURE  	2 1	; 0x7ff5ca40a840
+	3	[231]	MOVE     	0 1
+	4	[233]	LOADK    	3 -1	; "file://"
+	5	[234]	SELF     	4 0 -2	; "sub"
+	6	[234]	LOADK    	6 -3	; 1
+	7	[234]	LEN      	7 3
+	8	[234]	CALL     	4 4 2
+	9	[234]	EQ       	1 4 3
+	10	[234]	JMP      	1	; to 12
+	11	[235]	RETURN   	0 2
+	12	[237]	MOVE     	4 2
+	13	[237]	MOVE     	5 0
+	14	[237]	CALL     	4 2 2
+	15	[237]	SELF     	4 4 -2	; "sub"
+	16	[237]	LEN      	6 3
+	17	[237]	ADD      	6 6 -3	; - 1
+	18	[237]	TAILCALL 	4 3 0
+	19	[237]	RETURN   	4 0
+	20	[238]	RETURN   	0 1
+
+function <./reader.lua:225,227> (9 instructions, 36 bytes at 0x7ff5ca40a360)
+1 param, 5 slots, 0 upvalues, 1 local, 4 constants, 0 functions
+	1	[226]	GETGLOBAL	1 -1	; string
+	2	[226]	GETTABLE 	1 1 -2	; "char"
+	3	[226]	GETGLOBAL	2 -3	; tonumber
+	4	[226]	MOVE     	3 0
+	5	[226]	LOADK    	4 -4	; 16
+	6	[226]	CALL     	2 3 0
+	7	[226]	TAILCALL 	1 0 0
+	8	[226]	RETURN   	1 0
+	9	[227]	RETURN   	0 1
+
+function <./reader.lua:229,231> (6 instructions, 24 bytes at 0x7ff5ca40a840)
+1 param, 5 slots, 1 upvalue, 1 local, 2 constants, 0 functions
+	1	[230]	SELF     	1 0 -1	; "gsub"
+	2	[230]	LOADK    	3 -2	; "%%(%x%x)"
+	3	[230]	GETUPVAL 	4 0	; hexToChar
+	4	[230]	TAILCALL 	1 4 0
+	5	[230]	RETURN   	1 0
+	6	[231]	RETURN   	0 1
+
+function <./reader.lua:270,272> (5 instructions, 20 bytes at 0x7ff5ca407bf0)
+0 params, 3 slots, 2 upvalues, 0 locals, 1 constant, 0 functions
+	1	[271]	GETUPVAL 	0 0	; ReaderUI
+	2	[271]	SELF     	0 0 -1	; "showReader"
+	3	[271]	GETUPVAL 	2 1	; file
+	4	[271]	CALL     	0 3 1
+	5	[272]	RETURN   	0 1
+
+function <./reader.lua:279,281> (5 instructions, 20 bytes at 0x7ff5ca408530)
+0 params, 3 slots, 2 upvalues, 0 locals, 1 constant, 0 functions
+	1	[280]	GETUPVAL 	0 0	; FileManager
+	2	[280]	SELF     	0 0 -1	; "showFiles"
+	3	[280]	GETUPVAL 	2 1	; home_dir
+	4	[280]	CALL     	0 3 1
+	5	[281]	RETURN   	0 1
+
+function <./reader.lua:286,288> (5 instructions, 20 bytes at 0x7ff5ca40aad0)
+0 params, 3 slots, 2 upvalues, 0 locals, 1 constant, 0 functions
+	1	[287]	GETUPVAL 	0 0	; FileManagerHistory
+	2	[287]	SELF     	0 0 -1	; "onShowHist"
+	3	[287]	GETUPVAL 	2 1	; last_file
+	4	[287]	CALL     	0 3 1
+	5	[288]	RETURN   	0 1
+
+function <./reader.lua:291,295> (10 instructions, 40 bytes at 0x7ff5ca40ad80)
+0 params, 4 slots, 2 upvalues, 0 locals, 4 constants, 0 functions
+	1	[292]	GETUPVAL 	0 0	; FileManagerShortcuts
+	2	[292]	SELF     	0 0 -1	; "new"
+	3	[292]	NEWTABLE 	2 0 1
+	4	[293]	GETUPVAL 	3 1	; FileManager
+	5	[293]	GETTABLE 	3 3 -3	; "instance"
+	6	[293]	SETTABLE 	2 -2 3	; "ui" -
+	7	[292]	CALL     	0 3 2
+	8	[294]	SELF     	0 0 -4	; "onShowFolderShortcutsDialog"
+	9	[294]	CALL     	0 2 1
+	10	[295]	RETURN   	0 1
+
+function <./reader.lua:301,303> (5 instructions, 20 bytes at 0x7ff5ca40b1e0)
+0 params, 3 slots, 2 upvalues, 0 locals, 1 constant, 0 functions
+	1	[302]	GETUPVAL 	0 0	; ReaderUI
+	2	[302]	SELF     	0 0 -1	; "showReader"
+	3	[302]	GETUPVAL 	2 1	; last_file
+	4	[302]	CALL     	0 3 1
+	5	[303]	RETURN   	0 1
+
+function <./reader.lua:310,332> (35 instructions, 140 bytes at 0x7ff5ca40b390)
+0 params, 3 slots, 3 upvalues, 1 local, 12 constants, 0 functions
+	1	[312]	GETGLOBAL	0 -1	; require
+	2	[312]	LOADK    	1 -2	; "apps/reader/modules/readeractivityindicator"
+	3	[312]	CALL     	0 2 2
+	4	[315]	GETUPVAL 	1 0	; Device
+	5	[315]	SELF     	1 1 -3	; "saveSettings"
+	6	[315]	CALL     	1 2 1
+	7	[317]	GETGLOBAL	1 -4	; G_reader_settings
+	8	[317]	SELF     	1 1 -5	; "close"
+	9	[317]	CALL     	1 2 1
+	10	[320]	SELF     	1 0 -6	; "coda"
+	11	[320]	CALL     	1 2 1
+	12	[323]	GETUPVAL 	1 0	; Device
+	13	[323]	SELF     	1 1 -7	; "exit"
+	14	[323]	CALL     	1 2 1
+	15	[325]	GETUPVAL 	1 1	; Profiler
+	16	[325]	TEST     	1 0 0
+	17	[325]	JMP      	3	; to 21
+	18	[325]	GETUPVAL 	1 1	; Profiler
+	19	[325]	GETTABLE 	1 1 -8	; "stop"
+	20	[325]	CALL     	1 1 1
+	21	[327]	GETGLOBAL	1 -9	; type
+	22	[327]	GETUPVAL 	2 2	; exit_code
+	23	[327]	CALL     	1 2 2
+	24	[327]	EQ       	0 1 -10	; - "number"
+	25	[327]	JMP      	5	; to 31
+	26	[328]	GETGLOBAL	1 -11	; os
+	27	[328]	GETTABLE 	1 1 -7	; "exit"
+	28	[328]	GETUPVAL 	2 2	; exit_code
+	29	[328]	CALL     	1 2 1
+	30	[328]	JMP      	4	; to 35
+	31	[330]	GETGLOBAL	1 -11	; os
+	32	[330]	GETTABLE 	1 1 -7	; "exit"
+	33	[330]	LOADK    	2 -12	; 0
+	34	[330]	CALL     	1 2 1
+	35	[332]	RETURN   	0 1

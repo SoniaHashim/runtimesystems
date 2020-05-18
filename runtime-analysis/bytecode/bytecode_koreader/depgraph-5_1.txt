@@ -1,0 +1,245 @@
+
+main <./frontend/depgraph.lua:0,0> (17 instructions, 68 bytes at 0x7fa01f4068b0)
+0+ params, 2 slots, 0 upvalues, 1 local, 7 constants, 7 functions
+	1	[16]	NEWTABLE 	0 0 0
+	2	[24]	CLOSURE  	1 0	; 0x7fa01f406b60
+	3	[18]	SETTABLE 	0 -1 1	; "new" -
+	4	[40]	CLOSURE  	1 1	; 0x7fa01f4071b0
+	5	[26]	SETTABLE 	0 -2 1	; "addNode" -
+	6	[67]	CLOSURE  	1 2	; 0x7fa01f4075b0
+	7	[42]	SETTABLE 	0 -3 1	; "removeNode" -
+	8	[75]	CLOSURE  	1 3	; 0x7fa01f4079b0
+	9	[69]	SETTABLE 	0 -4 1	; "checkNode" -
+	10	[85]	CLOSURE  	1 4	; 0x7fa01f407df0
+	11	[77]	SETTABLE 	0 -5 1	; "addNodeDep" -
+	12	[95]	CLOSURE  	1 5	; 0x7fa01f406d50
+	13	[87]	SETTABLE 	0 -6 1	; "removeNodeDep" -
+	14	[133]	CLOSURE  	1 6	; 0x7fa01f408a80
+	15	[97]	SETTABLE 	0 -7 1	; "serialize" -
+	16	[135]	RETURN   	0 2
+	17	[135]	RETURN   	0 1
+
+function <./frontend/depgraph.lua:18,24> (12 instructions, 48 bytes at 0x7fa01f406b60)
+2 params, 6 slots, 0 upvalues, 3 locals, 3 constants, 0 functions
+	1	[19]	TESTSET  	2 1 1
+	2	[19]	JMP      	1	; to 4
+	3	[19]	NEWTABLE 	2 0 0
+	4	[20]	NEWTABLE 	3 0 0
+	5	[20]	SETTABLE 	2 -1 3	; "nodes" -
+	6	[21]	GETGLOBAL	3 -2	; setmetatable
+	7	[21]	MOVE     	4 2
+	8	[21]	MOVE     	5 0
+	9	[21]	CALL     	3 3 1
+	10	[22]	SETTABLE 	0 -3 0	; "__index" -
+	11	[23]	RETURN   	2 2
+	12	[24]	RETURN   	0 1
+
+function <./frontend/depgraph.lua:26,40> (33 instructions, 132 bytes at 0x7fa01f4071b0)
+3 params, 12 slots, 0 upvalues, 9 locals, 5 constants, 0 functions
+	1	[27]	GETTABLE 	3 0 -1	; "nodes"
+	2	[27]	GETTABLE 	3 3 1
+	3	[27]	TEST     	3 0 1
+	4	[27]	JMP      	3	; to 8
+	5	[28]	GETTABLE 	3 0 -1	; "nodes"
+	6	[28]	NEWTABLE 	4 0 0
+	7	[28]	SETTABLE 	3 1 4
+	8	[30]	TEST     	2 0 1
+	9	[30]	JMP      	1	; to 11
+	10	[30]	RETURN   	0 1
+	11	[32]	NEWTABLE 	3 0 0
+	12	[33]	GETGLOBAL	4 -2	; ipairs
+	13	[33]	MOVE     	5 2
+	14	[33]	CALL     	4 2 4
+	15	[33]	JMP      	12	; to 28
+	16	[34]	GETTABLE 	9 0 -1	; "nodes"
+	17	[34]	GETTABLE 	9 9 8
+	18	[34]	TEST     	9 0 1
+	19	[34]	JMP      	3	; to 23
+	20	[35]	GETTABLE 	9 0 -1	; "nodes"
+	21	[35]	NEWTABLE 	10 0 0
+	22	[35]	SETTABLE 	9 8 10
+	23	[37]	GETGLOBAL	9 -3	; table
+	24	[37]	GETTABLE 	9 9 -4	; "insert"
+	25	[37]	MOVE     	10 3
+	26	[37]	MOVE     	11 8
+	27	[37]	CALL     	9 3 1
+	28	[33]	TFORLOOP 	4 2
+	29	[37]	JMP      	-14	; to 16
+	30	[39]	GETTABLE 	4 0 -1	; "nodes"
+	31	[39]	GETTABLE 	4 4 1
+	32	[39]	SETTABLE 	4 -5 3	; "deps" -
+	33	[40]	RETURN   	0 1
+
+function <./frontend/depgraph.lua:42,67> (41 instructions, 164 bytes at 0x7fa01f4075b0)
+2 params, 15 slots, 0 upvalues, 14 locals, 8 constants, 0 functions
+	1	[48]	GETTABLE 	2 0 -1	; "nodes"
+	2	[48]	GETTABLE 	2 2 1
+	3	[49]	TEST     	2 0 0
+	4	[49]	JMP      	9	; to 14
+	5	[50]	GETTABLE 	3 2 -2	; "deps"
+	6	[50]	TEST     	3 0 0
+	7	[50]	JMP      	4	; to 12
+	8	[50]	GETTABLE 	3 2 -2	; "deps"
+	9	[50]	LEN      	3 3
+	10	[50]	EQ       	0 3 -3	; - 0
+	11	[50]	JMP      	2	; to 14
+	12	[51]	GETTABLE 	3 0 -1	; "nodes"
+	13	[51]	SETTABLE 	3 1 -4	; - nil
+	14	[55]	GETGLOBAL	3 -5	; pairs
+	15	[55]	GETTABLE 	4 0 -1	; "nodes"
+	16	[55]	CALL     	3 2 4
+	17	[55]	JMP      	21	; to 39
+	18	[56]	GETTABLE 	8 7 -2	; "deps"
+	19	[56]	TEST     	8 0 0
+	20	[56]	JMP      	18	; to 39
+	21	[57]	LOADNIL  	8 8
+	22	[58]	GETGLOBAL	9 -6	; ipairs
+	23	[58]	GETTABLE 	10 0 -1	; "nodes"
+	24	[58]	CALL     	9 2 4
+	25	[58]	JMP      	4	; to 30
+	26	[59]	EQ       	0 13 1
+	27	[59]	JMP      	2	; to 30
+	28	[60]	MOVE     	8 12
+	29	[61]	JMP      	2	; to 32
+	30	[58]	TFORLOOP 	9 2
+	31	[62]	JMP      	-6	; to 26
+	32	[64]	TEST     	8 0 0
+	33	[64]	JMP      	5	; to 39
+	34	[64]	GETGLOBAL	9 -7	; table
+	35	[64]	GETTABLE 	9 9 -8	; "remove"
+	36	[64]	GETTABLE 	10 7 -2	; "deps"
+	37	[64]	MOVE     	11 8
+	38	[64]	CALL     	9 3 1
+	39	[55]	TFORLOOP 	3 2
+	40	[65]	JMP      	-23	; to 18
+	41	[67]	RETURN   	0 1
+
+function <./frontend/depgraph.lua:69,75> (10 instructions, 40 bytes at 0x7fa01f4079b0)
+2 params, 3 slots, 0 upvalues, 2 locals, 1 constant, 0 functions
+	1	[70]	GETTABLE 	2 0 -1	; "nodes"
+	2	[70]	GETTABLE 	2 2 1
+	3	[70]	TEST     	2 0 0
+	4	[70]	JMP      	3	; to 8
+	5	[71]	LOADBOOL 	2 1 0
+	6	[71]	RETURN   	2 2
+	7	[71]	JMP      	2	; to 10
+	8	[73]	LOADBOOL 	2 0 0
+	9	[73]	RETURN   	2 2
+	10	[75]	RETURN   	0 1
+
+function <./frontend/depgraph.lua:77,85> (19 instructions, 76 bytes at 0x7fa01f407df0)
+3 params, 7 slots, 0 upvalues, 4 locals, 4 constants, 0 functions
+	1	[78]	GETTABLE 	3 0 -1	; "nodes"
+	2	[78]	GETTABLE 	3 3 1
+	3	[79]	TEST     	3 0 1
+	4	[79]	JMP      	4	; to 9
+	5	[80]	NEWTABLE 	4 0 0
+	6	[80]	MOVE     	3 4
+	7	[81]	GETTABLE 	4 0 -1	; "nodes"
+	8	[81]	SETTABLE 	4 1 3
+	9	[83]	GETTABLE 	4 3 -2	; "deps"
+	10	[83]	TEST     	4 0 1
+	11	[83]	JMP      	2	; to 14
+	12	[83]	NEWTABLE 	4 0 0
+	13	[83]	SETTABLE 	3 -2 4	; "deps" -
+	14	[84]	GETGLOBAL	4 -3	; table
+	15	[84]	GETTABLE 	4 4 -4	; "insert"
+	16	[84]	GETTABLE 	5 3 -2	; "deps"
+	17	[84]	MOVE     	6 2
+	18	[84]	CALL     	4 3 1
+	19	[85]	RETURN   	0 1
+
+function <./frontend/depgraph.lua:87,95> (20 instructions, 80 bytes at 0x7fa01f406d50)
+3 params, 10 slots, 0 upvalues, 9 locals, 4 constants, 0 functions
+	1	[88]	GETTABLE 	3 0 -1	; "nodes"
+	2	[88]	GETTABLE 	3 3 1
+	3	[89]	GETTABLE 	4 3 -2	; "deps"
+	4	[89]	TEST     	4 0 1
+	5	[89]	JMP      	2	; to 8
+	6	[89]	NEWTABLE 	4 0 0
+	7	[89]	SETTABLE 	3 -2 4	; "deps" -
+	8	[90]	GETGLOBAL	4 -3	; ipairs
+	9	[90]	GETTABLE 	5 3 -2	; "deps"
+	10	[90]	CALL     	4 2 4
+	11	[90]	JMP      	6	; to 18
+	12	[91]	EQ       	0 8 2
+	13	[91]	JMP      	4	; to 18
+	14	[92]	GETTABLE 	9 0 -1	; "nodes"
+	15	[92]	GETTABLE 	9 9 1
+	16	[92]	GETTABLE 	9 9 -2	; "deps"
+	17	[92]	SETTABLE 	9 7 -4	; - nil
+	18	[90]	TFORLOOP 	4 2
+	19	[93]	JMP      	-8	; to 12
+	20	[95]	RETURN   	0 1
+
+function <./frontend/depgraph.lua:97,133> (69 instructions, 276 bytes at 0x7fa01f408a80)
+1 param, 21 slots, 0 upvalues, 18 locals, 9 constants, 0 functions
+	1	[98]	NEWTABLE 	1 0 0
+	2	[99]	NEWTABLE 	2 0 0
+	3	[100]	GETGLOBAL	3 -1	; pairs
+	4	[100]	GETTABLE 	4 0 -2	; "nodes"
+	5	[100]	CALL     	3 2 4
+	6	[100]	JMP      	59	; to 66
+	7	[101]	GETTABLE 	8 1 6
+	8	[101]	TEST     	8 0 1
+	9	[101]	JMP      	56	; to 66
+	10	[102]	NEWTABLE 	8 1 0
+	11	[102]	MOVE     	9 6
+	12	[102]	SETLIST  	8 1 1	; 1
+	13	[103]	LEN      	9 8
+	14	[103]	LT       	0 -3 9	; 0 -
+	15	[103]	JMP      	50	; to 66
+	16	[104]	LEN      	9 8
+	17	[105]	GETTABLE 	10 8 9
+	18	[106]	GETTABLE 	11 0 -2	; "nodes"
+	19	[106]	GETTABLE 	11 11 10
+	20	[107]	LOADBOOL 	12 1 0
+	21	[108]	GETTABLE 	13 11 -4	; "deps"
+	22	[108]	TEST     	13 0 0
+	23	[108]	JMP      	28	; to 52
+	24	[109]	GETGLOBAL	13 -5	; ipairs
+	25	[109]	GETTABLE 	14 11 -4	; "deps"
+	26	[109]	CALL     	13 2 4
+	27	[109]	JMP      	22	; to 50
+	28	[110]	GETTABLE 	18 1 17
+	29	[110]	TEST     	18 0 1
+	30	[110]	JMP      	19	; to 50
+	31	[113]	GETTABLE 	18 0 -2	; "nodes"
+	32	[113]	GETTABLE 	18 18 17
+	33	[113]	GETTABLE 	18 18 -4	; "deps"
+	34	[113]	TEST     	18 0 0
+	35	[113]	JMP      	6	; to 42
+	36	[114]	GETGLOBAL	18 -6	; table
+	37	[114]	GETTABLE 	18 18 -7	; "insert"
+	38	[114]	MOVE     	19 8
+	39	[114]	MOVE     	20 17
+	40	[114]	CALL     	18 3 1
+	41	[114]	JMP      	5	; to 47
+	42	[116]	GETGLOBAL	18 -6	; table
+	43	[116]	GETTABLE 	18 18 -7	; "insert"
+	44	[116]	MOVE     	19 2
+	45	[116]	MOVE     	20 17
+	46	[116]	CALL     	18 3 1
+	47	[118]	SETTABLE 	1 17 -8	; - true
+	48	[119]	LOADBOOL 	12 0 0
+	49	[120]	JMP      	2	; to 52
+	50	[109]	TFORLOOP 	13 2
+	51	[121]	JMP      	-24	; to 28
+	52	[124]	TEST     	12 0 0
+	53	[124]	JMP      	-41	; to 13
+	54	[125]	SETTABLE 	1 10 -8	; - true
+	55	[126]	GETGLOBAL	13 -6	; table
+	56	[126]	GETTABLE 	13 13 -9	; "remove"
+	57	[126]	MOVE     	14 8
+	58	[126]	MOVE     	15 9
+	59	[126]	CALL     	13 3 1
+	60	[127]	GETGLOBAL	13 -6	; table
+	61	[127]	GETTABLE 	13 13 -7	; "insert"
+	62	[127]	MOVE     	14 2
+	63	[127]	MOVE     	15 10
+	64	[127]	CALL     	13 3 1
+	65	[128]	JMP      	-53	; to 13
+	66	[100]	TFORLOOP 	3 2
+	67	[130]	JMP      	-61	; to 7
+	68	[132]	RETURN   	2 2
+	69	[133]	RETURN   	0 1

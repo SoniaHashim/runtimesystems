@@ -1,0 +1,134 @@
+-- BYTECODE -- internaldownloadbackend.lua:11-37
+0001    IST          2
+0002    JMP      3 => 0005
+0003    KSHORT   2   0
+0004    JMP      3 => 0012
+0005 => UGET     3   0      ; max_redirects
+0006    ISNEV    2   3
+0007    JMP      3 => 0012
+0008    GGET     3   0      ; "error"
+0009    KSTR     4   1      ; "InternalDownloadBackend: reached max red"~
+0010    MOV      5   2
+0011    CALL     3   1   3
+0012 => UGET     3   1      ; logger
+0013    TGETS    3   3   2  ; "dbg"
+0014    KSTR     4   3      ; "InternalDownloadBackend: url :"
+0015    MOV      5   1
+0016    CALL     3   1   3
+0017    TNEW     3   0
+0018    TNEW     4   0
+0019    UGET     5   2      ; ltn12
+0020    TGETS    5   5   4  ; "sink"
+0021    TGETS    5   5   5  ; "table"
+0022    MOV      6   4
+0023    CALL     5   2   2
+0024    TSETS    5   3   4  ; "sink"
+0025    TSETS    1   3   6  ; "url"
+0026    UGET     5   3      ; socket_url
+0027    TGETS    5   5   7  ; "parse"
+0028    MOV      6   1
+0029    CALL     5   2   2
+0030    TGETS    6   5   8  ; "scheme"
+0031    ISNES    6   9      ; "http"
+0032    JMP      6 => 0037
+0033    UGET     6   4      ; http
+0034    TGETS    6   6  10  ; "request"
+0035    IST          6
+0036    JMP      7 => 0039
+0037 => UGET     6   5      ; https
+0038    TGETS    6   6  10  ; "request"
+0039 => UGET     7   6      ; socket
+0040    TGETS    7   7  11  ; "skip"
+0041    KSHORT   8   1
+0042    MOV      9   6
+0043    MOV     10   3
+0044    CALL     9   0   2
+0045    CALLM    7   4   1
+0046    ISEQN    7   0      ; 200
+0047    JMP     10 => 0082
+0048    UGET    10   1      ; logger
+0049    TGETS   10  10   2  ; "dbg"
+0050    KSTR    11  12      ; "InternalDownloadBackend: HTTP response c"~
+0051    MOV     12   9
+0052    CALL    10   1   3
+0053    ISF          7
+0054    JMP     10 => 0078
+0055    KSHORT  10 299
+0056    ISGE    10   7
+0057    JMP     10 => 0078
+0058    KSHORT  10 400
+0059    ISGE     7  10
+0060    JMP     10 => 0078
+0061    ISF          8
+0062    JMP     10 => 0078
+0063    TGETS   10   8  13  ; "location"
+0064    ISF         10
+0065    JMP     11 => 0078
+0066    TGETS   10   8  13  ; "location"
+0067    UGET    11   1      ; logger
+0068    TGETS   11  11   2  ; "dbg"
+0069    KSTR    12  14      ; "InternalDownloadBackend: Redirecting to "~
+0070    MOV     13  10
+0071    CALL    11   1   3
+0072    MOV     12   0
+0073    TGETS   11   0  15  ; "getResponseAsString"
+0074    MOV     13  10
+0075    ADDVN   14   2   1  ; 1
+0076    CALLT   11   4
+0077    JMP     10 => 0082
+0078 => GGET    10   0      ; "error"
+0079    KSTR    11  16      ; "InternalDownloadBackend: Don't know how "~
+0080    MOV     12   9
+0081    CALL    10   1   3
+0082 => GGET    10   5      ; "table"
+0083    TGETS   10  10  17  ; "concat"
+0084    MOV     11   4
+0085    CALLT   10   2
+
+-- BYTECODE -- internaldownloadbackend.lua:39-44
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "getResponseAsString"
+0003    MOV      5   1
+0004    CALL     3   2   3
+0005    GGET     4   1      ; "io"
+0006    TGETS    4   4   2  ; "open"
+0007    MOV      5   2
+0008    KSTR     6   3      ; "w"
+0009    CALL     4   2   3
+0010    MOV      6   4
+0011    TGETS    5   4   4  ; "write"
+0012    MOV      7   3
+0013    CALL     5   1   3
+0014    MOV      6   4
+0015    TGETS    5   4   5  ; "close"
+0016    CALL     5   1   2
+0017    RET0     0   1
+
+-- BYTECODE -- internaldownloadbackend.lua:0-47
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "socket.http"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ssl.https"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "logger"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ltn12"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "socket"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "socket.url"
+0018    CALL     5   2   2
+0019    TNEW     6   0
+0020    KSHORT   7   5
+0021    FNEW     8   8      ; internaldownloadbackend.lua:11
+0022    TSETS    8   6   7  ; "getResponseAsString"
+0023    FNEW     8  10      ; internaldownloadbackend.lua:39
+0024    TSETS    8   6   9  ; "download"
+0025    UCLO     0 => 0026
+0026 => RET1     6   2
+

@@ -1,0 +1,470 @@
+-- BYTECODE -- nickel_conf.lua:32-34
+0001    USETV    0   0      ; kobo_conf_path
+0002    RET0     0   1
+
+-- BYTECODE -- nickel_conf.lua:36-58
+0001    KPRI     1   0
+0002    KPRI     2   1
+0003    GGET     3   0      ; "io"
+0004    TGETS    3   3   1  ; "open"
+0005    UGET     4   0      ; kobo_conf_path
+0006    KSTR     5   2      ; "r"
+0007    CALL     3   2   3
+0008    ISF          3
+0009    JMP      4 => 0048
+0010    MOV      5   3
+0011    TGETS    4   3   3  ; "lines"
+0012    CALL     4   4   2
+0013    JMP      7 => 0043
+0014 => GGET     8   4      ; "string"
+0015    TGETS    8   8   5  ; "match"
+0016    MOV      9   7
+0017    UGET    10   1      ; re_PowerOptionsSection
+0018    CALL     8   2   3
+0019    ISF          8
+0020    JMP      9 => 0023
+0021    KPRI     2   2
+0022    JMP      8 => 0043
+0023 => GGET     8   4      ; "string"
+0024    TGETS    8   8   5  ; "match"
+0025    MOV      9   7
+0026    UGET    10   2      ; re_AnySection
+0027    CALL     8   2   3
+0028    ISF          8
+0029    JMP      9 => 0032
+0030    KPRI     2   1
+0031    JMP      8 => 0043
+0032 => ISF          2
+0033    JMP      8 => 0043
+0034    GGET     8   4      ; "string"
+0035    TGETS    8   8   5  ; "match"
+0036    MOV      9   7
+0037    MOV     10   0
+0038    CALL     8   2   3
+0039    MOV      1   8
+0040    ISF          1
+0041    JMP      8 => 0043
+0042    JMP      4 => 0045
+0043 => ITERC    7   2   3
+0044    ITERL    7 => 0014
+0045 => MOV      5   3
+0046    TGETS    4   3   6  ; "close"
+0047    CALL     4   1   2
+0048 => RET1     1   2
+
+-- BYTECODE -- nickel_conf.lua:65-76
+0001    UGET     0   0      ; NickelConf
+0002    TGETS    0   0   0  ; "_read_kobo_conf"
+0003    UGET     1   1      ; re_FrontLightLevel
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0011
+0007    GGET     1   1      ; "tonumber"
+0008    MOV      2   0
+0009    CALLT    1   2
+0010    JMP      1 => 0020
+0011 => KSHORT   1   1
+0012    GGET     2   2      ; "assert"
+0013    UGET     3   0      ; NickelConf
+0014    TGETS    3   3   3  ; "frontLightLevel"
+0015    TGETS    3   3   4  ; "set"
+0016    MOV      4   1
+0017    CALL     3   0   2
+0018    CALLM    2   1   0
+0019    RET1     1   2
+0020 => RET0     0   1
+
+-- BYTECODE -- nickel_conf.lua:86-94
+0001    UGET     0   0      ; NickelConf
+0002    TGETS    0   0   0  ; "_read_kobo_conf"
+0003    UGET     1   1      ; re_FrontLightState
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0014
+0007    ISEQS    0   1      ; "true"
+0008    JMP      1 => 0013
+0009    KPRI     0   1
+0010    JMP      1 => 0014
+0011    KPRI     0   1
+0012    JMP      1 => 0014
+0013 => KPRI     0   2
+0014 => RET1     0   2
+
+-- BYTECODE -- nickel_conf.lua:101-106
+0001    UGET     0   0      ; NickelConf
+0002    TGETS    0   0   0  ; "_read_kobo_conf"
+0003    UGET     1   1      ; re_ColorSetting
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0010
+0007    GGET     1   1      ; "tonumber"
+0008    MOV      2   0
+0009    CALLT    1   2
+0010 => RET0     0   1
+
+-- BYTECODE -- nickel_conf.lua:113-118
+0001    UGET     0   0      ; NickelConf
+0002    TGETS    0   0   0  ; "_read_kobo_conf"
+0003    UGET     1   1      ; re_AutoColorEnabled
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0013
+0007    ISEQS    0   1      ; "true"
+0008    JMP      1 => 0011
+0009    KPRI     1   1
+0010    JMP      2 => 0012
+0011 => KPRI     1   2
+0012 => RET1     1   2
+0013 => RET0     0   1
+
+-- BYTECODE -- nickel_conf.lua:128-182
+0001    GGET     4   0      ; "io"
+0002    TGETS    4   4   1  ; "open"
+0003    UGET     5   0      ; kobo_conf_path
+0004    KSTR     6   2      ; "r"
+0005    CALL     4   2   3
+0006    TNEW     5   0
+0007    KPRI     6   1
+0008    KPRI     7   0
+0009    KPRI     8   1
+0010    MOV      9   1
+0011    KSTR    10   3      ; "="
+0012    GGET    11   4      ; "tostring"
+0013    MOV     12   2
+0014    CALL    11   2   2
+0015    CAT      9   9  11
+0016    ISF          4
+0017    JMP     10 => 0079
+0018    KPRI    10   0
+0019    MOV     12   4
+0020    TGETS   11   4   5  ; "lines"
+0021    CALL    11   4   2
+0022    JMP     14 => 0069
+0023 => GGET    15   6      ; "string"
+0024    TGETS   15  15   7  ; "match"
+0025    MOV     16  14
+0026    UGET    17   1      ; re_AnySection
+0027    CALL    15   2   3
+0028    ISF         15
+0029    JMP     16 => 0047
+0030    ISF          8
+0031    JMP     15 => 0039
+0032    MOV     16   4
+0033    TGETS   15   4   8  ; "seek"
+0034    KSTR    17   9      ; "set"
+0035    MOV     18  10
+0036    CALL    15   1   4
+0037    JMP     11 => 0071
+0038    JMP     15 => 0047
+0039 => GGET    15   6      ; "string"
+0040    TGETS   15  15   7  ; "match"
+0041    MOV     16  14
+0042    UGET    17   2      ; re_PowerOptionsSection
+0043    CALL    15   2   3
+0044    ISF         15
+0045    JMP     16 => 0047
+0046    KPRI     8   2
+0047 => GGET    15   6      ; "string"
+0048    TGETS   15  15   7  ; "match"
+0049    MOV     16  14
+0050    MOV     17   0
+0051    CALL    15   2   3
+0052    ISF          8
+0053    JMP     16 => 0062
+0054    ISF         15
+0055    JMP     16 => 0062
+0056    LEN     16   5
+0057    ADDVN   16  16   0  ; 1
+0058    TSETV    9   5  16
+0059    KPRI     6   2
+0060    JMP     11 => 0071
+0061    JMP     16 => 0065
+0062 => LEN     16   5
+0063    ADDVN   16  16   0  ; 1
+0064    TSETV   14   5  16
+0065 => MOV     17   4
+0066    TGETS   16   4   8  ; "seek"
+0067    CALL    16   2   2
+0068    MOV     10  16
+0069 => ITERC   14   2   3
+0070    ITERL   14 => 0023
+0071 => MOV     12   4
+0072    TGETS   11   4  10  ; "read"
+0073    KSTR    13  11      ; "*a"
+0074    CALL    11   2   3
+0075    MOV      7  11
+0076    MOV     12   4
+0077    TGETS   11   4  12  ; "close"
+0078    CALL    11   1   2
+0079 => IST          6
+0080    JMP     10 => 0094
+0081    ISF          3
+0082    JMP     10 => 0085
+0083    KPRI    10   2
+0084    RET1    10   2
+0085 => IST          8
+0086    JMP     10 => 0091
+0087    LEN     10   5
+0088    ADDVN   10  10   0  ; 1
+0089    KSTR    11  13      ; "[PowerOptions]"
+0090    TSETV   11   5  10
+0091 => LEN     10   5
+0092    ADDVN   10  10   0  ; 1
+0093    TSETV    9   5  10
+0094 => GGET    10  14      ; "assert"
+0095    GGET    11   0      ; "io"
+0096    TGETS   11  11   1  ; "open"
+0097    UGET    12   0      ; kobo_conf_path
+0098    KSTR    13  15      ; "w"
+0099    CALL    11   0   3
+0100    CALLM   10   2   0
+0101    GGET    11  16      ; "ipairs"
+0102    MOV     12   5
+0103    CALL    11   4   2
+0104    JMP     14 => 0110
+0105 => MOV     17  10
+0106    TGETS   16  10  17  ; "write"
+0107    MOV     18  15
+0108    KSTR    19  18      ; "\n"
+0109    CALL    16   1   4
+0110 => ITERC   14   3   3
+0111    ITERL   14 => 0105
+0112    ISF          7
+0113    JMP     11 => 0118
+0114    MOV     12  10
+0115    TGETS   11  10  17  ; "write"
+0116    MOV     13   7
+0117    CALL    11   1   3
+0118 => MOV     12  10
+0119    TGETS   11  10  12  ; "close"
+0120    CALL    11   1   2
+0121    KPRI    11   2
+0122    RET1    11   2
+
+-- BYTECODE -- nickel_conf.lua:189-194
+0001    GGET     1   0      ; "type"
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISNES    1   1      ; "number"
+0005    JMP      1 => 0013
+0006    KSHORT   1   0
+0007    ISLE     1   0
+0008    JMP      1 => 0014
+0009    NOT      1   0
+0010    KSHORT   2 100
+0011    ISGT     1   2
+0012    JMP      1 => 0014
+0013 => RET0     0   1
+0014 => UGET     1   0      ; NickelConf
+0015    TGETS    1   1   2  ; "_write_kobo_conf"
+0016    UGET     2   1      ; re_FrontLightLevel
+0017    UGET     3   2      ; front_light_level_str
+0018    MOV      4   0
+0019    CALLT    1   4
+
+-- BYTECODE -- nickel_conf.lua:196-201
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "number"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => KSTR     3   3      ; "Wrong brightness value type (expected nu"~
+0011    CALL     1   1   3
+0012    GGET     1   0      ; "assert"
+0013    KSHORT   2   0
+0014    ISGT     2   0
+0015    JMP      2 => 0019
+0016    KSHORT   2 100
+0017    ISLE     0   2
+0018    JMP      2 => 0021
+0019 => KPRI     2   1
+0020    JMP      3 => 0022
+0021 => KPRI     2   2
+0022 => KSTR     3   4      ; "Wrong brightness value given!"
+0023    CALL     1   1   3
+0024    RET0     0   1
+
+-- BYTECODE -- nickel_conf.lua:208-215
+0001    ISEQP    0   0
+0002    JMP      1 => 0008
+0003    GGET     1   0      ; "type"
+0004    MOV      2   0
+0005    CALL     1   2   2
+0006    ISEQS    1   1      ; "boolean"
+0007    JMP      1 => 0009
+0008 => RET0     0   1
+0009 => UGET     1   0      ; NickelConf
+0010    TGETS    1   1   2  ; "_write_kobo_conf"
+0011    UGET     2   1      ; re_FrontLightState
+0012    UGET     3   2      ; front_light_state_str
+0013    MOV      4   0
+0014    KPRI     5   2
+0015    CALLT    1   5
+
+-- BYTECODE -- nickel_conf.lua:217-220
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "boolean"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => KSTR     3   3      ; "Wrong front light state value type (expe"~
+0011    CALL     1   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- nickel_conf.lua:227-231
+0001    UGET     1   0      ; NickelConf
+0002    TGETS    1   1   0  ; "_write_kobo_conf"
+0003    UGET     2   1      ; re_ColorSetting
+0004    UGET     3   2      ; color_setting_str
+0005    MOV      4   0
+0006    CALLT    1   4
+
+-- BYTECODE -- nickel_conf.lua:233-238
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "number"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => KSTR     3   3      ; "Wrong color value type (expected number)"~
+0011    CALL     1   1   3
+0012    GGET     1   0      ; "assert"
+0013    KSHORT   2 1500
+0014    ISGT     2   0
+0015    JMP      2 => 0019
+0016    KSHORT   2 6400
+0017    ISLE     0   2
+0018    JMP      2 => 0021
+0019 => KPRI     2   1
+0020    JMP      3 => 0022
+0021 => KPRI     2   2
+0022 => KSTR     3   4      ; "Wrong colorSetting value given!"
+0023    CALL     1   1   3
+0024    RET0     0   1
+
+-- BYTECODE -- nickel_conf.lua:245-249
+0001    UGET     1   0      ; NickelConf
+0002    TGETS    1   1   0  ; "_write_kobo_conf"
+0003    UGET     2   1      ; re_AutoColorEnabled
+0004    UGET     3   2      ; auto_color_enabled_str
+0005    MOV      4   0
+0006    CALLT    1   4
+
+-- BYTECODE -- nickel_conf.lua:251-254
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "boolean"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => KSTR     3   3      ; "Wrong type for autocolor (expected boole"~
+0011    CALL     1   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- nickel_conf.lua:0-257
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "dbg"
+0003    CALL     0   2   2
+0004    TNEW     1   0
+0005    TNEW     2   0
+0006    TSETS    2   1   2  ; "frontLightLevel"
+0007    TNEW     2   0
+0008    TSETS    2   1   3  ; "frontLightState"
+0009    TNEW     2   0
+0010    TSETS    2   1   4  ; "colorSetting"
+0011    TNEW     2   0
+0012    TSETS    2   1   5  ; "autoColorEnabled"
+0013    KSTR     2   6      ; "/mnt/onboard/.kobo/Kobo/Kobo eReader.con"~
+0014    KSTR     3   7      ; "FrontLightLevel"
+0015    KSTR     4   8      ; "FrontLightState"
+0016    KSTR     5   9      ; "ColorSetting"
+0017    KSTR     6  10      ; "AutoColorEnabled"
+0018    KSTR     7  11      ; "^"
+0019    MOV      8   3
+0020    KSTR     9  12      ; "%s*=%s*([0-9]+)%s*$"
+0021    CAT      7   7   9
+0022    KSTR     8  11      ; "^"
+0023    MOV      9   4
+0024    KSTR    10  13      ; "%s*=%s*(.+)%s*$"
+0025    CAT      8   8  10
+0026    KSTR     9  11      ; "^"
+0027    MOV     10   5
+0028    KSTR    11  12      ; "%s*=%s*([0-9]+)%s*$"
+0029    CAT      9   9  11
+0030    KSTR    10  11      ; "^"
+0031    MOV     11   6
+0032    KSTR    12  14      ; "%s*=%s*([a-z]+)%s*$"
+0033    CAT     10  10  12
+0034    KSTR    11  15      ; "^%[PowerOptions%]%s*"
+0035    KSTR    12  16      ; "^%[.*%]%s*"
+0036    FNEW    13  18      ; nickel_conf.lua:32
+0037    TSETS   13   1  17  ; "_set_kobo_conf_path"
+0038    FNEW    13  20      ; nickel_conf.lua:36
+0039    TSETS   13   1  19  ; "_read_kobo_conf"
+0040    TGETS   13   1   2  ; "frontLightLevel"
+0041    FNEW    14  22      ; nickel_conf.lua:65
+0042    TSETS   14  13  21  ; "get"
+0043    TGETS   13   1   3  ; "frontLightState"
+0044    FNEW    14  23      ; nickel_conf.lua:86
+0045    TSETS   14  13  21  ; "get"
+0046    TGETS   13   1   4  ; "colorSetting"
+0047    FNEW    14  24      ; nickel_conf.lua:101
+0048    TSETS   14  13  21  ; "get"
+0049    TGETS   13   1   5  ; "autoColorEnabled"
+0050    FNEW    14  25      ; nickel_conf.lua:113
+0051    TSETS   14  13  21  ; "get"
+0052    FNEW    13  27      ; nickel_conf.lua:128
+0053    TSETS   13   1  26  ; "_write_kobo_conf"
+0054    TGETS   13   1   2  ; "frontLightLevel"
+0055    FNEW    14  29      ; nickel_conf.lua:189
+0056    TSETS   14  13  28  ; "set"
+0057    MOV     14   0
+0058    TGETS   13   0  30  ; "guard"
+0059    TGETS   15   1   2  ; "frontLightLevel"
+0060    KSTR    16  28      ; "set"
+0061    FNEW    17  31      ; nickel_conf.lua:196
+0062    CALL    13   1   5
+0063    TGETS   13   1   3  ; "frontLightState"
+0064    FNEW    14  32      ; nickel_conf.lua:208
+0065    TSETS   14  13  28  ; "set"
+0066    MOV     14   0
+0067    TGETS   13   0  30  ; "guard"
+0068    TGETS   15   1   3  ; "frontLightState"
+0069    KSTR    16  28      ; "set"
+0070    FNEW    17  33      ; nickel_conf.lua:217
+0071    CALL    13   1   5
+0072    TGETS   13   1   4  ; "colorSetting"
+0073    FNEW    14  34      ; nickel_conf.lua:227
+0074    TSETS   14  13  28  ; "set"
+0075    MOV     14   0
+0076    TGETS   13   0  30  ; "guard"
+0077    TGETS   15   1   4  ; "colorSetting"
+0078    KSTR    16  28      ; "set"
+0079    FNEW    17  35      ; nickel_conf.lua:233
+0080    CALL    13   1   5
+0081    TGETS   13   1   5  ; "autoColorEnabled"
+0082    FNEW    14  36      ; nickel_conf.lua:245
+0083    TSETS   14  13  28  ; "set"
+0084    MOV     14   0
+0085    TGETS   13   0  30  ; "guard"
+0086    TGETS   15   1   5  ; "autoColorEnabled"
+0087    KSTR    16  28      ; "set"
+0088    FNEW    17  37      ; nickel_conf.lua:251
+0089    CALL    13   1   5
+0090    UCLO     0 => 0091
+0091 => RET1     1   2
+

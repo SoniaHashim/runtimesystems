@@ -1,0 +1,142 @@
+
+main <./frontend/ui/message/filemessagequeue.lua:0,0> (38 instructions, 152 bytes at 0x7ff14f4068f0)
+0+ params, 9 slots, 0 upvalues, 7 locals, 15 constants, 3 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "ffi"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "logger"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "ui/message/messagequeue"
+	9	[3]	CALL     	2 2 2
+	10	[4]	GETGLOBAL	3 -1	; require
+	11	[4]	LOADK    	4 -5	; "ffi/zeromq_h"
+	12	[4]	CALL     	3 2 2
+	13	[5]	GETTABLE 	4 0 -6	; "load"
+	14	[5]	LOADK    	5 -7	; "libs/libczmq.so.1"
+	15	[5]	CALL     	4 2 2
+	16	[6]	GETTABLE 	5 0 -6	; "load"
+	17	[6]	LOADK    	6 -8	; "libs/libfmq.so.1"
+	18	[6]	CALL     	5 2 2
+	19	[8]	SELF     	6 2 -9	; "new"
+	20	[8]	NEWTABLE 	8 0 2
+	21	[9]	SETTABLE 	8 -10 -11	; "client" nil
+	22	[10]	SETTABLE 	8 -12 -11	; "server" nil
+	23	[8]	CALL     	6 3 2
+	24	[25]	CLOSURE  	7 0	; 0x7ff14f406d80
+	25	[25]	MOVE     	0 5
+	26	[25]	MOVE     	0 4
+	27	[13]	SETTABLE 	6 -13 7	; "init" -
+	28	[39]	CLOSURE  	7 1	; 0x7ff14f406f00
+	29	[39]	MOVE     	0 1
+	30	[39]	MOVE     	0 5
+	31	[39]	MOVE     	0 0
+	32	[39]	MOVE     	0 4
+	33	[27]	SETTABLE 	6 -14 7	; "stop" -
+	34	[50]	CLOSURE  	7 2	; 0x7ff14f407080
+	35	[50]	MOVE     	0 4
+	36	[41]	SETTABLE 	6 -15 7	; "waitEvent" -
+	37	[52]	RETURN   	6 2
+	38	[52]	RETURN   	0 1
+
+function <./frontend/ui/message/filemessagequeue.lua:13,25> (24 instructions, 96 bytes at 0x7ff14f406d80)
+1 param, 4 slots, 2 upvalues, 1 local, 9 constants, 0 functions
+	1	[14]	GETTABLE 	1 0 -1	; "client"
+	2	[14]	EQ       	1 1 -2	; - nil
+	3	[14]	JMP      	15	; to 19
+	4	[15]	GETUPVAL 	1 0	; filemq
+	5	[15]	GETTABLE 	1 1 -4	; "fmq_client_recv"
+	6	[15]	SETTABLE 	0 -3 1	; "fmq_recv" -
+	7	[16]	GETTABLE 	1 0 -1	; "client"
+	8	[16]	SETTABLE 	0 -5 1	; "filemq" -
+	9	[17]	GETUPVAL 	1 1	; czmq
+	10	[17]	GETTABLE 	1 1 -7	; "zpoller_new"
+	11	[17]	GETUPVAL 	2 0	; filemq
+	12	[17]	GETTABLE 	2 2 -8	; "fmq_client_handle"
+	13	[17]	GETTABLE 	3 0 -1	; "client"
+	14	[17]	CALL     	2 2 2
+	15	[17]	LOADNIL  	3 3
+	16	[17]	CALL     	1 3 2
+	17	[17]	SETTABLE 	0 -6 1	; "poller" -
+	18	[17]	JMP      	5	; to 24
+	19	[18]	GETTABLE 	1 0 -9	; "server"
+	20	[18]	EQ       	1 1 -2	; - nil
+	21	[18]	JMP      	2	; to 24
+	22	[21]	GETTABLE 	1 0 -9	; "server"
+	23	[21]	SETTABLE 	0 -5 1	; "filemq" -
+	24	[25]	RETURN   	0 1
+
+function <./frontend/ui/message/filemessagequeue.lua:27,39> (42 instructions, 168 bytes at 0x7ff14f406f00)
+1 param, 5 slots, 4 upvalues, 1 local, 14 constants, 0 functions
+	1	[28]	GETTABLE 	1 0 -1	; "client"
+	2	[28]	EQ       	1 1 -2	; - nil
+	3	[28]	JMP      	12	; to 16
+	4	[29]	GETUPVAL 	1 0	; logger
+	5	[29]	GETTABLE 	1 1 -3	; "dbg"
+	6	[29]	LOADK    	2 -4	; "stop filemq client"
+	7	[29]	CALL     	1 2 1
+	8	[30]	GETUPVAL 	1 1	; filemq
+	9	[30]	GETTABLE 	1 1 -5	; "fmq_client_destroy"
+	10	[30]	GETUPVAL 	2 2	; ffi
+	11	[30]	GETTABLE 	2 2 -6	; "new"
+	12	[30]	LOADK    	3 -7	; "fmq_client_t *[1]"
+	13	[30]	GETTABLE 	4 0 -1	; "client"
+	14	[30]	CALL     	2 3 0
+	15	[30]	CALL     	1 0 1
+	16	[32]	GETTABLE 	1 0 -8	; "server"
+	17	[32]	EQ       	1 1 -2	; - nil
+	18	[32]	JMP      	12	; to 31
+	19	[33]	GETUPVAL 	1 0	; logger
+	20	[33]	GETTABLE 	1 1 -3	; "dbg"
+	21	[33]	LOADK    	2 -9	; "stop filemq server"
+	22	[33]	CALL     	1 2 1
+	23	[34]	GETUPVAL 	1 1	; filemq
+	24	[34]	GETTABLE 	1 1 -10	; "fmq_server_destroy"
+	25	[34]	GETUPVAL 	2 2	; ffi
+	26	[34]	GETTABLE 	2 2 -6	; "new"
+	27	[34]	LOADK    	3 -11	; "fmq_server_t *[1]"
+	28	[34]	GETTABLE 	4 0 -8	; "server"
+	29	[34]	CALL     	2 3 0
+	30	[34]	CALL     	1 0 1
+	31	[36]	GETTABLE 	1 0 -12	; "poller"
+	32	[36]	EQ       	1 1 -2	; - nil
+	33	[36]	JMP      	8	; to 42
+	34	[37]	GETUPVAL 	1 3	; czmq
+	35	[37]	GETTABLE 	1 1 -13	; "zpoller_destroy"
+	36	[37]	GETUPVAL 	2 2	; ffi
+	37	[37]	GETTABLE 	2 2 -6	; "new"
+	38	[37]	LOADK    	3 -14	; "zpoller_t *[1]"
+	39	[37]	GETTABLE 	4 0 -12	; "poller"
+	40	[37]	CALL     	2 3 0
+	41	[37]	CALL     	1 0 1
+	42	[39]	RETURN   	0 1
+
+function <./frontend/ui/message/filemessagequeue.lua:41,50> (26 instructions, 104 bytes at 0x7ff14f407080)
+1 param, 5 slots, 1 upvalue, 2 locals, 10 constants, 0 functions
+	1	[42]	GETTABLE 	1 0 -1	; "poller"
+	2	[42]	TEST     	1 0 1
+	3	[42]	JMP      	1	; to 5
+	4	[42]	RETURN   	0 1
+	5	[43]	GETUPVAL 	1 0	; czmq
+	6	[43]	GETTABLE 	1 1 -2	; "zpoller_wait"
+	7	[43]	GETTABLE 	2 0 -1	; "poller"
+	8	[43]	LOADK    	3 -3	; 0
+	9	[43]	CALL     	1 3 2
+	10	[43]	EQ       	1 1 -4	; - nil
+	11	[43]	JMP      	10	; to 22
+	12	[44]	GETTABLE 	1 0 -5	; "fmq_recv"
+	13	[44]	GETTABLE 	2 0 -6	; "filemq"
+	14	[44]	CALL     	1 2 2
+	15	[45]	EQ       	1 1 -4	; - nil
+	16	[45]	JMP      	5	; to 22
+	17	[46]	GETGLOBAL	2 -7	; table
+	18	[46]	GETTABLE 	2 2 -8	; "insert"
+	19	[46]	GETTABLE 	3 0 -9	; "messages"
+	20	[46]	MOVE     	4 1
+	21	[46]	CALL     	2 3 1
+	22	[49]	SELF     	1 0 -10	; "handleZMsgs"
+	23	[49]	GETTABLE 	3 0 -9	; "messages"
+	24	[49]	TAILCALL 	1 3 0
+	25	[49]	RETURN   	1 0
+	26	[50]	RETURN   	0 1

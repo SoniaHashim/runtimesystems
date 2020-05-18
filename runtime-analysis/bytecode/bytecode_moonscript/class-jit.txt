@@ -1,0 +1,793 @@
+-- BYTECODE -- class.lua:19-91
+0001    ISNEP    1   0
+0002    JMP      4 => 0004
+0003    KPRI     1   2
+0004 => TDUP     4   0
+0005    TSETB    0   4   2
+0006    TDUP     5   1
+0007    TSETB    5   4   3
+0008    IST          3
+0009    JMP      5 => 0011
+0010    RET1     4   2
+0011 => TNEW     5   3
+0012    UGET     6   0      ; unpack
+0013    MOV      7   3
+0014    KSHORT   8   3
+0015    CALL     6   0   3
+0016    TSETM    6   0      ; 1
+0017    TGETB    6   5   1
+0018    ISNEP    6   0
+0019    JMP      7 => 0021
+0020    RET1     4   2
+0021 => MOV      7   4
+0022    TGETB    8   6   1
+0023    ISNES    8   2      ; "call"
+0024    JMP      9 => 0065
+0025    ISF          1
+0026    JMP      9 => 0031
+0027    UGET     9   1      ; insert
+0028    MOV     10   7
+0029    TDUP    11   3
+0030    CALL     9   1   3
+0031 => MOV     10   2
+0032    TGETS    9   2   4  ; "get"
+0033    KSTR    11   5      ; "current_method"
+0034    CALL     9   2   3
+0035    GGET    10   6      ; "assert"
+0036    MOV     11   9
+0037    KSTR    12   7      ; "missing calling name"
+0038    CALL    10   1   3
+0039    TDUP    10   8
+0040    TDUP    11   9
+0041    UGET    12   0      ; unpack
+0042    TGETB   13   6   2
+0043    CALL    12   0   2
+0044    TSETM   12   1      ; 2
+0045    TSETB   11  10   2
+0046    TSETB   10   5   1
+0047    UGET    10   2      ; ntype
+0048    MOV     11   9
+0049    CALL    10   2   2
+0050    ISNES   10  10      ; "key_literal"
+0051    JMP     10 => 0059
+0052    UGET    10   1      ; insert
+0053    MOV     11   7
+0054    TDUP    12  11
+0055    TGETB   13   9   2
+0056    TSETB   13  12   2
+0057    CALL    10   1   3
+0058    JMP     10 => 0085
+0059 => UGET    10   1      ; insert
+0060    MOV     11   7
+0061    TDUP    12  12
+0062    TSETB    9  12   2
+0063    CALL    10   1   3
+0064    JMP      9 => 0085
+0065 => ISNES    8  13      ; "colon"
+0066    JMP      9 => 0085
+0067    TGETB    9   5   2
+0068    ISF          9
+0069    JMP     10 => 0085
+0070    TGETB   10   9   1
+0071    ISNES   10   2      ; "call"
+0072    JMP     10 => 0085
+0073    TDUP    10  14
+0074    TGETB   11   6   2
+0075    TSETB   11  10   2
+0076    TSETB   10   5   1
+0077    TDUP    10  15
+0078    TDUP    11  16
+0079    UGET    12   0      ; unpack
+0080    TGETB   13   9   2
+0081    CALL    12   0   2
+0082    TSETM   12   1      ; 2
+0083    TSETB   11  10   2
+0084    TSETB   10   5   2
+0085 => KSHORT   9   1
+0086    LEN     10   5
+0087    KSHORT  11   1
+0088    FORI     9 => 0095
+0089 => TGETV   13   5  12
+0090    UGET    14   1      ; insert
+0091    MOV     15   7
+0092    MOV     16  13
+0093    CALL    14   1   3
+0094    FORL     9 => 0089
+0095 => RET1     7   2
+
+-- BYTECODE -- class.lua:97-101
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "get"
+0003    KSTR     3   1      ; "current_method"
+0004    CALL     1   2   3
+0005    USETV    0   1      ; prev_method
+0006    MOV      2   0
+0007    TGETS    1   0   2  ; "set"
+0008    KSTR     3   1      ; "current_method"
+0009    UGET     4   1      ; key
+0010    CALL     1   1   4
+0011    MOV      2   0
+0012    TGETS    1   0   2  ; "set"
+0013    KSTR     3   3      ; "super"
+0014    UGET     4   2      ; t
+0015    CALLT    1   4
+
+-- BYTECODE -- class.lua:103-105
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "set"
+0003    KSTR     3   1      ; "current_method"
+0004    UGET     4   0      ; prev_method
+0005    CALLT    1   4
+
+-- BYTECODE -- class.lua:93-107
+0001    KPRI     3   0
+0002    TDUP     4   0
+0003    UGET     5   0      ; Run
+0004    FNEW     6   1      ; class.lua:97
+0005    CALL     5   2   2
+0006    TSETB    5   4   2
+0007    TSETB    0   4   3
+0008    UGET     5   0      ; Run
+0009    FNEW     6   2      ; class.lua:103
+0010    CALL     5   0   2
+0011    TSETM    5   0      ; 4
+0012    UCLO     0 => 0013
+0013 => RET1     4   2
+
+-- BYTECODE -- class.lua:118-120
+0001    UGET     0   0      ; transform_super
+0002    UGET     1   1      ; cls_name
+0003    KPRI     2   2
+0004    VARG     3   0   0
+0005    CALLMT   0   2
+
+-- BYTECODE -- class.lua:122-124
+0001    UGET     0   0      ; transform_super
+0002    UGET     1   1      ; cls_name
+0003    KPRI     2   1
+0004    VARG     3   0   0
+0005    CALLMT   0   2
+
+-- BYTECODE -- class.lua:395-399
+0001    UGET     1   0      ; name
+0002    ISF          1
+0003    JMP      2 => 0008
+0004    MOV      2   0
+0005    TGETS    1   0   0  ; "put_name"
+0006    UGET     3   0      ; name
+0007    CALLT    1   3
+0008 => RET0     0   1
+
+-- BYTECODE -- class.lua:434-441
+0001    UGET     0   0      ; statements
+0002    LEN      0   0
+0003    KSHORT   1   0
+0004    ISGE     1   0
+0005    JMP      0 => 0021
+0006    TNEW     0   3
+0007    UGET     1   1      ; build
+0008    TGETS    1   1   0  ; "assign_one"
+0009    UGET     2   2      ; LocalName
+0010    KSTR     3   1      ; "self"
+0011    CALL     2   2   2
+0012    UGET     3   3      ; cls_name
+0013    CALL     1   2   3
+0014    TSETB    1   0   1
+0015    UGET     1   1      ; build
+0016    TGETS    1   1   2  ; "group"
+0017    UGET     2   0      ; statements
+0018    CALL     1   0   2
+0019    TSETM    1   0      ; 2
+0020    RET1     0   2
+0021 => RET0     0   1
+
+-- BYTECODE -- class.lua:457-463
+0001    UGET     0   0      ; name
+0002    ISF          0
+0003    JMP      1 => 0012
+0004    TNEW     0   3
+0005    UGET     1   1      ; build
+0006    TGETS    1   1   0  ; "assign_one"
+0007    UGET     2   0      ; name
+0008    UGET     3   2      ; cls_name
+0009    CALL     1   0   3
+0010    TSETM    1   0      ; 1
+0011    RET1     0   2
+0012 => RET0     0   1
+
+-- BYTECODE -- class.lua:464-468
+0001    UGET     0   0      ; ret
+0002    ISF          0
+0003    JMP      1 => 0007
+0004    UGET     0   0      ; ret
+0005    UGET     1   1      ; cls_name
+0006    CALLT    0   2
+0007 => RET0     0   1
+
+-- BYTECODE -- class.lua:471-481
+0001    UGET     0   0      ; ntype
+0002    UGET     1   1      ; name
+0003    CALL     0   2   2
+0004    ISNES    0   0      ; "value"
+0005    JMP      0 => 0017
+0006    TNEW     0   3
+0007    UGET     1   2      ; build
+0008    TGETS    1   1   1  ; "declare"
+0009    TDUP     2   2
+0010    TNEW     3   3
+0011    UGET     4   1      ; name
+0012    TSETB    4   3   1
+0013    TSETS    3   2   3  ; "names"
+0014    CALL     1   0   2
+0015    TSETM    1   0      ; 1
+0016    RET1     0   2
+0017 => RET0     0   1
+
+-- BYTECODE -- class.lua:108-486
+0001    UGET     4   0      ; unpack
+0002    MOV      5   1
+0003    KSHORT   6   2
+0004    CALL     4   4   3
+0005    ISNES    5   0      ; ""
+0006    JMP      7 => 0008
+0007    KPRI     5   0
+0008 => UGET     7   1      ; NameProxy
+0009    KSTR     8   1      ; "parent"
+0010    CALL     7   2   2
+0011    UGET     8   1      ; NameProxy
+0012    KSTR     9   2      ; "base"
+0013    CALL     8   2   2
+0014    UGET     9   1      ; NameProxy
+0015    KSTR    10   3      ; "self"
+0016    CALL     9   2   2
+0017    UGET    10   1      ; NameProxy
+0018    KSTR    11   4      ; "class"
+0019    CALL    10   2   2
+0020    KPRI    11   0
+0021    FNEW    11   5      ; class.lua:118
+0022    KPRI    12   0
+0023    FNEW    12   6      ; class.lua:122
+0024    TNEW    13   0
+0025    TNEW    14   0
+0026    KSHORT  15   1
+0027    LEN     16   6
+0028    KSHORT  17   1
+0029    FORI    15 => 0078
+0030 => TGETV   19   6  18
+0031    TGETB   20  19   1
+0032    ISNES   20   7      ; "stm"
+0033    JMP     21 => 0039
+0034    UGET    21   3      ; insert
+0035    MOV     22  13
+0036    TGETB   23  19   2
+0037    CALL    21   1   3
+0038    JMP     21 => 0077
+0039 => ISNES   20   8      ; "props"
+0040    JMP     21 => 0077
+0041    KSHORT  21   2
+0042    LEN     22  19
+0043    KSHORT  23   1
+0044    FORI    21 => 0077
+0045 => TGETV   25  19  24
+0046    UGET    26   4      ; ntype
+0047    TGETB   27  25   1
+0048    CALL    26   2   2
+0049    ISNES   26   3      ; "self"
+0050    JMP     26 => 0072
+0051    KNIL    26  27
+0052    TGETB   28  25   1
+0053    TGETB   27  25   2
+0054    MOV     26  28
+0055    UGET    28   5      ; super_scope
+0056    MOV     29  27
+0057    MOV     30  12
+0058    TDUP    31   9
+0059    TGETB   32  26   2
+0060    TSETB   32  31   2
+0061    CALL    28   2   4
+0062    MOV     27  28
+0063    UGET    28   3      ; insert
+0064    MOV     29  13
+0065    UGET    30   6      ; build
+0066    TGETS   30  30  10  ; "assign_one"
+0067    MOV     31  26
+0068    MOV     32  27
+0069    CALL    30   0   3
+0070    CALLM   28   1   1
+0071    JMP     26 => 0076
+0072 => UGET    26   3      ; insert
+0073    MOV     27  14
+0074    MOV     28  25
+0075    CALL    26   1   3
+0076 => FORL    21 => 0045
+0077 => FORL    15 => 0030
+0078 => KPRI    15   0
+0079    TNEW    16   0
+0080    KSHORT  17   1
+0081    KSHORT  18   1
+0082    LEN     19  14
+0083    KSHORT  20   1
+0084    FORI    18 => 0121
+0085 => KPRI    22   1
+0086    LOOP    23 => 0117
+0087    TGETV   23  14  21
+0088    TGETB   24  23   1
+0089    KPRI    25   0
+0090    TGETB   26  24   1
+0091    ISNES   26  11      ; "key_literal"
+0092    JMP     26 => 0101
+0093    TGETB   26  24   2
+0094    UGET    27   7      ; CONSTRUCTOR_NAME
+0095    ISNEV   26  27
+0096    JMP     26 => 0101
+0097    TGETB   15  23   2
+0098    KPRI    22   2
+0099    JMP     23 => 0117
+0100    JMP     26 => 0114
+0101 => KPRI    26   0
+0102    TGETB   27  23   1
+0103    TGETB   26  23   2
+0104    MOV     24  27
+0105    TNEW    27   3
+0106    TSETB   24  27   1
+0107    UGET    28   5      ; super_scope
+0108    MOV     29  26
+0109    MOV     30  11
+0110    MOV     31  24
+0111    CALL    28   0   4
+0112    TSETM   28   0      ; 2
+0113    MOV     25  27
+0114 => TSETV   25  16  17
+0115    ADDVN   17  17   1  ; 1
+0116    KPRI    22   2
+0117 => IST         22
+0118    JMP     23 => 0120
+0119    JMP     18 => 0121
+0120 => FORL    18 => 0085
+0121 => MOV     14  16
+0122    IST         15
+0123    JMP     16 => 0151
+0124    ISF          5
+0125    JMP     16 => 0147
+0126    UGET    16   6      ; build
+0127    TGETS   16  16  12  ; "fndef"
+0128    TDUP    17  14
+0129    TNEW    18   3
+0130    TDUP    19  13
+0131    TSETB   19  18   1
+0132    TSETS   18  17  15  ; "args"
+0133    TNEW    18   3
+0134    UGET    19   6      ; build
+0135    TGETS   19  19  16  ; "chain"
+0136    TDUP    20  17
+0137    TDUP    21  18
+0138    TDUP    22  19
+0139    TSETB   22  21   2
+0140    TSETB   21  20   1
+0141    CALL    19   0   2
+0142    TSETM   19   2      ; 1
+0143    TSETS   18  17  20  ; "body"
+0144    CALL    16   2   2
+0145    MOV     15  16
+0146    JMP     16 => 0151
+0147 => UGET    16   6      ; build
+0148    TGETS   16  16  12  ; "fndef"
+0149    CALL    16   2   1
+0150    MOV     15  16
+0151 => ISTC    16   4
+0152    JMP     16 => 0157
+0153    ISFC    16   3
+0154    JMP     16 => 0157
+0155    TGETB   16   3   2
+0156    TGETB   16  16   1
+0157 => UGET    17   4      ; ntype
+0158    MOV     18  16
+0159    CALL    17   2   2
+0160    ISNES   17  16      ; "chain"
+0161    JMP     18 => 0180
+0162    LEN     18  16
+0163    TGETV   18  16  18
+0164    UGET    19   4      ; ntype
+0165    MOV     20  18
+0166    CALL    19   2   2
+0167    ISNES   19  21      ; "dot"
+0168    JMP     20 => 0174
+0169    TDUP    20  22
+0170    TGETB   21  18   2
+0171    TSETB   21  20   3
+0172    MOV     16  20
+0173    JMP     20 => 0210
+0174 => ISNES   19  23      ; "index"
+0175    JMP     20 => 0178
+0176    TGETB   16  18   2
+0177    JMP     20 => 0210
+0178 => KSTR    16  24      ; "nil"
+0179    JMP     18 => 0210
+0180 => ISNES   17  24      ; "nil"
+0181    JMP     18 => 0184
+0182    KSTR    16  24      ; "nil"
+0183    JMP     18 => 0210
+0184 => GGET    18  25      ; "type"
+0185    MOV     19  16
+0186    CALL    18   2   2
+0187    KPRI    19   0
+0188    ISNES   18  26      ; "string"
+0189    JMP     20 => 0192
+0190    MOV     19  16
+0191    JMP     20 => 0207
+0192 => ISNES   18  27      ; "table"
+0193    JMP     20 => 0199
+0194    TGETB   20  16   1
+0195    ISNES   20  28      ; "ref"
+0196    JMP     20 => 0199
+0197    TGETB   19  16   2
+0198    JMP     20 => 0207
+0199 => GGET    20  29      ; "error"
+0200    KSTR    21  30      ; "don't know how to extract name from "
+0201    GGET    22  31      ; "tostring"
+0202    MOV     23  18
+0203    CALL    22   2   2
+0204    CAT     21  21  22
+0205    CALL    20   2   2
+0206    MOV     19  20
+0207 => TDUP    20  32
+0208    TSETB   19  20   3
+0209    MOV     16  20
+0210 => UGET    18   6      ; build
+0211    TGETS   18  18  27  ; "table"
+0212    TNEW    19   5
+0213    TDUP    20  33
+0214    UGET    21   5      ; super_scope
+0215    MOV     22  15
+0216    MOV     23  12
+0217    TDUP    24  34
+0218    CALL    21   0   4
+0219    TSETM   21   0      ; 2
+0220    TSETB   20  19   1
+0221    TDUP    20  35
+0222    TSETB    8  20   2
+0223    TSETB   20  19   2
+0224    TDUP    20  36
+0225    TSETB   16  20   2
+0226    TSETB   20  19   3
+0227    ISF          5
+0228    JMP     20 => 0233
+0229    TDUP    20  37
+0230    TSETB    7  20   2
+0231    IST         20
+0232    JMP     21 => 0234
+0233 => KPRI    20   0
+0234 => TSETB   20  19   4
+0235    CALL    18   2   2
+0236    KPRI    19   0
+0237    ISF          5
+0238    JMP     20 => 0329
+0239    UGET    20   6      ; build
+0240    TGETS   20  20  38  ; "if"
+0241    TDUP    21  41
+0242    TDUP    22  39
+0243    TDUP    23  40
+0244    TSETB   23  22   2
+0245    TSETS   22  21  42  ; "cond"
+0246    TNEW    22   3
+0247    UGET    23   6      ; build
+0248    TGETS   23  23  10  ; "assign_one"
+0249    UGET    24   8      ; LocalName
+0250    KSTR    25   1      ; "parent"
+0251    CALL    24   2   2
+0252    UGET    25   6      ; build
+0253    TGETS   25  25  16  ; "chain"
+0254    TDUP    26  43
+0255    TDUP    27  44
+0256    TNEW    28   3
+0257    TDUP    29  45
+0258    TSETB   29  28   1
+0259    TDUP    29  46
+0260    TSETB   29  28   2
+0261    TSETB   28  27   2
+0262    TSETB   27  26   1
+0263    CALL    25   0   2
+0264    CALLM   23   2   1
+0265    TSETB   23  22   1
+0266    UGET    23   6      ; build
+0267    TGETS   23  23  38  ; "if"
+0268    TDUP    24  47
+0269    UGET    25   8      ; LocalName
+0270    KSTR    26   1      ; "parent"
+0271    CALL    25   2   2
+0272    TSETS   25  24  42  ; "cond"
+0273    TNEW    25   3
+0274    UGET    26   6      ; build
+0275    TGETS   26  26  16  ; "chain"
+0276    TDUP    27  48
+0277    UGET    28   8      ; LocalName
+0278    KSTR    29   1      ; "parent"
+0279    CALL    28   2   2
+0280    TSETS   28  27   2  ; "base"
+0281    TDUP    28  49
+0282    TSETB   28  27   1
+0283    CALL    26   0   2
+0284    TSETM   26   2      ; 1
+0285    TSETS   25  24  50  ; "then"
+0286    CALL    23   0   2
+0287    TSETM   23   0      ; 2
+0288    TSETS   22  21  50  ; "then"
+0289    CALL    20   2   2
+0290    UGET    21   3      ; insert
+0291    MOV     22  20
+0292    TDUP    23  51
+0293    TDUP    24  52
+0294    TSETB   24  23   2
+0295    CALL    21   1   3
+0296    UGET    21   6      ; build
+0297    TGETS   21  21  12  ; "fndef"
+0298    TDUP    22  55
+0299    TNEW    23   3
+0300    TDUP    24  53
+0301    TSETB   24  23   1
+0302    TDUP    24  54
+0303    TSETB   24  23   2
+0304    TSETS   23  22  15  ; "args"
+0305    TNEW    23   3
+0306    UGET    24   6      ; build
+0307    TGETS   24  24  10  ; "assign_one"
+0308    UGET    25   8      ; LocalName
+0309    KSTR    26  56      ; "val"
+0310    CALL    25   2   2
+0311    UGET    26   6      ; build
+0312    TGETS   26  26  16  ; "chain"
+0313    TDUP    27  57
+0314    TDUP    28  58
+0315    TNEW    29   3
+0316    TSETB    8  29   1
+0317    TDUP    30  59
+0318    TSETB   30  29   2
+0319    TSETB   29  28   2
+0320    TSETB   28  27   1
+0321    CALL    26   0   2
+0322    CALLM   24   2   1
+0323    TSETB   24  23   1
+0324    TSETB   20  23   2
+0325    TSETS   23  22  20  ; "body"
+0326    CALL    21   2   2
+0327    MOV     19  21
+0328    JMP     20 => 0330
+0329 => MOV     19   8
+0330 => UGET    20   6      ; build
+0331    TGETS   20  20  27  ; "table"
+0332    TNEW    21   3
+0333    TDUP    22  60
+0334    TSETB   19  22   2
+0335    TSETB   22  21   1
+0336    TDUP    22  61
+0337    UGET    23   6      ; build
+0338    TGETS   23  23  12  ; "fndef"
+0339    TDUP    24  64
+0340    TNEW    25   3
+0341    TDUP    26  62
+0342    TSETB   26  25   1
+0343    TDUP    26  63
+0344    TSETB   26  25   2
+0345    TSETS   25  24  15  ; "args"
+0346    TNEW    25   4
+0347    UGET    26   6      ; build
+0348    TGETS   26  26  10  ; "assign_one"
+0349    MOV     27   9
+0350    UGET    28   6      ; build
+0351    TGETS   28  28  16  ; "chain"
+0352    TDUP    29  65
+0353    TDUP    30  66
+0354    TDUP    31  67
+0355    TSETB    8  31   2
+0356    TSETB   31  30   2
+0357    TSETB   30  29   1
+0358    CALL    28   0   2
+0359    CALLM   26   2   1
+0360    TSETB   26  25   1
+0361    UGET    26   6      ; build
+0362    TGETS   26  26  16  ; "chain"
+0363    TDUP    27  68
+0364    TDUP    28  69
+0365    TDUP    29  70
+0366    TSETB    9  29   1
+0367    TSETB   29  28   2
+0368    TSETB   28  27   1
+0369    CALL    26   2   2
+0370    TSETB   26  25   2
+0371    TSETB    9  25   3
+0372    TSETS   25  24  20  ; "body"
+0373    CALL    23   0   2
+0374    TSETM   23   0      ; 2
+0375    TSETB   22  21   2
+0376    CALL    20   2   2
+0377    UGET    21   6      ; build
+0378    TGETS   21  21  16  ; "chain"
+0379    TDUP    22  71
+0380    TDUP    23  72
+0381    TNEW    24   3
+0382    TSETB   18  24   1
+0383    TSETB   20  24   2
+0384    TSETB   24  23   2
+0385    TSETB   23  22   1
+0386    CALL    21   2   2
+0387    MOV     18  21
+0388    KPRI    21   0
+0389    TNEW    22  14
+0390    UGET    23   9      ; Run
+0391    FNEW    24  73      ; class.lua:395
+0392    CALL    23   2   2
+0393    TSETB   23  22   1
+0394    TDUP    23  74
+0395    TNEW    24   3
+0396    TSETB   10  24   1
+0397    TSETB   24  23   2
+0398    TSETB   23  22   2
+0399    TDUP    23  75
+0400    TSETB   23  22   3
+0401    ISF          5
+0402    JMP     23 => 0410
+0403    UGET    23   6      ; build
+0404    TGETS   23  23  10  ; "assign_one"
+0405    MOV     24   7
+0406    MOV     25   5
+0407    CALL    23   2   3
+0408    IST         23
+0409    JMP     24 => 0411
+0410 => UGET    23  10      ; NOOP
+0411 => TSETB   23  22   4
+0412    UGET    23   6      ; build
+0413    TGETS   23  23  10  ; "assign_one"
+0414    MOV     24   8
+0415    TDUP    25  76
+0416    TSETB   14  25   2
+0417    CALL    23   2   3
+0418    TSETB   23  22   5
+0419    UGET    23   6      ; build
+0420    TGETS   23  23  10  ; "assign_one"
+0421    MOV     25   8
+0422    TGETS   24   8  16  ; "chain"
+0423    KSTR    26  77      ; "__index"
+0424    CALL    24   2   3
+0425    MOV     25   8
+0426    CALL    23   2   3
+0427    TSETB   23  22   6
+0428    ISF          5
+0429    JMP     23 => 0449
+0430    UGET    23   6      ; build
+0431    TGETS   23  23  16  ; "chain"
+0432    TDUP    24  78
+0433    TDUP    25  79
+0434    TNEW    26   3
+0435    TSETB    8  26   1
+0436    UGET    27   6      ; build
+0437    TGETS   27  27  16  ; "chain"
+0438    TDUP    28  80
+0439    TSETS    7  28   2  ; "base"
+0440    TDUP    29  81
+0441    TSETB   29  28   1
+0442    CALL    27   0   2
+0443    TSETM   27   0      ; 2
+0444    TSETB   26  25   2
+0445    TSETB   25  24   1
+0446    CALL    23   2   2
+0447    IST         23
+0448    JMP     24 => 0450
+0449 => UGET    23  10      ; NOOP
+0450 => TSETB   23  22   7
+0451    UGET    23   6      ; build
+0452    TGETS   23  23  10  ; "assign_one"
+0453    MOV     24  10
+0454    MOV     25  18
+0455    CALL    23   2   3
+0456    TSETB   23  22   8
+0457    UGET    23   6      ; build
+0458    TGETS   23  23  10  ; "assign_one"
+0459    MOV     25   8
+0460    TGETS   24   8  16  ; "chain"
+0461    KSTR    26  82      ; "__class"
+0462    CALL    24   2   3
+0463    MOV     25  10
+0464    CALL    23   2   3
+0465    TSETB   23  22   9
+0466    UGET    23   6      ; build
+0467    TGETS   23  23  83  ; "group"
+0468    FNEW    24  84      ; class.lua:434
+0469    CALL    24   0   1
+0470    CALLM   23   2   0
+0471    TSETB   23  22  10
+0472    ISF          5
+0473    JMP     23 => 0499
+0474    UGET    23   6      ; build
+0475    TGETS   23  23  38  ; "if"
+0476    TDUP    24  87
+0477    TDUP    25  85
+0478    MOV     27   7
+0479    TGETS   26   7  16  ; "chain"
+0480    KSTR    28  86      ; "__inherited"
+0481    CALL    26   0   3
+0482    TSETM   26   0      ; 2
+0483    TSETS   25  24  42  ; "cond"
+0484    TNEW    25   3
+0485    MOV     27   7
+0486    TGETS   26   7  16  ; "chain"
+0487    KSTR    28  86      ; "__inherited"
+0488    TDUP    29  88
+0489    TNEW    30   3
+0490    TSETB    7  30   1
+0491    TSETB   10  30   2
+0492    TSETB   30  29   2
+0493    CALL    26   0   4
+0494    TSETM   26   2      ; 1
+0495    TSETS   25  24  50  ; "then"
+0496    CALL    23   2   2
+0497    IST         23
+0498    JMP     24 => 0500
+0499 => UGET    23  10      ; NOOP
+0500 => TSETB   23  22  11
+0501    UGET    23   6      ; build
+0502    TGETS   23  23  83  ; "group"
+0503    FNEW    24  89      ; class.lua:457
+0504    CALL    24   0   1
+0505    CALLM   23   2   0
+0506    TSETB   23  22  12
+0507    FNEW    23  90      ; class.lua:464
+0508    CALL    23   0   1
+0509    TSETM   23   3      ; 13
+0510    UGET    23   6      ; build
+0511    TGETS   23  23  83  ; "group"
+0512    TNEW    24   3
+0513    UGET    25   6      ; build
+0514    TGETS   25  25  83  ; "group"
+0515    FNEW    26  91      ; class.lua:471
+0516    CALL    26   0   1
+0517    CALLM   25   2   0
+0518    TSETB   25  24   1
+0519    UGET    25   6      ; build
+0520    TGETS   25  25  92  ; "do"
+0521    MOV     26  22
+0522    CALL    25   0   2
+0523    TSETM   25   0      ; 2
+0524    CALL    23   2   2
+0525    MOV     21  23
+0526    UCLO     0 => 0527
+0527 => RET1    21   2
+
+-- BYTECODE -- class.lua:0-487
+0001    KNIL     0   1
+0002    GGET     2   0      ; "require"
+0003    KSTR     3   1      ; "moonscript.transform.names"
+0004    CALL     2   2   2
+0005    TGETS    3   2   2  ; "NameProxy"
+0006    TGETS    1   2   3  ; "LocalName"
+0007    MOV      0   3
+0008    KPRI     2   0
+0009    GGET     3   0      ; "require"
+0010    KSTR     4   4      ; "moonscript.transform.statements"
+0011    CALL     3   2   2
+0012    TGETS    2   3   5  ; "Run"
+0013    KSTR     3   6      ; "new"
+0014    KPRI     4   0
+0015    GGET     5   7      ; "table"
+0016    TGETS    4   5   8  ; "insert"
+0017    KNIL     5   7
+0018    GGET     8   0      ; "require"
+0019    KSTR     9   9      ; "moonscript.types"
+0020    CALL     8   2   2
+0021    TGETS    9   8  10  ; "build"
+0022    TGETS   10   8  11  ; "ntype"
+0023    TGETS    7   8  12  ; "NOOP"
+0024    MOV      6  10
+0025    MOV      5   9
+0026    KPRI     8   0
+0027    GGET     9   0      ; "require"
+0028    KSTR    10  13      ; "moonscript.util"
+0029    CALL     9   2   2
+0030    TGETS    8   9  14  ; "unpack"
+0031    KPRI     9   0
+0032    FNEW     9  15      ; class.lua:19
+0033    KPRI    10   0
+0034    FNEW    10  16      ; class.lua:93
+0035    FNEW    11  17      ; class.lua:108
+0036    UCLO     0 => 0037
+0037 => RET1    11   2
+

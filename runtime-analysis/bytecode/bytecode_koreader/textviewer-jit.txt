@@ -1,0 +1,661 @@
+-- BYTECODE -- textviewer.lua:146-148
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- textviewer.lua:220-224
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "frame"
+0003    TGETS    0   0   1  ; "dimen"
+0004    MOV      1   0
+0005    TGETS    0   0   2  ; "combine"
+0006    UGET     2   1      ; orig_dimen
+0007    CALL     0   2   3
+0008    UGET     1   2      ; logger
+0009    TGETS    1   1   3  ; "dbg"
+0010    KSTR     2   4      ; "update region"
+0011    MOV      3   0
+0012    CALL     1   1   3
+0013    KSTR     1   5      ; "partial"
+0014    MOV      2   0
+0015    RET      1   3
+
+-- BYTECODE -- textviewer.lua:63-225
+0001    TGETS    1   0   0  ; "frame"
+0002    ISF          1
+0003    JMP      2 => 0008
+0004    TGETS    1   0   0  ; "frame"
+0005    TGETS    1   1   1  ; "dimen"
+0006    IST          1
+0007    JMP      2 => 0013
+0008 => UGET     1   0      ; Geom
+0009    MOV      2   1
+0010    TGETS    1   1   2  ; "new"
+0011    TNEW     3   0
+0012    CALL     1   2   3
+0013 => KSTR     2   4      ; "center"
+0014    TSETS    2   0   3  ; "align"
+0015    UGET     2   0      ; Geom
+0016    MOV      3   2
+0017    TGETS    2   2   2  ; "new"
+0018    TDUP     4   6
+0019    UGET     5   1      ; Screen
+0020    MOV      6   5
+0021    TGETS    5   5   7  ; "getWidth"
+0022    CALL     5   2   2
+0023    TSETS    5   4   8  ; "w"
+0024    UGET     5   1      ; Screen
+0025    MOV      6   5
+0026    TGETS    5   5   9  ; "getHeight"
+0027    CALL     5   2   2
+0028    TSETS    5   4  10  ; "h"
+0029    CALL     2   2   3
+0030    TSETS    2   0   5  ; "region"
+0031    TGETS    2   0  11  ; "width"
+0032    IST          2
+0033    JMP      3 => 0044
+0034    UGET     2   1      ; Screen
+0035    MOV      3   2
+0036    TGETS    2   2   7  ; "getWidth"
+0037    CALL     2   2   2
+0038    UGET     3   1      ; Screen
+0039    MOV      4   3
+0040    TGETS    3   3  12  ; "scaleBySize"
+0041    KSHORT   5  30
+0042    CALL     3   2   3
+0043    SUBVV    2   2   3
+0044 => TSETS    2   0  11  ; "width"
+0045    TGETS    2   0  13  ; "height"
+0046    IST          2
+0047    JMP      3 => 0058
+0048    UGET     2   1      ; Screen
+0049    MOV      3   2
+0050    TGETS    2   2   9  ; "getHeight"
+0051    CALL     2   2   2
+0052    UGET     3   1      ; Screen
+0053    MOV      4   3
+0054    TGETS    3   3  12  ; "scaleBySize"
+0055    KSHORT   5  30
+0056    CALL     3   2   3
+0057    SUBVV    2   2   3
+0058 => TSETS    2   0  13  ; "height"
+0059    UGET     2   2      ; Device
+0060    MOV      3   2
+0061    TGETS    2   2  14  ; "hasKeys"
+0062    CALL     2   2   2
+0063    ISF          2
+0064    JMP      3 => 0071
+0065    TDUP     2  18
+0066    TDUP     3  17
+0067    TDUP     4  16
+0068    TSETB    4   3   1
+0069    TSETS    3   2  19  ; "Close"
+0070    TSETS    2   0  15  ; "key_events"
+0071 => UGET     2   2      ; Device
+0072    MOV      3   2
+0073    TGETS    2   2  20  ; "isTouchDevice"
+0074    CALL     2   2   2
+0075    ISF          2
+0076    JMP      3 => 0127
+0077    TDUP     2  25
+0078    TNEW     3   3
+0079    UGET     4   3      ; GestureRange
+0080    MOV      5   4
+0081    TGETS    4   4   2  ; "new"
+0082    TDUP     6  22
+0083    UGET     7   0      ; Geom
+0084    MOV      8   7
+0085    TGETS    7   7   2  ; "new"
+0086    TDUP     9  23
+0087    UGET    10   1      ; Screen
+0088    MOV     11  10
+0089    TGETS   10  10   7  ; "getWidth"
+0090    CALL    10   2   2
+0091    TSETS   10   9   8  ; "w"
+0092    UGET    10   1      ; Screen
+0093    MOV     11  10
+0094    TGETS   10  10   9  ; "getHeight"
+0095    CALL    10   2   2
+0096    TSETS   10   9  10  ; "h"
+0097    CALL     7   2   3
+0098    TSETS    7   6  24  ; "range"
+0099    CALL     4   0   3
+0100    TSETM    4   0      ; 1
+0101    TSETS    3   2  26  ; "TapClose"
+0102    TNEW     3   3
+0103    UGET     4   3      ; GestureRange
+0104    MOV      5   4
+0105    TGETS    4   4   2  ; "new"
+0106    TDUP     6  27
+0107    UGET     7   0      ; Geom
+0108    MOV      8   7
+0109    TGETS    7   7   2  ; "new"
+0110    TDUP     9  28
+0111    UGET    10   1      ; Screen
+0112    MOV     11  10
+0113    TGETS   10  10   7  ; "getWidth"
+0114    CALL    10   2   2
+0115    TSETS   10   9   8  ; "w"
+0116    UGET    10   1      ; Screen
+0117    MOV     11  10
+0118    TGETS   10  10   9  ; "getHeight"
+0119    CALL    10   2   2
+0120    TSETS   10   9  10  ; "h"
+0121    CALL     7   2   3
+0122    TSETS    7   6  24  ; "range"
+0123    CALL     4   0   3
+0124    TSETM    4   0      ; 1
+0125    TSETS    3   2  29  ; "Swipe"
+0126    TSETS    2   0  21  ; "ges_events"
+0127 => UGET     2   4      ; CloseButton
+0128    MOV      3   2
+0129    TGETS    2   2   2  ; "new"
+0130    TDUP     4  30
+0131    TSETS    0   4  31  ; "window"
+0132    UGET     5   5      ; Size
+0133    TGETS    5   5  32  ; "padding"
+0134    TGETS    5   5  33  ; "tiny"
+0135    TSETS    5   4  34  ; "padding_top"
+0136    CALL     2   2   3
+0137    UGET     3   6      ; TextBoxWidget
+0138    MOV      4   3
+0139    TGETS    3   3   2  ; "new"
+0140    TDUP     5  36
+0141    TGETS    6   0  35  ; "title"
+0142    TSETS    6   5  37  ; "text"
+0143    TGETS    6   0  38  ; "title_face"
+0144    TSETS    6   5  39  ; "face"
+0145    TGETS    6   0  11  ; "width"
+0146    TGETS    7   0  40  ; "title_padding"
+0147    MULNV    7   7   1  ; 2
+0148    SUBVV    6   6   7
+0149    TGETS    7   0  41  ; "title_margin"
+0150    MULNV    7   7   1  ; 2
+0151    SUBVV    6   6   7
+0152    MOV      8   2
+0153    TGETS    7   2  42  ; "getSize"
+0154    CALL     7   2   2
+0155    TGETS    7   7   8  ; "w"
+0156    SUBVV    6   6   7
+0157    TSETS    6   5  11  ; "width"
+0158    CALL     3   2   3
+0159    UGET     4   7      ; FrameContainer
+0160    MOV      5   4
+0161    TGETS    4   4   2  ; "new"
+0162    TDUP     6  43
+0163    TGETS    7   0  40  ; "title_padding"
+0164    TSETS    7   6  32  ; "padding"
+0165    TGETS    7   0  40  ; "title_padding"
+0166    UGET     8   5      ; Size
+0167    TGETS    8   8  32  ; "padding"
+0168    TGETS    8   8  44  ; "small"
+0169    ADDVV    7   7   8
+0170    TSETS    7   6  34  ; "padding_top"
+0171    TGETS    7   0  40  ; "title_padding"
+0172    UGET     8   5      ; Size
+0173    TGETS    8   8  32  ; "padding"
+0174    TGETS    8   8  44  ; "small"
+0175    ADDVV    7   7   8
+0176    TSETS    7   6  45  ; "padding_bottom"
+0177    TGETS    7   0  41  ; "title_margin"
+0178    TSETS    7   6  46  ; "margin"
+0179    TSETB    3   6   1
+0180    CALL     4   2   3
+0181    UGET     5   8      ; OverlapGroup
+0182    MOV      6   5
+0183    TGETS    5   5   2  ; "new"
+0184    TDUP     7  48
+0185    TDUP     8  47
+0186    TGETS    9   0  11  ; "width"
+0187    TSETS    9   8   8  ; "w"
+0188    MOV     10   4
+0189    TGETS    9   4  42  ; "getSize"
+0190    CALL     9   2   2
+0191    TGETS    9   9  10  ; "h"
+0192    TSETS    9   8  10  ; "h"
+0193    TSETS    8   7   1  ; "dimen"
+0194    TSETB    4   7   1
+0195    TSETB    2   7   2
+0196    CALL     5   2   3
+0197    MOV      4   5
+0198    UGET     5   9      ; LineWidget
+0199    MOV      6   5
+0200    TGETS    5   5   2  ; "new"
+0201    TDUP     7  52
+0202    UGET     8   0      ; Geom
+0203    MOV      9   8
+0204    TGETS    8   8   2  ; "new"
+0205    TDUP    10  49
+0206    TGETS   11   0  11  ; "width"
+0207    TSETS   11  10   8  ; "w"
+0208    UGET    11   5      ; Size
+0209    TGETS   11  11  50  ; "line"
+0210    TGETS   11  11  51  ; "thick"
+0211    TSETS   11  10  10  ; "h"
+0212    CALL     8   2   3
+0213    TSETS    8   7   1  ; "dimen"
+0214    CALL     5   2   3
+0215    KPRI     6   0
+0216    TGETS    7   0  53  ; "buttons_table"
+0217    ISNEP    7   0
+0218    JMP      7 => 0232
+0219    TNEW     7   3
+0220    TNEW     8   3
+0221    TDUP     9  54
+0222    UGET    10  10      ; _
+0223    KSTR    11  19      ; "Close"
+0224    CALL    10   2   2
+0225    TSETS   10   9  37  ; "text"
+0226    FNEW    10  55      ; textviewer.lua:146
+0227    TSETS   10   9  56  ; "callback"
+0228    TSETB    9   8   1
+0229    TSETB    8   7   1
+0230    MOV      6   7
+0231    JMP      7 => 0233
+0232 => TGETS    6   0  53  ; "buttons_table"
+0233 => UGET     7  12      ; ButtonTable
+0234    MOV      8   7
+0235    TGETS    7   7   2  ; "new"
+0236    TDUP     9  58
+0237    TGETS   10   0  11  ; "width"
+0238    TGETS   11   0  57  ; "button_padding"
+0239    MULNV   11  11   1  ; 2
+0240    SUBVV   10  10  11
+0241    TSETS   10   9  11  ; "width"
+0242    TSETS    6   9  59  ; "buttons"
+0243    TSETS    0   9  60  ; "show_parent"
+0244    CALL     7   2   3
+0245    TGETS    8   0  13  ; "height"
+0246    MOV     10   4
+0247    TGETS    9   4  42  ; "getSize"
+0248    CALL     9   2   2
+0249    TGETS    9   9  10  ; "h"
+0250    SUBVV    8   8   9
+0251    MOV     10   5
+0252    TGETS    9   5  42  ; "getSize"
+0253    CALL     9   2   2
+0254    TGETS    9   9  10  ; "h"
+0255    SUBVV    8   8   9
+0256    MOV     10   7
+0257    TGETS    9   7  42  ; "getSize"
+0258    CALL     9   2   2
+0259    TGETS    9   9  10  ; "h"
+0260    SUBVV    8   8   9
+0261    UGET     9  13      ; ScrollTextWidget
+0262    MOV     10   9
+0263    TGETS    9   9   2  ; "new"
+0264    TDUP    11  62
+0265    TGETS   12   0  37  ; "text"
+0266    TSETS   12  11  37  ; "text"
+0267    TGETS   12   0  63  ; "text_face"
+0268    TSETS   12  11  39  ; "face"
+0269    TGETS   12   0  11  ; "width"
+0270    TGETS   13   0  64  ; "text_padding"
+0271    MULNV   13  13   1  ; 2
+0272    SUBVV   12  12  13
+0273    TGETS   13   0  65  ; "text_margin"
+0274    MULNV   13  13   1  ; 2
+0275    SUBVV   12  12  13
+0276    TSETS   12  11  11  ; "width"
+0277    TGETS   12   0  64  ; "text_padding"
+0278    MULNV   12  12   1  ; 2
+0279    SUBVV   12   8  12
+0280    TGETS   13   0  65  ; "text_margin"
+0281    MULNV   13  13   1  ; 2
+0282    SUBVV   12  12  13
+0283    TSETS   12  11  13  ; "height"
+0284    TSETS    0  11  66  ; "dialog"
+0285    TGETS   12   0  67  ; "alignment"
+0286    TSETS   12  11  67  ; "alignment"
+0287    TGETS   12   0  68  ; "justified"
+0288    TSETS   12  11  68  ; "justified"
+0289    TGETS   12   0  69  ; "lang"
+0290    TSETS   12  11  69  ; "lang"
+0291    TGETS   12   0  70  ; "para_direction_rtl"
+0292    TSETS   12  11  70  ; "para_direction_rtl"
+0293    TGETS   12   0  71  ; "auto_para_direction"
+0294    TSETS   12  11  71  ; "auto_para_direction"
+0295    TGETS   12   0  72  ; "alignment_strict"
+0296    TSETS   12  11  72  ; "alignment_strict"
+0297    CALL     9   2   3
+0298    TSETS    9   0  61  ; "scroll_text_w"
+0299    UGET     9   7      ; FrameContainer
+0300    MOV     10   9
+0301    TGETS    9   9   2  ; "new"
+0302    TDUP    11  74
+0303    TGETS   12   0  64  ; "text_padding"
+0304    TSETS   12  11  32  ; "padding"
+0305    TGETS   12   0  65  ; "text_margin"
+0306    TSETS   12  11  46  ; "margin"
+0307    TGETS   12   0  61  ; "scroll_text_w"
+0308    TSETB   12  11   1
+0309    CALL     9   2   3
+0310    TSETS    9   0  73  ; "textw"
+0311    UGET     9   7      ; FrameContainer
+0312    MOV     10   9
+0313    TGETS    9   9   2  ; "new"
+0314    TDUP    11  76
+0315    UGET    12   5      ; Size
+0316    TGETS   12  12  75  ; "radius"
+0317    TGETS   12  12  31  ; "window"
+0318    TSETS   12  11  75  ; "radius"
+0319    UGET    12  14      ; Blitbuffer
+0320    TGETS   12  12  77  ; "COLOR_WHITE"
+0321    TSETS   12  11  78  ; "background"
+0322    UGET    12  15      ; VerticalGroup
+0323    MOV     13  12
+0324    TGETS   12  12   2  ; "new"
+0325    TDUP    14  79
+0326    TSETB    4  14   1
+0327    TSETB    5  14   2
+0328    UGET    15  16      ; CenterContainer
+0329    MOV     16  15
+0330    TGETS   15  15   2  ; "new"
+0331    TDUP    17  81
+0332    UGET    18   0      ; Geom
+0333    MOV     19  18
+0334    TGETS   18  18   2  ; "new"
+0335    TDUP    20  80
+0336    TGETS   21   0  11  ; "width"
+0337    TSETS   21  20   8  ; "w"
+0338    TGETS   21   0  73  ; "textw"
+0339    MOV     22  21
+0340    TGETS   21  21  42  ; "getSize"
+0341    CALL    21   2   2
+0342    TGETS   21  21  10  ; "h"
+0343    TSETS   21  20  10  ; "h"
+0344    CALL    18   2   3
+0345    TSETS   18  17   1  ; "dimen"
+0346    TGETS   18   0  73  ; "textw"
+0347    TSETB   18  17   1
+0348    CALL    15   2   3
+0349    TSETB   15  14   3
+0350    UGET    15  16      ; CenterContainer
+0351    MOV     16  15
+0352    TGETS   15  15   2  ; "new"
+0353    TDUP    17  83
+0354    UGET    18   0      ; Geom
+0355    MOV     19  18
+0356    TGETS   18  18   2  ; "new"
+0357    TDUP    20  82
+0358    TGETS   21   0  11  ; "width"
+0359    TSETS   21  20   8  ; "w"
+0360    MOV     22   7
+0361    TGETS   21   7  42  ; "getSize"
+0362    CALL    21   2   2
+0363    TGETS   21  21  10  ; "h"
+0364    TSETS   21  20  10  ; "h"
+0365    CALL    18   2   3
+0366    TSETS   18  17   1  ; "dimen"
+0367    TSETB    7  17   1
+0368    CALL    15   0   3
+0369    TSETM   15   2      ; 4
+0370    CALL    12   0   3
+0371    TSETM   12   0      ; 1
+0372    CALL     9   2   3
+0373    TSETS    9   0   0  ; "frame"
+0374    UGET     9  17      ; MovableContainer
+0375    MOV     10   9
+0376    TGETS    9   9   2  ; "new"
+0377    TDUP    11  86
+0378    TDUP    12  85
+0379    TSETS   12  11  87  ; "ignore_events"
+0380    TGETS   12   0   0  ; "frame"
+0381    TSETB   12  11   1
+0382    CALL     9   2   3
+0383    TSETS    9   0  84  ; "movable"
+0384    UGET     9  18      ; WidgetContainer
+0385    MOV     10   9
+0386    TGETS    9   9   2  ; "new"
+0387    TDUP    11  88
+0388    TGETS   12   0   3  ; "align"
+0389    TSETS   12  11   3  ; "align"
+0390    TGETS   12   0   5  ; "region"
+0391    TSETS   12  11   1  ; "dimen"
+0392    TGETS   12   0  84  ; "movable"
+0393    TSETB   12  11   1
+0394    CALL     9   2   3
+0395    TSETB    9   0   1
+0396    UGET     9  11      ; UIManager
+0397    MOV     10   9
+0398    TGETS    9   9  89  ; "setDirty"
+0399    MOV     11   0
+0400    FNEW    12  90      ; textviewer.lua:220
+0401    CALL     9   1   4
+0402    UCLO     0 => 0403
+0403 => RET0     0   1
+
+-- BYTECODE -- textviewer.lua:228-230
+0001    KSTR     0   0      ; "partial"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- textviewer.lua:227-232
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    KPRI     3   0
+0005    FNEW     4   1      ; textviewer.lua:228
+0006    CALL     1   1   4
+0007    KPRI     1   2
+0008    UCLO     0 => 0009
+0009 => RET1     1   2
+
+-- BYTECODE -- textviewer.lua:235-237
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- textviewer.lua:234-239
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    MOV      3   0
+0005    FNEW     4   1      ; textviewer.lua:235
+0006    CALL     1   1   4
+0007    KPRI     1   2
+0008    UCLO     0 => 0009
+0009 => RET1     1   2
+
+-- BYTECODE -- textviewer.lua:241-244
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- textviewer.lua:246-251
+0001    TGETS    3   2   0  ; "pos"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "notIntersectWith"
+0004    TGETS    5   0   2  ; "frame"
+0005    TGETS    5   5   3  ; "dimen"
+0006    CALL     3   2   3
+0007    ISF          3
+0008    JMP      4 => 0012
+0009    MOV      4   0
+0010    TGETS    3   0   4  ; "onClose"
+0011    CALL     3   1   2
+0012 => KPRI     3   2
+0013    RET1     3   2
+
+-- BYTECODE -- textviewer.lua:253-256
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- textviewer.lua:258-277
+0001    TGETS    3   2   0  ; "pos"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "intersectWith"
+0004    TGETS    5   0   2  ; "textw"
+0005    TGETS    5   5   3  ; "dimen"
+0006    CALL     3   2   3
+0007    ISF          3
+0008    JMP      4 => 0041
+0009    UGET     3   0      ; BD
+0010    TGETS    3   3   4  ; "flipDirectionIfMirroredUILayout"
+0011    TGETS    4   2   5  ; "direction"
+0012    CALL     3   2   2
+0013    ISNES    3   6      ; "west"
+0014    JMP      4 => 0023
+0015    TGETS    4   0   7  ; "scroll_text_w"
+0016    MOV      5   4
+0017    TGETS    4   4   8  ; "scrollText"
+0018    KSHORT   6   1
+0019    CALL     4   1   3
+0020    KPRI     4   2
+0021    RET1     4   2
+0022    JMP      4 => 0041
+0023 => ISNES    3   9      ; "east"
+0024    JMP      4 => 0033
+0025    TGETS    4   0   7  ; "scroll_text_w"
+0026    MOV      5   4
+0027    TGETS    4   4   8  ; "scrollText"
+0028    KSHORT   6  -1
+0029    CALL     4   1   3
+0030    KPRI     4   2
+0031    RET1     4   2
+0032    JMP      4 => 0041
+0033 => UGET     4   1      ; UIManager
+0034    MOV      5   4
+0035    TGETS    4   4  10  ; "setDirty"
+0036    KPRI     6   0
+0037    KSTR     7  11      ; "full"
+0038    CALL     4   1   4
+0039    KPRI     4   1
+0040    RET1     4   2
+0041 => TGETS    3   0  12  ; "movable"
+0042    MOV      4   3
+0043    TGETS    3   3  13  ; "onMovableSwipe"
+0044    MOV      5   1
+0045    MOV      6   2
+0046    CALLT    3   4
+
+-- BYTECODE -- textviewer.lua:0-280
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/blitbuffer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/buttontable"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/container/centercontainer"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/closebutton"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "device"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/geometry"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/font"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/widget/container/framecontainer"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/gesturerange"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/widget/container/inputcontainer"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/linewidget"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/container/movablecontainer"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/widget/overlapgroup"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/widget/scrolltextwidget"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/size"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "ui/widget/textboxwidget"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/uimanager"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "ui/widget/verticalgroup"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "ui/widget/container/widgetcontainer"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "logger"
+0063    CALL    20   2   2
+0064    GGET    21   0      ; "require"
+0065    KSTR    22  22      ; "gettext"
+0066    CALL    21   2   2
+0067    TGETS   22   5  23  ; "screen"
+0068    MOV     24  10
+0069    TGETS   23  10  24  ; "new"
+0070    TDUP    25  25
+0071    MOV     27   7
+0072    TGETS   26   7  26  ; "getFace"
+0073    KSTR    28  27      ; "x_smalltfont"
+0074    CALL    26   2   3
+0075    TSETS   26  25  28  ; "title_face"
+0076    MOV     27   7
+0077    TGETS   26   7  26  ; "getFace"
+0078    KSTR    28  29      ; "x_smallinfofont"
+0079    CALL    26   2   3
+0080    TSETS   26  25  30  ; "text_face"
+0081    TGETS   26  15  31  ; "padding"
+0082    TGETS   26  26  32  ; "default"
+0083    TSETS   26  25  33  ; "title_padding"
+0084    TGETS   26  15  34  ; "margin"
+0085    TGETS   26  26  35  ; "title"
+0086    TSETS   26  25  36  ; "title_margin"
+0087    TGETS   26  15  31  ; "padding"
+0088    TGETS   26  26  37  ; "large"
+0089    TSETS   26  25  38  ; "text_padding"
+0090    TGETS   26  15  34  ; "margin"
+0091    TGETS   26  26  39  ; "small"
+0092    TSETS   26  25  40  ; "text_margin"
+0093    TGETS   26  15  31  ; "padding"
+0094    TGETS   26  26  32  ; "default"
+0095    TSETS   26  25  41  ; "button_padding"
+0096    CALL    23   2   3
+0097    FNEW    24  43      ; textviewer.lua:63
+0098    TSETS   24  23  42  ; "init"
+0099    FNEW    24  45      ; textviewer.lua:227
+0100    TSETS   24  23  44  ; "onCloseWidget"
+0101    FNEW    24  47      ; textviewer.lua:234
+0102    TSETS   24  23  46  ; "onShow"
+0103    FNEW    24  49      ; textviewer.lua:241
+0104    TSETS   24  23  48  ; "onAnyKeyPressed"
+0105    FNEW    24  51      ; textviewer.lua:246
+0106    TSETS   24  23  50  ; "onTapClose"
+0107    FNEW    24  53      ; textviewer.lua:253
+0108    TSETS   24  23  52  ; "onClose"
+0109    FNEW    24  55      ; textviewer.lua:258
+0110    TSETS   24  23  54  ; "onSwipe"
+0111    UCLO     0 => 0112
+0112 => RET1    23   2
+

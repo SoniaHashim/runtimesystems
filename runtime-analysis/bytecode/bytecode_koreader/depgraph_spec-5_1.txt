@@ -1,0 +1,433 @@
+
+main <./spec/unit/depgraph_spec.lua:0,0> (5 instructions, 20 bytes at 0x7fea97c068c0)
+0+ params, 3 slots, 0 upvalues, 0 locals, 2 constants, 1 function
+	1	[1]	GETGLOBAL	0 -1	; describe
+	2	[1]	LOADK    	1 -2	; "DepGraph module"
+	3	[140]	CLOSURE  	2 0	; 0x7fea97c06b60
+	4	[1]	CALL     	0 3 1
+	5	[140]	RETURN   	0 1
+
+function <./spec/unit/depgraph_spec.lua:1,140> (30 instructions, 120 bytes at 0x7fea97c06b60)
+0 params, 4 slots, 0 upvalues, 1 local, 7 constants, 6 functions
+	1	[3]	GETGLOBAL	1 -1	; setup
+	2	[6]	CLOSURE  	2 0	; 0x7fea97c06d90
+	3	[6]	MOVE     	0 0
+	4	[3]	CALL     	1 2 1
+	5	[8]	GETGLOBAL	1 -2	; it
+	6	[8]	LOADK    	2 -3	; "should serialize simple graph"
+	7	[14]	CLOSURE  	3 1	; 0x7fea97c06c70
+	8	[14]	MOVE     	0 0
+	9	[8]	CALL     	1 3 1
+	10	[16]	GETGLOBAL	1 -2	; it
+	11	[16]	LOADK    	2 -4	; "should serialize complex graph"
+	12	[44]	CLOSURE  	3 2	; 0x7fea97c07470
+	13	[44]	MOVE     	0 0
+	14	[16]	CALL     	1 3 1
+	15	[46]	GETGLOBAL	1 -2	; it
+	16	[46]	LOADK    	2 -5	; "should serialize complex graph2"
+	17	[68]	CLOSURE  	3 3	; 0x7fea97c06640
+	18	[68]	MOVE     	0 0
+	19	[46]	CALL     	1 3 1
+	20	[71]	GETGLOBAL	1 -2	; it
+	21	[71]	LOADK    	2 -6	; "should serialize complex graph with duplicates"
+	22	[100]	CLOSURE  	3 4	; 0x7fea97c07130
+	23	[100]	MOVE     	0 0
+	24	[71]	CALL     	1 3 1
+	25	[102]	GETGLOBAL	1 -2	; it
+	26	[102]	LOADK    	2 -7	; "should serialize complex graph and keep dependencies after removing and re-adding"
+	27	[139]	CLOSURE  	3 5	; 0x7fea97c080d0
+	28	[139]	MOVE     	0 0
+	29	[102]	CALL     	1 3 1
+	30	[140]	RETURN   	0 1
+
+function <./spec/unit/depgraph_spec.lua:3,6> (8 instructions, 32 bytes at 0x7fea97c06d90)
+0 params, 2 slots, 1 upvalue, 0 locals, 3 constants, 0 functions
+	1	[4]	GETGLOBAL	0 -1	; require
+	2	[4]	LOADK    	1 -2	; "commonrequire"
+	3	[4]	CALL     	0 2 1
+	4	[5]	GETGLOBAL	0 -1	; require
+	5	[5]	LOADK    	1 -3	; "depgraph"
+	6	[5]	CALL     	0 2 2
+	7	[5]	SETUPVAL 	0 0	; DepGraph
+	8	[6]	RETURN   	0 1
+
+function <./spec/unit/depgraph_spec.lua:8,14> (34 instructions, 136 bytes at 0x7fea97c06c70)
+0 params, 7 slots, 1 upvalue, 1 local, 10 constants, 0 functions
+	1	[9]	GETUPVAL 	0 0	; DepGraph
+	2	[9]	SELF     	0 0 -1	; "new"
+	3	[9]	NEWTABLE 	2 0 0
+	4	[9]	CALL     	0 3 2
+	5	[10]	SELF     	1 0 -2	; "addNode"
+	6	[10]	LOADK    	3 -3	; "a1"
+	7	[10]	NEWTABLE 	4 2 0
+	8	[10]	LOADK    	5 -4	; "a2"
+	9	[10]	LOADK    	6 -5	; "b1"
+	10	[10]	SETLIST  	4 2 1	; 1
+	11	[10]	CALL     	1 4 1
+	12	[11]	SELF     	1 0 -2	; "addNode"
+	13	[11]	LOADK    	3 -5	; "b1"
+	14	[11]	NEWTABLE 	4 2 0
+	15	[11]	LOADK    	5 -4	; "a2"
+	16	[11]	LOADK    	6 -6	; "c1"
+	17	[11]	SETLIST  	4 2 1	; 1
+	18	[11]	CALL     	1 4 1
+	19	[12]	SELF     	1 0 -2	; "addNode"
+	20	[12]	LOADK    	3 -6	; "c1"
+	21	[12]	CALL     	1 3 1
+	22	[13]	GETGLOBAL	1 -7	; assert
+	23	[13]	GETTABLE 	1 1 -8	; "are"
+	24	[13]	GETTABLE 	1 1 -9	; "same"
+	25	[13]	NEWTABLE 	2 4 0
+	26	[13]	LOADK    	3 -4	; "a2"
+	27	[13]	LOADK    	4 -6	; "c1"
+	28	[13]	LOADK    	5 -5	; "b1"
+	29	[13]	LOADK    	6 -3	; "a1"
+	30	[13]	SETLIST  	2 4 1	; 1
+	31	[13]	SELF     	3 0 -10	; "serialize"
+	32	[13]	CALL     	3 2 0
+	33	[13]	CALL     	1 0 1
+	34	[14]	RETURN   	0 1
+
+function <./spec/unit/depgraph_spec.lua:16,44> (85 instructions, 340 bytes at 0x7fea97c07470)
+0 params, 15 slots, 1 upvalue, 1 local, 18 constants, 0 functions
+	1	[17]	GETUPVAL 	0 0	; DepGraph
+	2	[17]	SELF     	0 0 -1	; "new"
+	3	[17]	NEWTABLE 	2 0 0
+	4	[17]	CALL     	0 3 2
+	5	[18]	SELF     	1 0 -2	; "addNode"
+	6	[18]	LOADK    	3 -3	; "readerfooter_tap"
+	7	[18]	CALL     	1 3 1
+	8	[19]	SELF     	1 0 -2	; "addNode"
+	9	[19]	LOADK    	3 -4	; "readerfooter_hold"
+	10	[19]	NEWTABLE 	4 0 0
+	11	[19]	CALL     	1 4 1
+	12	[20]	SELF     	1 0 -2	; "addNode"
+	13	[20]	LOADK    	3 -5	; "readerhighlight_tap"
+	14	[20]	NEWTABLE 	4 2 0
+	15	[20]	LOADK    	5 -6	; "tap_backward"
+	16	[20]	LOADK    	6 -7	; "tap_forward"
+	17	[20]	SETLIST  	4 2 1	; 1
+	18	[20]	CALL     	1 4 1
+	19	[21]	SELF     	1 0 -2	; "addNode"
+	20	[21]	LOADK    	3 -6	; "tap_backward"
+	21	[21]	NEWTABLE 	4 2 0
+	22	[21]	LOADK    	5 -3	; "readerfooter_tap"
+	23	[21]	LOADK    	6 -8	; "readermenu_tap"
+	24	[21]	SETLIST  	4 2 1	; 1
+	25	[21]	CALL     	1 4 1
+	26	[22]	SELF     	1 0 -2	; "addNode"
+	27	[22]	LOADK    	3 -7	; "tap_forward"
+	28	[22]	NEWTABLE 	4 2 0
+	29	[22]	LOADK    	5 -3	; "readerfooter_tap"
+	30	[22]	LOADK    	6 -8	; "readermenu_tap"
+	31	[22]	SETLIST  	4 2 1	; 1
+	32	[22]	CALL     	1 4 1
+	33	[23]	SELF     	1 0 -2	; "addNode"
+	34	[23]	LOADK    	3 -9	; "readerhighlight_hold"
+	35	[23]	NEWTABLE 	4 1 0
+	36	[23]	LOADK    	5 -4	; "readerfooter_hold"
+	37	[23]	SETLIST  	4 1 1	; 1
+	38	[23]	CALL     	1 4 1
+	39	[24]	SELF     	1 0 -2	; "addNode"
+	40	[24]	LOADK    	3 -10	; "readerhighlight_hold_release"
+	41	[24]	NEWTABLE 	4 0 0
+	42	[24]	CALL     	1 4 1
+	43	[25]	SELF     	1 0 -2	; "addNode"
+	44	[25]	LOADK    	3 -11	; "readerhighlight_hold_pan"
+	45	[25]	NEWTABLE 	4 0 0
+	46	[25]	CALL     	1 4 1
+	47	[26]	SELF     	1 0 -2	; "addNode"
+	48	[26]	LOADK    	3 -8	; "readermenu_tap"
+	49	[26]	NEWTABLE 	4 1 0
+	50	[26]	LOADK    	5 -3	; "readerfooter_tap"
+	51	[26]	SETLIST  	4 1 1	; 1
+	52	[26]	CALL     	1 4 1
+	53	[27]	SELF     	1 0 -2	; "addNode"
+	54	[27]	LOADK    	3 -12	; "paging_swipe"
+	55	[27]	NEWTABLE 	4 0 0
+	56	[27]	CALL     	1 4 1
+	57	[28]	SELF     	1 0 -2	; "addNode"
+	58	[28]	LOADK    	3 -13	; "paging_pan"
+	59	[28]	NEWTABLE 	4 0 0
+	60	[28]	CALL     	1 4 1
+	61	[29]	SELF     	1 0 -2	; "addNode"
+	62	[29]	LOADK    	3 -14	; "paging_pan_release"
+	63	[29]	NEWTABLE 	4 0 0
+	64	[29]	CALL     	1 4 1
+	65	[30]	GETGLOBAL	1 -15	; assert
+	66	[30]	GETTABLE 	1 1 -16	; "are"
+	67	[30]	GETTABLE 	1 1 -17	; "same"
+	68	[30]	NEWTABLE 	2 12 0
+	69	[31]	LOADK    	3 -3	; "readerfooter_tap"
+	70	[32]	LOADK    	4 -8	; "readermenu_tap"
+	71	[33]	LOADK    	5 -6	; "tap_backward"
+	72	[34]	LOADK    	6 -11	; "readerhighlight_hold_pan"
+	73	[35]	LOADK    	7 -14	; "paging_pan_release"
+	74	[36]	LOADK    	8 -4	; "readerfooter_hold"
+	75	[37]	LOADK    	9 -9	; "readerhighlight_hold"
+	76	[38]	LOADK    	10 -13	; "paging_pan"
+	77	[39]	LOADK    	11 -12	; "paging_swipe"
+	78	[40]	LOADK    	12 -7	; "tap_forward"
+	79	[41]	LOADK    	13 -5	; "readerhighlight_tap"
+	80	[43]	LOADK    	14 -10	; "readerhighlight_hold_release"
+	81	[43]	SETLIST  	2 12 1	; 1
+	82	[43]	SELF     	3 0 -18	; "serialize"
+	83	[43]	CALL     	3 2 0
+	84	[30]	CALL     	1 0 1
+	85	[44]	RETURN   	0 1
+
+function <./spec/unit/depgraph_spec.lua:46,68> (69 instructions, 276 bytes at 0x7fea97c06640)
+0 params, 12 slots, 1 upvalue, 1 local, 15 constants, 0 functions
+	1	[47]	GETUPVAL 	0 0	; DepGraph
+	2	[47]	SELF     	0 0 -1	; "new"
+	3	[47]	NEWTABLE 	2 0 0
+	4	[47]	CALL     	0 3 2
+	5	[48]	SELF     	1 0 -2	; "addNode"
+	6	[48]	LOADK    	3 -3	; "readerfooter_tap"
+	7	[48]	CALL     	1 3 1
+	8	[49]	SELF     	1 0 -2	; "addNode"
+	9	[49]	LOADK    	3 -4	; "readerfooter_hold"
+	10	[49]	NEWTABLE 	4 0 0
+	11	[49]	CALL     	1 4 1
+	12	[50]	SELF     	1 0 -2	; "addNode"
+	13	[50]	LOADK    	3 -5	; "readerhighlight_tap"
+	14	[50]	NEWTABLE 	4 0 0
+	15	[50]	CALL     	1 4 1
+	16	[51]	SELF     	1 0 -2	; "addNode"
+	17	[51]	LOADK    	3 -6	; "tap_backward"
+	18	[51]	NEWTABLE 	4 3 0
+	19	[51]	LOADK    	5 -3	; "readerfooter_tap"
+	20	[51]	LOADK    	6 -7	; "readermenu_tap"
+	21	[51]	LOADK    	7 -5	; "readerhighlight_tap"
+	22	[51]	SETLIST  	4 3 1	; 1
+	23	[51]	CALL     	1 4 1
+	24	[52]	SELF     	1 0 -2	; "addNode"
+	25	[52]	LOADK    	3 -8	; "tap_forward"
+	26	[52]	NEWTABLE 	4 3 0
+	27	[52]	LOADK    	5 -3	; "readerfooter_tap"
+	28	[52]	LOADK    	6 -7	; "readermenu_tap"
+	29	[52]	LOADK    	7 -5	; "readerhighlight_tap"
+	30	[52]	SETLIST  	4 3 1	; 1
+	31	[52]	CALL     	1 4 1
+	32	[53]	SELF     	1 0 -2	; "addNode"
+	33	[53]	LOADK    	3 -9	; "readerhighlight_hold"
+	34	[53]	NEWTABLE 	4 1 0
+	35	[53]	LOADK    	5 -4	; "readerfooter_hold"
+	36	[53]	SETLIST  	4 1 1	; 1
+	37	[53]	CALL     	1 4 1
+	38	[54]	SELF     	1 0 -2	; "addNode"
+	39	[54]	LOADK    	3 -10	; "readerhighlight_hold_release"
+	40	[54]	NEWTABLE 	4 0 0
+	41	[54]	CALL     	1 4 1
+	42	[55]	SELF     	1 0 -2	; "addNode"
+	43	[55]	LOADK    	3 -11	; "readerhighlight_hold_pan"
+	44	[55]	NEWTABLE 	4 0 0
+	45	[55]	CALL     	1 4 1
+	46	[56]	SELF     	1 0 -2	; "addNode"
+	47	[56]	LOADK    	3 -7	; "readermenu_tap"
+	48	[56]	NEWTABLE 	4 1 0
+	49	[56]	LOADK    	5 -3	; "readerfooter_tap"
+	50	[56]	SETLIST  	4 1 1	; 1
+	51	[56]	CALL     	1 4 1
+	52	[57]	GETGLOBAL	1 -12	; assert
+	53	[57]	GETTABLE 	1 1 -13	; "are"
+	54	[57]	GETTABLE 	1 1 -14	; "same"
+	55	[57]	NEWTABLE 	2 9 0
+	56	[58]	LOADK    	3 -3	; "readerfooter_tap"
+	57	[59]	LOADK    	4 -7	; "readermenu_tap"
+	58	[60]	LOADK    	5 -5	; "readerhighlight_tap"
+	59	[61]	LOADK    	6 -6	; "tap_backward"
+	60	[62]	LOADK    	7 -11	; "readerhighlight_hold_pan"
+	61	[63]	LOADK    	8 -4	; "readerfooter_hold"
+	62	[64]	LOADK    	9 -9	; "readerhighlight_hold"
+	63	[65]	LOADK    	10 -8	; "tap_forward"
+	64	[67]	LOADK    	11 -10	; "readerhighlight_hold_release"
+	65	[67]	SETLIST  	2 9 1	; 1
+	66	[67]	SELF     	3 0 -15	; "serialize"
+	67	[67]	CALL     	3 2 0
+	68	[57]	CALL     	1 0 1
+	69	[68]	RETURN   	0 1
+
+function <./spec/unit/depgraph_spec.lua:71,100> (87 instructions, 348 bytes at 0x7fea97c07130)
+0 params, 15 slots, 1 upvalue, 1 local, 18 constants, 0 functions
+	1	[72]	GETUPVAL 	0 0	; DepGraph
+	2	[72]	SELF     	0 0 -1	; "new"
+	3	[72]	NEWTABLE 	2 0 0
+	4	[72]	CALL     	0 3 2
+	5	[73]	SELF     	1 0 -2	; "addNode"
+	6	[73]	LOADK    	3 -3	; "readerfooter_tap"
+	7	[73]	NEWTABLE 	4 0 0
+	8	[73]	CALL     	1 4 1
+	9	[74]	SELF     	1 0 -2	; "addNode"
+	10	[74]	LOADK    	3 -4	; "readerfooter_hold"
+	11	[74]	NEWTABLE 	4 0 0
+	12	[74]	CALL     	1 4 1
+	13	[75]	SELF     	1 0 -2	; "addNode"
+	14	[75]	LOADK    	3 -5	; "readerhighlight_tap"
+	15	[75]	NEWTABLE 	4 3 0
+	16	[76]	LOADK    	5 -6	; "tap_backward"
+	17	[76]	LOADK    	6 -6	; "tap_backward"
+	18	[76]	LOADK    	7 -7	; "tap_forward"
+	19	[76]	SETLIST  	4 3 1	; 1
+	20	[75]	CALL     	1 4 1
+	21	[77]	SELF     	1 0 -2	; "addNode"
+	22	[77]	LOADK    	3 -6	; "tap_backward"
+	23	[77]	NEWTABLE 	4 2 0
+	24	[77]	LOADK    	5 -3	; "readerfooter_tap"
+	25	[77]	LOADK    	6 -8	; "readermenu_tap"
+	26	[77]	SETLIST  	4 2 1	; 1
+	27	[77]	CALL     	1 4 1
+	28	[78]	SELF     	1 0 -2	; "addNode"
+	29	[78]	LOADK    	3 -7	; "tap_forward"
+	30	[78]	NEWTABLE 	4 2 0
+	31	[78]	LOADK    	5 -3	; "readerfooter_tap"
+	32	[78]	LOADK    	6 -8	; "readermenu_tap"
+	33	[78]	SETLIST  	4 2 1	; 1
+	34	[78]	CALL     	1 4 1
+	35	[79]	SELF     	1 0 -2	; "addNode"
+	36	[79]	LOADK    	3 -9	; "readerhighlight_hold"
+	37	[79]	NEWTABLE 	4 1 0
+	38	[79]	LOADK    	5 -4	; "readerfooter_hold"
+	39	[79]	SETLIST  	4 1 1	; 1
+	40	[79]	CALL     	1 4 1
+	41	[80]	SELF     	1 0 -2	; "addNode"
+	42	[80]	LOADK    	3 -10	; "readerhighlight_hold_release"
+	43	[80]	NEWTABLE 	4 0 0
+	44	[80]	CALL     	1 4 1
+	45	[81]	SELF     	1 0 -2	; "addNode"
+	46	[81]	LOADK    	3 -11	; "readerhighlight_hold_pan"
+	47	[81]	NEWTABLE 	4 0 0
+	48	[81]	CALL     	1 4 1
+	49	[82]	SELF     	1 0 -2	; "addNode"
+	50	[82]	LOADK    	3 -8	; "readermenu_tap"
+	51	[82]	NEWTABLE 	4 1 0
+	52	[82]	LOADK    	5 -3	; "readerfooter_tap"
+	53	[82]	SETLIST  	4 1 1	; 1
+	54	[82]	CALL     	1 4 1
+	55	[83]	SELF     	1 0 -2	; "addNode"
+	56	[83]	LOADK    	3 -12	; "paging_swipe"
+	57	[83]	NEWTABLE 	4 0 0
+	58	[83]	CALL     	1 4 1
+	59	[84]	SELF     	1 0 -2	; "addNode"
+	60	[84]	LOADK    	3 -13	; "paging_pan"
+	61	[84]	NEWTABLE 	4 0 0
+	62	[84]	CALL     	1 4 1
+	63	[85]	SELF     	1 0 -2	; "addNode"
+	64	[85]	LOADK    	3 -14	; "paging_pan_release"
+	65	[85]	NEWTABLE 	4 0 0
+	66	[85]	CALL     	1 4 1
+	67	[86]	GETGLOBAL	1 -15	; assert
+	68	[86]	GETTABLE 	1 1 -16	; "are"
+	69	[86]	GETTABLE 	1 1 -17	; "same"
+	70	[86]	NEWTABLE 	2 12 0
+	71	[87]	LOADK    	3 -3	; "readerfooter_tap"
+	72	[88]	LOADK    	4 -8	; "readermenu_tap"
+	73	[89]	LOADK    	5 -6	; "tap_backward"
+	74	[90]	LOADK    	6 -11	; "readerhighlight_hold_pan"
+	75	[91]	LOADK    	7 -14	; "paging_pan_release"
+	76	[92]	LOADK    	8 -4	; "readerfooter_hold"
+	77	[93]	LOADK    	9 -9	; "readerhighlight_hold"
+	78	[94]	LOADK    	10 -13	; "paging_pan"
+	79	[95]	LOADK    	11 -12	; "paging_swipe"
+	80	[96]	LOADK    	12 -7	; "tap_forward"
+	81	[97]	LOADK    	13 -5	; "readerhighlight_tap"
+	82	[99]	LOADK    	14 -10	; "readerhighlight_hold_release"
+	83	[99]	SETLIST  	2 12 1	; 1
+	84	[99]	SELF     	3 0 -18	; "serialize"
+	85	[99]	CALL     	3 2 0
+	86	[86]	CALL     	1 0 1
+	87	[100]	RETURN   	0 1
+
+function <./spec/unit/depgraph_spec.lua:102,139> (91 instructions, 364 bytes at 0x7fea97c080d0)
+0 params, 6 slots, 1 upvalue, 1 local, 17 constants, 0 functions
+	1	[103]	GETUPVAL 	0 0	; DepGraph
+	2	[103]	SELF     	0 0 -1	; "new"
+	3	[103]	NEWTABLE 	2 0 0
+	4	[103]	CALL     	0 3 2
+	5	[104]	SELF     	1 0 -2	; "addNode"
+	6	[104]	LOADK    	3 -3	; "tap_backward"
+	7	[104]	CALL     	1 3 1
+	8	[105]	SELF     	1 0 -2	; "addNode"
+	9	[105]	LOADK    	3 -4	; "tap_forward"
+	10	[105]	CALL     	1 3 1
+	11	[108]	SELF     	1 0 -2	; "addNode"
+	12	[108]	LOADK    	3 -5	; "readermenu_tap"
+	13	[108]	CALL     	1 3 1
+	14	[109]	SELF     	1 0 -6	; "addNodeDep"
+	15	[109]	LOADK    	3 -3	; "tap_backward"
+	16	[109]	LOADK    	4 -5	; "readermenu_tap"
+	17	[109]	CALL     	1 4 1
+	18	[110]	SELF     	1 0 -6	; "addNodeDep"
+	19	[110]	LOADK    	3 -4	; "tap_forward"
+	20	[110]	LOADK    	4 -5	; "readermenu_tap"
+	21	[110]	CALL     	1 4 1
+	22	[125]	SELF     	1 0 -7	; "removeNode"
+	23	[125]	LOADK    	3 -4	; "tap_forward"
+	24	[125]	CALL     	1 3 1
+	25	[126]	SELF     	1 0 -7	; "removeNode"
+	26	[126]	LOADK    	3 -3	; "tap_backward"
+	27	[126]	CALL     	1 3 1
+	28	[127]	SELF     	1 0 -2	; "addNode"
+	29	[127]	LOADK    	3 -4	; "tap_forward"
+	30	[127]	CALL     	1 3 1
+	31	[128]	SELF     	1 0 -2	; "addNode"
+	32	[128]	LOADK    	3 -3	; "tap_backward"
+	33	[128]	CALL     	1 3 1
+	34	[130]	GETGLOBAL	1 -8	; assert
+	35	[130]	GETTABLE 	1 1 -9	; "are"
+	36	[130]	GETTABLE 	1 1 -10	; "same"
+	37	[130]	NEWTABLE 	2 3 0
+	38	[131]	LOADK    	3 -5	; "readermenu_tap"
+	39	[132]	LOADK    	4 -3	; "tap_backward"
+	40	[134]	LOADK    	5 -4	; "tap_forward"
+	41	[134]	SETLIST  	2 3 1	; 1
+	42	[134]	SELF     	3 0 -11	; "serialize"
+	43	[134]	CALL     	3 2 0
+	44	[130]	CALL     	1 0 1
+	45	[135]	GETGLOBAL	1 -8	; assert
+	46	[135]	GETTABLE 	1 1 -12	; "is_true"
+	47	[135]	GETGLOBAL	2 -13	; type
+	48	[135]	GETTABLE 	3 0 -14	; "nodes"
+	49	[135]	GETTABLE 	3 3 -4	; "tap_forward"
+	50	[135]	GETTABLE 	3 3 -15	; "deps"
+	51	[135]	CALL     	2 2 2
+	52	[135]	EQ       	1 2 -16	; - "table"
+	53	[135]	JMP      	1	; to 55
+	54	[135]	LOADBOOL 	2 0 1
+	55	[135]	LOADBOOL 	2 1 0
+	56	[135]	CALL     	1 2 1
+	57	[136]	GETGLOBAL	1 -8	; assert
+	58	[136]	GETTABLE 	1 1 -12	; "is_true"
+	59	[136]	GETTABLE 	2 0 -14	; "nodes"
+	60	[136]	GETTABLE 	2 2 -4	; "tap_forward"
+	61	[136]	GETTABLE 	2 2 -15	; "deps"
+	62	[136]	LEN      	2 2
+	63	[136]	LT       	1 -17 2	; 0 -
+	64	[136]	JMP      	1	; to 66
+	65	[136]	LOADBOOL 	2 0 1
+	66	[136]	LOADBOOL 	2 1 0
+	67	[136]	CALL     	1 2 1
+	68	[137]	GETGLOBAL	1 -8	; assert
+	69	[137]	GETTABLE 	1 1 -12	; "is_true"
+	70	[137]	GETGLOBAL	2 -13	; type
+	71	[137]	GETTABLE 	3 0 -14	; "nodes"
+	72	[137]	GETTABLE 	3 3 -3	; "tap_backward"
+	73	[137]	GETTABLE 	3 3 -15	; "deps"
+	74	[137]	CALL     	2 2 2
+	75	[137]	EQ       	1 2 -16	; - "table"
+	76	[137]	JMP      	1	; to 78
+	77	[137]	LOADBOOL 	2 0 1
+	78	[137]	LOADBOOL 	2 1 0
+	79	[137]	CALL     	1 2 1
+	80	[138]	GETGLOBAL	1 -8	; assert
+	81	[138]	GETTABLE 	1 1 -12	; "is_true"
+	82	[138]	GETTABLE 	2 0 -14	; "nodes"
+	83	[138]	GETTABLE 	2 2 -3	; "tap_backward"
+	84	[138]	GETTABLE 	2 2 -15	; "deps"
+	85	[138]	LEN      	2 2
+	86	[138]	LT       	1 -17 2	; 0 -
+	87	[138]	JMP      	1	; to 89
+	88	[138]	LOADBOOL 	2 0 1
+	89	[138]	LOADBOOL 	2 1 0
+	90	[138]	CALL     	1 2 1
+	91	[139]	RETURN   	0 1

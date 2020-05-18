@@ -1,0 +1,385 @@
+-- BYTECODE -- menusorter.lua:21-31
+0001    ISF          1
+0002    JMP      2 => 0027
+0003    GGET     2   0      ; "string"
+0004    TGETS    2   2   1  ; "format"
+0005    KSTR     3   2      ; "%s/%s_menu_order"
+0006    UGET     4   0      ; DataStorage
+0007    MOV      5   4
+0008    TGETS    4   4   3  ; "getSettingsDir"
+0009    CALL     4   2   2
+0010    MOV      5   1
+0011    CALL     2   2   4
+0012    UGET     3   1      ; lfs
+0013    TGETS    3   3   4  ; "attributes"
+0014    MOV      4   2
+0015    KSTR     5   5      ; ".lua"
+0016    CAT      4   4   5
+0017    CALL     3   2   2
+0018    ISF          3
+0019    JMP      4 => 0027
+0020    GGET     3   6      ; "require"
+0021    MOV      4   2
+0022    CALL     3   2   2
+0023    IST          3
+0024    JMP      4 => 0026
+0025    TNEW     3   0
+0026 => RET1     3   2
+0027 => TNEW     2   0
+0028    RET1     2   2
+
+-- BYTECODE -- menusorter.lua:33-41
+0001    MOV      5   0
+0002    TGETS    4   0   0  ; "readMSSettings"
+0003    MOV      6   1
+0004    CALL     4   2   3
+0005    ISF          4
+0006    JMP      5 => 0014
+0007    GGET     5   1      ; "pairs"
+0008    MOV      6   4
+0009    CALL     5   4   2
+0010    ISNEXT   8 => 0012
+0011 => TSETV    9   3   8
+0012 => ITERN    8   3   3
+0013    ITERL    8 => 0011
+0014 => MOV      6   0
+0015    TGETS    5   0   2  ; "sort"
+0016    MOV      7   2
+0017    MOV      8   3
+0018    CALLT    5   4
+
+-- BYTECODE -- menusorter.lua:47-187
+0001    TNEW     3   0
+0002    TNEW     4   0
+0003    GGET     5   0      ; "pairs"
+0004    MOV      6   2
+0005    CALL     5   4   2
+0006    ISNEXT   8 => 0092
+0007 => TGETV   10   1   8
+0008    ISEQP   10   0
+0009    JMP     10 => 0083
+0010    TNEW    10   0
+0011    TGETV   11   1   8
+0012    TSETV   11   3   8
+0013    TGETV   11   3   8
+0014    TSETS    8  11   1  ; "id"
+0015    GGET    11   2      ; "ipairs"
+0016    MOV     12   9
+0017    CALL    11   4   2
+0018    JMP     14 => 0049
+0019 => TGETV   16   1  15
+0020    ISEQP   16   0
+0021    JMP     16 => 0034
+0022    TGETV   16   2  15
+0023    ISF         16
+0024    JMP     17 => 0034
+0025    GGET    16   3      ; "table"
+0026    TGETS   16  16   4  ; "insert"
+0027    MOV     17   4
+0028    MOV     18  15
+0029    CALL    16   1   3
+0030    TDUP    16   5
+0031    TSETS   15  16   1  ; "id"
+0032    TSETV   16  10  14
+0033    JMP     16 => 0049
+0034 => UGET    16   0      ; separator_id
+0035    ISNEV   15  16
+0036    JMP     16 => 0040
+0037    TGETS   16   0   6  ; "separator"
+0038    TSETV   16  10  14
+0039    JMP     16 => 0049
+0040 => TGETV   16   1  15
+0041    ISEQP   16   0
+0042    JMP     16 => 0049
+0043    TGETV   16   1  15
+0044    TSETS   15  16   1  ; "id"
+0045    TGETV   16   1  15
+0046    TSETV   16  10  14
+0047    KPRI    16   0
+0048    TSETV   16   1  15
+0049 => ITERC   14   3   3
+0050    ITERL   14 => 0019
+0051    KSHORT  11   1
+0052    KSHORT  12   1
+0053 => GGET    13   3      ; "table"
+0054    TGETS   13  13   7  ; "maxn"
+0055    MOV     14  10
+0056    CALL    13   2   2
+0057    ISGT    11  13
+0058    JMP     13 => 0092
+0059    LOOP    13 => 0082
+0060    TGETV   13  10  11
+0061    ISF         13
+0062    JMP     14 => 0080
+0063    TGETS   14  13   1  ; "id"
+0064    UGET    15   0      ; separator_id
+0065    ISNEV   14  15
+0066    JMP     14 => 0076
+0067    SUBVN   12  12   0  ; 1
+0068    KSHORT  14   0
+0069    ISGE    14  12
+0070    JMP     14 => 0079
+0071    TGETV   14   3   8
+0072    TGETV   14  14  12
+0073    KPRI    15   2
+0074    TSETS   15  14   6  ; "separator"
+0075    JMP     14 => 0079
+0076 => TGETV   14   3   8
+0077    TGETV   15  10  11
+0078    TSETV   15  14  12
+0079 => ADDVN   12  12   0  ; 1
+0080 => ADDVN   11  11   0  ; 1
+0081    JMP     13 => 0053
+0082 => JMP     10 => 0092
+0083 => ISEQS    8   8      ; "KOMenu:disabled"
+0084    JMP     10 => 0092
+0085    ISEQS    8   9      ; "plus_menu"
+0086    JMP     10 => 0092
+0087    UGET    10   1      ; logger
+0088    TGETS   10  10  10  ; "warn"
+0089    KSTR    11  11      ; "menu id not found:"
+0090    MOV     12   8
+0091    CALL    10   1   3
+0092 => ITERN    8   3   3
+0093    ITERL    8 => 0007
+0094    KPRI     5   2
+0095 => ISF          5
+0096    JMP      6 => 0127
+0097    LOOP     6 => 0127
+0098    KPRI     5   1
+0099    GGET     6   2      ; "ipairs"
+0100    MOV      7   4
+0101    CALL     6   4   2
+0102    JMP      9 => 0124
+0103 => TGETV   11   3  10
+0104    ISEQP   11   0
+0105    JMP     11 => 0124
+0106    MOV     12   0
+0107    TGETS   11   0  12  ; "findById"
+0108    TGETS   13   3  13  ; "KOMenu:menu_buttons"
+0109    MOV     14  10
+0110    CALL    11   2   4
+0111    ISF         11
+0112    JMP     12 => 0124
+0113    KPRI     5   2
+0114    TGETV   12   3  10
+0115    TGETS   13  12  14  ; "text"
+0116    TSETS   13  11  14  ; "text"
+0117    TGETS   13  12  15  ; "hold_callback"
+0118    TSETS   13  11  15  ; "hold_callback"
+0119    TSETS   12  11  16  ; "sub_item_table"
+0120    KPRI    13   0
+0121    TSETV   13   3  10
+0122    KPRI    13   0
+0123    TSETV   13   1  10
+0124 => ITERC    9   3   3
+0125    ITERL    9 => 0103
+0126    JMP      6 => 0095
+0127 => KSHORT   6   0
+0128    GGET     7   2      ; "ipairs"
+0129    TGETS    8   3  13  ; "KOMenu:menu_buttons"
+0130    CALL     7   4   2
+0131    JMP     10 => 0145
+0132 => TGETS   12   3  13  ; "KOMenu:menu_buttons"
+0133    TGETV   12  12  10
+0134    TGETS   12  12  16  ; "sub_item_table"
+0135    TGETS   13   3  13  ; "KOMenu:menu_buttons"
+0136    KPRI    14   0
+0137    TSETV   14  13  10
+0138    ISF         12
+0139    JMP     13 => 0144
+0140    TGETS   13   3  13  ; "KOMenu:menu_buttons"
+0141    SUBVV   14  10   6
+0142    TSETV   12  13  14
+0143    JMP     13 => 0145
+0144 => ADDVN    6   6   0  ; 1
+0145 => ITERC   10   3   3
+0146    ITERL   10 => 0132
+0147    TGETS    7   2   8  ; "KOMenu:disabled"
+0148    ISF          7
+0149    JMP      8 => 0161
+0150    GGET     7   2      ; "ipairs"
+0151    TGETS    8   2   8  ; "KOMenu:disabled"
+0152    CALL     7   4   2
+0153    JMP     10 => 0159
+0154 => TGETV   12   1  11
+0155    ISF         12
+0156    JMP     13 => 0159
+0157    KPRI    12   0
+0158    TSETV   12   1  11
+0159 => ITERC   10   3   3
+0160    ITERL   10 => 0154
+0161 => KPRI     7   0
+0162    TSETS    7   1  13  ; "KOMenu:menu_buttons"
+0163    GGET     7   0      ; "pairs"
+0164    MOV      8   1
+0165    CALL     7   4   2
+0166    ISNEXT  10 => 0219
+0167 => TGETS   12  11  17  ; "sorting_hint"
+0168    TGETS   13  11  14  ; "text"
+0169    ISF         13
+0170    JMP     14 => 0197
+0171    TGETS   13  11  18  ; "new"
+0172    ISEQP   13   2
+0173    JMP     13 => 0197
+0174    TSETS   10  11   1  ; "id"
+0175    IST         12
+0176    JMP     13 => 0181
+0177    TGETS   13   0  19  ; "orphaned_prefix"
+0178    TGETS   14  11  14  ; "text"
+0179    CAT     13  13  14
+0180    TSETS   13  11  14  ; "text"
+0181 => KPRI    13   2
+0182    TSETS   13  11  18  ; "new"
+0183    LEN     13  11
+0184    KSHORT  14   0
+0185    ISGE    14  13
+0186    JMP     13 => 0197
+0187    TNEW    13   0
+0188    TSETS   13  11  16  ; "sub_item_table"
+0189    KSHORT  13   1
+0190    LEN     14  11
+0191    KSHORT  15   1
+0192    FORI    13 => 0197
+0193 => TGETS   17  11  16  ; "sub_item_table"
+0194    TGETV   18  11  16
+0195    TSETV   18  17  16
+0196    FORL    13 => 0193
+0197 => ISF         12
+0198    JMP     13 => 0213
+0199    MOV     14   0
+0200    TGETS   13   0  12  ; "findById"
+0201    TGETS   15   3  13  ; "KOMenu:menu_buttons"
+0202    MOV     16  12
+0203    CALL    13   2   4
+0204    TGETS   14  13  16  ; "sub_item_table"
+0205    ISTC    13  14
+0206    JMP     15 => 0207
+0207 => GGET    14   3      ; "table"
+0208    TGETS   14  14   4  ; "insert"
+0209    MOV     15  13
+0210    MOV     16  11
+0211    CALL    14   1   3
+0212    JMP     13 => 0219
+0213 => GGET    13   3      ; "table"
+0214    TGETS   13  13   4  ; "insert"
+0215    TGETS   14   3  13  ; "KOMenu:menu_buttons"
+0216    TGETB   14  14   1
+0217    MOV     15  11
+0218    CALL    13   1   3
+0219 => ITERN   10   3   3
+0220    ITERL   10 => 0167
+0221    TGETS    7   3  13  ; "KOMenu:menu_buttons"
+0222    RET1     7   2
+
+-- BYTECODE -- menusorter.lua:193-219
+0001    TNEW     3   0
+0002    GGET     4   0      ; "pairs"
+0003    MOV      5   1
+0004    CALL     4   4   2
+0005    ISNEXT   7 => 0013
+0006 => ISEQS    8   1      ; "KOMenu:menu_buttons"
+0007    JMP      9 => 0013
+0008    GGET     9   2      ; "table"
+0009    TGETS    9   9   3  ; "insert"
+0010    MOV     10   3
+0011    MOV     11   8
+0012    CALL     9   1   3
+0013 => ITERN    7   3   3
+0014    ITERL    7 => 0006
+0015    KNIL     4   5
+0016    GGET     6   4      ; "next"
+0017    MOV      7   3
+0018    KPRI     8   0
+0019    CALL     6   3   3
+0020    MOV      5   7
+0021    MOV      4   6
+0022 => ISF          4
+0023    JMP      6 => 0076
+0024    LOOP     6 => 0076
+0025    TGETS    6   5   5  ; "id"
+0026    ISEQV    6   2
+0027    JMP      6 => 0030
+0028    KPRI     6   1
+0029    JMP      7 => 0031
+0030 => KPRI     6   2
+0031 => TGETS    7   5   6  ; "sub_item_table"
+0032    IST          7
+0033    JMP      8 => 0044
+0034    GGET     7   7      ; "type"
+0035    MOV      8   5
+0036    CALL     7   2   2
+0037    ISNES    7   2      ; "table"
+0038    JMP      7 => 0041
+0039    MOV      7   5
+0040    JMP      8 => 0044
+0041 => KPRI     7   1
+0042    JMP      8 => 0044
+0043    KPRI     7   2
+0044 => ISF          6
+0045    JMP      8 => 0048
+0046    RET1     5   2
+0047    JMP      8 => 0069
+0048 => ISF          7
+0049    JMP      8 => 0069
+0050    GGET     8   0      ; "pairs"
+0051    MOV      9   7
+0052    CALL     8   4   2
+0053    ISNEXT  11 => 0067
+0054 => GGET    13   7      ; "type"
+0055    MOV     14  12
+0056    CALL    13   2   2
+0057    ISNES   13   2      ; "table"
+0058    JMP     13 => 0067
+0059    TGETS   13  12   5  ; "id"
+0060    ISF         13
+0061    JMP     14 => 0067
+0062    GGET    13   2      ; "table"
+0063    TGETS   13  13   3  ; "insert"
+0064    MOV     14   3
+0065    MOV     15  12
+0066    CALL    13   1   3
+0067 => ITERN   11   3   3
+0068    ITERL   11 => 0054
+0069 => GGET     8   4      ; "next"
+0070    MOV      9   3
+0071    MOV     10   4
+0072    CALL     8   3   3
+0073    MOV      5   9
+0074    MOV      4   8
+0075    JMP      6 => 0022
+0076 => RET0     0   1
+
+-- BYTECODE -- menusorter.lua:0-222
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "datastorage"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "libs/libkoreader-lfs"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "logger"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "gettext"
+0012    CALL     3   2   2
+0013    KSTR     4   5      ; "----------------------------"
+0014    TDUP     5   7
+0015    MOV      6   3
+0016    KSTR     7   6      ; "NEW: "
+0017    CALL     6   2   2
+0018    TSETS    6   5   8  ; "orphaned_prefix"
+0019    TDUP     6   9
+0020    TSETS    4   6  10  ; "id"
+0021    TSETS    6   5  11  ; "separator"
+0022    FNEW     6  13      ; menusorter.lua:21
+0023    TSETS    6   5  12  ; "readMSSettings"
+0024    FNEW     6  15      ; menusorter.lua:33
+0025    TSETS    6   5  14  ; "mergeAndSort"
+0026    FNEW     6  17      ; menusorter.lua:47
+0027    TSETS    6   5  16  ; "sort"
+0028    FNEW     6  19      ; menusorter.lua:193
+0029    TSETS    6   5  18  ; "findById"
+0030    UCLO     0 => 0031
+0031 => RET1     5   2
+

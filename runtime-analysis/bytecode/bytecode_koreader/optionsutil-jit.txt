@@ -1,0 +1,373 @@
+-- BYTECODE -- optionsutil.lua:14-16
+0001    TGETV    3   0   1
+0002    ISEQV    3   2
+0003    JMP      3 => 0006
+0004    KPRI     3   1
+0005    JMP      4 => 0007
+0006 => KPRI     3   2
+0007 => RET1     3   2
+
+-- BYTECODE -- optionsutil.lua:18-119
+0001    GGET     3   0      ; "G_reader_settings"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "readSetting"
+0004    MOV      5   2
+0005    KSTR     6   2      ; "_"
+0006    TGETS    7   1   3  ; "name"
+0007    CAT      5   5   7
+0008    CALL     3   2   3
+0009    TGETS    4   1   3  ; "name"
+0010    TGETV    4   0   4
+0011    KNIL     5   6
+0012    TGETS    7   1   3  ; "name"
+0013    ISNES    7   4      ; "screen_mode"
+0014    JMP      7 => 0020
+0015    UGET     7   0      ; Screen
+0016    MOV      8   7
+0017    TGETS    7   7   5  ; "getScreenMode"
+0018    CALL     7   2   2
+0019    MOV      4   7
+0020 => TGETS    7   1   6  ; "toggle"
+0021    ISF          7
+0022    JMP      8 => 0114
+0023    TGETS    7   1   7  ; "values"
+0024    ISF          7
+0025    JMP      8 => 0114
+0026    TNEW     7   0
+0027    KSHORT   8   1
+0028    TGETS    9   1   7  ; "values"
+0029    LEN      9   9
+0030    KSHORT  10   1
+0031    FORI     8 => 0049
+0032 => TGETS   12   1   7  ; "values"
+0033    TGETV   12  12  11
+0034    GGET    13   8      ; "type"
+0035    MOV     14  12
+0036    CALL    13   2   2
+0037    ISNES   13   9      ; "table"
+0038    JMP     13 => 0045
+0039    GGET    13   9      ; "table"
+0040    TGETS   13  13  10  ; "concat"
+0041    MOV     14  12
+0042    KSTR    15  11      ; ","
+0043    CALL    13   2   3
+0044    MOV     12  13
+0045 => TGETS   13   1   6  ; "toggle"
+0046    TGETV   13  13  11
+0047    TSETV   13   7  12
+0048    FORL     8 => 0032
+0049 => MOV      6   4
+0050    GGET     8   8      ; "type"
+0051    MOV      9   4
+0052    CALL     8   2   2
+0053    ISNES    8   9      ; "table"
+0054    JMP      8 => 0061
+0055    GGET     8   9      ; "table"
+0056    TGETS    8   8  10  ; "concat"
+0057    MOV      9   4
+0058    KSTR    10  11      ; ","
+0059    CALL     8   2   3
+0060    MOV      4   8
+0061 => TGETV    4   7   4
+0062    IST          4
+0063    JMP      8 => 0073
+0064    TGETS    8   1  12  ; "name_text_true_values"
+0065    ISF          8
+0066    JMP      9 => 0072
+0067    UGET     8   1      ; _
+0068    KSTR     9  13      ; "custom"
+0069    CALL     8   2   2
+0070    ISTC     4   8
+0071    JMP      9 => 0073
+0072 => MOV      4   6
+0073 => TGETS    8   1  14  ; "show_true_value_func"
+0074    ISF          8
+0075    JMP      9 => 0080
+0076    TGETS    8   1  14  ; "show_true_value_func"
+0077    MOV      9   6
+0078    CALL     8   2   2
+0079    MOV      6   8
+0080 => ISF          3
+0081    JMP      8 => 0211
+0082    MOV      5   3
+0083    GGET     8   8      ; "type"
+0084    MOV      9   3
+0085    CALL     8   2   2
+0086    ISNES    8   9      ; "table"
+0087    JMP      8 => 0094
+0088    GGET     8   9      ; "table"
+0089    TGETS    8   8  10  ; "concat"
+0090    MOV      9   3
+0091    KSTR    10  11      ; ","
+0092    CALL     8   2   3
+0093    MOV      3   8
+0094 => TGETV    3   7   3
+0095    IST          3
+0096    JMP      8 => 0106
+0097    TGETS    8   1  12  ; "name_text_true_values"
+0098    ISF          8
+0099    JMP      9 => 0105
+0100    UGET     8   1      ; _
+0101    KSTR     9  13      ; "custom"
+0102    CALL     8   2   2
+0103    ISTC     3   8
+0104    JMP      9 => 0106
+0105 => MOV      3   5
+0106 => TGETS    8   1  14  ; "show_true_value_func"
+0107    ISF          8
+0108    JMP      9 => 0211
+0109    TGETS    8   1  14  ; "show_true_value_func"
+0110    MOV      9   5
+0111    CALL     8   2   2
+0112    MOV      5   8
+0113    JMP      7 => 0211
+0114 => TGETS    7   1  15  ; "labels"
+0115    ISF          7
+0116    JMP      8 => 0195
+0117    TGETS    7   1   7  ; "values"
+0118    ISF          7
+0119    JMP      8 => 0195
+0120    TGETS    7   1  16  ; "more_options_param"
+0121    ISF          7
+0122    JMP      8 => 0166
+0123    TGETS    7   1  16  ; "more_options_param"
+0124    TGETS    7   7  17  ; "value_table"
+0125    ISF          7
+0126    JMP      8 => 0166
+0127    TGETS    7   1  16  ; "more_options_param"
+0128    TGETS    7   7  18  ; "args_table"
+0129    ISF          7
+0130    JMP      8 => 0142
+0131    GGET     7  19      ; "pairs"
+0132    TGETS    8   1  16  ; "more_options_param"
+0133    TGETS    8   8  18  ; "args_table"
+0134    CALL     7   4   2
+0135    ISNEXT  10 => 0140
+0136 => ISNEV   11   4
+0137    JMP     12 => 0140
+0138    MOV      4  10
+0139    JMP      7 => 0142
+0140 => ITERN   10   3   3
+0141    ITERL   10 => 0136
+0142 => TGETS    7   1  16  ; "more_options_param"
+0143    TGETS    7   7  17  ; "value_table"
+0144    TGETV    4   7   4
+0145    ISF          3
+0146    JMP      7 => 0211
+0147    TGETS    7   1  16  ; "more_options_param"
+0148    TGETS    7   7  18  ; "args_table"
+0149    ISF          7
+0150    JMP      8 => 0162
+0151    GGET     7  19      ; "pairs"
+0152    TGETS    8   1  16  ; "more_options_param"
+0153    TGETS    8   8  18  ; "args_table"
+0154    CALL     7   4   2
+0155    ISNEXT  10 => 0160
+0156 => ISNEV   11   3
+0157    JMP     12 => 0160
+0158    MOV      3  10
+0159    JMP      7 => 0162
+0160 => ITERN   10   3   3
+0161    ITERL   10 => 0156
+0162 => TGETS    7   1  16  ; "more_options_param"
+0163    TGETS    7   7  17  ; "value_table"
+0164    TGETV    3   7   3
+0165    JMP      7 => 0211
+0166 => ISF          3
+0167    JMP      7 => 0181
+0168    KSHORT   7   1
+0169    TGETS    8   1  15  ; "labels"
+0170    LEN      8   8
+0171    KSHORT   9   1
+0172    FORI     7 => 0181
+0173 => TGETS   11   1   7  ; "values"
+0174    TGETV   11  11  10
+0175    ISNEV    3  11
+0176    JMP     11 => 0180
+0177    TGETS   11   1  15  ; "labels"
+0178    TGETV    3  11  10
+0179    JMP      7 => 0181
+0180 => FORL     7 => 0173
+0181 => KSHORT   7   1
+0182    TGETS    8   1  15  ; "labels"
+0183    LEN      8   8
+0184    KSHORT   9   1
+0185    FORI     7 => 0194
+0186 => TGETS   11   1   7  ; "values"
+0187    TGETV   11  11  10
+0188    ISNEV    4  11
+0189    JMP     11 => 0193
+0190    TGETS   11   1  15  ; "labels"
+0191    TGETV    4  11  10
+0192    JMP      7 => 0211
+0193 => FORL     7 => 0186
+0194 => JMP      7 => 0211
+0195 => TGETS    7   1  14  ; "show_true_value_func"
+0196    ISF          7
+0197    JMP      8 => 0211
+0198    TGETS    7   1   7  ; "values"
+0199    ISF          7
+0200    JMP      8 => 0211
+0201    TGETS    7   1  14  ; "show_true_value_func"
+0202    MOV      8   4
+0203    CALL     7   2   2
+0204    MOV      4   7
+0205    ISF          3
+0206    JMP      7 => 0211
+0207    TGETS    7   1  14  ; "show_true_value_func"
+0208    MOV      8   3
+0209    CALL     7   2   2
+0210    MOV      3   7
+0211 => IST          3
+0212    JMP      7 => 0217
+0213    UGET     7   1      ; _
+0214    KSTR     8  20      ; "not set"
+0215    CALL     7   2   2
+0216    MOV      3   7
+0217 => KSTR     7  21      ; ""
+0218    TGETS    8   1  22  ; "help_text"
+0219    ISF          8
+0220    JMP      9 => 0226
+0221    UGET     8   2      ; T
+0222    KSTR     9  23      ; "\n%1\n"
+0223    TGETS   10   1  22  ; "help_text"
+0224    CALL     8   2   3
+0225    MOV      7   8
+0226 => KPRI     8   0
+0227    TGETS    9   1  12  ; "name_text_true_values"
+0228    ISF          9
+0229    JMP     10 => 0263
+0230    TGETS    9   1   6  ; "toggle"
+0231    ISF          9
+0232    JMP     10 => 0263
+0233    TGETS    9   1   7  ; "values"
+0234    ISF          9
+0235    JMP     10 => 0263
+0236    ISF          5
+0237    JMP      9 => 0251
+0238    UGET     9   2      ; T
+0239    UGET    10   1      ; _
+0240    KSTR    11  24      ; "%1\n%2\nCurrent value: %3 (%4)\nDefault "~
+0241    CALL    10   2   2
+0242    TGETS   11   1  25  ; "name_text"
+0243    MOV     12   7
+0244    MOV     13   4
+0245    MOV     14   6
+0246    MOV     15   3
+0247    MOV     16   5
+0248    CALL     9   2   8
+0249    MOV      8   9
+0250    JMP      9 => 0273
+0251 => UGET     9   2      ; T
+0252    UGET    10   1      ; _
+0253    KSTR    11  26      ; "%1\n%2\nCurrent value: %3 (%4)\nDefault "~
+0254    CALL    10   2   2
+0255    TGETS   11   1  25  ; "name_text"
+0256    MOV     12   7
+0257    MOV     13   4
+0258    MOV     14   6
+0259    MOV     15   3
+0260    CALL     9   2   7
+0261    MOV      8   9
+0262    JMP      9 => 0273
+0263 => UGET     9   2      ; T
+0264    UGET    10   1      ; _
+0265    KSTR    11  27      ; "%1\n%2\nCurrent value: %3\nDefault value"~
+0266    CALL    10   2   2
+0267    TGETS   11   1  25  ; "name_text"
+0268    MOV     12   7
+0269    MOV     13   4
+0270    MOV     14   3
+0271    CALL     9   2   6
+0272    MOV      8   9
+0273 => UGET     9   3      ; UIManager
+0274    MOV     10   9
+0275    TGETS    9   9  28  ; "show"
+0276    UGET    11   4      ; InfoMessage
+0277    MOV     12  11
+0278    TGETS   11  11  29  ; "new"
+0279    TDUP    13  30
+0280    TSETS    8  13  31  ; "text"
+0281    CALL    11   0   3
+0282    CALLM    9   1   1
+0283    RET0     0   1
+
+-- BYTECODE -- optionsutil.lua:121-146
+0001    GGET     2   0      ; "G_reader_settings"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "readSetting"
+0004    KSTR     4   2      ; "copt_"
+0005    TGETS    5   1   3  ; "name"
+0006    CAT      4   4   5
+0007    CALL     2   2   3
+0008    TGETS    3   1   3  ; "name"
+0009    TGETV    3   0   3
+0010    IST          2
+0011    JMP      4 => 0030
+0012    UGET     4   0      ; UIManager
+0013    MOV      5   4
+0014    TGETS    4   4   4  ; "show"
+0015    UGET     6   1      ; InfoMessage
+0016    MOV      7   6
+0017    TGETS    6   6   5  ; "new"
+0018    TDUP     8   7
+0019    UGET     9   2      ; T
+0020    UGET    10   3      ; _
+0021    KSTR    11   6      ; "Current margins:\n  left:  %1\n  right: "~
+0022    CALL    10   2   2
+0023    TGETB   11   3   1
+0024    TGETB   12   3   2
+0025    CALL     9   2   4
+0026    TSETS    9   8   8  ; "text"
+0027    CALL     6   0   3
+0028    CALLM    4   1   1
+0029    JMP      4 => 0049
+0030 => UGET     4   0      ; UIManager
+0031    MOV      5   4
+0032    TGETS    4   4   4  ; "show"
+0033    UGET     6   1      ; InfoMessage
+0034    MOV      7   6
+0035    TGETS    6   6   5  ; "new"
+0036    TDUP     8  10
+0037    UGET     9   2      ; T
+0038    UGET    10   3      ; _
+0039    KSTR    11   9      ; "Current margins:\n  left:  %1\n  right: "~
+0040    CALL    10   2   2
+0041    TGETB   11   3   1
+0042    TGETB   12   3   2
+0043    TGETB   13   2   1
+0044    TGETB   14   2   2
+0045    CALL     9   2   6
+0046    TSETS    9   8   8  ; "text"
+0047    CALL     6   0   3
+0048    CALLM    4   1   1
+0049 => RET0     0   1
+
+-- BYTECODE -- optionsutil.lua:0-149
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "device"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/infomessage"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/uimanager"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "gettext"
+0012    CALL     3   2   2
+0013    TGETS    4   0   5  ; "screen"
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   6      ; "ffi/util"
+0016    CALL     5   2   2
+0017    TGETS    5   5   7  ; "template"
+0018    TNEW     6   0
+0019    FNEW     7   9      ; optionsutil.lua:14
+0020    TSETS    7   6   8  ; "enableIfEquals"
+0021    FNEW     7  11      ; optionsutil.lua:18
+0022    TSETS    7   6  10  ; "showValues"
+0023    FNEW     7  13      ; optionsutil.lua:121
+0024    TSETS    7   6  12  ; "showValuesHMargins"
+0025    UCLO     0 => 0026
+0026 => RET1     6   2
+

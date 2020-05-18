@@ -1,0 +1,2396 @@
+-- BYTECODE -- readerlink.lua:50-50
+0001    UGET     1   0      ; self
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "onTap"
+0004    UGET     3   1      ; _
+0005    MOV      4   0
+0006    CALLT    1   4
+
+-- BYTECODE -- readerlink.lua:63-63
+0001    UGET     1   0      ; self
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "onSwipe"
+0004    UGET     3   1      ; _
+0005    MOV      4   0
+0006    CALLT    1   4
+
+-- BYTECODE -- readerlink.lua:67-69
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    TGETS    0   0   1  ; "menu"
+0004    MOV      1   0
+0005    TGETS    0   0   2  ; "registerToMainMenu"
+0006    UGET     2   0      ; self
+0007    CALL     0   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:26-80
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "isTouchDevice"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0028
+0007    TGETS    1   0   1  ; "ui"
+0008    MOV      2   1
+0009    TGETS    1   1   2  ; "registerTouchZones"
+0010    TNEW     3   3
+0011    TDUP     4   3
+0012    TDUP     5   4
+0013    TSETS    5   4   5  ; "screen_zone"
+0014    TDUP     5   6
+0015    TSETS    5   4   7  ; "overrides"
+0016    FNEW     5   8      ; readerlink.lua:50
+0017    TSETS    5   4   9  ; "handler"
+0018    TSETB    4   3   1
+0019    TDUP     4  10
+0020    TDUP     5  11
+0021    TSETS    5   4   5  ; "screen_zone"
+0022    TDUP     5  12
+0023    TSETS    5   4   7  ; "overrides"
+0024    FNEW     5  13      ; readerlink.lua:63
+0025    TSETS    5   4   9  ; "handler"
+0026    TSETB    4   3   2
+0027    CALL     1   1   3
+0028 => TGETS    1   0   1  ; "ui"
+0029    MOV      2   1
+0030    TGETS    1   1  14  ; "registerPostInitCallback"
+0031    FNEW     3  15      ; readerlink.lua:67
+0032    CALL     1   1   3
+0033    UGET     1   2      ; util
+0034    TGETS    1   1  16  ; "splitFilePathName"
+0035    TGETS    2   0   1  ; "ui"
+0036    TGETS    2   2  17  ; "document"
+0037    TGETS    2   2  18  ; "file"
+0038    CALL     1   3   2
+0039    TSETS    1   0  19  ; "document_dir"
+0040    GGET     3  20      ; "G_reader_settings"
+0041    MOV      4   3
+0042    TGETS    3   3  21  ; "isTrue"
+0043    KSTR     5  22      ; "tap_link_footnote_popup"
+0044    CALL     3   2   3
+0045    IST          3
+0046    JMP      4 => 0054
+0047    GGET     3  20      ; "G_reader_settings"
+0048    MOV      4   3
+0049    TGETS    3   3  21  ; "isTrue"
+0050    KSTR     5  23      ; "swipe_link_footnote_popup"
+0051    CALL     3   2   3
+0052    ISF          3
+0053    JMP      4 => 0072
+0054 => GGET     3  20      ; "G_reader_settings"
+0055    MOV      4   3
+0056    TGETS    3   3  24  ; "saveSetting"
+0057    KSTR     5  22      ; "tap_link_footnote_popup"
+0058    KPRI     6   0
+0059    CALL     3   1   4
+0060    GGET     3  20      ; "G_reader_settings"
+0061    MOV      4   3
+0062    TGETS    3   3  24  ; "saveSetting"
+0063    KSTR     5  23      ; "swipe_link_footnote_popup"
+0064    KPRI     6   0
+0065    CALL     3   1   4
+0066    GGET     3  20      ; "G_reader_settings"
+0067    MOV      4   3
+0068    TGETS    3   3  24  ; "saveSetting"
+0069    KSTR     5  25      ; "footnote_link_in_popup"
+0070    KPRI     6   2
+0071    CALL     3   1   4
+0072 => UCLO     0 => 0073
+0073 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:82-85
+0001    TNEW     2   0
+0002    TSETS    2   0   0  ; "location_stack"
+0003    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:87-89
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "nilOrTrue"
+0004    KSTR     2   2      ; "tap_to_follow_links"
+0005    CALLT    0   3
+
+-- BYTECODE -- readerlink.lua:91-93
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "larger_tap_area_to_follow_links"
+0005    CALLT    0   3
+
+-- BYTECODE -- readerlink.lua:95-97
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "tap_ignore_external_links"
+0005    CALLT    0   3
+
+-- BYTECODE -- readerlink.lua:99-101
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "footnote_link_in_popup"
+0005    CALLT    0   3
+
+-- BYTECODE -- readerlink.lua:103-105
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "link_prefer_footnote"
+0005    CALLT    0   3
+
+-- BYTECODE -- readerlink.lua:107-109
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "swipe_to_go_back"
+0005    CALLT    0   3
+
+-- BYTECODE -- readerlink.lua:111-113
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "swipe_to_follow_nearest_link"
+0005    CALLT    0   3
+
+-- BYTECODE -- readerlink.lua:115-117
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "nilOrTrue"
+0004    KSTR     2   2      ; "swipe_ignore_external_links"
+0005    CALLT    0   3
+
+-- BYTECODE -- readerlink.lua:119-121
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "swipe_to_jump_to_latest_bookmark"
+0005    CALLT    0   3
+
+-- BYTECODE -- readerlink.lua:131-134
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "tap_to_follow_links"
+0005    UGET     3   0      ; isTapToFollowLinksOn
+0006    CALL     3   2   1
+0007    NOT      3   3
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:141-144
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "tap_ignore_external_links"
+0005    UGET     3   0      ; isTapIgnoreExternalLinksEnabled
+0006    CALL     3   2   1
+0007    NOT      3   3
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:153-156
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "swipe_to_go_back"
+0005    UGET     3   0      ; isSwipeToGoBackEnabled
+0006    CALL     3   2   1
+0007    NOT      3   3
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:162-165
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "swipe_to_follow_nearest_link"
+0005    UGET     3   0      ; isSwipeToFollowNearestLinkEnabled
+0006    CALL     3   2   1
+0007    NOT      3   3
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:172-175
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "swipe_ignore_external_links"
+0005    UGET     3   0      ; isSwipeIgnoreExternalLinksEnabled
+0006    CALL     3   2   1
+0007    NOT      3   3
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:184-187
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "swipe_to_jump_to_latest_bookmark"
+0005    UGET     3   0      ; isSwipeToJumpToLatestBookmarkEnabled
+0006    CALL     3   2   1
+0007    NOT      3   3
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:206-209
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "larger_tap_area_to_follow_links"
+0005    UGET     3   0      ; isLargerTapAreaToFollowLinksEnabled
+0006    CALL     3   2   1
+0007    NOT      3   3
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:214-216
+0001    UGET     0   0      ; isTapToFollowLinksOn
+0002    CALL     0   2   1
+0003    IST          0
+0004    JMP      1 => 0007
+0005    UGET     0   1      ; isSwipeToFollowNearestLinkEnabled
+0006    CALL     0   2   1
+0007 => RET1     0   2
+
+-- BYTECODE -- readerlink.lua:218-221
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "footnote_link_in_popup"
+0005    UGET     3   0      ; isFootnoteLinkInPopupEnabled
+0006    CALL     3   2   1
+0007    NOT      3   3
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:232-235
+0001    UGET     0   0      ; isFootnoteLinkInPopupEnabled
+0002    CALL     0   2   1
+0003    ISF          0
+0004    JMP      1 => 0011
+0005    UGET     0   1      ; isTapToFollowLinksOn
+0006    CALL     0   2   1
+0007    IST          0
+0008    JMP      1 => 0011
+0009    UGET     0   2      ; isSwipeToFollowNearestLinkEnabled
+0010    CALL     0   2   1
+0011 => RET1     0   2
+
+-- BYTECODE -- readerlink.lua:237-240
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "link_prefer_footnote"
+0005    UGET     3   0      ; isPreferFootnoteEnabled
+0006    CALL     3   2   1
+0007    NOT      3   3
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:245-248
+0001    UGET     0   0      ; isFootnoteLinkInPopupEnabled
+0002    CALL     0   2   1
+0003    ISF          0
+0004    JMP      1 => 0011
+0005    UGET     0   1      ; isTapToFollowLinksOn
+0006    CALL     0   2   1
+0007    IST          0
+0008    JMP      1 => 0011
+0009    UGET     0   2      ; isSwipeToFollowNearestLinkEnabled
+0010    CALL     0   2   1
+0011 => RET1     0   2
+
+-- BYTECODE -- readerlink.lua:265-267
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "saveSetting"
+0004    KSTR     3   2      ; "footnote_popup_relative_font_size"
+0005    TGETS    4   0   3  ; "value"
+0006    CALL     1   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:250-269
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/spinwidget"
+0003    CALL     0   2   2
+0004    UGET     1   0      ; UIManager
+0005    MOV      2   1
+0006    TGETS    1   1   2  ; "show"
+0007    MOV      4   0
+0008    TGETS    3   0   3  ; "new"
+0009    TDUP     5   5
+0010    UGET     6   1      ; Screen
+0011    MOV      7   6
+0012    TGETS    6   6   4  ; "getWidth"
+0013    CALL     6   2   2
+0014    MULVN    6   6   0  ; 0.75
+0015    TSETS    6   5   6  ; "width"
+0016    GGET     6   7      ; "G_reader_settings"
+0017    MOV      7   6
+0018    TGETS    6   6   8  ; "readSetting"
+0019    KSTR     8   9      ; "footnote_popup_relative_font_size"
+0020    CALL     6   2   3
+0021    IST          6
+0022    JMP      7 => 0024
+0023    KSHORT   6  -2
+0024 => TSETS    6   5  10  ; "value"
+0025    UGET     6   2      ; _
+0026    KSTR     7  11      ; "Set font size"
+0027    CALL     6   2   2
+0028    TSETS    6   5  12  ; "ok_text"
+0029    UGET     6   2      ; _
+0030    KSTR     7  13      ; "Set footnote popup font size"
+0031    CALL     6   2   2
+0032    TSETS    6   5  14  ; "title_text"
+0033    UGET     6   2      ; _
+0034    KSTR     7  15      ; "The footnote popup font adjusts to the f"~
+0035    CALL     6   2   2
+0036    TSETS    6   5  16  ; "info_text"
+0037    FNEW     6  17      ; readerlink.lua:265
+0038    TSETS    6   5  18  ; "callback"
+0039    CALL     3   0   3
+0040    CALLM    1   1   1
+0041    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:278-278
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "location_stack"
+0003    LEN      0   0
+0004    KSHORT   1   0
+0005    ISLT     1   0
+0006    JMP      0 => 0009
+0007    KPRI     0   1
+0008    JMP      1 => 0010
+0009 => KPRI     0   2
+0010 => RET1     0   2
+
+-- BYTECODE -- readerlink.lua:279-279
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onGoBackLink"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:284-287
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onClearLocationStack"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; touchmenu_instance
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "closeMenu"
+0008    CALL     0   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:280-289
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "show"
+0004    UGET     3   1      ; ConfirmBox
+0005    MOV      4   3
+0006    TGETS    3   3   1  ; "new"
+0007    TDUP     5   3
+0008    UGET     6   2      ; _
+0009    KSTR     7   2      ; "Clear location history?"
+0010    CALL     6   2   2
+0011    TSETS    6   5   4  ; "text"
+0012    UGET     6   2      ; _
+0013    KSTR     7   5      ; "Clear"
+0014    CALL     6   2   2
+0015    TSETS    6   5   6  ; "ok_text"
+0016    FNEW     6   7      ; readerlink.lua:284
+0017    TSETS    6   5   8  ; "ok_callback"
+0018    CALL     3   0   3
+0019    CALLM    1   1   1
+0020    UCLO     0 => 0021
+0021 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:123-291
+0001    TDUP     2   2
+0002    UGET     3   0      ; _
+0003    KSTR     4   1      ; "Links"
+0004    CALL     3   2   2
+0005    TSETS    3   2   3  ; "text"
+0006    TNEW     3   7
+0007    TDUP     4   5
+0008    UGET     5   0      ; _
+0009    KSTR     6   4      ; "Tap to follow links"
+0010    CALL     5   2   2
+0011    TSETS    5   4   3  ; "text"
+0012    UGET     5   1      ; isTapToFollowLinksOn
+0013    TSETS    5   4   6  ; "checked_func"
+0014    FNEW     5   7      ; readerlink.lua:131
+0015    TSETS    5   4   8  ; "callback"
+0016    UGET     5   0      ; _
+0017    KSTR     6   9      ; "Tap on links to follow them."
+0018    CALL     5   2   2
+0019    TSETS    5   4  10  ; "help_text"
+0020    TSETB    4   3   1
+0021    TDUP     4  12
+0022    UGET     5   0      ; _
+0023    KSTR     6  11      ; "Ignore external links on tap"
+0024    CALL     5   2   2
+0025    TSETS    5   4   3  ; "text"
+0026    UGET     5   1      ; isTapToFollowLinksOn
+0027    TSETS    5   4  13  ; "enabled_func"
+0028    UGET     5   2      ; isTapIgnoreExternalLinksEnabled
+0029    TSETS    5   4   6  ; "checked_func"
+0030    FNEW     5  14      ; readerlink.lua:141
+0031    TSETS    5   4   8  ; "callback"
+0032    UGET     5   0      ; _
+0033    KSTR     6  15      ; "Ignore taps on external links. Useful wi"~
+0034    CALL     5   2   2
+0035    TSETS    5   4  10  ; "help_text"
+0036    TSETB    4   3   2
+0037    TDUP     4  17
+0038    UGET     5   0      ; _
+0039    KSTR     6  16      ; "Swipe to go back"
+0040    CALL     5   2   2
+0041    TSETS    5   4   3  ; "text"
+0042    UGET     5   3      ; isSwipeToGoBackEnabled
+0043    TSETS    5   4   6  ; "checked_func"
+0044    FNEW     5  18      ; readerlink.lua:153
+0045    TSETS    5   4   8  ; "callback"
+0046    UGET     5   0      ; _
+0047    KSTR     6  19      ; "Swipe to the right to go back to the pre"~
+0048    CALL     5   2   2
+0049    TSETS    5   4  10  ; "help_text"
+0050    TSETB    4   3   3
+0051    TDUP     4  21
+0052    UGET     5   0      ; _
+0053    KSTR     6  20      ; "Swipe to follow nearest link"
+0054    CALL     5   2   2
+0055    TSETS    5   4   3  ; "text"
+0056    UGET     5   4      ; isSwipeToFollowNearestLinkEnabled
+0057    TSETS    5   4   6  ; "checked_func"
+0058    FNEW     5  22      ; readerlink.lua:162
+0059    TSETS    5   4   8  ; "callback"
+0060    UGET     5   0      ; _
+0061    KSTR     6  23      ; "Swipe to the left to follow the link nea"~
+0062    CALL     5   2   2
+0063    TSETS    5   4  10  ; "help_text"
+0064    TSETB    4   3   4
+0065    TDUP     4  25
+0066    UGET     5   0      ; _
+0067    KSTR     6  24      ; "Ignore external links on swipe"
+0068    CALL     5   2   2
+0069    TSETS    5   4   3  ; "text"
+0070    UGET     5   4      ; isSwipeToFollowNearestLinkEnabled
+0071    TSETS    5   4  13  ; "enabled_func"
+0072    UGET     5   5      ; isSwipeIgnoreExternalLinksEnabled
+0073    TSETS    5   4   6  ; "checked_func"
+0074    FNEW     5  26      ; readerlink.lua:172
+0075    TSETS    5   4   8  ; "callback"
+0076    UGET     5   0      ; _
+0077    KSTR     6  27      ; "Ignore external links near swipe. Useful"~
+0078    CALL     5   2   2
+0079    TSETS    5   4  10  ; "help_text"
+0080    TSETB    4   3   5
+0081    TDUP     4  29
+0082    UGET     5   0      ; _
+0083    KSTR     6  28      ; "Swipe to jump to latest bookmark"
+0084    CALL     5   2   2
+0085    TSETS    5   4   3  ; "text"
+0086    UGET     5   6      ; isSwipeToJumpToLatestBookmarkEnabled
+0087    TSETS    5   4   6  ; "checked_func"
+0088    FNEW     5  30      ; readerlink.lua:184
+0089    TSETS    5   4   8  ; "callback"
+0090    UGET     5   0      ; _
+0091    KSTR     6  31      ; "Swipe to the left to go the most recentl"~
+0092    CALL     5   2   2
+0093    TSETS    5   4  10  ; "help_text"
+0094    TSETB    4   3   6
+0095    TSETS    3   2  32  ; "sub_item_table"
+0096    TSETS    2   1   0  ; "follow_links"
+0097    TGETS    2   0  33  ; "ui"
+0098    TGETS    2   2  34  ; "document"
+0099    TGETS    2   2  35  ; "info"
+0100    TGETS    2   2  36  ; "has_pages"
+0101    IST          2
+0102    JMP      2 => 0185
+0103    GGET     2  37      ; "table"
+0104    TGETS    2   2  38  ; "insert"
+0105    TGETS    3   1   0  ; "follow_links"
+0106    TGETS    3   3  32  ; "sub_item_table"
+0107    KSHORT   4   2
+0108    TDUP     5  40
+0109    UGET     6   0      ; _
+0110    KSTR     7  39      ; "Allow larger tap area around links"
+0111    CALL     6   2   2
+0112    TSETS    6   5   3  ; "text"
+0113    UGET     6   1      ; isTapToFollowLinksOn
+0114    TSETS    6   5  13  ; "enabled_func"
+0115    UGET     6   7      ; isLargerTapAreaToFollowLinksEnabled
+0116    TSETS    6   5   6  ; "checked_func"
+0117    FNEW     6  41      ; readerlink.lua:206
+0118    TSETS    6   5   8  ; "callback"
+0119    UGET     6   0      ; _
+0120    KSTR     7  42      ; "Extends the tap area around internal lin"~
+0121    CALL     6   2   2
+0122    TSETS    6   5  10  ; "help_text"
+0123    CALL     2   1   4
+0124    GGET     2  37      ; "table"
+0125    TGETS    2   2  38  ; "insert"
+0126    TGETS    3   1   0  ; "follow_links"
+0127    TGETS    3   3  32  ; "sub_item_table"
+0128    KSHORT   4   4
+0129    TDUP     5  44
+0130    UGET     6   0      ; _
+0131    KSTR     7  43      ; "Show footnotes in popup"
+0132    CALL     6   2   2
+0133    TSETS    6   5   3  ; "text"
+0134    FNEW     6  45      ; readerlink.lua:214
+0135    TSETS    6   5  13  ; "enabled_func"
+0136    UGET     6   8      ; isFootnoteLinkInPopupEnabled
+0137    TSETS    6   5   6  ; "checked_func"
+0138    FNEW     6  46      ; readerlink.lua:218
+0139    TSETS    6   5   8  ; "callback"
+0140    UGET     6   0      ; _
+0141    KSTR     7  47      ; "Show internal link target content in a f"~
+0142    CALL     6   2   2
+0143    TSETS    6   5  10  ; "help_text"
+0144    CALL     2   1   4
+0145    GGET     2  37      ; "table"
+0146    TGETS    2   2  38  ; "insert"
+0147    TGETS    3   1   0  ; "follow_links"
+0148    TGETS    3   3  32  ; "sub_item_table"
+0149    KSHORT   4   5
+0150    TDUP     5  49
+0151    UGET     6   0      ; _
+0152    KSTR     7  48      ; "Show more links as footnotes"
+0153    CALL     6   2   2
+0154    TSETS    6   5   3  ; "text"
+0155    FNEW     6  50      ; readerlink.lua:232
+0156    TSETS    6   5  13  ; "enabled_func"
+0157    UGET     6   9      ; isPreferFootnoteEnabled
+0158    TSETS    6   5   6  ; "checked_func"
+0159    FNEW     6  51      ; readerlink.lua:237
+0160    TSETS    6   5   8  ; "callback"
+0161    UGET     6   0      ; _
+0162    KSTR     7  52      ; "Loosen footnote detection rules to show "~
+0163    CALL     6   2   2
+0164    TSETS    6   5  10  ; "help_text"
+0165    CALL     2   1   4
+0166    GGET     2  37      ; "table"
+0167    TGETS    2   2  38  ; "insert"
+0168    TGETS    3   1   0  ; "follow_links"
+0169    TGETS    3   3  32  ; "sub_item_table"
+0170    KSHORT   4   6
+0171    TDUP     5  54
+0172    UGET     6   0      ; _
+0173    KSTR     7  53      ; "Set footnote popup font size"
+0174    CALL     6   2   2
+0175    TSETS    6   5   3  ; "text"
+0176    FNEW     6  55      ; readerlink.lua:245
+0177    TSETS    6   5  13  ; "enabled_func"
+0178    FNEW     6  56      ; readerlink.lua:250
+0179    TSETS    6   5   8  ; "callback"
+0180    UGET     6   0      ; _
+0181    KSTR     7  57      ; "The footnote popup font adjusts to the f"~
+0182    CALL     6   2   2
+0183    TSETS    6   5  10  ; "help_text"
+0184    CALL     2   1   4
+0185 => TDUP     2  60
+0186    UGET     3   0      ; _
+0187    KSTR     4  59      ; "Go back to previous location"
+0188    CALL     3   2   2
+0189    TSETS    3   2   3  ; "text"
+0190    FNEW     3  61      ; readerlink.lua:278
+0191    TSETS    3   2  13  ; "enabled_func"
+0192    FNEW     3  62      ; readerlink.lua:279
+0193    TSETS    3   2   8  ; "callback"
+0194    FNEW     3  63      ; readerlink.lua:280
+0195    TSETS    3   2  64  ; "hold_callback"
+0196    TSETS    2   1  58  ; "go_to_previous_location"
+0197    UCLO     0 => 0198
+0198 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:294-312
+0001    TGETS    2   0   0  ; "ui"
+0002    TGETS    2   2   1  ; "document"
+0003    MOV      3   2
+0004    TGETS    2   2   2  ; "getScreenPositionFromXPointer"
+0005    MOV      4   1
+0006    CALL     2   3   3
+0007    TGETS    4   0   0  ; "ui"
+0008    TGETS    4   4   1  ; "document"
+0009    MOV      5   4
+0010    TGETS    4   4   3  ; "getLinkFromPosition"
+0011    TDUP     6   4
+0012    TSETS    3   6   5  ; "x"
+0013    TSETS    2   6   6  ; "y"
+0014    CALL     4   3   3
+0015    ISEQV    5   1
+0016    JMP      6 => 0037
+0017    TGETS    6   0   0  ; "ui"
+0018    TGETS    6   6   1  ; "document"
+0019    MOV      7   6
+0020    TGETS    6   6   3  ; "getLinkFromPosition"
+0021    TDUP     8   7
+0022    ADDVN    9   3   0  ; 1
+0023    TSETS    9   8   5  ; "x"
+0024    TSETS    2   8   6  ; "y"
+0025    CALL     6   3   3
+0026    MOV      5   7
+0027    MOV      4   6
+0028    ISEQV    5   1
+0029    JMP      6 => 0037
+0030    UGET     6   0      ; logger
+0031    TGETS    6   6   8  ; "info"
+0032    KSTR     7   9      ; "not coherent a_xpointer:"
+0033    MOV      8   1
+0034    CALL     6   1   3
+0035    KPRI     6   1
+0036    RET1     6   2
+0037 => KPRI     6   2
+0038    RET1     6   2
+
+-- BYTECODE -- readerlink.lua:317-364
+0001    TGETS    2   0   0  ; "ui"
+0002    TGETS    2   2   1  ; "document"
+0003    TGETS    2   2   2  ; "info"
+0004    TGETS    2   2   3  ; "has_pages"
+0005    ISF          2
+0006    JMP      3 => 0031
+0007    TGETS    2   0   4  ; "view"
+0008    MOV      3   2
+0009    TGETS    2   2   5  ; "screenToPageTransform"
+0010    TGETS    4   1   6  ; "pos"
+0011    CALL     2   2   3
+0012    ISF          2
+0013    JMP      3 => 0068
+0014    TGETS    3   0   0  ; "ui"
+0015    TGETS    3   3   1  ; "document"
+0016    MOV      4   3
+0017    TGETS    3   3   7  ; "getLinkFromPosition"
+0018    TGETS    5   2   8  ; "page"
+0019    MOV      6   2
+0020    CALL     3   3   4
+0021    ISF          3
+0022    JMP      5 => 0068
+0023    ISF          4
+0024    JMP      5 => 0068
+0025    TDUP     5   9
+0026    TSETS    3   5  10  ; "link"
+0027    TSETS    4   5  11  ; "lbox"
+0028    TSETS    2   5   6  ; "pos"
+0029    RET1     5   2
+0030    JMP      2 => 0068
+0031 => TGETS    2   0   0  ; "ui"
+0032    TGETS    2   2   1  ; "document"
+0033    MOV      3   2
+0034    TGETS    2   2   7  ; "getLinkFromPosition"
+0035    TGETS    4   1   6  ; "pos"
+0036    CALL     2   3   3
+0037    UGET     4   0      ; logger
+0038    TGETS    4   4  12  ; "dbg"
+0039    KSTR     5  13      ; "getLinkFromPosition link_xpointer:"
+0040    MOV      6   2
+0041    CALL     4   1   3
+0042    UGET     4   0      ; logger
+0043    TGETS    4   4  12  ; "dbg"
+0044    KSTR     5  14      ; "getLinkFromPosition a_xpointer:"
+0045    MOV      6   3
+0046    CALL     4   1   3
+0047    KPRI     4   0
+0048    ISF          3
+0049    JMP      5 => 0057
+0050    MOV      6   0
+0051    TGETS    5   0  15  ; "isXpointerCoherent"
+0052    MOV      7   3
+0053    CALL     5   2   3
+0054    ISF          5
+0055    JMP      6 => 0057
+0056    MOV      4   3
+0057 => ISEQS    2  16      ; ""
+0058    JMP      5 => 0068
+0059    TDUP     5  17
+0060    TSETS    2   5  18  ; "xpointer"
+0061    TSETS    2   5  19  ; "marker_xpointer"
+0062    TSETS    4   5  20  ; "from_xpointer"
+0063    TSETS    3   5  21  ; "a_xpointer"
+0064    TGETS    6   1   6  ; "pos"
+0065    TGETS    6   6  22  ; "y"
+0066    TSETS    6   5  23  ; "link_y"
+0067    RET1     5   2
+0068 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:376-378
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onGotoLink"
+0004    UGET     2   1      ; link
+0005    TGETS    2   2   1  ; "link"
+0006    KPRI     3   1
+0007    UGET     4   2      ; allow_footnote_popup
+0008    CALL     0   1   5
+0009    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:367-385
+0001    ISF          1
+0002    JMP      3 => 0040
+0003    TGETS    3   1   0  ; "lbox"
+0004    ISF          3
+0005    JMP      4 => 0040
+0006    TGETS    3   0   1  ; "view"
+0007    MOV      4   3
+0008    TGETS    3   3   2  ; "pageToScreenTransform"
+0009    TGETS    5   1   3  ; "pos"
+0010    TGETS    5   5   4  ; "page"
+0011    TGETS    6   0   5  ; "ui"
+0012    TGETS    6   6   6  ; "document"
+0013    MOV      7   6
+0014    TGETS    6   6   7  ; "nativeToPageRectTransform"
+0015    TGETS    8   1   3  ; "pos"
+0016    TGETS    8   8   4  ; "page"
+0017    TGETS    9   1   0  ; "lbox"
+0018    CALL     6   0   4
+0019    CALLM    3   2   2
+0020    ISF          3
+0021    JMP      4 => 0052
+0022    UGET     4   0      ; UIManager
+0023    MOV      5   4
+0024    TGETS    4   4   8  ; "show"
+0025    UGET     6   1      ; LinkBox
+0026    MOV      7   6
+0027    TGETS    6   6   9  ; "new"
+0028    TDUP     8  10
+0029    TSETS    3   8  11  ; "box"
+0030    GGET     9  12      ; "FOLLOW_LINK_TIMEOUT"
+0031    TSETS    9   8  13  ; "timeout"
+0032    FNEW     9  14      ; readerlink.lua:376
+0033    TSETS    9   8  15  ; "callback"
+0034    CALL     6   0   3
+0035    CALLM    4   1   1
+0036    KPRI     4   2
+0037    UCLO     0 => 0038
+0038 => RET1     4   2
+0039    JMP      3 => 0052
+0040 => ISF          1
+0041    JMP      3 => 0052
+0042    TGETS    3   1  16  ; "xpointer"
+0043    ISEQS    3  17      ; ""
+0044    JMP      3 => 0052
+0045    MOV      4   0
+0046    TGETS    3   0  18  ; "onGotoLink"
+0047    MOV      5   1
+0048    KPRI     6   1
+0049    MOV      7   2
+0050    UCLO     0 => 0051
+0051 => CALLT    3   5
+0052 => UCLO     0 => 0053
+0053 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:387-431
+0001    UGET     3   0      ; isTapToFollowLinksOn
+0002    CALL     3   2   1
+0003    IST          3
+0004    JMP      3 => 0006
+0005    RET0     0   1
+0006 => TGETS    3   0   0  ; "ui"
+0007    TGETS    3   3   1  ; "document"
+0008    TGETS    3   3   2  ; "info"
+0009    TGETS    3   3   3  ; "has_pages"
+0010    ISF          3
+0011    JMP      4 => 0035
+0012    MOV      4   0
+0013    TGETS    3   0   4  ; "getLinkFromGes"
+0014    MOV      5   2
+0015    CALL     3   2   3
+0016    ISF          3
+0017    JMP      4 => 0034
+0018    TGETS    4   3   5  ; "link"
+0019    ISF          4
+0020    JMP      5 => 0030
+0021    TGETS    4   3   5  ; "link"
+0022    TGETS    4   4   6  ; "uri"
+0023    ISF          4
+0024    JMP      5 => 0030
+0025    UGET     4   1      ; isTapIgnoreExternalLinksEnabled
+0026    CALL     4   2   1
+0027    ISF          4
+0028    JMP      5 => 0030
+0029    RET0     0   1
+0030 => MOV      5   0
+0031    TGETS    4   0   7  ; "showLinkBox"
+0032    MOV      6   3
+0033    CALLT    4   3
+0034 => RET0     0   1
+0035 => UGET     3   2      ; isFootnoteLinkInPopupEnabled
+0036    CALL     3   2   1
+0037    UGET     4   1      ; isTapIgnoreExternalLinksEnabled
+0038    CALL     4   2   1
+0039    IST          4
+0040    JMP      4 => 0052
+0041    MOV      5   0
+0042    TGETS    4   0   4  ; "getLinkFromGes"
+0043    MOV      6   2
+0044    CALL     4   2   3
+0045    ISF          4
+0046    JMP      5 => 0052
+0047    MOV      6   0
+0048    TGETS    5   0   7  ; "showLinkBox"
+0049    MOV      7   4
+0050    MOV      8   3
+0051    CALLT    5   4
+0052 => UGET     4   3      ; isLargerTapAreaToFollowLinksEnabled
+0053    CALL     4   2   1
+0054    IST          4
+0055    JMP      5 => 0060
+0056    UGET     4   1      ; isTapIgnoreExternalLinksEnabled
+0057    CALL     4   2   1
+0058    ISF          4
+0059    JMP      5 => 0079
+0060 => KSHORT   4   0
+0061    UGET     5   3      ; isLargerTapAreaToFollowLinksEnabled
+0062    CALL     5   2   1
+0063    ISF          5
+0064    JMP      6 => 0071
+0065    UGET     5   4      ; Screen
+0066    MOV      6   5
+0067    TGETS    5   5   8  ; "scaleByDPI"
+0068    KSHORT   7  30
+0069    CALL     5   2   3
+0070    MOV      4   5
+0071 => MOV      6   0
+0072    TGETS    5   0   9  ; "onGoToPageLink"
+0073    MOV      7   2
+0074    UGET     8   1      ; isTapIgnoreExternalLinksEnabled
+0075    CALL     8   2   1
+0076    MOV      9   3
+0077    MOV     10   4
+0078    CALLT    5   6
+0079 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:434-442
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "document"
+0003    TGETS    1   1   2  ; "info"
+0004    TGETS    1   1   3  ; "has_pages"
+0005    ISF          1
+0006    JMP      2 => 0017
+0007    GGET     1   4      ; "table"
+0008    TGETS    1   1   5  ; "insert"
+0009    TGETS    2   0   6  ; "location_stack"
+0010    TGETS    3   0   0  ; "ui"
+0011    TGETS    3   3   7  ; "paging"
+0012    MOV      4   3
+0013    TGETS    3   3   8  ; "getBookLocation"
+0014    CALL     3   0   2
+0015    CALLM    1   1   1
+0016    JMP      1 => 0028
+0017 => GGET     1   4      ; "table"
+0018    TGETS    1   1   5  ; "insert"
+0019    TGETS    2   0   6  ; "location_stack"
+0020    TDUP     3  10
+0021    TGETS    4   0   0  ; "ui"
+0022    TGETS    4   4   9  ; "rolling"
+0023    MOV      5   4
+0024    TGETS    4   4   8  ; "getBookLocation"
+0025    CALL     4   2   2
+0026    TSETS    4   3  11  ; "xpointer"
+0027    CALL     1   1   3
+0028 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:444-453
+0001    TNEW     2   0
+0002    TSETS    2   0   0  ; "location_stack"
+0003    ISF          1
+0004    JMP      2 => 0018
+0005    UGET     2   0      ; UIManager
+0006    MOV      3   2
+0007    TGETS    2   2   1  ; "show"
+0008    UGET     4   1      ; Notification
+0009    MOV      5   4
+0010    TGETS    4   4   2  ; "new"
+0011    TDUP     6   4
+0012    UGET     7   2      ; _
+0013    KSTR     8   3      ; "Location history cleared."
+0014    CALL     7   2   2
+0015    TSETS    7   6   5  ; "text"
+0016    CALL     4   0   3
+0017    CALLM    2   1   1
+0018 => KPRI     2   2
+0019    RET1     2   2
+
+-- BYTECODE -- readerlink.lua:549-551
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "switchDocument"
+0005    UGET     2   1      ; linked_filename
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:548-552
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "scheduleIn"
+0004    KNUM     2   0      ; 0.1
+0005    FNEW     3   1      ; readerlink.lua:549
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:458-569
+0001    UGET     4   0      ; logger
+0002    TGETS    4   4   0  ; "dbg"
+0003    KSTR     5   1      ; "onGotoLink:"
+0004    MOV      6   1
+0005    CALL     4   1   3
+0006    KPRI     4   0
+0007    TGETS    5   0   2  ; "ui"
+0008    TGETS    5   5   3  ; "document"
+0009    TGETS    5   5   4  ; "info"
+0010    TGETS    5   5   5  ; "has_pages"
+0011    ISF          5
+0012    JMP      6 => 0041
+0013    TGETS    5   1   6  ; "page"
+0014    ISF          5
+0015    JMP      6 => 0039
+0016    UGET     5   0      ; logger
+0017    TGETS    5   5   0  ; "dbg"
+0018    KSTR     6   7      ; "Internal link:"
+0019    MOV      7   1
+0020    CALL     5   1   3
+0021    IST          2
+0022    JMP      5 => 0026
+0023    MOV      6   0
+0024    TGETS    5   0   8  ; "addCurrentLocationToStack"
+0025    CALL     5   1   2
+0026 => TGETS    5   0   2  ; "ui"
+0027    MOV      6   5
+0028    TGETS    5   5   9  ; "handleEvent"
+0029    UGET     7   1      ; Event
+0030    MOV      8   7
+0031    TGETS    7   7  10  ; "new"
+0032    KSTR     9  11      ; "GotoPage"
+0033    TGETS   10   1   6  ; "page"
+0034    ADDVN   10  10   0  ; 1
+0035    CALL     7   0   4
+0036    CALLM    5   1   1
+0037    KPRI     5   2
+0038    UCLO     0 => 0271
+0039 => TGETS    4   1  12  ; "uri"
+0040    JMP      5 => 0115
+0041 => TGETS    5   0   2  ; "ui"
+0042    TGETS    5   5   3  ; "document"
+0043    MOV      6   5
+0044    TGETS    5   5  13  ; "isXPointerInDocument"
+0045    TGETS    7   1  14  ; "xpointer"
+0046    CALL     5   2   3
+0047    ISF          5
+0048    JMP      6 => 0114
+0049    UGET     5   0      ; logger
+0050    TGETS    5   5   0  ; "dbg"
+0051    KSTR     6   7      ; "Internal link:"
+0052    MOV      7   1
+0053    CALL     5   1   3
+0054    ISF          3
+0055    JMP      5 => 0065
+0056    MOV      6   0
+0057    TGETS    5   0  15  ; "showAsFootnotePopup"
+0058    MOV      7   1
+0059    MOV      8   2
+0060    CALL     5   2   4
+0061    ISF          5
+0062    JMP      6 => 0065
+0063    KPRI     5   2
+0064    UCLO     0 => 0272
+0065 => IST          2
+0066    JMP      5 => 0101
+0067    TGETS    5   1  16  ; "from_xpointer"
+0068    ISF          5
+0069    JMP      6 => 0098
+0070    KPRI     5   0
+0071    TGETS    6   0  17  ; "view"
+0072    TGETS    6   6  18  ; "view_mode"
+0073    ISNES    6  19      ; "scroll"
+0074    JMP      6 => 0086
+0075    TDUP     6  22
+0076    TGETS    7   0   2  ; "ui"
+0077    TGETS    7   7  20  ; "rolling"
+0078    MOV      8   7
+0079    TGETS    7   7  21  ; "getBookLocation"
+0080    CALL     7   2   2
+0081    TSETS    7   6  14  ; "xpointer"
+0082    TGETS    7   1  16  ; "from_xpointer"
+0083    TSETS    7   6  23  ; "marker_xpointer"
+0084    MOV      5   6
+0085    JMP      6 => 0092
+0086 => TDUP     6  24
+0087    TGETS    7   1  16  ; "from_xpointer"
+0088    TSETS    7   6  14  ; "xpointer"
+0089    TGETS    7   1  16  ; "from_xpointer"
+0090    TSETS    7   6  23  ; "marker_xpointer"
+0091    MOV      5   6
+0092 => GGET     6  25      ; "table"
+0093    TGETS    6   6  26  ; "insert"
+0094    TGETS    7   0  27  ; "location_stack"
+0095    MOV      8   5
+0096    CALL     6   1   3
+0097    JMP      5 => 0101
+0098 => MOV      6   0
+0099    TGETS    5   0   8  ; "addCurrentLocationToStack"
+0100    CALL     5   1   2
+0101 => TGETS    5   0   2  ; "ui"
+0102    MOV      6   5
+0103    TGETS    5   5   9  ; "handleEvent"
+0104    UGET     7   1      ; Event
+0105    MOV      8   7
+0106    TGETS    7   7  10  ; "new"
+0107    KSTR     9  28      ; "GotoXPointer"
+0108    TGETS   10   1  14  ; "xpointer"
+0109    TGETS   11   1  23  ; "marker_xpointer"
+0110    CALL     7   0   5
+0111    CALLM    5   1   1
+0112    KPRI     5   2
+0113    UCLO     0 => 0273
+0114 => TGETS    4   1  14  ; "xpointer"
+0115 => UGET     5   0      ; logger
+0116    TGETS    5   5   0  ; "dbg"
+0117    KSTR     6  29      ; "External link:"
+0118    MOV      7   4
+0119    CALL     5   1   3
+0120    MOV      6   4
+0121    TGETS    5   4  30  ; "find"
+0122    KSTR     7  31      ; "^https?://"
+0123    CALL     5   2   3
+0124    ISNEP    5   0
+0125    JMP      5 => 0128
+0126    KPRI     5   1
+0127    JMP      6 => 0129
+0128 => KPRI     5   2
+0129 => ISF          5
+0130    JMP      6 => 0139
+0131    MOV      7   0
+0132    TGETS    6   0  32  ; "onGoToExternalLink"
+0133    MOV      8   4
+0134    CALL     6   2   3
+0135    ISF          6
+0136    JMP      7 => 0139
+0137    KPRI     6   2
+0138    UCLO     0 => 0274
+0139 => MOV      7   4
+0140    TGETS    6   4  33  ; "gsub"
+0141    KSTR     8  34      ; "^file:(//)?"
+0142    KSTR     9  35      ; ""
+0143    CALL     6   2   4
+0144    KPRI     7   0
+0145    MOV      9   6
+0146    TGETS    8   6  30  ; "find"
+0147    KSTR    10  36      ; "?"
+0148    CALL     8   2   3
+0149    ISF          8
+0150    JMP      9 => 0158
+0151    MOV      9   6
+0152    TGETS    8   6  37  ; "match"
+0153    KSTR    10  38      ; "^(.-)(%?.*)$"
+0154    CALL     8   3   3
+0155    MOV      7   9
+0156    MOV      6   8
+0157    JMP      8 => 0170
+0158 => MOV      9   6
+0159    TGETS    8   6  30  ; "find"
+0160    KSTR    10  39      ; "#"
+0161    CALL     8   2   3
+0162    ISF          8
+0163    JMP      9 => 0170
+0164    MOV      9   6
+0165    TGETS    8   6  37  ; "match"
+0166    KSTR    10  40      ; "^(.-)(#.*)$"
+0167    CALL     8   3   3
+0168    MOV      7   9
+0169    MOV      6   8
+0170 => UGET     8   2      ; ffiutil
+0171    TGETS    8   8  41  ; "joinPath"
+0172    TGETS    9   0  42  ; "document_dir"
+0173    MOV     10   6
+0174    CALL     8   2   3
+0175    MOV      6   8
+0176    UGET     8   2      ; ffiutil
+0177    TGETS    8   8  43  ; "realpath"
+0178    MOV      9   6
+0179    CALL     8   2   2
+0180    MOV      6   8
+0181    ISF          6
+0182    JMP      8 => 0249
+0183    GGET     8  44      ; "lfs"
+0184    TGETS    8   8  45  ; "attributes"
+0185    MOV      9   6
+0186    KSTR    10  46      ; "mode"
+0187    CALL     8   2   3
+0188    ISNES    8  47      ; "file"
+0189    JMP      8 => 0249
+0190    GGET     8  48      ; "require"
+0191    KSTR     9  49      ; "document/documentregistry"
+0192    CALL     8   2   2
+0193    MOV     10   8
+0194    TGETS    9   8  50  ; "getProvider"
+0195    MOV     11   6
+0196    CALL     9   2   3
+0197    ISF          9
+0198    JMP     10 => 0227
+0199    MOV     10   6
+0200    ISF          7
+0201    JMP     11 => 0205
+0202    MOV     11  10
+0203    MOV     12   7
+0204    CAT     10  11  12
+0205 => UGET    11   3      ; UIManager
+0206    MOV     12  11
+0207    TGETS   11  11  51  ; "show"
+0208    UGET    13   4      ; ConfirmBox
+0209    MOV     14  13
+0210    TGETS   13  13  10  ; "new"
+0211    TDUP    15  54
+0212    UGET    16   5      ; T
+0213    UGET    17   6      ; _
+0214    KSTR    18  52      ; "Would you like to read this local docume"~
+0215    CALL    17   2   2
+0216    UGET    18   7      ; BD
+0217    TGETS   18  18  53  ; "filepath"
+0218    MOV     19  10
+0219    CALL    18   0   2
+0220    CALLM   16   2   1
+0221    TSETS   16  15  55  ; "text"
+0222    FNEW    16  56      ; readerlink.lua:548
+0223    TSETS   16  15  57  ; "ok_callback"
+0224    CALL    13   0   3
+0225    CALLM   11   1   1
+0226    JMP     10 => 0246
+0227 => UGET    10   3      ; UIManager
+0228    MOV     11  10
+0229    TGETS   10  10  51  ; "show"
+0230    UGET    12   8      ; InfoMessage
+0231    MOV     13  12
+0232    TGETS   12  12  10  ; "new"
+0233    TDUP    14  60
+0234    UGET    15   5      ; T
+0235    UGET    16   6      ; _
+0236    KSTR    17  58      ; "Link to unsupported local file:\n%1"
+0237    CALL    16   2   2
+0238    UGET    17   7      ; BD
+0239    TGETS   17  17  59  ; "url"
+0240    MOV     18   4
+0241    CALL    17   0   2
+0242    CALLM   15   2   1
+0243    TSETS   15  14  55  ; "text"
+0244    CALL    12   0   3
+0245    CALLM   10   1   1
+0246 => KPRI    10   2
+0247    UCLO     0 => 0248
+0248 => RET1    10   2
+0249 => UGET     8   3      ; UIManager
+0250    MOV      9   8
+0251    TGETS    8   8  51  ; "show"
+0252    UGET    10   8      ; InfoMessage
+0253    MOV     11  10
+0254    TGETS   10  10  10  ; "new"
+0255    TDUP    12  62
+0256    UGET    13   5      ; T
+0257    UGET    14   6      ; _
+0258    KSTR    15  61      ; "Invalid or external link:\n%1"
+0259    CALL    14   2   2
+0260    UGET    15   7      ; BD
+0261    TGETS   15  15  59  ; "url"
+0262    MOV     16   4
+0263    CALL    15   0   2
+0264    CALLM   13   2   1
+0265    TSETS   13  12  55  ; "text"
+0266    CALL    10   0   3
+0267    CALLM    8   1   1
+0268    KPRI     8   2
+0269    UCLO     0 => 0270
+0270 => RET1     8   2
+0271 => RET1     5   2
+0272 => RET1     5   2
+0273 => RET1     5   2
+0274 => RET1     6   2
+
+-- BYTECODE -- readerlink.lua:578-580
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; dialog
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:584-591
+0001    UGET     1   0      ; buttons
+0002    UGET     2   0      ; buttons
+0003    LEN      2   2
+0004    TGETV    1   1   2
+0005    LEN      1   1
+0006    KSHORT   2   2
+0007    ISGT     2   1
+0008    JMP      1 => 0014
+0009    GGET     1   0      ; "table"
+0010    TGETS    1   1   1  ; "insert"
+0011    UGET     2   0      ; buttons
+0012    TNEW     3   0
+0013    CALL     1   1   3
+0014 => GGET     1   0      ; "table"
+0015    TGETS    1   1   1  ; "insert"
+0016    UGET     2   0      ; buttons
+0017    UGET     3   0      ; buttons
+0018    LEN      3   3
+0019    TGETV    2   2   3
+0020    MOV      3   0
+0021    CALL     1   1   3
+0022    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:597-600
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; dialog
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    TGETS    0   0   1  ; "ui"
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "handleEvent"
+0010    UGET     2   3      ; Event
+0011    MOV      3   2
+0012    TGETS    2   2   3  ; "new"
+0013    KSTR     4   4      ; "AddWallabagArticle"
+0014    UGET     5   4      ; link_url
+0015    CALL     2   0   4
+0016    CALLM    0   1   1
+0017    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:606-609
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; dialog
+0005    CALL     0   1   3
+0006    UGET     0   2      ; Device
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "openLink"
+0009    UGET     2   3      ; link_url
+0010    CALL     0   1   3
+0011    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:648-651
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; dialog
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    TGETS    0   0   1  ; "ui"
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "handleEvent"
+0010    UGET     2   3      ; Event
+0011    MOV      3   2
+0012    TGETS    2   2   3  ; "new"
+0013    KSTR     4   4      ; "LookupWikipedia"
+0014    UGET     5   4      ; wiki_page
+0015    KPRI     6   1
+0016    KPRI     7   2
+0017    UGET     8   5      ; wiki_lang
+0018    CALL     2   0   7
+0019    CALLM    0   1   1
+0020    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:647-652
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "nextTick"
+0004    FNEW     2   1      ; readerlink.lua:648
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:659-662
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; dialog
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    TGETS    0   0   1  ; "ui"
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "switchDocument"
+0010    UGET     2   3      ; epub_fullpath
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:658-663
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "scheduleIn"
+0004    KNUM     2   0      ; 0.1
+0005    FNEW     3   1      ; readerlink.lua:659
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:571-685
+0001    KNIL     2   3
+0002    TNEW     4   3
+0003    TNEW     5   3
+0004    TDUP     6   1
+0005    UGET     7   0      ; _
+0006    KSTR     8   0      ; "Cancel"
+0007    CALL     7   2   2
+0008    TSETS    7   6   2  ; "text"
+0009    FNEW     7   3      ; readerlink.lua:578
+0010    TSETS    7   6   4  ; "callback"
+0011    TSETB    6   5   1
+0012    TSETB    5   4   1
+0013    FNEW     5   5      ; readerlink.lua:584
+0014    TNEW     6   0
+0015    TGETS    7   0   6  ; "ui"
+0016    TGETS    7   7   7  ; "wallabag"
+0017    ISF          7
+0018    JMP      8 => 0030
+0019    GGET     7   8      ; "table"
+0020    TGETS    7   7   9  ; "insert"
+0021    MOV      8   6
+0022    TDUP     9  11
+0023    UGET    10   0      ; _
+0024    KSTR    11  10      ; "Add to Wallabag"
+0025    CALL    10   2   2
+0026    TSETS   10   9   2  ; "text"
+0027    FNEW    10  12      ; readerlink.lua:597
+0028    TSETS   10   9   4  ; "callback"
+0029    CALL     7   1   3
+0030 => UGET     7   3      ; Device
+0031    MOV      8   7
+0032    TGETS    7   7  13  ; "canOpenLink"
+0033    CALL     7   2   2
+0034    ISF          7
+0035    JMP      8 => 0047
+0036    GGET     7   8      ; "table"
+0037    TGETS    7   7   9  ; "insert"
+0038    MOV      8   6
+0039    TDUP     9  15
+0040    UGET    10   0      ; _
+0041    KSTR    11  14      ; "Open in browser"
+0042    CALL    10   2   2
+0043    TSETS   10   9   2  ; "text"
+0044    FNEW    10  16      ; readerlink.lua:606
+0045    TSETS   10   9   4  ; "callback"
+0046    CALL     7   1   3
+0047 => MOV      8   1
+0048    TGETS    7   1  17  ; "match"
+0049    KSTR     9  18      ; "https?://([^%.]+).wikipedia.org/wiki/([^"~
+0050    CALL     7   3   3
+0051    ISF          7
+0052    JMP      9 => 0178
+0053    ISF          8
+0054    JMP      9 => 0178
+0055    UGET     9   4      ; logger
+0056    TGETS    9   9  19  ; "dbg"
+0057    KSTR    10  20      ; "Wikipedia link:"
+0058    MOV     11   7
+0059    MOV     12   8
+0060    CALL     9   1   4
+0061    UGET     9   5      ; util
+0062    TGETS    9   9  21  ; "getSafeFilename"
+0063    MOV     11   8
+0064    TGETS   10   8  22  ; "gsub"
+0065    KSTR    12  23      ; "_"
+0066    KSTR    13  24      ; " "
+0067    CALL    10   0   4
+0068    CALLM    9   2   0
+0069    KSTR    10  25      ; "."
+0070    GGET    11  26      ; "string"
+0071    TGETS   11  11  27  ; "upper"
+0072    MOV     12   7
+0073    CALL    11   2   2
+0074    KSTR    12  28      ; ".epub"
+0075    CAT      9   9  12
+0076    KPRI    10   0
+0077    GGET    11  29      ; "G_reader_settings"
+0078    MOV     12  11
+0079    TGETS   11  11  30  ; "readSetting"
+0080    KSTR    13  31      ; "lastfile"
+0081    CALL    11   2   3
+0082    ISF         11
+0083    JMP     12 => 0099
+0084    MOV     13  11
+0085    TGETS   12  11  17  ; "match"
+0086    KSTR    14  32      ; "(.*)/"
+0087    CALL    12   2   3
+0088    MOV     13  12
+0089    KSTR    14  33      ; "/"
+0090    MOV     15   9
+0091    CAT     13  13  15
+0092    UGET    14   5      ; util
+0093    TGETS   14  14  34  ; "pathExists"
+0094    MOV     15  13
+0095    CALL    14   2   2
+0096    ISF         14
+0097    JMP     15 => 0099
+0098    MOV     10  13
+0099 => IST         10
+0100    JMP     12 => 0135
+0101    GGET    12  29      ; "G_reader_settings"
+0102    MOV     13  12
+0103    TGETS   12  12  30  ; "readSetting"
+0104    KSTR    14  35      ; "wikipedia_save_dir"
+0105    CALL    12   2   3
+0106    IST         12
+0107    JMP     13 => 0114
+0108    GGET    13  29      ; "G_reader_settings"
+0109    MOV     14  13
+0110    TGETS   13  13  30  ; "readSetting"
+0111    KSTR    15  36      ; "home_dir"
+0112    CALL    13   2   3
+0113    MOV     12  13
+0114 => IST         12
+0115    JMP     13 => 0122
+0116    GGET    13  37      ; "require"
+0117    KSTR    14  38      ; "apps/filemanager/filemanagerutil"
+0118    CALL    13   2   2
+0119    TGETS   13  13  39  ; "getDefaultDir"
+0120    CALL    13   2   1
+0121    MOV     12  13
+0122 => ISF         12
+0123    JMP     13 => 0135
+0124    MOV     13  12
+0125    KSTR    14  33      ; "/"
+0126    MOV     15   9
+0127    CAT     13  13  15
+0128    UGET    14   5      ; util
+0129    TGETS   14  14  34  ; "pathExists"
+0130    MOV     15  13
+0131    CALL    14   2   2
+0132    ISF         14
+0133    JMP     15 => 0135
+0134    MOV     10  13
+0135 => UGET    12   6      ; T
+0136    UGET    13   0      ; _
+0137    KSTR    14  40      ; "Would you like to read this Wikipedia %1"~
+0138    CALL    13   2   2
+0139    MOV     15   7
+0140    TGETS   14   7  27  ; "upper"
+0141    CALL    14   2   2
+0142    MOV     16   8
+0143    TGETS   15   8  22  ; "gsub"
+0144    KSTR    17  23      ; "_"
+0145    KSTR    18  24      ; " "
+0146    CALL    15   0   4
+0147    CALLM   12   2   2
+0148    MOV      2  12
+0149    MOV     12   5
+0150    TDUP    13  42
+0151    UGET    14   0      ; _
+0152    KSTR    15  41      ; "Read online"
+0153    CALL    14   2   2
+0154    TSETS   14  13   2  ; "text"
+0155    FNEW    14  43      ; readerlink.lua:647
+0156    TSETS   14  13   4  ; "callback"
+0157    CALL    12   1   2
+0158    ISF         10
+0159    JMP     12 => 0177
+0160    UGET    12   6      ; T
+0161    KSTR    13  44      ; "%1\n%2"
+0162    MOV     14   2
+0163    UGET    15   0      ; _
+0164    KSTR    16  45      ; "This article has previously been saved a"~
+0165    CALL    15   0   2
+0166    CALLM   12   2   2
+0167    MOV      2  12
+0168    MOV     12   5
+0169    TDUP    13  47
+0170    UGET    14   0      ; _
+0171    KSTR    15  46      ; "Read EPUB"
+0172    CALL    14   2   2
+0173    TSETS   14  13   2  ; "text"
+0174    FNEW    14  48      ; readerlink.lua:658
+0175    TSETS   14  13   4  ; "callback"
+0176    CALL    12   1   2
+0177 => UCLO     9 => 0194
+0178 => LEN      9   6
+0179    ISNEN    9   0      ; 0
+0180    JMP      9 => 0184
+0181    KPRI     9   1
+0182    UCLO     0 => 0183
+0183 => RET1     9   2
+0184 => UGET     9   6      ; T
+0185    UGET    10   0      ; _
+0186    KSTR    11  49      ; "External link:\n\n%1"
+0187    CALL    10   2   2
+0188    UGET    11   7      ; BD
+0189    TGETS   11  11  50  ; "url"
+0190    MOV     12   1
+0191    CALL    11   0   2
+0192    CALLM    9   2   1
+0193    MOV      2   9
+0194 => GGET     9  51      ; "ipairs"
+0195    MOV     10   6
+0196    CALL     9   4   2
+0197    JMP     12 => 0201
+0198 => MOV     14   5
+0199    MOV     15  13
+0200    CALL    14   1   2
+0201 => ITERC   12   3   3
+0202    ITERL   12 => 0198
+0203    UGET     9   8      ; ButtonDialogTitle
+0204    MOV     10   9
+0205    TGETS    9   9  52  ; "new"
+0206    TDUP    11  53
+0207    TSETS    2  11  54  ; "title"
+0208    TSETS    4  11  55  ; "buttons"
+0209    CALL     9   2   3
+0210    MOV      3   9
+0211    UGET     9   1      ; UIManager
+0212    MOV     10   9
+0213    TGETS    9   9  56  ; "show"
+0214    MOV     11   3
+0215    CALL     9   1   3
+0216    KPRI     9   2
+0217    UCLO     0 => 0218
+0218 => RET1     9   2
+
+-- BYTECODE -- readerlink.lua:688-700
+0001    GGET     2   0      ; "table"
+0002    TGETS    2   2   1  ; "remove"
+0003    TGETS    3   0   2  ; "location_stack"
+0004    CALL     2   2   2
+0005    ISF          2
+0006    JMP      3 => 0025
+0007    UGET     3   0      ; logger
+0008    TGETS    3   3   3  ; "dbg"
+0009    KSTR     4   4      ; "GoBack: restoring:"
+0010    MOV      5   2
+0011    CALL     3   1   3
+0012    TGETS    3   0   5  ; "ui"
+0013    MOV      4   3
+0014    TGETS    3   3   6  ; "handleEvent"
+0015    UGET     5   1      ; Event
+0016    MOV      6   5
+0017    TGETS    5   5   7  ; "new"
+0018    KSTR     7   8      ; "RestoreBookLocation"
+0019    MOV      8   2
+0020    CALL     5   0   4
+0021    CALLM    3   1   1
+0022    KPRI     3   2
+0023    RET1     3   2
+0024    JMP      3 => 0040
+0025 => ISF          1
+0026    JMP      3 => 0040
+0027    UGET     3   2      ; UIManager
+0028    MOV      4   3
+0029    TGETS    3   3   9  ; "show"
+0030    UGET     5   3      ; Notification
+0031    MOV      6   5
+0032    TGETS    5   5   7  ; "new"
+0033    TDUP     7  11
+0034    UGET     8   4      ; _
+0035    KSTR     9  10      ; "Location history is empty."
+0036    CALL     8   2   2
+0037    TSETS    8   7  12  ; "text"
+0038    CALL     5   0   3
+0039    CALLM    3   1   1
+0040 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:702-736
+0001    UGET     3   0      ; BD
+0002    TGETS    3   3   0  ; "flipDirectionIfMirroredUILayout"
+0003    TGETS    4   2   1  ; "direction"
+0004    CALL     3   2   2
+0005    ISNES    3   2      ; "east"
+0006    JMP      4 => 0049
+0007    UGET     4   1      ; isSwipeToGoBackEnabled
+0008    CALL     4   2   1
+0009    ISF          4
+0010    JMP      5 => 0077
+0011    TGETS    4   0   3  ; "location_stack"
+0012    LEN      4   4
+0013    KSHORT   5   0
+0014    ISGE     5   4
+0015    JMP      4 => 0028
+0016    TGETS    4   0   3  ; "location_stack"
+0017    LEN      4   4
+0018    ISEQN    4   0      ; 1
+0019    JMP      4 => 0022
+0020    KPRI     4   1
+0021    JMP      5 => 0023
+0022 => KPRI     4   2
+0023 => TSETS    4   0   4  ; "swipe_back_resist"
+0024    MOV      5   0
+0025    TGETS    4   0   5  ; "onGoBackLink"
+0026    CALLT    4   2
+0027    JMP      4 => 0077
+0028 => TGETS    4   0   4  ; "swipe_back_resist"
+0029    ISF          4
+0030    JMP      5 => 0077
+0031    KPRI     4   1
+0032    TSETS    4   0   4  ; "swipe_back_resist"
+0033    UGET     4   2      ; UIManager
+0034    MOV      5   4
+0035    TGETS    4   4   6  ; "show"
+0036    UGET     6   3      ; Notification
+0037    MOV      7   6
+0038    TGETS    6   6   7  ; "new"
+0039    TDUP     8   9
+0040    UGET     9   4      ; _
+0041    KSTR    10   8      ; "Location history is empty."
+0042    CALL     9   2   2
+0043    TSETS    9   8  10  ; "text"
+0044    CALL     6   0   3
+0045    CALLM    4   1   1
+0046    KPRI     4   2
+0047    RET1     4   2
+0048    JMP      4 => 0077
+0049 => ISNES    3  11      ; "west"
+0050    JMP      4 => 0077
+0051    KPRI     4   1
+0052    UGET     5   5      ; isSwipeToFollowNearestLinkEnabled
+0053    CALL     5   2   1
+0054    ISF          5
+0055    JMP      6 => 0065
+0056    MOV      6   0
+0057    TGETS    5   0  12  ; "onGoToPageLink"
+0058    MOV      7   2
+0059    UGET     8   6      ; isSwipeIgnoreExternalLinksEnabled
+0060    CALL     8   2   1
+0061    UGET     9   7      ; isFootnoteLinkInPopupEnabled
+0062    CALL     9   0   1
+0063    CALLM    5   2   3
+0064    MOV      4   5
+0065 => IST          4
+0066    JMP      5 => 0076
+0067    UGET     5   8      ; isSwipeToJumpToLatestBookmarkEnabled
+0068    CALL     5   2   1
+0069    ISF          5
+0070    JMP      6 => 0076
+0071    MOV      6   0
+0072    TGETS    5   0  13  ; "onGoToLatestBookmark"
+0073    MOV      7   2
+0074    CALL     5   2   3
+0075    MOV      4   5
+0076 => RET1     4   2
+0077 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:739-934
+0001    KNIL     5   6
+0002    TGETS    7   0   0  ; "ui"
+0003    TGETS    7   7   1  ; "document"
+0004    TGETS    7   7   2  ; "info"
+0005    TGETS    7   7   3  ; "has_pages"
+0006    ISF          7
+0007    JMP      8 => 0083
+0008    TGETS    7   0   4  ; "view"
+0009    MOV      8   7
+0010    TGETS    7   7   5  ; "screenToPageTransform"
+0011    TGETS    9   1   6  ; "pos"
+0012    CALL     7   2   3
+0013    IST          7
+0014    JMP      8 => 0016
+0015    RET0     0   1
+0016 => TGETS    8   0   0  ; "ui"
+0017    TGETS    8   8   1  ; "document"
+0018    MOV      9   8
+0019    TGETS    8   8   7  ; "getPageLinks"
+0020    TGETS   10   7   8  ; "page"
+0021    CALL     8   2   3
+0022    ISF          8
+0023    JMP      9 => 0027
+0024    LEN      9   8
+0025    ISNEN    9   0      ; 0
+0026    JMP      9 => 0028
+0027 => RET0     0   1
+0028 => TGETS    9   7   9  ; "x"
+0029    TGETS   10   7  10  ; "y"
+0030    KPRI    11   0
+0031    GGET    12  11      ; "ipairs"
+0032    MOV     13   8
+0033    CALL    12   4   2
+0034    JMP     15 => 0077
+0035 => ISF          2
+0036    JMP     17 => 0040
+0037    TGETS   17  16   8  ; "page"
+0038    ISF         17
+0039    JMP     18 => 0077
+0040 => GGET    17  12      ; "math"
+0041    TGETS   17  17  13  ; "pow"
+0042    TGETS   18  16  14  ; "x0"
+0043    SUBVV   18  18   9
+0044    KSHORT  19   2
+0045    CALL    17   2   3
+0046    GGET    18  12      ; "math"
+0047    TGETS   18  18  13  ; "pow"
+0048    TGETS   19  16  15  ; "y0"
+0049    SUBVV   19  19  10
+0050    KSHORT  20   2
+0051    CALL    18   2   3
+0052    ADDVV   17  17  18
+0053    GGET    18  12      ; "math"
+0054    TGETS   18  18  13  ; "pow"
+0055    TGETS   19  16  16  ; "x1"
+0056    SUBVV   19  19   9
+0057    KSHORT  20   2
+0058    CALL    18   2   3
+0059    GGET    19  12      ; "math"
+0060    TGETS   19  19  13  ; "pow"
+0061    TGETS   20  16  17  ; "y1"
+0062    SUBVV   20  20  10
+0063    KSHORT  21   2
+0064    CALL    19   2   3
+0065    ADDVV   18  18  19
+0066    GGET    19  12      ; "math"
+0067    TGETS   19  19  18  ; "min"
+0068    MOV     20  17
+0069    MOV     21  18
+0070    CALL    19   2   3
+0071    ISEQP   11   0
+0072    JMP     20 => 0075
+0073    ISGE    19  11
+0074    JMP     20 => 0077
+0075 => MOV      5  16
+0076    MOV     11  19
+0077 => ITERC   15   3   3
+0078    ITERL   15 => 0035
+0079    ISF         11
+0080    JMP     12 => 0261
+0081    MOV      6  11
+0082    JMP      7 => 0261
+0083 => TGETS    7   0   0  ; "ui"
+0084    TGETS    7   7   1  ; "document"
+0085    MOV      8   7
+0086    TGETS    7   7   7  ; "getPageLinks"
+0087    MOV      9   2
+0088    CALL     7   2   3
+0089    ISF          7
+0090    JMP      8 => 0094
+0091    LEN      8   7
+0092    ISNEN    8   0      ; 0
+0093    JMP      8 => 0095
+0094 => RET0     0   1
+0095 => TGETS    8   1   6  ; "pos"
+0096    TGETS    8   8   9  ; "x"
+0097    TGETS    9   1   6  ; "pos"
+0098    TGETS    9   9  10  ; "y"
+0099    KPRI    10   0
+0100    GGET    11  11      ; "ipairs"
+0101    MOV     12   7
+0102    CALL    11   4   2
+0103    JMP     14 => 0224
+0104 => TGETS   16  15  19  ; "section"
+0105    IST         16
+0106    JMP     17 => 0113
+0107    TGETS   16  15  20  ; "uri"
+0108    ISF         16
+0109    JMP     17 => 0224
+0110    TGETS   16  15  20  ; "uri"
+0111    ISEQS   16  21      ; ""
+0112    JMP     16 => 0224
+0113 => TGETS   16  15  22  ; "segments"
+0114    ISF         16
+0115    JMP     17 => 0185
+0116    KSHORT  16  -1
+0117    KPRI    17   1
+0118    TGETS   18  15  22  ; "segments"
+0119    KSHORT  19   1
+0120    LEN     20  18
+0121    KSHORT  21   1
+0122    FORI    19 => 0181
+0123 => TGETV   23  18  22
+0124    KPRI    24   0
+0125    TGETS   25  23  15  ; "y0"
+0126    ISGE     9  25
+0127    JMP     25 => 0136
+0128    GGET    25  12      ; "math"
+0129    TGETS   25  25  13  ; "pow"
+0130    TGETS   26  23  15  ; "y0"
+0131    SUBVV   26  26   9
+0132    KSHORT  27   2
+0133    CALL    25   2   3
+0134    MOV     24  25
+0135    JMP     25 => 0148
+0136 => TGETS   25  23  17  ; "y1"
+0137    ISGE    25   9
+0138    JMP     25 => 0147
+0139    GGET    25  12      ; "math"
+0140    TGETS   25  25  13  ; "pow"
+0141    TGETS   26  23  17  ; "y1"
+0142    SUBVV   26   9  26
+0143    KSHORT  27   2
+0144    CALL    25   2   3
+0145    MOV     24  25
+0146    JMP     25 => 0148
+0147 => KSHORT  24   0
+0148 => TGETS   25  23  14  ; "x0"
+0149    ISGE     8  25
+0150    JMP     25 => 0159
+0151    GGET    25  12      ; "math"
+0152    TGETS   25  25  13  ; "pow"
+0153    TGETS   26  23  14  ; "x0"
+0154    SUBVV   26  26   8
+0155    KSHORT  27   2
+0156    CALL    25   2   3
+0157    ADDVV   24  24  25
+0158    JMP     25 => 0169
+0159 => TGETS   25  23  16  ; "x1"
+0160    ISGE    25   8
+0161    JMP     25 => 0169
+0162    GGET    25  12      ; "math"
+0163    TGETS   25  25  13  ; "pow"
+0164    TGETS   26  23  16  ; "x1"
+0165    SUBVV   26   8  26
+0166    KSHORT  27   2
+0167    CALL    25   2   3
+0168    ADDVV   24  24  25
+0169 => ISEQP   10   0
+0170    JMP     25 => 0173
+0171    ISGE    24  10
+0172    JMP     25 => 0176
+0173 => MOV      5  15
+0174    MOV     10  24
+0175    KPRI    17   2
+0176 => TGETS   25  23  17  ; "y1"
+0177    ISGE    16  25
+0178    JMP     25 => 0180
+0179    TGETS   16  23  17  ; "y1"
+0180 => FORL    19 => 0123
+0181 => ISF         17
+0182    JMP     19 => 0224
+0183    TSETS   16   5  23  ; "link_y"
+0184    JMP     16 => 0224
+0185 => GGET    16  12      ; "math"
+0186    TGETS   16  16  13  ; "pow"
+0187    TGETS   17  15  24  ; "start_x"
+0188    SUBVV   17  17   8
+0189    KSHORT  18   2
+0190    CALL    16   2   3
+0191    GGET    17  12      ; "math"
+0192    TGETS   17  17  13  ; "pow"
+0193    TGETS   18  15  25  ; "start_y"
+0194    SUBVV   18  18   9
+0195    KSHORT  19   2
+0196    CALL    17   2   3
+0197    ADDVV   16  16  17
+0198    GGET    17  12      ; "math"
+0199    TGETS   17  17  13  ; "pow"
+0200    TGETS   18  15  26  ; "end_x"
+0201    SUBVV   18  18   8
+0202    KSHORT  19   2
+0203    CALL    17   2   3
+0204    GGET    18  12      ; "math"
+0205    TGETS   18  18  13  ; "pow"
+0206    TGETS   19  15  27  ; "end_y"
+0207    SUBVV   19  19   9
+0208    KSHORT  20   2
+0209    CALL    18   2   3
+0210    ADDVV   17  17  18
+0211    GGET    18  12      ; "math"
+0212    TGETS   18  18  18  ; "min"
+0213    MOV     19  16
+0214    MOV     20  17
+0215    CALL    18   2   3
+0216    ISEQP   10   0
+0217    JMP     19 => 0220
+0218    ISGE    18  10
+0219    JMP     19 => 0224
+0220 => MOV      5  15
+0221    TGETS   19  15  27  ; "end_y"
+0222    TSETS   19   5  23  ; "link_y"
+0223    MOV     10  18
+0224 => ITERC   14   3   3
+0225    ITERL   14 => 0104
+0226    ISF         10
+0227    JMP     11 => 0229
+0228    MOV      6  10
+0229 => ISF          5
+0230    JMP     11 => 0261
+0231    UGET    11   0      ; logger
+0232    TGETS   11  11  28  ; "dbg"
+0233    KSTR    12  29      ; "nearest selected_link"
+0234    MOV     13   5
+0235    CALL    11   1   3
+0236    KPRI    11   0
+0237    TGETS   12   5  30  ; "a_xpointer"
+0238    ISF         12
+0239    JMP     13 => 0247
+0240    MOV     13   0
+0241    TGETS   12   0  31  ; "isXpointerCoherent"
+0242    TGETS   14   5  30  ; "a_xpointer"
+0243    CALL    12   2   3
+0244    ISF         12
+0245    JMP     13 => 0247
+0246    TGETS   11   5  30  ; "a_xpointer"
+0247 => TDUP    12  32
+0248    TGETS   13   5  19  ; "section"
+0249    IST         13
+0250    JMP     14 => 0252
+0251    TGETS   13   5  20  ; "uri"
+0252 => TSETS   13  12  33  ; "xpointer"
+0253    TGETS   13   5  19  ; "section"
+0254    TSETS   13  12  34  ; "marker_xpointer"
+0255    TSETS   11  12  35  ; "from_xpointer"
+0256    TGETS   13   5  30  ; "a_xpointer"
+0257    TSETS   13  12  30  ; "a_xpointer"
+0258    TGETS   13   5  23  ; "link_y"
+0259    TSETS   13  12  23  ; "link_y"
+0260    MOV      5  12
+0261 => ISF          5
+0262    JMP      7 => 0285
+0263    ISF          4
+0264    JMP      7 => 0279
+0265    ISF          6
+0266    JMP      7 => 0279
+0267    GGET     7  12      ; "math"
+0268    TGETS    7   7  13  ; "pow"
+0269    MOV      8   4
+0270    KSHORT   9   2
+0271    CALL     7   2   3
+0272    ISGE     7   6
+0273    JMP      7 => 0279
+0274    UGET     7   0      ; logger
+0275    TGETS    7   7  28  ; "dbg"
+0276    KSTR     8  36      ; "nearest link is further than max distanc"~
+0277    CALL     7   1   2
+0278    JMP      7 => 0285
+0279 => MOV      8   0
+0280    TGETS    7   0  37  ; "onGotoLink"
+0281    MOV      9   5
+0282    KPRI    10   1
+0283    MOV     11   3
+0284    CALLT    7   5
+0285 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:936-963
+0001    TGETS    2   0   0  ; "ui"
+0002    TGETS    2   2   1  ; "bookmark"
+0003    MOV      3   2
+0004    TGETS    2   2   2  ; "getLatestBookmark"
+0005    CALL     2   2   2
+0006    ISF          2
+0007    JMP      3 => 0042
+0008    TGETS    3   0   0  ; "ui"
+0009    TGETS    3   3   3  ; "document"
+0010    TGETS    3   3   4  ; "info"
+0011    TGETS    3   3   5  ; "has_pages"
+0012    ISF          3
+0013    JMP      4 => 0023
+0014    TNEW     3   0
+0015    TGETS    4   2   6  ; "page"
+0016    SUBVN    4   4   0  ; 1
+0017    TSETS    4   3   6  ; "page"
+0018    MOV      5   0
+0019    TGETS    4   0   7  ; "onGotoLink"
+0020    MOV      6   3
+0021    CALLT    4   3
+0022    JMP      3 => 0042
+0023 => KPRI     3   0
+0024    TGETS    4   2   8  ; "pos0"
+0025    ISF          4
+0026    JMP      5 => 0034
+0027    TDUP     4   9
+0028    TGETS    5   2   8  ; "pos0"
+0029    TSETS    5   4  10  ; "xpointer"
+0030    TGETS    5   2   8  ; "pos0"
+0031    TSETS    5   4  11  ; "marker_xpointer"
+0032    MOV      3   4
+0033    JMP      4 => 0038
+0034 => TDUP     4  12
+0035    TGETS    5   2   6  ; "page"
+0036    TSETS    5   4  10  ; "xpointer"
+0037    MOV      3   4
+0038 => MOV      5   0
+0039    TGETS    4   0   7  ; "onGotoLink"
+0040    MOV      6   3
+0041    CALLT    4   3
+0042 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:1112-1120
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    TGETS    0   0   1  ; "document"
+0004    MOV      1   0
+0005    TGETS    0   0   2  ; "highlightXPointer"
+0006    CALL     0   1   2
+0007    UGET     0   0      ; self
+0008    TGETS    0   0   0  ; "ui"
+0009    TGETS    0   0   1  ; "document"
+0010    MOV      1   0
+0011    TGETS    0   0   3  ; "getCurrentPage"
+0012    CALL     0   2   2
+0013    UGET     1   1      ; highlight_page
+0014    ISNEV    0   1
+0015    JMP      0 => 0023
+0016    UGET     0   2      ; UIManager
+0017    MOV      1   0
+0018    TGETS    0   0   4  ; "setDirty"
+0019    UGET     2   0      ; self
+0020    TGETS    2   2   5  ; "dialog"
+0021    KSTR     3   0      ; "ui"
+0022    CALL     0   1   4
+0023 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:1109-1134
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "ui"
+0003    TGETS    1   1   1  ; "document"
+0004    MOV      2   1
+0005    TGETS    1   1   2  ; "getCurrentPage"
+0006    CALL     1   2   2
+0007    FNEW     2   3      ; readerlink.lua:1112
+0008    ISF          0
+0009    JMP      3 => 0029
+0010    UGET     3   2      ; Screen
+0011    MOV      4   3
+0012    TGETS    3   3   4  ; "getHeight"
+0013    CALL     3   2   2
+0014    SUBVV    3   3   0
+0015    UGET     4   3      ; link
+0016    TGETS    4   4   5  ; "link_y"
+0017    ISGE     3   4
+0018    JMP      4 => 0026
+0019    UGET     4   1      ; UIManager
+0020    MOV      5   4
+0021    TGETS    4   4   6  ; "scheduleIn"
+0022    KNUM     6   0      ; 0.5
+0023    MOV      7   2
+0024    CALL     4   1   4
+0025    JMP      4 => 0031
+0026 => MOV      4   2
+0027    CALL     4   1   1
+0028    JMP      3 => 0031
+0029 => MOV      3   2
+0030    CALL     3   1   1
+0031 => UCLO     0 => 0032
+0032 => RET0     0   1
+
+-- BYTECODE -- readerlink.lua:1148-1151
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; popup
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "onGotoLink"
+0009    UGET     2   3      ; link
+0010    UGET     3   4      ; neglect_current_location
+0011    CALL     0   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:1152-1166
+0001    UGET     3   0      ; self
+0002    KPRI     4   0
+0003    TSETS    4   3   0  ; "_footnote_popup_discard_previous_close_c"~
+0004    UGET     3   0      ; self
+0005    MOV      4   3
+0006    TGETS    3   3   1  ; "onTap"
+0007    MOV      5   0
+0008    MOV      6   1
+0009    CALL     3   1   4
+0010    UGET     3   0      ; self
+0011    TGETS    3   3   0  ; "_footnote_popup_discard_previous_close_c"~
+0012    IST          3
+0013    JMP      3 => 0020
+0014    UGET     3   1      ; close_callback
+0015    ISF          3
+0016    JMP      4 => 0020
+0017    UGET     3   1      ; close_callback
+0018    MOV      4   2
+0019    CALL     3   1   2
+0020 => UGET     3   0      ; self
+0021    KPRI     4   0
+0022    TSETS    4   3   0  ; "_footnote_popup_discard_previous_close_c"~
+0023    RET0     0   1
+
+-- BYTECODE -- readerlink.lua:965-1171
+0001    TGETS    3   0   0  ; "ui"
+0002    TGETS    3   3   1  ; "document"
+0003    TGETS    3   3   2  ; "info"
+0004    TGETS    3   3   3  ; "has_pages"
+0005    ISF          3
+0006    JMP      4 => 0009
+0007    KPRI     3   1
+0008    UCLO     0 => 0199
+0009 => TGETS    3   1   4  ; "from_xpointer"
+0010    IST          3
+0011    JMP      4 => 0013
+0012    TGETS    3   1   5  ; "a_xpointer"
+0013 => TGETS    4   1   6  ; "xpointer"
+0014    ISF          3
+0015    JMP      5 => 0018
+0016    IST          4
+0017    JMP      5 => 0020
+0018 => KPRI     5   1
+0019    UCLO     0 => 0200
+0020 => TGETS    5   1   4  ; "from_xpointer"
+0021    ISNEP    5   0
+0022    JMP      5 => 0025
+0023    KPRI     5   1
+0024    JMP      6 => 0026
+0025 => KPRI     5   2
+0026 => KSHORT   6   0
+0027    UGET     7   0      ; isPreferFootnoteEnabled
+0028    CALL     7   2   1
+0029    ISF          7
+0030    JMP      8 => 0032
+0031    ADDVN    6   6   0  ; 1
+0032 => ISF          5
+0033    JMP      7 => 0035
+0034    ADDVN    6   6   1  ; 2
+0035 => ADDVN    6   6   2  ; 4
+0036    ADDVN    6   6   3  ; 8
+0037    ADDVN    6   6   4  ; 16
+0038    UGET     7   0      ; isPreferFootnoteEnabled
+0039    CALL     7   2   1
+0040    IST          7
+0041    JMP      7 => 0043
+0042    ADDVN    6   6   5  ; 32
+0043 => ADDVN    6   6   6  ; 64
+0044    ADDVN    6   6   7  ; 256
+0045    ADDVN    6   6   8  ; 512
+0046    ADDVN    6   6   9  ; 1024
+0047    ADDVN    6   6  10  ; 2048
+0048    ADDVN    6   6  11  ; 4096
+0049    ADDVN    6   6  12  ; 16384
+0050    ADDVN    6   6  13  ; 32768
+0051    KSHORT   7 10000
+0052    UGET     8   1      ; logger
+0053    TGETS    8   8   7  ; "dbg"
+0054    KSTR     9   8      ; "Checking if link is to a footnote:"
+0055    MOV     10   6
+0056    MOV     11   3
+0057    MOV     12   4
+0058    CALL     8   1   5
+0059    TGETS    8   0   0  ; "ui"
+0060    TGETS    8   8   1  ; "document"
+0061    MOV      9   8
+0062    TGETS    8   8   9  ; "isLinkToFootnote"
+0063    MOV     10   3
+0064    MOV     11   4
+0065    MOV     12   6
+0066    MOV     13   7
+0067    CALL     8   6   6
+0068    IST          8
+0069    JMP     13 => 0077
+0070    UGET    13   1      ; logger
+0071    TGETS   13  13   2  ; "info"
+0072    KSTR    14  10      ; "not a footnote:"
+0073    MOV     15   9
+0074    CALL    13   1   3
+0075    KPRI    13   1
+0076    UCLO     0 => 0201
+0077 => UGET    13   1      ; logger
+0078    TGETS   13  13   2  ; "info"
+0079    KSTR    14  11      ; "is a footnote:"
+0080    MOV     15   9
+0081    CALL    13   1   3
+0082    ISF         11
+0083    JMP     13 => 0098
+0084    UGET    13   1      ; logger
+0085    TGETS   13  13   2  ; "info"
+0086    KSTR    14  12      ; "  extended until:"
+0087    MOV     15  10
+0088    CALL    13   1   3
+0089    UGET    13   1      ; logger
+0090    TGETS   13  13   2  ; "info"
+0091    MOV     14  11
+0092    CALL    13   1   2
+0093    UGET    13   1      ; logger
+0094    TGETS   13  13   2  ; "info"
+0095    MOV     14  12
+0096    CALL    13   1   2
+0097    JMP     13 => 0103
+0098 => UGET    13   1      ; logger
+0099    TGETS   13  13   2  ; "info"
+0100    KSTR    14  13      ; "  not extended because:"
+0101    MOV     15  10
+0102    CALL    13   1   3
+0103 => KPRI    13   0
+0104    ISF         11
+0105    JMP     14 => 0118
+0106    ISF         12
+0107    JMP     14 => 0118
+0108    TGETS   14   0   0  ; "ui"
+0109    TGETS   14  14   1  ; "document"
+0110    MOV     15  14
+0111    TGETS   14  14  14  ; "getHTMLFromXPointers"
+0112    MOV     16  11
+0113    MOV     17  12
+0114    KSHORT  18 4097
+0115    CALL    14   2   5
+0116    MOV     13  14
+0117    JMP     14 => 0127
+0118 => TGETS   14   0   0  ; "ui"
+0119    TGETS   14  14   1  ; "document"
+0120    MOV     15  14
+0121    TGETS   14  14  15  ; "getHTMLFromXPointer"
+0122    MOV     16   4
+0123    KSHORT  17 4097
+0124    KPRI    18   2
+0125    CALL    14   2   5
+0126    MOV     13  14
+0127 => IST         13
+0128    JMP     14 => 0136
+0129    UGET    14   1      ; logger
+0130    TGETS   14  14   2  ; "info"
+0131    KSTR    15  16      ; "failed getting HTML for xpointer:"
+0132    MOV     16   4
+0133    CALL    14   1   3
+0134    KPRI    14   1
+0135    UCLO     0 => 0202
+0136 => KPRI    14   0
+0137    TGETS   15   1   4  ; "from_xpointer"
+0138    ISF         15
+0139    JMP     16 => 0160
+0140    TGETS   15   0   0  ; "ui"
+0141    TGETS   15  15   1  ; "document"
+0142    MOV     16  15
+0143    TGETS   15  15  17  ; "highlightXPointer"
+0144    CALL    15   1   2
+0145    TGETS   15   0   0  ; "ui"
+0146    TGETS   15  15   1  ; "document"
+0147    MOV     16  15
+0148    TGETS   15  15  17  ; "highlightXPointer"
+0149    TGETS   17   1   4  ; "from_xpointer"
+0150    CALL    15   1   3
+0151    KPRI    15   2
+0152    TSETS   15   0  18  ; "_footnote_popup_discard_previous_close_c"~
+0153    UGET    15   2      ; UIManager
+0154    MOV     16  15
+0155    TGETS   15  15  19  ; "setDirty"
+0156    TGETS   17   0  20  ; "dialog"
+0157    KSTR    18   0      ; "ui"
+0158    CALL    15   1   4
+0159    FNEW    14  21      ; readerlink.lua:1109
+0160 => GGET    15  22      ; "require"
+0161    KSTR    16  23      ; "ui/widget/footnotewidget"
+0162    CALL    15   2   2
+0163    KPRI    16   0
+0164    MOV     18  15
+0165    TGETS   17  15  24  ; "new"
+0166    TDUP    19  25
+0167    TSETS   13  19  26  ; "html"
+0168    UGET    20   3      ; Screen
+0169    MOV     21  20
+0170    TGETS   20  20  27  ; "scaleBySize"
+0171    TGETS   22   0   0  ; "ui"
+0172    TGETS   22  22  28  ; "font"
+0173    TGETS   22  22  29  ; "font_size"
+0174    CALL    20   2   3
+0175    TSETS   20  19  30  ; "doc_font_size"
+0176    TGETS   20   0   0  ; "ui"
+0177    TGETS   20  20   1  ; "document"
+0178    MOV     21  20
+0179    TGETS   20  20  31  ; "getPageMargins"
+0180    CALL    20   2   2
+0181    TSETS   20  19  32  ; "doc_margins"
+0182    TSETS   14  19  33  ; "close_callback"
+0183    FNEW    20  34      ; readerlink.lua:1148
+0184    TSETS   20  19  35  ; "follow_callback"
+0185    FNEW    20  36      ; readerlink.lua:1152
+0186    TSETS   20  19  37  ; "on_tap_close_callback"
+0187    TGETS   20   0  20  ; "dialog"
+0188    TSETS   20  19  20  ; "dialog"
+0189    CALL    17   2   3
+0190    MOV     16  17
+0191    UGET    17   2      ; UIManager
+0192    MOV     18  17
+0193    TGETS   17  17  38  ; "show"
+0194    MOV     19  16
+0195    CALL    17   1   3
+0196    KPRI    17   2
+0197    UCLO     0 => 0198
+0198 => RET1    17   2
+0199 => RET1     3   2
+0200 => RET1     5   2
+0201 => RET1    13   2
+0202 => RET1    14   2
+
+-- BYTECODE -- readerlink.lua:0-1174
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/buttondialogtitle"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/confirmbox"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "device"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/event"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/infomessage"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/container/inputcontainer"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/widget/linkbox"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/widget/notification"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/uimanager"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ffi/util"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "logger"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "util"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "gettext"
+0042    CALL    13   2   2
+0043    TGETS   14   3  15  ; "screen"
+0044    TGETS   15  10  16  ; "template"
+0045    MOV     17   6
+0046    TGETS   16   6  17  ; "new"
+0047    TDUP    18  18
+0048    TNEW    19   0
+0049    TSETS   19  18  19  ; "location_stack"
+0050    CALL    16   2   3
+0051    FNEW    17  21      ; readerlink.lua:26
+0052    TSETS   17  16  20  ; "init"
+0053    FNEW    17  23      ; readerlink.lua:82
+0054    TSETS   17  16  22  ; "onReadSettings"
+0055    FNEW    17  24      ; readerlink.lua:87
+0056    FNEW    18  25      ; readerlink.lua:91
+0057    FNEW    19  26      ; readerlink.lua:95
+0058    FNEW    20  27      ; readerlink.lua:99
+0059    FNEW    21  28      ; readerlink.lua:103
+0060    FNEW    22  29      ; readerlink.lua:107
+0061    FNEW    23  30      ; readerlink.lua:111
+0062    FNEW    24  31      ; readerlink.lua:115
+0063    FNEW    25  32      ; readerlink.lua:119
+0064    FNEW    26  34      ; readerlink.lua:123
+0065    TSETS   26  16  33  ; "addToMainMenu"
+0066    FNEW    26  36      ; readerlink.lua:294
+0067    TSETS   26  16  35  ; "isXpointerCoherent"
+0068    FNEW    26  38      ; readerlink.lua:317
+0069    TSETS   26  16  37  ; "getLinkFromGes"
+0070    FNEW    26  40      ; readerlink.lua:367
+0071    TSETS   26  16  39  ; "showLinkBox"
+0072    FNEW    26  42      ; readerlink.lua:387
+0073    TSETS   26  16  41  ; "onTap"
+0074    FNEW    26  44      ; readerlink.lua:434
+0075    TSETS   26  16  43  ; "addCurrentLocationToStack"
+0076    FNEW    26  46      ; readerlink.lua:444
+0077    TSETS   26  16  45  ; "onClearLocationStack"
+0078    FNEW    26  48      ; readerlink.lua:458
+0079    TSETS   26  16  47  ; "onGotoLink"
+0080    FNEW    26  50      ; readerlink.lua:571
+0081    TSETS   26  16  49  ; "onGoToExternalLink"
+0082    FNEW    26  52      ; readerlink.lua:688
+0083    TSETS   26  16  51  ; "onGoBackLink"
+0084    FNEW    26  54      ; readerlink.lua:702
+0085    TSETS   26  16  53  ; "onSwipe"
+0086    FNEW    26  56      ; readerlink.lua:739
+0087    TSETS   26  16  55  ; "onGoToPageLink"
+0088    FNEW    26  58      ; readerlink.lua:936
+0089    TSETS   26  16  57  ; "onGoToLatestBookmark"
+0090    FNEW    26  60      ; readerlink.lua:965
+0091    TSETS   26  16  59  ; "showAsFootnotePopup"
+0092    UCLO     0 => 0093
+0093 => RET1    16   2
+

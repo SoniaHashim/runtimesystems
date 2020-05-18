@@ -1,0 +1,691 @@
+-- BYTECODE -- filemanagershortcuts.lua:20-22
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "addNewFolder"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:31-49
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "fm_bookmark"
+0006    CALL     0   1   3
+0007    UGET     0   2      ; item
+0008    TGETS    0   0   2  ; "folder"
+0009    ISEQP    0   0
+0010    JMP      1 => 0052
+0011    GGET     1   3      ; "lfs"
+0012    TGETS    1   1   4  ; "attributes"
+0013    MOV      2   0
+0014    KSTR     3   5      ; "mode"
+0015    CALL     1   2   3
+0016    ISNES    1   6      ; "directory"
+0017    JMP      1 => 0052
+0018    UGET     1   1      ; self
+0019    TGETS    1   1   7  ; "ui"
+0020    TGETS    1   1   8  ; "file_chooser"
+0021    ISF          1
+0022    JMP      2 => 0031
+0023    UGET     1   1      ; self
+0024    TGETS    1   1   7  ; "ui"
+0025    TGETS    1   1   8  ; "file_chooser"
+0026    MOV      2   1
+0027    TGETS    1   1   9  ; "changeToPath"
+0028    MOV      3   0
+0029    CALL     1   1   3
+0030    JMP      1 => 0052
+0031 => GGET     1  10      ; "require"
+0032    KSTR     2  11      ; "apps/filemanager/filemanager"
+0033    CALL     1   2   2
+0034    UGET     2   1      ; self
+0035    TGETS    2   2   7  ; "ui"
+0036    MOV      3   2
+0037    TGETS    2   2  12  ; "onClose"
+0038    CALL     2   1   2
+0039    TGETS    2   1  13  ; "instance"
+0040    ISF          2
+0041    JMP      3 => 0048
+0042    TGETS    2   1  13  ; "instance"
+0043    MOV      3   2
+0044    TGETS    2   2  14  ; "reinit"
+0045    MOV      4   0
+0046    CALL     2   1   3
+0047    JMP      2 => 0052
+0048 => MOV      3   1
+0049    TGETS    2   1  15  ; "showFiles"
+0050    MOV      4   0
+0051    CALL     2   1   3
+0052 => RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:15-62
+0001    TNEW     1   0
+0002    GGET     2   0      ; "G_reader_settings"
+0003    MOV      3   2
+0004    TGETS    2   2   1  ; "readSetting"
+0005    KSTR     4   2      ; "folder_shortcuts"
+0006    CALL     2   2   3
+0007    IST          2
+0008    JMP      3 => 0010
+0009    TNEW     2   0
+0010 => GGET     3   3      ; "table"
+0011    TGETS    3   3   4  ; "insert"
+0012    MOV      4   1
+0013    TDUP     5   6
+0014    UGET     6   0      ; _
+0015    KSTR     7   5      ; "Add new folder shortcut"
+0016    CALL     6   2   2
+0017    TSETS    6   5   7  ; "text"
+0018    FNEW     6   8      ; filemanagershortcuts.lua:20
+0019    TSETS    6   5   9  ; "callback"
+0020    CALL     3   1   3
+0021    GGET     3  10      ; "ipairs"
+0022    MOV      4   2
+0023    CALL     3   4   2
+0024    JMP      6 => 0044
+0025 => GGET     8   3      ; "table"
+0026    TGETS    8   8   4  ; "insert"
+0027    MOV      9   1
+0028    TDUP    10  15
+0029    GGET    11  11      ; "string"
+0030    TGETS   11  11  12  ; "format"
+0031    KSTR    12  13      ; "%s (%s)"
+0032    TGETS   13   7   7  ; "text"
+0033    TGETS   14   7  14  ; "folder"
+0034    CALL    11   2   4
+0035    TSETS   11  10   7  ; "text"
+0036    TGETS   11   7  14  ; "folder"
+0037    TSETS   11  10  14  ; "folder"
+0038    TGETS   11   7   7  ; "text"
+0039    TSETS   11  10  16  ; "friendly_name"
+0040    FNEW    11  17      ; filemanagershortcuts.lua:31
+0041    TSETS   11  10   9  ; "callback"
+0042    CALL     8   1   3
+0043    UCLO     6 => 0044
+0044 => ITERC    6   3   3
+0045    ITERL    6 => 0025
+0046    KPRI     3   0
+0047    TGETS    4   0  18  ; "fm_bookmark"
+0048    TGETS    4   4  19  ; "page"
+0049    ISF          4
+0050    JMP      5 => 0062
+0051    TGETS    4   0  18  ; "fm_bookmark"
+0052    TGETS    4   4  20  ; "perpage"
+0053    ISF          4
+0054    JMP      5 => 0062
+0055    TGETS    4   0  18  ; "fm_bookmark"
+0056    TGETS    4   4  19  ; "page"
+0057    SUBVN    4   4   0  ; 1
+0058    TGETS    5   0  18  ; "fm_bookmark"
+0059    TGETS    5   5  20  ; "perpage"
+0060    MULVV    4   4   5
+0061    ADDVN    3   4   0  ; 1
+0062 => TGETS    4   0  18  ; "fm_bookmark"
+0063    MOV      5   4
+0064    TGETS    4   4  21  ; "switchItemTable"
+0065    KPRI     6   0
+0066    MOV      7   1
+0067    MOV      8   3
+0068    CALL     4   1   5
+0069    UCLO     0 => 0070
+0070 => RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:82-84
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; add_folder_input
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:89-92
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "addFolderFromInput"
+0004    UGET     2   1      ; add_folder_input
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "getInputValue"
+0007    CALL     2   2   2
+0008    UGET     3   2      ; path
+0009    CALL     0   1   4
+0010    UGET     0   3      ; UIManager
+0011    MOV      1   0
+0012    TGETS    0   0   2  ; "close"
+0013    UGET     2   1      ; add_folder_input
+0014    CALL     0   1   3
+0015    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:70-99
+0001    KPRI     1   0
+0002    UGET     2   0      ; util
+0003    TGETS    2   2   0  ; "basename"
+0004    MOV      3   0
+0005    CALL     2   2   2
+0006    IST          2
+0007    JMP      3 => 0011
+0008    UGET     2   1      ; _
+0009    KSTR     3   1      ; "my folder"
+0010    CALL     2   2   2
+0011 => UGET     3   2      ; InputDialog
+0012    MOV      4   3
+0013    TGETS    3   3   2  ; "new"
+0014    TDUP     5   4
+0015    UGET     6   3      ; self
+0016    TGETS    6   6   3  ; "title"
+0017    TSETS    6   5   3  ; "title"
+0018    TSETS    2   5   5  ; "input"
+0019    UGET     6   4      ; T
+0020    UGET     7   1      ; _
+0021    KSTR     8   6      ; "Title for selected folder:\n%1"
+0022    CALL     7   2   2
+0023    UGET     8   5      ; BD
+0024    TGETS    8   8   7  ; "dirpath"
+0025    MOV      9   0
+0026    CALL     8   0   2
+0027    CALLM    6   2   1
+0028    TSETS    6   5   8  ; "description"
+0029    TNEW     6   3
+0030    TNEW     7   3
+0031    TDUP     8  10
+0032    UGET     9   1      ; _
+0033    KSTR    10   9      ; "Cancel"
+0034    CALL     9   2   2
+0035    TSETS    9   8  11  ; "text"
+0036    FNEW     9  12      ; filemanagershortcuts.lua:82
+0037    TSETS    9   8  13  ; "callback"
+0038    TSETB    8   7   1
+0039    TDUP     8  15
+0040    UGET     9   1      ; _
+0041    KSTR    10  14      ; "Add"
+0042    CALL     9   2   2
+0043    TSETS    9   8  11  ; "text"
+0044    FNEW     9  16      ; filemanagershortcuts.lua:89
+0045    TSETS    9   8  13  ; "callback"
+0046    TSETB    8   7   2
+0047    TSETB    7   6   1
+0048    TSETS    6   5  17  ; "buttons"
+0049    CALL     3   2   3
+0050    MOV      1   3
+0051    UGET     3   6      ; UIManager
+0052    MOV      4   3
+0053    TGETS    3   3  18  ; "show"
+0054    MOV      5   1
+0055    CALL     3   1   3
+0056    MOV      4   1
+0057    TGETS    3   1  19  ; "onShowKeyboard"
+0058    CALL     3   1   2
+0059    UCLO     0 => 0060
+0060 => RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:64-102
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "ui/widget/pathchooser"
+0003    CALL     1   2   2
+0004    MOV      3   1
+0005    TGETS    2   1   2  ; "new"
+0006    TDUP     4   3
+0007    TGETS    5   0   4  ; "fm_bookmark"
+0008    TGETS    5   5   5  ; "curr_path"
+0009    TSETS    5   4   6  ; "path"
+0010    FNEW     5   7      ; filemanagershortcuts.lua:70
+0011    TSETS    5   4   8  ; "onConfirm"
+0012    CALL     2   2   3
+0013    UGET     3   5      ; UIManager
+0014    MOV      4   3
+0015    TGETS    3   3   9  ; "show"
+0016    MOV      5   2
+0017    CALL     3   1   3
+0018    UCLO     0 => 0019
+0019 => RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:104-120
+0001    GGET     3   0      ; "ipairs"
+0002    GGET     4   1      ; "G_reader_settings"
+0003    MOV      5   4
+0004    TGETS    4   4   2  ; "readSetting"
+0005    KSTR     6   3      ; "folder_shortcuts"
+0006    CALL     4   2   3
+0007    IST          4
+0008    JMP      5 => 0010
+0009    TNEW     4   0
+0010 => CALL     3   4   2
+0011    JMP      6 => 0032
+0012 => TGETS    8   7   4  ; "text"
+0013    ISNEV    8   1
+0014    JMP      8 => 0032
+0015    TGETS    8   7   5  ; "folder"
+0016    ISNEV    8   2
+0017    JMP      8 => 0032
+0018    UGET     8   0      ; UIManager
+0019    MOV      9   8
+0020    TGETS    8   8   6  ; "show"
+0021    UGET    10   1      ; InfoMessage
+0022    MOV     11  10
+0023    TGETS   10  10   7  ; "new"
+0024    TDUP    12   9
+0025    UGET    13   2      ; _
+0026    KSTR    14   8      ; "A shortcut to this folder already exists"~
+0027    CALL    13   2   2
+0028    TSETS   13  12   4  ; "text"
+0029    CALL    10   0   3
+0030    CALLM    8   1   1
+0031    RET0     0   1
+0032 => ITERC    6   3   3
+0033    ITERL    6 => 0012
+0034    GGET     3   1      ; "G_reader_settings"
+0035    MOV      4   3
+0036    TGETS    3   3   2  ; "readSetting"
+0037    KSTR     5   3      ; "folder_shortcuts"
+0038    CALL     3   2   3
+0039    IST          3
+0040    JMP      4 => 0042
+0041    TNEW     3   0
+0042 => GGET     4  10      ; "table"
+0043    TGETS    4   4  11  ; "insert"
+0044    MOV      5   3
+0045    TDUP     6  12
+0046    TSETS    1   6   4  ; "text"
+0047    TSETS    2   6   5  ; "folder"
+0048    CALL     4   1   3
+0049    GGET     4   1      ; "G_reader_settings"
+0050    MOV      5   4
+0051    TGETS    4   4  13  ; "saveSetting"
+0052    KSTR     6   3      ; "folder_shortcuts"
+0053    MOV      7   3
+0054    CALL     4   1   4
+0055    MOV      5   0
+0056    TGETS    4   0  14  ; "updateItemTable"
+0057    CALL     4   1   2
+0058    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:131-134
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; folder_shortcuts_dialog
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    TGETS    0   0   1  ; "_manager"
+0008    TGETS    0   0   2  ; "ui"
+0009    MOV      1   0
+0010    TGETS    0   0   3  ; "pasteHere"
+0011    UGET     2   3      ; item
+0012    TGETS    2   2   4  ; "folder"
+0013    CALL     0   1   3
+0014    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:139-142
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; folder_shortcuts_dialog
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    TGETS    0   0   1  ; "_manager"
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "editFolderShortcut"
+0010    UGET     2   3      ; item
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:147-150
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; folder_shortcuts_dialog
+0005    CALL     0   1   3
+0006    UGET     0   2      ; self
+0007    TGETS    0   0   1  ; "_manager"
+0008    MOV      1   0
+0009    TGETS    0   0   2  ; "deleteFolderShortcut"
+0010    UGET     2   3      ; item
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:122-158
+0001    TGETS    2   1   0  ; "deletable"
+0002    IST          2
+0003    JMP      3 => 0007
+0004    TGETS    2   1   1  ; "editable"
+0005    ISF          2
+0006    JMP      3 => 0069
+0007 => KPRI     2   0
+0008    UGET     3   0      ; ButtonDialog
+0009    MOV      4   3
+0010    TGETS    3   3   2  ; "new"
+0011    TDUP     5  19
+0012    TNEW     6   3
+0013    TNEW     7   4
+0014    TDUP     8   4
+0015    UGET     9   1      ; _
+0016    KSTR    10   3      ; "Paste file"
+0017    CALL     9   2   2
+0018    TSETS    9   8   5  ; "text"
+0019    TGETS    9   0   6  ; "_manager"
+0020    TGETS    9   9   7  ; "ui"
+0021    TGETS    9   9   8  ; "file_chooser"
+0022    ISF          9
+0023    JMP     10 => 0031
+0024    TGETS    9   0   6  ; "_manager"
+0025    TGETS    9   9   7  ; "ui"
+0026    TGETS    9   9   9  ; "clipboard"
+0027    ISF          9
+0028    JMP     10 => 0031
+0029    KPRI     9   2
+0030    JMP     10 => 0032
+0031 => KPRI     9   1
+0032 => TSETS    9   8  10  ; "enabled"
+0033    FNEW     9  11      ; filemanagershortcuts.lua:131
+0034    TSETS    9   8  12  ; "callback"
+0035    TSETB    8   7   1
+0036    TDUP     8  14
+0037    UGET     9   1      ; _
+0038    KSTR    10  13      ; "Edit"
+0039    CALL     9   2   2
+0040    TSETS    9   8   5  ; "text"
+0041    TGETS    9   1   1  ; "editable"
+0042    TSETS    9   8  10  ; "enabled"
+0043    FNEW     9  15      ; filemanagershortcuts.lua:139
+0044    TSETS    9   8  12  ; "callback"
+0045    TSETB    8   7   2
+0046    TDUP     8  17
+0047    UGET     9   1      ; _
+0048    KSTR    10  16      ; "Delete"
+0049    CALL     9   2   2
+0050    TSETS    9   8   5  ; "text"
+0051    TGETS    9   1   0  ; "deletable"
+0052    TSETS    9   8  10  ; "enabled"
+0053    FNEW     9  18      ; filemanagershortcuts.lua:147
+0054    TSETS    9   8  12  ; "callback"
+0055    TSETB    8   7   3
+0056    TSETB    7   6   1
+0057    TSETS    6   5  20  ; "buttons"
+0058    CALL     3   2   3
+0059    MOV      2   3
+0060    UGET     3   2      ; UIManager
+0061    MOV      4   3
+0062    TGETS    3   3  21  ; "show"
+0063    MOV      5   2
+0064    CALL     3   1   3
+0065    KPRI     3   2
+0066    UCLO     0 => 0067
+0067 => RET1     3   2
+0068    UCLO     2 => 0069
+0069 => UCLO     0 => 0070
+0070 => RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:171-173
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; edit_folder_input
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:178-181
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "renameFolderShortcut"
+0004    UGET     2   1      ; item
+0005    UGET     3   2      ; edit_folder_input
+0006    MOV      4   3
+0007    TGETS    3   3   1  ; "getInputText"
+0008    CALL     3   0   2
+0009    CALLM    0   1   2
+0010    UGET     0   3      ; UIManager
+0011    MOV      1   0
+0012    TGETS    0   0   2  ; "close"
+0013    UGET     2   2      ; edit_folder_input
+0014    CALL     0   1   3
+0015    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:160-188
+0001    KPRI     2   0
+0002    UGET     3   0      ; InputDialog
+0003    MOV      4   3
+0004    TGETS    3   3   0  ; "new"
+0005    TDUP     5   2
+0006    UGET     6   1      ; _
+0007    KSTR     7   1      ; "Edit friendly name"
+0008    CALL     6   2   2
+0009    TSETS    6   5   3  ; "title"
+0010    TGETS    6   1   4  ; "friendly_name"
+0011    TSETS    6   5   5  ; "input"
+0012    UGET     6   2      ; T
+0013    UGET     7   1      ; _
+0014    KSTR     8   6      ; "Rename title for selected folder:\n%1"
+0015    CALL     7   2   2
+0016    UGET     8   3      ; BD
+0017    TGETS    8   8   7  ; "dirpath"
+0018    TGETS    9   1   8  ; "folder"
+0019    CALL     8   0   2
+0020    CALLM    6   2   1
+0021    TSETS    6   5   9  ; "description"
+0022    TNEW     6   3
+0023    TNEW     7   3
+0024    TDUP     8  11
+0025    UGET     9   1      ; _
+0026    KSTR    10  10      ; "Cancel"
+0027    CALL     9   2   2
+0028    TSETS    9   8  12  ; "text"
+0029    FNEW     9  13      ; filemanagershortcuts.lua:171
+0030    TSETS    9   8  14  ; "callback"
+0031    TSETB    8   7   1
+0032    TDUP     8  16
+0033    UGET     9   1      ; _
+0034    KSTR    10  15      ; "Apply"
+0035    CALL     9   2   2
+0036    TSETS    9   8  12  ; "text"
+0037    FNEW     9  17      ; filemanagershortcuts.lua:178
+0038    TSETS    9   8  14  ; "callback"
+0039    TSETB    8   7   2
+0040    TSETB    7   6   1
+0041    TSETS    6   5  18  ; "buttons"
+0042    CALL     3   2   3
+0043    MOV      2   3
+0044    UGET     3   4      ; UIManager
+0045    MOV      4   3
+0046    TGETS    3   3  19  ; "show"
+0047    MOV      5   2
+0048    CALL     3   1   3
+0049    MOV      4   2
+0050    TGETS    3   2  20  ; "onShowKeyboard"
+0051    CALL     3   1   2
+0052    UCLO     0 => 0053
+0053 => RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:190-200
+0001    TNEW     3   0
+0002    GGET     4   0      ; "ipairs"
+0003    GGET     5   1      ; "G_reader_settings"
+0004    MOV      6   5
+0005    TGETS    5   5   2  ; "readSetting"
+0006    KSTR     7   3      ; "folder_shortcuts"
+0007    CALL     5   2   3
+0008    IST          5
+0009    JMP      6 => 0011
+0010    TNEW     5   0
+0011 => CALL     4   4   2
+0012    JMP      7 => 0027
+0013 => TGETS    9   8   4  ; "text"
+0014    TGETS   10   1   5  ; "friendly_name"
+0015    ISNEV    9  10
+0016    JMP      9 => 0022
+0017    TGETS    9   8   6  ; "folder"
+0018    TGETS   10   1   6  ; "folder"
+0019    ISNEV    9  10
+0020    JMP      9 => 0022
+0021    TSETS    2   8   4  ; "text"
+0022 => GGET     9   7      ; "table"
+0023    TGETS    9   9   8  ; "insert"
+0024    MOV     10   3
+0025    MOV     11   8
+0026    CALL     9   1   3
+0027 => ITERC    7   3   3
+0028    ITERL    7 => 0013
+0029    GGET     4   1      ; "G_reader_settings"
+0030    MOV      5   4
+0031    TGETS    4   4   9  ; "saveSetting"
+0032    KSTR     6   3      ; "folder_shortcuts"
+0033    MOV      7   3
+0034    CALL     4   1   4
+0035    MOV      5   0
+0036    TGETS    4   0  10  ; "updateItemTable"
+0037    CALL     4   1   2
+0038    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:202-211
+0001    TNEW     2   0
+0002    GGET     3   0      ; "ipairs"
+0003    GGET     4   1      ; "G_reader_settings"
+0004    MOV      5   4
+0005    TGETS    4   4   2  ; "readSetting"
+0006    KSTR     6   3      ; "folder_shortcuts"
+0007    CALL     4   2   3
+0008    IST          4
+0009    JMP      5 => 0011
+0010    TNEW     4   0
+0011 => CALL     3   4   2
+0012    JMP      6 => 0026
+0013 => TGETS    8   7   4  ; "text"
+0014    TGETS    9   1   5  ; "friendly_name"
+0015    ISNEV    8   9
+0016    JMP      8 => 0021
+0017    TGETS    8   7   6  ; "folder"
+0018    TGETS    9   1   6  ; "folder"
+0019    ISEQV    8   9
+0020    JMP      8 => 0026
+0021 => GGET     8   7      ; "table"
+0022    TGETS    8   8   8  ; "insert"
+0023    MOV      9   2
+0024    MOV     10   7
+0025    CALL     8   1   3
+0026 => ITERC    6   3   3
+0027    ITERL    6 => 0013
+0028    GGET     3   1      ; "G_reader_settings"
+0029    MOV      4   3
+0030    TGETS    3   3   9  ; "saveSetting"
+0031    KSTR     5   3      ; "folder_shortcuts"
+0032    MOV      6   2
+0033    CALL     3   1   4
+0034    MOV      4   0
+0035    TGETS    3   0  10  ; "updateItemTable"
+0036    CALL     3   1   2
+0037    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:213-215
+0001    TSETS    1   0   0  ; "dimen"
+0002    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:217-234
+0001    UGET     1   0      ; Menu
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "new"
+0004    TDUP     3   3
+0005    UGET     4   1      ; _
+0006    KSTR     5   2      ; "Folder shortcuts"
+0007    CALL     4   2   2
+0008    TSETS    4   3   4  ; "title"
+0009    TGETS    4   0   5  ; "ui"
+0010    TSETS    4   3   6  ; "show_parent"
+0011    UGET     4   2      ; Screen
+0012    MOV      5   4
+0013    TGETS    4   4   7  ; "getWidth"
+0014    CALL     4   2   2
+0015    TSETS    4   3   8  ; "width"
+0016    UGET     4   2      ; Screen
+0017    MOV      5   4
+0018    TGETS    4   4   9  ; "getHeight"
+0019    CALL     4   2   2
+0020    TSETS    4   3  10  ; "height"
+0021    TGETS    4   0   5  ; "ui"
+0022    TGETS    4   4  11  ; "file_chooser"
+0023    ISF          4
+0024    JMP      5 => 0030
+0025    TGETS    4   0   5  ; "ui"
+0026    TGETS    4   4  11  ; "file_chooser"
+0027    TGETS    4   4  12  ; "path"
+0028    IST          4
+0029    JMP      5 => 0034
+0030 => TGETS    4   0   5  ; "ui"
+0031    MOV      5   4
+0032    TGETS    4   4  13  ; "getLastDirFile"
+0033    CALL     4   2   2
+0034 => TSETS    4   3  14  ; "curr_path"
+0035    TGETS    4   0  15  ; "onMenuHold"
+0036    TSETS    4   3  15  ; "onMenuHold"
+0037    TSETS    0   3  16  ; "_manager"
+0038    CALL     1   2   3
+0039    TSETS    1   0   0  ; "fm_bookmark"
+0040    MOV      2   0
+0041    TGETS    1   0  17  ; "updateItemTable"
+0042    CALL     1   1   2
+0043    UGET     1   3      ; UIManager
+0044    MOV      2   1
+0045    TGETS    1   1  18  ; "show"
+0046    TGETS    3   0   0  ; "fm_bookmark"
+0047    CALL     1   1   3
+0048    RET0     0   1
+
+-- BYTECODE -- filemanagershortcuts.lua:0-237
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/buttondialog"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/infomessage"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/container/inputcontainer"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/inputdialog"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/menu"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "device"
+0021    CALL     6   2   2
+0022    TGETS    6   6   8  ; "screen"
+0023    GGET     7   0      ; "require"
+0024    KSTR     8   9      ; "ui/uimanager"
+0025    CALL     7   2   2
+0026    GGET     8   0      ; "require"
+0027    KSTR     9  10      ; "ffi/util"
+0028    CALL     8   2   2
+0029    GGET     9   0      ; "require"
+0030    KSTR    10  11      ; "gettext"
+0031    CALL     9   2   2
+0032    GGET    10   0      ; "require"
+0033    KSTR    11  10      ; "ffi/util"
+0034    CALL    10   2   2
+0035    TGETS   10  10  12  ; "template"
+0036    MOV     12   3
+0037    TGETS   11   3  13  ; "extend"
+0038    TNEW    13   0
+0039    CALL    11   2   3
+0040    FNEW    12  15      ; filemanagershortcuts.lua:15
+0041    TSETS   12  11  14  ; "updateItemTable"
+0042    FNEW    12  17      ; filemanagershortcuts.lua:64
+0043    TSETS   12  11  16  ; "addNewFolder"
+0044    FNEW    12  19      ; filemanagershortcuts.lua:104
+0045    TSETS   12  11  18  ; "addFolderFromInput"
+0046    FNEW    12  21      ; filemanagershortcuts.lua:122
+0047    TSETS   12  11  20  ; "onMenuHold"
+0048    FNEW    12  23      ; filemanagershortcuts.lua:160
+0049    TSETS   12  11  22  ; "editFolderShortcut"
+0050    FNEW    12  25      ; filemanagershortcuts.lua:190
+0051    TSETS   12  11  24  ; "renameFolderShortcut"
+0052    FNEW    12  27      ; filemanagershortcuts.lua:202
+0053    TSETS   12  11  26  ; "deleteFolderShortcut"
+0054    FNEW    12  29      ; filemanagershortcuts.lua:213
+0055    TSETS   12  11  28  ; "onSetDimensions"
+0056    FNEW    12  31      ; filemanagershortcuts.lua:217
+0057    TSETS   12  11  30  ; "onShowFolderShortcutsDialog"
+0058    UCLO     0 => 0059
+0059 => RET1    11   2
+

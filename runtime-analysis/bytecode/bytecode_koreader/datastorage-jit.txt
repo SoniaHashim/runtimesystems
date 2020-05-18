@@ -1,0 +1,183 @@
+-- BYTECODE -- datastorage.lua:10-30
+0001    UGET     1   0      ; data_dir
+0002    ISF          1
+0003    JMP      2 => 0006
+0004    UGET     1   0      ; data_dir
+0005    RET1     1   2
+0006 => UGET     1   1      ; isAndroid
+0007    ISF          1
+0008    JMP      2 => 0016
+0009    UGET     1   2      ; android
+0010    TGETS    1   1   0  ; "getExternalStoragePath"
+0011    CALL     1   2   1
+0012    KSTR     2   1      ; "/koreader"
+0013    CAT      1   1   2
+0014    USETV    0   1      ; data_dir
+0015    JMP      1 => 0066
+0016 => GGET     1   2      ; "os"
+0017    TGETS    1   1   3  ; "getenv"
+0018    KSTR     2   4      ; "UBUNTU_APPLICATION_ISOLATION"
+0019    CALL     1   2   2
+0020    ISF          1
+0021    JMP      2 => 0041
+0022    GGET     1   2      ; "os"
+0023    TGETS    1   1   3  ; "getenv"
+0024    KSTR     2   5      ; "APP_ID"
+0025    CALL     1   2   2
+0026    MOV      3   1
+0027    TGETS    2   1   6  ; "match"
+0028    KSTR     4   7      ; "^(.-)_"
+0029    CALL     2   2   3
+0030    GGET     3   8      ; "string"
+0031    TGETS    3   3   9  ; "format"
+0032    KSTR     4  10      ; "%s/%s"
+0033    GGET     5   2      ; "os"
+0034    TGETS    5   5   3  ; "getenv"
+0035    KSTR     6  11      ; "XDG_DATA_HOME"
+0036    CALL     5   2   2
+0037    MOV      6   2
+0038    CALL     3   2   4
+0039    USETV    0   3      ; data_dir
+0040    JMP      1 => 0066
+0041 => GGET     1   2      ; "os"
+0042    TGETS    1   1   3  ; "getenv"
+0043    KSTR     2  12      ; "APPIMAGE"
+0044    CALL     1   2   2
+0045    IST          1
+0046    JMP      2 => 0053
+0047    GGET     1   2      ; "os"
+0048    TGETS    1   1   3  ; "getenv"
+0049    KSTR     2  13      ; "KO_MULTIUSER"
+0050    CALL     1   2   2
+0051    ISF          1
+0052    JMP      2 => 0065
+0053 => GGET     1   8      ; "string"
+0054    TGETS    1   1   9  ; "format"
+0055    KSTR     2  14      ; "%s/%s/%s"
+0056    GGET     3   2      ; "os"
+0057    TGETS    3   3   3  ; "getenv"
+0058    KSTR     4  15      ; "HOME"
+0059    CALL     3   2   2
+0060    KSTR     4  16      ; ".config"
+0061    KSTR     5  17      ; "koreader"
+0062    CALL     1   2   5
+0063    USETV    0   1      ; data_dir
+0064    JMP      1 => 0066
+0065 => USETS    0  18      ; data_dir ; "."
+0066 => UGET     1   3      ; lfs
+0067    TGETS    1   1  19  ; "attributes"
+0068    UGET     2   0      ; data_dir
+0069    KSTR     3  20      ; "mode"
+0070    CALL     1   2   3
+0071    ISEQS    1  21      ; "directory"
+0072    JMP      1 => 0077
+0073    UGET     1   3      ; lfs
+0074    TGETS    1   1  22  ; "mkdir"
+0075    UGET     2   0      ; data_dir
+0076    CALL     1   1   2
+0077 => UGET     1   0      ; data_dir
+0078    RET1     1   2
+
+-- BYTECODE -- datastorage.lua:32-34
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "getDataDir"
+0003    CALL     1   2   2
+0004    KSTR     2   1      ; "/history"
+0005    CAT      1   1   2
+0006    RET1     1   2
+
+-- BYTECODE -- datastorage.lua:36-38
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "getDataDir"
+0003    CALL     1   2   2
+0004    KSTR     2   1      ; "/settings"
+0005    CAT      1   1   2
+0006    RET1     1   2
+
+-- BYTECODE -- datastorage.lua:41-51
+0001    UGET     1   0      ; full_data_dir
+0002    ISF          1
+0003    JMP      2 => 0006
+0004    UGET     1   0      ; full_data_dir
+0005    RET1     1   2
+0006 => GGET     1   0      ; "string"
+0007    TGETS    1   1   1  ; "sub"
+0008    MOV      3   0
+0009    TGETS    2   0   2  ; "getDataDir"
+0010    CALL     2   2   2
+0011    KSHORT   3   1
+0012    KSHORT   4   1
+0013    CALL     1   2   4
+0014    ISNES    1   3      ; "/"
+0015    JMP      1 => 0021
+0016    MOV      2   0
+0017    TGETS    1   0   2  ; "getDataDir"
+0018    CALL     1   2   2
+0019    USETV    0   1      ; full_data_dir
+0020    JMP      1 => 0030
+0021 => MOV      2   0
+0022    TGETS    1   0   2  ; "getDataDir"
+0023    CALL     1   2   2
+0024    ISNES    1   4      ; "."
+0025    JMP      1 => 0030
+0026    UGET     1   1      ; lfs
+0027    TGETS    1   1   5  ; "currentdir"
+0028    CALL     1   2   1
+0029    USETV    0   1      ; full_data_dir
+0030 => UGET     1   0      ; full_data_dir
+0031    RET1     1   2
+
+-- BYTECODE -- datastorage.lua:53-66
+0001    TDUP     0   0
+0002    GGET     1   1      ; "ipairs"
+0003    MOV      2   0
+0004    CALL     1   4   2
+0005    JMP      4 => 0026
+0006 => GGET     6   2      ; "string"
+0007    TGETS    6   6   3  ; "format"
+0008    KSTR     7   4      ; "%s/%s"
+0009    UGET     8   0      ; DataStorage
+0010    MOV      9   8
+0011    TGETS    8   8   5  ; "getDataDir"
+0012    CALL     8   2   2
+0013    MOV      9   5
+0014    CALL     6   2   4
+0015    UGET     7   1      ; lfs
+0016    TGETS    7   7   6  ; "attributes"
+0017    MOV      8   6
+0018    KSTR     9   7      ; "mode"
+0019    CALL     7   2   3
+0020    ISEQS    7   8      ; "directory"
+0021    JMP      7 => 0026
+0022    UGET     7   1      ; lfs
+0023    TGETS    7   7   9  ; "mkdir"
+0024    MOV      8   6
+0025    CALL     7   1   2
+0026 => ITERC    4   3   3
+0027    ITERL    4 => 0006
+0028    RET0     0   1
+
+-- BYTECODE -- datastorage.lua:0-71
+0001    GGET     0   0      ; "pcall"
+0002    GGET     1   1      ; "require"
+0003    KSTR     2   2      ; "android"
+0004    CALL     0   3   3
+0005    GGET     2   1      ; "require"
+0006    KSTR     3   3      ; "libs/libkoreader-lfs"
+0007    CALL     2   2   2
+0008    TNEW     3   0
+0009    KNIL     4   5
+0010    FNEW     6   5      ; datastorage.lua:10
+0011    TSETS    6   3   4  ; "getDataDir"
+0012    FNEW     6   7      ; datastorage.lua:32
+0013    TSETS    6   3   6  ; "getHistoryDir"
+0014    FNEW     6   9      ; datastorage.lua:36
+0015    TSETS    6   3   8  ; "getSettingsDir"
+0016    FNEW     6  11      ; datastorage.lua:41
+0017    TSETS    6   3  10  ; "getFullDataDir"
+0018    FNEW     6  12      ; datastorage.lua:53
+0019    MOV      7   6
+0020    CALL     7   1   1
+0021    UCLO     0 => 0022
+0022 => RET1     3   2
+

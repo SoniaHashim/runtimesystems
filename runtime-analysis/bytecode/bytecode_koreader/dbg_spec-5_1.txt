@@ -1,0 +1,340 @@
+
+main <./spec/unit/dbg_spec.lua:0,0> (5 instructions, 20 bytes at 0x7f8d21c068c0)
+0+ params, 3 slots, 0 upvalues, 0 locals, 2 constants, 1 function
+	1	[1]	GETGLOBAL	0 -1	; describe
+	2	[1]	LOADK    	1 -2	; "Dbg module"
+	3	[86]	CLOSURE  	2 0	; 0x7f8d21c06b60
+	4	[1]	CALL     	0 3 1
+	5	[86]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:1,86> (36 instructions, 144 bytes at 0x7f8d21c06b60)
+0 params, 5 slots, 0 upvalues, 2 locals, 8 constants, 7 functions
+	1	[3]	GETGLOBAL	2 -1	; setup
+	2	[7]	CLOSURE  	3 0	; 0x7f8d21c06ed0
+	3	[7]	MOVE     	0 0
+	4	[7]	MOVE     	0 1
+	5	[3]	CALL     	2 2 1
+	6	[9]	GETGLOBAL	2 -2	; after_each
+	7	[15]	CLOSURE  	3 1	; 0x7f8d21c072c0
+	8	[15]	MOVE     	0 1
+	9	[15]	MOVE     	0 0
+	10	[9]	CALL     	2 2 1
+	11	[17]	GETGLOBAL	2 -3	; it
+	12	[17]	LOADK    	3 -4	; "setup mt.__call and guard after tunrnOn is called"
+	13	[24]	CLOSURE  	4 2	; 0x7f8d21c076d0
+	14	[24]	MOVE     	0 0
+	15	[17]	CALL     	2 3 1
+	16	[26]	GETGLOBAL	2 -3	; it
+	17	[26]	LOADK    	3 -5	; "should call pre_gard callback"
+	18	[39]	CLOSURE  	4 3	; 0x7f8d21c06640
+	19	[39]	MOVE     	0 0
+	20	[26]	CALL     	2 3 1
+	21	[41]	GETGLOBAL	2 -3	; it
+	22	[41]	LOADK    	3 -6	; "should call post_gard callback"
+	23	[54]	CLOSURE  	4 4	; 0x7f8d21c084f0
+	24	[54]	MOVE     	0 0
+	25	[41]	CALL     	2 3 1
+	26	[56]	GETGLOBAL	2 -3	; it
+	27	[56]	LOADK    	3 -7	; "should return all values returned by the guarded function"
+	28	[75]	CLOSURE  	4 5	; 0x7f8d21c08a00
+	29	[75]	MOVE     	0 0
+	30	[56]	CALL     	2 3 1
+	31	[77]	GETGLOBAL	2 -3	; it
+	32	[77]	LOADK    	3 -8	; "should set verbose"
+	33	[85]	CLOSURE  	4 6	; 0x7f8d21c08640
+	34	[85]	MOVE     	0 0
+	35	[77]	CALL     	2 3 1
+	36	[86]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:3,7> (14 instructions, 56 bytes at 0x7f8d21c06ed0)
+0 params, 3 slots, 2 upvalues, 0 locals, 6 constants, 0 functions
+	1	[4]	GETGLOBAL	0 -1	; package
+	2	[4]	LOADK    	1 -3	; "?.lua;common/?.lua;rocks/share/lua/5.1/?.lua;frontend/?.lua;"
+	3	[4]	GETGLOBAL	2 -1	; package
+	4	[4]	GETTABLE 	2 2 -2	; "path"
+	5	[4]	CONCAT   	1 1 2
+	6	[4]	SETTABLE 	0 -2 1	; "path" -
+	7	[5]	GETGLOBAL	0 -4	; require
+	8	[5]	LOADK    	1 -5	; "dbg"
+	9	[5]	CALL     	0 2 2
+	10	[5]	SETUPVAL 	0 0	; dbg
+	11	[6]	GETUPVAL 	0 0	; dbg
+	12	[6]	GETTABLE 	0 0 -6	; "is_on"
+	13	[6]	SETUPVAL 	0 1	; dbg_on
+	14	[7]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:9,15> (11 instructions, 44 bytes at 0x7f8d21c072c0)
+0 params, 2 slots, 2 upvalues, 0 locals, 2 constants, 0 functions
+	1	[10]	GETUPVAL 	0 0	; dbg_on
+	2	[10]	TEST     	0 0 0
+	3	[10]	JMP      	4	; to 8
+	4	[11]	GETUPVAL 	0 1	; dbg
+	5	[11]	SELF     	0 0 -1	; "turnOn"
+	6	[11]	CALL     	0 2 1
+	7	[11]	JMP      	3	; to 11
+	8	[13]	GETUPVAL 	0 1	; dbg
+	9	[13]	SELF     	0 0 -2	; "turnOff"
+	10	[13]	CALL     	0 2 1
+	11	[15]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:17,24> (29 instructions, 116 bytes at 0x7f8d21c076d0)
+0 params, 6 slots, 1 upvalue, 2 locals, 8 constants, 0 functions
+	1	[18]	GETUPVAL 	0 0	; dbg
+	2	[18]	SELF     	0 0 -1	; "turnOff"
+	3	[18]	CALL     	0 2 1
+	4	[19]	GETGLOBAL	0 -2	; getmetatable
+	5	[19]	GETUPVAL 	1 0	; dbg
+	6	[19]	CALL     	0 2 2
+	7	[19]	GETTABLE 	0 0 -3	; "__call"
+	8	[20]	GETUPVAL 	1 0	; dbg
+	9	[20]	GETTABLE 	1 1 -4	; "guard"
+	10	[21]	GETUPVAL 	2 0	; dbg
+	11	[21]	SELF     	2 2 -5	; "turnOn"
+	12	[21]	CALL     	2 2 1
+	13	[22]	GETGLOBAL	2 -6	; assert
+	14	[22]	GETTABLE 	2 2 -7	; "is_not"
+	15	[22]	GETTABLE 	2 2 -8	; "same"
+	16	[22]	MOVE     	3 0
+	17	[22]	GETGLOBAL	4 -2	; getmetatable
+	18	[22]	GETUPVAL 	5 0	; dbg
+	19	[22]	CALL     	4 2 2
+	20	[22]	GETTABLE 	4 4 -3	; "__call"
+	21	[22]	CALL     	2 3 1
+	22	[23]	GETGLOBAL	2 -6	; assert
+	23	[23]	GETTABLE 	2 2 -7	; "is_not"
+	24	[23]	GETTABLE 	2 2 -8	; "same"
+	25	[23]	MOVE     	3 1
+	26	[23]	GETUPVAL 	4 0	; dbg
+	27	[23]	GETTABLE 	4 4 -4	; "guard"
+	28	[23]	CALL     	2 3 1
+	29	[24]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:26,39> (35 instructions, 140 bytes at 0x7f8d21c06640)
+0 params, 7 slots, 1 upvalue, 2 locals, 8 constants, 2 functions
+	1	[27]	LOADBOOL 	0 0 0
+	2	[28]	NEWTABLE 	1 0 0
+	3	[29]	CLOSURE  	2 0	; 0x7f8d21c080b0
+	4	[29]	SETTABLE 	1 -1 2	; "bar" -
+	5	[30]	GETGLOBAL	2 -2	; assert
+	6	[30]	GETTABLE 	2 2 -3	; "is"
+	7	[30]	GETTABLE 	2 2 -4	; "falsy"
+	8	[30]	MOVE     	3 0
+	9	[30]	CALL     	2 2 1
+	10	[32]	GETUPVAL 	2 0	; dbg
+	11	[32]	SELF     	2 2 -5	; "turnOff"
+	12	[32]	CALL     	2 2 1
+	13	[33]	GETGLOBAL	2 -2	; assert
+	14	[33]	GETTABLE 	2 2 -3	; "is"
+	15	[33]	GETTABLE 	2 2 -4	; "falsy"
+	16	[33]	MOVE     	3 0
+	17	[33]	CALL     	2 2 1
+	18	[35]	GETUPVAL 	2 0	; dbg
+	19	[35]	SELF     	2 2 -6	; "turnOn"
+	20	[35]	CALL     	2 2 1
+	21	[36]	GETUPVAL 	2 0	; dbg
+	22	[36]	SELF     	2 2 -7	; "guard"
+	23	[36]	MOVE     	4 1
+	24	[36]	LOADK    	5 -1	; "bar"
+	25	[36]	CLOSURE  	6 1	; 0x7f8d21c08570
+	26	[36]	MOVE     	0 0
+	27	[36]	CALL     	2 5 1
+	28	[37]	SELF     	2 1 -1	; "bar"
+	29	[37]	CALL     	2 2 1
+	30	[38]	GETGLOBAL	2 -2	; assert
+	31	[38]	GETTABLE 	2 2 -3	; "is"
+	32	[38]	GETTABLE 	2 2 -8	; "truthy"
+	33	[38]	MOVE     	3 0
+	34	[38]	CALL     	2 2 1
+	35	[39]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:29,29> (1 instruction, 4 bytes at 0x7f8d21c080b0)
+1 param, 2 slots, 0 upvalues, 1 local, 0 constants, 0 functions
+	1	[29]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:36,36> (3 instructions, 12 bytes at 0x7f8d21c08570)
+0 params, 2 slots, 1 upvalue, 0 locals, 0 constants, 0 functions
+	1	[36]	LOADBOOL 	0 1 0
+	2	[36]	SETUPVAL 	0 0	; called
+	3	[36]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:41,54> (36 instructions, 144 bytes at 0x7f8d21c084f0)
+0 params, 8 slots, 1 upvalue, 2 locals, 8 constants, 2 functions
+	1	[42]	LOADBOOL 	0 0 0
+	2	[43]	NEWTABLE 	1 0 0
+	3	[44]	CLOSURE  	2 0	; 0x7f8d21c08ac0
+	4	[44]	SETTABLE 	1 -1 2	; "bar" -
+	5	[45]	GETGLOBAL	2 -2	; assert
+	6	[45]	GETTABLE 	2 2 -3	; "is"
+	7	[45]	GETTABLE 	2 2 -4	; "falsy"
+	8	[45]	MOVE     	3 0
+	9	[45]	CALL     	2 2 1
+	10	[47]	GETUPVAL 	2 0	; dbg
+	11	[47]	SELF     	2 2 -5	; "turnOff"
+	12	[47]	CALL     	2 2 1
+	13	[48]	GETGLOBAL	2 -2	; assert
+	14	[48]	GETTABLE 	2 2 -3	; "is"
+	15	[48]	GETTABLE 	2 2 -4	; "falsy"
+	16	[48]	MOVE     	3 0
+	17	[48]	CALL     	2 2 1
+	18	[50]	GETUPVAL 	2 0	; dbg
+	19	[50]	SELF     	2 2 -6	; "turnOn"
+	20	[50]	CALL     	2 2 1
+	21	[51]	GETUPVAL 	2 0	; dbg
+	22	[51]	SELF     	2 2 -7	; "guard"
+	23	[51]	MOVE     	4 1
+	24	[51]	LOADK    	5 -1	; "bar"
+	25	[51]	LOADNIL  	6 6
+	26	[51]	CLOSURE  	7 1	; 0x7f8d21c08ed0
+	27	[51]	MOVE     	0 0
+	28	[51]	CALL     	2 6 1
+	29	[52]	SELF     	2 1 -1	; "bar"
+	30	[52]	CALL     	2 2 1
+	31	[53]	GETGLOBAL	2 -2	; assert
+	32	[53]	GETTABLE 	2 2 -3	; "is"
+	33	[53]	GETTABLE 	2 2 -8	; "truthy"
+	34	[53]	MOVE     	3 0
+	35	[53]	CALL     	2 2 1
+	36	[54]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:44,44> (1 instruction, 4 bytes at 0x7f8d21c08ac0)
+1 param, 2 slots, 0 upvalues, 1 local, 0 constants, 0 functions
+	1	[44]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:51,51> (3 instructions, 12 bytes at 0x7f8d21c08ed0)
+0 params, 2 slots, 1 upvalue, 0 locals, 0 constants, 0 functions
+	1	[51]	LOADBOOL 	0 1 0
+	2	[51]	SETUPVAL 	0 0	; called
+	3	[51]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:56,75> (69 instructions, 276 bytes at 0x7f8d21c08a00)
+0 params, 9 slots, 1 upvalue, 3 locals, 11 constants, 4 functions
+	1	[57]	LOADBOOL 	0 0 0
+	2	[58]	LOADNIL  	1 1
+	3	[59]	NEWTABLE 	2 0 0
+	4	[60]	CLOSURE  	3 0	; 0x7f8d21c09460
+	5	[60]	SETTABLE 	2 -1 3	; "bar" -
+	6	[61]	GETGLOBAL	3 -2	; assert
+	7	[61]	GETTABLE 	3 3 -3	; "is"
+	8	[61]	GETTABLE 	3 3 -4	; "falsy"
+	9	[61]	MOVE     	4 0
+	10	[61]	CALL     	3 2 1
+	11	[63]	GETUPVAL 	3 0	; dbg
+	12	[63]	SELF     	3 3 -5	; "turnOn"
+	13	[63]	CALL     	3 2 1
+	14	[64]	GETUPVAL 	3 0	; dbg
+	15	[64]	SELF     	3 3 -6	; "guard"
+	16	[64]	MOVE     	5 2
+	17	[64]	LOADK    	6 -1	; "bar"
+	18	[64]	CLOSURE  	7 1	; 0x7f8d21c09910
+	19	[64]	MOVE     	0 0
+	20	[64]	CALL     	3 5 1
+	21	[65]	NEWTABLE 	3 0 0
+	22	[65]	SELF     	4 2 -1	; "bar"
+	23	[65]	CALL     	4 2 0
+	24	[65]	SETLIST  	3 0 1	; 1
+	25	[65]	MOVE     	1 3
+	26	[66]	GETGLOBAL	3 -2	; assert
+	27	[66]	GETTABLE 	3 3 -3	; "is"
+	28	[66]	GETTABLE 	3 3 -7	; "truthy"
+	29	[66]	MOVE     	4 0
+	30	[66]	CALL     	3 2 1
+	31	[67]	GETGLOBAL	3 -2	; assert
+	32	[67]	GETTABLE 	3 3 -3	; "is"
+	33	[67]	GETTABLE 	3 3 -8	; "same"
+	34	[67]	MOVE     	4 1
+	35	[67]	NEWTABLE 	5 1 0
+	36	[67]	LOADK    	6 -9	; 1
+	37	[67]	SETLIST  	5 1 1	; 1
+	38	[67]	CALL     	3 3 1
+	39	[69]	LOADBOOL 	0 0 0
+	40	[70]	CLOSURE  	3 2	; 0x7f8d21c09380
+	41	[70]	SETTABLE 	2 -1 3	; "bar" -
+	42	[71]	GETUPVAL 	3 0	; dbg
+	43	[71]	SELF     	3 3 -6	; "guard"
+	44	[71]	MOVE     	5 2
+	45	[71]	LOADK    	6 -1	; "bar"
+	46	[71]	CLOSURE  	7 3	; 0x7f8d21c09c70
+	47	[71]	MOVE     	0 0
+	48	[71]	CALL     	3 5 1
+	49	[72]	GETGLOBAL	3 -2	; assert
+	50	[72]	GETTABLE 	3 3 -3	; "is"
+	51	[72]	GETTABLE 	3 3 -4	; "falsy"
+	52	[72]	MOVE     	4 0
+	53	[72]	CALL     	3 2 1
+	54	[73]	NEWTABLE 	3 0 0
+	55	[73]	SELF     	4 2 -1	; "bar"
+	56	[73]	CALL     	4 2 0
+	57	[73]	SETLIST  	3 0 1	; 1
+	58	[73]	MOVE     	1 3
+	59	[74]	GETGLOBAL	3 -2	; assert
+	60	[74]	GETTABLE 	3 3 -3	; "is"
+	61	[74]	GETTABLE 	3 3 -8	; "same"
+	62	[74]	MOVE     	4 1
+	63	[74]	NEWTABLE 	5 3 0
+	64	[74]	LOADK    	6 -9	; 1
+	65	[74]	LOADK    	7 -10	; 2
+	66	[74]	LOADK    	8 -11	; 3
+	67	[74]	SETLIST  	5 3 1	; 1
+	68	[74]	CALL     	3 3 1
+	69	[75]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:60,60> (3 instructions, 12 bytes at 0x7f8d21c09460)
+1 param, 2 slots, 0 upvalues, 1 local, 1 constant, 0 functions
+	1	[60]	LOADK    	1 -1	; 1
+	2	[60]	RETURN   	1 2
+	3	[60]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:64,64> (3 instructions, 12 bytes at 0x7f8d21c09910)
+0 params, 2 slots, 1 upvalue, 0 locals, 0 constants, 0 functions
+	1	[64]	LOADBOOL 	0 1 0
+	2	[64]	SETUPVAL 	0 0	; called
+	3	[64]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:70,70> (5 instructions, 20 bytes at 0x7f8d21c09380)
+1 param, 4 slots, 0 upvalues, 1 local, 3 constants, 0 functions
+	1	[70]	LOADK    	1 -1	; 1
+	2	[70]	LOADK    	2 -2	; 2
+	3	[70]	LOADK    	3 -3	; 3
+	4	[70]	RETURN   	1 4
+	5	[70]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:71,71> (3 instructions, 12 bytes at 0x7f8d21c09c70)
+0 params, 2 slots, 1 upvalue, 0 locals, 0 constants, 0 functions
+	1	[71]	LOADBOOL 	0 1 0
+	2	[71]	SETUPVAL 	0 0	; called
+	3	[71]	RETURN   	0 1
+
+function <./spec/unit/dbg_spec.lua:77,85> (32 instructions, 128 bytes at 0x7f8d21c08640)
+0 params, 3 slots, 1 upvalue, 0 locals, 6 constants, 0 functions
+	1	[78]	GETGLOBAL	0 -1	; assert
+	2	[78]	GETTABLE 	0 0 -2	; "is_nil"
+	3	[78]	GETUPVAL 	1 0	; dbg
+	4	[78]	GETTABLE 	1 1 -3	; "is_verbose"
+	5	[78]	CALL     	0 2 1
+	6	[79]	GETUPVAL 	0 0	; dbg
+	7	[79]	SELF     	0 0 -4	; "setVerbose"
+	8	[79]	LOADBOOL 	2 1 0
+	9	[79]	CALL     	0 3 1
+	10	[80]	GETGLOBAL	0 -1	; assert
+	11	[80]	GETTABLE 	0 0 -5	; "is_true"
+	12	[80]	GETUPVAL 	1 0	; dbg
+	13	[80]	GETTABLE 	1 1 -3	; "is_verbose"
+	14	[80]	CALL     	0 2 1
+	15	[81]	GETUPVAL 	0 0	; dbg
+	16	[81]	SELF     	0 0 -4	; "setVerbose"
+	17	[81]	LOADBOOL 	2 0 0
+	18	[81]	CALL     	0 3 1
+	19	[82]	GETGLOBAL	0 -1	; assert
+	20	[82]	GETTABLE 	0 0 -6	; "is_false"
+	21	[82]	GETUPVAL 	1 0	; dbg
+	22	[82]	GETTABLE 	1 1 -3	; "is_verbose"
+	23	[82]	CALL     	0 2 1
+	24	[83]	GETUPVAL 	0 0	; dbg
+	25	[83]	SELF     	0 0 -4	; "setVerbose"
+	26	[83]	CALL     	0 2 1
+	27	[84]	GETGLOBAL	0 -1	; assert
+	28	[84]	GETTABLE 	0 0 -2	; "is_nil"
+	29	[84]	GETUPVAL 	1 0	; dbg
+	30	[84]	GETTABLE 	1 1 -3	; "is_verbose"
+	31	[84]	CALL     	0 2 1
+	32	[85]	RETURN   	0 1

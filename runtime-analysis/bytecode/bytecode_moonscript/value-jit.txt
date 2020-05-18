@@ -1,0 +1,534 @@
+-- BYTECODE -- value.lua:32-34
+0001    UGET     2   0      ; build
+0002    TGETS    2   2   0  ; "block_exp"
+0003    TGETB    3   1   2
+0004    CALLT    2   2
+
+-- BYTECODE -- value.lua:35-37
+0001    TGETS    2   0   0  ; "transform"
+0002    TGETS    2   2   1  ; "statement"
+0003    MOV      3   1
+0004    CALLT    2   2
+
+-- BYTECODE -- value.lua:38-42
+0001    UGET     2   0      ; build
+0002    TGETS    2   2   0  ; "block_exp"
+0003    TNEW     3   3
+0004    TSETB    1   3   1
+0005    CALLT    2   2
+
+-- BYTECODE -- value.lua:46-64
+0001    GGET     1   0      ; "type"
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISEQS    1   1      ; "string"
+0005    JMP      1 => 0008
+0006    ISNEP    0   0
+0007    JMP      1 => 0017
+0008 => TDUP     1   2
+0009    UGET     2   0      ; delim
+0010    TSETB    2   1   2
+0011    ISTC     2   0
+0012    JMP      2 => 0014
+0013    KSTR     2   3      ; ""
+0014 => TSETB    2   1   3
+0015    RET1     1   2
+0016    JMP      1 => 0027
+0017 => UGET     1   1      ; build
+0018    TGETS    1   1   4  ; "chain"
+0019    TDUP     2   5
+0020    TDUP     3   6
+0021    TNEW     4   3
+0022    TGETB    5   0   2
+0023    TSETB    5   4   1
+0024    TSETB    4   3   2
+0025    TSETB    3   2   1
+0026    CALLT    1   2
+0027 => RET0     0   1
+
+-- BYTECODE -- value.lua:43-81
+0001    TGETB    2   1   2
+0002    KPRI     3   0
+0003    FNEW     3   0      ; value.lua:46
+0004    LEN      4   1
+0005    KSHORT   5   3
+0006    ISGT     4   5
+0007    JMP      4 => 0020
+0008    GGET     4   1      ; "type"
+0009    TGETB    5   1   3
+0010    CALL     4   2   2
+0011    ISNES    4   2      ; "string"
+0012    JMP      4 => 0016
+0013    UCLO     0 => 0014
+0014 => RET1     1   2
+0015    JMP      4 => 0020
+0016 => MOV      4   3
+0017    TGETB    5   1   3
+0018    UCLO     0 => 0019
+0019 => CALLT    4   2
+0020 => TDUP     4   3
+0021    MOV      5   3
+0022    TGETB    6   1   3
+0023    CALL     5   0   2
+0024    TSETM    5   0      ; 2
+0025    KSHORT   5   4
+0026    LEN      6   1
+0027    KSHORT   7   1
+0028    FORI     5 => 0040
+0029 => UGET     9   1      ; insert
+0030    MOV     10   4
+0031    KSTR    11   4      ; ".."
+0032    CALL     9   1   3
+0033    UGET     9   1      ; insert
+0034    MOV     10   4
+0035    MOV     11   3
+0036    TGETV   12   1   8
+0037    CALL    11   0   2
+0038    CALLM    9   1   1
+0039    FORL     5 => 0029
+0040 => UCLO     0 => 0041
+0041 => RET1     4   2
+
+-- BYTECODE -- value.lua:84-88
+0001    UGET     1   0      ; a
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "mutate_body"
+0004    TNEW     3   3
+0005    TSETB    0   3   1
+0006    CALLT    1   3
+
+-- BYTECODE -- value.lua:82-90
+0001    UGET     2   0      ; Accumulator
+0002    CALL     2   2   1
+0003    TGETS    3   0   0  ; "transform"
+0004    TGETS    3   3   1  ; "statement"
+0005    MOV      4   1
+0006    FNEW     5   2      ; value.lua:84
+0007    CALL     3   2   3
+0008    MOV      1   3
+0009    MOV      4   2
+0010    TGETS    3   2   3  ; "wrap"
+0011    MOV      5   1
+0012    UCLO     0 => 0013
+0013 => CALLT    3   3
+
+-- BYTECODE -- value.lua:91-134
+0001    UGET     2   0      ; unpack
+0002    MOV      3   1
+0003    KSHORT   4   2
+0004    CALL     2   3   3
+0005    UGET     4   0      ; unpack
+0006    MOV      5   2
+0007    CALL     4   3   2
+0008    UGET     6   1      ; NameProxy
+0009    KSTR     7   0      ; "tbl"
+0010    CALL     6   2   2
+0011    KPRI     7   0
+0012    ISF          5
+0013    JMP      8 => 0031
+0014    UGET     8   2      ; build
+0015    TGETS    8   8   1  ; "chain"
+0016    TDUP     9   2
+0017    TSETS    6   9   3  ; "base"
+0018    TDUP    10   4
+0019    TSETB    4  10   2
+0020    TSETB   10   9   1
+0021    CALL     8   2   2
+0022    TNEW     9   3
+0023    UGET    10   2      ; build
+0024    TGETS   10  10   5  ; "assign_one"
+0025    MOV     11   8
+0026    MOV     12   5
+0027    CALL    10   0   3
+0028    TSETM   10   0      ; 1
+0029    MOV      7   9
+0030    JMP      8 => 0065
+0031 => UGET     8   1      ; NameProxy
+0032    KSTR     9   6      ; "key"
+0033    CALL     8   2   2
+0034    UGET     9   1      ; NameProxy
+0035    KSTR    10   7      ; "val"
+0036    CALL     9   2   2
+0037    UGET    10   2      ; build
+0038    TGETS   10  10   1  ; "chain"
+0039    TDUP    11   8
+0040    TSETS    6  11   3  ; "base"
+0041    TDUP    12   9
+0042    TSETB    8  12   2
+0043    TSETB   12  11   1
+0044    CALL    10   2   2
+0045    TNEW    11   3
+0046    UGET    12   2      ; build
+0047    TGETS   12  12  10  ; "assign"
+0048    TDUP    13  11
+0049    TNEW    14   3
+0050    TSETB    8  14   1
+0051    TSETB    9  14   2
+0052    TSETS   14  13  12  ; "names"
+0053    TNEW    14   3
+0054    TSETB    4  14   1
+0055    TSETS   14  13  13  ; "values"
+0056    CALL    12   2   2
+0057    TSETB   12  11   1
+0058    UGET    12   2      ; build
+0059    TGETS   12  12   5  ; "assign_one"
+0060    MOV     13  10
+0061    MOV     14   9
+0062    CALL    12   0   3
+0063    TSETM   12   1      ; 2
+0064    MOV      7  11
+0065 => UGET     8   2      ; build
+0066    TGETS    8   8  14  ; "block_exp"
+0067    TNEW     9   4
+0068    UGET    10   2      ; build
+0069    TGETS   10  10   5  ; "assign_one"
+0070    MOV     11   6
+0071    UGET    12   2      ; build
+0072    TGETS   12  12  15  ; "table"
+0073    CALL    12   0   1
+0074    CALLM   10   2   1
+0075    TSETB   10   9   1
+0076    UGET    10   3      ; construct_comprehension
+0077    MOV     11   7
+0078    MOV     12   3
+0079    CALL    10   2   3
+0080    TSETB   10   9   2
+0081    TSETB    6   9   3
+0082    CALLT    8   2
+
+-- BYTECODE -- value.lua:140-140
+0001    RET0     0   1
+
+-- BYTECODE -- value.lua:139-141
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "listen"
+0003    KSTR     3   1      ; "varargs"
+0004    FNEW     4   2      ; value.lua:140
+0005    UCLO     0 => 0006
+0006 => CALLT    1   4
+
+-- BYTECODE -- value.lua:135-145
+0001    UGET     2   0      ; smart_node
+0002    MOV      3   1
+0003    CALL     2   1   2
+0004    UGET     2   1      ; transform_last_stm
+0005    TGETS    3   1   0  ; "body"
+0006    UGET     4   2      ; implicitly_return
+0007    MOV      5   0
+0008    CALL     4   0   2
+0009    CALLM    2   2   1
+0010    TSETS    2   1   0  ; "body"
+0011    TNEW     2   3
+0012    UGET     3   3      ; Run
+0013    FNEW     4   1      ; value.lua:139
+0014    CALL     3   2   2
+0015    TSETB    3   2   1
+0016    UGET     3   4      ; unpack
+0017    TGETS    4   1   0  ; "body"
+0018    CALL     3   0   2
+0019    TSETM    3   0      ; 2
+0020    TSETS    2   1   0  ; "body"
+0021    UCLO     0 => 0022
+0022 => RET1     1   2
+
+-- BYTECODE -- value.lua:146-150
+0001    UGET     2   0      ; build
+0002    TGETS    2   2   0  ; "block_exp"
+0003    TNEW     3   3
+0004    TSETB    1   3   1
+0005    CALLT    2   2
+
+-- BYTECODE -- value.lua:151-155
+0001    UGET     2   0      ; build
+0002    TGETS    2   2   0  ; "block_exp"
+0003    TNEW     3   3
+0004    TSETB    1   3   1
+0005    CALLT    2   2
+
+-- BYTECODE -- value.lua:156-160
+0001    UGET     2   0      ; build
+0002    TGETS    2   2   0  ; "block_exp"
+0003    TNEW     3   3
+0004    TSETB    1   3   1
+0005    CALLT    2   2
+
+-- BYTECODE -- value.lua:161-165
+0001    UGET     2   0      ; build
+0002    TGETS    2   2   0  ; "block_exp"
+0003    TNEW     3   3
+0004    TSETB    1   3   1
+0005    CALLT    2   2
+
+-- BYTECODE -- value.lua:166-235
+0001    KSHORT   2   2
+0002    LEN      3   1
+0003    KSHORT   4   1
+0004    FORI     2 => 0023
+0005 => TGETV    6   1   5
+0006    UGET     7   0      ; ntype
+0007    MOV      8   6
+0008    CALL     7   2   2
+0009    ISNES    7   0      ; "dot"
+0010    JMP      7 => 0022
+0011    UGET     7   1      ; lua_keywords
+0012    TGETB    8   6   2
+0013    TGETV    7   7   8
+0014    ISF          7
+0015    JMP      8 => 0022
+0016    TDUP     7   1
+0017    TDUP     8   2
+0018    TGETB    9   6   2
+0019    TSETB    9   8   3
+0020    TSETB    8   7   2
+0021    TSETV    7   1   5
+0022 => FORL     2 => 0005
+0023 => UGET     2   0      ; ntype
+0024    TGETB    3   1   2
+0025    CALL     2   2   2
+0026    ISNES    2   3      ; "string"
+0027    JMP      2 => 0032
+0028    TDUP     2   4
+0029    TGETB    3   1   2
+0030    TSETB    3   2   2
+0031    TSETB    2   1   2
+0032 => UGET     2   2      ; chain_is_stub
+0033    MOV      3   1
+0034    CALL     2   2   2
+0035    ISF          2
+0036    JMP      3 => 0121
+0037    UGET     2   3      ; NameProxy
+0038    KSTR     3   5      ; "base"
+0039    CALL     2   2   2
+0040    UGET     3   3      ; NameProxy
+0041    KSTR     4   6      ; "fn"
+0042    CALL     3   2   2
+0043    GGET     4   7      ; "table"
+0044    TGETS    4   4   8  ; "remove"
+0045    MOV      5   1
+0046    CALL     4   2   2
+0047    UGET     5   0      ; ntype
+0048    TGETB    6   1   2
+0049    CALL     5   2   2
+0050    ISNES    5   9      ; "ref"
+0051    JMP      5 => 0056
+0052    TGETB    5   1   2
+0053    TGETB    5   5   2
+0054    ISEQS    5  10      ; "super"
+0055    JMP      5 => 0058
+0056 => KPRI     5   1
+0057    JMP      6 => 0059
+0058 => KPRI     5   2
+0059 => UGET     6   4      ; build
+0060    TGETS    6   6  11  ; "block_exp"
+0061    TNEW     7   4
+0062    UGET     8   4      ; build
+0063    TGETS    8   8  12  ; "assign"
+0064    TDUP     9  13
+0065    TNEW    10   3
+0066    TSETB    2  10   1
+0067    TSETS   10   9  14  ; "names"
+0068    TNEW    10   3
+0069    TSETB    1  10   1
+0070    TSETS   10   9  15  ; "values"
+0071    CALL     8   2   2
+0072    TSETB    8   7   1
+0073    UGET     8   4      ; build
+0074    TGETS    8   8  12  ; "assign"
+0075    TDUP     9  16
+0076    TNEW    10   3
+0077    TSETB    3  10   1
+0078    TSETS   10   9  14  ; "names"
+0079    TNEW    10   3
+0080    UGET    11   4      ; build
+0081    TGETS   11  11  17  ; "chain"
+0082    TDUP    12  18
+0083    TSETS    2  12   5  ; "base"
+0084    TDUP    13  19
+0085    TGETB   14   4   2
+0086    TSETB   14  13   2
+0087    TSETB   13  12   1
+0088    CALL    11   0   2
+0089    TSETM   11   0      ; 1
+0090    TSETS   10   9  15  ; "values"
+0091    CALL     8   2   2
+0092    TSETB    8   7   2
+0093    UGET     8   4      ; build
+0094    TGETS    8   8  20  ; "fndef"
+0095    TDUP     9  22
+0096    TNEW    10   3
+0097    TDUP    11  21
+0098    TSETB   11  10   1
+0099    TSETS   10   9  23  ; "args"
+0100    TNEW    10   3
+0101    UGET    11   4      ; build
+0102    TGETS   11  11  17  ; "chain"
+0103    TDUP    12  24
+0104    TSETS    3  12   5  ; "base"
+0105    TDUP    13  25
+0106    TDUP    14  27
+0107    ISF          5
+0108    JMP     15 => 0111
+0109    KSTR    15  26      ; "self"
+0110    JMP     16 => 0112
+0111 => MOV     15   2
+0112 => TSETB   15  14   1
+0113    TSETB   14  13   2
+0114    TSETB   13  12   1
+0115    CALL    11   0   2
+0116    TSETM   11   0      ; 1
+0117    TSETS   10   9  28  ; "body"
+0118    CALL     8   0   2
+0119    TSETM    8   1      ; 3
+0120    CALLT    6   2
+0121 => RET0     0   1
+
+-- BYTECODE -- value.lua:243-249
+0001    UGET     0   0      ; insert
+0002    UGET     1   1      ; arg_list
+0003    KSTR     2   0      ; "..."
+0004    CALL     0   1   3
+0005    UGET     0   0      ; insert
+0006    UGET     1   2      ; fn
+0007    TGETS    1   1   1  ; "args"
+0008    TDUP     2   2
+0009    CALL     0   1   3
+0010    UGET     0   3      ; self
+0011    MOV      1   0
+0012    TGETS    0   0   3  ; "unlisten"
+0013    KSTR     2   4      ; "varargs"
+0014    CALLT    0   3
+
+-- BYTECODE -- value.lua:242-250
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "listen"
+0003    KSTR     3   1      ; "varargs"
+0004    FNEW     4   2      ; value.lua:243
+0005    UCLO     0 => 0006
+0006 => CALLT    1   4
+
+-- BYTECODE -- value.lua:236-264
+0001    UGET     2   0      ; unpack
+0002    MOV      3   1
+0003    KSHORT   4   2
+0004    CALL     2   2   3
+0005    KPRI     3   0
+0006    TNEW     4   0
+0007    UGET     5   1      ; smart_node
+0008    UGET     6   2      ; build
+0009    TGETS    6   6   0  ; "fndef"
+0010    TDUP     7   2
+0011    TNEW     8   3
+0012    UGET     9   3      ; Run
+0013    FNEW    10   1      ; value.lua:242
+0014    CALL     9   2   2
+0015    TSETB    9   8   1
+0016    UGET     9   0      ; unpack
+0017    MOV     10   2
+0018    CALL     9   0   2
+0019    TSETM    9   0      ; 2
+0020    TSETS    8   7   3  ; "body"
+0021    CALL     6   0   2
+0022    CALLM    5   2   0
+0023    MOV      3   5
+0024    UGET     5   2      ; build
+0025    TGETS    5   5   4  ; "chain"
+0026    TDUP     6   6
+0027    TDUP     7   5
+0028    TSETB    3   7   2
+0029    TSETS    7   6   7  ; "base"
+0030    TDUP     7   8
+0031    TSETB    4   7   2
+0032    TSETB    7   6   1
+0033    UCLO     0 => 0034
+0034 => CALLT    5   2
+
+-- BYTECODE -- value.lua:0-266
+0001    KPRI     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "moonscript.transform.transformer"
+0004    CALL     1   2   2
+0005    TGETS    0   1   2  ; "Transformer"
+0006    KNIL     1   3
+0007    GGET     4   0      ; "require"
+0008    KSTR     5   3      ; "moonscript.types"
+0009    CALL     4   2   2
+0010    TGETS    5   4   4  ; "build"
+0011    TGETS    6   4   5  ; "ntype"
+0012    TGETS    3   4   6  ; "smart_node"
+0013    MOV      2   6
+0014    MOV      1   5
+0015    KPRI     4   0
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   7      ; "moonscript.transform.names"
+0018    CALL     5   2   2
+0019    TGETS    4   5   8  ; "NameProxy"
+0020    KNIL     5   6
+0021    GGET     7   0      ; "require"
+0022    KSTR     8   9      ; "moonscript.transform.accumulator"
+0023    CALL     7   2   2
+0024    TGETS    8   7  10  ; "Accumulator"
+0025    TGETS    6   7  11  ; "default_accumulator"
+0026    MOV      5   8
+0027    KPRI     7   0
+0028    GGET     8   0      ; "require"
+0029    KSTR     9  12      ; "moonscript.data"
+0030    CALL     8   2   2
+0031    TGETS    7   8  13  ; "lua_keywords"
+0032    KNIL     8  11
+0033    GGET    12   0      ; "require"
+0034    KSTR    13  14      ; "moonscript.transform.statements"
+0035    CALL    12   2   2
+0036    TGETS   13  12  15  ; "Run"
+0037    TGETS   14  12  16  ; "transform_last_stm"
+0038    TGETS   15  12  17  ; "implicitly_return"
+0039    TGETS   11  12  18  ; "chain_is_stub"
+0040    MOV     10  15
+0041    MOV      9  14
+0042    MOV      8  13
+0043    KPRI    12   0
+0044    GGET    13   0      ; "require"
+0045    KSTR    14  19      ; "moonscript.transform.comprehension"
+0046    CALL    13   2   2
+0047    TGETS   12  13  20  ; "construct_comprehension"
+0048    KPRI    13   0
+0049    GGET    14  21      ; "table"
+0050    TGETS   13  14  22  ; "insert"
+0051    KPRI    14   0
+0052    GGET    15   0      ; "require"
+0053    KSTR    16  23      ; "moonscript.util"
+0054    CALL    15   2   2
+0055    TGETS   14  15  24  ; "unpack"
+0056    MOV     15   0
+0057    TDUP    16  25
+0058    TSETS    6  16  26  ; "for"
+0059    TSETS    6  16  27  ; "while"
+0060    TSETS    6  16  28  ; "foreach"
+0061    FNEW    17  29      ; value.lua:32
+0062    TSETS   17  16  30  ; "do"
+0063    FNEW    17  31      ; value.lua:35
+0064    TSETS   17  16  32  ; "decorated"
+0065    FNEW    17  33      ; value.lua:38
+0066    TSETS   17  16  34  ; "class"
+0067    FNEW    17  35      ; value.lua:43
+0068    TSETS   17  16  36  ; "string"
+0069    FNEW    17  37      ; value.lua:82
+0070    TSETS   17  16  38  ; "comprehension"
+0071    FNEW    17  39      ; value.lua:91
+0072    TSETS   17  16  40  ; "tblcomprehension"
+0073    FNEW    17  41      ; value.lua:135
+0074    TSETS   17  16  42  ; "fndef"
+0075    FNEW    17  43      ; value.lua:146
+0076    TSETS   17  16  44  ; "if"
+0077    FNEW    17  45      ; value.lua:151
+0078    TSETS   17  16  46  ; "unless"
+0079    FNEW    17  47      ; value.lua:156
+0080    TSETS   17  16  48  ; "with"
+0081    FNEW    17  49      ; value.lua:161
+0082    TSETS   17  16  50  ; "switch"
+0083    FNEW    17  51      ; value.lua:166
+0084    TSETS   17  16  52  ; "chain"
+0085    FNEW    17  53      ; value.lua:236
+0086    TSETS   17  16  54  ; "block_exp"
+0087    UCLO     0 => 0088
+0088 => CALLT   15   2
+

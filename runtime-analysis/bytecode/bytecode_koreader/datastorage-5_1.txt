@@ -1,0 +1,206 @@
+
+main <./datastorage.lua:0,0> (30 instructions, 120 bytes at 0x7f9d73c068a0)
+0+ params, 8 slots, 0 upvalues, 7 locals, 8 constants, 5 functions
+	1	[2]	GETGLOBAL	0 -1	; pcall
+	2	[2]	GETGLOBAL	1 -2	; require
+	3	[2]	LOADK    	2 -3	; "android"
+	4	[2]	CALL     	0 3 3
+	5	[3]	GETGLOBAL	2 -2	; require
+	6	[3]	LOADK    	3 -4	; "libs/libkoreader-lfs"
+	7	[3]	CALL     	2 2 2
+	8	[5]	NEWTABLE 	3 0 0
+	9	[7]	LOADNIL  	4 5
+	10	[30]	CLOSURE  	6 0	; 0x7f9d73c06ff0
+	11	[30]	MOVE     	0 4
+	12	[30]	MOVE     	0 0
+	13	[30]	MOVE     	0 1
+	14	[30]	MOVE     	0 2
+	15	[10]	SETTABLE 	3 -5 6	; "getDataDir" -
+	16	[34]	CLOSURE  	6 1	; 0x7f9d73c07250
+	17	[32]	SETTABLE 	3 -6 6	; "getHistoryDir" -
+	18	[38]	CLOSURE  	6 2	; 0x7f9d73c07cd0
+	19	[36]	SETTABLE 	3 -7 6	; "getSettingsDir" -
+	20	[51]	CLOSURE  	6 3	; 0x7f9d73c07d70
+	21	[51]	MOVE     	0 5
+	22	[51]	MOVE     	0 2
+	23	[41]	SETTABLE 	3 -8 6	; "getFullDataDir" -
+	24	[66]	CLOSURE  	6 4	; 0x7f9d73c08560
+	25	[66]	MOVE     	0 3
+	26	[66]	MOVE     	0 2
+	27	[68]	MOVE     	7 6
+	28	[68]	CALL     	7 1 1
+	29	[70]	RETURN   	3 2
+	30	[70]	RETURN   	0 1
+
+function <./datastorage.lua:10,30> (79 instructions, 316 bytes at 0x7f9d73c06ff0)
+1 param, 7 slots, 4 upvalues, 3 locals, 23 constants, 0 functions
+	1	[11]	GETUPVAL 	1 0	; data_dir
+	2	[11]	TEST     	1 0 0
+	3	[11]	JMP      	2	; to 6
+	4	[11]	GETUPVAL 	1 0	; data_dir
+	5	[11]	RETURN   	1 2
+	6	[13]	GETUPVAL 	1 1	; isAndroid
+	7	[13]	TEST     	1 0 0
+	8	[13]	JMP      	7	; to 16
+	9	[14]	GETUPVAL 	1 2	; android
+	10	[14]	GETTABLE 	1 1 -1	; "getExternalStoragePath"
+	11	[14]	CALL     	1 1 2
+	12	[14]	LOADK    	2 -2	; "/koreader"
+	13	[14]	CONCAT   	1 1 2
+	14	[14]	SETUPVAL 	1 0	; data_dir
+	15	[14]	JMP      	50	; to 66
+	16	[15]	GETGLOBAL	1 -3	; os
+	17	[15]	GETTABLE 	1 1 -4	; "getenv"
+	18	[15]	LOADK    	2 -5	; "UBUNTU_APPLICATION_ISOLATION"
+	19	[15]	CALL     	1 2 2
+	20	[15]	TEST     	1 0 0
+	21	[15]	JMP      	18	; to 40
+	22	[16]	GETGLOBAL	1 -3	; os
+	23	[16]	GETTABLE 	1 1 -4	; "getenv"
+	24	[16]	LOADK    	2 -6	; "APP_ID"
+	25	[16]	CALL     	1 2 2
+	26	[17]	SELF     	2 1 -7	; "match"
+	27	[17]	LOADK    	4 -8	; "^(.-)_"
+	28	[17]	CALL     	2 3 2
+	29	[19]	GETGLOBAL	3 -9	; string
+	30	[19]	GETTABLE 	3 3 -10	; "format"
+	31	[19]	LOADK    	4 -11	; "%s/%s"
+	32	[19]	GETGLOBAL	5 -3	; os
+	33	[19]	GETTABLE 	5 5 -4	; "getenv"
+	34	[19]	LOADK    	6 -12	; "XDG_DATA_HOME"
+	35	[19]	CALL     	5 2 2
+	36	[19]	MOVE     	6 2
+	37	[19]	CALL     	3 4 2
+	38	[19]	SETUPVAL 	3 0	; data_dir
+	39	[19]	JMP      	26	; to 66
+	40	[20]	GETGLOBAL	1 -3	; os
+	41	[20]	GETTABLE 	1 1 -4	; "getenv"
+	42	[20]	LOADK    	2 -13	; "APPIMAGE"
+	43	[20]	CALL     	1 2 2
+	44	[20]	TEST     	1 0 1
+	45	[20]	JMP      	6	; to 52
+	46	[20]	GETGLOBAL	1 -3	; os
+	47	[20]	GETTABLE 	1 1 -4	; "getenv"
+	48	[20]	LOADK    	2 -14	; "KO_MULTIUSER"
+	49	[20]	CALL     	1 2 2
+	50	[20]	TEST     	1 0 0
+	51	[20]	JMP      	12	; to 64
+	52	[21]	GETGLOBAL	1 -9	; string
+	53	[21]	GETTABLE 	1 1 -10	; "format"
+	54	[21]	LOADK    	2 -15	; "%s/%s/%s"
+	55	[21]	GETGLOBAL	3 -3	; os
+	56	[21]	GETTABLE 	3 3 -4	; "getenv"
+	57	[21]	LOADK    	4 -16	; "HOME"
+	58	[21]	CALL     	3 2 2
+	59	[21]	LOADK    	4 -17	; ".config"
+	60	[21]	LOADK    	5 -18	; "koreader"
+	61	[21]	CALL     	1 5 2
+	62	[21]	SETUPVAL 	1 0	; data_dir
+	63	[21]	JMP      	2	; to 66
+	64	[23]	LOADK    	1 -19	; "."
+	65	[23]	SETUPVAL 	1 0	; data_dir
+	66	[25]	GETUPVAL 	1 3	; lfs
+	67	[25]	GETTABLE 	1 1 -20	; "attributes"
+	68	[25]	GETUPVAL 	2 0	; data_dir
+	69	[25]	LOADK    	3 -21	; "mode"
+	70	[25]	CALL     	1 3 2
+	71	[25]	EQ       	1 1 -22	; - "directory"
+	72	[25]	JMP      	4	; to 77
+	73	[26]	GETUPVAL 	1 3	; lfs
+	74	[26]	GETTABLE 	1 1 -23	; "mkdir"
+	75	[26]	GETUPVAL 	2 0	; data_dir
+	76	[26]	CALL     	1 2 1
+	77	[29]	GETUPVAL 	1 0	; data_dir
+	78	[29]	RETURN   	1 2
+	79	[30]	RETURN   	0 1
+
+function <./datastorage.lua:32,34> (6 instructions, 24 bytes at 0x7f9d73c07250)
+1 param, 3 slots, 0 upvalues, 1 local, 2 constants, 0 functions
+	1	[33]	SELF     	1 0 -1	; "getDataDir"
+	2	[33]	CALL     	1 2 2
+	3	[33]	LOADK    	2 -2	; "/history"
+	4	[33]	CONCAT   	1 1 2
+	5	[33]	RETURN   	1 2
+	6	[34]	RETURN   	0 1
+
+function <./datastorage.lua:36,38> (6 instructions, 24 bytes at 0x7f9d73c07cd0)
+1 param, 3 slots, 0 upvalues, 1 local, 2 constants, 0 functions
+	1	[37]	SELF     	1 0 -1	; "getDataDir"
+	2	[37]	CALL     	1 2 2
+	3	[37]	LOADK    	2 -2	; "/settings"
+	4	[37]	CONCAT   	1 1 2
+	5	[37]	RETURN   	1 2
+	6	[38]	RETURN   	0 1
+
+function <./datastorage.lua:41,51> (29 instructions, 116 bytes at 0x7f9d73c07d70)
+1 param, 5 slots, 2 upvalues, 1 local, 7 constants, 0 functions
+	1	[42]	GETUPVAL 	1 0	; full_data_dir
+	2	[42]	TEST     	1 0 0
+	3	[42]	JMP      	2	; to 6
+	4	[42]	GETUPVAL 	1 0	; full_data_dir
+	5	[42]	RETURN   	1 2
+	6	[44]	GETGLOBAL	1 -1	; string
+	7	[44]	GETTABLE 	1 1 -2	; "sub"
+	8	[44]	SELF     	2 0 -3	; "getDataDir"
+	9	[44]	CALL     	2 2 2
+	10	[44]	LOADK    	3 -4	; 1
+	11	[44]	LOADK    	4 -4	; 1
+	12	[44]	CALL     	1 4 2
+	13	[44]	EQ       	0 1 -5	; - "/"
+	14	[44]	JMP      	4	; to 19
+	15	[45]	SELF     	1 0 -3	; "getDataDir"
+	16	[45]	CALL     	1 2 2
+	17	[45]	SETUPVAL 	1 0	; full_data_dir
+	18	[45]	JMP      	8	; to 27
+	19	[46]	SELF     	1 0 -3	; "getDataDir"
+	20	[46]	CALL     	1 2 2
+	21	[46]	EQ       	0 1 -6	; - "."
+	22	[46]	JMP      	4	; to 27
+	23	[47]	GETUPVAL 	1 1	; lfs
+	24	[47]	GETTABLE 	1 1 -7	; "currentdir"
+	25	[47]	CALL     	1 1 2
+	26	[47]	SETUPVAL 	1 0	; full_data_dir
+	27	[50]	GETUPVAL 	1 0	; full_data_dir
+	28	[50]	RETURN   	1 2
+	29	[51]	RETURN   	0 1
+
+function <./datastorage.lua:53,66> (38 instructions, 152 bytes at 0x7f9d73c08560)
+0 params, 11 slots, 2 upvalues, 7 locals, 19 constants, 0 functions
+	1	[54]	NEWTABLE 	0 10 0
+	2	[55]	LOADK    	1 -1	; "cache"
+	3	[55]	LOADK    	2 -2	; "clipboard"
+	4	[56]	LOADK    	3 -3	; "data"
+	5	[56]	LOADK    	4 -4	; "data/dict"
+	6	[56]	LOADK    	5 -5	; "data/tessdata"
+	7	[57]	LOADK    	6 -6	; "history"
+	8	[57]	LOADK    	7 -7	; "ota"
+	9	[58]	LOADK    	8 -8	; "screenshots"
+	10	[58]	LOADK    	9 -9	; "settings"
+	11	[59]	LOADK    	10 -10	; "styletweaks"
+	12	[59]	SETLIST  	0 10 1	; 1
+	13	[60]	GETGLOBAL	1 -11	; ipairs
+	14	[60]	MOVE     	2 0
+	15	[60]	CALL     	1 2 4
+	16	[60]	JMP      	19	; to 36
+	17	[61]	GETGLOBAL	6 -12	; string
+	18	[61]	GETTABLE 	6 6 -13	; "format"
+	19	[61]	LOADK    	7 -14	; "%s/%s"
+	20	[61]	GETUPVAL 	8 0	; DataStorage
+	21	[61]	SELF     	8 8 -15	; "getDataDir"
+	22	[61]	CALL     	8 2 2
+	23	[61]	MOVE     	9 5
+	24	[61]	CALL     	6 4 2
+	25	[62]	GETUPVAL 	7 1	; lfs
+	26	[62]	GETTABLE 	7 7 -16	; "attributes"
+	27	[62]	MOVE     	8 6
+	28	[62]	LOADK    	9 -17	; "mode"
+	29	[62]	CALL     	7 3 2
+	30	[62]	EQ       	1 7 -18	; - "directory"
+	31	[62]	JMP      	4	; to 36
+	32	[63]	GETUPVAL 	7 1	; lfs
+	33	[63]	GETTABLE 	7 7 -19	; "mkdir"
+	34	[63]	MOVE     	8 6
+	35	[63]	CALL     	7 2 1
+	36	[60]	TFORLOOP 	1 2
+	37	[64]	JMP      	-21	; to 17
+	38	[66]	RETURN   	0 1

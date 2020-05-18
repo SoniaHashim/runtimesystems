@@ -1,0 +1,1386 @@
+-- BYTECODE -- screensaver.lua:36-61
+0001    GGET     1   0      ; "string"
+0002    TGETS    1   1   1  ; "sub"
+0003    MOV      2   0
+0004    GGET     3   0      ; "string"
+0005    TGETS    3   3   2  ; "len"
+0006    MOV      4   0
+0007    CALL     3   0   2
+0008    CALLM    1   2   1
+0009    ISEQS    1   3      ; "/"
+0010    JMP      1 => 0014
+0011    MOV      1   0
+0012    KSTR     2   3      ; "/"
+0013    CAT      0   1   2
+0014 => TNEW     1   0
+0015    KSHORT   2   0
+0016    GGET     3   4      ; "math"
+0017    TGETS    3   3   5  ; "randomseed"
+0018    GGET     4   6      ; "os"
+0019    TGETS    4   4   7  ; "time"
+0020    CALL     4   0   1
+0021    CALLM    3   1   0
+0022    GGET     3   8      ; "pcall"
+0023    UGET     4   0      ; lfs
+0024    TGETS    4   4   9  ; "dir"
+0025    MOV      5   0
+0026    CALL     3   4   3
+0027    ISF          3
+0028    JMP      6 => 0066
+0029    MOV      6   4
+0030    MOV      7   5
+0031    KPRI     8   0
+0032    JMP      9 => 0059
+0033 => UGET    10   0      ; lfs
+0034    TGETS   10  10  10  ; "attributes"
+0035    MOV     11   0
+0036    MOV     12   9
+0037    CAT     11  11  12
+0038    KSTR    12  11      ; "mode"
+0039    CALL    10   2   3
+0040    ISNES   10  12      ; "file"
+0041    JMP     10 => 0059
+0042    GGET    10   0      ; "string"
+0043    TGETS   10  10  13  ; "lower"
+0044    GGET    11   0      ; "string"
+0045    TGETS   11  11  14  ; "match"
+0046    MOV     12   9
+0047    KSTR    13  15      ; ".+%.([^.]+)"
+0048    CALL    11   2   3
+0049    IST         11
+0050    JMP     12 => 0052
+0051    KSTR    11  16      ; ""
+0052 => CALL    10   2   2
+0053    UGET    11   1      ; screensaver_provider
+0054    TGETV   11  11  10
+0055    ISF         11
+0056    JMP     12 => 0059
+0057    ADDVN    2   2   0  ; 1
+0058    TSETV    9   1   2
+0059 => ITERC    9   2   3
+0060    ITERL    9 => 0033
+0061    ISNEN    2   1      ; 0
+0062    JMP      6 => 0068
+0063    KPRI     6   0
+0064    RET1     6   2
+0065    JMP      6 => 0068
+0066 => KPRI     6   0
+0067    RET1     6   2
+0068 => MOV      6   0
+0069    GGET     7   4      ; "math"
+0070    TGETS    7   7  17  ; "random"
+0071    MOV      8   2
+0072    CALL     7   2   2
+0073    TGETV    7   1   7
+0074    CAT      6   6   7
+0075    RET1     6   2
+
+-- BYTECODE -- screensaver.lua:71-78
+0001    UGET     1   0      ; logger
+0002    TGETS    1   1   0  ; "dbg"
+0003    KSTR     2   1      ; "set screensaver directory to"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    GGET     1   2      ; "G_reader_settings"
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "saveSetting"
+0009    KSTR     3   4      ; "screensaver_dir"
+0010    MOV      4   0
+0011    CALL     1   1   4
+0012    UGET     1   1      ; UIManager
+0013    MOV      2   1
+0014    TGETS    1   1   5  ; "show"
+0015    UGET     3   2      ; InfoMessage
+0016    MOV      4   3
+0017    TGETS    3   3   6  ; "new"
+0018    TDUP     5   9
+0019    UGET     6   3      ; T
+0020    UGET     7   4      ; _
+0021    KSTR     8   7      ; "Screensaver directory set to:\n%1"
+0022    CALL     7   2   2
+0023    UGET     8   5      ; BD
+0024    TGETS    8   8   8  ; "dirpath"
+0025    MOV      9   0
+0026    CALL     8   0   2
+0027    CALLM    6   2   1
+0028    TSETS    6   5  10  ; "text"
+0029    CALL     3   0   3
+0030    CALLM    1   1   1
+0031    RET0     0   1
+
+-- BYTECODE -- screensaver.lua:68-80
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "choose_dialog"
+0006    CALL     0   1   3
+0007    GGET     0   2      ; "require"
+0008    KSTR     1   3      ; "ui/downloadmgr"
+0009    CALL     0   2   2
+0010    MOV      1   0
+0011    TGETS    0   0   4  ; "new"
+0012    TDUP     2   6
+0013    FNEW     3   5      ; screensaver.lua:71
+0014    TSETS    3   2   7  ; "onConfirm"
+0015    CALL     0   2   3
+0016    MOV      1   0
+0017    TGETS    0   0   8  ; "chooseDir"
+0018    CALL     0   1   2
+0019    RET0     0   1
+
+-- BYTECODE -- screensaver.lua:86-88
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "choose_dialog"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- screensaver.lua:63-100
+0001    TNEW     1   0
+0002    GGET     2   0      ; "table"
+0003    TGETS    2   2   1  ; "insert"
+0004    MOV      3   1
+0005    TNEW     4   3
+0006    TDUP     5   3
+0007    UGET     6   0      ; _
+0008    KSTR     7   2      ; "Choose screensaver directory"
+0009    CALL     6   2   2
+0010    TSETS    6   5   4  ; "text"
+0011    FNEW     6   5      ; screensaver.lua:68
+0012    TSETS    6   5   6  ; "callback"
+0013    TSETB    5   4   1
+0014    CALL     2   1   3
+0015    GGET     2   0      ; "table"
+0016    TGETS    2   2   1  ; "insert"
+0017    MOV      3   1
+0018    TNEW     4   3
+0019    TDUP     5   8
+0020    UGET     6   0      ; _
+0021    KSTR     7   7      ; "Close"
+0022    CALL     6   2   2
+0023    TSETS    6   5   4  ; "text"
+0024    FNEW     6   9      ; screensaver.lua:86
+0025    TSETS    6   5   6  ; "callback"
+0026    TSETB    5   4   1
+0027    CALL     2   1   3
+0028    GGET     2  10      ; "G_reader_settings"
+0029    MOV      3   2
+0030    TGETS    2   2  11  ; "readSetting"
+0031    KSTR     4  12      ; "screensaver_dir"
+0032    CALL     2   2   3
+0033    ISNEP    2   0
+0034    JMP      3 => 0041
+0035    UGET     3   6      ; DataStorage
+0036    MOV      4   3
+0037    TGETS    3   3  13  ; "getDataDir"
+0038    CALL     3   2   2
+0039    KSTR     4  14      ; "/screenshots/"
+0040    CAT      2   3   4
+0041 => UGET     3   7      ; ButtonDialogTitle
+0042    MOV      4   3
+0043    TGETS    3   3  16  ; "new"
+0044    TDUP     5  19
+0045    UGET     6   4      ; T
+0046    UGET     7   0      ; _
+0047    KSTR     8  17      ; "Current screensaver image directory:\n%1"
+0048    CALL     7   2   2
+0049    UGET     8   5      ; BD
+0050    TGETS    8   8  18  ; "dirpath"
+0051    MOV      9   2
+0052    CALL     8   0   2
+0053    CALLM    6   2   1
+0054    TSETS    6   5  20  ; "title"
+0055    TSETS    1   5  21  ; "buttons"
+0056    CALL     3   2   3
+0057    TSETS    3   0  15  ; "choose_dialog"
+0058    UGET     3   1      ; UIManager
+0059    MOV      4   3
+0060    TGETS    3   3  22  ; "show"
+0061    TGETS    5   0  15  ; "choose_dialog"
+0062    CALL     3   1   3
+0063    UCLO     0 => 0064
+0064 => RET0     0   1
+
+-- BYTECODE -- screensaver.lua:115-122
+0001    UGET     1   0      ; util
+0002    TGETS    1   1   0  ; "getFileNameSuffix"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    UGET     2   1      ; document_cover
+0006    ISF          2
+0007    JMP      3 => 0018
+0008    UGET     2   2      ; DocumentRegistry
+0009    MOV      3   2
+0010    TGETS    2   2   1  ; "hasProvider"
+0011    MOV      4   0
+0012    CALL     2   2   3
+0013    ISF          2
+0014    JMP      3 => 0018
+0015    KPRI     2   2
+0016    RET1     2   2
+0017    JMP      2 => 0024
+0018 => UGET     2   3      ; screensaver_provider
+0019    TGETV    2   2   1
+0020    ISF          2
+0021    JMP      3 => 0024
+0022    KPRI     2   2
+0023    RET1     2   2
+0024 => RET0     0   1
+
+-- BYTECODE -- screensaver.lua:125-139
+0001    UGET     1   0      ; document_cover
+0002    ISF          1
+0003    JMP      2 => 0030
+0004    GGET     1   0      ; "G_reader_settings"
+0005    MOV      2   1
+0006    TGETS    1   1   1  ; "saveSetting"
+0007    KSTR     3   2      ; "screensaver_document_cover"
+0008    MOV      4   0
+0009    CALL     1   1   4
+0010    UGET     1   1      ; UIManager
+0011    MOV      2   1
+0012    TGETS    1   1   3  ; "show"
+0013    UGET     3   2      ; InfoMessage
+0014    MOV      4   3
+0015    TGETS    3   3   4  ; "new"
+0016    TDUP     5   7
+0017    UGET     6   3      ; T
+0018    UGET     7   4      ; _
+0019    KSTR     8   5      ; "Screensaver document cover set to:\n%1"
+0020    CALL     7   2   2
+0021    UGET     8   5      ; BD
+0022    TGETS    8   8   6  ; "filepath"
+0023    MOV      9   0
+0024    CALL     8   0   2
+0025    CALLM    6   2   1
+0026    TSETS    6   5   8  ; "text"
+0027    CALL     3   0   3
+0028    CALLM    1   1   1
+0029    JMP      1 => 0055
+0030 => GGET     1   0      ; "G_reader_settings"
+0031    MOV      2   1
+0032    TGETS    1   1   1  ; "saveSetting"
+0033    KSTR     3   9      ; "screensaver_image"
+0034    MOV      4   0
+0035    CALL     1   1   4
+0036    UGET     1   1      ; UIManager
+0037    MOV      2   1
+0038    TGETS    1   1   3  ; "show"
+0039    UGET     3   2      ; InfoMessage
+0040    MOV      4   3
+0041    TGETS    3   3   4  ; "new"
+0042    TDUP     5  11
+0043    UGET     6   3      ; T
+0044    UGET     7   4      ; _
+0045    KSTR     8  10      ; "Screensaver image set to:\n%1"
+0046    CALL     7   2   2
+0047    UGET     8   5      ; BD
+0048    TGETS    8   8   6  ; "filepath"
+0049    MOV      9   0
+0050    CALL     8   0   2
+0051    CALLM    6   2   1
+0052    TSETS    6   5   8  ; "text"
+0053    CALL     3   0   3
+0054    CALLM    1   1   1
+0055 => RET0     0   1
+
+-- BYTECODE -- screensaver.lua:108-142
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "choose_dialog"
+0006    CALL     0   1   3
+0007    GGET     0   2      ; "require"
+0008    KSTR     1   3      ; "util"
+0009    CALL     0   2   2
+0010    GGET     1   2      ; "require"
+0011    KSTR     2   4      ; "ui/widget/pathchooser"
+0012    CALL     1   2   2
+0013    MOV      3   1
+0014    TGETS    2   1   5  ; "new"
+0015    TDUP     4   6
+0016    FNEW     5   7      ; screensaver.lua:115
+0017    TSETS    5   4   8  ; "file_filter"
+0018    UGET     5   1      ; self
+0019    TGETS    5   5   9  ; "root_path"
+0020    TSETS    5   4  10  ; "path"
+0021    FNEW     5  11      ; screensaver.lua:125
+0022    TSETS    5   4  12  ; "onConfirm"
+0023    CALL     2   2   3
+0024    UGET     3   0      ; UIManager
+0025    MOV      4   3
+0026    TGETS    3   3  13  ; "show"
+0027    MOV      5   2
+0028    CALL     3   1   3
+0029    UCLO     0 => 0030
+0030 => RET0     0   1
+
+-- BYTECODE -- screensaver.lua:148-150
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "choose_dialog"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- screensaver.lua:102-165
+0001    ISF          1
+0002    JMP      2 => 0008
+0003    UGET     2   0      ; _
+0004    KSTR     3   0      ; "Choose document cover"
+0005    CALL     2   2   2
+0006    IST          2
+0007    JMP      3 => 0011
+0008 => UGET     2   0      ; _
+0009    KSTR     3   1      ; "Choose screensaver image"
+0010    CALL     2   2   2
+0011 => TNEW     3   0
+0012    GGET     4   2      ; "table"
+0013    TGETS    4   4   3  ; "insert"
+0014    MOV      5   3
+0015    TNEW     6   3
+0016    TDUP     7   4
+0017    TSETS    2   7   5  ; "text"
+0018    FNEW     8   6      ; screensaver.lua:108
+0019    TSETS    8   7   7  ; "callback"
+0020    TSETB    7   6   1
+0021    CALL     4   1   3
+0022    GGET     4   2      ; "table"
+0023    TGETS    4   4   3  ; "insert"
+0024    MOV      5   3
+0025    TNEW     6   3
+0026    TDUP     7   9
+0027    UGET     8   0      ; _
+0028    KSTR     9   8      ; "Close"
+0029    CALL     8   2   2
+0030    TSETS    8   7   5  ; "text"
+0031    FNEW     8  10      ; screensaver.lua:148
+0032    TSETS    8   7   7  ; "callback"
+0033    TSETB    7   6   1
+0034    CALL     4   1   3
+0035    GGET     4  11      ; "G_reader_settings"
+0036    MOV      5   4
+0037    TGETS    4   4  12  ; "readSetting"
+0038    KSTR     6  13      ; "screensaver_image"
+0039    CALL     4   2   3
+0040    GGET     5  11      ; "G_reader_settings"
+0041    MOV      6   5
+0042    TGETS    5   5  12  ; "readSetting"
+0043    KSTR     7  14      ; "screensaver_document_cover"
+0044    CALL     5   2   3
+0045    ISNEP    4   0
+0046    JMP      6 => 0053
+0047    UGET     6   7      ; DataStorage
+0048    MOV      7   6
+0049    TGETS    6   6  15  ; "getDataDir"
+0050    CALL     6   2   2
+0051    KSTR     7  16      ; "/resources/koreader.png"
+0052    CAT      4   6   7
+0053 => ISF          1
+0054    JMP      6 => 0066
+0055    UGET     6   5      ; T
+0056    UGET     7   0      ; _
+0057    KSTR     8  17      ; "Current screensaver document cover:\n%1"
+0058    CALL     7   2   2
+0059    UGET     8   6      ; BD
+0060    TGETS    8   8  18  ; "filepath"
+0061    MOV      9   5
+0062    CALL     8   0   2
+0063    CALLM    6   2   1
+0064    IST          6
+0065    JMP      7 => 0075
+0066 => UGET     6   5      ; T
+0067    UGET     7   0      ; _
+0068    KSTR     8  19      ; "Current screensaver image:\n%1"
+0069    CALL     7   2   2
+0070    UGET     8   6      ; BD
+0071    TGETS    8   8  18  ; "filepath"
+0072    MOV      9   4
+0073    CALL     8   0   2
+0074    CALLM    6   2   1
+0075 => UGET     7   8      ; ButtonDialogTitle
+0076    MOV      8   7
+0077    TGETS    7   7  21  ; "new"
+0078    TDUP     9  22
+0079    TSETS    6   9  23  ; "title"
+0080    TSETS    3   9  24  ; "buttons"
+0081    CALL     7   2   3
+0082    TSETS    7   0  20  ; "choose_dialog"
+0083    UGET     7   1      ; UIManager
+0084    MOV      8   7
+0085    TGETS    7   7  25  ; "show"
+0086    TGETS    9   0  20  ; "choose_dialog"
+0087    CALL     7   1   3
+0088    UCLO     0 => 0089
+0089 => RET0     0   1
+
+-- BYTECODE -- screensaver.lua:167-169
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "isTrue"
+0004    KSTR     3   2      ; "screensaver_stretch_images"
+0005    CALLT    1   3
+
+-- BYTECODE -- screensaver.lua:171-173
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "isTrue"
+0004    KSTR     3   2      ; "screensaver_white_background"
+0005    CALLT    1   3
+
+-- BYTECODE -- screensaver.lua:175-177
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "isTrue"
+0004    KSTR     3   2      ; "screensaver_no_background"
+0005    CALLT    1   3
+
+-- BYTECODE -- screensaver.lua:179-187
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "readSetting"
+0004    KSTR     3   2      ; "lastfile"
+0005    CALL     1   2   3
+0006    KPRI     2   1
+0007    UGET     3   0      ; DocSettings
+0008    MOV      4   3
+0009    TGETS    3   3   3  ; "hasSidecarFile"
+0010    MOV      5   1
+0011    CALL     3   2   3
+0012    ISF          3
+0013    JMP      4 => 0024
+0014    UGET     3   0      ; DocSettings
+0015    MOV      4   3
+0016    TGETS    3   3   4  ; "open"
+0017    MOV      5   1
+0018    CALL     3   2   3
+0019    MOV      5   3
+0020    TGETS    4   3   1  ; "readSetting"
+0021    KSTR     6   5      ; "exclude_screensaver"
+0022    CALL     4   2   3
+0023    MOV      2   4
+0024 => ISTC     3   2
+0025    JMP      3 => 0027
+0026    KPRI     3   1
+0027 => RET1     3   2
+
+-- BYTECODE -- screensaver.lua:203-205
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    TGETS    2   2   1  ; "input_dialog"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- screensaver.lua:210-213
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "screensaver_message"
+0005    UGET     3   0      ; self
+0006    TGETS    3   3   3  ; "input_dialog"
+0007    MOV      4   3
+0008    TGETS    3   3   4  ; "getInputText"
+0009    CALL     3   0   2
+0010    CALLM    0   1   2
+0011    UGET     0   1      ; UIManager
+0012    MOV      1   0
+0013    TGETS    0   0   5  ; "close"
+0014    UGET     2   0      ; self
+0015    TGETS    2   2   3  ; "input_dialog"
+0016    CALL     0   1   3
+0017    RET0     0   1
+
+-- BYTECODE -- screensaver.lua:189-220
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "ui/widget/inputdialog"
+0003    CALL     1   2   2
+0004    GGET     2   2      ; "G_reader_settings"
+0005    MOV      3   2
+0006    TGETS    2   2   3  ; "readSetting"
+0007    KSTR     4   4      ; "screensaver_message"
+0008    CALL     2   2   3
+0009    ISNEP    2   0
+0010    JMP      3 => 0012
+0011    UGET     2   0      ; default_screensaver_message
+0012 => MOV      4   1
+0013    TGETS    3   1   6  ; "new"
+0014    TDUP     5   7
+0015    UGET     6   1      ; _
+0016    KSTR     7   8      ; "Enter the message to be displayed by the"~
+0017    CALL     6   2   2
+0018    TSETS    6   5   9  ; "description"
+0019    TSETS    2   5  10  ; "input"
+0020    TNEW     6   3
+0021    TNEW     7   3
+0022    TDUP     8  12
+0023    UGET     9   1      ; _
+0024    KSTR    10  11      ; "Cancel"
+0025    CALL     9   2   2
+0026    TSETS    9   8  13  ; "text"
+0027    FNEW     9  14      ; screensaver.lua:203
+0028    TSETS    9   8  15  ; "callback"
+0029    TSETB    8   7   1
+0030    TDUP     8  17
+0031    UGET     9   1      ; _
+0032    KSTR    10  16      ; "Set message"
+0033    CALL     9   2   2
+0034    TSETS    9   8  13  ; "text"
+0035    FNEW     9  18      ; screensaver.lua:210
+0036    TSETS    9   8  15  ; "callback"
+0037    TSETB    8   7   2
+0038    TSETB    7   6   1
+0039    TSETS    6   5  19  ; "buttons"
+0040    CALL     3   2   3
+0041    TSETS    3   0   5  ; "input_dialog"
+0042    UGET     3   2      ; UIManager
+0043    MOV      4   3
+0044    TGETS    3   3  20  ; "show"
+0045    TGETS    5   0   5  ; "input_dialog"
+0046    CALL     3   1   3
+0047    TGETS    3   0   5  ; "input_dialog"
+0048    MOV      4   3
+0049    TGETS    3   3  21  ; "onShowKeyboard"
+0050    CALL     3   1   2
+0051    UCLO     0 => 0052
+0052 => RET0     0   1
+
+-- BYTECODE -- screensaver.lua:222-432
+0001    TGETS    3   0   0  ; "left_msg"
+0002    ISF          3
+0003    JMP      4 => 0011
+0004    UGET     3   0      ; UIManager
+0005    MOV      4   3
+0006    TGETS    3   3   1  ; "close"
+0007    TGETS    5   0   0  ; "left_msg"
+0008    CALL     3   1   3
+0009    KPRI     3   0
+0010    TSETS    3   0   0  ; "left_msg"
+0011 => KPRI     3   2
+0012    KPRI     4   0
+0013    ISF          1
+0014    JMP      5 => 0020
+0015    MOV      5   1
+0016    KSTR     6   2      ; "_"
+0017    CAT      5   5   6
+0018    IST          5
+0019    JMP      6 => 0021
+0020 => KSTR     5   3      ; ""
+0021 => GGET     6   4      ; "G_reader_settings"
+0022    MOV      7   6
+0023    TGETS    6   6   5  ; "readSetting"
+0024    MOV      8   5
+0025    KSTR     9   6      ; "screensaver_type"
+0026    CAT      8   8   9
+0027    CALL     6   2   3
+0028    ISF          5
+0029    JMP      7 => 0040
+0030    IST          6
+0031    JMP      7 => 0040
+0032    GGET     7   4      ; "G_reader_settings"
+0033    MOV      8   7
+0034    TGETS    7   7   5  ; "readSetting"
+0035    KSTR     9   6      ; "screensaver_type"
+0036    CALL     7   2   3
+0037    MOV      6   7
+0038    KSTR     5   3      ; ""
+0039    MOV      4   2
+0040 => ISNEP    6   0
+0041    JMP      7 => 0043
+0042    KSTR     6   7      ; "message"
+0043 => ISNES    6   8      ; "disable"
+0044    JMP      7 => 0046
+0045    RET0     0   1
+0046 => KPRI     7   0
+0047    UGET     8   1      ; Blitbuffer
+0048    TGETS    8   8   9  ; "COLOR_BLACK"
+0049    MOV     10   0
+0050    TGETS    9   0  10  ; "whiteBackground"
+0051    CALL     9   2   2
+0052    ISF          9
+0053    JMP     10 => 0057
+0054    UGET     9   1      ; Blitbuffer
+0055    TGETS    8   9  11  ; "COLOR_WHITE"
+0056    JMP      9 => 0063
+0057 => MOV     10   0
+0058    TGETS    9   0  12  ; "noBackground"
+0059    CALL     9   2   2
+0060    ISF          9
+0061    JMP     10 => 0063
+0062    KPRI     8   0
+0063 => GGET     9   4      ; "G_reader_settings"
+0064    MOV     10   9
+0065    TGETS    9   9   5  ; "readSetting"
+0066    KSTR    11  13      ; "lastfile"
+0067    CALL     9   2   3
+0068    ISNES    6  14      ; "document_cover"
+0069    JMP     10 => 0077
+0070    GGET    10   4      ; "G_reader_settings"
+0071    MOV     11  10
+0072    TGETS   10  10   5  ; "readSetting"
+0073    KSTR    12  15      ; "screensaver_document_cover"
+0074    CALL    10   2   3
+0075    MOV      9  10
+0076    KSTR     6  16      ; "cover"
+0077 => ISNES    6  16      ; "cover"
+0078    JMP     10 => 0170
+0079    ISEQP    9   0
+0080    JMP     10 => 0083
+0081    IST          9
+0082    JMP     10 => 0089
+0083 => GGET    10   4      ; "G_reader_settings"
+0084    MOV     11  10
+0085    TGETS   10  10   5  ; "readSetting"
+0086    KSTR    12  13      ; "lastfile"
+0087    CALL    10   2   3
+0088    MOV      9  10
+0089 => KPRI    10   1
+0090    UGET    11   2      ; DocSettings
+0091    MOV     12  11
+0092    TGETS   11  11  17  ; "hasSidecarFile"
+0093    MOV     13   9
+0094    CALL    11   2   3
+0095    ISF         11
+0096    JMP     12 => 0107
+0097    UGET    11   2      ; DocSettings
+0098    MOV     12  11
+0099    TGETS   11  11  18  ; "open"
+0100    MOV     13   9
+0101    CALL    11   2   3
+0102    MOV     13  11
+0103    TGETS   12  11   5  ; "readSetting"
+0104    KSTR    14  19      ; "exclude_screensaver"
+0105    CALL    12   2   3
+0106    MOV     10  12
+0107 => ISEQP   10   2
+0108    JMP     11 => 0169
+0109    ISF          9
+0110    JMP     11 => 0167
+0111    UGET    11   3      ; lfs
+0112    TGETS   11  11  20  ; "attributes"
+0113    MOV     12   9
+0114    KSTR    13  21      ; "mode"
+0115    CALL    11   2   3
+0116    ISNES   11  22      ; "file"
+0117    JMP     11 => 0167
+0118    UGET    11   4      ; DocumentRegistry
+0119    MOV     12  11
+0120    TGETS   11  11  23  ; "openDocument"
+0121    MOV     13   9
+0122    CALL    11   2   3
+0123    TGETS   12  11  24  ; "loadDocument"
+0124    ISF         12
+0125    JMP     13 => 0130
+0126    MOV     13  11
+0127    TGETS   12  11  24  ; "loadDocument"
+0128    KPRI    14   1
+0129    CALL    12   1   3
+0130 => MOV     13  11
+0131    TGETS   12  11  25  ; "getCoverPageImage"
+0132    CALL    12   2   2
+0133    MOV     14  11
+0134    TGETS   13  11   1  ; "close"
+0135    CALL    13   1   2
+0136    ISEQP   12   0
+0137    JMP     13 => 0165
+0138    UGET    13   5      ; ImageWidget
+0139    MOV     14  13
+0140    TGETS   13  13  26  ; "new"
+0141    TDUP    15  27
+0142    TSETS   12  15  28  ; "image"
+0143    UGET    16   6      ; Screen
+0144    MOV     17  16
+0145    TGETS   16  16  29  ; "getHeight"
+0146    CALL    16   2   2
+0147    TSETS   16  15  30  ; "height"
+0148    UGET    16   6      ; Screen
+0149    MOV     17  16
+0150    TGETS   16  16  31  ; "getWidth"
+0151    CALL    16   2   2
+0152    TSETS   16  15  32  ; "width"
+0153    MOV     17   0
+0154    TGETS   16   0  33  ; "stretchImages"
+0155    CALL    16   2   2
+0156    IST         16
+0157    JMP     16 => 0160
+0158    KSHORT  16   0
+0159    JMP     17 => 0161
+0160 => KPRI    16   0
+0161 => TSETS   16  15  34  ; "scale_factor"
+0162    CALL    13   2   3
+0163    MOV      7  13
+0164    JMP     13 => 0170
+0165 => KSTR     6  35      ; "random_image"
+0166    JMP     11 => 0170
+0167 => KSTR     6  35      ; "random_image"
+0168    JMP     11 => 0170
+0169 => KSTR     6  35      ; "random_image"
+0170 => ISNES    6  36      ; "bookstatus"
+0171    JMP     10 => 0224
+0172    ISF          9
+0173    JMP     10 => 0223
+0174    UGET    10   3      ; lfs
+0175    TGETS   10  10  20  ; "attributes"
+0176    MOV     11   9
+0177    KSTR    12  21      ; "mode"
+0178    CALL    10   2   3
+0179    ISNES   10  22      ; "file"
+0180    JMP     10 => 0223
+0181    UGET    10   4      ; DocumentRegistry
+0182    MOV     11  10
+0183    TGETS   10  10  23  ; "openDocument"
+0184    MOV     12   9
+0185    CALL    10   2   3
+0186    UGET    11   2      ; DocSettings
+0187    MOV     12  11
+0188    TGETS   11  11  18  ; "open"
+0189    MOV     13   9
+0190    CALL    11   2   3
+0191    GGET    12  37      ; "require"
+0192    KSTR    13  38      ; "apps/reader/readerui"
+0193    CALL    12   2   2
+0194    MOV     13  12
+0195    TGETS   12  12  39  ; "_getRunningInstance"
+0196    CALL    12   2   2
+0197    ISEQP   12   0
+0198    JMP     13 => 0218
+0199    UGET    13   7      ; BookStatusWidget
+0200    MOV     14  13
+0201    TGETS   13  13  26  ; "new"
+0202    TDUP    15  40
+0203    MOV     17  10
+0204    TGETS   16  10  25  ; "getCoverPageImage"
+0205    CALL    16   2   2
+0206    TSETS   16  15  41  ; "thumbnail"
+0207    MOV     17  10
+0208    TGETS   16  10  42  ; "getProps"
+0209    CALL    16   2   2
+0210    TSETS   16  15  43  ; "props"
+0211    TSETS   10  15  44  ; "document"
+0212    TSETS   11  15  45  ; "settings"
+0213    TGETS   16  12  46  ; "view"
+0214    TSETS   16  15  46  ; "view"
+0215    CALL    13   2   3
+0216    MOV      7  13
+0217    JMP     13 => 0219
+0218 => KSTR     6   7      ; "message"
+0219 => MOV     14  10
+0220    TGETS   13  10   1  ; "close"
+0221    CALL    13   1   2
+0222    JMP     10 => 0224
+0223 => KSTR     6   7      ; "message"
+0224 => ISNES    6  35      ; "random_image"
+0225    JMP     10 => 0284
+0226    GGET    10   4      ; "G_reader_settings"
+0227    MOV     11  10
+0228    TGETS   10  10   5  ; "readSetting"
+0229    MOV     12   5
+0230    KSTR    13  47      ; "screensaver_dir"
+0231    CAT     12  12  13
+0232    CALL    10   2   3
+0233    ISNEP   10   0
+0234    JMP     11 => 0243
+0235    ISEQS    5   3      ; ""
+0236    JMP     11 => 0243
+0237    GGET    11   4      ; "G_reader_settings"
+0238    MOV     12  11
+0239    TGETS   11  11   5  ; "readSetting"
+0240    KSTR    13  47      ; "screensaver_dir"
+0241    CALL    11   2   3
+0242    MOV     10  11
+0243 => ISNEP   10   0
+0244    JMP     11 => 0251
+0245    UGET    11   8      ; DataStorage
+0246    MOV     12  11
+0247    TGETS   11  11  48  ; "getDataDir"
+0248    CALL    11   2   2
+0249    KSTR    12  49      ; "/screenshots/"
+0250    CAT     10  11  12
+0251 => UGET    11   9      ; getRandomImage
+0252    MOV     12  10
+0253    CALL    11   2   2
+0254    ISNEP   11   0
+0255    JMP     12 => 0258
+0256    KSTR     6   7      ; "message"
+0257    JMP     12 => 0284
+0258 => UGET    12   5      ; ImageWidget
+0259    MOV     13  12
+0260    TGETS   12  12  26  ; "new"
+0261    TDUP    14  50
+0262    TSETS   11  14  22  ; "file"
+0263    UGET    15   6      ; Screen
+0264    MOV     16  15
+0265    TGETS   15  15  29  ; "getHeight"
+0266    CALL    15   2   2
+0267    TSETS   15  14  30  ; "height"
+0268    UGET    15   6      ; Screen
+0269    MOV     16  15
+0270    TGETS   15  15  31  ; "getWidth"
+0271    CALL    15   2   2
+0272    TSETS   15  14  32  ; "width"
+0273    MOV     16   0
+0274    TGETS   15   0  33  ; "stretchImages"
+0275    CALL    15   2   2
+0276    IST         15
+0277    JMP     15 => 0280
+0278    KSHORT  15   0
+0279    JMP     16 => 0281
+0280 => KPRI    15   0
+0281 => TSETS   15  14  34  ; "scale_factor"
+0282    CALL    12   2   3
+0283    MOV      7  12
+0284 => ISNES    6  51      ; "image_file"
+0285    JMP     10 => 0346
+0286    GGET    10   4      ; "G_reader_settings"
+0287    MOV     11  10
+0288    TGETS   10  10   5  ; "readSetting"
+0289    MOV     12   5
+0290    KSTR    13  52      ; "screensaver_image"
+0291    CAT     12  12  13
+0292    CALL    10   2   3
+0293    ISNEP   10   0
+0294    JMP     11 => 0303
+0295    ISEQS    5   3      ; ""
+0296    JMP     11 => 0303
+0297    GGET    11   4      ; "G_reader_settings"
+0298    MOV     12  11
+0299    TGETS   11  11   5  ; "readSetting"
+0300    KSTR    13  52      ; "screensaver_image"
+0301    CALL    11   2   3
+0302    MOV     10  11
+0303 => ISNEP   10   0
+0304    JMP     11 => 0311
+0305    UGET    11   8      ; DataStorage
+0306    MOV     12  11
+0307    TGETS   11  11  48  ; "getDataDir"
+0308    CALL    11   2   2
+0309    KSTR    12  53      ; "/resources/koreader.png"
+0310    CAT     10  11  12
+0311 => UGET    11   3      ; lfs
+0312    TGETS   11  11  20  ; "attributes"
+0313    MOV     12  10
+0314    KSTR    13  21      ; "mode"
+0315    CALL    11   2   3
+0316    ISEQS   11  22      ; "file"
+0317    JMP     11 => 0320
+0318    KSTR     6   7      ; "message"
+0319    JMP     11 => 0346
+0320 => UGET    11   5      ; ImageWidget
+0321    MOV     12  11
+0322    TGETS   11  11  26  ; "new"
+0323    TDUP    13  54
+0324    TSETS   10  13  22  ; "file"
+0325    UGET    14   6      ; Screen
+0326    MOV     15  14
+0327    TGETS   14  14  29  ; "getHeight"
+0328    CALL    14   2   2
+0329    TSETS   14  13  30  ; "height"
+0330    UGET    14   6      ; Screen
+0331    MOV     15  14
+0332    TGETS   14  14  31  ; "getWidth"
+0333    CALL    14   2   2
+0334    TSETS   14  13  32  ; "width"
+0335    MOV     15   0
+0336    TGETS   14   0  33  ; "stretchImages"
+0337    CALL    14   2   2
+0338    IST         14
+0339    JMP     14 => 0342
+0340    KSHORT  14   0
+0341    JMP     15 => 0343
+0342 => KPRI    14   0
+0343 => TSETS   14  13  34  ; "scale_factor"
+0344    CALL    11   2   3
+0345    MOV      7  11
+0346 => ISNES    6  55      ; "readingprogress"
+0347    JMP     10 => 0358
+0348    UGET    10  10      ; Screensaver
+0349    TGETS   10  10  56  ; "getReaderProgress"
+0350    ISEQP   10   0
+0351    JMP     10 => 0357
+0352    UGET    10  10      ; Screensaver
+0353    TGETS   10  10  56  ; "getReaderProgress"
+0354    CALL    10   2   1
+0355    MOV      7  10
+0356    JMP     10 => 0358
+0357 => KSTR     6   7      ; "message"
+0358 => ISNES    6   7      ; "message"
+0359    JMP     10 => 0458
+0360    GGET    10   4      ; "G_reader_settings"
+0361    MOV     11  10
+0362    TGETS   10  10   5  ; "readSetting"
+0363    MOV     12   5
+0364    KSTR    13  57      ; "screensaver_message"
+0365    CAT     12  12  13
+0366    CALL    10   2   3
+0367    GGET    11   4      ; "G_reader_settings"
+0368    MOV     12  11
+0369    TGETS   11  11   5  ; "readSetting"
+0370    MOV     13   5
+0371    KSTR    14  58      ; "screensaver_message_position"
+0372    CAT     13  13  14
+0373    CALL    11   2   3
+0374    MOV     13   0
+0375    TGETS   12   0  10  ; "whiteBackground"
+0376    CALL    12   2   2
+0377    IST         12
+0378    JMP     12 => 0381
+0379    KPRI     8   0
+0380    KPRI     3   1
+0381 => ISNEP   10   0
+0382    JMP     12 => 0391
+0383    ISEQS    5   3      ; ""
+0384    JMP     12 => 0391
+0385    GGET    12   4      ; "G_reader_settings"
+0386    MOV     13  12
+0387    TGETS   12  12   5  ; "readSetting"
+0388    KSTR    14  57      ; "screensaver_message"
+0389    CALL    12   2   3
+0390    MOV     10  12
+0391 => ISTC    12   2
+0392    JMP     12 => 0394
+0393    UGET    12  11      ; default_screensaver_message
+0394 => ISNEP   10   0
+0395    JMP     13 => 0398
+0396    MOV     10  12
+0397    JMP     13 => 0404
+0398 => MOV     14   0
+0399    TGETS   13   0  59  ; "expandSpecial"
+0400    MOV     15  10
+0401    MOV     16  12
+0402    CALL    13   2   4
+0403    MOV     10  13
+0404 => ISEQS   11  60      ; "middle"
+0405    JMP     13 => 0408
+0406    ISNEP   11   0
+0407    JMP     13 => 0416
+0408 => UGET    13  12      ; InfoMessage
+0409    MOV     14  13
+0410    TGETS   13  13  26  ; "new"
+0411    TDUP    15  61
+0412    TSETS   10  15  62  ; "text"
+0413    CALL    13   2   3
+0414    MOV      7  13
+0415    JMP     13 => 0457
+0416 => UGET    13  13      ; Font
+0417    MOV     14  13
+0418    TGETS   13  13  63  ; "getFace"
+0419    KSTR    15  64      ; "infofont"
+0420    CALL    13   2   3
+0421    KPRI    14   0
+0422    ISNES   11  65      ; "bottom"
+0423    JMP     15 => 0426
+0424    UGET    14  14      ; BottomContainer
+0425    JMP     15 => 0427
+0426 => UGET    14  15      ; TopContainer
+0427 => UGET    15   6      ; Screen
+0428    MOV     16  15
+0429    TGETS   15  15  31  ; "getWidth"
+0430    CALL    15   2   2
+0431    UGET    16   6      ; Screen
+0432    MOV     17  16
+0433    TGETS   16  16  29  ; "getHeight"
+0434    CALL    16   2   2
+0435    MOV     18  14
+0436    TGETS   17  14  26  ; "new"
+0437    TDUP    19  69
+0438    UGET    20  16      ; Geom
+0439    MOV     21  20
+0440    TGETS   20  20  26  ; "new"
+0441    TDUP    22  66
+0442    TSETS   15  22  67  ; "w"
+0443    TSETS   16  22  68  ; "h"
+0444    CALL    20   2   3
+0445    TSETS   20  19  70  ; "dimen"
+0446    UGET    20  17      ; TextBoxWidget
+0447    MOV     21  20
+0448    TGETS   20  20  26  ; "new"
+0449    TDUP    22  71
+0450    TSETS   10  22  62  ; "text"
+0451    TSETS   13  22  72  ; "face"
+0452    TSETS   15  22  32  ; "width"
+0453    CALL    20   0   3
+0454    TSETM   20   0      ; 1
+0455    CALL    17   2   3
+0456    MOV      7  17
+0457 => KPRI     4   0
+0458 => ISF          4
+0459    JMP     10 => 0466
+0460    MOV     11   0
+0461    TGETS   10   0  73  ; "addOverlayMessage"
+0462    MOV     12   7
+0463    MOV     13   4
+0464    CALL    10   2   4
+0465    MOV      7  10
+0466 => ISF          7
+0467    JMP     10 => 0489
+0468    UGET    10  18      ; ScreenSaverWidget
+0469    MOV     11  10
+0470    TGETS   10  10  26  ; "new"
+0471    TDUP    12  74
+0472    TSETS    7  12  75  ; "widget"
+0473    TSETS    8  12  76  ; "background"
+0474    TSETS    3  12  77  ; "covers_fullscreen"
+0475    CALL    10   2   3
+0476    TSETS   10   0   0  ; "left_msg"
+0477    TGETS   10   0   0  ; "left_msg"
+0478    KPRI    11   2
+0479    TSETS   11  10  78  ; "modal"
+0480    TGETS   10   0   0  ; "left_msg"
+0481    KPRI    11   2
+0482    TSETS   11  10  79  ; "dithered"
+0483    UGET    10   0      ; UIManager
+0484    MOV     11  10
+0485    TGETS   10  10  80  ; "show"
+0486    TGETS   12   0   0  ; "left_msg"
+0487    KSTR    13  81      ; "full"
+0488    CALL    10   1   4
+0489 => RET0     0   1
+
+-- BYTECODE -- screensaver.lua:434-464
+0001    MOV      3   1
+0002    GGET     4   0      ; "G_reader_settings"
+0003    MOV      5   4
+0004    TGETS    4   4   1  ; "readSetting"
+0005    KSTR     6   2      ; "lastfile"
+0006    CALL     4   2   3
+0007    GGET     5   3      ; "require"
+0008    KSTR     6   4      ; "apps/reader/readerui"
+0009    CALL     5   2   2
+0010    MOV      6   5
+0011    TGETS    5   5   5  ; "_getRunningInstance"
+0012    CALL     5   2   2
+0013    ISF          4
+0014    JMP      6 => 0075
+0015    UGET     6   0      ; lfs
+0016    TGETS    6   6   6  ; "attributes"
+0017    MOV      7   4
+0018    KSTR     8   7      ; "mode"
+0019    CALL     6   2   3
+0020    ISNES    6   8      ; "file"
+0021    JMP      6 => 0075
+0022    ISEQP    5   0
+0023    JMP      6 => 0075
+0024    UGET     6   1      ; DocumentRegistry
+0025    MOV      7   6
+0026    TGETS    6   6   9  ; "openDocument"
+0027    MOV      8   4
+0028    CALL     6   2   3
+0029    TGETS    7   5  10  ; "view"
+0030    TGETS    7   7  11  ; "state"
+0031    TGETS    7   7  12  ; "page"
+0032    GGET     8  13      ; "string"
+0033    TGETS    8   8  14  ; "gsub"
+0034    MOV      9   3
+0035    KSTR    10  15      ; "%%c"
+0036    MOV     11   7
+0037    CALL     8   2   4
+0038    MOV      3   8
+0039    MOV      9   6
+0040    TGETS    8   6  16  ; "getPageCount"
+0041    CALL     8   2   2
+0042    GGET     9  13      ; "string"
+0043    TGETS    9   9  14  ; "gsub"
+0044    MOV     10   3
+0045    KSTR    11  17      ; "%%t"
+0046    MOV     12   8
+0047    CALL     9   2   4
+0048    MOV      3   9
+0049    UGET     9   2      ; Math
+0050    TGETS    9   9  18  ; "round"
+0051    MULVN   10   7   0  ; 100
+0052    DIVVV   10  10   8
+0053    CALL     9   2   2
+0054    GGET    10  13      ; "string"
+0055    TGETS   10  10  14  ; "gsub"
+0056    MOV     11   3
+0057    KSTR    12  19      ; "%%p"
+0058    MOV     13   9
+0059    CALL    10   2   4
+0060    MOV      3  10
+0061    MOV     11   6
+0062    TGETS   10   6  20  ; "getProps"
+0063    CALL    10   2   2
+0064    GGET    11  13      ; "string"
+0065    TGETS   11  11  14  ; "gsub"
+0066    MOV     12   3
+0067    KSTR    13  21      ; "%%T"
+0068    TGETS   14  10  22  ; "title"
+0069    CALL    11   2   4
+0070    MOV      3  11
+0071    MOV     12   6
+0072    TGETS   11   6  23  ; "close"
+0073    CALL    11   1   2
+0074    JMP      6 => 0076
+0075 => MOV      3   2
+0076 => RET1     3   2
+
+-- BYTECODE -- screensaver.lua:471-477
+0001    UGET     0   0      ; logger
+0002    TGETS    0   0   0  ; "dbg"
+0003    KSTR     1   1      ; "close screensaver"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; self
+0006    TGETS    0   0   2  ; "left_msg"
+0007    ISF          0
+0008    JMP      1 => 0019
+0009    UGET     0   2      ; UIManager
+0010    MOV      1   0
+0011    TGETS    0   0   3  ; "close"
+0012    UGET     2   1      ; self
+0013    TGETS    2   2   2  ; "left_msg"
+0014    KSTR     3   4      ; "full"
+0015    CALL     0   1   4
+0016    UGET     0   1      ; self
+0017    KPRI     1   0
+0018    TSETS    1   0   2  ; "left_msg"
+0019 => RET0     0   1
+
+-- BYTECODE -- screensaver.lua:466-487
+0001    TGETS    1   0   0  ; "left_msg"
+0002    ISNEP    1   0
+0003    JMP      1 => 0005
+0004    UCLO     0 => 0048
+0005 => GGET     1   1      ; "G_reader_settings"
+0006    MOV      2   1
+0007    TGETS    1   1   2  ; "readSetting"
+0008    KSTR     3   3      ; "screensaver_delay"
+0009    CALL     1   2   3
+0010    GGET     2   4      ; "tonumber"
+0011    MOV      3   1
+0012    CALL     2   2   2
+0013    ISF          2
+0014    JMP      3 => 0022
+0015    UGET     3   0      ; UIManager
+0016    MOV      4   3
+0017    TGETS    3   3   5  ; "scheduleIn"
+0018    MOV      5   2
+0019    FNEW     6   6      ; screensaver.lua:471
+0020    CALL     3   1   4
+0021    JMP      3 => 0046
+0022 => ISEQS    1   7      ; "disable"
+0023    JMP      3 => 0026
+0024    ISNEP    1   0
+0025    JMP      3 => 0042
+0026 => UGET     3   1      ; logger
+0027    TGETS    3   3   8  ; "dbg"
+0028    KSTR     4   9      ; "close screensaver"
+0029    CALL     3   1   2
+0030    TGETS    3   0   0  ; "left_msg"
+0031    ISF          3
+0032    JMP      4 => 0046
+0033    UGET     3   0      ; UIManager
+0034    MOV      4   3
+0035    TGETS    3   3  10  ; "close"
+0036    TGETS    5   0   0  ; "left_msg"
+0037    KSTR     6  11      ; "full"
+0038    CALL     3   1   4
+0039    KPRI     3   0
+0040    TSETS    3   0   0  ; "left_msg"
+0041    JMP      3 => 0046
+0042 => UGET     3   1      ; logger
+0043    TGETS    3   3   8  ; "dbg"
+0044    KSTR     4  12      ; "tap to exit from screensaver"
+0045    CALL     3   1   2
+0046 => UCLO     0 => 0047
+0047 => RET0     0   1
+0048 => RET0     0   1
+
+-- BYTECODE -- screensaver.lua:489-534
+0001    GGET     3   0      ; "require"
+0002    KSTR     4   1      ; "ui/widget/container/framecontainer"
+0003    CALL     3   2   2
+0004    GGET     4   0      ; "require"
+0005    KSTR     5   2      ; "ui/widget/overlapgroup"
+0006    CALL     4   2   2
+0007    GGET     5   0      ; "require"
+0008    KSTR     6   3      ; "ui/widget/container/rightcontainer"
+0009    CALL     5   2   2
+0010    GGET     6   0      ; "require"
+0011    KSTR     7   4      ; "ui/size"
+0012    CALL     6   2   2
+0013    GGET     7   0      ; "require"
+0014    KSTR     8   5      ; "ui/widget/textwidget"
+0015    CALL     7   2   2
+0016    UGET     8   0      ; Font
+0017    MOV      9   8
+0018    TGETS    8   8   6  ; "getFace"
+0019    KSTR    10   7      ; "infofont"
+0020    CALL     8   2   3
+0021    UGET     9   1      ; Screen
+0022    MOV     10   9
+0023    TGETS    9   9   8  ; "getWidth"
+0024    CALL     9   2   2
+0025    UGET    10   1      ; Screen
+0026    MOV     11  10
+0027    TGETS   10  10   9  ; "getHeight"
+0028    CALL    10   2   2
+0029    MOV     12   7
+0030    TGETS   11   7  10  ; "new"
+0031    TDUP    13  11
+0032    TSETS    2  13  12  ; "text"
+0033    TSETS    8  13  13  ; "face"
+0034    CALL    11   2   3
+0035    MOV     13  11
+0036    TGETS   12  11   8  ; "getWidth"
+0037    CALL    12   2   2
+0038    MULVN   13   9   0  ; 0.9
+0039    ISGE    13  12
+0040    JMP     12 => 0054
+0041    UGET    12   2      ; TextBoxWidget
+0042    MOV     13  12
+0043    TGETS   12  12  10  ; "new"
+0044    TDUP    14  14
+0045    TSETS    2  14  12  ; "text"
+0046    TSETS    8  14  13  ; "face"
+0047    GGET    15  15      ; "math"
+0048    TGETS   15  15  16  ; "floor"
+0049    MULVN   16   9   0  ; 0.9
+0050    CALL    15   2   2
+0051    TSETS   15  14  17  ; "width"
+0052    CALL    12   2   3
+0053    MOV     11  12
+0054 => MOV     13   3
+0055    TGETS   12   3  10  ; "new"
+0056    TDUP    14  19
+0057    UGET    15   3      ; Blitbuffer
+0058    TGETS   15  15  18  ; "COLOR_WHITE"
+0059    TSETS   15  14  20  ; "background"
+0060    TGETS   15   6  21  ; "border"
+0061    TGETS   15  15  22  ; "default"
+0062    TSETS   15  14  23  ; "bordersize"
+0063    TSETB   11  14   1
+0064    CALL    12   2   3
+0065    MOV     11  12
+0066    MOV     13   5
+0067    TGETS   12   5  10  ; "new"
+0068    TDUP    14  28
+0069    TDUP    15  24
+0070    TSETS    9  15  25  ; "w"
+0071    MOV     17  11
+0072    TGETS   16  11  26  ; "getSize"
+0073    CALL    16   2   2
+0074    TGETS   16  16  27  ; "h"
+0075    TSETS   16  15  27  ; "h"
+0076    TSETS   15  14  29  ; "dimen"
+0077    TSETB   11  14   1
+0078    CALL    12   2   3
+0079    MOV     11  12
+0080    MOV     13   4
+0081    TGETS   12   4  10  ; "new"
+0082    TDUP    14  31
+0083    TDUP    15  30
+0084    TSETS    9  15  27  ; "h"
+0085    TSETS   10  15  25  ; "w"
+0086    TSETS   15  14  29  ; "dimen"
+0087    TSETB    1  14   1
+0088    TSETB   11  14   2
+0089    CALL    12   2   3
+0090    MOV      1  12
+0091    RET1     1   2
+
+-- BYTECODE -- screensaver.lua:0-537
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/blitbuffer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/buttondialogtitle"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/bookstatuswidget"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/container/bottomcontainer"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "datastorage"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "device"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "docsettings"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "document/documentregistry"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/font"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/geometry"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/infomessage"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/imagewidget"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "optmath"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/widget/screensaverwidget"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/widget/textboxwidget"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "ui/widget/container/topcontainer"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/uimanager"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "libs/libkoreader-lfs"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "logger"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "gettext"
+0063    CALL    20   2   2
+0064    TGETS   21   6  22  ; "screen"
+0065    GGET    22   0      ; "require"
+0066    KSTR    23  23      ; "ffi/util"
+0067    CALL    22   2   2
+0068    TGETS   22  22  24  ; "template"
+0069    TDUP    23  25
+0070    MOV     24  20
+0071    KSTR    25  26      ; "Sleeping"
+0072    CALL    24   2   2
+0073    TNEW    25   0
+0074    FNEW    26  27      ; screensaver.lua:36
+0075    FNEW    27  29      ; screensaver.lua:63
+0076    TSETS   27  25  28  ; "chooseFolder"
+0077    FNEW    27  31      ; screensaver.lua:102
+0078    TSETS   27  25  30  ; "chooseFile"
+0079    FNEW    27  33      ; screensaver.lua:167
+0080    TSETS   27  25  32  ; "stretchImages"
+0081    FNEW    27  35      ; screensaver.lua:171
+0082    TSETS   27  25  34  ; "whiteBackground"
+0083    FNEW    27  37      ; screensaver.lua:175
+0084    TSETS   27  25  36  ; "noBackground"
+0085    FNEW    27  39      ; screensaver.lua:179
+0086    TSETS   27  25  38  ; "excluded"
+0087    FNEW    27  41      ; screensaver.lua:189
+0088    TSETS   27  25  40  ; "setMessage"
+0089    FNEW    27  43      ; screensaver.lua:222
+0090    TSETS   27  25  42  ; "show"
+0091    FNEW    27  45      ; screensaver.lua:434
+0092    TSETS   27  25  44  ; "expandSpecial"
+0093    FNEW    27  47      ; screensaver.lua:466
+0094    TSETS   27  25  46  ; "close"
+0095    FNEW    27  49      ; screensaver.lua:489
+0096    TSETS   27  25  48  ; "addOverlayMessage"
+0097    UCLO     0 => 0098
+0098 => RET1    25   2
+

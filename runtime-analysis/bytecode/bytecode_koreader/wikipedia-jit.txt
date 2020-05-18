@@ -1,0 +1,2373 @@
+-- BYTECODE -- wikipedia.lua:94-96
+0001    GGET     2   0      ; "string"
+0002    TGETS    2   2   1  ; "format"
+0003    TGETS    3   0   2  ; "wiki_server"
+0004    ISTC     4   1
+0005    JMP      4 => 0007
+0006    TGETS    4   0   3  ; "default_lang"
+0007 => CALLT    2   3
+
+-- BYTECODE -- wikipedia.lua:113-120
+0001    UGET     2   0      ; ffiutil
+0002    TGETS    2   2   0  ; "gettime"
+0003    CALL     2   3   1
+0004    DIVVN    4   3   0  ; 1000000
+0005    ADDVV    4   2   4
+0006    UGET     5   1      ; starttime
+0007    SUBVV    4   4   5
+0008    UGET     5   2      ; maxtime
+0009    ISGE     5   4
+0010    JMP      4 => 0014
+0011    KPRI     4   0
+0012    UGET     5   3      ; MAXTIME_CODE
+0013    RET      4   3
+0014 => ISF          0
+0015    JMP      4 => 0021
+0016    GGET     4   1      ; "table"
+0017    TGETS    4   4   2  ; "insert"
+0018    UGET     5   4      ; t
+0019    MOV      6   0
+0020    CALL     4   1   3
+0021 => KSHORT   4   1
+0022    RET1     4   2
+
+-- BYTECODE -- wikipedia.lua:108-122
+0001    UGET     2   0      ; ffiutil
+0002    TGETS    2   2   0  ; "gettime"
+0003    CALL     2   3   1
+0004    DIVVN    4   3   0  ; 1000000
+0005    ADDVV    4   2   4
+0006    IST          0
+0007    JMP      5 => 0009
+0008    TNEW     0   0
+0009 => FNEW     5   1      ; wikipedia.lua:113
+0010    MOV      6   5
+0011    MOV      7   0
+0012    UCLO     0 => 0013
+0013 => RET      6   3
+
+-- BYTECODE -- wikipedia.lua:125-195
+0001    GGET     3   0      ; "require"
+0002    KSTR     4   1      ; "socket"
+0003    CALL     3   2   2
+0004    GGET     4   0      ; "require"
+0005    KSTR     5   2      ; "ltn12"
+0006    CALL     4   2   2
+0007    GGET     5   0      ; "require"
+0008    KSTR     6   3      ; "socket.http"
+0009    CALL     5   2   2
+0010    GGET     6   0      ; "require"
+0011    KSTR     7   4      ; "ssl.https"
+0012    CALL     6   2   2
+0013    KPRI     7   0
+0014    MOV      9   0
+0015    TGETS    8   0   5  ; "sub"
+0016    KSHORT  10   1
+0017    KSHORT  11   7
+0018    CALL     8   2   4
+0019    ISNES    8   6      ; "http://"
+0020    JMP      8 => 0023
+0021    MOV      7   5
+0022    JMP      8 => 0035
+0023 => MOV      9   0
+0024    TGETS    8   0   5  ; "sub"
+0025    KSHORT  10   1
+0026    KSHORT  11   8
+0027    CALL     8   2   4
+0028    ISNES    8   7      ; "https://"
+0029    JMP      8 => 0032
+0030    MOV      7   6
+0031    JMP      8 => 0035
+0032 => KPRI     8   1
+0033    KSTR     9   8      ; "Unsupported protocol"
+0034    RET      8   3
+0035 => IST          1
+0036    JMP      8 => 0038
+0037    KSHORT   1  10
+0038 => MOV      8   1
+0039    TSETS    1   6   9  ; "TIMEOUT"
+0040    TSETS    8   5   9  ; "TIMEOUT"
+0041    TNEW     8   0
+0042    TNEW     9   0
+0043    TSETS    0   8  10  ; "url"
+0044    KSTR    10  12      ; "GET"
+0045    TSETS   10   8  11  ; "method"
+0046    TDUP    10  14
+0047    UGET    11   0      ; USER_AGENT
+0048    TSETS   11  10  15  ; "User-Agent"
+0049    TSETS   10   8  13  ; "headers"
+0050    ISF          2
+0051    JMP     10 => 0058
+0052    UGET    10   1      ; sink_table_with_maxtime
+0053    MOV     11   9
+0054    MOV     12   2
+0055    CALL    10   2   3
+0056    TSETS   10   8  16  ; "sink"
+0057    JMP     10 => 0063
+0058 => TGETS   10   4  16  ; "sink"
+0059    TGETS   10  10  17  ; "table"
+0060    MOV     11   9
+0061    CALL    10   2   2
+0062    TSETS   10   8  16  ; "sink"
+0063 => TGETS   10   3  18  ; "skip"
+0064    KSHORT  11   1
+0065    TGETS   12   7  19  ; "request"
+0066    MOV     13   8
+0067    CALL    12   0   2
+0068    CALLM   10   4   1
+0069    GGET    13  17      ; "table"
+0070    TGETS   13  13  20  ; "concat"
+0071    MOV     14   9
+0072    CALL    13   2   2
+0073    UGET    14   2      ; TIMEOUT_CODE
+0074    ISEQV   10  14
+0075    JMP     14 => 0079
+0076    UGET    14   3      ; MAXTIME_CODE
+0077    ISNEV   10  14
+0078    JMP     14 => 0087
+0079 => UGET    14   4      ; logger
+0080    TGETS   14  14  21  ; "warn"
+0081    KSTR    15  22      ; "request interrupted:"
+0082    MOV     16  10
+0083    CALL    14   1   3
+0084    KPRI    14   1
+0085    MOV     15  10
+0086    RET     14   3
+0087 => ISNEP   11   0
+0088    JMP     14 => 0098
+0089    UGET    14   4      ; logger
+0090    TGETS   14  14  21  ; "warn"
+0091    KSTR    15  23      ; "No HTTP headers:"
+0092    MOV     16  10
+0093    MOV     17  12
+0094    CALL    14   1   4
+0095    KPRI    14   1
+0096    KSTR    15  24      ; "Network or remote server unavailable"
+0097    RET     14   3
+0098 => ISF         10
+0099    JMP     14 => 0108
+0100    GGET    14  25      ; "string"
+0101    TGETS   14  14   5  ; "sub"
+0102    MOV     15  10
+0103    KSHORT  16   1
+0104    KSHORT  17   1
+0105    CALL    14   2   4
+0106    ISEQS   14  26      ; "2"
+0107    JMP     14 => 0117
+0108 => UGET    14   4      ; logger
+0109    TGETS   14  14  21  ; "warn"
+0110    KSTR    15  27      ; "HTTP status not okay:"
+0111    MOV     16  10
+0112    MOV     17  12
+0113    CALL    14   1   4
+0114    KPRI    14   1
+0115    KSTR    15  28      ; "Remote server error or unavailable"
+0116    RET     14   3
+0117 => ISF         11
+0118    JMP     14 => 0131
+0119    TGETS   14  11  29  ; "content-length"
+0120    ISF         14
+0121    JMP     15 => 0131
+0122    GGET    14  30      ; "tonumber"
+0123    TGETS   15  11  29  ; "content-length"
+0124    CALL    14   2   2
+0125    LEN     15  13
+0126    ISEQV   15  14
+0127    JMP     15 => 0131
+0128    KPRI    15   1
+0129    KSTR    16  31      ; "Incomplete content received"
+0130    RET     15   3
+0131 => KPRI    14   2
+0132    MOV     15  13
+0133    RET     14   3
+
+-- BYTECODE -- wikipedia.lua:197-199
+0001    TSETS    1   0   0  ; "trap_widget"
+0002    RET0     0   1
+
+-- BYTECODE -- wikipedia.lua:201-203
+0001    KPRI     1   0
+0002    TSETS    1   0   0  ; "trap_widget"
+0003    RET0     0   1
+
+-- BYTECODE -- wikipedia.lua:251-253
+0001    UGET     0   0      ; getUrlContent
+0002    UGET     1   1      ; built_url
+0003    UGET     2   2      ; timeout
+0004    UGET     3   3      ; maxtime
+0005    CALLT    0   4
+
+-- BYTECODE -- wikipedia.lua:214-281
+0001    GGET     5   0      ; "require"
+0002    KSTR     6   1      ; "socket.url"
+0003    CALL     5   2   2
+0004    KSTR     6   2      ; ""
+0005    TGETS    7   5   3  ; "parse"
+0006    MOV      9   0
+0007    TGETS    8   0   4  ; "getWikiServer"
+0008    MOV     10   2
+0009    CALL     8   0   3
+0010    CALLM    7   2   0
+0011    TGETS    8   0   6  ; "wiki_path"
+0012    TSETS    8   7   5  ; "path"
+0013    UGET     8   0      ; WIKIPEDIA_INTRO
+0014    ISNEV    3   8
+0015    JMP      8 => 0045
+0016    TGETS    8   0   7  ; "wiki_search_params"
+0017    ISF          4
+0018    JMP      9 => 0021
+0019    KSTR     9   2      ; ""
+0020    JMP     10 => 0022
+0021 => KPRI     9   0
+0022 => TSETS    9   8   8  ; "explaintext"
+0023    GGET     8   9      ; "pairs"
+0024    TGETS    9   0   7  ; "wiki_search_params"
+0025    CALL     8   4   2
+0026    ISNEXT  11 => 0035
+0027 => GGET    13  10      ; "string"
+0028    TGETS   13  13  11  ; "format"
+0029    KSTR    14  12      ; "%s%s=%s&"
+0030    MOV     15   6
+0031    MOV     16  11
+0032    MOV     17  12
+0033    CALL    13   2   5
+0034    MOV      6  13
+0035 => ITERN   11   3   3
+0036    ITERL   11 => 0027
+0037    MOV      8   6
+0038    KSTR     9  14      ; "gsrsearch="
+0039    TGETS   10   5  15  ; "escape"
+0040    MOV     11   1
+0041    CALL    10   2   2
+0042    CAT      8   8  10
+0043    TSETS    8   7  13  ; "query"
+0044    JMP      8 => 0128
+0045 => UGET     8   1      ; WIKIPEDIA_FULL
+0046    ISNEV    3   8
+0047    JMP      8 => 0077
+0048    TGETS    8   0  16  ; "wiki_full_params"
+0049    ISF          4
+0050    JMP      9 => 0053
+0051    KSTR     9   2      ; ""
+0052    JMP     10 => 0054
+0053 => KPRI     9   0
+0054 => TSETS    9   8   8  ; "explaintext"
+0055    GGET     8   9      ; "pairs"
+0056    TGETS    9   0  16  ; "wiki_full_params"
+0057    CALL     8   4   2
+0058    ISNEXT  11 => 0067
+0059 => GGET    13  10      ; "string"
+0060    TGETS   13  13  11  ; "format"
+0061    KSTR    14  12      ; "%s%s=%s&"
+0062    MOV     15   6
+0063    MOV     16  11
+0064    MOV     17  12
+0065    CALL    13   2   5
+0066    MOV      6  13
+0067 => ITERN   11   3   3
+0068    ITERL   11 => 0059
+0069    MOV      8   6
+0070    KSTR     9  17      ; "titles="
+0071    TGETS   10   5  15  ; "escape"
+0072    MOV     11   1
+0073    CALL    10   2   2
+0074    CAT      8   8  10
+0075    TSETS    8   7  13  ; "query"
+0076    JMP      8 => 0128
+0077 => UGET     8   2      ; WIKIPEDIA_PHTML
+0078    ISNEV    3   8
+0079    JMP      8 => 0102
+0080    GGET     8   9      ; "pairs"
+0081    TGETS    9   0  18  ; "wiki_phtml_params"
+0082    CALL     8   4   2
+0083    ISNEXT  11 => 0092
+0084 => GGET    13  10      ; "string"
+0085    TGETS   13  13  11  ; "format"
+0086    KSTR    14  12      ; "%s%s=%s&"
+0087    MOV     15   6
+0088    MOV     16  11
+0089    MOV     17  12
+0090    CALL    13   2   5
+0091    MOV      6  13
+0092 => ITERN   11   3   3
+0093    ITERL   11 => 0084
+0094    MOV      8   6
+0095    KSTR     9  19      ; "page="
+0096    TGETS   10   5  15  ; "escape"
+0097    MOV     11   1
+0098    CALL    10   2   2
+0099    CAT      8   8  10
+0100    TSETS    8   7  13  ; "query"
+0101    JMP      8 => 0128
+0102 => UGET     8   3      ; WIKIPEDIA_IMAGES
+0103    ISNEV    3   8
+0104    JMP      8 => 0127
+0105    GGET     8   9      ; "pairs"
+0106    TGETS    9   0  20  ; "wiki_images_params"
+0107    CALL     8   4   2
+0108    ISNEXT  11 => 0117
+0109 => GGET    13  10      ; "string"
+0110    TGETS   13  13  11  ; "format"
+0111    KSTR    14  12      ; "%s%s=%s&"
+0112    MOV     15   6
+0113    MOV     16  11
+0114    MOV     17  12
+0115    CALL    13   2   5
+0116    MOV      6  13
+0117 => ITERN   11   3   3
+0118    ITERL   11 => 0109
+0119    MOV      8   6
+0120    KSTR     9  19      ; "page="
+0121    TGETS   10   5  15  ; "escape"
+0122    MOV     11   1
+0123    CALL    10   2   2
+0124    CAT      8   8  10
+0125    TSETS    8   7  13  ; "query"
+0126    JMP      8 => 0128
+0127 => UCLO     0 => 0214
+0128 => TGETS    8   5  21  ; "build"
+0129    MOV      9   7
+0130    CALL     8   2   2
+0131    KNIL     9  11
+0132    TGETS   12   0  22  ; "trap_widget"
+0133    ISF         12
+0134    JMP     13 => 0154
+0135    GGET    12   0      ; "require"
+0136    KSTR    13  23      ; "ui/trapper"
+0137    CALL    12   2   2
+0138    KSHORT  13  30
+0139    KSHORT  14  60
+0140    MOV     16  12
+0141    TGETS   15  12  24  ; "dismissableRunInSubprocess"
+0142    FNEW    17  25      ; wikipedia.lua:251
+0143    TGETS   18   0  22  ; "trap_widget"
+0144    CALL    15   4   4
+0145    MOV     11  17
+0146    MOV     10  16
+0147    MOV      9  15
+0148    IST          9
+0149    JMP     15 => 0153
+0150    GGET    15  26      ; "error"
+0151    TGETS   16   0  27  ; "dismissed_error_code"
+0152    CALL    15   1   2
+0153 => UCLO    12 => 0163
+0154 => KSHORT  12  20
+0155    KSHORT  13  60
+0156    UGET    14   4      ; getUrlContent
+0157    MOV     15   8
+0158    MOV     16  12
+0159    MOV     17  13
+0160    CALL    14   3   4
+0161    MOV     11  15
+0162    MOV     10  14
+0163 => IST         10
+0164    JMP     12 => 0168
+0165    GGET    12  26      ; "error"
+0166    MOV     13  11
+0167    CALL    12   1   2
+0168 => ISEQS   11   2      ; ""
+0169    JMP     12 => 0204
+0170    GGET    12  10      ; "string"
+0171    TGETS   12  12  28  ; "sub"
+0172    MOV     13  11
+0173    KSHORT  14   1
+0174    KSHORT  15   1
+0175    CALL    12   2   4
+0176    ISNES   12  29      ; "{"
+0177    JMP     12 => 0204
+0178    GGET    12  30      ; "pcall"
+0179    UGET    13   5      ; JSON
+0180    TGETS   13  13  31  ; "decode"
+0181    MOV     14  11
+0182    CALL    12   3   3
+0183    ISF         12
+0184    JMP     14 => 0195
+0185    ISF         13
+0186    JMP     14 => 0195
+0187    UGET    14   6      ; logger
+0188    TGETS   14  14  32  ; "dbg"
+0189    KSTR    15  33      ; "wiki result json:"
+0190    MOV     16  13
+0191    CALL    14   1   3
+0192    UCLO     0 => 0193
+0193 => RET1    13   2
+0194    JMP     14 => 0212
+0195 => UGET    14   6      ; logger
+0196    TGETS   14  14  34  ; "warn"
+0197    KSTR    15  35      ; "wiki result json decoding error:"
+0198    MOV     16  13
+0199    CALL    14   1   3
+0200    GGET    14  26      ; "error"
+0201    KSTR    15  36      ; "Failed decoding JSON"
+0202    CALL    14   1   2
+0203    JMP     12 => 0212
+0204 => UGET    12   6      ; logger
+0205    TGETS   12  12  34  ; "warn"
+0206    KSTR    13  37      ; "wiki response is not json:"
+0207    MOV     14  11
+0208    CALL    12   1   3
+0209    GGET    12  26      ; "error"
+0210    KSTR    13  38      ; "Response is not JSON"
+0211    CALL    12   1   2
+0212 => UCLO     0 => 0213
+0213 => RET0     0   1
+0214 => RET0     0   1
+
+-- BYTECODE -- wikipedia.lua:284-301
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "loadPage"
+0003    MOV      5   1
+0004    MOV      6   2
+0005    UGET     7   0      ; WIKIPEDIA_INTRO
+0006    KPRI     8   2
+0007    CALL     3   2   6
+0008    ISF          3
+0009    JMP      4 => 0042
+0010    TGETS    4   3   1  ; "query"
+0011    ISF          4
+0012    JMP      5 => 0042
+0013    GGET     5   2      ; "G_reader_settings"
+0014    MOV      6   5
+0015    TGETS    5   5   3  ; "nilOrTrue"
+0016    KSTR     7   4      ; "wikipedia_show_image"
+0017    CALL     5   2   3
+0018    UGET     6   1      ; Screen
+0019    MOV      7   6
+0020    TGETS    6   6   5  ; "scaleBySize"
+0021    KSHORT   8 200
+0022    CALL     6   2   3
+0023    DIVVN    6   6   0  ; 100
+0024    ISF          5
+0025    JMP      7 => 0040
+0026    GGET     7   6      ; "pairs"
+0027    TGETS    8   4   7  ; "pages"
+0028    CALL     7   4   2
+0029    ISNEXT  10 => 0038
+0030 => MOV     13   0
+0031    TGETS   12   0   8  ; "addImages"
+0032    MOV     14  11
+0033    MOV     15   2
+0034    KPRI    16   1
+0035    MOV     17   6
+0036    KSHORT  18   8
+0037    CALL    12   1   7
+0038 => ITERN   10   3   3
+0039    ITERL   10 => 0030
+0040 => TGETS    7   4   7  ; "pages"
+0041    RET1     7   2
+0042 => RET0     0   1
+
+-- BYTECODE -- wikipedia.lua:304-328
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "loadPage"
+0003    MOV      5   1
+0004    MOV      6   2
+0005    UGET     7   0      ; WIKIPEDIA_FULL
+0006    KPRI     8   2
+0007    CALL     3   2   6
+0008    ISF          3
+0009    JMP      4 => 0063
+0010    TGETS    4   3   1  ; "query"
+0011    ISF          4
+0012    JMP      5 => 0063
+0013    GGET     5   2      ; "G_reader_settings"
+0014    MOV      6   5
+0015    TGETS    5   5   3  ; "nilOrTrue"
+0016    KSTR     7   4      ; "wikipedia_show_image"
+0017    CALL     5   2   3
+0018    GGET     6   2      ; "G_reader_settings"
+0019    MOV      7   6
+0020    TGETS    6   6   3  ; "nilOrTrue"
+0021    KSTR     8   5      ; "wikipedia_show_more_images"
+0022    CALL     6   2   3
+0023    UGET     7   1      ; Screen
+0024    MOV      8   7
+0025    TGETS    7   7   6  ; "scaleBySize"
+0026    KSHORT   9 400
+0027    CALL     7   2   3
+0028    DIVVN    7   7   0  ; 100
+0029    TGETS    8   0   7  ; "wiki_prettify"
+0030    IST          8
+0031    JMP      9 => 0034
+0032    ISF          5
+0033    JMP      8 => 0061
+0034 => GGET     8   8      ; "pairs"
+0035    TGETS    9   4   9  ; "pages"
+0036    CALL     8   4   2
+0037    ISNEXT  11 => 0059
+0038 => TGETS   13   0   7  ; "wiki_prettify"
+0039    ISF         13
+0040    JMP     14 => 0049
+0041    TGETS   13  12  10  ; "extract"
+0042    ISF         13
+0043    JMP     14 => 0049
+0044    MOV     14   0
+0045    TGETS   13   0  11  ; "prettifyText"
+0046    TGETS   15  12  10  ; "extract"
+0047    CALL    13   2   3
+0048    TSETS   13  12  10  ; "extract"
+0049 => ISF          5
+0050    JMP     13 => 0059
+0051    MOV     14   0
+0052    TGETS   13   0  12  ; "addImages"
+0053    MOV     15  12
+0054    MOV     16   2
+0055    MOV     17   6
+0056    MOV     18   7
+0057    KSHORT  19   4
+0058    CALL    13   1   7
+0059 => ITERN   11   3   3
+0060    ITERL   11 => 0038
+0061 => TGETS    8   4   9  ; "pages"
+0062    RET1     8   2
+0063 => RET0     0   1
+
+-- BYTECODE -- wikipedia.lua:331-339
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "loadPage"
+0003    MOV      5   1
+0004    MOV      6   2
+0005    UGET     7   0      ; WIKIPEDIA_PHTML
+0006    KPRI     8   2
+0007    CALL     3   2   6
+0008    ISF          3
+0009    JMP      4 => 0015
+0010    TGETS    4   3   1  ; "parse"
+0011    ISF          4
+0012    JMP      5 => 0015
+0013    TGETS    4   3   1  ; "parse"
+0014    RET1     4   2
+0015 => TGETS    4   3   2  ; "error"
+0016    ISF          4
+0017    JMP      5 => 0026
+0018    TGETS    4   3   2  ; "error"
+0019    TGETS    4   4   3  ; "info"
+0020    ISF          4
+0021    JMP      5 => 0026
+0022    GGET     4   2      ; "error"
+0023    TGETS    5   3   2  ; "error"
+0024    TGETS    5   5   3  ; "info"
+0025    CALL     4   1   2
+0026 => RET0     0   1
+
+-- BYTECODE -- wikipedia.lua:342-415
+0001    TNEW     3   0
+0002    MOV      5   0
+0003    TGETS    4   0   0  ; "loadPage"
+0004    MOV      6   1
+0005    MOV      7   2
+0006    UGET     8   0      ; WIKIPEDIA_IMAGES
+0007    KPRI     9   2
+0008    CALL     4   2   6
+0009    ISF          4
+0010    JMP      5 => 0175
+0011    TGETS    5   4   1  ; "parse"
+0012    ISF          5
+0013    JMP      6 => 0175
+0014    TGETS    5   4   1  ; "parse"
+0015    TGETS    5   5   2  ; "text"
+0016    ISF          5
+0017    JMP      6 => 0175
+0018    TGETS    5   4   1  ; "parse"
+0019    TGETS    5   5   2  ; "text"
+0020    TGETS    5   5   3  ; "*"
+0021    ISF          5
+0022    JMP      6 => 0175
+0023    TGETS    5   4   1  ; "parse"
+0024    TGETS    5   5   2  ; "text"
+0025    TGETS    5   5   3  ; "*"
+0026    GGET     6   4      ; "require"
+0027    KSTR     7   5      ; "socket.url"
+0028    CALL     6   2   2
+0029    MOV      8   0
+0030    TGETS    7   0   6  ; "getWikiServer"
+0031    MOV      9   2
+0032    CALL     7   2   3
+0033    TNEW     8   0
+0034    MOV     10   5
+0035    TGETS    9   5   7  ; "gmatch"
+0036    KSTR    11   8      ; "<div class="thumbinner".-</div>%s*</div>"
+0037    CALL     9   4   3
+0038    JMP     12 => 0044
+0039 => GGET    13   9      ; "table"
+0040    TGETS   13  13  10  ; "insert"
+0041    MOV     14   8
+0042    MOV     15  12
+0043    CALL    13   1   3
+0044 => ITERC   12   2   3
+0045    ITERL   12 => 0039
+0046    MOV     10   5
+0047    TGETS    9   5   7  ; "gmatch"
+0048    KSTR    11  11      ; "<li class="gallerybox".-<div class="thum"~
+0049    CALL     9   4   3
+0050    JMP     12 => 0056
+0051 => GGET    13   9      ; "table"
+0052    TGETS   13  13  10  ; "insert"
+0053    MOV     14   8
+0054    MOV     15  12
+0055    CALL    13   1   3
+0056 => ITERC   12   2   3
+0057    ITERL   12 => 0051
+0058    GGET     9  12      ; "ipairs"
+0059    MOV     10   8
+0060    CALL     9   4   2
+0061    JMP     12 => 0173
+0062 => MOV     15  13
+0063    TGETS   14  13  13  ; "match"
+0064    KSTR    16  14      ; "<a href="/wiki/[^:]*:([^"]*)" class="ima"~
+0065    CALL    14   2   3
+0066    ISF         14
+0067    JMP     15 => 0072
+0068    TGETS   15   6  15  ; "unescape"
+0069    MOV     16  14
+0070    CALL    15   2   2
+0071    MOV     14  15
+0072 => UGET    15   1      ; logger
+0073    TGETS   15  15  16  ; "dbg"
+0074    KSTR    16  17      ; "found image with filename:"
+0075    MOV     17  14
+0076    CALL    15   1   3
+0077    MOV     16  13
+0078    TGETS   15  13  13  ; "match"
+0079    KSTR    17  18      ; "(<img .->)(.*)"
+0080    CALL    15   3   3
+0081    ISF         15
+0082    JMP     17 => 0173
+0083    ISF         16
+0084    JMP     17 => 0173
+0085    ISFC    17  16
+0086    JMP     17 => 0091
+0087    UGET    17   2      ; util
+0088    TGETS   17  17  19  ; "htmlToPlainText"
+0089    MOV     18  16
+0090    CALL    17   2   2
+0091 => ISNES   17  20      ; ""
+0092    JMP     18 => 0094
+0093    KPRI    17   0
+0094 => UGET    18   1      ; logger
+0095    TGETS   18  18  16  ; "dbg"
+0096    KSTR    19  21      ; "  caption:"
+0097    MOV     20  17
+0098    CALL    18   1   3
+0099    MOV     19  15
+0100    TGETS   18  15  13  ; "match"
+0101    KSTR    20  22      ; "src="([^"]*)""
+0102    CALL    18   2   3
+0103    ISF         18
+0104    JMP     19 => 0173
+0105    ISEQS   18  20      ; ""
+0106    JMP     19 => 0173
+0107    MOV     20  18
+0108    TGETS   19  18  23  ; "sub"
+0109    KSHORT  21   1
+0110    KSHORT  22   2
+0111    CALL    19   2   4
+0112    ISNES   19  24      ; "//"
+0113    JMP     19 => 0118
+0114    KSTR    19  25      ; "https:"
+0115    MOV     20  18
+0116    CAT     18  19  20
+0117    JMP     19 => 0128
+0118 => MOV     20  18
+0119    TGETS   19  18  23  ; "sub"
+0120    KSHORT  21   1
+0121    KSHORT  22   1
+0122    CALL    19   2   4
+0123    ISNES   19  26      ; "/"
+0124    JMP     19 => 0128
+0125    MOV     19   7
+0126    MOV     20  18
+0127    CAT     18  19  20
+0128 => GGET    19  27      ; "tonumber"
+0129    MOV     21  15
+0130    TGETS   20  15  13  ; "match"
+0131    KSTR    22  28      ; "width="([^"]*)""
+0132    CALL    20   0   3
+0133    CALLM   19   2   0
+0134    GGET    20  27      ; "tonumber"
+0135    MOV     22  15
+0136    TGETS   21  15  13  ; "match"
+0137    KSTR    23  29      ; "height="([^"]*)""
+0138    CALL    21   0   3
+0139    CALLM   20   2   0
+0140    ISF         19
+0141    JMP     21 => 0173
+0142    ISF         20
+0143    JMP     21 => 0173
+0144    GGET    21  30      ; "math"
+0145    TGETS   21  21  31  ; "ceil"
+0146    DIVVN   22  19   0  ; 4.5
+0147    CALL    21   2   2
+0148    MOV     19  21
+0149    GGET    21  30      ; "math"
+0150    TGETS   21  21  31  ; "ceil"
+0151    DIVVN   22  20   0  ; 4.5
+0152    CALL    21   2   2
+0153    MOV     20  21
+0154    UGET    21   1      ; logger
+0155    TGETS   21  21  16  ; "dbg"
+0156    KSTR    22  32      ; "  size:"
+0157    MOV     23  19
+0158    KSTR    24  33      ; "x"
+0159    MOV     25  20
+0160    KSTR    26  34      ; "url:"
+0161    MOV     27  18
+0162    CALL    21   1   7
+0163    GGET    21   9      ; "table"
+0164    TGETS   21  21  10  ; "insert"
+0165    MOV     22   3
+0166    TDUP    23  35
+0167    TSETS   18  23  36  ; "source"
+0168    TSETS   19  23  37  ; "width"
+0169    TSETS   20  23  38  ; "height"
+0170    TSETS   14  23  39  ; "filename"
+0171    TSETS   17  23  40  ; "caption"
+0172    CALL    21   1   3
+0173 => ITERC   12   3   3
+0174    ITERL   12 => 0062
+0175 => RET1     3   2
+
+-- BYTECODE -- wikipedia.lua:441-449
+0001    UGET     0   0      ; getUrlContent
+0002    UGET     1   1      ; source
+0003    UGET     2   2      ; timeout
+0004    UGET     3   3      ; maxtime
+0005    CALL     0   3   4
+0006    IST          0
+0007    JMP      2 => 0015
+0008    UGET     2   4      ; logger
+0009    TGETS    2   2   0  ; "warn"
+0010    KSTR     3   1      ; "failed fetching image from"
+0011    UGET     4   1      ; source
+0012    KSTR     5   2      ; ":"
+0013    MOV      6   1
+0014    CALL     2   1   5
+0015 => ISF          0
+0016    JMP      2 => 0019
+0017    ISTC     2   1
+0018    JMP      2 => 0020
+0019 => KPRI     2   0
+0020 => RET1     2   2
+
+-- BYTECODE -- wikipedia.lua:418-487
+0001    KNIL     2   3
+0002    IST          1
+0003    JMP      4 => 0007
+0004    KPRI     3   0
+0005    TGETS    2   0   0  ; "source"
+0006    JMP      4 => 0012
+0007 => UGET     4   0      ; _
+0008    KSTR     5   1      ; "Loading high-res image… (tap to cancel"~
+0009    CALL     4   2   2
+0010    MOV      3   4
+0011    TGETS    2   0   2  ; "hi_source"
+0012 => KSHORT   4  60
+0013    KSHORT   5 120
+0014    UGET     6   1      ; logger
+0015    TGETS    6   6   3  ; "dbg"
+0016    KSTR     7   4      ; "fetching"
+0017    MOV      8   2
+0018    CALL     6   1   3
+0019    GGET     6   5      ; "require"
+0020    KSTR     7   6      ; "ui/trapper"
+0021    CALL     6   2   2
+0022    MOV      8   6
+0023    TGETS    7   6   7  ; "dismissableRunInSubprocess"
+0024    FNEW     9   8      ; wikipedia.lua:441
+0025    MOV     10   3
+0026    KPRI    11   2
+0027    CALL     7   3   5
+0028    ISF          8
+0029    JMP      9 => 0032
+0030    KPRI     9   2
+0031    JMP     10 => 0033
+0032 => KPRI     9   1
+0033 => IST          7
+0034    JMP     10 => 0042
+0035    UGET    10   1      ; logger
+0036    TGETS   10  10   3  ; "dbg"
+0037    KSTR    11   9      ; "image fetching interrupted by user"
+0038    CALL    10   1   2
+0039    KPRI    10   2
+0040    UCLO     0 => 0041
+0041 => RET1    10   2
+0042 => IST          9
+0043    JMP     10 => 0051
+0044    UGET    10   1      ; logger
+0045    TGETS   10  10  10  ; "warn"
+0046    KSTR    11  11      ; "failed fetching image from"
+0047    MOV     12   2
+0048    CALL    10   1   3
+0049    UCLO     0 => 0050
+0050 => RET0     0   1
+0051 => UGET    10   1      ; logger
+0052    TGETS   10  10   3  ; "dbg"
+0053    KSTR    11  12      ; " fetched"
+0054    LEN     12   8
+0055    CALL    10   1   3
+0056    KPRI    10   0
+0057    IST          1
+0058    JMP     11 => 0070
+0059    UGET    11   3      ; RenderImage
+0060    MOV     12  11
+0061    TGETS   11  11  13  ; "renderImageData"
+0062    MOV     13   8
+0063    LEN     14   8
+0064    KPRI    15   1
+0065    TGETS   16   0  14  ; "width"
+0066    TGETS   17   0  15  ; "height"
+0067    CALL    11   2   7
+0068    MOV     10  11
+0069    JMP     11 => 0078
+0070 => UGET    11   3      ; RenderImage
+0071    MOV     12  11
+0072    TGETS   11  11  13  ; "renderImageData"
+0073    MOV     13   8
+0074    LEN     14   8
+0075    KPRI    15   2
+0076    CALL    11   2   5
+0077    MOV     10  11
+0078 => IST         10
+0079    JMP     11 => 0087
+0080    UGET    11   1      ; logger
+0081    TGETS   11  11  10  ; "warn"
+0082    KSTR    12  16      ; "failed building image from"
+0083    MOV     13   2
+0084    CALL    11   1   3
+0085    UCLO     0 => 0086
+0086 => RET0     0   1
+0087 => IST          1
+0088    JMP     11 => 0091
+0089    TSETS   10   0  17  ; "bb"
+0090    JMP     11 => 0092
+0091 => TSETS   10   0  18  ; "hi_bb"
+0092 => UCLO     0 => 0093
+0093 => RET0     0   1
+
+-- BYTECODE -- wikipedia.lua:577-579
+0001    UGET     1   0      ; image_load_bb_func
+0002    UGET     2   1      ; image
+0003    MOV      3   0
+0004    CALLT    1   3
+
+-- BYTECODE -- wikipedia.lua:489-582
+0001    TNEW     6   0
+0002    TSETS    6   1   0  ; "images"
+0003    TNEW     6   0
+0004    KPRI     7   0
+0005    TGETS    8   1   1  ; "thumbnail"
+0006    ISF          8
+0007    JMP      9 => 0021
+0008    TGETS    8   1   1  ; "thumbnail"
+0009    TGETS    8   8   2  ; "source"
+0010    ISF          8
+0011    JMP      9 => 0021
+0012    TGETS    8   1   1  ; "thumbnail"
+0013    TGETS    9   1   4  ; "pageimage"
+0014    TSETS    9   8   3  ; "filename"
+0015    TGETS    7   1   4  ; "pageimage"
+0016    GGET     8   5      ; "table"
+0017    TGETS    8   8   6  ; "insert"
+0018    MOV      9   6
+0019    TGETS   10   1   1  ; "thumbnail"
+0020    CALL     8   1   3
+0021 => ISF          3
+0022    JMP      8 => 0066
+0023    GGET     8   7      ; "pcall"
+0024    UGET     9   0      ; Wikipedia
+0025    TGETS    9   9   8  ; "getFullPageImages"
+0026    UGET    10   0      ; Wikipedia
+0027    TGETS   11   1   9  ; "title"
+0028    MOV     12   2
+0029    CALL     8   3   5
+0030    IST          8
+0031    JMP     10 => 0038
+0032    UGET    10   1      ; logger
+0033    TGETS   10  10  10  ; "warn"
+0034    KSTR    11  11      ; "error getting more images"
+0035    MOV     12   9
+0036    CALL    10   1   3
+0037    JMP     10 => 0066
+0038 => GGET    10  12      ; "ipairs"
+0039    MOV     11   9
+0040    CALL    10   4   2
+0041    JMP     13 => 0064
+0042 => ISF          7
+0043    JMP     15 => 0059
+0044    TGETS   15  14   3  ; "filename"
+0045    ISNEV   15   7
+0046    JMP     15 => 0059
+0047    GGET    15   5      ; "table"
+0048    TGETS   15  15  13  ; "remove"
+0049    MOV     16   6
+0050    KSHORT  17   1
+0051    CALL    15   1   3
+0052    GGET    15   5      ; "table"
+0053    TGETS   15  15   6  ; "insert"
+0054    MOV     16   6
+0055    KSHORT  17   1
+0056    MOV     18  14
+0057    CALL    15   1   4
+0058    JMP     15 => 0064
+0059 => GGET    15   5      ; "table"
+0060    TGETS   15  15   6  ; "insert"
+0061    MOV     16   6
+0062    MOV     17  14
+0063    CALL    15   1   3
+0064 => ITERC   13   3   3
+0065    ITERL   13 => 0042
+0066 => GGET     8  12      ; "ipairs"
+0067    MOV      9   6
+0068    CALL     8   4   2
+0069    JMP     11 => 0149
+0070 => TGETS   13  12  14  ; "width"
+0071    IST         13
+0072    JMP     14 => 0074
+0073    KSHORT  13 100
+0074 => TGETS   14  12  15  ; "height"
+0075    IST         14
+0076    JMP     15 => 0078
+0077    KSHORT  14 100
+0078 => DIVVN   15  14   0  ; 2
+0079    ISLT    13  15
+0080    JMP     15 => 0084
+0081    DIVVN   15  13   0  ; 2
+0082    ISGE    14  15
+0083    JMP     15 => 0086
+0084 => MULVN   13  13   1  ; 1.3
+0085    MULVN   14  14   1  ; 1.3
+0086 => GGET    15  16      ; "math"
+0087    TGETS   15  15  17  ; "ceil"
+0088    MULVV   16  13   4
+0089    CALL    15   2   2
+0090    MOV     13  15
+0091    GGET    15  16      ; "math"
+0092    TGETS   15  15  17  ; "ceil"
+0093    MULVV   16  14   4
+0094    CALL    15   2   2
+0095    MOV     14  15
+0096    TGETS   15  12   2  ; "source"
+0097    MOV     16  15
+0098    TGETS   15  15  18  ; "gsub"
+0099    KSTR    17  19      ; "(.*/)%d+(px-[^/]*)"
+0100    KSTR    18  20      ; "%1"
+0101    MOV     19  13
+0102    KSTR    20  21      ; "%2"
+0103    CAT     18  18  20
+0104    CALL    15   2   4
+0105    ISTC    16   5
+0106    JMP     16 => 0108
+0107    KSHORT  16   4
+0108 => MULVV   16  13  16
+0109    ISTC    17   5
+0110    JMP     17 => 0112
+0111    KSHORT  17   4
+0112 => MULVV   17  14  17
+0113    TGETS   18  12   2  ; "source"
+0114    MOV     19  18
+0115    TGETS   18  18  18  ; "gsub"
+0116    KSTR    20  19      ; "(.*/)%d+(px-[^/]*)"
+0117    KSTR    21  20      ; "%1"
+0118    MOV     22  16
+0119    KSTR    23  21      ; "%2"
+0120    CAT     21  21  23
+0121    CALL    18   2   4
+0122    TGETS   19  12   3  ; "filename"
+0123    ISF         19
+0124    JMP     20 => 0131
+0125    MOV     21  19
+0126    TGETS   20  19  18  ; "gsub"
+0127    KSTR    22  22      ; "_"
+0128    KSTR    23  23      ; " "
+0129    CALL    20   2   4
+0130    MOV     19  20
+0131 => TDUP    20  24
+0132    TSETS   19  20   9  ; "title"
+0133    TGETS   21  12  25  ; "caption"
+0134    TSETS   21  20  25  ; "caption"
+0135    TSETS   15  20   2  ; "source"
+0136    TSETS   13  20  14  ; "width"
+0137    TSETS   14  20  15  ; "height"
+0138    TSETS   18  20  26  ; "hi_source"
+0139    TSETS   16  20  27  ; "hi_width"
+0140    TSETS   17  20  28  ; "hi_height"
+0141    FNEW    21  30      ; wikipedia.lua:577
+0142    TSETS   21  20  29  ; "load_bb_func"
+0143    GGET    21   5      ; "table"
+0144    TGETS   21  21   6  ; "insert"
+0145    TGETS   22   1   0  ; "images"
+0146    MOV     23  20
+0147    CALL    21   1   3
+0148    UCLO    13 => 0149
+0149 => ITERC   11   3   3
+0150    ITERL   11 => 0070
+0151    RET0     0   1
+
+-- BYTECODE -- wikipedia.lua:602-621
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "gsub"
+0003    KSTR     4   1      ; "\n= "
+0004    KSTR     5   2      ; "\n\007"
+0005    UGET     6   0      ; th1_sym
+0006    KSTR     7   3      ; " "
+0007    CAT      5   5   7
+0008    CALL     2   2   4
+0009    MOV      1   2
+0010    MOV      3   1
+0011    TGETS    2   1   0  ; "gsub"
+0012    KSTR     4   4      ; "\n== "
+0013    KSTR     5   2      ; "\n\007"
+0014    UGET     6   1      ; th2_sym
+0015    KSTR     7   3      ; " "
+0016    CAT      5   5   7
+0017    CALL     2   2   4
+0018    MOV      1   2
+0019    MOV      3   1
+0020    TGETS    2   1   0  ; "gsub"
+0021    KSTR     4   5      ; "\n=== "
+0022    KSTR     5   6      ; "\n"
+0023    UGET     6   2      ; th3_sym
+0024    KSTR     7   3      ; " "
+0025    CAT      5   5   7
+0026    CALL     2   2   4
+0027    MOV      1   2
+0028    MOV      3   1
+0029    TGETS    2   1   0  ; "gsub"
+0030    KSTR     4   7      ; "\n==== "
+0031    KSTR     5   6      ; "\n"
+0032    UGET     6   3      ; th4_sym
+0033    KSTR     7   3      ; " "
+0034    CAT      5   5   7
+0035    CALL     2   2   4
+0036    MOV      1   2
+0037    MOV      3   1
+0038    TGETS    2   1   0  ; "gsub"
+0039    KSTR     4   8      ; "\n===== "
+0040    KSTR     5   6      ; "\n"
+0041    UGET     6   4      ; th5_sym
+0042    KSTR     7   3      ; " "
+0043    CAT      5   5   7
+0044    CALL     2   2   4
+0045    MOV      1   2
+0046    MOV      3   1
+0047    TGETS    2   1   0  ; "gsub"
+0048    KSTR     4   9      ; "\n====== "
+0049    KSTR     5   6      ; "\n"
+0050    UGET     6   5      ; th6_sym
+0051    KSTR     7   3      ; " "
+0052    CAT      5   5   7
+0053    CALL     2   2   4
+0054    MOV      1   2
+0055    MOV      3   1
+0056    TGETS    2   1   0  ; "gsub"
+0057    KSTR     4  10      ; "Modifier =="
+0058    KSTR     5  11      ; " =="
+0059    CALL     2   2   4
+0060    MOV      1   2
+0061    MOV      3   1
+0062    TGETS    2   1   0  ; "gsub"
+0063    KSTR     4  12      ; "==$"
+0064    KSTR     5  13      ; "==\n"
+0065    CALL     2   2   4
+0066    MOV      1   2
+0067    MOV      3   1
+0068    TGETS    2   1   0  ; "gsub"
+0069    KSTR     4  14      ; " ===?\n+"
+0070    KSTR     5  15      ; "\n\n"
+0071    CALL     2   2   4
+0072    MOV      1   2
+0073    MOV      3   1
+0074    TGETS    2   1   0  ; "gsub"
+0075    KSTR     4  16      ; " ====+\n+"
+0076    KSTR     5   6      ; "\n"
+0077    CALL     2   2   4
+0078    MOV      1   2
+0079    MOV      3   1
+0080    TGETS    2   1   0  ; "gsub"
+0081    KSTR     4  17      ; "\n\n+—"
+0082    KSTR     5  18      ; "\n—"
+0083    CALL     2   2   4
+0084    MOV      1   2
+0085    MOV      3   1
+0086    TGETS    2   1   0  ; "gsub"
+0087    KSTR     4  19      ; "\n +\n"
+0088    KSTR     5   6      ; "\n"
+0089    CALL     2   2   4
+0090    MOV      1   2
+0091    MOV      3   1
+0092    TGETS    2   1   0  ; "gsub"
+0093    KSTR     4  20      ; "^\n*"
+0094    KSTR     5  21      ; ""
+0095    CALL     2   2   4
+0096    MOV      1   2
+0097    MOV      3   1
+0098    TGETS    2   1   0  ; "gsub"
+0099    KSTR     4  22      ; "\n*$"
+0100    KSTR     5  21      ; ""
+0101    CALL     2   2   4
+0102    MOV      1   2
+0103    MOV      3   1
+0104    TGETS    2   1   0  ; "gsub"
+0105    KSTR     4  23      ; "\n\n+"
+0106    KSTR     5  15      ; "\n\n"
+0107    CALL     2   2   4
+0108    MOV      1   2
+0109    MOV      3   1
+0110    TGETS    2   1   0  ; "gsub"
+0111    KSTR     4  24      ; "\007"
+0112    KSTR     5   6      ; "\n"
+0113    CALL     2   2   4
+0114    MOV      1   2
+0115    RET1     1   2
+
+-- BYTECODE -- wikipedia.lua:684-689
+0001    ISF          1
+0002    JMP      2 => 0012
+0003    UGET     2   0      ; rtl_wiki_code
+0004    MOV      4   1
+0005    TGETS    3   1   0  ; "lower"
+0006    CALL     3   2   2
+0007    TGETV    2   2   3
+0008    ISF          2
+0009    JMP      3 => 0012
+0010    KPRI     2   2
+0011    RET1     2   2
+0012 => KPRI     2   1
+0013    RET1     2   2
+
+-- BYTECODE -- wikipedia.lua:734-827
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "match"
+0003    KSTR     3   1      ; "src="([^"]*)""
+0004    CALL     1   2   3
+0005    ISEQP    1   0
+0006    JMP      2 => 0009
+0007    ISNES    1   2      ; ""
+0008    JMP      2 => 0016
+0009 => UGET     2   0      ; logger
+0010    TGETS    2   2   3  ; "info"
+0011    KSTR     3   4      ; "no src found in "
+0012    MOV      4   0
+0013    CALL     2   1   3
+0014    KPRI     2   0
+0015    RET1     2   2
+0016 => MOV      3   1
+0017    TGETS    2   1   5  ; "sub"
+0018    KSHORT   4   1
+0019    KSHORT   5   2
+0020    CALL     2   2   4
+0021    ISNES    2   6      ; "//"
+0022    JMP      2 => 0027
+0023    KSTR     2   7      ; "https:"
+0024    MOV      3   1
+0025    CAT      1   2   3
+0026    JMP      2 => 0037
+0027 => MOV      3   1
+0028    TGETS    2   1   5  ; "sub"
+0029    KSHORT   4   1
+0030    KSHORT   5   1
+0031    CALL     2   2   4
+0032    ISNES    2   8      ; "/"
+0033    JMP      2 => 0037
+0034    UGET     2   1      ; wiki_base_url
+0035    MOV      3   1
+0036    CAT      1   2   3
+0037 => MOV      3   1
+0038    TGETS    2   1   9  ; "find"
+0039    KSTR     4  10      ; "/math/render/svg/"
+0040    CALL     2   2   3
+0041    ISF          2
+0042    JMP      3 => 0049
+0043    MOV      3   1
+0044    TGETS    2   1  11  ; "gsub"
+0045    KSTR     4  10      ; "/math/render/svg/"
+0046    KSTR     5  12      ; "/math/render/png/"
+0047    CALL     2   2   4
+0048    MOV      1   2
+0049 => KPRI     2   0
+0050    UGET     3   2      ; seen_images
+0051    TGETV    3   3   1
+0052    ISF          3
+0053    JMP      4 => 0057
+0054    UGET     3   2      ; seen_images
+0055    TGETV    2   3   1
+0056    JMP      3 => 0198
+0057 => MOV      3   1
+0058    MOV      5   3
+0059    TGETS    4   3   9  ; "find"
+0060    KSTR     6  13      ; "?"
+0061    CALL     4   2   3
+0062    ISF          4
+0063    JMP      5 => 0069
+0064    MOV      5   3
+0065    TGETS    4   3   0  ; "match"
+0066    KSTR     6  14      ; "(.-)%?"
+0067    CALL     4   2   3
+0068    MOV      3   4
+0069 => MOV      5   3
+0070    TGETS    4   3   0  ; "match"
+0071    KSTR     6  15      ; ".*%.(%S%S%S?%S?%S?)$"
+0072    CALL     4   2   3
+0073    ISEQP    4   0
+0074    JMP      5 => 0077
+0075    ISNES    4   2      ; ""
+0076    JMP      5 => 0092
+0077 => MOV      6   3
+0078    TGETS    5   3   9  ; "find"
+0079    KSTR     7  12      ; "/math/render/png/"
+0080    CALL     5   2   3
+0081    ISF          5
+0082    JMP      6 => 0085
+0083    KSTR     4  16      ; "png"
+0084    JMP      5 => 0092
+0085 => UGET     5   0      ; logger
+0086    TGETS    5   5   3  ; "info"
+0087    KSTR     6  17      ; "no file extension found in "
+0088    MOV      7   1
+0089    CALL     5   1   3
+0090    KPRI     5   0
+0091    RET1     5   2
+0092 => MOV      6   4
+0093    TGETS    5   4  18  ; "lower"
+0094    CALL     5   2   2
+0095    MOV      4   5
+0096    GGET     5  19      ; "string"
+0097    TGETS    5   5  20  ; "format"
+0098    KSTR     6  21      ; "img%05d"
+0099    UGET     7   3      ; imagenum
+0100    CALL     5   2   3
+0101    GGET     6  19      ; "string"
+0102    TGETS    6   6  20  ; "format"
+0103    KSTR     7  22      ; "images/%s.%s"
+0104    MOV      8   5
+0105    MOV      9   4
+0106    CALL     6   2   4
+0107    UGET     7   4      ; ext_to_mimetype
+0108    TGETV    7   7   4
+0109    IST          7
+0110    JMP      8 => 0112
+0111    KSTR     7   2      ; ""
+0112 => GGET     8  23      ; "tonumber"
+0113    MOV     10   0
+0114    TGETS    9   0   0  ; "match"
+0115    KSTR    11  24      ; "width="([^"]*)""
+0116    CALL     9   0   3
+0117    CALLM    8   2   0
+0118    GGET     9  23      ; "tonumber"
+0119    MOV     11   0
+0120    TGETS   10   0   0  ; "match"
+0121    KSTR    12  25      ; "height="([^"]*)""
+0122    CALL    10   0   3
+0123    CALLM    9   2   0
+0124    KPRI    10   0
+0125    MOV     12   0
+0126    TGETS   11   0   0  ; "match"
+0127    KSTR    13  26      ; "srcset="([^"]*)""
+0128    CALL    11   2   3
+0129    ISF         11
+0130    JMP     12 => 0163
+0131    KSTR    12  27      ; " "
+0132    MOV     13  11
+0133    KSTR    14  28      ; ", "
+0134    CAT     11  12  14
+0135    MOV     13  11
+0136    TGETS   12  11   0  ; "match"
+0137    KSTR    14  29      ; " (%S+) 2x, "
+0138    CALL    12   2   3
+0139    MOV     10  12
+0140    ISF         10
+0141    JMP     12 => 0163
+0142    MOV     13  10
+0143    TGETS   12  10   5  ; "sub"
+0144    KSHORT  14   1
+0145    KSHORT  15   2
+0146    CALL    12   2   4
+0147    ISNES   12   6      ; "//"
+0148    JMP     12 => 0153
+0149    KSTR    12   7      ; "https:"
+0150    MOV     13  10
+0151    CAT     10  12  13
+0152    JMP     12 => 0163
+0153 => MOV     13  10
+0154    TGETS   12  10   5  ; "sub"
+0155    KSHORT  14   1
+0156    KSHORT  15   1
+0157    CALL    12   2   4
+0158    ISNES   12   8      ; "/"
+0159    JMP     12 => 0163
+0160    UGET    12   1      ; wiki_base_url
+0161    MOV     13  10
+0162    CAT     10  12  13
+0163 => TDUP    12  30
+0164    TSETS    5  12  31  ; "imgid"
+0165    TSETS    6  12  32  ; "imgpath"
+0166    TSETS    1  12  33  ; "src"
+0167    TSETS   10  12  34  ; "src2x"
+0168    TSETS    7  12  35  ; "mimetype"
+0169    TSETS    8  12  36  ; "width"
+0170    TSETS    9  12  37  ; "height"
+0171    MOV      2  12
+0172    GGET    12  38      ; "table"
+0173    TGETS   12  12  39  ; "insert"
+0174    UGET    13   5      ; images
+0175    MOV     14   2
+0176    CALL    12   1   3
+0177    UGET    12   2      ; seen_images
+0178    TSETV    2  12   1
+0179    UGET    12   6      ; cover_imgid
+0180    IST         12
+0181    JMP     12 => 0195
+0182    ISF          8
+0183    JMP     12 => 0195
+0184    KSHORT  12  50
+0185    ISGE    12   8
+0186    JMP     12 => 0195
+0187    ISF          9
+0188    JMP     12 => 0195
+0189    KSHORT  12  50
+0190    ISGE    12   9
+0191    JMP     12 => 0195
+0192    ISGE     8   9
+0193    JMP     12 => 0195
+0194    USETV    6   5      ; cover_imgid
+0195 => UGET    12   3      ; imagenum
+0196    ADDVN   12  12   0  ; 1
+0197    USETV    3  12      ; imagenum
+0198 => TNEW     3   0
+0199    TGETS    4   2  36  ; "width"
+0200    ISF          4
+0201    JMP      5 => 0211
+0202    GGET     4  38      ; "table"
+0203    TGETS    4   4  39  ; "insert"
+0204    MOV      5   3
+0205    GGET     6  19      ; "string"
+0206    TGETS    6   6  20  ; "format"
+0207    KSTR     7  40      ; "width: %spx"
+0208    TGETS    8   2  36  ; "width"
+0209    CALL     6   0   3
+0210    CALLM    4   1   1
+0211 => TGETS    4   2  37  ; "height"
+0212    ISF          4
+0213    JMP      5 => 0223
+0214    GGET     4  38      ; "table"
+0215    TGETS    4   4  39  ; "insert"
+0216    MOV      5   3
+0217    GGET     6  19      ; "string"
+0218    TGETS    6   6  20  ; "format"
+0219    KSTR     7  41      ; "height: %spx"
+0220    TGETS    8   2  37  ; "height"
+0221    CALL     6   0   3
+0222    CALLM    4   1   1
+0223 => GGET     4  38      ; "table"
+0224    TGETS    4   4  42  ; "concat"
+0225    MOV      5   3
+0226    KSTR     6  43      ; "; "
+0227    CALL     4   2   3
+0228    GGET     5  19      ; "string"
+0229    TGETS    5   5  20  ; "format"
+0230    KSTR     6  44      ; "<img src="%s" style="%s" alt=""/>"
+0231    TGETS    7   2  32  ; "imgpath"
+0232    MOV      8   4
+0233    CALLT    5   4
+
+-- BYTECODE -- wikipedia.lua:1269-1272
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "gsub"
+0003    KSTR     4   1      ; "%?.*"
+0004    KSTR     5   2      ; ""
+0005    CALL     2   2   4
+0006    MOV      1   2
+0007    GGET     2   3      ; "string"
+0008    TGETS    2   2   4  ; "format"
+0009    KSTR     3   5      ; "href="https://%s.wikipedia.org/wiki/%s""
+0010    MOV      4   0
+0011    MOV      5   1
+0012    CALLT    2   4
+
+-- BYTECODE -- wikipedia.lua:1275-1278
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "gsub"
+0003    KSTR     3   1      ; "%?.*"
+0004    KSTR     4   2      ; ""
+0005    CALL     1   2   4
+0006    MOV      0   1
+0007    GGET     1   3      ; "string"
+0008    TGETS    1   1   4  ; "format"
+0009    KSTR     2   5      ; "href="%s/wiki/%s""
+0010    UGET     3   0      ; wiki_base_url
+0011    MOV      4   0
+0012    CALLT    1   4
+
+-- BYTECODE -- wikipedia.lua:692-1409
+0001    GGET     5   0      ; "require"
+0002    KSTR     6   1      ; "ui/trapper"
+0003    CALL     5   2   2
+0004    MOV      7   5
+0005    TGETS    6   5   2  ; "info"
+0006    UGET     8   0      ; _
+0007    KSTR     9   3      ; "Retrieving Wikipedia article…"
+0008    CALL     8   0   2
+0009    CALLM    6   1   1
+0010    GGET     6   4      ; "pcall"
+0011    TGETS    7   0   5  ; "getFullPageHtml"
+0012    MOV      8   0
+0013    MOV      9   2
+0014    MOV     10   3
+0015    CALL     6   3   5
+0016    IST          6
+0017    JMP      8 => 0031
+0018    MOV      9   5
+0019    TGETS    8   5   2  ; "info"
+0020    MOV     10   7
+0021    CALL     8   1   3
+0022    UGET     8   1      ; ffiutil
+0023    TGETS    8   8   6  ; "sleep"
+0024    KSHORT   9   2
+0025    CALL     8   1   2
+0026    MOV      9   5
+0027    TGETS    8   5   7  ; "reset"
+0028    CALL     8   1   2
+0029    KPRI     8   1
+0030    UCLO     0 => 0801
+0031 => MOV      9   0
+0032    TGETS    8   0   8  ; "getWikiServer"
+0033    MOV     10   3
+0034    CALL     8   2   3
+0035    KPRI     9   1
+0036    TGETS   10   7   9  ; "text"
+0037    TGETS   10  10  10  ; "*"
+0038    MOV     12   2
+0039    TGETS   11   2  11  ; "gsub"
+0040    KSTR    13  12      ; "_"
+0041    KSTR    14  13      ; " "
+0042    CALL    11   2   4
+0043    TGETS   12   7  14  ; "displaytitle"
+0044    UGET    13   2      ; util
+0045    TGETS   13  13  15  ; "htmlEntitiesToUtf8"
+0046    MOV     14  11
+0047    CALL    13   2   2
+0048    MOV     14  13
+0049    TGETS   13  13  11  ; "gsub"
+0050    KSTR    15  16      ; "&"
+0051    KSTR    16  17      ; "&#38;"
+0052    CALL    13   2   4
+0053    MOV     11  13
+0054    UGET    13   2      ; util
+0055    TGETS   13  13  15  ; "htmlEntitiesToUtf8"
+0056    MOV     14  12
+0057    CALL    13   2   2
+0058    MOV     14  13
+0059    TGETS   13  13  11  ; "gsub"
+0060    KSTR    15  16      ; "&"
+0061    KSTR    16  17      ; "&#38;"
+0062    CALL    13   2   4
+0063    MOV     12  13
+0064    TGETS   13   7  18  ; "sections"
+0065    GGET    14  19      ; "string"
+0066    TGETS   14  14  20  ; "format"
+0067    KSTR    15  21      ; "wikipedia_%s_%s_%s"
+0068    MOV     16   3
+0069    TGETS   17   7  22  ; "pageid"
+0070    TGETS   18   7  23  ; "revid"
+0071    CALL    14   2   5
+0072    TNEW    15   0
+0073    TNEW    16   0
+0074    KSHORT  17   1
+0075    KPRI    18   0
+0076    FNEW    19  24      ; wikipedia.lua:734
+0077    MOV     21  10
+0078    TGETS   20  10  11  ; "gsub"
+0079    KSTR    22  25      ; "(<%s*img [^>]*>)"
+0080    MOV     23  19
+0081    CALL    20   2   4
+0082    MOV     10  20
+0083    UGET    20   3      ; logger
+0084    TGETS   20  20  26  ; "dbg"
+0085    KSTR    21  27      ; "Images found in html:"
+0086    MOV     22  15
+0087    CALL    20   1   3
+0088    KPRI    20   1
+0089    KPRI    21   1
+0090    ISF          4
+0091    JMP     22 => 0138
+0092    LEN     22  15
+0093    KSHORT  23   0
+0094    ISGE    23  22
+0095    JMP     22 => 0128
+0096    MOV     23   5
+0097    TGETS   22   5  28  ; "confirm"
+0098    UGET    24   5      ; T
+0099    UGET    25   0      ; _
+0100    KSTR    26  29      ; "This article contains %1 images.\nWould "~
+0101    CALL    25   2   2
+0102    LEN     26  15
+0103    CALL    24   2   3
+0104    UGET    25   0      ; _
+0105    KSTR    26  30      ; "Don't include"
+0106    CALL    25   2   2
+0107    UGET    26   0      ; _
+0108    KSTR    27  31      ; "Include"
+0109    CALL    26   0   2
+0110    CALLM   22   2   3
+0111    MOV     20  22
+0112    ISF         20
+0113    JMP     22 => 0138
+0114    MOV     23   5
+0115    TGETS   22   5  28  ; "confirm"
+0116    UGET    24   0      ; _
+0117    KSTR    25  32      ; "Would you like to use slightly higher qu"~
+0118    CALL    24   2   2
+0119    UGET    25   0      ; _
+0120    KSTR    26  33      ; "Standard quality"
+0121    CALL    25   2   2
+0122    UGET    26   0      ; _
+0123    KSTR    27  34      ; "Higher quality"
+0124    CALL    26   0   2
+0125    CALLM   22   2   3
+0126    MOV     21  22
+0127    JMP     22 => 0138
+0128 => MOV     23   5
+0129    TGETS   22   5   2  ; "info"
+0130    UGET    24   0      ; _
+0131    KSTR    25  35      ; "This article does not contain any images"~
+0132    CALL    24   0   2
+0133    CALLM   22   1   1
+0134    UGET    22   1      ; ffiutil
+0135    TGETS   22  22   6  ; "sleep"
+0136    KSHORT  23   1
+0137    CALL    22   1   2
+0138 => IST         20
+0139    JMP     22 => 0146
+0140    MOV     23  10
+0141    TGETS   22  10  11  ; "gsub"
+0142    KSTR    24  36      ; "<%s*img [^>]*>"
+0143    KSTR    25  37      ; ""
+0144    CALL    22   2   4
+0145    MOV     10  22
+0146 => MOV     23   5
+0147    TGETS   22   5   2  ; "info"
+0148    UGET    24   0      ; _
+0149    KSTR    25  38      ; "Building EPUB…"
+0150    CALL    24   0   2
+0151    CALLM   22   1   1
+0152    MOV     22   1
+0153    KSTR    23  39      ; ".tmp"
+0154    CAT     22  22  23
+0155    GGET    23   0      ; "require"
+0156    KSTR    24  40      ; "ffi/zipwriter"
+0157    CALL    23   2   2
+0158    MOV     25  23
+0159    TGETS   24  23  41  ; "new"
+0160    TNEW    26   0
+0161    CALL    24   2   3
+0162    MOV     26  24
+0163    TGETS   25  24  42  ; "open"
+0164    MOV     27  22
+0165    CALL    25   2   3
+0166    IST         25
+0167    JMP     25 => 0171
+0168    KPRI    25   1
+0169    UCLO     0 => 0170
+0170 => RET1    25   2
+0171 => MOV     26  24
+0172    TGETS   25  24  43  ; "add"
+0173    KSTR    27  44      ; "mimetype"
+0174    KSTR    28  45      ; "application/epub+zip"
+0175    CALL    25   1   4
+0176    MOV     26  24
+0177    TGETS   25  24  43  ; "add"
+0178    KSTR    27  46      ; "META-INF/container.xml"
+0179    KSTR    28  47      ; "<?xml version="1.0"?>\n<container versio"~
+0180    CALL    25   1   4
+0181    KSTR    25  48      ; "KOReader"
+0182    GGET    26  49      ; "lfs"
+0183    TGETS   26  26  50  ; "attributes"
+0184    KSTR    27  51      ; "git-rev"
+0185    KSTR    28  52      ; "mode"
+0186    CALL    26   2   3
+0187    ISNES   26  53      ; "file"
+0188    JMP     26 => 0199
+0189    KSTR    26  54      ; "KOReader "
+0190    GGET    27  55      ; "io"
+0191    TGETS   27  27  42  ; "open"
+0192    KSTR    28  51      ; "git-rev"
+0193    KSTR    29  56      ; "r"
+0194    CALL    27   2   3
+0195    MOV     28  27
+0196    TGETS   27  27  57  ; "read"
+0197    CALL    27   2   2
+0198    CAT     25  26  27
+0199 => TNEW    26   0
+0200    KSTR    27  58      ; "<!-- no cover image -->"
+0201    ISF         20
+0202    JMP     28 => 0211
+0203    ISF         18
+0204    JMP     28 => 0211
+0205    GGET    28  19      ; "string"
+0206    TGETS   28  28  20  ; "format"
+0207    KSTR    29  59      ; "<meta name="cover" content="%s"/>"
+0208    MOV     30  18
+0209    CALL    28   2   3
+0210    MOV     27  28
+0211 => GGET    28  60      ; "table"
+0212    TGETS   28  28  61  ; "insert"
+0213    MOV     29  26
+0214    GGET    30  19      ; "string"
+0215    TGETS   30  30  20  ; "format"
+0216    KSTR    31  62      ; "<?xml version='1.0' encoding='utf-8'?>\n"~
+0217    MOV     32  11
+0218    MOV     34   3
+0219    TGETS   33   3  63  ; "upper"
+0220    CALL    33   2   2
+0221    MOV     34  14
+0222    MOV     35   3
+0223    MOV     36  25
+0224    MOV     37  27
+0225    CALL    30   0   8
+0226    CALLM   28   1   1
+0227    ISF         20
+0228    JMP     28 => 0247
+0229    GGET    28  64      ; "ipairs"
+0230    MOV     29  15
+0231    CALL    28   4   2
+0232    JMP     31 => 0245
+0233 => GGET    33  60      ; "table"
+0234    TGETS   33  33  61  ; "insert"
+0235    MOV     34  26
+0236    GGET    35  19      ; "string"
+0237    TGETS   35  35  20  ; "format"
+0238    KSTR    36  65      ; "    <item id="%s" href="%s" media-type=""~
+0239    TGETS   37  32  66  ; "imgid"
+0240    TGETS   38  32  67  ; "imgpath"
+0241    TGETS   39  32  44  ; "mimetype"
+0242    KSTR    40  68      ; "\n"
+0243    CALL    35   0   6
+0244    CALLM   33   1   1
+0245 => ITERC   31   3   3
+0246    ITERL   31 => 0233
+0247 => GGET    28  60      ; "table"
+0248    TGETS   28  28  61  ; "insert"
+0249    MOV     29  26
+0250    KSTR    30  69      ; "  </manifest>\n  <spine toc="ncx">\n    "~
+0251    CALL    28   1   3
+0252    MOV     29  24
+0253    TGETS   28  24  43  ; "add"
+0254    KSTR    30  70      ; "OEBPS/content.opf"
+0255    GGET    31  60      ; "table"
+0256    TGETS   31  31  71  ; "concat"
+0257    MOV     32  26
+0258    CALL    31   0   2
+0259    CALLM   28   1   2
+0260    MOV     29  24
+0261    TGETS   28  24  43  ; "add"
+0262    KSTR    30  72      ; "OEBPS/stylesheet.css"
+0263    KSTR    31  73      ; "/* Make section headers looks left align"~
+0264    ISF         20
+0265    JMP     32 => 0268
+0266    KSTR    32  74      ; "0.5em"
+0267    JMP     33 => 0269
+0268 => KSTR    32  75      ; "0.15em"
+0269 => KSTR    33  76      ; ";\n    text-align: center;\n    font-siz"~
+0270    ISF         20
+0271    JMP     34 => 0274
+0272    KSTR    34  74      ; "0.5em"
+0273    JMP     35 => 0275
+0274 => KSTR    34  75      ; "0.15em"
+0275 => KSTR    35  77      ; " !important;\n    text-indent: 0;\n    f"~
+0276    CAT     31  31  35
+0277    CALL    28   1   4
+0278    TNEW    28   0
+0279    KSHORT  29   0
+0280    KSHORT  30   0
+0281    KSTR    31  78      ; "</navPoint>"
+0282    KSHORT  32   1
+0283    GGET    33  60      ; "table"
+0284    TGETS   33  33  61  ; "insert"
+0285    MOV     34  28
+0286    GGET    35  19      ; "string"
+0287    TGETS   35  35  20  ; "format"
+0288    KSTR    36  79      ; "<navPoint id="navpoint-%s" playOrder="%s"~
+0289    MOV     37  32
+0290    MOV     38  32
+0291    MOV     39  11
+0292    CALL    35   0   5
+0293    CALLM   33   1   1
+0294    GGET    33  60      ; "table"
+0295    TGETS   33  33  61  ; "insert"
+0296    MOV     34  28
+0297    MOV     35  31
+0298    CALL    33   1   3
+0299    GGET    33  64      ; "ipairs"
+0300    MOV     34  13
+0301    CALL    33   4   2
+0302    JMP     36 => 0443
+0303 => ADDVN   32  32   0  ; 1
+0304    TGETS   38  37  80  ; "anchor"
+0305    MOV     39  38
+0306    TGETS   38  38  11  ; "gsub"
+0307    KSTR    40  16      ; "&"
+0308    KSTR    41  81      ; "&amp;"
+0309    CALL    38   2   4
+0310    MOV     39  38
+0311    TGETS   38  38  11  ; "gsub"
+0312    KSTR    40  82      ; """
+0313    KSTR    41  83      ; "&quot;"
+0314    CALL    38   2   4
+0315    MOV     39  38
+0316    TGETS   38  38  11  ; "gsub"
+0317    KSTR    40  84      ; ">"
+0318    KSTR    41  85      ; "&gt;"
+0319    CALL    38   2   4
+0320    MOV     39  38
+0321    TGETS   38  38  11  ; "gsub"
+0322    KSTR    40  86      ; "<"
+0323    KSTR    41  87      ; "&lt;"
+0324    CALL    38   2   4
+0325    GGET    39  19      ; "string"
+0326    TGETS   39  39  20  ; "format"
+0327    KSTR    40  88      ; "%s %s"
+0328    TGETS   41  37  89  ; "number"
+0329    TGETS   42  37  90  ; "line"
+0330    CALL    39   2   4
+0331    MOV     41  39
+0332    TGETS   40  39  11  ; "gsub"
+0333    KSTR    42  91      ; "(%b<>)"
+0334    KSTR    43  37      ; ""
+0335    CALL    40   2   4
+0336    MOV     39  40
+0337    UGET    40   2      ; util
+0338    TGETS   40  40  15  ; "htmlEntitiesToUtf8"
+0339    MOV     41  39
+0340    CALL    40   2   2
+0341    MOV     41  40
+0342    TGETS   40  40  11  ; "gsub"
+0343    KSTR    42  16      ; "&"
+0344    KSTR    43  17      ; "&#38;"
+0345    CALL    40   2   4
+0346    MOV     41  40
+0347    TGETS   40  40  11  ; "gsub"
+0348    KSTR    42  84      ; ">"
+0349    KSTR    43  85      ; "&gt;"
+0350    CALL    40   2   4
+0351    MOV     41  40
+0352    TGETS   40  40  11  ; "gsub"
+0353    KSTR    42  86      ; "<"
+0354    KSTR    43  87      ; "&lt;"
+0355    CALL    40   2   4
+0356    MOV     39  40
+0357    TGETS   40  37  92  ; "toclevel"
+0358    ISGE    29  40
+0359    JMP     41 => 0361
+0360    MOV     29  40
+0361 => ISNEV   40  30
+0362    JMP     41 => 0369
+0363    GGET    41  60      ; "table"
+0364    TGETS   41  41  61  ; "insert"
+0365    MOV     42  28
+0366    MOV     43  31
+0367    CALL    41   1   3
+0368    JMP     41 => 0419
+0369 => ISGE    40  30
+0370    JMP     41 => 0387
+0371    GGET    41  60      ; "table"
+0372    TGETS   41  41  61  ; "insert"
+0373    MOV     42  28
+0374    MOV     43  31
+0375    CALL    41   1   3
+0376 => ISGE    40  30
+0377    JMP     41 => 0419
+0378    LOOP    41 => 0386
+0379    GGET    41  60      ; "table"
+0380    TGETS   41  41  61  ; "insert"
+0381    MOV     42  28
+0382    MOV     43  31
+0383    CALL    41   1   3
+0384    SUBVN   30  30   0  ; 1
+0385    JMP     41 => 0376
+0386 => JMP     41 => 0419
+0387 => ADDVN   41  30   0  ; 1
+0388    ISGE    41  40
+0389    JMP     41 => 0419
+0390 => ADDVN   41  30   0  ; 1
+0391    ISGE    41  40
+0392    JMP     41 => 0419
+0393    LOOP    41 => 0419
+0394    GGET    41  60      ; "table"
+0395    TGETS   41  41  61  ; "insert"
+0396    MOV     42  28
+0397    KSTR    43  68      ; "\n"
+0398    KSTR    44  13      ; " "
+0399    MOV     45  44
+0400    TGETS   44  44  93  ; "rep"
+0401    MOV     46  30
+0402    CALL    44   2   3
+0403    CAT     43  43  44
+0404    CALL    41   1   3
+0405    GGET    41  60      ; "table"
+0406    TGETS   41  41  61  ; "insert"
+0407    MOV     42  28
+0408    GGET    43  19      ; "string"
+0409    TGETS   43  43  20  ; "format"
+0410    KSTR    44  94      ; "<navPoint id="navpoint-%s" playOrder="%s"~
+0411    MOV     45  32
+0412    MOV     46  32
+0413    MOV     47  38
+0414    CALL    43   0   5
+0415    CALLM   41   1   1
+0416    ADDVN   30  30   0  ; 1
+0417    ADDVN   32  32   0  ; 1
+0418    JMP     41 => 0390
+0419 => MOV     30  40
+0420    GGET    41  60      ; "table"
+0421    TGETS   41  41  61  ; "insert"
+0422    MOV     42  28
+0423    KSTR    43  68      ; "\n"
+0424    KSTR    44  13      ; " "
+0425    MOV     45  44
+0426    TGETS   44  44  93  ; "rep"
+0427    MOV     46  30
+0428    CALL    44   2   3
+0429    CAT     43  43  44
+0430    CALL    41   1   3
+0431    GGET    41  60      ; "table"
+0432    TGETS   41  41  61  ; "insert"
+0433    MOV     42  28
+0434    GGET    43  19      ; "string"
+0435    TGETS   43  43  20  ; "format"
+0436    KSTR    44  95      ; "<navPoint id="navpoint-%s" playOrder="%s"~
+0437    MOV     45  32
+0438    MOV     46  32
+0439    MOV     47  39
+0440    MOV     48  38
+0441    CALL    43   0   6
+0442    CALLM   41   1   1
+0443 => ITERC   36   3   3
+0444    ITERL   36 => 0303
+0445 => KSHORT  33   0
+0446    ISGE    33  30
+0447    JMP     33 => 0456
+0448    LOOP    33 => 0456
+0449    GGET    33  60      ; "table"
+0450    TGETS   33  33  61  ; "insert"
+0451    MOV     34  28
+0452    MOV     35  31
+0453    CALL    33   1   3
+0454    SUBVN   30  30   0  ; 1
+0455    JMP     33 => 0445
+0456 => GGET    33  60      ; "table"
+0457    TGETS   33  33  61  ; "insert"
+0458    MOV     34  28
+0459    KSHORT  35   1
+0460    GGET    36  19      ; "string"
+0461    TGETS   36  36  20  ; "format"
+0462    KSTR    37  96      ; "<?xml version='1.0' encoding='utf-8'?>\n"~
+0463    MOV     38  14
+0464    MOV     39  29
+0465    MOV     40  11
+0466    CALL    36   0   5
+0467    CALLM   33   1   2
+0468    GGET    33  60      ; "table"
+0469    TGETS   33  33  61  ; "insert"
+0470    MOV     34  28
+0471    KSTR    35  97      ; "  </navMap>\n</ncx>\n"
+0472    CALL    33   1   3
+0473    MOV     34  24
+0474    TGETS   33  24  43  ; "add"
+0475    KSTR    35  98      ; "OEBPS/toc.ncx"
+0476    GGET    36  60      ; "table"
+0477    TGETS   36  36  71  ; "concat"
+0478    MOV     37  28
+0479    CALL    36   0   2
+0480    CALLM   33   1   2
+0481    MOV     34  10
+0482    TGETS   33  10  11  ; "gsub"
+0483    KSTR    35  99      ; "<a[^>]*>%s*(<%s*img [^>]*>)%s*</a>"
+0484    KSTR    36 100      ; "%1"
+0485    CALL    33   2   4
+0486    MOV     10  33
+0487    MOV     34  10
+0488    TGETS   33  10  11  ; "gsub"
+0489    KSTR    35 101      ; "<math xmlns="http://www.w3.org/1998/Math"~
+0490    KSTR    36  37      ; ""
+0491    CALL    33   2   4
+0492    MOV     10  33
+0493    FNEW    33 102      ; wikipedia.lua:1269
+0494    MOV     35  10
+0495    TGETS   34  10  11  ; "gsub"
+0496    KSTR    36 103      ; "href="https?://([^%.]+).wikipedia.org/wi"~
+0497    MOV     37  33
+0498    CALL    34   2   4
+0499    MOV     10  34
+0500    FNEW    34 104      ; wikipedia.lua:1275
+0501    MOV     36  10
+0502    TGETS   35  10  11  ; "gsub"
+0503    KSTR    37 105      ; "href="/wiki/([^"]*)""
+0504    MOV     38  34
+0505    CALL    35   2   4
+0506    MOV     10  35
+0507    MOV     36  10
+0508    TGETS   35  10  11  ; "gsub"
+0509    KSTR    37 106      ; "<a[^>]* class="new"[^>]*>"
+0510    KSTR    38 107      ; "<a class="newwikinonexistent">"
+0511    CALL    35   2   4
+0512    MOV     10  35
+0513    MOV     36  10
+0514    TGETS   35  10  11  ; "gsub"
+0515    KSTR    37 108      ; "href="//"
+0516    KSTR    38 109      ; "href="https://"
+0517    CALL    35   2   4
+0518    MOV     10  35
+0519    TGETS   35   0 110  ; "wiki_prettify"
+0520    ISF         35
+0521    JMP     36 => 0576
+0522    MOV     36  10
+0523    TGETS   35  10  11  ; "gsub"
+0524    KSTR    37 111      ; "<h1>"
+0525    KSTR    38 112      ; "<h1> "
+0526    UGET    39   6      ; h1_sym
+0527    KSTR    40  13      ; " "
+0528    CAT     38  38  40
+0529    CALL    35   2   4
+0530    MOV     10  35
+0531    MOV     36  10
+0532    TGETS   35  10  11  ; "gsub"
+0533    KSTR    37 113      ; "<h2>"
+0534    KSTR    38 114      ; "<h2> "
+0535    UGET    39   7      ; h2_sym
+0536    KSTR    40  13      ; " "
+0537    CAT     38  38  40
+0538    CALL    35   2   4
+0539    MOV     10  35
+0540    MOV     36  10
+0541    TGETS   35  10  11  ; "gsub"
+0542    KSTR    37 115      ; "<h3>"
+0543    KSTR    38 116      ; "<h3> "
+0544    UGET    39   8      ; h3_sym
+0545    KSTR    40  13      ; " "
+0546    CAT     38  38  40
+0547    CALL    35   2   4
+0548    MOV     10  35
+0549    MOV     36  10
+0550    TGETS   35  10  11  ; "gsub"
+0551    KSTR    37 117      ; "<h4>"
+0552    KSTR    38 118      ; "<h4> "
+0553    UGET    39   9      ; h4_sym
+0554    KSTR    40  13      ; " "
+0555    CAT     38  38  40
+0556    CALL    35   2   4
+0557    MOV     10  35
+0558    MOV     36  10
+0559    TGETS   35  10  11  ; "gsub"
+0560    KSTR    37 119      ; "<h5>"
+0561    KSTR    38 120      ; "<h5> "
+0562    UGET    39  10      ; h5_sym
+0563    KSTR    40  13      ; " "
+0564    CAT     38  38  40
+0565    CALL    35   2   4
+0566    MOV     10  35
+0567    MOV     36  10
+0568    TGETS   35  10  11  ; "gsub"
+0569    KSTR    37 121      ; "<h6>"
+0570    KSTR    38 122      ; "<h6> "
+0571    UGET    39  11      ; h6_sym
+0572    KSTR    40  13      ; " "
+0573    CAT     38  38  40
+0574    CALL    35   2   4
+0575    MOV     10  35
+0576 => UGET    35   5      ; T
+0577    UGET    36   0      ; _
+0578    KSTR    37 123      ; "Saved on %1"
+0579    CALL    36   2   2
+0580    GGET    37 124      ; "os"
+0581    TGETS   37  37 125  ; "date"
+0582    KSTR    38 126      ; "%b %d, %Y %H:%M:%S"
+0583    CALL    37   0   2
+0584    CALLM   35   2   1
+0585    GGET    36  19      ; "string"
+0586    TGETS   36  36  20  ; "format"
+0587    KSTR    37 127      ; "<a href="%s/wiki/%s">%s</a>"
+0588    MOV     38   8
+0589    MOV     40   2
+0590    TGETS   39   2  11  ; "gsub"
+0591    KSTR    41  13      ; " "
+0592    KSTR    42  12      ; "_"
+0593    CALL    39   2   4
+0594    UGET    40   0      ; _
+0595    KSTR    41 128      ; "online version"
+0596    CALL    40   0   2
+0597    CALLM   36   2   3
+0598    UGET    37   5      ; T
+0599    UGET    38   0      ; _
+0600    KSTR    39 129      ; "See %1 for up-to-date content"
+0601    CALL    38   2   2
+0602    MOV     39  36
+0603    CALL    37   2   3
+0604    KSTR    38  37      ; ""
+0605    MOV     40   0
+0606    TGETS   39   0 130  ; "isWikipediaLanguageRTL"
+0607    MOV     41   3
+0608    CALL    39   2   3
+0609    ISF         39
+0610    JMP     40 => 0612
+0611    KSTR    38 131      ; " dir="rtl""
+0612 => MOV     40  24
+0613    TGETS   39  24  43  ; "add"
+0614    KSTR    41 132      ; "OEBPS/content.html"
+0615    GGET    42  19      ; "string"
+0616    TGETS   42  42  20  ; "format"
+0617    KSTR    43 133      ; "<html xmlns="http://www.w3.org/1999/xhtm"~
+0618    MOV     44  38
+0619    MOV     45  11
+0620    MOV     46  12
+0621    MOV     48   3
+0622    TGETS   47   3  63  ; "upper"
+0623    CALL    47   2   2
+0624    MOV     48  35
+0625    MOV     49  37
+0626    MOV     50  10
+0627    CALL    42   0   9
+0628    CALLM   39   1   2
+0629    GGET    39 134      ; "collectgarbage"
+0630    CALL    39   1   1
+0631    GGET    39 134      ; "collectgarbage"
+0632    CALL    39   1   1
+0633    ISF         20
+0634    JMP     39 => 0726
+0635    LEN     39  15
+0636    GGET    40  64      ; "ipairs"
+0637    MOV     41  15
+0638    CALL    40   4   2
+0639    JMP     43 => 0724
+0640 => MOV     46   5
+0641    TGETS   45   5   2  ; "info"
+0642    UGET    47   5      ; T
+0643    UGET    48   0      ; _
+0644    KSTR    49 135      ; "Retrieving image %1 / %2 …"
+0645    CALL    48   2   2
+0646    MOV     49  43
+0647    MOV     50  39
+0648    CALL    47   2   4
+0649    KSHORT  48   2
+0650    ISLE    48  43
+0651    JMP     48 => 0654
+0652    KPRI    48   1
+0653    JMP     49 => 0655
+0654 => KPRI    48   2
+0655 => CALL    45   2   4
+0656    IST         45
+0657    JMP     46 => 0660
+0658    KPRI     9   2
+0659    JMP     40 => 0726
+0660 => TGETS   46  44 136  ; "src"
+0661    ISF         21
+0662    JMP     47 => 0667
+0663    TGETS   47  44 137  ; "src2x"
+0664    ISF         47
+0665    JMP     48 => 0667
+0666    TGETS   46  44 137  ; "src2x"
+0667 => UGET    47   3      ; logger
+0668    TGETS   47  47  26  ; "dbg"
+0669    KSTR    48 138      ; "Getting img "
+0670    MOV     49  46
+0671    CALL    47   1   3
+0672    UGET    47  12      ; getUrlContent
+0673    MOV     48  46
+0674    CALL    47   3   2
+0675    ISF         47
+0676    JMP     49 => 0683
+0677    UGET    49   3      ; logger
+0678    TGETS   49  49  26  ; "dbg"
+0679    KSTR    50 139      ; "success, size:"
+0680    LEN     51  48
+0681    CALL    49   1   3
+0682    JMP     49 => 0688
+0683 => UGET    49   3      ; logger
+0684    TGETS   49  49   2  ; "info"
+0685    KSTR    50 140      ; "failed fetching:"
+0686    MOV     51  46
+0687    CALL    49   1   3
+0688 => ISF         47
+0689    JMP     49 => 0704
+0690    KPRI    49   2
+0691    TGETS   50  44  44  ; "mimetype"
+0692    ISNES   50 141      ; "image/svg+xml"
+0693    JMP     50 => 0695
+0694    KPRI    49   1
+0695 => MOV     51  24
+0696    TGETS   50  24  43  ; "add"
+0697    KSTR    52 142      ; "OEBPS/"
+0698    TGETS   53  44  67  ; "imgpath"
+0699    CAT     52  52  53
+0700    MOV     53  48
+0701    MOV     54  49
+0702    CALL    50   1   5
+0703    JMP     49 => 0724
+0704 => MOV     50   5
+0705    TGETS   49   5  28  ; "confirm"
+0706    UGET    51   5      ; T
+0707    UGET    52   0      ; _
+0708    KSTR    53 143      ; "Downloading image %1 failed. Continue an"~
+0709    CALL    52   2   2
+0710    MOV     53  43
+0711    CALL    51   2   3
+0712    UGET    52   0      ; _
+0713    KSTR    53 144      ; "Stop"
+0714    CALL    52   2   2
+0715    UGET    53   0      ; _
+0716    KSTR    54 145      ; "Continue"
+0717    CALL    53   0   2
+0718    CALLM   49   2   3
+0719    MOV     45  49
+0720    IST         45
+0721    JMP     49 => 0724
+0722    KPRI     9   2
+0723    JMP     40 => 0726
+0724 => ITERC   43   3   3
+0725    ITERL   43 => 0640
+0726 => ISF          9
+0727    JMP     39 => 0743
+0728    MOV     40   5
+0729    TGETS   39   5  28  ; "confirm"
+0730    UGET    41   0      ; _
+0731    KSTR    42 146      ; "Download did not complete.\nDo you want "~
+0732    CALL    41   2   2
+0733    UGET    42   0      ; _
+0734    KSTR    43 147      ; "Don't create"
+0735    CALL    42   2   2
+0736    UGET    43   0      ; _
+0737    KSTR    44 148      ; "Create"
+0738    CALL    43   0   2
+0739    CALLM   39   2   3
+0740    ISF         39
+0741    JMP     40 => 0743
+0742    KPRI     9   1
+0743 => ISF          9
+0744    JMP     39 => 0752
+0745    MOV     40   5
+0746    TGETS   39   5   2  ; "info"
+0747    UGET    41   0      ; _
+0748    KSTR    42 149      ; "Canceled. Cleaning up…"
+0749    CALL    41   0   2
+0750    CALLM   39   1   1
+0751    JMP     39 => 0758
+0752 => MOV     40   5
+0753    TGETS   39   5   2  ; "info"
+0754    UGET    41   0      ; _
+0755    KSTR    42 150      ; "Packing EPUB…"
+0756    CALL    41   0   2
+0757    CALLM   39   1   1
+0758 => MOV     40  24
+0759    TGETS   39  24 151  ; "close"
+0760    CALL    39   1   2
+0761    UGET    39   1      ; ffiutil
+0762    TGETS   39  39 152  ; "usleep"
+0763    KNUM    40   1      ; 300000
+0764    CALL    39   1   2
+0765    MOV     40   5
+0766    TGETS   39   5   7  ; "reset"
+0767    CALL    39   1   2
+0768    ISF          9
+0769    JMP     39 => 0784
+0770    GGET    39  49      ; "lfs"
+0771    TGETS   39  39  50  ; "attributes"
+0772    MOV     40  22
+0773    KSTR    41  52      ; "mode"
+0774    CALL    39   2   3
+0775    ISNES   39  53      ; "file"
+0776    JMP     39 => 0781
+0777    GGET    39 124      ; "os"
+0778    TGETS   39  39 153  ; "remove"
+0779    MOV     40  22
+0780    CALL    39   1   2
+0781 => KPRI    39   1
+0782    UCLO     0 => 0783
+0783 => RET1    39   2
+0784 => GGET    39 124      ; "os"
+0785    TGETS   39  39 154  ; "rename"
+0786    MOV     40  22
+0787    MOV     41   1
+0788    CALL    39   1   3
+0789    UGET    39   3      ; logger
+0790    TGETS   39  39   2  ; "info"
+0791    KSTR    40 155      ; "successfully created:"
+0792    MOV     41   1
+0793    CALL    39   1   3
+0794    GGET    39 134      ; "collectgarbage"
+0795    CALL    39   1   1
+0796    GGET    39 134      ; "collectgarbage"
+0797    CALL    39   1   1
+0798    KPRI    39   2
+0799    UCLO     0 => 0800
+0800 => RET1    39   2
+0801 => RET1     8   2
+
+-- BYTECODE -- wikipedia.lua:1420-1434
+0001    UGET     0   0      ; Trapper
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setPausedText"
+0004    KSTR     2   1      ; "Download paused"
+0005    CALL     0   1   3
+0006    GGET     0   2      ; "pcall"
+0007    UGET     1   1      ; self
+0008    TGETS    1   1   3  ; "createEpub"
+0009    UGET     2   1      ; self
+0010    UGET     3   2      ; epub_path
+0011    UGET     4   3      ; page
+0012    UGET     5   4      ; lang
+0013    KPRI     6   2
+0014    CALL     0   3   7
+0015    ISF          0
+0016    JMP      2 => 0023
+0017    ISF          1
+0018    JMP      2 => 0023
+0019    UGET     2   5      ; result_callback
+0020    KPRI     3   2
+0021    CALL     2   1   2
+0022    JMP      2 => 0036
+0023 => UGET     2   0      ; Trapper
+0024    MOV      3   2
+0025    TGETS    2   2   4  ; "reset"
+0026    CALL     2   1   2
+0027    UGET     2   6      ; logger
+0028    TGETS    2   2   5  ; "warn"
+0029    KSTR     3   6      ; "Wikipedia.createEpub pcall:"
+0030    MOV      4   0
+0031    MOV      5   1
+0032    CALL     2   1   4
+0033    UGET     2   5      ; result_callback
+0034    KPRI     3   1
+0035    CALL     2   1   2
+0036 => RET0     0   1
+
+-- BYTECODE -- wikipedia.lua:1414-1435
+0001    GGET     5   0      ; "require"
+0002    KSTR     6   1      ; "ui/trapper"
+0003    CALL     5   2   2
+0004    MOV      7   5
+0005    TGETS    6   5   2  ; "wrap"
+0006    FNEW     8   3      ; wikipedia.lua:1420
+0007    CALL     6   1   3
+0008    UCLO     0 => 0009
+0009 => RET0     0   1
+
+-- BYTECODE -- wikipedia.lua:0-1438
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "json"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/renderimage"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "device"
+0009    CALL     2   2   2
+0010    TGETS    2   2   4  ; "screen"
+0011    GGET     3   0      ; "require"
+0012    KSTR     4   5      ; "ffi/util"
+0013    CALL     3   2   2
+0014    GGET     4   0      ; "require"
+0015    KSTR     5   6      ; "logger"
+0016    CALL     4   2   2
+0017    GGET     5   0      ; "require"
+0018    KSTR     6   7      ; "util"
+0019    CALL     5   2   2
+0020    GGET     6   0      ; "require"
+0021    KSTR     7   8      ; "gettext"
+0022    CALL     6   2   2
+0023    TGETS    7   3   9  ; "template"
+0024    TDUP     8  10
+0025    TDUP     9  11
+0026    TSETS    9   8  12  ; "wiki_search_params"
+0027    TDUP     9  13
+0028    TSETS    9   8  14  ; "wiki_full_params"
+0029    TDUP     9  15
+0030    TSETS    9   8  16  ; "wiki_phtml_params"
+0031    TDUP     9  17
+0032    TSETS    9   8  18  ; "wiki_images_params"
+0033    GGET     9  19      ; "G_reader_settings"
+0034    MOV     10   9
+0035    TGETS    9   9  20  ; "nilOrTrue"
+0036    KSTR    11  21      ; "wikipedia_prettify"
+0037    CALL     9   2   3
+0038    TSETS    9   8  22  ; "wiki_prettify"
+0039    FNEW     9  24      ; wikipedia.lua:94
+0040    TSETS    9   8  23  ; "getWikiServer"
+0041    MOV      9   7
+0042    KSTR    10  25      ; "KOReader/%1 (https://koreader.rocks/) %2"
+0043    GGET    11  26      ; "lfs"
+0044    TGETS   11  11  27  ; "attributes"
+0045    KSTR    12  28      ; "git-rev"
+0046    KSTR    13  29      ; "mode"
+0047    CALL    11   2   3
+0048    ISNES   11  30      ; "file"
+0049    JMP     11 => 0060
+0050    GGET    11  31      ; "io"
+0051    TGETS   11  11  32  ; "open"
+0052    KSTR    12  28      ; "git-rev"
+0053    KSTR    13  33      ; "r"
+0054    CALL    11   2   3
+0055    MOV     12  11
+0056    TGETS   11  11  34  ; "read"
+0057    CALL    11   2   2
+0058    IST         11
+0059    JMP     12 => 0061
+0060 => KSTR    11  35      ; "devel"
+0061 => GGET    12   0      ; "require"
+0062    KSTR    13  36      ; "socket.http"
+0063    CALL    12   2   2
+0064    TGETS   12  12  37  ; "USERAGENT"
+0065    MOV     13  12
+0066    TGETS   12  12  38  ; "gsub"
+0067    KSTR    14  39      ; " "
+0068    KSTR    15  40      ; "/"
+0069    CALL    12   0   4
+0070    CALLM    9   2   2
+0071    KSTR    10  41      ; "timeout"
+0072    KSTR    11  42      ; "maxtime reached"
+0073    FNEW    12  43      ; wikipedia.lua:108
+0074    FNEW    13  44      ; wikipedia.lua:125
+0075    FNEW    14  46      ; wikipedia.lua:197
+0076    TSETS   14   8  45  ; "setTrapWidget"
+0077    FNEW    14  48      ; wikipedia.lua:201
+0078    TSETS   14   8  47  ; "resetTrapWidget"
+0079    KSHORT  14   1
+0080    KSHORT  15   2
+0081    KSHORT  16   3
+0082    KSHORT  17   4
+0083    FNEW    18  50      ; wikipedia.lua:214
+0084    TSETS   18   8  49  ; "loadPage"
+0085    FNEW    18  52      ; wikipedia.lua:284
+0086    TSETS   18   8  51  ; "searchAndGetIntros"
+0087    FNEW    18  54      ; wikipedia.lua:304
+0088    TSETS   18   8  53  ; "getFullPage"
+0089    FNEW    18  56      ; wikipedia.lua:331
+0090    TSETS   18   8  55  ; "getFullPageHtml"
+0091    FNEW    18  58      ; wikipedia.lua:342
+0092    TSETS   18   8  57  ; "getFullPageImages"
+0093    FNEW    18  59      ; wikipedia.lua:418
+0094    FNEW    19  61      ; wikipedia.lua:489
+0095    TSETS   19   8  60  ; "addImages"
+0096    KSTR    19  62      ; "█"
+0097    KSTR    20  63      ; "▉"
+0098    KSTR    21  64      ; " ◤"
+0099    KSTR    22  65      ; "◆"
+0100    KSTR    23  66      ; "✿"
+0101    KSTR    24  67      ; "❖"
+0102    FNEW    25  69      ; wikipedia.lua:602
+0103    TSETS   25   8  68  ; "prettifyText"
+0104    KSTR    25  62      ; "█"
+0105    KSTR    26  63      ; "▉"
+0106    KSTR    27  70      ; "◤"
+0107    KSTR    28  65      ; "◆"
+0108    KSTR    29  66      ; "✿"
+0109    KSTR    30  67      ; "❖"
+0110    TDUP    31  71
+0111    TDUP    32  72
+0112    FNEW    33  74      ; wikipedia.lua:684
+0113    TSETS   33   8  73  ; "isWikipediaLanguageRTL"
+0114    FNEW    33  76      ; wikipedia.lua:692
+0115    TSETS   33   8  75  ; "createEpub"
+0116    FNEW    33  78      ; wikipedia.lua:1414
+0117    TSETS   33   8  77  ; "createEpubWithUI"
+0118    UCLO     0 => 0119
+0119 => RET1     8   2
+

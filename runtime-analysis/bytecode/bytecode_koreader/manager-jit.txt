@@ -1,0 +1,1464 @@
+-- BYTECODE -- manager.lua:15-17
+0001    UGET     1   0      ; LuaSettings
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "open"
+0004    UGET     3   1      ; DataStorage
+0005    MOV      4   3
+0006    TGETS    3   3   2  ; "getSettingsDir"
+0007    CALL     3   2   2
+0008    KSTR     4   3      ; "/network.lua"
+0009    CAT      3   3   4
+0010    CALL     1   2   3
+0011    TSETS    1   0   0  ; "nw_settings"
+0012    RET0     0   1
+
+-- BYTECODE -- manager.lua:31-31
+0001    UGET     0   0      ; NetworkMgr
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "connectivityCheck"
+0004    UGET     2   1      ; iter
+0005    ADDVN    2   2   0  ; 1
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- manager.lua:20-33
+0001    KSHORT   2   6
+0002    ISGE     2   1
+0003    JMP      2 => 0005
+0004    UCLO     0 => 0041
+0005 => UGET     2   0      ; NetworkMgr
+0006    MOV      3   2
+0007    TGETS    2   2   0  ; "isWifiOn"
+0008    CALL     2   2   2
+0009    ISF          2
+0010    JMP      3 => 0033
+0011    UGET     2   0      ; NetworkMgr
+0012    MOV      3   2
+0013    TGETS    2   2   1  ; "isConnected"
+0014    CALL     2   2   2
+0015    ISF          2
+0016    JMP      3 => 0033
+0017    GGET     2   2      ; "require"
+0018    KSTR     3   3      ; "ui/event"
+0019    CALL     2   2   2
+0020    UGET     3   1      ; UIManager
+0021    MOV      4   3
+0022    TGETS    3   3   4  ; "broadcastEvent"
+0023    MOV      6   2
+0024    TGETS    5   2   5  ; "new"
+0025    KSTR     7   6      ; "NetworkConnected"
+0026    CALL     5   0   3
+0027    CALLM    3   1   1
+0028    UGET     3   2      ; logger
+0029    TGETS    3   3   7  ; "info"
+0030    KSTR     4   8      ; "WiFi successfully restored!"
+0031    CALL     3   1   2
+0032    JMP      2 => 0039
+0033 => UGET     2   1      ; UIManager
+0034    MOV      3   2
+0035    TGETS    2   2   9  ; "scheduleIn"
+0036    KSHORT   4   2
+0037    FNEW     5  10      ; manager.lua:31
+0038    CALL     2   1   4
+0039 => UCLO     0 => 0040
+0040 => RET0     0   1
+0041 => RET0     0   1
+
+-- BYTECODE -- manager.lua:36-36
+0001    UGET     0   0      ; NetworkMgr
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "connectivityCheck"
+0004    KSHORT   2   1
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- manager.lua:35-37
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "scheduleIn"
+0004    KSHORT   3   2
+0005    FNEW     4   1      ; manager.lua:36
+0006    CALL     1   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- manager.lua:39-52
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "isKobo"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0024
+0007    MOV      2   0
+0008    TGETS    1   0   1  ; "isWifiOn"
+0009    CALL     1   2   2
+0010    ISF          1
+0011    JMP      2 => 0024
+0012    MOV      2   0
+0013    TGETS    1   0   2  ; "isConnected"
+0014    CALL     1   2   2
+0015    IST          1
+0016    JMP      1 => 0024
+0017    UGET     1   1      ; logger
+0018    TGETS    1   1   3  ; "info"
+0019    KSTR     2   4      ; "Kobo WiFi: Left in an inconsistent state"~
+0020    CALL     1   1   2
+0021    MOV      2   0
+0022    TGETS    1   0   5  ; "turnOffWifi"
+0023    CALL     1   1   2
+0024 => GGET     1   7      ; "G_reader_settings"
+0025    MOV      2   1
+0026    TGETS    1   1   8  ; "isTrue"
+0027    KSTR     3   6      ; "wifi_was_on"
+0028    CALL     1   2   3
+0029    TSETS    1   0   6  ; "wifi_was_on"
+0030    TGETS    1   0   6  ; "wifi_was_on"
+0031    ISF          1
+0032    JMP      2 => 0046
+0033    GGET     1   7      ; "G_reader_settings"
+0034    MOV      2   1
+0035    TGETS    1   1   8  ; "isTrue"
+0036    KSTR     3   9      ; "auto_restore_wifi"
+0037    CALL     1   2   3
+0038    ISF          1
+0039    JMP      2 => 0046
+0040    MOV      2   0
+0041    TGETS    1   0  10  ; "restoreWifiAsync"
+0042    CALL     1   1   2
+0043    MOV      2   0
+0044    TGETS    1   0  11  ; "scheduleConnectivityCheck"
+0045    CALL     1   1   2
+0046 => RET0     0   1
+
+-- BYTECODE -- manager.lua:57-57
+0001    RET0     0   1
+
+-- BYTECODE -- manager.lua:58-58
+0001    RET0     0   1
+
+-- BYTECODE -- manager.lua:59-59
+0001    RET0     0   1
+
+-- BYTECODE -- manager.lua:60-60
+0001    RET0     0   1
+
+-- BYTECODE -- manager.lua:61-61
+0001    RET0     0   1
+
+-- BYTECODE -- manager.lua:62-62
+0001    RET0     0   1
+
+-- BYTECODE -- manager.lua:63-63
+0001    RET0     0   1
+
+-- BYTECODE -- manager.lua:64-64
+0001    RET0     0   1
+
+-- BYTECODE -- manager.lua:65-65
+0001    RET0     0   1
+
+-- BYTECODE -- manager.lua:67-67
+0001    RET0     0   1
+
+-- BYTECODE -- manager.lua:74-78
+0001    UGET     0   0      ; self
+0002    KPRI     1   2
+0003    TSETS    1   0   0  ; "wifi_was_on"
+0004    GGET     0   1      ; "G_reader_settings"
+0005    MOV      1   0
+0006    TGETS    0   0   2  ; "saveSetting"
+0007    KSTR     2   0      ; "wifi_was_on"
+0008    KPRI     3   2
+0009    CALL     0   1   4
+0010    UGET     0   0      ; self
+0011    MOV      1   0
+0012    TGETS    0   0   3  ; "turnOnWifi"
+0013    UGET     2   1      ; complete_callback
+0014    CALL     0   1   3
+0015    RET0     0   1
+
+-- BYTECODE -- manager.lua:70-80
+0001    UGET     2   0      ; UIManager
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "show"
+0004    UGET     4   1      ; ConfirmBox
+0005    MOV      5   4
+0006    TGETS    4   4   1  ; "new"
+0007    TDUP     6   3
+0008    UGET     7   2      ; _
+0009    KSTR     8   2      ; "Do you want to turn on Wi-Fi?"
+0010    CALL     7   2   2
+0011    TSETS    7   6   4  ; "text"
+0012    UGET     7   2      ; _
+0013    KSTR     8   5      ; "Turn on"
+0014    CALL     7   2   2
+0015    TSETS    7   6   6  ; "ok_text"
+0016    FNEW     7   7      ; manager.lua:74
+0017    TSETS    7   6   8  ; "ok_callback"
+0018    CALL     4   0   3
+0019    CALLM    2   1   1
+0020    UCLO     0 => 0021
+0021 => RET0     0   1
+
+-- BYTECODE -- manager.lua:86-90
+0001    UGET     0   0      ; self
+0002    KPRI     1   1
+0003    TSETS    1   0   0  ; "wifi_was_on"
+0004    GGET     0   1      ; "G_reader_settings"
+0005    MOV      1   0
+0006    TGETS    0   0   2  ; "saveSetting"
+0007    KSTR     2   0      ; "wifi_was_on"
+0008    KPRI     3   1
+0009    CALL     0   1   4
+0010    UGET     0   0      ; self
+0011    MOV      1   0
+0012    TGETS    0   0   3  ; "turnOffWifi"
+0013    UGET     2   1      ; complete_callback
+0014    CALL     0   1   3
+0015    RET0     0   1
+
+-- BYTECODE -- manager.lua:82-92
+0001    UGET     2   0      ; UIManager
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "show"
+0004    UGET     4   1      ; ConfirmBox
+0005    MOV      5   4
+0006    TGETS    4   4   1  ; "new"
+0007    TDUP     6   3
+0008    UGET     7   2      ; _
+0009    KSTR     8   2      ; "Do you want to turn off Wi-Fi?"
+0010    CALL     7   2   2
+0011    TSETS    7   6   4  ; "text"
+0012    UGET     7   2      ; _
+0013    KSTR     8   5      ; "Turn off"
+0014    CALL     7   2   2
+0015    TSETS    7   6   6  ; "ok_text"
+0016    FNEW     7   7      ; manager.lua:86
+0017    TSETS    7   6   8  ; "ok_callback"
+0018    CALL     4   0   3
+0019    CALLM    2   1   1
+0020    UCLO     0 => 0021
+0021 => RET0     0   1
+
+-- BYTECODE -- manager.lua:94-111
+0001    UGET     2   0      ; NetworkMgr
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "turnOnWifi"
+0004    CALL     2   1   2
+0005    KSHORT   2  30
+0006    KSHORT   3   0
+0007    UGET     4   1      ; InfoMessage
+0008    MOV      5   4
+0009    TGETS    4   4   1  ; "new"
+0010    TDUP     6   3
+0011    UGET     7   2      ; T
+0012    UGET     8   3      ; _
+0013    KSTR     9   2      ; "Enabling Wi-Fi. Waiting for Internet con"~
+0014    CALL     8   2   2
+0015    MOV      9   2
+0016    CALL     7   2   3
+0017    TSETS    7   6   4  ; "text"
+0018    CALL     4   2   3
+0019    UGET     5   4      ; UIManager
+0020    MOV      6   5
+0021    TGETS    5   5   5  ; "show"
+0022    MOV      7   4
+0023    CALL     5   1   3
+0024    UGET     5   4      ; UIManager
+0025    MOV      6   5
+0026    TGETS    5   5   6  ; "forceRePaint"
+0027    CALL     5   1   2
+0028 => UGET     5   0      ; NetworkMgr
+0029    MOV      6   5
+0030    TGETS    5   5   7  ; "isOnline"
+0031    CALL     5   2   2
+0032    IST          5
+0033    JMP      5 => 0043
+0034    ISGE     3   2
+0035    JMP      5 => 0043
+0036    LOOP     5 => 0043
+0037    UGET     5   5      ; ffiutil
+0038    TGETS    5   5   8  ; "sleep"
+0039    KSHORT   6   1
+0040    CALL     5   1   2
+0041    ADDVN    3   3   0  ; 1
+0042    JMP      5 => 0028
+0043 => UGET     5   4      ; UIManager
+0044    MOV      6   5
+0045    TGETS    5   5   9  ; "close"
+0046    MOV      7   4
+0047    CALL     5   1   3
+0048    ISNEV    3   2
+0049    JMP      5 => 0064
+0050    UGET     5   4      ; UIManager
+0051    MOV      6   5
+0052    TGETS    5   5   5  ; "show"
+0053    UGET     7   1      ; InfoMessage
+0054    MOV      8   7
+0055    TGETS    7   7   1  ; "new"
+0056    TDUP     9  11
+0057    UGET    10   3      ; _
+0058    KSTR    11  10      ; "Error connecting to the network"
+0059    CALL    10   2   2
+0060    TSETS   10   9   4  ; "text"
+0061    CALL     7   0   3
+0062    CALLM    5   1   1
+0063    RET0     0   1
+0064 => ISF          1
+0065    JMP      5 => 0068
+0066    MOV      5   1
+0067    CALL     5   1   1
+0068 => RET0     0   1
+
+-- BYTECODE -- manager.lua:113-120
+0001    GGET     2   0      ; "G_reader_settings"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "readSetting"
+0004    KSTR     4   2      ; "wifi_enable_action"
+0005    CALL     2   2   3
+0006    ISNES    2   3      ; "turn_on"
+0007    JMP      3 => 0014
+0008    UGET     3   0      ; NetworkMgr
+0009    MOV      4   3
+0010    TGETS    3   3   4  ; "turnOnWifiAndWaitForConnection"
+0011    MOV      5   1
+0012    CALL     3   1   3
+0013    JMP      3 => 0019
+0014 => UGET     3   0      ; NetworkMgr
+0015    MOV      4   3
+0016    TGETS    3   3   5  ; "promptWifiOn"
+0017    MOV      5   1
+0018    CALL     3   1   3
+0019 => RET0     0   1
+
+-- BYTECODE -- manager.lua:122-145
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "isAndroid"
+0004    CALL     1   2   2
+0005    IST          1
+0006    JMP      2 => 0019
+0007    UGET     1   0      ; Device
+0008    MOV      2   1
+0009    TGETS    1   1   1  ; "isCervantes"
+0010    CALL     1   2   2
+0011    IST          1
+0012    JMP      2 => 0019
+0013    UGET     1   0      ; Device
+0014    MOV      2   1
+0015    TGETS    1   1   2  ; "isPocketBook"
+0016    CALL     1   2   2
+0017    ISF          1
+0018    JMP      2 => 0023
+0019 => MOV      2   0
+0020    TGETS    1   0   3  ; "isWifiOn"
+0021    CALLT    1   2
+0022    JMP      1 => 0082
+0023 => KPRI     1   0
+0024    GGET     2   4      ; "io"
+0025    TGETS    2   2   5  ; "popen"
+0026    KSTR     3   6      ; "/sbin/route -n | awk '$4 == "UG" {print "~
+0027    KSTR     4   7      ; "r"
+0028    CALL     2   2   3
+0029    ISF          2
+0030    JMP      3 => 0045
+0031    MOV      4   2
+0032    TGETS    3   2   8  ; "read"
+0033    KSTR     5   9      ; "*all"
+0034    CALL     3   2   3
+0035    MOV      1   3
+0036    MOV      4   2
+0037    TGETS    3   2  10  ; "close"
+0038    CALL     3   1   2
+0039    ISF          1
+0040    JMP      3 => 0043
+0041    ISNES    1  11      ; ""
+0042    JMP      3 => 0045
+0043 => KPRI     3   1
+0044    RET1     3   2
+0045 => UGET     3   0      ; Device
+0046    MOV      4   3
+0047    TGETS    3   3  12  ; "isKindle"
+0048    CALL     3   2   2
+0049    ISF          3
+0050    JMP      4 => 0070
+0051    UGET     3   0      ; Device
+0052    MOV      4   3
+0053    TGETS    3   3  13  ; "hasKeyboard"
+0054    CALL     3   2   2
+0055    ISF          3
+0056    JMP      4 => 0070
+0057    GGET     3  14      ; "os"
+0058    TGETS    3   3  15  ; "execute"
+0059    KSTR     4  16      ; "ping -c1 "
+0060    MOV      5   1
+0061    CAT      4   4   5
+0062    CALL     3   2   2
+0063    ISEQN    3   0      ; 0
+0064    JMP      3 => 0067
+0065    KPRI     3   1
+0066    JMP      4 => 0068
+0067 => KPRI     3   2
+0068 => RET1     3   2
+0069    JMP      3 => 0082
+0070 => GGET     3  14      ; "os"
+0071    TGETS    3   3  15  ; "execute"
+0072    KSTR     4  17      ; "ping -c1 -w2 "
+0073    MOV      5   1
+0074    CAT      4   4   5
+0075    CALL     3   2   2
+0076    ISEQN    3   0      ; 0
+0077    JMP      3 => 0080
+0078    KPRI     3   1
+0079    JMP      4 => 0081
+0080 => KPRI     3   2
+0081 => RET1     3   2
+0082 => RET0     0   1
+
+-- BYTECODE -- manager.lua:147-154
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "socket"
+0003    CALL     1   2   2
+0004    TGETS    2   1   2  ; "dns"
+0005    TGETS    2   2   3  ; "toip"
+0006    KSTR     3   4      ; "dns.msftncsi.com"
+0007    CALL     2   2   2
+0008    ISNEP    2   0
+0009    JMP      2 => 0012
+0010    KPRI     2   1
+0011    JMP      3 => 0013
+0012 => KPRI     2   2
+0013 => RET1     2   2
+
+-- BYTECODE -- manager.lua:156-164
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "isAndroid"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0010
+0007    KPRI     1   2
+0008    RET1     1   2
+0009    JMP      1 => 0013
+0010 => MOV      2   0
+0011    TGETS    1   0   1  ; "isWifiOn"
+0012    CALLT    1   2
+0013 => RET0     0   1
+
+-- BYTECODE -- manager.lua:166-175
+0001    GGET     2   0      ; "require"
+0002    KSTR     3   1      ; "socket.http"
+0003    CALL     2   2   2
+0004    TSETS    1   2   2  ; "PROXY"
+0005    ISF          1
+0006    JMP      3 => 0020
+0007    GGET     3   3      ; "G_reader_settings"
+0008    MOV      4   3
+0009    TGETS    3   3   4  ; "saveSetting"
+0010    KSTR     5   5      ; "http_proxy"
+0011    MOV      6   1
+0012    CALL     3   1   4
+0013    GGET     3   3      ; "G_reader_settings"
+0014    MOV      4   3
+0015    TGETS    3   3   4  ; "saveSetting"
+0016    KSTR     5   6      ; "http_proxy_enabled"
+0017    KPRI     6   2
+0018    CALL     3   1   4
+0019    JMP      3 => 0026
+0020 => GGET     3   3      ; "G_reader_settings"
+0021    MOV      4   3
+0022    TGETS    3   3   4  ; "saveSetting"
+0023    KSTR     5   6      ; "http_proxy_enabled"
+0024    KPRI     6   1
+0025    CALL     3   1   4
+0026 => RET0     0   1
+
+-- BYTECODE -- manager.lua:181-181
+0001    KPRI     0   2
+0002    RET1     0   2
+
+-- BYTECODE -- manager.lua:182-182
+0001    UGET     0   0      ; NetworkMgr
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "openSettings"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- manager.lua:177-187
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "isAndroid"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0019
+0007    TDUP     1   2
+0008    UGET     2   1      ; _
+0009    KSTR     3   1      ; "Wi-Fi settings"
+0010    CALL     2   2   2
+0011    TSETS    2   1   3  ; "text"
+0012    FNEW     2   4      ; manager.lua:181
+0013    TSETS    2   1   5  ; "enabled_func"
+0014    FNEW     2   6      ; manager.lua:182
+0015    TSETS    2   1   7  ; "callback"
+0016    UCLO     0 => 0017
+0017 => RET1     1   2
+0018    JMP      1 => 0023
+0019 => MOV      2   0
+0020    TGETS    1   0   8  ; "getWifiToggleMenuTable"
+0021    UCLO     0 => 0022
+0022 => CALLT    1   2
+0023 => RET0     0   1
+
+-- BYTECODE -- manager.lua:192-192
+0001    UGET     0   0      ; Device
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "hasWifiToggle"
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0012
+0007    UGET     0   0      ; Device
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "isEmulator"
+0010    CALL     0   2   2
+0011    NOT      0   0
+0012 => RET1     0   2
+
+-- BYTECODE -- manager.lua:193-193
+0001    UGET     0   0      ; NetworkMgr
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "isWifiOn"
+0004    CALLT    0   2
+
+-- BYTECODE -- manager.lua:196-232
+0001    UGET     0   0      ; touchmenu_instance
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "updateItems"
+0004    CALL     0   1   2
+0005    GGET     0   1      ; "require"
+0006    KSTR     1   2      ; "ui/event"
+0007    CALL     0   2   2
+0008    UGET     1   1      ; wifi_status
+0009    ISF          1
+0010    JMP      2 => 0020
+0011    UGET     1   2      ; UIManager
+0012    MOV      2   1
+0013    TGETS    1   1   3  ; "broadcastEvent"
+0014    MOV      4   0
+0015    TGETS    3   0   4  ; "new"
+0016    KSTR     5   5      ; "NetworkDisconnected"
+0017    CALL     3   0   3
+0018    CALLM    1   1   1
+0019    JMP      1 => 0091
+0020 => UGET     1   3      ; Device
+0021    MOV      2   1
+0022    TGETS    1   1   6  ; "isKobo"
+0023    CALL     1   2   2
+0024    IST          1
+0025    JMP      2 => 0032
+0026    UGET     1   3      ; Device
+0027    MOV      2   1
+0028    TGETS    1   1   7  ; "isCervantes"
+0029    CALL     1   2   2
+0030    ISF          1
+0031    JMP      2 => 0083
+0032 => UGET     1   4      ; NetworkMgr
+0033    MOV      2   1
+0034    TGETS    1   1   8  ; "isWifiOn"
+0035    CALL     1   2   2
+0036    ISF          1
+0037    JMP      2 => 0053
+0038    UGET     1   4      ; NetworkMgr
+0039    MOV      2   1
+0040    TGETS    1   1   9  ; "isConnected"
+0041    CALL     1   2   2
+0042    ISF          1
+0043    JMP      2 => 0053
+0044    UGET     1   2      ; UIManager
+0045    MOV      2   1
+0046    TGETS    1   1   3  ; "broadcastEvent"
+0047    MOV      4   0
+0048    TGETS    3   0   4  ; "new"
+0049    KSTR     5  10      ; "NetworkConnected"
+0050    CALL     3   0   3
+0051    CALLM    1   1   1
+0052    JMP      1 => 0091
+0053 => UGET     1   4      ; NetworkMgr
+0054    MOV      2   1
+0055    TGETS    1   1   8  ; "isWifiOn"
+0056    CALL     1   2   2
+0057    ISF          1
+0058    JMP      2 => 0091
+0059    UGET     1   4      ; NetworkMgr
+0060    MOV      2   1
+0061    TGETS    1   1   9  ; "isConnected"
+0062    CALL     1   2   2
+0063    IST          1
+0064    JMP      1 => 0091
+0065    UGET     1   5      ; self
+0066    KPRI     2   1
+0067    TSETS    2   1  11  ; "wifi_was_on"
+0068    GGET     1  12      ; "G_reader_settings"
+0069    MOV      2   1
+0070    TGETS    1   1  13  ; "saveSetting"
+0071    KSTR     3  11      ; "wifi_was_on"
+0072    KPRI     4   1
+0073    CALL     1   1   4
+0074    UGET     1   4      ; NetworkMgr
+0075    MOV      2   1
+0076    TGETS    1   1  14  ; "turnOffWifi"
+0077    CALL     1   1   2
+0078    UGET     1   0      ; touchmenu_instance
+0079    MOV      2   1
+0080    TGETS    1   1   0  ; "updateItems"
+0081    CALL     1   1   2
+0082    JMP      1 => 0091
+0083 => UGET     1   2      ; UIManager
+0084    MOV      2   1
+0085    TGETS    1   1   3  ; "broadcastEvent"
+0086    MOV      4   0
+0087    TGETS    3   0   4  ; "new"
+0088    KSTR     5  10      ; "NetworkConnected"
+0089    CALL     3   0   3
+0090    CALLM    1   1   1
+0091 => RET0     0   1
+
+-- BYTECODE -- manager.lua:194-238
+0001    UGET     1   0      ; NetworkMgr
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "isWifiOn"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0011
+0007    UGET     1   0      ; NetworkMgr
+0008    MOV      2   1
+0009    TGETS    1   1   1  ; "isConnected"
+0010    CALL     1   2   2
+0011 => FNEW     2   2      ; manager.lua:196
+0012    ISF          1
+0013    JMP      3 => 0020
+0014    UGET     3   0      ; NetworkMgr
+0015    MOV      4   3
+0016    TGETS    3   3   3  ; "promptWifiOff"
+0017    MOV      5   2
+0018    CALL     3   1   3
+0019    JMP      3 => 0025
+0020 => UGET     3   0      ; NetworkMgr
+0021    MOV      4   3
+0022    TGETS    3   3   4  ; "promptWifiOn"
+0023    MOV      5   2
+0024    CALL     3   1   3
+0025 => UCLO     0 => 0026
+0026 => RET0     0   1
+
+-- BYTECODE -- manager.lua:189-240
+0001    TDUP     1   1
+0002    UGET     2   0      ; _
+0003    KSTR     3   0      ; "Wi-Fi connection"
+0004    CALL     2   2   2
+0005    TSETS    2   1   2  ; "text"
+0006    FNEW     2   3      ; manager.lua:192
+0007    TSETS    2   1   4  ; "enabled_func"
+0008    FNEW     2   5      ; manager.lua:193
+0009    TSETS    2   1   6  ; "checked_func"
+0010    FNEW     2   7      ; manager.lua:194
+0011    TSETS    2   1   8  ; "callback"
+0012    UCLO     0 => 0013
+0013 => RET1     1   2
+
+-- BYTECODE -- manager.lua:243-245
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "readSetting"
+0004    KSTR     2   2      ; "http_proxy_enabled"
+0005    CALLT    0   3
+
+-- BYTECODE -- manager.lua:246-248
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "readSetting"
+0004    KSTR     2   2      ; "http_proxy"
+0005    CALLT    0   3
+
+-- BYTECODE -- manager.lua:250-252
+0001    UGET     0   0      ; T
+0002    UGET     1   1      ; _
+0003    KSTR     2   0      ; "HTTP proxy %1"
+0004    CALL     1   2   2
+0005    UGET     2   2      ; proxy_enabled
+0006    CALL     2   2   1
+0007    ISF          2
+0008    JMP      3 => 0016
+0009    UGET     2   3      ; BD
+0010    TGETS    2   2   1  ; "url"
+0011    UGET     3   4      ; proxy
+0012    CALL     3   0   1
+0013    CALLM    2   2   0
+0014    IST          2
+0015    JMP      3 => 0017
+0016 => KSTR     2   2      ; ""
+0017 => CALLT    0   3
+
+-- BYTECODE -- manager.lua:253-253
+0001    UGET     0   0      ; proxy_enabled
+0002    CALLT    0   1
+
+-- BYTECODE -- manager.lua:254-265
+0001    UGET     0   0      ; proxy_enabled
+0002    CALL     0   2   1
+0003    IST          0
+0004    JMP      0 => 0016
+0005    UGET     0   1      ; proxy
+0006    CALL     0   2   1
+0007    ISF          0
+0008    JMP      1 => 0016
+0009    UGET     0   2      ; NetworkMgr
+0010    MOV      1   0
+0011    TGETS    0   0   0  ; "setHTTPProxy"
+0012    UGET     2   1      ; proxy
+0013    CALL     2   0   1
+0014    CALLM    0   1   1
+0015    JMP      0 => 0025
+0016 => UGET     0   0      ; proxy_enabled
+0017    CALL     0   2   1
+0018    ISF          0
+0019    JMP      1 => 0025
+0020    UGET     0   2      ; NetworkMgr
+0021    MOV      1   0
+0022    TGETS    0   0   0  ; "setHTTPProxy"
+0023    KPRI     2   0
+0024    CALL     0   1   3
+0025 => UGET     0   1      ; proxy
+0026    CALL     0   2   1
+0027    IST          0
+0028    JMP      0 => 0042
+0029    UGET     0   3      ; UIManager
+0030    MOV      1   0
+0031    TGETS    0   0   1  ; "show"
+0032    UGET     2   4      ; InfoMessage
+0033    MOV      3   2
+0034    TGETS    2   2   2  ; "new"
+0035    TDUP     4   4
+0036    UGET     5   5      ; _
+0037    KSTR     6   3      ; "Tip:\nLong press on this menu entry to c"~
+0038    CALL     5   2   2
+0039    TSETS    5   4   5  ; "text"
+0040    CALL     2   0   3
+0041    CALLM    0   1   1
+0042 => RET0     0   1
+
+-- BYTECODE -- manager.lua:270-274
+0001    ISEQS    0   0      ; ""
+0002    JMP      1 => 0008
+0003    UGET     1   0      ; NetworkMgr
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "setHTTPProxy"
+0006    MOV      3   0
+0007    CALL     1   1   3
+0008 => RET0     0   1
+
+-- BYTECODE -- manager.lua:242-277
+0001    FNEW     1   0      ; manager.lua:243
+0002    FNEW     2   1      ; manager.lua:246
+0003    TDUP     3   3
+0004    FNEW     4   2      ; manager.lua:250
+0005    TSETS    4   3   4  ; "text_func"
+0006    FNEW     4   5      ; manager.lua:253
+0007    TSETS    4   3   6  ; "checked_func"
+0008    FNEW     4   7      ; manager.lua:254
+0009    TSETS    4   3   8  ; "callback"
+0010    TDUP     4  10
+0011    UGET     5   1      ; _
+0012    KSTR     6   9      ; "Enter proxy address"
+0013    CALL     5   2   2
+0014    TSETS    5   4  11  ; "title"
+0015    MOV      5   2
+0016    CALL     5   2   1
+0017    IST          5
+0018    JMP      6 => 0020
+0019    KSTR     5  12      ; ""
+0020 => TSETS    5   4  13  ; "hint"
+0021    FNEW     5  14      ; manager.lua:270
+0022    TSETS    5   4   8  ; "callback"
+0023    TSETS    4   3  15  ; "hold_input"
+0024    UCLO     0 => 0025
+0025 => RET1     3   2
+
+-- BYTECODE -- manager.lua:282-282
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "isTrue"
+0004    KSTR     2   2      ; "auto_restore_wifi"
+0005    CALLT    0   3
+
+-- BYTECODE -- manager.lua:283-283
+0001    UGET     0   0      ; Device
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "hasWifiManager"
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0012
+0007    UGET     0   0      ; Device
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "isEmulator"
+0010    CALL     0   2   2
+0011    NOT      0   0
+0012 => RET1     0   2
+
+-- BYTECODE -- manager.lua:284-284
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrFalse"
+0004    KSTR     2   2      ; "auto_restore_wifi"
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- manager.lua:279-286
+0001    TDUP     1   1
+0002    UGET     2   0      ; _
+0003    KSTR     3   0      ; "Automatically restore Wi-Fi connection a"~
+0004    CALL     2   2   2
+0005    TSETS    2   1   2  ; "text"
+0006    FNEW     2   3      ; manager.lua:282
+0007    TSETS    2   1   4  ; "checked_func"
+0008    FNEW     2   5      ; manager.lua:283
+0009    TSETS    2   1   6  ; "enabled_func"
+0010    FNEW     2   7      ; manager.lua:284
+0011    TSETS    2   1   8  ; "callback"
+0012    UCLO     0 => 0013
+0013 => RET1     1   2
+
+-- BYTECODE -- manager.lua:292-292
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "isNetworkInfoAvailable"
+0004    CALLT    0   2
+
+-- BYTECODE -- manager.lua:293-304
+0001    UGET     0   0      ; Device
+0002    TGETS    0   0   0  ; "retrieveNetworkInfo"
+0003    ISF          0
+0004    JMP      1 => 0020
+0005    UGET     0   1      ; UIManager
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "show"
+0008    UGET     2   2      ; InfoMessage
+0009    MOV      3   2
+0010    TGETS    2   2   2  ; "new"
+0011    TDUP     4   3
+0012    UGET     5   0      ; Device
+0013    MOV      6   5
+0014    TGETS    5   5   0  ; "retrieveNetworkInfo"
+0015    CALL     5   2   2
+0016    TSETS    5   4   4  ; "text"
+0017    CALL     2   0   3
+0018    CALLM    0   1   1
+0019    JMP      0 => 0033
+0020 => UGET     0   1      ; UIManager
+0021    MOV      1   0
+0022    TGETS    0   0   1  ; "show"
+0023    UGET     2   2      ; InfoMessage
+0024    MOV      3   2
+0025    TGETS    2   2   2  ; "new"
+0026    TDUP     4   6
+0027    UGET     5   3      ; _
+0028    KSTR     6   5      ; "Could not retrieve network info."
+0029    CALL     5   2   2
+0030    TSETS    5   4   4  ; "text"
+0031    CALL     2   0   3
+0032    CALLM    0   1   1
+0033 => RET0     0   1
+
+-- BYTECODE -- manager.lua:288-306
+0001    TDUP     1   1
+0002    UGET     2   0      ; _
+0003    KSTR     3   0      ; "Network info"
+0004    CALL     2   2   2
+0005    TSETS    2   1   2  ; "text"
+0006    FNEW     2   3      ; manager.lua:292
+0007    TSETS    2   1   4  ; "enabled_func"
+0008    FNEW     2   5      ; manager.lua:293
+0009    TSETS    2   1   6  ; "callback"
+0010    UCLO     0 => 0011
+0011 => RET1     1   2
+
+-- BYTECODE -- manager.lua:317-319
+0001    UGET     0   0      ; wifi_enable_action_setting
+0002    UGET     1   1      ; wifi_enable_action
+0003    ISEQV    0   1
+0004    JMP      0 => 0007
+0005    KPRI     0   1
+0006    JMP      1 => 0008
+0007 => KPRI     0   2
+0008 => RET1     0   2
+
+-- BYTECODE -- manager.lua:320-323
+0001    UGET     0   1      ; wifi_enable_action
+0002    USETV    0   0      ; wifi_enable_action_setting
+0003    GGET     0   0      ; "G_reader_settings"
+0004    MOV      1   0
+0005    TGETS    0   0   1  ; "saveSetting"
+0006    KSTR     2   2      ; "wifi_enable_action"
+0007    UGET     3   1      ; wifi_enable_action
+0008    CALL     0   1   4
+0009    RET0     0   1
+
+-- BYTECODE -- manager.lua:314-325
+0001    TDUP     1   0
+0002    UGET     2   0      ; wifi_enable_actions
+0003    TGETV    2   2   0
+0004    TGETB    2   2   2
+0005    TSETS    2   1   1  ; "text"
+0006    FNEW     2   2      ; manager.lua:317
+0007    TSETS    2   1   3  ; "checked_func"
+0008    FNEW     2   4      ; manager.lua:320
+0009    TSETS    2   1   5  ; "callback"
+0010    UCLO     0 => 0011
+0011 => RET1     1   2
+
+-- BYTECODE -- manager.lua:327-331
+0001    UGET     0   0      ; T
+0002    UGET     1   1      ; _
+0003    KSTR     2   0      ; "Action when Wi-Fi is off: %1"
+0004    CALL     1   2   2
+0005    UGET     2   2      ; wifi_enable_actions
+0006    UGET     3   3      ; wifi_enable_action_setting
+0007    TGETV    2   2   3
+0008    TGETB    2   2   1
+0009    CALLT    0   3
+
+-- BYTECODE -- manager.lua:308-337
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "readSetting"
+0004    KSTR     3   2      ; "wifi_enable_action"
+0005    CALL     1   2   3
+0006    IST          1
+0007    JMP      2 => 0009
+0008    KSTR     1   3      ; "prompt"
+0009 => TDUP     2   6
+0010    TNEW     3   3
+0011    UGET     4   0      ; _
+0012    KSTR     5   4      ; "turn on"
+0013    CALL     4   2   2
+0014    TSETB    4   3   1
+0015    UGET     4   0      ; _
+0016    KSTR     5   5      ; "Turn on (experimental)"
+0017    CALL     4   0   2
+0018    TSETM    4   0      ; 2
+0019    TSETS    3   2   7  ; "turn_on"
+0020    TNEW     3   3
+0021    UGET     4   0      ; _
+0022    KSTR     5   3      ; "prompt"
+0023    CALL     4   2   2
+0024    TSETB    4   3   1
+0025    UGET     4   0      ; _
+0026    KSTR     5   8      ; "Prompt"
+0027    CALL     4   0   2
+0028    TSETM    4   0      ; 2
+0029    TSETS    3   2   3  ; "prompt"
+0030    FNEW     3   9      ; manager.lua:314
+0031    TDUP     4  11
+0032    FNEW     5  10      ; manager.lua:327
+0033    TSETS    5   4  12  ; "text_func"
+0034    TNEW     5   3
+0035    MOV      6   3
+0036    KSTR     7   7      ; "turn_on"
+0037    CALL     6   2   2
+0038    TSETB    6   5   1
+0039    MOV      6   3
+0040    KSTR     7   3      ; "prompt"
+0041    CALL     6   0   2
+0042    TSETM    6   0      ; 2
+0043    TSETS    5   4  13  ; "sub_item_table"
+0044    UCLO     0 => 0045
+0045 => RET1     4   2
+
+-- BYTECODE -- manager.lua:342-342
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "nilOrTrue"
+0004    KSTR     2   2      ; "auto_dismiss_wifi_scan"
+0005    CALLT    0   3
+
+-- BYTECODE -- manager.lua:343-343
+0001    UGET     0   0      ; Device
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "hasWifiManager"
+0004    CALL     0   2   2
+0005    ISF          0
+0006    JMP      1 => 0012
+0007    UGET     0   0      ; Device
+0008    MOV      1   0
+0009    TGETS    0   0   1  ; "isEmulator"
+0010    CALL     0   2   2
+0011    NOT      0   0
+0012 => RET1     0   2
+
+-- BYTECODE -- manager.lua:344-344
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrTrue"
+0004    KSTR     2   2      ; "auto_dismiss_wifi_scan"
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- manager.lua:339-346
+0001    TDUP     1   1
+0002    UGET     2   0      ; _
+0003    KSTR     3   0      ; "Dismiss Wi-Fi scan popup after connectio"~
+0004    CALL     2   2   2
+0005    TSETS    2   1   2  ; "text"
+0006    FNEW     2   3      ; manager.lua:342
+0007    TSETS    2   1   4  ; "checked_func"
+0008    FNEW     2   5      ; manager.lua:343
+0009    TSETS    2   1   6  ; "enabled_func"
+0010    FNEW     2   7      ; manager.lua:344
+0011    TSETS    2   1   8  ; "callback"
+0012    UCLO     0 => 0013
+0013 => RET1     1   2
+
+-- BYTECODE -- manager.lua:348-361
+0001    UGET     2   0      ; Device
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "hasWifiToggle"
+0004    CALL     2   2   2
+0005    ISF          2
+0006    JMP      3 => 0011
+0007    MOV      3   0
+0008    TGETS    2   0   2  ; "getWifiMenuTable"
+0009    CALL     2   2   2
+0010    TSETS    2   1   1  ; "network_wifi"
+0011 => MOV      3   0
+0012    TGETS    2   0   4  ; "getProxyMenuTable"
+0013    CALL     2   2   2
+0014    TSETS    2   1   3  ; "network_proxy"
+0015    MOV      3   0
+0016    TGETS    2   0   6  ; "getInfoMenuTable"
+0017    CALL     2   2   2
+0018    TSETS    2   1   5  ; "network_info"
+0019    UGET     2   0      ; Device
+0020    MOV      3   2
+0021    TGETS    2   2   7  ; "hasWifiManager"
+0022    CALL     2   2   2
+0023    ISF          2
+0024    JMP      3 => 0037
+0025    MOV      3   0
+0026    TGETS    2   0   9  ; "getRestoreMenuTable"
+0027    CALL     2   2   2
+0028    TSETS    2   1   8  ; "network_restore"
+0029    MOV      3   0
+0030    TGETS    2   0  11  ; "getDismissScanMenuTable"
+0031    CALL     2   2   2
+0032    TSETS    2   1  10  ; "network_dismiss_scan"
+0033    MOV      3   0
+0034    TGETS    2   0  13  ; "getBeforeWifiActionMenuTable"
+0035    CALL     2   2   2
+0036    TSETS    2   1  12  ; "network_before_wifi_action"
+0037 => RET0     0   1
+
+-- BYTECODE -- manager.lua:366-387
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getNetworkList"
+0004    CALL     0   3   2
+0005    UGET     2   1      ; UIManager
+0006    MOV      3   2
+0007    TGETS    2   2   1  ; "close"
+0008    UGET     4   2      ; info
+0009    CALL     2   1   3
+0010    ISNEP    0   0
+0011    JMP      2 => 0023
+0012    UGET     2   1      ; UIManager
+0013    MOV      3   2
+0014    TGETS    2   2   2  ; "show"
+0015    UGET     4   3      ; InfoMessage
+0016    MOV      5   4
+0017    TGETS    4   4   3  ; "new"
+0018    TDUP     6   4
+0019    TSETS    1   6   5  ; "text"
+0020    CALL     4   0   3
+0021    CALLM    2   1   1
+0022    RET0     0   1
+0023 => GGET     2   6      ; "table"
+0024    TGETS    2   2   7  ; "getn"
+0025    MOV      3   0
+0026    CALL     2   2   2
+0027    ISNEN    2   0      ; 0
+0028    JMP      2 => 0048
+0029    UGET     2   0      ; self
+0030    MOV      3   2
+0031    TGETS    2   2   0  ; "getNetworkList"
+0032    CALL     2   3   2
+0033    MOV      1   3
+0034    MOV      0   2
+0035    ISNEP    0   0
+0036    JMP      2 => 0048
+0037    UGET     2   1      ; UIManager
+0038    MOV      3   2
+0039    TGETS    2   2   2  ; "show"
+0040    UGET     4   3      ; InfoMessage
+0041    MOV      5   4
+0042    TGETS    4   4   3  ; "new"
+0043    TDUP     6   8
+0044    TSETS    1   6   5  ; "text"
+0045    CALL     4   0   3
+0046    CALLM    2   1   1
+0047    RET0     0   1
+0048 => UGET     2   1      ; UIManager
+0049    MOV      3   2
+0050    TGETS    2   2   2  ; "show"
+0051    GGET     4   9      ; "require"
+0052    KSTR     5  10      ; "ui/widget/networksetting"
+0053    CALL     4   2   2
+0054    MOV      5   4
+0055    TGETS    4   4   3  ; "new"
+0056    TDUP     6  11
+0057    TSETS    0   6  12  ; "network_list"
+0058    UGET     7   4      ; complete_callback
+0059    TSETS    7   6  13  ; "connect_callback"
+0060    CALL     4   0   3
+0061    CALLM    2   1   1
+0062    RET0     0   1
+
+-- BYTECODE -- manager.lua:363-388
+0001    UGET     2   0      ; InfoMessage
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "new"
+0004    TDUP     4   2
+0005    UGET     5   1      ; _
+0006    KSTR     6   1      ; "Scanning for networks…"
+0007    CALL     5   2   2
+0008    TSETS    5   4   3  ; "text"
+0009    CALL     2   2   3
+0010    UGET     3   2      ; UIManager
+0011    MOV      4   3
+0012    TGETS    3   3   4  ; "show"
+0013    MOV      5   2
+0014    CALL     3   1   3
+0015    UGET     3   2      ; UIManager
+0016    MOV      4   3
+0017    TGETS    3   3   5  ; "nextTick"
+0018    FNEW     5   6      ; manager.lua:366
+0019    CALL     3   1   3
+0020    UCLO     0 => 0021
+0021 => RET0     0   1
+
+-- BYTECODE -- manager.lua:401-401
+0001    TGETS    2   0   0  ; "signal_quality"
+0002    TGETS    3   1   0  ; "signal_quality"
+0003    ISLT     3   2
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    JMP      3 => 0008
+0007 => KPRI     2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- manager.lua:404-419
+0001    TGETS    2   1   0  ; "password"
+0002    ISF          2
+0003    JMP      3 => 0042
+0004    UGET     2   1      ; NetworkMgr
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "authenticateNetwork"
+0007    MOV      4   1
+0008    CALL     2   2   3
+0009    USETV    0   2      ; success
+0010    UGET     2   0      ; success
+0011    ISF          2
+0012    JMP      3 => 0042
+0013    UGET     2   1      ; NetworkMgr
+0014    MOV      3   2
+0015    TGETS    2   2   2  ; "obtainIP"
+0016    CALL     2   1   2
+0017    UGET     2   2      ; complete_callback
+0018    ISF          2
+0019    JMP      3 => 0022
+0020    UGET     2   2      ; complete_callback
+0021    CALL     2   1   1
+0022 => UGET     2   3      ; UIManager
+0023    MOV      3   2
+0024    TGETS    2   2   3  ; "show"
+0025    UGET     4   4      ; InfoMessage
+0026    MOV      5   4
+0027    TGETS    4   4   4  ; "new"
+0028    TDUP     6   8
+0029    UGET     7   5      ; T
+0030    UGET     8   6      ; _
+0031    KSTR     9   5      ; "Connected to network %1"
+0032    CALL     8   2   2
+0033    UGET     9   7      ; BD
+0034    TGETS    9   9   6  ; "wrap"
+0035    TGETS   10   1   7  ; "ssid"
+0036    CALL     9   0   2
+0037    CALLM    7   2   1
+0038    TSETS    7   6   9  ; "text"
+0039    CALL     4   0   3
+0040    CALLM    2   1   1
+0041    RET0     0   1
+0042 => RET0     0   1
+
+-- BYTECODE -- manager.lua:393-426
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getNetworkList"
+0004    CALL     0   3   2
+0005    UGET     2   1      ; UIManager
+0006    MOV      3   2
+0007    TGETS    2   2   1  ; "close"
+0008    UGET     4   2      ; info
+0009    CALL     2   1   3
+0010    ISNEP    0   0
+0011    JMP      2 => 0023
+0012    UGET     2   1      ; UIManager
+0013    MOV      3   2
+0014    TGETS    2   2   2  ; "show"
+0015    UGET     4   3      ; InfoMessage
+0016    MOV      5   4
+0017    TGETS    4   4   3  ; "new"
+0018    TDUP     6   4
+0019    TSETS    1   6   5  ; "text"
+0020    CALL     4   0   3
+0021    CALLM    2   1   1
+0022    UCLO     0 => 0052
+0023 => GGET     2   6      ; "table"
+0024    TGETS    2   2   7  ; "sort"
+0025    MOV      3   0
+0026    FNEW     4   8      ; manager.lua:401
+0027    CALL     2   1   3
+0028    KPRI     2   1
+0029    GGET     3   6      ; "table"
+0030    TGETS    3   3   9  ; "foreach"
+0031    MOV      4   0
+0032    FNEW     5  10      ; manager.lua:404
+0033    CALL     3   1   3
+0034    IST          2
+0035    JMP      3 => 0050
+0036    UGET     3   1      ; UIManager
+0037    MOV      4   3
+0038    TGETS    3   3   2  ; "show"
+0039    GGET     5  11      ; "require"
+0040    KSTR     6  12      ; "ui/widget/networksetting"
+0041    CALL     5   2   2
+0042    MOV      6   5
+0043    TGETS    5   5   3  ; "new"
+0044    TDUP     7  13
+0045    TSETS    0   7  14  ; "network_list"
+0046    UGET     8   5      ; complete_callback
+0047    TSETS    8   7  15  ; "connect_callback"
+0048    CALL     5   0   3
+0049    CALLM    3   1   1
+0050 => UCLO     0 => 0051
+0051 => RET0     0   1
+0052 => RET0     0   1
+
+-- BYTECODE -- manager.lua:390-427
+0001    UGET     2   0      ; InfoMessage
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "new"
+0004    TDUP     4   2
+0005    UGET     5   1      ; _
+0006    KSTR     6   1      ; "Scanning for networks…"
+0007    CALL     5   2   2
+0008    TSETS    5   4   3  ; "text"
+0009    CALL     2   2   3
+0010    UGET     3   2      ; UIManager
+0011    MOV      4   3
+0012    TGETS    3   3   4  ; "show"
+0013    MOV      5   2
+0014    CALL     3   1   3
+0015    UGET     3   2      ; UIManager
+0016    MOV      4   3
+0017    TGETS    3   3   5  ; "nextTick"
+0018    FNEW     5   6      ; manager.lua:393
+0019    CALL     3   1   3
+0020    UCLO     0 => 0021
+0021 => RET0     0   1
+
+-- BYTECODE -- manager.lua:429-439
+0001    TGETS    2   0   0  ; "nw_settings"
+0002    IST          2
+0003    JMP      2 => 0007
+0004    MOV      3   0
+0005    TGETS    2   0   1  ; "readNWSettings"
+0006    CALL     2   1   2
+0007 => TGETS    2   0   0  ; "nw_settings"
+0008    MOV      3   2
+0009    TGETS    2   2   2  ; "saveSetting"
+0010    TGETS    4   1   3  ; "ssid"
+0011    TDUP     5   4
+0012    TGETS    6   1   3  ; "ssid"
+0013    TSETS    6   5   3  ; "ssid"
+0014    TGETS    6   1   5  ; "password"
+0015    TSETS    6   5   5  ; "password"
+0016    TGETS    6   1   6  ; "psk"
+0017    TSETS    6   5   6  ; "psk"
+0018    TGETS    6   1   7  ; "flags"
+0019    TSETS    6   5   7  ; "flags"
+0020    CALL     2   1   4
+0021    TGETS    2   0   0  ; "nw_settings"
+0022    MOV      3   2
+0023    TGETS    2   2   8  ; "flush"
+0024    CALL     2   1   2
+0025    RET0     0   1
+
+-- BYTECODE -- manager.lua:441-445
+0001    TGETS    2   0   0  ; "nw_settings"
+0002    IST          2
+0003    JMP      2 => 0007
+0004    MOV      3   0
+0005    TGETS    2   0   1  ; "readNWSettings"
+0006    CALL     2   1   2
+0007 => TGETS    2   0   0  ; "nw_settings"
+0008    MOV      3   2
+0009    TGETS    2   2   2  ; "delSetting"
+0010    TGETS    4   1   3  ; "ssid"
+0011    CALL     2   1   3
+0012    TGETS    2   0   0  ; "nw_settings"
+0013    MOV      3   2
+0014    TGETS    2   2   4  ; "flush"
+0015    CALL     2   1   2
+0016    RET0     0   1
+
+-- BYTECODE -- manager.lua:447-450
+0001    TGETS    1   0   0  ; "nw_settings"
+0002    IST          1
+0003    JMP      1 => 0007
+0004    MOV      2   0
+0005    TGETS    1   0   1  ; "readNWSettings"
+0006    CALL     1   1   2
+0007 => TGETS    1   0   0  ; "nw_settings"
+0008    RET1     1   2
+
+-- BYTECODE -- manager.lua:452-454
+0001    GGET     3   0      ; "require"
+0002    KSTR     4   1      ; "ui/network/"
+0003    MOV      5   1
+0004    CAT      4   4   5
+0005    CALL     3   2   2
+0006    TGETS    3   3   2  ; "init"
+0007    MOV      4   0
+0008    MOV      5   2
+0009    CALL     3   1   3
+0010    RET0     0   1
+
+-- BYTECODE -- manager.lua:0-465
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/confirmbox"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "datastorage"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "device"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/infomessage"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "luasettings"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/uimanager"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ffi/util"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "logger"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "gettext"
+0030    CALL     9   2   2
+0031    TGETS   10   7  11  ; "template"
+0032    TNEW    11   0
+0033    FNEW    12  13      ; manager.lua:15
+0034    TSETS   12  11  12  ; "readNWSettings"
+0035    FNEW    12  15      ; manager.lua:20
+0036    TSETS   12  11  14  ; "connectivityCheck"
+0037    FNEW    12  17      ; manager.lua:35
+0038    TSETS   12  11  16  ; "scheduleConnectivityCheck"
+0039    FNEW    12  19      ; manager.lua:39
+0040    TSETS   12  11  18  ; "init"
+0041    FNEW    12  21      ; manager.lua:57
+0042    TSETS   12  11  20  ; "turnOnWifi"
+0043    FNEW    12  23      ; manager.lua:58
+0044    TSETS   12  11  22  ; "turnOffWifi"
+0045    FNEW    12  25      ; manager.lua:59
+0046    TSETS   12  11  24  ; "isWifiOn"
+0047    FNEW    12  27      ; manager.lua:60
+0048    TSETS   12  11  26  ; "getNetworkList"
+0049    FNEW    12  29      ; manager.lua:61
+0050    TSETS   12  11  28  ; "getCurrentNetwork"
+0051    FNEW    12  31      ; manager.lua:62
+0052    TSETS   12  11  30  ; "authenticateNetwork"
+0053    FNEW    12  33      ; manager.lua:63
+0054    TSETS   12  11  32  ; "disconnectNetwork"
+0055    FNEW    12  35      ; manager.lua:64
+0056    TSETS   12  11  34  ; "obtainIP"
+0057    FNEW    12  37      ; manager.lua:65
+0058    TSETS   12  11  36  ; "releaseIP"
+0059    FNEW    12  39      ; manager.lua:67
+0060    TSETS   12  11  38  ; "restoreWifiAsync"
+0061    FNEW    12  41      ; manager.lua:70
+0062    TSETS   12  11  40  ; "promptWifiOn"
+0063    FNEW    12  43      ; manager.lua:82
+0064    TSETS   12  11  42  ; "promptWifiOff"
+0065    FNEW    12  45      ; manager.lua:94
+0066    TSETS   12  11  44  ; "turnOnWifiAndWaitForConnection"
+0067    FNEW    12  47      ; manager.lua:113
+0068    TSETS   12  11  46  ; "beforeWifiAction"
+0069    FNEW    12  49      ; manager.lua:122
+0070    TSETS   12  11  48  ; "isConnected"
+0071    FNEW    12  51      ; manager.lua:147
+0072    TSETS   12  11  50  ; "isOnline"
+0073    FNEW    12  53      ; manager.lua:156
+0074    TSETS   12  11  52  ; "isNetworkInfoAvailable"
+0075    FNEW    12  55      ; manager.lua:166
+0076    TSETS   12  11  54  ; "setHTTPProxy"
+0077    FNEW    12  57      ; manager.lua:177
+0078    TSETS   12  11  56  ; "getWifiMenuTable"
+0079    FNEW    12  59      ; manager.lua:189
+0080    TSETS   12  11  58  ; "getWifiToggleMenuTable"
+0081    FNEW    12  61      ; manager.lua:242
+0082    TSETS   12  11  60  ; "getProxyMenuTable"
+0083    FNEW    12  63      ; manager.lua:279
+0084    TSETS   12  11  62  ; "getRestoreMenuTable"
+0085    FNEW    12  65      ; manager.lua:288
+0086    TSETS   12  11  64  ; "getInfoMenuTable"
+0087    FNEW    12  67      ; manager.lua:308
+0088    TSETS   12  11  66  ; "getBeforeWifiActionMenuTable"
+0089    FNEW    12  69      ; manager.lua:339
+0090    TSETS   12  11  68  ; "getDismissScanMenuTable"
+0091    FNEW    12  71      ; manager.lua:348
+0092    TSETS   12  11  70  ; "getMenuTable"
+0093    FNEW    12  73      ; manager.lua:363
+0094    TSETS   12  11  72  ; "showNetworkMenu"
+0095    FNEW    12  75      ; manager.lua:390
+0096    TSETS   12  11  74  ; "reconnectOrShowNetworkMenu"
+0097    FNEW    12  77      ; manager.lua:429
+0098    TSETS   12  11  76  ; "saveNetwork"
+0099    FNEW    12  79      ; manager.lua:441
+0100    TSETS   12  11  78  ; "deleteNetwork"
+0101    FNEW    12  81      ; manager.lua:447
+0102    TSETS   12  11  80  ; "getAllSavedNetworks"
+0103    FNEW    12  83      ; manager.lua:452
+0104    TSETS   12  11  82  ; "setWirelessBackend"
+0105    GGET    12  84      ; "NETWORK_PROXY"
+0106    ISF         12
+0107    JMP     13 => 0112
+0108    MOV     13  11
+0109    TGETS   12  11  54  ; "setHTTPProxy"
+0110    GGET    14  84      ; "NETWORK_PROXY"
+0111    CALL    12   1   3
+0112 => MOV     13   3
+0113    TGETS   12   3  85  ; "initNetworkManager"
+0114    MOV     14  11
+0115    CALL    12   1   3
+0116    MOV     13  11
+0117    TGETS   12  11  18  ; "init"
+0118    CALL    12   1   2
+0119    UCLO     0 => 0120
+0120 => RET1    11   2
+

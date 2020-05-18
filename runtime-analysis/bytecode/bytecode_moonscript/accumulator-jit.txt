@@ -1,0 +1,233 @@
+-- BYTECODE -- accumulator.lua:9-18
+0001    LEN      1   0
+0002    ISEQN    1   0      ; 1
+0003    JMP      1 => 0006
+0004    KPRI     1   1
+0005    RET1     1   2
+0006 => UGET     1   0      ; ntype
+0007    MOV      2   0
+0008    CALL     1   2   2
+0009    ISNES    1   0      ; "group"
+0010    JMP      1 => 0015
+0011    UGET     1   1      ; is_singular
+0012    TGETB    2   0   2
+0013    CALLT    1   2
+0014    JMP      1 => 0017
+0015 => TGETB    1   0   1
+0016    RET1     1   2
+0017 => RET0     0   1
+
+-- BYTECODE -- accumulator.lua:30-34
+0001    TGETS    2   0   0  ; "body_idx"
+0002    UGET     3   0      ; ntype
+0003    MOV      4   1
+0004    CALL     3   2   2
+0005    TGETV    2   2   3
+0006    MOV      4   0
+0007    TGETS    3   0   1  ; "mutate_body"
+0008    TGETV    5   1   2
+0009    CALL     3   2   3
+0010    TSETV    3   1   2
+0011    MOV      4   0
+0012    TGETS    3   0   2  ; "wrap"
+0013    MOV      5   1
+0014    CALLT    3   3
+
+-- BYTECODE -- accumulator.lua:35-45
+0001    ISNEP    2   0
+0002    JMP      3 => 0004
+0003    KSTR     2   0      ; "block_exp"
+0004 => UGET     3   0      ; build
+0005    TGETV    3   3   2
+0006    TNEW     4   5
+0007    UGET     5   0      ; build
+0008    TGETS    5   5   1  ; "assign_one"
+0009    TGETS    6   0   2  ; "accum_name"
+0010    UGET     7   0      ; build
+0011    TGETS    7   7   3  ; "table"
+0012    CALL     7   0   1
+0013    CALLM    5   2   1
+0014    TSETB    5   4   1
+0015    UGET     5   0      ; build
+0016    TGETS    5   5   1  ; "assign_one"
+0017    TGETS    6   0   4  ; "len_name"
+0018    KSHORT   7   1
+0019    CALL     5   2   3
+0020    TSETB    5   4   2
+0021    TSETB    1   4   3
+0022    ISNES    2   0      ; "block_exp"
+0023    JMP      5 => 0027
+0024    TGETS    5   0   2  ; "accum_name"
+0025    IST          5
+0026    JMP      6 => 0028
+0027 => UGET     5   1      ; NOOP
+0028 => TSETB    5   4   4
+0029    CALLT    3   2
+
+-- BYTECODE -- accumulator.lua:53-67
+0001    UGET     1   0      ; types
+0002    TGETS    1   1   0  ; "is_value"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0014
+0007    UGET     1   1      ; build
+0008    TGETS    1   1   1  ; "assign_one"
+0009    UGET     2   2      ; self
+0010    TGETS    2   2   2  ; "value_name"
+0011    MOV      3   0
+0012    CALLT    1   3
+0013    JMP      1 => 0026
+0014 => UGET     1   1      ; build
+0015    TGETS    1   1   3  ; "group"
+0016    TNEW     2   3
+0017    TDUP     3   4
+0018    TNEW     4   3
+0019    UGET     5   2      ; self
+0020    TGETS    5   5   2  ; "value_name"
+0021    TSETB    5   4   1
+0022    TSETB    4   3   2
+0023    TSETB    3   2   1
+0024    TSETB    0   2   2
+0025    CALLT    1   2
+0026 => RET0     0   1
+
+-- BYTECODE -- accumulator.lua:46-81
+0001    UGET     2   0      ; is_singular
+0002    MOV      3   1
+0003    CALL     2   2   2
+0004    KPRI     3   0
+0005    ISF          2
+0006    JMP      4 => 0016
+0007    UGET     4   1      ; types
+0008    TGETS    4   4   0  ; "is_value"
+0009    MOV      5   2
+0010    CALL     4   2   2
+0011    ISF          4
+0012    JMP      5 => 0016
+0013    TNEW     1   0
+0014    MOV      3   2
+0015    JMP      4 => 0022
+0016 => UGET     4   2      ; transform_last_stm
+0017    MOV      5   1
+0018    FNEW     6   1      ; accumulator.lua:53
+0019    CALL     4   2   3
+0020    MOV      1   4
+0021    TGETS    3   0   2  ; "value_name"
+0022 => TNEW     4   3
+0023    UGET     5   3      ; build
+0024    TGETS    5   5   3  ; "assign_one"
+0025    UGET     6   4      ; NameProxy
+0026    TGETS    6   6   4  ; "index"
+0027    TGETS    7   0   5  ; "accum_name"
+0028    TGETS    8   0   6  ; "len_name"
+0029    CALL     6   2   3
+0030    MOV      7   3
+0031    CALL     5   2   3
+0032    TSETB    5   4   1
+0033    TDUP     5   7
+0034    TGETS    6   0   6  ; "len_name"
+0035    TSETB    6   5   2
+0036    TSETB    5   4   2
+0037    UGET     5   5      ; insert
+0038    MOV      6   1
+0039    UGET     7   3      ; build
+0040    TGETS    7   7   8  ; "group"
+0041    MOV      8   4
+0042    CALL     7   0   2
+0043    CALLM    5   1   1
+0044    UCLO     0 => 0045
+0045 => RET1     1   2
+
+-- BYTECODE -- accumulator.lua:85-89
+0001    UGET     2   0      ; NameProxy
+0002    KSTR     3   1      ; "accum"
+0003    CALL     2   2   2
+0004    TSETS    2   0   0  ; "accum_name"
+0005    UGET     2   0      ; NameProxy
+0006    KSTR     3   3      ; "value"
+0007    CALL     2   2   2
+0008    TSETS    2   0   2  ; "value_name"
+0009    UGET     2   0      ; NameProxy
+0010    KSTR     3   5      ; "len"
+0011    CALL     2   2   2
+0012    TSETS    2   0   4  ; "len_name"
+0013    RET0     0   1
+
+-- BYTECODE -- accumulator.lua:94-98
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    UGET     3   0      ; _base_0
+0004    CALL     1   2   3
+0005    TGETS    2   0   1  ; "__init"
+0006    MOV      3   1
+0007    VARG     4   0   1
+0008    CALLM    2   1   1
+0009    RET1     1   2
+
+-- BYTECODE -- accumulator.lua:104-106
+0001    UGET     2   0      ; Accumulator
+0002    CALL     2   2   1
+0003    MOV      3   2
+0004    TGETS    2   2   0  ; "convert"
+0005    MOV      4   1
+0006    CALLT    2   3
+
+-- BYTECODE -- accumulator.lua:0-111
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "moonscript.types"
+0003    CALL     0   2   2
+0004    KNIL     1   3
+0005    TGETS    4   0   2  ; "build"
+0006    TGETS    5   0   3  ; "ntype"
+0007    TGETS    3   0   4  ; "NOOP"
+0008    MOV      2   5
+0009    MOV      1   4
+0010    KPRI     4   0
+0011    GGET     5   0      ; "require"
+0012    KSTR     6   5      ; "moonscript.transform.names"
+0013    CALL     5   2   2
+0014    TGETS    4   5   6  ; "NameProxy"
+0015    KPRI     5   0
+0016    GGET     6   7      ; "table"
+0017    TGETS    5   6   8  ; "insert"
+0018    KPRI     6   0
+0019    FNEW     6   9      ; accumulator.lua:9
+0020    KPRI     7   0
+0021    GGET     8   0      ; "require"
+0022    KSTR     9  10      ; "moonscript.transform.statements"
+0023    CALL     8   2   2
+0024    TGETS    7   8  11  ; "transform_last_stm"
+0025    KNIL     8   9
+0026    TDUP    10  13
+0027    TDUP    11  12
+0028    TSETS   11  10  14  ; "body_idx"
+0029    FNEW    11  15      ; accumulator.lua:30
+0030    TSETS   11  10  16  ; "convert"
+0031    FNEW    11  17      ; accumulator.lua:35
+0032    TSETS   11  10  18  ; "wrap"
+0033    FNEW    11  19      ; accumulator.lua:46
+0034    TSETS   11  10  20  ; "mutate_body"
+0035    TSETS   10  10  21  ; "__index"
+0036    GGET    11  22      ; "setmetatable"
+0037    TDUP    12  24
+0038    FNEW    13  23      ; accumulator.lua:85
+0039    TSETS   13  12  25  ; "__init"
+0040    TSETS   10  12  26  ; "__base"
+0041    TDUP    13  27
+0042    TSETS   10  13  21  ; "__index"
+0043    FNEW    14  28      ; accumulator.lua:94
+0044    TSETS   14  13  29  ; "__call"
+0045    CALL    11   2   3
+0046    MOV      9  11
+0047    TSETS    9  10  30  ; "__class"
+0048    MOV      8   9
+0049    UCLO     9 => 0050
+0050 => KPRI     9   0
+0051    FNEW     9  31      ; accumulator.lua:104
+0052    TDUP    10  32
+0053    TSETS    8  10  33  ; "Accumulator"
+0054    TSETS    9  10  34  ; "default_accumulator"
+0055    UCLO     0 => 0056
+0056 => RET1    10   2
+

@@ -1,0 +1,61 @@
+-- BYTECODE -- readerrotation.lua:10-24
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "hasKeyboard"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0017
+0007    TDUP     1   4
+0008    TDUP     2   3
+0009    TDUP     3   2
+0010    TSETB    3   2   1
+0011    TSETS    2   1   5  ; "RotateLeft"
+0012    TDUP     2   7
+0013    TDUP     3   6
+0014    TSETB    3   2   1
+0015    TSETS    2   1   8  ; "RotateRight"
+0016    TSETS    1   0   1  ; "key_events"
+0017 => RET0     0   1
+
+-- BYTECODE -- readerrotation.lua:28-32
+0001    TGETS    2   0   0  ; "current_rotation"
+0002    ADDVV    2   2   1
+0003    MODVN    2   2   0  ; 360
+0004    TSETS    2   0   0  ; "current_rotation"
+0005    TGETS    2   0   1  ; "ui"
+0006    MOV      3   2
+0007    TGETS    2   2   2  ; "handleEvent"
+0008    UGET     4   0      ; Event
+0009    MOV      5   4
+0010    TGETS    4   4   3  ; "new"
+0011    KSTR     6   4      ; "RotationUpdate"
+0012    TGETS    7   0   0  ; "current_rotation"
+0013    CALL     4   0   4
+0014    CALLM    2   1   1
+0015    KPRI     2   2
+0016    RET1     2   2
+
+-- BYTECODE -- readerrotation.lua:0-35
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/container/inputcontainer"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "device"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/event"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "gettext"
+0012    CALL     3   2   2
+0013    MOV      5   0
+0014    TGETS    4   0   5  ; "new"
+0015    TDUP     6   6
+0016    CALL     4   2   3
+0017    FNEW     5   8      ; readerrotation.lua:10
+0018    TSETS    5   4   7  ; "init"
+0019    FNEW     5  10      ; readerrotation.lua:28
+0020    TSETS    5   4   9  ; "onRotate"
+0021    UCLO     0 => 0022
+0022 => RET1     4   2
+

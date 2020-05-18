@@ -1,0 +1,446 @@
+-- BYTECODE -- add.lua:14-27
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "command"
+0003    KSTR     3   1      ; "add"
+0004    KSTR     4   2      ; "Add a rock or rockspec to a rocks server"~
+0005    UGET     5   0      ; util
+0006    TGETS    5   5   3  ; "see_also"
+0007    CALL     5   0   1
+0008    CALLM    1   2   3
+0009    MOV      3   1
+0010    TGETS    2   1   4  ; "argument"
+0011    KSTR     4   5      ; "rock"
+0012    KSTR     5   6      ; "A local rockspec or rock file."
+0013    CALL     2   2   4
+0014    MOV      3   2
+0015    TGETS    2   2   7  ; "args"
+0016    KSTR     4   8      ; "+"
+0017    CALL     2   1   3
+0018    MOV      3   1
+0019    TGETS    2   1   9  ; "option"
+0020    KSTR     4  10      ; "--server"
+0021    KSTR     5  11      ; "The server to use. If not given, the def"~
+0022    KSTR     6  12      ; "set in the upload_server variable from t"~
+0023    CAT      5   5   6
+0024    CALL     2   2   4
+0025    MOV      3   2
+0026    TGETS    2   2  13  ; "target"
+0027    KSTR     4  14      ; "add_server"
+0028    CALL     2   1   3
+0029    MOV      3   1
+0030    TGETS    2   1  15  ; "flag"
+0031    KSTR     4  16      ; "--no-refresh"
+0032    KSTR     5  17      ; "Do not refresh the local cache prior to "
+0033    KSTR     6  18      ; "generation of the updated manifest."
+0034    CAT      5   5   6
+0035    CALL     2   1   4
+0036    MOV      3   1
+0037    TGETS    2   1  15  ; "flag"
+0038    KSTR     4  19      ; "--index"
+0039    KSTR     5  20      ; "Produce an index.html file for the manif"~
+0040    KSTR     6  21      ; "flag is automatically set if an index.ht"~
+0041    CAT      5   5   6
+0042    CALL     2   1   4
+0043    RET0     0   1
+
+-- BYTECODE -- add.lua:29-36
+0001    UGET     0   0      ; util
+0002    TGETS    0   0   0  ; "lua_versions"
+0003    CALL     0   4   1
+0004    JMP      3 => 0026
+0005 => KSTR     4   1      ; "manifest-"
+0006    MOV      5   3
+0007    CAT      4   4   5
+0008    MOV      5   4
+0009    KSTR     6   2      ; ".zip"
+0010    CAT      5   5   6
+0011    UGET     6   1      ; fs
+0012    TGETS    6   6   3  ; "delete"
+0013    UGET     7   2      ; dir
+0014    TGETS    7   7   4  ; "path"
+0015    UGET     8   1      ; fs
+0016    TGETS    8   8   5  ; "current_dir"
+0017    CALL     8   2   1
+0018    MOV      9   5
+0019    CALL     7   0   3
+0020    CALLM    6   1   0
+0021    UGET     6   1      ; fs
+0022    TGETS    6   6   6  ; "zip"
+0023    MOV      7   5
+0024    MOV      8   4
+0025    CALL     6   1   3
+0026 => ITERC    3   2   3
+0027    ITERL    3 => 0005
+0028    RET0     0   1
+
+-- BYTECODE -- add.lua:38-125
+0001    GGET     5   0      ; "assert"
+0002    GGET     6   1      ; "type"
+0003    MOV      7   0
+0004    CALL     6   2   2
+0005    ISEQS    6   2      ; "boolean"
+0006    JMP      6 => 0011
+0007    NOT      6   0
+0008    JMP      7 => 0012
+0009    KPRI     6   1
+0010    JMP      7 => 0012
+0011 => KPRI     6   2
+0012 => CALL     5   1   2
+0013    GGET     5   0      ; "assert"
+0014    GGET     6   1      ; "type"
+0015    MOV      7   1
+0016    CALL     6   2   2
+0017    ISEQS    6   3      ; "table"
+0018    JMP      6 => 0021
+0019    KPRI     6   1
+0020    JMP      7 => 0022
+0021 => KPRI     6   2
+0022 => CALL     5   1   2
+0023    GGET     5   0      ; "assert"
+0024    GGET     6   1      ; "type"
+0025    MOV      7   2
+0026    CALL     6   2   2
+0027    ISEQS    6   4      ; "string"
+0028    JMP      6 => 0031
+0029    KPRI     6   1
+0030    JMP      7 => 0032
+0031 => KPRI     6   2
+0032 => CALL     5   1   2
+0033    GGET     5   0      ; "assert"
+0034    GGET     6   1      ; "type"
+0035    MOV      7   3
+0036    CALL     6   2   2
+0037    ISEQS    6   3      ; "table"
+0038    JMP      6 => 0043
+0039    NOT      6   3
+0040    JMP      7 => 0044
+0041    KPRI     6   1
+0042    JMP      7 => 0044
+0043 => KPRI     6   2
+0044 => CALL     5   1   2
+0045    UGET     5   0      ; cache
+0046    TGETS    5   5   5  ; "get_server_urls"
+0047    MOV      6   2
+0048    MOV      7   3
+0049    CALL     5   3   3
+0050    UGET     7   1      ; fs
+0051    TGETS    7   7   6  ; "current_dir"
+0052    CALL     7   2   1
+0053    ISF          0
+0054    JMP      8 => 0059
+0055    UGET     8   0      ; cache
+0056    TGETS    8   8   7  ; "refresh_local_cache"
+0057    IST          8
+0058    JMP      9 => 0061
+0059 => UGET     8   0      ; cache
+0060    TGETS    8   8   8  ; "split_server_url"
+0061 => MOV      9   8
+0062    MOV     10   5
+0063    UGET    11   2      ; cfg
+0064    TGETS   11  11   9  ; "upload_user"
+0065    UGET    12   2      ; cfg
+0066    TGETS   12  12  10  ; "upload_password"
+0067    CALL     9   6   4
+0068    IST          9
+0069    JMP     14 => 0073
+0070    KPRI    14   0
+0071    MOV     15  10
+0072    RET     14   3
+0073 => IST          6
+0074    JMP     14 => 0079
+0075    MOV     14  10
+0076    KSTR    15  11      ; "://"
+0077    MOV     16  11
+0078    CAT      6  14  16
+0079 => UGET    14   1      ; fs
+0080    TGETS   14  14  12  ; "change_dir"
+0081    MOV     15   7
+0082    CALL    14   3   2
+0083    IST         14
+0084    JMP     16 => 0088
+0085    KPRI    16   0
+0086    MOV     17  15
+0087    RET     16   3
+0088 => TNEW    16   0
+0089    GGET    17  13      ; "ipairs"
+0090    MOV     18   1
+0091    CALL    17   4   2
+0092    JMP     20 => 0134
+0093 => UGET    22   1      ; fs
+0094    TGETS   22  22  14  ; "exists"
+0095    MOV     23  21
+0096    CALL    22   2   2
+0097    ISF         22
+0098    JMP     23 => 0127
+0099    UGET    22   3      ; util
+0100    TGETS   22  22  15  ; "printout"
+0101    KSTR    23  16      ; "Copying file "
+0102    MOV     24  21
+0103    KSTR    25  17      ; " to "
+0104    MOV     26   9
+0105    KSTR    27  18      ; "..."
+0106    CAT     23  23  27
+0107    CALL    22   1   2
+0108    UGET    22   1      ; fs
+0109    TGETS   22  22  19  ; "absolute_name"
+0110    MOV     23  21
+0111    CALL    22   2   2
+0112    UGET    23   1      ; fs
+0113    TGETS   23  23  20  ; "copy"
+0114    MOV     24  22
+0115    MOV     25   9
+0116    KSTR    26  21      ; "read"
+0117    CALL    23   1   4
+0118    GGET    23   3      ; "table"
+0119    TGETS   23  23  22  ; "insert"
+0120    MOV     24  16
+0121    UGET    25   4      ; dir
+0122    TGETS   25  25  23  ; "base_name"
+0123    MOV     26  22
+0124    CALL    25   0   2
+0125    CALLM   23   1   1
+0126    JMP     22 => 0134
+0127 => UGET    22   3      ; util
+0128    TGETS   22  22  24  ; "printerr"
+0129    KSTR    23  25      ; "File "
+0130    MOV     24  21
+0131    KSTR    25  26      ; " not found"
+0132    CAT     23  23  25
+0133    CALL    22   1   2
+0134 => ITERC   20   3   3
+0135    ITERL   20 => 0093
+0136    LEN     17  16
+0137    ISNEN   17   0      ; 0
+0138    JMP     17 => 0142
+0139    KPRI    17   0
+0140    KSTR    18  27      ; "No files found"
+0141    RET     17   3
+0142 => UGET    17   1      ; fs
+0143    TGETS   17  17  12  ; "change_dir"
+0144    MOV     18   9
+0145    CALL    17   3   2
+0146    IST         17
+0147    JMP     19 => 0151
+0148    KPRI    19   0
+0149    MOV     20  18
+0150    RET     19   3
+0151 => UGET    19   3      ; util
+0152    TGETS   19  19  15  ; "printout"
+0153    KSTR    20  28      ; "Updating manifest..."
+0154    CALL    19   1   2
+0155    UGET    19   5      ; writer
+0156    TGETS   19  19  29  ; "make_manifest"
+0157    MOV     20   9
+0158    KSTR    21  30      ; "one"
+0159    KPRI    22   2
+0160    CALL    19   1   4
+0161    UGET    19   6      ; zip_manifests
+0162    CALL    19   1   1
+0163    UGET    19   1      ; fs
+0164    TGETS   19  19  14  ; "exists"
+0165    KSTR    20  31      ; "index.html"
+0166    CALL    19   2   2
+0167    ISF         19
+0168    JMP     20 => 0170
+0169    KPRI     4   2
+0170 => ISF          4
+0171    JMP     19 => 0180
+0172    UGET    19   3      ; util
+0173    TGETS   19  19  15  ; "printout"
+0174    KSTR    20  32      ; "Updating index.html..."
+0175    CALL    19   1   2
+0176    UGET    19   7      ; index
+0177    TGETS   19  19  33  ; "make_index"
+0178    MOV     20   9
+0179    CALL    19   1   2
+0180 => KSTR    19  34      ; ""
+0181    ISF         12
+0182    JMP     20 => 0186
+0183    KSTR    20  35      ; " -u "
+0184    MOV     21  12
+0185    CAT     19  20  21
+0186 => ISF         13
+0187    JMP     20 => 0192
+0188    MOV     20  19
+0189    KSTR    21  36      ; ":"
+0190    MOV     22  13
+0191    CAT     19  20  22
+0192 => MOV     21   6
+0193    TGETS   20   6  37  ; "match"
+0194    KSTR    22  38      ; "/$"
+0195    CALL    20   2   3
+0196    IST         20
+0197    JMP     20 => 0201
+0198    MOV     20   6
+0199    KSTR    21  39      ; "/"
+0200    CAT      6  20  21
+0201 => ISF          4
+0202    JMP     20 => 0208
+0203    GGET    20   3      ; "table"
+0204    TGETS   20  20  22  ; "insert"
+0205    MOV     21  16
+0206    KSTR    22  31      ; "index.html"
+0207    CALL    20   1   3
+0208 => GGET    20   3      ; "table"
+0209    TGETS   20  20  22  ; "insert"
+0210    MOV     21  16
+0211    KSTR    22  40      ; "manifest"
+0212    CALL    20   1   3
+0213    UGET    20   3      ; util
+0214    TGETS   20  20  41  ; "lua_versions"
+0215    CALL    20   4   1
+0216    JMP     23 => 0232
+0217 => GGET    24   3      ; "table"
+0218    TGETS   24  24  22  ; "insert"
+0219    MOV     25  16
+0220    KSTR    26  42      ; "manifest-"
+0221    MOV     27  23
+0222    CAT     26  26  27
+0223    CALL    24   1   3
+0224    GGET    24   3      ; "table"
+0225    TGETS   24  24  22  ; "insert"
+0226    MOV     25  16
+0227    KSTR    26  42      ; "manifest-"
+0228    MOV     27  23
+0229    KSTR    28  43      ; ".zip"
+0230    CAT     26  26  28
+0231    CALL    24   1   3
+0232 => ITERC   23   2   3
+0233    ITERL   23 => 0217
+0234    KPRI    20   0
+0235    ISNES   10  44      ; "rsync"
+0236    JMP     21 => 0259
+0237    MOV     22  11
+0238    TGETS   21  11  37  ; "match"
+0239    KSTR    23  45      ; "([^/]+)(/.+)"
+0240    CALL    21   3   3
+0241    UGET    23   2      ; cfg
+0242    TGETS   23  23  46  ; "variables"
+0243    TGETS   23  23  47  ; "RSYNC"
+0244    KSTR    24  48      ; " "
+0245    UGET    25   2      ; cfg
+0246    TGETS   25  25  46  ; "variables"
+0247    TGETS   25  25  49  ; "RSYNCFLAGS"
+0248    KSTR    26  50      ; " -e ssh "
+0249    MOV     27   9
+0250    KSTR    28  51      ; "/ "
+0251    MOV     29  12
+0252    KSTR    30  52      ; "@"
+0253    MOV     31  21
+0254    KSTR    32  36      ; ":"
+0255    MOV     33  22
+0256    KSTR    34  39      ; "/"
+0257    CAT     20  23  34
+0258    JMP     21 => 0308
+0259 => ISNES   10  53      ; "file"
+0260    JMP     21 => 0267
+0261    UGET    21   1      ; fs
+0262    TGETS   21  21  54  ; "copy_contents"
+0263    MOV     22   9
+0264    MOV     23  11
+0265    CALLT   21   3
+0266    JMP     21 => 0308
+0267 => ISF          3
+0268    JMP     21 => 0294
+0269    TGETS   21   3  55  ; "sftp"
+0270    ISF         21
+0271    JMP     22 => 0294
+0272    TGETS   21   3  55  ; "sftp"
+0273    MOV     22  21
+0274    TGETS   21  21  37  ; "match"
+0275    KSTR    23  56      ; "^([^/]*)/(.*)$"
+0276    CALL    21   3   3
+0277    UGET    23   2      ; cfg
+0278    TGETS   23  23  46  ; "variables"
+0279    TGETS   23  23  57  ; "SCP"
+0280    KSTR    24  48      ; " "
+0281    GGET    25   3      ; "table"
+0282    TGETS   25  25  58  ; "concat"
+0283    MOV     26  16
+0284    KSTR    27  48      ; " "
+0285    CALL    25   2   3
+0286    KSTR    26  48      ; " "
+0287    MOV     27  12
+0288    KSTR    28  52      ; "@"
+0289    MOV     29  21
+0290    KSTR    30  59      ; ":/"
+0291    MOV     31  22
+0292    CAT     20  23  31
+0293    JMP     21 => 0308
+0294 => UGET    21   2      ; cfg
+0295    TGETS   21  21  46  ; "variables"
+0296    TGETS   21  21  60  ; "CURL"
+0297    KSTR    22  48      ; " "
+0298    MOV     23  19
+0299    KSTR    24  61      ; " -T '{"
+0300    GGET    25   3      ; "table"
+0301    TGETS   25  25  58  ; "concat"
+0302    MOV     26  16
+0303    KSTR    27  62      ; ","
+0304    CALL    25   2   3
+0305    KSTR    26  63      ; "}' "
+0306    MOV     27   6
+0307    CAT     20  21  27
+0308 => UGET    21   3      ; util
+0309    TGETS   21  21  15  ; "printout"
+0310    MOV     22  20
+0311    CALL    21   1   2
+0312    UGET    21   1      ; fs
+0313    TGETS   21  21  64  ; "execute"
+0314    MOV     22  20
+0315    CALLT   21   2
+
+-- BYTECODE -- add.lua:127-131
+0001    UGET     1   0      ; cache
+0002    TGETS    1   1   0  ; "get_upload_server"
+0003    TGETS    2   0   1  ; "add_server"
+0004    IST          2
+0005    JMP      3 => 0007
+0006    TGETS    2   0   2  ; "server"
+0007 => CALL     1   3   2
+0008    IST          1
+0009    JMP      3 => 0013
+0010    KPRI     3   0
+0011    MOV      4   2
+0012    RET      3   3
+0013 => UGET     3   1      ; add_files_to_server
+0014    TGETS    4   0   3  ; "no_refresh"
+0015    NOT      4   4
+0016    TGETS    5   0   4  ; "rock"
+0017    MOV      6   1
+0018    MOV      7   2
+0019    TGETS    8   0   5  ; "index"
+0020    CALLT    3   6
+
+-- BYTECODE -- add.lua:0-135
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.core.cfg"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.util"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.dir"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.manif.writer"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.fs"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.admin.cache"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   7      ; "luarocks.admin.index"
+0022    CALL     7   2   2
+0023    FNEW     8   9      ; add.lua:14
+0024    TSETS    8   0   8  ; "add_to_parser"
+0025    FNEW     8  10      ; add.lua:29
+0026    FNEW     9  11      ; add.lua:38
+0027    FNEW    10  13      ; add.lua:127
+0028    TSETS   10   0  12  ; "command"
+0029    UCLO     0 => 0030
+0030 => RET1     0   2
+

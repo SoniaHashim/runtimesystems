@@ -1,0 +1,413 @@
+-- BYTECODE -- dropbox.lua:16-18
+0001    UGET     4   0      ; DropBoxApi
+0002    MOV      5   4
+0003    TGETS    4   4   0  ; "listFolder"
+0004    MOV      6   1
+0005    MOV      7   2
+0006    MOV      8   3
+0007    CALLT    4   5
+
+-- BYTECODE -- dropbox.lua:20-22
+0001    UGET     3   0      ; DropBoxApi
+0002    MOV      4   3
+0003    TGETS    3   3   0  ; "showFiles"
+0004    MOV      5   1
+0005    MOV      6   2
+0006    CALLT    3   4
+
+-- BYTECODE -- dropbox.lua:36-39
+0001    UGET     0   0      ; close
+0002    CALL     0   1   1
+0003    UGET     0   1      ; ReaderUI
+0004    MOV      1   0
+0005    TGETS    0   0   0  ; "showReader"
+0006    UGET     2   2      ; path
+0007    CALL     0   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- dropbox.lua:24-48
+0001    UGET     5   0      ; DropBoxApi
+0002    MOV      6   5
+0003    TGETS    5   5   0  ; "downloadFile"
+0004    TGETS    7   1   1  ; "url"
+0005    MOV      8   2
+0006    MOV      9   3
+0007    CALL     5   2   5
+0008    ISNEN    5   0      ; 200
+0009    JMP      6 => 0070
+0010    UGET     6   1      ; util
+0011    TGETS    6   6   2  ; "splitFilePathName"
+0012    MOV      7   3
+0013    CALL     6   3   2
+0014    GGET     8   3      ; "G_reader_settings"
+0015    MOV      9   8
+0016    TGETS    8   8   4  ; "isTrue"
+0017    KSTR    10   5      ; "show_unsupported"
+0018    CALL     8   2   3
+0019    ISF          8
+0020    JMP      9 => 0048
+0021    UGET     8   2      ; DocumentRegistry
+0022    MOV      9   8
+0023    TGETS    8   8   6  ; "hasProvider"
+0024    MOV     10   7
+0025    CALL     8   2   3
+0026    IST          8
+0027    JMP      8 => 0048
+0028    UGET     8   3      ; UIManager
+0029    MOV      9   8
+0030    TGETS    8   8   7  ; "show"
+0031    UGET    10   4      ; InfoMessage
+0032    MOV     11  10
+0033    TGETS   10  10   8  ; "new"
+0034    TDUP    12  11
+0035    UGET    13   5      ; T
+0036    UGET    14   6      ; _
+0037    KSTR    15   9      ; "File saved to:\n%1"
+0038    CALL    14   2   2
+0039    UGET    15   7      ; BD
+0040    TGETS   15  15  10  ; "filename"
+0041    MOV     16   3
+0042    CALL    15   0   2
+0043    CALLM   13   2   1
+0044    TSETS   13  12  12  ; "text"
+0045    CALL    10   0   3
+0046    CALLM    8   1   1
+0047    JMP      8 => 0089
+0048 => UGET     8   3      ; UIManager
+0049    MOV      9   8
+0050    TGETS    8   8   7  ; "show"
+0051    UGET    10   8      ; ConfirmBox
+0052    MOV     11  10
+0053    TGETS   10  10   8  ; "new"
+0054    TDUP    12  15
+0055    UGET    13   5      ; T
+0056    UGET    14   6      ; _
+0057    KSTR    15  13      ; "File saved to:\n%1\nWould you like to re"~
+0058    CALL    14   2   2
+0059    UGET    15   7      ; BD
+0060    TGETS   15  15  14  ; "filepath"
+0061    MOV     16   3
+0062    CALL    15   0   2
+0063    CALLM   13   2   1
+0064    TSETS   13  12  12  ; "text"
+0065    FNEW    13  16      ; dropbox.lua:36
+0066    TSETS   13  12  17  ; "ok_callback"
+0067    CALL    10   0   3
+0068    CALLM    8   1   1
+0069    JMP      6 => 0089
+0070 => UGET     6   3      ; UIManager
+0071    MOV      7   6
+0072    TGETS    6   6   7  ; "show"
+0073    UGET     8   4      ; InfoMessage
+0074    MOV      9   8
+0075    TGETS    8   8   8  ; "new"
+0076    TDUP    10  19
+0077    UGET    11   5      ; T
+0078    UGET    12   6      ; _
+0079    KSTR    13  18      ; "Could not save file to:\n%1"
+0080    CALL    12   2   2
+0081    UGET    13   7      ; BD
+0082    TGETS   13  13  14  ; "filepath"
+0083    MOV     14   3
+0084    CALL    13   0   2
+0085    CALLM   11   2   1
+0086    TSETS   11  10  12  ; "text"
+0087    CALL     8   0   3
+0088    CALLM    6   1   1
+0089 => UCLO     0 => 0090
+0090 => RET0     0   1
+
+-- BYTECODE -- dropbox.lua:50-57
+0001    UGET     4   0      ; DropBoxApi
+0002    MOV      5   4
+0003    TGETS    4   4   0  ; "downloadFile"
+0004    MOV      6   1
+0005    MOV      7   2
+0006    MOV      8   3
+0007    CALL     4   2   5
+0008    ISNEN    4   0      ; 200
+0009    JMP      5 => 0013
+0010    KPRI     5   2
+0011    RET1     5   2
+0012    JMP      5 => 0015
+0013 => KPRI     5   1
+0014    RET1     5   2
+0015 => RET0     0   1
+
+-- BYTECODE -- dropbox.lua:99-102
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "settings_dialog"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "onClose"
+0005    CALL     0   1   2
+0006    UGET     0   1      ; UIManager
+0007    MOV      1   0
+0008    TGETS    0   0   2  ; "close"
+0009    UGET     2   0      ; self
+0010    TGETS    2   2   0  ; "settings_dialog"
+0011    CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- dropbox.lua:106-108
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; InfoMessage
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   2
+0008    UGET     5   2      ; text_info
+0009    TSETS    5   4   3  ; "text"
+0010    CALL     2   0   3
+0011    CALLM    0   1   1
+0012    RET0     0   1
+
+-- BYTECODE -- dropbox.lua:112-129
+0001    UGET     0   0      ; MultiInputDialog
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getFields"
+0004    CALL     0   2   2
+0005    TGETB    1   0   1
+0006    ISEQS    1   1      ; ""
+0007    JMP      1 => 0034
+0008    TGETB    1   0   2
+0009    ISEQS    1   1      ; ""
+0010    JMP      1 => 0034
+0011    UGET     1   1      ; item
+0012    ISF          1
+0013    JMP      2 => 0019
+0014    UGET     1   2      ; callback
+0015    UGET     2   1      ; item
+0016    MOV      3   0
+0017    CALL     1   1   3
+0018    JMP      1 => 0022
+0019 => UGET     1   2      ; callback
+0020    MOV      2   0
+0021    CALL     1   1   2
+0022 => UGET     1   3      ; self
+0023    TGETS    1   1   2  ; "settings_dialog"
+0024    MOV      2   1
+0025    TGETS    1   1   3  ; "onClose"
+0026    CALL     1   1   2
+0027    UGET     1   4      ; UIManager
+0028    MOV      2   1
+0029    TGETS    1   1   4  ; "close"
+0030    UGET     3   3      ; self
+0031    TGETS    3   3   2  ; "settings_dialog"
+0032    CALL     1   1   3
+0033    JMP      1 => 0047
+0034 => UGET     1   4      ; UIManager
+0035    MOV      2   1
+0036    TGETS    1   1   5  ; "show"
+0037    UGET     3   5      ; InfoMessage
+0038    MOV      4   3
+0039    TGETS    3   3   6  ; "new"
+0040    TDUP     5   8
+0041    UGET     6   6      ; _
+0042    KSTR     7   7      ; "Please fill in all fields."
+0043    CALL     6   2   2
+0044    TSETS    6   5   9  ; "text"
+0045    CALL     3   0   3
+0046    CALLM    1   1   1
+0047 => RET0     0   1
+
+-- BYTECODE -- dropbox.lua:59-139
+0001    KSTR     3   0      ; "How to generate Access Token:\n"
+0002    KSTR     4   1      ; "1. Open the following URL in your Browse"~
+0003    KSTR     5   2      ; "2. Click on >>Create App<<, then select "~
+0004    KSTR     6   3      ; "3. Now go on with the configuration, cho"~
+0005    KSTR     7   4      ; "4. Enter the >>App Name<< that you prefe"~
+0006    KSTR     8   5      ; "5. Now, click on the >>Create App<< butt"~
+0007    KSTR     9   6      ; "6. When your new App is successfully cre"~
+0008    KSTR    10   7      ; "7. Under the 'Generated access token' se"~
+0009    CAT      3   3  10
+0010    UGET     4   0      ; _
+0011    KSTR     5   8      ; "Your Dropbox name"
+0012    CALL     4   2   2
+0013    KSTR     5   9      ; ""
+0014    UGET     6   0      ; _
+0015    KSTR     7  10      ; "Dropbox token\n\n\n\n"
+0016    CALL     6   2   2
+0017    KSTR     7   9      ; ""
+0018    KPRI     8   0
+0019    UGET     9   0      ; _
+0020    KSTR    10  11      ; "Add"
+0021    CALL     9   2   2
+0022    ISF          1
+0023    JMP     10 => 0035
+0024    UGET    10   0      ; _
+0025    KSTR    11  12      ; "Edit Dropbox account"
+0026    CALL    10   2   2
+0027    MOV      8  10
+0028    UGET    10   0      ; _
+0029    KSTR    11  13      ; "Apply"
+0030    CALL    10   2   2
+0031    MOV      9  10
+0032    TGETS    5   1  14  ; "text"
+0033    TGETS    7   1  15  ; "password"
+0034    JMP     10 => 0039
+0035 => UGET    10   0      ; _
+0036    KSTR    11  16      ; "Add Dropbox account"
+0037    CALL    10   2   2
+0038    MOV      8  10
+0039 => UGET    10   1      ; MultiInputDialog
+0040    MOV     11  10
+0041    TGETS   10  10  18  ; "new"
+0042    TDUP    12  19
+0043    TSETS    8  12  20  ; "title"
+0044    TNEW    13   3
+0045    TDUP    14  21
+0046    TSETS    5  14  14  ; "text"
+0047    TSETS    4  14  22  ; "hint"
+0048    TSETB   14  13   1
+0049    TDUP    14  23
+0050    TSETS    7  14  14  ; "text"
+0051    TSETS    6  14  22  ; "hint"
+0052    TSETB   14  13   2
+0053    TSETS   13  12  24  ; "fields"
+0054    TNEW    13   3
+0055    TNEW    14   4
+0056    TDUP    15  26
+0057    UGET    16   0      ; _
+0058    KSTR    17  25      ; "Cancel"
+0059    CALL    16   2   2
+0060    TSETS   16  15  14  ; "text"
+0061    FNEW    16  27      ; dropbox.lua:99
+0062    TSETS   16  15  28  ; "callback"
+0063    TSETB   15  14   1
+0064    TDUP    15  30
+0065    UGET    16   0      ; _
+0066    KSTR    17  29      ; "Info"
+0067    CALL    16   2   2
+0068    TSETS   16  15  14  ; "text"
+0069    FNEW    16  31      ; dropbox.lua:106
+0070    TSETS   16  15  28  ; "callback"
+0071    TSETB   15  14   2
+0072    TDUP    15  32
+0073    TSETS    9  15  14  ; "text"
+0074    FNEW    16  33      ; dropbox.lua:112
+0075    TSETS   16  15  28  ; "callback"
+0076    TSETB   15  14   3
+0077    TSETB   14  13   1
+0078    TSETS   13  12  34  ; "buttons"
+0079    UGET    13   4      ; Screen
+0080    MOV     14  13
+0081    TGETS   13  13  35  ; "getWidth"
+0082    CALL    13   2   2
+0083    MULVN   13  13   0  ; 0.95
+0084    TSETS   13  12  36  ; "width"
+0085    UGET    13   4      ; Screen
+0086    MOV     14  13
+0087    TGETS   13  13  37  ; "getHeight"
+0088    CALL    13   2   2
+0089    MULVN   13  13   1  ; 0.2
+0090    TSETS   13  12  38  ; "height"
+0091    CALL    10   2   3
+0092    TSETS   10   0  17  ; "settings_dialog"
+0093    UGET    10   2      ; UIManager
+0094    MOV     11  10
+0095    TGETS   10  10  39  ; "show"
+0096    TGETS   12   0  17  ; "settings_dialog"
+0097    CALL    10   1   3
+0098    TGETS   10   0  17  ; "settings_dialog"
+0099    MOV     11  10
+0100    TGETS   10  10  40  ; "onShowKeyboard"
+0101    CALL    10   1   2
+0102    UCLO     0 => 0103
+0103 => RET0     0   1
+
+-- BYTECODE -- dropbox.lua:141-151
+0001    UGET     2   0      ; DropBoxApi
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "fetchInfo"
+0004    MOV      4   1
+0005    CALL     2   2   3
+0006    KPRI     3   0
+0007    ISF          2
+0008    JMP      4 => 0024
+0009    TGETS    4   2   1  ; "name"
+0010    ISF          4
+0011    JMP      5 => 0024
+0012    UGET     4   1      ; T
+0013    UGET     5   2      ; _
+0014    KSTR     6   2      ; "Type: %1\nName: %2\nEmail: %3\nCounty: %4"
+0015    CALL     5   2   2
+0016    KSTR     6   3      ; "Dropbox"
+0017    TGETS    7   2   1  ; "name"
+0018    TGETS    7   7   4  ; "display_name"
+0019    TGETS    8   2   5  ; "email"
+0020    TGETS    9   2   6  ; "country"
+0021    CALL     4   2   6
+0022    MOV      3   4
+0023    JMP      4 => 0028
+0024 => UGET     4   2      ; _
+0025    KSTR     5   7      ; "No information available"
+0026    CALL     4   2   2
+0027    MOV      3   4
+0028 => UGET     4   3      ; UIManager
+0029    MOV      5   4
+0030    TGETS    4   4   8  ; "show"
+0031    UGET     6   4      ; InfoMessage
+0032    MOV      7   6
+0033    TGETS    6   6   9  ; "new"
+0034    TDUP     8  10
+0035    TSETS    3   8  11  ; "text"
+0036    CALL     6   0   3
+0037    CALLM    4   1   1
+0038    RET0     0   1
+
+-- BYTECODE -- dropbox.lua:0-154
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/confirmbox"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "document/documentregistry"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "apps/cloudstorage/dropboxapi"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/infomessage"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/multiinputdialog"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/uimanager"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "apps/reader/readerui"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "util"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "device"
+0030    CALL     9   2   2
+0031    TGETS    9   9  11  ; "screen"
+0032    GGET    10   0      ; "require"
+0033    KSTR    11  12      ; "ffi/util"
+0034    CALL    10   2   2
+0035    TGETS   10  10  13  ; "template"
+0036    GGET    11   0      ; "require"
+0037    KSTR    12  14      ; "gettext"
+0038    CALL    11   2   2
+0039    TNEW    12   0
+0040    FNEW    13  16      ; dropbox.lua:16
+0041    TSETS   13  12  15  ; "run"
+0042    FNEW    13  18      ; dropbox.lua:20
+0043    TSETS   13  12  17  ; "showFiles"
+0044    FNEW    13  20      ; dropbox.lua:24
+0045    TSETS   13  12  19  ; "downloadFile"
+0046    FNEW    13  22      ; dropbox.lua:50
+0047    TSETS   13  12  21  ; "downloadFileNoUI"
+0048    FNEW    13  24      ; dropbox.lua:59
+0049    TSETS   13  12  23  ; "config"
+0050    FNEW    13  26      ; dropbox.lua:141
+0051    TSETS   13  12  25  ; "info"
+0052    UCLO     0 => 0053
+0053 => RET1    12   2
+

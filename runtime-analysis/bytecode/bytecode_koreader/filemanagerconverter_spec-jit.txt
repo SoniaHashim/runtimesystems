@@ -1,0 +1,76 @@
+-- BYTECODE -- filemanagerconverter_spec.lua:3-6
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "apps/filemanager/filemanagerconverter"
+0006    CALL     0   2   2
+0007    USETV    0   0      ; FileConverter
+0008    RET0     0   1
+
+-- BYTECODE -- filemanagerconverter_spec.lua:7-9
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_true"
+0003    UGET     1   0      ; FileConverter
+0004    MOV      2   1
+0005    TGETS    1   1   2  ; "isSupported"
+0006    KSTR     3   3      ; "/markdown_file.md"
+0007    CALL     1   0   3
+0008    CALLM    0   1   0
+0009    RET0     0   1
+
+-- BYTECODE -- filemanagerconverter_spec.lua:10-12
+0001    GGET     0   0      ; "assert"
+0002    TGETS    0   0   1  ; "is_false"
+0003    UGET     1   0      ; FileConverter
+0004    MOV      2   1
+0005    TGETS    1   1   2  ; "isSupported"
+0006    KSTR     3   3      ; "/pdf_file.pdf"
+0007    CALL     1   0   3
+0008    CALLM    0   1   0
+0009    RET0     0   1
+
+-- BYTECODE -- filemanagerconverter_spec.lua:13-49
+0001    KSTR     0   0      ; "# KOReader Quickstart Guide\n\nWelcome t"~
+0002    KSTR     1   1      ; "KOReader Quickstart Guide"
+0003    KSTR     2   2      ; "<!DOCTYPE html>\n<html>\n<head>\n<title>"~
+0004    GGET     3   3      ; "assert"
+0005    TGETS    3   3   4  ; "are"
+0006    TGETS    3   3   5  ; "same"
+0007    MOV      4   2
+0008    UGET     5   0      ; FileConverter
+0009    MOV      6   5
+0010    TGETS    5   5   6  ; "mdToHtml"
+0011    MOV      7   0
+0012    MOV      8   1
+0013    CALL     5   0   4
+0014    CALLM    3   1   1
+0015    RET0     0   1
+
+-- BYTECODE -- filemanagerconverter_spec.lua:1-50
+0001    KPRI     0   0
+0002    GGET     1   0      ; "setup"
+0003    FNEW     2   1      ; filemanagerconverter_spec.lua:3
+0004    CALL     1   1   2
+0005    GGET     1   2      ; "it"
+0006    KSTR     2   3      ; "should show conversion support for Markd"~
+0007    FNEW     3   4      ; filemanagerconverter_spec.lua:7
+0008    CALL     1   1   3
+0009    GGET     1   2      ; "it"
+0010    KSTR     2   5      ; "should not show conversion support for P"~
+0011    FNEW     3   6      ; filemanagerconverter_spec.lua:10
+0012    CALL     1   1   3
+0013    GGET     1   2      ; "it"
+0014    KSTR     2   7      ; "should convert Markdown to HTML"
+0015    FNEW     3   8      ; filemanagerconverter_spec.lua:13
+0016    CALL     1   1   3
+0017    UCLO     0 => 0018
+0018 => RET0     0   1
+
+-- BYTECODE -- filemanagerconverter_spec.lua:0-51
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "FileConverter module"
+0003    FNEW     2   2      ; filemanagerconverter_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+

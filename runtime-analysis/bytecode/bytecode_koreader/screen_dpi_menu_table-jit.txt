@@ -1,0 +1,526 @@
+-- BYTECODE -- screen_dpi_menu_table.lua:6-6
+0001    UGET     0   0      ; Device
+0002    TGETS    0   0   0  ; "screen_dpi_override"
+0003    ISEQP    0   0
+0004    JMP      0 => 0007
+0005    KPRI     0   1
+0006    JMP      1 => 0008
+0007 => KPRI     0   2
+0008 => RET1     0   2
+
+-- BYTECODE -- screen_dpi_menu_table.lua:8-8
+0001    UGET     0   0      ; Screen
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getDPI"
+0004    CALLT    0   2
+
+-- BYTECODE -- screen_dpi_menu_table.lua:10-10
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "readSetting"
+0004    KSTR     2   2      ; "custom_screen_dpi"
+0005    CALLT    0   3
+
+-- BYTECODE -- screen_dpi_menu_table.lua:12-21
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "ui/widget/infomessage"
+0003    CALL     1   2   2
+0004    GGET     2   0      ; "require"
+0005    KSTR     3   2      ; "ui/uimanager"
+0006    CALL     2   2   2
+0007    MOV      4   2
+0008    TGETS    3   2   3  ; "show"
+0009    MOV      6   1
+0010    TGETS    5   1   4  ; "new"
+0011    TDUP     7   7
+0012    ISF          0
+0013    JMP      8 => 0022
+0014    UGET     8   0      ; T
+0015    UGET     9   1      ; _
+0016    KSTR    10   5      ; "DPI set to %1. This will take effect aft"~
+0017    CALL     9   2   2
+0018    MOV     10   0
+0019    CALL     8   2   3
+0020    IST          8
+0021    JMP      9 => 0025
+0022 => UGET     8   1      ; _
+0023    KSTR     9   6      ; "DPI set to auto. This will take effect a"~
+0024    CALL     8   2   2
+0025 => TSETS    8   7   8  ; "text"
+0026    CALL     5   0   3
+0027    CALLM    3   1   1
+0028    GGET     3   9      ; "G_reader_settings"
+0029    MOV      4   3
+0030    TGETS    3   3  10  ; "saveSetting"
+0031    KSTR     5  11      ; "screen_dpi"
+0032    MOV      6   0
+0033    CALL     3   1   4
+0034    UGET     3   2      ; Device
+0035    MOV      4   3
+0036    TGETS    3   3  12  ; "setScreenDPI"
+0037    MOV      5   0
+0038    CALL     3   1   3
+0039    RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:35-39
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "saveSetting"
+0004    KSTR     3   2      ; "custom_screen_dpi"
+0005    TGETS    4   0   3  ; "value"
+0006    CALL     1   1   4
+0007    UGET     1   0      ; setDPI
+0008    TGETS    2   0   3  ; "value"
+0009    CALL     1   1   2
+0010    UGET     1   1      ; touchmenu_instance
+0011    MOV      2   1
+0012    TGETS    1   1   4  ; "updateItems"
+0013    CALL     1   1   2
+0014    RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:23-42
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "ui/widget/spinwidget"
+0003    CALL     1   2   2
+0004    GGET     2   0      ; "require"
+0005    KSTR     3   2      ; "ui/uimanager"
+0006    CALL     2   2   2
+0007    MOV      4   1
+0008    TGETS    3   1   3  ; "new"
+0009    TDUP     5   5
+0010    UGET     6   0      ; Screen
+0011    MOV      7   6
+0012    TGETS    6   6   4  ; "getWidth"
+0013    CALL     6   2   2
+0014    MULVN    6   6   0  ; 0.6
+0015    TSETS    6   5   6  ; "width"
+0016    UGET     6   1      ; custom
+0017    CALL     6   2   1
+0018    IST          6
+0019    JMP      7 => 0022
+0020    UGET     6   2      ; dpi
+0021    CALL     6   2   1
+0022 => TSETS    6   5   7  ; "value"
+0023    UGET     6   3      ; _
+0024    KSTR     7   8      ; "Set DPI"
+0025    CALL     6   2   2
+0026    TSETS    6   5   9  ; "ok_text"
+0027    UGET     6   3      ; _
+0028    KSTR     7  10      ; "Set custom screen DPI"
+0029    CALL     6   2   2
+0030    TSETS    6   5  11  ; "title_text"
+0031    FNEW     6  12      ; screen_dpi_menu_table.lua:35
+0032    TSETS    6   5  13  ; "callback"
+0033    CALL     3   2   3
+0034    MOV      5   2
+0035    TGETS    4   2  14  ; "show"
+0036    MOV      6   3
+0037    CALL     4   1   3
+0038    UCLO     0 => 0039
+0039 => RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:59-59
+0001    UGET     0   0      ; setDPI
+0002    CALL     0   1   1
+0003    RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:63-67
+0001    UGET     0   0      ; isAutoDPI
+0002    CALL     0   2   1
+0003    ISF          0
+0004    JMP      1 => 0007
+0005    KPRI     0   1
+0006    RET1     0   2
+0007 => UGET     0   1      ; dpi
+0008    CALL     0   2   1
+0009    UGET     1   2      ; custom
+0010    CALL     1   2   1
+0011    ISFC     2   0
+0012    JMP      2 => 0021
+0013    KSHORT   2 140
+0014    ISGT     0   2
+0015    JMP      2 => 0018
+0016    ISNEV    0   1
+0017    JMP      2 => 0020
+0018 => KPRI     2   1
+0019    JMP      3 => 0021
+0020 => KPRI     2   2
+0021 => RET1     2   2
+
+-- BYTECODE -- screen_dpi_menu_table.lua:68-68
+0001    UGET     0   0      ; setDPI
+0002    UGET     1   1      ; dpi_small
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:72-76
+0001    UGET     0   0      ; isAutoDPI
+0002    CALL     0   2   1
+0003    ISF          0
+0004    JMP      1 => 0007
+0005    KPRI     0   1
+0006    RET1     0   2
+0007 => UGET     0   1      ; dpi
+0008    CALL     0   2   1
+0009    UGET     1   2      ; custom
+0010    CALL     1   2   1
+0011    ISFC     2   0
+0012    JMP      2 => 0024
+0013    KSHORT   2 140
+0014    ISGE     2   0
+0015    JMP      2 => 0021
+0016    KSHORT   2 200
+0017    ISGT     0   2
+0018    JMP      2 => 0021
+0019    ISNEV    0   1
+0020    JMP      2 => 0023
+0021 => KPRI     2   1
+0022    JMP      3 => 0024
+0023 => KPRI     2   2
+0024 => RET1     2   2
+
+-- BYTECODE -- screen_dpi_menu_table.lua:77-77
+0001    UGET     0   0      ; setDPI
+0002    UGET     1   1      ; dpi_medium
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:81-85
+0001    UGET     0   0      ; isAutoDPI
+0002    CALL     0   2   1
+0003    ISF          0
+0004    JMP      1 => 0007
+0005    KPRI     0   1
+0006    RET1     0   2
+0007 => UGET     0   1      ; dpi
+0008    CALL     0   2   1
+0009    UGET     1   2      ; custom
+0010    CALL     1   2   1
+0011    ISFC     2   0
+0012    JMP      2 => 0024
+0013    KSHORT   2 200
+0014    ISGE     2   0
+0015    JMP      2 => 0021
+0016    KSHORT   2 280
+0017    ISGT     0   2
+0018    JMP      2 => 0021
+0019    ISNEV    0   1
+0020    JMP      2 => 0023
+0021 => KPRI     2   1
+0022    JMP      3 => 0024
+0023 => KPRI     2   2
+0024 => RET1     2   2
+
+-- BYTECODE -- screen_dpi_menu_table.lua:86-86
+0001    UGET     0   0      ; setDPI
+0002    UGET     1   1      ; dpi_large
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:90-94
+0001    UGET     0   0      ; isAutoDPI
+0002    CALL     0   2   1
+0003    ISF          0
+0004    JMP      1 => 0007
+0005    KPRI     0   1
+0006    RET1     0   2
+0007 => UGET     0   1      ; dpi
+0008    CALL     0   2   1
+0009    UGET     1   2      ; custom
+0010    CALL     1   2   1
+0011    ISFC     2   0
+0012    JMP      2 => 0024
+0013    KSHORT   2 280
+0014    ISGE     2   0
+0015    JMP      2 => 0021
+0016    KSHORT   2 400
+0017    ISGT     0   2
+0018    JMP      2 => 0021
+0019    ISNEV    0   1
+0020    JMP      2 => 0023
+0021 => KPRI     2   1
+0022    JMP      3 => 0024
+0023 => KPRI     2   2
+0024 => RET1     2   2
+
+-- BYTECODE -- screen_dpi_menu_table.lua:95-95
+0001    UGET     0   0      ; setDPI
+0002    UGET     1   1      ; dpi_xlarge
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:99-103
+0001    UGET     0   0      ; isAutoDPI
+0002    CALL     0   2   1
+0003    ISF          0
+0004    JMP      1 => 0007
+0005    KPRI     0   1
+0006    RET1     0   2
+0007 => UGET     0   1      ; dpi
+0008    CALL     0   2   1
+0009    UGET     1   2      ; custom
+0010    CALL     1   2   1
+0011    ISFC     2   0
+0012    JMP      2 => 0024
+0013    KSHORT   2 400
+0014    ISGE     2   0
+0015    JMP      2 => 0021
+0016    KSHORT   2 560
+0017    ISGT     0   2
+0018    JMP      2 => 0021
+0019    ISNEV    0   1
+0020    JMP      2 => 0023
+0021 => KPRI     2   1
+0022    JMP      3 => 0024
+0023 => KPRI     2   2
+0024 => RET1     2   2
+
+-- BYTECODE -- screen_dpi_menu_table.lua:104-104
+0001    UGET     0   0      ; setDPI
+0002    UGET     1   1      ; dpi_xxlarge
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:108-112
+0001    UGET     0   0      ; isAutoDPI
+0002    CALL     0   2   1
+0003    ISF          0
+0004    JMP      1 => 0007
+0005    KPRI     0   1
+0006    RET1     0   2
+0007 => UGET     0   1      ; dpi
+0008    CALL     0   2   1
+0009    UGET     1   2      ; custom
+0010    CALL     1   2   1
+0011    ISFC     2   0
+0012    JMP      2 => 0021
+0013    KSHORT   2 560
+0014    ISGE     2   0
+0015    JMP      2 => 0018
+0016    ISNEV    0   1
+0017    JMP      2 => 0020
+0018 => KPRI     2   1
+0019    JMP      3 => 0021
+0020 => KPRI     2   2
+0021 => RET1     2   2
+
+-- BYTECODE -- screen_dpi_menu_table.lua:113-113
+0001    UGET     0   0      ; setDPI
+0002    UGET     1   1      ; dpi_xxxlarge
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:116-123
+0001    UGET     0   0      ; custom
+0002    CALL     0   2   1
+0003    IST          0
+0004    JMP      1 => 0006
+0005    UGET     0   1      ; dpi_auto
+0006 => ISF          0
+0007    JMP      1 => 0019
+0008    UGET     1   2      ; T
+0009    UGET     2   3      ; _
+0010    KSTR     3   0      ; "Custom DPI: %1 (hold to set)"
+0011    CALL     2   2   2
+0012    UGET     3   0      ; custom
+0013    CALL     3   2   1
+0014    IST          3
+0015    JMP      4 => 0017
+0016    UGET     3   1      ; dpi_auto
+0017 => CALLT    1   3
+0018    JMP      1 => 0022
+0019 => UGET     1   3      ; _
+0020    KSTR     2   1      ; "Custom DPI"
+0021    CALLT    1   2
+0022 => RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:124-128
+0001    UGET     0   0      ; isAutoDPI
+0002    CALL     0   2   1
+0003    ISF          0
+0004    JMP      1 => 0007
+0005    KPRI     0   1
+0006    RET1     0   2
+0007 => UGET     0   1      ; dpi
+0008    CALL     0   2   1
+0009    UGET     1   2      ; custom
+0010    CALL     1   2   1
+0011    ISFC     2   1
+0012    JMP      2 => 0018
+0013    ISEQV    0   1
+0014    JMP      2 => 0017
+0015    KPRI     2   1
+0016    JMP      3 => 0018
+0017 => KPRI     2   2
+0018 => RET1     2   2
+
+-- BYTECODE -- screen_dpi_menu_table.lua:129-135
+0001    UGET     1   0      ; custom
+0002    CALL     1   2   1
+0003    ISF          1
+0004    JMP      2 => 0013
+0005    UGET     1   1      ; setDPI
+0006    UGET     2   0      ; custom
+0007    CALL     2   2   1
+0008    IST          2
+0009    JMP      3 => 0011
+0010    UGET     2   2      ; dpi_auto
+0011 => CALL     1   1   2
+0012    JMP      1 => 0016
+0013 => UGET     1   3      ; spinWidgetSetDPI
+0014    MOV      2   0
+0015    CALL     1   1   2
+0016 => RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:136-138
+0001    UGET     1   0      ; spinWidgetSetDPI
+0002    MOV      2   0
+0003    CALL     1   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_dpi_menu_table.lua:0-142
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "gettext"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "device"
+0006    CALL     1   2   2
+0007    TGETS    2   1   3  ; "screen"
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   4      ; "ffi/util"
+0010    CALL     3   2   2
+0011    TGETS    3   3   5  ; "template"
+0012    FNEW     4   6      ; screen_dpi_menu_table.lua:6
+0013    FNEW     5   7      ; screen_dpi_menu_table.lua:8
+0014    FNEW     6   8      ; screen_dpi_menu_table.lua:10
+0015    FNEW     7   9      ; screen_dpi_menu_table.lua:12
+0016    FNEW     8  10      ; screen_dpi_menu_table.lua:23
+0017    TGETS    9   2   2  ; "device"
+0018    TGETS    9   9  11  ; "screen_dpi"
+0019    KSHORT  10 120
+0020    KSHORT  11 160
+0021    KSHORT  12 240
+0022    KSHORT  13 320
+0023    KSHORT  14 480
+0024    KSHORT  15 640
+0025    TDUP    16  13
+0026    MOV     17   0
+0027    KSTR    18  12      ; "Screen DPI"
+0028    CALL    17   2   2
+0029    TSETS   17  16  14  ; "text"
+0030    TNEW    17   9
+0031    TDUP    18  17
+0032    ISF          9
+0033    JMP     19 => 0042
+0034    MOV     19   3
+0035    MOV     20   0
+0036    KSTR    21  15      ; "Auto DPI (%1)"
+0037    CALL    20   2   2
+0038    MOV     21   9
+0039    CALL    19   2   3
+0040    IST         19
+0041    JMP     20 => 0045
+0042 => MOV     19   0
+0043    KSTR    20  16      ; "Auto DPI"
+0044    CALL    19   2   2
+0045 => TSETS   19  18  14  ; "text"
+0046    MOV     19   0
+0047    KSTR    20  18      ; "The DPI of your screen is automatically "~
+0048    CALL    19   2   2
+0049    TSETS   19  18  19  ; "help_text"
+0050    TSETS    4  18  20  ; "checked_func"
+0051    FNEW    19  21      ; screen_dpi_menu_table.lua:59
+0052    TSETS   19  18  22  ; "callback"
+0053    TSETB   18  17   1
+0054    TDUP    18  24
+0055    MOV     19   3
+0056    MOV     20   0
+0057    KSTR    21  23      ; "Small (%1)"
+0058    CALL    20   2   2
+0059    MOV     21  10
+0060    CALL    19   2   3
+0061    TSETS   19  18  14  ; "text"
+0062    FNEW    19  25      ; screen_dpi_menu_table.lua:63
+0063    TSETS   19  18  20  ; "checked_func"
+0064    FNEW    19  26      ; screen_dpi_menu_table.lua:68
+0065    TSETS   19  18  22  ; "callback"
+0066    TSETB   18  17   2
+0067    TDUP    18  28
+0068    MOV     19   3
+0069    MOV     20   0
+0070    KSTR    21  27      ; "Medium (%1)"
+0071    CALL    20   2   2
+0072    MOV     21  11
+0073    CALL    19   2   3
+0074    TSETS   19  18  14  ; "text"
+0075    FNEW    19  29      ; screen_dpi_menu_table.lua:72
+0076    TSETS   19  18  20  ; "checked_func"
+0077    FNEW    19  30      ; screen_dpi_menu_table.lua:77
+0078    TSETS   19  18  22  ; "callback"
+0079    TSETB   18  17   3
+0080    TDUP    18  32
+0081    MOV     19   3
+0082    MOV     20   0
+0083    KSTR    21  31      ; "Large (%1)"
+0084    CALL    20   2   2
+0085    MOV     21  12
+0086    CALL    19   2   3
+0087    TSETS   19  18  14  ; "text"
+0088    FNEW    19  33      ; screen_dpi_menu_table.lua:81
+0089    TSETS   19  18  20  ; "checked_func"
+0090    FNEW    19  34      ; screen_dpi_menu_table.lua:86
+0091    TSETS   19  18  22  ; "callback"
+0092    TSETB   18  17   4
+0093    TDUP    18  36
+0094    MOV     19   3
+0095    MOV     20   0
+0096    KSTR    21  35      ; "Extra large (%1)"
+0097    CALL    20   2   2
+0098    MOV     21  13
+0099    CALL    19   2   3
+0100    TSETS   19  18  14  ; "text"
+0101    FNEW    19  37      ; screen_dpi_menu_table.lua:90
+0102    TSETS   19  18  20  ; "checked_func"
+0103    FNEW    19  38      ; screen_dpi_menu_table.lua:95
+0104    TSETS   19  18  22  ; "callback"
+0105    TSETB   18  17   5
+0106    TDUP    18  40
+0107    MOV     19   3
+0108    MOV     20   0
+0109    KSTR    21  39      ; "Extra-Extra Large (%1)"
+0110    CALL    20   2   2
+0111    MOV     21  14
+0112    CALL    19   2   3
+0113    TSETS   19  18  14  ; "text"
+0114    FNEW    19  41      ; screen_dpi_menu_table.lua:99
+0115    TSETS   19  18  20  ; "checked_func"
+0116    FNEW    19  42      ; screen_dpi_menu_table.lua:104
+0117    TSETS   19  18  22  ; "callback"
+0118    TSETB   18  17   6
+0119    TDUP    18  44
+0120    MOV     19   3
+0121    MOV     20   0
+0122    KSTR    21  43      ; "Extra-Extra-Extra Large (%1)"
+0123    CALL    20   2   2
+0124    MOV     21  15
+0125    CALL    19   2   3
+0126    TSETS   19  18  14  ; "text"
+0127    FNEW    19  45      ; screen_dpi_menu_table.lua:108
+0128    TSETS   19  18  20  ; "checked_func"
+0129    FNEW    19  46      ; screen_dpi_menu_table.lua:113
+0130    TSETS   19  18  22  ; "callback"
+0131    TSETB   18  17   7
+0132    TDUP    18  48
+0133    FNEW    19  47      ; screen_dpi_menu_table.lua:116
+0134    TSETS   19  18  49  ; "text_func"
+0135    FNEW    19  50      ; screen_dpi_menu_table.lua:124
+0136    TSETS   19  18  20  ; "checked_func"
+0137    FNEW    19  51      ; screen_dpi_menu_table.lua:129
+0138    TSETS   19  18  22  ; "callback"
+0139    FNEW    19  52      ; screen_dpi_menu_table.lua:136
+0140    TSETS   19  18  53  ; "hold_callback"
+0141    TSETB   18  17   8
+0142    TSETS   17  16  54  ; "sub_item_table"
+0143    UCLO     0 => 0144
+0144 => RET1    16   2
+

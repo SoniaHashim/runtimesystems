@@ -1,0 +1,77 @@
+-- BYTECODE -- readerflipping.lua:11-20
+0001    UGET     1   0      ; ImageWidget
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "new"
+0004    TDUP     3   1
+0005    CALL     1   2   3
+0006    UGET     2   1      ; LeftContainer
+0007    MOV      3   2
+0008    TGETS    2   2   0  ; "new"
+0009    TDUP     4   7
+0010    UGET     5   2      ; Geom
+0011    MOV      6   5
+0012    TGETS    5   5   0  ; "new"
+0013    TDUP     7   3
+0014    UGET     8   3      ; Screen
+0015    MOV      9   8
+0016    TGETS    8   8   2  ; "getWidth"
+0017    CALL     8   2   2
+0018    TSETS    8   7   4  ; "w"
+0019    MOV      9   1
+0020    TGETS    8   1   5  ; "getSize"
+0021    CALL     8   2   2
+0022    TGETS    8   8   6  ; "h"
+0023    TSETS    8   7   6  ; "h"
+0024    CALL     5   2   3
+0025    TSETS    5   4   8  ; "dimen"
+0026    TSETB    1   4   1
+0027    CALL     2   2   3
+0028    TSETB    2   0   1
+0029    MOV      3   0
+0030    TGETS    2   0   9  ; "resetLayout"
+0031    CALL     2   1   2
+0032    RET0     0   1
+
+-- BYTECODE -- readerflipping.lua:22-28
+0001    UGET     1   0      ; Screen
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "getWidth"
+0004    CALL     1   2   2
+0005    TGETS    2   0   1  ; "_last_screen_width"
+0006    ISNEV    1   2
+0007    JMP      2 => 0009
+0008    RET0     0   1
+0009 => TSETS    1   0   1  ; "_last_screen_width"
+0010    TGETB    2   0   1
+0011    TGETS    2   2   2  ; "dimen"
+0012    TSETS    1   2   3  ; "w"
+0013    RET0     0   1
+
+-- BYTECODE -- readerflipping.lua:0-31
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/geometry"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/imagewidget"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/container/inputcontainer"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/container/leftcontainer"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "device"
+0015    CALL     4   2   2
+0016    TGETS    4   4   6  ; "screen"
+0017    MOV      6   2
+0018    TGETS    5   2   7  ; "new"
+0019    TDUP     7   8
+0020    CALL     5   2   3
+0021    FNEW     6  10      ; readerflipping.lua:11
+0022    TSETS    6   5   9  ; "init"
+0023    FNEW     6  12      ; readerflipping.lua:22
+0024    TSETS    6   5  11  ; "resetLayout"
+0025    UCLO     0 => 0026
+0026 => RET1     5   2
+

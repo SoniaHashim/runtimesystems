@@ -1,0 +1,2296 @@
+-- BYTECODE -- parse.lua:24-29
+0001    TDUP     1   0
+0002    TSETB    0   1   2
+0003    RET1     1   2
+
+-- BYTECODE -- parse.lua:42-45
+0001    UGET     3   0      ; state
+0002    TSETS    1   3   0  ; "last_pos"
+0003    UGET     3   1      ; _indent
+0004    MOV      4   3
+0005    TGETS    3   3   1  ; "top"
+0006    CALL     3   2   2
+0007    ISEQV    3   2
+0008    JMP      3 => 0011
+0009    KPRI     3   1
+0010    JMP      4 => 0012
+0011 => KPRI     3   2
+0012 => RET1     3   2
+
+-- BYTECODE -- parse.lua:47-53
+0001    UGET     3   0      ; _indent
+0002    MOV      4   3
+0003    TGETS    3   3   0  ; "top"
+0004    CALL     3   2   2
+0005    ISEQN    3   0      ; -1
+0006    JMP      4 => 0016
+0007    ISGE     3   2
+0008    JMP      4 => 0016
+0009    UGET     4   0      ; _indent
+0010    MOV      5   4
+0011    TGETS    4   4   1  ; "push"
+0012    MOV      6   2
+0013    CALL     4   1   3
+0014    KPRI     4   2
+0015    RET1     4   2
+0016 => RET0     0   1
+
+-- BYTECODE -- parse.lua:55-58
+0001    UGET     3   0      ; _indent
+0002    MOV      4   3
+0003    TGETS    3   3   0  ; "push"
+0004    MOV      5   2
+0005    CALL     3   1   3
+0006    KPRI     3   2
+0007    RET1     3   2
+
+-- BYTECODE -- parse.lua:60-63
+0001    GGET     0   0      ; "assert"
+0002    UGET     1   0      ; _indent
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "pop"
+0005    CALL     1   2   2
+0006    KSTR     2   2      ; "unexpected outdent"
+0007    CALL     0   1   3
+0008    KPRI     0   2
+0009    RET1     0   2
+
+-- BYTECODE -- parse.lua:65-71
+0001    UGET     3   0      ; _do_stack
+0002    MOV      4   3
+0003    TGETS    3   3   0  ; "top"
+0004    CALL     3   2   2
+0005    ISEQP    3   0
+0006    JMP      4 => 0009
+0007    ISF          3
+0008    JMP      4 => 0012
+0009 => KPRI     4   2
+0010    MOV      5   2
+0011    RET      4   3
+0012 => KPRI     4   1
+0013    RET1     4   2
+
+-- BYTECODE -- parse.lua:73-76
+0001    UGET     0   0      ; _do_stack
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "push"
+0004    KPRI     2   1
+0005    CALL     0   1   3
+0006    KPRI     0   2
+0007    RET1     0   2
+
+-- BYTECODE -- parse.lua:78-81
+0001    GGET     0   0      ; "assert"
+0002    UGET     1   0      ; _do_stack
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "pop"
+0005    CALL     1   2   2
+0006    ISNEP    1   0
+0007    JMP      1 => 0010
+0008    KPRI     1   1
+0009    JMP      2 => 0011
+0010 => KPRI     1   2
+0011 => KSTR     2   2      ; "unexpected do pop"
+0012    CALL     0   1   3
+0013    KPRI     0   2
+0014    RET1     0   2
+
+-- BYTECODE -- parse.lua:86-89
+0001    UGET     1   0      ; keywords
+0002    KPRI     2   2
+0003    TSETV    2   1   0
+0004    UGET     1   1      ; Space
+0005    MULVV    1   1   0
+0006    UGET     2   2      ; AlphaNum
+0007    UNM      2   2
+0008    MULVV    1   1   2
+0009    RET1     1   2
+
+-- BYTECODE -- parse.lua:91-98
+0001    UGET     1   0      ; Space
+0002    UGET     2   1      ; C
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    MULVV    1   1   2
+0006    MOV      3   0
+0007    TGETS    2   0   0  ; "match"
+0008    KSTR     4   1      ; "^%w*$"
+0009    CALL     2   2   3
+0010    ISF          2
+0011    JMP      3 => 0018
+0012    UGET     2   2      ; keywords
+0013    KPRI     3   2
+0014    TSETV    3   2   0
+0015    UGET     2   3      ; AlphaNum
+0016    UNM      2   2
+0017    MULVV    1   1   2
+0018 => RET1     1   2
+
+-- BYTECODE -- parse.lua:99-104
+0001    UGET     3   0      ; keywords
+0002    TGETV    3   3   2
+0003    ISF          3
+0004    JMP      4 => 0007
+0005    KPRI     3   1
+0006    RET1     3   2
+0007 => KPRI     3   2
+0008    RET1     3   2
+
+-- BYTECODE -- parse.lua:35-204
+0001    UGET     1   0      ; Stack
+0002    KSHORT   2   0
+0003    CALL     1   2   2
+0004    UGET     2   0      ; Stack
+0005    KSHORT   3   0
+0006    CALL     2   2   2
+0007    TDUP     3   0
+0008    KPRI     4   0
+0009    FNEW     4   1      ; parse.lua:42
+0010    KPRI     5   0
+0011    FNEW     5   2      ; parse.lua:47
+0012    KPRI     6   0
+0013    FNEW     6   3      ; parse.lua:55
+0014    KPRI     7   0
+0015    FNEW     7   4      ; parse.lua:60
+0016    KPRI     8   0
+0017    FNEW     8   5      ; parse.lua:65
+0018    KPRI     9   0
+0019    FNEW     9   6      ; parse.lua:73
+0020    KPRI    10   0
+0021    FNEW    10   7      ; parse.lua:78
+0022    UGET    11   1      ; Cmt
+0023    KSTR    12   8      ; ""
+0024    MOV     13   9
+0025    CALL    11   2   3
+0026    UGET    12   1      ; Cmt
+0027    KSTR    13   8      ; ""
+0028    MOV     14  10
+0029    CALL    12   2   3
+0030    TNEW    13   0
+0031    KPRI    14   0
+0032    FNEW    14   9      ; parse.lua:86
+0033    KPRI    15   0
+0034    FNEW    15  10      ; parse.lua:91
+0035    UGET    16   1      ; Cmt
+0036    UGET    17   5      ; SpaceName
+0037    FNEW    18  11      ; parse.lua:99
+0038    CALL    16   2   3
+0039    UGET    17   6      ; trim
+0040    DIVVV   16  16  17
+0041    UGET    17   2      ; Space
+0042    KSTR    18  12      ; "@"
+0043    MULVV   17  17  18
+0044    KSTR    18  12      ; "@"
+0045    UGET    19   7      ; _Name
+0046    UGET    20   8      ; mark
+0047    KSTR    21  13      ; "self_class"
+0048    CALL    20   2   2
+0049    DIVVV   19  19  20
+0050    UGET    20   9      ; Cc
+0051    KSTR    21  14      ; "self.__class"
+0052    CALL    20   2   2
+0053    ADDVV   19  19  20
+0054    MULVV   18  18  19
+0055    UGET    19   7      ; _Name
+0056    UGET    20   8      ; mark
+0057    KSTR    21  15      ; "self"
+0058    CALL    20   2   2
+0059    DIVVV   19  19  20
+0060    ADDVV   18  18  19
+0061    UGET    19   9      ; Cc
+0062    KSTR    20  15      ; "self"
+0063    CALL    19   2   2
+0064    ADDVV   18  18  19
+0065    MULVV   17  17  18
+0066    UGET    18   2      ; Space
+0067    UGET    19   7      ; _Name
+0068    MULVV   18  18  19
+0069    UGET    19   8      ; mark
+0070    KSTR    20  16      ; "key_literal"
+0071    CALL    19   2   2
+0072    DIVVV   18  18  19
+0073    ADDVV   18  17  18
+0074    UGET    19   2      ; Space
+0075    UGET    20  10      ; P
+0076    KSTR    21  17      ; "..."
+0077    CALL    20   2   2
+0078    MULVV   19  19  20
+0079    UGET    20   6      ; trim
+0080    DIVVV   19  19  20
+0081    UGET    20  10      ; P
+0082    TDUP    21  20
+0083    ISTC    22   0
+0084    JMP     22 => 0086
+0085    GGET    22  18      ; "File"
+0086 => TSETB   22  21   1
+0087    UGET    22  11      ; Shebang
+0088    KSHORT  23  -1
+0089    POW     22  22  23
+0090    GGET    23  19      ; "Block"
+0091    UGET    24  12      ; Ct
+0092    KSTR    25   8      ; ""
+0093    CALL    24   2   2
+0094    ADDVV   23  23  24
+0095    MULVV   22  22  23
+0096    TSETS   22  21  18  ; "File"
+0097    UGET    22  12      ; Ct
+0098    GGET    23  21      ; "Line"
+0099    UGET    24  13      ; Break
+0100    KSHORT  25   1
+0101    POW     24  24  25
+0102    GGET    25  21      ; "Line"
+0103    MULVV   24  24  25
+0104    KSHORT  25   0
+0105    POW     24  24  25
+0106    MULVV   23  23  24
+0107    CALL    22   2   2
+0108    TSETS   22  21  19  ; "Block"
+0109    UGET    22   1      ; Cmt
+0110    UGET    23  14      ; Indent
+0111    MOV     24   4
+0112    CALL    22   2   3
+0113    TSETS   22  21  22  ; "CheckIndent"
+0114    GGET    22  22      ; "CheckIndent"
+0115    GGET    23  23      ; "Statement"
+0116    MULVV   22  22  23
+0117    UGET    23   2      ; Space
+0118    UGET    24  15      ; L
+0119    UGET    25  16      ; Stop
+0120    CALL    24   2   2
+0121    MULVV   23  23  24
+0122    ADDVV   22  22  23
+0123    TSETS   22  21  21  ; "Line"
+0124    UGET    22  17      ; pos
+0125    GGET    23  24      ; "Import"
+0126    GGET    24  25      ; "While"
+0127    ADDVV   23  23  24
+0128    GGET    24  26      ; "With"
+0129    ADDVV   23  23  24
+0130    GGET    24  27      ; "For"
+0131    ADDVV   23  23  24
+0132    GGET    24  28      ; "ForEach"
+0133    ADDVV   23  23  24
+0134    GGET    24  29      ; "Switch"
+0135    ADDVV   23  23  24
+0136    GGET    24  30      ; "Return"
+0137    ADDVV   23  23  24
+0138    GGET    24  31      ; "Local"
+0139    ADDVV   23  23  24
+0140    GGET    24  32      ; "Export"
+0141    ADDVV   23  23  24
+0142    GGET    24  33      ; "BreakLoop"
+0143    ADDVV   23  23  24
+0144    UGET    24  12      ; Ct
+0145    GGET    25  34      ; "ExpList"
+0146    CALL    24   2   2
+0147    GGET    25  35      ; "Update"
+0148    GGET    26  36      ; "Assign"
+0149    ADDVV   25  25  26
+0150    KSHORT  26  -1
+0151    POW     25  25  26
+0152    MULVV   24  24  25
+0153    UGET    25  18      ; format_assign
+0154    DIVVV   24  24  25
+0155    ADDVV   23  23  24
+0156    CALL    22   2   2
+0157    UGET    23   2      ; Space
+0158    MULVV   22  22  23
+0159    MOV     23  14
+0160    KSTR    24  37      ; "if"
+0161    CALL    23   2   2
+0162    GGET    24  38      ; "Exp"
+0163    MULVV   23  23  24
+0164    MOV     24  14
+0165    KSTR    25  39      ; "else"
+0166    CALL    24   2   2
+0167    GGET    25  38      ; "Exp"
+0168    MULVV   24  24  25
+0169    KSHORT  25  -1
+0170    POW     24  24  25
+0171    MULVV   23  23  24
+0172    UGET    24   2      ; Space
+0173    MULVV   23  23  24
+0174    UGET    24   8      ; mark
+0175    KSTR    25  37      ; "if"
+0176    CALL    24   2   2
+0177    DIVVV   23  23  24
+0178    MOV     24  14
+0179    KSTR    25  40      ; "unless"
+0180    CALL    24   2   2
+0181    GGET    25  38      ; "Exp"
+0182    MULVV   24  24  25
+0183    UGET    25   8      ; mark
+0184    KSTR    26  40      ; "unless"
+0185    CALL    25   2   2
+0186    DIVVV   24  24  25
+0187    ADDVV   23  23  24
+0188    GGET    24  41      ; "CompInner"
+0189    UGET    25   8      ; mark
+0190    KSTR    26  42      ; "comprehension"
+0191    CALL    25   2   2
+0192    DIVVV   24  24  25
+0193    ADDVV   23  23  24
+0194    UGET    24   2      ; Space
+0195    MULVV   23  23  24
+0196    KSHORT  24  -1
+0197    POW     23  23  24
+0198    MULVV   22  22  23
+0199    UGET    23  19      ; wrap_decorator
+0200    DIVVV   22  22  23
+0201    TSETS   22  21  23  ; "Statement"
+0202    UGET    22   2      ; Space
+0203    KSHORT  23  -1
+0204    POW     22  22  23
+0205    UGET    23  13      ; Break
+0206    MULVV   22  22  23
+0207    UGET    23  20      ; EmptyLine
+0208    KSHORT  24   0
+0209    POW     23  23  24
+0210    MULVV   22  22  23
+0211    GGET    23  43      ; "InBlock"
+0212    MULVV   22  22  23
+0213    UGET    23  12      ; Ct
+0214    GGET    24  23      ; "Statement"
+0215    CALL    23   2   2
+0216    ADDVV   22  22  23
+0217    TSETS   22  21  44  ; "Body"
+0218    UGET    22  15      ; L
+0219    UGET    23   1      ; Cmt
+0220    UGET    24  14      ; Indent
+0221    MOV     25   5
+0222    CALL    23   0   3
+0223    CALLM   22   2   0
+0224    TSETS   22  21  45  ; "Advance"
+0225    UGET    22   1      ; Cmt
+0226    UGET    23  14      ; Indent
+0227    MOV     24   6
+0228    CALL    22   2   3
+0229    TSETS   22  21  46  ; "PushIndent"
+0230    UGET    22   1      ; Cmt
+0231    UGET    23   9      ; Cc
+0232    KSHORT  24  -1
+0233    CALL    23   2   2
+0234    MOV     24   6
+0235    CALL    22   2   3
+0236    TSETS   22  21  47  ; "PreventIndent"
+0237    UGET    22   1      ; Cmt
+0238    KSTR    23   8      ; ""
+0239    MOV     24   7
+0240    CALL    22   2   3
+0241    TSETS   22  21  48  ; "PopIndent"
+0242    GGET    22  45      ; "Advance"
+0243    GGET    23  19      ; "Block"
+0244    MULVV   22  22  23
+0245    GGET    23  48      ; "PopIndent"
+0246    MULVV   22  22  23
+0247    TSETS   22  21  43  ; "InBlock"
+0248    MOV     22  14
+0249    KSTR    23  49      ; "local"
+0250    CALL    22   2   2
+0251    MOV     23  15
+0252    KSTR    24  50      ; "*"
+0253    CALL    23   2   2
+0254    MOV     24  15
+0255    KSTR    25  51      ; "^"
+0256    CALL    24   2   2
+0257    ADDVV   23  23  24
+0258    UGET    24   8      ; mark
+0259    KSTR    25  52      ; "declare_glob"
+0260    CALL    24   2   2
+0261    DIVVV   23  23  24
+0262    UGET    24  12      ; Ct
+0263    GGET    25  53      ; "NameList"
+0264    CALL    24   2   2
+0265    UGET    25   8      ; mark
+0266    KSTR    26  54      ; "declare_with_shadows"
+0267    CALL    25   2   2
+0268    DIVVV   24  24  25
+0269    ADDVV   23  23  24
+0270    MULVV   22  22  23
+0271    TSETS   22  21  31  ; "Local"
+0272    MOV     22  14
+0273    KSTR    23  55      ; "import"
+0274    CALL    22   2   2
+0275    UGET    23  12      ; Ct
+0276    GGET    24  56      ; "ImportNameList"
+0277    CALL    23   2   2
+0278    MULVV   22  22  23
+0279    UGET    23  21      ; SpaceBreak
+0280    KSHORT  24   0
+0281    POW     23  23  24
+0282    MULVV   22  22  23
+0283    MOV     23  14
+0284    KSTR    24  57      ; "from"
+0285    CALL    23   2   2
+0286    MULVV   22  22  23
+0287    GGET    23  38      ; "Exp"
+0288    MULVV   22  22  23
+0289    UGET    23   8      ; mark
+0290    KSTR    24  55      ; "import"
+0291    CALL    23   2   2
+0292    DIVVV   22  22  23
+0293    TSETS   22  21  24  ; "Import"
+0294    UGET    22  22      ; sym
+0295    KSTR    23  58      ; "\"
+0296    CALL    22   2   2
+0297    UGET    23  12      ; Ct
+0298    UGET    24   9      ; Cc
+0299    KSTR    25  59      ; "colon"
+0300    CALL    24   2   2
+0301    MULVV   24  24  16
+0302    CALL    23   2   2
+0303    MULVV   22  22  23
+0304    ADDVV   22  22  16
+0305    TSETS   22  21  60  ; "ImportName"
+0306    UGET    22  21      ; SpaceBreak
+0307    KSHORT  23   0
+0308    POW     22  22  23
+0309    GGET    23  60      ; "ImportName"
+0310    MULVV   22  22  23
+0311    UGET    23  21      ; SpaceBreak
+0312    KSHORT  24   1
+0313    POW     23  23  24
+0314    UGET    24  22      ; sym
+0315    KSTR    25  61      ; ","
+0316    CALL    24   2   2
+0317    UGET    25  21      ; SpaceBreak
+0318    KSHORT  26   0
+0319    POW     25  25  26
+0320    MULVV   24  24  25
+0321    ADDVV   23  23  24
+0322    GGET    24  60      ; "ImportName"
+0323    MULVV   23  23  24
+0324    KSHORT  24   0
+0325    POW     23  23  24
+0326    MULVV   22  22  23
+0327    TSETS   22  21  56  ; "ImportNameList"
+0328    UGET    22  12      ; Ct
+0329    MOV     23  14
+0330    KSTR    24  62      ; "break"
+0331    CALL    23   2   2
+0332    UGET    24   6      ; trim
+0333    DIVVV   23  23  24
+0334    CALL    22   2   2
+0335    UGET    23  12      ; Ct
+0336    MOV     24  14
+0337    KSTR    25  63      ; "continue"
+0338    CALL    24   2   2
+0339    UGET    25   6      ; trim
+0340    DIVVV   24  24  25
+0341    CALL    23   2   2
+0342    ADDVV   22  22  23
+0343    TSETS   22  21  33  ; "BreakLoop"
+0344    MOV     22  14
+0345    KSTR    23  64      ; "return"
+0346    CALL    22   2   2
+0347    GGET    23  65      ; "ExpListLow"
+0348    UGET    24   8      ; mark
+0349    KSTR    25  66      ; "explist"
+0350    CALL    24   2   2
+0351    DIVVV   23  23  24
+0352    UGET    24   4      ; C
+0353    KSTR    25   8      ; ""
+0354    CALL    24   2   2
+0355    ADDVV   23  23  24
+0356    MULVV   22  22  23
+0357    UGET    23   8      ; mark
+0358    KSTR    24  64      ; "return"
+0359    CALL    23   2   2
+0360    DIVVV   22  22  23
+0361    TSETS   22  21  30  ; "Return"
+0362    UGET    22  12      ; Ct
+0363    GGET    23  34      ; "ExpList"
+0364    CALL    22   2   2
+0365    GGET    23  36      ; "Assign"
+0366    KSHORT  24  -1
+0367    POW     23  23  24
+0368    MULVV   22  22  23
+0369    UGET    23  18      ; format_assign
+0370    DIVVV   22  22  23
+0371    TSETS   22  21  67  ; "WithExp"
+0372    MOV     22  14
+0373    KSTR    23  68      ; "with"
+0374    CALL    22   2   2
+0375    MULVV   22  22  11
+0376    UGET    23  23      ; ensure
+0377    GGET    24  67      ; "WithExp"
+0378    MOV     25  12
+0379    CALL    23   2   3
+0380    MULVV   22  22  23
+0381    MOV     23  14
+0382    KSTR    24  69      ; "do"
+0383    CALL    23   2   2
+0384    KSHORT  24  -1
+0385    POW     23  23  24
+0386    MULVV   22  22  23
+0387    GGET    23  44      ; "Body"
+0388    MULVV   22  22  23
+0389    UGET    23   8      ; mark
+0390    KSTR    24  68      ; "with"
+0391    CALL    23   2   2
+0392    DIVVV   22  22  23
+0393    TSETS   22  21  26  ; "With"
+0394    MOV     22  14
+0395    KSTR    23  70      ; "switch"
+0396    CALL    22   2   2
+0397    MULVV   22  22  11
+0398    UGET    23  23      ; ensure
+0399    GGET    24  38      ; "Exp"
+0400    MOV     25  12
+0401    CALL    23   2   3
+0402    MULVV   22  22  23
+0403    MOV     23  14
+0404    KSTR    24  69      ; "do"
+0405    CALL    23   2   2
+0406    KSHORT  24  -1
+0407    POW     23  23  24
+0408    MULVV   22  22  23
+0409    UGET    23   2      ; Space
+0410    KSHORT  24  -1
+0411    POW     23  23  24
+0412    MULVV   22  22  23
+0413    UGET    23  13      ; Break
+0414    MULVV   22  22  23
+0415    GGET    23  71      ; "SwitchBlock"
+0416    MULVV   22  22  23
+0417    UGET    23   8      ; mark
+0418    KSTR    24  70      ; "switch"
+0419    CALL    23   2   2
+0420    DIVVV   22  22  23
+0421    TSETS   22  21  29  ; "Switch"
+0422    UGET    22  20      ; EmptyLine
+0423    KSHORT  23   0
+0424    POW     22  22  23
+0425    GGET    23  45      ; "Advance"
+0426    MULVV   22  22  23
+0427    UGET    23  12      ; Ct
+0428    GGET    24  72      ; "SwitchCase"
+0429    UGET    25  13      ; Break
+0430    KSHORT  26   1
+0431    POW     25  25  26
+0432    GGET    26  72      ; "SwitchCase"
+0433    MULVV   25  25  26
+0434    KSHORT  26   0
+0435    POW     25  25  26
+0436    MULVV   24  24  25
+0437    UGET    25  13      ; Break
+0438    KSHORT  26   1
+0439    POW     25  25  26
+0440    GGET    26  73      ; "SwitchElse"
+0441    MULVV   25  25  26
+0442    KSHORT  26  -1
+0443    POW     25  25  26
+0444    MULVV   24  24  25
+0445    CALL    23   2   2
+0446    MULVV   22  22  23
+0447    GGET    23  48      ; "PopIndent"
+0448    MULVV   22  22  23
+0449    TSETS   22  21  71  ; "SwitchBlock"
+0450    MOV     22  14
+0451    KSTR    23  74      ; "when"
+0452    CALL    22   2   2
+0453    UGET    23  12      ; Ct
+0454    GGET    24  34      ; "ExpList"
+0455    CALL    23   2   2
+0456    MULVV   22  22  23
+0457    MOV     23  14
+0458    KSTR    24  75      ; "then"
+0459    CALL    23   2   2
+0460    KSHORT  24  -1
+0461    POW     23  23  24
+0462    MULVV   22  22  23
+0463    GGET    23  44      ; "Body"
+0464    MULVV   22  22  23
+0465    UGET    23   8      ; mark
+0466    KSTR    24  76      ; "case"
+0467    CALL    23   2   2
+0468    DIVVV   22  22  23
+0469    TSETS   22  21  72  ; "SwitchCase"
+0470    MOV     22  14
+0471    KSTR    23  39      ; "else"
+0472    CALL    22   2   2
+0473    GGET    23  44      ; "Body"
+0474    MULVV   22  22  23
+0475    UGET    23   8      ; mark
+0476    KSTR    24  39      ; "else"
+0477    CALL    23   2   2
+0478    DIVVV   22  22  23
+0479    TSETS   22  21  73  ; "SwitchElse"
+0480    GGET    22  38      ; "Exp"
+0481    GGET    23  36      ; "Assign"
+0482    KSHORT  24  -1
+0483    POW     23  23  24
+0484    MULVV   22  22  23
+0485    UGET    23  24      ; format_single_assign
+0486    DIVVV   22  22  23
+0487    TSETS   22  21  77  ; "IfCond"
+0488    UGET    22  13      ; Break
+0489    UGET    23  20      ; EmptyLine
+0490    KSHORT  24   0
+0491    POW     23  23  24
+0492    MULVV   22  22  23
+0493    GGET    23  22      ; "CheckIndent"
+0494    MULVV   22  22  23
+0495    KSHORT  23  -1
+0496    POW     22  22  23
+0497    MOV     23  14
+0498    KSTR    24  39      ; "else"
+0499    CALL    23   2   2
+0500    MULVV   22  22  23
+0501    GGET    23  44      ; "Body"
+0502    MULVV   22  22  23
+0503    UGET    23   8      ; mark
+0504    KSTR    24  39      ; "else"
+0505    CALL    23   2   2
+0506    DIVVV   22  22  23
+0507    TSETS   22  21  78  ; "IfElse"
+0508    UGET    22  13      ; Break
+0509    UGET    23  20      ; EmptyLine
+0510    KSHORT  24   0
+0511    POW     23  23  24
+0512    MULVV   22  22  23
+0513    GGET    23  22      ; "CheckIndent"
+0514    MULVV   22  22  23
+0515    KSHORT  23  -1
+0516    POW     22  22  23
+0517    MOV     23  14
+0518    KSTR    24  79      ; "elseif"
+0519    CALL    23   2   2
+0520    MULVV   22  22  23
+0521    UGET    23  17      ; pos
+0522    GGET    24  77      ; "IfCond"
+0523    CALL    23   2   2
+0524    MULVV   22  22  23
+0525    MOV     23  14
+0526    KSTR    24  75      ; "then"
+0527    CALL    23   2   2
+0528    KSHORT  24  -1
+0529    POW     23  23  24
+0530    MULVV   22  22  23
+0531    GGET    23  44      ; "Body"
+0532    MULVV   22  22  23
+0533    UGET    23   8      ; mark
+0534    KSTR    24  79      ; "elseif"
+0535    CALL    23   2   2
+0536    DIVVV   22  22  23
+0537    TSETS   22  21  80  ; "IfElseIf"
+0538    MOV     22  14
+0539    KSTR    23  37      ; "if"
+0540    CALL    22   2   2
+0541    GGET    23  77      ; "IfCond"
+0542    MULVV   22  22  23
+0543    MOV     23  14
+0544    KSTR    24  75      ; "then"
+0545    CALL    23   2   2
+0546    KSHORT  24  -1
+0547    POW     23  23  24
+0548    MULVV   22  22  23
+0549    GGET    23  44      ; "Body"
+0550    MULVV   22  22  23
+0551    GGET    23  80      ; "IfElseIf"
+0552    KSHORT  24   0
+0553    POW     23  23  24
+0554    MULVV   22  22  23
+0555    GGET    23  78      ; "IfElse"
+0556    KSHORT  24  -1
+0557    POW     23  23  24
+0558    MULVV   22  22  23
+0559    UGET    23   8      ; mark
+0560    KSTR    24  37      ; "if"
+0561    CALL    23   2   2
+0562    DIVVV   22  22  23
+0563    TSETS   22  21  81  ; "If"
+0564    MOV     22  14
+0565    KSTR    23  40      ; "unless"
+0566    CALL    22   2   2
+0567    GGET    23  77      ; "IfCond"
+0568    MULVV   22  22  23
+0569    MOV     23  14
+0570    KSTR    24  75      ; "then"
+0571    CALL    23   2   2
+0572    KSHORT  24  -1
+0573    POW     23  23  24
+0574    MULVV   22  22  23
+0575    GGET    23  44      ; "Body"
+0576    MULVV   22  22  23
+0577    GGET    23  80      ; "IfElseIf"
+0578    KSHORT  24   0
+0579    POW     23  23  24
+0580    MULVV   22  22  23
+0581    GGET    23  78      ; "IfElse"
+0582    KSHORT  24  -1
+0583    POW     23  23  24
+0584    MULVV   22  22  23
+0585    UGET    23   8      ; mark
+0586    KSTR    24  40      ; "unless"
+0587    CALL    23   2   2
+0588    DIVVV   22  22  23
+0589    TSETS   22  21  82  ; "Unless"
+0590    MOV     22  14
+0591    KSTR    23  83      ; "while"
+0592    CALL    22   2   2
+0593    MULVV   22  22  11
+0594    UGET    23  23      ; ensure
+0595    GGET    24  38      ; "Exp"
+0596    MOV     25  12
+0597    CALL    23   2   3
+0598    MULVV   22  22  23
+0599    MOV     23  14
+0600    KSTR    24  69      ; "do"
+0601    CALL    23   2   2
+0602    KSHORT  24  -1
+0603    POW     23  23  24
+0604    MULVV   22  22  23
+0605    GGET    23  44      ; "Body"
+0606    MULVV   22  22  23
+0607    UGET    23   8      ; mark
+0608    KSTR    24  83      ; "while"
+0609    CALL    23   2   2
+0610    DIVVV   22  22  23
+0611    TSETS   22  21  25  ; "While"
+0612    MOV     22  14
+0613    KSTR    23  84      ; "for"
+0614    CALL    22   2   2
+0615    MULVV   22  22  11
+0616    UGET    23  23      ; ensure
+0617    UGET    24  22      ; sym
+0618    KSTR    25  85      ; "="
+0619    CALL    24   2   2
+0620    MULVV   24  16  24
+0621    UGET    25  12      ; Ct
+0622    GGET    26  38      ; "Exp"
+0623    UGET    27  22      ; sym
+0624    KSTR    28  61      ; ","
+0625    CALL    27   2   2
+0626    MULVV   26  26  27
+0627    GGET    27  38      ; "Exp"
+0628    MULVV   26  26  27
+0629    UGET    27  22      ; sym
+0630    KSTR    28  61      ; ","
+0631    CALL    27   2   2
+0632    GGET    28  38      ; "Exp"
+0633    MULVV   27  27  28
+0634    KSHORT  28  -1
+0635    POW     27  27  28
+0636    MULVV   26  26  27
+0637    CALL    25   2   2
+0638    MULVV   24  24  25
+0639    MOV     25  12
+0640    CALL    23   2   3
+0641    MULVV   22  22  23
+0642    MOV     23  14
+0643    KSTR    24  69      ; "do"
+0644    CALL    23   2   2
+0645    KSHORT  24  -1
+0646    POW     23  23  24
+0647    MULVV   22  22  23
+0648    GGET    23  44      ; "Body"
+0649    MULVV   22  22  23
+0650    UGET    23   8      ; mark
+0651    KSTR    24  84      ; "for"
+0652    CALL    23   2   2
+0653    DIVVV   22  22  23
+0654    TSETS   22  21  27  ; "For"
+0655    MOV     22  14
+0656    KSTR    23  84      ; "for"
+0657    CALL    22   2   2
+0658    UGET    23  12      ; Ct
+0659    GGET    24  86      ; "AssignableNameList"
+0660    CALL    23   2   2
+0661    MULVV   22  22  23
+0662    MOV     23  14
+0663    KSTR    24  87      ; "in"
+0664    CALL    23   2   2
+0665    MULVV   22  22  23
+0666    MULVV   22  22  11
+0667    UGET    23  23      ; ensure
+0668    UGET    24  12      ; Ct
+0669    UGET    25  22      ; sym
+0670    KSTR    26  50      ; "*"
+0671    CALL    25   2   2
+0672    GGET    26  38      ; "Exp"
+0673    MULVV   25  25  26
+0674    UGET    26   8      ; mark
+0675    KSTR    27  88      ; "unpack"
+0676    CALL    26   2   2
+0677    DIVVV   25  25  26
+0678    GGET    26  34      ; "ExpList"
+0679    ADDVV   25  25  26
+0680    CALL    24   2   2
+0681    MOV     25  12
+0682    CALL    23   2   3
+0683    MULVV   22  22  23
+0684    MOV     23  14
+0685    KSTR    24  69      ; "do"
+0686    CALL    23   2   2
+0687    KSHORT  24  -1
+0688    POW     23  23  24
+0689    MULVV   22  22  23
+0690    GGET    23  44      ; "Body"
+0691    MULVV   22  22  23
+0692    UGET    23   8      ; mark
+0693    KSTR    24  89      ; "foreach"
+0694    CALL    23   2   2
+0695    DIVVV   22  22  23
+0696    TSETS   22  21  28  ; "ForEach"
+0697    MOV     22  14
+0698    KSTR    23  69      ; "do"
+0699    CALL    22   2   2
+0700    GGET    23  44      ; "Body"
+0701    MULVV   22  22  23
+0702    UGET    23   8      ; mark
+0703    KSTR    24  69      ; "do"
+0704    CALL    23   2   2
+0705    DIVVV   22  22  23
+0706    TSETS   22  21  90  ; "Do"
+0707    UGET    22  22      ; sym
+0708    KSTR    23  91      ; "["
+0709    CALL    22   2   2
+0710    GGET    23  38      ; "Exp"
+0711    MULVV   22  22  23
+0712    GGET    23  41      ; "CompInner"
+0713    MULVV   22  22  23
+0714    UGET    23  22      ; sym
+0715    KSTR    24  92      ; "]"
+0716    CALL    23   2   2
+0717    MULVV   22  22  23
+0718    UGET    23   8      ; mark
+0719    KSTR    24  42      ; "comprehension"
+0720    CALL    23   2   2
+0721    DIVVV   22  22  23
+0722    TSETS   22  21  93  ; "Comprehension"
+0723    UGET    22  22      ; sym
+0724    KSTR    23  94      ; "{"
+0725    CALL    22   2   2
+0726    UGET    23  12      ; Ct
+0727    GGET    24  38      ; "Exp"
+0728    UGET    25  22      ; sym
+0729    KSTR    26  61      ; ","
+0730    CALL    25   2   2
+0731    GGET    26  38      ; "Exp"
+0732    MULVV   25  25  26
+0733    KSHORT  26  -1
+0734    POW     25  25  26
+0735    MULVV   24  24  25
+0736    CALL    23   2   2
+0737    MULVV   22  22  23
+0738    GGET    23  41      ; "CompInner"
+0739    MULVV   22  22  23
+0740    UGET    23  22      ; sym
+0741    KSTR    24  95      ; "}"
+0742    CALL    23   2   2
+0743    MULVV   22  22  23
+0744    UGET    23   8      ; mark
+0745    KSTR    24  96      ; "tblcomprehension"
+0746    CALL    23   2   2
+0747    DIVVV   22  22  23
+0748    TSETS   22  21  97  ; "TblComprehension"
+0749    UGET    22  12      ; Ct
+0750    GGET    23  98      ; "CompForEach"
+0751    GGET    24  99      ; "CompFor"
+0752    ADDVV   23  23  24
+0753    GGET    24 100      ; "CompClause"
+0754    KSHORT  25   0
+0755    POW     24  24  25
+0756    MULVV   23  23  24
+0757    CALL    22   2   2
+0758    TSETS   22  21  41  ; "CompInner"
+0759    MOV     22  14
+0760    KSTR    23  84      ; "for"
+0761    CALL    22   2   2
+0762    UGET    23  12      ; Ct
+0763    GGET    24  86      ; "AssignableNameList"
+0764    CALL    23   2   2
+0765    MULVV   22  22  23
+0766    MOV     23  14
+0767    KSTR    24  87      ; "in"
+0768    CALL    23   2   2
+0769    MULVV   22  22  23
+0770    UGET    23  22      ; sym
+0771    KSTR    24  50      ; "*"
+0772    CALL    23   2   2
+0773    GGET    24  38      ; "Exp"
+0774    MULVV   23  23  24
+0775    UGET    24   8      ; mark
+0776    KSTR    25  88      ; "unpack"
+0777    CALL    24   2   2
+0778    DIVVV   23  23  24
+0779    GGET    24  38      ; "Exp"
+0780    ADDVV   23  23  24
+0781    MULVV   22  22  23
+0782    UGET    23   8      ; mark
+0783    KSTR    24  89      ; "foreach"
+0784    CALL    23   2   2
+0785    DIVVV   22  22  23
+0786    TSETS   22  21  98  ; "CompForEach"
+0787    MOV     22  14
+0788    KSTR    23  84      ; "for"
+0789    MULVV   23  23  16
+0790    UGET    24  22      ; sym
+0791    KSTR    25  85      ; "="
+0792    CALL    24   2   2
+0793    MULVV   23  23  24
+0794    UGET    24  12      ; Ct
+0795    GGET    25  38      ; "Exp"
+0796    UGET    26  22      ; sym
+0797    KSTR    27  61      ; ","
+0798    CALL    26   2   2
+0799    MULVV   25  25  26
+0800    GGET    26  38      ; "Exp"
+0801    MULVV   25  25  26
+0802    UGET    26  22      ; sym
+0803    KSTR    27  61      ; ","
+0804    CALL    26   2   2
+0805    GGET    27  38      ; "Exp"
+0806    MULVV   26  26  27
+0807    KSHORT  27  -1
+0808    POW     26  26  27
+0809    MULVV   25  25  26
+0810    CALL    24   2   2
+0811    MULVV   23  23  24
+0812    UGET    24   8      ; mark
+0813    KSTR    25  84      ; "for"
+0814    CALL    24   2   2
+0815    DIVVV   23  23  24
+0816    CALL    22   2   2
+0817    TSETS   22  21  99  ; "CompFor"
+0818    GGET    22  99      ; "CompFor"
+0819    GGET    23  98      ; "CompForEach"
+0820    ADDVV   22  22  23
+0821    MOV     23  14
+0822    KSTR    24  74      ; "when"
+0823    CALL    23   2   2
+0824    GGET    24  38      ; "Exp"
+0825    MULVV   23  23  24
+0826    UGET    24   8      ; mark
+0827    KSTR    25  74      ; "when"
+0828    CALL    24   2   2
+0829    DIVVV   23  23  24
+0830    ADDVV   22  22  23
+0831    TSETS   22  21 100  ; "CompClause"
+0832    UGET    22  22      ; sym
+0833    KSTR    23  85      ; "="
+0834    CALL    22   2   2
+0835    UGET    23  12      ; Ct
+0836    GGET    24  26      ; "With"
+0837    GGET    25  81      ; "If"
+0838    ADDVV   24  24  25
+0839    GGET    25  29      ; "Switch"
+0840    ADDVV   24  24  25
+0841    CALL    23   2   2
+0842    UGET    24  12      ; Ct
+0843    GGET    25 101      ; "TableBlock"
+0844    GGET    26  65      ; "ExpListLow"
+0845    ADDVV   25  25  26
+0846    CALL    24   2   2
+0847    ADDVV   23  23  24
+0848    MULVV   22  22  23
+0849    UGET    23   8      ; mark
+0850    KSTR    24 102      ; "assign"
+0851    CALL    23   2   2
+0852    DIVVV   22  22  23
+0853    TSETS   22  21  36  ; "Assign"
+0854    UGET    22  22      ; sym
+0855    KSTR    23 103      ; "..="
+0856    CALL    22   2   2
+0857    UGET    23  22      ; sym
+0858    KSTR    24 104      ; "+="
+0859    CALL    23   2   2
+0860    ADDVV   22  22  23
+0861    UGET    23  22      ; sym
+0862    KSTR    24 105      ; "-="
+0863    CALL    23   2   2
+0864    ADDVV   22  22  23
+0865    UGET    23  22      ; sym
+0866    KSTR    24 106      ; "*="
+0867    CALL    23   2   2
+0868    ADDVV   22  22  23
+0869    UGET    23  22      ; sym
+0870    KSTR    24 107      ; "/="
+0871    CALL    23   2   2
+0872    ADDVV   22  22  23
+0873    UGET    23  22      ; sym
+0874    KSTR    24 108      ; "%="
+0875    CALL    23   2   2
+0876    ADDVV   22  22  23
+0877    UGET    23  22      ; sym
+0878    KSTR    24 109      ; "or="
+0879    CALL    23   2   2
+0880    ADDVV   22  22  23
+0881    UGET    23  22      ; sym
+0882    KSTR    24 110      ; "and="
+0883    CALL    23   2   2
+0884    ADDVV   22  22  23
+0885    UGET    23  22      ; sym
+0886    KSTR    24 111      ; "&="
+0887    CALL    23   2   2
+0888    ADDVV   22  22  23
+0889    UGET    23  22      ; sym
+0890    KSTR    24 112      ; "|="
+0891    CALL    23   2   2
+0892    ADDVV   22  22  23
+0893    UGET    23  22      ; sym
+0894    KSTR    24 113      ; ">>="
+0895    CALL    23   2   2
+0896    ADDVV   22  22  23
+0897    UGET    23  22      ; sym
+0898    KSTR    24 114      ; "<<="
+0899    CALL    23   2   2
+0900    ADDVV   22  22  23
+0901    UGET    23   6      ; trim
+0902    DIVVV   22  22  23
+0903    GGET    23  38      ; "Exp"
+0904    MULVV   22  22  23
+0905    UGET    23   8      ; mark
+0906    KSTR    24 115      ; "update"
+0907    CALL    23   2   2
+0908    DIVVV   22  22  23
+0909    TSETS   22  21  35  ; "Update"
+0910    UGET    22   2      ; Space
+0911    UGET    23   4      ; C
+0912    UGET    24  25      ; S
+0913    KSTR    25 116      ; "+-*/%^><|&"
+0914    CALL    24   0   2
+0915    CALLM   23   2   0
+0916    MULVV   22  22  23
+0917    TSETS   22  21 117  ; "CharOperators"
+0918    MOV     22  15
+0919    KSTR    23 118      ; "or"
+0920    CALL    22   2   2
+0921    MOV     23  15
+0922    KSTR    24 119      ; "and"
+0923    CALL    23   2   2
+0924    ADDVV   22  22  23
+0925    MOV     23  15
+0926    KSTR    24 120      ; "<="
+0927    CALL    23   2   2
+0928    ADDVV   22  22  23
+0929    MOV     23  15
+0930    KSTR    24 121      ; ">="
+0931    CALL    23   2   2
+0932    ADDVV   22  22  23
+0933    MOV     23  15
+0934    KSTR    24 122      ; "~="
+0935    CALL    23   2   2
+0936    ADDVV   22  22  23
+0937    MOV     23  15
+0938    KSTR    24 123      ; "!="
+0939    CALL    23   2   2
+0940    ADDVV   22  22  23
+0941    MOV     23  15
+0942    KSTR    24 124      ; "=="
+0943    CALL    23   2   2
+0944    ADDVV   22  22  23
+0945    MOV     23  15
+0946    KSTR    24 125      ; ".."
+0947    CALL    23   2   2
+0948    ADDVV   22  22  23
+0949    MOV     23  15
+0950    KSTR    24 126      ; "<<"
+0951    CALL    23   2   2
+0952    ADDVV   22  22  23
+0953    MOV     23  15
+0954    KSTR    24 127      ; ">>"
+0955    CALL    23   2   2
+0956    ADDVV   22  22  23
+0957    MOV     23  15
+0958    KSTR    24 128      ; "//"
+0959    CALL    23   2   2
+0960    ADDVV   22  22  23
+0961    TSETS   22  21 129  ; "WordOperators"
+0962    GGET    22 129      ; "WordOperators"
+0963    GGET    23 117      ; "CharOperators"
+0964    ADDVV   22  22  23
+0965    UGET    23  21      ; SpaceBreak
+0966    KSHORT  24   0
+0967    POW     23  23  24
+0968    MULVV   22  22  23
+0969    TSETS   22  21 130  ; "BinaryOperator"
+0970    UGET    22   1      ; Cmt
+0971    GGET    23 131      ; "Chain"
+0972    UGET    24  26      ; check_assignable
+0973    CALL    22   2   3
+0974    ADDVV   22  22  16
+0975    ADDVV   22  22  17
+0976    TSETS   22  21 132  ; "Assignable"
+0977    UGET    22  12      ; Ct
+0978    GGET    23 133      ; "Value"
+0979    GGET    24 130      ; "BinaryOperator"
+0980    GGET    25 133      ; "Value"
+0981    MULVV   24  24  25
+0982    KSHORT  25   0
+0983    POW     24  24  25
+0984    MULVV   23  23  24
+0985    CALL    22   2   2
+0986    UGET    23  27      ; flatten_or_mark
+0987    KSTR    24 134      ; "exp"
+0988    CALL    23   2   2
+0989    DIVVV   22  22  23
+0990    TSETS   22  21  38  ; "Exp"
+0991    GGET    22  81      ; "If"
+0992    GGET    23  82      ; "Unless"
+0993    ADDVV   22  22  23
+0994    GGET    23  29      ; "Switch"
+0995    ADDVV   22  22  23
+0996    GGET    23  26      ; "With"
+0997    ADDVV   22  22  23
+0998    GGET    23 135      ; "ClassDecl"
+0999    ADDVV   22  22  23
+1000    GGET    23  28      ; "ForEach"
+1001    ADDVV   22  22  23
+1002    GGET    23  27      ; "For"
+1003    ADDVV   22  22  23
+1004    GGET    23  25      ; "While"
+1005    ADDVV   22  22  23
+1006    UGET    23   1      ; Cmt
+1007    GGET    24  90      ; "Do"
+1008    MOV     25   8
+1009    CALL    23   2   3
+1010    ADDVV   22  22  23
+1011    UGET    23  22      ; sym
+1012    KSTR    24 136      ; "-"
+1013    CALL    23   2   2
+1014    UGET    24  28      ; SomeSpace
+1015    UNM     24  24
+1016    MULVV   23  23  24
+1017    GGET    24  38      ; "Exp"
+1018    MULVV   23  23  24
+1019    UGET    24   8      ; mark
+1020    KSTR    25 137      ; "minus"
+1021    CALL    24   2   2
+1022    DIVVV   23  23  24
+1023    ADDVV   22  22  23
+1024    UGET    23  22      ; sym
+1025    KSTR    24 138      ; "#"
+1026    CALL    23   2   2
+1027    GGET    24  38      ; "Exp"
+1028    MULVV   23  23  24
+1029    UGET    24   8      ; mark
+1030    KSTR    25 139      ; "length"
+1031    CALL    24   2   2
+1032    DIVVV   23  23  24
+1033    ADDVV   22  22  23
+1034    UGET    23  22      ; sym
+1035    KSTR    24 140      ; "~"
+1036    CALL    23   2   2
+1037    GGET    24  38      ; "Exp"
+1038    MULVV   23  23  24
+1039    UGET    24   8      ; mark
+1040    KSTR    25 141      ; "bitnot"
+1041    CALL    24   2   2
+1042    DIVVV   23  23  24
+1043    ADDVV   22  22  23
+1044    MOV     23  14
+1045    KSTR    24 142      ; "not"
+1046    CALL    23   2   2
+1047    GGET    24  38      ; "Exp"
+1048    MULVV   23  23  24
+1049    UGET    24   8      ; mark
+1050    KSTR    25 142      ; "not"
+1051    CALL    24   2   2
+1052    DIVVV   23  23  24
+1053    ADDVV   22  22  23
+1054    GGET    23  97      ; "TblComprehension"
+1055    ADDVV   22  22  23
+1056    GGET    23 143      ; "TableLit"
+1057    ADDVV   22  22  23
+1058    GGET    23  93      ; "Comprehension"
+1059    ADDVV   22  22  23
+1060    GGET    23 144      ; "FunLit"
+1061    ADDVV   22  22  23
+1062    UGET    23  29      ; Num
+1063    ADDVV   22  22  23
+1064    TSETS   22  21 145  ; "SimpleValue"
+1065    GGET    22 131      ; "Chain"
+1066    GGET    23 146      ; "Callable"
+1067    ADDVV   22  22  23
+1068    UGET    23  12      ; Ct
+1069    GGET    24 147      ; "InvokeArgs"
+1070    KSHORT  25  -1
+1071    POW     24  24  25
+1072    CALL    23   2   2
+1073    MULVV   22  22  23
+1074    UGET    23  30      ; join_chain
+1075    DIVVV   22  22  23
+1076    TSETS   22  21 148  ; "ChainValue"
+1077    UGET    22  17      ; pos
+1078    GGET    23 145      ; "SimpleValue"
+1079    UGET    24  12      ; Ct
+1080    GGET    25 149      ; "KeyValueList"
+1081    CALL    24   2   2
+1082    UGET    25   8      ; mark
+1083    KSTR    26 150      ; "table"
+1084    CALL    25   2   2
+1085    DIVVV   24  24  25
+1086    ADDVV   23  23  24
+1087    GGET    24 148      ; "ChainValue"
+1088    ADDVV   23  23  24
+1089    GGET    24 151      ; "String"
+1090    ADDVV   23  23  24
+1091    CALL    22   2   2
+1092    TSETS   22  21 133  ; "Value"
+1093    GGET    22  38      ; "Exp"
+1094    TSETS   22  21 152  ; "SliceValue"
+1095    UGET    22   2      ; Space
+1096    GGET    23 153      ; "DoubleString"
+1097    MULVV   22  22  23
+1098    UGET    23   2      ; Space
+1099    GGET    24 154      ; "SingleString"
+1100    MULVV   23  23  24
+1101    ADDVV   22  22  23
+1102    GGET    23 155      ; "LuaString"
+1103    ADDVV   22  22  23
+1104    TSETS   22  21 151  ; "String"
+1105    UGET    22  31      ; simple_string
+1106    KSTR    23 156      ; "'"
+1107    CALL    22   2   2
+1108    TSETS   22  21 154  ; "SingleString"
+1109    UGET    22  31      ; simple_string
+1110    KSTR    23 157      ; """
+1111    KPRI    24   2
+1112    CALL    22   2   3
+1113    TSETS   22  21 153  ; "DoubleString"
+1114    UGET    22  32      ; Cg
+1115    GGET    23 158      ; "LuaStringOpen"
+1116    KSTR    24 159      ; "string_open"
+1117    CALL    22   2   3
+1118    UGET    23  33      ; Cb
+1119    KSTR    24 159      ; "string_open"
+1120    CALL    23   2   2
+1121    MULVV   22  22  23
+1122    UGET    23  13      ; Break
+1123    KSHORT  24  -1
+1124    POW     23  23  24
+1125    MULVV   22  22  23
+1126    UGET    23   4      ; C
+1127    UGET    24   1      ; Cmt
+1128    UGET    25   4      ; C
+1129    GGET    26 160      ; "LuaStringClose"
+1130    CALL    25   2   2
+1131    UGET    26  33      ; Cb
+1132    KSTR    27 159      ; "string_open"
+1133    CALL    26   2   2
+1134    MULVV   25  25  26
+1135    UGET    26  34      ; check_lua_string
+1136    CALL    24   2   3
+1137    SUBNV   24  24   0  ; 1
+1138    KSHORT  25   0
+1139    POW     24  24  25
+1140    CALL    23   2   2
+1141    MULVV   22  22  23
+1142    GGET    23 160      ; "LuaStringClose"
+1143    MULVV   22  22  23
+1144    UGET    23   8      ; mark
+1145    KSTR    24 161      ; "string"
+1146    CALL    23   2   2
+1147    DIVVV   22  22  23
+1148    TSETS   22  21 155  ; "LuaString"
+1149    UGET    22  22      ; sym
+1150    KSTR    23  91      ; "["
+1151    CALL    22   2   2
+1152    UGET    23  10      ; P
+1153    KSTR    24  85      ; "="
+1154    CALL    23   2   2
+1155    KSHORT  24   0
+1156    POW     23  23  24
+1157    MULVV   22  22  23
+1158    KSTR    23  91      ; "["
+1159    MULVV   22  22  23
+1160    UGET    23   6      ; trim
+1161    DIVVV   22  22  23
+1162    TSETS   22  21 158  ; "LuaStringOpen"
+1163    KSTR    22  92      ; "]"
+1164    UGET    23  10      ; P
+1165    KSTR    24  85      ; "="
+1166    CALL    23   2   2
+1167    KSHORT  24   0
+1168    POW     23  23  24
+1169    MULVV   22  22  23
+1170    KSTR    23  92      ; "]"
+1171    MULVV   22  22  23
+1172    TSETS   22  21 160  ; "LuaStringClose"
+1173    UGET    22  17      ; pos
+1174    UGET    23   8      ; mark
+1175    KSTR    24 162      ; "ref"
+1176    CALL    23   2   2
+1177    DIVVV   23  16  23
+1178    CALL    22   2   2
+1179    ADDVV   22  22  17
+1180    ADDVV   22  22  19
+1181    GGET    23 163      ; "Parens"
+1182    UGET    24   8      ; mark
+1183    KSTR    25 164      ; "parens"
+1184    CALL    24   2   2
+1185    DIVVV   23  23  24
+1186    ADDVV   22  22  23
+1187    TSETS   22  21 146  ; "Callable"
+1188    UGET    22  22      ; sym
+1189    KSTR    23 165      ; "("
+1190    CALL    22   2   2
+1191    UGET    23  21      ; SpaceBreak
+1192    KSHORT  24   0
+1193    POW     23  23  24
+1194    MULVV   22  22  23
+1195    GGET    23  38      ; "Exp"
+1196    MULVV   22  22  23
+1197    UGET    23  21      ; SpaceBreak
+1198    KSHORT  24   0
+1199    POW     23  23  24
+1200    MULVV   22  22  23
+1201    UGET    23  22      ; sym
+1202    KSTR    24 166      ; ")"
+1203    CALL    23   2   2
+1204    MULVV   22  22  23
+1205    TSETS   22  21 163  ; "Parens"
+1206    UGET    22  35      ; symx
+1207    KSTR    23 165      ; "("
+1208    CALL    22   2   2
+1209    UGET    23  21      ; SpaceBreak
+1210    KSHORT  24   0
+1211    POW     23  23  24
+1212    MULVV   22  22  23
+1213    UGET    23  12      ; Ct
+1214    GGET    24 167      ; "FnArgsExpList"
+1215    KSHORT  25  -1
+1216    POW     24  24  25
+1217    CALL    23   2   2
+1218    MULVV   22  22  23
+1219    UGET    23  21      ; SpaceBreak
+1220    KSHORT  24   0
+1221    POW     23  23  24
+1222    MULVV   22  22  23
+1223    UGET    23  22      ; sym
+1224    KSTR    24 166      ; ")"
+1225    CALL    23   2   2
+1226    MULVV   22  22  23
+1227    UGET    23  22      ; sym
+1228    KSTR    24 168      ; "!"
+1229    CALL    23   2   2
+1230    UGET    24  10      ; P
+1231    KSTR    25  85      ; "="
+1232    CALL    24   2   2
+1233    UNM     24  24
+1234    MULVV   23  23  24
+1235    UGET    24  12      ; Ct
+1236    KSTR    25   8      ; ""
+1237    CALL    24   2   2
+1238    MULVV   23  23  24
+1239    ADDVV   22  22  23
+1240    TSETS   22  21 169  ; "FnArgs"
+1241    GGET    22  38      ; "Exp"
+1242    UGET    23  13      ; Break
+1243    UGET    24  22      ; sym
+1244    KSTR    25  61      ; ","
+1245    CALL    24   2   2
+1246    ADDVV   23  23  24
+1247    UGET    24  36      ; White
+1248    MULVV   23  23  24
+1249    GGET    24  38      ; "Exp"
+1250    MULVV   23  23  24
+1251    KSHORT  24   0
+1252    POW     23  23  24
+1253    MULVV   22  22  23
+1254    TSETS   22  21 167  ; "FnArgsExpList"
+1255    GGET    22 146      ; "Callable"
+1256    GGET    23 151      ; "String"
+1257    ADDVV   22  22  23
+1258    UGET    23  25      ; S
+1259    KSTR    24 170      ; ".\"
+1260    CALL    23   2   2
+1261    UNM     23  23
+1262    ADDVV   22  22  23
+1263    GGET    23 171      ; "ChainItems"
+1264    MULVV   22  22  23
+1265    UGET    23   8      ; mark
+1266    KSTR    24 172      ; "chain"
+1267    CALL    23   2   2
+1268    DIVVV   22  22  23
+1269    UGET    23   2      ; Space
+1270    GGET    24 173      ; "DotChainItem"
+1271    GGET    25 171      ; "ChainItems"
+1272    KSHORT  26  -1
+1273    POW     25  25  26
+1274    MULVV   24  24  25
+1275    GGET    25 174      ; "ColonChain"
+1276    ADDVV   24  24  25
+1277    MULVV   23  23  24
+1278    UGET    24   8      ; mark
+1279    KSTR    25 172      ; "chain"
+1280    CALL    24   2   2
+1281    DIVVV   23  23  24
+1282    ADDVV   22  22  23
+1283    TSETS   22  21 131  ; "Chain"
+1284    GGET    22 175      ; "ChainItem"
+1285    KSHORT  23   1
+1286    POW     22  22  23
+1287    GGET    23 174      ; "ColonChain"
+1288    KSHORT  24  -1
+1289    POW     23  23  24
+1290    MULVV   22  22  23
+1291    GGET    23 174      ; "ColonChain"
+1292    ADDVV   22  22  23
+1293    TSETS   22  21 171  ; "ChainItems"
+1294    GGET    22 176      ; "Invoke"
+1295    GGET    23 173      ; "DotChainItem"
+1296    ADDVV   22  22  23
+1297    GGET    23 177      ; "Slice"
+1298    ADDVV   22  22  23
+1299    UGET    23  35      ; symx
+1300    KSTR    24  91      ; "["
+1301    CALL    23   2   2
+1302    GGET    24  38      ; "Exp"
+1303    MULVV   23  23  24
+1304    UGET    24   8      ; mark
+1305    KSTR    25 178      ; "index"
+1306    CALL    24   2   2
+1307    DIVVV   23  23  24
+1308    UGET    24  22      ; sym
+1309    KSTR    25  92      ; "]"
+1310    CALL    24   2   2
+1311    MULVV   23  23  24
+1312    ADDVV   22  22  23
+1313    TSETS   22  21 175  ; "ChainItem"
+1314    UGET    22  35      ; symx
+1315    KSTR    23 179      ; "."
+1316    CALL    22   2   2
+1317    UGET    23   7      ; _Name
+1318    MULVV   22  22  23
+1319    UGET    23   8      ; mark
+1320    KSTR    24 180      ; "dot"
+1321    CALL    23   2   2
+1322    DIVVV   22  22  23
+1323    TSETS   22  21 173  ; "DotChainItem"
+1324    UGET    22  35      ; symx
+1325    KSTR    23  58      ; "\"
+1326    CALL    22   2   2
+1327    UGET    23   7      ; _Name
+1328    MULVV   22  22  23
+1329    UGET    23   8      ; mark
+1330    KSTR    24  59      ; "colon"
+1331    CALL    23   2   2
+1332    DIVVV   22  22  23
+1333    TSETS   22  21 181  ; "ColonChainItem"
+1334    GGET    22 181      ; "ColonChainItem"
+1335    GGET    23 176      ; "Invoke"
+1336    GGET    24 171      ; "ChainItems"
+1337    KSHORT  25  -1
+1338    POW     24  24  25
+1339    MULVV   23  23  24
+1340    KSHORT  24  -1
+1341    POW     23  23  24
+1342    MULVV   22  22  23
+1343    TSETS   22  21 174  ; "ColonChain"
+1344    UGET    22  35      ; symx
+1345    KSTR    23  91      ; "["
+1346    CALL    22   2   2
+1347    GGET    23 152      ; "SliceValue"
+1348    UGET    24   9      ; Cc
+1349    KSHORT  25   1
+1350    CALL    24   2   2
+1351    ADDVV   23  23  24
+1352    MULVV   22  22  23
+1353    UGET    23  22      ; sym
+1354    KSTR    24  61      ; ","
+1355    CALL    23   2   2
+1356    MULVV   22  22  23
+1357    GGET    23 152      ; "SliceValue"
+1358    UGET    24   9      ; Cc
+1359    KSTR    25   8      ; ""
+1360    CALL    24   2   2
+1361    ADDVV   23  23  24
+1362    MULVV   22  22  23
+1363    UGET    23  22      ; sym
+1364    KSTR    24  61      ; ","
+1365    CALL    23   2   2
+1366    GGET    24 152      ; "SliceValue"
+1367    MULVV   23  23  24
+1368    KSHORT  24  -1
+1369    POW     23  23  24
+1370    MULVV   22  22  23
+1371    UGET    23  22      ; sym
+1372    KSTR    24  92      ; "]"
+1373    CALL    23   2   2
+1374    MULVV   22  22  23
+1375    UGET    23   8      ; mark
+1376    KSTR    24 182      ; "slice"
+1377    CALL    23   2   2
+1378    DIVVV   22  22  23
+1379    TSETS   22  21 177  ; "Slice"
+1380    GGET    22 169      ; "FnArgs"
+1381    UGET    23   8      ; mark
+1382    KSTR    24 183      ; "call"
+1383    CALL    23   2   2
+1384    DIVVV   22  22  23
+1385    GGET    23 154      ; "SingleString"
+1386    UGET    24  37      ; wrap_func_arg
+1387    DIVVV   23  23  24
+1388    ADDVV   22  22  23
+1389    GGET    23 153      ; "DoubleString"
+1390    UGET    24  37      ; wrap_func_arg
+1391    DIVVV   23  23  24
+1392    ADDVV   22  22  23
+1393    UGET    23  15      ; L
+1394    UGET    24  10      ; P
+1395    KSTR    25  91      ; "["
+1396    CALL    24   0   2
+1397    CALLM   23   2   0
+1398    GGET    24 155      ; "LuaString"
+1399    MULVV   23  23  24
+1400    UGET    24  37      ; wrap_func_arg
+1401    DIVVV   23  23  24
+1402    ADDVV   22  22  23
+1403    TSETS   22  21 176  ; "Invoke"
+1404    GGET    22 184      ; "KeyValue"
+1405    UGET    23  12      ; Ct
+1406    GGET    24  38      ; "Exp"
+1407    CALL    23   2   2
+1408    ADDVV   22  22  23
+1409    TSETS   22  21 185  ; "TableValue"
+1410    UGET    22  22      ; sym
+1411    KSTR    23  94      ; "{"
+1412    CALL    22   2   2
+1413    UGET    23  12      ; Ct
+1414    GGET    24 186      ; "TableValueList"
+1415    KSHORT  25  -1
+1416    POW     24  24  25
+1417    UGET    25  22      ; sym
+1418    KSTR    26  61      ; ","
+1419    CALL    25   2   2
+1420    KSHORT  26  -1
+1421    POW     25  25  26
+1422    MULVV   24  24  25
+1423    UGET    25  21      ; SpaceBreak
+1424    GGET    26 187      ; "TableLitLine"
+1425    MULVV   25  25  26
+1426    UGET    26  22      ; sym
+1427    KSTR    27  61      ; ","
+1428    CALL    26   2   2
+1429    KSHORT  27  -1
+1430    POW     26  26  27
+1431    UGET    27  21      ; SpaceBreak
+1432    MULVV   26  26  27
+1433    GGET    27 187      ; "TableLitLine"
+1434    MULVV   26  26  27
+1435    KSHORT  27   0
+1436    POW     26  26  27
+1437    MULVV   25  25  26
+1438    UGET    26  22      ; sym
+1439    KSTR    27  61      ; ","
+1440    CALL    26   2   2
+1441    KSHORT  27  -1
+1442    POW     26  26  27
+1443    MULVV   25  25  26
+1444    KSHORT  26  -1
+1445    POW     25  25  26
+1446    MULVV   24  24  25
+1447    CALL    23   2   2
+1448    MULVV   22  22  23
+1449    UGET    23  36      ; White
+1450    MULVV   22  22  23
+1451    UGET    23  22      ; sym
+1452    KSTR    24  95      ; "}"
+1453    CALL    23   2   2
+1454    MULVV   22  22  23
+1455    UGET    23   8      ; mark
+1456    KSTR    24 150      ; "table"
+1457    CALL    23   2   2
+1458    DIVVV   22  22  23
+1459    TSETS   22  21 143  ; "TableLit"
+1460    GGET    22 185      ; "TableValue"
+1461    UGET    23  22      ; sym
+1462    KSTR    24  61      ; ","
+1463    CALL    23   2   2
+1464    GGET    24 185      ; "TableValue"
+1465    MULVV   23  23  24
+1466    KSHORT  24   0
+1467    POW     23  23  24
+1468    MULVV   22  22  23
+1469    TSETS   22  21 186  ; "TableValueList"
+1470    GGET    22  46      ; "PushIndent"
+1471    GGET    23 186      ; "TableValueList"
+1472    GGET    24  48      ; "PopIndent"
+1473    MULVV   23  23  24
+1474    GGET    24  48      ; "PopIndent"
+1475    UGET    25  38      ; Cut
+1476    MULVV   24  24  25
+1477    ADDVV   23  23  24
+1478    MULVV   22  22  23
+1479    UGET    23   2      ; Space
+1480    ADDVV   22  22  23
+1481    TSETS   22  21 187  ; "TableLitLine"
+1482    UGET    22  12      ; Ct
+1483    GGET    23 188      ; "KeyValueLine"
+1484    UGET    24  21      ; SpaceBreak
+1485    KSHORT  25   1
+1486    POW     24  24  25
+1487    GGET    25 188      ; "KeyValueLine"
+1488    MULVV   24  24  25
+1489    KSHORT  25   0
+1490    POW     24  24  25
+1491    MULVV   23  23  24
+1492    CALL    22   2   2
+1493    TSETS   22  21 189  ; "TableBlockInner"
+1494    UGET    22  21      ; SpaceBreak
+1495    KSHORT  23   1
+1496    POW     22  22  23
+1497    GGET    23  45      ; "Advance"
+1498    MULVV   22  22  23
+1499    UGET    23  23      ; ensure
+1500    GGET    24 189      ; "TableBlockInner"
+1501    GGET    25  48      ; "PopIndent"
+1502    CALL    23   2   3
+1503    MULVV   22  22  23
+1504    UGET    23   8      ; mark
+1505    KSTR    24 150      ; "table"
+1506    CALL    23   2   2
+1507    DIVVV   22  22  23
+1508    TSETS   22  21 101  ; "TableBlock"
+1509    MOV     22  14
+1510    KSTR    23 190      ; "class"
+1511    CALL    22   2   2
+1512    UGET    23  10      ; P
+1513    KSTR    24 191      ; ":"
+1514    CALL    23   2   2
+1515    UNM     23  23
+1516    MULVV   22  22  23
+1517    GGET    23 132      ; "Assignable"
+1518    UGET    24   9      ; Cc
+1519    KPRI    25   0
+1520    CALL    24   2   2
+1521    ADDVV   23  23  24
+1522    MULVV   22  22  23
+1523    MOV     23  14
+1524    KSTR    24 192      ; "extends"
+1525    CALL    23   2   2
+1526    GGET    24  47      ; "PreventIndent"
+1527    MULVV   23  23  24
+1528    UGET    24  23      ; ensure
+1529    GGET    25  38      ; "Exp"
+1530    GGET    26  48      ; "PopIndent"
+1531    CALL    24   2   3
+1532    MULVV   23  23  24
+1533    UGET    24   4      ; C
+1534    KSTR    25   8      ; ""
+1535    CALL    24   2   2
+1536    ADDVV   23  23  24
+1537    KSHORT  24  -1
+1538    POW     23  23  24
+1539    MULVV   22  22  23
+1540    GGET    23 193      ; "ClassBlock"
+1541    UGET    24  12      ; Ct
+1542    KSTR    25   8      ; ""
+1543    CALL    24   2   2
+1544    ADDVV   23  23  24
+1545    MULVV   22  22  23
+1546    UGET    23   8      ; mark
+1547    KSTR    24 190      ; "class"
+1548    CALL    23   2   2
+1549    DIVVV   22  22  23
+1550    TSETS   22  21 135  ; "ClassDecl"
+1551    UGET    22  21      ; SpaceBreak
+1552    KSHORT  23   1
+1553    POW     22  22  23
+1554    GGET    23  45      ; "Advance"
+1555    MULVV   22  22  23
+1556    UGET    23  12      ; Ct
+1557    GGET    24 194      ; "ClassLine"
+1558    UGET    25  21      ; SpaceBreak
+1559    KSHORT  26   1
+1560    POW     25  25  26
+1561    GGET    26 194      ; "ClassLine"
+1562    MULVV   25  25  26
+1563    KSHORT  26   0
+1564    POW     25  25  26
+1565    MULVV   24  24  25
+1566    CALL    23   2   2
+1567    MULVV   22  22  23
+1568    GGET    23  48      ; "PopIndent"
+1569    MULVV   22  22  23
+1570    TSETS   22  21 193  ; "ClassBlock"
+1571    GGET    22  22      ; "CheckIndent"
+1572    GGET    23 149      ; "KeyValueList"
+1573    UGET    24   8      ; mark
+1574    KSTR    25 195      ; "props"
+1575    CALL    24   2   2
+1576    DIVVV   23  23  24
+1577    GGET    24  23      ; "Statement"
+1578    UGET    25   8      ; mark
+1579    KSTR    26 196      ; "stm"
+1580    CALL    25   2   2
+1581    DIVVV   24  24  25
+1582    ADDVV   23  23  24
+1583    GGET    24  38      ; "Exp"
+1584    UGET    25   8      ; mark
+1585    KSTR    26 196      ; "stm"
+1586    CALL    25   2   2
+1587    DIVVV   24  24  25
+1588    ADDVV   23  23  24
+1589    UGET    24  22      ; sym
+1590    KSTR    25  61      ; ","
+1591    CALL    24   2   2
+1592    KSHORT  25  -1
+1593    POW     24  24  25
+1594    MULVV   23  23  24
+1595    MULVV   22  22  23
+1596    TSETS   22  21 194  ; "ClassLine"
+1597    MOV     22  14
+1598    KSTR    23 197      ; "export"
+1599    CALL    22   2   2
+1600    UGET    23   9      ; Cc
+1601    KSTR    24 190      ; "class"
+1602    CALL    23   2   2
+1603    GGET    24 135      ; "ClassDecl"
+1604    MULVV   23  23  24
+1605    MOV     24  15
+1606    KSTR    25  50      ; "*"
+1607    CALL    24   2   2
+1608    ADDVV   23  23  24
+1609    MOV     24  15
+1610    KSTR    25  51      ; "^"
+1611    CALL    24   2   2
+1612    ADDVV   23  23  24
+1613    UGET    24  12      ; Ct
+1614    GGET    25  53      ; "NameList"
+1615    CALL    24   2   2
+1616    UGET    25  22      ; sym
+1617    KSTR    26  85      ; "="
+1618    CALL    25   2   2
+1619    UGET    26  12      ; Ct
+1620    GGET    27  65      ; "ExpListLow"
+1621    CALL    26   2   2
+1622    MULVV   25  25  26
+1623    KSHORT  26  -1
+1624    POW     25  25  26
+1625    MULVV   24  24  25
+1626    ADDVV   23  23  24
+1627    MULVV   22  22  23
+1628    UGET    23   8      ; mark
+1629    KSTR    24 197      ; "export"
+1630    CALL    23   2   2
+1631    DIVVV   22  22  23
+1632    TSETS   22  21  32  ; "Export"
+1633    UGET    22  22      ; sym
+1634    KSTR    23 191      ; ":"
+1635    CALL    22   2   2
+1636    UGET    23  28      ; SomeSpace
+1637    UNM     23  23
+1638    MULVV   22  22  23
+1639    MULVV   22  22  16
+1640    UGET    23  39      ; lpeg
+1641    TGETS   23  23 198  ; "Cp"
+1642    CALL    23   2   1
+1643    MULVV   22  22  23
+1644    UGET    23  40      ; self_assign
+1645    DIVVV   22  22  23
+1646    UGET    23  12      ; Ct
+1647    UGET    24  22      ; sym
+1648    KSTR    25  91      ; "["
+1649    CALL    24   2   2
+1650    GGET    25  38      ; "Exp"
+1651    MULVV   24  24  25
+1652    UGET    25  22      ; sym
+1653    KSTR    26  92      ; "]"
+1654    CALL    25   2   2
+1655    MULVV   24  24  25
+1656    ADDVV   24  18  24
+1657    UGET    25   2      ; Space
+1658    GGET    26 153      ; "DoubleString"
+1659    MULVV   25  25  26
+1660    ADDVV   24  24  25
+1661    UGET    25   2      ; Space
+1662    GGET    26 154      ; "SingleString"
+1663    MULVV   25  25  26
+1664    ADDVV   24  24  25
+1665    UGET    25  35      ; symx
+1666    KSTR    26 191      ; ":"
+1667    CALL    25   2   2
+1668    MULVV   24  24  25
+1669    GGET    25  38      ; "Exp"
+1670    GGET    26 101      ; "TableBlock"
+1671    ADDVV   25  25  26
+1672    UGET    26  21      ; SpaceBreak
+1673    KSHORT  27   1
+1674    POW     26  26  27
+1675    GGET    27  38      ; "Exp"
+1676    MULVV   26  26  27
+1677    ADDVV   25  25  26
+1678    MULVV   24  24  25
+1679    CALL    23   2   2
+1680    ADDVV   22  22  23
+1681    TSETS   22  21 184  ; "KeyValue"
+1682    GGET    22 184      ; "KeyValue"
+1683    UGET    23  22      ; sym
+1684    KSTR    24  61      ; ","
+1685    CALL    23   2   2
+1686    GGET    24 184      ; "KeyValue"
+1687    MULVV   23  23  24
+1688    KSHORT  24   0
+1689    POW     23  23  24
+1690    MULVV   22  22  23
+1691    TSETS   22  21 149  ; "KeyValueList"
+1692    GGET    22  22      ; "CheckIndent"
+1693    GGET    23 149      ; "KeyValueList"
+1694    MULVV   22  22  23
+1695    UGET    23  22      ; sym
+1696    KSTR    24  61      ; ","
+1697    CALL    23   2   2
+1698    KSHORT  24  -1
+1699    POW     23  23  24
+1700    MULVV   22  22  23
+1701    TSETS   22  21 188  ; "KeyValueLine"
+1702    UGET    22  22      ; sym
+1703    KSTR    23 165      ; "("
+1704    CALL    22   2   2
+1705    UGET    23  36      ; White
+1706    MULVV   22  22  23
+1707    UGET    23  12      ; Ct
+1708    GGET    24 199      ; "FnArgDefList"
+1709    KSHORT  25  -1
+1710    POW     24  24  25
+1711    CALL    23   2   2
+1712    MULVV   22  22  23
+1713    MOV     23  14
+1714    KSTR    24 200      ; "using"
+1715    CALL    23   2   2
+1716    UGET    24  12      ; Ct
+1717    GGET    25  53      ; "NameList"
+1718    UGET    26   2      ; Space
+1719    KSTR    27 201      ; "nil"
+1720    MULVV   26  26  27
+1721    ADDVV   25  25  26
+1722    CALL    24   2   2
+1723    MULVV   23  23  24
+1724    UGET    24  12      ; Ct
+1725    KSTR    25   8      ; ""
+1726    CALL    24   2   2
+1727    ADDVV   23  23  24
+1728    MULVV   22  22  23
+1729    UGET    23  36      ; White
+1730    MULVV   22  22  23
+1731    UGET    23  22      ; sym
+1732    KSTR    24 166      ; ")"
+1733    CALL    23   2   2
+1734    MULVV   22  22  23
+1735    UGET    23  12      ; Ct
+1736    KSTR    24   8      ; ""
+1737    CALL    23   2   2
+1738    UGET    24  12      ; Ct
+1739    KSTR    25   8      ; ""
+1740    CALL    24   2   2
+1741    MULVV   23  23  24
+1742    ADDVV   22  22  23
+1743    TSETS   22  21 202  ; "FnArgsDef"
+1744    GGET    22 203      ; "FnArgDef"
+1745    UGET    23  22      ; sym
+1746    KSTR    24  61      ; ","
+1747    CALL    23   2   2
+1748    UGET    24  13      ; Break
+1749    ADDVV   23  23  24
+1750    UGET    24  36      ; White
+1751    MULVV   23  23  24
+1752    GGET    24 203      ; "FnArgDef"
+1753    MULVV   23  23  24
+1754    KSHORT  24   0
+1755    POW     23  23  24
+1756    MULVV   22  22  23
+1757    UGET    23  22      ; sym
+1758    KSTR    24  61      ; ","
+1759    CALL    23   2   2
+1760    UGET    24  13      ; Break
+1761    ADDVV   23  23  24
+1762    UGET    24  36      ; White
+1763    MULVV   23  23  24
+1764    UGET    24  12      ; Ct
+1765    MOV     25  19
+1766    CALL    24   2   2
+1767    MULVV   23  23  24
+1768    KSHORT  24   0
+1769    POW     23  23  24
+1770    MULVV   22  22  23
+1771    UGET    23  12      ; Ct
+1772    MOV     24  19
+1773    CALL    23   2   2
+1774    ADDVV   22  22  23
+1775    TSETS   22  21 199  ; "FnArgDefList"
+1776    UGET    22  12      ; Ct
+1777    ADDVV   23  16  17
+1778    UGET    24  22      ; sym
+1779    KSTR    25  85      ; "="
+1780    CALL    24   2   2
+1781    GGET    25  38      ; "Exp"
+1782    MULVV   24  24  25
+1783    KSHORT  25  -1
+1784    POW     24  24  25
+1785    MULVV   23  23  24
+1786    CALL    22   2   2
+1787    TSETS   22  21 203  ; "FnArgDef"
+1788    GGET    22 202      ; "FnArgsDef"
+1789    UGET    23  22      ; sym
+1790    KSTR    24 204      ; "->"
+1791    CALL    23   2   2
+1792    UGET    24   9      ; Cc
+1793    KSTR    25 205      ; "slim"
+1794    CALL    24   2   2
+1795    MULVV   23  23  24
+1796    UGET    24  22      ; sym
+1797    KSTR    25 206      ; "=>"
+1798    CALL    24   2   2
+1799    UGET    25   9      ; Cc
+1800    KSTR    26 207      ; "fat"
+1801    CALL    25   2   2
+1802    MULVV   24  24  25
+1803    ADDVV   23  23  24
+1804    MULVV   22  22  23
+1805    GGET    23  44      ; "Body"
+1806    UGET    24  12      ; Ct
+1807    KSTR    25   8      ; ""
+1808    CALL    24   2   2
+1809    ADDVV   23  23  24
+1810    MULVV   22  22  23
+1811    UGET    23   8      ; mark
+1812    KSTR    24 208      ; "fndef"
+1813    CALL    23   2   2
+1814    DIVVV   22  22  23
+1815    TSETS   22  21 144  ; "FunLit"
+1816    UGET    22  22      ; sym
+1817    KSTR    23  61      ; ","
+1818    CALL    22   2   2
+1819    MULVV   22  22  16
+1820    KSHORT  23   0
+1821    POW     22  22  23
+1822    MULVV   22  16  22
+1823    TSETS   22  21  53  ; "NameList"
+1824    GGET    22 143      ; "TableLit"
+1825    ADDVV   22  16  22
+1826    TSETS   22  21 209  ; "NameOrDestructure"
+1827    GGET    22 209      ; "NameOrDestructure"
+1828    UGET    23  22      ; sym
+1829    KSTR    24  61      ; ","
+1830    CALL    23   2   2
+1831    GGET    24 209      ; "NameOrDestructure"
+1832    MULVV   23  23  24
+1833    KSHORT  24   0
+1834    POW     23  23  24
+1835    MULVV   22  22  23
+1836    TSETS   22  21  86  ; "AssignableNameList"
+1837    GGET    22  38      ; "Exp"
+1838    UGET    23  22      ; sym
+1839    KSTR    24  61      ; ","
+1840    CALL    23   2   2
+1841    GGET    24  38      ; "Exp"
+1842    MULVV   23  23  24
+1843    KSHORT  24   0
+1844    POW     23  23  24
+1845    MULVV   22  22  23
+1846    TSETS   22  21  34  ; "ExpList"
+1847    GGET    22  38      ; "Exp"
+1848    UGET    23  22      ; sym
+1849    KSTR    24  61      ; ","
+1850    CALL    23   2   2
+1851    UGET    24  22      ; sym
+1852    KSTR    25 210      ; ";"
+1853    CALL    24   2   2
+1854    ADDVV   23  23  24
+1855    GGET    24  38      ; "Exp"
+1856    MULVV   23  23  24
+1857    KSHORT  24   0
+1858    POW     23  23  24
+1859    MULVV   22  22  23
+1860    TSETS   22  21  65  ; "ExpListLow"
+1861    UGET    22  10      ; P
+1862    KSTR    23 136      ; "-"
+1863    CALL    22   2   2
+1864    UNM     22  22
+1865    GGET    23  34      ; "ExpList"
+1866    UGET    24  22      ; sym
+1867    KSTR    25  61      ; ","
+1868    CALL    24   2   2
+1869    GGET    25 101      ; "TableBlock"
+1870    UGET    26  21      ; SpaceBreak
+1871    GGET    27  45      ; "Advance"
+1872    MULVV   26  26  27
+1873    GGET    27 211      ; "ArgBlock"
+1874    MULVV   26  26  27
+1875    GGET    27 101      ; "TableBlock"
+1876    KSHORT  28  -1
+1877    POW     27  27  28
+1878    MULVV   26  26  27
+1879    ADDVV   25  25  26
+1880    MULVV   24  24  25
+1881    GGET    25 101      ; "TableBlock"
+1882    ADDVV   24  24  25
+1883    KSHORT  25  -1
+1884    POW     24  24  25
+1885    MULVV   23  23  24
+1886    GGET    24 101      ; "TableBlock"
+1887    ADDVV   23  23  24
+1888    MULVV   22  22  23
+1889    TSETS   22  21 147  ; "InvokeArgs"
+1890    GGET    22 212      ; "ArgLine"
+1891    UGET    23  22      ; sym
+1892    KSTR    24  61      ; ","
+1893    CALL    23   2   2
+1894    UGET    24  21      ; SpaceBreak
+1895    MULVV   23  23  24
+1896    GGET    24 212      ; "ArgLine"
+1897    MULVV   23  23  24
+1898    KSHORT  24   0
+1899    POW     23  23  24
+1900    MULVV   22  22  23
+1901    GGET    23  48      ; "PopIndent"
+1902    MULVV   22  22  23
+1903    TSETS   22  21 211  ; "ArgBlock"
+1904    GGET    22  22      ; "CheckIndent"
+1905    GGET    23  34      ; "ExpList"
+1906    MULVV   22  22  23
+1907    TSETS   22  21 212  ; "ArgLine"
+1908    CALL    20   2   2
+1909    MOV     21  20
+1910    MOV     22   3
+1911    UCLO     0 => 1912
+1912 => RET     21   3
+
+-- BYTECODE -- parse.lua:212-214
+0001    UGET     0   1      ; file_grammar
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "match"
+0004    UGET     2   2      ; str
+0005    CALL     0   2   3
+0006    USETV    0   0      ; tree
+0007    RET0     0   1
+
+-- BYTECODE -- parse.lua:214-216
+0001    GGET     1   0      ; "debug"
+0002    TGETS    1   1   1  ; "traceback"
+0003    MOV      2   0
+0004    KSHORT   3   2
+0005    CALLT    1   3
+
+-- BYTECODE -- parse.lua:210-236
+0001    KPRI     2   0
+0002    GGET     3   0      ; "xpcall"
+0003    FNEW     4   1      ; parse.lua:212
+0004    FNEW     5   2      ; parse.lua:214
+0005    CALL     3   3   3
+0006    GGET     5   3      ; "type"
+0007    MOV      6   4
+0008    CALL     5   2   2
+0009    ISNES    5   4      ; "string"
+0010    JMP      5 => 0015
+0011    KPRI     5   0
+0012    MOV      6   4
+0013    UCLO     0 => 0014
+0014 => RET      5   3
+0015 => IST          2
+0016    JMP      5 => 0060
+0017    KPRI     5   0
+0018    UGET     6   1      ; state
+0019    TGETS    6   6   5  ; "last_pos"
+0020    ISF          4
+0021    JMP      7 => 0035
+0022    KPRI     7   0
+0023    UGET     8   2      ; unpack
+0024    MOV      9   4
+0025    CALL     8   3   2
+0026    MOV      5   9
+0027    MOV      7   8
+0028    ISF          5
+0029    JMP      8 => 0033
+0030    KSTR     8   6      ; " "
+0031    MOV      9   5
+0032    CAT      5   8   9
+0033 => KSHORT   8  -1
+0034    TGETV    6   7   8
+0035 => UGET     7   3      ; pos_to_line
+0036    MOV      8   1
+0037    MOV      9   6
+0038    CALL     7   2   3
+0039    UGET     8   4      ; get_line
+0040    MOV      9   1
+0041    MOV     10   7
+0042    CALL     8   2   3
+0043    IST          8
+0044    JMP      9 => 0046
+0045    KSTR     8   7      ; ""
+0046 => KPRI     9   0
+0047    UGET    10   5      ; err_msg
+0048    MOV     11  10
+0049    TGETS   10  10   8  ; "format"
+0050    ISTC    12   5
+0051    JMP     12 => 0053
+0052    KSTR    12   7      ; ""
+0053 => MOV     13   7
+0054    UGET    14   6      ; trim
+0055    MOV     15   8
+0056    CALL    14   0   2
+0057    CALLM   10   0   3
+0058    UCLO     0 => 0059
+0059 => RETM     9   1
+0060 => UCLO     0 => 0061
+0061 => RET1     2   2
+
+-- BYTECODE -- parse.lua:206-238
+0001    UGET     0   0      ; build_grammar
+0002    CALL     0   3   1
+0003    UGET     2   1      ; White
+0004    MULVV    2   2   0
+0005    UGET     3   1      ; White
+0006    MULVV    2   2   3
+0007    MULVN    2   2   0  ; -1
+0008    TDUP     3   1
+0009    FNEW     4   0      ; parse.lua:210
+0010    TSETS    4   3   2  ; "match"
+0011    UCLO     0 => 0012
+0012 => RET1     3   2
+
+-- BYTECODE -- parse.lua:242-244
+0001    UGET     1   0      ; file_parser
+0002    CALL     1   2   1
+0003    MOV      2   1
+0004    TGETS    1   1   0  ; "match"
+0005    MOV      3   0
+0006    CALLT    1   3
+
+-- BYTECODE -- parse.lua:0-246
+0001    KPRI     0   1
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "lpeg"
+0004    CALL     1   2   2
+0005    TGETS    2   1   2  ; "setmaxstack"
+0006    KSHORT   3 10000
+0007    CALL     2   1   2
+0008    KSTR     2   3      ; "Failed to parse:%s\n [%d] >>    %s"
+0009    KPRI     3   0
+0010    GGET     4   0      ; "require"
+0011    KSTR     5   4      ; "moonscript.data"
+0012    CALL     4   2   2
+0013    TGETS    3   4   5  ; "Stack"
+0014    KNIL     4   6
+0015    GGET     7   0      ; "require"
+0016    KSTR     8   6      ; "moonscript.util"
+0017    CALL     7   2   2
+0018    TGETS    8   7   7  ; "trim"
+0019    TGETS    9   7   8  ; "pos_to_line"
+0020    TGETS    6   7   9  ; "get_line"
+0021    MOV      5   9
+0022    MOV      4   8
+0023    KPRI     7   0
+0024    GGET     8   0      ; "require"
+0025    KSTR     9   6      ; "moonscript.util"
+0026    CALL     8   2   2
+0027    TGETS    7   8  10  ; "unpack"
+0028    KPRI     8   0
+0029    GGET     9   0      ; "require"
+0030    KSTR    10  11      ; "moonscript.parse.env"
+0031    CALL     9   2   2
+0032    TGETS    8   9  12  ; "wrap_env"
+0033    KNIL     9  18
+0034    TGETS   19   1  13  ; "R"
+0035    TGETS   20   1  14  ; "S"
+0036    TGETS   21   1  15  ; "V"
+0037    TGETS   22   1  16  ; "P"
+0038    TGETS   23   1  17  ; "C"
+0039    TGETS   24   1  18  ; "Ct"
+0040    TGETS   25   1  19  ; "Cmt"
+0041    TGETS   26   1  20  ; "Cg"
+0042    TGETS   27   1  21  ; "Cb"
+0043    TGETS   18   1  22  ; "Cc"
+0044    MOV     17  27
+0045    MOV     16  26
+0046    MOV     15  25
+0047    MOV     14  24
+0048    MOV     13  23
+0049    MOV     12  22
+0050    MOV     11  21
+0051    MOV     10  20
+0052    MOV      9  19
+0053    KNIL    19  31
+0054    GGET    32   0      ; "require"
+0055    KSTR    33  23      ; "moonscript.parse.literals"
+0056    CALL    32   2   2
+0057    TGETS   33  32  24  ; "White"
+0058    TGETS   34  32  25  ; "Break"
+0059    TGETS   35  32  26  ; "Stop"
+0060    TGETS   36  32  27  ; "Comment"
+0061    TGETS   37  32  28  ; "Space"
+0062    TGETS   38  32  29  ; "SomeSpace"
+0063    TGETS   39  32  30  ; "SpaceBreak"
+0064    TGETS   40  32  31  ; "EmptyLine"
+0065    TGETS   41  32  32  ; "AlphaNum"
+0066    TGETS   42  32  33  ; "Num"
+0067    TGETS   43  32  34  ; "Shebang"
+0068    TGETS   44  32  35  ; "L"
+0069    TGETS   31  32  36  ; "Name"
+0070    MOV     30  44
+0071    MOV     29  43
+0072    MOV     28  42
+0073    MOV     27  41
+0074    MOV     26  40
+0075    MOV     25  39
+0076    MOV     24  38
+0077    MOV     23  37
+0078    MOV     22  36
+0079    MOV     21  35
+0080    MOV     20  34
+0081    MOV     19  33
+0082    MULVV   32  23  31
+0083    FNEW    33  37      ; parse.lua:24
+0084    DIVVV   33  28  33
+0085    MULVV   28  23  33
+0086    KNIL    33  52
+0087    GGET    53   0      ; "require"
+0088    KSTR    54  38      ; "moonscript.parse.util"
+0089    CALL    53   2   2
+0090    TGETS   54  53  39  ; "Indent"
+0091    TGETS   55  53  40  ; "Cut"
+0092    TGETS   56  53  41  ; "ensure"
+0093    TGETS   57  53  42  ; "extract_line"
+0094    TGETS   58  53  43  ; "mark"
+0095    TGETS   59  53  44  ; "pos"
+0096    TGETS   60  53  45  ; "flatten_or_mark"
+0097    TGETS   61  53  46  ; "is_assignable"
+0098    TGETS   62  53  47  ; "check_assignable"
+0099    TGETS   63  53  48  ; "format_assign"
+0100    TGETS   64  53  49  ; "format_single_assign"
+0101    TGETS   65  53  50  ; "sym"
+0102    TGETS   66  53  51  ; "symx"
+0103    TGETS   67  53  52  ; "simple_string"
+0104    TGETS   68  53  53  ; "wrap_func_arg"
+0105    TGETS   69  53  54  ; "join_chain"
+0106    TGETS   70  53  55  ; "wrap_decorator"
+0107    TGETS   71  53  56  ; "check_lua_string"
+0108    TGETS   72  53  57  ; "self_assign"
+0109    TGETS   52  53  58  ; "got"
+0110    MOV     51  72
+0111    MOV     50  71
+0112    MOV     49  70
+0113    MOV     48  69
+0114    MOV     47  68
+0115    MOV     46  67
+0116    MOV     45  66
+0117    MOV     44  65
+0118    MOV     43  64
+0119    MOV     42  63
+0120    MOV     41  62
+0121    MOV     40  61
+0122    MOV     39  60
+0123    MOV     38  59
+0124    MOV     37  58
+0125    MOV     36  57
+0126    MOV     35  56
+0127    MOV     34  55
+0128    MOV     33  54
+0129    MOV     53   8
+0130    MOV     54   0
+0131    FNEW    55  59      ; parse.lua:35
+0132    CALL    53   2   3
+0133    KPRI    54   0
+0134    FNEW    54  60      ; parse.lua:206
+0135    TDUP    55  61
+0136    TSETS   36  55  42  ; "extract_line"
+0137    TSETS   53  55  62  ; "build_grammar"
+0138    FNEW    56  63      ; parse.lua:242
+0139    TSETS   56  55  64  ; "string"
+0140    UCLO     0 => 0141
+0141 => RET1    55   2
+

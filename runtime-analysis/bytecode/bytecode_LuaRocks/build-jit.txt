@@ -1,0 +1,1161 @@
+-- BYTECODE -- build.lua:32-38
+0001    GGET     1   0      ; "pairs"
+0002    MOV      2   0
+0003    CALL     1   4   2
+0004    ISNEXT   4 => 0023
+0005 => GGET     6   1      ; "io"
+0006    TGETS    6   6   2  ; "open"
+0007    UGET     7   0      ; dir
+0008    TGETS    7   7   3  ; "path"
+0009    UGET     8   1      ; fs
+0010    TGETS    8   8   4  ; "current_dir"
+0011    CALL     8   2   1
+0012    MOV      9   4
+0013    CALL     7   2   3
+0014    KSTR     8   5      ; "w+"
+0015    CALL     6   2   3
+0016    MOV      8   6
+0017    TGETS    7   6   6  ; "write"
+0018    MOV      9   5
+0019    CALL     7   1   3
+0020    MOV      8   6
+0021    TGETS    7   6   7  ; "close"
+0022    CALL     7   1   2
+0023 => ITERN    4   3   3
+0024    ITERL    4 => 0005
+0025    RET0     0   1
+
+-- BYTECODE -- build.lua:46-79
+0001    GGET     1   0      ; "assert"
+0002    MOV      3   0
+0003    TGETS    2   0   1  ; "type"
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "rockspec"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => CALL     1   1   2
+0011    TGETS    1   0   3  ; "build"
+0012    TGETS    1   1   4  ; "extra_files"
+0013    IST          1
+0014    JMP      2 => 0021
+0015    TGETS    1   0   3  ; "build"
+0016    TGETS    1   1   5  ; "patches"
+0017    IST          1
+0018    JMP      1 => 0021
+0019    KPRI     1   2
+0020    RET1     1   2
+0021 => GGET     1   6      ; "io"
+0022    TGETS    1   1   7  ; "open"
+0023    UGET     2   0      ; fs
+0024    TGETS    2   2   8  ; "absolute_name"
+0025    KSTR     3   9      ; ".luarocks.patches.applied"
+0026    CALL     2   2   2
+0027    KSTR     3  10      ; "r"
+0028    CALL     1   2   3
+0029    ISF          1
+0030    JMP      2 => 0036
+0031    MOV      3   1
+0032    TGETS    2   1  11  ; "close"
+0033    CALL     2   1   2
+0034    KPRI     2   2
+0035    RET1     2   2
+0036 => TGETS    2   0   3  ; "build"
+0037    TGETS    2   2   4  ; "extra_files"
+0038    ISF          2
+0039    JMP      3 => 0044
+0040    UGET     2   1      ; extract_from_rockspec
+0041    TGETS    3   0   3  ; "build"
+0042    TGETS    3   3   4  ; "extra_files"
+0043    CALL     2   1   2
+0044 => TGETS    2   0   3  ; "build"
+0045    TGETS    2   2   5  ; "patches"
+0046    ISF          2
+0047    JMP      3 => 0086
+0048    UGET     2   1      ; extract_from_rockspec
+0049    TGETS    3   0   3  ; "build"
+0050    TGETS    3   3   5  ; "patches"
+0051    CALL     2   1   2
+0052    UGET     2   2      ; util
+0053    TGETS    2   2  12  ; "sortedpairs"
+0054    TGETS    3   0   3  ; "build"
+0055    TGETS    3   3   5  ; "patches"
+0056    CALL     2   4   2
+0057    JMP      5 => 0084
+0058 => UGET     7   2      ; util
+0059    TGETS    7   7  13  ; "printout"
+0060    KSTR     8  14      ; "Applying patch "
+0061    MOV      9   5
+0062    KSTR    10  15      ; "..."
+0063    CAT      8   8  10
+0064    CALL     7   1   2
+0065    MOV      8   0
+0066    TGETS    7   0  16  ; "format_is_at_least"
+0067    KSTR     9  17      ; "3.0"
+0068    CALL     7   2   3
+0069    UGET     8   0      ; fs
+0070    TGETS    8   8  18  ; "apply_patch"
+0071    GGET     9  19      ; "tostring"
+0072    MOV     10   5
+0073    CALL     9   2   2
+0074    MOV     10   6
+0075    MOV     11   7
+0076    CALL     8   3   4
+0077    IST          8
+0078    JMP     10 => 0084
+0079    KPRI    10   0
+0080    KSTR    11  20      ; "Failed applying patch "
+0081    MOV     12   5
+0082    CAT     11  11  12
+0083    RET     10   3
+0084 => ITERC    5   3   3
+0085    ITERL    5 => 0058
+0086 => GGET     2   6      ; "io"
+0087    TGETS    2   2   7  ; "open"
+0088    UGET     3   0      ; fs
+0089    TGETS    3   3   8  ; "absolute_name"
+0090    KSTR     4   9      ; ".luarocks.patches.applied"
+0091    CALL     3   2   2
+0092    KSTR     4  21      ; "w"
+0093    CALL     2   2   3
+0094    MOV      1   2
+0095    ISF          1
+0096    JMP      2 => 0100
+0097    MOV      3   1
+0098    TGETS    2   1  11  ; "close"
+0099    CALL     2   1   2
+0100 => KPRI     2   2
+0101    RET1     2   2
+
+-- BYTECODE -- build.lua:84-86
+0001    GGET     1   0      ; "tonumber"
+0002    ISFC     2   0
+0003    JMP      2 => 0008
+0004    MOV      3   0
+0005    TGETS    2   0   1  ; "match"
+0006    KSTR     4   2      ; "^[^.]+%.([^.]+)"
+0007    CALL     2   2   3
+0008 => CALLT    1   2
+
+-- BYTECODE -- build.lua:87-93
+0001    UGET     1   0      ; rockspec
+0002    TGETS    1   1   0  ; "variables"
+0003    TGETV    1   1   0
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "match"
+0006    KSTR     3   2      ; "MACOSX_DEPLOYMENT_TARGET"
+0007    CALL     1   2   3
+0008    ISF          1
+0009    JMP      2 => 0024
+0010    UGET     1   0      ; rockspec
+0011    TGETS    1   1   0  ; "variables"
+0012    UGET     2   0      ; rockspec
+0013    TGETS    2   2   0  ; "variables"
+0014    TGETV    2   2   0
+0015    MOV      3   2
+0016    TGETS    2   2   3  ; "gsub"
+0017    KSTR     4   4      ; "MACOSX_DEPLOYMENT_TARGET=[^ ]*"
+0018    KSTR     5   5      ; "MACOSX_DEPLOYMENT_TARGET="
+0019    UGET     6   1      ; target
+0020    CAT      5   5   6
+0021    CALL     2   2   4
+0022    TSETV    2   1   0
+0023    JMP      1 => 0034
+0024 => UGET     1   0      ; rockspec
+0025    TGETS    1   1   0  ; "variables"
+0026    KSTR     2   6      ; "env MACOSX_DEPLOYMENT_TARGET="
+0027    UGET     3   1      ; target
+0028    KSTR     4   7      ; " "
+0029    UGET     5   0      ; rockspec
+0030    TGETS    5   5   0  ; "variables"
+0031    TGETV    5   5   0
+0032    CAT      2   2   5
+0033    TSETV    2   1   0
+0034 => RET0     0   1
+
+-- BYTECODE -- build.lua:82-105
+0001    TGETS    1   0   0  ; "build"
+0002    TGETS    1   1   1  ; "macosx_deployment_target"
+0003    FNEW     2   2      ; build.lua:84
+0004    FNEW     3   3      ; build.lua:87
+0005    UGET     4   0      ; cfg
+0006    TGETS    4   4   4  ; "is_platform"
+0007    KSTR     5   5      ; "macosx"
+0008    CALL     4   2   2
+0009    ISF          4
+0010    JMP      5 => 0046
+0011    MOV      5   0
+0012    TGETS    4   0   6  ; "format_is_at_least"
+0013    KSTR     6   7      ; "3.0"
+0014    CALL     4   2   3
+0015    ISF          4
+0016    JMP      5 => 0046
+0017    ISF          1
+0018    JMP      4 => 0046
+0019    UGET     4   1      ; util
+0020    TGETS    4   4   8  ; "popen_read"
+0021    KSTR     5   9      ; "sw_vers -productVersion"
+0022    CALL     4   2   2
+0023    MOV      5   2
+0024    MOV      6   4
+0025    CALL     5   2   2
+0026    MOV      6   2
+0027    MOV      7   1
+0028    CALL     6   2   2
+0029    ISGE     5   6
+0030    JMP      7 => 0040
+0031    KPRI     7   0
+0032    KSTR     8  10      ; "This rock requires Mac OSX 10.%d, and yo"~
+0033    MOV      9   8
+0034    TGETS    8   8  11  ; "format"
+0035    MOV     10   6
+0036    MOV     11   5
+0037    CALL     8   0   4
+0038    UCLO     0 => 0039
+0039 => RETM     7   1
+0040 => MOV      7   3
+0041    KSTR     8  12      ; "CC"
+0042    CALL     7   1   2
+0043    MOV      7   3
+0044    KSTR     8  13      ; "LD"
+0045    CALL     7   1   2
+0046 => KPRI     4   2
+0047    UCLO     0 => 0048
+0048 => RET1     4   2
+
+-- BYTECODE -- build.lua:107-144
+0001    TGETS    2   1   0  ; "build_only_deps"
+0002    IST          2
+0003    JMP      2 => 0015
+0004    UGET     2   0      ; deps
+0005    TGETS    2   2   1  ; "check_external_deps"
+0006    MOV      3   0
+0007    KSTR     4   2      ; "build"
+0008    CALL     2   4   3
+0009    ISF          3
+0010    JMP      5 => 0015
+0011    KPRI     5   0
+0012    MOV      6   3
+0013    MOV      7   4
+0014    RET      5   4
+0015 => UGET     2   0      ; deps
+0016    TGETS    2   2   3  ; "check_lua_incdir"
+0017    TGETS    3   0   4  ; "variables"
+0018    CALL     2   4   2
+0019    IST          2
+0020    JMP      5 => 0025
+0021    KPRI     5   0
+0022    MOV      6   3
+0023    MOV      7   4
+0024    RET      5   4
+0025 => UGET     5   1      ; cfg
+0026    TGETS    5   5   5  ; "link_lua_explicitly"
+0027    ISF          5
+0028    JMP      6 => 0039
+0029    UGET     5   0      ; deps
+0030    TGETS    5   5   6  ; "check_lua_libdir"
+0031    TGETS    6   0   4  ; "variables"
+0032    CALL     5   4   2
+0033    IST          5
+0034    JMP      8 => 0039
+0035    KPRI     8   0
+0036    MOV      9   6
+0037    MOV     10   7
+0038    RET      8   4
+0039 => TGETS    5   1   7  ; "deps_mode"
+0040    ISNES    5   8      ; "none"
+0041    JMP      5 => 0044
+0042    KPRI     5   2
+0043    RET1     5   2
+0044 => TGETS    5   1   0  ; "build_only_deps"
+0045    IST          5
+0046    JMP      5 => 0065
+0047    GGET     5   9      ; "next"
+0048    TGETS    6   0  10  ; "build_dependencies"
+0049    CALL     5   2   2
+0050    ISF          5
+0051    JMP      6 => 0065
+0052    UGET     5   0      ; deps
+0053    TGETS    5   5  11  ; "fulfill_dependencies"
+0054    MOV      6   0
+0055    KSTR     7  10      ; "build_dependencies"
+0056    TGETS    8   1   7  ; "deps_mode"
+0057    TGETS    9   1  12  ; "verify"
+0058    CALL     5   4   5
+0059    ISF          6
+0060    JMP      8 => 0065
+0061    KPRI     8   0
+0062    MOV      9   6
+0063    MOV     10   7
+0064    RET      8   4
+0065 => UGET     5   0      ; deps
+0066    TGETS    5   5  11  ; "fulfill_dependencies"
+0067    MOV      6   0
+0068    KSTR     7  13      ; "dependencies"
+0069    TGETS    8   1   7  ; "deps_mode"
+0070    TGETS    9   1  12  ; "verify"
+0071    CALL     5   4   5
+0072    ISF          6
+0073    JMP      8 => 0078
+0074    KPRI     8   0
+0075    MOV      9   6
+0076    MOV     10   7
+0077    RET      8   4
+0078 => KPRI     8   2
+0079    RET1     8   2
+
+-- BYTECODE -- build.lua:146-171
+0001    TGETS    2   1   0  ; "minimal_mode"
+0002    IST          2
+0003    JMP      3 => 0007
+0004    TGETS    2   1   1  ; "build_only_deps"
+0005    ISF          2
+0006    JMP      3 => 0009
+0007 => KPRI     2   2
+0008    RET1     2   2
+0009 => TGETS    2   1   2  ; "need_to_fetch"
+0010    ISF          2
+0011    JMP      3 => 0042
+0012    TGETS    2   1   3  ; "branch"
+0013    ISF          2
+0014    JMP      3 => 0018
+0015    TGETS    2   0   4  ; "source"
+0016    TGETS    3   1   3  ; "branch"
+0017    TSETS    3   2   3  ; "branch"
+0018 => UGET     2   0      ; fetch
+0019    TGETS    2   2   5  ; "fetch_sources"
+0020    MOV      3   0
+0021    KPRI     4   2
+0022    CALL     2   4   3
+0023    IST          2
+0024    JMP      5 => 0029
+0025    KPRI     5   0
+0026    MOV      6   3
+0027    MOV      7   4
+0028    RET      5   4
+0029 => KPRI     5   0
+0030    UGET     6   1      ; fs
+0031    TGETS    6   6   6  ; "change_dir"
+0032    MOV      7   3
+0033    CALL     6   3   2
+0034    MOV      5   7
+0035    MOV      2   6
+0036    IST          2
+0037    JMP      6 => 0056
+0038    KPRI     6   0
+0039    MOV      7   5
+0040    RET      6   3
+0041    JMP      2 => 0056
+0042 => TGETS    2   0   4  ; "source"
+0043    TGETS    2   2   7  ; "file"
+0044    ISF          2
+0045    JMP      3 => 0056
+0046    UGET     2   1      ; fs
+0047    TGETS    2   2   8  ; "unpack_archive"
+0048    TGETS    3   0   4  ; "source"
+0049    TGETS    3   3   7  ; "file"
+0050    CALL     2   3   2
+0051    IST          2
+0052    JMP      4 => 0056
+0053    KPRI     4   0
+0054    MOV      5   3
+0055    RET      4   3
+0056 => UGET     2   1      ; fs
+0057    TGETS    2   2   6  ; "change_dir"
+0058    TGETS    3   0   4  ; "source"
+0059    TGETS    3   3   9  ; "dir"
+0060    CALL     2   1   2
+0061    KPRI     2   2
+0062    RET1     2   2
+
+-- BYTECODE -- build.lua:173-189
+0001    TDUP     2   3
+0002    TDUP     3   1
+0003    UGET     4   0      ; path
+0004    TGETS    4   4   0  ; "lua_dir"
+0005    MOV      5   0
+0006    MOV      6   1
+0007    CALL     4   2   3
+0008    TSETS    4   3   2  ; "name"
+0009    TSETS    3   2   4  ; "lua"
+0010    TDUP     3   6
+0011    UGET     4   0      ; path
+0012    TGETS    4   4   5  ; "lib_dir"
+0013    MOV      5   0
+0014    MOV      6   1
+0015    CALL     4   2   3
+0016    TSETS    4   3   2  ; "name"
+0017    TSETS    3   2   7  ; "lib"
+0018    TDUP     3   9
+0019    UGET     4   0      ; path
+0020    TGETS    4   4   8  ; "bin_dir"
+0021    MOV      5   0
+0022    MOV      6   1
+0023    CALL     4   2   3
+0024    TSETS    4   3   2  ; "name"
+0025    TSETS    3   2  10  ; "bin"
+0026    TDUP     3  12
+0027    UGET     4   0      ; path
+0028    TGETS    4   4  11  ; "conf_dir"
+0029    MOV      5   0
+0030    MOV      6   1
+0031    CALL     4   2   3
+0032    TSETS    4   3   2  ; "name"
+0033    TSETS    3   2  13  ; "conf"
+0034    GGET     3  14      ; "pairs"
+0035    MOV      4   2
+0036    CALL     3   4   2
+0037    ISNEXT   6 => 0047
+0038 => UGET     8   1      ; fs
+0039    TGETS    8   8  15  ; "make_dir"
+0040    TGETS    9   7   2  ; "name"
+0041    CALL     8   3   2
+0042    IST          8
+0043    JMP     10 => 0047
+0044    KPRI    10   0
+0045    MOV     11   9
+0046    RET     10   3
+0047 => ITERN    6   3   3
+0048    ITERL    6 => 0038
+0049    RET1     2   2
+
+-- BYTECODE -- build.lua:191-214
+0001    TGETS    1   0   0  ; "build"
+0002    TGETS    1   1   1  ; "type"
+0003    ISNES    1   2      ; "none"
+0004    JMP      2 => 0007
+0005    KPRI     2   2
+0006    RET1     2   2
+0007 => ISNES    1   3      ; "module"
+0008    JMP      2 => 0016
+0009    UGET     2   0      ; util
+0010    TGETS    2   2   4  ; "printout"
+0011    KSTR     3   5      ; "Do not use 'module' as a build type. Use"~
+0012    CALL     2   1   2
+0013    KSTR     1   6      ; "builtin"
+0014    TGETS    2   0   0  ; "build"
+0015    TSETS    1   2   1  ; "type"
+0016 => UGET     2   1      ; cfg
+0017    TGETS    2   2   7  ; "accepted_build_types"
+0018    ISF          2
+0019    JMP      3 => 0034
+0020    UGET     2   2      ; fun
+0021    TGETS    2   2   8  ; "contains"
+0022    UGET     3   1      ; cfg
+0023    TGETS    3   3   7  ; "accepted_build_types"
+0024    MOV      4   1
+0025    CALL     2   2   3
+0026    IST          2
+0027    JMP      2 => 0034
+0028    KPRI     2   0
+0029    KSTR     3   9      ; "This rockspec uses the '"
+0030    MOV      4   1
+0031    KSTR     5  10      ; "' build type, which is blocked by the 'a"~
+0032    CAT      3   3   5
+0033    RET      2   3
+0034 => GGET     2  11      ; "pcall"
+0035    GGET     3  12      ; "require"
+0036    KSTR     4  13      ; "luarocks.build."
+0037    MOV      5   1
+0038    CAT      4   4   5
+0039    CALL     2   3   3
+0040    ISF          2
+0041    JMP      4 => 0047
+0042    GGET     4   1      ; "type"
+0043    MOV      5   3
+0044    CALL     4   2   2
+0045    ISEQS    4  14      ; "table"
+0046    JMP      4 => 0054
+0047 => KPRI     4   0
+0048    KSTR     5  15      ; "Failed initializing build back-end for b"~
+0049    MOV      6   1
+0050    KSTR     7  16      ; "': "
+0051    MOV      8   3
+0052    CAT      5   5   8
+0053    RET      4   3
+0054 => TGETS    4   3  17  ; "run"
+0055    MOV      5   0
+0056    CALL     4   3   2
+0057    IST          4
+0058    JMP      6 => 0064
+0059    KPRI     6   0
+0060    KSTR     7  18      ; "Build error: "
+0061    MOV      8   5
+0062    CAT      7   7   8
+0063    RET      6   3
+0064 => KPRI     6   2
+0065    RET1     6   2
+
+-- BYTECODE -- build.lua:235-270
+0001    GGET     4   0      ; "assert"
+0002    GGET     5   1      ; "type"
+0003    MOV      6   0
+0004    CALL     5   2   2
+0005    ISEQS    5   2      ; "table"
+0006    JMP      5 => 0011
+0007    NOT      5   0
+0008    JMP      6 => 0012
+0009    KPRI     5   1
+0010    JMP      6 => 0012
+0011 => KPRI     5   2
+0012 => CALL     4   1   2
+0013    GGET     4   0      ; "assert"
+0014    GGET     5   1      ; "type"
+0015    MOV      6   1
+0016    CALL     5   2   2
+0017    ISEQS    5   3      ; "string"
+0018    JMP      5 => 0021
+0019    KPRI     5   1
+0020    JMP      6 => 0022
+0021 => KPRI     5   2
+0022 => CALL     4   1   2
+0023    IST          0
+0024    JMP      4 => 0027
+0025    KPRI     4   2
+0026    RET1     4   2
+0027 => GGET     4   4      ; "pairs"
+0028    MOV      5   0
+0029    CALL     4   4   2
+0030    ISNEXT   7 => 0129
+0031 => MOV      9   1
+0032    UGET    10   0      ; dir
+0033    TGETS   10  10   5  ; "base_name"
+0034    MOV     11   8
+0035    CALL    10   2   2
+0036    GGET    11   1      ; "type"
+0037    MOV     12   7
+0038    CALL    11   2   2
+0039    ISNES   11   3      ; "string"
+0040    JMP     11 => 0100
+0041    MOV     11   7
+0042    ISF          2
+0043    JMP     12 => 0076
+0044    UGET    12   0      ; dir
+0045    TGETS   12  12   6  ; "path"
+0046    MOV     13   1
+0047    UGET    14   1      ; path
+0048    TGETS   14  14   7  ; "module_to_path"
+0049    MOV     15  11
+0050    CALL    14   0   2
+0051    CALLM   12   2   1
+0052    MOV      9  12
+0053    UGET    12   2      ; fs
+0054    TGETS   12  12   8  ; "make_dir"
+0055    MOV     13   9
+0056    CALL    12   3   2
+0057    IST         12
+0058    JMP     14 => 0062
+0059    KPRI    14   0
+0060    MOV     15  13
+0061    RET     14   3
+0062 => MOV     15  10
+0063    TGETS   14  10   9  ; "match"
+0064    KSTR    16  10      ; "%.lua$"
+0065    CALL    14   2   3
+0066    ISF         14
+0067    JMP     15 => 0109
+0068    MOV     15  11
+0069    TGETS   14  11   9  ; "match"
+0070    KSTR    16  11      ; "([^.]+)$"
+0071    CALL    14   2   3
+0072    MOV     15  14
+0073    KSTR    16  12      ; ".lua"
+0074    CAT     10  15  16
+0075    JMP     12 => 0109
+0076 => UGET    12   0      ; dir
+0077    TGETS   12  12   6  ; "path"
+0078    MOV     13   1
+0079    UGET    14   0      ; dir
+0080    TGETS   14  14  13  ; "dir_name"
+0081    MOV     15  11
+0082    CALL    14   0   2
+0083    CALLM   12   2   1
+0084    MOV      9  12
+0085    UGET    12   2      ; fs
+0086    TGETS   12  12   8  ; "make_dir"
+0087    MOV     13   9
+0088    CALL    12   3   2
+0089    IST         12
+0090    JMP     14 => 0094
+0091    KPRI    14   0
+0092    MOV     15  13
+0093    RET     14   3
+0094 => UGET    14   0      ; dir
+0095    TGETS   14  14   5  ; "base_name"
+0096    MOV     15  11
+0097    CALL    14   2   2
+0098    MOV     10  14
+0099    JMP     11 => 0109
+0100 => UGET    11   2      ; fs
+0101    TGETS   11  11   8  ; "make_dir"
+0102    MOV     12   9
+0103    CALL    11   3   2
+0104    IST         11
+0105    JMP     13 => 0109
+0106    KPRI    13   0
+0107    MOV     14  12
+0108    RET     13   3
+0109 => UGET    11   2      ; fs
+0110    TGETS   11  11  14  ; "copy"
+0111    UGET    12   0      ; dir
+0112    TGETS   12  12   6  ; "path"
+0113    MOV     13   8
+0114    CALL    12   2   2
+0115    UGET    13   0      ; dir
+0116    TGETS   13  13   6  ; "path"
+0117    MOV     14   9
+0118    MOV     15  10
+0119    CALL    13   2   3
+0120    MOV     14   3
+0121    CALL    11   2   4
+0122    IST         11
+0123    JMP     12 => 0129
+0124    KPRI    12   0
+0125    KSTR    13  15      ; "Failed copying "
+0126    MOV     14   8
+0127    CAT     13  13  14
+0128    RET     12   3
+0129 => ITERN    7   3   3
+0130    ITERL    7 => 0031
+0131    KPRI     4   2
+0132    RET1     4   2
+
+-- BYTECODE -- build.lua:272-288
+0001    TDUP     2   0
+0002    UGET     3   0      ; dir
+0003    TGETS    3   3   1  ; "path"
+0004    UGET     4   1      ; path
+0005    TGETS    4   4   2  ; "install_dir"
+0006    MOV      5   0
+0007    MOV      6   1
+0008    CALL     4   2   3
+0009    KSTR     5   3      ; "doc"
+0010    CALL     3   2   3
+0011    KPRI     4   1
+0012    UGET     5   2      ; fs
+0013    TGETS    5   5   4  ; "dir"
+0014    CALL     5   4   1
+0015    JMP      8 => 0047
+0016 => GGET     9   5      ; "ipairs"
+0017    MOV     10   2
+0018    CALL     9   4   2
+0019    JMP     12 => 0045
+0020 => MOV     15   8
+0021    TGETS   14   8   6  ; "lower"
+0022    CALL    14   2   2
+0023    MOV     15  14
+0024    TGETS   14  14   7  ; "match"
+0025    KSTR    16   8      ; "^"
+0026    MOV     17  13
+0027    CAT     16  16  17
+0028    CALL    14   2   3
+0029    ISF         14
+0030    JMP     15 => 0045
+0031    IST          4
+0032    JMP     14 => 0038
+0033    UGET    14   2      ; fs
+0034    TGETS   14  14   9  ; "make_dir"
+0035    MOV     15   3
+0036    CALL    14   1   2
+0037    KPRI     4   2
+0038 => UGET    14   2      ; fs
+0039    TGETS   14  14  10  ; "copy"
+0040    MOV     15   8
+0041    MOV     16   3
+0042    KSTR    17  11      ; "read"
+0043    CALL    14   1   4
+0044    JMP      9 => 0047
+0045 => ITERC   12   3   3
+0046    ITERL   12 => 0020
+0047 => ITERC    8   2   3
+0048    ITERL    8 => 0016
+0049    RET0     0   1
+
+-- BYTECODE -- build.lua:290-325
+0001    TGETS    2   0   0  ; "name"
+0002    TGETS    3   0   1  ; "version"
+0003    TGETS    4   0   2  ; "build"
+0004    TGETS    4   4   3  ; "install"
+0005    ISF          4
+0006    JMP      5 => 0026
+0007    GGET     4   4      ; "pairs"
+0008    MOV      5   1
+0009    CALL     4   4   2
+0010    ISNEXT   7 => 0024
+0011 => UGET     9   0      ; install_to
+0012    TGETS   10   0   2  ; "build"
+0013    TGETS   10  10   3  ; "install"
+0014    TGETV   10  10   7
+0015    TGETS   11   8   0  ; "name"
+0016    TGETS   12   8   5  ; "is_module_path"
+0017    TGETS   13   8   6  ; "perms"
+0018    CALL     9   3   5
+0019    IST          9
+0020    JMP     11 => 0024
+0021    KPRI    11   0
+0022    MOV     12  10
+0023    RET     11   3
+0024 => ITERN    7   3   3
+0025    ITERL    7 => 0011
+0026 => TGETS    4   0   2  ; "build"
+0027    TGETS    4   4   7  ; "copy_directories"
+0028    KPRI     5   1
+0029    IST          4
+0030    JMP      6 => 0033
+0031    TDUP     4   8
+0032    KPRI     5   2
+0033 => KPRI     6   1
+0034    GGET     7   4      ; "pairs"
+0035    MOV      8   4
+0036    CALL     7   4   2
+0037    ISNEXT  10 => 0072
+0038 => UGET    12   1      ; fs
+0039    TGETS   12  12   9  ; "is_dir"
+0040    MOV     13  11
+0041    CALL    12   2   2
+0042    ISF         12
+0043    JMP     13 => 0064
+0044    UGET    12   2      ; dir
+0045    TGETS   12  12  10  ; "path"
+0046    UGET    13   3      ; path
+0047    TGETS   13  13  11  ; "install_dir"
+0048    MOV     14   2
+0049    MOV     15   3
+0050    CALL    13   2   3
+0051    MOV     14  11
+0052    CALL    12   2   3
+0053    UGET    13   1      ; fs
+0054    TGETS   13  13  12  ; "make_dir"
+0055    MOV     14  12
+0056    CALL    13   1   2
+0057    UGET    13   1      ; fs
+0058    TGETS   13  13  13  ; "copy_contents"
+0059    MOV     14  11
+0060    MOV     15  12
+0061    CALL    13   1   3
+0062    KPRI     6   2
+0063    JMP     12 => 0072
+0064 => IST          5
+0065    JMP     12 => 0072
+0066    KPRI    12   0
+0067    KSTR    13  14      ; "Directory '"
+0068    MOV     14  11
+0069    KSTR    15  15      ; "' not found"
+0070    CAT     13  13  15
+0071    RET     12   3
+0072 => ITERN   10   3   3
+0073    ITERL   10 => 0038
+0074    IST          6
+0075    JMP      7 => 0080
+0076    UGET     7   4      ; install_default_docs
+0077    MOV      8   2
+0078    MOV      9   3
+0079    CALL     7   1   3
+0080 => KPRI     7   2
+0081    RET1     7   2
+
+-- BYTECODE -- build.lua:328-345
+0001    TGETS    2   0   0  ; "name"
+0002    TGETS    3   0   1  ; "version"
+0003    UGET     4   0      ; fs
+0004    TGETS    4   4   2  ; "copy"
+0005    TGETS    5   0   3  ; "local_abs_filename"
+0006    UGET     6   1      ; path
+0007    TGETS    6   6   4  ; "rockspec_file"
+0008    MOV      7   2
+0009    MOV      8   3
+0010    CALL     6   2   3
+0011    KSTR     7   5      ; "read"
+0012    CALL     4   1   4
+0013    UGET     4   2      ; deplocks
+0014    TGETS    4   4   6  ; "get_abs_filename"
+0015    TGETS    5   0   0  ; "name"
+0016    CALL     4   2   2
+0017    ISF          4
+0018    JMP      5 => 0033
+0019    UGET     5   0      ; fs
+0020    TGETS    5   5   2  ; "copy"
+0021    MOV      6   4
+0022    UGET     7   3      ; dir
+0023    TGETS    7   7   7  ; "path"
+0024    UGET     8   1      ; path
+0025    TGETS    8   8   8  ; "install_dir"
+0026    MOV      9   2
+0027    MOV     10   3
+0028    CALL     8   2   3
+0029    KSTR     9   9      ; "luarocks.lock"
+0030    CALL     7   2   3
+0031    KSTR     8   5      ; "read"
+0032    CALL     5   1   4
+0033 => UGET     5   4      ; writer
+0034    TGETS    5   5  10  ; "make_rock_manifest"
+0035    MOV      6   2
+0036    MOV      7   3
+0037    CALL     5   3   3
+0038    IST          5
+0039    JMP      7 => 0043
+0040    KPRI     7   0
+0041    MOV      8   6
+0042    RET      7   3
+0043 => UGET     7   4      ; writer
+0044    TGETS    7   7  11  ; "make_namespace_file"
+0045    MOV      8   2
+0046    MOV      9   3
+0047    TGETS   10   1  12  ; "namespace"
+0048    CALL     7   3   4
+0049    MOV      6   8
+0050    MOV      5   7
+0051    IST          5
+0052    JMP      7 => 0056
+0053    KPRI     7   0
+0054    MOV      8   6
+0055    RET      7   3
+0056 => KPRI     7   2
+0057    RET1     7   2
+
+-- BYTECODE -- build.lua:394-397
+0001    UGET     0   0      ; fs
+0002    TGETS    0   0   0  ; "delete"
+0003    UGET     1   1      ; path
+0004    TGETS    1   1   1  ; "install_dir"
+0005    UGET     2   2      ; name
+0006    UGET     3   3      ; version
+0007    CALL     1   0   3
+0008    CALLM    0   1   0
+0009    UGET     0   0      ; fs
+0010    TGETS    0   0   2  ; "remove_dir_if_empty"
+0011    UGET     1   1      ; path
+0012    TGETS    1   1   3  ; "versions_dir"
+0013    UGET     2   2      ; name
+0014    CALL     1   0   2
+0015    CALLM    0   1   0
+0016    RET0     0   1
+
+-- BYTECODE -- build.lua:431-433
+0001    UGET     0   0      ; repos
+0002    TGETS    0   0   0  ; "delete_version"
+0003    UGET     1   1      ; name
+0004    UGET     2   2      ; version
+0005    UGET     3   3      ; opts
+0006    TGETS    3   3   1  ; "deps_mode"
+0007    CALL     0   1   4
+0008    RET0     0   1
+
+-- BYTECODE -- build.lua:351-441
+0001    GGET     2   0      ; "assert"
+0002    MOV      4   0
+0003    TGETS    3   0   1  ; "type"
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "rockspec"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => CALL     2   1   2
+0011    GGET     2   0      ; "assert"
+0012    MOV      4   1
+0013    TGETS    3   1   1  ; "type"
+0014    CALL     3   2   2
+0015    ISEQS    3   3      ; "build.opts"
+0016    JMP      3 => 0019
+0017    KPRI     3   1
+0018    JMP      4 => 0020
+0019 => KPRI     3   2
+0020 => CALL     2   1   2
+0021    TGETS    2   0   4  ; "build"
+0022    IST          2
+0023    JMP      2 => 0036
+0024    MOV      3   0
+0025    TGETS    2   0   5  ; "format_is_at_least"
+0026    KSTR     4   6      ; "3.0"
+0027    CALL     2   2   3
+0028    ISF          2
+0029    JMP      3 => 0033
+0030    TDUP     2   7
+0031    TSETS    2   0   4  ; "build"
+0032    JMP      2 => 0036
+0033 => KPRI     2   0
+0034    KSTR     3   8      ; "Rockspec error: build table not specifie"~
+0035    UCLO     0 => 0250
+0036 => TGETS    2   0   4  ; "build"
+0037    TGETS    2   2   1  ; "type"
+0038    IST          2
+0039    JMP      2 => 0053
+0040    MOV      3   0
+0041    TGETS    2   0   5  ; "format_is_at_least"
+0042    KSTR     4   6      ; "3.0"
+0043    CALL     2   2   3
+0044    ISF          2
+0045    JMP      3 => 0050
+0046    TGETS    2   0   4  ; "build"
+0047    KSTR     3   9      ; "builtin"
+0048    TSETS    3   2   1  ; "type"
+0049    JMP      2 => 0053
+0050 => KPRI     2   0
+0051    KSTR     3  10      ; "Rockspec error: build type not specified"
+0052    UCLO     0 => 0251
+0053 => UGET     2   0      ; fetch_and_change_to_source_dir
+0054    MOV      3   0
+0055    MOV      4   1
+0056    CALL     2   3   3
+0057    IST          2
+0058    JMP      4 => 0062
+0059    KPRI     4   0
+0060    MOV      5   3
+0061    UCLO     0 => 0252
+0062 => TGETS    4   1  11  ; "pin"
+0063    ISF          4
+0064    JMP      5 => 0070
+0065    UGET     4   1      ; deplocks
+0066    TGETS    4   4  12  ; "init"
+0067    TGETS    5   0  13  ; "name"
+0068    KSTR     6  14      ; "."
+0069    CALL     4   1   3
+0070 => UGET     4   2      ; process_dependencies
+0071    MOV      5   0
+0072    MOV      6   1
+0073    CALL     4   3   3
+0074    MOV      3   5
+0075    MOV      2   4
+0076    IST          2
+0077    JMP      4 => 0081
+0078    KPRI     4   0
+0079    MOV      5   3
+0080    UCLO     0 => 0253
+0081 => TGETS    4   0  13  ; "name"
+0082    TGETS    5   0  15  ; "version"
+0083    TGETS    6   1  16  ; "build_only_deps"
+0084    ISF          6
+0085    JMP      7 => 0089
+0086    MOV      6   4
+0087    MOV      7   5
+0088    UCLO     0 => 0254
+0089 => UGET     6   3      ; repos
+0090    TGETS    6   6  17  ; "is_installed"
+0091    MOV      7   4
+0092    MOV      8   5
+0093    CALL     6   2   3
+0094    ISF          6
+0095    JMP      7 => 0102
+0096    UGET     6   3      ; repos
+0097    TGETS    6   6  18  ; "delete_version"
+0098    MOV      7   4
+0099    MOV      8   5
+0100    TGETS    9   1  19  ; "deps_mode"
+0101    CALL     6   1   4
+0102 => UGET     6   4      ; prepare_install_dirs
+0103    MOV      7   4
+0104    MOV      8   5
+0105    CALL     6   3   3
+0106    IST          6
+0107    JMP      8 => 0111
+0108    KPRI     8   0
+0109    MOV      9   7
+0110    UCLO     0 => 0255
+0111 => UGET     8   5      ; util
+0112    TGETS    8   8  20  ; "schedule_function"
+0113    FNEW     9  21      ; build.lua:394
+0114    CALL     8   2   2
+0115    UGET     9   8      ; build
+0116    TGETS    9   9  22  ; "apply_patches"
+0117    MOV     10   0
+0118    CALL     9   3   2
+0119    MOV      7  10
+0120    MOV      2   9
+0121    IST          2
+0122    JMP      9 => 0127
+0123    KPRI     9   0
+0124    MOV     10   7
+0125    UCLO     0 => 0126
+0126 => RET      9   3
+0127 => UGET     9   9      ; check_macosx_deployment_target
+0128    MOV     10   0
+0129    CALL     9   3   2
+0130    MOV      7  10
+0131    MOV      2   9
+0132    IST          2
+0133    JMP      9 => 0138
+0134    KPRI     9   0
+0135    MOV     10   7
+0136    UCLO     0 => 0137
+0137 => RET      9   3
+0138 => UGET     9  10      ; run_build_driver
+0139    MOV     10   0
+0140    CALL     9   3   2
+0141    MOV      7  10
+0142    MOV      2   9
+0143    IST          2
+0144    JMP      9 => 0149
+0145    KPRI     9   0
+0146    MOV     10   7
+0147    UCLO     0 => 0148
+0148 => RET      9   3
+0149 => UGET     9  11      ; install_files
+0150    MOV     10   0
+0151    MOV     11   6
+0152    CALL     9   3   3
+0153    MOV      7  10
+0154    MOV      2   9
+0155    IST          2
+0156    JMP      9 => 0161
+0157    KPRI     9   0
+0158    MOV     10   7
+0159    UCLO     0 => 0160
+0160 => RET      9   3
+0161 => GGET     9  23      ; "pairs"
+0162    MOV     10   6
+0163    CALL     9   4   2
+0164    ISNEXT  12 => 0169
+0165 => UGET    14   6      ; fs
+0166    TGETS   14  14  24  ; "remove_dir_if_empty"
+0167    TGETS   15  13  13  ; "name"
+0168    CALL    14   1   2
+0169 => ITERN   12   3   3
+0170    ITERL   12 => 0165
+0171    UGET     9   6      ; fs
+0172    TGETS    9   9  25  ; "pop_dir"
+0173    CALL     9   1   1
+0174    TGETS    9   1  26  ; "need_to_fetch"
+0175    ISF          9
+0176    JMP     10 => 0180
+0177    UGET     9   6      ; fs
+0178    TGETS    9   9  25  ; "pop_dir"
+0179    CALL     9   1   1
+0180 => TGETS    9   1  11  ; "pin"
+0181    ISF          9
+0182    JMP     10 => 0186
+0183    UGET     9   1      ; deplocks
+0184    TGETS    9   9  27  ; "write_file"
+0185    CALL     9   1   1
+0186 => UGET     9  12      ; write_rock_dir_files
+0187    MOV     10   0
+0188    MOV     11   1
+0189    CALL     9   3   3
+0190    MOV      7  10
+0191    MOV      2   9
+0192    IST          2
+0193    JMP      9 => 0198
+0194    KPRI     9   0
+0195    MOV     10   7
+0196    UCLO     0 => 0197
+0197 => RET      9   3
+0198 => UGET     9   3      ; repos
+0199    TGETS    9   9  28  ; "deploy_files"
+0200    MOV     10   4
+0201    MOV     11   5
+0202    UGET    12   3      ; repos
+0203    TGETS   12  12  29  ; "should_wrap_bin_scripts"
+0204    MOV     13   0
+0205    CALL    12   2   2
+0206    TGETS   13   1  19  ; "deps_mode"
+0207    CALL     9   3   5
+0208    MOV      7  10
+0209    MOV      2   9
+0210    IST          2
+0211    JMP      9 => 0216
+0212    KPRI     9   0
+0213    MOV     10   7
+0214    UCLO     0 => 0215
+0215 => RET      9   3
+0216 => UGET     9   5      ; util
+0217    TGETS    9   9  30  ; "remove_scheduled_function"
+0218    MOV     10   8
+0219    CALL     9   1   2
+0220    UGET     9   5      ; util
+0221    TGETS    9   9  20  ; "schedule_function"
+0222    FNEW    10  31      ; build.lua:431
+0223    CALL     9   2   2
+0224    MOV      8   9
+0225    UGET     9   3      ; repos
+0226    TGETS    9   9  32  ; "run_hook"
+0227    MOV     10   0
+0228    KSTR    11  33      ; "post_install"
+0229    CALL     9   3   3
+0230    MOV      7  10
+0231    MOV      2   9
+0232    IST          2
+0233    JMP      9 => 0238
+0234    KPRI     9   0
+0235    MOV     10   7
+0236    UCLO     0 => 0237
+0237 => RET      9   3
+0238 => UGET     9   5      ; util
+0239    TGETS    9   9  34  ; "announce_install"
+0240    MOV     10   0
+0241    CALL     9   1   2
+0242    UGET     9   5      ; util
+0243    TGETS    9   9  30  ; "remove_scheduled_function"
+0244    MOV     10   8
+0245    CALL     9   1   2
+0246    MOV      9   4
+0247    MOV     10   5
+0248    UCLO     0 => 0249
+0249 => RET      9   3
+0250 => RET      2   3
+0251 => RET      2   3
+0252 => RET      4   3
+0253 => RET      4   3
+0254 => RET      6   3
+0255 => RET      8   3
+
+-- BYTECODE -- build.lua:0-444
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.path"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.util"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.fun"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.fetch"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.fs"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.dir"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   7      ; "luarocks.deps"
+0022    CALL     7   2   2
+0023    GGET     8   0      ; "require"
+0024    KSTR     9   8      ; "luarocks.core.cfg"
+0025    CALL     8   2   2
+0026    GGET     9   0      ; "require"
+0027    KSTR    10   9      ; "luarocks.repos"
+0028    CALL     9   2   2
+0029    GGET    10   0      ; "require"
+0030    KSTR    11  10      ; "luarocks.manif.writer"
+0031    CALL    10   2   2
+0032    GGET    11   0      ; "require"
+0033    KSTR    12  11      ; "luarocks.deplocks"
+0034    CALL    11   2   2
+0035    TGETS   12   2  13  ; "opts_table"
+0036    KSTR    13  14      ; "build.opts"
+0037    TDUP    14  15
+0038    CALL    12   2   3
+0039    TSETS   12   0  12  ; "opts"
+0040    FNEW    12  16      ; build.lua:32
+0041    FNEW    13  18      ; build.lua:46
+0042    TSETS   13   0  17  ; "apply_patches"
+0043    UCLO    12 => 0044
+0044 => FNEW    12  19      ; build.lua:82
+0045    FNEW    13  20      ; build.lua:107
+0046    FNEW    14  21      ; build.lua:146
+0047    FNEW    15  22      ; build.lua:173
+0048    FNEW    16  23      ; build.lua:191
+0049    KPRI    17   0
+0050    FNEW    18  24      ; build.lua:235
+0051    FNEW    19  25      ; build.lua:272
+0052    FNEW    17  26      ; build.lua:290
+0053    UCLO    18 => 0054
+0054 => FNEW    18  27      ; build.lua:328
+0055    FNEW    19  29      ; build.lua:351
+0056    TSETS   19   0  28  ; "build_rockspec"
+0057    UCLO     0 => 0058
+0058 => RET1     0   2
+

@@ -1,0 +1,749 @@
+-- BYTECODE -- install.lua:19-51
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "command"
+0003    KSTR     3   1      ; "install"
+0004    KSTR     4   2      ; "Install a rock."
+0005    UGET     5   0      ; util
+0006    TGETS    5   5   3  ; "see_also"
+0007    CALL     5   0   1
+0008    CALLM    1   2   3
+0009    MOV      3   1
+0010    TGETS    2   1   4  ; "argument"
+0011    KSTR     4   5      ; "rock"
+0012    KSTR     5   6      ; "The name of a rock to be fetched from a "~
+0013    KSTR     6   7      ; "or a filename of a locally available roc"~
+0014    CAT      5   5   6
+0015    CALL     2   2   4
+0016    MOV      3   2
+0017    TGETS    2   2   8  ; "action"
+0018    UGET     4   0      ; util
+0019    TGETS    4   4   9  ; "namespaced_name_action"
+0020    CALL     2   1   3
+0021    MOV      3   1
+0022    TGETS    2   1   4  ; "argument"
+0023    KSTR     4  10      ; "version"
+0024    KSTR     5  11      ; "Version of the rock."
+0025    CALL     2   2   4
+0026    MOV      3   2
+0027    TGETS    2   2  12  ; "args"
+0028    KSTR     4  13      ; "?"
+0029    CALL     2   1   3
+0030    MOV      3   1
+0031    TGETS    2   1  14  ; "flag"
+0032    KSTR     4  15      ; "--keep"
+0033    KSTR     5  16      ; "Do not remove previously installed versi"~
+0034    KSTR     6  17      ; "rock after building a new one. This beha"~
+0035    KSTR     7  18      ; "setting keep_other_versions=true in the "~
+0036    CAT      5   5   7
+0037    CALL     2   1   4
+0038    MOV      3   1
+0039    TGETS    2   1  14  ; "flag"
+0040    KSTR     4  19      ; "--force"
+0041    KSTR     5  20      ; "If --keep is not specified, force remova"~
+0042    KSTR     6  21      ; "previously installed versions if it woul"~
+0043    CAT      5   5   6
+0044    CALL     2   1   4
+0045    MOV      3   1
+0046    TGETS    2   1  14  ; "flag"
+0047    KSTR     4  22      ; "--force-fast"
+0048    KSTR     5  23      ; "Like --force, but performs a forced remo"~
+0049    KSTR     6  24      ; "without reporting dependency issues."
+0050    CAT      5   5   6
+0051    CALL     2   1   4
+0052    MOV      3   1
+0053    TGETS    2   1  14  ; "flag"
+0054    KSTR     4  25      ; "--only-deps"
+0055    KSTR     5  26      ; "Install only the dependencies of the roc"~
+0056    CALL     2   1   4
+0057    MOV      3   1
+0058    TGETS    2   1  14  ; "flag"
+0059    KSTR     4  27      ; "--no-doc"
+0060    KSTR     5  28      ; "Install the rock without its documentati"~
+0061    CALL     2   1   4
+0062    MOV      3   1
+0063    TGETS    2   1  14  ; "flag"
+0064    KSTR     4  29      ; "--verify"
+0065    KSTR     5  30      ; "Verify signature of the rockspec or src."~
+0066    KSTR     6  31      ; "built. If the rockspec or src.rock is be"~
+0067    KSTR     7  32      ; "attempt to download the signature as wel"~
+0068    KSTR     8  33      ; "file should be already available locally"~
+0069    KSTR     9  34      ; "You need the signer’s public key in yo"~
+0070    KSTR    10  35      ; "option to work properly."
+0071    CAT      5   5  10
+0072    CALL     2   1   4
+0073    MOV      3   1
+0074    TGETS    2   1  14  ; "flag"
+0075    KSTR     4  36      ; "--check-lua-versions"
+0076    KSTR     5  37      ; "If the rock can't be found, check reposi"~
+0077    KSTR     6  38      ; "and report if it is available for anothe"~
+0078    CAT      5   5   6
+0079    CALL     2   1   4
+0080    UGET     2   0      ; util
+0081    TGETS    2   2  39  ; "deps_mode_option"
+0082    MOV      3   1
+0083    CALL     2   1   2
+0084    MOV      3   1
+0085    TGETS    2   1  14  ; "flag"
+0086    KSTR     4  40      ; "--no-manifest"
+0087    KSTR     5  41      ; "Skip creating/updating the manifest"
+0088    CALL     2   1   4
+0089    MOV      3   0
+0090    TGETS    2   0  14  ; "flag"
+0091    KSTR     4  42      ; "--pack-binary-rock"
+0092    CALL     2   2   3
+0093    MOV      3   2
+0094    TGETS    2   2  43  ; "hidden"
+0095    KPRI     4   2
+0096    CALL     2   1   3
+0097    MOV      3   0
+0098    TGETS    2   0  44  ; "option"
+0099    KSTR     4  45      ; "--branch"
+0100    CALL     2   2   3
+0101    MOV      3   2
+0102    TGETS    2   2  43  ; "hidden"
+0103    KPRI     4   2
+0104    CALL     2   1   3
+0105    MOV      3   0
+0106    TGETS    2   0  14  ; "flag"
+0107    KSTR     4  46      ; "--sign"
+0108    CALL     2   2   3
+0109    MOV      3   2
+0110    TGETS    2   2  43  ; "hidden"
+0111    KPRI     4   2
+0112    CALL     2   1   3
+0113    RET0     0   1
+
+-- BYTECODE -- install.lua:89-92
+0001    UGET     0   0      ; fs
+0002    TGETS    0   0   0  ; "delete"
+0003    UGET     1   1      ; install_dir
+0004    CALL     0   1   2
+0005    UGET     0   0      ; fs
+0006    TGETS    0   0   1  ; "remove_dir_if_empty"
+0007    UGET     1   2      ; path
+0008    TGETS    1   1   2  ; "versions_dir"
+0009    UGET     2   3      ; name
+0010    CALL     1   0   2
+0011    CALLM    0   1   0
+0012    RET0     0   1
+
+-- BYTECODE -- install.lua:127-129
+0001    UGET     0   0      ; repos
+0002    TGETS    0   0   0  ; "delete_version"
+0003    UGET     1   1      ; name
+0004    UGET     2   2      ; version
+0005    UGET     3   3      ; deps_mode
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- install.lua:68-137
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "string"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => CALL     2   1   2
+0011    GGET     2   0      ; "assert"
+0012    MOV      4   1
+0013    TGETS    3   1   1  ; "type"
+0014    CALL     3   2   2
+0015    ISEQS    3   3      ; "install.opts"
+0016    JMP      3 => 0019
+0017    KPRI     3   1
+0018    JMP      4 => 0020
+0019 => KPRI     3   2
+0020 => CALL     2   1   2
+0021    TGETS    2   1   4  ; "namespace"
+0022    TGETS    3   1   5  ; "deps_mode"
+0023    UGET     4   0      ; path
+0024    TGETS    4   4   6  ; "parse_name"
+0025    MOV      5   0
+0026    CALL     4   4   2
+0027    IST          4
+0028    JMP      7 => 0035
+0029    KPRI     7   0
+0030    KSTR     8   7      ; "Filename "
+0031    MOV      9   0
+0032    KSTR    10   8      ; " does not match format 'name-version-rev"~
+0033    CAT      8   8  10
+0034    UCLO     0 => 0228
+0035 => ISEQS    6   9      ; "all"
+0036    JMP      7 => 0047
+0037    UGET     7   1      ; cfg
+0038    TGETS    7   7  10  ; "arch"
+0039    ISEQV    6   7
+0040    JMP      7 => 0047
+0041    KPRI     7   0
+0042    KSTR     8  11      ; "Incompatible architecture "
+0043    MOV      9   6
+0044    CAT      8   8   9
+0045    KSTR     9  10      ; "arch"
+0046    UCLO     0 => 0229
+0047 => UGET     7   2      ; repos
+0048    TGETS    7   7  12  ; "is_installed"
+0049    MOV      8   4
+0050    MOV      9   5
+0051    CALL     7   2   3
+0052    ISF          7
+0053    JMP      8 => 0060
+0054    UGET     7   2      ; repos
+0055    TGETS    7   7  13  ; "delete_version"
+0056    MOV      8   4
+0057    MOV      9   5
+0058    TGETS   10   1   5  ; "deps_mode"
+0059    CALL     7   1   4
+0060 => UGET     7   0      ; path
+0061    TGETS    7   7  14  ; "install_dir"
+0062    MOV      8   4
+0063    MOV      9   5
+0064    CALL     7   2   3
+0065    UGET     8   3      ; util
+0066    TGETS    8   8  15  ; "schedule_function"
+0067    FNEW     9  16      ; install.lua:89
+0068    CALL     8   2   2
+0069    UGET     9   5      ; fetch
+0070    TGETS    9   9  17  ; "fetch_and_unpack_rock"
+0071    MOV     10   0
+0072    MOV     11   7
+0073    TGETS   12   1  18  ; "verify"
+0074    CALL     9   4   4
+0075    IST          9
+0076    JMP     12 => 0082
+0077    KPRI    12   0
+0078    MOV     13  10
+0079    MOV     14  11
+0080    UCLO     0 => 0081
+0081 => RET     12   4
+0082 => UGET    12   5      ; fetch
+0083    TGETS   12  12  19  ; "load_rockspec"
+0084    UGET    13   0      ; path
+0085    TGETS   13  13  20  ; "rockspec_file"
+0086    MOV     14   4
+0087    MOV     15   5
+0088    CALL    13   0   3
+0089    CALLM   12   3   0
+0090    ISF         13
+0091    JMP     14 => 0099
+0092    KPRI    14   0
+0093    KSTR    15  21      ; "Failed loading rockspec for installed pa"~
+0094    MOV     16  13
+0095    CAT     15  15  16
+0096    MOV     16  11
+0097    UCLO     0 => 0098
+0098 => RET     14   4
+0099 => TGETS   14   1   5  ; "deps_mode"
+0100    ISEQS   14  22      ; "none"
+0101    JMP     14 => 0117
+0102    UGET    14   6      ; deps
+0103    TGETS   14  14  23  ; "check_external_deps"
+0104    MOV     15  12
+0105    KSTR    16  24      ; "install"
+0106    CALL    14   4   3
+0107    MOV     11  16
+0108    MOV     13  15
+0109    MOV      9  14
+0110    ISF         13
+0111    JMP     14 => 0117
+0112    KPRI    14   0
+0113    MOV     15  13
+0114    MOV     16  11
+0115    UCLO     0 => 0116
+0116 => RET     14   4
+0117 => UGET    14   4      ; fs
+0118    TGETS   14  14  25  ; "exists"
+0119    UGET    15   0      ; path
+0120    TGETS   15  15  26  ; "rock_manifest_file"
+0121    MOV     16   4
+0122    MOV     17   5
+0123    CALL    15   0   3
+0124    CALLM   14   2   0
+0125    IST         14
+0126    JMP     14 => 0140
+0127    UGET    14   7      ; writer
+0128    TGETS   14  14  27  ; "make_rock_manifest"
+0129    MOV     15   4
+0130    MOV     16   5
+0131    CALL    14   3   3
+0132    MOV     13  15
+0133    MOV      9  14
+0134    ISF         13
+0135    JMP     14 => 0140
+0136    KPRI    14   0
+0137    MOV     15  13
+0138    UCLO     0 => 0139
+0139 => RET     14   3
+0140 => ISF          2
+0141    JMP     14 => 0156
+0142    UGET    14   7      ; writer
+0143    TGETS   14  14  28  ; "make_namespace_file"
+0144    MOV     15   4
+0145    MOV     16   5
+0146    MOV     17   2
+0147    CALL    14   3   4
+0148    MOV     13  15
+0149    MOV      9  14
+0150    ISF         13
+0151    JMP     14 => 0156
+0152    KPRI    14   0
+0153    MOV     15  13
+0154    UCLO     0 => 0155
+0155 => RET     14   3
+0156 => ISEQS    3  22      ; "none"
+0157    JMP     14 => 0176
+0158    UGET    14   6      ; deps
+0159    TGETS   14  14  29  ; "fulfill_dependencies"
+0160    MOV     15  12
+0161    KSTR    16  30      ; "dependencies"
+0162    MOV     17   3
+0163    TGETS   18   1  18  ; "verify"
+0164    MOV     19   7
+0165    CALL    14   4   6
+0166    MOV     11  16
+0167    MOV     13  15
+0168    MOV      9  14
+0169    ISF         13
+0170    JMP     14 => 0176
+0171    KPRI    14   0
+0172    MOV     15  13
+0173    MOV     16  11
+0174    UCLO     0 => 0175
+0175 => RET     14   4
+0176 => UGET    14   2      ; repos
+0177    TGETS   14  14  31  ; "deploy_files"
+0178    MOV     15   4
+0179    MOV     16   5
+0180    UGET    17   2      ; repos
+0181    TGETS   17  17  32  ; "should_wrap_bin_scripts"
+0182    MOV     18  12
+0183    CALL    17   2   2
+0184    MOV     18   3
+0185    CALL    14   3   5
+0186    MOV     13  15
+0187    MOV      9  14
+0188    ISF         13
+0189    JMP     14 => 0194
+0190    KPRI    14   0
+0191    MOV     15  13
+0192    UCLO     0 => 0193
+0193 => RET     14   3
+0194 => UGET    14   3      ; util
+0195    TGETS   14  14  33  ; "remove_scheduled_function"
+0196    MOV     15   8
+0197    CALL    14   1   2
+0198    UGET    14   3      ; util
+0199    TGETS   14  14  15  ; "schedule_function"
+0200    FNEW    15  34      ; install.lua:127
+0201    CALL    14   2   2
+0202    MOV      8  14
+0203    UGET    14   2      ; repos
+0204    TGETS   14  14  35  ; "run_hook"
+0205    MOV     15  12
+0206    KSTR    16  36      ; "post_install"
+0207    CALL    14   3   3
+0208    MOV     13  15
+0209    MOV      9  14
+0210    ISF         13
+0211    JMP     14 => 0216
+0212    KPRI    14   0
+0213    MOV     15  13
+0214    UCLO     0 => 0215
+0215 => RET     14   3
+0216 => UGET    14   3      ; util
+0217    TGETS   14  14  37  ; "announce_install"
+0218    MOV     15  12
+0219    CALL    14   1   2
+0220    UGET    14   3      ; util
+0221    TGETS   14  14  33  ; "remove_scheduled_function"
+0222    MOV     15   8
+0223    CALL    14   1   2
+0224    MOV     14   4
+0225    MOV     15   5
+0226    UCLO     0 => 0227
+0227 => RET     14   3
+0228 => RET      7   3
+0229 => RET      7   4
+
+-- BYTECODE -- install.lua:145-175
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "string"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => CALL     2   1   2
+0011    GGET     2   0      ; "assert"
+0012    MOV      4   1
+0013    TGETS    3   1   1  ; "type"
+0014    CALL     3   2   2
+0015    ISEQS    3   3      ; "install.opts"
+0016    JMP      3 => 0019
+0017    KPRI     3   1
+0018    JMP      4 => 0020
+0019 => KPRI     3   2
+0020 => CALL     2   1   2
+0021    UGET     2   0      ; path
+0022    TGETS    2   2   4  ; "parse_name"
+0023    MOV      3   0
+0024    CALL     2   4   2
+0025    IST          2
+0026    JMP      5 => 0033
+0027    KPRI     5   0
+0028    KSTR     6   5      ; "Filename "
+0029    MOV      7   0
+0030    KSTR     8   6      ; " does not match format 'name-version-rev"~
+0031    CAT      6   6   8
+0032    RET      5   3
+0033 => ISEQS    4   7      ; "all"
+0034    JMP      5 => 0045
+0035    UGET     5   1      ; cfg
+0036    TGETS    5   5   8  ; "arch"
+0037    ISEQV    4   5
+0038    JMP      5 => 0045
+0039    KPRI     5   0
+0040    KSTR     6   9      ; "Incompatible architecture "
+0041    MOV      7   4
+0042    CAT      6   6   7
+0043    KSTR     7   8      ; "arch"
+0044    RET      5   4
+0045 => UGET     5   0      ; path
+0046    TGETS    5   5  10  ; "install_dir"
+0047    MOV      6   2
+0048    MOV      7   3
+0049    CALL     5   2   3
+0050    UGET     6   2      ; fetch
+0051    TGETS    6   6  11  ; "fetch_and_unpack_rock"
+0052    MOV      7   0
+0053    MOV      8   5
+0054    TGETS    9   1  12  ; "verify"
+0055    CALL     6   4   4
+0056    IST          6
+0057    JMP      9 => 0062
+0058    KPRI     9   0
+0059    MOV     10   7
+0060    MOV     11   8
+0061    RET      9   4
+0062 => UGET     9   2      ; fetch
+0063    TGETS    9   9  13  ; "load_rockspec"
+0064    UGET    10   0      ; path
+0065    TGETS   10  10  14  ; "rockspec_file"
+0066    MOV     11   2
+0067    MOV     12   3
+0068    CALL    10   0   3
+0069    CALLM    9   3   0
+0070    ISF         10
+0071    JMP     11 => 0078
+0072    KPRI    11   0
+0073    KSTR    12  15      ; "Failed loading rockspec for installed pa"~
+0074    MOV     13  10
+0075    CAT     12  12  13
+0076    MOV     13   8
+0077    RET     11   4
+0078 => UGET    11   3      ; deps
+0079    TGETS   11  11  16  ; "fulfill_dependencies"
+0080    MOV     12   9
+0081    KSTR    13  17      ; "dependencies"
+0082    TGETS   14   1  18  ; "deps_mode"
+0083    TGETS   15   1  12  ; "verify"
+0084    MOV     16   5
+0085    CALL    11   4   6
+0086    MOV      8  13
+0087    MOV     10  12
+0088    MOV      6  11
+0089    ISF         10
+0090    JMP     11 => 0095
+0091    KPRI    11   0
+0092    MOV     12  10
+0093    MOV     13   8
+0094    RET     11   4
+0095 => UGET    11   4      ; util
+0096    TGETS   11  11  19  ; "printout"
+0097    CALL    11   1   1
+0098    UGET    11   4      ; util
+0099    TGETS   11  11  19  ; "printout"
+0100    KSTR    12  20      ; "Successfully installed dependencies for "
+0101    MOV     13   2
+0102    KSTR    14  21      ; " "
+0103    MOV     15   3
+0104    CAT     12  12  15
+0105    CALL    11   1   2
+0106    MOV     11   2
+0107    MOV     12   3
+0108    RET     11   3
+
+-- BYTECODE -- install.lua:177-185
+0001    GGET     2   0      ; "assert"
+0002    MOV      4   1
+0003    TGETS    3   1   1  ; "type"
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "install.opts"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => CALL     2   1   2
+0011    UGET     2   0      ; install
+0012    TGETS    2   2   3  ; "install_binary_rock_deps"
+0013    MOV      3   0
+0014    MOV      4   1
+0015    CALL     2   3   3
+0016    IST          2
+0017    JMP      4 => 0021
+0018    KPRI     4   0
+0019    MOV      5   3
+0020    RET      4   3
+0021 => UGET     4   1      ; writer
+0022    TGETS    4   4   4  ; "check_dependencies"
+0023    KPRI     5   0
+0024    TGETS    6   1   5  ; "deps_mode"
+0025    CALL     4   1   3
+0026    MOV      4   2
+0027    MOV      5   3
+0028    RET      4   3
+
+-- BYTECODE -- install.lua:187-205
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "string"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => CALL     2   1   2
+0011    GGET     2   0      ; "assert"
+0012    MOV      4   1
+0013    TGETS    3   1   1  ; "type"
+0014    CALL     3   2   2
+0015    ISEQS    3   3      ; "install.opts"
+0016    JMP      3 => 0019
+0017    KPRI     3   1
+0018    JMP      4 => 0020
+0019 => KPRI     3   2
+0020 => CALL     2   1   2
+0021    UGET     2   0      ; install
+0022    TGETS    2   2   4  ; "install_binary_rock"
+0023    MOV      3   0
+0024    MOV      4   1
+0025    CALL     2   3   3
+0026    IST          2
+0027    JMP      4 => 0031
+0028    KPRI     4   0
+0029    MOV      5   3
+0030    RET      4   3
+0031 => TGETS    4   1   5  ; "no_doc"
+0032    ISF          4
+0033    JMP      5 => 0039
+0034    UGET     4   1      ; util
+0035    TGETS    4   4   6  ; "remove_doc_dir"
+0036    MOV      5   2
+0037    MOV      6   3
+0038    CALL     4   1   3
+0039 => TGETS    4   1   7  ; "keep"
+0040    IST          4
+0041    JMP      4 => 0059
+0042    UGET     4   2      ; cfg
+0043    TGETS    4   4   8  ; "keep_other_versions"
+0044    IST          4
+0045    JMP      4 => 0059
+0046    UGET     4   3      ; remove
+0047    TGETS    4   4   9  ; "remove_other_versions"
+0048    MOV      5   2
+0049    MOV      6   3
+0050    TGETS    7   1  10  ; "force"
+0051    TGETS    8   1  11  ; "force_fast"
+0052    CALL     4   3   5
+0053    IST          4
+0054    JMP      6 => 0059
+0055    UGET     6   1      ; util
+0056    TGETS    6   6  12  ; "printerr"
+0057    MOV      7   5
+0058    CALL     6   1   2
+0059 => UGET     4   4      ; writer
+0060    TGETS    4   4  13  ; "check_dependencies"
+0061    KPRI     5   0
+0062    TGETS    6   1  14  ; "deps_mode"
+0063    CALL     4   1   3
+0064    MOV      4   2
+0065    MOV      5   3
+0066    RET      4   3
+
+-- BYTECODE -- install.lua:215-249
+0001    UGET     1   0      ; fs
+0002    TGETS    1   1   0  ; "check_command_permissions"
+0003    MOV      2   0
+0004    CALL     1   3   2
+0005    IST          1
+0006    JMP      3 => 0013
+0007    KPRI     3   0
+0008    MOV      4   2
+0009    UGET     5   1      ; cmd
+0010    TGETS    5   5   1  ; "errorcodes"
+0011    TGETS    5   5   2  ; "PERMISSIONDENIED"
+0012    RET      3   4
+0013 => TGETS    3   0   3  ; "rock"
+0014    MOV      4   3
+0015    TGETS    3   3   4  ; "match"
+0016    KSTR     5   5      ; "%.rockspec$"
+0017    CALL     3   2   3
+0018    IST          3
+0019    JMP      4 => 0027
+0020    TGETS    3   0   3  ; "rock"
+0021    MOV      4   3
+0022    TGETS    3   3   4  ; "match"
+0023    KSTR     5   6      ; "%.src%.rock$"
+0024    CALL     3   2   3
+0025    ISF          3
+0026    JMP      4 => 0034
+0027 => GGET     3   7      ; "require"
+0028    KSTR     4   8      ; "luarocks.cmd.build"
+0029    CALL     3   2   2
+0030    TGETS    4   3   9  ; "command"
+0031    MOV      5   0
+0032    CALLT    4   2
+0033    JMP      3 => 0111
+0034 => TGETS    3   0   3  ; "rock"
+0035    MOV      4   3
+0036    TGETS    3   3   4  ; "match"
+0037    KSTR     5  10      ; "%.rock$"
+0038    CALL     3   2   3
+0039    ISF          3
+0040    JMP      4 => 0085
+0041    UGET     3   2      ; deps
+0042    TGETS    3   3  11  ; "get_deps_mode"
+0043    MOV      4   0
+0044    CALL     3   2   2
+0045    UGET     4   3      ; install
+0046    TGETS    4   4  12  ; "opts"
+0047    TDUP     5  14
+0048    TGETS    6   0  13  ; "namespace"
+0049    TSETS    6   5  13  ; "namespace"
+0050    TGETS    6   0  15  ; "keep"
+0051    NOT      6   6
+0052    NOT      6   6
+0053    TSETS    6   5  15  ; "keep"
+0054    TGETS    6   0  16  ; "force"
+0055    NOT      6   6
+0056    NOT      6   6
+0057    TSETS    6   5  16  ; "force"
+0058    TGETS    6   0  17  ; "force_fast"
+0059    NOT      6   6
+0060    NOT      6   6
+0061    TSETS    6   5  17  ; "force_fast"
+0062    TGETS    6   0  18  ; "no_doc"
+0063    NOT      6   6
+0064    NOT      6   6
+0065    TSETS    6   5  18  ; "no_doc"
+0066    TSETS    3   5  19  ; "deps_mode"
+0067    TGETS    6   0  20  ; "verify"
+0068    NOT      6   6
+0069    NOT      6   6
+0070    TSETS    6   5  20  ; "verify"
+0071    CALL     4   2   2
+0072    TGETS    5   0  21  ; "only_deps"
+0073    ISF          5
+0074    JMP      6 => 0080
+0075    UGET     5   4      ; install_rock_file_deps
+0076    TGETS    6   0   3  ; "rock"
+0077    MOV      7   4
+0078    CALLT    5   3
+0079    JMP      5 => 0111
+0080 => UGET     5   5      ; install_rock_file
+0081    TGETS    6   0   3  ; "rock"
+0082    MOV      7   4
+0083    CALLT    5   3
+0084    JMP      3 => 0111
+0085 => UGET     3   6      ; search
+0086    TGETS    3   3  22  ; "find_rock_checking_lua_versions"
+0087    UGET     4   7      ; queries
+0088    TGETS    4   4  23  ; "new"
+0089    TGETS    5   0   3  ; "rock"
+0090    TGETS    6   0  13  ; "namespace"
+0091    TGETS    7   0  24  ; "version"
+0092    CALL     4   2   4
+0093    TGETS    5   0  25  ; "check_lua_versions"
+0094    CALL     3   3   3
+0095    IST          3
+0096    JMP      5 => 0100
+0097    KPRI     5   0
+0098    MOV      6   4
+0099    RET      5   3
+0100 => UGET     5   8      ; util
+0101    TGETS    5   5  26  ; "printout"
+0102    KSTR     6  27      ; "Installing "
+0103    MOV      7   3
+0104    CAT      6   6   7
+0105    CALL     5   1   2
+0106    TSETS    3   0   3  ; "rock"
+0107    UGET     5   3      ; install
+0108    TGETS    5   5   9  ; "command"
+0109    MOV      6   0
+0110    CALLT    5   2
+0111 => RET0     0   1
+
+-- BYTECODE -- install.lua:0-252
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.path"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.repos"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.fetch"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.util"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.fs"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.deps"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   7      ; "luarocks.manif.writer"
+0022    CALL     7   2   2
+0023    GGET     8   0      ; "require"
+0024    KSTR     9   8      ; "luarocks.remove"
+0025    CALL     8   2   2
+0026    GGET     9   0      ; "require"
+0027    KSTR    10   9      ; "luarocks.search"
+0028    CALL     9   2   2
+0029    GGET    10   0      ; "require"
+0030    KSTR    11  10      ; "luarocks.queries"
+0031    CALL    10   2   2
+0032    GGET    11   0      ; "require"
+0033    KSTR    12  11      ; "luarocks.core.cfg"
+0034    CALL    11   2   2
+0035    GGET    12   0      ; "require"
+0036    KSTR    13  12      ; "luarocks.cmd"
+0037    CALL    12   2   2
+0038    GGET    13   0      ; "require"
+0039    KSTR    14  13      ; "luarocks.dir"
+0040    CALL    13   2   2
+0041    FNEW    14  15      ; install.lua:19
+0042    TSETS   14   0  14  ; "add_to_parser"
+0043    TGETS   14   4  17  ; "opts_table"
+0044    KSTR    15  18      ; "install.opts"
+0045    TDUP    16  19
+0046    CALL    14   2   3
+0047    TSETS   14   0  16  ; "opts"
+0048    FNEW    14  21      ; install.lua:68
+0049    TSETS   14   0  20  ; "install_binary_rock"
+0050    FNEW    14  23      ; install.lua:145
+0051    TSETS   14   0  22  ; "install_binary_rock_deps"
+0052    FNEW    14  24      ; install.lua:177
+0053    FNEW    15  25      ; install.lua:187
+0054    FNEW    16  27      ; install.lua:215
+0055    TSETS   16   0  26  ; "command"
+0056    UCLO     0 => 0057
+0057 => RET1     0   2
+

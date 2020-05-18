@@ -1,0 +1,108 @@
+
+main <./fs/linux.lua:0,0> (17 instructions, 68 bytes at 0x7feb56d05050)
+0+ params, 4 slots, 0 upvalues, 3 locals, 5 constants, 2 functions
+	1	[2]	NEWTABLE 	0 0 0
+	2	[4]	GETGLOBAL	1 -1	; require
+	3	[4]	LOADK    	2 -2	; "luarocks.fs"
+	4	[4]	CALL     	1 2 2
+	5	[5]	GETGLOBAL	2 -1	; require
+	6	[5]	LOADK    	3 -3	; "luarocks.dir"
+	7	[5]	CALL     	2 2 2
+	8	[28]	CLOSURE  	3 0	; 0x7feb56d05340
+	9	[28]	MOVE     	0 1
+	10	[28]	MOVE     	0 2
+	11	[7]	SETTABLE 	0 -4 3	; "is_dir" -
+	12	[48]	CLOSURE  	3 1	; 0x7feb56d05d50
+	13	[48]	MOVE     	0 1
+	14	[48]	MOVE     	0 2
+	15	[30]	SETTABLE 	0 -5 3	; "is_file" -
+	16	[50]	RETURN   	0 2
+	17	[50]	RETURN   	0 1
+
+function <./fs/linux.lua:7,28> (42 instructions, 168 bytes at 0x7feb56d05340)
+1 param, 9 slots, 2 upvalues, 7 locals, 13 constants, 0 functions
+	1	[8]	GETUPVAL 	1 0	; fs
+	2	[8]	GETTABLE 	1 1 -1	; "absolute_name"
+	3	[8]	MOVE     	2 0
+	4	[8]	CALL     	1 2 2
+	5	[8]	MOVE     	0 1
+	6	[9]	GETUPVAL 	1 1	; dir
+	7	[9]	GETTABLE 	1 1 -2	; "normalize"
+	8	[9]	MOVE     	2 0
+	9	[9]	CALL     	1 2 2
+	10	[9]	LOADK    	2 -3	; "/."
+	11	[9]	CONCAT   	0 1 2
+	12	[10]	GETGLOBAL	1 -4	; io
+	13	[10]	GETTABLE 	1 1 -5	; "open"
+	14	[10]	MOVE     	2 0
+	15	[10]	LOADK    	3 -6	; "r"
+	16	[10]	CALL     	1 3 4
+	17	[11]	EQ       	0 3 -7	; - 2
+	18	[11]	JMP      	2	; to 21
+	19	[12]	LOADBOOL 	4 0 0
+	20	[12]	RETURN   	4 2
+	21	[14]	EQ       	0 3 -8	; - 20
+	22	[14]	JMP      	2	; to 25
+	23	[15]	LOADBOOL 	4 0 0
+	24	[15]	RETURN   	4 2
+	25	[17]	EQ       	0 3 -9	; - 13
+	26	[17]	JMP      	2	; to 29
+	27	[18]	LOADBOOL 	4 1 0
+	28	[18]	RETURN   	4 2
+	29	[20]	TEST     	1 0 0
+	30	[20]	JMP      	9	; to 40
+	31	[21]	SELF     	4 1 -10	; "read"
+	32	[21]	LOADK    	6 -11	; 1
+	33	[21]	CALL     	4 3 4
+	34	[22]	SELF     	7 1 -12	; "close"
+	35	[22]	CALL     	7 2 1
+	36	[23]	EQ       	0 6 -13	; - 21
+	37	[23]	JMP      	2	; to 40
+	38	[24]	LOADBOOL 	7 1 0
+	39	[24]	RETURN   	7 2
+	40	[27]	LOADBOOL 	4 0 0
+	41	[27]	RETURN   	4 2
+	42	[28]	RETURN   	0 1
+
+function <./fs/linux.lua:30,48> (40 instructions, 160 bytes at 0x7feb56d05d50)
+1 param, 6 slots, 2 upvalues, 4 locals, 9 constants, 0 functions
+	1	[31]	GETUPVAL 	1 0	; fs
+	2	[31]	GETTABLE 	1 1 -1	; "absolute_name"
+	3	[31]	MOVE     	2 0
+	4	[31]	CALL     	1 2 2
+	5	[31]	MOVE     	0 1
+	6	[32]	GETUPVAL 	1 0	; fs
+	7	[32]	GETTABLE 	1 1 -2	; "is_dir"
+	8	[32]	MOVE     	2 0
+	9	[32]	CALL     	1 2 2
+	10	[32]	TEST     	1 0 0
+	11	[32]	JMP      	2	; to 14
+	12	[33]	LOADBOOL 	1 0 0
+	13	[33]	RETURN   	1 2
+	14	[35]	GETUPVAL 	1 1	; dir
+	15	[35]	GETTABLE 	1 1 -3	; "normalize"
+	16	[35]	MOVE     	2 0
+	17	[35]	CALL     	1 2 2
+	18	[35]	MOVE     	0 1
+	19	[36]	GETGLOBAL	1 -4	; io
+	20	[36]	GETTABLE 	1 1 -5	; "open"
+	21	[36]	MOVE     	2 0
+	22	[36]	LOADK    	3 -6	; "r"
+	23	[36]	CALL     	1 3 4
+	24	[37]	EQ       	0 3 -7	; - 2
+	25	[37]	JMP      	2	; to 28
+	26	[38]	LOADBOOL 	4 0 0
+	27	[38]	RETURN   	4 2
+	28	[40]	EQ       	0 3 -8	; - 13
+	29	[40]	JMP      	2	; to 32
+	30	[41]	LOADBOOL 	4 1 0
+	31	[41]	RETURN   	4 2
+	32	[43]	TEST     	1 0 0
+	33	[43]	JMP      	4	; to 38
+	34	[44]	SELF     	4 1 -9	; "close"
+	35	[44]	CALL     	4 2 1
+	36	[45]	LOADBOOL 	4 1 0
+	37	[45]	RETURN   	4 2
+	38	[47]	LOADBOOL 	4 0 0
+	39	[47]	RETURN   	4 2
+	40	[48]	RETURN   	0 1

@@ -1,0 +1,1764 @@
+-- BYTECODE -- patch.lua:24-24
+0001    RET0     0   1
+
+-- BYTECODE -- patch.lua:25-25
+0001    RET0     0   1
+
+-- BYTECODE -- patch.lua:26-26
+0001    UGET     1   0      ; io
+0002    TGETS    1   1   0  ; "stderr"
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "write"
+0005    MOV      3   0
+0006    KSTR     4   2      ; "\n"
+0007    CAT      3   3   4
+0008    CALL     1   1   3
+0009    RET0     0   1
+
+-- BYTECODE -- patch.lua:29-31
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "sub"
+0003    KSHORT   4   1
+0004    LEN      5   1
+0005    CALL     2   2   4
+0006    ISEQV    2   1
+0007    JMP      2 => 0010
+0008    KPRI     2   1
+0009    JMP      3 => 0011
+0010 => KPRI     2   2
+0011 => RET1     2   2
+
+-- BYTECODE -- patch.lua:34-36
+0001    LEN      2   0
+0002    LEN      3   1
+0003    ISGT     3   2
+0004    JMP      2 => 0014
+0005    MOV      3   0
+0006    TGETS    2   0   0  ; "sub"
+0007    LEN      4   0
+0008    LEN      5   1
+0009    SUBVV    4   4   5
+0010    ADDVN    4   4   0  ; 1
+0011    CALL     2   2   3
+0012    ISEQV    2   1
+0013    JMP      2 => 0016
+0014 => KPRI     2   1
+0015    JMP      3 => 0017
+0016 => KPRI     2   2
+0017 => RET1     2   2
+
+-- BYTECODE -- patch.lua:39-41
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "gsub"
+0003    KSTR     3   1      ; "[\r\n]+$"
+0004    KSTR     4   2      ; ""
+0005    CALLT    1   4
+
+-- BYTECODE -- patch.lua:44-48
+0001    TNEW     1   0
+0002    GGET     2   0      ; "pairs"
+0003    MOV      3   0
+0004    CALL     2   4   2
+0005    ISNEXT   5 => 0007
+0006 => TSETV    6   1   5
+0007 => ITERN    5   3   3
+0008    ITERL    5 => 0006
+0009    RET1     1   2
+
+-- BYTECODE -- patch.lua:50-55
+0001    UGET     1   0      ; io
+0002    TGETS    1   1   0  ; "open"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    ISNEP    1   0
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => ISF          1
+0011    JMP      3 => 0015
+0012    MOV      4   1
+0013    TGETS    3   1   1  ; "close"
+0014    CALL     3   1   2
+0015 => RET1     2   2
+
+-- BYTECODE -- patch.lua:56-56
+0001    KPRI     0   2
+0002    RET1     0   2
+
+-- BYTECODE -- patch.lua:64-72
+0001    TGETS    2   0   0  ; "eof"
+0002    ISF          2
+0003    JMP      3 => 0006
+0004    KPRI     2   0
+0005    RET1     2   2
+0006 => TGETS    2   0   1  ; "str"
+0007    MOV      3   2
+0008    TGETS    2   2   2  ; "sub"
+0009    TGETS    4   0   3  ; "at"
+0010    TGETS    5   0   3  ; "at"
+0011    ADDVV    5   5   1
+0012    SUBVN    5   5   0  ; 1
+0013    CALL     2   2   4
+0014    TGETS    3   0   3  ; "at"
+0015    ADDVV    3   3   1
+0016    TSETS    3   0   3  ; "at"
+0017    TGETS    3   0   3  ; "at"
+0018    TGETS    4   0   4  ; "len"
+0019    ISGE     4   3
+0020    JMP      3 => 0023
+0021    KPRI     3   2
+0022    TSETS    3   0   0  ; "eof"
+0023 => RET1     2   2
+
+-- BYTECODE -- patch.lua:73-75
+0001    KPRI     1   2
+0002    TSETS    1   0   0  ; "eof"
+0003    RET0     0   1
+
+-- BYTECODE -- patch.lua:58-77
+0001    TDUP     1   0
+0002    TSETS    0   1   1  ; "str"
+0003    LEN      2   0
+0004    TSETS    2   1   2  ; "len"
+0005    FNEW     2   3      ; patch.lua:64
+0006    TSETS    2   1   4  ; "read"
+0007    FNEW     2   5      ; patch.lua:73
+0008    TSETS    2   1   6  ; "close"
+0009    UCLO     0 => 0010
+0010 => RET1     1   2
+
+-- BYTECODE -- patch.lua:92-118
+0001    KNIL     0   1
+0002 => LOOP     2 => 0040
+0003    UGET     2   0      ; buffer
+0004    MOV      3   2
+0005    TGETS    2   2   0  ; "match"
+0006    KSTR     4   1      ; "()([\r\n].)"
+0007    UGET     5   1      ; pos_beg
+0008    CALL     2   3   4
+0009    MOV      1   3
+0010    MOV      0   2
+0011    IST          0
+0012    JMP      2 => 0040
+0013    UGET     2   2      ; f
+0014    IST          2
+0015    JMP      2 => 0018
+0016    JMP      2 => 0040
+0017    JMP      2 => 0002
+0018 => UGET     2   2      ; f
+0019    ISF          2
+0020    JMP      3 => 0002
+0021    UGET     2   2      ; f
+0022    MOV      3   2
+0023    TGETS    2   2   2  ; "read"
+0024    UGET     4   3      ; CHUNK_SIZE
+0025    CALL     2   2   3
+0026    ISF          2
+0027    JMP      3 => 0038
+0028    UGET     3   0      ; buffer
+0029    MOV      4   3
+0030    TGETS    3   3   3  ; "sub"
+0031    UGET     5   1      ; pos_beg
+0032    CALL     3   2   3
+0033    MOV      4   2
+0034    CAT      3   3   4
+0035    USETV    0   3      ; buffer
+0036    USETN    1   0      ; pos_beg ; 1
+0037    JMP      3 => 0002
+0038 => USETP    2   0      ; f
+0039    JMP      2 => 0002
+0040 => IST          0
+0041    JMP      2 => 0045
+0042    UGET     2   0      ; buffer
+0043    LEN      0   2
+0044    JMP      2 => 0048
+0045 => ISNES    1   4      ; "\r\n"
+0046    JMP      2 => 0048
+0047    ADDVN    0   0   0  ; 1
+0048 => UGET     2   0      ; buffer
+0049    MOV      3   2
+0050    TGETS    2   2   3  ; "sub"
+0051    UGET     4   1      ; pos_beg
+0052    MOV      5   0
+0053    CALL     2   2   4
+0054    ADDVN    3   0   0  ; 1
+0055    USETV    1   3      ; pos_beg
+0056    LEN      3   2
+0057    KSHORT   4   0
+0058    ISGE     4   3
+0059    JMP      3 => 0061
+0060    RET1     2   2
+0061 => RET0     0   1
+
+-- BYTECODE -- patch.lua:88-119
+0001    KSHORT   1 1024
+0002    KSTR     2   0      ; ""
+0003    KSHORT   3   1
+0004    FNEW     4   1      ; patch.lua:92
+0005    UCLO     0 => 0006
+0006 => RET1     4   2
+
+-- BYTECODE -- patch.lua:121-127
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "match"
+0003    KSTR     3   1      ; "^@@ %-(%d+),(%d+) %+(%d+),(%d+)"
+0004    CALL     1   5   3
+0005    IST          1
+0006    JMP      5 => 0014
+0007    MOV      6   0
+0008    TGETS    5   0   0  ; "match"
+0009    KSTR     7   2      ; "^@@ %-(%d+) %+(%d+),(%d+)"
+0010    CALL     5   4   3
+0011    MOV      4   7
+0012    MOV      3   6
+0013    MOV      1   5
+0014 => IST          1
+0015    JMP      5 => 0023
+0016    MOV      6   0
+0017    TGETS    5   0   0  ; "match"
+0018    KSTR     7   3      ; "^@@ %-(%d+),(%d+) %+(%d+)"
+0019    CALL     5   4   3
+0020    MOV      3   7
+0021    MOV      2   6
+0022    MOV      1   5
+0023 => IST          1
+0024    JMP      5 => 0031
+0025    MOV      6   0
+0026    TGETS    5   0   0  ; "match"
+0027    KSTR     7   4      ; "^@@ %-(%d+) %+(%d+)"
+0028    CALL     5   3   3
+0029    MOV      3   6
+0030    MOV      1   5
+0031 => MOV      5   1
+0032    MOV      6   2
+0033    MOV      7   3
+0034    MOV      8   4
+0035    RET      5   5
+
+-- BYTECODE -- patch.lua:129-131
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "match"
+0003    KSTR     3   1      ; "[^0-9]1969[^0-9]"
+0004    CALL     1   2   3
+0005    IST          1
+0006    JMP      2 => 0011
+0007    MOV      2   0
+0008    TGETS    1   0   0  ; "match"
+0009    KSTR     3   2      ; "[^0-9]1970[^0-9]"
+0010    CALL     1   2   3
+0011 => RET1     1   2
+
+-- BYTECODE -- patch.lua:133-373
+0001    KSTR     2   0      ; "header"
+0002    KPRI     3   2
+0003    TDUP     4   1
+0004    TDUP     5   2
+0005    TNEW     6   0
+0006    TSETS    6   5   3  ; "source"
+0007    TNEW     6   0
+0008    TSETS    6   5   4  ; "target"
+0009    TNEW     6   0
+0010    TSETS    6   5   5  ; "epoch"
+0011    TNEW     6   0
+0012    TSETS    6   5   6  ; "hunks"
+0013    TNEW     6   0
+0014    TSETS    6   5   7  ; "fileends"
+0015    TNEW     6   0
+0016    TSETS    6   5   8  ; "hunkends"
+0017    KSHORT   6   0
+0018    KSHORT   7   0
+0019    TDUP     8   9
+0020    TNEW     9   0
+0021    TSETS    9   8  10  ; "text"
+0022    TDUP     9  11
+0023    UGET    10   0      ; info
+0024    UGET    11   1      ; format
+0025    KSTR    12  12      ; "reading patch %s"
+0026    MOV     13   0
+0027    CALL    11   0   3
+0028    CALLM   10   1   0
+0029    KPRI    10   0
+0030    ISF          1
+0031    JMP     11 => 0037
+0032    UGET    11   2      ; string_as_file
+0033    MOV     12   1
+0034    CALL    11   2   2
+0035    MOV     10  11
+0036    JMP     11 => 0051
+0037 => ISNES    0  13      ; "-"
+0038    JMP     11 => 0043
+0039    UGET    11   3      ; io
+0040    TGETS   11  11  14  ; "stdin"
+0041    ISTC    10  11
+0042    JMP     12 => 0051
+0043 => GGET    11  15      ; "assert"
+0044    UGET    12   3      ; io
+0045    TGETS   12  12  16  ; "open"
+0046    MOV     13   0
+0047    KSTR    14  17      ; "rb"
+0048    CALL    12   0   3
+0049    CALLM   11   2   0
+0050    MOV     10  11
+0051 => KSHORT  11   0
+0052    UGET    12   4      ; file_lines
+0053    MOV     13  10
+0054    CALL    12   4   2
+0055    JMP     15 => 0520
+0056 => ADDVN   11  11   0  ; 1
+0057    ISNES    2   0      ; "header"
+0058    JMP     16 => 0066
+0059    UGET    16   5      ; startswith
+0060    MOV     17  15
+0061    KSTR    18  18      ; "--- "
+0062    CALL    16   2   3
+0063    ISF         16
+0064    JMP     17 => 0066
+0065    KSTR     2  19      ; "filenames"
+0066 => ISNES    2  20      ; "hunkbody"
+0067    JMP     16 => 0258
+0068    MOV     17  15
+0069    TGETS   16  15  21  ; "match"
+0070    KSTR    18  22      ; "^[\r\n]*$"
+0071    CALL    16   2   3
+0072    ISF         16
+0073    JMP     17 => 0077
+0074    KSTR    16  23      ; " "
+0075    MOV     17  15
+0076    CAT     15  16  17
+0077 => MOV     17  15
+0078    TGETS   16  15  21  ; "match"
+0079    KSTR    18  24      ; "^[- +\]"
+0080    CALL    16   2   3
+0081    ISF         16
+0082    JMP     17 => 0153
+0083    TGETS   16   5   8  ; "hunkends"
+0084    TGETV   16  16   6
+0085    UGET    17   6      ; endswith
+0086    MOV     18  15
+0087    KSTR    19  25      ; "\r\n"
+0088    CALL    17   2   3
+0089    ISF         17
+0090    JMP     18 => 0095
+0091    TGETS   17  16  26  ; "crlf"
+0092    ADDVN   17  17   0  ; 1
+0093    TSETS   17  16  26  ; "crlf"
+0094    JMP     17 => 0114
+0095 => UGET    17   6      ; endswith
+0096    MOV     18  15
+0097    KSTR    19  27      ; "\n"
+0098    CALL    17   2   3
+0099    ISF         17
+0100    JMP     18 => 0105
+0101    TGETS   17  16  28  ; "lf"
+0102    ADDVN   17  17   0  ; 1
+0103    TSETS   17  16  28  ; "lf"
+0104    JMP     17 => 0114
+0105 => UGET    17   6      ; endswith
+0106    MOV     18  15
+0107    KSTR    19  29      ; "\r"
+0108    CALL    17   2   3
+0109    ISF         17
+0110    JMP     18 => 0114
+0111    TGETS   17  16  30  ; "cr"
+0112    ADDVN   17  17   0  ; 1
+0113    TSETS   17  16  30  ; "cr"
+0114 => UGET    17   5      ; startswith
+0115    MOV     18  15
+0116    KSTR    19  13      ; "-"
+0117    CALL    17   2   3
+0118    ISF         17
+0119    JMP     18 => 0124
+0120    TGETS   17   9  31  ; "linessrc"
+0121    ADDVN   17  17   0  ; 1
+0122    TSETS   17   9  31  ; "linessrc"
+0123    JMP     17 => 0147
+0124 => UGET    17   5      ; startswith
+0125    MOV     18  15
+0126    KSTR    19  32      ; "+"
+0127    CALL    17   2   3
+0128    ISF         17
+0129    JMP     18 => 0134
+0130    TGETS   17   9  33  ; "linestgt"
+0131    ADDVN   17  17   0  ; 1
+0132    TSETS   17   9  33  ; "linestgt"
+0133    JMP     17 => 0147
+0134 => UGET    17   5      ; startswith
+0135    MOV     18  15
+0136    KSTR    19  34      ; "\"
+0137    CALL    17   2   3
+0138    ISF         17
+0139    JMP     18 => 0141
+0140    JMP     17 => 0147
+0141 => TGETS   17   9  31  ; "linessrc"
+0142    ADDVN   17  17   0  ; 1
+0143    TSETS   17   9  31  ; "linessrc"
+0144    TGETS   17   9  33  ; "linestgt"
+0145    ADDVN   17  17   0  ; 1
+0146    TSETS   17   9  33  ; "linestgt"
+0147 => UGET    17   7      ; table
+0148    TGETS   17  17  35  ; "insert"
+0149    TGETS   18   8  10  ; "text"
+0150    MOV     19  15
+0151    CALL    17   1   3
+0152    JMP     16 => 0177
+0153 => UGET    16   8      ; warning
+0154    UGET    17   1      ; format
+0155    KSTR    18  36      ; "invalid hunk no.%d at %d for target file"~
+0156    MOV     19   7
+0157    MOV     20  11
+0158    TGETS   21   5   4  ; "target"
+0159    TGETV   21  21   6
+0160    CALL    17   0   5
+0161    CALLM   16   1   0
+0162    UGET    16   7      ; table
+0163    TGETS   16  16  35  ; "insert"
+0164    TGETS   17   5   6  ; "hunks"
+0165    TGETV   17  17   6
+0166    UGET    18   9      ; table_copy
+0167    MOV     19   8
+0168    CALL    18   0   2
+0169    CALLM   16   1   1
+0170    TGETS   16   5   6  ; "hunks"
+0171    TGETV   16  16   6
+0172    TGETV   16  16   7
+0173    KPRI    17   2
+0174    TSETS   17  16  37  ; "invalid"
+0175    KPRI     3   1
+0176    KSTR     2  38      ; "hunkskip"
+0177 => TGETS   16   9  31  ; "linessrc"
+0178    TGETS   17   8  31  ; "linessrc"
+0179    ISLT    17  16
+0180    JMP     16 => 0185
+0181    TGETS   16   9  33  ; "linestgt"
+0182    TGETS   17   8  33  ; "linestgt"
+0183    ISGE    17  16
+0184    JMP     16 => 0209
+0185 => UGET    16   8      ; warning
+0186    UGET    17   1      ; format
+0187    KSTR    18  39      ; "extra hunk no.%d lines at %d for target "~
+0188    MOV     19   7
+0189    MOV     20  11
+0190    TGETS   21   5   4  ; "target"
+0191    TGETV   21  21   6
+0192    CALL    17   0   5
+0193    CALLM   16   1   0
+0194    UGET    16   7      ; table
+0195    TGETS   16  16  35  ; "insert"
+0196    TGETS   17   5   6  ; "hunks"
+0197    TGETV   17  17   6
+0198    UGET    18   9      ; table_copy
+0199    MOV     19   8
+0200    CALL    18   0   2
+0201    CALLM   16   1   1
+0202    TGETS   16   5   6  ; "hunks"
+0203    TGETV   16  16   6
+0204    TGETV   16  16   7
+0205    KPRI    17   2
+0206    TSETS   17  16  37  ; "invalid"
+0207    KSTR     2  38      ; "hunkskip"
+0208    JMP     16 => 0258
+0209 => TGETS   16   8  31  ; "linessrc"
+0210    TGETS   17   9  31  ; "linessrc"
+0211    ISNEV   16  17
+0212    JMP     16 => 0258
+0213    TGETS   16   8  33  ; "linestgt"
+0214    TGETS   17   9  33  ; "linestgt"
+0215    ISNEV   16  17
+0216    JMP     16 => 0258
+0217    UGET    16   7      ; table
+0218    TGETS   16  16  35  ; "insert"
+0219    TGETS   17   5   6  ; "hunks"
+0220    TGETV   17  17   6
+0221    UGET    18   9      ; table_copy
+0222    MOV     19   8
+0223    CALL    18   0   2
+0224    CALLM   16   1   1
+0225    KSTR     2  38      ; "hunkskip"
+0226    TGETS   16   5   8  ; "hunkends"
+0227    TGETV   16  16   6
+0228    TGETS   17  16  30  ; "cr"
+0229    ISEQN   17   1      ; 0
+0230    JMP     17 => 0233
+0231    KSHORT  17   1
+0232    JMP     18 => 0234
+0233 => KSHORT  17   0
+0234 => TGETS   18  16  26  ; "crlf"
+0235    ISEQN   18   1      ; 0
+0236    JMP     18 => 0239
+0237    KSHORT  18   1
+0238    JMP     19 => 0240
+0239 => KSHORT  18   0
+0240 => ADDVV   17  17  18
+0241    TGETS   18  16  28  ; "lf"
+0242    ISEQN   18   1      ; 0
+0243    JMP     18 => 0246
+0244    KSHORT  18   1
+0245    JMP     19 => 0247
+0246 => KSHORT  18   0
+0247 => ADDVV   17  17  18
+0248    KSHORT  18   1
+0249    ISGE    18  17
+0250    JMP     17 => 0258
+0251    UGET    17   8      ; warning
+0252    UGET    18   1      ; format
+0253    KSTR    19  40      ; "inconsistent line ends in patch hunks fo"~
+0254    TGETS   20   5   3  ; "source"
+0255    TGETV   20  20   6
+0256    CALL    18   0   3
+0257    CALLM   17   1   0
+0258 => ISNES    2  38      ; "hunkskip"
+0259    JMP     16 => 0292
+0260    UGET    16  10      ; match_linerange
+0261    MOV     17  15
+0262    CALL    16   2   2
+0263    ISF         16
+0264    JMP     17 => 0267
+0265    KSTR     2  41      ; "hunkhead"
+0266    JMP     16 => 0292
+0267 => UGET    16   5      ; startswith
+0268    MOV     17  15
+0269    KSTR    18  18      ; "--- "
+0270    CALL    16   2   3
+0271    ISF         16
+0272    JMP     17 => 0292
+0273    KSTR     2  19      ; "filenames"
+0274    UGET    16  11      ; debugmode
+0275    ISF         16
+0276    JMP     17 => 0292
+0277    TGETS   16   5   3  ; "source"
+0278    LEN     16  16
+0279    KSHORT  17   0
+0280    ISGE    17  16
+0281    JMP     16 => 0292
+0282    UGET    16  12      ; debug
+0283    UGET    17   1      ; format
+0284    KSTR    18  42      ; "- %2d hunks for %s"
+0285    TGETS   19   5   6  ; "hunks"
+0286    TGETV   19  19   6
+0287    LEN     19  19
+0288    TGETS   20   5   3  ; "source"
+0289    TGETV   20  20   6
+0290    CALL    17   0   4
+0291    CALLM   16   1   0
+0292 => KPRI    16   0
+0293    ISNES    2  19      ; "filenames"
+0294    JMP     17 => 0464
+0295    UGET    17   5      ; startswith
+0296    MOV     18  15
+0297    KSTR    19  18      ; "--- "
+0298    CALL    17   2   3
+0299    ISF         17
+0300    JMP     18 => 0352
+0301    UGET    17  13      ; fun
+0302    TGETS   17  17  43  ; "contains"
+0303    TGETS   18   5   3  ; "source"
+0304    MOV     19   6
+0305    CALL    17   2   3
+0306    ISF         17
+0307    JMP     18 => 0322
+0308    KPRI     3   1
+0309    UGET    17   8      ; warning
+0310    UGET    18   1      ; format
+0311    KSTR    19  44      ; "skipping invalid patch for %s"
+0312    TGETS   20   5   3  ; "source"
+0313    ADDVN   21   6   0  ; 1
+0314    TGETV   20  20  21
+0315    CALL    18   0   3
+0316    CALLM   17   1   0
+0317    UGET    17   7      ; table
+0318    TGETS   17  17  45  ; "remove"
+0319    TGETS   18   5   3  ; "source"
+0320    ADDVN   19   6   0  ; 1
+0321    CALL    17   1   3
+0322 => MOV     18  15
+0323    TGETS   17  15  21  ; "match"
+0324    KSTR    19  46      ; "^%-%-%- ([^ \t\r\n]+)(.*)"
+0325    CALL    17   3   3
+0326    IST         17
+0327    JMP     19 => 0337
+0328    KPRI     3   1
+0329    UGET    19   8      ; warning
+0330    UGET    20   1      ; format
+0331    KSTR    21  47      ; "skipping invalid filename at line %d"
+0332    ADDVN   22  11   0  ; 1
+0333    CALL    20   0   3
+0334    CALLM   19   1   0
+0335    KSTR     2   0      ; "header"
+0336    JMP     19 => 0464
+0337 => UGET    19  14      ; match_epoch
+0338    MOV     20  18
+0339    CALL    19   2   2
+0340    ISF         19
+0341    JMP     20 => 0346
+0342    TGETS   19   5   5  ; "epoch"
+0343    ADDVN   20   6   0  ; 1
+0344    KPRI    21   2
+0345    TSETV   21  19  20
+0346 => UGET    19   7      ; table
+0347    TGETS   19  19  35  ; "insert"
+0348    TGETS   20   5   3  ; "source"
+0349    MOV     21  17
+0350    CALL    19   1   3
+0351    JMP     17 => 0464
+0352 => UGET    17   5      ; startswith
+0353    MOV     18  15
+0354    KSTR    19  48      ; "+++ "
+0355    CALL    17   2   3
+0356    IST         17
+0357    JMP     17 => 0385
+0358    UGET    17  13      ; fun
+0359    TGETS   17  17  43  ; "contains"
+0360    TGETS   18   5   3  ; "source"
+0361    MOV     19   6
+0362    CALL    17   2   3
+0363    ISF         17
+0364    JMP     18 => 0380
+0365    KPRI     3   1
+0366    UGET    17   8      ; warning
+0367    UGET    18   1      ; format
+0368    KSTR    19  49      ; "skipping invalid patch with no target fo"~
+0369    TGETS   20   5   3  ; "source"
+0370    ADDVN   21   6   0  ; 1
+0371    TGETV   20  20  21
+0372    CALL    18   0   3
+0373    CALLM   17   1   0
+0374    UGET    17   7      ; table
+0375    TGETS   17  17  45  ; "remove"
+0376    TGETS   18   5   3  ; "source"
+0377    ADDVN   19   6   0  ; 1
+0378    CALL    17   1   3
+0379    JMP     17 => 0383
+0380 => UGET    17   8      ; warning
+0381    KSTR    18  50      ; "skipping invalid target patch"
+0382    CALL    17   1   2
+0383 => KSTR     2   0      ; "header"
+0384    JMP     17 => 0464
+0385 => UGET    17  13      ; fun
+0386    TGETS   17  17  43  ; "contains"
+0387    TGETS   18   5   4  ; "target"
+0388    MOV     19   6
+0389    CALL    17   2   3
+0390    ISF         17
+0391    JMP     18 => 0412
+0392    KPRI     3   1
+0393    UGET    17   8      ; warning
+0394    UGET    18   1      ; format
+0395    KSTR    19  51      ; "skipping invalid patch - double target a"~
+0396    ADDVN   20  11   0  ; 1
+0397    CALL    18   0   3
+0398    CALLM   17   1   0
+0399    UGET    17   7      ; table
+0400    TGETS   17  17  45  ; "remove"
+0401    TGETS   18   5   3  ; "source"
+0402    ADDVN   19   6   0  ; 1
+0403    CALL    17   1   3
+0404    UGET    17   7      ; table
+0405    TGETS   17  17  45  ; "remove"
+0406    TGETS   18   5   4  ; "target"
+0407    ADDVN   19   6   0  ; 1
+0408    CALL    17   1   3
+0409    SUBVN    6   6   0  ; 1
+0410    KSTR     2   0      ; "header"
+0411    JMP     17 => 0464
+0412 => KSTR    17  52      ; "^%+%+%+ ([^ \t\r\n]+)(.*)$"
+0413    MOV     19  15
+0414    TGETS   18  15  21  ; "match"
+0415    MOV     20  17
+0416    CALL    18   3   3
+0417    IST         18
+0418    JMP     20 => 0428
+0419    KPRI     3   1
+0420    UGET    20   8      ; warning
+0421    UGET    21   1      ; format
+0422    KSTR    22  53      ; "skipping invalid patch - no target filen"~
+0423    ADDVN   23  11   0  ; 1
+0424    CALL    21   0   3
+0425    CALLM   20   1   0
+0426    KSTR     2   0      ; "header"
+0427    JMP     20 => 0464
+0428 => UGET    20   7      ; table
+0429    TGETS   20  20  35  ; "insert"
+0430    TGETS   21   5   4  ; "target"
+0431    MOV     22  18
+0432    CALL    20   1   3
+0433    ADDVN    6   6   0  ; 1
+0434    UGET    20  14      ; match_epoch
+0435    MOV     21  19
+0436    CALL    20   2   2
+0437    ISF         20
+0438    JMP     21 => 0442
+0439    TGETS   20   5   5  ; "epoch"
+0440    KPRI    21   2
+0441    TSETV   21  20   6
+0442 => KSHORT   7   0
+0443    UGET    20   7      ; table
+0444    TGETS   20  20  35  ; "insert"
+0445    TGETS   21   5   6  ; "hunks"
+0446    TNEW    22   0
+0447    CALL    20   1   3
+0448    UGET    20   7      ; table
+0449    TGETS   20  20  35  ; "insert"
+0450    TGETS   21   5   8  ; "hunkends"
+0451    UGET    22   9      ; table_copy
+0452    MOV     23   4
+0453    CALL    22   0   2
+0454    CALLM   20   1   1
+0455    UGET    20   7      ; table
+0456    TGETS   20  20  35  ; "insert"
+0457    TGETS   21   5   7  ; "fileends"
+0458    UGET    22   9      ; table_copy
+0459    MOV     23   4
+0460    CALL    22   0   2
+0461    CALLM   20   1   1
+0462    KSTR     2  41      ; "hunkhead"
+0463    KPRI    16   2
+0464 => IST         16
+0465    JMP     17 => 0520
+0466    ISNES    2  41      ; "hunkhead"
+0467    JMP     17 => 0520
+0468    UGET    17  10      ; match_linerange
+0469    MOV     18  15
+0470    CALL    17   5   2
+0471    IST         17
+0472    JMP     21 => 0490
+0473    UGET    21  13      ; fun
+0474    TGETS   21  21  43  ; "contains"
+0475    TGETS   22   5   6  ; "hunks"
+0476    SUBVN   23   6   0  ; 1
+0477    CALL    21   2   3
+0478    IST         21
+0479    JMP     21 => 0488
+0480    KPRI     3   1
+0481    UGET    21   8      ; warning
+0482    UGET    22   1      ; format
+0483    KSTR    23  54      ; "skipping invalid patch with no hunks for"~
+0484    TGETS   24   5   4  ; "target"
+0485    TGETV   24  24   6
+0486    CALL    22   0   3
+0487    CALLM   21   1   0
+0488 => KSTR     2   0      ; "header"
+0489    JMP     21 => 0520
+0490 => GGET    21  56      ; "tonumber"
+0491    MOV     22  17
+0492    CALL    21   2   2
+0493    TSETS   21   8  55  ; "startsrc"
+0494    GGET    21  56      ; "tonumber"
+0495    ISTC    22  18
+0496    JMP     22 => 0498
+0497    KSHORT  22   1
+0498 => CALL    21   2   2
+0499    TSETS   21   8  31  ; "linessrc"
+0500    GGET    21  56      ; "tonumber"
+0501    MOV     22  19
+0502    CALL    21   2   2
+0503    TSETS   21   8  57  ; "starttgt"
+0504    GGET    21  56      ; "tonumber"
+0505    ISTC    22  20
+0506    JMP     22 => 0508
+0507    KSHORT  22   1
+0508 => CALL    21   2   2
+0509    TSETS   21   8  33  ; "linestgt"
+0510    KPRI    21   1
+0511    TSETS   21   8  37  ; "invalid"
+0512    TNEW    21   0
+0513    TSETS   21   8  10  ; "text"
+0514    KSHORT  21   0
+0515    TSETS   21   9  31  ; "linessrc"
+0516    KSHORT  21   0
+0517    TSETS   21   9  33  ; "linestgt"
+0518    KSTR     2  20      ; "hunkbody"
+0519    ADDVN    7   7   0  ; 1
+0520 => ITERC   15   2   3
+0521    ITERL   15 => 0056
+0522    ISEQS    2  38      ; "hunkskip"
+0523    JMP     12 => 0532
+0524    UGET    12   8      ; warning
+0525    UGET    13   1      ; format
+0526    KSTR    14  58      ; "patch file incomplete - %s"
+0527    MOV     15   0
+0528    CALL    13   0   3
+0529    CALLM   12   1   0
+0530    KPRI     3   1
+0531    JMP     12 => 0550
+0532 => UGET    12  11      ; debugmode
+0533    ISF         12
+0534    JMP     13 => 0550
+0535    TGETS   12   5   3  ; "source"
+0536    LEN     12  12
+0537    KSHORT  13   0
+0538    ISGE    13  12
+0539    JMP     12 => 0550
+0540    UGET    12  12      ; debug
+0541    UGET    13   1      ; format
+0542    KSTR    14  42      ; "- %2d hunks for %s"
+0543    TGETS   15   5   6  ; "hunks"
+0544    TGETV   15  15   6
+0545    LEN     15  15
+0546    TGETS   16   5   3  ; "source"
+0547    TGETV   16  16   6
+0548    CALL    13   0   4
+0549    CALLM   12   1   0
+0550 => KSHORT  12   0
+0551    GGET    13  59      ; "ipairs"
+0552    TGETS   14   5   6  ; "hunks"
+0553    CALL    13   4   2
+0554    JMP     16 => 0557
+0555 => LEN     18  17
+0556    ADDVV   12  12  18
+0557 => ITERC   16   3   3
+0558    ITERL   16 => 0555
+0559    UGET    13   0      ; info
+0560    UGET    14   1      ; format
+0561    KSTR    15  60      ; "total files: %d  total hunks: %d"
+0562    TGETS   16   5   3  ; "source"
+0563    LEN     16  16
+0564    MOV     17  12
+0565    CALL    14   0   4
+0566    CALLM   13   1   0
+0567    MOV     14  10
+0568    TGETS   13  10  61  ; "close"
+0569    CALL    13   1   2
+0570    MOV     13   5
+0571    MOV     14   3
+0572    RET     13   3
+
+-- BYTECODE -- patch.lua:375-415
+0001    KSHORT   3   0
+0002    KSHORT   4   2
+0003    KSHORT   5   1
+0004    FORI     3 => 0101
+0005 => TGETS    7   1   0  ; "startsrc"
+0006    KSHORT   8   0
+0007    LEN      9   0
+0008    KSHORT  10   1
+0009    FORI     8 => 0100
+0010 => KPRI    12   2
+0011    MOV     13   7
+0012    GGET    14   1      ; "ipairs"
+0013    TGETS   15   1   2  ; "text"
+0014    CALL    14   4   2
+0015    JMP     17 => 0052
+0016 => ISGE     6  17
+0017    JMP     19 => 0052
+0018    UGET    19   0      ; startswith
+0019    MOV     20  18
+0020    KSTR    21   3      ; " "
+0021    CALL    19   2   3
+0022    IST         19
+0023    JMP     20 => 0030
+0024    UGET    19   0      ; startswith
+0025    MOV     20  18
+0026    KSTR    21   4      ; "-"
+0027    CALL    19   2   3
+0028    ISF         19
+0029    JMP     20 => 0052
+0030 => TGETV   19   0   7
+0031    ADDVN    7   7   0  ; 1
+0032    ISF         19
+0033    JMP     20 => 0037
+0034    LEN     20  19
+0035    ISNEN   20   1      ; 0
+0036    JMP     20 => 0039
+0037 => KPRI    12   1
+0038    JMP     14 => 0054
+0039 => UGET    20   1      ; endlstrip
+0040    MOV     21  19
+0041    CALL    20   2   2
+0042    UGET    21   1      ; endlstrip
+0043    MOV     23  18
+0044    TGETS   22  18   5  ; "sub"
+0045    KSHORT  24   2
+0046    CALL    22   0   3
+0047    CALLM   21   2   0
+0048    ISEQV   20  21
+0049    JMP     20 => 0052
+0050    KPRI    12   1
+0051    JMP     14 => 0054
+0052 => ITERC   17   3   3
+0053    ITERL   17 => 0016
+0054 => ISF         12
+0055    JMP     14 => 0098
+0056    TGETS   14   1   0  ; "startsrc"
+0057    SUBVV   14  13  14
+0058    SUBVV   14  14   6
+0059    ISEQN   14   1      ; 0
+0060    JMP     15 => 0076
+0061    UGET    15   2      ; warning
+0062    UGET    16   3      ; format
+0063    KSTR    17   6      ; "Hunk %d found at offset %d%s..."
+0064    MOV     18   2
+0065    MOV     19  14
+0066    ISNEN    6   1      ; 0
+0067    JMP     20 => 0070
+0068    KSTR    20   7      ; ""
+0069    JMP     21 => 0074
+0070 => UGET    20   3      ; format
+0071    KSTR    21   8      ; " (fuzz %d)"
+0072    MOV     22   6
+0073    CALL    20   2   3
+0074 => CALL    16   0   5
+0075    CALLM   15   1   0
+0076 => TSETS   13   1   0  ; "startsrc"
+0077    TGETS   15   1   9  ; "starttgt"
+0078    ADDVV   15  15  14
+0079    TSETS   15   1   9  ; "starttgt"
+0080    KSHORT  15   1
+0081    MOV     16   6
+0082    KSHORT  17   1
+0083    FORI    15 => 0096
+0084 => UGET    19   4      ; table
+0085    TGETS   19  19  10  ; "remove"
+0086    TGETS   20   1   2  ; "text"
+0087    KSHORT  21   1
+0088    CALL    19   1   3
+0089    UGET    19   4      ; table
+0090    TGETS   19  19  10  ; "remove"
+0091    TGETS   20   1   2  ; "text"
+0092    TGETS   21   1   2  ; "text"
+0093    LEN     21  21
+0094    CALL    19   1   3
+0095    FORL    15 => 0084
+0096 => KPRI    15   2
+0097    RET1    15   2
+0098 => MOV      7  11
+0099    FORL     8 => 0010
+0100 => FORL     3 => 0005
+0101 => KPRI     3   1
+0102    RET1     3   2
+
+-- BYTECODE -- patch.lua:417-428
+0001    GGET     1   0      ; "assert"
+0002    UGET     2   0      ; io
+0003    TGETS    2   2   1  ; "open"
+0004    MOV      3   0
+0005    CALL     2   0   2
+0006    CALLM    1   2   0
+0007    TNEW     2   0
+0008    UGET     3   1      ; file_lines
+0009    MOV      4   1
+0010    CALL     3   2   2
+0011 => LOOP     4 => 0023
+0012    MOV      4   3
+0013    CALL     4   2   1
+0014    IST          4
+0015    JMP      5 => 0017
+0016    JMP      4 => 0023
+0017 => UGET     5   2      ; table
+0018    TGETS    5   5   2  ; "insert"
+0019    MOV      6   2
+0020    MOV      7   4
+0021    CALL     5   1   3
+0022    JMP      4 => 0011
+0023 => MOV      5   1
+0024    TGETS    4   1   3  ; "close"
+0025    CALL     4   1   2
+0026    RET1     2   2
+
+-- BYTECODE -- patch.lua:430-434
+0001    GGET     2   0      ; "ipairs"
+0002    MOV      3   1
+0003    CALL     2   4   2
+0004    JMP      5 => 0010
+0005 => UGET     7   0      ; find_hunk
+0006    MOV      8   0
+0007    MOV      9   6
+0008    MOV     10   5
+0009    CALL     7   1   4
+0010 => ITERC    5   3   3
+0011    ITERL    5 => 0005
+0012    RET0     0   1
+
+-- BYTECODE -- patch.lua:438-463
+0001    UGET     0   0      ; file
+0002    LEN      0   0
+0003    ISNEN    0   0      ; 0
+0004    JMP      0 => 0009
+0005    GGET     0   0      ; "error"
+0006    KSTR     1   1      ; "nomatch"
+0007    KSHORT   2   0
+0008    CALL     0   1   3
+0009 => GGET     0   2      ; "ipairs"
+0010    UGET     1   1      ; hunks
+0011    CALL     0   4   2
+0012    JMP      3 => 0076
+0013 => UGET     5   0      ; file
+0014    LEN      5   5
+0015    TGETS    6   4   3  ; "starttgt"
+0016    ISGE     5   6
+0017    JMP      5 => 0022
+0018    GGET     5   0      ; "error"
+0019    KSTR     6   1      ; "nomatch"
+0020    KSHORT   7   0
+0021    CALL     5   1   3
+0022 => TGETS    5   4   3  ; "starttgt"
+0023    USETV    2   5      ; lineno
+0024    GGET     5   2      ; "ipairs"
+0025    TGETS    6   4   4  ; "text"
+0026    CALL     5   4   2
+0027    JMP      8 => 0074
+0028 => UGET    10   3      ; startswith
+0029    MOV     11   9
+0030    KSTR    12   5      ; "-"
+0031    CALL    10   2   3
+0032    IST         10
+0033    JMP     10 => 0074
+0034    UGET    10   3      ; startswith
+0035    MOV     11   9
+0036    KSTR    12   6      ; "\"
+0037    CALL    10   2   3
+0038    IST         10
+0039    JMP     10 => 0074
+0040    UGET    10   0      ; file
+0041    UGET    11   2      ; lineno
+0042    TGETV   10  10  11
+0043    UGET    11   2      ; lineno
+0044    ADDVN   11  11   1  ; 1
+0045    USETV    2  11      ; lineno
+0046    LEN     11  10
+0047    ISNEN   11   0      ; 0
+0048    JMP     11 => 0053
+0049    GGET    11   0      ; "error"
+0050    KSTR    12   1      ; "nomatch"
+0051    KSHORT  13   0
+0052    CALL    11   1   3
+0053 => UGET    11   4      ; endlstrip
+0054    MOV     12  10
+0055    CALL    11   2   2
+0056    UGET    12   4      ; endlstrip
+0057    MOV     14   9
+0058    TGETS   13   9   7  ; "sub"
+0059    KSHORT  15   2
+0060    CALL    13   0   3
+0061    CALLM   12   2   0
+0062    ISEQV   11  12
+0063    JMP     11 => 0074
+0064    UGET    11   5      ; warning
+0065    UGET    12   6      ; format
+0066    KSTR    13   8      ; "file is not patched - failed hunk: %d"
+0067    MOV     14   3
+0068    CALL    12   0   3
+0069    CALLM   11   1   0
+0070    GGET    11   0      ; "error"
+0071    KSTR    12   1      ; "nomatch"
+0072    KSHORT  13   0
+0073    CALL    11   1   3
+0074 => ITERC    8   3   3
+0075    ITERL    8 => 0028
+0076 => ITERC    3   3   3
+0077    ITERL    3 => 0013
+0078    RET0     0   1
+
+-- BYTECODE -- patch.lua:436-466
+0001    KSHORT   2   1
+0002    GGET     3   0      ; "pcall"
+0003    FNEW     4   1      ; patch.lua:438
+0004    CALL     3   3   2
+0005    ISNES    4   2      ; "nomatch"
+0006    JMP      5 => 0009
+0007    KPRI     5   1
+0008    JMP      6 => 0010
+0009 => KPRI     5   2
+0010 => UCLO     0 => 0011
+0011 => RET1     5   2
+
+-- BYTECODE -- patch.lua:468-529
+0001    GGET     3   0      ; "assert"
+0002    UGET     4   0      ; io
+0003    TGETS    4   4   1  ; "open"
+0004    MOV      5   0
+0005    KSTR     6   2      ; "rb"
+0006    CALL     4   0   3
+0007    CALLM    3   2   0
+0008    GGET     4   0      ; "assert"
+0009    UGET     5   0      ; io
+0010    TGETS    5   5   1  ; "open"
+0011    MOV      6   1
+0012    KSTR     7   3      ; "wb"
+0013    CALL     5   0   3
+0014    CALLM    4   2   0
+0015    UGET     5   1      ; file_lines
+0016    MOV      6   3
+0017    CALL     5   2   2
+0018    KSHORT   6   1
+0019    TDUP     7   4
+0020    GGET     8   5      ; "ipairs"
+0021    MOV      9   2
+0022    CALL     8   4   2
+0023    JMP     11 => 0143
+0024 => UGET    13   2      ; debug
+0025    UGET    14   3      ; format
+0026    KSTR    15   6      ; "processing hunk %d for file %s"
+0027    MOV     16  11
+0028    MOV     17   1
+0029    CALL    14   0   4
+0030    CALLM   13   1   0
+0031 => TGETS   13  12   7  ; "startsrc"
+0032    ISGE     6  13
+0033    JMP     13 => 0072
+0034    LOOP    13 => 0072
+0035    MOV     13   5
+0036    CALL    13   2   1
+0037    UGET    14   4      ; endswith
+0038    MOV     15  13
+0039    KSTR    16   8      ; "\r\n"
+0040    CALL    14   2   3
+0041    ISF         14
+0042    JMP     15 => 0047
+0043    TGETS   14   7   8  ; "\r\n"
+0044    ADDVN   14  14   0  ; 1
+0045    TSETS   14   7   8  ; "\r\n"
+0046    JMP     14 => 0066
+0047 => UGET    14   4      ; endswith
+0048    MOV     15  13
+0049    KSTR    16   9      ; "\n"
+0050    CALL    14   2   3
+0051    ISF         14
+0052    JMP     15 => 0057
+0053    TGETS   14   7   9  ; "\n"
+0054    ADDVN   14  14   0  ; 1
+0055    TSETS   14   7   9  ; "\n"
+0056    JMP     14 => 0066
+0057 => UGET    14   4      ; endswith
+0058    MOV     15  13
+0059    KSTR    16  10      ; "\r"
+0060    CALL    14   2   3
+0061    ISF         14
+0062    JMP     15 => 0066
+0063    TGETS   14   7  10  ; "\r"
+0064    ADDVN   14  14   0  ; 1
+0065    TSETS   14   7  10  ; "\r"
+0066 => MOV     15   4
+0067    TGETS   14   4  11  ; "write"
+0068    MOV     16  13
+0069    CALL    14   1   3
+0070    ADDVN    6   6   0  ; 1
+0071    JMP     13 => 0031
+0072 => GGET    13   5      ; "ipairs"
+0073    TGETS   14  12  12  ; "text"
+0074    CALL    13   4   2
+0075    JMP     16 => 0141
+0076 => UGET    18   5      ; startswith
+0077    MOV     19  17
+0078    KSTR    20  13      ; "-"
+0079    CALL    18   2   3
+0080    IST         18
+0081    JMP     19 => 0088
+0082    UGET    18   5      ; startswith
+0083    MOV     19  17
+0084    KSTR    20  14      ; "\"
+0085    CALL    18   2   3
+0086    ISF         18
+0087    JMP     19 => 0092
+0088 => MOV     18   5
+0089    CALL    18   1   1
+0090    ADDVN    6   6   0  ; 1
+0091    JMP     18 => 0141
+0092 => UGET    18   5      ; startswith
+0093    MOV     19  17
+0094    KSTR    20  15      ; "+"
+0095    CALL    18   2   3
+0096    IST         18
+0097    JMP     18 => 0101
+0098    MOV     18   5
+0099    CALL    18   1   1
+0100    ADDVN    6   6   0  ; 1
+0101 => MOV     19  17
+0102    TGETS   18  17  16  ; "sub"
+0103    KSHORT  20   2
+0104    CALL    18   2   3
+0105    KSHORT  19   0
+0106    GGET    20  17      ; "pairs"
+0107    MOV     21   7
+0108    CALL    20   4   2
+0109    ISNEXT  23 => 0114
+0110 => KSHORT  25   0
+0111    ISGE    25  24
+0112    JMP     25 => 0114
+0113    ADDVN   19  19   0  ; 1
+0114 => ITERN   23   3   3
+0115    ITERL   23 => 0110
+0116    ISNEN   19   0      ; 1
+0117    JMP     20 => 0137
+0118    KPRI    20   0
+0119    GGET    21  17      ; "pairs"
+0120    MOV     22   7
+0121    CALL    21   4   2
+0122    ISNEXT  24 => 0126
+0123 => ISEQN   25   1      ; 0
+0124    JMP     26 => 0126
+0125    MOV     20  24
+0126 => ITERN   24   3   3
+0127    ITERL   24 => 0123
+0128    MOV     22   4
+0129    TGETS   21   4  11  ; "write"
+0130    UGET    23   6      ; endlstrip
+0131    MOV     24  18
+0132    CALL    23   2   2
+0133    MOV     24  20
+0134    CAT     23  23  24
+0135    CALL    21   1   3
+0136    JMP     20 => 0141
+0137 => MOV     21   4
+0138    TGETS   20   4  11  ; "write"
+0139    MOV     22  18
+0140    CALL    20   1   3
+0141 => ITERC   16   3   3
+0142    ITERL   16 => 0076
+0143 => ITERC   11   3   3
+0144    ITERL   11 => 0024
+0145    MOV      8   5
+0146    KNIL     9  10
+0147    JMP     11 => 0152
+0148 => MOV     13   4
+0149    TGETS   12   4  11  ; "write"
+0150    MOV     14  11
+0151    CALL    12   1   3
+0152 => ITERC   11   2   3
+0153    ITERL   11 => 0148
+0154    MOV      9   4
+0155    TGETS    8   4  18  ; "close"
+0156    CALL     8   1   2
+0157    MOV      9   3
+0158    TGETS    8   3  18  ; "close"
+0159    CALL     8   1   2
+0160    KPRI     8   2
+0161    RET1     8   2
+
+-- BYTECODE -- patch.lua:531-537
+0001    ISNEP    1   0
+0002    JMP      2 => 0004
+0003    RET1     0   2
+0004 => KSHORT   2   1
+0005    MOV      3   1
+0006    KSHORT   4   1
+0007    FORI     2 => 0015
+0008 => MOV      7   0
+0009    TGETS    6   0   0  ; "gsub"
+0010    KSTR     8   1      ; "^[^/]*/"
+0011    KSTR     9   2      ; ""
+0012    CALL     6   2   4
+0013    MOV      0   6
+0014    FORL     2 => 0008
+0015 => RET1     0   2
+
+-- BYTECODE -- patch.lua:539-550
+0001    UGET     2   0      ; io
+0002    TGETS    2   2   0  ; "open"
+0003    MOV      3   0
+0004    KSTR     4   1      ; "wb"
+0005    CALL     2   2   3
+0006    IST          2
+0007    JMP      3 => 0010
+0008    KPRI     3   1
+0009    RET1     3   2
+0010 => GGET     3   2      ; "ipairs"
+0011    TGETS    4   1   3  ; "text"
+0012    CALL     3   4   2
+0013    JMP      6 => 0032
+0014 => MOV      9   7
+0015    TGETS    8   7   4  ; "sub"
+0016    KSHORT  10   1
+0017    KSHORT  11   1
+0018    CALL     8   2   4
+0019    NOT      8   8
+0020    ISNES    8   5      ; "+"
+0021    JMP      8 => 0025
+0022    KPRI     8   1
+0023    KSTR     9   6      ; "malformed patch"
+0024    RET      8   3
+0025 => MOV      9   2
+0026    TGETS    8   2   7  ; "write"
+0027    MOV     11   7
+0028    TGETS   10   7   4  ; "sub"
+0029    KSHORT  12   2
+0030    CALL    10   0   3
+0031    CALLM    8   1   1
+0032 => ITERC    6   3   3
+0033    ITERL    6 => 0014
+0034    MOV      4   2
+0035    TGETS    3   2   8  ; "close"
+0036    CALL     3   1   2
+0037    KPRI     3   2
+0038    RET1     3   2
+
+-- BYTECODE -- patch.lua:607-656
+0001    UGET     2   0      ; hunk
+0002    ISF          2
+0003    JMP      2 => 0008
+0004    UGET     2   0      ; hunk
+0005    TGETS    2   2   0  ; "startsrc"
+0006    ISGE     1   2
+0007    JMP      2 => 0010
+0008 => KPRI     2   1
+0009    RET1     2   2
+0010 => UGET     2   0      ; hunk
+0011    TGETS    2   2   0  ; "startsrc"
+0012    ISNEV    1   2
+0013    JMP      2 => 0049
+0014    TNEW     2   0
+0015    USETV    1   2      ; hunkfind
+0016    GGET     2   1      ; "ipairs"
+0017    UGET     3   0      ; hunk
+0018    TGETS    3   3   2  ; "text"
+0019    CALL     2   4   2
+0020    JMP      5 => 0046
+0021 => MOV      8   6
+0022    TGETS    7   6   3  ; "sub"
+0023    KSHORT   9   1
+0024    KSHORT  10   1
+0025    CALL     7   2   4
+0026    ISEQS    7   4      ; " "
+0027    JMP      7 => 0035
+0028    MOV      8   6
+0029    TGETS    7   6   3  ; "sub"
+0030    KSHORT   9   1
+0031    KSHORT  10   1
+0032    CALL     7   2   4
+0033    ISNES    7   5      ; "-"
+0034    JMP      7 => 0046
+0035 => UGET     7   1      ; hunkfind
+0036    UGET     8   1      ; hunkfind
+0037    LEN      8   8
+0038    ADDVN    8   8   0  ; 1
+0039    UGET     9   2      ; endlstrip
+0040    MOV     11   6
+0041    TGETS   10   6   3  ; "sub"
+0042    KSHORT  12   2
+0043    CALL    10   0   3
+0044    CALLM    9   2   0
+0045    TSETV    9   7   8
+0046 => ITERC    5   3   3
+0047    ITERL    5 => 0021
+0048    USETN    3   0      ; hunklineno ; 1
+0049 => UGET     2   0      ; hunk
+0050    TGETS    2   2   0  ; "startsrc"
+0051    UGET     3   1      ; hunkfind
+0052    LEN      3   3
+0053    ADDVV    2   2   3
+0054    SUBVN    2   2   0  ; 1
+0055    ISGE     1   2
+0056    JMP      2 => 0093
+0057    UGET     2   2      ; endlstrip
+0058    MOV      3   0
+0059    CALL     2   2   2
+0060    UGET     3   1      ; hunkfind
+0061    UGET     4   3      ; hunklineno
+0062    TGETV    3   3   4
+0063    ISNEV    2   3
+0064    JMP      2 => 0069
+0065    UGET     2   3      ; hunklineno
+0066    ADDVN    2   2   0  ; 1
+0067    USETV    3   2      ; hunklineno
+0068    JMP      2 => 0093
+0069 => UGET     2   4      ; debug
+0070    UGET     3   5      ; format
+0071    KSTR     4   6      ; "hunk no.%d doesn't match source file %s"
+0072    UGET     5   6      ; hunkno
+0073    UGET     6   7      ; source
+0074    CALL     3   0   4
+0075    CALLM    2   1   0
+0076    UGET     2   6      ; hunkno
+0077    ADDVN    2   2   0  ; 1
+0078    USETV    6   2      ; hunkno
+0079    UGET     2   6      ; hunkno
+0080    UGET     3   8      ; hunks
+0081    LEN      3   3
+0082    ISGT     2   3
+0083    JMP      2 => 0091
+0084    UGET     2   8      ; hunks
+0085    UGET     3   6      ; hunkno
+0086    TGETV    2   2   3
+0087    USETV    0   2      ; hunk
+0088    KPRI     2   1
+0089    RET1     2   2
+0090    JMP      2 => 0093
+0091 => KPRI     2   2
+0092    RET1     2   2
+0093 => UGET     2   0      ; hunk
+0094    TGETS    2   2   0  ; "startsrc"
+0095    UGET     3   1      ; hunkfind
+0096    LEN      3   3
+0097    ADDVV    2   2   3
+0098    SUBVN    2   2   0  ; 1
+0099    ISNEV    1   2
+0100    JMP      2 => 0132
+0101    UGET     2   4      ; debug
+0102    UGET     3   5      ; format
+0103    KSTR     4   7      ; "file %s hunk no.%d -- is ready to be pat"~
+0104    UGET     5   7      ; source
+0105    UGET     6   6      ; hunkno
+0106    CALL     3   0   4
+0107    CALLM    2   1   0
+0108    UGET     2   6      ; hunkno
+0109    ADDVN    2   2   0  ; 1
+0110    USETV    6   2      ; hunkno
+0111    UGET     2   9      ; validhunks
+0112    ADDVN    2   2   0  ; 1
+0113    USETV    9   2      ; validhunks
+0114    UGET     2   6      ; hunkno
+0115    UGET     3   8      ; hunks
+0116    LEN      3   3
+0117    ISGT     2   3
+0118    JMP      2 => 0124
+0119    UGET     2   8      ; hunks
+0120    UGET     3   6      ; hunkno
+0121    TGETV    2   2   3
+0122    USETV    0   2      ; hunk
+0123    JMP      2 => 0132
+0124 => UGET     2   9      ; validhunks
+0125    UGET     3   8      ; hunks
+0126    LEN      3   3
+0127    ISNEV    2   3
+0128    JMP      2 => 0132
+0129    USETP   10   2      ; canpatch
+0130    KPRI     2   2
+0131    RET1     2   2
+0132 => KPRI     2   1
+0133    RET1     2   2
+
+-- BYTECODE -- patch.lua:552-698
+0001    KPRI     6   1
+0002    ISF          5
+0003    JMP      7 => 0031
+0004    ISFC     7   2
+0005    JMP      7 => 0020
+0006    LEN      7   3
+0007    ISNEN    7   0      ; 1
+0008    JMP      7 => 0017
+0009    TGETB    7   3   1
+0010    TGETS    7   7   0  ; "startsrc"
+0011    ISNEN    7   1      ; 0
+0012    JMP      7 => 0017
+0013    TGETB    7   3   1
+0014    TGETS    7   7   1  ; "linessrc"
+0015    ISEQN    7   1      ; 0
+0016    JMP      7 => 0019
+0017 => KPRI     7   1
+0018    JMP      8 => 0020
+0019 => KPRI     7   2
+0020 => IST          7
+0021    JMP      8 => 0024
+0022    ISNES    0   2      ; "/dev/null"
+0023    JMP      8 => 0031
+0024 => UGET     8   0      ; info
+0025    UGET     9   1      ; format
+0026    KSTR    10   3      ; "will create %s"
+0027    MOV     11   1
+0028    CALL     9   0   3
+0029    CALLM    8   1   0
+0030    KPRI     6   2
+0031 => ISF          6
+0032    JMP      7 => 0043
+0033    UGET     7   2      ; write_new_file
+0034    UGET     8   3      ; fs
+0035    TGETS    8   8   4  ; "absolute_name"
+0036    UGET     9   4      ; strip_dirs
+0037    MOV     10   1
+0038    MOV     11   4
+0039    CALL     9   0   3
+0040    CALLM    8   2   0
+0041    TGETB    9   3   1
+0042    UCLO     0 => 0259
+0043 => UGET     7   4      ; strip_dirs
+0044    MOV      8   0
+0045    MOV      9   4
+0046    CALL     7   2   3
+0047    MOV      0   7
+0048    MOV      7   0
+0049    UGET     8   5      ; exists
+0050    MOV      9   7
+0051    CALL     8   2   2
+0052    IST          8
+0053    JMP      8 => 0078
+0054    UGET     8   4      ; strip_dirs
+0055    MOV      9   1
+0056    MOV     10   4
+0057    CALL     8   2   3
+0058    MOV      7   8
+0059    UGET     8   3      ; fs
+0060    TGETS    8   8   4  ; "absolute_name"
+0061    MOV      9   7
+0062    CALL     8   2   2
+0063    MOV      7   8
+0064    UGET     8   5      ; exists
+0065    MOV      9   7
+0066    CALL     8   2   2
+0067    IST          8
+0068    JMP      8 => 0078
+0069    UGET     8   6      ; warning
+0070    UGET     9   1      ; format
+0071    KSTR    10   5      ; "source/target file does not exist\n--- %"~
+0072    MOV     11   0
+0073    MOV     12   7
+0074    CALL     9   0   4
+0075    CALLM    8   1   0
+0076    KPRI     8   1
+0077    UCLO     0 => 0260
+0078 => UGET     8   7      ; isfile
+0079    MOV      9   7
+0080    CALL     8   2   2
+0081    IST          8
+0082    JMP      8 => 0091
+0083    UGET     8   6      ; warning
+0084    UGET     9   1      ; format
+0085    KSTR    10   6      ; "not a file - %s"
+0086    MOV     11   7
+0087    CALL     9   0   3
+0088    CALLM    8   1   0
+0089    KPRI     8   1
+0090    UCLO     0 => 0261
+0091 => MOV      0   7
+0092    UGET     8   8      ; load_file
+0093    MOV      9   0
+0094    CALL     8   2   2
+0095    KSHORT   9   1
+0096    TGETV   10   3   9
+0097    TNEW    11   0
+0098    KSHORT  12   0
+0099    KPRI    13   1
+0100    KPRI    14   0
+0101    IST          8
+0102    JMP     15 => 0108
+0103    KPRI    15   0
+0104    KSTR    16   7      ; "failed reading file "
+0105    MOV     17   0
+0106    CAT     16  16  17
+0107    UCLO     0 => 0262
+0108 => ISF          5
+0109    JMP     15 => 0139
+0110    ISF          2
+0111    JMP     15 => 0139
+0112    LEN     15   3
+0113    ISNEN   15   0      ; 1
+0114    JMP     15 => 0139
+0115    TGETB   15   3   1
+0116    TGETS   15  15   8  ; "starttgt"
+0117    ISNEN   15   1      ; 0
+0118    JMP     15 => 0139
+0119    TGETB   15   3   1
+0120    TGETS   15  15   9  ; "linestgt"
+0121    ISNEN   15   1      ; 0
+0122    JMP     15 => 0139
+0123    UGET    15   9      ; os
+0124    TGETS   15  15  10  ; "remove"
+0125    MOV     16   0
+0126    CALL    15   2   2
+0127    IST         15
+0128    JMP     16 => 0131
+0129    KPRI    16   1
+0130    UCLO     0 => 0263
+0131 => UGET    16   0      ; info
+0132    UGET    17   1      ; format
+0133    KSTR    18  11      ; "successfully removed %s"
+0134    MOV     19   0
+0135    CALL    17   0   3
+0136    CALLM   16   1   0
+0137    KPRI    16   2
+0138    UCLO     0 => 0264
+0139 => UGET    15  10      ; find_hunks
+0140    MOV     16   8
+0141    MOV     17   3
+0142    CALL    15   1   3
+0143    FNEW    15  12      ; patch.lua:607
+0144    KPRI    16   1
+0145    GGET    17  13      ; "ipairs"
+0146    MOV     18   8
+0147    CALL    17   4   2
+0148    JMP     20 => 0157
+0149 => MOV     22  15
+0150    MOV     23  21
+0151    MOV     24  20
+0152    CALL    22   2   3
+0153    MOV     16  22
+0154    ISF         16
+0155    JMP     22 => 0157
+0156    JMP     17 => 0159
+0157 => ITERC   20   3   3
+0158    ITERL   20 => 0149
+0159 => IST         16
+0160    JMP     17 => 0176
+0161    LEN     17   3
+0162    ISGT     9  17
+0163    JMP     17 => 0176
+0164    IST          6
+0165    JMP     17 => 0176
+0166    UGET    17   6      ; warning
+0167    UGET    18   1      ; format
+0168    KSTR    19  14      ; "premature end of source file %s at hunk "~
+0169    MOV     20   0
+0170    MOV     21   9
+0171    CALL    18   0   4
+0172    CALLM   17   1   0
+0173    KPRI    17   1
+0174    UCLO     0 => 0175
+0175 => RET1    17   2
+0176 => LEN     17   3
+0177    ISGE    12  17
+0178    JMP     17 => 0203
+0179    UGET    17  13      ; check_patched
+0180    MOV     18   8
+0181    MOV     19   3
+0182    CALL    17   2   3
+0183    ISF         17
+0184    JMP     18 => 0192
+0185    UGET    17   6      ; warning
+0186    UGET    18   1      ; format
+0187    KSTR    19  15      ; "already patched  %s"
+0188    MOV     20   0
+0189    CALL    18   0   3
+0190    CALLM   17   1   0
+0191    JMP     17 => 0203
+0192 => IST          6
+0193    JMP     17 => 0203
+0194    UGET    17   6      ; warning
+0195    UGET    18   1      ; format
+0196    KSTR    19  16      ; "source file is different - %s"
+0197    MOV     20   0
+0198    CALL    18   0   3
+0199    CALLM   17   1   0
+0200    KPRI    17   1
+0201    UCLO     0 => 0202
+0202 => RET1    17   2
+0203 => IST         13
+0204    JMP     17 => 0208
+0205    KPRI    17   2
+0206    UCLO     0 => 0207
+0207 => RET1    17   2
+0208 => MOV     17   0
+0209    KSTR    18  17      ; ".orig"
+0210    CAT     17  17  18
+0211    UGET    18   5      ; exists
+0212    MOV     19  17
+0213    CALL    18   2   2
+0214    ISF         18
+0215    JMP     19 => 0225
+0216    UGET    18   6      ; warning
+0217    UGET    19   1      ; format
+0218    KSTR    20  18      ; "can't backup original file to %s - abort"~
+0219    MOV     21  17
+0220    CALL    19   0   3
+0221    CALLM   18   1   0
+0222    KPRI    18   1
+0223    UCLO     0 => 0224
+0224 => RET1    18   2
+0225 => UGET    18   9      ; os
+0226    TGETS   18  18  19  ; "rename"
+0227    MOV     19   0
+0228    MOV     20  17
+0229    CALL    18   2   3
+0230    IST         18
+0231    JMP     19 => 0241
+0232    UGET    19   6      ; warning
+0233    UGET    20   1      ; format
+0234    KSTR    21  20      ; "failed backing up %s when patching"
+0235    MOV     22   0
+0236    CALL    20   0   3
+0237    CALLM   19   1   0
+0238    KPRI    19   1
+0239    UCLO     0 => 0240
+0240 => RET1    19   2
+0241 => UGET    19  14      ; patch_hunks
+0242    MOV     20  17
+0243    MOV     21   0
+0244    MOV     22   3
+0245    CALL    19   1   4
+0246    UGET    19   0      ; info
+0247    UGET    20   1      ; format
+0248    KSTR    21  21      ; "successfully patched %s"
+0249    MOV     22   0
+0250    CALL    20   0   3
+0251    CALLM   19   1   0
+0252    UGET    19   9      ; os
+0253    TGETS   19  19  10  ; "remove"
+0254    MOV     20  17
+0255    CALL    19   1   2
+0256    KPRI    19   2
+0257    UCLO     0 => 0258
+0258 => RET1    19   2
+0259 => CALLT    7   3
+0260 => RET1     8   2
+0261 => RET1     8   2
+0262 => RET     15   3
+0263 => RET1    16   2
+0264 => RET1    16   2
+
+-- BYTECODE -- patch.lua:700-713
+0001    KPRI     3   2
+0002    TGETS    4   0   0  ; "source"
+0003    LEN      4   4
+0004    GGET     5   1      ; "ipairs"
+0005    TGETS    6   0   0  ; "source"
+0006    CALL     5   4   2
+0007    JMP      8 => 0033
+0008 => TGETS   10   0   2  ; "target"
+0009    TGETV   10  10   8
+0010    TGETS   11   0   3  ; "hunks"
+0011    TGETV   11  11   8
+0012    TGETS   12   0   4  ; "epoch"
+0013    TGETV   12  12   8
+0014    UGET    13   0      ; info
+0015    UGET    14   1      ; format
+0016    KSTR    15   5      ; "processing %d/%d:\t %s"
+0017    MOV     16   8
+0018    MOV     17   4
+0019    MOV     18   9
+0020    CALL    14   0   5
+0021    CALLM   13   1   0
+0022    UGET    13   2      ; patch_file
+0023    MOV     14   9
+0024    MOV     15  10
+0025    MOV     16  12
+0026    MOV     17  11
+0027    MOV     18   1
+0028    MOV     19   2
+0029    CALL    13   2   7
+0030    ISF          3
+0031    JMP     14 => 0033
+0032    MOV      3  13
+0033 => ITERC    8   3   3
+0034    ITERL    8 => 0008
+0035    RET1     3   2
+
+-- BYTECODE -- patch.lua:0-716
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.fs"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.fun"
+0007    CALL     2   2   2
+0008    GGET     3   3      ; "io"
+0009    GGET     4   4      ; "os"
+0010    GGET     5   5      ; "string"
+0011    GGET     6   6      ; "table"
+0012    TGETS    7   5   7  ; "format"
+0013    KPRI     8   1
+0014    FNEW     9   8      ; patch.lua:24
+0015    FNEW    10   9      ; patch.lua:25
+0016    FNEW    11  10      ; patch.lua:26
+0017    FNEW    12  11      ; patch.lua:29
+0018    FNEW    13  12      ; patch.lua:34
+0019    FNEW    14  13      ; patch.lua:39
+0020    FNEW    15  14      ; patch.lua:44
+0021    FNEW    16  15      ; patch.lua:50
+0022    FNEW    17  16      ; patch.lua:56
+0023    FNEW    18  17      ; patch.lua:58
+0024    FNEW    19  18      ; patch.lua:88
+0025    FNEW    20  19      ; patch.lua:121
+0026    FNEW    21  20      ; patch.lua:129
+0027    FNEW    22  22      ; patch.lua:133
+0028    TSETS   22   0  21  ; "read_patch"
+0029    FNEW    22  23      ; patch.lua:375
+0030    FNEW    23  24      ; patch.lua:417
+0031    FNEW    24  25      ; patch.lua:430
+0032    FNEW    25  26      ; patch.lua:436
+0033    FNEW    26  27      ; patch.lua:468
+0034    FNEW    27  28      ; patch.lua:531
+0035    FNEW    28  29      ; patch.lua:539
+0036    FNEW    29  30      ; patch.lua:552
+0037    FNEW    30  32      ; patch.lua:700
+0038    TSETS   30   0  31  ; "apply_patch"
+0039    UCLO     0 => 0040
+0040 => RET1     0   2
+

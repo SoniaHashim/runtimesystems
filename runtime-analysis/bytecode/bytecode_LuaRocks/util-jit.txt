@@ -1,0 +1,1463 @@
+-- BYTECODE -- util.lua:34-40
+0001    GGET     1   0      ; "assert"
+0002    GGET     2   1      ; "type"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "function"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => CALL     1   1   2
+0011    TDUP     1   3
+0012    TSETS    0   1   4  ; "fn"
+0013    TNEW     2   3
+0014    VARG     3   0   1
+0015    TSETM    3   0      ; 1
+0016    TSETS    2   1   5  ; "args"
+0017    GGET     2   6      ; "table"
+0018    TGETS    2   2   7  ; "insert"
+0019    UGET     3   0      ; scheduled_functions
+0020    MOV      4   1
+0021    CALL     2   1   3
+0022    RET1     1   2
+
+-- BYTECODE -- util.lua:46-53
+0001    GGET     1   0      ; "pairs"
+0002    UGET     2   0      ; scheduled_functions
+0003    CALL     1   4   2
+0004    ISNEXT   4 => 0013
+0005 => ISNEV    5   0
+0006    JMP      6 => 0013
+0007    GGET     6   1      ; "table"
+0008    TGETS    6   6   2  ; "remove"
+0009    UGET     7   0      ; scheduled_functions
+0010    MOV      8   4
+0011    CALL     6   1   3
+0012    RET0     0   1
+0013 => ITERN    4   3   3
+0014    ITERL    4 => 0005
+0015    RET0     0   1
+
+-- BYTECODE -- util.lua:60-69
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "luarocks.fs"
+0003    CALL     0   2   2
+0004    TGETS    1   0   2  ; "change_dir_to_root"
+0005    ISF          1
+0006    JMP      2 => 0009
+0007    TGETS    1   0   2  ; "change_dir_to_root"
+0008    CALL     1   1   1
+0009 => UGET     1   0      ; scheduled_functions
+0010    LEN      1   1
+0011    KSHORT   2   1
+0012    KSHORT   3  -1
+0013    FORI     1 => 0022
+0014 => UGET     5   0      ; scheduled_functions
+0015    TGETV    5   5   4
+0016    TGETS    6   5   3  ; "fn"
+0017    UGET     7   1      ; unpack
+0018    TGETS    8   5   4  ; "args"
+0019    CALL     7   0   2
+0020    CALLM    6   1   0
+0021    FORL     1 => 0014
+0022 => RET0     0   1
+
+-- BYTECODE -- util.lua:76-78
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "gsub"
+0003    KSTR     3   1      ; "[?%-+*%[%].%%()$^]"
+0004    KSTR     4   2      ; "%%%1"
+0005    CALL     1   2   4
+0006    RET1     1   2
+
+-- BYTECODE -- util.lua:92-102
+0001    UGET     3   0      ; core
+0002    TGETS    3   3   0  ; "make_shallow_copy"
+0003    MOV      4   1
+0004    CALL     3   2   2
+0005    MOV      1   3
+0006    GGET     3   1      ; "pairs"
+0007    MOV      4   0
+0008    CALL     3   4   2
+0009    ISNEXT   6 => 0019
+0010 => MOV      9   7
+0011    TGETS    8   7   2  ; "gmatch"
+0012    UGET    10   1      ; var_format_pattern
+0013    CALL     8   4   3
+0014    JMP     11 => 0017
+0015 => KPRI    12   0
+0016    TSETV   12   1  11
+0017 => ITERC   11   2   3
+0018    ITERL   11 => 0015
+0019 => ITERN    6   3   3
+0020    ITERL    6 => 0010
+0021    GGET     3   1      ; "pairs"
+0022    MOV      4   1
+0023    CALL     3   4   2
+0024    ISNEXT   6 => 0032
+0025 => UGET     8   2      ; util
+0026    TGETS    8   8   3  ; "warning"
+0027    MOV     10   2
+0028    TGETS    9   2   4  ; "format"
+0029    MOV     11   6
+0030    CALL     9   0   3
+0031    CALLM    8   1   0
+0032 => ITERN    6   3   3
+0033    ITERL    6 => 0025
+0034    RET0     0   1
+
+-- BYTECODE -- util.lua:107-116
+0001    KPRI     1   1
+0002    MOV      3   0
+0003    TGETS    2   0   0  ; "match"
+0004    UGET     4   0      ; var_format_pattern
+0005    CALL     2   2   3
+0006    ISF          2
+0007    JMP      3 => 0022
+0008    MOV      3   0
+0009    TGETS    2   0   1  ; "gmatch"
+0010    UGET     4   0      ; var_format_pattern
+0011    CALL     2   4   3
+0012    JMP      5 => 0020
+0013 => UGET     6   1      ; util
+0014    TGETS    6   6   2  ; "warning"
+0015    KSTR     7   3      ; "unmatched variable "
+0016    MOV      8   5
+0017    CAT      7   7   8
+0018    CALL     6   1   2
+0019    KPRI     1   2
+0020 => ITERC    5   2   3
+0021    ITERL    5 => 0013
+0022 => RET1     1   2
+
+-- BYTECODE -- util.lua:126-142
+0001    GGET     2   0      ; "assert"
+0002    GGET     3   1      ; "type"
+0003    MOV      4   0
+0004    CALL     3   2   2
+0005    ISEQS    3   2      ; "table"
+0006    JMP      3 => 0009
+0007    KPRI     3   1
+0008    JMP      4 => 0010
+0009 => KPRI     3   2
+0010 => CALL     2   1   2
+0011    GGET     2   0      ; "assert"
+0012    GGET     3   1      ; "type"
+0013    MOV      4   1
+0014    CALL     3   2   2
+0015    ISEQS    3   2      ; "table"
+0016    JMP      3 => 0019
+0017    KPRI     3   1
+0018    JMP      4 => 0020
+0019 => KPRI     3   2
+0020 => CALL     2   1   2
+0021    TNEW     2   0
+0022    GGET     3   3      ; "pairs"
+0023    MOV      4   0
+0024    CALL     3   4   2
+0025    ISNEXT   6 => 0049
+0026 => GGET     8   1      ; "type"
+0027    MOV      9   7
+0028    CALL     8   2   2
+0029    ISNES    8   4      ; "string"
+0030    JMP      8 => 0049
+0031    MOV      9   7
+0032    TGETS    8   7   5  ; "gsub"
+0033    UGET    10   0      ; var_format_pattern
+0034    MOV     11   1
+0035    CALL     8   2   4
+0036    TSETV    8   2   6
+0037    UGET     8   1      ; warn_failed_matches
+0038    TGETV    9   2   6
+0039    CALL     8   2   2
+0040    ISF          8
+0041    JMP      9 => 0049
+0042    TGETV    8   2   6
+0043    MOV      9   8
+0044    TGETS    8   8   5  ; "gsub"
+0045    UGET    10   0      ; var_format_pattern
+0046    KSTR    11   6      ; ""
+0047    CALL     8   2   4
+0048    TSETV    8   2   6
+0049 => ITERN    6   3   3
+0050    ITERL    6 => 0026
+0051    GGET     3   3      ; "pairs"
+0052    MOV      4   2
+0053    CALL     3   4   2
+0054    ISNEXT   6 => 0056
+0055 => TSETV    7   0   6
+0056 => ITERN    6   3   3
+0057    ITERL    6 => 0055
+0058    RET0     0   1
+
+-- BYTECODE -- util.lua:149-152
+0001    UGET     0   0      ; i
+0002    SUBVN    0   0   0  ; 1
+0003    USETV    0   0      ; i
+0004    UGET     0   1      ; versions
+0005    UGET     1   0      ; i
+0006    TGETV    0   0   1
+0007    RET1     0   2
+
+-- BYTECODE -- util.lua:154-157
+0001    UGET     0   0      ; i
+0002    ADDVN    0   0   0  ; 1
+0003    USETV    0   0      ; i
+0004    UGET     0   1      ; versions
+0005    UGET     1   0      ; i
+0006    TGETV    0   0   1
+0007    RET1     0   2
+
+-- BYTECODE -- util.lua:144-159
+0001    TDUP     1   0
+0002    KSHORT   2   0
+0003    ISNES    0   1      ; "descending"
+0004    JMP      3 => 0011
+0005    LEN      3   1
+0006    ADDVN    2   3   0  ; 1
+0007    FNEW     3   2      ; util.lua:149
+0008    UCLO     0 => 0009
+0009 => RET1     3   2
+0010    JMP      3 => 0014
+0011 => FNEW     3   3      ; util.lua:154
+0012    UCLO     0 => 0013
+0013 => RET1     3   2
+0014 => UCLO     0 => 0015
+0015 => RET0     0   1
+
+-- BYTECODE -- util.lua:161-176
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "luarocks.core.cfg"
+0003    CALL     0   2   2
+0004    KSTR     1   2      ; "LUA_PATH"
+0005    KSTR     2   3      ; "LUA_CPATH"
+0006    TGETS    3   0   4  ; "lua_version"
+0007    MOV      4   3
+0008    TGETS    3   3   5  ; "gsub"
+0009    KSTR     5   6      ; "%."
+0010    KSTR     6   7      ; "_"
+0011    CALL     3   2   4
+0012    ISEQS    3   8      ; "5_1"
+0013    JMP      4 => 0036
+0014    GGET     4   9      ; "os"
+0015    TGETS    4   4  10  ; "getenv"
+0016    KSTR     5  11      ; "LUA_PATH_"
+0017    MOV      6   3
+0018    CAT      5   5   6
+0019    CALL     4   2   2
+0020    ISF          4
+0021    JMP      5 => 0025
+0022    KSTR     4  11      ; "LUA_PATH_"
+0023    MOV      5   3
+0024    CAT      1   4   5
+0025 => GGET     4   9      ; "os"
+0026    TGETS    4   4  10  ; "getenv"
+0027    KSTR     5  12      ; "LUA_CPATH_"
+0028    MOV      6   3
+0029    CAT      5   5   6
+0030    CALL     4   2   2
+0031    ISF          4
+0032    JMP      5 => 0036
+0033    KSTR     4  12      ; "LUA_CPATH_"
+0034    MOV      5   3
+0035    CAT      2   4   5
+0036 => MOV      4   1
+0037    MOV      5   2
+0038    RET      4   3
+
+-- BYTECODE -- util.lua:178-180
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "sub"
+0003    KSHORT   4   1
+0004    LEN      5   1
+0005    CALL     2   2   4
+0006    ISEQV    2   1
+0007    JMP      2 => 0010
+0008    KPRI     2   1
+0009    JMP      3 => 0011
+0010 => KPRI     2   2
+0011 => RET1     2   2
+
+-- BYTECODE -- util.lua:183-186
+0001    GGET     0   0      ; "io"
+0002    TGETS    0   0   1  ; "stdout"
+0003    MOV      1   0
+0004    TGETS    0   0   2  ; "write"
+0005    GGET     2   3      ; "table"
+0006    TGETS    2   2   4  ; "concat"
+0007    TNEW     3   3
+0008    VARG     4   0   0
+0009    TSETM    4   0      ; 1
+0010    KSTR     4   5      ; "\t"
+0011    CALL     2   0   3
+0012    CALLM    0   1   1
+0013    GGET     0   0      ; "io"
+0014    TGETS    0   0   1  ; "stdout"
+0015    MOV      1   0
+0016    TGETS    0   0   2  ; "write"
+0017    KSTR     2   6      ; "\n"
+0018    CALL     0   1   3
+0019    RET0     0   1
+
+-- BYTECODE -- util.lua:188-194
+0001    ISF          1
+0002    JMP      3 => 0004
+0003    RET0     0   1
+0004 => UGET     3   0      ; util
+0005    TGETS    3   3   0  ; "printout"
+0006    CALL     3   1   1
+0007    UGET     3   0      ; util
+0008    TGETS    3   3   0  ; "printout"
+0009    MOV      4   0
+0010    CALL     3   1   2
+0011    UGET     3   0      ; util
+0012    TGETS    3   3   0  ; "printout"
+0013    ISTC     4   2
+0014    JMP      4 => 0016
+0015    KSTR     4   1      ; "-"
+0016 => MOV      5   4
+0017    TGETS    4   4   2  ; "rep"
+0018    LEN      6   0
+0019    CALL     4   0   3
+0020    CALLM    3   1   0
+0021    UGET     3   0      ; util
+0022    TGETS    3   3   0  ; "printout"
+0023    CALL     3   1   1
+0024    RET0     0   1
+
+-- BYTECODE -- util.lua:196-216
+0001    KSHORT   1   1
+0002    MOV      2   0
+0003    MOV      3   0
+0004 => ISF          1
+0005    JMP      4 => 0019
+0006    LOOP     4 => 0019
+0007    UGET     4   0      ; debug
+0008    TGETS    4   4   0  ; "getinfo"
+0009    MOV      5   1
+0010    KSTR     6   1      ; "S"
+0011    CALL     4   2   3
+0012    IST          4
+0013    JMP      5 => 0015
+0014    JMP      4 => 0019
+0015 => MOV      2   3
+0016    TGETS    3   4   2  ; "source"
+0017    ADDVN    1   1   0  ; 1
+0018    JMP      4 => 0004
+0019 => MOV      5   2
+0020    TGETS    4   2   3  ; "sub"
+0021    KSHORT   6   1
+0022    KSHORT   7   1
+0023    CALL     4   2   4
+0024    ISNES    4   4      ; "@"
+0025    JMP      4 => 0032
+0026    MOV      5   2
+0027    TGETS    4   2   3  ; "sub"
+0028    KSHORT   6   2
+0029    CALL     4   2   3
+0030    IST          4
+0031    JMP      5 => 0033
+0032 => MOV      4   2
+0033 => MOV      6   4
+0034    TGETS    5   4   5  ; "match"
+0035    KSTR     7   6      ; "^(.*)/lib/luarocks/rocks%-[0-9.]*/[^/]+/"~
+0036    CALL     5   3   3
+0037    ISF          5
+0038    JMP      7 => 0043
+0039    MOV      7   5
+0040    MOV      8   6
+0041    CAT      7   7   8
+0042    RET1     7   2
+0043 => RET1     4   2
+
+-- BYTECODE -- util.lua:218-220
+0001    ISF          1
+0002    JMP      3 => 0008
+0003    MOV      3   1
+0004    KSTR     4   0      ; "/"
+0005    CAT      3   3   4
+0006    IST          3
+0007    JMP      4 => 0009
+0008 => KSTR     3   1      ; ""
+0009 => MOV      4   0
+0010    ISF          2
+0011    JMP      5 => 0017
+0012    KSTR     5   2      ; " "
+0013    MOV      6   2
+0014    CAT      5   5   6
+0015    IST          5
+0016    JMP      6 => 0018
+0017 => KSTR     5   1      ; ""
+0018 => CAT      3   3   5
+0019    RET1     3   2
+
+-- BYTECODE -- util.lua:222-238
+0001    GGET     2   0      ; "require"
+0002    KSTR     3   1      ; "luarocks.core.cfg"
+0003    CALL     2   2   2
+0004    MOV      4   0
+0005    TGETS    3   0   2  ; "option"
+0006    KSTR     5   3      ; "--deps-mode"
+0007    KSTR     6   4      ; "How to handle dependencies. Four modes a"~
+0008    KSTR     7   5      ; "* all - use all trees from the rocks_tre"~
+0009    KSTR     8   6      ; "* one - use only the current tree (possi"~
+0010    KSTR     9   7      ; "* order - use trees based on order (use "~
+0011    KSTR    10   8      ; "trees below it on the rocks_trees list)\n"
+0012    KSTR    11   9      ; "* none - ignore dependencies altogether."~
+0013    KSTR    12  10      ; "The default mode may be set with the dep"~
+0014    KSTR    13  11      ; "The current default is ""
+0015    TGETS   14   2  12  ; "deps_mode"
+0016    KSTR    15  13      ; "".\n"
+0017    KSTR    16  14      ; "Type '"
+0018    UGET    17   0      ; util
+0019    TGETS   17  17  15  ; "this_program"
+0020    ISTC    18   1
+0021    JMP     18 => 0023
+0022    KSTR    18  16      ; "luarocks"
+0023 => CALL    17   2   2
+0024    KSTR    18  17      ; "' with no "
+0025    KSTR    19  18      ; "arguments to see your list of rocks tree"~
+0026    CAT      6   6  19
+0027    CALL     3   2   4
+0028    MOV      4   3
+0029    TGETS    3   3  19  ; "argname"
+0030    KSTR     5  20      ; "<mode>"
+0031    CALL     3   2   3
+0032    MOV      4   3
+0033    TGETS    3   3  21  ; "choices"
+0034    TDUP     5  22
+0035    CALL     3   1   3
+0036    MOV      4   0
+0037    TGETS    3   0  23  ; "flag"
+0038    KSTR     5  24      ; "--nodeps"
+0039    CALL     3   2   3
+0040    MOV      4   3
+0041    TGETS    3   3  25  ; "hidden"
+0042    KPRI     5   2
+0043    CALL     3   1   3
+0044    RET0     0   1
+
+-- BYTECODE -- util.lua:240-242
+0001    KSTR     2   0      ; "See '"
+0002    UGET     3   0      ; util
+0003    TGETS    3   3   1  ; "this_program"
+0004    ISTC     4   1
+0005    JMP      4 => 0007
+0006    KSTR     4   2      ; "luarocks"
+0007 => CALL     3   2   2
+0008    KSTR     4   3      ; " help"
+0009    ISF          0
+0010    JMP      5 => 0016
+0011    KSTR     5   4      ; " "
+0012    MOV      6   0
+0013    CAT      5   5   6
+0014    IST          5
+0015    JMP      6 => 0017
+0016 => KSTR     5   5      ; ""
+0017 => KSTR     6   6      ; "'."
+0018    CAT      2   2   6
+0019    RET1     2   2
+
+-- BYTECODE -- util.lua:244-250
+0001    KSTR     1   0      ; "See also:\n"
+0002    ISF          0
+0003    JMP      2 => 0008
+0004    MOV      2   1
+0005    MOV      3   0
+0006    KSTR     4   1      ; "\n"
+0007    CAT      1   2   4
+0008 => MOV      2   1
+0009    KSTR     3   2      ; "   '"
+0010    UGET     4   0      ; util
+0011    TGETS    4   4   3  ; "this_program"
+0012    KSTR     5   4      ; "luarocks"
+0013    CALL     4   2   2
+0014    KSTR     5   5      ; " help' for general options and configura"~
+0015    CAT      2   2   5
+0016    RET1     2   2
+
+-- BYTECODE -- util.lua:252-263
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "luarocks.core.cfg"
+0003    CALL     1   2   2
+0004    GGET     2   0      ; "require"
+0005    KSTR     3   2      ; "luarocks.path"
+0006    CALL     2   2   2
+0007    KSTR     3   3      ; ""
+0008    TGETS    4   0   4  ; "description"
+0009    ISF          4
+0010    JMP      5 => 0020
+0011    TGETS    4   0   4  ; "description"
+0012    TGETS    4   4   5  ; "license"
+0013    ISF          4
+0014    JMP      5 => 0020
+0015    KSTR     4   6      ; " (license: "
+0016    TGETS    5   0   4  ; "description"
+0017    TGETS    5   5   5  ; "license"
+0018    KSTR     6   7      ; ")"
+0019    CAT      3   4   6
+0020 => UGET     4   0      ; util
+0021    TGETS    4   4   8  ; "printout"
+0022    TGETS    5   0   9  ; "name"
+0023    KSTR     6  10      ; " "
+0024    TGETS    7   0  11  ; "version"
+0025    KSTR     8  12      ; " is now installed in "
+0026    TGETS    9   2  13  ; "root_dir"
+0027    TGETS   10   1  13  ; "root_dir"
+0028    CALL     9   2   2
+0029    MOV     10   3
+0030    CAT      5   5  10
+0031    CALL     4   1   2
+0032    UGET     4   0      ; util
+0033    TGETS    4   4   8  ; "printout"
+0034    CALL     4   1   1
+0035    RET0     0   1
+
+-- BYTECODE -- util.lua:271-295
+0001    GGET     4   0      ; "require"
+0002    KSTR     5   1      ; "luarocks.fs"
+0003    CALL     4   2   2
+0004    GGET     5   0      ; "require"
+0005    KSTR     6   2      ; "luarocks.dir"
+0006    CALL     5   2   2
+0007    GGET     6   0      ; "require"
+0008    KSTR     7   3      ; "luarocks.path"
+0009    CALL     6   2   2
+0010    GGET     7   0      ; "require"
+0011    KSTR     8   4      ; "luarocks.core.vers"
+0012    CALL     7   2   2
+0013    TGETS    8   4   5  ; "is_dir"
+0014    MOV      9   3
+0015    CALL     8   2   2
+0016    ISF          8
+0017    JMP      9 => 0062
+0018    TGETS    8   4   6  ; "dir"
+0019    MOV      9   3
+0020    CALL     8   4   2
+0021    JMP     11 => 0060
+0022 => TGETS   12   5   7  ; "path"
+0023    MOV     13   3
+0024    MOV     14  11
+0025    CALL    12   2   3
+0026    MOV     11  12
+0027    MOV     13  11
+0028    TGETS   12  11   8  ; "match"
+0029    KSTR    14   9      ; "rockspec$"
+0030    CALL    12   2   3
+0031    ISF         12
+0032    JMP     13 => 0060
+0033    TGETS   12   4  10  ; "is_file"
+0034    MOV     13  11
+0035    CALL    12   2   2
+0036    ISF         12
+0037    JMP     13 => 0060
+0038    TGETS   12   6  11  ; "parse_name"
+0039    MOV     13  11
+0040    CALL    12   3   2
+0041    ISF         12
+0042    JMP     14 => 0055
+0043    TGETV   14   0  12
+0044    ISF         14
+0045    JMP     14 => 0052
+0046    TGETS   14   7  12  ; "compare_versions"
+0047    MOV     15  13
+0048    TGETV   16   0  12
+0049    CALL    14   2   3
+0050    ISF         14
+0051    JMP     15 => 0060
+0052 => TSETV   13   0  12
+0053    TSETV   11   1  12
+0054    JMP     14 => 0060
+0055 => GGET    14  13      ; "table"
+0056    TGETS   14  14  14  ; "insert"
+0057    MOV     15   2
+0058    MOV     16  11
+0059    CALL    14   1   3
+0060 => ITERC   11   2   3
+0061    ITERL   11 => 0022
+0062 => RET0     0   1
+
+-- BYTECODE -- util.lua:299-336
+0001    TNEW     0   0
+0002    TNEW     1   0
+0003    TNEW     2   0
+0004    UGET     3   0      ; collect_rockspecs
+0005    MOV      4   0
+0006    MOV      5   1
+0007    MOV      6   2
+0008    KSTR     7   0      ; "."
+0009    CALL     3   1   5
+0010    UGET     3   0      ; collect_rockspecs
+0011    MOV      4   0
+0012    MOV      5   1
+0013    MOV      6   2
+0014    KSTR     7   1      ; "rockspec"
+0015    CALL     3   1   5
+0016    UGET     3   0      ; collect_rockspecs
+0017    MOV      4   0
+0018    MOV      5   1
+0019    MOV      6   2
+0020    KSTR     7   2      ; "rockspecs"
+0021    CALL     3   1   5
+0022    LEN      3   2
+0023    KSHORT   4   0
+0024    ISGE     4   3
+0025    JMP      3 => 0037
+0026    LEN      3   2
+0027    KSHORT   4   1
+0028    ISGE     4   3
+0029    JMP      3 => 0034
+0030    KPRI     3   0
+0031    KSTR     4   3      ; "Please specify which rockspec file to us"~
+0032    RET      3   3
+0033    JMP      3 => 0073
+0034 => TGETB    3   2   1
+0035    RET1     3   2
+0036    JMP      3 => 0073
+0037 => GGET     3   4      ; "require"
+0038    KSTR     4   5      ; "luarocks.fs"
+0039    CALL     3   2   2
+0040    GGET     4   4      ; "require"
+0041    KSTR     5   6      ; "luarocks.dir"
+0042    CALL     4   2   2
+0043    TGETS    5   4   7  ; "base_name"
+0044    TGETS    6   3   8  ; "current_dir"
+0045    CALL     6   0   1
+0046    CALLM    5   2   0
+0047    TGETV    6   1   5
+0048    ISF          6
+0049    JMP      7 => 0052
+0050    TGETV    6   1   5
+0051    RET1     6   2
+0052 => GGET     6   9      ; "next"
+0053    MOV      7   0
+0054    CALL     6   2   2
+0055    ISF          6
+0056    JMP      7 => 0070
+0057    GGET     7   9      ; "next"
+0058    MOV      8   0
+0059    MOV      9   6
+0060    CALL     7   2   3
+0061    ISF          7
+0062    JMP      8 => 0067
+0063    KPRI     7   0
+0064    KSTR     8   3      ; "Please specify which rockspec file to us"~
+0065    RET      7   3
+0066    JMP      7 => 0073
+0067 => TGETV    7   1   6
+0068    RET1     7   2
+0069    JMP      7 => 0073
+0070 => KPRI     7   0
+0071    KSTR     8  10      ; "Argument missing: please specify a rocks"~
+0072    RET      7   3
+0073 => RET0     0   1
+
+-- BYTECODE -- util.lua:341-343
+0001    KSTR     1   0      ; "%q"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "format"
+0004    MOV      3   0
+0005    CALLT    1   3
+
+-- BYTECODE -- util.lua:348-354
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "match"
+0003    KSTR     3   1      ; "^([^/]+)/([^/]+)$"
+0004    CALL     1   3   3
+0005    ISF          1
+0006    JMP      3 => 0010
+0007    MOV      3   2
+0008    MOV      4   1
+0009    RET      3   3
+0010 => RET1     0   2
+
+-- BYTECODE -- util.lua:357-375
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "type"
+0003    MOV      5   0
+0004    CALL     4   2   2
+0005    ISEQS    4   2      ; "table"
+0006    JMP      4 => 0009
+0007    KPRI     4   1
+0008    JMP      5 => 0010
+0009 => KPRI     4   2
+0010 => CALL     3   1   2
+0011    GGET     3   0      ; "assert"
+0012    GGET     4   1      ; "type"
+0013    MOV      5   1
+0014    CALL     4   2   2
+0015    ISEQS    4   3      ; "string"
+0016    JMP      4 => 0019
+0017    KPRI     4   1
+0018    JMP      5 => 0020
+0019 => KPRI     4   2
+0020 => CALL     3   1   2
+0021    GGET     3   0      ; "assert"
+0022    GGET     4   1      ; "type"
+0023    MOV      5   2
+0024    CALL     4   2   2
+0025    ISEQS    4   3      ; "string"
+0026    JMP      4 => 0031
+0027    NOT      4   2
+0028    JMP      5 => 0032
+0029    KPRI     4   1
+0030    JMP      5 => 0032
+0031 => KPRI     4   2
+0032 => CALL     3   1   2
+0033    IST          2
+0034    JMP      3 => 0036
+0035    RET0     0   1
+0036 => MOV      4   2
+0037    TGETS    3   2   4  ; "match"
+0038    KSTR     5   5      ; "%.rockspec$"
+0039    CALL     3   2   3
+0040    IST          3
+0041    JMP      4 => 0048
+0042    MOV      4   2
+0043    TGETS    3   2   4  ; "match"
+0044    KSTR     5   6      ; "%.rock$"
+0045    CALL     3   2   3
+0046    ISF          3
+0047    JMP      4 => 0050
+0048 => TSETV    2   0   1
+0049    JMP      3 => 0064
+0050 => UGET     3   0      ; util
+0051    TGETS    3   3   7  ; "split_namespace"
+0052    MOV      4   2
+0053    CALL     3   3   2
+0054    MOV      6   3
+0055    TGETS    5   3   8  ; "lower"
+0056    CALL     5   2   2
+0057    TSETV    5   0   1
+0058    ISF          4
+0059    JMP      5 => 0064
+0060    MOV      6   4
+0061    TGETS    5   4   8  ; "lower"
+0062    CALL     5   2   2
+0063    TSETS    5   0   9  ; "namespace"
+0064 => RET0     0   1
+
+-- BYTECODE -- util.lua:377-387
+0001    TNEW     1   0
+0002    GGET     2   0      ; "pairs"
+0003    MOV      3   0
+0004    CALL     2   4   2
+0005    ISNEXT   5 => 0018
+0006 => GGET     7   1      ; "type"
+0007    MOV      8   6
+0008    CALL     7   2   2
+0009    ISNES    7   2      ; "table"
+0010    JMP      7 => 0017
+0011    UGET     7   0      ; util
+0012    TGETS    7   7   3  ; "deep_copy"
+0013    MOV      8   6
+0014    CALL     7   2   2
+0015    TSETV    7   1   5
+0016    JMP      7 => 0018
+0017 => TSETV    6   1   5
+0018 => ITERN    5   3   3
+0019    ITERL    5 => 0006
+0020    RET1     1   2
+
+-- BYTECODE -- util.lua:390-408
+0001    TDUP     0   0
+0002    GGET     1   1      ; "ipairs"
+0003    MOV      2   0
+0004    CALL     1   4   2
+0005    JMP      4 => 0018
+0006 => GGET     6   2      ; "pcall"
+0007    GGET     7   3      ; "require"
+0008    MOV      8   5
+0009    CALL     6   3   3
+0010    ISF          6
+0011    JMP      8 => 0018
+0012    GGET     8   2      ; "pcall"
+0013    TGETS    9   7   4  ; "use_lpeg"
+0014    CALL     8   1   2
+0015    MOV      8   6
+0016    MOV      9   7
+0017    RET      8   3
+0018 => ITERC    4   3   3
+0019    ITERL    4 => 0006
+0020    KSTR     1   5      ; "Failed loading "
+0021    GGET     2   1      ; "ipairs"
+0022    MOV      3   0
+0023    CALL     2   4   2
+0024    JMP      5 => 0039
+0025 => LEN      7   0
+0026    ISNEV    5   7
+0027    JMP      7 => 0034
+0028    MOV      7   1
+0029    KSTR     8   6      ; "and '"
+0030    MOV      9   6
+0031    KSTR    10   7      ; "'. Use 'luarocks search <partial-name>' "~
+0032    CAT      1   7  10
+0033    JMP      7 => 0039
+0034 => MOV      7   1
+0035    KSTR     8   8      ; "'"
+0036    MOV      9   6
+0037    KSTR    10   9      ; "', "
+0038    CAT      1   7  10
+0039 => ITERC    5   3   3
+0040    ITERL    5 => 0025
+0041    KPRI     2   0
+0042    MOV      3   1
+0043    RET      2   3
+
+-- BYTECODE -- util.lua:413-425
+0001    GGET     1   0      ; "io"
+0002    TGETS    1   1   1  ; "open"
+0003    MOV      2   0
+0004    KSTR     3   2      ; "r"
+0005    CALL     1   4   3
+0006    ISNEN    3   0      ; 13
+0007    JMP      4 => 0010
+0008    KPRI     4   2
+0009    RET1     4   2
+0010 => ISF          1
+0011    JMP      4 => 0017
+0012    MOV      5   1
+0013    TGETS    4   1   3  ; "close"
+0014    CALL     4   1   2
+0015    KPRI     4   2
+0016    RET1     4   2
+0017 => KPRI     4   1
+0018    RET1     4   2
+
+-- BYTECODE -- util.lua:428-433
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "match"
+0003    KSTR     3   1      ; "^.:"
+0004    CALL     1   2   3
+0005    ISF          1
+0006    JMP      2 => 0020
+0007    MOV      2   0
+0008    TGETS    1   0   2  ; "sub"
+0009    KSHORT   3   1
+0010    KSHORT   4   2
+0011    CALL     1   2   4
+0012    KSTR     2   3      ; """
+0013    MOV      4   0
+0014    TGETS    3   0   2  ; "sub"
+0015    KSHORT   5   3
+0016    CALL     3   2   3
+0017    KSTR     4   3      ; """
+0018    CAT      1   1   4
+0019    RET1     1   2
+0020 => KSTR     1   3      ; """
+0021    MOV      2   0
+0022    KSTR     3   3      ; """
+0023    CAT      1   1   3
+0024    RET1     1   2
+
+-- BYTECODE -- util.lua:435-447
+0001    UGET     2   0      ; util
+0002    TGETS    2   2   0  ; "exists"
+0003    MOV      3   0
+0004    CALL     2   2   2
+0005    IST          2
+0006    JMP      2 => 0009
+0007    KPRI     2   0
+0008    RET1     2   2
+0009 => UGET     2   0      ; util
+0010    TGETS    2   2   1  ; "popen_read"
+0011    UGET     3   1      ; Q
+0012    MOV      4   0
+0013    CALL     3   2   2
+0014    KSTR     4   2      ; " -e "io.write(_VERSION:sub(5))""
+0015    CAT      3   3   4
+0016    CALL     2   3   2
+0017    ISNES    2   3      ; ""
+0018    JMP      4 => 0021
+0019    KPRI     4   0
+0020    RET1     4   2
+0021 => ISF          1
+0022    JMP      4 => 0027
+0023    ISEQV    1   2
+0024    JMP      4 => 0027
+0025    KPRI     4   0
+0026    RET1     4   2
+0027 => RET1     2   2
+
+-- BYTECODE -- util.lua:449-465
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "luarocks.core.cfg"
+0003    CALL     0   2   2
+0004    TGETS    1   0   2  ; "cache"
+0005    TGETS    1   1   3  ; "luajit_version_checked"
+0006    ISF          1
+0007    JMP      2 => 0011
+0008    TGETS    1   0   2  ; "cache"
+0009    TGETS    1   1   4  ; "luajit_version"
+0010    RET1     1   2
+0011 => TGETS    1   0   2  ; "cache"
+0012    KPRI     2   2
+0013    TSETS    2   1   3  ; "luajit_version_checked"
+0014    KPRI     1   0
+0015    TGETS    2   0   5  ; "lua_version"
+0016    ISNES    2   6      ; "5.1"
+0017    JMP      2 => 0034
+0018    UGET     2   0      ; util
+0019    TGETS    2   2   7  ; "popen_read"
+0020    UGET     3   1      ; Q
+0021    TGETS    4   0   8  ; "variables"
+0022    TGETS    4   4   9  ; "LUA_BINDIR"
+0023    KSTR     5  10      ; "/"
+0024    TGETS    6   0  11  ; "lua_interpreter"
+0025    CAT      4   4   6
+0026    CALL     3   2   2
+0027    KSTR     4  12      ; " -e "io.write(tostring(jit and jit.versi"~
+0028    CAT      3   3   4
+0029    CALL     2   2   2
+0030    MOV      1   2
+0031    ISNES    1  13      ; "nil"
+0032    JMP      2 => 0034
+0033    KPRI     1   0
+0034 => TGETS    2   0   2  ; "cache"
+0035    TSETS    1   2   4  ; "luajit_version"
+0036    RET1     1   2
+
+-- BYTECODE -- util.lua:471-482
+0001    TNEW     2   5
+0002    KSTR     3   0      ; "lua"
+0003    MOV      4   1
+0004    UGET     5   0      ; exe_suffix
+0005    CAT      3   3   5
+0006    TSETB    3   2   1
+0007    KSTR     3   0      ; "lua"
+0008    MOV      5   1
+0009    TGETS    4   1   1  ; "gsub"
+0010    KSTR     6   2      ; "%."
+0011    KSTR     7   3      ; ""
+0012    CALL     4   2   4
+0013    UGET     5   0      ; exe_suffix
+0014    CAT      3   3   5
+0015    TSETB    3   2   2
+0016    KSTR     3   4      ; "lua-"
+0017    MOV      4   1
+0018    UGET     5   0      ; exe_suffix
+0019    CAT      3   3   5
+0020    TSETB    3   2   3
+0021    KSTR     3   4      ; "lua-"
+0022    MOV      5   1
+0023    TGETS    4   1   1  ; "gsub"
+0024    KSTR     6   2      ; "%."
+0025    KSTR     7   3      ; ""
+0026    CALL     4   2   4
+0027    UGET     5   0      ; exe_suffix
+0028    CAT      3   3   5
+0029    TSETB    3   2   4
+0030    GGET     3   5      ; "ipairs"
+0031    MOV      4   2
+0032    CALL     3   4   2
+0033    JMP      6 => 0040
+0034 => TSETV    1   0   7
+0035    GGET     8   6      ; "table"
+0036    TGETS    8   8   7  ; "insert"
+0037    MOV      9   0
+0038    MOV     10   7
+0039    CALL     8   1   3
+0040 => ITERC    6   3   3
+0041    ITERL    6 => 0034
+0042    RET0     0   1
+
+-- BYTECODE -- util.lua:484-521
+0001    TNEW     3   0
+0002    ISF          1
+0003    JMP      4 => 0009
+0004    UGET     4   0      ; insert_lua_variants
+0005    MOV      5   3
+0006    MOV      6   1
+0007    CALL     4   1   3
+0008    JMP      4 => 0020
+0009 => UGET     4   1      ; util
+0010    TGETS    4   4   0  ; "lua_versions"
+0011    KSTR     5   1      ; "descending"
+0012    CALL     4   4   2
+0013    JMP      7 => 0018
+0014 => UGET     8   0      ; insert_lua_variants
+0015    MOV      9   3
+0016    MOV     10   7
+0017    CALL     8   1   3
+0018 => ITERC    7   2   3
+0019    ITERL    7 => 0014
+0020 => ISEQS    1   2      ; "5.1"
+0021    JMP      4 => 0024
+0022    IST          1
+0023    JMP      4 => 0031
+0024 => GGET     4   3      ; "table"
+0025    TGETS    4   4   4  ; "insert"
+0026    MOV      5   3
+0027    KSTR     6   5      ; "luajit"
+0028    UGET     7   2      ; exe_suffix
+0029    CAT      6   6   7
+0030    CALL     4   1   3
+0031 => GGET     4   3      ; "table"
+0032    TGETS    4   4   4  ; "insert"
+0033    MOV      5   3
+0034    KSTR     6   6      ; "lua"
+0035    UGET     7   2      ; exe_suffix
+0036    CAT      6   6   7
+0037    CALL     4   1   3
+0038    TNEW     4   0
+0039    GGET     5   7      ; "package"
+0040    TGETS    5   5   8  ; "config"
+0041    MOV      6   5
+0042    TGETS    5   5   9  ; "sub"
+0043    KSHORT   7   1
+0044    KSHORT   8   1
+0045    CALL     5   2   4
+0046    GGET     6  10      ; "ipairs"
+0047    TNEW     7   3
+0048    MOV      8   0
+0049    MOV      9   5
+0050    KSTR    10  11      ; "bin"
+0051    CAT      8   8  10
+0052    TSETB    8   7   1
+0053    TSETB    0   7   2
+0054    CALL     6   4   2
+0055    JMP      9 => 0104
+0056 => GGET    11  10      ; "ipairs"
+0057    MOV     12   3
+0058    CALL    11   4   2
+0059    JMP     14 => 0102
+0060 => MOV     16  10
+0061    MOV     17   5
+0062    MOV     18  15
+0063    CAT     16  16  18
+0064    UGET    17   1      ; util
+0065    TGETS   17  17  12  ; "lua_is_wrapper"
+0066    MOV     18  16
+0067    CALL    17   3   2
+0068    ISNEP   17   1
+0069    JMP     19 => 0082
+0070    UGET    19   1      ; util
+0071    TGETS   19  19  13  ; "check_lua_version"
+0072    MOV     20  16
+0073    MOV     21   1
+0074    CALL    19   2   3
+0075    ISF         19
+0076    JMP     20 => 0102
+0077    MOV     20  15
+0078    MOV     21  10
+0079    MOV     22  19
+0080    RET     20   4
+0081    JMP     19 => 0102
+0082 => ISEQP   17   2
+0083    JMP     19 => 0086
+0084    ISNEP   18   0
+0085    JMP     19 => 0092
+0086 => GGET    19   3      ; "table"
+0087    TGETS   19  19   4  ; "insert"
+0088    MOV     20   4
+0089    MOV     21  16
+0090    CALL    19   1   3
+0091    JMP     19 => 0102
+0092 => GGET    19   3      ; "table"
+0093    TGETS   19  19   4  ; "insert"
+0094    MOV     20   4
+0095    GGET    21  14      ; "string"
+0096    TGETS   21  21  15  ; "format"
+0097    KSTR    22  16      ; "%-13s (%s)"
+0098    MOV     23  16
+0099    MOV     24  18
+0100    CALL    21   0   4
+0101    CALLM   19   1   1
+0102 => ITERC   14   3   3
+0103    ITERL   14 => 0060
+0104 => ITERC    9   3   3
+0105    ITERL    9 => 0056
+0106    ISF          1
+0107    JMP      6 => 0114
+0108    KSTR     6  17      ; "Lua "
+0109    MOV      7   1
+0110    KSTR     8  18      ; " interpreter"
+0111    CAT      6   6   8
+0112    IST          6
+0113    JMP      7 => 0115
+0114 => KSTR     6  19      ; "Lua interpreter"
+0115 => KPRI     7   0
+0116    MOV      8   6
+0117    KSTR     9  20      ; " not found at "
+0118    MOV     10   0
+0119    KSTR    11  21      ; "\n"
+0120    ISF          2
+0121    JMP     12 => 0131
+0122    KSTR    12  22      ; "Tried:\t"
+0123    GGET    13   3      ; "table"
+0124    TGETS   13  13  23  ; "concat"
+0125    MOV     14   4
+0126    KSTR    15  24      ; "\n\t"
+0127    CALL    13   2   3
+0128    CAT     12  12  13
+0129    IST         12
+0130    JMP     13 => 0132
+0131 => KSTR    12  25      ; ""
+0132 => CAT      8   8  12
+0133    RET      7   3
+
+-- BYTECODE -- util.lua:524-537
+0001    KNIL     3   4
+0002    UGET     5   0      ; find_lua_bindir
+0003    MOV      6   0
+0004    MOV      7   1
+0005    MOV      8   2
+0006    CALL     5   4   4
+0007    MOV      1   7
+0008    MOV      4   6
+0009    MOV      3   5
+0010    IST          3
+0011    JMP      5 => 0015
+0012    KPRI     5   0
+0013    MOV      6   4
+0014    RET      5   3
+0015 => TDUP     5   0
+0016    TSETS    1   5   1  ; "lua_version"
+0017    TSETS    3   5   2  ; "lua_interpreter"
+0018    TSETS    0   5   3  ; "lua_dir"
+0019    TSETS    4   5   4  ; "lua_bindir"
+0020    RET1     5   2
+
+-- BYTECODE -- util.lua:540-551
+0001    GGET     1   0      ; "io"
+0002    TGETS    1   1   1  ; "open"
+0003    MOV      2   0
+0004    KSTR     3   2      ; "r"
+0005    CALL     1   3   3
+0006    IST          1
+0007    JMP      3 => 0011
+0008    KPRI     3   0
+0009    MOV      4   2
+0010    RET      3   3
+0011 => MOV      4   1
+0012    TGETS    3   1   3  ; "read"
+0013    KSHORT   5 1000
+0014    CALL     3   3   3
+0015    MOV      6   1
+0016    TGETS    5   1   4  ; "close"
+0017    CALL     5   1   2
+0018    IST          3
+0019    JMP      5 => 0023
+0020    KPRI     5   0
+0021    MOV      6   4
+0022    RET      5   3
+0023 => MOV      6   3
+0024    TGETS    5   3   5  ; "match"
+0025    KSTR     7   6      ; "LUAROCKS_SYSCONFDIR"
+0026    CALL     5   2   3
+0027    NOT      5   5
+0028    NOT      5   5
+0029    RET1     5   2
+
+-- BYTECODE -- util.lua:558-560
+0001    UGET     0   0      ; type_name
+0002    RET1     0   2
+
+-- BYTECODE -- util.lua:562-579
+0001    GGET     1   0      ; "pairs"
+0002    MOV      2   0
+0003    CALL     1   4   2
+0004    ISNEXT   4 => 0038
+0005 => GGET     6   1      ; "type"
+0006    MOV      7   5
+0007    CALL     6   2   2
+0008    UGET     7   0      ; valid_opts
+0009    TGETV    7   7   4
+0010    IST          7
+0011    JMP      7 => 0017
+0012    GGET     7   2      ; "error"
+0013    KSTR     8   3      ; "invalid option: "
+0014    MOV      9   4
+0015    CAT      8   8   9
+0016    CALL     7   1   2
+0017 => UGET     7   0      ; valid_opts
+0018    TGETV    7   7   4
+0019    MOV      8   7
+0020    TGETS    7   7   4  ; "match"
+0021    KSTR     9   5      ; "^(.-)(%??)$"
+0022    CALL     7   3   3
+0023    ISEQV    6   7
+0024    JMP      9 => 0038
+0025    ISNES    8   6      ; "?"
+0026    JMP      9 => 0029
+0027    ISEQP    6   0
+0028    JMP      9 => 0038
+0029 => GGET     9   2      ; "error"
+0030    KSTR    10   7      ; "invalid type option: "
+0031    MOV     11   4
+0032    KSTR    12   8      ; " - got "
+0033    MOV     13   6
+0034    KSTR    14   9      ; ", expected "
+0035    MOV     15   7
+0036    CAT     10  10  15
+0037    CALL     9   1   2
+0038 => ITERN    4   3   3
+0039    ITERL    4 => 0005
+0040    GGET     1   0      ; "pairs"
+0041    UGET     2   0      ; valid_opts
+0042    CALL     1   4   2
+0043    ISNEXT   4 => 0060
+0044 => MOV      7   5
+0045    TGETS    6   5  10  ; "find"
+0046    KSTR     8   6      ; "?"
+0047    KSHORT   9   1
+0048    KPRI    10   2
+0049    CALL     6   2   5
+0050    IST          6
+0051    JMP      6 => 0060
+0052    TGETV    6   0   4
+0053    ISNEP    6   0
+0054    JMP      6 => 0060
+0055    GGET     6   2      ; "error"
+0056    KSTR     7  11      ; "missing option: "
+0057    MOV      8   4
+0058    CAT      7   7   8
+0059    CALL     6   1   2
+0060 => ITERN    4   3   3
+0061    ITERL    4 => 0044
+0062    GGET     1  12      ; "setmetatable"
+0063    MOV      2   0
+0064    UGET     3   1      ; opts_mt
+0065    CALLT    1   3
+
+-- BYTECODE -- util.lua:553-580
+0001    TNEW     2   0
+0002    TSETS    2   2   0  ; "__index"
+0003    FNEW     3   2      ; util.lua:558
+0004    TSETS    3   2   1  ; "type"
+0005    FNEW     3   3      ; util.lua:562
+0006    UCLO     0 => 0007
+0007 => RET1     3   2
+
+-- BYTECODE -- util.lua:590-630
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "luarocks.core.cfg"
+0003    CALL     1   2   2
+0004    IST          0
+0005    JMP      2 => 0013
+0006    TGETS    2   1   2  ; "cache"
+0007    TGETS    2   2   3  ; "rocks_provided"
+0008    ISF          2
+0009    JMP      3 => 0013
+0010    TGETS    2   1   2  ; "cache"
+0011    TGETS    2   2   3  ; "rocks_provided"
+0012    RET1     2   2
+0013 => TNEW     2   0
+0014    TGETS    3   1   4  ; "lua_version"
+0015    MOV      4   3
+0016    KSTR     5   6      ; "-1"
+0017    CAT      4   4   5
+0018    TSETS    4   2   5  ; "lua"
+0019    ISEQS    3   7      ; "5.2"
+0020    JMP      4 => 0023
+0021    ISNES    3   8      ; "5.3"
+0022    JMP      4 => 0027
+0023 => MOV      4   3
+0024    KSTR     5   6      ; "-1"
+0025    CAT      4   4   5
+0026    TSETS    4   2   9  ; "bit32"
+0027 => ISEQS    3   8      ; "5.3"
+0028    JMP      4 => 0031
+0029    ISNES    3  10      ; "5.4"
+0030    JMP      4 => 0035
+0031 => MOV      4   3
+0032    KSTR     5   6      ; "-1"
+0033    CAT      4   4   5
+0034    TSETS    4   2  11  ; "utf8"
+0035 => ISNES    3  12      ; "5.1"
+0036    JMP      4 => 0058
+0037    UGET     4   0      ; util
+0038    TGETS    4   4  13  ; "get_luajit_version"
+0039    CALL     4   2   1
+0040    ISF          4
+0041    JMP      5 => 0058
+0042    MOV      5   4
+0043    KSTR     6   6      ; "-1"
+0044    CAT      5   5   6
+0045    TSETS    5   2  14  ; "luabitop"
+0046    ISF          0
+0047    JMP      5 => 0054
+0048    MOV      6   0
+0049    TGETS    5   0  15  ; "format_is_at_least"
+0050    KSTR     7  16      ; "3.0"
+0051    CALL     5   2   3
+0052    ISF          5
+0053    JMP      6 => 0058
+0054 => MOV      5   4
+0055    KSTR     6   6      ; "-1"
+0056    CAT      5   5   6
+0057    TSETS    5   2  17  ; "luajit"
+0058 => TGETS    4   1   3  ; "rocks_provided"
+0059    ISF          4
+0060    JMP      5 => 0066
+0061    UGET     4   0      ; util
+0062    TGETS    4   4  18  ; "deep_merge_under"
+0063    MOV      5   2
+0064    TGETS    6   1   3  ; "rocks_provided"
+0065    CALL     4   1   3
+0066 => IST          0
+0067    JMP      4 => 0070
+0068    TGETS    4   1   2  ; "cache"
+0069    TSETS    2   4   3  ; "rocks_provided"
+0070 => RET1     2   2
+
+-- BYTECODE -- util.lua:632-646
+0001    GGET     2   0      ; "require"
+0002    KSTR     3   1      ; "luarocks.path"
+0003    CALL     2   2   2
+0004    GGET     3   0      ; "require"
+0005    KSTR     4   2      ; "luarocks.fs"
+0006    CALL     3   2   2
+0007    GGET     4   0      ; "require"
+0008    KSTR     5   3      ; "luarocks.dir"
+0009    CALL     4   2   2
+0010    TGETS    5   2   4  ; "install_dir"
+0011    MOV      6   0
+0012    MOV      7   1
+0013    CALL     5   2   3
+0014    GGET     6   5      ; "ipairs"
+0015    TGETS    7   3   6  ; "list_dir"
+0016    MOV      8   5
+0017    CALL     7   0   2
+0018    CALLM    6   4   0
+0019    JMP      9 => 0035
+0020 => TDUP    11   7
+0021    GGET    12   5      ; "ipairs"
+0022    MOV     13  11
+0023    CALL    12   4   2
+0024    JMP     15 => 0033
+0025 => ISNEV   10  16
+0026    JMP     17 => 0033
+0027    TGETS   17   3   8  ; "delete"
+0028    TGETS   18   4   9  ; "path"
+0029    MOV     19   5
+0030    MOV     20  10
+0031    CALL    18   0   3
+0032    CALLM   17   1   0
+0033 => ITERC   15   3   3
+0034    ITERL   15 => 0025
+0035 => ITERC    9   3   3
+0036    ITERL    9 => 0020
+0037    RET0     0   1
+
+-- BYTECODE -- util.lua:0-649
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.core.util"
+0004    CALL     1   2   2
+0005    TGETS    2   1   2  ; "cleanup_path"
+0006    TSETS    2   0   2  ; "cleanup_path"
+0007    TGETS    2   1   3  ; "split_string"
+0008    TSETS    2   0   3  ; "split_string"
+0009    TGETS    2   1   4  ; "sortedpairs"
+0010    TSETS    2   0   4  ; "sortedpairs"
+0011    TGETS    2   1   5  ; "deep_merge"
+0012    TSETS    2   0   5  ; "deep_merge"
+0013    TGETS    2   1   6  ; "deep_merge_under"
+0014    TSETS    2   0   6  ; "deep_merge_under"
+0015    TGETS    2   1   7  ; "popen_read"
+0016    TSETS    2   0   7  ; "popen_read"
+0017    TGETS    2   1   8  ; "show_table"
+0018    TSETS    2   0   8  ; "show_table"
+0019    TGETS    2   1   9  ; "printerr"
+0020    TSETS    2   0   9  ; "printerr"
+0021    TGETS    2   1  10  ; "warning"
+0022    TSETS    2   0  10  ; "warning"
+0023    TGETS    2   1  11  ; "keys"
+0024    TSETS    2   0  11  ; "keys"
+0025    GGET     2  12      ; "unpack"
+0026    IST          2
+0027    JMP      3 => 0030
+0028    GGET     2  13      ; "table"
+0029    TGETS    2   2  12  ; "unpack"
+0030 => TNEW     3   0
+0031    GGET     4   0      ; "require"
+0032    KSTR     5  14      ; "debug"
+0033    CALL     4   2   2
+0034    FNEW     5  16      ; util.lua:34
+0035    TSETS    5   0  15  ; "schedule_function"
+0036    FNEW     5  18      ; util.lua:46
+0037    TSETS    5   0  17  ; "remove_scheduled_function"
+0038    FNEW     5  20      ; util.lua:60
+0039    TSETS    5   0  19  ; "run_scheduled_functions"
+0040    FNEW     5  22      ; util.lua:76
+0041    TSETS    5   0  21  ; "matchquote"
+0042    KSTR     5  23      ; "%$%((%a[%a%d_]+)%)"
+0043    FNEW     6  25      ; util.lua:92
+0044    TSETS    6   0  24  ; "warn_if_not_used"
+0045    FNEW     6  26      ; util.lua:107
+0046    FNEW     7  28      ; util.lua:126
+0047    TSETS    7   0  27  ; "variable_substitutions"
+0048    FNEW     7  30      ; util.lua:144
+0049    TSETS    7   0  29  ; "lua_versions"
+0050    FNEW     7  32      ; util.lua:161
+0051    TSETS    7   0  31  ; "lua_path_variables"
+0052    FNEW     7  34      ; util.lua:178
+0053    TSETS    7   0  33  ; "starts_with"
+0054    FNEW     7  36      ; util.lua:183
+0055    TSETS    7   0  35  ; "printout"
+0056    FNEW     7  38      ; util.lua:188
+0057    TSETS    7   0  37  ; "title"
+0058    FNEW     7  40      ; util.lua:196
+0059    TSETS    7   0  39  ; "this_program"
+0060    FNEW     7  42      ; util.lua:218
+0061    TSETS    7   0  41  ; "format_rock_name"
+0062    FNEW     7  44      ; util.lua:222
+0063    TSETS    7   0  43  ; "deps_mode_option"
+0064    FNEW     7  46      ; util.lua:240
+0065    TSETS    7   0  45  ; "see_help"
+0066    FNEW     7  48      ; util.lua:244
+0067    TSETS    7   0  47  ; "see_also"
+0068    FNEW     7  50      ; util.lua:252
+0069    TSETS    7   0  49  ; "announce_install"
+0070    FNEW     7  51      ; util.lua:271
+0071    FNEW     8  53      ; util.lua:299
+0072    TSETS    8   0  52  ; "get_default_rockspec"
+0073    FNEW     8  55      ; util.lua:341
+0074    TSETS    8   0  54  ; "LQ"
+0075    FNEW     8  57      ; util.lua:348
+0076    TSETS    8   0  56  ; "split_namespace"
+0077    FNEW     8  59      ; util.lua:357
+0078    TSETS    8   0  58  ; "namespaced_name_action"
+0079    FNEW     8  61      ; util.lua:377
+0080    TSETS    8   0  60  ; "deep_copy"
+0081    FNEW     8  63      ; util.lua:390
+0082    TSETS    8   0  62  ; "require_json"
+0083    FNEW     8  65      ; util.lua:413
+0084    TSETS    8   0  64  ; "exists"
+0085    FNEW     8  66      ; util.lua:428
+0086    FNEW     9  68      ; util.lua:435
+0087    TSETS    9   0  67  ; "check_lua_version"
+0088    FNEW     9  70      ; util.lua:449
+0089    TSETS    9   0  69  ; "get_luajit_version"
+0090    KPRI     9   0
+0091    GGET    10  71      ; "package"
+0092    TGETS   10  10  72  ; "config"
+0093    MOV     11  10
+0094    TGETS   10  10  73  ; "sub"
+0095    KSHORT  12   1
+0096    KSHORT  13   1
+0097    CALL    10   2   4
+0098    ISNES   10  74      ; "\"
+0099    JMP     10 => 0102
+0100    KSTR    10  75      ; ".exe"
+0101    JMP     11 => 0103
+0102 => KSTR    10  76      ; ""
+0103 => FNEW    11  77      ; util.lua:471
+0104    FNEW     9  78      ; util.lua:484
+0105    UCLO    10 => 0106
+0106 => FNEW    10  80      ; util.lua:524
+0107    TSETS   10   0  79  ; "find_lua"
+0108    UCLO     8 => 0109
+0109 => FNEW     8  82      ; util.lua:540
+0110    TSETS    8   0  81  ; "lua_is_wrapper"
+0111    FNEW     8  84      ; util.lua:553
+0112    TSETS    8   0  83  ; "opts_table"
+0113    FNEW     8  86      ; util.lua:590
+0114    TSETS    8   0  85  ; "get_rocks_provided"
+0115    FNEW     8  88      ; util.lua:632
+0116    TSETS    8   0  87  ; "remove_doc_dir"
+0117    UCLO     0 => 0118
+0118 => RET1     0   2
+

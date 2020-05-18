@@ -1,0 +1,773 @@
+-- BYTECODE -- filemanagerbookinfo.lua:22-26
+0001    TGETS    1   0   0  ; "ui"
+0002    ISF          1
+0003    JMP      2 => 0010
+0004    TGETS    1   0   0  ; "ui"
+0005    TGETS    1   1   1  ; "menu"
+0006    MOV      2   1
+0007    TGETS    1   1   2  ; "registerToMainMenu"
+0008    MOV      3   0
+0009    CALL     1   1   3
+0010 => RET0     0   1
+
+-- BYTECODE -- filemanagerbookinfo.lua:31-33
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onShowBookInfo"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- filemanagerbookinfo.lua:28-35
+0001    TDUP     2   2
+0002    TGETS    3   0   1  ; "bookinfo_menu_title"
+0003    TSETS    3   2   3  ; "text"
+0004    FNEW     3   4      ; filemanagerbookinfo.lua:31
+0005    TSETS    3   2   5  ; "callback"
+0006    TSETS    2   1   0  ; "book_info"
+0007    UCLO     0 => 0008
+0008 => RET0     0   1
+
+-- BYTECODE -- filemanagerbookinfo.lua:37-39
+0001    UGET     2   0      ; lfs
+0002    TGETS    2   2   0  ; "attributes"
+0003    MOV      3   1
+0004    KSTR     4   1      ; "mode"
+0005    CALL     2   2   3
+0006    ISEQS    2   2      ; "file"
+0007    JMP      2 => 0010
+0008    KPRI     2   1
+0009    JMP      3 => 0011
+0010 => KPRI     2   2
+0011 => RET1     2   2
+
+-- BYTECODE -- filemanagerbookinfo.lua:201-224
+0001    KPRI     0   0
+0002    UGET     1   0      ; DocumentRegistry
+0003    MOV      2   1
+0004    TGETS    1   1   0  ; "openDocument"
+0005    UGET     3   1      ; file
+0006    CALL     1   2   3
+0007    ISF          1
+0008    JMP      2 => 0033
+0009    TGETS    2   1   1  ; "loadDocument"
+0010    ISF          2
+0011    JMP      3 => 0016
+0012    MOV      3   1
+0013    TGETS    2   1   1  ; "loadDocument"
+0014    KPRI     4   1
+0015    CALL     2   1   3
+0016 => MOV      3   1
+0017    TGETS    2   1   2  ; "getCoverPageImage"
+0018    CALL     2   2   2
+0019    ISF          2
+0020    JMP      3 => 0028
+0021    UGET     3   2      ; ImageViewer
+0022    MOV      4   3
+0023    TGETS    3   3   3  ; "new"
+0024    TDUP     5   4
+0025    TSETS    2   5   5  ; "image"
+0026    CALL     3   2   3
+0027    MOV      0   3
+0028 => UGET     3   0      ; DocumentRegistry
+0029    MOV      4   3
+0030    TGETS    3   3   6  ; "closeDocument"
+0031    UGET     5   1      ; file
+0032    CALL     3   1   3
+0033 => IST          0
+0034    JMP      2 => 0045
+0035    UGET     2   3      ; InfoMessage
+0036    MOV      3   2
+0037    TGETS    2   2   3  ; "new"
+0038    TDUP     4   8
+0039    UGET     5   4      ; _
+0040    KSTR     6   7      ; "No cover image available"
+0041    CALL     5   2   2
+0042    TSETS    5   4   9  ; "text"
+0043    CALL     2   2   3
+0044    MOV      0   2
+0045 => UGET     2   5      ; UIManager
+0046    MOV      3   2
+0047    TGETS    2   2  10  ; "show"
+0048    MOV      4   0
+0049    CALL     2   1   3
+0050    RET0     0   1
+
+-- BYTECODE -- filemanagerbookinfo.lua:41-241
+0001    TNEW     3   0
+0002    UGET     4   0      ; util
+0003    TGETS    4   4   0  ; "splitFilePathName"
+0004    MOV      5   1
+0005    CALL     4   3   2
+0006    UGET     6   0      ; util
+0007    TGETS    6   6   1  ; "splitFileNameSuffix"
+0008    MOV      7   5
+0009    CALL     6   3   2
+0010    MOV      9   7
+0011    TGETS    8   7   2  ; "lower"
+0012    CALL     8   2   2
+0013    ISNES    8   3      ; "zip"
+0014    JMP      8 => 0037
+0015    UGET     8   0      ; util
+0016    TGETS    8   8   1  ; "splitFileNameSuffix"
+0017    MOV      9   6
+0018    CALL     8   3   2
+0019    MOV     11   9
+0020    TGETS   10   9   2  ; "lower"
+0021    CALL    10   2   2
+0022    MOV      9  10
+0023    TDUP    10   4
+0024    GGET    11   5      ; "ipairs"
+0025    MOV     12  10
+0026    CALL    11   4   2
+0027    JMP     14 => 0035
+0028 => ISNEV    9  15
+0029    JMP     16 => 0035
+0030    MOV     16   9
+0031    KSTR    17   6      ; "."
+0032    MOV     18   7
+0033    CAT      7  16  18
+0034    JMP     11 => 0037
+0035 => ITERC   14   3   3
+0036    ITERL   14 => 0028
+0037 => UGET     8   1      ; lfs
+0038    TGETS    8   8   7  ; "attributes"
+0039    MOV      9   1
+0040    KSTR    10   8      ; "size"
+0041    CALL     8   2   3
+0042    IST          8
+0043    JMP      9 => 0045
+0044    KSHORT   8   0
+0045 => UGET     9   1      ; lfs
+0046    TGETS    9   9   7  ; "attributes"
+0047    MOV     10   1
+0048    KSTR    11   9      ; "modification"
+0049    CALL     9   2   3
+0050    IST          9
+0051    JMP     10 => 0053
+0052    KSHORT   9   0
+0053 => UGET    10   0      ; util
+0054    TGETS   10  10  10  ; "getFriendlySize"
+0055    MOV     11   8
+0056    CALL    10   2   2
+0057    UGET    11   0      ; util
+0058    TGETS   11  11  11  ; "getFormattedSize"
+0059    MOV     12   8
+0060    CALL    11   2   2
+0061    GGET    12  12      ; "string"
+0062    TGETS   12  12  13  ; "format"
+0063    KSTR    13  14      ; "%s (%s bytes)"
+0064    MOV     14  10
+0065    MOV     15  11
+0066    CALL    12   2   4
+0067    GGET    13  15      ; "table"
+0068    TGETS   13  13  16  ; "insert"
+0069    MOV     14   3
+0070    TNEW    15   3
+0071    UGET    16   2      ; _
+0072    KSTR    17  17      ; "Filename:"
+0073    CALL    16   2   2
+0074    TSETB   16  15   1
+0075    UGET    16   3      ; BD
+0076    TGETS   16  16  18  ; "filename"
+0077    MOV     17   5
+0078    CALL    16   0   2
+0079    TSETM   16   0      ; 2
+0080    CALL    13   1   3
+0081    GGET    13  15      ; "table"
+0082    TGETS   13  13  16  ; "insert"
+0083    MOV     14   3
+0084    TNEW    15   3
+0085    UGET    16   2      ; _
+0086    KSTR    17  19      ; "Format:"
+0087    CALL    16   2   2
+0088    TSETB   16  15   1
+0089    MOV     17   7
+0090    TGETS   16   7  20  ; "upper"
+0091    CALL    16   0   2
+0092    TSETM   16   0      ; 2
+0093    CALL    13   1   3
+0094    GGET    13  15      ; "table"
+0095    TGETS   13  13  16  ; "insert"
+0096    MOV     14   3
+0097    TNEW    15   3
+0098    UGET    16   2      ; _
+0099    KSTR    17  21      ; "Size:"
+0100    CALL    16   2   2
+0101    TSETB   16  15   1
+0102    TSETB   12  15   2
+0103    CALL    13   1   3
+0104    GGET    13  15      ; "table"
+0105    TGETS   13  13  16  ; "insert"
+0106    MOV     14   3
+0107    TNEW    15   3
+0108    UGET    16   2      ; _
+0109    KSTR    17  22      ; "File date:"
+0110    CALL    16   2   2
+0111    TSETB   16  15   1
+0112    GGET    16  23      ; "os"
+0113    TGETS   16  16  24  ; "date"
+0114    KSTR    17  25      ; "%Y-%m-%d %H:%M:%S"
+0115    MOV     18   9
+0116    CALL    16   0   3
+0117    TSETM   16   0      ; 2
+0118    CALL    13   1   3
+0119    GGET    13  15      ; "table"
+0120    TGETS   13  13  16  ; "insert"
+0121    MOV     14   3
+0122    TNEW    15   3
+0123    UGET    16   2      ; _
+0124    KSTR    17  26      ; "Directory:"
+0125    CALL    16   2   2
+0126    TSETB   16  15   1
+0127    UGET    16   3      ; BD
+0128    TGETS   16  16  27  ; "dirpath"
+0129    UGET    17   4      ; filemanagerutil
+0130    TGETS   17  17  28  ; "abbreviate"
+0131    MOV     18   4
+0132    CALL    17   0   2
+0133    CALLM   16   0   0
+0134    TSETM   16   0      ; 2
+0135    CALL    13   1   3
+0136    GGET    13  15      ; "table"
+0137    TGETS   13  13  16  ; "insert"
+0138    MOV     14   3
+0139    KSTR    15  29      ; "----"
+0140    CALL    13   1   3
+0141    ISF          2
+0142    JMP     13 => 0146
+0143    TGETS   13   2  30  ; "pages"
+0144    IST         13
+0145    JMP     13 => 0188
+0146 => UGET    13   5      ; DocSettings
+0147    MOV     14  13
+0148    TGETS   13  13  31  ; "hasSidecarFile"
+0149    MOV     15   1
+0150    CALL    13   2   3
+0151    ISF         13
+0152    JMP     14 => 0188
+0153    UGET    13   5      ; DocSettings
+0154    MOV     14  13
+0155    TGETS   13  13  32  ; "open"
+0156    MOV     15   1
+0157    CALL    13   2   3
+0158    ISF         13
+0159    JMP     14 => 0188
+0160    IST          2
+0161    JMP     14 => 0167
+0162    MOV     15  13
+0163    TGETS   14  13  33  ; "readSetting"
+0164    KSTR    16  34      ; "doc_props"
+0165    CALL    14   2   3
+0166    MOV      2  14
+0167 => IST          2
+0168    JMP     14 => 0179
+0169    MOV     15  13
+0170    TGETS   14  13  33  ; "readSetting"
+0171    KSTR    16  35      ; "stats"
+0172    CALL    14   2   3
+0173    ISF         14
+0174    JMP     15 => 0179
+0175    TGETS   15  14  30  ; "pages"
+0176    ISEQN   15   1      ; 0
+0177    JMP     15 => 0179
+0178    MOV      2  14
+0179 => MOV     15  13
+0180    TGETS   14  13  33  ; "readSetting"
+0181    KSTR    16  36      ; "doc_pages"
+0182    CALL    14   2   3
+0183    ISF         14
+0184    JMP     15 => 0188
+0185    ISF          2
+0186    JMP     15 => 0188
+0187    TSETS   14   2  30  ; "pages"
+0188 => IST          2
+0189    JMP     13 => 0226
+0190    UGET    13   6      ; DocumentRegistry
+0191    MOV     14  13
+0192    TGETS   13  13  37  ; "openDocument"
+0193    MOV     15   1
+0194    CALL    13   2   3
+0195    ISF         13
+0196    JMP     14 => 0226
+0197    KPRI    14   2
+0198    KPRI    15   0
+0199    TGETS   16  13  38  ; "loadDocument"
+0200    ISF         16
+0201    JMP     17 => 0210
+0202    MOV     17  13
+0203    TGETS   16  13  38  ; "loadDocument"
+0204    KPRI    18   1
+0205    CALL    16   2   3
+0206    IST         16
+0207    JMP     16 => 0214
+0208    KPRI    14   1
+0209    JMP     16 => 0214
+0210 => MOV     17  13
+0211    TGETS   16  13  39  ; "getPageCount"
+0212    CALL    16   2   2
+0213    MOV     15  16
+0214 => ISF         14
+0215    JMP     16 => 0221
+0216    MOV     17  13
+0217    TGETS   16  13  40  ; "getProps"
+0218    CALL    16   2   2
+0219    MOV      2  16
+0220    TSETS   15   2  30  ; "pages"
+0221 => UGET    16   6      ; DocumentRegistry
+0222    MOV     17  16
+0223    TGETS   16  16  41  ; "closeDocument"
+0224    MOV     18   1
+0225    CALL    16   1   3
+0226 => IST          2
+0227    JMP     13 => 0229
+0228    TNEW     2   0
+0229 => TGETS   13   2  42  ; "title"
+0230    ISEQS   13  43      ; ""
+0231    JMP     14 => 0234
+0232    ISNEP   13   0
+0233    JMP     14 => 0238
+0234 => UGET    14   2      ; _
+0235    KSTR    15  44      ; "N/A"
+0236    CALL    14   2   2
+0237    MOV     13  14
+0238 => GGET    14  15      ; "table"
+0239    TGETS   14  14  16  ; "insert"
+0240    MOV     15   3
+0241    TNEW    16   3
+0242    UGET    17   2      ; _
+0243    KSTR    18  45      ; "Title:"
+0244    CALL    17   2   2
+0245    TSETB   17  16   1
+0246    UGET    17   3      ; BD
+0247    TGETS   17  17  46  ; "auto"
+0248    MOV     18  13
+0249    CALL    17   0   2
+0250    TSETM   17   0      ; 2
+0251    CALL    14   1   3
+0252    TGETS   14   2  47  ; "authors"
+0253    ISEQS   14  43      ; ""
+0254    JMP     15 => 0257
+0255    ISNEP   14   0
+0256    JMP     15 => 0262
+0257 => UGET    15   2      ; _
+0258    KSTR    16  44      ; "N/A"
+0259    CALL    15   2   2
+0260    MOV     14  15
+0261    JMP     15 => 0296
+0262 => MOV     16  14
+0263    TGETS   15  14  48  ; "find"
+0264    KSTR    17  49      ; "\n"
+0265    CALL    15   2   3
+0266    ISF         15
+0267    JMP     16 => 0291
+0268    UGET    15   0      ; util
+0269    TGETS   15  15  50  ; "splitToArray"
+0270    MOV     16  14
+0271    KSTR    17  49      ; "\n"
+0272    CALL    15   2   3
+0273    MOV     14  15
+0274    KSHORT  15   1
+0275    LEN     16  14
+0276    KSHORT  17   1
+0277    FORI    15 => 0284
+0278 => UGET    19   3      ; BD
+0279    TGETS   19  19  46  ; "auto"
+0280    TGETV   20  14  18
+0281    CALL    19   2   2
+0282    TSETV   19  14  18
+0283    FORL    15 => 0278
+0284 => GGET    15  15      ; "table"
+0285    TGETS   15  15  51  ; "concat"
+0286    MOV     16  14
+0287    KSTR    17  49      ; "\n"
+0288    CALL    15   2   3
+0289    MOV     14  15
+0290    JMP     15 => 0296
+0291 => UGET    15   3      ; BD
+0292    TGETS   15  15  46  ; "auto"
+0293    MOV     16  14
+0294    CALL    15   2   2
+0295    MOV     14  15
+0296 => GGET    15  15      ; "table"
+0297    TGETS   15  15  16  ; "insert"
+0298    MOV     16   3
+0299    TNEW    17   3
+0300    UGET    18   2      ; _
+0301    KSTR    19  52      ; "Authors:"
+0302    CALL    18   2   2
+0303    TSETB   18  17   1
+0304    TSETB   14  17   2
+0305    CALL    15   1   3
+0306    TGETS   15   2  53  ; "series"
+0307    ISEQS   15  43      ; ""
+0308    JMP     16 => 0311
+0309    ISNEP   15   0
+0310    JMP     16 => 0316
+0311 => UGET    16   2      ; _
+0312    KSTR    17  44      ; "N/A"
+0313    CALL    16   2   2
+0314    MOV     15  16
+0315    JMP     16 => 0322
+0316 => MOV     17  15
+0317    TGETS   16  15  54  ; "gsub"
+0318    KSTR    18  55      ; "(#%d+)%.0$"
+0319    KSTR    19  56      ; "%1"
+0320    CALL    16   2   4
+0321    MOV     15  16
+0322 => GGET    16  15      ; "table"
+0323    TGETS   16  16  16  ; "insert"
+0324    MOV     17   3
+0325    TNEW    18   3
+0326    UGET    19   2      ; _
+0327    KSTR    20  57      ; "Series:"
+0328    CALL    19   2   2
+0329    TSETB   19  18   1
+0330    UGET    19   3      ; BD
+0331    TGETS   19  19  46  ; "auto"
+0332    MOV     20  15
+0333    CALL    19   0   2
+0334    TSETM   19   0      ; 2
+0335    CALL    16   1   3
+0336    TGETS   16   2  30  ; "pages"
+0337    ISEQS   16  43      ; ""
+0338    JMP     17 => 0341
+0339    ISNEP   16   0
+0340    JMP     17 => 0345
+0341 => UGET    17   2      ; _
+0342    KSTR    18  44      ; "N/A"
+0343    CALL    17   2   2
+0344    MOV     16  17
+0345 => GGET    17  15      ; "table"
+0346    TGETS   17  17  16  ; "insert"
+0347    MOV     18   3
+0348    TNEW    19   3
+0349    UGET    20   2      ; _
+0350    KSTR    21  58      ; "Pages:"
+0351    CALL    20   2   2
+0352    TSETB   20  19   1
+0353    TSETB   16  19   2
+0354    CALL    17   1   3
+0355    TGETS   17   2  59  ; "language"
+0356    ISEQS   17  43      ; ""
+0357    JMP     18 => 0360
+0358    ISNEP   17   0
+0359    JMP     18 => 0364
+0360 => UGET    18   2      ; _
+0361    KSTR    19  44      ; "N/A"
+0362    CALL    18   2   2
+0363    MOV     17  18
+0364 => GGET    18  15      ; "table"
+0365    TGETS   18  18  16  ; "insert"
+0366    MOV     19   3
+0367    TNEW    20   3
+0368    UGET    21   2      ; _
+0369    KSTR    22  60      ; "Language:"
+0370    CALL    21   2   2
+0371    TSETB   21  20   1
+0372    TSETB   17  20   2
+0373    CALL    18   1   3
+0374    TGETS   18   2  61  ; "keywords"
+0375    ISEQS   18  43      ; ""
+0376    JMP     19 => 0379
+0377    ISNEP   18   0
+0378    JMP     19 => 0384
+0379 => UGET    19   2      ; _
+0380    KSTR    20  44      ; "N/A"
+0381    CALL    19   2   2
+0382    MOV     18  19
+0383    JMP     19 => 0418
+0384 => MOV     20  18
+0385    TGETS   19  18  48  ; "find"
+0386    KSTR    21  49      ; "\n"
+0387    CALL    19   2   3
+0388    ISF         19
+0389    JMP     20 => 0413
+0390    UGET    19   0      ; util
+0391    TGETS   19  19  50  ; "splitToArray"
+0392    MOV     20  18
+0393    KSTR    21  49      ; "\n"
+0394    CALL    19   2   3
+0395    MOV     18  19
+0396    KSHORT  19   1
+0397    LEN     20  18
+0398    KSHORT  21   1
+0399    FORI    19 => 0406
+0400 => UGET    23   3      ; BD
+0401    TGETS   23  23  46  ; "auto"
+0402    TGETV   24  18  22
+0403    CALL    23   2   2
+0404    TSETV   23  18  22
+0405    FORL    19 => 0400
+0406 => GGET    19  15      ; "table"
+0407    TGETS   19  19  51  ; "concat"
+0408    MOV     20  18
+0409    KSTR    21  49      ; "\n"
+0410    CALL    19   2   3
+0411    MOV     18  19
+0412    JMP     19 => 0418
+0413 => UGET    19   3      ; BD
+0414    TGETS   19  19  46  ; "auto"
+0415    MOV     20  18
+0416    CALL    19   2   2
+0417    MOV     18  19
+0418 => GGET    19  15      ; "table"
+0419    TGETS   19  19  16  ; "insert"
+0420    MOV     20   3
+0421    TNEW    21   3
+0422    UGET    22   2      ; _
+0423    KSTR    23  62      ; "Keywords:"
+0424    CALL    22   2   2
+0425    TSETB   22  21   1
+0426    TSETB   18  21   2
+0427    CALL    19   1   3
+0428    TGETS   19   2  63  ; "description"
+0429    ISEQS   19  43      ; ""
+0430    JMP     20 => 0433
+0431    ISNEP   19   0
+0432    JMP     20 => 0438
+0433 => UGET    20   2      ; _
+0434    KSTR    21  44      ; "N/A"
+0435    CALL    20   2   2
+0436    MOV     19  20
+0437    JMP     20 => 0443
+0438 => UGET    20   0      ; util
+0439    TGETS   20  20  64  ; "htmlToPlainTextIfHtml"
+0440    TGETS   21   2  63  ; "description"
+0441    CALL    20   2   2
+0442    MOV     19  20
+0443 => GGET    20  15      ; "table"
+0444    TGETS   20  20  16  ; "insert"
+0445    MOV     21   3
+0446    TNEW    22   3
+0447    UGET    23   2      ; _
+0448    KSTR    24  65      ; "Description:"
+0449    CALL    23   2   2
+0450    TSETB   23  22   1
+0451    TSETB   19  22   2
+0452    CALL    20   1   3
+0453    FNEW    20  66      ; filemanagerbookinfo.lua:201
+0454    GGET    21  15      ; "table"
+0455    TGETS   21  21  16  ; "insert"
+0456    MOV     22   3
+0457    TDUP    23  69
+0458    UGET    24   2      ; _
+0459    KSTR    25  67      ; "Cover image:"
+0460    CALL    24   2   2
+0461    TSETB   24  23   1
+0462    UGET    24   2      ; _
+0463    KSTR    25  68      ; "Tap to display"
+0464    CALL    24   2   2
+0465    TSETB   24  23   2
+0466    TSETS   20  23  70  ; "callback"
+0467    CALL    21   1   3
+0468    KPRI    21   0
+0469    TGETS   22   2  59  ; "language"
+0470    ISF         22
+0471    JMP     23 => 0476
+0472    TGETS   22   2  59  ; "language"
+0473    ISEQS   22  43      ; ""
+0474    JMP     22 => 0476
+0475    TGETS   21   2  59  ; "language"
+0476 => UGET    22  10      ; KeyValuePage
+0477    MOV     23  22
+0478    TGETS   22  22  71  ; "new"
+0479    TDUP    24  73
+0480    UGET    25   2      ; _
+0481    KSTR    26  72      ; "Book information"
+0482    CALL    25   2   2
+0483    TSETS   25  24  42  ; "title"
+0484    TSETS    3  24  74  ; "kv_pairs"
+0485    TSETS   21  24  75  ; "values_lang"
+0486    CALL    22   2   3
+0487    UGET    23   9      ; UIManager
+0488    MOV     24  23
+0489    TGETS   23  23  76  ; "show"
+0490    MOV     25  22
+0491    CALL    23   1   3
+0492    UCLO     0 => 0493
+0493 => RET0     0   1
+
+-- BYTECODE -- filemanagerbookinfo.lua:243-255
+0001    TGETS    1   0   0  ; "document"
+0002    IST          1
+0003    JMP      1 => 0005
+0004    RET0     0   1
+0005 => TGETS    1   0   1  ; "ui"
+0006    TGETS    1   1   2  ; "doc_settings"
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "readSetting"
+0009    KSTR     3   4      ; "doc_props"
+0010    CALL     1   2   3
+0011    TNEW     2   0
+0012    GGET     3   5      ; "pairs"
+0013    MOV      4   1
+0014    CALL     3   4   2
+0015    ISNEXT   6 => 0017
+0016 => TSETV    7   2   6
+0017 => ITERN    6   3   3
+0018    ITERL    6 => 0016
+0019    TGETS    3   0   1  ; "ui"
+0020    TGETS    3   3   2  ; "doc_settings"
+0021    MOV      4   3
+0022    TGETS    3   3   3  ; "readSetting"
+0023    KSTR     5   7      ; "doc_pages"
+0024    CALL     3   2   3
+0025    TSETS    3   2   6  ; "pages"
+0026    MOV      4   0
+0027    TGETS    3   0   8  ; "show"
+0028    TGETS    5   0   0  ; "document"
+0029    TGETS    5   5   9  ; "file"
+0030    MOV      6   2
+0031    CALL     3   1   4
+0032    RET0     0   1
+
+-- BYTECODE -- filemanagerbookinfo.lua:257-274
+0001    TGETS    1   0   0  ; "document"
+0002    IST          1
+0003    JMP      1 => 0005
+0004    RET0     0   1
+0005 => TGETS    1   0   0  ; "document"
+0006    MOV      2   1
+0007    TGETS    1   1   1  ; "getProps"
+0008    CALL     1   2   2
+0009    TGETS    1   1   2  ; "description"
+0010    ISF          1
+0011    JMP      2 => 0036
+0012    ISEQS    1   3      ; ""
+0013    JMP      2 => 0036
+0014    UGET     2   0      ; util
+0015    TGETS    2   2   4  ; "htmlToPlainTextIfHtml"
+0016    MOV      3   1
+0017    CALL     2   2   2
+0018    MOV      1   2
+0019    GGET     2   5      ; "require"
+0020    KSTR     3   6      ; "ui/widget/textviewer"
+0021    CALL     2   2   2
+0022    UGET     3   1      ; UIManager
+0023    MOV      4   3
+0024    TGETS    3   3   7  ; "show"
+0025    MOV      6   2
+0026    TGETS    5   2   8  ; "new"
+0027    TDUP     7  10
+0028    UGET     8   2      ; _
+0029    KSTR     9   9      ; "Book description:"
+0030    CALL     8   2   2
+0031    TSETS    8   7  11  ; "title"
+0032    TSETS    1   7  12  ; "text"
+0033    CALL     5   0   3
+0034    CALLM    3   1   1
+0035    JMP      2 => 0049
+0036 => UGET     2   1      ; UIManager
+0037    MOV      3   2
+0038    TGETS    2   2   7  ; "show"
+0039    UGET     4   3      ; InfoMessage
+0040    MOV      5   4
+0041    TGETS    4   4   8  ; "new"
+0042    TDUP     6  14
+0043    UGET     7   2      ; _
+0044    KSTR     8  13      ; "No book description available."
+0045    CALL     7   2   2
+0046    TSETS    7   6  12  ; "text"
+0047    CALL     4   0   3
+0048    CALLM    2   1   1
+0049 => RET0     0   1
+
+-- BYTECODE -- filemanagerbookinfo.lua:276-290
+0001    TGETS    1   0   0  ; "document"
+0002    IST          1
+0003    JMP      1 => 0005
+0004    RET0     0   1
+0005 => TGETS    1   0   0  ; "document"
+0006    MOV      2   1
+0007    TGETS    1   1   1  ; "getCoverPageImage"
+0008    CALL     1   2   2
+0009    ISF          1
+0010    JMP      2 => 0022
+0011    UGET     2   0      ; UIManager
+0012    MOV      3   2
+0013    TGETS    2   2   2  ; "show"
+0014    UGET     4   1      ; ImageViewer
+0015    MOV      5   4
+0016    TGETS    4   4   3  ; "new"
+0017    TDUP     6   4
+0018    TSETS    1   6   5  ; "image"
+0019    CALL     4   0   3
+0020    CALLM    2   1   1
+0021    JMP      2 => 0035
+0022 => UGET     2   0      ; UIManager
+0023    MOV      3   2
+0024    TGETS    2   2   2  ; "show"
+0025    UGET     4   2      ; InfoMessage
+0026    MOV      5   4
+0027    TGETS    4   4   3  ; "new"
+0028    TDUP     6   7
+0029    UGET     7   3      ; _
+0030    KSTR     8   6      ; "No cover image available."
+0031    CALL     7   2   2
+0032    TSETS    7   6   8  ; "text"
+0033    CALL     4   0   3
+0034    CALLM    2   1   1
+0035 => RET0     0   1
+
+-- BYTECODE -- filemanagerbookinfo.lua:0-293
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "docsettings"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "document/documentregistry"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/imageviewer"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/infomessage"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/container/inputcontainer"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/keyvaluepage"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/uimanager"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "apps/filemanager/filemanagerutil"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "libs/libkoreader-lfs"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "util"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "gettext"
+0036    CALL    11   2   2
+0037    MOV     13   5
+0038    TGETS   12   5  13  ; "extend"
+0039    TDUP    14  15
+0040    MOV     15  11
+0041    KSTR    16  14      ; "Book information"
+0042    CALL    15   2   2
+0043    TSETS   15  14  16  ; "bookinfo_menu_title"
+0044    CALL    12   2   3
+0045    FNEW    13  18      ; filemanagerbookinfo.lua:22
+0046    TSETS   13  12  17  ; "init"
+0047    FNEW    13  20      ; filemanagerbookinfo.lua:28
+0048    TSETS   13  12  19  ; "addToMainMenu"
+0049    FNEW    13  22      ; filemanagerbookinfo.lua:37
+0050    TSETS   13  12  21  ; "isSupported"
+0051    FNEW    13  24      ; filemanagerbookinfo.lua:41
+0052    TSETS   13  12  23  ; "show"
+0053    FNEW    13  26      ; filemanagerbookinfo.lua:243
+0054    TSETS   13  12  25  ; "onShowBookInfo"
+0055    FNEW    13  28      ; filemanagerbookinfo.lua:257
+0056    TSETS   13  12  27  ; "onShowBookDescription"
+0057    FNEW    13  30      ; filemanagerbookinfo.lua:276
+0058    TSETS   13  12  29  ; "onShowBookCover"
+0059    UCLO     0 => 0060
+0060 => RET1    12   2
+

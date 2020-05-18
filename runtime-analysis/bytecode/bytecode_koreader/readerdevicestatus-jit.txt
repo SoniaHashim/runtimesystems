@@ -1,0 +1,367 @@
+-- BYTECODE -- readerdevicestatus.lua:33-37
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; low_battery_info
+0005    CALL     0   1   3
+0006    UGET     0   2      ; powerd
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "setDissmisBatteryStatus"
+0009    KPRI     2   2
+0010    CALL     0   1   3
+0011    UGET     0   0      ; UIManager
+0012    MOV      1   0
+0013    TGETS    0   0   2  ; "scheduleIn"
+0014    KSHORT   2 300
+0015    UGET     3   3      ; self
+0016    TGETS    3   3   3  ; "checkLowBattery"
+0017    CALL     0   1   4
+0018    RET0     0   1
+
+-- BYTECODE -- readerdevicestatus.lua:16-48
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "readSetting"
+0004    KSTR     2   2      ; "low_battery_threshold"
+0005    CALL     0   2   3
+0006    IST          0
+0007    JMP      1 => 0009
+0008    KSHORT   0  20
+0009 => UGET     1   0      ; powerd
+0010    MOV      2   1
+0011    TGETS    1   1   3  ; "getCapacity"
+0012    CALL     1   2   2
+0013    UGET     2   0      ; powerd
+0014    MOV      3   2
+0015    TGETS    2   2   4  ; "isCharging"
+0016    CALL     2   2   2
+0017    ISF          2
+0018    JMP      3 => 0025
+0019    UGET     2   0      ; powerd
+0020    MOV      3   2
+0021    TGETS    2   2   5  ; "setDissmisBatteryStatus"
+0022    KPRI     4   1
+0023    CALL     2   1   3
+0024    JMP      2 => 0086
+0025 => UGET     2   0      ; powerd
+0026    MOV      3   2
+0027    TGETS    2   2   6  ; "getDissmisBatteryStatus"
+0028    CALL     2   2   2
+0029    ISEQP    2   2
+0030    JMP      2 => 0073
+0031    ISGT     1   0
+0032    JMP      2 => 0073
+0033    KPRI     2   0
+0034    UGET     3   1      ; ButtonDialogTitle
+0035    MOV      4   3
+0036    TGETS    3   3   7  ; "new"
+0037    TDUP     5   8
+0038    UGET     6   2      ; T
+0039    UGET     7   3      ; _
+0040    KSTR     8   9      ; "The battery is getting low.\n%1% remaini"~
+0041    CALL     7   2   2
+0042    MOV      8   1
+0043    CALL     6   2   3
+0044    TSETS    6   5  10  ; "title"
+0045    UGET     6   4      ; Font
+0046    MOV      7   6
+0047    TGETS    6   6  11  ; "getFace"
+0048    KSTR     8  12      ; "infofont"
+0049    CALL     6   2   3
+0050    TSETS    6   5  13  ; "title_face"
+0051    TNEW     6   3
+0052    TNEW     7   3
+0053    TDUP     8  15
+0054    UGET     9   3      ; _
+0055    KSTR    10  14      ; "Dismiss"
+0056    CALL     9   2   2
+0057    TSETS    9   8  16  ; "text"
+0058    FNEW     9  17      ; readerdevicestatus.lua:33
+0059    TSETS    9   8  18  ; "callback"
+0060    TSETB    8   7   1
+0061    TSETB    7   6   1
+0062    TSETS    6   5  19  ; "buttons"
+0063    CALL     3   2   3
+0064    MOV      2   3
+0065    UGET     3   5      ; UIManager
+0066    MOV      4   3
+0067    TGETS    3   3  20  ; "show"
+0068    MOV      5   2
+0069    CALL     3   1   3
+0070    UCLO     0 => 0071
+0071 => RET0     0   1
+0072    UCLO     2 => 0086
+0073 => UGET     2   0      ; powerd
+0074    MOV      3   2
+0075    TGETS    2   2   6  ; "getDissmisBatteryStatus"
+0076    CALL     2   2   2
+0077    ISF          2
+0078    JMP      3 => 0086
+0079    ISGE     0   1
+0080    JMP      2 => 0086
+0081    UGET     2   0      ; powerd
+0082    MOV      3   2
+0083    TGETS    2   2   5  ; "setDissmisBatteryStatus"
+0084    KPRI     4   1
+0085    CALL     2   1   3
+0086 => UGET     2   5      ; UIManager
+0087    MOV      3   2
+0088    TGETS    2   2  21  ; "scheduleIn"
+0089    KSHORT   4 300
+0090    UGET     5   6      ; self
+0091    TGETS    5   5  22  ; "checkLowBattery"
+0092    CALL     2   1   4
+0093    RET0     0   1
+
+-- BYTECODE -- readerdevicestatus.lua:14-54
+0001    UGET     1   0      ; powerd
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "getCapacity"
+0004    CALL     1   2   2
+0005    KSHORT   2   0
+0006    ISLT     2   1
+0007    JMP      1 => 0014
+0008    UGET     1   0      ; powerd
+0009    MOV      2   1
+0010    TGETS    1   1   1  ; "isCharging"
+0011    CALL     1   2   2
+0012    ISF          1
+0013    JMP      2 => 0026
+0014 => FNEW     1   3      ; readerdevicestatus.lua:16
+0015    TSETS    1   0   2  ; "checkLowBattery"
+0016    TGETS    1   0   4  ; "ui"
+0017    TGETS    1   1   5  ; "menu"
+0018    MOV      2   1
+0019    TGETS    1   1   6  ; "registerToMainMenu"
+0020    MOV      3   0
+0021    CALL     1   1   3
+0022    MOV      2   0
+0023    TGETS    1   0   7  ; "startBatteryChecker"
+0024    CALL     1   1   2
+0025    JMP      1 => 0028
+0026 => KPRI     1   0
+0027    TSETS    1   0   2  ; "checkLowBattery"
+0028 => UCLO     0 => 0029
+0029 => RET0     0   1
+
+-- BYTECODE -- readerdevicestatus.lua:62-64
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "nilOrTrue"
+0004    KSTR     2   2      ; "battery_alarm"
+0005    CALLT    0   3
+
+-- BYTECODE -- readerdevicestatus.lua:65-73
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "flipNilOrTrue"
+0004    KSTR     2   2      ; "battery_alarm"
+0005    CALL     0   1   3
+0006    GGET     0   0      ; "G_reader_settings"
+0007    MOV      1   0
+0008    TGETS    0   0   3  ; "nilOrTrue"
+0009    KSTR     2   2      ; "battery_alarm"
+0010    CALL     0   2   3
+0011    ISF          0
+0012    JMP      1 => 0018
+0013    UGET     0   0      ; self
+0014    MOV      1   0
+0015    TGETS    0   0   4  ; "startBatteryChecker"
+0016    CALL     0   1   2
+0017    JMP      0 => 0027
+0018 => UGET     0   0      ; self
+0019    MOV      1   0
+0020    TGETS    0   0   5  ; "stopBatteryChecker"
+0021    CALL     0   1   2
+0022    UGET     0   1      ; powerd
+0023    MOV      1   0
+0024    TGETS    0   0   6  ; "setDissmisBatteryStatus"
+0025    KPRI     2   1
+0026    CALL     0   1   3
+0027 => RET0     0   1
+
+-- BYTECODE -- readerdevicestatus.lua:77-77
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "nilOrTrue"
+0004    KSTR     2   2      ; "battery_alarm"
+0005    CALLT    0   3
+
+-- BYTECODE -- readerdevicestatus.lua:89-92
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "saveSetting"
+0004    KSTR     3   2      ; "low_battery_threshold"
+0005    TGETS    4   0   3  ; "value"
+0006    CALL     1   1   4
+0007    UGET     1   0      ; powerd
+0008    MOV      2   1
+0009    TGETS    1   1   4  ; "setDissmisBatteryStatus"
+0010    KPRI     3   1
+0011    CALL     1   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- readerdevicestatus.lua:78-95
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/spinwidget"
+0003    CALL     0   2   2
+0004    GGET     1   2      ; "G_reader_settings"
+0005    MOV      2   1
+0006    TGETS    1   1   3  ; "readSetting"
+0007    KSTR     3   4      ; "low_battery_threshold"
+0008    CALL     1   2   3
+0009    IST          1
+0010    JMP      2 => 0012
+0011    KSHORT   1  20
+0012 => MOV      3   0
+0013    TGETS    2   0   5  ; "new"
+0014    TDUP     4   7
+0015    UGET     5   0      ; Screen
+0016    MOV      6   5
+0017    TGETS    5   5   6  ; "getWidth"
+0018    CALL     5   2   2
+0019    MULVN    5   5   0  ; 0.6
+0020    TSETS    5   4   8  ; "width"
+0021    TSETS    1   4   9  ; "value"
+0022    UGET     5   1      ; _
+0023    KSTR     6  10      ; "Set threshold"
+0024    CALL     5   2   2
+0025    TSETS    5   4  11  ; "ok_text"
+0026    UGET     5   1      ; _
+0027    KSTR     6  12      ; "Low battery threshold"
+0028    CALL     5   2   2
+0029    TSETS    5   4  13  ; "title_text"
+0030    FNEW     5  14      ; readerdevicestatus.lua:89
+0031    TSETS    5   4  15  ; "callback"
+0032    CALL     2   2   3
+0033    UGET     3   3      ; UIManager
+0034    MOV      4   3
+0035    TGETS    3   3  16  ; "show"
+0036    MOV      5   2
+0037    CALL     3   1   3
+0038    RET0     0   1
+
+-- BYTECODE -- readerdevicestatus.lua:56-99
+0001    TDUP     2   2
+0002    UGET     3   0      ; _
+0003    KSTR     4   1      ; "Low battery alarm"
+0004    CALL     3   2   2
+0005    TSETS    3   2   3  ; "text"
+0006    TNEW     3   3
+0007    TDUP     4   5
+0008    UGET     5   0      ; _
+0009    KSTR     6   4      ; "Enable"
+0010    CALL     5   2   2
+0011    TSETS    5   4   3  ; "text"
+0012    FNEW     5   6      ; readerdevicestatus.lua:62
+0013    TSETS    5   4   7  ; "checked_func"
+0014    FNEW     5   8      ; readerdevicestatus.lua:65
+0015    TSETS    5   4   9  ; "callback"
+0016    TSETB    4   3   1
+0017    TDUP     4  11
+0018    UGET     5   0      ; _
+0019    KSTR     6  10      ; "Low battery threshold"
+0020    CALL     5   2   2
+0021    TSETS    5   4   3  ; "text"
+0022    FNEW     5  12      ; readerdevicestatus.lua:77
+0023    TSETS    5   4  13  ; "enabled_func"
+0024    FNEW     5  14      ; readerdevicestatus.lua:78
+0025    TSETS    5   4   9  ; "callback"
+0026    TSETB    4   3   2
+0027    TSETS    3   2  15  ; "sub_item_table"
+0028    TSETS    2   1   0  ; "battery"
+0029    UCLO     0 => 0030
+0030 => RET0     0   1
+
+-- BYTECODE -- readerdevicestatus.lua:101-105
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "nilOrTrue"
+0004    KSTR     3   2      ; "battery_alarm"
+0005    CALL     1   2   3
+0006    ISF          1
+0007    JMP      2 => 0013
+0008    TGETS    1   0   3  ; "checkLowBattery"
+0009    ISF          1
+0010    JMP      2 => 0013
+0011    TGETS    1   0   3  ; "checkLowBattery"
+0012    CALL     1   1   1
+0013 => RET0     0   1
+
+-- BYTECODE -- readerdevicestatus.lua:107-111
+0001    TGETS    1   0   0  ; "checkLowBattery"
+0002    ISF          1
+0003    JMP      2 => 0009
+0004    UGET     1   0      ; UIManager
+0005    MOV      2   1
+0006    TGETS    1   1   1  ; "unschedule"
+0007    TGETS    3   0   0  ; "checkLowBattery"
+0008    CALL     1   1   3
+0009 => RET0     0   1
+
+-- BYTECODE -- readerdevicestatus.lua:113-115
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "startBatteryChecker"
+0003    CALL     1   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- readerdevicestatus.lua:117-119
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "stopBatteryChecker"
+0003    CALL     1   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- readerdevicestatus.lua:121-123
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "stopBatteryChecker"
+0003    CALL     1   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- readerdevicestatus.lua:0-126
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/buttondialogtitle"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "device"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/font"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/container/inputcontainer"
+0012    CALL     3   2   2
+0013    TGETS    4   1   5  ; "screen"
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   6      ; "ui/uimanager"
+0016    CALL     5   2   2
+0017    MOV      7   1
+0018    TGETS    6   1   7  ; "getPowerDevice"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   8      ; "gettext"
+0022    CALL     7   2   2
+0023    GGET     8   0      ; "require"
+0024    KSTR     9   9      ; "ffi/util"
+0025    CALL     8   2   2
+0026    TGETS    8   8  10  ; "template"
+0027    MOV     10   3
+0028    TGETS    9   3  11  ; "new"
+0029    TNEW    11   0
+0030    CALL     9   2   3
+0031    FNEW    10  13      ; readerdevicestatus.lua:14
+0032    TSETS   10   9  12  ; "init"
+0033    FNEW    10  15      ; readerdevicestatus.lua:56
+0034    TSETS   10   9  14  ; "addToMainMenu"
+0035    FNEW    10  17      ; readerdevicestatus.lua:101
+0036    TSETS   10   9  16  ; "startBatteryChecker"
+0037    FNEW    10  19      ; readerdevicestatus.lua:107
+0038    TSETS   10   9  18  ; "stopBatteryChecker"
+0039    FNEW    10  21      ; readerdevicestatus.lua:113
+0040    TSETS   10   9  20  ; "onResume"
+0041    FNEW    10  23      ; readerdevicestatus.lua:117
+0042    TSETS   10   9  22  ; "onSuspend"
+0043    FNEW    10  25      ; readerdevicestatus.lua:121
+0044    TSETS   10   9  24  ; "onCloseWidget"
+0045    UCLO     0 => 0046
+0046 => RET1     9   2
+

@@ -1,0 +1,196 @@
+-- BYTECODE -- cmake.lua:13-76
+0001    GGET     1   0      ; "assert"
+0002    MOV      3   0
+0003    TGETS    2   0   1  ; "type"
+0004    CALL     2   2   2
+0005    ISEQS    2   2      ; "rockspec"
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => CALL     1   1   2
+0011    TGETS    1   0   3  ; "build"
+0012    TGETS    2   1   4  ; "variables"
+0013    IST          2
+0014    JMP      3 => 0016
+0015    TNEW     2   0
+0016 => GGET     3   6      ; "os"
+0017    TGETS    3   3   7  ; "getenv"
+0018    KSTR     4   5      ; "CMAKE_MODULE_PATH"
+0019    CALL     3   2   2
+0020    TSETS    3   2   5  ; "CMAKE_MODULE_PATH"
+0021    GGET     3   6      ; "os"
+0022    TGETS    3   3   7  ; "getenv"
+0023    KSTR     4   8      ; "CMAKE_LIBRARY_PATH"
+0024    CALL     3   2   2
+0025    TSETS    3   2   8  ; "CMAKE_LIBRARY_PATH"
+0026    GGET     3   6      ; "os"
+0027    TGETS    3   3   7  ; "getenv"
+0028    KSTR     4   9      ; "CMAKE_INCLUDE_PATH"
+0029    CALL     3   2   2
+0030    TSETS    3   2   9  ; "CMAKE_INCLUDE_PATH"
+0031    UGET     3   0      ; util
+0032    TGETS    3   3  10  ; "variable_substitutions"
+0033    MOV      4   2
+0034    TGETS    5   0   4  ; "variables"
+0035    CALL     3   1   3
+0036    UGET     3   1      ; fs
+0037    TGETS    3   3  11  ; "is_tool_available"
+0038    TGETS    4   0   4  ; "variables"
+0039    TGETS    4   4  12  ; "CMAKE"
+0040    KSTR     5  13      ; "CMake"
+0041    CALL     3   3   3
+0042    IST          3
+0043    JMP      5 => 0047
+0044    KPRI     5   0
+0045    MOV      6   4
+0046    RET      5   3
+0047 => GGET     5   1      ; "type"
+0048    TGETS    6   1  14  ; "cmake"
+0049    CALL     5   2   2
+0050    ISNES    5  15      ; "string"
+0051    JMP      5 => 0070
+0052    GGET     5   0      ; "assert"
+0053    GGET     6  16      ; "io"
+0054    TGETS    6   6  17  ; "open"
+0055    UGET     7   1      ; fs
+0056    TGETS    7   7  18  ; "current_dir"
+0057    CALL     7   2   1
+0058    KSTR     8  19      ; "/CMakeLists.txt"
+0059    CAT      7   7   8
+0060    KSTR     8  20      ; "w"
+0061    CALL     6   0   3
+0062    CALLM    5   2   0
+0063    MOV      7   5
+0064    TGETS    6   5  21  ; "write"
+0065    TGETS    8   1  14  ; "cmake"
+0066    CALL     6   1   3
+0067    MOV      7   5
+0068    TGETS    6   5  22  ; "close"
+0069    CALL     6   1   2
+0070 => KSTR     5  23      ; ""
+0071    UGET     6   2      ; cfg
+0072    TGETS    6   6  24  ; "cmake_generator"
+0073    ISF          6
+0074    JMP      7 => 0082
+0075    MOV      6   5
+0076    KSTR     7  25      ; " -G""
+0077    UGET     8   2      ; cfg
+0078    TGETS    8   8  24  ; "cmake_generator"
+0079    KSTR     9  26      ; """
+0080    CAT      5   6   9
+0081    JMP      6 => 0099
+0082 => UGET     6   2      ; cfg
+0083    TGETS    6   6  27  ; "is_platform"
+0084    KSTR     7  28      ; "windows"
+0085    CALL     6   2   2
+0086    ISF          6
+0087    JMP      7 => 0099
+0088    UGET     6   2      ; cfg
+0089    TGETS    6   6  29  ; "target_cpu"
+0090    MOV      7   6
+0091    TGETS    6   6  30  ; "match"
+0092    KSTR     8  31      ; "x86_64$"
+0093    CALL     6   2   3
+0094    ISF          6
+0095    JMP      7 => 0099
+0096    MOV      6   5
+0097    KSTR     7  32      ; " -DCMAKE_GENERATOR_PLATFORM=x64"
+0098    CAT      5   6   7
+0099 => GGET     6  33      ; "pairs"
+0100    MOV      7   2
+0101    CALL     6   4   2
+0102    ISNEXT   9 => 0112
+0103 => MOV     11   5
+0104    KSTR    12  34      ; " -D"
+0105    MOV     13   9
+0106    KSTR    14  35      ; "=""
+0107    GGET    15  36      ; "tostring"
+0108    MOV     16  10
+0109    CALL    15   2   2
+0110    KSTR    16  26      ; """
+0111    CAT      5  11  16
+0112 => ITERN    9   3   3
+0113    ITERL    9 => 0103
+0114    UGET     6   1      ; fs
+0115    TGETS    6   6  37  ; "execute_string"
+0116    TGETS    7   0   4  ; "variables"
+0117    TGETS    7   7  12  ; "CMAKE"
+0118    KSTR     8  38      ; " -H. -Bbuild.luarocks "
+0119    MOV      9   5
+0120    CAT      7   7   9
+0121    CALL     6   2   2
+0122    IST          6
+0123    JMP      6 => 0127
+0124    KPRI     6   0
+0125    KSTR     7  39      ; "Failed cmake."
+0126    RET      6   3
+0127 => KNIL     6   7
+0128    MOV      9   0
+0129    TGETS    8   0  40  ; "format_is_at_least"
+0130    KSTR    10  41      ; "3.0"
+0131    CALL     8   2   3
+0132    ISF          8
+0133    JMP      9 => 0147
+0134    TGETS    8   1  42  ; "build_pass"
+0135    ISNEP    8   0
+0136    JMP      8 => 0139
+0137    KPRI     6   2
+0138    JMP      8 => 0140
+0139 => TGETS    6   1  42  ; "build_pass"
+0140 => TGETS    8   1  43  ; "install_pass"
+0141    ISNEP    8   0
+0142    JMP      8 => 0145
+0143    KPRI     7   2
+0144    JMP      8 => 0146
+0145 => TGETS    7   1  43  ; "install_pass"
+0146 => JMP      8 => 0149
+0147 => KPRI     6   2
+0148    KPRI     7   2
+0149 => ISF          6
+0150    JMP      8 => 0163
+0151    UGET     8   1      ; fs
+0152    TGETS    8   8  37  ; "execute_string"
+0153    TGETS    9   0   4  ; "variables"
+0154    TGETS    9   9  12  ; "CMAKE"
+0155    KSTR    10  44      ; " --build build.luarocks --config Release"
+0156    CAT      9   9  10
+0157    CALL     8   2   2
+0158    IST          8
+0159    JMP      8 => 0163
+0160    KPRI     8   0
+0161    KSTR     9  45      ; "Failed building."
+0162    RET      8   3
+0163 => ISF          7
+0164    JMP      8 => 0177
+0165    UGET     8   1      ; fs
+0166    TGETS    8   8  37  ; "execute_string"
+0167    TGETS    9   0   4  ; "variables"
+0168    TGETS    9   9  12  ; "CMAKE"
+0169    KSTR    10  46      ; " --build build.luarocks --target install"~
+0170    CAT      9   9  10
+0171    CALL     8   2   2
+0172    IST          8
+0173    JMP      8 => 0177
+0174    KPRI     8   0
+0175    KSTR     9  47      ; "Failed installing."
+0176    RET      8   3
+0177 => KPRI     8   2
+0178    RET1     8   2
+
+-- BYTECODE -- cmake.lua:0-79
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.fs"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.util"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.core.cfg"
+0010    CALL     3   2   2
+0011    FNEW     4   5      ; cmake.lua:13
+0012    TSETS    4   0   4  ; "run"
+0013    UCLO     0 => 0014
+0014 => RET1     0   2
+

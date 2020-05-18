@@ -1,0 +1,482 @@
+-- BYTECODE -- cache.lua:15-31
+0001    GGET     0   0      ; "io"
+0002    TGETS    0   0   1  ; "open"
+0003    KSTR     1   2      ; "/proc/meminfo"
+0004    KSTR     2   3      ; "r"
+0005    CALL     0   2   3
+0006    KSHORT   1   0
+0007    ISF          0
+0008    JMP      2 => 0061
+0009    MOV      3   0
+0010    TGETS    2   0   4  ; "lines"
+0011    CALL     2   4   2
+0012    JMP      5 => 0056
+0013 => KNIL     6   9
+0014    MOV     11   5
+0015    TGETS   10   5   5  ; "gsub"
+0016    KSTR    12   6      ; "^MemFree:%s-(%d+) kB"
+0017    KSTR    13   7      ; "%1"
+0018    CALL    10   3   4
+0019    MOV      9  11
+0020    MOV      6  10
+0021    ISEQN    9   0      ; 0
+0022    JMP     10 => 0028
+0023    GGET    10   8      ; "tonumber"
+0024    MOV     11   6
+0025    CALL    10   2   2
+0026    MULVN   10  10   1  ; 1024
+0027    ADDVV    1   1  10
+0028 => MOV     11   5
+0029    TGETS   10   5   5  ; "gsub"
+0030    KSTR    12   9      ; "^Buffers:%s-(%d+) kB"
+0031    KSTR    13   7      ; "%1"
+0032    CALL    10   3   4
+0033    MOV      9  11
+0034    MOV      7  10
+0035    ISEQN    9   0      ; 0
+0036    JMP     10 => 0042
+0037    GGET    10   8      ; "tonumber"
+0038    MOV     11   7
+0039    CALL    10   2   2
+0040    MULVN   10  10   1  ; 1024
+0041    ADDVV    1   1  10
+0042 => MOV     11   5
+0043    TGETS   10   5   5  ; "gsub"
+0044    KSTR    12  10      ; "^Cached:%s-(%d+) kB"
+0045    KSTR    13   7      ; "%1"
+0046    CALL    10   3   4
+0047    MOV      9  11
+0048    MOV      8  10
+0049    ISEQN    9   0      ; 0
+0050    JMP     10 => 0056
+0051    GGET    10   8      ; "tonumber"
+0052    MOV     11   8
+0053    CALL    10   2   2
+0054    MULVN   10  10   1  ; 1024
+0055    ADDVV    1   1  10
+0056 => ITERC    5   2   3
+0057    ITERL    5 => 0013
+0058    MOV      3   0
+0059    TGETS    2   0  11  ; "close"
+0060    CALL     2   1   2
+0061 => RET1     1   2
+
+-- BYTECODE -- cache.lua:33-38
+0001    GGET     0   0      ; "DGLOBAL_CACHE_SIZE_MINIMUM"
+0002    GGET     1   1      ; "DGLOBAL_CACHE_SIZE_MAXIMUM"
+0003    UGET     2   0      ; calcFreeMem
+0004    CALL     2   2   1
+0005    GGET     3   2      ; "DGLOBAL_CACHE_FREE_PROPORTION"
+0006    IST          3
+0007    JMP      4 => 0009
+0008    KSHORT   3   0
+0009 => MULVV    2   2   3
+0010    GGET     3   3      ; "math"
+0011    TGETS    3   3   4  ; "min"
+0012    MOV      4   1
+0013    GGET     5   3      ; "math"
+0014    TGETS    5   5   5  ; "max"
+0015    MOV      6   0
+0016    MOV      7   2
+0017    CALL     5   0   3
+0018    CALLMT   3   1
+
+-- BYTECODE -- cache.lua:45-54
+0001    TNEW     0   0
+0002    UGET     1   0      ; lfs
+0003    TGETS    1   1   0  ; "dir"
+0004    UGET     2   1      ; cache_path
+0005    CALL     1   4   2
+0006    JMP      4 => 0018
+0007 => UGET     5   1      ; cache_path
+0008    MOV      6   4
+0009    CAT      5   5   6
+0010    UGET     6   0      ; lfs
+0011    TGETS    6   6   1  ; "attributes"
+0012    MOV      7   5
+0013    KSTR     8   2      ; "mode"
+0014    CALL     6   2   3
+0015    ISNES    6   3      ; "file"
+0016    JMP      6 => 0018
+0017    TSETV    5   0   4
+0018 => ITERC    4   2   3
+0019    ITERL    4 => 0007
+0020    RET1     0   2
+
+-- BYTECODE -- cache.lua:69-74
+0001    IST          1
+0002    JMP      2 => 0004
+0003    TNEW     1   0
+0004 => GGET     2   0      ; "setmetatable"
+0005    MOV      3   1
+0006    MOV      4   0
+0007    CALL     2   1   3
+0008    TSETS    0   0   1  ; "__index"
+0009    RET1     1   2
+
+-- BYTECODE -- cache.lua:77-83
+0001    TGETS    2   0   0  ; "cache_order"
+0002    LEN      2   2
+0003    KSHORT   3   1
+0004    KSHORT   4  -1
+0005    FORI     2 => 0016
+0006 => TGETS    6   0   0  ; "cache_order"
+0007    TGETV    6   6   5
+0008    ISNEV    6   1
+0009    JMP      6 => 0015
+0010    GGET     6   1      ; "table"
+0011    TGETS    6   6   2  ; "remove"
+0012    TGETS    7   0   0  ; "cache_order"
+0013    MOV      8   5
+0014    CALL     6   1   3
+0015 => FORL     2 => 0006
+0016 => RET0     0   1
+
+-- BYTECODE -- cache.lua:86-91
+0001    TGETS    2   0   0  ; "cache"
+0002    TGETV    2   2   1
+0003    IST          2
+0004    JMP      2 => 0006
+0005    RET0     0   1
+0006 => TGETS    2   0   1  ; "current_memsize"
+0007    TGETS    3   0   0  ; "cache"
+0008    TGETV    3   3   1
+0009    TGETS    3   3   2  ; "size"
+0010    SUBVV    2   2   3
+0011    TSETS    2   0   1  ; "current_memsize"
+0012    TGETS    2   0   0  ; "cache"
+0013    TGETV    2   2   1
+0014    MOV      3   2
+0015    TGETS    2   2   3  ; "onFree"
+0016    CALL     2   1   2
+0017    TGETS    2   0   0  ; "cache"
+0018    KPRI     3   0
+0019    TSETV    3   2   1
+0020    RET0     0   1
+
+-- BYTECODE -- cache.lua:94-97
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "_unref"
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    MOV      3   0
+0006    TGETS    2   0   1  ; "_free"
+0007    MOV      4   1
+0008    CALL     2   1   3
+0009    RET0     0   1
+
+-- BYTECODE -- cache.lua:99-117
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "drop"
+0003    MOV      5   1
+0004    CALL     3   1   3
+0005    TGETS    3   2   1  ; "size"
+0006    TGETS    4   0   2  ; "max_memsize"
+0007    ISGE     4   3
+0008    JMP      3 => 0015
+0009    UGET     3   0      ; logger
+0010    TGETS    3   3   3  ; "warn"
+0011    KSTR     4   4      ; "too much memory claimed for"
+0012    MOV      5   1
+0013    CALL     3   1   3
+0014    RET0     0   1
+0015 => TGETS    3   0   5  ; "current_memsize"
+0016    TGETS    4   2   1  ; "size"
+0017    ADDVV    3   3   4
+0018    TGETS    4   0   2  ; "max_memsize"
+0019    ISGE     4   3
+0020    JMP      3 => 0031
+0021    LOOP     3 => 0031
+0022    GGET     3   6      ; "table"
+0023    TGETS    3   3   7  ; "remove"
+0024    TGETS    4   0   8  ; "cache_order"
+0025    CALL     3   2   2
+0026    MOV      5   0
+0027    TGETS    4   0   9  ; "_free"
+0028    MOV      6   3
+0029    CALL     4   1   3
+0030    JMP      3 => 0015
+0031 => GGET     3   6      ; "table"
+0032    TGETS    3   3  10  ; "insert"
+0033    TGETS    4   0   8  ; "cache_order"
+0034    KSHORT   5   1
+0035    MOV      6   1
+0036    CALL     3   1   4
+0037    TGETS    3   0  11  ; "cache"
+0038    TSETV    2   3   1
+0039    TGETS    3   0   5  ; "current_memsize"
+0040    TGETS    4   2   1  ; "size"
+0041    ADDVV    3   3   4
+0042    TSETS    3   0   5  ; "current_memsize"
+0043    RET0     0   1
+
+-- BYTECODE -- cache.lua:123-144
+0001    TGETS    3   0   0  ; "cache"
+0002    TGETV    3   3   1
+0003    ISF          3
+0004    JMP      4 => 0023
+0005    TGETS    3   0   1  ; "cache_order"
+0006    TGETB    3   3   1
+0007    ISEQV    3   1
+0008    JMP      3 => 0019
+0009    MOV      4   0
+0010    TGETS    3   0   2  ; "_unref"
+0011    MOV      5   1
+0012    CALL     3   1   3
+0013    GGET     3   3      ; "table"
+0014    TGETS    3   3   4  ; "insert"
+0015    TGETS    4   0   1  ; "cache_order"
+0016    KSHORT   5   1
+0017    MOV      6   1
+0018    CALL     3   1   4
+0019 => TGETS    3   0   0  ; "cache"
+0020    TGETV    3   3   1
+0021    RET1     3   2
+0022    JMP      3 => 0056
+0023 => ISF          2
+0024    JMP      3 => 0056
+0025    TGETS    3   0   5  ; "cached"
+0026    UGET     4   0      ; md5
+0027    TGETS    4   4   6  ; "sum"
+0028    MOV      5   1
+0029    CALL     4   2   2
+0030    TGETV    3   3   4
+0031    ISF          3
+0032    JMP      4 => 0056
+0033    MOV      5   2
+0034    TGETS    4   2   7  ; "new"
+0035    TNEW     6   0
+0036    CALL     4   2   3
+0037    GGET     5   8      ; "pcall"
+0038    TGETS    6   4   9  ; "load"
+0039    MOV      7   4
+0040    MOV      8   3
+0041    CALL     5   3   4
+0042    ISF          5
+0043    JMP      7 => 0051
+0044    MOV      8   0
+0045    TGETS    7   0   4  ; "insert"
+0046    MOV      9   1
+0047    MOV     10   4
+0048    CALL     7   1   4
+0049    RET1     4   2
+0050    JMP      7 => 0056
+0051 => UGET     7   1      ; logger
+0052    TGETS    7   7  10  ; "warn"
+0053    KSTR     8  11      ; "discard cache"
+0054    MOV      9   6
+0055    CALL     7   1   3
+0056 => RET0     0   1
+
+-- BYTECODE -- cache.lua:146-151
+0001    MULVN    2   1   0  ; 4
+0002    TGETS    3   0   0  ; "max_memsize"
+0003    MULVN    3   3   1  ; 3
+0004    ISGE     2   3
+0005    JMP      2 => 0008
+0006    KPRI     2   2
+0007    RET1     2   2
+0008 => RET0     0   1
+
+-- BYTECODE -- cache.lua:161-161
+0001    TGETS    2   0   0  ; "time"
+0002    TGETS    3   1   0  ; "time"
+0003    ISLT     3   2
+0004    JMP      2 => 0007
+0005    KPRI     2   1
+0006    JMP      3 => 0008
+0007 => KPRI     2   2
+0008 => RET1     2   2
+
+-- BYTECODE -- cache.lua:153-188
+0001    KSHORT   1   0
+0002    TNEW     2   0
+0003    GGET     3   0      ; "pairs"
+0004    TGETS    4   0   1  ; "cached"
+0005    CALL     3   4   2
+0006    ISNEXT   6 => 0028
+0007 => GGET     8   2      ; "table"
+0008    TGETS    8   8   3  ; "insert"
+0009    MOV      9   2
+0010    TDUP    10   4
+0011    TSETS    7  10   5  ; "file"
+0012    UGET    11   0      ; lfs
+0013    TGETS   11  11   6  ; "attributes"
+0014    MOV     12   7
+0015    KSTR    13   7      ; "access"
+0016    CALL    11   2   3
+0017    TSETS   11  10   8  ; "time"
+0018    CALL     8   1   3
+0019    UGET     8   0      ; lfs
+0020    TGETS    8   8   6  ; "attributes"
+0021    MOV      9   7
+0022    KSTR    10   9      ; "size"
+0023    CALL     8   2   3
+0024    IST          8
+0025    JMP      9 => 0027
+0026    KSHORT   8   0
+0027 => ADDVV    1   1   8
+0028 => ITERN    6   3   3
+0029    ITERL    6 => 0007
+0030    GGET     3   2      ; "table"
+0031    TGETS    3   3  10  ; "sort"
+0032    MOV      4   2
+0033    FNEW     5  11      ; cache.lua:161
+0034    CALL     3   1   3
+0035    KSHORT   3   0
+0036    GGET     4  12      ; "ipairs"
+0037    TGETS    5   0  13  ; "cache_order"
+0038    CALL     4   4   2
+0039    JMP      7 => 0077
+0040 => TGETS    9   0  14  ; "cache"
+0041    TGETV    9   9   8
+0042    TGETS   10   9  15  ; "persistent"
+0043    ISF         10
+0044    JMP     11 => 0077
+0045    TGETS   10   9  16  ; "dump"
+0046    ISF         10
+0047    JMP     11 => 0077
+0048    UGET    10   1      ; cache_path
+0049    UGET    11   2      ; md5
+0050    TGETS   11  11  17  ; "sum"
+0051    MOV     12   8
+0052    CALL    11   2   2
+0053    CAT     10  10  11
+0054    UGET    11   0      ; lfs
+0055    TGETS   11  11   6  ; "attributes"
+0056    MOV     12  10
+0057    CALL    11   2   2
+0058    ISF         11
+0059    JMP     12 => 0061
+0060    JMP      4 => 0079
+0061 => UGET    12   3      ; logger
+0062    TGETS   12  12  18  ; "dbg"
+0063    KSTR    13  19      ; "dump cache item"
+0064    MOV     14   8
+0065    CALL    12   1   3
+0066    MOV     13   9
+0067    TGETS   12   9  16  ; "dump"
+0068    MOV     14  10
+0069    CALL    12   2   3
+0070    ISTC     3  12
+0071    JMP     13 => 0073
+0072    KSHORT   3   0
+0073 => KSHORT  12   0
+0074    ISGE    12   3
+0075    JMP     12 => 0077
+0076    JMP      4 => 0079
+0077 => ITERC    7   3   3
+0078    ITERL    7 => 0040
+0079 => ADDVV    4   1   3
+0080    TGETS    5   0  20  ; "max_memsize"
+0081    SUBVV    4   4   5
+0082    KSHORT   5   0
+0083    ISGE     5   4
+0084    JMP      4 => 0101
+0085    LOOP     4 => 0101
+0086    GGET     4   2      ; "table"
+0087    TGETS    4   4  21  ; "remove"
+0088    MOV      5   2
+0089    CALL     4   2   2
+0090    UGET     5   0      ; lfs
+0091    TGETS    5   5   6  ; "attributes"
+0092    TGETS    6   4   5  ; "file"
+0093    KSTR     7   9      ; "size"
+0094    CALL     5   2   3
+0095    SUBVV    1   1   5
+0096    GGET     5  22      ; "os"
+0097    TGETS    5   5  21  ; "remove"
+0098    TGETS    6   4   5  ; "file"
+0099    CALL     5   1   2
+0100    JMP      4 => 0079
+0101 => UGET     4   4      ; getDiskCache
+0102    CALL     4   2   1
+0103    TSETS    4   0   1  ; "cached"
+0104    RET0     0   1
+
+-- BYTECODE -- cache.lua:191-198
+0001    GGET     1   0      ; "pairs"
+0002    TGETS    2   0   1  ; "cache"
+0003    CALL     1   4   2
+0004    ISNEXT   4 => 0010
+0005 => TGETS    6   0   1  ; "cache"
+0006    TGETV    6   6   4
+0007    MOV      7   6
+0008    TGETS    6   6   2  ; "onFree"
+0009    CALL     6   1   2
+0010 => ITERN    4   3   3
+0011    ITERL    4 => 0005
+0012    TNEW     1   0
+0013    TSETS    1   0   1  ; "cache"
+0014    TNEW     1   0
+0015    TSETS    1   0   3  ; "cache_order"
+0016    KSHORT   1   0
+0017    TSETS    1   0   4  ; "current_memsize"
+0018    RET0     0   1
+
+-- BYTECODE -- cache.lua:0-201
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "datastorage"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "libs/libkoreader-lfs"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "logger"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ffi/MD5"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "document/canvascontext"
+0015    CALL     4   2   2
+0016    TGETS    5   4   6  ; "should_restrict_JIT"
+0017    ISF          5
+0018    JMP      6 => 0026
+0019    GGET     5   0      ; "require"
+0020    KSTR     6   7      ; "jit"
+0021    CALL     5   2   2
+0022    TGETS    5   5   8  ; "off"
+0023    KPRI     6   2
+0024    KPRI     7   2
+0025    CALL     5   1   3
+0026 => FNEW     5   9      ; cache.lua:15
+0027    FNEW     6  10      ; cache.lua:33
+0028    MOV      8   0
+0029    TGETS    7   0  11  ; "getDataDir"
+0030    CALL     7   2   2
+0031    KSTR     8  12      ; "/cache/"
+0032    CAT      7   7   8
+0033    FNEW     8  13      ; cache.lua:45
+0034    TDUP     9  14
+0035    MOV     10   6
+0036    CALL    10   2   1
+0037    TSETS   10   9  15  ; "max_memsize"
+0038    TNEW    10   0
+0039    TSETS   10   9  16  ; "cache"
+0040    TNEW    10   0
+0041    TSETS   10   9  17  ; "cache_order"
+0042    MOV     10   8
+0043    CALL    10   2   1
+0044    TSETS   10   9  18  ; "cached"
+0045    FNEW    10  20      ; cache.lua:69
+0046    TSETS   10   9  19  ; "new"
+0047    FNEW    10  22      ; cache.lua:77
+0048    TSETS   10   9  21  ; "_unref"
+0049    FNEW    10  24      ; cache.lua:86
+0050    TSETS   10   9  23  ; "_free"
+0051    FNEW    10  26      ; cache.lua:94
+0052    TSETS   10   9  25  ; "drop"
+0053    FNEW    10  28      ; cache.lua:99
+0054    TSETS   10   9  27  ; "insert"
+0055    FNEW    10  30      ; cache.lua:123
+0056    TSETS   10   9  29  ; "check"
+0057    FNEW    10  32      ; cache.lua:146
+0058    TSETS   10   9  31  ; "willAccept"
+0059    FNEW    10  34      ; cache.lua:153
+0060    TSETS   10   9  33  ; "serialize"
+0061    FNEW    10  36      ; cache.lua:191
+0062    TSETS   10   9  35  ; "clear"
+0063    UCLO     0 => 0064
+0064 => RET1     9   2
+

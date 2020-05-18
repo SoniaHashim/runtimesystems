@@ -1,0 +1,682 @@
+-- BYTECODE -- readerstatus.lua:24-32
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "document"
+0003    TGETS    1   1   2  ; "is_pic"
+0004    ISF          1
+0005    JMP      2 => 0010
+0006    KPRI     1   1
+0007    TSETS    1   0   3  ; "enabled"
+0008    RET0     0   1
+0009    JMP      1 => 0021
+0010 => TGETS    1   0   1  ; "document"
+0011    MOV      2   1
+0012    TGETS    1   1   5  ; "getPageCount"
+0013    CALL     1   2   2
+0014    TSETS    1   0   4  ; "total_pages"
+0015    TGETS    1   0   0  ; "ui"
+0016    TGETS    1   1   6  ; "menu"
+0017    MOV      2   1
+0018    TGETS    1   1   7  ; "registerToMainMenu"
+0019    MOV      3   0
+0020    CALL     1   1   3
+0021 => RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:37-39
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onShowBookStatus"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:34-41
+0001    TDUP     2   2
+0002    UGET     3   0      ; _
+0003    KSTR     4   1      ; "Book status"
+0004    CALL     3   2   2
+0005    TSETS    3   2   3  ; "text"
+0006    FNEW     3   4      ; readerstatus.lua:37
+0007    TSETS    3   2   5  ; "callback"
+0008    TSETS    2   1   0  ; "book_status"
+0009    UCLO     0 => 0010
+0010 => RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:61-67
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "settings"
+0003    TGETS    0   0   1  ; "data"
+0004    TGETS    0   0   2  ; "summary"
+0005    ISF          0
+0006    JMP      1 => 0018
+0007    UGET     0   0      ; self
+0008    TGETS    0   0   0  ; "settings"
+0009    TGETS    0   0   1  ; "data"
+0010    TGETS    0   0   2  ; "summary"
+0011    TGETS    0   0   3  ; "status"
+0012    ISNES    0   4      ; "complete"
+0013    JMP      0 => 0018
+0014    UGET     0   1      ; _
+0015    KSTR     1   5      ; "Mark as reading"
+0016    CALLT    0   2
+0017    JMP      0 => 0021
+0018 => UGET     0   1      ; _
+0019    KSTR     1   6      ; "Mark as read"
+0020    CALLT    0   2
+0021 => RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:68-71
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onMarkBook"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; UIManager
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "close"
+0008    UGET     2   2      ; choose_action
+0009    CALL     0   1   3
+0010    RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:75-78
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onShowBookStatus"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; UIManager
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "close"
+0008    UGET     2   2      ; choose_action
+0009    CALL     0   1   3
+0010    RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:85-88
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "ui"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "handleEvent"
+0005    UGET     2   1      ; Event
+0006    MOV      3   2
+0007    TGETS    2   2   2  ; "new"
+0008    KSTR     4   3      ; "GoToBeginning"
+0009    CALL     2   0   3
+0010    CALLM    0   1   1
+0011    UGET     0   2      ; UIManager
+0012    MOV      1   0
+0013    TGETS    0   0   4  ; "close"
+0014    UGET     2   3      ; choose_action
+0015    CALL     0   1   3
+0016    RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:93-96
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "openNextFile"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "document"
+0006    TGETS    2   2   2  ; "file"
+0007    CALL     0   1   3
+0008    UGET     0   1      ; UIManager
+0009    MOV      1   0
+0010    TGETS    0   0   3  ; "close"
+0011    UGET     2   2      ; choose_action
+0012    CALL     0   1   3
+0013    RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:102-105
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "deleteFile"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "document"
+0006    TGETS    2   2   2  ; "file"
+0007    KPRI     3   1
+0008    CALL     0   1   4
+0009    UGET     0   1      ; UIManager
+0010    MOV      1   0
+0011    TGETS    0   0   3  ; "close"
+0012    UGET     2   2      ; choose_action
+0013    CALL     0   1   3
+0014    RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:109-112
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "openFileBrowser"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; UIManager
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "close"
+0008    UGET     2   2      ; choose_action
+0009    CALL     0   1   3
+0010    RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:118-120
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; choose_action
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:158-158
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "openFileBrowser"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:43-163
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "performHapticFeedback"
+0004    KSTR     3   1      ; "CONTEXT_CLICK"
+0005    CALL     1   1   3
+0006    GGET     1   2      ; "G_reader_settings"
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "readSetting"
+0009    KSTR     3   4      ; "end_document_action"
+0010    CALL     1   2   3
+0011    KPRI     2   0
+0012    KPRI     3   2
+0013    GGET     4   5      ; "require"
+0014    KSTR     5   6      ; "ui/quickstart"
+0015    CALL     4   2   2
+0016    GGET     5   2      ; "G_reader_settings"
+0017    MOV      6   5
+0018    TGETS    5   5   3  ; "readSetting"
+0019    KSTR     7   7      ; "lastfile"
+0020    CALL     5   2   3
+0021    ISF          5
+0022    JMP      6 => 0030
+0023    TGETS    6   4   8  ; "quickstart_filename"
+0024    ISNEV    5   6
+0025    JMP      6 => 0030
+0026    MOV      7   0
+0027    TGETS    6   0   9  ; "openFileBrowser"
+0028    CALL     6   1   2
+0029    UCLO     0 => 0237
+0030 => GGET     6   2      ; "G_reader_settings"
+0031    MOV      7   6
+0032    TGETS    6   6   3  ; "readSetting"
+0033    KSTR     8  10      ; "collate"
+0034    CALL     6   2   3
+0035    ISNES    6  11      ; "access"
+0036    JMP      6 => 0038
+0037    KPRI     3   1
+0038 => ISEQS    1  12      ; "pop-up"
+0039    JMP      6 => 0042
+0040    ISNEP    1   0
+0041    JMP      6 => 0123
+0042 => TNEW     6   5
+0043    TNEW     7   3
+0044    TDUP     8  14
+0045    FNEW     9  13      ; readerstatus.lua:61
+0046    TSETS    9   8  15  ; "text_func"
+0047    FNEW     9  16      ; readerstatus.lua:68
+0048    TSETS    9   8  17  ; "callback"
+0049    TSETB    8   7   1
+0050    TDUP     8  19
+0051    UGET     9   1      ; _
+0052    KSTR    10  18      ; "Book status"
+0053    CALL     9   2   2
+0054    TSETS    9   8  20  ; "text"
+0055    FNEW     9  21      ; readerstatus.lua:75
+0056    TSETS    9   8  17  ; "callback"
+0057    TSETB    8   7   2
+0058    TSETB    7   6   1
+0059    TNEW     7   3
+0060    TDUP     8  23
+0061    UGET     9   1      ; _
+0062    KSTR    10  22      ; "Go to beginning"
+0063    CALL     9   2   2
+0064    TSETS    9   8  20  ; "text"
+0065    FNEW     9  24      ; readerstatus.lua:85
+0066    TSETS    9   8  17  ; "callback"
+0067    TSETB    8   7   1
+0068    TDUP     8  26
+0069    UGET     9   1      ; _
+0070    KSTR    10  25      ; "Open next file"
+0071    CALL     9   2   2
+0072    TSETS    9   8  20  ; "text"
+0073    TSETS    3   8  27  ; "enabled"
+0074    FNEW     9  28      ; readerstatus.lua:93
+0075    TSETS    9   8  17  ; "callback"
+0076    TSETB    8   7   2
+0077    TSETB    7   6   2
+0078    TNEW     7   3
+0079    TDUP     8  30
+0080    UGET     9   1      ; _
+0081    KSTR    10  29      ; "Delete file"
+0082    CALL     9   2   2
+0083    TSETS    9   8  20  ; "text"
+0084    FNEW     9  31      ; readerstatus.lua:102
+0085    TSETS    9   8  17  ; "callback"
+0086    TSETB    8   7   1
+0087    TDUP     8  33
+0088    UGET     9   1      ; _
+0089    KSTR    10  32      ; "File browser"
+0090    CALL     9   2   2
+0091    TSETS    9   8  20  ; "text"
+0092    FNEW     9  34      ; readerstatus.lua:109
+0093    TSETS    9   8  17  ; "callback"
+0094    TSETB    8   7   2
+0095    TSETB    7   6   3
+0096    TNEW     7   3
+0097    TDUP     8  36
+0098    UGET     9   1      ; _
+0099    KSTR    10  35      ; "Cancel"
+0100    CALL     9   2   2
+0101    TSETS    9   8  20  ; "text"
+0102    FNEW     9  37      ; readerstatus.lua:118
+0103    TSETS    9   8  17  ; "callback"
+0104    TSETB    8   7   1
+0105    TSETB    7   6   4
+0106    UGET     7   4      ; ButtonDialogTitle
+0107    MOV      8   7
+0108    TGETS    7   7  38  ; "new"
+0109    TDUP     9  40
+0110    UGET    10   1      ; _
+0111    KSTR    11  39      ; "You've reached the end of the document.\"~
+0112    CALL    10   2   2
+0113    TSETS   10   9  41  ; "title"
+0114    TSETS    6   9  42  ; "buttons"
+0115    CALL     7   2   3
+0116    MOV      2   7
+0117    UGET     7   2      ; UIManager
+0118    MOV      8   7
+0119    TGETS    7   7  43  ; "show"
+0120    MOV      9   2
+0121    CALL     7   1   3
+0122    JMP      6 => 0235
+0123 => ISNES    1  44      ; "book_status"
+0124    JMP      6 => 0129
+0125    MOV      7   0
+0126    TGETS    6   0  45  ; "onShowBookStatus"
+0127    CALL     6   1   2
+0128    JMP      6 => 0235
+0129 => ISNES    1  46      ; "next_file"
+0130    JMP      6 => 0181
+0131    GGET     6   2      ; "G_reader_settings"
+0132    MOV      7   6
+0133    TGETS    6   6   3  ; "readSetting"
+0134    KSTR     8  10      ; "collate"
+0135    CALL     6   2   3
+0136    ISEQS    6  11      ; "access"
+0137    JMP      6 => 0167
+0138    UGET     6   5      ; InfoMessage
+0139    MOV      7   6
+0140    TGETS    6   6  38  ; "new"
+0141    TDUP     8  48
+0142    UGET     9   1      ; _
+0143    KSTR    10  47      ; "Searching next file…"
+0144    CALL     9   2   2
+0145    TSETS    9   8  20  ; "text"
+0146    CALL     6   2   3
+0147    UGET     7   2      ; UIManager
+0148    MOV      8   7
+0149    TGETS    7   7  43  ; "show"
+0150    MOV      9   6
+0151    CALL     7   1   3
+0152    UGET     7   2      ; UIManager
+0153    MOV      8   7
+0154    TGETS    7   7  49  ; "forceRePaint"
+0155    CALL     7   1   2
+0156    MOV      8   0
+0157    TGETS    7   0  50  ; "openNextFile"
+0158    TGETS    9   0  51  ; "document"
+0159    TGETS    9   9  52  ; "file"
+0160    CALL     7   1   3
+0161    UGET     7   2      ; UIManager
+0162    MOV      8   7
+0163    TGETS    7   7  53  ; "close"
+0164    MOV      9   6
+0165    CALL     7   1   3
+0166    JMP      6 => 0235
+0167 => UGET     6   2      ; UIManager
+0168    MOV      7   6
+0169    TGETS    6   6  43  ; "show"
+0170    UGET     8   5      ; InfoMessage
+0171    MOV      9   8
+0172    TGETS    8   8  38  ; "new"
+0173    TDUP    10  55
+0174    UGET    11   1      ; _
+0175    KSTR    12  54      ; "Could not open next file. Sort by last r"~
+0176    CALL    11   2   2
+0177    TSETS   11  10  20  ; "text"
+0178    CALL     8   0   3
+0179    CALLM    6   1   1
+0180    JMP      6 => 0235
+0181 => ISNES    1  56      ; "goto_beginning"
+0182    JMP      6 => 0193
+0183    TGETS    6   0  57  ; "ui"
+0184    MOV      7   6
+0185    TGETS    6   6  58  ; "handleEvent"
+0186    UGET     8   3      ; Event
+0187    MOV      9   8
+0188    TGETS    8   8  38  ; "new"
+0189    KSTR    10  59      ; "GoToBeginning"
+0190    CALL     8   0   3
+0191    CALLM    6   1   1
+0192    JMP      6 => 0235
+0193 => ISNES    1  60      ; "file_browser"
+0194    JMP      6 => 0199
+0195    MOV      7   0
+0196    TGETS    6   0   9  ; "openFileBrowser"
+0197    CALL     6   1   2
+0198    JMP      6 => 0235
+0199 => ISNES    1  61      ; "mark_read"
+0200    JMP      6 => 0219
+0201    MOV      7   0
+0202    TGETS    6   0  62  ; "onMarkBook"
+0203    KPRI     8   2
+0204    CALL     6   1   3
+0205    UGET     6   2      ; UIManager
+0206    MOV      7   6
+0207    TGETS    6   6  43  ; "show"
+0208    UGET     8   5      ; InfoMessage
+0209    MOV      9   8
+0210    TGETS    8   8  38  ; "new"
+0211    TDUP    10  64
+0212    UGET    11   1      ; _
+0213    KSTR    12  63      ; "You've reached the end of the document.\"~
+0214    CALL    11   2   2
+0215    TSETS   11  10  20  ; "text"
+0216    CALL     8   0   3
+0217    CALLM    6   1   1
+0218    JMP      6 => 0235
+0219 => ISNES    1  65      ; "book_status_file_browser"
+0220    JMP      6 => 0227
+0221    FNEW     6  66      ; readerstatus.lua:158
+0222    MOV      8   0
+0223    TGETS    7   0  45  ; "onShowBookStatus"
+0224    MOV      9   6
+0225    CALL     7   1   3
+0226    JMP      6 => 0235
+0227 => ISNES    1  67      ; "delete_file"
+0228    JMP      6 => 0235
+0229    MOV      7   0
+0230    TGETS    6   0  68  ; "deleteFile"
+0231    TGETS    8   0  51  ; "document"
+0232    TGETS    8   8  52  ; "file"
+0233    KPRI     9   2
+0234    CALL     6   1   4
+0235 => UCLO     0 => 0236
+0236 => RET0     0   1
+0237 => RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:165-172
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "apps/filemanager/filemanager"
+0003    CALL     1   2   2
+0004    TGETS    2   0   2  ; "ui"
+0005    MOV      3   2
+0006    TGETS    2   2   3  ; "onClose"
+0007    CALL     2   1   2
+0008    TGETS    2   1   4  ; "instance"
+0009    IST          2
+0010    JMP      2 => 0015
+0011    TGETS    2   0   2  ; "ui"
+0012    MOV      3   2
+0013    TGETS    2   2   5  ; "showFileManager"
+0014    CALL     2   1   2
+0015 => KPRI     2   0
+0016    TSETS    2   0   6  ; "document"
+0017    RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:174-188
+0001    GGET     2   0      ; "require"
+0002    KSTR     3   1      ; "apps/filemanager/filemanager"
+0003    CALL     2   2   2
+0004    TGETS    3   2   2  ; "instance"
+0005    IST          3
+0006    JMP      3 => 0011
+0007    TGETS    3   0   3  ; "ui"
+0008    MOV      4   3
+0009    TGETS    3   3   4  ; "showFileManager"
+0010    CALL     3   1   2
+0011 => TGETS    3   2   2  ; "instance"
+0012    TGETS    3   3   5  ; "file_chooser"
+0013    MOV      4   3
+0014    TGETS    3   3   6  ; "getNextFile"
+0015    MOV      5   1
+0016    CALL     3   2   3
+0017    MOV      1   3
+0018    TGETS    3   2   2  ; "instance"
+0019    MOV      4   3
+0020    TGETS    3   3   7  ; "onClose"
+0021    CALL     3   1   2
+0022    ISF          1
+0023    JMP      3 => 0030
+0024    TGETS    3   0   3  ; "ui"
+0025    MOV      4   3
+0026    TGETS    3   3   8  ; "switchDocument"
+0027    MOV      5   1
+0028    CALL     3   1   3
+0029    JMP      3 => 0043
+0030 => UGET     3   0      ; UIManager
+0031    MOV      4   3
+0032    TGETS    3   3   9  ; "show"
+0033    UGET     5   1      ; InfoMessage
+0034    MOV      6   5
+0035    TGETS    5   5  10  ; "new"
+0036    TDUP     7  12
+0037    UGET     8   2      ; _
+0038    KSTR     9  11      ; "This is the last file in the current fol"~
+0039    CALL     8   2   2
+0040    TSETS    8   7  13  ; "text"
+0041    CALL     5   0   3
+0042    CALLM    3   1   1
+0043 => RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:199-209
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "apps/filemanager/filemanager"
+0003    CALL     0   2   2
+0004    UGET     1   0      ; self
+0005    TGETS    1   1   2  ; "ui"
+0006    MOV      2   1
+0007    TGETS    1   1   3  ; "onClose"
+0008    CALL     1   1   2
+0009    MOV      2   0
+0010    TGETS    1   0   4  ; "deleteFile"
+0011    UGET     3   1      ; file
+0012    CALL     1   1   3
+0013    GGET     1   0      ; "require"
+0014    KSTR     2   5      ; "readhistory"
+0015    CALL     1   2   2
+0016    MOV      2   1
+0017    TGETS    1   1   6  ; "fileDeleted"
+0018    UGET     3   1      ; file
+0019    CALL     1   1   3
+0020    TGETS    1   0   7  ; "instance"
+0021    ISF          1
+0022    JMP      2 => 0029
+0023    TGETS    1   0   7  ; "instance"
+0024    TGETS    1   1   8  ; "file_chooser"
+0025    MOV      2   1
+0026    TGETS    1   1   9  ; "refreshPath"
+0027    CALL     1   1   2
+0028    JMP      1 => 0032
+0029 => MOV      2   0
+0030    TGETS    1   0  10  ; "showFiles"
+0031    CALL     1   1   2
+0032 => RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:190-211
+0001    GGET     3   0      ; "require"
+0002    KSTR     4   1      ; "ui/widget/confirmbox"
+0003    CALL     3   2   2
+0004    KSTR     4   2      ; ""
+0005    ISF          2
+0006    JMP      5 => 0008
+0007    KSTR     4   3      ; "You've reached the end of the document.\n"
+0008 => UGET     5   0      ; UIManager
+0009    MOV      6   5
+0010    TGETS    5   5   4  ; "show"
+0011    MOV      8   3
+0012    TGETS    7   3   5  ; "new"
+0013    TDUP     9   8
+0014    UGET    10   1      ; T
+0015    UGET    11   2      ; _
+0016    KSTR    12   6      ; "%1Are you sure that you want to delete t"~
+0017    CALL    11   2   2
+0018    MOV     12   4
+0019    UGET    13   3      ; BD
+0020    TGETS   13  13   7  ; "filepath"
+0021    MOV     14   1
+0022    CALL    13   0   2
+0023    CALLM   10   2   2
+0024    TSETS   10   9   9  ; "text"
+0025    UGET    10   2      ; _
+0026    KSTR    11  10      ; "Delete"
+0027    CALL    10   2   2
+0028    TSETS   10   9  11  ; "ok_text"
+0029    FNEW    10  12      ; readerstatus.lua:199
+0030    TSETS   10   9  13  ; "ok_callback"
+0031    CALL     7   0   3
+0032    CALLM    5   1   1
+0033    UCLO     0 => 0034
+0034 => RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:213-227
+0001    UGET     2   0      ; BookStatusWidget
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "new"
+0004    TDUP     4   3
+0005    TGETS    5   0   1  ; "document"
+0006    MOV      6   5
+0007    TGETS    5   5   2  ; "getCoverPageImage"
+0008    CALL     5   2   2
+0009    TSETS    5   4   4  ; "thumbnail"
+0010    TGETS    5   0   1  ; "document"
+0011    MOV      6   5
+0012    TGETS    5   5   5  ; "getProps"
+0013    CALL     5   2   2
+0014    TSETS    5   4   6  ; "props"
+0015    TGETS    5   0   1  ; "document"
+0016    TSETS    5   4   1  ; "document"
+0017    TGETS    5   0   7  ; "settings"
+0018    TSETS    5   4   7  ; "settings"
+0019    TGETS    5   0   8  ; "view"
+0020    TSETS    5   4   8  ; "view"
+0021    CALL     2   2   3
+0022    ISF          1
+0023    JMP      3 => 0026
+0024    MOV      3   1
+0025    CALL     3   1   1
+0026 => KPRI     3   2
+0027    TSETS    3   2   9  ; "dithered"
+0028    UGET     3   1      ; UIManager
+0029    MOV      4   3
+0030    TGETS    3   3  10  ; "show"
+0031    MOV      5   2
+0032    KSTR     6  11      ; "full"
+0033    CALL     3   1   4
+0034    KPRI     3   2
+0035    RET1     3   2
+
+-- BYTECODE -- readerstatus.lua:231-248
+0001    TGETS    2   0   0  ; "settings"
+0002    TGETS    2   2   1  ; "data"
+0003    TGETS    2   2   2  ; "summary"
+0004    ISF          2
+0005    JMP      3 => 0038
+0006    TGETS    2   0   0  ; "settings"
+0007    TGETS    2   2   1  ; "data"
+0008    TGETS    2   2   2  ; "summary"
+0009    TGETS    2   2   3  ; "status"
+0010    ISF          2
+0011    JMP      3 => 0038
+0012    TGETS    2   0   0  ; "settings"
+0013    TGETS    2   2   1  ; "data"
+0014    TGETS    2   2   2  ; "summary"
+0015    TGETS    2   2   3  ; "status"
+0016    ISNES    2   4      ; "complete"
+0017    JMP      3 => 0032
+0018    ISF          1
+0019    JMP      3 => 0026
+0020    TGETS    3   0   0  ; "settings"
+0021    TGETS    3   3   1  ; "data"
+0022    TGETS    3   3   2  ; "summary"
+0023    KSTR     4   4      ; "complete"
+0024    TSETS    4   3   3  ; "status"
+0025    JMP      3 => 0042
+0026 => TGETS    3   0   0  ; "settings"
+0027    TGETS    3   3   1  ; "data"
+0028    TGETS    3   3   2  ; "summary"
+0029    KSTR     4   5      ; "reading"
+0030    TSETS    4   3   3  ; "status"
+0031    JMP      3 => 0042
+0032 => TGETS    3   0   0  ; "settings"
+0033    TGETS    3   3   1  ; "data"
+0034    TGETS    3   3   2  ; "summary"
+0035    KSTR     4   4      ; "complete"
+0036    TSETS    4   3   3  ; "status"
+0037    JMP      2 => 0042
+0038 => TGETS    2   0   0  ; "settings"
+0039    TGETS    2   2   1  ; "data"
+0040    TDUP     3   6
+0041    TSETS    3   2   2  ; "summary"
+0042 => RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:250-252
+0001    TSETS    1   0   0  ; "settings"
+0002    RET0     0   1
+
+-- BYTECODE -- readerstatus.lua:0-255
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/bookstatuswidget"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/buttondialogtitle"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "device"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/event"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/infomessage"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/widget/container/inputcontainer"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/uimanager"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "gettext"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ffi/util"
+0030    CALL     9   2   2
+0031    TGETS    9   9  11  ; "template"
+0032    MOV     11   6
+0033    TGETS   10   6  12  ; "new"
+0034    TDUP    12  13
+0035    TDUP    13  14
+0036    TSETS   13  12  15  ; "summary"
+0037    CALL    10   2   3
+0038    FNEW    11  17      ; readerstatus.lua:24
+0039    TSETS   11  10  16  ; "init"
+0040    FNEW    11  19      ; readerstatus.lua:34
+0041    TSETS   11  10  18  ; "addToMainMenu"
+0042    FNEW    11  21      ; readerstatus.lua:43
+0043    TSETS   11  10  20  ; "onEndOfBook"
+0044    FNEW    11  23      ; readerstatus.lua:165
+0045    TSETS   11  10  22  ; "openFileBrowser"
+0046    FNEW    11  25      ; readerstatus.lua:174
+0047    TSETS   11  10  24  ; "openNextFile"
+0048    FNEW    11  27      ; readerstatus.lua:190
+0049    TSETS   11  10  26  ; "deleteFile"
+0050    FNEW    11  29      ; readerstatus.lua:213
+0051    TSETS   11  10  28  ; "onShowBookStatus"
+0052    FNEW    11  31      ; readerstatus.lua:231
+0053    TSETS   11  10  30  ; "onMarkBook"
+0054    FNEW    11  33      ; readerstatus.lua:250
+0055    TSETS   11  10  32  ; "onReadSettings"
+0056    UCLO     0 => 0057
+0057 => RET1    10   2
+

@@ -1,0 +1,97 @@
+-- BYTECODE -- readercoptlistener.lua:10-12
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "view"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "onSetViewMode"
+0005    KSTR     2   2      ; "page"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readercoptlistener.lua:14-16
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "view"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "onSetViewMode"
+0005    KSTR     2   2      ; "scroll"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readercoptlistener.lua:6-21
+0001    MOV      3   1
+0002    TGETS    2   1   0  ; "readSetting"
+0003    KSTR     4   1      ; "copt_view_mode"
+0004    CALL     2   2   3
+0005    IST          2
+0006    JMP      3 => 0012
+0007    GGET     2   2      ; "G_reader_settings"
+0008    MOV      3   2
+0009    TGETS    2   2   0  ; "readSetting"
+0010    KSTR     4   1      ; "copt_view_mode"
+0011    CALL     2   2   3
+0012 => ISNEN    2   0      ; 0
+0013    JMP      3 => 0020
+0014    TGETS    3   0   3  ; "ui"
+0015    MOV      4   3
+0016    TGETS    3   3   4  ; "registerPostReadyCallback"
+0017    FNEW     5   5      ; readercoptlistener.lua:10
+0018    CALL     3   1   3
+0019    JMP      3 => 0027
+0020 => ISNEN    2   1      ; 1
+0021    JMP      3 => 0027
+0022    TGETS    3   0   3  ; "ui"
+0023    MOV      4   3
+0024    TGETS    3   3   4  ; "registerPostReadyCallback"
+0025    FNEW     5   6      ; readercoptlistener.lua:14
+0026    CALL     3   1   3
+0027 => MOV      4   1
+0028    TGETS    3   1   0  ; "readSetting"
+0029    KSTR     5   7      ; "copt_status_line"
+0030    CALL     3   2   3
+0031    IST          3
+0032    JMP      4 => 0041
+0033    GGET     3   2      ; "G_reader_settings"
+0034    MOV      4   3
+0035    TGETS    3   3   0  ; "readSetting"
+0036    KSTR     5   7      ; "copt_status_line"
+0037    CALL     3   2   3
+0038    IST          3
+0039    JMP      4 => 0041
+0040    KSHORT   3   1
+0041 => TGETS    4   0   3  ; "ui"
+0042    MOV      5   4
+0043    TGETS    4   4   8  ; "handleEvent"
+0044    UGET     6   0      ; Event
+0045    MOV      7   6
+0046    TGETS    6   6   9  ; "new"
+0047    KSTR     8  10      ; "SetStatusLine"
+0048    MOV      9   3
+0049    KPRI    10   2
+0050    CALL     6   0   5
+0051    CALLM    4   1   1
+0052    UCLO     0 => 0053
+0053 => RET0     0   1
+
+-- BYTECODE -- readercoptlistener.lua:23-25
+0001    TGETS    2   0   0  ; "document"
+0002    TGETS    2   2   1  ; "configurable"
+0003    TSETS    1   2   2  ; "font_size"
+0004    RET0     0   1
+
+-- BYTECODE -- readercoptlistener.lua:0-28
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/event"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/eventlistener"
+0006    CALL     1   2   2
+0007    MOV      3   1
+0008    TGETS    2   1   3  ; "new"
+0009    TNEW     4   0
+0010    CALL     2   2   3
+0011    FNEW     3   5      ; readercoptlistener.lua:6
+0012    TSETS    3   2   4  ; "onReadSettings"
+0013    FNEW     3   7      ; readercoptlistener.lua:23
+0014    TSETS    3   2   6  ; "onSetFontSize"
+0015    UCLO     0 => 0016
+0016 => RET1     2   2
+

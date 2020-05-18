@@ -1,0 +1,485 @@
+-- BYTECODE -- persist.lua:24-45
+0001    GGET     4   0      ; "type"
+0002    MOV      5   1
+0003    CALL     4   2   2
+0004    ISNES    4   1      ; "table"
+0005    JMP      4 => 0016
+0006    IST          2
+0007    JMP      4 => 0009
+0008    KSHORT   2   0
+0009 => UGET     4   0      ; write_table
+0010    MOV      5   0
+0011    MOV      6   1
+0012    ADDVN    7   2   0  ; 1
+0013    MOV      8   3
+0014    CALL     4   1   5
+0015    JMP      4 => 0082
+0016 => GGET     4   0      ; "type"
+0017    MOV      5   1
+0018    CALL     4   2   2
+0019    ISNES    4   2      ; "string"
+0020    JMP      4 => 0076
+0021    MOV      5   1
+0022    TGETS    4   1   3  ; "match"
+0023    KSTR     6   4      ; "[\r\n]"
+0024    CALL     4   2   3
+0025    ISF          4
+0026    JMP      5 => 0067
+0027    KSTR     4   5      ; "[["
+0028    KSTR     5   6      ; "]]"
+0029    KSHORT   6   0
+0030    MOV      7   1
+0031    KSTR     8   7      ; "]"
+0032    CAT      7   7   8
+0033 => MOV      9   7
+0034    TGETS    8   7   8  ; "find"
+0035    MOV     10   5
+0036    KSHORT  11   1
+0037    KPRI    12   2
+0038    CALL     8   2   5
+0039    ISF          8
+0040    JMP      9 => 0058
+0041    LOOP     8 => 0058
+0042    ADDVN    6   6   0  ; 1
+0043    KSTR     8   9      ; "="
+0044    MOV      9   8
+0045    TGETS    8   8  10  ; "rep"
+0046    MOV     10   6
+0047    CALL     8   2   3
+0048    KSTR     9  11      ; "["
+0049    MOV     10   8
+0050    KSTR    11  11      ; "["
+0051    CAT      9   9  11
+0052    KSTR    10   7      ; "]"
+0053    MOV     11   8
+0054    KSTR    12   7      ; "]"
+0055    CAT      5  10  12
+0056    MOV      4   9
+0057    JMP      8 => 0033
+0058 => MOV      9   0
+0059    TGETS    8   0  12  ; "write"
+0060    MOV     10   4
+0061    KSTR    11  13      ; "\n"
+0062    MOV     12   1
+0063    MOV     13   5
+0064    CAT     10  10  13
+0065    CALL     8   1   3
+0066    JMP      4 => 0082
+0067 => MOV      5   0
+0068    TGETS    4   0  12  ; "write"
+0069    KSTR     6  14      ; "%q"
+0070    MOV      7   6
+0071    TGETS    6   6  15  ; "format"
+0072    MOV      8   1
+0073    CALL     6   0   3
+0074    CALLM    4   1   1
+0075    JMP      4 => 0082
+0076 => MOV      5   0
+0077    TGETS    4   0  12  ; "write"
+0078    GGET     6  16      ; "tostring"
+0079    MOV      7   1
+0080    CALL     6   0   2
+0081    CALLM    4   1   1
+0082 => RET0     0   1
+
+-- BYTECODE -- persist.lua:73-77
+0001    GGET     1   0      ; "type"
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISNES    1   1      ; "string"
+0005    JMP      1 => 0016
+0006    MOV      2   0
+0007    TGETS    1   0   2  ; "match"
+0008    KSTR     3   3      ; "^[a-zA-Z_][a-zA-Z0-9_]*$"
+0009    CALL     1   2   3
+0010    ISF          1
+0011    JMP      2 => 0019
+0012    UGET     1   0      ; keywords
+0013    TGETV    1   1   0
+0014    NOT      1   1
+0015    JMP      2 => 0019
+0016 => KPRI     1   1
+0017    JMP      2 => 0019
+0018    KPRI     1   2
+0019 => RET1     1   2
+
+-- BYTECODE -- persist.lua:80-90
+0001    UGET     3   0      ; is_valid_plain_key
+0002    MOV      4   1
+0003    CALL     3   2   2
+0004    ISF          3
+0005    JMP      4 => 0011
+0006    MOV      4   0
+0007    TGETS    3   0   0  ; "write"
+0008    MOV      5   1
+0009    CALL     3   1   3
+0010    JMP      3 => 0025
+0011 => MOV      4   0
+0012    TGETS    3   0   0  ; "write"
+0013    KSTR     5   1      ; "["
+0014    CALL     3   1   3
+0015    UGET     3   1      ; persist
+0016    TGETS    3   3   2  ; "write_value"
+0017    MOV      4   0
+0018    MOV      5   1
+0019    MOV      6   2
+0020    CALL     3   1   4
+0021    MOV      4   0
+0022    TGETS    3   0   0  ; "write"
+0023    KSTR     5   3      ; "]"
+0024    CALL     3   1   3
+0025 => MOV      4   0
+0026    TGETS    3   0   0  ; "write"
+0027    KSTR     5   4      ; " = "
+0028    CALL     3   1   3
+0029    RET0     0   1
+
+-- BYTECODE -- persist.lua:99-131
+0001    MOV      5   0
+0002    TGETS    4   0   0  ; "write"
+0003    KSTR     6   1      ; "{"
+0004    CALL     4   1   3
+0005    KSTR     4   2      ; "\n"
+0006    KSTR     5   3      ; "   "
+0007    KPRI     6   2
+0008    KSHORT   7   1
+0009    UGET     8   0      ; util
+0010    TGETS    8   8   4  ; "sortedpairs"
+0011    MOV      9   1
+0012    MOV     10   3
+0013    CALL     8   4   3
+0014    JMP     11 => 0056
+0015 => MOV     15   0
+0016    TGETS   14   0   0  ; "write"
+0017    MOV     16   4
+0018    CALL    14   1   3
+0019    ISF          6
+0020    JMP     14 => 0030
+0021    KSHORT  14   1
+0022    MOV     15   2
+0023    KSHORT  16   1
+0024    FORI    14 => 0030
+0025 => MOV     19   0
+0026    TGETS   18   0   0  ; "write"
+0027    MOV     20   5
+0028    CALL    18   1   3
+0029    FORL    14 => 0025
+0030 => ISNEV   11   7
+0031    JMP     14 => 0034
+0032    ADDVN    7   7   0  ; 1
+0033    JMP     14 => 0039
+0034 => UGET    14   1      ; write_table_key_assignment
+0035    MOV     15   0
+0036    MOV     16  11
+0037    MOV     17   2
+0038    CALL    14   1   4
+0039 => UGET    14   2      ; persist
+0040    TGETS   14  14   5  ; "write_value"
+0041    MOV     15   0
+0042    MOV     16  12
+0043    MOV     17   2
+0044    MOV     18  13
+0045    CALL    14   1   5
+0046    GGET    14   6      ; "type"
+0047    MOV     15  12
+0048    CALL    14   2   2
+0049    ISNES   14   7      ; "number"
+0050    JMP     14 => 0054
+0051    KSTR     4   8      ; ", "
+0052    KPRI     6   1
+0053    JMP     14 => 0056
+0054 => KSTR     4   9      ; ",\n"
+0055    KPRI     6   2
+0056 => ITERC   11   4   3
+0057    ITERL   11 => 0015
+0058    ISEQS    4   2      ; "\n"
+0059    JMP      8 => 0073
+0060    MOV      9   0
+0061    TGETS    8   0   0  ; "write"
+0062    KSTR    10   2      ; "\n"
+0063    CALL     8   1   3
+0064    KSHORT   8   1
+0065    SUBVN    9   2   0  ; 1
+0066    KSHORT  10   1
+0067    FORI     8 => 0073
+0068 => MOV     13   0
+0069    TGETS   12   0   0  ; "write"
+0070    MOV     14   5
+0071    CALL    12   1   3
+0072    FORL     8 => 0068
+0073 => MOV      9   0
+0074    TGETS    8   0   0  ; "write"
+0075    KSTR    10  10      ; "}"
+0076    CALL     8   1   3
+0077    RET0     0   1
+
+-- BYTECODE -- persist.lua:138-148
+0001    UGET     3   0      ; util
+0002    TGETS    3   3   0  ; "sortedpairs"
+0003    MOV      4   1
+0004    MOV      5   2
+0005    CALL     3   4   3
+0006    JMP      6 => 0037
+0007 => UGET     9   1      ; is_valid_plain_key
+0008    MOV     10   6
+0009    CALL     9   2   2
+0010    IST          9
+0011    JMP      9 => 0020
+0012    KPRI     9   0
+0013    KSTR    10   1      ; "cannot store '"
+0014    GGET    11   2      ; "tostring"
+0015    MOV     12   6
+0016    CALL    11   2   2
+0017    KSTR    12   3      ; "' as a plain key."
+0018    CAT     10  10  12
+0019    RET      9   3
+0020 => MOV     10   0
+0021    TGETS    9   0   4  ; "write"
+0022    MOV     11   6
+0023    KSTR    12   5      ; " = "
+0024    CAT     11  11  12
+0025    CALL     9   1   3
+0026    UGET     9   2      ; persist
+0027    TGETS    9   9   6  ; "write_value"
+0028    MOV     10   0
+0029    MOV     11   7
+0030    KSHORT  12   0
+0031    MOV     13   8
+0032    CALL     9   1   5
+0033    MOV     10   0
+0034    TGETS    9   0   4  ; "write"
+0035    KSTR    11   7      ; "\n"
+0036    CALL     9   1   3
+0037 => ITERC    6   4   3
+0038    ITERL    6 => 0007
+0039    KPRI     3   2
+0040    RET1     3   2
+
+-- BYTECODE -- persist.lua:153-162
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "write"
+0003    KSTR     4   1      ; "return {\n"
+0004    CALL     2   1   3
+0005    UGET     2   0      ; util
+0006    TGETS    2   2   2  ; "sortedpairs"
+0007    MOV      3   1
+0008    CALL     2   4   2
+0009    JMP      5 => 0030
+0010 => MOV      9   0
+0011    TGETS    8   0   0  ; "write"
+0012    KSTR    10   3      ; "   "
+0013    CALL     8   1   3
+0014    UGET     8   1      ; write_table_key_assignment
+0015    MOV      9   0
+0016    MOV     10   5
+0017    KSHORT  11   1
+0018    CALL     8   1   4
+0019    UGET     8   2      ; persist
+0020    TGETS    8   8   4  ; "write_value"
+0021    MOV      9   0
+0022    MOV     10   6
+0023    KSHORT  11   1
+0024    MOV     12   7
+0025    CALL     8   1   5
+0026    MOV      9   0
+0027    TGETS    8   0   0  ; "write"
+0028    KSTR    10   5      ; ",\n"
+0029    CALL     8   1   3
+0030 => ITERC    5   4   3
+0031    ITERL    5 => 0010
+0032    MOV      3   0
+0033    TGETS    2   0   0  ; "write"
+0034    KSTR     4   6      ; "}\n"
+0035    CALL     2   1   3
+0036    RET0     0   1
+
+-- BYTECODE -- persist.lua:173-173
+0001    GGET     2   0      ; "table"
+0002    TGETS    2   2   1  ; "insert"
+0003    TGETS    3   0   2  ; "buffer"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- persist.lua:171-179
+0001    TDUP     2   0
+0002    TNEW     3   0
+0003    TSETS    3   2   1  ; "buffer"
+0004    FNEW     3   3      ; persist.lua:173
+0005    TSETS    3   2   2  ; "write"
+0006    UGET     3   0      ; write_table_as_assignments
+0007    MOV      4   2
+0008    MOV      5   0
+0009    MOV      6   1
+0010    CALL     3   3   4
+0011    IST          3
+0012    JMP      5 => 0017
+0013    KPRI     5   0
+0014    MOV      6   4
+0015    UCLO     0 => 0016
+0016 => RET      5   3
+0017 => GGET     5   4      ; "table"
+0018    TGETS    5   5   5  ; "concat"
+0019    TGETS    6   2   1  ; "buffer"
+0020    UCLO     0 => 0021
+0021 => CALLT    5   2
+
+-- BYTECODE -- persist.lua:190-201
+0001    GGET     3   0      ; "io"
+0002    TGETS    3   3   1  ; "open"
+0003    MOV      4   0
+0004    KSTR     5   2      ; "w"
+0005    CALL     3   2   3
+0006    IST          3
+0007    JMP      4 => 0013
+0008    KPRI     4   0
+0009    KSTR     5   3      ; "Cannot create file at "
+0010    MOV      6   0
+0011    CAT      5   5   6
+0012    RET      4   3
+0013 => UGET     4   0      ; write_table_as_assignments
+0014    MOV      5   3
+0015    MOV      6   1
+0016    MOV      7   2
+0017    CALL     4   3   4
+0018    MOV      7   3
+0019    TGETS    6   3   4  ; "close"
+0020    CALL     6   1   2
+0021    IST          4
+0022    JMP      6 => 0026
+0023    KPRI     6   0
+0024    MOV      7   5
+0025    RET      6   3
+0026 => KPRI     6   2
+0027    RET1     6   2
+
+-- BYTECODE -- persist.lua:211-219
+0001    GGET     2   0      ; "io"
+0002    TGETS    2   2   1  ; "open"
+0003    MOV      3   0
+0004    KSTR     4   2      ; "w"
+0005    CALL     2   2   3
+0006    IST          2
+0007    JMP      3 => 0013
+0008    KPRI     3   0
+0009    KSTR     4   3      ; "Cannot create file at "
+0010    MOV      5   0
+0011    CAT      4   4   5
+0012    RET      3   3
+0013 => UGET     3   0      ; write_table_as_table
+0014    MOV      4   2
+0015    MOV      5   1
+0016    CALL     3   1   3
+0017    MOV      4   2
+0018    TGETS    3   2   4  ; "close"
+0019    CALL     3   1   2
+0020    KPRI     3   2
+0021    RET1     3   2
+
+-- BYTECODE -- persist.lua:221-241
+0001    TDUP     2   1
+0002    TGETS    3   1   0  ; "home"
+0003    TSETS    3   2   0  ; "home"
+0004    UGET     3   0      ; persist
+0005    TGETS    3   3   2  ; "load_into_table"
+0006    MOV      4   0
+0007    MOV      5   2
+0008    CALL     3   4   3
+0009    ISEQS    5   3      ; "load"
+0010    JMP      6 => 0013
+0011    ISNES    5   4      ; "run"
+0012    JMP      6 => 0018
+0013 => KPRI     6   0
+0014    KSTR     7   5      ; "Could not read existing config file "
+0015    MOV      8   0
+0016    CAT      7   7   8
+0017    RET      6   3
+0018 => KPRI     6   0
+0019    ISNES    5   6      ; "open"
+0020    JMP      7 => 0023
+0021    TNEW     6   0
+0022    JMP      7 => 0026
+0023 => MOV      6   3
+0024    KPRI     7   0
+0025    TSETS    7   6   0  ; "home"
+0026 => RET1     6   2
+
+-- BYTECODE -- persist.lua:243-255
+0001    UGET     2   0      ; fs
+0002    TGETS    2   2   0  ; "make_dir"
+0003    MOV      3   0
+0004    CALL     2   3   2
+0005    IST          2
+0006    JMP      4 => 0010
+0007    KPRI     4   0
+0008    MOV      5   3
+0009    RET      4   3
+0010 => GGET     4   1      ; "io"
+0011    TGETS    4   4   2  ; "open"
+0012    UGET     5   1      ; dir
+0013    TGETS    5   5   3  ; "path"
+0014    MOV      6   0
+0015    KSTR     7   4      ; "default-lua-version.lua"
+0016    CALL     5   2   3
+0017    KSTR     6   5      ; "w"
+0018    CALL     4   3   3
+0019    IST          4
+0020    JMP      6 => 0024
+0021    KPRI     6   0
+0022    MOV      7   5
+0023    RET      6   3
+0024 => MOV      7   4
+0025    TGETS    6   4   6  ; "write"
+0026    KSTR     8   7      ; "return ""
+0027    MOV      9   1
+0028    KSTR    10   8      ; ""\n"
+0029    CAT      8   8  10
+0030    CALL     6   1   3
+0031    MOV      7   4
+0032    TGETS    6   4   9  ; "close"
+0033    CALL     6   1   2
+0034    KPRI     6   2
+0035    RET1     6   2
+
+-- BYTECODE -- persist.lua:0-258
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.core.persist"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.util"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.dir"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.fs"
+0013    CALL     4   2   2
+0014    TGETS    5   1   5  ; "run_file"
+0015    TSETS    5   0   5  ; "run_file"
+0016    TGETS    5   1   6  ; "load_into_table"
+0017    TSETS    5   0   6  ; "load_into_table"
+0018    KPRI     5   0
+0019    FNEW     6   8      ; persist.lua:24
+0020    TSETS    6   0   7  ; "write_value"
+0021    KPRI     6   0
+0022    TDUP     7   9
+0023    FNEW     6  10      ; persist.lua:73
+0024    UCLO     7 => 0025
+0025 => FNEW     7  11      ; persist.lua:80
+0026    FNEW     5  12      ; persist.lua:99
+0027    FNEW     8  13      ; persist.lua:138
+0028    FNEW     9  14      ; persist.lua:153
+0029    FNEW    10  16      ; persist.lua:171
+0030    TSETS   10   0  15  ; "save_from_table_to_string"
+0031    FNEW    10  18      ; persist.lua:190
+0032    TSETS   10   0  17  ; "save_from_table"
+0033    FNEW    10  20      ; persist.lua:211
+0034    TSETS   10   0  19  ; "save_as_module"
+0035    FNEW    10  22      ; persist.lua:221
+0036    TSETS   10   0  21  ; "load_config_file_if_basic"
+0037    FNEW    10  24      ; persist.lua:243
+0038    TSETS   10   0  23  ; "save_default_lua_version"
+0039    UCLO     0 => 0040
+0040 => RET1     0   2
+

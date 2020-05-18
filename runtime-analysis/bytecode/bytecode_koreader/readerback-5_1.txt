@@ -1,0 +1,207 @@
+
+main <./frontend/apps/reader/modules/readerback.lua:0,0> (52 instructions, 208 bytes at 0x7f8cb24068f0)
+0+ params, 12 slots, 0 upvalues, 8 locals, 22 constants, 7 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "device"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "ui/event"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "ui/widget/eventlistener"
+	9	[3]	CALL     	2 2 2
+	10	[4]	GETGLOBAL	3 -1	; require
+	11	[4]	LOADK    	4 -5	; "logger"
+	12	[4]	CALL     	3 2 2
+	13	[5]	GETGLOBAL	4 -1	; require
+	14	[5]	LOADK    	5 -6	; "util"
+	15	[5]	CALL     	4 2 2
+	16	[6]	GETGLOBAL	5 -1	; require
+	17	[6]	LOADK    	6 -7	; "gettext"
+	18	[6]	CALL     	5 2 2
+	19	[8]	SELF     	6 2 -8	; "new"
+	20	[8]	NEWTABLE 	8 0 3
+	21	[9]	NEWTABLE 	9 0 0
+	22	[9]	SETTABLE 	8 -9 9	; "location_stack" -
+	23	[11]	SETTABLE 	8 -10 -11	; "max_stack" 5000
+	24	[14]	GETGLOBAL	9 -13	; G_reader_settings
+	25	[14]	SELF     	9 9 -14	; "isFalse"
+	26	[14]	LOADK    	11 -15	; "enable_back_history"
+	27	[14]	CALL     	9 3 2
+	28	[14]	SETTABLE 	8 -12 9	; "disabled" -
+	29	[8]	CALL     	6 3 2
+	30	[21]	CLOSURE  	7 0	; 0x7f8cb2406bd0
+	31	[21]	MOVE     	0 0
+	32	[17]	SETTABLE 	6 -16 7	; "init" -
+	33	[35]	CLOSURE  	7 1	; 0x7f8cb24070d0
+	34	[23]	SETTABLE 	6 -17 7	; "_getCurrentLocation" -
+	35	[37]	LOADNIL  	7 7
+	36	[50]	CLOSURE  	8 2	; 0x7f8cb2407050
+	37	[50]	MOVE     	0 4
+	38	[50]	MOVE     	0 7
+	39	[39]	SETTABLE 	6 -18 8	; "addCurrentLocationToStack" -
+	40	[56]	CLOSURE  	8 3	; 0x7f8cb24082d0
+	41	[53]	SETTABLE 	6 -19 8	; "onPosUpdate" -
+	42	[62]	CLOSURE  	8 4	; 0x7f8cb24080f0
+	43	[59]	SETTABLE 	6 -20 8	; "onPageUpdate" -
+	44	[67]	CLOSURE  	8 5	; 0x7f8cb2408470
+	45	[65]	SETTABLE 	6 -21 8	; "onReadSettings" -
+	46	[87]	CLOSURE  	8 6	; 0x7f8cb24088b0
+	47	[87]	MOVE     	0 1
+	48	[87]	MOVE     	0 7
+	49	[87]	MOVE     	0 3
+	50	[69]	SETTABLE 	6 -22 8	; "onBack" -
+	51	[89]	RETURN   	6 2
+	52	[89]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerback.lua:17,21> (15 instructions, 60 bytes at 0x7f8cb2406bd0)
+1 param, 5 slots, 1 upvalue, 1 local, 6 constants, 0 functions
+	1	[18]	GETUPVAL 	1 0	; Device
+	2	[18]	SELF     	1 1 -1	; "hasKeys"
+	3	[18]	CALL     	1 2 2
+	4	[18]	TEST     	1 0 0
+	5	[18]	JMP      	9	; to 15
+	6	[19]	GETTABLE 	1 0 -2	; "ui"
+	7	[19]	GETTABLE 	1 1 -3	; "key_events"
+	8	[19]	NEWTABLE 	2 1 1
+	9	[19]	NEWTABLE 	3 1 0
+	10	[19]	LOADK    	4 -4	; "Back"
+	11	[19]	SETLIST  	3 1 1	; 1
+	12	[19]	SETTABLE 	2 -5 -6	; "doc" "Reader back"
+	13	[19]	SETLIST  	2 1 1	; 1
+	14	[19]	SETTABLE 	1 -4 2	; "Back" -
+	15	[21]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerback.lua:23,35> (21 instructions, 84 bytes at 0x7f8cb24070d0)
+1 param, 5 slots, 0 upvalues, 2 locals, 8 constants, 0 functions
+	1	[26]	GETTABLE 	2 0 -1	; "ui"
+	2	[26]	GETTABLE 	2 2 -2	; "document"
+	3	[26]	GETTABLE 	2 2 -3	; "info"
+	4	[26]	GETTABLE 	2 2 -4	; "has_pages"
+	5	[26]	TEST     	2 0 0
+	6	[26]	JMP      	6	; to 13
+	7	[27]	GETTABLE 	2 0 -1	; "ui"
+	8	[27]	GETTABLE 	2 2 -5	; "paging"
+	9	[27]	SELF     	2 2 -6	; "getBookLocation"
+	10	[27]	CALL     	2 2 2
+	11	[27]	MOVE     	1 2
+	12	[27]	JMP      	7	; to 20
+	13	[29]	NEWTABLE 	2 0 1
+	14	[30]	GETTABLE 	3 0 -1	; "ui"
+	15	[30]	GETTABLE 	3 3 -8	; "rolling"
+	16	[30]	SELF     	3 3 -6	; "getBookLocation"
+	17	[30]	CALL     	3 2 2
+	18	[30]	SETTABLE 	2 -7 3	; "xpointer" -
+	19	[31]	MOVE     	1 2
+	20	[34]	RETURN   	1 2
+	21	[35]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerback.lua:39,50> (26 instructions, 104 bytes at 0x7f8cb2407050)
+1 param, 6 slots, 2 upvalues, 3 locals, 8 constants, 0 functions
+	1	[40]	GETTABLE 	1 0 -1	; "location_stack"
+	2	[41]	SELF     	2 0 -2	; "_getCurrentLocation"
+	3	[41]	CALL     	2 2 2
+	4	[43]	GETUPVAL 	3 0	; util
+	5	[43]	GETTABLE 	3 3 -3	; "tableEquals"
+	6	[43]	GETUPVAL 	4 1	; ignore_location
+	7	[43]	MOVE     	5 2
+	8	[43]	CALL     	3 3 2
+	9	[43]	TEST     	3 0 0
+	10	[43]	JMP      	1	; to 12
+	11	[43]	RETURN   	0 1
+	12	[45]	GETGLOBAL	3 -4	; table
+	13	[45]	GETTABLE 	3 3 -5	; "insert"
+	14	[45]	MOVE     	4 1
+	15	[45]	MOVE     	5 2
+	16	[45]	CALL     	3 3 1
+	17	[47]	LEN      	3 1
+	18	[47]	GETTABLE 	4 0 -6	; "max_stack"
+	19	[47]	LT       	0 4 3
+	20	[47]	JMP      	5	; to 26
+	21	[48]	GETGLOBAL	3 -4	; table
+	22	[48]	GETTABLE 	3 3 -7	; "remove"
+	23	[48]	MOVE     	4 1
+	24	[48]	LOADK    	5 -8	; 1
+	25	[48]	CALL     	3 3 1
+	26	[50]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerback.lua:53,56> (7 instructions, 28 bytes at 0x7f8cb24082d0)
+1 param, 3 slots, 0 upvalues, 1 local, 2 constants, 0 functions
+	1	[54]	GETTABLE 	1 0 -1	; "disabled"
+	2	[54]	TEST     	1 0 0
+	3	[54]	JMP      	1	; to 5
+	4	[54]	RETURN   	0 1
+	5	[55]	SELF     	1 0 -2	; "addCurrentLocationToStack"
+	6	[55]	CALL     	1 2 1
+	7	[56]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerback.lua:59,62> (7 instructions, 28 bytes at 0x7f8cb24080f0)
+1 param, 3 slots, 0 upvalues, 1 local, 2 constants, 0 functions
+	1	[60]	GETTABLE 	1 0 -1	; "disabled"
+	2	[60]	TEST     	1 0 0
+	3	[60]	JMP      	1	; to 5
+	4	[60]	RETURN   	0 1
+	5	[61]	SELF     	1 0 -2	; "addCurrentLocationToStack"
+	6	[61]	CALL     	1 2 1
+	7	[62]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerback.lua:65,67> (3 instructions, 12 bytes at 0x7f8cb2408470)
+2 params, 3 slots, 0 upvalues, 2 locals, 1 constant, 0 functions
+	1	[66]	NEWTABLE 	2 0 0
+	2	[66]	SETTABLE 	0 -1 2	; "location_stack" -
+	3	[67]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerback.lua:69,87> (52 instructions, 208 bytes at 0x7f8cb24088b0)
+1 param, 9 slots, 3 upvalues, 3 locals, 15 constants, 0 functions
+	1	[70]	GETTABLE 	1 0 -1	; "location_stack"
+	2	[72]	GETTABLE 	2 0 -2	; "disabled"
+	3	[72]	TEST     	2 0 0
+	4	[72]	JMP      	8	; to 13
+	5	[73]	GETTABLE 	2 0 -3	; "ui"
+	6	[73]	SELF     	2 2 -4	; "handleEvent"
+	7	[73]	GETUPVAL 	4 0	; Event
+	8	[73]	SELF     	4 4 -5	; "new"
+	9	[73]	LOADK    	6 -6	; "Close"
+	10	[73]	CALL     	4 3 0
+	11	[73]	CALL     	2 0 1
+	12	[73]	JMP      	39	; to 52
+	13	[74]	LEN      	2 1
+	14	[74]	LT       	0 -7 2	; 1 -
+	15	[74]	JMP      	25	; to 41
+	16	[75]	GETGLOBAL	2 -8	; table
+	17	[75]	GETTABLE 	2 2 -9	; "remove"
+	18	[75]	MOVE     	3 1
+	19	[75]	CALL     	2 2 2
+	20	[77]	TEST     	2 0 0
+	21	[77]	JMP      	30	; to 52
+	22	[78]	SELF     	3 0 -10	; "_getCurrentLocation"
+	23	[78]	CALL     	3 2 2
+	24	[78]	SETUPVAL 	3 1	; ignore_location
+	25	[79]	GETUPVAL 	3 2	; logger
+	26	[79]	GETTABLE 	3 3 -11	; "dbg"
+	27	[79]	LOADK    	4 -12	; "[ReaderBack] restoring:"
+	28	[79]	MOVE     	5 2
+	29	[79]	CALL     	3 3 1
+	30	[80]	GETTABLE 	3 0 -3	; "ui"
+	31	[80]	SELF     	3 3 -4	; "handleEvent"
+	32	[80]	GETUPVAL 	5 0	; Event
+	33	[80]	SELF     	5 5 -5	; "new"
+	34	[80]	LOADK    	7 -13	; "RestoreBookLocation"
+	35	[80]	MOVE     	8 2
+	36	[80]	CALL     	5 4 0
+	37	[80]	CALL     	3 0 1
+	38	[81]	LOADBOOL 	3 1 0
+	39	[81]	RETURN   	3 2
+	40	[82]	JMP      	11	; to 52
+	41	[84]	GETUPVAL 	2 2	; logger
+	42	[84]	GETTABLE 	2 2 -11	; "dbg"
+	43	[84]	LOADK    	3 -14	; "[ReaderBack] no location history, closing"
+	44	[84]	CALL     	2 2 1
+	45	[85]	GETTABLE 	2 0 -3	; "ui"
+	46	[85]	SELF     	2 2 -4	; "handleEvent"
+	47	[85]	GETUPVAL 	4 0	; Event
+	48	[85]	SELF     	4 4 -5	; "new"
+	49	[85]	LOADK    	6 -15	; "Home"
+	50	[85]	CALL     	4 3 0
+	51	[85]	CALL     	2 0 1
+	52	[87]	RETURN   	0 1

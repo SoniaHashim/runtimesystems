@@ -1,0 +1,378 @@
+
+main <./frontend/apps/reader/modules/readerdevicestatus.lua:0,0> (55 instructions, 220 bytes at 0x7fe35cc06900)
+0+ params, 12 slots, 0 upvalues, 10 locals, 19 constants, 7 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "ui/widget/buttondialogtitle"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "device"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "ui/font"
+	9	[3]	CALL     	2 2 2
+	10	[4]	GETGLOBAL	3 -1	; require
+	11	[4]	LOADK    	4 -5	; "ui/widget/container/inputcontainer"
+	12	[4]	CALL     	3 2 2
+	13	[5]	GETTABLE 	4 1 -6	; "screen"
+	14	[6]	GETGLOBAL	5 -1	; require
+	15	[6]	LOADK    	6 -7	; "ui/uimanager"
+	16	[6]	CALL     	5 2 2
+	17	[7]	SELF     	6 1 -8	; "getPowerDevice"
+	18	[7]	CALL     	6 2 2
+	19	[8]	GETGLOBAL	7 -1	; require
+	20	[8]	LOADK    	8 -9	; "gettext"
+	21	[8]	CALL     	7 2 2
+	22	[9]	GETGLOBAL	8 -1	; require
+	23	[9]	LOADK    	9 -10	; "ffi/util"
+	24	[9]	CALL     	8 2 2
+	25	[9]	GETTABLE 	8 8 -11	; "template"
+	26	[11]	SELF     	9 3 -12	; "new"
+	27	[11]	NEWTABLE 	11 0 0
+	28	[11]	CALL     	9 3 2
+	29	[54]	CLOSURE  	10 0	; 0x7fe35cc07010
+	30	[54]	MOVE     	0 6
+	31	[54]	MOVE     	0 0
+	32	[54]	MOVE     	0 8
+	33	[54]	MOVE     	0 7
+	34	[54]	MOVE     	0 2
+	35	[54]	MOVE     	0 5
+	36	[14]	SETTABLE 	9 -13 10	; "init" -
+	37	[99]	CLOSURE  	10 1	; 0x7fe35cc07140
+	38	[99]	MOVE     	0 7
+	39	[99]	MOVE     	0 6
+	40	[99]	MOVE     	0 4
+	41	[99]	MOVE     	0 5
+	42	[56]	SETTABLE 	9 -14 10	; "addToMainMenu" -
+	43	[105]	CLOSURE  	10 2	; 0x7fe35cc09000
+	44	[101]	SETTABLE 	9 -15 10	; "startBatteryChecker" -
+	45	[111]	CLOSURE  	10 3	; 0x7fe35cc097b0
+	46	[111]	MOVE     	0 5
+	47	[107]	SETTABLE 	9 -16 10	; "stopBatteryChecker" -
+	48	[115]	CLOSURE  	10 4	; 0x7fe35cc06d90
+	49	[113]	SETTABLE 	9 -17 10	; "onResume" -
+	50	[119]	CLOSURE  	10 5	; 0x7fe35cc0a690
+	51	[117]	SETTABLE 	9 -18 10	; "onSuspend" -
+	52	[123]	CLOSURE  	10 6	; 0x7fe35cc0af90
+	53	[121]	SETTABLE 	9 -19 10	; "onCloseWidget" -
+	54	[125]	RETURN   	9 2
+	55	[125]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:14,54> (29 instructions, 116 bytes at 0x7fe35cc07010)
+1 param, 4 slots, 6 upvalues, 1 local, 9 constants, 1 function
+	1	[15]	GETUPVAL 	1 0	; powerd
+	2	[15]	SELF     	1 1 -1	; "getCapacity"
+	3	[15]	CALL     	1 2 2
+	4	[15]	LT       	1 -2 1	; 0 -
+	5	[15]	JMP      	5	; to 11
+	6	[15]	GETUPVAL 	1 0	; powerd
+	7	[15]	SELF     	1 1 -3	; "isCharging"
+	8	[15]	CALL     	1 2 2
+	9	[15]	TEST     	1 0 0
+	10	[15]	JMP      	17	; to 28
+	11	[48]	CLOSURE  	1 0	; 0x7fe35cc071c0
+	12	[48]	GETUPVAL 	0 0	; powerd
+	13	[48]	GETUPVAL 	0 1	; ButtonDialogTitle
+	14	[48]	GETUPVAL 	0 2	; T
+	15	[48]	GETUPVAL 	0 3	; _
+	16	[48]	GETUPVAL 	0 4	; Font
+	17	[48]	GETUPVAL 	0 5	; UIManager
+	18	[48]	MOVE     	0 0
+	19	[48]	SETTABLE 	0 -4 1	; "checkLowBattery" -
+	20	[49]	GETTABLE 	1 0 -5	; "ui"
+	21	[49]	GETTABLE 	1 1 -6	; "menu"
+	22	[49]	SELF     	1 1 -7	; "registerToMainMenu"
+	23	[49]	MOVE     	3 0
+	24	[49]	CALL     	1 3 1
+	25	[50]	SELF     	1 0 -8	; "startBatteryChecker"
+	26	[50]	CALL     	1 2 1
+	27	[50]	JMP      	1	; to 29
+	28	[52]	SETTABLE 	0 -4 -9	; "checkLowBattery" nil
+	29	[54]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:16,48> (89 instructions, 356 bytes at 0x7fe35cc071c0)
+0 params, 11 slots, 7 upvalues, 3 locals, 28 constants, 1 function
+	1	[17]	GETGLOBAL	0 -1	; G_reader_settings
+	2	[17]	SELF     	0 0 -2	; "readSetting"
+	3	[17]	LOADK    	2 -3	; "low_battery_threshold"
+	4	[17]	CALL     	0 3 2
+	5	[17]	TEST     	0 0 1
+	6	[17]	JMP      	1	; to 8
+	7	[17]	LOADK    	0 -4	; 20
+	8	[18]	GETUPVAL 	1 0	; powerd
+	9	[18]	SELF     	1 1 -5	; "getCapacity"
+	10	[18]	CALL     	1 2 2
+	11	[19]	GETUPVAL 	2 0	; powerd
+	12	[19]	SELF     	2 2 -6	; "isCharging"
+	13	[19]	CALL     	2 2 2
+	14	[19]	TEST     	2 0 0
+	15	[19]	JMP      	5	; to 21
+	16	[20]	GETUPVAL 	2 0	; powerd
+	17	[20]	SELF     	2 2 -7	; "setDissmisBatteryStatus"
+	18	[20]	LOADBOOL 	4 0 0
+	19	[20]	CALL     	2 3 1
+	20	[20]	JMP      	62	; to 83
+	21	[21]	GETUPVAL 	2 0	; powerd
+	22	[21]	SELF     	2 2 -8	; "getDissmisBatteryStatus"
+	23	[21]	CALL     	2 2 2
+	24	[21]	EQ       	1 2 -9	; - true
+	25	[21]	JMP      	46	; to 72
+	26	[21]	LE       	0 1 0
+	27	[21]	JMP      	44	; to 72
+	28	[22]	LOADNIL  	2 2
+	29	[23]	GETUPVAL 	3 1	; ButtonDialogTitle
+	30	[23]	SELF     	3 3 -10	; "new"
+	31	[23]	NEWTABLE 	5 0 6
+	32	[24]	SETTABLE 	5 -11 -9	; "modal" true
+	33	[25]	GETUPVAL 	6 2	; T
+	34	[25]	GETUPVAL 	7 3	; _
+	35	[25]	LOADK    	8 -13	; "The battery is getting low.\n%1% remaining."
+	36	[25]	CALL     	7 2 2
+	37	[25]	MOVE     	8 1
+	38	[25]	CALL     	6 3 2
+	39	[25]	SETTABLE 	5 -12 6	; "title" -
+	40	[26]	SETTABLE 	5 -14 -15	; "title_align" "center"
+	41	[27]	GETUPVAL 	6 4	; Font
+	42	[27]	SELF     	6 6 -17	; "getFace"
+	43	[27]	LOADK    	8 -18	; "infofont"
+	44	[27]	CALL     	6 3 2
+	45	[27]	SETTABLE 	5 -16 6	; "title_face" -
+	46	[28]	SETTABLE 	5 -19 -20	; "dismissable" false
+	47	[29]	NEWTABLE 	6 1 0
+	48	[29]	NEWTABLE 	7 1 0
+	49	[30]	NEWTABLE 	8 0 2
+	50	[32]	GETUPVAL 	9 3	; _
+	51	[32]	LOADK    	10 -23	; "Dismiss"
+	52	[32]	CALL     	9 2 2
+	53	[32]	SETTABLE 	8 -22 9	; "text" -
+	54	[37]	CLOSURE  	9 0	; 0x7fe35cc07850
+	55	[37]	GETUPVAL 	0 5	; UIManager
+	56	[37]	MOVE     	0 2
+	57	[37]	GETUPVAL 	0 0	; powerd
+	58	[37]	GETUPVAL 	0 6	; self
+	59	[37]	SETTABLE 	8 -24 9	; "callback" -
+	60	[39]	SETLIST  	7 1 1	; 1
+	61	[40]	SETLIST  	6 1 1	; 1
+	62	[40]	SETTABLE 	5 -21 6	; "buttons" -
+	63	[23]	CALL     	3 3 2
+	64	[41]	MOVE     	2 3
+	65	[42]	GETUPVAL 	3 5	; UIManager
+	66	[42]	SELF     	3 3 -25	; "show"
+	67	[42]	MOVE     	5 2
+	68	[42]	CALL     	3 3 1
+	69	[43]	RETURN   	0 1
+	70	[43]	CLOSE    	2
+	71	[43]	JMP      	11	; to 83
+	72	[44]	GETUPVAL 	2 0	; powerd
+	73	[44]	SELF     	2 2 -8	; "getDissmisBatteryStatus"
+	74	[44]	CALL     	2 2 2
+	75	[44]	TEST     	2 0 0
+	76	[44]	JMP      	6	; to 83
+	77	[44]	LT       	0 0 1
+	78	[44]	JMP      	4	; to 83
+	79	[45]	GETUPVAL 	2 0	; powerd
+	80	[45]	SELF     	2 2 -7	; "setDissmisBatteryStatus"
+	81	[45]	LOADBOOL 	4 0 0
+	82	[45]	CALL     	2 3 1
+	83	[47]	GETUPVAL 	2 5	; UIManager
+	84	[47]	SELF     	2 2 -26	; "scheduleIn"
+	85	[47]	LOADK    	4 -27	; 300
+	86	[47]	GETUPVAL 	5 6	; self
+	87	[47]	GETTABLE 	5 5 -28	; "checkLowBattery"
+	88	[47]	CALL     	2 4 1
+	89	[48]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:33,37> (15 instructions, 60 bytes at 0x7fe35cc07850)
+0 params, 4 slots, 4 upvalues, 0 locals, 5 constants, 0 functions
+	1	[34]	GETUPVAL 	0 0	; UIManager
+	2	[34]	SELF     	0 0 -1	; "close"
+	3	[34]	GETUPVAL 	2 1	; low_battery_info
+	4	[34]	CALL     	0 3 1
+	5	[35]	GETUPVAL 	0 2	; powerd
+	6	[35]	SELF     	0 0 -2	; "setDissmisBatteryStatus"
+	7	[35]	LOADBOOL 	2 1 0
+	8	[35]	CALL     	0 3 1
+	9	[36]	GETUPVAL 	0 0	; UIManager
+	10	[36]	SELF     	0 0 -3	; "scheduleIn"
+	11	[36]	LOADK    	2 -4	; 300
+	12	[36]	GETUPVAL 	3 3	; self
+	13	[36]	GETTABLE 	3 3 -5	; "checkLowBattery"
+	14	[36]	CALL     	0 4 1
+	15	[37]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:56,99> (34 instructions, 136 bytes at 0x7fe35cc07140)
+2 params, 8 slots, 4 upvalues, 2 locals, 9 constants, 4 functions
+	1	[57]	NEWTABLE 	2 0 2
+	2	[58]	GETUPVAL 	3 0	; _
+	3	[58]	LOADK    	4 -3	; "Low battery alarm"
+	4	[58]	CALL     	3 2 2
+	5	[58]	SETTABLE 	2 -2 3	; "text" -
+	6	[59]	NEWTABLE 	3 2 0
+	7	[59]	NEWTABLE 	4 0 3
+	8	[61]	GETUPVAL 	5 0	; _
+	9	[61]	LOADK    	6 -5	; "Enable"
+	10	[61]	CALL     	5 2 2
+	11	[61]	SETTABLE 	4 -2 5	; "text" -
+	12	[64]	CLOSURE  	5 0	; 0x7fe35cc087a0
+	13	[64]	SETTABLE 	4 -6 5	; "checked_func" -
+	14	[73]	CLOSURE  	5 1	; 0x7fe35cc08c30
+	15	[73]	MOVE     	0 0
+	16	[73]	GETUPVAL 	0 1	; powerd
+	17	[73]	SETTABLE 	4 -7 5	; "callback" -
+	18	[74]	NEWTABLE 	5 0 3
+	19	[76]	GETUPVAL 	6 0	; _
+	20	[76]	LOADK    	7 -8	; "Low battery threshold"
+	21	[76]	CALL     	6 2 2
+	22	[76]	SETTABLE 	5 -2 6	; "text" -
+	23	[77]	CLOSURE  	6 2	; 0x7fe35cc08720
+	24	[77]	SETTABLE 	5 -9 6	; "enabled_func" -
+	25	[95]	CLOSURE  	6 3	; 0x7fe35cc09480
+	26	[95]	GETUPVAL 	0 2	; Screen
+	27	[95]	GETUPVAL 	0 0	; _
+	28	[95]	GETUPVAL 	0 1	; powerd
+	29	[95]	GETUPVAL 	0 3	; UIManager
+	30	[95]	SETTABLE 	5 -7 6	; "callback" -
+	31	[97]	SETLIST  	3 2 1	; 1
+	32	[97]	SETTABLE 	2 -4 3	; "sub_item_table" -
+	33	[98]	SETTABLE 	1 -1 2	; "battery" -
+	34	[99]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:62,64> (6 instructions, 24 bytes at 0x7fe35cc087a0)
+0 params, 3 slots, 0 upvalues, 0 locals, 3 constants, 0 functions
+	1	[63]	GETGLOBAL	0 -1	; G_reader_settings
+	2	[63]	SELF     	0 0 -2	; "nilOrTrue"
+	3	[63]	LOADK    	2 -3	; "battery_alarm"
+	4	[63]	TAILCALL 	0 3 0
+	5	[63]	RETURN   	0 0
+	6	[64]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:65,73> (22 instructions, 88 bytes at 0x7fe35cc08c30)
+0 params, 3 slots, 2 upvalues, 0 locals, 7 constants, 0 functions
+	1	[66]	GETGLOBAL	0 -1	; G_reader_settings
+	2	[66]	SELF     	0 0 -2	; "flipNilOrTrue"
+	3	[66]	LOADK    	2 -3	; "battery_alarm"
+	4	[66]	CALL     	0 3 1
+	5	[67]	GETGLOBAL	0 -1	; G_reader_settings
+	6	[67]	SELF     	0 0 -4	; "nilOrTrue"
+	7	[67]	LOADK    	2 -3	; "battery_alarm"
+	8	[67]	CALL     	0 3 2
+	9	[67]	TEST     	0 0 0
+	10	[67]	JMP      	4	; to 15
+	11	[68]	GETUPVAL 	0 0	; self
+	12	[68]	SELF     	0 0 -5	; "startBatteryChecker"
+	13	[68]	CALL     	0 2 1
+	14	[68]	JMP      	7	; to 22
+	15	[70]	GETUPVAL 	0 0	; self
+	16	[70]	SELF     	0 0 -6	; "stopBatteryChecker"
+	17	[70]	CALL     	0 2 1
+	18	[71]	GETUPVAL 	0 1	; powerd
+	19	[71]	SELF     	0 0 -7	; "setDissmisBatteryStatus"
+	20	[71]	LOADBOOL 	2 0 0
+	21	[71]	CALL     	0 3 1
+	22	[73]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:77,77> (6 instructions, 24 bytes at 0x7fe35cc08720)
+0 params, 3 slots, 0 upvalues, 0 locals, 3 constants, 0 functions
+	1	[77]	GETGLOBAL	0 -1	; G_reader_settings
+	2	[77]	SELF     	0 0 -2	; "nilOrTrue"
+	3	[77]	LOADK    	2 -3	; "battery_alarm"
+	4	[77]	TAILCALL 	0 3 0
+	5	[77]	RETURN   	0 0
+	6	[77]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:78,95> (38 instructions, 152 bytes at 0x7fe35cc09480)
+0 params, 7 slots, 4 upvalues, 3 locals, 23 constants, 1 function
+	1	[79]	GETGLOBAL	0 -1	; require
+	2	[79]	LOADK    	1 -2	; "ui/widget/spinwidget"
+	3	[79]	CALL     	0 2 2
+	4	[80]	GETGLOBAL	1 -3	; G_reader_settings
+	5	[80]	SELF     	1 1 -4	; "readSetting"
+	6	[80]	LOADK    	3 -5	; "low_battery_threshold"
+	7	[80]	CALL     	1 3 2
+	8	[80]	TEST     	1 0 1
+	9	[80]	JMP      	1	; to 11
+	10	[80]	LOADK    	1 -6	; 20
+	11	[81]	SELF     	2 0 -7	; "new"
+	12	[81]	NEWTABLE 	4 0 8
+	13	[82]	GETUPVAL 	5 0	; Screen
+	14	[82]	SELF     	5 5 -9	; "getWidth"
+	15	[82]	CALL     	5 2 2
+	16	[82]	MUL      	5 5 -10	; - 0.6
+	17	[82]	SETTABLE 	4 -8 5	; "width" -
+	18	[83]	SETTABLE 	4 -11 1	; "value" -
+	19	[84]	SETTABLE 	4 -12 -13	; "value_min" 5
+	20	[85]	SETTABLE 	4 -14 -15	; "value_max" 90
+	21	[86]	SETTABLE 	4 -16 -17	; "value_hold_step" 10
+	22	[87]	GETUPVAL 	5 1	; _
+	23	[87]	LOADK    	6 -19	; "Set threshold"
+	24	[87]	CALL     	5 2 2
+	25	[87]	SETTABLE 	4 -18 5	; "ok_text" -
+	26	[88]	GETUPVAL 	5 1	; _
+	27	[88]	LOADK    	6 -21	; "Low battery threshold"
+	28	[88]	CALL     	5 2 2
+	29	[88]	SETTABLE 	4 -20 5	; "title_text" -
+	30	[92]	CLOSURE  	5 0	; 0x7fe35cc09a90
+	31	[92]	GETUPVAL 	0 2	; powerd
+	32	[92]	SETTABLE 	4 -22 5	; "callback" -
+	33	[81]	CALL     	2 3 2
+	34	[94]	GETUPVAL 	3 3	; UIManager
+	35	[94]	SELF     	3 3 -23	; "show"
+	36	[94]	MOVE     	5 2
+	37	[94]	CALL     	3 3 1
+	38	[95]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:89,92> (10 instructions, 40 bytes at 0x7fe35cc09a90)
+1 param, 5 slots, 1 upvalue, 1 local, 5 constants, 0 functions
+	1	[90]	GETGLOBAL	1 -1	; G_reader_settings
+	2	[90]	SELF     	1 1 -2	; "saveSetting"
+	3	[90]	LOADK    	3 -3	; "low_battery_threshold"
+	4	[90]	GETTABLE 	4 0 -4	; "value"
+	5	[90]	CALL     	1 4 1
+	6	[91]	GETUPVAL 	1 0	; powerd
+	7	[91]	SELF     	1 1 -5	; "setDissmisBatteryStatus"
+	8	[91]	LOADBOOL 	3 0 0
+	9	[91]	CALL     	1 3 1
+	10	[92]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:101,105> (12 instructions, 48 bytes at 0x7fe35cc09000)
+1 param, 4 slots, 0 upvalues, 1 local, 4 constants, 0 functions
+	1	[102]	GETGLOBAL	1 -1	; G_reader_settings
+	2	[102]	SELF     	1 1 -2	; "nilOrTrue"
+	3	[102]	LOADK    	3 -3	; "battery_alarm"
+	4	[102]	CALL     	1 3 2
+	5	[102]	TEST     	1 0 0
+	6	[102]	JMP      	5	; to 12
+	7	[102]	GETTABLE 	1 0 -4	; "checkLowBattery"
+	8	[102]	TEST     	1 0 0
+	9	[102]	JMP      	2	; to 12
+	10	[103]	GETTABLE 	1 0 -4	; "checkLowBattery"
+	11	[103]	CALL     	1 1 1
+	12	[105]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:107,111> (8 instructions, 32 bytes at 0x7fe35cc097b0)
+1 param, 4 slots, 1 upvalue, 1 local, 2 constants, 0 functions
+	1	[108]	GETTABLE 	1 0 -1	; "checkLowBattery"
+	2	[108]	TEST     	1 0 0
+	3	[108]	JMP      	4	; to 8
+	4	[109]	GETUPVAL 	1 0	; UIManager
+	5	[109]	SELF     	1 1 -2	; "unschedule"
+	6	[109]	GETTABLE 	3 0 -1	; "checkLowBattery"
+	7	[109]	CALL     	1 3 1
+	8	[111]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:113,115> (3 instructions, 12 bytes at 0x7fe35cc06d90)
+1 param, 3 slots, 0 upvalues, 1 local, 1 constant, 0 functions
+	1	[114]	SELF     	1 0 -1	; "startBatteryChecker"
+	2	[114]	CALL     	1 2 1
+	3	[115]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:117,119> (3 instructions, 12 bytes at 0x7fe35cc0a690)
+1 param, 3 slots, 0 upvalues, 1 local, 1 constant, 0 functions
+	1	[118]	SELF     	1 0 -1	; "stopBatteryChecker"
+	2	[118]	CALL     	1 2 1
+	3	[119]	RETURN   	0 1
+
+function <./frontend/apps/reader/modules/readerdevicestatus.lua:121,123> (3 instructions, 12 bytes at 0x7fe35cc0af90)
+1 param, 3 slots, 0 upvalues, 1 local, 1 constant, 0 functions
+	1	[122]	SELF     	1 0 -1	; "stopBatteryChecker"
+	2	[122]	CALL     	1 2 1
+	3	[123]	RETURN   	0 1

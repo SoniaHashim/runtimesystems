@@ -1,0 +1,158 @@
+-- BYTECODE -- benchmark.lua:5-14
+0001    GGET     3   0      ; "io"
+0002    TGETS    3   3   1  ; "open"
+0003    MOV      4   0
+0004    KSTR     5   2      ; "a+"
+0005    CALL     3   2   3
+0006    ISF          3
+0007    JMP      4 => 0030
+0008    MOV      5   3
+0009    TGETS    4   3   3  ; "seek"
+0010    KSTR     6   4      ; "end"
+0011    CALL     4   2   3
+0012    ISNEN    4   0      ; 0
+0013    JMP      4 => 0018
+0014    MOV      5   3
+0015    TGETS    4   3   5  ; "write"
+0016    KSTR     6   6      ; "PAGE\tDUR\n"
+0017    CALL     4   1   3
+0018 => MOV      5   3
+0019    TGETS    4   3   5  ; "write"
+0020    GGET     6   7      ; "string"
+0021    TGETS    6   6   8  ; "format"
+0022    KSTR     7   9      ; "%s\t%s\n"
+0023    MOV      8   1
+0024    MOV      9   2
+0025    CALL     6   0   4
+0026    CALLM    4   1   1
+0027    MOV      5   3
+0028    TGETS    4   3  10  ; "close"
+0029    CALL     4   1   2
+0030 => RET0     0   1
+
+-- BYTECODE -- benchmark.lua:16-27
+0001    KSTR     0   0      ; "spec/front/unit/data/sample.pdf"
+0002    UGET     1   0      ; DocumentRegistry
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "openDocument"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    KSHORT   2   1
+0008    GGET     3   2      ; "math"
+0009    TGETS    3   3   3  ; "min"
+0010    KSHORT   4  10
+0011    TGETS    5   1   4  ; "info"
+0012    TGETS    5   5   5  ; "number_of_pages"
+0013    CALL     3   2   3
+0014    KSHORT   4   1
+0015    FORI     2 => 0044
+0016 => UGET     6   1      ; util
+0017    TGETS    6   6   6  ; "gettime"
+0018    CALL     6   3   1
+0019    GGET     8   7      ; "assert"
+0020    TGETS    8   8   8  ; "truthy"
+0021    MOV     10   1
+0022    TGETS    9   1   9  ; "renderPage"
+0023    MOV     11   5
+0024    KPRI    12   0
+0025    KSHORT  13   1
+0026    KSHORT  14   0
+0027    KSHORT  15   1
+0028    KSHORT  16   0
+0029    CALL     9   0   8
+0030    CALLM    8   1   0
+0031    UGET     8   1      ; util
+0032    TGETS    8   8   6  ; "gettime"
+0033    CALL     8   3   1
+0034    SUBVV   10   8   6
+0035    SUBVV   11   9   7
+0036    DIVVN   11  11   0  ; 1000000
+0037    ADDVV   10  10  11
+0038    UGET    11   2      ; logDuration
+0039    KSTR    12  10      ; "pdf_rendering.log"
+0040    MOV     13   5
+0041    MOV     14  10
+0042    CALL    11   1   4
+0043    FORL     2 => 0016
+0044 => MOV      3   1
+0045    TGETS    2   1  11  ; "close"
+0046    CALL     2   1   2
+0047    RET0     0   1
+
+-- BYTECODE -- benchmark.lua:29-42
+0001    KSTR     0   0      ; "spec/front/unit/data/sample.pdf"
+0002    UGET     1   0      ; DocumentRegistry
+0003    MOV      2   1
+0004    TGETS    1   1   1  ; "openDocument"
+0005    MOV      3   0
+0006    CALL     1   2   3
+0007    TGETS    2   1   2  ; "configurable"
+0008    KSHORT   3   1
+0009    TSETS    3   2   3  ; "text_wrap"
+0010    KSHORT   2   1
+0011    GGET     3   4      ; "math"
+0012    TGETS    3   3   5  ; "min"
+0013    KSHORT   4  10
+0014    TGETS    5   1   6  ; "info"
+0015    TGETS    5   5   7  ; "number_of_pages"
+0016    CALL     3   2   3
+0017    KSHORT   4   1
+0018    FORI     2 => 0047
+0019 => UGET     6   1      ; util
+0020    TGETS    6   6   8  ; "gettime"
+0021    CALL     6   3   1
+0022    GGET     8   9      ; "assert"
+0023    TGETS    8   8  10  ; "truthy"
+0024    MOV     10   1
+0025    TGETS    9   1  11  ; "renderPage"
+0026    MOV     11   5
+0027    KPRI    12   0
+0028    KSHORT  13   1
+0029    KSHORT  14   0
+0030    KSHORT  15   1
+0031    KSHORT  16   0
+0032    CALL     9   0   8
+0033    CALLM    8   1   0
+0034    UGET     8   1      ; util
+0035    TGETS    8   8   8  ; "gettime"
+0036    CALL     8   3   1
+0037    SUBVV   10   8   6
+0038    SUBVV   11   9   7
+0039    DIVVN   11  11   0  ; 1000000
+0040    ADDVV   10  10  11
+0041    UGET    11   2      ; logDuration
+0042    KSTR    12  12      ; "pdf_reflowing.log"
+0043    MOV     13   5
+0044    MOV     14  10
+0045    CALL    11   1   4
+0046    FORL     2 => 0019
+0047 => MOV      3   1
+0048    TGETS    2   1  13  ; "close"
+0049    CALL     2   1   2
+0050    TGETS    2   1   2  ; "configurable"
+0051    KSHORT   3   0
+0052    TSETS    3   2   3  ; "text_wrap"
+0053    RET0     0   1
+
+-- BYTECODE -- benchmark.lua:0-44
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   0      ; "require"
+0005    KSTR     1   2      ; "document/documentregistry"
+0006    CALL     0   2   2
+0007    GGET     1   0      ; "require"
+0008    KSTR     2   3      ; "ffi/util"
+0009    CALL     1   2   2
+0010    FNEW     2   4      ; benchmark.lua:5
+0011    GGET     3   5      ; "describe"
+0012    KSTR     4   6      ; "PDF rendering benchmark"
+0013    FNEW     5   7      ; benchmark.lua:16
+0014    CALL     3   1   3
+0015    GGET     3   5      ; "describe"
+0016    KSTR     4   8      ; "PDF reflowing benchmark"
+0017    FNEW     5   9      ; benchmark.lua:29
+0018    CALL     3   1   3
+0019    UCLO     0 => 0020
+0020 => RET0     0   1
+

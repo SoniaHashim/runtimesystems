@@ -1,0 +1,547 @@
+
+main <./frontend/pluginloader.lua:0,0> (29 instructions, 116 bytes at 0x7ffebdc068c0)
+0+ params, 7 slots, 0 upvalues, 6 locals, 11 constants, 4 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "libs/libkoreader-lfs"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "logger"
+	6	[2]	CALL     	1 2 2
+	7	[4]	LOADK    	2 -4	; "plugins"
+	8	[5]	NEWTABLE 	3 0 2
+	9	[6]	SETTABLE 	3 -5 -6	; "storagestat" true
+	10	[7]	SETTABLE 	3 -7 -6	; "kobolight" true
+	11	[24]	CLOSURE  	4 0	; 0x7ffebdc06ff0
+	12	[24]	MOVE     	0 1
+	13	[27]	NEWTABLE 	5 0 1
+	14	[28]	SETTABLE 	5 -8 -6	; "show_info" true
+	15	[114]	CLOSURE  	6 1	; 0x7ffebdc06bb0
+	16	[114]	MOVE     	0 2
+	17	[114]	MOVE     	0 0
+	18	[114]	MOVE     	0 1
+	19	[114]	MOVE     	0 3
+	20	[114]	MOVE     	0 4
+	21	[31]	SETTABLE 	5 -9 6	; "loadPlugins" -
+	22	[174]	CLOSURE  	6 2	; 0x7ffebdc08250
+	23	[174]	MOVE     	0 3
+	24	[116]	SETTABLE 	5 -10 6	; "genPluginManagerSubItem" -
+	25	[184]	CLOSURE  	6 3	; 0x7ffebdc09280
+	26	[184]	MOVE     	0 1
+	27	[176]	SETTABLE 	5 -11 6	; "createPluginInstance" -
+	28	[186]	RETURN   	5 2
+	29	[186]	RETURN   	0 1
+
+function <./frontend/pluginloader.lua:10,24> (24 instructions, 96 bytes at 0x7ffebdc06ff0)
+1 param, 10 slots, 1 upvalue, 6 locals, 7 constants, 1 function
+	1	[11]	GETGLOBAL	1 -1	; pairs
+	2	[11]	MOVE     	2 0
+	3	[11]	CALL     	1 2 4
+	4	[11]	JMP      	17	; to 22
+	5	[12]	SELF     	6 4 -2	; "sub"
+	6	[12]	LOADK    	8 -3	; 1
+	7	[12]	LOADK    	9 -4	; 2
+	8	[12]	CALL     	6 4 2
+	9	[12]	EQ       	0 6 -5	; - "on"
+	10	[12]	JMP      	10	; to 21
+	11	[12]	GETGLOBAL	6 -6	; type
+	12	[12]	MOVE     	7 5
+	13	[12]	CALL     	6 2 2
+	14	[12]	EQ       	0 6 -7	; - "function"
+	15	[12]	JMP      	5	; to 21
+	16	[21]	CLOSURE  	6 0	; 0x7ffebdc07390
+	17	[21]	MOVE     	0 5
+	18	[21]	GETUPVAL 	0 0	; logger
+	19	[21]	MOVE     	0 4
+	20	[21]	SETTABLE 	0 4 6
+	21	[22]	CLOSE    	4
+	22	[11]	TFORLOOP 	1 2
+	23	[22]	JMP      	-19	; to 5
+	24	[24]	RETURN   	0 1
+
+function <./frontend/pluginloader.lua:13,21> (18 instructions, 72 bytes at 0x7ffebdc07390)
+1+ param, 8 slots, 3 upvalues, 4 locals, 3 constants, 0 functions
+	1	[14]	GETGLOBAL	2 -1	; pcall
+	2	[14]	GETUPVAL 	3 0	; value
+	3	[14]	MOVE     	4 0
+	4	[14]	VARARG   	5 0
+	5	[14]	CALL     	2 0 3
+	6	[15]	TEST     	2 0 0
+	7	[15]	JMP      	2	; to 10
+	8	[16]	RETURN   	3 2
+	9	[16]	JMP      	8	; to 18
+	10	[18]	GETUPVAL 	4 1	; logger
+	11	[18]	GETTABLE 	4 4 -2	; "err"
+	12	[18]	LOADK    	5 -3	; "failed to call event handler"
+	13	[18]	GETUPVAL 	6 2	; key
+	14	[18]	MOVE     	7 3
+	15	[18]	CALL     	4 4 1
+	16	[19]	LOADBOOL 	4 0 0
+	17	[19]	RETURN   	4 2
+	18	[21]	RETURN   	0 1
+
+function <./frontend/pluginloader.lua:31,114> (260 instructions, 1040 bytes at 0x7ffebdc06bb0)
+1 param, 29 slots, 5 upvalues, 43 locals, 49 constants, 1 function
+	1	[32]	GETTABLE 	1 0 -1	; "enabled_plugins"
+	2	[32]	TEST     	1 0 0
+	3	[32]	JMP      	3	; to 7
+	4	[32]	GETTABLE 	1 0 -1	; "enabled_plugins"
+	5	[32]	GETTABLE 	2 0 -2	; "disabled_plugins"
+	6	[32]	RETURN   	1 3
+	7	[34]	NEWTABLE 	1 0 0
+	8	[34]	SETTABLE 	0 -1 1	; "enabled_plugins" -
+	9	[35]	NEWTABLE 	1 0 0
+	10	[35]	SETTABLE 	0 -2 1	; "disabled_plugins" -
+	11	[36]	NEWTABLE 	1 1 0
+	12	[36]	GETUPVAL 	2 0	; DEFAULT_PLUGIN_PATH
+	13	[36]	SETLIST  	1 1 1	; 1
+	14	[37]	GETGLOBAL	2 -3	; G_reader_settings
+	15	[37]	SELF     	2 2 -4	; "readSetting"
+	16	[37]	LOADK    	4 -5	; "extra_plugin_paths"
+	17	[37]	CALL     	2 3 2
+	18	[38]	TEST     	2 0 0
+	19	[38]	JMP      	40	; to 60
+	20	[39]	GETGLOBAL	3 -6	; type
+	21	[39]	MOVE     	4 2
+	22	[39]	CALL     	3 2 2
+	23	[39]	EQ       	0 3 -7	; - "string"
+	24	[39]	JMP      	4	; to 29
+	25	[40]	NEWTABLE 	3 1 0
+	26	[40]	MOVE     	4 2
+	27	[40]	SETLIST  	3 1 1	; 1
+	28	[40]	MOVE     	2 3
+	29	[42]	GETGLOBAL	3 -6	; type
+	30	[42]	MOVE     	4 2
+	31	[42]	CALL     	3 2 2
+	32	[42]	EQ       	0 3 -8	; - "table"
+	33	[42]	JMP      	22	; to 56
+	34	[43]	GETGLOBAL	3 -9	; ipairs
+	35	[43]	MOVE     	4 2
+	36	[43]	CALL     	3 2 4
+	37	[43]	JMP      	15	; to 53
+	38	[44]	GETUPVAL 	8 1	; lfs
+	39	[44]	GETTABLE 	8 8 -10	; "attributes"
+	40	[44]	MOVE     	9 7
+	41	[44]	LOADK    	10 -11	; "mode"
+	42	[44]	CALL     	8 3 2
+	43	[45]	EQ       	0 8 -12	; - "directory"
+	44	[45]	JMP      	8	; to 53
+	45	[45]	GETUPVAL 	9 0	; DEFAULT_PLUGIN_PATH
+	46	[45]	EQ       	1 7 9
+	47	[45]	JMP      	5	; to 53
+	48	[46]	GETGLOBAL	9 -8	; table
+	49	[46]	GETTABLE 	9 9 -13	; "insert"
+	50	[46]	MOVE     	10 1
+	51	[46]	MOVE     	11 7
+	52	[46]	CALL     	9 3 1
+	53	[43]	TFORLOOP 	3 2
+	54	[47]	JMP      	-17	; to 38
+	55	[48]	JMP      	4	; to 60
+	56	[50]	GETUPVAL 	3 2	; logger
+	57	[50]	GETTABLE 	3 3 -14	; "err"
+	58	[50]	LOADK    	4 -15	; "extra_plugin_paths config only accepts string or table value"
+	59	[50]	CALL     	3 2 1
+	60	[55]	GETGLOBAL	3 -16	; package
+	61	[55]	GETTABLE 	3 3 -17	; "path"
+	62	[56]	GETGLOBAL	4 -16	; package
+	63	[56]	GETTABLE 	4 4 -18	; "cpath"
+	64	[58]	GETGLOBAL	5 -3	; G_reader_settings
+	65	[58]	SELF     	5 5 -4	; "readSetting"
+	66	[58]	LOADK    	7 -19	; "plugins_disabled"
+	67	[58]	CALL     	5 3 2
+	68	[59]	GETGLOBAL	6 -6	; type
+	69	[59]	MOVE     	7 5
+	70	[59]	CALL     	6 2 2
+	71	[59]	EQ       	1 6 -8	; - "table"
+	72	[59]	JMP      	2	; to 75
+	73	[60]	NEWTABLE 	6 0 0
+	74	[60]	MOVE     	5 6
+	75	[63]	GETGLOBAL	6 -20	; pairs
+	76	[63]	GETUPVAL 	7 3	; OBSOLETE_PLUGINS
+	77	[63]	CALL     	6 2 4
+	78	[63]	JMP      	1	; to 80
+	79	[64]	SETTABLE 	5 9 -21	; - true
+	80	[63]	TFORLOOP 	6 1
+	81	[64]	JMP      	-3	; to 79
+	82	[66]	GETGLOBAL	6 -9	; ipairs
+	83	[66]	MOVE     	7 1
+	84	[66]	CALL     	6 2 4
+	85	[66]	JMP      	140	; to 226
+	86	[67]	GETUPVAL 	11 2	; logger
+	87	[67]	GETTABLE 	11 11 -22	; "info"
+	88	[67]	LOADK    	12 -23	; "Loading plugins from directory:"
+	89	[67]	MOVE     	13 10
+	90	[67]	CALL     	11 3 1
+	91	[68]	GETUPVAL 	11 1	; lfs
+	92	[68]	GETTABLE 	11 11 -24	; "dir"
+	93	[68]	MOVE     	12 10
+	94	[68]	CALL     	11 2 4
+	95	[68]	JMP      	128	; to 224
+	96	[69]	MOVE     	15 10
+	97	[69]	LOADK    	16 -25	; "/"
+	98	[69]	MOVE     	17 14
+	99	[69]	CONCAT   	15 15 17
+	100	[70]	GETUPVAL 	16 1	; lfs
+	101	[70]	GETTABLE 	16 16 -10	; "attributes"
+	102	[70]	MOVE     	17 15
+	103	[70]	LOADK    	18 -11	; "mode"
+	104	[70]	CALL     	16 3 2
+	105	[72]	EQ       	0 16 -12	; - "directory"
+	106	[72]	JMP      	117	; to 224
+	107	[72]	SELF     	17 14 -26	; "find"
+	108	[72]	LOADK    	19 -27	; ".+%.koplugin$"
+	109	[72]	CALL     	17 3 2
+	110	[72]	TEST     	17 0 0
+	111	[72]	JMP      	112	; to 224
+	112	[73]	MOVE     	17 15
+	113	[73]	LOADK    	18 -28	; "/main.lua"
+	114	[73]	CONCAT   	17 17 18
+	115	[74]	MOVE     	18 15
+	116	[74]	LOADK    	19 -29	; "/_meta.lua"
+	117	[74]	CONCAT   	18 18 19
+	118	[75]	TEST     	5 0 0
+	119	[75]	JMP      	8	; to 128
+	120	[75]	SELF     	19 14 -30	; "sub"
+	121	[75]	LOADK    	21 -31	; 1
+	122	[75]	LOADK    	22 -32	; -10
+	123	[75]	CALL     	19 4 2
+	124	[75]	GETTABLE 	19 5 19
+	125	[75]	TEST     	19 0 0
+	126	[75]	JMP      	1	; to 128
+	127	[76]	MOVE     	17 18
+	128	[78]	GETGLOBAL	19 -16	; package
+	129	[78]	GETGLOBAL	20 -7	; string
+	130	[78]	GETTABLE 	20 20 -33	; "format"
+	131	[78]	LOADK    	21 -34	; "%s/?.lua;%s"
+	132	[78]	MOVE     	22 15
+	133	[78]	MOVE     	23 3
+	134	[78]	CALL     	20 4 2
+	135	[78]	SETTABLE 	19 -17 20	; "path" -
+	136	[79]	GETGLOBAL	19 -16	; package
+	137	[79]	GETGLOBAL	20 -7	; string
+	138	[79]	GETTABLE 	20 20 -33	; "format"
+	139	[79]	LOADK    	21 -35	; "%s/lib/?.so;%s"
+	140	[79]	MOVE     	22 15
+	141	[79]	MOVE     	23 4
+	142	[79]	CALL     	20 4 2
+	143	[79]	SETTABLE 	19 -18 20	; "cpath" -
+	144	[80]	GETGLOBAL	19 -36	; pcall
+	145	[80]	GETGLOBAL	20 -37	; dofile
+	146	[80]	MOVE     	21 17
+	147	[80]	CALL     	19 3 3
+	148	[81]	TEST     	19 0 0
+	149	[81]	JMP      	2	; to 152
+	150	[81]	TEST     	20 0 1
+	151	[81]	JMP      	7	; to 159
+	152	[82]	GETUPVAL 	21 2	; logger
+	153	[82]	GETTABLE 	21 21 -38	; "warn"
+	154	[82]	LOADK    	22 -39	; "Error when loading"
+	155	[82]	MOVE     	23 17
+	156	[82]	MOVE     	24 20
+	157	[82]	CALL     	21 4 1
+	158	[82]	JMP      	61	; to 220
+	159	[83]	GETGLOBAL	21 -6	; type
+	160	[83]	GETTABLE 	22 20 -40	; "disabled"
+	161	[83]	CALL     	21 2 2
+	162	[83]	EQ       	0 21 -41	; - "boolean"
+	163	[83]	JMP      	3	; to 167
+	164	[83]	GETTABLE 	21 20 -40	; "disabled"
+	165	[83]	TEST     	21 0 1
+	166	[83]	JMP      	47	; to 214
+	167	[84]	SETTABLE 	20 -17 15	; "path" -
+	168	[85]	GETTABLE 	21 20 -42	; "name"
+	169	[85]	TEST     	21 0 1
+	170	[85]	JMP      	3	; to 174
+	171	[85]	SELF     	21 15 -43	; "match"
+	172	[85]	LOADK    	23 -44	; "/(.-)%.koplugin"
+	173	[85]	CALL     	21 3 2
+	174	[85]	SETTABLE 	20 -42 21	; "name" -
+	175	[86]	TEST     	5 0 0
+	176	[86]	JMP      	13	; to 190
+	177	[86]	SELF     	21 14 -30	; "sub"
+	178	[86]	LOADK    	23 -31	; 1
+	179	[86]	LOADK    	24 -32	; -10
+	180	[86]	CALL     	21 4 2
+	181	[86]	GETTABLE 	21 5 21
+	182	[86]	TEST     	21 0 0
+	183	[86]	JMP      	6	; to 190
+	184	[87]	GETGLOBAL	21 -8	; table
+	185	[87]	GETTABLE 	21 21 -13	; "insert"
+	186	[87]	GETTABLE 	22 0 -2	; "disabled_plugins"
+	187	[87]	MOVE     	23 20
+	188	[87]	CALL     	21 3 1
+	189	[87]	JMP      	30	; to 220
+	190	[89]	GETGLOBAL	21 -36	; pcall
+	191	[89]	GETGLOBAL	22 -37	; dofile
+	192	[89]	MOVE     	23 18
+	193	[89]	CALL     	21 3 3
+	194	[90]	TEST     	21 0 0
+	195	[90]	JMP      	9	; to 205
+	196	[90]	TEST     	22 0 0
+	197	[90]	JMP      	7	; to 205
+	198	[91]	GETGLOBAL	23 -20	; pairs
+	199	[91]	MOVE     	24 22
+	200	[91]	CALL     	23 2 4
+	201	[91]	JMP      	1	; to 203
+	202	[91]	SETTABLE 	20 26 27
+	203	[91]	TFORLOOP 	23 2
+	204	[91]	JMP      	-3	; to 202
+	205	[93]	GETUPVAL 	23 4	; sandboxPluginEventHandlers
+	206	[93]	MOVE     	24 20
+	207	[93]	CALL     	23 2 1
+	208	[94]	GETGLOBAL	23 -8	; table
+	209	[94]	GETTABLE 	23 23 -13	; "insert"
+	210	[94]	GETTABLE 	24 0 -1	; "enabled_plugins"
+	211	[94]	MOVE     	25 20
+	212	[94]	CALL     	23 3 1
+	213	[95]	JMP      	6	; to 220
+	214	[97]	GETUPVAL 	21 2	; logger
+	215	[97]	GETTABLE 	21 21 -22	; "info"
+	216	[97]	LOADK    	22 -45	; "Plugin "
+	217	[97]	MOVE     	23 17
+	218	[97]	LOADK    	24 -46	; " has been disabled."
+	219	[97]	CALL     	21 4 1
+	220	[99]	GETGLOBAL	21 -16	; package
+	221	[99]	SETTABLE 	21 -17 3	; "path" -
+	222	[100]	GETGLOBAL	21 -16	; package
+	223	[100]	SETTABLE 	21 -18 4	; "cpath" -
+	224	[68]	TFORLOOP 	11 1
+	225	[101]	JMP      	-130	; to 96
+	226	[66]	TFORLOOP 	6 2
+	227	[102]	JMP      	-142	; to 86
+	228	[106]	GETGLOBAL	6 -9	; ipairs
+	229	[106]	GETTABLE 	7 0 -1	; "enabled_plugins"
+	230	[106]	CALL     	6 2 4
+	231	[106]	JMP      	18	; to 250
+	232	[107]	GETGLOBAL	11 -16	; package
+	233	[107]	GETGLOBAL	12 -7	; string
+	234	[107]	GETTABLE 	12 12 -33	; "format"
+	235	[107]	LOADK    	13 -47	; "%s;%s/?.lua"
+	236	[107]	GETGLOBAL	14 -16	; package
+	237	[107]	GETTABLE 	14 14 -17	; "path"
+	238	[107]	GETTABLE 	15 10 -17	; "path"
+	239	[107]	CALL     	12 4 2
+	240	[107]	SETTABLE 	11 -17 12	; "path" -
+	241	[108]	GETGLOBAL	11 -16	; package
+	242	[108]	GETGLOBAL	12 -7	; string
+	243	[108]	GETTABLE 	12 12 -33	; "format"
+	244	[108]	LOADK    	13 -48	; "%s;%s/lib/?.so"
+	245	[108]	GETGLOBAL	14 -16	; package
+	246	[108]	GETTABLE 	14 14 -18	; "cpath"
+	247	[108]	GETTABLE 	15 10 -17	; "path"
+	248	[108]	CALL     	12 4 2
+	249	[108]	SETTABLE 	11 -18 12	; "cpath" -
+	250	[106]	TFORLOOP 	6 2
+	251	[108]	JMP      	-20	; to 232
+	252	[111]	GETGLOBAL	6 -8	; table
+	253	[111]	GETTABLE 	6 6 -49	; "sort"
+	254	[111]	GETTABLE 	7 0 -1	; "enabled_plugins"
+	255	[111]	CLOSURE  	8 0	; 0x7ffebdc07df0
+	256	[111]	CALL     	6 3 1
+	257	[113]	GETTABLE 	6 0 -1	; "enabled_plugins"
+	258	[113]	GETTABLE 	7 0 -2	; "disabled_plugins"
+	259	[113]	RETURN   	6 3
+	260	[114]	RETURN   	0 1
+
+function <./frontend/pluginloader.lua:111,111> (8 instructions, 32 bytes at 0x7ffebdc07df0)
+2 params, 4 slots, 0 upvalues, 2 locals, 1 constant, 0 functions
+	1	[111]	GETTABLE 	2 0 -1	; "path"
+	2	[111]	GETTABLE 	3 1 -1	; "path"
+	3	[111]	LT       	1 2 3
+	4	[111]	JMP      	1	; to 6
+	5	[111]	LOADBOOL 	2 0 1
+	6	[111]	LOADBOOL 	2 1 0
+	7	[111]	RETURN   	2 2
+	8	[111]	RETURN   	0 1
+
+function <./frontend/pluginloader.lua:116,174> (91 instructions, 364 bytes at 0x7ffebdc08250)
+1 param, 13 slots, 1 upvalue, 21 locals, 17 constants, 3 functions
+	1	[117]	NEWTABLE 	1 0 0
+	2	[117]	NEWTABLE 	2 0 0
+	3	[118]	GETTABLE 	3 0 -1	; "all_plugins"
+	4	[118]	EQ       	0 3 -2	; - nil
+	5	[118]	JMP      	6	; to 12
+	6	[119]	NEWTABLE 	3 0 0
+	7	[119]	SETTABLE 	0 -1 3	; "all_plugins" -
+	8	[120]	SELF     	3 0 -3	; "loadPlugins"
+	9	[120]	CALL     	3 2 3
+	10	[120]	MOVE     	2 4
+	11	[120]	MOVE     	1 3
+	12	[123]	GETGLOBAL	3 -4	; ipairs
+	13	[123]	MOVE     	4 1
+	14	[123]	CALL     	3 2 4
+	15	[123]	JMP      	16	; to 32
+	16	[124]	NEWTABLE 	8 0 0
+	17	[125]	GETTABLE 	9 7 -5	; "fullname"
+	18	[125]	TEST     	9 0 1
+	19	[125]	JMP      	1	; to 21
+	20	[125]	GETTABLE 	9 7 -6	; "name"
+	21	[125]	SETTABLE 	8 -5 9	; "fullname" -
+	22	[126]	GETTABLE 	9 7 -6	; "name"
+	23	[126]	SETTABLE 	8 -6 9	; "name" -
+	24	[127]	GETTABLE 	9 7 -7	; "description"
+	25	[127]	SETTABLE 	8 -7 9	; "description" -
+	26	[128]	SETTABLE 	8 -8 -9	; "enable" true
+	27	[129]	GETGLOBAL	9 -10	; table
+	28	[129]	GETTABLE 	9 9 -11	; "insert"
+	29	[129]	GETTABLE 	10 0 -1	; "all_plugins"
+	30	[129]	MOVE     	11 8
+	31	[129]	CALL     	9 3 1
+	32	[123]	TFORLOOP 	3 2
+	33	[129]	JMP      	-18	; to 16
+	34	[132]	GETGLOBAL	3 -4	; ipairs
+	35	[132]	MOVE     	4 2
+	36	[132]	CALL     	3 2 4
+	37	[132]	JMP      	21	; to 59
+	38	[133]	NEWTABLE 	8 0 0
+	39	[134]	GETTABLE 	9 7 -5	; "fullname"
+	40	[134]	TEST     	9 0 1
+	41	[134]	JMP      	1	; to 43
+	42	[134]	GETTABLE 	9 7 -6	; "name"
+	43	[134]	SETTABLE 	8 -5 9	; "fullname" -
+	44	[135]	GETTABLE 	9 7 -6	; "name"
+	45	[135]	SETTABLE 	8 -6 9	; "name" -
+	46	[136]	GETTABLE 	9 7 -7	; "description"
+	47	[136]	SETTABLE 	8 -7 9	; "description" -
+	48	[137]	SETTABLE 	8 -8 -12	; "enable" false
+	49	[138]	GETUPVAL 	9 0	; OBSOLETE_PLUGINS
+	50	[138]	GETTABLE 	10 8 -6	; "name"
+	51	[138]	GETTABLE 	9 9 10
+	52	[138]	TEST     	9 0 1
+	53	[138]	JMP      	5	; to 59
+	54	[139]	GETGLOBAL	9 -10	; table
+	55	[139]	GETTABLE 	9 9 -11	; "insert"
+	56	[139]	GETTABLE 	10 0 -1	; "all_plugins"
+	57	[139]	MOVE     	11 8
+	58	[139]	CALL     	9 3 1
+	59	[132]	TFORLOOP 	3 2
+	60	[140]	JMP      	-23	; to 38
+	61	[142]	GETGLOBAL	3 -10	; table
+	62	[142]	GETTABLE 	3 3 -13	; "sort"
+	63	[142]	GETTABLE 	4 0 -1	; "all_plugins"
+	64	[142]	CLOSURE  	5 0	; 0x7ffebdc08630
+	65	[142]	CALL     	3 3 1
+	66	[144]	NEWTABLE 	3 0 0
+	67	[145]	GETGLOBAL	4 -4	; ipairs
+	68	[145]	GETTABLE 	5 0 -1	; "all_plugins"
+	69	[145]	CALL     	4 2 4
+	70	[145]	JMP      	17	; to 88
+	71	[146]	GETGLOBAL	9 -10	; table
+	72	[146]	GETTABLE 	9 9 -11	; "insert"
+	73	[146]	MOVE     	10 3
+	74	[146]	NEWTABLE 	11 0 4
+	75	[147]	GETTABLE 	12 8 -5	; "fullname"
+	76	[147]	SETTABLE 	11 -14 12	; "text" -
+	77	[150]	CLOSURE  	12 1	; 0x7ffebdc08580
+	78	[150]	MOVE     	0 8
+	79	[150]	SETTABLE 	11 -15 12	; "checked_func" -
+	80	[169]	CLOSURE  	12 2	; 0x7ffebdc08fd0
+	81	[169]	MOVE     	0 8
+	82	[169]	MOVE     	0 0
+	83	[169]	SETTABLE 	11 -16 12	; "callback" -
+	84	[170]	GETTABLE 	12 8 -7	; "description"
+	85	[170]	SETTABLE 	11 -17 12	; "help_text" -
+	86	[146]	CALL     	9 3 1
+	87	[171]	CLOSE    	7
+	88	[145]	TFORLOOP 	4 2
+	89	[171]	JMP      	-19	; to 71
+	90	[173]	RETURN   	3 2
+	91	[174]	RETURN   	0 1
+
+function <./frontend/pluginloader.lua:142,142> (8 instructions, 32 bytes at 0x7ffebdc08630)
+2 params, 4 slots, 0 upvalues, 2 locals, 1 constant, 0 functions
+	1	[142]	GETTABLE 	2 0 -1	; "fullname"
+	2	[142]	GETTABLE 	3 1 -1	; "fullname"
+	3	[142]	LT       	1 2 3
+	4	[142]	JMP      	1	; to 6
+	5	[142]	LOADBOOL 	2 0 1
+	6	[142]	LOADBOOL 	2 1 0
+	7	[142]	RETURN   	2 2
+	8	[142]	RETURN   	0 1
+
+function <./frontend/pluginloader.lua:148,150> (4 instructions, 16 bytes at 0x7ffebdc08580)
+0 params, 2 slots, 1 upvalue, 0 locals, 1 constant, 0 functions
+	1	[149]	GETUPVAL 	0 0	; plugin
+	2	[149]	GETTABLE 	0 0 -1	; "enable"
+	3	[149]	RETURN   	0 2
+	4	[150]	RETURN   	0 1
+
+function <./frontend/pluginloader.lua:151,169> (53 instructions, 212 bytes at 0x7ffebdc08fd0)
+0 params, 11 slots, 2 upvalues, 4 locals, 18 constants, 0 functions
+	1	[152]	GETGLOBAL	0 -1	; require
+	2	[152]	LOADK    	1 -2	; "ui/widget/infomessage"
+	3	[152]	CALL     	0 2 2
+	4	[153]	GETGLOBAL	1 -1	; require
+	5	[153]	LOADK    	2 -3	; "ui/uimanager"
+	6	[153]	CALL     	1 2 2
+	7	[154]	GETGLOBAL	2 -1	; require
+	8	[154]	LOADK    	3 -4	; "gettext"
+	9	[154]	CALL     	2 2 2
+	10	[155]	GETGLOBAL	3 -5	; G_reader_settings
+	11	[155]	SELF     	3 3 -6	; "readSetting"
+	12	[155]	LOADK    	5 -7	; "plugins_disabled"
+	13	[155]	CALL     	3 3 2
+	14	[155]	TEST     	3 0 1
+	15	[155]	JMP      	1	; to 17
+	16	[155]	NEWTABLE 	3 0 0
+	17	[156]	GETUPVAL 	4 0	; plugin
+	18	[156]	GETUPVAL 	5 0	; plugin
+	19	[156]	GETTABLE 	5 5 -8	; "enable"
+	20	[156]	NOT      	5 5
+	21	[156]	SETTABLE 	4 -8 5	; "enable" -
+	22	[157]	GETUPVAL 	4 0	; plugin
+	23	[157]	GETTABLE 	4 4 -8	; "enable"
+	24	[157]	TEST     	4 0 0
+	25	[157]	JMP      	4	; to 30
+	26	[158]	GETUPVAL 	4 0	; plugin
+	27	[158]	GETTABLE 	4 4 -9	; "name"
+	28	[158]	SETTABLE 	3 4 -10	; - nil
+	29	[158]	JMP      	3	; to 33
+	30	[160]	GETUPVAL 	4 0	; plugin
+	31	[160]	GETTABLE 	4 4 -9	; "name"
+	32	[160]	SETTABLE 	3 4 -11	; - true
+	33	[162]	GETGLOBAL	4 -5	; G_reader_settings
+	34	[162]	SELF     	4 4 -12	; "saveSetting"
+	35	[162]	LOADK    	6 -7	; "plugins_disabled"
+	36	[162]	MOVE     	7 3
+	37	[162]	CALL     	4 4 1
+	38	[163]	GETUPVAL 	4 1	; self
+	39	[163]	GETTABLE 	4 4 -13	; "show_info"
+	40	[163]	TEST     	4 0 0
+	41	[163]	JMP      	11	; to 53
+	42	[164]	SELF     	4 1 -14	; "show"
+	43	[164]	SELF     	6 0 -15	; "new"
+	44	[164]	NEWTABLE 	8 0 1
+	45	[165]	MOVE     	9 2
+	46	[165]	LOADK    	10 -17	; "This will take effect on next restart."
+	47	[165]	CALL     	9 2 2
+	48	[165]	SETTABLE 	8 -16 9	; "text" -
+	49	[164]	CALL     	6 3 0
+	50	[164]	CALL     	4 0 1
+	51	[167]	GETUPVAL 	4 1	; self
+	52	[167]	SETTABLE 	4 -13 -18	; "show_info" false
+	53	[169]	RETURN   	0 1
+
+function <./frontend/pluginloader.lua:176,184> (22 instructions, 88 bytes at 0x7ffebdc09280)
+3 params, 10 slots, 1 upvalue, 5 locals, 6 constants, 0 functions
+	1	[177]	GETGLOBAL	3 -1	; pcall
+	2	[177]	GETTABLE 	4 1 -2	; "new"
+	3	[177]	MOVE     	5 1
+	4	[177]	MOVE     	6 2
+	5	[177]	CALL     	3 4 3
+	6	[178]	TEST     	3 0 0
+	7	[178]	JMP      	4	; to 12
+	8	[179]	MOVE     	5 3
+	9	[179]	MOVE     	6 4
+	10	[179]	RETURN   	5 3
+	11	[179]	JMP      	10	; to 22
+	12	[181]	GETUPVAL 	5 0	; logger
+	13	[181]	GETTABLE 	5 5 -3	; "err"
+	14	[181]	LOADK    	6 -4	; "Failed to initialize"
+	15	[181]	GETTABLE 	7 1 -5	; "name"
+	16	[181]	LOADK    	8 -6	; "plugin: "
+	17	[181]	MOVE     	9 4
+	18	[181]	CALL     	5 5 1
+	19	[182]	LOADNIL  	5 5
+	20	[182]	MOVE     	6 4
+	21	[182]	RETURN   	5 3
+	22	[184]	RETURN   	0 1

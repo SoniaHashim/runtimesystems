@@ -1,0 +1,614 @@
+-- BYTECODE -- screen_android.lua:26-33
+0001    DIVVN    1   0   0  ; 1000
+0002    KSHORT   2 120
+0003    ISGT     2   1
+0004    JMP      2 => 0012
+0005    UGET     2   0      ; T
+0006    UGET     3   1      ; _
+0007    KSTR     4   0      ; "%1 minutes"
+0008    CALL     3   2   2
+0009    DIVVN    4   1   1  ; 60
+0010    CALLT    2   3
+0011    JMP      2 => 0018
+0012 => UGET     2   0      ; T
+0013    UGET     3   1      ; _
+0014    KSTR     4   1      ; "%1 seconds"
+0015    CALL     3   2   2
+0016    MOV      4   1
+0017    CALLT    2   3
+0018 => RET0     0   1
+
+-- BYTECODE -- screen_android.lua:35-42
+0001    UGET     1   0      ; needs_wakelocks
+0002    ISF          1
+0003    JMP      2 => 0006
+0004    KPRI     1   1
+0005    RET1     1   2
+0006 => UGET     1   1      ; system
+0007    ISEQV    0   1
+0008    JMP      1 => 0012
+0009    UGET     1   2      ; screenOn
+0010    ISNEV    0   1
+0011    JMP      1 => 0015
+0012 => KPRI     1   2
+0013    RET1     1   2
+0014    JMP      1 => 0019
+0015 => UGET     1   3      ; android
+0016    TGETS    1   1   0  ; "settings"
+0017    TGETS    1   1   1  ; "canWrite"
+0018    CALLT    1   1
+0019 => RET0     0   1
+
+-- BYTECODE -- screen_android.lua:44-46
+0001    UGET     1   0      ; android
+0002    TGETS    1   1   0  ; "timeout"
+0003    TGETS    1   1   1  ; "get"
+0004    CALL     1   2   1
+0005    ISEQV    0   1
+0006    JMP      1 => 0009
+0007    KPRI     1   1
+0008    JMP      2 => 0010
+0009 => KPRI     1   2
+0010 => RET1     1   2
+
+-- BYTECODE -- screen_android.lua:48-51
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "saveSetting"
+0004    KSTR     3   2      ; "android_screen_timeout"
+0005    MOV      4   0
+0006    CALL     1   1   4
+0007    UGET     1   0      ; android
+0008    TGETS    1   1   3  ; "timeout"
+0009    TGETS    1   1   4  ; "set"
+0010    MOV      2   0
+0011    CALL     1   1   2
+0012    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:60-60
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:59-62
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "scheduleIn"
+0004    KSHORT   2   1
+0005    FNEW     3   1      ; screen_android.lua:60
+0006    CALL     0   1   4
+0007    UGET     0   1      ; android
+0008    TGETS    0   0   2  ; "settings"
+0009    TGETS    0   0   3  ; "requestWritePermission"
+0010    CALL     0   1   1
+0011    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:53-64
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/uimanager"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/confirmbox"
+0006    CALL     1   2   2
+0007    MOV      3   0
+0008    TGETS    2   0   3  ; "show"
+0009    MOV      5   1
+0010    TGETS    4   1   4  ; "new"
+0011    TDUP     6   6
+0012    UGET     7   0      ; _
+0013    KSTR     8   5      ; "Allow KOReader to modify system settings"~
+0014    CALL     7   2   2
+0015    TSETS    7   6   7  ; "text"
+0016    UGET     7   0      ; _
+0017    KSTR     8   8      ; "Allow"
+0018    CALL     7   2   2
+0019    TSETS    7   6   9  ; "ok_text"
+0020    FNEW     7  10      ; screen_android.lua:59
+0021    TSETS    7   6  11  ; "ok_callback"
+0022    CALL     4   0   3
+0023    CALLM    2   1   1
+0024    UCLO     0 => 0025
+0025 => RET0     0   1
+
+-- BYTECODE -- screen_android.lua:68-81
+0001    UGET     1   0      ; Device
+0002    TGETS    1   1   0  ; "firmware_rev"
+0003    KSHORT   2  19
+0004    ISGE     1   2
+0005    JMP      2 => 0031
+0006    KSHORT   2  17
+0007    ISGT     2   1
+0008    JMP      2 => 0031
+0009    UGET     2   0      ; Device
+0010    MOV      3   2
+0011    TGETS    2   2   1  ; "toggleFullscreen"
+0012    CALL     2   1   2
+0013    GGET     2   2      ; "require"
+0014    KSTR     3   3      ; "ui/uimanager"
+0015    CALL     2   2   2
+0016    GGET     3   2      ; "require"
+0017    KSTR     4   4      ; "ui/widget/infomessage"
+0018    CALL     3   2   2
+0019    MOV      5   2
+0020    TGETS    4   2   5  ; "show"
+0021    MOV      7   3
+0022    TGETS    6   3   6  ; "new"
+0023    TDUP     8   8
+0024    UGET     9   1      ; _
+0025    KSTR    10   7      ; "This will take effect on next restart."
+0026    CALL     9   2   2
+0027    TSETS    9   8   9  ; "text"
+0028    CALL     6   0   3
+0029    CALLM    4   1   1
+0030    JMP      2 => 0037
+0031 => KSHORT   2  17
+0032    ISGE     1   2
+0033    JMP      2 => 0037
+0034    MOV      3   0
+0035    TGETS    2   0  10  ; "toggleFullscreenLegacy"
+0036    CALL     2   1   2
+0037 => RET0     0   1
+
+-- BYTECODE -- screen_android.lua:84-114
+0001    UGET     1   0      ; android
+0002    TGETS    1   1   0  ; "isFullscreen"
+0003    CALL     1   2   1
+0004    UGET     2   0      ; android
+0005    TGETS    2   2   1  ; "setFullscreen"
+0006    NOT      3   1
+0007    CALL     2   1   2
+0008    UGET     2   1      ; logger
+0009    TGETS    2   2   2  ; "dbg"
+0010    GGET     3   3      ; "string"
+0011    TGETS    3   3   4  ; "format"
+0012    KSTR     4   5      ; "requesting fullscreen: %s"
+0013    NOT      5   1
+0014    CALL     3   0   3
+0015    CALLM    2   1   0
+0016    UGET     2   0      ; android
+0017    TGETS    2   2   6  ; "getScreenWidth"
+0018    CALL     2   2   1
+0019    UGET     3   0      ; android
+0020    TGETS    3   3   7  ; "getScreenHeight"
+0021    CALL     3   2   1
+0022    UGET     4   0      ; android
+0023    TGETS    4   4   8  ; "getStatusBarHeight"
+0024    CALL     4   2   1
+0025    SUBVV    5   3   4
+0026    IST          1
+0027    JMP      6 => 0050
+0028    UGET     6   2      ; Screen
+0029    TGETS    6   6   9  ; "viewport"
+0030    ISF          6
+0031    JMP      7 => 0050
+0032    KSHORT   4   0
+0033    UGET     6   3      ; Input
+0034    MOV      7   6
+0035    TGETS    6   6  10  ; "registerEventAdjustHook"
+0036    UGET     8   3      ; Input
+0037    TGETS    8   8  11  ; "adjustTouchTranslate"
+0038    TDUP     9  13
+0039    UGET    10   2      ; Screen
+0040    TGETS   10  10   9  ; "viewport"
+0041    TGETS   10  10  12  ; "x"
+0042    ADDNV   10  10   0  ; 0
+0043    TSETS   10   9  12  ; "x"
+0044    UGET    10   2      ; Screen
+0045    TGETS   10  10   9  ; "viewport"
+0046    TGETS   10  10  14  ; "y"
+0047    ADDNV   10  10   0  ; 0
+0048    TSETS   10   9  14  ; "y"
+0049    CALL     6   1   4
+0050 => UGET     6   4      ; Geom
+0051    MOV      7   6
+0052    TGETS    6   6  15  ; "new"
+0053    TDUP     8  16
+0054    TSETS    4   8  14  ; "y"
+0055    TSETS    2   8  17  ; "w"
+0056    TSETS    5   8  18  ; "h"
+0057    CALL     6   2   3
+0058    UGET     7   1      ; logger
+0059    TGETS    7   7  19  ; "info"
+0060    GGET     8   3      ; "string"
+0061    TGETS    8   8   4  ; "format"
+0062    KSTR     9  20      ; "Switching viewport to new geometry [x=%d"~
+0063    KSHORT  10   0
+0064    MOV     11   4
+0065    MOV     12   2
+0066    MOV     13   5
+0067    CALL     8   0   6
+0068    CALLM    7   1   0
+0069    UGET     7   2      ; Screen
+0070    MOV      8   7
+0071    TGETS    7   7  21  ; "setViewport"
+0072    MOV      9   6
+0073    CALL     7   1   3
+0074    ISF          1
+0075    JMP      7 => 0097
+0076    UGET     7   2      ; Screen
+0077    TGETS    7   7   9  ; "viewport"
+0078    ISF          7
+0079    JMP      8 => 0097
+0080    UGET     7   3      ; Input
+0081    MOV      8   7
+0082    TGETS    7   7  10  ; "registerEventAdjustHook"
+0083    UGET     9   3      ; Input
+0084    TGETS    9   9  11  ; "adjustTouchTranslate"
+0085    TDUP    10  22
+0086    UGET    11   2      ; Screen
+0087    TGETS   11  11   9  ; "viewport"
+0088    TGETS   11  11  12  ; "x"
+0089    SUBNV   11  11   0  ; 0
+0090    TSETS   11  10  12  ; "x"
+0091    UGET    11   2      ; Screen
+0092    TGETS   11  11   9  ; "viewport"
+0093    TGETS   11  11  14  ; "y"
+0094    SUBNV   11  11   0  ; 0
+0095    TSETS   11  10  14  ; "y"
+0096    CALL     7   1   4
+0097 => RET0     0   1
+
+-- BYTECODE -- screen_android.lua:121-121
+0001    UGET     0   0      ; canModifyTimeout
+0002    UGET     1   1      ; system
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:122-122
+0001    UGET     0   0      ; timeoutEquals
+0002    UGET     1   1      ; system
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:123-123
+0001    UGET     0   0      ; saveAndApplyTimeout
+0002    UGET     1   1      ; system
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:127-127
+0001    UGET     0   0      ; canModifyTimeout
+0002    UGET     1   1      ; timeout_custom1
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:128-128
+0001    UGET     0   0      ; timeoutEquals
+0002    UGET     1   1      ; timeout_custom1
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:129-129
+0001    UGET     0   0      ; saveAndApplyTimeout
+0002    UGET     1   1      ; timeout_custom1
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:133-133
+0001    UGET     0   0      ; canModifyTimeout
+0002    UGET     1   1      ; timeout_custom2
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:134-134
+0001    UGET     0   0      ; timeoutEquals
+0002    UGET     1   1      ; timeout_custom2
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:135-135
+0001    UGET     0   0      ; saveAndApplyTimeout
+0002    UGET     1   1      ; timeout_custom2
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:139-139
+0001    UGET     0   0      ; canModifyTimeout
+0002    UGET     1   1      ; timeout_custom3
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:140-140
+0001    UGET     0   0      ; timeoutEquals
+0002    UGET     1   1      ; timeout_custom3
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:141-141
+0001    UGET     0   0      ; saveAndApplyTimeout
+0002    UGET     1   1      ; timeout_custom3
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:145-145
+0001    UGET     0   0      ; canModifyTimeout
+0002    UGET     1   1      ; timeout_custom4
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:146-146
+0001    UGET     0   0      ; timeoutEquals
+0002    UGET     1   1      ; timeout_custom4
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:147-147
+0001    UGET     0   0      ; saveAndApplyTimeout
+0002    UGET     1   1      ; timeout_custom4
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:151-151
+0001    UGET     0   0      ; canModifyTimeout
+0002    UGET     1   1      ; timeout_custom5
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:152-152
+0001    UGET     0   0      ; timeoutEquals
+0002    UGET     1   1      ; timeout_custom5
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:153-153
+0001    UGET     0   0      ; saveAndApplyTimeout
+0002    UGET     1   1      ; timeout_custom5
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:157-157
+0001    UGET     0   0      ; canModifyTimeout
+0002    UGET     1   1      ; timeout_custom6
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:158-158
+0001    UGET     0   0      ; timeoutEquals
+0002    UGET     1   1      ; timeout_custom6
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:159-159
+0001    UGET     0   0      ; saveAndApplyTimeout
+0002    UGET     1   1      ; timeout_custom6
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:163-163
+0001    UGET     0   0      ; canModifyTimeout
+0002    UGET     1   1      ; timeout_custom7
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:164-164
+0001    UGET     0   0      ; timeoutEquals
+0002    UGET     1   1      ; timeout_custom7
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:165-165
+0001    UGET     0   0      ; saveAndApplyTimeout
+0002    UGET     1   1      ; timeout_custom7
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:169-169
+0001    UGET     0   0      ; canModifyTimeout
+0002    UGET     1   1      ; screenOn
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:170-170
+0001    UGET     0   0      ; timeoutEquals
+0002    UGET     1   1      ; screenOn
+0003    CALLT    0   2
+
+-- BYTECODE -- screen_android.lua:171-171
+0001    UGET     0   0      ; saveAndApplyTimeout
+0002    UGET     1   1      ; screenOn
+0003    CALL     0   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:178-178
+0001    UGET     0   0      ; android
+0002    TGETS    0   0   0  ; "settings"
+0003    TGETS    0   0   1  ; "canWrite"
+0004    CALL     0   2   1
+0005    NOT      0   0
+0006    RET1     0   2
+
+-- BYTECODE -- screen_android.lua:179-179
+0001    UGET     0   0      ; android
+0002    TGETS    0   0   0  ; "settings"
+0003    TGETS    0   0   1  ; "canWrite"
+0004    CALLT    0   1
+
+-- BYTECODE -- screen_android.lua:180-180
+0001    UGET     0   0      ; requestWriteSettings
+0002    CALL     0   1   1
+0003    RET0     0   1
+
+-- BYTECODE -- screen_android.lua:117-189
+0001    TNEW     1  10
+0002    TDUP     2   1
+0003    UGET     3   0      ; _
+0004    KSTR     4   0      ; "Use system settings"
+0005    CALL     3   2   2
+0006    TSETS    3   2   2  ; "text"
+0007    FNEW     3   3      ; screen_android.lua:121
+0008    TSETS    3   2   4  ; "enabled_func"
+0009    FNEW     3   5      ; screen_android.lua:122
+0010    TSETS    3   2   6  ; "checked_func"
+0011    FNEW     3   7      ; screen_android.lua:123
+0012    TSETS    3   2   8  ; "callback"
+0013    TSETB    2   1   1
+0014    TDUP     2   9
+0015    UGET     3   5      ; humanReadableTimeout
+0016    UGET     4   6      ; timeout_custom1
+0017    CALL     3   2   2
+0018    TSETS    3   2   2  ; "text"
+0019    FNEW     3  10      ; screen_android.lua:127
+0020    TSETS    3   2   4  ; "enabled_func"
+0021    FNEW     3  11      ; screen_android.lua:128
+0022    TSETS    3   2   6  ; "checked_func"
+0023    FNEW     3  12      ; screen_android.lua:129
+0024    TSETS    3   2   8  ; "callback"
+0025    TSETB    2   1   2
+0026    TDUP     2  13
+0027    UGET     3   5      ; humanReadableTimeout
+0028    UGET     4   7      ; timeout_custom2
+0029    CALL     3   2   2
+0030    TSETS    3   2   2  ; "text"
+0031    FNEW     3  14      ; screen_android.lua:133
+0032    TSETS    3   2   4  ; "enabled_func"
+0033    FNEW     3  15      ; screen_android.lua:134
+0034    TSETS    3   2   6  ; "checked_func"
+0035    FNEW     3  16      ; screen_android.lua:135
+0036    TSETS    3   2   8  ; "callback"
+0037    TSETB    2   1   3
+0038    TDUP     2  17
+0039    UGET     3   5      ; humanReadableTimeout
+0040    UGET     4   8      ; timeout_custom3
+0041    CALL     3   2   2
+0042    TSETS    3   2   2  ; "text"
+0043    FNEW     3  18      ; screen_android.lua:139
+0044    TSETS    3   2   4  ; "enabled_func"
+0045    FNEW     3  19      ; screen_android.lua:140
+0046    TSETS    3   2   6  ; "checked_func"
+0047    FNEW     3  20      ; screen_android.lua:141
+0048    TSETS    3   2   8  ; "callback"
+0049    TSETB    2   1   4
+0050    TDUP     2  21
+0051    UGET     3   5      ; humanReadableTimeout
+0052    UGET     4   9      ; timeout_custom4
+0053    CALL     3   2   2
+0054    TSETS    3   2   2  ; "text"
+0055    FNEW     3  22      ; screen_android.lua:145
+0056    TSETS    3   2   4  ; "enabled_func"
+0057    FNEW     3  23      ; screen_android.lua:146
+0058    TSETS    3   2   6  ; "checked_func"
+0059    FNEW     3  24      ; screen_android.lua:147
+0060    TSETS    3   2   8  ; "callback"
+0061    TSETB    2   1   5
+0062    TDUP     2  25
+0063    UGET     3   5      ; humanReadableTimeout
+0064    UGET     4  10      ; timeout_custom5
+0065    CALL     3   2   2
+0066    TSETS    3   2   2  ; "text"
+0067    FNEW     3  26      ; screen_android.lua:151
+0068    TSETS    3   2   4  ; "enabled_func"
+0069    FNEW     3  27      ; screen_android.lua:152
+0070    TSETS    3   2   6  ; "checked_func"
+0071    FNEW     3  28      ; screen_android.lua:153
+0072    TSETS    3   2   8  ; "callback"
+0073    TSETB    2   1   6
+0074    TDUP     2  29
+0075    UGET     3   5      ; humanReadableTimeout
+0076    UGET     4  11      ; timeout_custom6
+0077    CALL     3   2   2
+0078    TSETS    3   2   2  ; "text"
+0079    FNEW     3  30      ; screen_android.lua:157
+0080    TSETS    3   2   4  ; "enabled_func"
+0081    FNEW     3  31      ; screen_android.lua:158
+0082    TSETS    3   2   6  ; "checked_func"
+0083    FNEW     3  32      ; screen_android.lua:159
+0084    TSETS    3   2   8  ; "callback"
+0085    TSETB    2   1   7
+0086    TDUP     2  33
+0087    UGET     3   5      ; humanReadableTimeout
+0088    UGET     4  12      ; timeout_custom7
+0089    CALL     3   2   2
+0090    TSETS    3   2   2  ; "text"
+0091    FNEW     3  34      ; screen_android.lua:163
+0092    TSETS    3   2   4  ; "enabled_func"
+0093    FNEW     3  35      ; screen_android.lua:164
+0094    TSETS    3   2   6  ; "checked_func"
+0095    FNEW     3  36      ; screen_android.lua:165
+0096    TSETS    3   2   8  ; "callback"
+0097    TSETB    2   1   8
+0098    TDUP     2  38
+0099    UGET     3   0      ; _
+0100    KSTR     4  37      ; "Keep screen on"
+0101    CALL     3   2   2
+0102    TSETS    3   2   2  ; "text"
+0103    FNEW     3  39      ; screen_android.lua:169
+0104    TSETS    3   2   4  ; "enabled_func"
+0105    FNEW     3  40      ; screen_android.lua:170
+0106    TSETS    3   2   6  ; "checked_func"
+0107    FNEW     3  41      ; screen_android.lua:171
+0108    TSETS    3   2   8  ; "callback"
+0109    TSETB    2   1   9
+0110    UGET     2  14      ; android
+0111    TGETS    2   2  42  ; "settings"
+0112    TGETS    2   2  43  ; "canWrite"
+0113    CALL     2   2   1
+0114    IST          2
+0115    JMP      2 => 0132
+0116    GGET     2  44      ; "table"
+0117    TGETS    2   2  45  ; "insert"
+0118    MOV      3   1
+0119    KSHORT   4   1
+0120    TDUP     5  47
+0121    UGET     6   0      ; _
+0122    KSTR     7  46      ; "Allow system settings override"
+0123    CALL     6   2   2
+0124    TSETS    6   5   2  ; "text"
+0125    FNEW     6  48      ; screen_android.lua:178
+0126    TSETS    6   5   4  ; "enabled_func"
+0127    FNEW     6  49      ; screen_android.lua:179
+0128    TSETS    6   5   6  ; "checked_func"
+0129    FNEW     6  50      ; screen_android.lua:180
+0130    TSETS    6   5   8  ; "callback"
+0131    CALL     2   1   4
+0132 => TDUP     2  52
+0133    UGET     3   0      ; _
+0134    KSTR     4  51      ; "Screen Timeout"
+0135    CALL     3   2   2
+0136    TSETS    3   2   2  ; "text"
+0137    TSETS    1   2  53  ; "sub_item_table"
+0138    UCLO     0 => 0139
+0139 => RET1     2   2
+
+-- BYTECODE -- screen_android.lua:0-192
+0001    GGET     0   0      ; "pcall"
+0002    GGET     1   1      ; "require"
+0003    KSTR     2   2      ; "android"
+0004    CALL     0   3   3
+0005    GGET     2   1      ; "require"
+0006    KSTR     3   3      ; "device"
+0007    CALL     2   2   2
+0008    GGET     3   1      ; "require"
+0009    KSTR     4   4      ; "ui/geometry"
+0010    CALL     3   2   2
+0011    GGET     4   1      ; "require"
+0012    KSTR     5   5      ; "ffi"
+0013    CALL     4   2   2
+0014    GGET     5   1      ; "require"
+0015    KSTR     6   6      ; "logger"
+0016    CALL     5   2   2
+0017    GGET     6   1      ; "require"
+0018    KSTR     7   7      ; "gettext"
+0019    CALL     6   2   2
+0020    TGETS    7   2   8  ; "input"
+0021    TGETS    8   2   9  ; "screen"
+0022    GGET     9   1      ; "require"
+0023    KSTR    10  10      ; "ffi/util"
+0024    CALL     9   2   2
+0025    TGETS    9   9  11  ; "template"
+0026    IST          0
+0027    JMP     10 => 0029
+0028    UCLO     0 => 0056
+0029 => TGETS   10   4  12  ; "C"
+0030    TGETS   10  10  13  ; "AKEEP_SCREEN_ON_DISABLED"
+0031    TGETS   11   4  12  ; "C"
+0032    TGETS   11  11  14  ; "AKEEP_SCREEN_ON_ENABLED"
+0033    TGETS   12   1  15  ; "needsWakelocks"
+0034    CALL    12   2   1
+0035    KNUM    13   0      ; 120000
+0036    KNUM    14   1      ; 300000
+0037    KNUM    15   2      ; 600000
+0038    KNUM    16   3      ; 900000
+0039    KNUM    17   4      ; 1200000
+0040    KNUM    18   5      ; 1500000
+0041    KNUM    19   6      ; 1800000
+0042    FNEW    20  16      ; screen_android.lua:26
+0043    FNEW    21  17      ; screen_android.lua:35
+0044    FNEW    22  18      ; screen_android.lua:44
+0045    FNEW    23  19      ; screen_android.lua:48
+0046    FNEW    24  20      ; screen_android.lua:53
+0047    TNEW    25   0
+0048    FNEW    26  22      ; screen_android.lua:68
+0049    TSETS   26  25  21  ; "toggleFullscreen"
+0050    FNEW    26  24      ; screen_android.lua:84
+0051    TSETS   26  25  23  ; "toggleFullscreenLegacy"
+0052    FNEW    26  26      ; screen_android.lua:117
+0053    TSETS   26  25  25  ; "getTimeoutMenuTable"
+0054    UCLO     0 => 0055
+0055 => RET1    25   2
+0056 => RET0     0   1
+

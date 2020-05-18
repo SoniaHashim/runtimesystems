@@ -1,0 +1,2012 @@
+-- BYTECODE -- mosaicmenu.lua:56-87
+0001    TGETS    1   0   0  ; "key"
+0002    IST          1
+0003    JMP      1 => 0005
+0004    RET0     0   1
+0005 => KSHORT   1   0
+0006    UGET     2   0      ; Blitbuffer
+0007    TGETS    2   2   1  ; "COLOR_WHITE"
+0008    TGETS    3   0   2  ; "style"
+0009    ISNES    3   3      ; "rounded_corner"
+0010    JMP      3 => 0018
+0011    GGET     3   4      ; "math"
+0012    TGETS    3   3   5  ; "floor"
+0013    TGETS    4   0   6  ; "width"
+0014    DIVVN    4   4   0  ; 2
+0015    CALL     3   2   2
+0016    MOV      1   3
+0017    JMP      3 => 0023
+0018 => TGETS    3   0   2  ; "style"
+0019    ISNES    3   7      ; "grey_square"
+0020    JMP      3 => 0023
+0021    UGET     3   0      ; Blitbuffer
+0022    TGETS    2   3   8  ; "COLOR_LIGHT_GRAY"
+0023 => KPRI     3   0
+0024    TGETS    4   0   0  ; "key"
+0025    MOV      5   4
+0026    TGETS    4   4   9  ; "len"
+0027    CALL     4   2   2
+0028    KSHORT   5   1
+0029    ISGE     5   4
+0030    JMP      4 => 0039
+0031    UGET     4   1      ; Font
+0032    MOV      5   4
+0033    TGETS    4   4  10  ; "getFace"
+0034    KSTR     6  11      ; "ffont"
+0035    KSHORT   7  14
+0036    CALL     4   2   4
+0037    MOV      3   4
+0038    JMP      4 => 0046
+0039 => UGET     4   1      ; Font
+0040    MOV      5   4
+0041    TGETS    4   4  10  ; "getFace"
+0042    KSTR     6  12      ; "scfont"
+0043    KSHORT   7  22
+0044    CALL     4   2   4
+0045    MOV      3   4
+0046 => UGET     4   2      ; FrameContainer
+0047    MOV      5   4
+0048    TGETS    4   4  13  ; "new"
+0049    TDUP     6  14
+0050    TGETS    7   0  15  ; "bordersize"
+0051    TSETS    7   6  15  ; "bordersize"
+0052    TSETS    1   6  16  ; "radius"
+0053    TSETS    2   6  17  ; "background"
+0054    TGETS    7   0  18  ; "dimen"
+0055    TSETS    7   6  18  ; "dimen"
+0056    UGET     7   3      ; CenterContainer
+0057    MOV      8   7
+0058    TGETS    7   7  13  ; "new"
+0059    TDUP     9  19
+0060    TGETS   10   0  18  ; "dimen"
+0061    TSETS   10   9  18  ; "dimen"
+0062    UGET    10   4      ; TextWidget
+0063    MOV     11  10
+0064    TGETS   10  10  13  ; "new"
+0065    TDUP    12  20
+0066    TGETS   13   0   0  ; "key"
+0067    TSETS   13  12  21  ; "text"
+0068    TSETS    3  12  22  ; "face"
+0069    CALL    10   0   3
+0070    TSETM   10   1      ; 1
+0071    CALL     7   0   3
+0072    TSETM    7   1      ; 1
+0073    CALL     4   2   3
+0074    TSETB    4   0   1
+0075    RET0     0   1
+
+-- BYTECODE -- mosaicmenu.lua:125-339
+0001    TGETS    1   0   0  ; "authors"
+0002    TGETS    2   0   1  ; "title"
+0003    TGETS    3   0   2  ; "filename"
+0004    KPRI     4   1
+0005    IST          2
+0006    JMP      5 => 0020
+0007    MOV      2   3
+0008    KPRI     3   0
+0009    TGETS    5   0   3  ; "title_add"
+0010    IST          5
+0011    JMP      5 => 0019
+0012    TGETS    5   0   4  ; "filename_add"
+0013    ISF          5
+0014    JMP      6 => 0019
+0015    TGETS    5   0   4  ; "filename_add"
+0016    TSETS    5   0   3  ; "title_add"
+0017    KPRI     5   0
+0018    TSETS    5   0   4  ; "filename_add"
+0019 => KPRI     4   2
+0020 => ISF          3
+0021    JMP      5 => 0027
+0022    UGET     5   0      ; BD
+0023    TGETS    5   5   2  ; "filename"
+0024    MOV      6   3
+0025    CALL     5   2   2
+0026    MOV      3   5
+0027 => IST          1
+0028    JMP      5 => 0075
+0029    ISF          2
+0030    JMP      5 => 0075
+0031    TGETS    5   0   2  ; "filename"
+0032    ISF          5
+0033    JMP      6 => 0075
+0034    TGETS    5   0   2  ; "filename"
+0035    MOV      6   5
+0036    TGETS    5   5   5  ; "sub"
+0037    KSHORT   7   1
+0038    MOV      9   2
+0039    TGETS    8   2   6  ; "len"
+0040    CALL     8   0   2
+0041    CALLM    5   2   2
+0042    ISNEV    5   2
+0043    JMP      5 => 0075
+0044    KPRI     4   2
+0045    MOV      6   2
+0046    TGETS    5   2   7  ; "gsub"
+0047    KSTR     7   8      ; " %- "
+0048    KSTR     8   9      ; "\n"
+0049    CALL     5   2   4
+0050    MOV      2   5
+0051    MOV      6   2
+0052    TGETS    5   2   7  ; "gsub"
+0053    KSTR     7  10      ; "|"
+0054    KSTR     8   9      ; "\n"
+0055    CALL     5   2   4
+0056    MOV      2   5
+0057    MOV      6   2
+0058    TGETS    5   2   7  ; "gsub"
+0059    KSTR     7  11      ; "_"
+0060    KSTR     8  12      ; " "
+0061    CALL     5   2   4
+0062    MOV      2   5
+0063    MOV      6   2
+0064    TGETS    5   2   7  ; "gsub"
+0065    KSTR     7  13      ; "%."
+0066    KSTR     8  14      ; ".​"
+0067    CALL     5   2   4
+0068    MOV      2   5
+0069    MOV      6   2
+0070    TGETS    5   2   7  ; "gsub"
+0071    KSTR     7  15      ; "%.​(%w%w?%w?%w?%w?)$"
+0072    KSTR     8  16      ; "​.%1"
+0073    CALL     5   2   4
+0074    MOV      2   5
+0075 => ISF          2
+0076    JMP      5 => 0090
+0077    ISF          4
+0078    JMP      5 => 0085
+0079    UGET     5   0      ; BD
+0080    TGETS    5   5   2  ; "filename"
+0081    MOV      6   2
+0082    CALL     5   2   2
+0083    ISTC     2   5
+0084    JMP      6 => 0090
+0085 => UGET     5   0      ; BD
+0086    TGETS    5   5  17  ; "auto"
+0087    MOV      6   2
+0088    CALL     5   2   2
+0089    MOV      2   5
+0090 => ISF          1
+0091    JMP      5 => 0138
+0092    MOV      6   1
+0093    TGETS    5   1  18  ; "find"
+0094    KSTR     7   9      ; "\n"
+0095    CALL     5   2   3
+0096    ISF          5
+0097    JMP      6 => 0138
+0098    UGET     5   1      ; util
+0099    TGETS    5   5  19  ; "splitToArray"
+0100    MOV      6   1
+0101    KSTR     7   9      ; "\n"
+0102    CALL     5   2   3
+0103    MOV      1   5
+0104    KSHORT   5   1
+0105    LEN      6   1
+0106    KSHORT   7   1
+0107    FORI     5 => 0114
+0108 => UGET     9   0      ; BD
+0109    TGETS    9   9  17  ; "auto"
+0110    TGETV   10   1   8
+0111    CALL     9   2   2
+0112    TSETV    9   1   8
+0113    FORL     5 => 0108
+0114 => LEN      5   1
+0115    KSHORT   6   3
+0116    ISGE     6   5
+0117    JMP      5 => 0131
+0118    TNEW     5   4
+0119    TGETB    6   1   1
+0120    TSETB    6   5   1
+0121    TGETB    6   1   2
+0122    TSETB    6   5   2
+0123    UGET     6   2      ; T
+0124    UGET     7   3      ; _
+0125    KSTR     8  20      ; "%1 et al."
+0126    CALL     7   2   2
+0127    TGETB    8   1   3
+0128    CALL     6   0   3
+0129    TSETM    6   0      ; 3
+0130    MOV      1   5
+0131 => GGET     5  21      ; "table"
+0132    TGETS    5   5  22  ; "concat"
+0133    MOV      6   1
+0134    KSTR     7   9      ; "\n"
+0135    CALL     5   2   3
+0136    MOV      1   5
+0137    JMP      5 => 0145
+0138 => ISF          1
+0139    JMP      5 => 0145
+0140    UGET     5   0      ; BD
+0141    TGETS    5   5  17  ; "auto"
+0142    MOV      6   1
+0143    CALL     5   2   2
+0144    MOV      1   5
+0145 => TGETS    5   0   4  ; "filename_add"
+0146    ISF          5
+0147    JMP      6 => 0155
+0148    ISF          3
+0149    JMP      5 => 0152
+0150    ISTC     5   3
+0151    JMP      5 => 0153
+0152 => KSTR     5  23      ; ""
+0153 => TGETS    6   0   4  ; "filename_add"
+0154    CAT      3   5   6
+0155 => TGETS    5   0   3  ; "title_add"
+0156    ISF          5
+0157    JMP      6 => 0165
+0158    ISF          2
+0159    JMP      5 => 0162
+0160    ISTC     5   2
+0161    JMP      5 => 0163
+0162 => KSTR     5  23      ; ""
+0163 => TGETS    6   0   3  ; "title_add"
+0164    CAT      2   5   6
+0165 => TGETS    5   0  24  ; "authors_add"
+0166    ISF          5
+0167    JMP      6 => 0175
+0168    ISF          1
+0169    JMP      5 => 0172
+0170    ISTC     5   1
+0171    JMP      5 => 0173
+0172 => KSTR     5  23      ; ""
+0173 => TGETS    6   0  24  ; "authors_add"
+0174    CAT      1   5   6
+0175 => TGETS    5   0  25  ; "width"
+0176    TGETS    6   0  26  ; "bordersize"
+0177    TGETS    7   0  27  ; "margin"
+0178    ADDVV    6   6   7
+0179    TGETS    7   0  28  ; "padding"
+0180    ADDVV    6   6   7
+0181    MULNV    6   6   1  ; 2
+0182    SUBVV    5   5   6
+0183    TGETS    6   0  29  ; "height"
+0184    TGETS    7   0  26  ; "bordersize"
+0185    TGETS    8   0  27  ; "margin"
+0186    ADDVV    7   7   8
+0187    TGETS    8   0  28  ; "padding"
+0188    ADDVV    7   7   8
+0189    MULNV    7   7   1  ; 2
+0190    SUBVV    6   6   7
+0191    MULNV    7   5   2  ; 0.875
+0192    KPRI     8   0
+0193    TGETS    9   0  30  ; "initial_sizedec"
+0194    KNIL    10  12
+0195    KPRI    13   1
+0196 => LOOP    14 => 0407
+0197    ISF         10
+0198    JMP     14 => 0203
+0199    MOV     15  10
+0200    TGETS   14  10  31  ; "free"
+0201    CALL    14   1   2
+0202    KPRI    10   0
+0203 => ISF         11
+0204    JMP     14 => 0209
+0205    MOV     15  11
+0206    TGETS   14  11  31  ; "free"
+0207    CALL    14   1   2
+0208    KPRI    11   0
+0209 => ISF         12
+0210    JMP     14 => 0215
+0211    MOV     15  12
+0212    TGETS   14  12  31  ; "free"
+0213    CALL    14   1   2
+0214    KPRI    12   0
+0215 => KSHORT  14   0
+0216    ISF          1
+0217    JMP     15 => 0245
+0218    UGET    15   4      ; TextBoxWidget
+0219    MOV     16  15
+0220    TGETS   15  15  32  ; "new"
+0221    TDUP    17  33
+0222    TSETS    1  17  34  ; "text"
+0223    TGETS   18   0  35  ; "book_lang"
+0224    TSETS   18  17  36  ; "lang"
+0225    UGET    18   5      ; Font
+0226    MOV     19  18
+0227    TGETS   18  18  37  ; "getFace"
+0228    KSTR    20  38      ; "cfont"
+0229    GGET    21  39      ; "math"
+0230    TGETS   21  21  40  ; "max"
+0231    TGETS   22   0  41  ; "authors_font_max"
+0232    SUBVV   22  22   9
+0233    TGETS   23   0  42  ; "authors_font_min"
+0234    CALL    21   0   3
+0235    CALLM   18   2   2
+0236    TSETS   18  17  43  ; "face"
+0237    TSETS    7  17  25  ; "width"
+0238    CALL    15   2   3
+0239    MOV     10  15
+0240    MOV     16  10
+0241    TGETS   15  10  44  ; "getSize"
+0242    CALL    15   2   2
+0243    TGETS   15  15  45  ; "h"
+0244    ADDVV   14  14  15
+0245 => ISF          2
+0246    JMP     15 => 0274
+0247    UGET    15   4      ; TextBoxWidget
+0248    MOV     16  15
+0249    TGETS   15  15  32  ; "new"
+0250    TDUP    17  46
+0251    TSETS    2  17  34  ; "text"
+0252    TGETS   18   0  35  ; "book_lang"
+0253    TSETS   18  17  36  ; "lang"
+0254    UGET    18   5      ; Font
+0255    MOV     19  18
+0256    TGETS   18  18  37  ; "getFace"
+0257    KSTR    20  38      ; "cfont"
+0258    GGET    21  39      ; "math"
+0259    TGETS   21  21  40  ; "max"
+0260    TGETS   22   0  47  ; "title_font_max"
+0261    SUBVV   22  22   9
+0262    TGETS   23   0  48  ; "title_font_min"
+0263    CALL    21   0   3
+0264    CALLM   18   2   2
+0265    TSETS   18  17  43  ; "face"
+0266    TSETS    7  17  25  ; "width"
+0267    CALL    15   2   3
+0268    MOV     11  15
+0269    MOV     16  11
+0270    TGETS   15  11  44  ; "getSize"
+0271    CALL    15   2   2
+0272    TGETS   15  15  45  ; "h"
+0273    ADDVV   14  14  15
+0274 => ISF          3
+0275    JMP     15 => 0303
+0276    UGET    15   4      ; TextBoxWidget
+0277    MOV     16  15
+0278    TGETS   15  15  32  ; "new"
+0279    TDUP    17  49
+0280    TSETS    3  17  34  ; "text"
+0281    TGETS   18   0  35  ; "book_lang"
+0282    TSETS   18  17  36  ; "lang"
+0283    UGET    18   5      ; Font
+0284    MOV     19  18
+0285    TGETS   18  18  37  ; "getFace"
+0286    KSTR    20  38      ; "cfont"
+0287    GGET    21  39      ; "math"
+0288    TGETS   21  21  40  ; "max"
+0289    TGETS   22   0  50  ; "filename_font_max"
+0290    SUBVV   22  22   9
+0291    TGETS   23   0  51  ; "filename_font_min"
+0292    CALL    21   0   3
+0293    CALLM   18   2   2
+0294    TSETS   18  17  43  ; "face"
+0295    TSETS    7  17  25  ; "width"
+0296    CALL    15   2   3
+0297    MOV     12  15
+0298    MOV     16  12
+0299    TGETS   15  12  44  ; "getSize"
+0300    CALL    15   2   2
+0301    TGETS   15  15  45  ; "h"
+0302    ADDVV   14  14  15
+0303 => SUBVV   15   6  14
+0304    ISF          1
+0305    JMP     16 => 0308
+0306    TGETS   16   0  52  ; "top_pad"
+0307    SUBVV   15  15  16
+0308 => ISF          3
+0309    JMP     16 => 0312
+0310    TGETS   16   0  53  ; "bottom_pad"
+0311    SUBVV   15  15  16
+0312 => GGET    16  39      ; "math"
+0313    TGETS   16  16  54  ; "floor"
+0314    DIVVN   17  15   1  ; 2
+0315    CALL    16   2   2
+0316    MOV      8  16
+0317    KPRI    16   2
+0318    ISF         10
+0319    JMP     17 => 0323
+0320    TGETS   17  10  55  ; "has_split_inside_word"
+0321    IST         17
+0322    JMP     18 => 0328
+0323 => ISF         11
+0324    JMP     17 => 0329
+0325    TGETS   17  11  55  ; "has_split_inside_word"
+0326    ISF         17
+0327    JMP     18 => 0329
+0328 => KPRI    16   1
+0329 => ISF         16
+0330    JMP     17 => 0335
+0331    MULNV   17   6   3  ; 0.2
+0332    ISGE    17  15
+0333    JMP     17 => 0335
+0334    JMP     14 => 0407
+0335 => TGETS   17   0  56  ; "sizedec_step"
+0336    ADDVV    9   9  17
+0337    KSHORT  17  20
+0338    ISGE    17   9
+0339    JMP     17 => 0196
+0340    IST         13
+0341    JMP     17 => 0407
+0342    KPRI    13   2
+0343    TGETS    9   0  30  ; "initial_sizedec"
+0344    GGET    17  57      ; "G_reader_settings"
+0345    MOV     18  17
+0346    TGETS   17  17  58  ; "nilOrTrue"
+0347    KSTR    19  59      ; "use_xtext"
+0348    CALL    17   2   3
+0349    ISF         17
+0350    JMP     18 => 0378
+0351    ISF          2
+0352    JMP     17 => 0364
+0353    MOV     18   2
+0354    TGETS   17   2   7  ; "gsub"
+0355    KSTR    19  11      ; "_"
+0356    KSTR    20  60      ; "_​"
+0357    CALL    17   2   4
+0358    MOV     18  17
+0359    TGETS   17  17   7  ; "gsub"
+0360    KSTR    19  13      ; "%."
+0361    KSTR    20  14      ; ".​"
+0362    CALL    17   2   4
+0363    MOV      2  17
+0364 => ISF          1
+0365    JMP     17 => 0196
+0366    MOV     18   1
+0367    TGETS   17   1   7  ; "gsub"
+0368    KSTR    19  11      ; "_"
+0369    KSTR    20  60      ; "_​"
+0370    CALL    17   2   4
+0371    MOV     18  17
+0372    TGETS   17  17   7  ; "gsub"
+0373    KSTR    19  13      ; "%."
+0374    KSTR    20  14      ; ".​"
+0375    CALL    17   2   4
+0376    MOV      1  17
+0377    JMP     17 => 0196
+0378 => ISF          2
+0379    JMP     17 => 0391
+0380    MOV     18   2
+0381    TGETS   17   2   7  ; "gsub"
+0382    KSTR    19  61      ; "-"
+0383    KSTR    20  12      ; " "
+0384    CALL    17   2   4
+0385    MOV     18  17
+0386    TGETS   17  17   7  ; "gsub"
+0387    KSTR    19  11      ; "_"
+0388    KSTR    20  12      ; " "
+0389    CALL    17   2   4
+0390    MOV      2  17
+0391 => ISF          1
+0392    JMP     17 => 0196
+0393    MOV     18   1
+0394    TGETS   17   1   7  ; "gsub"
+0395    KSTR    19  61      ; "-"
+0396    KSTR    20  12      ; " "
+0397    CALL    17   2   4
+0398    MOV     18  17
+0399    TGETS   17  17   7  ; "gsub"
+0400    KSTR    19  11      ; "_"
+0401    KSTR    20  12      ; " "
+0402    CALL    17   2   4
+0403    MOV      1  17
+0404    JMP     17 => 0196
+0405    JMP     14 => 0407
+0406    JMP     14 => 0196
+0407 => UGET    14   6      ; VerticalGroup
+0408    MOV     15  14
+0409    TGETS   14  14  32  ; "new"
+0410    TNEW    16   0
+0411    CALL    14   2   3
+0412    ISF          1
+0413    JMP     15 => 0430
+0414    GGET    15  21      ; "table"
+0415    TGETS   15  15  62  ; "insert"
+0416    MOV     16  14
+0417    UGET    17   7      ; VerticalSpan
+0418    MOV     18  17
+0419    TGETS   17  17  32  ; "new"
+0420    TDUP    19  63
+0421    TGETS   20   0  52  ; "top_pad"
+0422    TSETS   20  19  25  ; "width"
+0423    CALL    17   0   3
+0424    CALLM   15   1   1
+0425    GGET    15  21      ; "table"
+0426    TGETS   15  15  62  ; "insert"
+0427    MOV     16  14
+0428    MOV     17  10
+0429    CALL    15   1   3
+0430 => GGET    15  21      ; "table"
+0431    TGETS   15  15  62  ; "insert"
+0432    MOV     16  14
+0433    UGET    17   7      ; VerticalSpan
+0434    MOV     18  17
+0435    TGETS   17  17  32  ; "new"
+0436    TDUP    19  64
+0437    TSETS    8  19  25  ; "width"
+0438    CALL    17   0   3
+0439    CALLM   15   1   1
+0440    ISF          2
+0441    JMP     15 => 0447
+0442    GGET    15  21      ; "table"
+0443    TGETS   15  15  62  ; "insert"
+0444    MOV     16  14
+0445    MOV     17  11
+0446    CALL    15   1   3
+0447 => GGET    15  21      ; "table"
+0448    TGETS   15  15  62  ; "insert"
+0449    MOV     16  14
+0450    UGET    17   7      ; VerticalSpan
+0451    MOV     18  17
+0452    TGETS   17  17  32  ; "new"
+0453    TDUP    19  65
+0454    TSETS    8  19  25  ; "width"
+0455    CALL    17   0   3
+0456    CALLM   15   1   1
+0457    ISF          3
+0458    JMP     15 => 0475
+0459    GGET    15  21      ; "table"
+0460    TGETS   15  15  62  ; "insert"
+0461    MOV     16  14
+0462    MOV     17  12
+0463    CALL    15   1   3
+0464    GGET    15  21      ; "table"
+0465    TGETS   15  15  62  ; "insert"
+0466    MOV     16  14
+0467    UGET    17   7      ; VerticalSpan
+0468    MOV     18  17
+0469    TGETS   17  17  32  ; "new"
+0470    TDUP    19  66
+0471    TGETS   20   0  53  ; "bottom_pad"
+0472    TSETS   20  19  25  ; "width"
+0473    CALL    17   0   3
+0474    CALLM   15   1   1
+0475 => TGETS   15   0  67  ; "file_deleted"
+0476    ISF         15
+0477    JMP     16 => 0483
+0478    KPRI    15   2
+0479    TSETS   15   0  68  ; "dim"
+0480    UGET    15   8      ; Blitbuffer
+0481    TGETS   15  15  70  ; "COLOR_DARK_GRAY"
+0482    TSETS   15   0  69  ; "color"
+0483 => UGET    15   9      ; CenterContainer
+0484    MOV     16  15
+0485    TGETS   15  15  32  ; "new"
+0486    TDUP    17  73
+0487    UGET    18  10      ; Geom
+0488    MOV     19  18
+0489    TGETS   18  18  32  ; "new"
+0490    TDUP    20  71
+0491    TSETS    5  20  72  ; "w"
+0492    TSETS    6  20  45  ; "h"
+0493    CALL    18   2   3
+0494    TSETS   18  17  74  ; "dimen"
+0495    TSETB   14  17   1
+0496    CALL    15   2   3
+0497    TSETB   15   0   1
+0498    RET0     0   1
+
+-- BYTECODE -- mosaicmenu.lua:361-425
+0001    TGETS    1   0   1  ; "entry"
+0002    TGETS    1   1   2  ; "file"
+0003    IST          1
+0004    JMP      2 => 0007
+0005    TGETS    1   0   1  ; "entry"
+0006    TGETS    1   1   3  ; "path"
+0007 => TSETS    1   0   0  ; "filepath"
+0008    TGETS    1   0   4  ; "shortcut"
+0009    ISF          1
+0010    JMP      2 => 0036
+0011    UGET     1   0      ; Geom
+0012    MOV      2   1
+0013    TGETS    1   1   5  ; "new"
+0014    CALL     1   2   2
+0015    GGET     2   7      ; "math"
+0016    TGETS    2   2   8  ; "floor"
+0017    TGETS    3   0   9  ; "dimen"
+0018    TGETS    3   3  10  ; "h"
+0019    MULVN    3   3   0  ; 1
+0020    DIVVN    3   3   1  ; 5
+0021    CALL     2   2   2
+0022    TSETS    2   1   6  ; "w"
+0023    TGETS    2   1   6  ; "w"
+0024    TSETS    2   1  10  ; "h"
+0025    UGET     2   1      ; ItemShortCutIcon
+0026    MOV      3   2
+0027    TGETS    2   2   5  ; "new"
+0028    TDUP     4  12
+0029    TSETS    1   4   9  ; "dimen"
+0030    TGETS    5   0   4  ; "shortcut"
+0031    TSETS    5   4  13  ; "key"
+0032    TGETS    5   0  14  ; "shortcut_style"
+0033    TSETS    5   4  15  ; "style"
+0034    CALL     2   2   3
+0035    TSETS    2   0  11  ; "shortcut_icon"
+0036 => TGETS    1   0  17  ; "text"
+0037    TSETS    1   0  16  ; "detail"
+0038    UGET     1   2      ; Device
+0039    MOV      2   1
+0040    TGETS    1   1  18  ; "isTouchDevice"
+0041    CALL     1   2   2
+0042    ISF          1
+0043    JMP      2 => 0066
+0044    TDUP     1  23
+0045    TDUP     2  22
+0046    UGET     3   3      ; GestureRange
+0047    MOV      4   3
+0048    TGETS    3   3   5  ; "new"
+0049    TDUP     5  20
+0050    TGETS    6   0   9  ; "dimen"
+0051    TSETS    6   5  21  ; "range"
+0052    CALL     3   2   3
+0053    TSETB    3   2   1
+0054    TSETS    2   1  24  ; "TapSelect"
+0055    TDUP     2  26
+0056    UGET     3   3      ; GestureRange
+0057    MOV      4   3
+0058    TGETS    3   3   5  ; "new"
+0059    TDUP     5  25
+0060    TGETS    6   0   9  ; "dimen"
+0061    TSETS    6   5  21  ; "range"
+0062    CALL     3   2   3
+0063    TSETB    3   2   1
+0064    TSETS    2   1  27  ; "HoldSelect"
+0065    TSETS    1   0  19  ; "ges_events"
+0066 => KSHORT   1   1
+0067    TSETS    1   0  28  ; "underline_h"
+0068    UGET     1   4      ; UnderlineContainer
+0069    MOV      2   1
+0070    TGETS    1   1   5  ; "new"
+0071    TDUP     3  30
+0072    UGET     4   0      ; Geom
+0073    MOV      5   4
+0074    TGETS    4   4   5  ; "new"
+0075    TDUP     6  32
+0076    TGETS    7   0  31  ; "width"
+0077    TSETS    7   6   6  ; "w"
+0078    TGETS    7   0  33  ; "height"
+0079    TSETS    7   6  10  ; "h"
+0080    CALL     4   2   3
+0081    TSETS    4   3   9  ; "dimen"
+0082    TGETS    4   0  28  ; "underline_h"
+0083    TSETS    4   3  34  ; "linesize"
+0084    CALL     1   2   3
+0085    TSETS    1   0  29  ; "_underline_container"
+0086    TGETS    1   0  29  ; "_underline_container"
+0087    TSETB    1   0   1
+0088    MOV      2   0
+0089    TGETS    1   0  35  ; "update"
+0090    CALL     1   1   2
+0091    KPRI     1   2
+0092    TSETS    1   0  36  ; "init_done"
+0093    RET0     0   1
+
+-- BYTECODE -- mosaicmenu.lua:427-686
+0001    KPRI     1   0
+0002    UGET     2   0      ; Geom
+0003    MOV      3   2
+0004    TGETS    2   2   0  ; "new"
+0005    TDUP     4   2
+0006    TGETS    5   0   1  ; "width"
+0007    TSETS    5   4   3  ; "w"
+0008    TGETS    5   0   4  ; "height"
+0009    TGETS    6   0   5  ; "underline_h"
+0010    SUBVV    5   5   6
+0011    TSETS    5   4   6  ; "h"
+0012    CALL     2   2   3
+0013    KSHORT   3   1
+0014    TGETS    4   2   3  ; "w"
+0015    MULNV    5   3   0  ; 2
+0016    SUBVV    4   4   5
+0017    TGETS    5   2   6  ; "h"
+0018    MULNV    6   3   0  ; 2
+0019    SUBVV    5   5   6
+0020    TDUP     6   7
+0021    TSETS    4   6   8  ; "max_cover_w"
+0022    TSETS    5   6   9  ; "max_cover_h"
+0023    TGETS    7   0  10  ; "do_cover_image"
+0024    ISF          7
+0025    JMP      8 => 0029
+0026    TGETS    7   0  11  ; "menu"
+0027    TSETS    6   7  12  ; "cover_specs"
+0028    JMP      7 => 0032
+0029 => TGETS    7   0  11  ; "menu"
+0030    KPRI     8   1
+0031    TSETS    8   7  12  ; "cover_specs"
+0032 => UGET     7   1      ; lfs
+0033    TGETS    7   7  13  ; "attributes"
+0034    TGETS    8   0  14  ; "filepath"
+0035    KSTR     9  15      ; "mode"
+0036    CALL     7   2   3
+0037    ISNES    7  16      ; "directory"
+0038    JMP      8 => 0206
+0039    KPRI     8   2
+0040    TSETS    8   0  17  ; "is_directory"
+0041    UGET     8   2      ; Screen
+0042    MOV      9   8
+0043    TGETS    8   8  18  ; "scaleBySize"
+0044    KSHORT  10   5
+0045    CALL     8   2   3
+0046    UGET     9   2      ; Screen
+0047    MOV     10   9
+0048    TGETS    9   9  18  ; "scaleBySize"
+0049    KSHORT  11   5
+0050    CALL     9   2   3
+0051    UGET    10   2      ; Screen
+0052    MOV     11  10
+0053    TGETS   10  10  18  ; "scaleBySize"
+0054    KSHORT  12   2
+0055    CALL    10   2   3
+0056    MOV      3  10
+0057    UGET    10   0      ; Geom
+0058    MOV     11  10
+0059    TGETS   10  10   0  ; "new"
+0060    TDUP    12  19
+0061    TGETS   13   2   3  ; "w"
+0062    ADDVV   14   8   9
+0063    ADDVV   14  14   3
+0064    MULVN   14  14   0  ; 2
+0065    SUBVV   13  13  14
+0066    TSETS   13  12   3  ; "w"
+0067    TGETS   13   2   6  ; "h"
+0068    ADDVV   14   8   9
+0069    ADDVV   14  14   3
+0070    MULVN   14  14   0  ; 2
+0071    SUBVV   13  13  14
+0072    TSETS   13  12   6  ; "h"
+0073    CALL    10   2   3
+0074    TGETS   11   0  20  ; "text"
+0075    MOV     13  11
+0076    TGETS   12  11  21  ; "match"
+0077    KSTR    14  22      ; "/$"
+0078    CALL    12   2   3
+0079    ISF         12
+0080    JMP     13 => 0087
+0081    MOV     13  11
+0082    TGETS   12  11  23  ; "sub"
+0083    KSHORT  14   1
+0084    KSHORT  15  -2
+0085    CALL    12   2   4
+0086    MOV     11  12
+0087 => UGET    12   3      ; BD
+0088    TGETS   12  12  16  ; "directory"
+0089    MOV     13  11
+0090    CALL    12   2   2
+0091    MOV     11  12
+0092    UGET    12   4      ; TextBoxWidget
+0093    MOV     13  12
+0094    TGETS   12  12   0  ; "new"
+0095    TDUP    14  25
+0096    TGETS   15   0  24  ; "mandatory"
+0097    TSETS   15  14  20  ; "text"
+0098    UGET    15   5      ; Font
+0099    MOV     16  15
+0100    TGETS   15  15  26  ; "getFace"
+0101    KSTR    17  27      ; "infont"
+0102    KSHORT  18  15
+0103    CALL    15   2   4
+0104    TSETS   15  14  28  ; "face"
+0105    TGETS   15  10   3  ; "w"
+0106    TSETS   15  14   1  ; "width"
+0107    CALL    12   2   3
+0108    TGETS   13  10   6  ; "h"
+0109    MOV     15  12
+0110    TGETS   14  12  29  ; "getSize"
+0111    CALL    14   2   2
+0112    TGETS   14  14   6  ; "h"
+0113    MULNV   14  14   1  ; 3
+0114    SUBVV   13  13  14
+0115    KSHORT  14  20
+0116    KPRI    15   0
+0117 => LOOP    16 => 0163
+0118    ISF         15
+0119    JMP     16 => 0123
+0120    MOV     17  15
+0121    TGETS   16  15  30  ; "free"
+0122    CALL    16   1   2
+0123 => UGET    16   4      ; TextBoxWidget
+0124    MOV     17  16
+0125    TGETS   16  16   0  ; "new"
+0126    TDUP    18  31
+0127    TSETS   11  18  20  ; "text"
+0128    UGET    19   5      ; Font
+0129    MOV     20  19
+0130    TGETS   19  19  26  ; "getFace"
+0131    KSTR    21  32      ; "cfont"
+0132    MOV     22  14
+0133    CALL    19   2   4
+0134    TSETS   19  18  28  ; "face"
+0135    TGETS   19  10   3  ; "w"
+0136    TSETS   19  18   1  ; "width"
+0137    CALL    16   2   3
+0138    MOV     15  16
+0139    MOV     17  15
+0140    TGETS   16  15  29  ; "getSize"
+0141    CALL    16   2   2
+0142    TGETS   16  16   6  ; "h"
+0143    ISGT    16  13
+0144    JMP     16 => 0146
+0145    JMP     16 => 0163
+0146 => SUBVN   14  14   2  ; 1
+0147    KSHORT  16  10
+0148    ISGE    14  16
+0149    JMP     16 => 0117
+0150    MOV     17  15
+0151    TGETS   16  15  30  ; "free"
+0152    CALL    16   1   2
+0153    TSETS   13  15   4  ; "height"
+0154    KPRI    16   2
+0155    TSETS   16  15  33  ; "height_adjust"
+0156    KPRI    16   2
+0157    TSETS   16  15  34  ; "height_overflow_show_ellipsis"
+0158    MOV     17  15
+0159    TGETS   16  15  35  ; "init"
+0160    CALL    16   1   2
+0161    JMP     16 => 0163
+0162    JMP     16 => 0117
+0163 => UGET    16   6      ; FrameContainer
+0164    MOV     17  16
+0165    TGETS   16  16   0  ; "new"
+0166    TDUP    18  36
+0167    TGETS   19   2   3  ; "w"
+0168    TSETS   19  18   1  ; "width"
+0169    TGETS   19   2   6  ; "h"
+0170    TSETS   19  18   4  ; "height"
+0171    TSETS    8  18  37  ; "margin"
+0172    TSETS    9  18  38  ; "padding"
+0173    TSETS    3  18  39  ; "bordersize"
+0174    UGET    19   2      ; Screen
+0175    MOV     20  19
+0176    TGETS   19  19  18  ; "scaleBySize"
+0177    KSHORT  21  10
+0178    CALL    19   2   3
+0179    TSETS   19  18  40  ; "radius"
+0180    UGET    19   7      ; OverlapGroup
+0181    MOV     20  19
+0182    TGETS   19  19   0  ; "new"
+0183    TDUP    21  41
+0184    TSETS   10  21  42  ; "dimen"
+0185    UGET    22   8      ; CenterContainer
+0186    MOV     23  22
+0187    TGETS   22  22   0  ; "new"
+0188    TDUP    24  43
+0189    TSETS   10  24  42  ; "dimen"
+0190    TSETB   15  24   1
+0191    CALL    22   2   3
+0192    TSETB   22  21   1
+0193    UGET    22   9      ; BottomContainer
+0194    MOV     23  22
+0195    TGETS   22  22   0  ; "new"
+0196    TDUP    24  44
+0197    TSETS   10  24  42  ; "dimen"
+0198    TSETB   12  24   1
+0199    CALL    22   0   3
+0200    TSETM   22   3      ; 2
+0201    CALL    19   0   3
+0202    TSETM   19   4      ; 1
+0203    CALL    16   2   3
+0204    MOV      1  16
+0205    JMP      8 => 0523
+0206 => ISEQS    7  45      ; "file"
+0207    JMP      8 => 0210
+0208    KPRI     8   2
+0209    TSETS    8   0  46  ; "file_deleted"
+0210 => TGETS    8   0  47  ; "do_hint_opened"
+0211    ISF          8
+0212    JMP      9 => 0222
+0213    UGET     8  10      ; DocSettings
+0214    MOV      9   8
+0215    TGETS    8   8  48  ; "hasSidecarFile"
+0216    TGETS   10   0  14  ; "filepath"
+0217    CALL     8   2   3
+0218    ISF          8
+0219    JMP      9 => 0222
+0220    KPRI     8   2
+0221    TSETS    8   0  49  ; "been_opened"
+0222 => UGET     8  11      ; BookInfoManager
+0223    MOV      9   8
+0224    TGETS    8   8  50  ; "getBookInfo"
+0225    TGETS   10   0  14  ; "filepath"
+0226    TGETS   11   0  10  ; "do_cover_image"
+0227    CALL     8   2   4
+0228    ISF          8
+0229    JMP      9 => 0255
+0230    TGETS    9   0  10  ; "do_cover_image"
+0231    ISF          9
+0232    JMP     10 => 0255
+0233    TGETS    9   8  51  ; "ignore_cover"
+0234    IST          9
+0235    JMP      9 => 0255
+0236    TGETS    9   8  52  ; "cover_fetched"
+0237    ISF          9
+0238    JMP     10 => 0254
+0239    TGETS    9   8  53  ; "has_cover"
+0240    ISF          9
+0241    JMP     10 => 0255
+0242    TGETS    9   8  54  ; "cover_sizetag"
+0243    ISEQS    9  55      ; "M"
+0244    JMP      9 => 0255
+0245    TGETS    9   8  56  ; "cover_bb"
+0246    ISF          9
+0247    JMP     10 => 0252
+0248    TGETS    9   8  56  ; "cover_bb"
+0249    MOV     10   9
+0250    TGETS    9   9  30  ; "free"
+0251    CALL     9   1   2
+0252 => KPRI     8   0
+0253    JMP      9 => 0255
+0254 => KPRI     8   0
+0255 => ISF          8
+0256    JMP      9 => 0481
+0257    KPRI     9   1
+0258    KPRI    10   2
+0259    TSETS   10   0  57  ; "bookinfo_found"
+0260    TGETS   10   8  58  ; "authors"
+0261    ISF         10
+0262    JMP     11 => 0272
+0263    TGETS   10   8  58  ; "authors"
+0264    MOV     11  10
+0265    TGETS   10  10  21  ; "match"
+0266    KSTR    12  59      ; "^Wikipedia "
+0267    CALL    10   2   3
+0268    ISF         10
+0269    JMP     11 => 0272
+0270    KPRI    10   0
+0271    TSETS   10   8  53  ; "has_cover"
+0272 => TGETS   10   0  10  ; "do_cover_image"
+0273    ISF         10
+0274    JMP     11 => 0343
+0275    TGETS   10   8  53  ; "has_cover"
+0276    ISF         10
+0277    JMP     11 => 0343
+0278    TGETS   10   8  51  ; "ignore_cover"
+0279    IST         10
+0280    JMP     10 => 0343
+0281    KPRI     9   2
+0282    GGET    10  60      ; "math"
+0283    TGETS   10  10  61  ; "min"
+0284    TGETS   11   8  62  ; "cover_w"
+0285    DIVVV   11   4  11
+0286    TGETS   12   8  63  ; "cover_h"
+0287    DIVVV   12   5  12
+0288    CALL    10   2   3
+0289    UGET    11  12      ; ImageWidget
+0290    MOV     12  11
+0291    TGETS   11  11   0  ; "new"
+0292    TDUP    13  64
+0293    TGETS   14   8  56  ; "cover_bb"
+0294    TSETS   14  13  65  ; "image"
+0295    TSETS   10  13  66  ; "scale_factor"
+0296    CALL    11   2   3
+0297    MOV     13  11
+0298    TGETS   12  11  67  ; "_render"
+0299    CALL    12   1   2
+0300    MOV     13  11
+0301    TGETS   12  11  29  ; "getSize"
+0302    CALL    12   2   2
+0303    UGET    13   8      ; CenterContainer
+0304    MOV     14  13
+0305    TGETS   13  13   0  ; "new"
+0306    TDUP    15  68
+0307    TSETS    2  15  42  ; "dimen"
+0308    UGET    16   6      ; FrameContainer
+0309    MOV     17  16
+0310    TGETS   16  16   0  ; "new"
+0311    TDUP    18  69
+0312    TGETS   19  12   3  ; "w"
+0313    MULNV   20   3   0  ; 2
+0314    ADDVV   19  19  20
+0315    TSETS   19  18   1  ; "width"
+0316    TGETS   19  12   6  ; "h"
+0317    MULNV   20   3   0  ; 2
+0318    ADDVV   19  19  20
+0319    TSETS   19  18   4  ; "height"
+0320    TSETS    3  18  39  ; "bordersize"
+0321    TGETS   19   0  46  ; "file_deleted"
+0322    TSETS   19  18  70  ; "dim"
+0323    TGETS   19   0  46  ; "file_deleted"
+0324    ISF         19
+0325    JMP     20 => 0330
+0326    UGET    19  13      ; Blitbuffer
+0327    TGETS   19  19  71  ; "COLOR_DARK_GRAY"
+0328    IST         19
+0329    JMP     20 => 0331
+0330 => KPRI    19   0
+0331 => TSETS   19  18  72  ; "color"
+0332    TSETB   11  18   1
+0333    CALL    16   0   3
+0334    TSETM   16   4      ; 1
+0335    CALL    13   2   3
+0336    MOV      1  13
+0337    TGETS   13   0  11  ; "menu"
+0338    KPRI    14   2
+0339    TSETS   14  13  73  ; "_has_cover_images"
+0340    KPRI    13   2
+0341    TSETS   13   0  74  ; "_has_cover_image"
+0342    JMP     10 => 0466
+0343 => UGET    10  11      ; BookInfoManager
+0344    MOV     11  10
+0345    TGETS   10  10  75  ; "getSetting"
+0346    KSTR    12  76      ; "series_mode"
+0347    CALL    10   2   3
+0348    KNIL    11  12
+0349    TGETS   13   8  77  ; "series"
+0350    ISF         13
+0351    JMP     14 => 0394
+0352    TGETS   13   8  77  ; "series"
+0353    MOV     14  13
+0354    TGETS   13  13  78  ; "gsub"
+0355    KSTR    15  79      ; "(#%d+)%.0$"
+0356    KSTR    16  80      ; "%1"
+0357    CALL    13   2   4
+0358    TSETS   13   8  77  ; "series"
+0359    UGET    13   3      ; BD
+0360    TGETS   13  13  81  ; "auto"
+0361    TGETS   14   8  77  ; "series"
+0362    CALL    13   2   2
+0363    TSETS   13   8  77  ; "series"
+0364    ISNES   10  82      ; "append_series_to_title"
+0365    JMP     13 => 0374
+0366    TGETS   13   8  83  ; "title"
+0367    ISF         13
+0368    JMP     14 => 0373
+0369    KSTR    13  84      ; " - "
+0370    TGETS   14   8  77  ; "series"
+0371    CAT     11  13  14
+0372    JMP     13 => 0374
+0373 => TGETS   11   8  77  ; "series"
+0374 => TGETS   13   8  58  ; "authors"
+0375    IST         13
+0376    JMP     13 => 0383
+0377    ISEQS   10  85      ; "append_series_to_authors"
+0378    JMP     13 => 0381
+0379    ISNES   10  86      ; "series_in_separate_line"
+0380    JMP     13 => 0394
+0381 => TGETS   12   8  77  ; "series"
+0382    JMP     13 => 0394
+0383 => ISNES   10  85      ; "append_series_to_authors"
+0384    JMP     13 => 0389
+0385    KSTR    13  84      ; " - "
+0386    TGETS   14   8  77  ; "series"
+0387    CAT     12  13  14
+0388    JMP     13 => 0394
+0389 => ISNES   10  86      ; "series_in_separate_line"
+0390    JMP     13 => 0394
+0391    KSTR    13  87      ; "\n \n"
+0392    TGETS   14   8  77  ; "series"
+0393    CAT     12  13  14
+0394 => UGET    13   8      ; CenterContainer
+0395    MOV     14  13
+0396    TGETS   13  13   0  ; "new"
+0397    TDUP    15  88
+0398    TSETS    2  15  42  ; "dimen"
+0399    UGET    16  14      ; FakeCover
+0400    MOV     17  16
+0401    TGETS   16  16   0  ; "new"
+0402    TDUP    18  90
+0403    GGET    19  60      ; "math"
+0404    TGETS   19  19  89  ; "floor"
+0405    TGETS   20   2   3  ; "w"
+0406    MULVN   20  20   5  ; 7
+0407    DIVVN   20  20   6  ; 8
+0408    CALL    19   2   2
+0409    TSETS   19  18   1  ; "width"
+0410    TGETS   19   2   6  ; "h"
+0411    TSETS   19  18   4  ; "height"
+0412    TSETS    3  18  39  ; "bordersize"
+0413    TGETS   19   0  20  ; "text"
+0414    TSETS   19  18  91  ; "filename"
+0415    TGETS   19   8  92  ; "ignore_meta"
+0416    IST         19
+0417    JMP     19 => 0420
+0418    TGETS   19   8  83  ; "title"
+0419    JMP     20 => 0423
+0420 => KPRI    19   1
+0421    JMP     20 => 0423
+0422    KPRI    19   2
+0423 => TSETS   19  18  83  ; "title"
+0424    TGETS   19   8  92  ; "ignore_meta"
+0425    IST         19
+0426    JMP     19 => 0429
+0427    TGETS   19   8  58  ; "authors"
+0428    JMP     20 => 0432
+0429 => KPRI    19   1
+0430    JMP     20 => 0432
+0431    KPRI    19   2
+0432 => TSETS   19  18  58  ; "authors"
+0433    TGETS   19   8  92  ; "ignore_meta"
+0434    IST         19
+0435    JMP     19 => 0438
+0436    MOV     19  11
+0437    JMP     20 => 0441
+0438 => KPRI    19   1
+0439    JMP     20 => 0441
+0440    KPRI    19   2
+0441 => TSETS   19  18  93  ; "title_add"
+0442    TGETS   19   8  92  ; "ignore_meta"
+0443    IST         19
+0444    JMP     19 => 0447
+0445    MOV     19  12
+0446    JMP     20 => 0450
+0447 => KPRI    19   1
+0448    JMP     20 => 0450
+0449    KPRI    19   2
+0450 => TSETS   19  18  94  ; "authors_add"
+0451    TGETS   19   8  92  ; "ignore_meta"
+0452    IST         19
+0453    JMP     19 => 0456
+0454    TGETS   19   8  95  ; "language"
+0455    JMP     20 => 0459
+0456 => KPRI    19   1
+0457    JMP     20 => 0459
+0458    KPRI    19   2
+0459 => TSETS   19  18  96  ; "book_lang"
+0460    TGETS   19   0  46  ; "file_deleted"
+0461    TSETS   19  18  46  ; "file_deleted"
+0462    CALL    16   0   3
+0463    TSETM   16   4      ; 1
+0464    CALL    13   2   3
+0465    MOV      1  13
+0466 => TGETS   10   8  56  ; "cover_bb"
+0467    ISF         10
+0468    JMP     11 => 0475
+0469    IST          9
+0470    JMP     10 => 0475
+0471    TGETS   10   8  56  ; "cover_bb"
+0472    MOV     11  10
+0473    TGETS   10  10  30  ; "free"
+0474    CALL    10   1   2
+0475 => TGETS   10   8  97  ; "description"
+0476    ISF         10
+0477    JMP     11 => 0523
+0478    KPRI    10   2
+0479    TSETS   10   0  98  ; "has_description"
+0480    JMP      9 => 0523
+0481 => TGETS    9   0  99  ; "init_done"
+0482    ISF          9
+0483    JMP     10 => 0485
+0484    RET0     0   1
+0485 => TGETS    9   0  10  ; "do_cover_image"
+0486    ISF          9
+0487    JMP     10 => 0489
+0488    TSETS    6   0  12  ; "cover_specs"
+0489 => KSTR     9 100      ; "…"
+0490    TGETS   10   0  46  ; "file_deleted"
+0491    ISF         10
+0492    JMP     11 => 0497
+0493    UGET    10  15      ; _
+0494    KSTR    11 101      ; "(deleted)"
+0495    CALL    10   2   2
+0496    MOV      9  10
+0497 => UGET    10   8      ; CenterContainer
+0498    MOV     11  10
+0499    TGETS   10  10   0  ; "new"
+0500    TDUP    12 102
+0501    TSETS    2  12  42  ; "dimen"
+0502    UGET    13  14      ; FakeCover
+0503    MOV     14  13
+0504    TGETS   13  13   0  ; "new"
+0505    TDUP    15 103
+0506    TGETS   16   2   3  ; "w"
+0507    TSETS   16  15   1  ; "width"
+0508    TGETS   16   2   6  ; "h"
+0509    TSETS   16  15   4  ; "height"
+0510    TSETS    3  15  39  ; "bordersize"
+0511    TGETS   16   0  20  ; "text"
+0512    TSETS   16  15  91  ; "filename"
+0513    KSTR    16 104      ; "\n"
+0514    MOV     17   9
+0515    CAT     16  16  17
+0516    TSETS   16  15 105  ; "filename_add"
+0517    TGETS   16   0  46  ; "file_deleted"
+0518    TSETS   16  15  46  ; "file_deleted"
+0519    CALL    13   0   3
+0520    TSETM   13   4      ; 1
+0521    CALL    10   2   3
+0522    MOV      1  10
+0523 => TGETS    8   0 106  ; "_underline_container"
+0524    TGETB    8   8   1
+0525    ISF          8
+0526    JMP      9 => 0532
+0527    TGETS    8   0 106  ; "_underline_container"
+0528    TGETB    8   8   1
+0529    MOV     10   8
+0530    TGETS    9   8  30  ; "free"
+0531    CALL     9   1   2
+0532 => TGETS    8   0 106  ; "_underline_container"
+0533    TSETB    1   8   1
+0534    RET0     0   1
+
+-- BYTECODE -- mosaicmenu.lua:688-759
+0001    GGET     4   0      ; "math"
+0002    TGETS    4   4   1  ; "floor"
+0003    MOV      5   2
+0004    CALL     4   2   2
+0005    ISNEV    2   4
+0006    JMP      4 => 0013
+0007    GGET     4   0      ; "math"
+0008    TGETS    4   4   1  ; "floor"
+0009    MOV      5   3
+0010    CALL     4   2   2
+0011    ISEQV    3   4
+0012    JMP      4 => 0019
+0013 => UGET     4   0      ; logger
+0014    TGETS    4   4   2  ; "err"
+0015    KSTR     5   3      ; "MosaicMenuItem:paintTo() got non-integer"~
+0016    MOV      6   2
+0017    MOV      7   3
+0018    CALL     4   1   4
+0019 => UGET     4   1      ; InputContainer
+0020    TGETS    4   4   4  ; "paintTo"
+0021    MOV      5   0
+0022    MOV      6   1
+0023    MOV      7   2
+0024    MOV      8   3
+0025    CALL     4   1   5
+0026    TGETS    4   0   5  ; "shortcut_icon"
+0027    ISF          4
+0028    JMP      5 => 0057
+0029    MOV      4   0
+0030    KPRI     5   0
+0031    UGET     6   2      ; BD
+0032    TGETS    6   6   6  ; "mirroredUILayout"
+0033    CALL     6   2   1
+0034    ISF          6
+0035    JMP      7 => 0043
+0036    TGETS    6   4   7  ; "dimen"
+0037    TGETS    6   6   8  ; "w"
+0038    TGETS    7   0   5  ; "shortcut_icon"
+0039    TGETS    7   7   7  ; "dimen"
+0040    TGETS    7   7   8  ; "w"
+0041    SUBVV    5   6   7
+0042    JMP      6 => 0044
+0043 => KSHORT   5   0
+0044 => TGETS    6   4   7  ; "dimen"
+0045    TGETS    6   6   9  ; "h"
+0046    TGETS    7   0   5  ; "shortcut_icon"
+0047    TGETS    7   7   7  ; "dimen"
+0048    TGETS    7   7   9  ; "h"
+0049    SUBVV    6   6   7
+0050    TGETS    7   0   5  ; "shortcut_icon"
+0051    MOV      8   7
+0052    TGETS    7   7   4  ; "paintTo"
+0053    MOV      9   1
+0054    ADDVV   10   2   5
+0055    ADDVV   11   3   6
+0056    CALL     7   1   5
+0057 => UGET     4   3      ; corner_mark
+0058    ISF          4
+0059    JMP      5 => 0124
+0060    TGETS    4   0  10  ; "do_hint_opened"
+0061    ISF          4
+0062    JMP      5 => 0124
+0063    TGETS    4   0  11  ; "been_opened"
+0064    ISF          4
+0065    JMP      5 => 0124
+0066    TGETB    4   0   1
+0067    TGETB    4   4   1
+0068    TGETB    4   4   1
+0069    KPRI     5   0
+0070    UGET     6   2      ; BD
+0071    TGETS    6   6   6  ; "mirroredUILayout"
+0072    CALL     6   2   1
+0073    ISF          6
+0074    JMP      7 => 0085
+0075    GGET     6   0      ; "math"
+0076    TGETS    6   6   1  ; "floor"
+0077    TGETS    7   0  12  ; "width"
+0078    TGETS    8   4   7  ; "dimen"
+0079    TGETS    8   8   8  ; "w"
+0080    SUBVV    7   7   8
+0081    DIVVN    7   7   0  ; 2
+0082    CALL     6   2   2
+0083    MOV      5   6
+0084    JMP      6 => 0101
+0085 => TGETS    6   0  12  ; "width"
+0086    GGET     7   0      ; "math"
+0087    TGETS    7   7  13  ; "ceil"
+0088    TGETS    8   0  12  ; "width"
+0089    TGETS    9   4   7  ; "dimen"
+0090    TGETS    9   9   8  ; "w"
+0091    SUBVV    8   8   9
+0092    DIVVN    8   8   0  ; 2
+0093    CALL     7   2   2
+0094    SUBVV    6   6   7
+0095    UGET     7   3      ; corner_mark
+0096    MOV      8   7
+0097    TGETS    7   7  14  ; "getSize"
+0098    CALL     7   2   2
+0099    TGETS    7   7   8  ; "w"
+0100    SUBVV    5   6   7
+0101 => TGETS    6   0  15  ; "height"
+0102    GGET     7   0      ; "math"
+0103    TGETS    7   7  13  ; "ceil"
+0104    TGETS    8   0  15  ; "height"
+0105    TGETS    9   4   7  ; "dimen"
+0106    TGETS    9   9   9  ; "h"
+0107    SUBVV    8   8   9
+0108    DIVVN    8   8   0  ; 2
+0109    CALL     7   2   2
+0110    SUBVV    6   6   7
+0111    UGET     7   3      ; corner_mark
+0112    MOV      8   7
+0113    TGETS    7   7  14  ; "getSize"
+0114    CALL     7   2   2
+0115    TGETS    7   7   9  ; "h"
+0116    SUBVV    6   6   7
+0117    UGET     7   3      ; corner_mark
+0118    MOV      8   7
+0119    TGETS    7   7   4  ; "paintTo"
+0120    MOV      9   1
+0121    ADDVV   10   2   5
+0122    ADDVV   11   3   6
+0123    CALL     7   1   5
+0124 => TGETS    4   0  16  ; "has_description"
+0125    ISF          4
+0126    JMP      5 => 0218
+0127    UGET     4   4      ; BookInfoManager
+0128    MOV      5   4
+0129    TGETS    4   4  17  ; "getSetting"
+0130    KSTR     6  18      ; "no_hint_description"
+0131    CALL     4   2   3
+0132    IST          4
+0133    JMP      4 => 0218
+0134    TGETB    4   0   1
+0135    TGETB    4   4   1
+0136    TGETB    4   4   1
+0137    UGET     5   5      ; Screen
+0138    MOV      6   5
+0139    TGETS    5   5  19  ; "scaleBySize"
+0140    KSHORT   7   3
+0141    CALL     5   2   3
+0142    GGET     6   0      ; "math"
+0143    TGETS    6   6  13  ; "ceil"
+0144    TGETS    7   4   7  ; "dimen"
+0145    TGETS    7   7   9  ; "h"
+0146    DIVVN    7   7   1  ; 8
+0147    CALL     6   2   2
+0148    KPRI     7   0
+0149    UGET     8   2      ; BD
+0150    TGETS    8   8   6  ; "mirroredUILayout"
+0151    CALL     8   2   1
+0152    ISF          8
+0153    JMP      9 => 0180
+0154    UNM      8   5
+0155    ADDVN    7   8   2  ; 1
+0156    TGETS    8   4   7  ; "dimen"
+0157    TGETS    8   8  20  ; "x"
+0158    SUBVV    8   2   8
+0159    ADDVV    8   8   7
+0160    KSHORT   9   0
+0161    ISGE     9   8
+0162    JMP      9 => 0205
+0163    TGETB    9   0   1
+0164    TGETS    9   9   7  ; "dimen"
+0165    MOV     10   9
+0166    TGETS    9   9  22  ; "copy"
+0167    CALL     9   2   2
+0168    TSETS    9   0  21  ; "refresh_dimen"
+0169    TGETS    9   0  21  ; "refresh_dimen"
+0170    TGETS   10   0  21  ; "refresh_dimen"
+0171    TGETS   10  10  20  ; "x"
+0172    SUBVV   10  10   8
+0173    TSETS   10   9  20  ; "x"
+0174    TGETS    9   0  21  ; "refresh_dimen"
+0175    TGETS   10   0  21  ; "refresh_dimen"
+0176    TGETS   10  10   8  ; "w"
+0177    ADDVV   10  10   8
+0178    TSETS   10   9   8  ; "w"
+0179    JMP      8 => 0205
+0180 => TGETS    8   4   7  ; "dimen"
+0181    TGETS    8   8   8  ; "w"
+0182    SUBVN    7   8   2  ; 1
+0183    TGETS    8   4   7  ; "dimen"
+0184    TGETS    8   8  20  ; "x"
+0185    ADDVV    8   8   7
+0186    ADDVV    8   8   5
+0187    SUBVV    8   8   2
+0188    TGETS    9   0   7  ; "dimen"
+0189    TGETS    9   9   8  ; "w"
+0190    SUBVV    8   8   9
+0191    KSHORT   9   0
+0192    ISGE     9   8
+0193    JMP      9 => 0205
+0194    TGETB    9   0   1
+0195    TGETS    9   9   7  ; "dimen"
+0196    MOV     10   9
+0197    TGETS    9   9  22  ; "copy"
+0198    CALL     9   2   2
+0199    TSETS    9   0  21  ; "refresh_dimen"
+0200    TGETS    9   0  21  ; "refresh_dimen"
+0201    TGETS   10   0  21  ; "refresh_dimen"
+0202    TGETS   10  10   8  ; "w"
+0203    ADDVV   10  10   8
+0204    TSETS   10   9   8  ; "w"
+0205 => KSHORT   8   0
+0206    MOV     10   1
+0207    TGETS    9   1  23  ; "paintBorder"
+0208    TGETS   11   4   7  ; "dimen"
+0209    TGETS   11  11  20  ; "x"
+0210    ADDVV   11  11   7
+0211    TGETS   12   4   7  ; "dimen"
+0212    TGETS   12  12  24  ; "y"
+0213    ADDVV   12  12   8
+0214    MOV     13   5
+0215    MOV     14   6
+0216    KSHORT  15   1
+0217    CALL     9   1   7
+0218 => RET0     0   1
+
+-- BYTECODE -- mosaicmenu.lua:762-765
+0001    TGETS    1   0   0  ; "_underline_container"
+0002    UGET     2   0      ; Blitbuffer
+0003    TGETS    2   2   2  ; "COLOR_BLACK"
+0004    TSETS    2   1   1  ; "color"
+0005    KPRI     1   2
+0006    RET1     1   2
+
+-- BYTECODE -- mosaicmenu.lua:767-770
+0001    TGETS    1   0   0  ; "_underline_container"
+0002    UGET     2   0      ; Blitbuffer
+0003    TGETS    2   2   2  ; "COLOR_WHITE"
+0004    TSETS    2   1   1  ; "color"
+0005    KPRI     1   2
+0006    RET1     1   2
+
+-- BYTECODE -- mosaicmenu.lua:772-775
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "show"
+0004    UGET     3   1      ; InfoMessage
+0005    MOV      4   3
+0006    TGETS    3   3   1  ; "new"
+0007    TDUP     5   3
+0008    TGETS    6   0   2  ; "detail"
+0009    TSETS    6   5   4  ; "text"
+0010    CALL     3   0   3
+0011    CALLM    1   1   1
+0012    KPRI     1   2
+0013    RET1     1   2
+
+-- BYTECODE -- mosaicmenu.lua:781-784
+0001    TGETS    2   0   0  ; "menu"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "onMenuSelect"
+0004    TGETS    4   0   2  ; "entry"
+0005    CALL     2   1   3
+0006    KPRI     2   2
+0007    RET1     2   2
+
+-- BYTECODE -- mosaicmenu.lua:786-789
+0001    TGETS    3   0   0  ; "menu"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "onMenuHold"
+0004    TGETS    5   0   2  ; "entry"
+0005    CALL     3   1   3
+0006    KPRI     3   2
+0007    RET1     3   2
+
+-- BYTECODE -- mosaicmenu.lua:796-856
+0001    TGETS    1   0   0  ; "dimen"
+0002    TGETS    2   0   2  ; "width"
+0003    TSETS    2   1   1  ; "w"
+0004    TGETS    1   0   0  ; "dimen"
+0005    TGETS    2   0   4  ; "height"
+0006    IST          2
+0007    JMP      3 => 0012
+0008    UGET     2   0      ; Screen
+0009    MOV      3   2
+0010    TGETS    2   2   5  ; "getHeight"
+0011    CALL     2   2   2
+0012 => TSETS    2   1   3  ; "h"
+0013    KPRI     1   2
+0014    UGET     2   0      ; Screen
+0015    MOV      3   2
+0016    TGETS    2   2   6  ; "getWidth"
+0017    CALL     2   2   2
+0018    UGET     3   0      ; Screen
+0019    MOV      4   3
+0020    TGETS    3   3   5  ; "getHeight"
+0021    CALL     3   2   2
+0022    ISGE     3   2
+0023    JMP      2 => 0025
+0024    KPRI     1   1
+0025 => ISF          1
+0026    JMP      2 => 0038
+0027    TGETS    2   0   8  ; "nb_cols_portrait"
+0028    IST          2
+0029    JMP      3 => 0031
+0030    KSHORT   2   3
+0031 => TSETS    2   0   7  ; "nb_cols"
+0032    TGETS    2   0  10  ; "nb_rows_portrait"
+0033    IST          2
+0034    JMP      3 => 0036
+0035    KSHORT   2   3
+0036 => TSETS    2   0   9  ; "nb_rows"
+0037    JMP      2 => 0048
+0038 => TGETS    2   0  11  ; "nb_cols_landscape"
+0039    IST          2
+0040    JMP      3 => 0042
+0041    KSHORT   2   4
+0042 => TSETS    2   0   7  ; "nb_cols"
+0043    TGETS    2   0  12  ; "nb_rows_landscape"
+0044    IST          2
+0045    JMP      3 => 0047
+0046    KSHORT   2   2
+0047 => TSETS    2   0   9  ; "nb_rows"
+0048 => TGETS    2   0   9  ; "nb_rows"
+0049    TGETS    3   0   7  ; "nb_cols"
+0050    MULVV    2   2   3
+0051    TSETS    2   0  13  ; "perpage"
+0052    GGET     2  15      ; "math"
+0053    TGETS    2   2  16  ; "ceil"
+0054    TGETS    3   0  17  ; "item_table"
+0055    LEN      3   3
+0056    TGETS    4   0  13  ; "perpage"
+0057    DIVVV    3   3   4
+0058    CALL     2   2   2
+0059    TSETS    2   0  14  ; "page_num"
+0060    TGETS    2   0  14  ; "page_num"
+0061    KSHORT   3   0
+0062    ISGE     3   2
+0063    JMP      2 => 0070
+0064    TGETS    2   0  18  ; "page"
+0065    TGETS    3   0  14  ; "page_num"
+0066    ISGE     3   2
+0067    JMP      2 => 0070
+0068    TGETS    2   0  14  ; "page_num"
+0069    TSETS    2   0  18  ; "page"
+0070 => KSHORT   2   0
+0071    TSETS    2   0  19  ; "others_height"
+0072    TGETS    2   0  20  ; "title_bar"
+0073    ISF          2
+0074    JMP      3 => 0105
+0075    TGETS    2   0  21  ; "is_borderless"
+0076    IST          2
+0077    JMP      2 => 0081
+0078    TGETS    2   0  19  ; "others_height"
+0079    ADDVN    2   2   0  ; 2
+0080    TSETS    2   0  19  ; "others_height"
+0081 => TGETS    2   0  22  ; "no_title"
+0082    IST          2
+0083    JMP      2 => 0094
+0084    TGETS    2   0  19  ; "others_height"
+0085    TGETS    3   0  23  ; "header_padding"
+0086    ADDVV    2   2   3
+0087    TSETS    2   0  19  ; "others_height"
+0088    TGETS    2   0  19  ; "others_height"
+0089    TGETS    3   0  20  ; "title_bar"
+0090    TGETS    3   3   0  ; "dimen"
+0091    TGETS    3   3   3  ; "h"
+0092    ADDVV    2   2   3
+0093    TSETS    2   0  19  ; "others_height"
+0094 => TGETS    2   0  24  ; "page_info"
+0095    ISF          2
+0096    JMP      3 => 0105
+0097    TGETS    2   0  19  ; "others_height"
+0098    TGETS    3   0  24  ; "page_info"
+0099    MOV      4   3
+0100    TGETS    3   3  25  ; "getSize"
+0101    CALL     3   2   2
+0102    TGETS    3   3   3  ; "h"
+0103    ADDVV    2   2   3
+0104    TSETS    2   0  19  ; "others_height"
+0105 => UGET     2   0      ; Screen
+0106    MOV      3   2
+0107    TGETS    2   2  27  ; "scaleBySize"
+0108    KSHORT   4  10
+0109    CALL     2   2   3
+0110    TSETS    2   0  26  ; "item_margin"
+0111    GGET     2  15      ; "math"
+0112    TGETS    2   2  29  ; "floor"
+0113    TGETS    3   0   0  ; "dimen"
+0114    TGETS    3   3   3  ; "h"
+0115    TGETS    4   0  19  ; "others_height"
+0116    SUBVV    3   3   4
+0117    TGETS    4   0   9  ; "nb_rows"
+0118    ADDNV    4   4   1  ; 1
+0119    TGETS    5   0  26  ; "item_margin"
+0120    MULVV    4   4   5
+0121    SUBVV    3   3   4
+0122    TGETS    4   0   9  ; "nb_rows"
+0123    DIVVV    3   3   4
+0124    CALL     2   2   2
+0125    TSETS    2   0  28  ; "item_height"
+0126    GGET     2  15      ; "math"
+0127    TGETS    2   2  29  ; "floor"
+0128    TGETS    3   0   0  ; "dimen"
+0129    TGETS    3   3   1  ; "w"
+0130    TGETS    4   0   7  ; "nb_cols"
+0131    ADDNV    4   4   1  ; 1
+0132    TGETS    5   0  26  ; "item_margin"
+0133    MULVV    4   4   5
+0134    SUBVV    3   3   4
+0135    TGETS    4   0   7  ; "nb_cols"
+0136    DIVVV    3   3   4
+0137    CALL     2   2   2
+0138    TSETS    2   0  30  ; "item_width"
+0139    UGET     2   1      ; Geom
+0140    MOV      3   2
+0141    TGETS    2   2  32  ; "new"
+0142    TDUP     4  33
+0143    TGETS    5   0  30  ; "item_width"
+0144    TSETS    5   4   1  ; "w"
+0145    TGETS    5   0  28  ; "item_height"
+0146    TSETS    5   4   3  ; "h"
+0147    CALL     2   2   3
+0148    TSETS    2   0  31  ; "item_dimen"
+0149    GGET     2  15      ; "math"
+0150    TGETS    2   2  29  ; "floor"
+0151    GGET     3  15      ; "math"
+0152    TGETS    3   3  34  ; "min"
+0153    TGETS    4   0  30  ; "item_width"
+0154    TGETS    5   0  28  ; "item_height"
+0155    CALL     3   2   3
+0156    DIVVN    3   3   2  ; 16
+0157    CALL     2   2   2
+0158    UGET     3   2      ; corner_mark_size
+0159    ISEQV    2   3
+0160    JMP      3 => 0188
+0161    USETV    2   2      ; corner_mark_size
+0162    UGET     3   3      ; corner_mark
+0163    ISF          3
+0164    JMP      4 => 0169
+0165    UGET     3   3      ; corner_mark
+0166    MOV      4   3
+0167    TGETS    3   3  35  ; "free"
+0168    CALL     3   1   2
+0169 => UGET     3   4      ; ImageWidget
+0170    MOV      4   3
+0171    TGETS    3   3  32  ; "new"
+0172    TDUP     5  36
+0173    UGET     6   5      ; BD
+0174    TGETS    6   6  37  ; "mirroredUILayout"
+0175    CALL     6   2   1
+0176    ISF          6
+0177    JMP      7 => 0180
+0178    KSHORT   6 180
+0179    JMP      7 => 0181
+0180 => KSHORT   6 270
+0181 => TSETS    6   5  38  ; "rotation_angle"
+0182    UGET     6   2      ; corner_mark_size
+0183    TSETS    6   5   2  ; "width"
+0184    UGET     6   2      ; corner_mark_size
+0185    TSETS    6   5   4  ; "height"
+0186    CALL     3   2   3
+0187    USETV    3   3      ; corner_mark
+0188 => RET0     0   1
+
+-- BYTECODE -- mosaicmenu.lua:858-919
+0001    TGETS    1   0   0  ; "page"
+0002    SUBVN    1   1   0  ; 1
+0003    TGETS    2   0   1  ; "perpage"
+0004    MULVV    1   1   2
+0005    KPRI     2   0
+0006    KSHORT   3   1
+0007    TGETS    4   0   1  ; "perpage"
+0008    KSHORT   5   1
+0009    FORI     3 => 0156
+0010 => TGETS    7   0   2  ; "item_table"
+0011    ADDVV    8   1   6
+0012    TGETV    7   7   8
+0013    ISNEP    7   0
+0014    JMP      8 => 0016
+0015    JMP      3 => 0156
+0016 => TGETS    8   0   3  ; "nb_cols"
+0017    MODVV    8   6   8
+0018    ISNEN    8   0      ; 1
+0019    JMP      8 => 0075
+0020    GGET     8   4      ; "table"
+0021    TGETS    8   8   5  ; "insert"
+0022    TGETS    9   0   6  ; "item_group"
+0023    UGET    10   0      ; VerticalSpan
+0024    MOV     11  10
+0025    TGETS   10  10   7  ; "new"
+0026    TDUP    12   9
+0027    TGETS   13   0   8  ; "item_margin"
+0028    TSETS   13  12  10  ; "width"
+0029    CALL    10   0   3
+0030    CALLM    8   1   1
+0031    UGET     8   1      ; HorizontalGroup
+0032    MOV      9   8
+0033    TGETS    8   8   7  ; "new"
+0034    TNEW    10   0
+0035    CALL     8   2   3
+0036    MOV      2   8
+0037    TGETS    8   0  11  ; "_do_center_partial_rows"
+0038    ISF          8
+0039    JMP      9 => 0043
+0040    UGET     8   2      ; CenterContainer
+0041    IST          8
+0042    JMP      9 => 0044
+0043 => UGET     8   3      ; LeftContainer
+0044 => GGET     9   4      ; "table"
+0045    TGETS    9   9   5  ; "insert"
+0046    TGETS   10   0   6  ; "item_group"
+0047    MOV     12   8
+0048    TGETS   11   8   7  ; "new"
+0049    TDUP    13  17
+0050    UGET    14   4      ; Geom
+0051    MOV     15  14
+0052    TGETS   14  14   7  ; "new"
+0053    TDUP    16  14
+0054    TGETS   17   0  12  ; "dimen"
+0055    TGETS   17  17  13  ; "w"
+0056    TSETS   17  16  13  ; "w"
+0057    TGETS   17   0  15  ; "item_height"
+0058    TSETS   17  16  16  ; "h"
+0059    CALL    14   2   3
+0060    TSETS   14  13  12  ; "dimen"
+0061    TSETB    2  13   1
+0062    CALL    11   0   3
+0063    CALLM    9   1   1
+0064    GGET     9   4      ; "table"
+0065    TGETS    9   9   5  ; "insert"
+0066    MOV     10   2
+0067    UGET    11   5      ; HorizontalSpan
+0068    MOV     12  11
+0069    TGETS   11  11   7  ; "new"
+0070    TDUP    13  18
+0071    TGETS   14   0   8  ; "item_margin"
+0072    TSETS   14  13  10  ; "width"
+0073    CALL    11   0   3
+0074    CALLM    9   1   1
+0075 => KPRI     8   0
+0076    KSTR     9  19      ; "square"
+0077    TGETS   10   0  20  ; "is_enable_shortcut"
+0078    ISF         10
+0079    JMP     11 => 0089
+0080    KSHORT  10  11
+0081    ISGT    10   6
+0082    JMP     10 => 0087
+0083    KSHORT  10  20
+0084    ISGT     6  10
+0085    JMP     10 => 0087
+0086    KSTR     9  21      ; "grey_square"
+0087 => TGETS   10   0  22  ; "item_shortcuts"
+0088    TGETV    8  10   6
+0089 => UGET    10   6      ; MosaicMenuItem
+0090    MOV     11  10
+0091    TGETS   10  10   7  ; "new"
+0092    TDUP    12  23
+0093    TGETS   13   0  15  ; "item_height"
+0094    TSETS   13  12  24  ; "height"
+0095    TGETS   13   0  25  ; "item_width"
+0096    TSETS   13  12  10  ; "width"
+0097    TSETS    7  12  26  ; "entry"
+0098    UGET    13   7      ; getMenuText
+0099    MOV     14   7
+0100    CALL    13   2   2
+0101    TSETS   13  12  27  ; "text"
+0102    TGETS   13   0  28  ; "show_parent"
+0103    TSETS   13  12  28  ; "show_parent"
+0104    TGETS   13   7  29  ; "mandatory"
+0105    TSETS   13  12  29  ; "mandatory"
+0106    TGETS   13   0  30  ; "item_dimen"
+0107    MOV     14  13
+0108    TGETS   13  13   7  ; "new"
+0109    CALL    13   2   2
+0110    TSETS   13  12  12  ; "dimen"
+0111    TSETS    8  12  31  ; "shortcut"
+0112    TSETS    9  12  32  ; "shortcut_style"
+0113    TSETS    0  12  33  ; "menu"
+0114    TGETS   13   0  34  ; "_do_cover_images"
+0115    TSETS   13  12  35  ; "do_cover_image"
+0116    TGETS   13   0  36  ; "_do_hint_opened"
+0117    TSETS   13  12  37  ; "do_hint_opened"
+0118    CALL    10   2   3
+0119    GGET    11   4      ; "table"
+0120    TGETS   11  11   5  ; "insert"
+0121    MOV     12   2
+0122    MOV     13  10
+0123    CALL    11   1   3
+0124    GGET    11   4      ; "table"
+0125    TGETS   11  11   5  ; "insert"
+0126    MOV     12   2
+0127    UGET    13   5      ; HorizontalSpan
+0128    MOV     14  13
+0129    TGETS   13  13   7  ; "new"
+0130    TDUP    15  38
+0131    TGETS   16   0   8  ; "item_margin"
+0132    TSETS   16  15  10  ; "width"
+0133    CALL    13   0   3
+0134    CALLM   11   1   1
+0135    GGET    11   4      ; "table"
+0136    TGETS   11  11   5  ; "insert"
+0137    TGETS   12   0  39  ; "layout"
+0138    TNEW    13   3
+0139    TSETB   10  13   1
+0140    CALL    11   1   3
+0141    TGETS   11  10  40  ; "bookinfo_found"
+0142    IST         11
+0143    JMP     11 => 0155
+0144    TGETS   11  10  41  ; "is_directory"
+0145    IST         11
+0146    JMP     11 => 0155
+0147    TGETS   11  10  42  ; "file_deleted"
+0148    IST         11
+0149    JMP     11 => 0155
+0150    GGET    11   4      ; "table"
+0151    TGETS   11  11   5  ; "insert"
+0152    TGETS   12   0  43  ; "items_to_update"
+0153    MOV     13  10
+0154    CALL    11   1   3
+0155 => FORL     3 => 0010
+0156 => GGET     3   4      ; "table"
+0157    TGETS    3   3   5  ; "insert"
+0158    TGETS    4   0   6  ; "item_group"
+0159    UGET     5   0      ; VerticalSpan
+0160    MOV      6   5
+0161    TGETS    5   5   7  ; "new"
+0162    TDUP     7  44
+0163    TGETS    8   0   8  ; "item_margin"
+0164    TSETS    8   7  10  ; "width"
+0165    CALL     5   0   3
+0166    CALLM    3   1   1
+0167    RET0     0   1
+
+-- BYTECODE -- mosaicmenu.lua:0-922
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/blitbuffer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/container/bottomcontainer"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/container/centercontainer"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "device"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "docsettings"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/font"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/widget/container/framecontainer"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/geometry"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/gesturerange"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/widget/horizontalgroup"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/horizontalspan"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/imagewidget"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/widget/infomessage"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/widget/container/inputcontainer"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/widget/container/leftcontainer"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "ui/widget/overlapgroup"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/size"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "ui/widget/textboxwidget"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "ui/widget/textwidget"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "ui/uimanager"
+0063    CALL    20   2   2
+0064    GGET    21   0      ; "require"
+0065    KSTR    22  22      ; "ui/widget/container/underlinecontainer"
+0066    CALL    21   2   2
+0067    GGET    22   0      ; "require"
+0068    KSTR    23  23      ; "ui/widget/verticalgroup"
+0069    CALL    22   2   2
+0070    GGET    23   0      ; "require"
+0071    KSTR    24  24      ; "ui/widget/verticalspan"
+0072    CALL    23   2   2
+0073    GGET    24   0      ; "require"
+0074    KSTR    25  25      ; "ui/widget/container/widgetcontainer"
+0075    CALL    24   2   2
+0076    GGET    25   0      ; "require"
+0077    KSTR    26  26      ; "libs/libkoreader-lfs"
+0078    CALL    25   2   2
+0079    GGET    26   0      ; "require"
+0080    KSTR    27  27      ; "logger"
+0081    CALL    26   2   2
+0082    GGET    27   0      ; "require"
+0083    KSTR    28  28      ; "util"
+0084    CALL    27   2   2
+0085    GGET    28   0      ; "require"
+0086    KSTR    29  29      ; "gettext"
+0087    CALL    28   2   2
+0088    TGETS   29   4  30  ; "screen"
+0089    GGET    30   0      ; "require"
+0090    KSTR    31  31      ; "ffi/util"
+0091    CALL    30   2   2
+0092    TGETS   30  30  32  ; "template"
+0093    GGET    31   0      ; "require"
+0094    KSTR    32  33      ; "ui/widget/menu"
+0095    CALL    31   2   2
+0096    TGETS   31  31  34  ; "getMenuText"
+0097    GGET    32   0      ; "require"
+0098    KSTR    33  35      ; "bookinfomanager"
+0099    CALL    32   2   2
+0100    KSHORT  33  -1
+0101    KPRI    34   0
+0102    MOV     36  24
+0103    TGETS   35  24  36  ; "new"
+0104    TDUP    37  41
+0105    MOV     39   8
+0106    TGETS   38   8  36  ; "new"
+0107    TDUP    40  38
+0108    MOV     42  29
+0109    TGETS   41  29  37  ; "scaleBySize"
+0110    KSHORT  43  22
+0111    CALL    41   2   3
+0112    TSETS   41  40  39  ; "w"
+0113    MOV     42  29
+0114    TGETS   41  29  37  ; "scaleBySize"
+0115    KSHORT  43  22
+0116    CALL    41   2   3
+0117    TSETS   41  40  40  ; "h"
+0118    CALL    38   2   3
+0119    TSETS   38  37  42  ; "dimen"
+0120    TGETS   38  17  43  ; "border"
+0121    TGETS   38  38  44  ; "default"
+0122    TSETS   38  37  45  ; "bordersize"
+0123    CALL    35   2   3
+0124    FNEW    36  47      ; mosaicmenu.lua:56
+0125    TSETS   36  35  46  ; "init"
+0126    MOV     37   7
+0127    TGETS   36   7  36  ; "new"
+0128    TDUP    38  48
+0129    TGETS   39  17  49  ; "line"
+0130    TGETS   39  39  50  ; "thin"
+0131    TSETS   39  38  45  ; "bordersize"
+0132    TGETS   39  17  51  ; "padding"
+0133    TGETS   39  39  44  ; "default"
+0134    TSETS   39  38  52  ; "top_pad"
+0135    TGETS   39  17  51  ; "padding"
+0136    TGETS   39  39  44  ; "default"
+0137    TSETS   39  38  53  ; "bottom_pad"
+0138    MOV     40  29
+0139    TGETS   39  29  37  ; "scaleBySize"
+0140    KSHORT  41   2
+0141    CALL    39   2   3
+0142    TSETS   39  38  54  ; "sizedec_step"
+0143    CALL    36   2   3
+0144    FNEW    37  55      ; mosaicmenu.lua:125
+0145    TSETS   37  36  46  ; "init"
+0146    MOV     38  14
+0147    TGETS   37  14  36  ; "new"
+0148    TDUP    39  56
+0149    TNEW    40   0
+0150    TSETS   40  39  57  ; "entry"
+0151    CALL    37   2   3
+0152    FNEW    38  58      ; mosaicmenu.lua:361
+0153    TSETS   38  37  46  ; "init"
+0154    FNEW    38  60      ; mosaicmenu.lua:427
+0155    TSETS   38  37  59  ; "update"
+0156    FNEW    38  62      ; mosaicmenu.lua:688
+0157    TSETS   38  37  61  ; "paintTo"
+0158    FNEW    38  64      ; mosaicmenu.lua:762
+0159    TSETS   38  37  63  ; "onFocus"
+0160    FNEW    38  66      ; mosaicmenu.lua:767
+0161    TSETS   38  37  65  ; "onUnfocus"
+0162    FNEW    38  68      ; mosaicmenu.lua:772
+0163    TSETS   38  37  67  ; "onShowItemDetail"
+0164    FNEW    38  70      ; mosaicmenu.lua:781
+0165    TSETS   38  37  69  ; "onTapSelect"
+0166    FNEW    38  72      ; mosaicmenu.lua:786
+0167    TSETS   38  37  71  ; "onHoldSelect"
+0168    TNEW    38   0
+0169    FNEW    39  74      ; mosaicmenu.lua:796
+0170    TSETS   39  38  73  ; "_recalculateDimen"
+0171    FNEW    39  76      ; mosaicmenu.lua:858
+0172    TSETS   39  38  75  ; "_updateItemsBuildUI"
+0173    UCLO     0 => 0174
+0174 => RET1    38   2
+

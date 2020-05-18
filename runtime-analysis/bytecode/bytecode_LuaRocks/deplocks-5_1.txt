@@ -1,0 +1,239 @@
+
+main <./deplocks.lua:0,0> (59 instructions, 236 bytes at 0x7fcbcd4068a0)
+0+ params, 10 slots, 0 upvalues, 9 locals, 14 constants, 8 functions
+	1	[1]	NEWTABLE 	0 0 0
+	2	[3]	GETGLOBAL	1 -1	; require
+	3	[3]	LOADK    	2 -2	; "luarocks.fs"
+	4	[3]	CALL     	1 2 2
+	5	[4]	GETGLOBAL	2 -1	; require
+	6	[4]	LOADK    	3 -3	; "luarocks.dir"
+	7	[4]	CALL     	2 2 2
+	8	[5]	GETGLOBAL	3 -1	; require
+	9	[5]	LOADK    	4 -4	; "luarocks.util"
+	10	[5]	CALL     	3 2 2
+	11	[6]	GETGLOBAL	4 -1	; require
+	12	[6]	LOADK    	5 -5	; "luarocks.persist"
+	13	[6]	CALL     	4 2 2
+	14	[8]	NEWTABLE 	5 0 0
+	15	[9]	LOADK    	6 -6	; "start"
+	16	[10]	LOADNIL  	7 8
+	17	[24]	CLOSURE  	9 0	; 0x7fcbcd406c20
+	18	[24]	MOVE     	0 6
+	19	[24]	MOVE     	0 2
+	20	[24]	MOVE     	0 7
+	21	[24]	MOVE     	0 1
+	22	[24]	MOVE     	0 8
+	23	[24]	MOVE     	0 5
+	24	[13]	SETTABLE 	0 -7 9	; "init" -
+	25	[30]	CLOSURE  	9 1	; 0x7fcbcd407170
+	26	[30]	MOVE     	0 8
+	27	[30]	MOVE     	0 7
+	28	[26]	SETTABLE 	0 -8 9	; "get_abs_filename" -
+	29	[55]	CLOSURE  	9 2	; 0x7fcbcd406f60
+	30	[55]	MOVE     	0 6
+	31	[55]	MOVE     	0 2
+	32	[55]	MOVE     	0 4
+	33	[55]	MOVE     	0 7
+	34	[55]	MOVE     	0 1
+	35	[55]	MOVE     	0 8
+	36	[55]	MOVE     	0 5
+	37	[32]	SETTABLE 	0 -9 9	; "load" -
+	38	[71]	CLOSURE  	9 3	; 0x7fcbcd4070c0
+	39	[71]	MOVE     	0 6
+	40	[71]	MOVE     	0 5
+	41	[57]	SETTABLE 	0 -10 9	; "add" -
+	42	[80]	CLOSURE  	9 4	; 0x7fcbcd407e20
+	43	[80]	MOVE     	0 5
+	44	[73]	SETTABLE 	0 -11 9	; "get" -
+	45	[88]	CLOSURE  	9 5	; 0x7fcbcd408280
+	46	[88]	MOVE     	0 6
+	47	[88]	MOVE     	0 4
+	48	[88]	MOVE     	0 7
+	49	[88]	MOVE     	0 5
+	50	[82]	SETTABLE 	0 -12 9	; "write_file" -
+	51	[100]	CLOSURE  	9 6	; 0x7fcbcd408710
+	52	[100]	MOVE     	0 0
+	53	[91]	SETTABLE 	0 -13 9	; "proxy" -
+	54	[104]	CLOSURE  	9 7	; 0x7fcbcd4087a0
+	55	[104]	MOVE     	0 3
+	56	[104]	MOVE     	0 5
+	57	[102]	SETTABLE 	0 -14 9	; "each" -
+	58	[106]	RETURN   	0 2
+	59	[106]	RETURN   	0 1
+
+function <./deplocks.lua:13,24> (20 instructions, 80 bytes at 0x7fcbcd406c20)
+2 params, 5 slots, 6 upvalues, 3 locals, 5 constants, 0 functions
+	1	[14]	GETUPVAL 	2 0	; deptable_mode
+	2	[14]	EQ       	1 2 -1	; - "start"
+	3	[14]	JMP      	1	; to 5
+	4	[15]	RETURN   	0 1
+	5	[17]	LOADK    	2 -2	; "create"
+	6	[17]	SETUPVAL 	2 0	; deptable_mode
+	7	[19]	GETUPVAL 	2 1	; dir
+	8	[19]	GETTABLE 	2 2 -3	; "path"
+	9	[19]	MOVE     	3 1
+	10	[19]	LOADK    	4 -4	; "luarocks.lock"
+	11	[19]	CALL     	2 3 2
+	12	[20]	GETUPVAL 	3 3	; fs
+	13	[20]	GETTABLE 	3 3 -5	; "absolute_name"
+	14	[20]	MOVE     	4 2
+	15	[20]	CALL     	3 2 2
+	16	[20]	SETUPVAL 	3 2	; deplock_abs_filename
+	17	[21]	SETUPVAL 	0 4	; deplock_root_rock_name
+	18	[23]	NEWTABLE 	3 0 0
+	19	[23]	SETUPVAL 	3 5	; deptable
+	20	[24]	RETURN   	0 1
+
+function <./deplocks.lua:26,30> (6 instructions, 24 bytes at 0x7fcbcd407170)
+1 param, 2 slots, 2 upvalues, 1 local, 0 constants, 0 functions
+	1	[27]	GETUPVAL 	1 0	; deplock_root_rock_name
+	2	[27]	EQ       	0 0 1
+	3	[27]	JMP      	2	; to 6
+	4	[28]	GETUPVAL 	1 1	; deplock_abs_filename
+	5	[28]	RETURN   	1 2
+	6	[30]	RETURN   	0 1
+
+function <./deplocks.lua:32,55> (43 instructions, 172 bytes at 0x7fcbcd406f60)
+2 params, 10 slots, 7 upvalues, 6 locals, 10 constants, 0 functions
+	1	[33]	GETUPVAL 	2 0	; deptable_mode
+	2	[33]	EQ       	1 2 -1	; - "start"
+	3	[33]	JMP      	3	; to 7
+	4	[34]	LOADBOOL 	2 1 0
+	5	[34]	LOADNIL  	3 3
+	6	[34]	RETURN   	2 3
+	7	[36]	LOADK    	2 -2	; "locked"
+	8	[36]	SETUPVAL 	2 0	; deptable_mode
+	9	[38]	GETUPVAL 	2 1	; dir
+	10	[38]	GETTABLE 	2 2 -3	; "path"
+	11	[38]	MOVE     	3 1
+	12	[38]	LOADK    	4 -4	; "luarocks.lock"
+	13	[38]	CALL     	2 3 2
+	14	[39]	GETUPVAL 	3 2	; persist
+	15	[39]	GETTABLE 	3 3 -5	; "run_file"
+	16	[39]	MOVE     	4 2
+	17	[39]	NEWTABLE 	5 0 0
+	18	[39]	CALL     	3 3 4
+	19	[40]	EQ       	1 5 -6	; - "load"
+	20	[40]	JMP      	2	; to 23
+	21	[40]	EQ       	0 5 -7	; - "run"
+	22	[40]	JMP      	5	; to 28
+	23	[42]	LOADNIL  	6 7
+	24	[42]	LOADK    	8 -8	; "Could not read existing lockfile "
+	25	[42]	MOVE     	9 2
+	26	[42]	CONCAT   	8 8 9
+	27	[42]	RETURN   	6 4
+	28	[45]	EQ       	0 5 -9	; - "open"
+	29	[45]	JMP      	3	; to 33
+	30	[47]	LOADBOOL 	6 1 0
+	31	[47]	LOADNIL  	7 7
+	32	[47]	RETURN   	6 3
+	33	[50]	GETUPVAL 	6 4	; fs
+	34	[50]	GETTABLE 	6 6 -10	; "absolute_name"
+	35	[50]	MOVE     	7 2
+	36	[50]	CALL     	6 2 2
+	37	[50]	SETUPVAL 	6 3	; deplock_abs_filename
+	38	[51]	SETUPVAL 	0 5	; deplock_root_rock_name
+	39	[53]	SETUPVAL 	4 6	; deptable
+	40	[54]	LOADBOOL 	6 1 0
+	41	[54]	MOVE     	7 2
+	42	[54]	RETURN   	6 3
+	43	[55]	RETURN   	0 1
+
+function <./deplocks.lua:57,71> (17 instructions, 68 bytes at 0x7fcbcd4070c0)
+3 params, 5 slots, 2 upvalues, 4 locals, 1 constant, 0 functions
+	1	[58]	GETUPVAL 	3 0	; deptable_mode
+	2	[58]	EQ       	0 3 -1	; - "locked"
+	3	[58]	JMP      	1	; to 5
+	4	[59]	RETURN   	0 1
+	5	[62]	GETUPVAL 	3 1	; deptable
+	6	[62]	GETTABLE 	3 3 0
+	7	[63]	TEST     	3 0 1
+	8	[63]	JMP      	4	; to 13
+	9	[64]	NEWTABLE 	4 0 0
+	10	[64]	MOVE     	3 4
+	11	[65]	GETUPVAL 	4 1	; deptable
+	12	[65]	SETTABLE 	4 0 3
+	13	[68]	GETTABLE 	4 3 1
+	14	[68]	TEST     	4 0 1
+	15	[68]	JMP      	1	; to 17
+	16	[69]	SETTABLE 	3 1 2
+	17	[71]	RETURN   	0 1
+
+function <./deplocks.lua:73,80> (10 instructions, 40 bytes at 0x7fcbcd407e20)
+2 params, 4 slots, 1 upvalue, 3 locals, 0 constants, 0 functions
+	1	[74]	GETUPVAL 	2 0	; deptable
+	2	[74]	GETTABLE 	2 2 0
+	3	[75]	TEST     	2 0 1
+	4	[75]	JMP      	2	; to 7
+	5	[76]	LOADNIL  	3 3
+	6	[76]	RETURN   	3 2
+	7	[79]	GETUPVAL 	3 0	; deptable
+	8	[79]	GETTABLE 	3 3 1
+	9	[79]	RETURN   	3 2
+	10	[80]	RETURN   	0 1
+
+function <./deplocks.lua:82,88> (12 instructions, 48 bytes at 0x7fcbcd408280)
+0 params, 3 slots, 4 upvalues, 0 locals, 2 constants, 0 functions
+	1	[83]	GETUPVAL 	0 0	; deptable_mode
+	2	[83]	EQ       	1 0 -1	; - "create"
+	3	[83]	JMP      	2	; to 6
+	4	[84]	LOADBOOL 	0 1 0
+	5	[84]	RETURN   	0 2
+	6	[87]	GETUPVAL 	0 1	; persist
+	7	[87]	GETTABLE 	0 0 -2	; "save_as_module"
+	8	[87]	GETUPVAL 	1 2	; deplock_abs_filename
+	9	[87]	GETUPVAL 	2 3	; deptable
+	10	[87]	TAILCALL 	0 3 0
+	11	[87]	RETURN   	0 0
+	12	[88]	RETURN   	0 1
+
+function <./deplocks.lua:91,100> (14 instructions, 56 bytes at 0x7fcbcd408710)
+1 param, 5 slots, 1 upvalue, 1 local, 3 constants, 2 functions
+	1	[92]	GETGLOBAL	1 -1	; setmetatable
+	2	[92]	NEWTABLE 	2 0 0
+	3	[92]	NEWTABLE 	3 0 2
+	4	[95]	CLOSURE  	4 0	; 0x7fcbcd408cd0
+	5	[95]	GETUPVAL 	0 0	; deplocks
+	6	[95]	MOVE     	0 0
+	7	[95]	SETTABLE 	3 -2 4	; "__index" -
+	8	[98]	CLOSURE  	4 1	; 0x7fcbcd408b10
+	9	[98]	GETUPVAL 	0 0	; deplocks
+	10	[98]	MOVE     	0 0
+	11	[98]	SETTABLE 	3 -3 4	; "__newindex" -
+	12	[92]	TAILCALL 	1 3 0
+	13	[99]	RETURN   	1 0
+	14	[100]	RETURN   	0 1
+
+function <./deplocks.lua:93,95> (7 instructions, 28 bytes at 0x7fcbcd408cd0)
+2 params, 5 slots, 2 upvalues, 2 locals, 1 constant, 0 functions
+	1	[94]	GETUPVAL 	2 0	; deplocks
+	2	[94]	GETTABLE 	2 2 -1	; "get"
+	3	[94]	GETUPVAL 	3 1	; depskey
+	4	[94]	MOVE     	4 1
+	5	[94]	TAILCALL 	2 3 0
+	6	[94]	RETURN   	2 0
+	7	[95]	RETURN   	0 1
+
+function <./deplocks.lua:96,98> (8 instructions, 32 bytes at 0x7fcbcd408b10)
+3 params, 7 slots, 2 upvalues, 3 locals, 1 constant, 0 functions
+	1	[97]	GETUPVAL 	3 0	; deplocks
+	2	[97]	GETTABLE 	3 3 -1	; "add"
+	3	[97]	GETUPVAL 	4 1	; depskey
+	4	[97]	MOVE     	5 1
+	5	[97]	MOVE     	6 2
+	6	[97]	TAILCALL 	3 4 0
+	7	[97]	RETURN   	3 0
+	8	[98]	RETURN   	0 1
+
+function <./deplocks.lua:102,104> (10 instructions, 40 bytes at 0x7fcbcd4087a0)
+1 param, 3 slots, 2 upvalues, 1 local, 1 constant, 0 functions
+	1	[103]	GETUPVAL 	1 0	; util
+	2	[103]	GETTABLE 	1 1 -1	; "sortedpairs"
+	3	[103]	GETUPVAL 	2 1	; deptable
+	4	[103]	GETTABLE 	2 2 0
+	5	[103]	TEST     	2 0 1
+	6	[103]	JMP      	1	; to 8
+	7	[103]	NEWTABLE 	2 0 0
+	8	[103]	TAILCALL 	1 2 0
+	9	[103]	RETURN   	1 0
+	10	[104]	RETURN   	0 1

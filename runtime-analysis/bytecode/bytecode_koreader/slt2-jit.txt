@@ -1,0 +1,523 @@
+-- BYTECODE -- slt2.lua:14-43
+0001    MOV      5   4
+0002    CALL     5   2   1
+0003    IST          1
+0004    JMP      6 => 0006
+0005    KSTR     1   0      ; "#{"
+0006 => IST          2
+0007    JMP      6 => 0009
+0008    KSTR     2   1      ; "}#"
+0009 => MOV      6   1
+0010    KSTR     7   2      ; "include:"
+0011    CAT      6   6   7
+0012    GGET     7   3      ; "string"
+0013    TGETS    7   7   4  ; "find"
+0014    MOV      8   0
+0015    MOV      9   6
+0016    KSHORT  10   1
+0017    KPRI    11   2
+0018    CALL     7   3   5
+0019    KPRI     9   0
+0020    KSHORT  10   0
+0021 => ISEQP    7   0
+0022    JMP     11 => 0103
+0023    LOOP    11 => 0103
+0024    ADDVN   11  10   0  ; 1
+0025    ISGE    11   7
+0026    JMP     11 => 0037
+0027    MOV     11   3
+0028    MOV     12   5
+0029    GGET    13   3      ; "string"
+0030    TGETS   13  13   5  ; "sub"
+0031    MOV     14   0
+0032    ADDVN   15  10   0  ; 1
+0033    SUBVN   16   7   0  ; 1
+0034    CALL    13   0   4
+0035    CALLM   11   2   1
+0036    MOV      5  11
+0037 => GGET    11   3      ; "string"
+0038    TGETS   11  11   4  ; "find"
+0039    MOV     12   0
+0040    MOV     13   2
+0041    ADDVN   14   8   0  ; 1
+0042    KPRI    15   2
+0043    CALL    11   3   5
+0044    MOV     10  12
+0045    MOV      9  11
+0046    GGET    11   6      ; "assert"
+0047    MOV     12   9
+0048    KSTR    13   7      ; "end tag ""
+0049    MOV     14   2
+0050    KSTR    15   8      ; "" missing"
+0051    CAT     13  13  15
+0052    CALL    11   1   3
+0053    GGET    11   6      ; "assert"
+0054    GGET    12   9      ; "loadstring"
+0055    KSTR    13  10      ; "return "
+0056    GGET    14   3      ; "string"
+0057    TGETS   14  14   5  ; "sub"
+0058    MOV     15   0
+0059    ADDVN   16   8   0  ; 1
+0060    SUBVN   17   9   0  ; 1
+0061    CALL    14   2   4
+0062    CAT     13  13  14
+0063    CALL    12   0   2
+0064    CALLM   11   2   0
+0065    CALL    11   2   1
+0066    GGET    12   6      ; "assert"
+0067    MOV     13  11
+0068    CALL    12   1   2
+0069    GGET    12   6      ; "assert"
+0070    GGET    13  11      ; "io"
+0071    TGETS   13  13  12  ; "open"
+0072    MOV     14  11
+0073    CALL    13   0   2
+0074    CALLM   12   2   0
+0075    MOV     13   3
+0076    MOV     14   5
+0077    UGET    15   0      ; include_fold
+0078    MOV     17  12
+0079    TGETS   16  12  13  ; "read"
+0080    KSTR    18  14      ; "*a"
+0081    CALL    16   2   3
+0082    MOV     17   1
+0083    MOV     18   2
+0084    MOV     19   3
+0085    MOV     20   4
+0086    CALL    15   2   6
+0087    MOV     16  11
+0088    CALL    13   2   4
+0089    MOV      5  13
+0090    MOV     14  12
+0091    TGETS   13  12  15  ; "close"
+0092    CALL    13   1   2
+0093    GGET    11   3      ; "string"
+0094    TGETS   11  11   4  ; "find"
+0095    MOV     12   0
+0096    MOV     13   6
+0097    ADDVN   14  10   0  ; 1
+0098    KPRI    15   2
+0099    CALL    11   3   5
+0100    MOV      8  12
+0101    MOV      7  11
+0102    JMP     11 => 0021
+0103 => MOV     11   3
+0104    MOV     12   5
+0105    GGET    13   3      ; "string"
+0106    TGETS   13  13   5  ; "sub"
+0107    MOV     14   0
+0108    ADDVN   15  10   0  ; 1
+0109    CALL    13   0   3
+0110    CALLM   11   2   1
+0111    MOV      5  11
+0112    RET1     5   2
+
+-- BYTECODE -- slt2.lua:48-57
+0001    GGET     2   0      ; "type"
+0002    MOV      3   1
+0003    CALL     2   2   2
+0004    ISNES    2   1      ; "string"
+0005    JMP      2 => 0012
+0006    GGET     2   2      ; "table"
+0007    TGETS    2   2   3  ; "insert"
+0008    MOV      3   0
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    JMP      2 => 0033
+0012 => GGET     2   0      ; "type"
+0013    MOV      3   1
+0014    CALL     2   2   2
+0015    ISNES    2   2      ; "table"
+0016    JMP      2 => 0026
+0017    GGET     2   2      ; "table"
+0018    TGETS    2   2   3  ; "insert"
+0019    MOV      3   0
+0020    GGET     4   2      ; "table"
+0021    TGETS    4   4   4  ; "concat"
+0022    MOV      5   1
+0023    CALL     4   0   2
+0024    CALLM    2   1   1
+0025    JMP      2 => 0033
+0026 => GGET     2   5      ; "error"
+0027    KSTR     3   6      ; "Unknown type: "
+0028    GGET     4   0      ; "type"
+0029    MOV      5   1
+0030    CALL     4   2   2
+0031    CAT      3   3   4
+0032    CALL     2   1   2
+0033 => RET1     0   2
+
+-- BYTECODE -- slt2.lua:57-57
+0001    TNEW     0   0
+0002    RET1     0   2
+
+-- BYTECODE -- slt2.lua:47-58
+0001    GGET     3   0      ; "table"
+0002    TGETS    3   3   1  ; "concat"
+0003    UGET     4   0      ; include_fold
+0004    MOV      5   0
+0005    MOV      6   1
+0006    MOV      7   2
+0007    FNEW     8   2      ; slt2.lua:48
+0008    FNEW     9   3      ; slt2.lua:57
+0009    CALL     4   0   6
+0010    UCLO     0 => 0011
+0011 => CALLMT   3   0
+
+-- BYTECODE -- slt2.lua:61-71
+0001    TNEW     1   0
+0002    TNEW     2   0
+0003    GGET     3   0      ; "ipairs"
+0004    MOV      4   0
+0005    CALL     3   4   2
+0006    JMP      6 => 0017
+0007 => TGETV    8   1   7
+0008    IST          8
+0009    JMP      8 => 0017
+0010    GGET     8   1      ; "table"
+0011    TGETS    8   8   2  ; "insert"
+0012    MOV      9   2
+0013    MOV     10   7
+0014    CALL     8   1   3
+0015    KPRI     8   2
+0016    TSETV    8   1   7
+0017 => ITERC    6   3   3
+0018    ITERL    6 => 0007
+0019    RET1     2   2
+
+-- BYTECODE -- slt2.lua:75-89
+0001    GGET     3   0      ; "type"
+0002    MOV      4   1
+0003    CALL     3   2   2
+0004    ISNES    3   1      ; "string"
+0005    JMP      3 => 0008
+0006    RET1     0   2
+0007    JMP      3 => 0039
+0008 => GGET     3   0      ; "type"
+0009    MOV      4   1
+0010    CALL     3   2   2
+0011    ISNES    3   2      ; "table"
+0012    JMP      3 => 0032
+0013    ISEQP    2   0
+0014    JMP      3 => 0020
+0015    GGET     3   2      ; "table"
+0016    TGETS    3   3   3  ; "insert"
+0017    MOV      4   0
+0018    MOV      5   2
+0019    CALL     3   1   3
+0020 => GGET     3   4      ; "ipairs"
+0021    MOV      4   1
+0022    CALL     3   4   2
+0023    JMP      6 => 0029
+0024 => GGET     8   2      ; "table"
+0025    TGETS    8   8   3  ; "insert"
+0026    MOV      9   0
+0027    MOV     10   7
+0028    CALL     8   1   3
+0029 => ITERC    6   3   3
+0030    ITERL    6 => 0024
+0031    JMP      3 => 0039
+0032 => GGET     3   5      ; "error"
+0033    KSTR     4   6      ; "Unknown type: "
+0034    GGET     5   0      ; "type"
+0035    MOV      6   1
+0036    CALL     5   2   2
+0037    CAT      4   4   5
+0038    CALL     3   1   2
+0039 => RET1     0   2
+
+-- BYTECODE -- slt2.lua:89-89
+0001    TNEW     0   0
+0002    RET1     0   2
+
+-- BYTECODE -- slt2.lua:74-90
+0001    UGET     3   0      ; stable_uniq
+0002    UGET     4   1      ; include_fold
+0003    MOV      5   0
+0004    MOV      6   1
+0005    MOV      7   2
+0006    FNEW     8   0      ; slt2.lua:75
+0007    FNEW     9   1      ; slt2.lua:89
+0008    CALL     4   0   6
+0009    UCLO     0 => 0010
+0010 => CALLMT   3   0
+
+-- BYTECODE -- slt2.lua:93-132
+0001    TNEW     4   0
+0002    IST          1
+0003    JMP      5 => 0005
+0004    KSTR     1   0      ; "#{"
+0005 => IST          2
+0006    JMP      5 => 0008
+0007    KSTR     2   1      ; "}#"
+0008 => KSTR     5   2      ; "coroutine.yield"
+0009    UGET     6   0      ; slt2
+0010    TGETS    6   6   3  ; "precompile"
+0011    MOV      7   0
+0012    MOV      8   1
+0013    MOV      9   2
+0014    CALL     6   2   4
+0015    MOV      0   6
+0016    GGET     6   4      ; "string"
+0017    TGETS    6   6   5  ; "find"
+0018    MOV      7   0
+0019    MOV      8   1
+0020    KSHORT   9   1
+0021    KPRI    10   2
+0022    CALL     6   3   5
+0023    KPRI     8   0
+0024    KSHORT   9   0
+0025    GGET    10   4      ; "string"
+0026    TGETS   10  10   6  ; "byte"
+0027    KSTR    11   7      ; "="
+0028    KSHORT  12   1
+0029    CALL    10   2   3
+0030 => ISEQP    6   0
+0031    JMP     11 => 0112
+0032    LOOP    11 => 0112
+0033    ADDVN   11   9   0  ; 1
+0034    ISGE    11   6
+0035    JMP     11 => 0054
+0036    GGET    11   8      ; "table"
+0037    TGETS   11  11   9  ; "insert"
+0038    MOV     12   4
+0039    MOV     13   5
+0040    KSTR    14  10      ; "("
+0041    GGET    15   4      ; "string"
+0042    TGETS   15  15  11  ; "format"
+0043    KSTR    16  12      ; "%q"
+0044    GGET    17   4      ; "string"
+0045    TGETS   17  17  13  ; "sub"
+0046    MOV     18   0
+0047    ADDVN   19   9   0  ; 1
+0048    SUBVN   20   6   0  ; 1
+0049    CALL    17   0   4
+0050    CALLM   15   2   1
+0051    KSTR    16  14      ; ")"
+0052    CAT     13  13  16
+0053    CALL    11   1   3
+0054 => GGET    11   4      ; "string"
+0055    TGETS   11  11   5  ; "find"
+0056    MOV     12   0
+0057    MOV     13   2
+0058    ADDVN   14   7   0  ; 1
+0059    KPRI    15   2
+0060    CALL    11   3   5
+0061    MOV      9  12
+0062    MOV      8  11
+0063    GGET    11  15      ; "assert"
+0064    MOV     12   8
+0065    KSTR    13  16      ; "end_tag ""
+0066    MOV     14   2
+0067    KSTR    15  17      ; "" missing"
+0068    CAT     13  13  15
+0069    CALL    11   1   3
+0070    GGET    11   4      ; "string"
+0071    TGETS   11  11   6  ; "byte"
+0072    MOV     12   0
+0073    ADDVN   13   7   0  ; 1
+0074    CALL    11   2   3
+0075    ISNEV   11  10
+0076    JMP     11 => 0092
+0077    GGET    11   8      ; "table"
+0078    TGETS   11  11   9  ; "insert"
+0079    MOV     12   4
+0080    MOV     13   5
+0081    KSTR    14  10      ; "("
+0082    GGET    15   4      ; "string"
+0083    TGETS   15  15  13  ; "sub"
+0084    MOV     16   0
+0085    ADDVN   17   7   1  ; 2
+0086    SUBVN   18   8   0  ; 1
+0087    CALL    15   2   4
+0088    KSTR    16  14      ; ")"
+0089    CAT     13  13  16
+0090    CALL    11   1   3
+0091    JMP     11 => 0102
+0092 => GGET    11   8      ; "table"
+0093    TGETS   11  11   9  ; "insert"
+0094    MOV     12   4
+0095    GGET    13   4      ; "string"
+0096    TGETS   13  13  13  ; "sub"
+0097    MOV     14   0
+0098    ADDVN   15   7   0  ; 1
+0099    SUBVN   16   8   0  ; 1
+0100    CALL    13   0   4
+0101    CALLM   11   1   1
+0102 => GGET    11   4      ; "string"
+0103    TGETS   11  11   5  ; "find"
+0104    MOV     12   0
+0105    MOV     13   1
+0106    ADDVN   14   9   0  ; 1
+0107    KPRI    15   2
+0108    CALL    11   3   5
+0109    MOV      7  12
+0110    MOV      6  11
+0111    JMP     11 => 0030
+0112 => GGET    11   8      ; "table"
+0113    TGETS   11  11   9  ; "insert"
+0114    MOV     12   4
+0115    MOV     13   5
+0116    KSTR    14  10      ; "("
+0117    GGET    15   4      ; "string"
+0118    TGETS   15  15  11  ; "format"
+0119    KSTR    16  12      ; "%q"
+0120    GGET    17   4      ; "string"
+0121    TGETS   17  17  13  ; "sub"
+0122    MOV     18   0
+0123    ADDVN   19   9   0  ; 1
+0124    CALL    17   0   3
+0125    CALLM   15   2   1
+0126    KSTR    16  14      ; ")"
+0127    CAT     13  13  16
+0128    CALL    11   1   3
+0129    TDUP    11  18
+0130    ISTC    12   3
+0131    JMP     12 => 0133
+0132    KSTR    12  19      ; "=(slt2.loadstring)"
+0133 => TSETS   12  11  20  ; "name"
+0134    GGET    12  21      ; "setfenv"
+0135    ISNEP   12   0
+0136    JMP     12 => 0144
+0137    GGET    12   8      ; "table"
+0138    TGETS   12  12  23  ; "concat"
+0139    MOV     13   4
+0140    KSTR    14  24      ; "\n"
+0141    CALL    12   2   3
+0142    TSETS   12  11  22  ; "code"
+0143    JMP     12 => 0155
+0144 => GGET    12  15      ; "assert"
+0145    GGET    13  25      ; "loadstring"
+0146    GGET    14   8      ; "table"
+0147    TGETS   14  14  23  ; "concat"
+0148    MOV     15   4
+0149    KSTR    16  24      ; "\n"
+0150    CALL    14   2   3
+0151    TGETS   15  11  20  ; "name"
+0152    CALL    13   0   3
+0153    CALLM   12   2   0
+0154    TSETS   12  11  22  ; "code"
+0155 => RET1    11   2
+
+-- BYTECODE -- slt2.lua:135-140
+0001    GGET     3   0      ; "assert"
+0002    GGET     4   1      ; "io"
+0003    TGETS    4   4   2  ; "open"
+0004    MOV      5   0
+0005    CALL     4   0   2
+0006    CALLM    3   2   0
+0007    MOV      5   3
+0008    TGETS    4   3   3  ; "read"
+0009    KSTR     6   4      ; "*a"
+0010    CALL     4   2   3
+0011    MOV      6   3
+0012    TGETS    5   3   5  ; "close"
+0013    CALL     5   1   2
+0014    UGET     5   0      ; slt2
+0015    TGETS    5   5   6  ; "loadstring"
+0016    MOV      6   4
+0017    MOV      7   1
+0018    MOV      8   2
+0019    MOV      9   0
+0020    CALLT    5   5
+
+-- BYTECODE -- slt2.lua:146-160
+0001    KPRI     2   0
+0002    GGET     3   0      ; "setfenv"
+0003    ISNEP    3   0
+0004    JMP      3 => 0023
+0005    ISEQP    1   0
+0006    JMP      3 => 0011
+0007    GGET     3   1      ; "setmetatable"
+0008    MOV      4   1
+0009    UGET     5   0      ; mt52
+0010    CALL     3   1   3
+0011 => GGET     3   2      ; "assert"
+0012    GGET     4   3      ; "load"
+0013    TGETS    5   0   4  ; "code"
+0014    TGETS    6   0   5  ; "name"
+0015    KSTR     7   6      ; "t"
+0016    ISTC     8   1
+0017    JMP      8 => 0019
+0018    GGET     8   7      ; "_ENV"
+0019 => CALL     4   0   5
+0020    CALLM    3   2   0
+0021    MOV      2   3
+0022    JMP      3 => 0036
+0023 => ISEQP    1   0
+0024    JMP      3 => 0029
+0025    GGET     3   1      ; "setmetatable"
+0026    MOV      4   1
+0027    UGET     5   1      ; mt51
+0028    CALL     3   1   3
+0029 => GGET     3   0      ; "setfenv"
+0030    TGETS    4   0   4  ; "code"
+0031    ISTC     5   1
+0032    JMP      5 => 0034
+0033    GGET     5   8      ; "_G"
+0034 => CALL     3   2   3
+0035    MOV      2   3
+0036 => RET1     2   2
+
+-- BYTECODE -- slt2.lua:163-174
+0001    TNEW     2   0
+0002    GGET     3   0      ; "coroutine"
+0003    TGETS    3   3   1  ; "create"
+0004    UGET     4   0      ; slt2
+0005    TGETS    4   4   2  ; "render_co"
+0006    MOV      5   0
+0007    MOV      6   1
+0008    CALL     4   0   3
+0009    CALLM    3   2   0
+0010 => GGET     4   0      ; "coroutine"
+0011    TGETS    4   4   3  ; "status"
+0012    MOV      5   3
+0013    CALL     4   2   2
+0014    ISEQS    4   4      ; "dead"
+0015    JMP      4 => 0032
+0016    LOOP     4 => 0032
+0017    GGET     4   0      ; "coroutine"
+0018    TGETS    4   4   5  ; "resume"
+0019    MOV      5   3
+0020    CALL     4   3   2
+0021    IST          4
+0022    JMP      6 => 0026
+0023    GGET     6   6      ; "error"
+0024    MOV      7   5
+0025    CALL     6   1   2
+0026 => GGET     6   7      ; "table"
+0027    TGETS    6   6   8  ; "insert"
+0028    MOV      7   2
+0029    MOV      8   5
+0030    CALL     6   1   3
+0031    JMP      4 => 0010
+0032 => GGET     4   7      ; "table"
+0033    TGETS    4   4   9  ; "concat"
+0034    MOV      5   2
+0035    CALLT    4   2
+
+-- BYTECODE -- slt2.lua:0-177
+0001    TNEW     0   0
+0002    FNEW     1   0      ; slt2.lua:14
+0003    FNEW     2   2      ; slt2.lua:47
+0004    TSETS    2   0   1  ; "precompile"
+0005    FNEW     2   3      ; slt2.lua:61
+0006    FNEW     3   5      ; slt2.lua:74
+0007    TSETS    3   0   4  ; "get_dependency"
+0008    FNEW     3   7      ; slt2.lua:93
+0009    TSETS    3   0   6  ; "loadstring"
+0010    FNEW     3   9      ; slt2.lua:135
+0011    TSETS    3   0   8  ; "loadfile"
+0012    TDUP     3  10
+0013    GGET     4  11      ; "_ENV"
+0014    TSETS    4   3  12  ; "__index"
+0015    TDUP     4  13
+0016    GGET     5  14      ; "_G"
+0017    TSETS    5   4  12  ; "__index"
+0018    FNEW     5  16      ; slt2.lua:146
+0019    TSETS    5   0  15  ; "render_co"
+0020    FNEW     5  18      ; slt2.lua:163
+0021    TSETS    5   0  17  ; "render"
+0022    UCLO     0 => 0023
+0023 => RET1     0   2
+

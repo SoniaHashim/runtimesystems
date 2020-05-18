@@ -1,0 +1,2077 @@
+-- BYTECODE -- calendarview.lua:37-51
+0001    UGET     1   0      ; CloseButton
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "new"
+0004    TDUP     3   2
+0005    TSETS    0   3   3  ; "window"
+0006    CALL     1   2   3
+0007    TSETS    1   0   0  ; "close_button"
+0008    TGETS    1   0   0  ; "close_button"
+0009    MOV      2   1
+0010    TGETS    1   1   4  ; "getSize"
+0011    CALL     1   2   2
+0012    TGETS    1   1   5  ; "w"
+0013    UGET     2   1      ; TextWidget
+0014    MOV      3   2
+0015    TGETS    2   2   1  ; "new"
+0016    TDUP     4   8
+0017    TGETS    5   0   7  ; "title"
+0018    TSETS    5   4   9  ; "text"
+0019    TGETS    5   0  10  ; "width"
+0020    SUBVV    5   5   1
+0021    TSETS    5   4  11  ; "max_width"
+0022    TGETS    5   0  12  ; "tface"
+0023    TSETS    5   4  13  ; "face"
+0024    CALL     2   2   3
+0025    TSETS    2   0   6  ; "text_w"
+0026    GGET     2  14      ; "table"
+0027    TGETS    2   2  15  ; "insert"
+0028    MOV      3   0
+0029    UGET     4   2      ; OverlapGroup
+0030    MOV      5   4
+0031    TGETS    4   4   1  ; "new"
+0032    TDUP     6  17
+0033    TDUP     7  16
+0034    TGETS    8   0  10  ; "width"
+0035    TSETS    8   7   5  ; "w"
+0036    TSETS    7   6  18  ; "dimen"
+0037    TGETS    7   0   6  ; "text_w"
+0038    TSETB    7   6   1
+0039    TGETS    7   0   0  ; "close_button"
+0040    TSETB    7   6   2
+0041    CALL     4   0   3
+0042    CALLM    2   1   1
+0043    GGET     2  14      ; "table"
+0044    TGETS    2   2  15  ; "insert"
+0045    MOV      3   0
+0046    UGET     4   3      ; VerticalSpan
+0047    MOV      5   4
+0048    TGETS    4   4   1  ; "new"
+0049    TDUP     6  21
+0050    UGET     7   4      ; Size
+0051    TGETS    7   7  19  ; "span"
+0052    TGETS    7   7  20  ; "vertical_large"
+0053    TSETS    7   6  10  ; "width"
+0054    CALL     4   0   3
+0055    CALLM    2   1   1
+0056    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:53-55
+0001    TGETS    2   0   0  ; "text_w"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "setText"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:57-60
+0001    TGETS    1   0   0  ; "calendar_view"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "onClose"
+0004    CALL     1   1   2
+0005    KPRI     1   2
+0006    RET1     1   2
+
+-- BYTECODE -- calendarview.lua:71-88
+0001    UGET     1   0      ; Geom
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "new"
+0004    TDUP     3   3
+0005    TGETS    4   0   2  ; "width"
+0006    TSETS    4   3   4  ; "w"
+0007    TGETS    4   0   5  ; "height"
+0008    TSETS    4   3   6  ; "h"
+0009    CALL     1   2   3
+0010    TSETS    1   0   0  ; "dimen"
+0011    GGET     1   7      ; "math"
+0012    TGETS    1   1   8  ; "floor"
+0013    TGETS    2   0   2  ; "width"
+0014    TGETS    3   0   9  ; "nb_items"
+0015    DIVVV    2   2   3
+0016    CALL     1   2   2
+0017    TGETS    2   0   2  ; "width"
+0018    TGETS    3   0   9  ; "nb_items"
+0019    MULVV    3   3   1
+0020    SUBVV    2   2   3
+0021    GGET     3   7      ; "math"
+0022    TGETS    3   3   8  ; "floor"
+0023    TGETS    4   0   9  ; "nb_items"
+0024    DIVVV    4   4   2
+0025    CALL     3   2   2
+0026    TNEW     4   0
+0027    TSETS    4   0  10  ; "item_widths"
+0028    KSHORT   4   1
+0029    TGETS    5   0   9  ; "nb_items"
+0030    KSHORT   6   1
+0031    FORI     4 => 0047
+0032 => MOV      8   1
+0033    KSHORT   9   0
+0034    ISGE     9   2
+0035    JMP      9 => 0041
+0036    MODVV    9   7   3
+0037    ISNEN    9   0      ; 0
+0038    JMP      9 => 0041
+0039    ADDVN    8   8   1  ; 1
+0040    SUBVN    2   2   1  ; 1
+0041 => GGET     9  11      ; "table"
+0042    TGETS    9   9  12  ; "insert"
+0043    TGETS   10   0  10  ; "item_widths"
+0044    MOV     11   8
+0045    CALL     9   1   3
+0046    FORL     4 => 0032
+0047 => UGET     4   1      ; BD
+0048    TGETS    4   4  13  ; "mirroredUILayout"
+0049    CALL     4   2   1
+0050    ISF          4
+0051    JMP      5 => 0054
+0052    KPRI     4   2
+0053    TSETS    4   0  14  ; "do_mirror"
+0054 => RET0     0   1
+
+-- BYTECODE -- calendarview.lua:90-105
+0001    KSHORT   4   0
+0002    KSHORT   5   1
+0003    TGETS    6   0   0  ; "nb_items"
+0004    KSHORT   7   1
+0005    FORI     5 => 0042
+0006 => TGETS    9   0   1  ; "do_mirror"
+0007    ISF          9
+0008    JMP     10 => 0012
+0009    TGETS    9   0   0  ; "nb_items"
+0010    SUBVV    9   9   8
+0011    ADDVN    8   9   0  ; 1
+0012 => TGETS    9   0   2  ; "item_widths"
+0013    TGETV    9   9   8
+0014    TGETS   10   0   3  ; "ratios"
+0015    ISF         10
+0016    JMP     11 => 0021
+0017    TGETS   10   0   3  ; "ratios"
+0018    TGETV   10  10   8
+0019    IST         10
+0020    JMP     11 => 0022
+0021 => KSHORT  10   0
+0022 => UGET    11   0      ; Math
+0023    TGETS   11  11   4  ; "round"
+0024    TGETS   12   0   5  ; "height"
+0025    MULVV   12  10  12
+0026    CALL    11   2   2
+0027    TGETS   12   0   5  ; "height"
+0028    SUBVV   12  12  11
+0029    KSHORT  13   0
+0030    ISGE    13  11
+0031    JMP     13 => 0040
+0032    MOV     14   1
+0033    TGETS   13   1   6  ; "paintRect"
+0034    ADDVV   15   2   4
+0035    ADDVV   16   3  12
+0036    MOV     17   9
+0037    MOV     18  11
+0038    TGETS   19   0   7  ; "color"
+0039    CALL    13   1   7
+0040 => ADDVV    4   4   9
+0041    FORL     5 => 0006
+0042 => RET0     0   1
+
+-- BYTECODE -- calendarview.lua:122-184
+0001    UGET     1   0      ; Geom
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "new"
+0004    TDUP     3   3
+0005    TGETS    4   0   2  ; "width"
+0006    TSETS    4   3   4  ; "w"
+0007    TGETS    4   0   5  ; "height"
+0008    TSETS    4   3   6  ; "h"
+0009    CALL     1   2   3
+0010    TSETS    1   0   0  ; "dimen"
+0011    TGETS    1   0   7  ; "filler"
+0012    ISF          1
+0013    JMP      2 => 0015
+0014    RET0     0   1
+0015 => TGETS    1   0   8  ; "callback"
+0016    ISF          1
+0017    JMP      2 => 0046
+0018    UGET     1   1      ; Device
+0019    MOV      2   1
+0020    TGETS    1   1   9  ; "isTouchDevice"
+0021    CALL     1   2   2
+0022    ISF          1
+0023    JMP      2 => 0046
+0024    TGETS    1   0  10  ; "ges_events"
+0025    TNEW     2   3
+0026    UGET     3   2      ; GestureRange
+0027    MOV      4   3
+0028    TGETS    3   3   1  ; "new"
+0029    TDUP     5  12
+0030    TGETS    6   0   0  ; "dimen"
+0031    TSETS    6   5  13  ; "range"
+0032    CALL     3   0   3
+0033    TSETM    3   0      ; 1
+0034    TSETS    2   1  11  ; "Tap"
+0035    TGETS    1   0  10  ; "ges_events"
+0036    TNEW     2   3
+0037    UGET     3   2      ; GestureRange
+0038    MOV      4   3
+0039    TGETS    3   3   1  ; "new"
+0040    TDUP     5  15
+0041    TGETS    6   0   0  ; "dimen"
+0042    TSETS    6   5  13  ; "range"
+0043    CALL     3   0   3
+0044    TSETM    3   0      ; 1
+0045    TSETS    2   1  14  ; "Hold"
+0046 => UGET     1   3      ; TextWidget
+0047    MOV      2   1
+0048    TGETS    1   1   1  ; "new"
+0049    TDUP     3  20
+0050    KSTR     4  17      ; " "
+0051    GGET     5  18      ; "tostring"
+0052    TGETS    6   0  19  ; "daynum"
+0053    CALL     5   2   2
+0054    CAT      4   4   5
+0055    TSETS    4   3  21  ; "text"
+0056    UGET     4   4      ; Font
+0057    MOV      5   4
+0058    TGETS    4   4  22  ; "getFace"
+0059    TGETS    6   0  23  ; "font_face"
+0060    TGETS    7   0  24  ; "font_size"
+0061    CALL     4   2   4
+0062    TSETS    4   3  25  ; "face"
+0063    TGETS    4   0  26  ; "is_future"
+0064    ISF          4
+0065    JMP      5 => 0070
+0066    UGET     4   5      ; Blitbuffer
+0067    TGETS    4   4  27  ; "COLOR_GRAY"
+0068    IST          4
+0069    JMP      5 => 0072
+0070 => UGET     4   5      ; Blitbuffer
+0071    TGETS    4   4  28  ; "COLOR_BLACK"
+0072 => TSETS    4   3  29  ; "fgcolor"
+0073    CALL     1   2   3
+0074    TSETS    1   0  16  ; "daynum_w"
+0075    UGET     1   3      ; TextWidget
+0076    MOV      2   1
+0077    TGETS    1   1   1  ; "new"
+0078    TDUP     3  31
+0079    UGET     4   4      ; Font
+0080    MOV      5   4
+0081    TGETS    4   4  22  ; "getFace"
+0082    TGETS    6   0  23  ; "font_face"
+0083    TGETS    7   0  24  ; "font_size"
+0084    SUBVN    7   7   1  ; 1
+0085    CALL     4   2   4
+0086    TSETS    4   3  25  ; "face"
+0087    UGET     4   5      ; Blitbuffer
+0088    TGETS    4   4  32  ; "COLOR_DARK_GRAY"
+0089    TSETS    4   3  29  ; "fgcolor"
+0090    CALL     1   2   3
+0091    TSETS    1   0  30  ; "nb_not_shown_w"
+0092    TGETS    1   0   2  ; "width"
+0093    TGETS    2   0  33  ; "border"
+0094    MULNV    2   2   2  ; 2
+0095    SUBVV    1   1   2
+0096    TGETS    2   0   5  ; "height"
+0097    TGETS    3   0  33  ; "border"
+0098    MULNV    3   3   2  ; 2
+0099    SUBVV    2   2   3
+0100    TGETS    3   0  34  ; "show_histo"
+0101    ISF          3
+0102    JMP      4 => 0133
+0103    TGETS    3   0  35  ; "histo_height"
+0104    IST          3
+0105    JMP      3 => 0108
+0106    DIVVN    3   2   3  ; 3
+0107    TSETS    3   0  35  ; "histo_height"
+0108 => UGET     3   6      ; BottomContainer
+0109    MOV      4   3
+0110    TGETS    3   3   1  ; "new"
+0111    TDUP     5  38
+0112    UGET     6   0      ; Geom
+0113    MOV      7   6
+0114    TGETS    6   6   1  ; "new"
+0115    TDUP     8  37
+0116    TSETS    1   8   4  ; "w"
+0117    TSETS    2   8   6  ; "h"
+0118    CALL     6   2   3
+0119    TSETS    6   5   0  ; "dimen"
+0120    UGET     6   7      ; HistogramWidget
+0121    MOV      7   6
+0122    TGETS    6   6   1  ; "new"
+0123    TDUP     8  39
+0124    TSETS    1   8   2  ; "width"
+0125    TGETS    9   0  35  ; "histo_height"
+0126    TSETS    9   8   5  ; "height"
+0127    TGETS    9   0  40  ; "ratio_per_hour"
+0128    TSETS    9   8  41  ; "ratios"
+0129    CALL     6   0   3
+0130    TSETM    6   0      ; 1
+0131    CALL     3   2   3
+0132    TSETS    3   0  36  ; "histo_w"
+0133 => UGET     3   8      ; FrameContainer
+0134    MOV      4   3
+0135    TGETS    3   3   1  ; "new"
+0136    TDUP     5  42
+0137    TGETS    6   0  26  ; "is_future"
+0138    ISF          6
+0139    JMP      7 => 0144
+0140    UGET     6   5      ; Blitbuffer
+0141    TGETS    6   6  27  ; "COLOR_GRAY"
+0142    IST          6
+0143    JMP      7 => 0146
+0144 => UGET     6   5      ; Blitbuffer
+0145    TGETS    6   6  28  ; "COLOR_BLACK"
+0146 => TSETS    6   5  43  ; "color"
+0147    TGETS    6   0  33  ; "border"
+0148    TSETS    6   5  44  ; "bordersize"
+0149    TGETS    6   0   2  ; "width"
+0150    TSETS    6   5   2  ; "width"
+0151    TGETS    6   0   5  ; "height"
+0152    TSETS    6   5   5  ; "height"
+0153    UGET     6   9      ; OverlapGroup
+0154    MOV      7   6
+0155    TGETS    6   6   1  ; "new"
+0156    TDUP     8  46
+0157    TDUP     9  45
+0158    TSETS    1   9   4  ; "w"
+0159    TSETS    9   8   0  ; "dimen"
+0160    TGETS    9   0  16  ; "daynum_w"
+0161    TSETB    9   8   1
+0162    TGETS    9   0  30  ; "nb_not_shown_w"
+0163    TSETB    9   8   2
+0164    TGETS    9   0  36  ; "histo_w"
+0165    TSETB    9   8   3
+0166    CALL     6   0   3
+0167    TSETM    6   0      ; 1
+0168    CALL     3   2   3
+0169    TSETB    3   0   1
+0170    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:186-188
+0001    TGETS    2   0   0  ; "nb_not_shown_w"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "setText"
+0004    GGET     4   2      ; "string"
+0005    TGETS    4   4   3  ; "format"
+0006    KSTR     5   4      ; "+ %d "
+0007    MOV      6   1
+0008    CALL     4   0   3
+0009    CALLM    2   1   1
+0010    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:190-195
+0001    TGETS    1   0   0  ; "callback"
+0002    ISF          1
+0003    JMP      2 => 0006
+0004    TGETS    1   0   0  ; "callback"
+0005    CALL     1   1   1
+0006 => KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- calendarview.lua:197-199
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "onTap"
+0003    CALLT    1   2
+
+-- BYTECODE -- calendarview.lua:215-218
+0001    TNEW     1   0
+0002    TSETS    1   0   0  ; "calday_widgets"
+0003    TNEW     1   0
+0004    TSETS    1   0   1  ; "days_books"
+0005    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:220-274
+0001    GGET     2   0      ; "table"
+0002    TGETS    2   2   1  ; "insert"
+0003    TGETS    3   0   2  ; "calday_widgets"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    TGETS    2   0   3  ; "days_books"
+0007    LEN      2   2
+0008    KSHORT   3   0
+0009    ISGE     3   2
+0010    JMP      3 => 0016
+0011    TGETS    3   0   3  ; "days_books"
+0012    TGETS    4   0   3  ; "days_books"
+0013    LEN      4   4
+0014    TGETV    3   3   4
+0015    JMP      4 => 0019
+0016 => KPRI     3   1
+0017    JMP      4 => 0019
+0018    KPRI     3   2
+0019 => ADDVN    4   2   0  ; 1
+0020    TNEW     5   0
+0021    GGET     6   0      ; "table"
+0022    TGETS    6   6   1  ; "insert"
+0023    TGETS    7   0   3  ; "days_books"
+0024    MOV      8   5
+0025    CALL     6   1   3
+0026    TGETS    6   1   4  ; "read_books"
+0027    IST          6
+0028    JMP      6 => 0031
+0029    TNEW     6   0
+0030    TSETS    6   1   4  ; "read_books"
+0031 => TGETS    6   1   4  ; "read_books"
+0032    LEN      6   6
+0033    TGETS    7   0   5  ; "nb_book_spans"
+0034    ISGE     7   6
+0035    JMP      7 => 0041
+0036    MOV      8   1
+0037    TGETS    7   1   6  ; "updateNbNotShown"
+0038    TGETS    9   0   5  ; "nb_book_spans"
+0039    SUBVV    9   6   9
+0040    CALL     7   1   3
+0041 => KSHORT   7   1
+0042    TGETS    8   0   5  ; "nb_book_spans"
+0043    KSHORT   9   1
+0044    FORI     7 => 0064
+0045 => TGETS   11   1   4  ; "read_books"
+0046    TGETV   11  11  10
+0047    ISF         11
+0048    JMP     12 => 0061
+0049    TGETS   11   1   4  ; "read_books"
+0050    TGETV   11  11  10
+0051    TSETV   11   5  10
+0052    TGETV   11   5  10
+0053    KSHORT  12   1
+0054    TSETS   12  11   7  ; "span_days"
+0055    TGETV   11   5  10
+0056    TSETS    4  11   8  ; "start_day"
+0057    TGETV   11   5  10
+0058    KPRI    12   1
+0059    TSETS   12  11   9  ; "fixed"
+0060    JMP     11 => 0063
+0061 => KPRI    11   1
+0062    TSETV   11   5  10
+0063 => FORL     7 => 0045
+0064 => ISF          3
+0065    JMP      7 => 0111
+0066    KSHORT   7   1
+0067    LEN      8   3
+0068    KSHORT   9   1
+0069    FORI     7 => 0111
+0070 => TGETV   11   3  10
+0071    ISF         11
+0072    JMP     12 => 0110
+0073    KSHORT  12   1
+0074    LEN     13   5
+0075    KSHORT  14   1
+0076    FORI    12 => 0110
+0077 => TGETV   16   5  15
+0078    ISF         16
+0079    JMP     17 => 0109
+0080    TGETS   17  16  10  ; "id"
+0081    TGETS   18  11  10  ; "id"
+0082    ISNEV   17  18
+0083    JMP     17 => 0109
+0084    TGETS   17  11   8  ; "start_day"
+0085    TSETS   17  16   8  ; "start_day"
+0086    KPRI    17   2
+0087    TSETS   17  16   9  ; "fixed"
+0088    TGETS   17  11   7  ; "span_days"
+0089    ADDVN   17  17   0  ; 1
+0090    TSETS   17  16   7  ; "span_days"
+0091    KSHORT  17   1
+0092    TGETS   18  11   7  ; "span_days"
+0093    KSHORT  19   1
+0094    FORI    17 => 0102
+0095 => TGETS   21   0   3  ; "days_books"
+0096    SUBVV   22   4  20
+0097    TGETV   21  21  22
+0098    TGETV   21  21  10
+0099    TGETS   22  16   7  ; "span_days"
+0100    TSETS   22  21   7  ; "span_days"
+0101    FORL    17 => 0095
+0102 => ISEQV   15  10
+0103    JMP     17 => 0110
+0104    TGETV   17   5  10
+0105    TGETV   18   5  15
+0106    TSETV   18   5  10
+0107    TSETV   17   5  15
+0108    JMP     12 => 0110
+0109 => FORL    12 => 0077
+0110 => FORL     7 => 0070
+0111 => RET0     0   1
+
+-- BYTECODE -- calendarview.lua:288-394
+0001    UGET     1   0      ; Geom
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "new"
+0004    TDUP     3   3
+0005    TGETS    4   0   2  ; "width"
+0006    TSETS    4   3   4  ; "w"
+0007    TGETS    4   0   5  ; "height"
+0008    TSETS    4   3   6  ; "h"
+0009    CALL     1   2   3
+0010    TSETS    1   0   0  ; "dimen"
+0011    UGET     1   1      ; HorizontalGroup
+0012    MOV      2   1
+0013    TGETS    1   1   1  ; "new"
+0014    TDUP     3   9
+0015    TGETS    4   0   0  ; "dimen"
+0016    MOV      5   4
+0017    TGETS    4   4   8  ; "copy"
+0018    CALL     4   2   2
+0019    TSETS    4   3   0  ; "dimen"
+0020    CALL     1   2   3
+0021    TSETS    1   0   7  ; "day_container"
+0022    GGET     1  10      ; "ipairs"
+0023    TGETS    2   0  11  ; "calday_widgets"
+0024    CALL     1   4   2
+0025    JMP      4 => 0046
+0026 => GGET     6  12      ; "table"
+0027    TGETS    6   6  13  ; "insert"
+0028    TGETS    7   0   7  ; "day_container"
+0029    MOV      8   5
+0030    CALL     6   1   3
+0031    TGETS    6   0  11  ; "calday_widgets"
+0032    LEN      6   6
+0033    ISGE     4   6
+0034    JMP      6 => 0046
+0035    GGET     6  12      ; "table"
+0036    TGETS    6   6  13  ; "insert"
+0037    TGETS    7   0   7  ; "day_container"
+0038    UGET     8   2      ; HorizontalSpan
+0039    MOV      9   8
+0040    TGETS    8   8   1  ; "new"
+0041    TDUP    10  15
+0042    TGETS   11   0  14  ; "day_padding"
+0043    TSETS   11  10   2  ; "width"
+0044    CALL     8   0   3
+0045    CALLM    6   1   1
+0046 => ITERC    4   3   3
+0047    ITERL    4 => 0026
+0048    UGET     1   3      ; OverlapGroup
+0049    MOV      2   1
+0050    TGETS    1   1   1  ; "new"
+0051    TNEW     3   3
+0052    TGETS    4   0   7  ; "day_container"
+0053    TSETB    4   3   1
+0054    CALL     1   2   3
+0055    UGET     2   4      ; Size
+0056    TGETS    2   2  16  ; "margin"
+0057    TGETS    2   2  17  ; "tiny"
+0058    TGETS    3   0  18  ; "day_border"
+0059    ADDVV    2   2   3
+0060    UGET     3   4      ; Size
+0061    TGETS    3   3  16  ; "margin"
+0062    TGETS    3   3  17  ; "tiny"
+0063    UGET     4   4      ; Size
+0064    TGETS    4   4  19  ; "padding"
+0065    TGETS    4   4  17  ; "tiny"
+0066    UGET     5   4      ; Size
+0067    TGETS    5   5  20  ; "border"
+0068    TGETS    5   5  21  ; "thin"
+0069    TGETS    6   0  22  ; "span_height"
+0070    ADDVV    7   3   5
+0071    MULNV    7   7   0  ; 2
+0072    SUBVV    6   6   7
+0073    UGET     7   5      ; TextBoxWidget
+0074    MOV      8   7
+0075    TGETS    7   7  23  ; "getFontSizeToFitHeight"
+0076    MOV      9   6
+0077    KSHORT  10   1
+0078    KNUM    11   1      ; 0.3
+0079    CALL     7   2   5
+0080    KSHORT   8  12
+0081    ISGT     7   8
+0082    JMP      8 => 0092
+0083    UGET     8   5      ; TextBoxWidget
+0084    MOV      9   8
+0085    TGETS    8   8  23  ; "getFontSizeToFitHeight"
+0086    MOV     10   6
+0087    KSHORT  11   1
+0088    KNUM    12   2      ; 0.1
+0089    CALL     8   2   5
+0090    MOV      7   8
+0091    JMP      8 => 0103
+0092 => KSHORT   8  15
+0093    ISGT     7   8
+0094    JMP      8 => 0103
+0095    UGET     8   5      ; TextBoxWidget
+0096    MOV      9   8
+0097    TGETS    8   8  23  ; "getFontSizeToFitHeight"
+0098    MOV     10   6
+0099    KSHORT  11   1
+0100    KNUM    12   3      ; 0.2
+0101    CALL     8   2   5
+0102    MOV      7   8
+0103 => GGET     8  24      ; "math"
+0104    TGETS    8   8  25  ; "min"
+0105    MOV      9   7
+0106    TGETS   10   0  26  ; "font_size"
+0107    CALL     8   2   3
+0108    MOV      7   8
+0109    KPRI     8   0
+0110    TGETS    9   0  27  ; "histo_shown"
+0111    ISF          9
+0112    JMP     10 => 0117
+0113    UGET     9   4      ; Size
+0114    TGETS    9   9  16  ; "margin"
+0115    TGETS    8   9  28  ; "small"
+0116    JMP      9 => 0124
+0117 => TGETS    9   0   5  ; "height"
+0118    TGETS   10   0  22  ; "span_height"
+0119    TGETS   11   0  29  ; "nb_book_spans"
+0120    ADDVN   11  11   4  ; 1
+0121    MULVV   10  10  11
+0122    SUBVV    9   9  10
+0123    SUBVV    8   9   3
+0124 => GGET     9  10      ; "ipairs"
+0125    TGETS   10   0  30  ; "days_books"
+0126    CALL     9   4   2
+0127    JMP     12 => 0245
+0128 => GGET    14  10      ; "ipairs"
+0129    MOV     15  13
+0130    CALL    14   4   2
+0131    JMP     17 => 0243
+0132 => ISF         18
+0133    JMP     19 => 0243
+0134    TGETS   19  18  31  ; "start_day"
+0135    ISNEV   19  12
+0136    JMP     19 => 0243
+0137    GGET    19  32      ; "unpack"
+0138    UGET    20   6      ; SPAN_COLORS
+0139    TGETS   21  18  33  ; "id"
+0140    UGET    22   6      ; SPAN_COLORS
+0141    LEN     22  22
+0142    MODVV   21  21  22
+0143    ADDVN   21  21   4  ; 1
+0144    TGETV   20  20  21
+0145    CALL    19   3   2
+0146    SUBVN   21  12   4  ; 1
+0147    TGETS   22   0  34  ; "day_width"
+0148    TGETS   23   0  14  ; "day_padding"
+0149    ADDVV   22  22  23
+0150    MULVV   21  21  22
+0151    TGETS   22   0  22  ; "span_height"
+0152    MULVV   22  17  22
+0153    ADDVV   22  22   8
+0154    TGETS   23  18  35  ; "span_days"
+0155    TGETS   24   0  34  ; "day_width"
+0156    MULVV   23  23  24
+0157    TGETS   24   0  14  ; "day_padding"
+0158    TGETS   25  18  35  ; "span_days"
+0159    SUBVN   25  25   4  ; 1
+0160    MULVV   24  24  25
+0161    ADDVV   23  23  24
+0162    UGET    24   7      ; FrameContainer
+0163    MOV     25  24
+0164    TGETS   24  24   1  ; "new"
+0165    TDUP    26  36
+0166    TSETS   23  26   2  ; "width"
+0167    TGETS   27   0  22  ; "span_height"
+0168    TSETS   27  26   5  ; "height"
+0169    TSETS    3  26  37  ; "padding_top"
+0170    TSETS    3  26  38  ; "padding_bottom"
+0171    TSETS    2  26  39  ; "padding_left"
+0172    TSETS    2  26  40  ; "padding_right"
+0173    TNEW    27   3
+0174    TSETB   21  27   1
+0175    TSETB   22  27   2
+0176    TSETS   27  26  41  ; "overlap_offset"
+0177    UGET    27   7      ; FrameContainer
+0178    MOV     28  27
+0179    TGETS   27  27   1  ; "new"
+0180    TDUP    29  42
+0181    MULNV   30   2   0  ; 2
+0182    SUBVV   30  23  30
+0183    TSETS   30  29   2  ; "width"
+0184    TGETS   30   0  22  ; "span_height"
+0185    MULNV   31   3   0  ; 2
+0186    SUBVV   30  30  31
+0187    TSETS   30  29   5  ; "height"
+0188    TSETS    5  29  43  ; "bordersize"
+0189    TSETS   20  29  44  ; "background"
+0190    UGET    30   8      ; CenterContainer
+0191    MOV     31  30
+0192    TGETS   30  30   1  ; "new"
+0193    TDUP    32  46
+0194    UGET    33   0      ; Geom
+0195    MOV     34  33
+0196    TGETS   33  33   1  ; "new"
+0197    TDUP    35  45
+0198    ADDVV   36   2   5
+0199    MULNV   36  36   0  ; 2
+0200    SUBVV   36  23  36
+0201    TSETS   36  35   4  ; "w"
+0202    TGETS   36   0  22  ; "span_height"
+0203    ADDVV   37   3   5
+0204    MULNV   37  37   0  ; 2
+0205    SUBVV   36  36  37
+0206    TSETS   36  35   6  ; "h"
+0207    CALL    33   2   3
+0208    TSETS   33  32   0  ; "dimen"
+0209    UGET    33   9      ; TextWidget
+0210    MOV     34  33
+0211    TGETS   33  33   1  ; "new"
+0212    TDUP    35  49
+0213    UGET    36  10      ; BD
+0214    TGETS   36  36  47  ; "auto"
+0215    TGETS   37  18  48  ; "title"
+0216    CALL    36   2   2
+0217    TSETS   36  35  50  ; "text"
+0218    ADDVV   36   2   5
+0219    ADDVV   36  36   4
+0220    MULNV   36  36   0  ; 2
+0221    SUBVV   36  23  36
+0222    TSETS   36  35  51  ; "max_width"
+0223    UGET    36  11      ; Font
+0224    MOV     37  36
+0225    TGETS   36  36  52  ; "getFace"
+0226    TGETS   38   0  53  ; "font_face"
+0227    MOV     39   7
+0228    CALL    36   2   4
+0229    TSETS   36  35  54  ; "face"
+0230    TSETS   19  35  55  ; "fgcolor"
+0231    CALL    33   0   3
+0232    TSETM   33   5      ; 1
+0233    CALL    30   0   3
+0234    TSETM   30   5      ; 1
+0235    CALL    27   0   3
+0236    TSETM   27   5      ; 1
+0237    CALL    24   2   3
+0238    GGET    25  12      ; "table"
+0239    TGETS   25  25  13  ; "insert"
+0240    MOV     26   1
+0241    MOV     27  24
+0242    CALL    25   1   3
+0243 => ITERC   17   3   3
+0244    ITERL   17 => 0132
+0245 => ITERC   12   3   3
+0246    ITERL   12 => 0128
+0247    UGET     9  12      ; LeftContainer
+0248    MOV     10   9
+0249    TGETS    9   9   1  ; "new"
+0250    TDUP    11  56
+0251    TGETS   12   0   0  ; "dimen"
+0252    MOV     13  12
+0253    TGETS   12  12   8  ; "copy"
+0254    CALL    12   2   2
+0255    TSETS   12  11   0  ; "dimen"
+0256    TSETB    1  11   1
+0257    CALL     9   2   3
+0258    TSETB    9   0   1
+0259    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:474-474
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "prevMonth"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:480-480
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "nextMonth"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:486-486
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "goToMonth"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "min_month"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:492-492
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "goToMonth"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "max_month"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:504-504
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "cur_month"
+0003    RET1     0   2
+
+-- BYTECODE -- calendarview.lua:505-520
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "match"
+0003    KSTR     3   1      ; "^(%d%d%d%d)-(%d%d)$"
+0004    CALL     1   3   3
+0005    ISF          1
+0006    JMP      3 => 0033
+0007    ISF          2
+0008    JMP      3 => 0033
+0009    GGET     3   2      ; "tonumber"
+0010    MOV      4   2
+0011    CALL     3   2   2
+0012    KSHORT   4   1
+0013    ISGT     4   3
+0014    JMP      3 => 0033
+0015    GGET     3   2      ; "tonumber"
+0016    MOV      4   2
+0017    CALL     3   2   2
+0018    KSHORT   4  12
+0019    ISGT     3   4
+0020    JMP      3 => 0033
+0021    GGET     3   2      ; "tonumber"
+0022    MOV      4   1
+0023    CALL     3   2   2
+0024    KSHORT   4 1000
+0025    ISGT     4   3
+0026    JMP      3 => 0033
+0027    UGET     3   0      ; self
+0028    MOV      4   3
+0029    TGETS    3   3   3  ; "goToMonth"
+0030    MOV      5   0
+0031    CALL     3   1   3
+0032    RET0     0   1
+0033 => GGET     3   4      ; "require"
+0034    KSTR     4   5      ; "ui/widget/infomessage"
+0035    CALL     3   2   2
+0036    UGET     4   1      ; UIManager
+0037    MOV      5   4
+0038    TGETS    4   4   6  ; "show"
+0039    MOV      7   3
+0040    TGETS    6   3   7  ; "new"
+0041    TDUP     8   9
+0042    UGET     9   2      ; _
+0043    KSTR    10   8      ; "Invalid year-month string (YYYY-MM)"
+0044    CALL     9   2   2
+0045    TSETS    9   8  10  ; "text"
+0046    CALL     6   0   3
+0047    CALLM    4   1   1
+0048    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:418-631
+0001    UGET     1   0      ; Geom
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "new"
+0004    TDUP     3   4
+0005    TGETS    4   0   2  ; "width"
+0006    IST          4
+0007    JMP      5 => 0012
+0008    UGET     4   1      ; Screen
+0009    MOV      5   4
+0010    TGETS    4   4   3  ; "getWidth"
+0011    CALL     4   2   2
+0012 => TSETS    4   3   5  ; "w"
+0013    TGETS    4   0   6  ; "height"
+0014    IST          4
+0015    JMP      5 => 0020
+0016    UGET     4   1      ; Screen
+0017    MOV      5   4
+0018    TGETS    4   4   7  ; "getHeight"
+0019    CALL     4   2   2
+0020 => TSETS    4   3   8  ; "h"
+0021    CALL     1   2   3
+0022    TSETS    1   0   0  ; "dimen"
+0023    TGETS    1   0   0  ; "dimen"
+0024    TGETS    1   1   5  ; "w"
+0025    UGET     2   1      ; Screen
+0026    MOV      3   2
+0027    TGETS    2   2   3  ; "getWidth"
+0028    CALL     2   2   2
+0029    ISNEV    1   2
+0030    JMP      1 => 0041
+0031    TGETS    1   0   0  ; "dimen"
+0032    TGETS    1   1   8  ; "h"
+0033    UGET     2   1      ; Screen
+0034    MOV      3   2
+0035    TGETS    2   2   7  ; "getHeight"
+0036    CALL     2   2   2
+0037    ISNEV    1   2
+0038    JMP      1 => 0041
+0039    KPRI     1   2
+0040    TSETS    1   0   9  ; "covers_fullscreen"
+0041 => UGET     1   2      ; Device
+0042    MOV      2   1
+0043    TGETS    1   1  10  ; "hasKeys"
+0044    CALL     1   2   2
+0045    ISF          1
+0046    JMP      2 => 0069
+0047    TDUP     1  14
+0048    TDUP     2  13
+0049    TDUP     3  12
+0050    TSETB    3   2   1
+0051    TSETS    2   1  15  ; "Close"
+0052    TDUP     2  18
+0053    TNEW     3   3
+0054    UGET     4   3      ; Input
+0055    TGETS    4   4  16  ; "group"
+0056    TGETS    4   4  17  ; "PgFwd"
+0057    TSETB    4   3   1
+0058    TSETB    3   2   1
+0059    TSETS    2   1  19  ; "NextMonth"
+0060    TDUP     2  21
+0061    TNEW     3   3
+0062    UGET     4   3      ; Input
+0063    TGETS    4   4  16  ; "group"
+0064    TGETS    4   4  20  ; "PgBack"
+0065    TSETB    4   3   1
+0066    TSETB    3   2   1
+0067    TSETS    2   1  22  ; "PrevMonth"
+0068    TSETS    1   0  11  ; "key_events"
+0069 => UGET     1   2      ; Device
+0070    MOV      2   1
+0071    TGETS    1   1  23  ; "isTouchDevice"
+0072    CALL     1   2   2
+0073    ISF          1
+0074    JMP      2 => 0086
+0075    TGETS    1   0  24  ; "ges_events"
+0076    TNEW     2   3
+0077    UGET     3   4      ; GestureRange
+0078    MOV      4   3
+0079    TGETS    3   3   1  ; "new"
+0080    TDUP     5  26
+0081    TGETS    6   0   0  ; "dimen"
+0082    TSETS    6   5  27  ; "range"
+0083    CALL     3   0   3
+0084    TSETM    3   0      ; 1
+0085    TSETS    2   1  25  ; "Swipe"
+0086 => UGET     1   5      ; Size
+0087    TGETS    1   1  28  ; "padding"
+0088    TGETS    1   1  29  ; "large"
+0089    UGET     2   5      ; Size
+0090    TGETS    2   2  28  ; "padding"
+0091    TGETS    2   2  31  ; "small"
+0092    TSETS    2   0  30  ; "inner_padding"
+0093    GGET     2  33      ; "math"
+0094    TGETS    2   2  34  ; "floor"
+0095    TGETS    3   0   0  ; "dimen"
+0096    TGETS    3   3   5  ; "w"
+0097    MULNV    4   1   1  ; 2
+0098    SUBVV    3   3   4
+0099    TGETS    4   0  30  ; "inner_padding"
+0100    MULNV    4   4   2  ; 6
+0101    SUBVV    3   3   4
+0102    DIVVN    3   3   3  ; 7
+0103    CALL     2   2   2
+0104    TSETS    2   0  32  ; "day_width"
+0105    GGET     2  33      ; "math"
+0106    TGETS    2   2  34  ; "floor"
+0107    TGETS    3   0   0  ; "dimen"
+0108    TGETS    3   3   5  ; "w"
+0109    TGETS    4   0  32  ; "day_width"
+0110    MULNV    4   4   3  ; 7
+0111    SUBVV    3   3   4
+0112    TGETS    4   0  30  ; "inner_padding"
+0113    MULNV    4   4   2  ; 6
+0114    SUBVV    3   3   4
+0115    DIVVN    3   3   1  ; 2
+0116    CALL     2   2   2
+0117    MOV      1   2
+0118    TGETS    2   0   0  ; "dimen"
+0119    TGETS    2   2   5  ; "w"
+0120    MULNV    3   1   1  ; 2
+0121    SUBVV    2   2   3
+0122    TSETS    2   0  35  ; "content_width"
+0123    UGET     2   6      ; MIN_MONTH
+0124    IST          2
+0125    JMP      2 => 0142
+0126    TGETS    2   0  36  ; "reader_statistics"
+0127    MOV      3   2
+0128    TGETS    2   2  37  ; "getFirstTimestamp"
+0129    CALL     2   2   2
+0130    IST          2
+0131    JMP      3 => 0136
+0132    GGET     3  38      ; "os"
+0133    TGETS    3   3  39  ; "time"
+0134    CALL     3   2   1
+0135    MOV      2   3
+0136 => GGET     3  38      ; "os"
+0137    TGETS    3   3  40  ; "date"
+0138    KSTR     4  41      ; "%Y-%m"
+0139    MOV      5   2
+0140    CALL     3   2   3
+0141    USETV    6   3      ; MIN_MONTH
+0142 => UGET     2   6      ; MIN_MONTH
+0143    TSETS    2   0  42  ; "min_month"
+0144    GGET     2  38      ; "os"
+0145    TGETS    2   2  40  ; "date"
+0146    KSTR     3  41      ; "%Y-%m"
+0147    GGET     4  38      ; "os"
+0148    TGETS    4   4  39  ; "time"
+0149    CALL     4   0   1
+0150    CALLM    2   2   1
+0151    TSETS    2   0  43  ; "max_month"
+0152    TGETS    2   0  44  ; "cur_month"
+0153    IST          2
+0154    JMP      2 => 0157
+0155    TGETS    2   0  43  ; "max_month"
+0156    TSETS    2   0  44  ; "cur_month"
+0157 => KSTR     2  45      ; "resources/icons/appbar.chevron.left.png"
+0158    KSTR     3  46      ; "resources/icons/appbar.chevron.right.png"
+0159    KSTR     4  47      ; "resources/icons/appbar.chevron.first.png"
+0160    KSTR     5  48      ; "resources/icons/appbar.chevron.last.png"
+0161    UGET     6   7      ; BD
+0162    TGETS    6   6  49  ; "mirroredUILayout"
+0163    CALL     6   2   1
+0164    ISF          6
+0165    JMP      7 => 0172
+0166    MOV      6   3
+0167    MOV      3   2
+0168    MOV      2   6
+0169    MOV      6   5
+0170    MOV      5   4
+0171    MOV      4   6
+0172 => UGET     6   8      ; Button
+0173    MOV      7   6
+0174    TGETS    6   6   1  ; "new"
+0175    TDUP     8  51
+0176    TSETS    2   8  52  ; "icon"
+0177    FNEW     9  53      ; calendarview.lua:474
+0178    TSETS    9   8  54  ; "callback"
+0179    TSETS    0   8  55  ; "show_parent"
+0180    CALL     6   2   3
+0181    TSETS    6   0  50  ; "page_info_left_chev"
+0182    UGET     6   8      ; Button
+0183    MOV      7   6
+0184    TGETS    6   6   1  ; "new"
+0185    TDUP     8  57
+0186    TSETS    3   8  52  ; "icon"
+0187    FNEW     9  58      ; calendarview.lua:480
+0188    TSETS    9   8  54  ; "callback"
+0189    TSETS    0   8  55  ; "show_parent"
+0190    CALL     6   2   3
+0191    TSETS    6   0  56  ; "page_info_right_chev"
+0192    UGET     6   8      ; Button
+0193    MOV      7   6
+0194    TGETS    6   6   1  ; "new"
+0195    TDUP     8  60
+0196    TSETS    4   8  52  ; "icon"
+0197    FNEW     9  61      ; calendarview.lua:486
+0198    TSETS    9   8  54  ; "callback"
+0199    TSETS    0   8  55  ; "show_parent"
+0200    CALL     6   2   3
+0201    TSETS    6   0  59  ; "page_info_first_chev"
+0202    UGET     6   8      ; Button
+0203    MOV      7   6
+0204    TGETS    6   6   1  ; "new"
+0205    TDUP     8  63
+0206    TSETS    5   8  52  ; "icon"
+0207    FNEW     9  64      ; calendarview.lua:492
+0208    TSETS    9   8  54  ; "callback"
+0209    TSETS    0   8  55  ; "show_parent"
+0210    CALL     6   2   3
+0211    TSETS    6   0  62  ; "page_info_last_chev"
+0212    UGET     6   9      ; HorizontalSpan
+0213    MOV      7   6
+0214    TGETS    6   6   1  ; "new"
+0215    TDUP     8  67
+0216    UGET     9   1      ; Screen
+0217    MOV     10   9
+0218    TGETS    9   9  66  ; "scaleBySize"
+0219    KSHORT  11  32
+0220    CALL     9   2   3
+0221    TSETS    9   8   2  ; "width"
+0222    CALL     6   2   3
+0223    TSETS    6   0  65  ; "page_info_spacer"
+0224    UGET     6   8      ; Button
+0225    MOV      7   6
+0226    TGETS    6   6   1  ; "new"
+0227    TDUP     8  69
+0228    TDUP     9  71
+0229    UGET    10  10      ; _
+0230    KSTR    11  70      ; "Enter month"
+0231    CALL    10   2   2
+0232    TSETS   10   9  72  ; "title"
+0233    FNEW    10  73      ; calendarview.lua:504
+0234    TSETS   10   9  74  ; "input_func"
+0235    FNEW    10  75      ; calendarview.lua:505
+0236    TSETS   10   9  54  ; "callback"
+0237    TSETS    9   8  76  ; "hold_input"
+0238    UGET     9   1      ; Screen
+0239    MOV     10   9
+0240    TGETS    9   9  66  ; "scaleBySize"
+0241    KSHORT  11  20
+0242    CALL     9   2   3
+0243    TSETS    9   8  77  ; "margin"
+0244    CALL     6   2   3
+0245    TSETS    6   0  68  ; "page_info_text"
+0246    UGET     6  12      ; HorizontalGroup
+0247    MOV      7   6
+0248    TGETS    6   6   1  ; "new"
+0249    TNEW     8   8
+0250    TGETS    9   0  59  ; "page_info_first_chev"
+0251    TSETB    9   8   1
+0252    TGETS    9   0  65  ; "page_info_spacer"
+0253    TSETB    9   8   2
+0254    TGETS    9   0  50  ; "page_info_left_chev"
+0255    TSETB    9   8   3
+0256    TGETS    9   0  68  ; "page_info_text"
+0257    TSETB    9   8   4
+0258    TGETS    9   0  56  ; "page_info_right_chev"
+0259    TSETB    9   8   5
+0260    TGETS    9   0  65  ; "page_info_spacer"
+0261    TSETB    9   8   6
+0262    TGETS    9   0  62  ; "page_info_last_chev"
+0263    TSETB    9   8   7
+0264    CALL     6   2   3
+0265    TSETS    6   0  78  ; "page_info"
+0266    UGET     6  13      ; BottomContainer
+0267    MOV      7   6
+0268    TGETS    6   6   1  ; "new"
+0269    TDUP     8  80
+0270    UGET     9   0      ; Geom
+0271    MOV     10   9
+0272    TGETS    9   9   1  ; "new"
+0273    TDUP    11  79
+0274    TGETS   12   0  35  ; "content_width"
+0275    TSETS   12  11   5  ; "w"
+0276    TGETS   12   0   0  ; "dimen"
+0277    TGETS   12  12   8  ; "h"
+0278    TSETS   12  11   8  ; "h"
+0279    CALL     9   2   3
+0280    TSETS    9   8   0  ; "dimen"
+0281    TGETS    9   0  78  ; "page_info"
+0282    TSETB    9   8   1
+0283    CALL     6   2   3
+0284    UGET     7  14      ; CalendarTitle
+0285    MOV      8   7
+0286    TGETS    7   7   1  ; "new"
+0287    TDUP     9  82
+0288    TGETS   10   0  72  ; "title"
+0289    TSETS   10   9  72  ; "title"
+0290    TGETS   10   0  35  ; "content_width"
+0291    TSETS   10   9   2  ; "width"
+0292    UGET    10   5      ; Size
+0293    TGETS   10  10  83  ; "item"
+0294    TGETS   10  10  84  ; "height_default"
+0295    TSETS   10   9   6  ; "height"
+0296    TSETS    0   9  85  ; "calendar_view"
+0297    CALL     7   2   3
+0298    TSETS    7   0  81  ; "title_bar"
+0299    UGET     7  12      ; HorizontalGroup
+0300    MOV      8   7
+0301    TGETS    7   7   1  ; "new"
+0302    TNEW     9   0
+0303    CALL     7   2   3
+0304    TSETS    7   0  86  ; "day_names"
+0305    KSHORT   7   0
+0306    KSHORT   8   6
+0307    KSHORT   9   1
+0308    FORI     7 => 0374
+0309 => UGET    11  15      ; TextWidget
+0310    MOV     12  11
+0311    TGETS   11  11   1  ; "new"
+0312    TDUP    13  90
+0313    TGETS   14   0  87  ; "shortDayOfWeekTranslation"
+0314    TGETS   15   0  88  ; "weekdays"
+0315    TGETS   16   0  89  ; "start_day_of_week"
+0316    SUBVN   16  16   4  ; 1
+0317    ADDVV   16  16  10
+0318    MODVN   16  16   3  ; 7
+0319    ADDVN   16  16   4  ; 1
+0320    TGETV   15  15  16
+0321    TGETV   14  14  15
+0322    TSETS   14  13  91  ; "text"
+0323    UGET    14  16      ; Font
+0324    MOV     15  14
+0325    TGETS   14  14  92  ; "getFace"
+0326    KSTR    16  93      ; "xx_smallinfofont"
+0327    CALL    14   2   3
+0328    TSETS   14  13  94  ; "face"
+0329    CALL    11   2   3
+0330    GGET    12  95      ; "table"
+0331    TGETS   12  12  96  ; "insert"
+0332    TGETS   13   0  86  ; "day_names"
+0333    UGET    14  17      ; FrameContainer
+0334    MOV     15  14
+0335    TGETS   14  14   1  ; "new"
+0336    TDUP    16  97
+0337    UGET    17  18      ; CenterContainer
+0338    MOV     18  17
+0339    TGETS   17  17   1  ; "new"
+0340    TDUP    19 100
+0341    UGET    20   0      ; Geom
+0342    MOV     21  20
+0343    TGETS   20  20   1  ; "new"
+0344    TDUP    22  98
+0345    TGETS   23   0  32  ; "day_width"
+0346    TSETS   23  22   5  ; "w"
+0347    MOV     24  11
+0348    TGETS   23  11  99  ; "getSize"
+0349    CALL    23   2   2
+0350    TGETS   23  23   8  ; "h"
+0351    TSETS   23  22   8  ; "h"
+0352    CALL    20   2   3
+0353    TSETS   20  19   0  ; "dimen"
+0354    TSETB   11  19   1
+0355    CALL    17   0   3
+0356    TSETM   17   0      ; 1
+0357    CALL    14   0   3
+0358    CALLM   12   1   1
+0359    KSHORT  12   6
+0360    ISGE    10  12
+0361    JMP     12 => 0373
+0362    GGET    12  95      ; "table"
+0363    TGETS   12  12  96  ; "insert"
+0364    TGETS   13   0  86  ; "day_names"
+0365    UGET    14   9      ; HorizontalSpan
+0366    MOV     15  14
+0367    TGETS   14  14   1  ; "new"
+0368    TDUP    16 101
+0369    TGETS   17   0  30  ; "inner_padding"
+0370    TSETS   17  16   2  ; "width"
+0371    CALL    14   0   3
+0372    CALLM   12   1   1
+0373 => FORL     7 => 0309
+0374 => TGETS    7   0   0  ; "dimen"
+0375    TGETS    7   7   8  ; "h"
+0376    TGETS    8   0  81  ; "title_bar"
+0377    MOV      9   8
+0378    TGETS    8   8  99  ; "getSize"
+0379    CALL     8   2   2
+0380    TGETS    8   8   8  ; "h"
+0381    SUBVV    7   7   8
+0382    TGETS    8   0  78  ; "page_info"
+0383    MOV      9   8
+0384    TGETS    8   8  99  ; "getSize"
+0385    CALL     8   2   2
+0386    TGETS    8   8   8  ; "h"
+0387    SUBVV    7   7   8
+0388    TGETS    8   0  86  ; "day_names"
+0389    MOV      9   8
+0390    TGETS    8   8  99  ; "getSize"
+0391    CALL     8   2   2
+0392    TGETS    8   8   8  ; "h"
+0393    SUBVV    7   7   8
+0394    GGET     8  33      ; "math"
+0395    TGETS    8   8  34  ; "floor"
+0396    TGETS    9   0  30  ; "inner_padding"
+0397    MULNV    9   9   5  ; 5
+0398    SUBVV    9   7   9
+0399    DIVVN    9   9   2  ; 6
+0400    CALL     8   2   2
+0401    TSETS    8   0 102  ; "week_height"
+0402    UGET     8   5      ; Size
+0403    TGETS    8   8 104  ; "border"
+0404    TGETS    8   8 105  ; "default"
+0405    TSETS    8   0 103  ; "day_border"
+0406    TGETS    8   0 106  ; "show_hourly_histogram"
+0407    ISF          8
+0408    JMP      9 => 0421
+0409    GGET     8  33      ; "math"
+0410    TGETS    8   8 108  ; "ceil"
+0411    TGETS    9   0 102  ; "week_height"
+0412    TGETS   10   0 103  ; "day_border"
+0413    MULNV   10  10   1  ; 2
+0414    SUBVV    9   9  10
+0415    TGETS   10   0 109  ; "nb_book_spans"
+0416    ADDVN   10  10   1  ; 2
+0417    DIVVV    9   9  10
+0418    CALL     8   2   2
+0419    TSETS    8   0 107  ; "span_height"
+0420    JMP      8 => 0432
+0421 => GGET     8  33      ; "math"
+0422    TGETS    8   8  34  ; "floor"
+0423    TGETS    9   0 102  ; "week_height"
+0424    TGETS   10   0 103  ; "day_border"
+0425    MULNV   10  10   1  ; 2
+0426    SUBVV    9   9  10
+0427    TGETS   10   0 109  ; "nb_book_spans"
+0428    ADDVN   10  10   4  ; 1
+0429    DIVVV    9   9  10
+0430    CALL     8   2   2
+0431    TSETS    8   0 107  ; "span_height"
+0432 => GGET     8  33      ; "math"
+0433    TGETS    8   8 110  ; "min"
+0434    TGETS    9   0 107  ; "span_height"
+0435    TGETS   10   0 102  ; "week_height"
+0436    DIVVN   10  10   6  ; 3
+0437    CALL     8   2   3
+0438    UGET     9  19      ; TextBoxWidget
+0439    MOV     10   9
+0440    TGETS    9   9 112  ; "getFontSizeToFitHeight"
+0441    MOV     11   8
+0442    KSHORT  12   1
+0443    KNUM    13   7      ; 0.3
+0444    CALL     9   2   5
+0445    TSETS    9   0 111  ; "span_font_size"
+0446    TGETS    9   0  32  ; "day_width"
+0447    TGETS   10   0 103  ; "day_border"
+0448    MULNV   10  10   1  ; 2
+0449    SUBVV    9   9  10
+0450    TGETS   10   0  30  ; "inner_padding"
+0451    MULNV   10  10   1  ; 2
+0452    SUBVV    9   9  10
+0453 => LOOP    10 => 0482
+0454    UGET    10  15      ; TextWidget
+0455    MOV     11  10
+0456    TGETS   10  10   1  ; "new"
+0457    TDUP    12 113
+0458    UGET    13  16      ; Font
+0459    MOV     14  13
+0460    TGETS   13  13  92  ; "getFace"
+0461    TGETS   15   0 114  ; "font_face"
+0462    TGETS   16   0 111  ; "span_font_size"
+0463    CALL    13   2   4
+0464    TSETS   13  12  94  ; "face"
+0465    CALL    10   2   3
+0466    MOV     12  10
+0467    TGETS   11  10   3  ; "getWidth"
+0468    CALL    11   2   2
+0469    ISGT    11   9
+0470    JMP     11 => 0475
+0471    MOV     12  10
+0472    TGETS   11  10 115  ; "free"
+0473    CALL    11   1   2
+0474    JMP     10 => 0482
+0475 => TGETS   11   0 111  ; "span_font_size"
+0476    SUBVN   11  11   4  ; 1
+0477    TSETS   11   0 111  ; "span_font_size"
+0478    MOV     12  10
+0479    TGETS   11  10 115  ; "free"
+0480    CALL    11   1   2
+0481    JMP     10 => 0453
+0482 => UGET    10  20      ; VerticalGroup
+0483    MOV     11  10
+0484    TGETS   10  10   1  ; "new"
+0485    TNEW    12   0
+0486    CALL    10   2   3
+0487    TSETS   10   0 116  ; "main_content"
+0488    MOV     11   0
+0489    TGETS   10   0 117  ; "_populateItems"
+0490    CALL    10   1   2
+0491    UGET    10  21      ; OverlapGroup
+0492    MOV     11  10
+0493    TGETS   10  10   1  ; "new"
+0494    TDUP    12 119
+0495    UGET    13   0      ; Geom
+0496    MOV     14  13
+0497    TGETS   13  13   1  ; "new"
+0498    TDUP    15 118
+0499    TGETS   16   0  35  ; "content_width"
+0500    TSETS   16  15   5  ; "w"
+0501    TGETS   16   0   0  ; "dimen"
+0502    TGETS   16  16   8  ; "h"
+0503    TSETS   16  15   8  ; "h"
+0504    CALL    13   2   3
+0505    TSETS   13  12   0  ; "dimen"
+0506    UGET    13  20      ; VerticalGroup
+0507    MOV     14  13
+0508    TGETS   13  13   1  ; "new"
+0509    TDUP    15 120
+0510    TGETS   16   0  81  ; "title_bar"
+0511    TSETB   16  15   1
+0512    TGETS   16   0  86  ; "day_names"
+0513    TSETB   16  15   2
+0514    TGETS   16   0 116  ; "main_content"
+0515    TSETB   16  15   3
+0516    CALL    13   2   3
+0517    TSETB   13  12   1
+0518    TSETB    6  12   2
+0519    CALL    10   2   3
+0520    UGET    11  17      ; FrameContainer
+0521    MOV     12  11
+0522    TGETS   11  11   1  ; "new"
+0523    TDUP    13 121
+0524    TGETS   14   0   0  ; "dimen"
+0525    TGETS   14  14   5  ; "w"
+0526    TSETS   14  13   2  ; "width"
+0527    TGETS   14   0   0  ; "dimen"
+0528    TGETS   14  14   8  ; "h"
+0529    TSETS   14  13   6  ; "height"
+0530    TSETS    1  13  28  ; "padding"
+0531    UGET    14  22      ; Blitbuffer
+0532    TGETS   14  14 122  ; "COLOR_WHITE"
+0533    TSETS   14  13 123  ; "background"
+0534    TSETB   10  13   1
+0535    CALL    11   2   3
+0536    TSETB   11   0   1
+0537    UCLO     0 => 0538
+0538 => RET0     0   1
+
+-- BYTECODE -- calendarview.lua:735-735
+0001    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:729-737
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "show"
+0004    UGET     2   1      ; KeyValuePage
+0005    MOV      3   2
+0006    TGETS    2   2   1  ; "new"
+0007    TDUP     4   2
+0008    UGET     5   2      ; day_text
+0009    TSETS    5   4   3  ; "title"
+0010    UGET     5   3      ; self
+0011    TGETS    5   5   4  ; "reader_statistics"
+0012    MOV      6   5
+0013    TGETS    5   5   5  ; "getBooksFromPeriod"
+0014    UGET     7   4      ; day_ts
+0015    UGET     8   4      ; day_ts
+0016    ADDVN    8   8   0  ; 86400
+0017    CALL     5   2   4
+0018    TSETS    5   4   6  ; "kv_pairs"
+0019    FNEW     5   7      ; calendarview.lua:735
+0020    TSETS    5   4   8  ; "callback_return"
+0021    CALL     2   0   3
+0022    CALLM    0   1   1
+0023    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:745-747
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dimen"
+0004    RET      0   3
+
+-- BYTECODE -- calendarview.lua:633-748
+0001    TGETS    1   0   0  ; "page_info"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "resetLayout"
+0004    CALL     1   1   2
+0005    TGETS    1   0   2  ; "main_content"
+0006    MOV      2   1
+0007    TGETS    1   1   3  ; "clear"
+0008    CALL     1   1   2
+0009    GGET     1   4      ; "os"
+0010    TGETS    1   1   5  ; "time"
+0011    TDUP     2   8
+0012    TGETS    3   0   6  ; "cur_month"
+0013    MOV      4   3
+0014    TGETS    3   3   7  ; "sub"
+0015    KSHORT   5   1
+0016    KSHORT   6   4
+0017    CALL     3   2   4
+0018    TSETS    3   2   9  ; "year"
+0019    TGETS    3   0   6  ; "cur_month"
+0020    MOV      4   3
+0021    TGETS    3   3   7  ; "sub"
+0022    KSHORT   5   6
+0023    CALL     3   2   3
+0024    TSETS    3   2  10  ; "month"
+0025    CALL     1   2   2
+0026    TGETS    2   0  11  ; "monthTranslation"
+0027    GGET     3   4      ; "os"
+0028    TGETS    3   3  12  ; "date"
+0029    KSTR     4  13      ; "%B"
+0030    MOV      5   1
+0031    CALL     3   2   3
+0032    TGETV    2   2   3
+0033    GGET     3   4      ; "os"
+0034    TGETS    3   3  12  ; "date"
+0035    KSTR     4  14      ; " %Y"
+0036    MOV      5   1
+0037    CALL     3   2   3
+0038    CAT      2   2   3
+0039    TGETS    3   0  15  ; "title_bar"
+0040    MOV      4   3
+0041    TGETS    3   3  16  ; "setTitle"
+0042    MOV      5   2
+0043    CALL     3   1   3
+0044    TGETS    3   0  17  ; "page_info_text"
+0045    MOV      4   3
+0046    TGETS    3   3  18  ; "setText"
+0047    TGETS    5   0   6  ; "cur_month"
+0048    CALL     3   1   3
+0049    TGETS    3   0  19  ; "page_info_left_chev"
+0050    MOV      4   3
+0051    TGETS    3   3  20  ; "enableDisable"
+0052    TGETS    5   0   6  ; "cur_month"
+0053    TGETS    6   0  21  ; "min_month"
+0054    ISLT     6   5
+0055    JMP      5 => 0058
+0056    KPRI     5   1
+0057    JMP      6 => 0059
+0058 => KPRI     5   2
+0059 => CALL     3   1   3
+0060    TGETS    3   0  22  ; "page_info_right_chev"
+0061    MOV      4   3
+0062    TGETS    3   3  20  ; "enableDisable"
+0063    TGETS    5   0   6  ; "cur_month"
+0064    TGETS    6   0  23  ; "max_month"
+0065    ISLT     5   6
+0066    JMP      5 => 0071
+0067    TGETS    5   0  24  ; "browse_future_months"
+0068    JMP      6 => 0072
+0069    KPRI     5   1
+0070    JMP      6 => 0072
+0071 => KPRI     5   2
+0072 => CALL     3   1   3
+0073    TGETS    3   0  25  ; "page_info_first_chev"
+0074    MOV      4   3
+0075    TGETS    3   3  20  ; "enableDisable"
+0076    TGETS    5   0   6  ; "cur_month"
+0077    TGETS    6   0  21  ; "min_month"
+0078    ISLT     6   5
+0079    JMP      5 => 0082
+0080    KPRI     5   1
+0081    JMP      6 => 0083
+0082 => KPRI     5   2
+0083 => CALL     3   1   3
+0084    TGETS    3   0  26  ; "page_info_last_chev"
+0085    MOV      4   3
+0086    TGETS    3   3  20  ; "enableDisable"
+0087    TGETS    5   0   6  ; "cur_month"
+0088    TGETS    6   0  23  ; "max_month"
+0089    ISLT     5   6
+0090    JMP      5 => 0095
+0091    TGETS    5   0  24  ; "browse_future_months"
+0092    JMP      6 => 0096
+0093    KPRI     5   1
+0094    JMP      6 => 0096
+0095 => KPRI     5   2
+0096 => CALL     3   1   3
+0097    TGETS    3   0  27  ; "reader_statistics"
+0098    MOV      4   3
+0099    TGETS    3   3  28  ; "getReadingRatioPerHourByDay"
+0100    TGETS    5   0   6  ; "cur_month"
+0101    CALL     3   2   3
+0102    TGETS    4   0  27  ; "reader_statistics"
+0103    MOV      5   4
+0104    TGETS    4   4  29  ; "getReadBookByDay"
+0105    TGETS    6   0   6  ; "cur_month"
+0106    CALL     4   2   3
+0107    GGET     5  30      ; "table"
+0108    TGETS    5   5  31  ; "insert"
+0109    TGETS    6   0   2  ; "main_content"
+0110    UGET     7   0      ; VerticalSpan
+0111    MOV      8   7
+0112    TGETS    7   7  32  ; "new"
+0113    TDUP     9  34
+0114    TGETS   10   0  33  ; "inner_padding"
+0115    TSETS   10   9  35  ; "width"
+0116    CALL     7   0   3
+0117    CALLM    5   1   1
+0118    TNEW     5   0
+0119    TSETS    5   0  36  ; "weeks"
+0120    GGET     5   4      ; "os"
+0121    TGETS    5   5  12  ; "date"
+0122    KSTR     6  37      ; "%Y-%m-%d"
+0123    GGET     7   4      ; "os"
+0124    TGETS    7   7   5  ; "time"
+0125    CALL     7   0   1
+0126    CALLM    5   2   1
+0127    MOV      6   1
+0128    GGET     7   4      ; "os"
+0129    TGETS    7   7  12  ; "date"
+0130    KSTR     8  38      ; "*t"
+0131    MOV      9   6
+0132    CALL     7   2   3
+0133    TGETS    8   7  10  ; "month"
+0134    KPRI     9   0
+0135 => LOOP    10 => 0301
+0136    GGET    10   4      ; "os"
+0137    TGETS   10  10  12  ; "date"
+0138    KSTR    11  38      ; "*t"
+0139    MOV     12   6
+0140    CALL    10   2   3
+0141    MOV      7  10
+0142    TGETS   10   7  10  ; "month"
+0143    ISEQV   10   8
+0144    JMP     10 => 0146
+0145    UCLO    10 => 0301
+0146 => ISF          9
+0147    JMP     10 => 0152
+0148    TGETS   10   7  39  ; "wday"
+0149    TGETS   11   0  40  ; "start_day_of_week"
+0150    ISNEV   10  11
+0151    JMP     10 => 0231
+0152 => ISF          9
+0153    JMP     10 => 0165
+0154    GGET    10  30      ; "table"
+0155    TGETS   10  10  31  ; "insert"
+0156    TGETS   11   0   2  ; "main_content"
+0157    UGET    12   0      ; VerticalSpan
+0158    MOV     13  12
+0159    TGETS   12  12  32  ; "new"
+0160    TDUP    14  41
+0161    TGETS   15   0  33  ; "inner_padding"
+0162    TSETS   15  14  35  ; "width"
+0163    CALL    12   0   3
+0164    CALLM   10   1   1
+0165 => UGET    10   1      ; CalendarWeek
+0166    MOV     11  10
+0167    TGETS   10  10  32  ; "new"
+0168    TDUP    12  43
+0169    TGETS   13   0  42  ; "week_height"
+0170    TSETS   13  12  44  ; "height"
+0171    TGETS   13   0  45  ; "content_width"
+0172    TSETS   13  12  35  ; "width"
+0173    TGETS   13   0  46  ; "day_width"
+0174    TSETS   13  12  46  ; "day_width"
+0175    TGETS   13   0  33  ; "inner_padding"
+0176    TSETS   13  12  47  ; "day_padding"
+0177    TGETS   13   0  48  ; "day_border"
+0178    TSETS   13  12  48  ; "day_border"
+0179    TGETS   13   0  49  ; "nb_book_spans"
+0180    TSETS   13  12  49  ; "nb_book_spans"
+0181    TGETS   13   0  50  ; "show_hourly_histogram"
+0182    TSETS   13  12  51  ; "histo_shown"
+0183    TGETS   13   0  52  ; "span_height"
+0184    TSETS   13  12  52  ; "span_height"
+0185    TGETS   13   0  53  ; "font_face"
+0186    TSETS   13  12  53  ; "font_face"
+0187    TGETS   13   0  54  ; "span_font_size"
+0188    TSETS   13  12  55  ; "font_size"
+0189    TSETS    0  12  56  ; "show_parent"
+0190    CALL    10   2   3
+0191    MOV      9  10
+0192    GGET    10  30      ; "table"
+0193    TGETS   10  10  31  ; "insert"
+0194    TGETS   11   0  36  ; "weeks"
+0195    MOV     12   9
+0196    CALL    10   1   3
+0197    GGET    10  30      ; "table"
+0198    TGETS   10  10  31  ; "insert"
+0199    TGETS   11   0   2  ; "main_content"
+0200    MOV     12   9
+0201    CALL    10   1   3
+0202    TGETS   10   7  39  ; "wday"
+0203    TGETS   11   0  40  ; "start_day_of_week"
+0204    ISEQV   10  11
+0205    JMP     10 => 0231
+0206    TGETS   10   0  40  ; "start_day_of_week"
+0207 => TGETS   11   7  39  ; "wday"
+0208    ISEQV   10  11
+0209    JMP     11 => 0231
+0210    LOOP    11 => 0231
+0211    MOV     12   9
+0212    TGETS   11   9  57  ; "addDay"
+0213    UGET    13   2      ; CalendarDay
+0214    MOV     14  13
+0215    TGETS   13  13  32  ; "new"
+0216    TDUP    15  58
+0217    TGETS   16   0  42  ; "week_height"
+0218    TSETS   16  15  44  ; "height"
+0219    TGETS   16   0  46  ; "day_width"
+0220    TSETS   16  15  35  ; "width"
+0221    TGETS   16   0  48  ; "day_border"
+0222    TSETS   16  15  59  ; "border"
+0223    TSETS    0  15  56  ; "show_parent"
+0224    CALL    13   0   3
+0225    CALLM   11   1   1
+0226    ADDVN   10  10   0  ; 1
+0227    ISNEN   10   1      ; 8
+0228    JMP     11 => 0207
+0229    KSHORT  10   1
+0230    JMP     11 => 0207
+0231 => GGET    10   4      ; "os"
+0232    TGETS   10  10  12  ; "date"
+0233    KSTR    11  37      ; "%Y-%m-%d"
+0234    MOV     12   6
+0235    CALL    10   2   3
+0236    GGET    11  60      ; "string"
+0237    TGETS   11  11  61  ; "format"
+0238    KSTR    12  62      ; "%s (%s)"
+0239    MOV     13  10
+0240    TGETS   14   0  63  ; "longDayOfWeekTranslation"
+0241    TGETS   15   0  64  ; "weekdays"
+0242    TGETS   16   7  39  ; "wday"
+0243    TGETV   15  15  16
+0244    TGETV   14  14  15
+0245    CALL    11   2   4
+0246    GGET    12   4      ; "os"
+0247    TGETS   12  12   5  ; "time"
+0248    TDUP    13  65
+0249    TGETS   14   7   9  ; "year"
+0250    TSETS   14  13   9  ; "year"
+0251    TGETS   14   7  10  ; "month"
+0252    TSETS   14  13  10  ; "month"
+0253    TGETS   14   7  66  ; "day"
+0254    TSETS   14  13  66  ; "day"
+0255    CALL    12   2   2
+0256    ISLT     5  10
+0257    JMP     13 => 0260
+0258    KPRI    13   1
+0259    JMP     14 => 0261
+0260 => KPRI    13   2
+0261 => MOV     15   9
+0262    TGETS   14   9  57  ; "addDay"
+0263    UGET    16   2      ; CalendarDay
+0264    MOV     17  16
+0265    TGETS   16  16  32  ; "new"
+0266    TDUP    18  67
+0267    TGETS   19   0  50  ; "show_hourly_histogram"
+0268    TSETS   19  18  68  ; "show_histo"
+0269    TGETS   19   0  52  ; "span_height"
+0270    TSETS   19  18  69  ; "histo_height"
+0271    TGETS   19   0  53  ; "font_face"
+0272    TSETS   19  18  53  ; "font_face"
+0273    TGETS   19   0  54  ; "span_font_size"
+0274    TSETS   19  18  55  ; "font_size"
+0275    TGETS   19   0  48  ; "day_border"
+0276    TSETS   19  18  59  ; "border"
+0277    TSETS   13  18  70  ; "is_future"
+0278    TGETS   19   7  66  ; "day"
+0279    TSETS   19  18  71  ; "daynum"
+0280    TGETS   19   0  42  ; "week_height"
+0281    TSETS   19  18  44  ; "height"
+0282    TGETS   19   0  46  ; "day_width"
+0283    TSETS   19  18  35  ; "width"
+0284    TGETV   19   3  10
+0285    TSETS   19  18  72  ; "ratio_per_hour"
+0286    TGETV   19   4  10
+0287    TSETS   19  18  73  ; "read_books"
+0288    TSETS    0  18  56  ; "show_parent"
+0289    IST         13
+0290    JMP     19 => 0293
+0291    FNEW    19  74      ; calendarview.lua:729
+0292    JMP     20 => 0296
+0293 => KPRI    19   1
+0294    JMP     20 => 0296
+0295    KPRI    19   2
+0296 => TSETS   19  18  75  ; "callback"
+0297    CALL    16   0   3
+0298    CALLM   14   1   1
+0299    ADDVN    6   6   2  ; 86400
+0300    UCLO    10 => 0135
+0301 => GGET    10  76      ; "ipairs"
+0302    TGETS   11   0  36  ; "weeks"
+0303    CALL    10   4   2
+0304    JMP     13 => 0308
+0305 => MOV     16  14
+0306    TGETS   15  14  77  ; "update"
+0307    CALL    15   1   2
+0308 => ITERC   13   3   3
+0309    ITERL   13 => 0305
+0310    UGET    10   3      ; UIManager
+0311    MOV     11  10
+0312    TGETS   10  10  78  ; "setDirty"
+0313    MOV     12   0
+0314    FNEW    13  79      ; calendarview.lua:745
+0315    CALL    10   1   4
+0316    UCLO     0 => 0317
+0317 => RET0     0   1
+
+-- BYTECODE -- calendarview.lua:750-762
+0001    GGET     1   0      ; "os"
+0002    TGETS    1   1   1  ; "time"
+0003    TDUP     2   4
+0004    TGETS    3   0   2  ; "cur_month"
+0005    MOV      4   3
+0006    TGETS    3   3   3  ; "sub"
+0007    KSHORT   5   1
+0008    KSHORT   6   4
+0009    CALL     3   2   4
+0010    TSETS    3   2   5  ; "year"
+0011    TGETS    3   0   2  ; "cur_month"
+0012    MOV      4   3
+0013    TGETS    3   3   3  ; "sub"
+0014    KSHORT   5   6
+0015    CALL     3   2   3
+0016    TSETS    3   2   6  ; "month"
+0017    CALL     1   2   2
+0018    ADDVN    1   1   0  ; 2592000
+0019    GGET     2   0      ; "os"
+0020    TGETS    2   2   7  ; "date"
+0021    KSTR     3   8      ; "%Y-%m"
+0022    MOV      4   1
+0023    CALL     2   2   3
+0024    TGETS    3   0   9  ; "browse_future_months"
+0025    IST          3
+0026    JMP      4 => 0030
+0027    TGETS    3   0  10  ; "max_month"
+0028    ISGT     2   3
+0029    JMP      3 => 0034
+0030 => TSETS    2   0   2  ; "cur_month"
+0031    MOV      4   0
+0032    TGETS    3   0  11  ; "_populateItems"
+0033    CALL     3   1   2
+0034 => RET0     0   1
+
+-- BYTECODE -- calendarview.lua:764-776
+0001    GGET     1   0      ; "os"
+0002    TGETS    1   1   1  ; "time"
+0003    TDUP     2   4
+0004    TGETS    3   0   2  ; "cur_month"
+0005    MOV      4   3
+0006    TGETS    3   3   3  ; "sub"
+0007    KSHORT   5   1
+0008    KSHORT   6   4
+0009    CALL     3   2   4
+0010    TSETS    3   2   5  ; "year"
+0011    TGETS    3   0   2  ; "cur_month"
+0012    MOV      4   3
+0013    TGETS    3   3   3  ; "sub"
+0014    KSHORT   5   6
+0015    CALL     3   2   3
+0016    TSETS    3   2   6  ; "month"
+0017    CALL     1   2   2
+0018    SUBVN    1   1   0  ; 2592000
+0019    GGET     2   0      ; "os"
+0020    TGETS    2   2   7  ; "date"
+0021    KSTR     3   8      ; "%Y-%m"
+0022    MOV      4   1
+0023    CALL     2   2   3
+0024    TGETS    3   0   9  ; "min_month"
+0025    ISGT     3   2
+0026    JMP      3 => 0031
+0027    TSETS    2   0   2  ; "cur_month"
+0028    MOV      4   0
+0029    TGETS    3   0  10  ; "_populateItems"
+0030    CALL     3   1   2
+0031 => RET0     0   1
+
+-- BYTECODE -- calendarview.lua:778-781
+0001    TSETS    1   0   0  ; "cur_month"
+0002    MOV      3   0
+0003    TGETS    2   0   1  ; "_populateItems"
+0004    CALL     2   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- calendarview.lua:783-786
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "nextMonth"
+0003    CALL     1   1   2
+0004    KPRI     1   2
+0005    RET1     1   2
+
+-- BYTECODE -- calendarview.lua:788-791
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "prevMonth"
+0003    CALL     1   1   2
+0004    KPRI     1   2
+0005    RET1     1   2
+
+-- BYTECODE -- calendarview.lua:793-814
+0001    UGET     3   0      ; BD
+0002    TGETS    3   3   0  ; "flipDirectionIfMirroredUILayout"
+0003    TGETS    4   2   1  ; "direction"
+0004    CALL     3   2   2
+0005    ISNES    3   2      ; "west"
+0006    JMP      4 => 0013
+0007    MOV      5   0
+0008    TGETS    4   0   3  ; "nextMonth"
+0009    CALL     4   1   2
+0010    KPRI     4   2
+0011    RET1     4   2
+0012    JMP      4 => 0038
+0013 => ISNES    3   4      ; "east"
+0014    JMP      4 => 0021
+0015    MOV      5   0
+0016    TGETS    4   0   5  ; "prevMonth"
+0017    CALL     4   1   2
+0018    KPRI     4   2
+0019    RET1     4   2
+0020    JMP      4 => 0038
+0021 => ISNES    3   6      ; "south"
+0022    JMP      4 => 0027
+0023    MOV      5   0
+0024    TGETS    4   0   7  ; "onClose"
+0025    CALL     4   1   2
+0026    JMP      4 => 0038
+0027 => ISNES    3   8      ; "north"
+0028    JMP      4 => 0030
+0029    JMP      4 => 0038
+0030 => UGET     4   1      ; UIManager
+0031    MOV      5   4
+0032    TGETS    4   4   9  ; "setDirty"
+0033    KPRI     6   0
+0034    KSTR     7  10      ; "full"
+0035    CALL     4   1   4
+0036    KPRI     4   1
+0037    RET1     4   2
+0038 => RET0     0   1
+
+-- BYTECODE -- calendarview.lua:816-819
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- calendarview.lua:0-822
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/blitbuffer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/container/bottomcontainer"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/button"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/container/centercontainer"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/closebutton"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "device"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/font"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/widget/container/framecontainer"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/geometry"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/gesturerange"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/horizontalgroup"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/horizontalspan"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/widget/container/inputcontainer"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/widget/keyvaluepage"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/widget/container/leftcontainer"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "optmath"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/widget/overlapgroup"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "ui/size"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "ui/widget/textboxwidget"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "ui/widget/textwidget"
+0063    CALL    20   2   2
+0064    GGET    21   0      ; "require"
+0065    KSTR    22  22      ; "ui/uimanager"
+0066    CALL    21   2   2
+0067    GGET    22   0      ; "require"
+0068    KSTR    23  23      ; "ui/widget/verticalgroup"
+0069    CALL    22   2   2
+0070    GGET    23   0      ; "require"
+0071    KSTR    24  24      ; "ui/widget/verticalspan"
+0072    CALL    23   2   2
+0073    GGET    24   0      ; "require"
+0074    KSTR    25  25      ; "ui/widget/widget"
+0075    CALL    24   2   2
+0076    TGETS   25   6  26  ; "input"
+0077    TGETS   26   6  27  ; "screen"
+0078    GGET    27   0      ; "require"
+0079    KSTR    28  28      ; "gettext"
+0080    CALL    27   2   2
+0081    MOV     29  22
+0082    TGETS   28  22  29  ; "new"
+0083    TDUP    30  30
+0084    MOV     32   7
+0085    TGETS   31   7  31  ; "getFace"
+0086    KSTR    33  32      ; "tfont"
+0087    CALL    31   2   3
+0088    TSETS   31  30  33  ; "tface"
+0089    CALL    28   2   3
+0090    FNEW    29  35      ; calendarview.lua:37
+0091    TSETS   29  28  34  ; "init"
+0092    FNEW    29  37      ; calendarview.lua:53
+0093    TSETS   29  28  36  ; "setTitle"
+0094    FNEW    29  39      ; calendarview.lua:57
+0095    TSETS   29  28  38  ; "onClose"
+0096    MOV     30  24
+0097    TGETS   29  24  29  ; "new"
+0098    TDUP    31  40
+0099    TGETS   32   1  41  ; "COLOR_BLACK"
+0100    TSETS   32  31  42  ; "color"
+0101    CALL    29   2   3
+0102    FNEW    30  43      ; calendarview.lua:71
+0103    TSETS   30  29  34  ; "init"
+0104    FNEW    30  45      ; calendarview.lua:90
+0105    TSETS   30  29  44  ; "paintTo"
+0106    MOV     31  13
+0107    TGETS   30  13  29  ; "new"
+0108    TDUP    32  46
+0109    CALL    30   2   3
+0110    FNEW    31  47      ; calendarview.lua:122
+0111    TSETS   31  30  34  ; "init"
+0112    FNEW    31  49      ; calendarview.lua:186
+0113    TSETS   31  30  48  ; "updateNbNotShown"
+0114    FNEW    31  51      ; calendarview.lua:190
+0115    TSETS   31  30  50  ; "onTap"
+0116    FNEW    31  53      ; calendarview.lua:197
+0117    TSETS   31  30  52  ; "onHold"
+0118    MOV     32  13
+0119    TGETS   31  13  29  ; "new"
+0120    TDUP    33  54
+0121    CALL    31   2   3
+0122    FNEW    32  55      ; calendarview.lua:215
+0123    TSETS   32  31  34  ; "init"
+0124    FNEW    32  57      ; calendarview.lua:220
+0125    TSETS   32  31  56  ; "addDay"
+0126    TNEW    32   9
+0127    TNEW    33   3
+0128    TGETS   34   1  41  ; "COLOR_BLACK"
+0129    TSETB   34  33   1
+0130    TGETS   34   1  58  ; "COLOR_WHITE"
+0131    TSETB   34  33   2
+0132    TSETB   33  32   1
+0133    TNEW    33   3
+0134    TGETS   34   1  41  ; "COLOR_BLACK"
+0135    TSETB   34  33   1
+0136    TGETS   34   1  59  ; "COLOR_GRAY_E"
+0137    TSETB   34  33   2
+0138    TSETB   33  32   2
+0139    TNEW    33   3
+0140    TGETS   34   1  41  ; "COLOR_BLACK"
+0141    TSETB   34  33   1
+0142    TGETS   34   1  60  ; "COLOR_LIGHT_GRAY"
+0143    TSETB   34  33   2
+0144    TSETB   33  32   3
+0145    TNEW    33   3
+0146    TGETS   34   1  41  ; "COLOR_BLACK"
+0147    TSETB   34  33   1
+0148    TGETS   34   1  61  ; "COLOR_GRAY"
+0149    TSETB   34  33   2
+0150    TSETB   33  32   4
+0151    TNEW    33   3
+0152    TGETS   34   1  58  ; "COLOR_WHITE"
+0153    TSETB   34  33   1
+0154    TGETS   34   1  62  ; "COLOR_WEB_GRAY"
+0155    TSETB   34  33   2
+0156    TSETB   33  32   5
+0157    TNEW    33   3
+0158    TGETS   34   1  58  ; "COLOR_WHITE"
+0159    TSETB   34  33   1
+0160    TGETS   34   1  63  ; "COLOR_DARK_GRAY"
+0161    TSETB   34  33   2
+0162    TSETB   33  32   6
+0163    TNEW    33   3
+0164    TGETS   34   1  58  ; "COLOR_WHITE"
+0165    TSETB   34  33   1
+0166    TGETS   34   1  64  ; "COLOR_DIM_GRAY"
+0167    TSETB   34  33   2
+0168    TSETB   33  32   7
+0169    TNEW    33   3
+0170    TGETS   34   1  58  ; "COLOR_WHITE"
+0171    TSETB   34  33   1
+0172    TGETS   34   1  41  ; "COLOR_BLACK"
+0173    TSETB   34  33   2
+0174    TSETB   33  32   8
+0175    FNEW    33  66      ; calendarview.lua:288
+0176    TSETS   33  31  65  ; "update"
+0177    KPRI    33   0
+0178    MOV     35  13
+0179    TGETS   34  13  29  ; "new"
+0180    TDUP    36  67
+0181    TDUP    37  68
+0182    TSETS   37  36  69  ; "weekdays"
+0183    CALL    34   2   3
+0184    FNEW    35  70      ; calendarview.lua:418
+0185    TSETS   35  34  34  ; "init"
+0186    FNEW    35  72      ; calendarview.lua:633
+0187    TSETS   35  34  71  ; "_populateItems"
+0188    FNEW    35  74      ; calendarview.lua:750
+0189    TSETS   35  34  73  ; "nextMonth"
+0190    FNEW    35  76      ; calendarview.lua:764
+0191    TSETS   35  34  75  ; "prevMonth"
+0192    FNEW    35  78      ; calendarview.lua:778
+0193    TSETS   35  34  77  ; "goToMonth"
+0194    FNEW    35  80      ; calendarview.lua:783
+0195    TSETS   35  34  79  ; "onNextMonth"
+0196    FNEW    35  82      ; calendarview.lua:788
+0197    TSETS   35  34  81  ; "onPrevMonth"
+0198    FNEW    35  84      ; calendarview.lua:793
+0199    TSETS   35  34  83  ; "onSwipe"
+0200    FNEW    35  85      ; calendarview.lua:816
+0201    TSETS   35  34  38  ; "onClose"
+0202    UCLO     0 => 0203
+0203 => RET1    34   2
+

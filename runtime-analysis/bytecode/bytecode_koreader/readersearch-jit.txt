@@ -1,0 +1,532 @@
+-- BYTECODE -- readersearch.lua:18-20
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "menu"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "registerToMainMenu"
+0005    MOV      3   0
+0006    CALL     1   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readersearch.lua:25-27
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onShowFulltextSearchInput"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readersearch.lua:22-29
+0001    TDUP     2   2
+0002    UGET     3   0      ; _
+0003    KSTR     4   1      ; "Fulltext search"
+0004    CALL     3   2   2
+0005    TSETS    3   2   3  ; "text"
+0006    FNEW     3   4      ; readersearch.lua:25
+0007    TSETS    3   2   5  ; "callback"
+0008    TSETS    2   1   0  ; "fulltext_search"
+0009    UCLO     0 => 0010
+0010 => RET0     0   1
+
+-- BYTECODE -- readersearch.lua:44-46
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "closeInputDialog"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readersearch.lua:50-53
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onShowSearchDialog"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "input_dialog"
+0006    MOV      3   2
+0007    TGETS    2   2   2  ; "getInputText"
+0008    CALL     2   2   2
+0009    KSHORT   3   1
+0010    CALL     0   1   4
+0011    UGET     0   0      ; self
+0012    MOV      1   0
+0013    TGETS    0   0   3  ; "closeInputDialog"
+0014    CALL     0   1   2
+0015    RET0     0   1
+
+-- BYTECODE -- readersearch.lua:58-61
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onShowSearchDialog"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "input_dialog"
+0006    MOV      3   2
+0007    TGETS    2   2   2  ; "getInputText"
+0008    CALL     2   2   2
+0009    KSHORT   3   0
+0010    CALL     0   1   4
+0011    UGET     0   0      ; self
+0012    MOV      1   0
+0013    TGETS    0   0   3  ; "closeInputDialog"
+0014    CALL     0   1   2
+0015    RET0     0   1
+
+-- BYTECODE -- readersearch.lua:31-66
+0001    KSTR     1   0      ; "◁"
+0002    KSTR     2   1      ; "▷"
+0003    UGET     3   0      ; BD
+0004    TGETS    3   3   2  ; "mirroredUILayout"
+0005    CALL     3   2   1
+0006    ISF          3
+0007    JMP      4 => 0011
+0008    MOV      3   2
+0009    MOV      2   1
+0010    MOV      1   3
+0011 => MOV      4   0
+0012    TGETS    3   0   3  ; "onInput"
+0013    TDUP     5   5
+0014    UGET     6   1      ; _
+0015    KSTR     7   4      ; "Enter text to search for"
+0016    CALL     6   2   2
+0017    TSETS    6   5   6  ; "title"
+0018    TNEW     6   3
+0019    TNEW     7   4
+0020    TDUP     8   8
+0021    UGET     9   1      ; _
+0022    KSTR    10   7      ; "Cancel"
+0023    CALL     9   2   2
+0024    TSETS    9   8   9  ; "text"
+0025    FNEW     9  10      ; readersearch.lua:44
+0026    TSETS    9   8  11  ; "callback"
+0027    TSETB    8   7   1
+0028    TDUP     8  12
+0029    TSETS    1   8   9  ; "text"
+0030    FNEW     9  13      ; readersearch.lua:50
+0031    TSETS    9   8  11  ; "callback"
+0032    TSETB    8   7   2
+0033    TDUP     8  14
+0034    TSETS    2   8   9  ; "text"
+0035    FNEW     9  15      ; readersearch.lua:58
+0036    TSETS    9   8  11  ; "callback"
+0037    TSETB    8   7   3
+0038    TSETB    7   6   1
+0039    TSETS    6   5  16  ; "buttons"
+0040    CALL     3   1   3
+0041    UCLO     0 => 0042
+0042 => RET0     0   1
+
+-- BYTECODE -- readersearch.lua:72-145
+0001    UGET     0   0      ; search_func
+0002    UGET     1   1      ; self
+0003    UGET     2   2      ; _text
+0004    UGET     3   3      ; param
+0005    CALL     0   2   4
+0006    ISF          0
+0007    JMP      1 => 0178
+0008    UGET     1   1      ; self
+0009    TGETS    1   1   0  ; "ui"
+0010    TGETS    1   1   1  ; "document"
+0011    TGETS    1   1   2  ; "info"
+0012    TGETS    1   1   3  ; "has_pages"
+0013    ISF          1
+0014    JMP      2 => 0033
+0015    UGET     1   1      ; self
+0016    TGETS    1   1   0  ; "ui"
+0017    TGETS    1   1   4  ; "link"
+0018    MOV      2   1
+0019    TGETS    1   1   5  ; "onGotoLink"
+0020    TDUP     3   7
+0021    TGETS    4   0   6  ; "page"
+0022    SUBVN    4   4   0  ; 1
+0023    TSETS    4   3   6  ; "page"
+0024    UGET     4   4      ; neglect_current_location
+0025    CALL     1   1   4
+0026    UGET     1   1      ; self
+0027    TGETS    1   1   8  ; "view"
+0028    TGETS    1   1   9  ; "highlight"
+0029    TGETS    1   1  10  ; "temp"
+0030    TGETS    2   0   6  ; "page"
+0031    TSETV    0   1   2
+0032    JMP      1 => 0177
+0033 => KPRI     1   0
+0034    GGET     2  11      ; "ipairs"
+0035    MOV      3   0
+0036    CALL     2   4   2
+0037    JMP      5 => 0164
+0038 => TGETS    7   6  12  ; "start"
+0039    TGETS    8   6  13  ; "end"
+0040    UGET     9   1      ; self
+0041    TGETS    9   9   0  ; "ui"
+0042    TGETS    9   9   1  ; "document"
+0043    MOV     10   9
+0044    TGETS    9   9  14  ; "getPageFromXPointer"
+0045    MOV     11   7
+0046    CALL     9   2   3
+0047    UGET    10   1      ; self
+0048    TGETS   10  10   0  ; "ui"
+0049    TGETS   10  10   1  ; "document"
+0050    MOV     11  10
+0051    TGETS   10  10  14  ; "getPageFromXPointer"
+0052    MOV     12   8
+0053    CALL    10   2   3
+0054    UGET    11   5      ; logger
+0055    TGETS   11  11  15  ; "dbg"
+0056    KSTR    12  16      ; "res.start page & xpointer:"
+0057    MOV     13   9
+0058    MOV     14   7
+0059    CALL    11   1   4
+0060    UGET    11   5      ; logger
+0061    TGETS   11  11  15  ; "dbg"
+0062    KSTR    12  17      ; "res.end page & xpointer:"
+0063    MOV     13  10
+0064    MOV     14   8
+0065    CALL    11   1   4
+0066    TNEW    11   0
+0067    UGET    12   1      ; self
+0068    TGETS   12  12  18  ; "_expect_back_results"
+0069    ISF         12
+0070    JMP     13 => 0086
+0071    GGET    12  19      ; "table"
+0072    TGETS   12  12  20  ; "insert"
+0073    MOV     13  11
+0074    TNEW    14   3
+0075    TSETB    8  14   1
+0076    TSETB   10  14   2
+0077    CALL    12   1   3
+0078    GGET    12  19      ; "table"
+0079    TGETS   12  12  20  ; "insert"
+0080    MOV     13  11
+0081    TNEW    14   3
+0082    TSETB    7  14   1
+0083    TSETB    9  14   2
+0084    CALL    12   1   3
+0085    JMP     12 => 0100
+0086 => GGET    12  19      ; "table"
+0087    TGETS   12  12  20  ; "insert"
+0088    MOV     13  11
+0089    TNEW    14   3
+0090    TSETB    7  14   1
+0091    TSETB    9  14   2
+0092    CALL    12   1   3
+0093    GGET    12  19      ; "table"
+0094    TGETS   12  12  20  ; "insert"
+0095    MOV     13  11
+0096    TNEW    14   3
+0097    TSETB    8  14   1
+0098    TSETB   10  14   2
+0099    CALL    12   1   3
+0100 => GGET    12  11      ; "ipairs"
+0101    MOV     13  11
+0102    CALL    12   4   2
+0103    JMP     15 => 0159
+0104 => TGETB   17  16   1
+0105    TGETB   18  16   2
+0106    ISF         18
+0107    JMP     19 => 0156
+0108    UGET    19   6      ; current_page
+0109    IST         19
+0110    JMP     19 => 0134
+0111    UGET    19   1      ; self
+0112    TGETS   19  19   0  ; "ui"
+0113    TGETS   19  19   1  ; "document"
+0114    MOV     20  19
+0115    TGETS   19  19  21  ; "getCurrentPage"
+0116    CALL    19   2   2
+0117    USETV    6  19      ; current_page
+0118    UGET    19   1      ; self
+0119    TGETS   19  19  18  ; "_expect_back_results"
+0120    ISF         19
+0121    JMP     20 => 0125
+0122    UGET    19   6      ; current_page
+0123    ISLE    18  19
+0124    JMP     19 => 0132
+0125 => UGET    19   1      ; self
+0126    TGETS   19  19  18  ; "_expect_back_results"
+0127    IST         19
+0128    JMP     19 => 0156
+0129    UGET    19   6      ; current_page
+0130    ISGT    19  18
+0131    JMP     19 => 0156
+0132 => MOV      1  17
+0133    JMP     19 => 0156
+0134 => UGET    19   1      ; self
+0135    TGETS   19  19   0  ; "ui"
+0136    TGETS   19  19   1  ; "document"
+0137    MOV     20  19
+0138    TGETS   19  19  21  ; "getCurrentPage"
+0139    CALL    19   2   2
+0140    USETV    6  19      ; current_page
+0141    UGET    19   1      ; self
+0142    TGETS   19  19  18  ; "_expect_back_results"
+0143    ISF         19
+0144    JMP     20 => 0148
+0145    UGET    19   6      ; current_page
+0146    ISLT    18  19
+0147    JMP     19 => 0155
+0148 => UGET    19   1      ; self
+0149    TGETS   19  19  18  ; "_expect_back_results"
+0150    IST         19
+0151    JMP     19 => 0156
+0152    UGET    19   6      ; current_page
+0153    ISGE    19  18
+0154    JMP     19 => 0156
+0155 => MOV      1  17
+0156 => ISF          1
+0157    JMP     19 => 0159
+0158    JMP     12 => 0161
+0159 => ITERC   15   3   3
+0160    ITERL   15 => 0104
+0161 => ISF          1
+0162    JMP     12 => 0164
+0163    JMP      2 => 0166
+0164 => ITERC    5   3   3
+0165    ITERL    5 => 0038
+0166 => ISF          1
+0167    JMP      2 => 0177
+0168    UGET     2   1      ; self
+0169    TGETS    2   2   0  ; "ui"
+0170    TGETS    2   2   4  ; "link"
+0171    MOV      3   2
+0172    TGETS    2   2   5  ; "onGotoLink"
+0173    TDUP     4  22
+0174    TSETS    1   4  23  ; "xpointer"
+0175    UGET     5   4      ; neglect_current_location
+0176    CALL     2   1   4
+0177 => USETP    4   2      ; neglect_current_location
+0178 => RET0     0   1
+
+-- BYTECODE -- readersearch.lua:71-146
+0001    FNEW     3   0      ; readersearch.lua:72
+0002    UCLO     0 => 0003
+0003 => RET1     3   2
+
+-- BYTECODE -- readersearch.lua:178-182
+0001    UGET     0   0      ; logger
+0002    TGETS    0   0   0  ; "dbg"
+0003    KSTR     1   1      ; "highlight clear"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; self
+0006    TGETS    0   0   2  ; "ui"
+0007    TGETS    0   0   3  ; "highlight"
+0008    MOV      1   0
+0009    TGETS    0   0   4  ; "clear"
+0010    CALL     0   1   2
+0011    UGET     0   2      ; UIManager
+0012    MOV      1   0
+0013    TGETS    0   0   5  ; "setDirty"
+0014    UGET     2   1      ; self
+0015    TGETS    2   2   6  ; "dialog"
+0016    KSTR     3   2      ; "ui"
+0017    CALL     0   1   4
+0018    RET0     0   1
+
+-- BYTECODE -- readersearch.lua:68-189
+0001    KPRI     3   1
+0002    KPRI     4   0
+0003    FNEW     5   0      ; readersearch.lua:71
+0004    KSTR     6   1      ; "▕◁"
+0005    KSTR     7   2      ; "◁"
+0006    KSTR     8   3      ; "▷"
+0007    KSTR     9   4      ; "▷▏"
+0008    UGET    10   1      ; BD
+0009    TGETS   10  10   5  ; "mirroredUILayout"
+0010    CALL    10   2   1
+0011    ISF         10
+0012    JMP     11 => 0026
+0013    MOV     10   8
+0014    MOV      8   7
+0015    MOV      7  10
+0016    UGET    10   1      ; BD
+0017    TGETS   10  10   6  ; "ltr"
+0018    MOV     11   9
+0019    CALL    10   2   2
+0020    UGET    11   1      ; BD
+0021    TGETS   11  11   6  ; "ltr"
+0022    MOV     12   6
+0023    CALL    11   2   2
+0024    MOV      9  11
+0025    MOV      6  10
+0026 => UGET    10   2      ; ButtonDialog
+0027    MOV     11  10
+0028    TGETS   10  10   8  ; "new"
+0029    TDUP    12  18
+0030    TNEW    13   3
+0031    TNEW    14   5
+0032    TDUP    15   9
+0033    TSETS    6  15  10  ; "text"
+0034    MOV     16   5
+0035    TGETS   17   0  11  ; "searchFromStart"
+0036    MOV     18   1
+0037    CALL    16   2   3
+0038    TSETS   16  15  12  ; "callback"
+0039    TSETB   15  14   1
+0040    TDUP    15  13
+0041    TSETS    7  15  10  ; "text"
+0042    MOV     16   5
+0043    TGETS   17   0  14  ; "searchNext"
+0044    MOV     18   1
+0045    KSHORT  19   1
+0046    CALL    16   2   4
+0047    TSETS   16  15  12  ; "callback"
+0048    TSETB   15  14   2
+0049    TDUP    15  15
+0050    TSETS    8  15  10  ; "text"
+0051    MOV     16   5
+0052    TGETS   17   0  14  ; "searchNext"
+0053    MOV     18   1
+0054    KSHORT  19   0
+0055    CALL    16   2   4
+0056    TSETS   16  15  12  ; "callback"
+0057    TSETB   15  14   3
+0058    TDUP    15  16
+0059    TSETS    9  15  10  ; "text"
+0060    MOV     16   5
+0061    TGETS   17   0  17  ; "searchFromEnd"
+0062    MOV     18   1
+0063    CALL    16   2   3
+0064    TSETS   16  15  12  ; "callback"
+0065    TSETB   15  14   4
+0066    TSETB   14  13   1
+0067    TSETS   13  12  19  ; "buttons"
+0068    FNEW    13  20      ; readersearch.lua:178
+0069    TSETS   13  12  21  ; "tap_close_callback"
+0070    CALL    10   2   3
+0071    TSETS   10   0   7  ; "search_dialog"
+0072    MOV     10   5
+0073    TGETS   11   0  22  ; "searchFromCurrent"
+0074    MOV     12   1
+0075    MOV     13   2
+0076    CALL    10   2   4
+0077    CALL    10   1   1
+0078    UGET    10   3      ; UIManager
+0079    MOV     11  10
+0080    TGETS   10  10  23  ; "show"
+0081    TGETS   12   0   7  ; "search_dialog"
+0082    CALL    10   1   3
+0083    UGET    10   3      ; UIManager
+0084    MOV     11  10
+0085    TGETS   10  10  24  ; "setDirty"
+0086    TGETS   12   0  25  ; "dialog"
+0087    KSTR    13  26      ; "partial"
+0088    CALL    10   1   4
+0089    KPRI    10   2
+0090    UCLO     0 => 0091
+0091 => RET1    10   2
+
+-- BYTECODE -- readersearch.lua:191-198
+0001    UGET     3   0      ; logger
+0002    TGETS    3   3   0  ; "dbg"
+0003    KSTR     4   1      ; "search pattern"
+0004    MOV      5   1
+0005    CALL     3   1   3
+0006    ISEQP    1   0
+0007    JMP      3 => 0010
+0008    ISNES    1   2      ; ""
+0009    JMP      3 => 0011
+0010 => RET0     0   1
+0011 => TGETS    3   0   3  ; "direction"
+0012    TGETS    4   0   4  ; "case_insensitive"
+0013    TGETS    5   0   5  ; "view"
+0014    TGETS    5   5   6  ; "state"
+0015    TGETS    5   5   7  ; "page"
+0016    TGETS    6   0   8  ; "ui"
+0017    TGETS    6   6   9  ; "document"
+0018    MOV      7   6
+0019    TGETS    6   6  10  ; "findText"
+0020    MOV      8   1
+0021    MOV      9   2
+0022    MOV     10   3
+0023    MOV     11   4
+0024    MOV     12   5
+0025    CALLT    6   7
+
+-- BYTECODE -- readersearch.lua:200-204
+0001    KSHORT   2   0
+0002    TSETS    2   0   0  ; "direction"
+0003    KPRI     2   2
+0004    TSETS    2   0   1  ; "_expect_back_results"
+0005    MOV      3   0
+0006    TGETS    2   0   2  ; "search"
+0007    MOV      4   1
+0008    KSHORT   5  -1
+0009    CALLT    2   4
+
+-- BYTECODE -- readersearch.lua:206-210
+0001    KSHORT   2   1
+0002    TSETS    2   0   0  ; "direction"
+0003    KPRI     2   1
+0004    TSETS    2   0   1  ; "_expect_back_results"
+0005    MOV      3   0
+0006    TGETS    2   0   2  ; "search"
+0007    MOV      4   1
+0008    KSHORT   5  -1
+0009    CALLT    2   4
+
+-- BYTECODE -- readersearch.lua:212-216
+0001    TSETS    2   0   0  ; "direction"
+0002    ISEQN    2   0      ; 1
+0003    JMP      3 => 0006
+0004    KPRI     3   1
+0005    JMP      4 => 0007
+0006 => KPRI     3   2
+0007 => TSETS    3   0   1  ; "_expect_back_results"
+0008    MOV      4   0
+0009    TGETS    3   0   2  ; "search"
+0010    MOV      5   1
+0011    KSHORT   6   0
+0012    CALLT    3   4
+
+-- BYTECODE -- readersearch.lua:219-223
+0001    TSETS    2   0   0  ; "direction"
+0002    ISEQN    2   0      ; 1
+0003    JMP      3 => 0006
+0004    KPRI     3   1
+0005    JMP      4 => 0007
+0006 => KPRI     3   2
+0007 => TSETS    3   0   1  ; "_expect_back_results"
+0008    MOV      4   0
+0009    TGETS    3   0   2  ; "search"
+0010    MOV      5   1
+0011    KSHORT   6   1
+0012    CALLT    3   4
+
+-- BYTECODE -- readersearch.lua:0-226
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/buttondialog"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/container/inputcontainer"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/uimanager"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "logger"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "gettext"
+0018    CALL     5   2   2
+0019    MOV      7   2
+0020    TGETS    6   2   7  ; "new"
+0021    TDUP     8   8
+0022    CALL     6   2   3
+0023    FNEW     7  10      ; readersearch.lua:18
+0024    TSETS    7   6   9  ; "init"
+0025    FNEW     7  12      ; readersearch.lua:22
+0026    TSETS    7   6  11  ; "addToMainMenu"
+0027    FNEW     7  14      ; readersearch.lua:31
+0028    TSETS    7   6  13  ; "onShowFulltextSearchInput"
+0029    FNEW     7  16      ; readersearch.lua:68
+0030    TSETS    7   6  15  ; "onShowSearchDialog"
+0031    FNEW     7  18      ; readersearch.lua:191
+0032    TSETS    7   6  17  ; "search"
+0033    FNEW     7  20      ; readersearch.lua:200
+0034    TSETS    7   6  19  ; "searchFromStart"
+0035    FNEW     7  22      ; readersearch.lua:206
+0036    TSETS    7   6  21  ; "searchFromEnd"
+0037    FNEW     7  24      ; readersearch.lua:212
+0038    TSETS    7   6  23  ; "searchFromCurrent"
+0039    FNEW     7  26      ; readersearch.lua:219
+0040    TSETS    7   6  25  ; "searchNext"
+0041    UCLO     0 => 0042
+0042 => RET1     6   2
+

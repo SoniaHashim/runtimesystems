@@ -1,0 +1,301 @@
+-- BYTECODE -- coverage.lua:2-7
+0001    ISNEP    0   0
+0002    JMP      1 => 0004
+0003    KSTR     0   0      ; ""
+0004 => GGET     1   1      ; "io"
+0005    TGETS    1   1   2  ; "stderr"
+0006    MOV      2   1
+0007    TGETS    1   1   3  ; "write"
+0008    MOV      3   0
+0009    KSTR     4   4      ; "\n"
+0010    CAT      3   3   4
+0011    CALLT    1   3
+
+-- BYTECODE -- coverage.lua:14-16
+0001    KSHORT   1   0
+0002    RET1     1   2
+
+-- BYTECODE -- coverage.lua:11-21
+0001    GGET     2   0      ; "setmetatable"
+0002    TNEW     3   0
+0003    TDUP     4   2
+0004    FNEW     5   1      ; coverage.lua:14
+0005    TSETS    5   4   3  ; "__index"
+0006    CALL     2   2   3
+0007    TSETV    2   0   1
+0008    UCLO     0 => 0009
+0009 => RET1     2   2
+
+-- BYTECODE -- coverage.lua:9-23
+0001    GGET     0   0      ; "setmetatable"
+0002    TNEW     1   0
+0003    TDUP     2   2
+0004    FNEW     3   1      ; coverage.lua:11
+0005    TSETS    3   2   3  ; "__index"
+0006    UCLO     0 => 0007
+0007 => CALLT    0   3
+
+-- BYTECODE -- coverage.lua:25-42
+0001    TNEW     2   0
+0002    KSHORT   3   0
+0003    KSHORT   4   1
+0004    MOV      6   0
+0005    TGETS    5   0   0  ; "gmatch"
+0006    KSTR     7   1      ; "."
+0007    CALL     5   4   3
+0008    JMP      8 => 0020
+0009 => GGET     9   2      ; "rawget"
+0010    MOV     10   1
+0011    MOV     11   3
+0012    CALL     9   2   3
+0013    ISF          9
+0014    JMP     10 => 0016
+0015    TSETV    9   2   4
+0016 => ISNES    8   3      ; "\n"
+0017    JMP      9 => 0019
+0018    ADDVN    4   4   0  ; 1
+0019 => ADDVN    3   3   0  ; 1
+0020 => ITERC    8   2   3
+0021    ITERL    8 => 0009
+0022    RET1     2   2
+
+-- BYTECODE -- coverage.lua:44-59
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "gsub"
+0003    KSTR     4   1      ; "^@"
+0004    KSTR     5   2      ; ""
+0005    CALL     2   2   4
+0006    MOV      0   2
+0007    GGET     2   3      ; "assert"
+0008    GGET     3   4      ; "io"
+0009    TGETS    3   3   5  ; "open"
+0010    MOV      4   0
+0011    CALL     3   0   2
+0012    CALLM    2   2   0
+0013    MOV      4   2
+0014    TGETS    3   2   6  ; "read"
+0015    KSTR     5   7      ; "*a"
+0016    CALL     3   2   3
+0017    MOV      5   2
+0018    TGETS    4   2   8  ; "close"
+0019    CALL     4   1   2
+0020    UGET     4   0      ; position_to_lines
+0021    MOV      5   3
+0022    MOV      6   1
+0023    CALL     4   2   3
+0024    UGET     5   1      ; log
+0025    KSTR     6   9      ; "------| @"
+0026    GGET     7  10      ; "tostring"
+0027    MOV      8   0
+0028    CALL     7   2   2
+0029    CAT      6   6   7
+0030    CALL     5   1   2
+0031    KSHORT   5   1
+0032    MOV      6   3
+0033    KSTR     7  11      ; "\n"
+0034    CAT      6   6   7
+0035    MOV      7   6
+0036    TGETS    6   6  12  ; "gmatch"
+0037    KSTR     8  13      ; "(.-)\n"
+0038    CALL     6   4   3
+0039    JMP      9 => 0065
+0040 => KSTR    10  14      ; "% 5d"
+0041    MOV     11  10
+0042    TGETS   10  10  15  ; "format"
+0043    MOV     12   5
+0044    CALL    10   2   3
+0045    TGETV   11   4   5
+0046    ISF         11
+0047    JMP     12 => 0050
+0048    KSTR    11  16      ; "*"
+0049    JMP     12 => 0051
+0050 => KSTR    11  17      ; " "
+0051 => UGET    12   1      ; log
+0052    GGET    13  10      ; "tostring"
+0053    MOV     14  11
+0054    CALL    13   2   2
+0055    GGET    14  10      ; "tostring"
+0056    MOV     15  10
+0057    CALL    14   2   2
+0058    KSTR    15  18      ; "| "
+0059    GGET    16  10      ; "tostring"
+0060    MOV     17   9
+0061    CALL    16   2   2
+0062    CAT     13  13  16
+0063    CALL    12   1   2
+0064    ADDVN    5   5   0  ; 1
+0065 => ITERC    9   2   3
+0066    ITERL    9 => 0040
+0067    UGET     6   1      ; log
+0068    CALLT    6   1
+
+-- BYTECODE -- coverage.lua:64-66
+0001    UGET     1   0      ; create_counter
+0002    CALL     1   2   1
+0003    TSETS    1   0   0  ; "line_counts"
+0004    RET0     0   1
+
+-- BYTECODE -- coverage.lua:71-73
+0001    UGET     0   0      ; _fn_0
+0002    UGET     1   1      ; _base_1
+0003    VARG     2   0   0
+0004    CALLMT   0   1
+
+-- BYTECODE -- coverage.lua:68-74
+0001    UGET     0   0      ; self
+0002    TGETS    1   0   0  ; "process_line"
+0003    FNEW     2   1      ; coverage.lua:71
+0004    UCLO     0 => 0005
+0005 => RET1     2   2
+
+-- BYTECODE -- coverage.lua:67-75
+0001    GGET     1   0      ; "debug"
+0002    TGETS    1   1   1  ; "sethook"
+0003    FNEW     2   2      ; coverage.lua:68
+0004    CALL     2   2   1
+0005    KSTR     3   3      ; "l"
+0006    UCLO     0 => 0007
+0007 => CALLT    1   3
+
+-- BYTECODE -- coverage.lua:76-78
+0001    GGET     1   0      ; "debug"
+0002    TGETS    1   1   1  ; "sethook"
+0003    CALLT    1   1
+
+-- BYTECODE -- coverage.lua:79-81
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "format_results"
+0003    CALLT    1   2
+
+-- BYTECODE -- coverage.lua:82-86
+0001    GGET     3   0      ; "debug"
+0002    TGETS    3   3   1  ; "getinfo"
+0003    KSHORT   4   2
+0004    KSTR     5   2      ; "S"
+0005    CALL     3   2   3
+0006    TGETS    4   3   3  ; "source"
+0007    TGETS    5   0   4  ; "line_counts"
+0008    TGETV    5   5   4
+0009    TGETS    6   0   4  ; "line_counts"
+0010    TGETV    6   6   4
+0011    TGETV    6   6   2
+0012    ADDVN    6   6   0  ; 1
+0013    TSETV    6   5   2
+0014    RET0     0   1
+
+-- BYTECODE -- coverage.lua:87-122
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "moonscript.line_tables"
+0003    CALL     1   2   2
+0004    UGET     2   0      ; create_counter
+0005    CALL     2   2   1
+0006    GGET     3   2      ; "pairs"
+0007    TGETS    4   0   3  ; "line_counts"
+0008    CALL     3   4   2
+0009    ISNEXT   6 => 0043
+0010 => KPRI     8   1
+0011    LOOP     9 => 0040
+0012    TGETV    9   1   6
+0013    IST          9
+0014    JMP     10 => 0017
+0015    KPRI     8   2
+0016    JMP      9 => 0040
+0017 => GGET    10   2      ; "pairs"
+0018    MOV     11   7
+0019    CALL    10   4   2
+0020    ISNEXT  13 => 0037
+0021 => KPRI    15   1
+0022    LOOP    16 => 0034
+0023    TGETV   16   9  13
+0024    IST         16
+0025    JMP     17 => 0028
+0026    KPRI    15   2
+0027    JMP     16 => 0034
+0028 => TGETV   17   2   6
+0029    TGETV   18   2   6
+0030    TGETV   18  18  16
+0031    ADDVV   18  18  14
+0032    TSETV   18  17  16
+0033    KPRI    15   2
+0034 => IST         15
+0035    JMP     16 => 0037
+0036    JMP     10 => 0039
+0037 => ITERN   13   3   3
+0038    ITERL   13 => 0021
+0039 => KPRI     8   2
+0040 => IST          8
+0041    JMP      9 => 0043
+0042    JMP      3 => 0045
+0043 => ITERN    6   3   3
+0044    ITERL    6 => 0010
+0045 => GGET     3   2      ; "pairs"
+0046    MOV      4   2
+0047    CALL     3   4   2
+0048    ISNEXT   6 => 0053
+0049 => UGET     8   1      ; format_file
+0050    MOV      9   6
+0051    MOV     10   7
+0052    CALL     8   1   3
+0053 => ITERN    6   3   3
+0054    ITERL    6 => 0049
+0055    RET0     0   1
+
+-- BYTECODE -- coverage.lua:126-128
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "reset"
+0003    CALLT    1   2
+
+-- BYTECODE -- coverage.lua:133-137
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    UGET     3   0      ; _base_0
+0004    CALL     1   2   3
+0005    TGETS    2   0   1  ; "__init"
+0006    MOV      3   1
+0007    VARG     4   0   1
+0008    CALLM    2   1   1
+0009    RET1     1   2
+
+-- BYTECODE -- coverage.lua:0-145
+0001    KPRI     0   0
+0002    FNEW     0   0      ; coverage.lua:2
+0003    KPRI     1   0
+0004    FNEW     1   1      ; coverage.lua:9
+0005    KPRI     2   0
+0006    FNEW     2   2      ; coverage.lua:25
+0007    KPRI     3   0
+0008    FNEW     3   3      ; coverage.lua:44
+0009    KNIL     4   5
+0010    TDUP     6   5
+0011    FNEW     7   4      ; coverage.lua:64
+0012    TSETS    7   6   6  ; "reset"
+0013    FNEW     7   7      ; coverage.lua:67
+0014    TSETS    7   6   8  ; "start"
+0015    FNEW     7   9      ; coverage.lua:76
+0016    TSETS    7   6  10  ; "stop"
+0017    FNEW     7  11      ; coverage.lua:79
+0018    TSETS    7   6  12  ; "print_results"
+0019    FNEW     7  13      ; coverage.lua:82
+0020    TSETS    7   6  14  ; "process_line"
+0021    FNEW     7  15      ; coverage.lua:87
+0022    TSETS    7   6  16  ; "format_results"
+0023    TSETS    6   6  17  ; "__index"
+0024    GGET     7  18      ; "setmetatable"
+0025    TDUP     8  20
+0026    FNEW     9  19      ; coverage.lua:126
+0027    TSETS    9   8  21  ; "__init"
+0028    TSETS    6   8  22  ; "__base"
+0029    TDUP     9  23
+0030    TSETS    6   9  17  ; "__index"
+0031    FNEW    10  24      ; coverage.lua:133
+0032    TSETS   10   9  25  ; "__call"
+0033    CALL     7   2   3
+0034    MOV      5   7
+0035    TSETS    5   6  26  ; "__class"
+0036    MOV      4   5
+0037    UCLO     5 => 0038
+0038 => TDUP     5  27
+0039    TSETS    4   5  28  ; "CodeCoverage"
+0040    UCLO     0 => 0041
+0041 => RET1     5   2
+

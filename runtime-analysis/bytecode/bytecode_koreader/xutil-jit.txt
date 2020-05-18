@@ -1,0 +1,103 @@
+-- BYTECODE -- xutil.lua:18-25
+0001    UGET     1   0      ; zlib
+0002    TGETS    1   1   0  ; "compressBound"
+0003    LEN      2   0
+0004    CALL     1   2   2
+0005    UGET     2   1      ; ffi
+0006    TGETS    2   2   1  ; "new"
+0007    KSTR     3   2      ; "uint8_t[?]"
+0008    MOV      4   1
+0009    CALL     2   2   3
+0010    UGET     3   1      ; ffi
+0011    TGETS    3   3   1  ; "new"
+0012    KSTR     4   3      ; "unsigned long[1]"
+0013    MOV      5   1
+0014    CALL     3   2   3
+0015    UGET     4   0      ; zlib
+0016    TGETS    4   4   4  ; "compress2"
+0017    MOV      5   2
+0018    MOV      6   3
+0019    MOV      7   0
+0020    LEN      8   0
+0021    KSHORT   9   9
+0022    CALL     4   2   6
+0023    GGET     5   5      ; "assert"
+0024    ISEQN    4   0      ; 0
+0025    JMP      6 => 0028
+0026    KPRI     6   1
+0027    JMP      7 => 0029
+0028 => KPRI     6   2
+0029 => CALL     5   1   2
+0030    UGET     5   1      ; ffi
+0031    TGETS    5   5   6  ; "string"
+0032    MOV      6   2
+0033    TGETB    7   3   0
+0034    CALLT    5   3
+
+-- BYTECODE -- xutil.lua:27-33
+0001    UGET     2   0      ; ffi
+0002    TGETS    2   2   0  ; "new"
+0003    KSTR     3   1      ; "uint8_t[?]"
+0004    MOV      4   1
+0005    CALL     2   2   3
+0006    UGET     3   0      ; ffi
+0007    TGETS    3   3   0  ; "new"
+0008    KSTR     4   2      ; "unsigned long[1]"
+0009    MOV      5   1
+0010    CALL     3   2   3
+0011    UGET     4   1      ; zlib
+0012    TGETS    4   4   3  ; "uncompress"
+0013    MOV      5   2
+0014    MOV      6   3
+0015    MOV      7   0
+0016    LEN      8   0
+0017    CALL     4   2   5
+0018    GGET     5   4      ; "assert"
+0019    ISEQN    4   0      ; 0
+0020    JMP      6 => 0023
+0021    KPRI     6   1
+0022    JMP      7 => 0024
+0023 => KPRI     6   2
+0024 => CALL     5   1   2
+0025    UGET     5   0      ; ffi
+0026    TGETS    5   5   5  ; "string"
+0027    MOV      6   2
+0028    TGETB    7   3   0
+0029    CALLT    5   3
+
+-- BYTECODE -- xutil.lua:43-45
+0001    UGET     2   0      ; sql
+0002    TGETS    2   2   0  ; "sqlite3_busy_timeout"
+0003    TGETS    3   0   1  ; "_ptr"
+0004    MOV      4   1
+0005    CALL     2   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- xutil.lua:0-49
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi"
+0003    CALL     0   2   2
+0004    TNEW     1   0
+0005    TGETS    2   0   2  ; "cdef"
+0006    KSTR     3   3      ; "unsigned long compressBound(unsigned lon"~
+0007    CALL     2   1   2
+0008    TGETS    2   0   4  ; "load"
+0009    TGETS    3   0   5  ; "os"
+0010    ISNES    3   6      ; "Windows"
+0011    JMP      3 => 0014
+0012    KSTR     3   7      ; "zlib1"
+0013    JMP      4 => 0015
+0014 => KSTR     3   8      ; "z"
+0015 => CALL     2   2   2
+0016    FNEW     3  10      ; xutil.lua:18
+0017    TSETS    3   1   9  ; "zlib_compress"
+0018    FNEW     3  12      ; xutil.lua:27
+0019    TSETS    3   1  11  ; "zlib_uncompress"
+0020    TGETS    3   0   4  ; "load"
+0021    KSTR     4  13      ; "sqlite3"
+0022    CALL     3   2   2
+0023    FNEW     4  15      ; xutil.lua:43
+0024    TSETS    4   1  14  ; "sqlite_set_timeout"
+0025    UCLO     0 => 0026
+0026 => RET1     1   2
+

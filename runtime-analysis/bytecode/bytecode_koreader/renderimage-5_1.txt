@@ -1,0 +1,384 @@
+
+main <./frontend/ui/renderimage.lua:0,0> (30 instructions, 120 bytes at 0x7f83bac068c0)
+0+ params, 6 slots, 0 upvalues, 5 locals, 8 constants, 5 functions
+	1	[5]	GETGLOBAL	0 -1	; require
+	2	[5]	LOADK    	1 -2	; "ffi"
+	3	[5]	CALL     	0 2 2
+	4	[6]	GETGLOBAL	1 -1	; require
+	5	[6]	LOADK    	2 -3	; "logger"
+	6	[6]	CALL     	1 2 2
+	7	[9]	LOADNIL  	2 3
+	8	[12]	NEWTABLE 	4 0 0
+	9	[30]	CLOSURE  	5 0	; 0x7f83bac06ba0
+	10	[30]	MOVE     	0 1
+	11	[30]	MOVE     	0 4
+	12	[21]	SETTABLE 	4 -4 5	; "renderImageFile" -
+	13	[58]	CLOSURE  	5 1	; 0x7f83bac06740
+	14	[58]	MOVE     	0 0
+	15	[58]	MOVE     	0 1
+	16	[41]	SETTABLE 	4 -5 5	; "renderImageData" -
+	17	[76]	CLOSURE  	5 2	; 0x7f83bac076d0
+	18	[76]	MOVE     	0 2
+	19	[76]	MOVE     	0 1
+	20	[67]	SETTABLE 	4 -6 5	; "renderImageDataWithMupdf" -
+	21	[150]	CLOSURE  	5 3	; 0x7f83bac07fa0
+	22	[150]	MOVE     	0 3
+	23	[150]	MOVE     	0 1
+	24	[86]	SETTABLE 	4 -7 5	; "renderGifImageDataWithGifLib" -
+	25	[185]	CLOSURE  	5 4	; 0x7f83bac09590
+	26	[185]	MOVE     	0 1
+	27	[185]	MOVE     	0 2
+	28	[159]	SETTABLE 	4 -8 5	; "scaleBlitBuffer" -
+	29	[187]	RETURN   	4 2
+	30	[187]	RETURN   	0 1
+
+function <./frontend/ui/renderimage.lua:21,30> (28 instructions, 112 bytes at 0x7f83bac06ba0)
+5 params, 14 slots, 2 upvalues, 7 locals, 9 constants, 0 functions
+	1	[22]	GETGLOBAL	5 -1	; io
+	2	[22]	GETTABLE 	5 5 -2	; "open"
+	3	[22]	MOVE     	6 1
+	4	[22]	LOADK    	7 -3	; "rb"
+	5	[22]	CALL     	5 3 2
+	6	[23]	TEST     	5 0 1
+	7	[23]	JMP      	6	; to 14
+	8	[24]	GETUPVAL 	6 0	; logger
+	9	[24]	GETTABLE 	6 6 -4	; "info"
+	10	[24]	LOADK    	7 -5	; "could not open image file:"
+	11	[24]	MOVE     	8 1
+	12	[24]	CALL     	6 3 1
+	13	[25]	RETURN   	0 1
+	14	[27]	SELF     	6 5 -6	; "read"
+	15	[27]	LOADK    	8 -7	; "*a"
+	16	[27]	CALL     	6 3 2
+	17	[28]	SELF     	7 5 -8	; "close"
+	18	[28]	CALL     	7 2 1
+	19	[29]	GETUPVAL 	7 1	; RenderImage
+	20	[29]	SELF     	7 7 -9	; "renderImageData"
+	21	[29]	MOVE     	9 6
+	22	[29]	LEN      	10 6
+	23	[29]	MOVE     	11 2
+	24	[29]	MOVE     	12 3
+	25	[29]	MOVE     	13 4
+	26	[29]	TAILCALL 	7 7 0
+	27	[29]	RETURN   	7 0
+	28	[30]	RETURN   	0 1
+
+function <./frontend/ui/renderimage.lua:41,58> (49 instructions, 196 bytes at 0x7f83bac06740)
+6 params, 15 slots, 2 upvalues, 9 locals, 13 constants, 0 functions
+	1	[42]	TEST     	1 0 0
+	2	[42]	JMP      	4	; to 7
+	3	[42]	TEST     	2 0 0
+	4	[42]	JMP      	2	; to 7
+	5	[42]	EQ       	0 2 -1	; - 0
+	6	[42]	JMP      	1	; to 8
+	7	[43]	RETURN   	0 1
+	8	[46]	GETUPVAL 	6 0	; ffi
+	9	[46]	GETTABLE 	6 6 -2	; "cast"
+	10	[46]	LOADK    	7 -3	; "unsigned char*"
+	11	[46]	MOVE     	8 1
+	12	[46]	CALL     	6 3 2
+	13	[47]	GETUPVAL 	7 0	; ffi
+	14	[47]	GETTABLE 	7 7 -4	; "string"
+	15	[47]	MOVE     	8 6
+	16	[47]	GETGLOBAL	9 -5	; math
+	17	[47]	GETTABLE 	9 9 -6	; "min"
+	18	[47]	LOADK    	10 -7	; 4
+	19	[47]	MOVE     	11 2
+	20	[47]	CALL     	9 3 0
+	21	[47]	CALL     	7 0 2
+	22	[48]	EQ       	0 7 -8	; - "GIF8"
+	23	[48]	JMP      	14	; to 38
+	24	[49]	GETUPVAL 	8 1	; logger
+	25	[49]	GETTABLE 	8 8 -9	; "dbg"
+	26	[49]	LOADK    	9 -10	; "GIF file provided, renderImageData: using GifLib"
+	27	[49]	CALL     	8 2 1
+	28	[50]	SELF     	8 0 -11	; "renderGifImageDataWithGifLib"
+	29	[50]	MOVE     	10 1
+	30	[50]	MOVE     	11 2
+	31	[50]	MOVE     	12 3
+	32	[50]	MOVE     	13 4
+	33	[50]	MOVE     	14 5
+	34	[50]	CALL     	8 7 2
+	35	[51]	TEST     	8 0 0
+	36	[51]	JMP      	1	; to 38
+	37	[52]	RETURN   	8 2
+	38	[56]	GETUPVAL 	8 1	; logger
+	39	[56]	GETTABLE 	8 8 -9	; "dbg"
+	40	[56]	LOADK    	9 -12	; "renderImageData: using MuPDF"
+	41	[56]	CALL     	8 2 1
+	42	[57]	SELF     	8 0 -13	; "renderImageDataWithMupdf"
+	43	[57]	MOVE     	10 1
+	44	[57]	MOVE     	11 2
+	45	[57]	MOVE     	12 4
+	46	[57]	MOVE     	13 5
+	47	[57]	TAILCALL 	8 6 0
+	48	[57]	RETURN   	8 0
+	49	[58]	RETURN   	0 1
+
+function <./frontend/ui/renderimage.lua:67,76> (31 instructions, 124 bytes at 0x7f83bac076d0)
+5 params, 11 slots, 2 upvalues, 7 locals, 8 constants, 0 functions
+	1	[68]	GETUPVAL 	5 0	; Mupdf
+	2	[68]	TEST     	5 0 1
+	3	[68]	JMP      	4	; to 8
+	4	[68]	GETGLOBAL	5 -1	; require
+	5	[68]	LOADK    	6 -2	; "ffi/mupdf"
+	6	[68]	CALL     	5 2 2
+	7	[68]	SETUPVAL 	5 0	; Mupdf
+	8	[69]	GETGLOBAL	5 -3	; pcall
+	9	[69]	GETUPVAL 	6 0	; Mupdf
+	10	[69]	GETTABLE 	6 6 -4	; "renderImage"
+	11	[69]	MOVE     	7 1
+	12	[69]	MOVE     	8 2
+	13	[69]	MOVE     	9 3
+	14	[69]	MOVE     	10 4
+	15	[69]	CALL     	5 6 3
+	16	[70]	GETUPVAL 	7 1	; logger
+	17	[70]	GETTABLE 	7 7 -5	; "dbg"
+	18	[70]	LOADK    	8 -6	; "Mupdf.renderImage"
+	19	[70]	MOVE     	9 5
+	20	[70]	MOVE     	10 6
+	21	[70]	CALL     	7 4 1
+	22	[71]	TEST     	5 0 1
+	23	[71]	JMP      	6	; to 30
+	24	[72]	GETUPVAL 	7 1	; logger
+	25	[72]	GETTABLE 	7 7 -7	; "info"
+	26	[72]	LOADK    	8 -8	; "failed rendering image (mupdf):"
+	27	[72]	MOVE     	9 6
+	28	[72]	CALL     	7 3 1
+	29	[73]	RETURN   	0 1
+	30	[75]	RETURN   	6 2
+	31	[76]	RETURN   	0 1
+
+function <./frontend/ui/renderimage.lua:86,150> (104 instructions, 416 bytes at 0x7f83bac07fa0)
+6 params, 17 slots, 2 upvalues, 15 locals, 25 constants, 3 functions
+	1	[87]	TEST     	1 0 0
+	2	[87]	JMP      	4	; to 7
+	3	[87]	TEST     	2 0 0
+	4	[87]	JMP      	2	; to 7
+	5	[87]	EQ       	0 2 -1	; - 0
+	6	[87]	JMP      	1	; to 8
+	7	[88]	RETURN   	0 1
+	8	[90]	GETUPVAL 	6 0	; Pic
+	9	[90]	TEST     	6 0 1
+	10	[90]	JMP      	4	; to 15
+	11	[90]	GETGLOBAL	6 -2	; require
+	12	[90]	LOADK    	7 -3	; "ffi/pic"
+	13	[90]	CALL     	6 2 2
+	14	[90]	SETUPVAL 	6 0	; Pic
+	15	[91]	GETGLOBAL	6 -4	; pcall
+	16	[91]	GETUPVAL 	7 0	; Pic
+	17	[91]	GETTABLE 	7 7 -5	; "openGIFDocumentFromData"
+	18	[91]	MOVE     	8 1
+	19	[91]	MOVE     	9 2
+	20	[91]	CALL     	6 4 3
+	21	[92]	GETUPVAL 	8 1	; logger
+	22	[92]	GETTABLE 	8 8 -6	; "dbg"
+	23	[92]	LOADK    	9 -7	; "Pic.openGIFDocumentFromData"
+	24	[92]	MOVE     	10 6
+	25	[92]	CALL     	8 3 1
+	26	[93]	TEST     	6 0 1
+	27	[93]	JMP      	6	; to 34
+	28	[94]	GETUPVAL 	8 1	; logger
+	29	[94]	GETTABLE 	8 8 -8	; "info"
+	30	[94]	LOADK    	9 -9	; "failed rendering image (giflib):"
+	31	[94]	MOVE     	10 7
+	32	[94]	CALL     	8 3 1
+	33	[95]	RETURN   	0 1
+	34	[97]	SELF     	8 7 -10	; "getPages"
+	35	[97]	CALL     	8 2 2
+	36	[98]	GETUPVAL 	9 1	; logger
+	37	[98]	GETTABLE 	9 9 -6	; "dbg"
+	38	[98]	LOADK    	10 -11	; "GifDocument, nb frames:"
+	39	[98]	MOVE     	11 8
+	40	[98]	CALL     	9 3 1
+	41	[99]	TEST     	3 0 0
+	42	[99]	JMP      	39	; to 82
+	43	[99]	LT       	0 -12 8	; 1 -
+	44	[99]	JMP      	37	; to 82
+	45	[104]	NEWTABLE 	9 0 0
+	46	[107]	SETTABLE 	9 -13 -14	; "image_disposable" true
+	47	[108]	LOADK    	10 -12	; 1
+	48	[108]	MOVE     	11 8
+	49	[108]	LOADK    	12 -12	; 1
+	50	[108]	FORPREP  	10 11	; to 62
+	51	[109]	GETGLOBAL	14 -15	; table
+	52	[109]	GETTABLE 	14 14 -16	; "insert"
+	53	[109]	MOVE     	15 9
+	54	[115]	CLOSURE  	16 0	; 0x7f83bac081d0
+	55	[115]	MOVE     	0 7
+	56	[115]	MOVE     	0 13
+	57	[115]	MOVE     	0 0
+	58	[115]	MOVE     	0 4
+	59	[115]	MOVE     	0 5
+	60	[109]	CALL     	14 3 1
+	61	[115]	CLOSE    	13
+	62	[108]	FORLOOP  	10 -12	; to 51
+	63	[119]	SETTABLE 	9 -17 -14	; "gif_close_needed" true
+	64	[121]	GETGLOBAL	10 -18	; setmetatable
+	65	[121]	MOVE     	11 9
+	66	[121]	NEWTABLE 	12 0 1
+	67	[128]	CLOSURE  	13 1	; 0x7f83bac08530
+	68	[128]	GETUPVAL 	0 1	; logger
+	69	[128]	MOVE     	0 9
+	70	[128]	MOVE     	0 7
+	71	[128]	SETTABLE 	12 -19 13	; "__gc" -
+	72	[121]	CALL     	10 3 2
+	73	[129]	MOVE     	9 10
+	74	[138]	CLOSURE  	10 2	; 0x7f83bac090a0
+	75	[138]	GETUPVAL 	0 1	; logger
+	76	[138]	MOVE     	0 9
+	77	[138]	MOVE     	0 7
+	78	[138]	SETTABLE 	9 -20 10	; "free" -
+	79	[139]	RETURN   	9 2
+	80	[139]	CLOSE    	9
+	81	[139]	JMP      	18	; to 100
+	82	[141]	SELF     	9 7 -21	; "openPage"
+	83	[141]	LOADK    	11 -12	; 1
+	84	[141]	CALL     	9 3 2
+	85	[143]	TEST     	9 0 0
+	86	[143]	JMP      	11	; to 98
+	87	[143]	GETTABLE 	10 9 -22	; "image_bb"
+	88	[143]	TEST     	10 0 0
+	89	[143]	JMP      	8	; to 98
+	90	[144]	SELF     	10 7 -23	; "close"
+	91	[144]	CALL     	10 2 1
+	92	[145]	SELF     	10 0 -24	; "scaleBlitBuffer"
+	93	[145]	GETTABLE 	12 9 -22	; "image_bb"
+	94	[145]	MOVE     	13 4
+	95	[145]	MOVE     	14 5
+	96	[145]	TAILCALL 	10 5 0
+	97	[145]	RETURN   	10 0
+	98	[147]	SELF     	10 7 -23	; "close"
+	99	[147]	CALL     	10 2 1
+	100	[149]	GETUPVAL 	9 1	; logger
+	101	[149]	GETTABLE 	9 9 -8	; "info"
+	102	[149]	LOADK    	10 -25	; "failed rendering image (giflib)"
+	103	[149]	CALL     	9 2 1
+	104	[150]	RETURN   	0 1
+
+function <./frontend/ui/renderimage.lua:109,115> (17 instructions, 68 bytes at 0x7f83bac081d0)
+0 params, 6 slots, 5 upvalues, 1 local, 3 constants, 0 functions
+	1	[110]	GETUPVAL 	0 0	; gif
+	2	[110]	SELF     	0 0 -1	; "openPage"
+	3	[110]	GETUPVAL 	2 1	; i
+	4	[110]	CALL     	0 3 2
+	5	[112]	TEST     	0 0 0
+	6	[112]	JMP      	10	; to 17
+	7	[112]	GETTABLE 	1 0 -2	; "image_bb"
+	8	[112]	TEST     	1 0 0
+	9	[112]	JMP      	7	; to 17
+	10	[113]	GETUPVAL 	1 2	; self
+	11	[113]	SELF     	1 1 -3	; "scaleBlitBuffer"
+	12	[113]	GETTABLE 	3 0 -2	; "image_bb"
+	13	[113]	GETUPVAL 	4 3	; width
+	14	[113]	GETUPVAL 	5 4	; height
+	15	[113]	TAILCALL 	1 5 0
+	16	[113]	RETURN   	1 0
+	17	[115]	RETURN   	0 1
+
+function <./frontend/ui/renderimage.lua:122,128> (14 instructions, 56 bytes at 0x7f83bac08530)
+0 params, 2 slots, 3 upvalues, 0 locals, 5 constants, 0 functions
+	1	[123]	GETUPVAL 	0 0	; logger
+	2	[123]	GETTABLE 	0 0 -1	; "dbg"
+	3	[123]	LOADK    	1 -2	; "frames.gc() called, closing GifDocument"
+	4	[123]	CALL     	0 2 1
+	5	[124]	GETUPVAL 	0 1	; frames
+	6	[124]	GETTABLE 	0 0 -3	; "gif_close_needed"
+	7	[124]	TEST     	0 0 0
+	8	[124]	JMP      	5	; to 14
+	9	[125]	GETUPVAL 	0 2	; gif
+	10	[125]	SELF     	0 0 -4	; "close"
+	11	[125]	CALL     	0 2 1
+	12	[126]	GETUPVAL 	0 1	; frames
+	13	[126]	SETTABLE 	0 -3 -5	; "gif_close_needed" nil
+	14	[128]	RETURN   	0 1
+
+function <./frontend/ui/renderimage.lua:132,138> (14 instructions, 56 bytes at 0x7f83bac090a0)
+0 params, 2 slots, 3 upvalues, 0 locals, 5 constants, 0 functions
+	1	[133]	GETUPVAL 	0 0	; logger
+	2	[133]	GETTABLE 	0 0 -1	; "dbg"
+	3	[133]	LOADK    	1 -2	; "frames.free() called, closing GifDocument"
+	4	[133]	CALL     	0 2 1
+	5	[134]	GETUPVAL 	0 1	; frames
+	6	[134]	GETTABLE 	0 0 -3	; "gif_close_needed"
+	7	[134]	TEST     	0 0 0
+	8	[134]	JMP      	5	; to 14
+	9	[135]	GETUPVAL 	0 2	; gif
+	10	[135]	SELF     	0 0 -4	; "close"
+	11	[135]	CALL     	0 2 1
+	12	[136]	GETUPVAL 	0 1	; frames
+	13	[136]	SETTABLE 	0 -3 -5	; "gif_close_needed" nil
+	14	[138]	RETURN   	0 1
+
+function <./frontend/ui/renderimage.lua:159,185> (70 instructions, 280 bytes at 0x7f83bac09590)
+5 params, 10 slots, 2 upvalues, 6 locals, 16 constants, 0 functions
+	1	[160]	TEST     	2 0 0
+	2	[160]	JMP      	2	; to 5
+	3	[160]	TEST     	3 0 1
+	4	[160]	JMP      	5	; to 10
+	5	[161]	GETUPVAL 	5 0	; logger
+	6	[161]	GETTABLE 	5 5 -1	; "dbg"
+	7	[161]	LOADK    	6 -2	; "RenderImage:scaleBlitBuffer: no need"
+	8	[161]	CALL     	5 2 1
+	9	[162]	RETURN   	1 2
+	10	[166]	GETGLOBAL	5 -3	; math
+	11	[166]	GETTABLE 	5 5 -4	; "floor"
+	12	[166]	MOVE     	6 2
+	13	[166]	CALL     	5 2 2
+	14	[166]	GETGLOBAL	6 -3	; math
+	15	[166]	GETTABLE 	6 6 -4	; "floor"
+	16	[166]	MOVE     	7 3
+	17	[166]	CALL     	6 2 2
+	18	[166]	MOVE     	3 6
+	19	[166]	MOVE     	2 5
+	20	[167]	SELF     	5 1 -5	; "getWidth"
+	21	[167]	CALL     	5 2 2
+	22	[167]	EQ       	0 5 2
+	23	[167]	JMP      	9	; to 33
+	24	[167]	SELF     	5 1 -6	; "getHeight"
+	25	[167]	CALL     	5 2 2
+	26	[167]	EQ       	0 5 3
+	27	[167]	JMP      	5	; to 33
+	28	[168]	GETUPVAL 	5 0	; logger
+	29	[168]	GETTABLE 	5 5 -1	; "dbg"
+	30	[168]	LOADK    	6 -2	; "RenderImage:scaleBlitBuffer: no need"
+	31	[168]	CALL     	5 2 1
+	32	[169]	RETURN   	1 2
+	33	[171]	GETUPVAL 	5 0	; logger
+	34	[171]	GETTABLE 	5 5 -1	; "dbg"
+	35	[171]	LOADK    	6 -7	; "RenderImage:scaleBlitBuffer: scaling"
+	36	[171]	CALL     	5 2 1
+	37	[172]	LOADNIL  	5 5
+	38	[173]	GETGLOBAL	6 -8	; G_reader_settings
+	39	[173]	SELF     	6 6 -9	; "isTrue"
+	40	[173]	LOADK    	8 -10	; "legacy_image_scaling"
+	41	[173]	CALL     	6 3 2
+	42	[173]	TEST     	6 0 0
+	43	[173]	JMP      	6	; to 50
+	44	[175]	SELF     	6 1 -11	; "scale"
+	45	[175]	MOVE     	8 2
+	46	[175]	MOVE     	9 3
+	47	[175]	CALL     	6 4 2
+	48	[175]	MOVE     	5 6
+	49	[175]	JMP      	14	; to 64
+	50	[178]	GETUPVAL 	6 1	; Mupdf
+	51	[178]	TEST     	6 0 1
+	52	[178]	JMP      	4	; to 57
+	53	[178]	GETGLOBAL	6 -12	; require
+	54	[178]	LOADK    	7 -13	; "ffi/mupdf"
+	55	[178]	CALL     	6 2 2
+	56	[178]	SETUPVAL 	6 1	; Mupdf
+	57	[179]	GETUPVAL 	6 1	; Mupdf
+	58	[179]	GETTABLE 	6 6 -14	; "scaleBlitBuffer"
+	59	[179]	MOVE     	7 1
+	60	[179]	MOVE     	8 2
+	61	[179]	MOVE     	9 3
+	62	[179]	CALL     	6 4 2
+	63	[179]	MOVE     	5 6
+	64	[181]	NOT      	6 4
+	65	[181]	EQ       	0 6 -15	; - false
+	66	[181]	JMP      	2	; to 69
+	67	[182]	SELF     	6 1 -16	; "free"
+	68	[182]	CALL     	6 2 1
+	69	[184]	RETURN   	5 2
+	70	[185]	RETURN   	0 1

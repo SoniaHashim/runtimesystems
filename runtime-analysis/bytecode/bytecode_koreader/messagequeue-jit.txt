@@ -1,0 +1,231 @@
+-- BYTECODE -- messagequeue.lua:10-17
+0001    IST          1
+0002    JMP      2 => 0004
+0003    TNEW     1   0
+0004 => GGET     2   0      ; "setmetatable"
+0005    MOV      3   1
+0006    MOV      4   0
+0007    CALL     2   1   3
+0008    TSETS    0   0   1  ; "__index"
+0009    TGETS    2   1   2  ; "init"
+0010    ISF          2
+0011    JMP      3 => 0015
+0012    MOV      3   1
+0013    TGETS    2   1   2  ; "init"
+0014    CALL     2   1   2
+0015 => TNEW     2   0
+0016    TSETS    2   0   3  ; "messages"
+0017    RET1     1   2
+
+-- BYTECODE -- messagequeue.lua:19-20
+0001    RET0     0   1
+
+-- BYTECODE -- messagequeue.lua:22-23
+0001    RET0     0   1
+
+-- BYTECODE -- messagequeue.lua:25-26
+0001    RET0     0   1
+
+-- BYTECODE -- messagequeue.lua:28-29
+0001    RET0     0   1
+
+-- BYTECODE -- messagequeue.lua:32-37
+0001    UGET     0   0      ; czmq
+0002    TGETS    0   0   0  ; "zmsg_size"
+0003    UGET     1   1      ; messages
+0004    TGETB    1   1   1
+0005    CALL     0   2   2
+0006    ISNEN    0   0      ; 0
+0007    JMP      0 => 0022
+0008    UGET     0   0      ; czmq
+0009    TGETS    0   0   1  ; "zmsg_destroy"
+0010    UGET     1   2      ; ffi
+0011    TGETS    1   1   2  ; "new"
+0012    KSTR     2   3      ; "zmsg_t *[1]"
+0013    UGET     3   1      ; messages
+0014    TGETB    3   3   1
+0015    CALL     1   0   3
+0016    CALLM    0   1   0
+0017    GGET     0   4      ; "table"
+0018    TGETS    0   0   5  ; "remove"
+0019    UGET     1   1      ; messages
+0020    KSHORT   2   1
+0021    CALL     0   1   3
+0022 => RET0     0   1
+
+-- BYTECODE -- messagequeue.lua:38-44
+0001    UGET     0   0      ; czmq
+0002    TGETS    0   0   0  ; "zmsg_popstr"
+0003    UGET     1   1      ; messages
+0004    TGETB    1   1   1
+0005    CALL     0   2   2
+0006    UGET     1   2      ; ffi
+0007    TGETS    1   1   1  ; "string"
+0008    MOV      2   0
+0009    CALL     1   2   2
+0010    UGET     2   0      ; czmq
+0011    TGETS    2   2   2  ; "zstr_free"
+0012    UGET     3   2      ; ffi
+0013    TGETS    3   3   3  ; "new"
+0014    KSTR     4   4      ; "char *[1]"
+0015    MOV      5   0
+0016    CALL     3   0   3
+0017    CALLM    2   1   0
+0018    UGET     2   3      ; drop_message
+0019    CALL     2   1   1
+0020    RET1     1   2
+
+-- BYTECODE -- messagequeue.lua:45-62
+0001    TNEW     0   0
+0002    UGET     1   0      ; czmq
+0003    TGETS    1   1   0  ; "zmsg_pop"
+0004    UGET     2   1      ; messages
+0005    TGETB    2   2   1
+0006    CALL     1   2   2
+0007    ISEQP    1   0
+0008    JMP      2 => 0064
+0009    UGET     2   0      ; czmq
+0010    TGETS    2   2   1  ; "zhash_unpack"
+0011    MOV      3   1
+0012    CALL     2   2   2
+0013    UGET     3   0      ; czmq
+0014    TGETS    3   3   2  ; "zframe_destroy"
+0015    UGET     4   2      ; ffi
+0016    TGETS    4   4   3  ; "new"
+0017    KSTR     5   4      ; "zframe_t *[1]"
+0018    MOV      6   1
+0019    CALL     4   0   3
+0020    CALLM    3   1   0
+0021    ISEQP    2   0
+0022    JMP      3 => 0064
+0023    UGET     3   0      ; czmq
+0024    TGETS    3   3   5  ; "zhash_first"
+0025    MOV      4   2
+0026    CALL     3   2   2
+0027    UGET     4   0      ; czmq
+0028    TGETS    4   4   6  ; "zhash_cursor"
+0029    MOV      5   2
+0030    CALL     4   2   2
+0031 => ISEQP    3   0
+0032    JMP      5 => 0056
+0033    ISEQP    4   0
+0034    JMP      5 => 0056
+0035    LOOP     5 => 0056
+0036    UGET     5   2      ; ffi
+0037    TGETS    5   5   7  ; "string"
+0038    MOV      6   4
+0039    CALL     5   2   2
+0040    UGET     6   2      ; ffi
+0041    TGETS    6   6   7  ; "string"
+0042    MOV      7   3
+0043    CALL     6   2   2
+0044    TSETV    6   0   5
+0045    UGET     5   0      ; czmq
+0046    TGETS    5   5   8  ; "zhash_next"
+0047    MOV      6   2
+0048    CALL     5   2   2
+0049    UGET     6   0      ; czmq
+0050    TGETS    6   6   6  ; "zhash_cursor"
+0051    MOV      7   2
+0052    CALL     6   2   2
+0053    MOV      4   6
+0054    MOV      3   5
+0055    JMP      5 => 0031
+0056 => UGET     5   0      ; czmq
+0057    TGETS    5   5   9  ; "zhash_destroy"
+0058    UGET     6   2      ; ffi
+0059    TGETS    6   6   3  ; "new"
+0060    KSTR     7  10      ; "zhash_t *[1]"
+0061    MOV      8   2
+0062    CALL     6   0   3
+0063    CALLM    5   1   0
+0064 => UGET     2   3      ; drop_message
+0065    CALL     2   1   1
+0066    RET1     0   2
+
+-- BYTECODE -- messagequeue.lua:31-77
+0001    FNEW     2   0      ; messagequeue.lua:32
+0002    FNEW     3   1      ; messagequeue.lua:38
+0003    FNEW     4   2      ; messagequeue.lua:45
+0004    LEN      5   1
+0005    ISNEN    5   0      ; 0
+0006    JMP      5 => 0009
+0007    UCLO     0 => 0008
+0008 => RET0     0   1
+0009 => MOV      5   3
+0010    CALL     5   2   1
+0011    UGET     6   2      ; logger
+0012    TGETS    6   6   3  ; "dbg"
+0013    KSTR     7   4      ; "ØMQ message"
+0014    MOV      8   5
+0015    CALL     6   1   3
+0016    ISNES    5   5      ; "ENTER"
+0017    JMP      6 => 0037
+0018    MOV      6   3
+0019    CALL     6   2   1
+0020    MOV      7   3
+0021    CALL     7   2   1
+0022    MOV      8   4
+0023    CALL     8   2   1
+0024    MOV      9   3
+0025    CALL     9   2   1
+0026    UGET    10   3      ; Event
+0027    MOV     11  10
+0028    TGETS   10  10   6  ; "new"
+0029    KSTR    12   7      ; "ZyreEnter"
+0030    MOV     13   6
+0031    MOV     14   7
+0032    MOV     15   8
+0033    MOV     16   9
+0034    UCLO     0 => 0035
+0035 => CALLT   10   7
+0036    JMP      6 => 0051
+0037 => ISNES    5   8      ; "DELIVER"
+0038    JMP      6 => 0051
+0039    MOV      6   3
+0040    CALL     6   2   1
+0041    MOV      7   3
+0042    CALL     7   2   1
+0043    UGET     8   3      ; Event
+0044    MOV      9   8
+0045    TGETS    8   8   6  ; "new"
+0046    KSTR    10   9      ; "FileDeliver"
+0047    MOV     11   6
+0048    MOV     12   7
+0049    UCLO     0 => 0050
+0050 => CALLT    8   5
+0051 => UCLO     0 => 0052
+0052 => RET0     0   1
+
+-- BYTECODE -- messagequeue.lua:0-80
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ffi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/event"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "logger"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ffi/zeromq_h"
+0012    CALL     3   2   2
+0013    TGETS    4   0   5  ; "load"
+0014    KSTR     5   6      ; "libs/libczmq.so.1"
+0015    CALL     4   2   2
+0016    TNEW     5   0
+0017    FNEW     6   8      ; messagequeue.lua:10
+0018    TSETS    6   5   7  ; "new"
+0019    FNEW     6  10      ; messagequeue.lua:19
+0020    TSETS    6   5   9  ; "init"
+0021    FNEW     6  12      ; messagequeue.lua:22
+0022    TSETS    6   5  11  ; "start"
+0023    FNEW     6  14      ; messagequeue.lua:25
+0024    TSETS    6   5  13  ; "stop"
+0025    FNEW     6  16      ; messagequeue.lua:28
+0026    TSETS    6   5  15  ; "waitEvent"
+0027    FNEW     6  18      ; messagequeue.lua:31
+0028    TSETS    6   5  17  ; "handleZMsgs"
+0029    UCLO     0 => 0030
+0030 => RET1     5   2
+

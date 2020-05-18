@@ -1,0 +1,2376 @@
+-- BYTECODE -- dictquicklookup.lua:144-162
+0001    KPRI     2   0
+0002    KSHORT   3   3
+0003    ISGE     1   3
+0004    JMP      3 => 0013
+0005    UGET     3   0      ; self
+0006    TGETS    3   3   0  ; "is_wiki"
+0007    ISF          3
+0008    JMP      4 => 0011
+0009    KSTR     2   1      ; "LookupWikipedia"
+0010    JMP      3 => 0012
+0011 => KSTR     2   2      ; "LookupWord"
+0012 => JMP      3 => 0020
+0013 => UGET     3   0      ; self
+0014    TGETS    3   3   0  ; "is_wiki"
+0015    ISF          3
+0016    JMP      4 => 0019
+0017    KSTR     2   2      ; "LookupWord"
+0018    JMP      3 => 0020
+0019 => KSTR     2   1      ; "LookupWikipedia"
+0020 => ISNES    2   1      ; "LookupWikipedia"
+0021    JMP      3 => 0026
+0022    UGET     3   0      ; self
+0023    MOV      4   3
+0024    TGETS    3   3   3  ; "resyncWikiLanguages"
+0025    CALL     3   1   2
+0026 => UGET     3   0      ; self
+0027    TGETS    3   3   4  ; "ui"
+0028    MOV      4   3
+0029    TGETS    3   3   5  ; "handleEvent"
+0030    UGET     5   1      ; Event
+0031    MOV      6   5
+0032    TGETS    5   5   6  ; "new"
+0033    MOV      7   2
+0034    MOV      8   0
+0035    CALL     5   0   4
+0036    CALLM    3   1   1
+0037    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:75-170
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "readSetting"
+0004    KSTR     3   2      ; "dict_font_size"
+0005    CALL     1   2   3
+0006    IST          1
+0007    JMP      2 => 0009
+0008    KSHORT   1  20
+0009 => UGET     2   0      ; Font
+0010    MOV      3   2
+0011    TGETS    2   2   4  ; "getFace"
+0012    KSTR     4   5      ; "cfont"
+0013    MOV      5   1
+0014    CALL     2   2   4
+0015    TSETS    2   0   3  ; "content_face"
+0016    SUBVN    2   1   0  ; 4
+0017    KSHORT   3   8
+0018    ISGE     2   3
+0019    JMP      3 => 0021
+0020    KSHORT   2   8
+0021 => UGET     3   0      ; Font
+0022    MOV      4   3
+0023    TGETS    3   3   4  ; "getFace"
+0024    KSTR     5   5      ; "cfont"
+0025    MOV      6   2
+0026    CALL     3   2   4
+0027    TSETS    3   0   6  ; "image_alt_face"
+0028    MOV      4   0
+0029    TGETS    3   0   7  ; "changeToDefaultDict"
+0030    CALL     3   1   2
+0031    UGET     3   1      ; Device
+0032    MOV      4   3
+0033    TGETS    3   3   8  ; "hasKeys"
+0034    CALL     3   2   2
+0035    ISF          3
+0036    JMP      4 => 0043
+0037    TDUP     3  12
+0038    TDUP     4  11
+0039    TDUP     5  10
+0040    TSETB    5   4   1
+0041    TSETS    4   3  13  ; "Close"
+0042    TSETS    3   0   9  ; "key_events"
+0043 => UGET     3   1      ; Device
+0044    MOV      4   3
+0045    TGETS    3   3  14  ; "isTouchDevice"
+0046    CALL     3   2   2
+0047    ISF          3
+0048    JMP      4 => 0140
+0049    UGET     3   2      ; Geom
+0050    MOV      4   3
+0051    TGETS    3   3  15  ; "new"
+0052    TDUP     5  16
+0053    UGET     6   3      ; Screen
+0054    MOV      7   6
+0055    TGETS    6   6  17  ; "getWidth"
+0056    CALL     6   2   2
+0057    TSETS    6   5  18  ; "w"
+0058    UGET     6   3      ; Screen
+0059    MOV      7   6
+0060    TGETS    6   6  19  ; "getHeight"
+0061    CALL     6   2   2
+0062    TSETS    6   5  20  ; "h"
+0063    CALL     3   2   3
+0064    TDUP     4  24
+0065    TNEW     5   3
+0066    UGET     6   4      ; GestureRange
+0067    MOV      7   6
+0068    TGETS    6   6  15  ; "new"
+0069    TDUP     8  22
+0070    TSETS    3   8  23  ; "range"
+0071    CALL     6   0   3
+0072    TSETM    6   1      ; 1
+0073    TSETS    5   4  25  ; "TapCloseDict"
+0074    TNEW     5   3
+0075    UGET     6   4      ; GestureRange
+0076    MOV      7   6
+0077    TGETS    6   6  15  ; "new"
+0078    TDUP     8  26
+0079    TSETS    3   8  23  ; "range"
+0080    CALL     6   0   3
+0081    TSETM    6   1      ; 1
+0082    TSETS    5   4  27  ; "Swipe"
+0083    TNEW     5   3
+0084    UGET     6   4      ; GestureRange
+0085    MOV      7   6
+0086    TGETS    6   6  15  ; "new"
+0087    TDUP     8  28
+0088    TSETS    3   8  23  ; "range"
+0089    CALL     6   0   3
+0090    TSETM    6   1      ; 1
+0091    TSETS    5   4  29  ; "HoldStartText"
+0092    TNEW     5   3
+0093    UGET     6   4      ; GestureRange
+0094    MOV      7   6
+0095    TGETS    6   6  15  ; "new"
+0096    TDUP     8  30
+0097    TSETS    3   8  23  ; "range"
+0098    CALL     6   0   3
+0099    TSETM    6   1      ; 1
+0100    TSETS    5   4  31  ; "HoldPanText"
+0101    TDUP     5  34
+0102    UGET     6   4      ; GestureRange
+0103    MOV      7   6
+0104    TGETS    6   6  15  ; "new"
+0105    TDUP     8  32
+0106    TSETS    3   8  23  ; "range"
+0107    CALL     6   2   3
+0108    TSETB    6   5   1
+0109    FNEW     6  33      ; dictquicklookup.lua:144
+0110    TSETS    6   5  35  ; "args"
+0111    TSETS    5   4  36  ; "HoldReleaseText"
+0112    TNEW     5   3
+0113    UGET     6   4      ; GestureRange
+0114    MOV      7   6
+0115    TGETS    6   6  15  ; "new"
+0116    TDUP     8  37
+0117    TSETS    3   8  23  ; "range"
+0118    CALL     6   0   3
+0119    TSETM    6   1      ; 1
+0120    TSETS    5   4  38  ; "ForwardingTouch"
+0121    TNEW     5   3
+0122    UGET     6   4      ; GestureRange
+0123    MOV      7   6
+0124    TGETS    6   6  15  ; "new"
+0125    TDUP     8  39
+0126    TSETS    3   8  23  ; "range"
+0127    CALL     6   0   3
+0128    TSETM    6   1      ; 1
+0129    TSETS    5   4  40  ; "ForwardingPan"
+0130    TNEW     5   3
+0131    UGET     6   4      ; GestureRange
+0132    MOV      7   6
+0133    TGETS    6   6  15  ; "new"
+0134    TDUP     8  41
+0135    TSETS    3   8  23  ; "range"
+0136    CALL     6   0   3
+0137    TSETM    6   1      ; 1
+0138    TSETS    5   4  42  ; "ForwardingPanRelease"
+0139    TSETS    4   0  21  ; "ges_events"
+0140 => UCLO     0 => 0141
+0141 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:173-175
+0001    TGETS    1   0   0  ; "ui"
+0002    ISEQP    1   0
+0003    JMP      1 => 0010
+0004    TGETS    1   0   0  ; "ui"
+0005    TGETS    1   1   1  ; "highlight"
+0006    ISEQP    1   0
+0007    JMP      1 => 0010
+0008    KPRI     1   1
+0009    JMP      2 => 0011
+0010 => KPRI     1   2
+0011 => RET1     1   2
+
+-- BYTECODE -- dictquicklookup.lua:177-212
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "nilOrTrue"
+0004    KSTR     3   2      ; "dict_justify"
+0005    CALL     1   2   3
+0006    ISF          1
+0007    JMP      2 => 0010
+0008    KSTR     1   3      ; "text-align: justify;"
+0009    JMP      2 => 0011
+0010 => KSTR     1   4      ; ""
+0011 => KSTR     2   5      ; "        @page {\n            margin: 0;\"~
+0012    MOV      3   1
+0013    KSTR     4   6      ; "        }\n\n        blockquote, dd {\n "~
+0014    CAT      2   2   4
+0015    TGETS    3   0   7  ; "css"
+0016    ISF          3
+0017    JMP      4 => 0022
+0018    MOV      3   2
+0019    TGETS    4   0   7  ; "css"
+0020    CAT      3   3   4
+0021    RET1     3   2
+0022 => RET1     2   2
+
+-- BYTECODE -- dictquicklookup.lua:302-302
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "lookupInputWord"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "lookupword"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:315-317
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "html_dictionary_link_tapped_callback"
+0003    UGET     2   0      ; self
+0004    TGETS    2   2   1  ; "dictionary"
+0005    MOV      3   0
+0006    CALL     1   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:393-404
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "apps/reader/readerui"
+0003    CALL     0   2   2
+0004    MOV      2   0
+0005    TGETS    1   0   2  ; "_getRunningInstance"
+0006    CALL     1   2   2
+0007    ISF          1
+0008    JMP      2 => 0019
+0009    TGETS    2   1   3  ; "highlight"
+0010    ISF          2
+0011    JMP      3 => 0016
+0012    TGETS    2   1   3  ; "highlight"
+0013    MOV      3   2
+0014    TGETS    2   2   4  ; "onClose"
+0015    CALL     2   1   2
+0016 => MOV      3   1
+0017    TGETS    2   1   4  ; "onClose"
+0018    CALL     2   1   2
+0019 => MOV      3   0
+0020    TGETS    2   0   5  ; "showReader"
+0021    UGET     4   0      ; epub_path
+0022    CALL     2   1   3
+0023    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:389-405
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "onHoldClose"
+0004    KPRI     2   2
+0005    CALL     0   1   3
+0006    UGET     0   1      ; UIManager
+0007    MOV      1   0
+0008    TGETS    0   0   1  ; "scheduleIn"
+0009    KSHORT   2   1
+0010    FNEW     3   2      ; dictquicklookup.lua:393
+0011    CALL     0   1   4
+0012    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:385-412
+0001    ISF          0
+0002    JMP      1 => 0025
+0003    UGET     1   0      ; UIManager
+0004    MOV      2   1
+0005    TGETS    1   1   0  ; "show"
+0006    UGET     3   1      ; ConfirmBox
+0007    MOV      4   3
+0008    TGETS    3   3   1  ; "new"
+0009    TDUP     5   4
+0010    UGET     6   2      ; T
+0011    UGET     7   3      ; _
+0012    KSTR     8   2      ; "Article saved to:\n%1\n\nWould you like "~
+0013    CALL     7   2   2
+0014    UGET     8   4      ; BD
+0015    TGETS    8   8   3  ; "filepath"
+0016    UGET     9   5      ; epub_path
+0017    CALL     8   0   2
+0018    CALLM    6   2   1
+0019    TSETS    6   5   5  ; "text"
+0020    FNEW     6   6      ; dictquicklookup.lua:389
+0021    TSETS    6   5   7  ; "ok_callback"
+0022    CALL     3   0   3
+0023    CALLM    1   1   1
+0024    JMP      1 => 0038
+0025 => UGET     1   0      ; UIManager
+0026    MOV      2   1
+0027    TGETS    1   1   0  ; "show"
+0028    UGET     3   7      ; InfoMessage
+0029    MOV      4   3
+0030    TGETS    3   3   1  ; "new"
+0031    TDUP     5   9
+0032    UGET     6   3      ; _
+0033    KSTR     7   8      ; "Saving Wikipedia article failed or cance"~
+0034    CALL     6   2   2
+0035    TSETS    6   5   5  ; "text"
+0036    CALL     3   0   3
+0037    CALLM    1   1   1
+0038 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:383-413
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/wikipedia"
+0003    CALL     0   2   2
+0004    MOV      2   0
+0005    TGETS    1   0   2  ; "createEpubWithUI"
+0006    UGET     3   0      ; epub_path
+0007    UGET     4   1      ; self
+0008    TGETS    4   4   3  ; "lookupword"
+0009    UGET     5   2      ; lang
+0010    FNEW     6   4      ; dictquicklookup.lua:385
+0011    CALL     1   1   6
+0012    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:382-414
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "scheduleIn"
+0004    KNUM     2   0      ; 0.1
+0005    FNEW     3   1      ; dictquicklookup.lua:383
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:352-416
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/infomessage"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/confirmbox"
+0006    CALL     1   2   2
+0007    UGET     2   0      ; self
+0008    TGETS    2   2   3  ; "lang"
+0009    IST          2
+0010    JMP      3 => 0014
+0011    UGET     2   0      ; self
+0012    TGETS    2   2   4  ; "wiki_languages_copy"
+0013    TGETB    2   2   1
+0014 => UGET     3   1      ; util
+0015    TGETS    3   3   5  ; "getSafeFilename"
+0016    UGET     4   0      ; self
+0017    TGETS    4   4   6  ; "lookupword"
+0018    MOV      5   4
+0019    TGETS    4   4   7  ; "gsub"
+0020    KSTR     6   8      ; "_"
+0021    KSTR     7   9      ; " "
+0022    CALL     4   0   4
+0023    CALLM    3   2   0
+0024    MOV      4   3
+0025    KSTR     5  10      ; "."
+0026    GGET     6  11      ; "string"
+0027    TGETS    6   6  12  ; "upper"
+0028    MOV      7   2
+0029    CALL     6   2   2
+0030    KSTR     7  13      ; ".epub"
+0031    CAT      4   4   7
+0032    KPRI     5   0
+0033    GGET     6  14      ; "G_reader_settings"
+0034    MOV      7   6
+0035    TGETS    6   6  15  ; "isTrue"
+0036    KSTR     8  16      ; "wikipedia_save_in_book_dir"
+0037    CALL     6   2   3
+0038    ISF          6
+0039    JMP      7 => 0058
+0040    UGET     6   0      ; self
+0041    MOV      7   6
+0042    TGETS    6   6  17  ; "isDocless"
+0043    CALL     6   2   2
+0044    IST          6
+0045    JMP      6 => 0058
+0046    GGET     6  14      ; "G_reader_settings"
+0047    MOV      7   6
+0048    TGETS    6   6  18  ; "readSetting"
+0049    KSTR     8  19      ; "lastfile"
+0050    CALL     6   2   3
+0051    ISF          6
+0052    JMP      7 => 0058
+0053    MOV      8   6
+0054    TGETS    7   6  20  ; "match"
+0055    KSTR     9  21      ; "(.*)/"
+0056    CALL     7   2   3
+0057    MOV      5   7
+0058 => IST          5
+0059    JMP      6 => 0066
+0060    GGET     6  14      ; "G_reader_settings"
+0061    MOV      7   6
+0062    TGETS    6   6  18  ; "readSetting"
+0063    KSTR     8  22      ; "wikipedia_save_dir"
+0064    CALL     6   2   3
+0065    MOV      5   6
+0066 => IST          5
+0067    JMP      6 => 0074
+0068    GGET     6  14      ; "G_reader_settings"
+0069    MOV      7   6
+0070    TGETS    6   6  18  ; "readSetting"
+0071    KSTR     8  23      ; "home_dir"
+0072    CALL     6   2   3
+0073    MOV      5   6
+0074 => IST          5
+0075    JMP      6 => 0082
+0076    GGET     6   0      ; "require"
+0077    KSTR     7  24      ; "apps/filemanager/filemanagerutil"
+0078    CALL     6   2   2
+0079    TGETS    6   6  25  ; "getDefaultDir"
+0080    CALL     6   2   1
+0081    MOV      5   6
+0082 => ISF          5
+0083    JMP      6 => 0090
+0084    UGET     6   1      ; util
+0085    TGETS    6   6  26  ; "pathExists"
+0086    MOV      7   5
+0087    CALL     6   2   2
+0088    IST          6
+0089    JMP      6 => 0103
+0090 => UGET     6   2      ; UIManager
+0091    MOV      7   6
+0092    TGETS    6   6  27  ; "show"
+0093    MOV      9   0
+0094    TGETS    8   0  28  ; "new"
+0095    TDUP    10  30
+0096    UGET    11   3      ; _
+0097    KSTR    12  29      ; "No directory to save article to could be"~
+0098    CALL    11   2   2
+0099    TSETS   11  10  31  ; "text"
+0100    CALL     8   0   3
+0101    CALLM    6   1   1
+0102    UCLO     0 => 0129
+0103 => MOV      6   5
+0104    KSTR     7  32      ; "/"
+0105    MOV      8   4
+0106    CAT      6   6   8
+0107    UGET     7   2      ; UIManager
+0108    MOV      8   7
+0109    TGETS    7   7  27  ; "show"
+0110    MOV     10   1
+0111    TGETS    9   1  28  ; "new"
+0112    TDUP    11  35
+0113    UGET    12   4      ; T
+0114    UGET    13   3      ; _
+0115    KSTR    14  33      ; "Save as %1?"
+0116    CALL    13   2   2
+0117    UGET    14   5      ; BD
+0118    TGETS   14  14  34  ; "filename"
+0119    MOV     15   4
+0120    CALL    14   0   2
+0121    CALLM   12   2   1
+0122    TSETS   12  11  31  ; "text"
+0123    FNEW    12  36      ; dictquicklookup.lua:382
+0124    TSETS   12  11  37  ; "ok_callback"
+0125    CALL     9   0   3
+0126    CALLM    7   1   1
+0127    UCLO     0 => 0128
+0128 => RET0     0   1
+0129 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:420-422
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; self
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:437-439
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "changeToPrevDict"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:444-451
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "getHighlightText"
+0004    CALL     0   2   2
+0005    UGET     1   1      ; highlight_strings
+0006    TGETS    1   1   1  ; "highlight"
+0007    ISNEV    0   1
+0008    JMP      0 => 0020
+0009    UGET     0   0      ; self
+0010    TGETS    0   0   2  ; "ui"
+0011    MOV      1   0
+0012    TGETS    0   0   3  ; "handleEvent"
+0013    UGET     2   2      ; Event
+0014    MOV      3   2
+0015    TGETS    2   2   4  ; "new"
+0016    KSTR     4   5      ; "Highlight"
+0017    CALL     2   0   3
+0018    CALLM    0   1   1
+0019    JMP      0 => 0030
+0020 => UGET     0   0      ; self
+0021    TGETS    0   0   2  ; "ui"
+0022    MOV      1   0
+0023    TGETS    0   0   3  ; "handleEvent"
+0024    UGET     2   2      ; Event
+0025    MOV      3   2
+0026    TGETS    2   2   4  ; "new"
+0027    KSTR     4   6      ; "Unhighlight"
+0028    CALL     2   0   3
+0029    CALLM    0   1   1
+0030 => UGET     0   0      ; self
+0031    MOV      1   0
+0032    TGETS    0   0   7  ; "update"
+0033    CALL     0   1   2
+0034    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:456-458
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "changeToNextDict"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:465-472
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "is_wiki"
+0003    ISF          0
+0004    JMP      1 => 0010
+0005    UGET     0   1      ; C_
+0006    KSTR     1   1      ; "Button"
+0007    KSTR     2   2      ; "Wikipedia full"
+0008    CALLT    0   3
+0009    JMP      0 => 0013
+0010 => UGET     0   2      ; _
+0011    KSTR     1   3      ; "Wikipedia"
+0012    CALLT    0   2
+0013 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:474-476
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "lookupWikipedia"
+0004    UGET     2   0      ; self
+0005    TGETS    2   2   1  ; "is_wiki"
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:473-477
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "scheduleIn"
+0004    KNUM     2   0      ; 0.1
+0005    FNEW     3   1      ; dictquicklookup.lua:474
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:489-499
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "is_wiki"
+0003    ISF          0
+0004    JMP      1 => 0020
+0005    UGET     0   0      ; self
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "resyncWikiLanguages"
+0008    KPRI     2   2
+0009    CALL     0   1   3
+0010    UGET     0   1      ; UIManager
+0011    MOV      1   0
+0012    TGETS    0   0   2  ; "close"
+0013    UGET     2   0      ; self
+0014    CALL     0   1   3
+0015    UGET     0   0      ; self
+0016    MOV      1   0
+0017    TGETS    0   0   3  ; "lookupWikipedia"
+0018    CALL     0   1   2
+0019    JMP      0 => 0038
+0020 => UGET     0   0      ; self
+0021    TGETS    0   0   4  ; "selected_link"
+0022    TGETS    0   0   5  ; "link"
+0023    IST          0
+0024    JMP      1 => 0027
+0025    UGET     0   0      ; self
+0026    TGETS    0   0   4  ; "selected_link"
+0027 => UGET     1   0      ; self
+0028    TGETS    1   1   6  ; "ui"
+0029    TGETS    1   1   5  ; "link"
+0030    MOV      2   1
+0031    TGETS    1   1   7  ; "onGotoLink"
+0032    MOV      3   0
+0033    CALL     1   1   3
+0034    UGET     1   0      ; self
+0035    MOV      2   1
+0036    TGETS    1   1   8  ; "onClose"
+0037    CALL     1   1   2
+0038 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:503-508
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "is_wiki"
+0003    IST          0
+0004    JMP      0 => 0015
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   1  ; "ui"
+0007    MOV      1   0
+0008    TGETS    0   0   2  ; "handleEvent"
+0009    UGET     2   1      ; Event
+0010    MOV      3   2
+0011    TGETS    2   2   3  ; "new"
+0012    KSTR     4   4      ; "HighlightSearch"
+0013    CALL     2   0   3
+0014    CALLM    0   1   1
+0015 => UGET     0   2      ; UIManager
+0016    MOV      1   0
+0017    TGETS    0   0   5  ; "close"
+0018    UGET     2   0      ; self
+0019    CALL     0   1   3
+0020    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:598-602
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "dict_frame"
+0003    ISF          0
+0004    JMP      1 => 0019
+0005    UGET     0   0      ; self
+0006    TGETS    0   0   0  ; "dict_frame"
+0007    TGETS    0   0   1  ; "dimen"
+0008    ISF          0
+0009    JMP      1 => 0019
+0010    UGET     0   0      ; self
+0011    TGETS    0   0   0  ; "dict_frame"
+0012    TGETS    0   0   1  ; "dimen"
+0013    MOV      1   0
+0014    TGETS    0   0   2  ; "combine"
+0015    UGET     2   1      ; orig_dimen
+0016    CALL     0   2   3
+0017    IST          0
+0018    JMP      1 => 0020
+0019 => UGET     0   1      ; orig_dimen
+0020 => UGET     1   2      ; logger
+0021    TGETS    1   1   3  ; "dbg"
+0022    KSTR     2   4      ; "update dict region"
+0023    MOV      3   0
+0024    CALL     1   1   3
+0025    KSTR     1   5      ; "partial"
+0026    MOV      2   0
+0027    RET      1   3
+
+-- BYTECODE -- dictquicklookup.lua:214-603
+0001    TGETS    1   0   0  ; "dict_frame"
+0002    ISF          1
+0003    JMP      2 => 0008
+0004    TGETS    1   0   0  ; "dict_frame"
+0005    TGETS    1   1   1  ; "dimen"
+0006    IST          1
+0007    JMP      2 => 0013
+0008 => UGET     1   0      ; Geom
+0009    MOV      2   1
+0010    TGETS    1   1   2  ; "new"
+0011    TNEW     3   0
+0012    CALL     1   2   3
+0013 => TGETS    2   0   3  ; "movable"
+0014    ISF          2
+0015    JMP      3 => 0020
+0016    TGETS    2   0   3  ; "movable"
+0017    MOV      3   2
+0018    TGETS    2   2   4  ; "getMovedOffset"
+0019    CALL     2   2   2
+0020 => TGETB    3   0   1
+0021    ISF          3
+0022    JMP      4 => 0027
+0023    TGETB    3   0   1
+0024    MOV      4   3
+0025    TGETS    3   3   5  ; "free"
+0026    CALL     3   1   2
+0027 => KSTR     3   7      ; "center"
+0028    TSETS    3   0   6  ; "align"
+0029    UGET     3   0      ; Geom
+0030    MOV      4   3
+0031    TGETS    3   3   2  ; "new"
+0032    TDUP     5   9
+0033    UGET     6   1      ; Screen
+0034    MOV      7   6
+0035    TGETS    6   6  10  ; "getWidth"
+0036    CALL     6   2   2
+0037    TSETS    6   5  11  ; "w"
+0038    UGET     6   1      ; Screen
+0039    MOV      7   6
+0040    TGETS    6   6  12  ; "getHeight"
+0041    CALL     6   2   2
+0042    TSETS    6   5  13  ; "h"
+0043    CALL     3   2   3
+0044    TSETS    3   0   8  ; "region"
+0045    TGETS    3   0  14  ; "is_fullpage"
+0046    IST          3
+0047    JMP      4 => 0055
+0048    GGET     3  15      ; "G_reader_settings"
+0049    MOV      4   3
+0050    TGETS    3   3  16  ; "isTrue"
+0051    KSTR     5  17      ; "dict_largewindow"
+0052    CALL     3   2   3
+0053    ISF          3
+0054    JMP      4 => 0072
+0055 => UGET     3   1      ; Screen
+0056    MOV      4   3
+0057    TGETS    3   3  12  ; "getHeight"
+0058    CALL     3   2   2
+0059    TSETS    3   0  18  ; "height"
+0060    UGET     3   1      ; Screen
+0061    MOV      4   3
+0062    TGETS    3   3  10  ; "getWidth"
+0063    CALL     3   2   2
+0064    UGET     4   1      ; Screen
+0065    MOV      5   4
+0066    TGETS    4   4  20  ; "scaleBySize"
+0067    KSHORT   6  40
+0068    CALL     4   2   3
+0069    SUBVV    3   3   4
+0070    TSETS    3   0  19  ; "width"
+0071    JMP      3 => 0136
+0072 => TGETS    3   0  21  ; "word_box"
+0073    ISF          3
+0074    JMP      4 => 0124
+0075    TGETS    3   0  21  ; "word_box"
+0076    TGETS    4   3  22  ; "y"
+0077    TGETS    5   3  13  ; "h"
+0078    DIVVN    5   5   0  ; 2
+0079    ADDVV    4   4   5
+0080    UGET     5   1      ; Screen
+0081    MOV      6   5
+0082    TGETS    5   5  12  ; "getHeight"
+0083    CALL     5   2   2
+0084    MULVN    5   5   1  ; 0.3
+0085    ISGE     4   5
+0086    JMP      4 => 0105
+0087    TGETS    4   0   8  ; "region"
+0088    TGETS    5   3  22  ; "y"
+0089    TGETS    6   3  13  ; "h"
+0090    ADDVV    5   5   6
+0091    TSETS    5   4  22  ; "y"
+0092    TGETS    4   0   8  ; "region"
+0093    UGET     5   1      ; Screen
+0094    MOV      6   5
+0095    TGETS    5   5  12  ; "getHeight"
+0096    CALL     5   2   2
+0097    TGETS    6   3  22  ; "y"
+0098    SUBVV    5   5   6
+0099    TGETS    6   3  13  ; "h"
+0100    SUBVV    5   5   6
+0101    TSETS    5   4  13  ; "h"
+0102    KSTR     4  23      ; "top"
+0103    TSETS    4   0   6  ; "align"
+0104    JMP      4 => 0124
+0105 => TGETS    4   3  22  ; "y"
+0106    TGETS    5   3  13  ; "h"
+0107    DIVVN    5   5   0  ; 2
+0108    ADDVV    4   4   5
+0109    UGET     5   1      ; Screen
+0110    MOV      6   5
+0111    TGETS    5   5  12  ; "getHeight"
+0112    CALL     5   2   2
+0113    MULVN    5   5   2  ; 0.7
+0114    ISGE     5   4
+0115    JMP      4 => 0124
+0116    TGETS    4   0   8  ; "region"
+0117    KSHORT   5   0
+0118    TSETS    5   4  22  ; "y"
+0119    TGETS    4   0   8  ; "region"
+0120    TGETS    5   3  22  ; "y"
+0121    TSETS    5   4  13  ; "h"
+0122    KSTR     4  24      ; "bottom"
+0123    TSETS    4   0   6  ; "align"
+0124 => GGET     3  25      ; "math"
+0125    TGETS    3   3  26  ; "min"
+0126    TGETS    4   0   8  ; "region"
+0127    TGETS    4   4  13  ; "h"
+0128    MULVN    4   4   2  ; 0.7
+0129    UGET     5   1      ; Screen
+0130    MOV      6   5
+0131    TGETS    5   5  12  ; "getHeight"
+0132    CALL     5   2   2
+0133    MULVN    5   5   3  ; 0.5
+0134    CALL     3   2   3
+0135    TSETS    3   0  18  ; "height"
+0136 => UGET     3   2      ; CloseButton
+0137    MOV      4   3
+0138    TGETS    3   3   2  ; "new"
+0139    TDUP     5  27
+0140    TSETS    0   5  28  ; "window"
+0141    TGETS    6   0  29  ; "title_margin"
+0142    TSETS    6   5  30  ; "padding_top"
+0143    CALL     3   2   3
+0144    MOV      5   3
+0145    TGETS    4   3  31  ; "getSize"
+0146    CALL     4   2   2
+0147    TGETS    4   4  11  ; "w"
+0148    UGET     5   3      ; Size
+0149    TGETS    5   5  32  ; "padding"
+0150    TGETS    5   5  33  ; "default"
+0151    MULVN    5   5   0  ; 2
+0152    ADDVV    4   4   5
+0153    UGET     5   4      ; TextWidget
+0154    MOV      6   5
+0155    TGETS    5   5   2  ; "new"
+0156    TDUP     7  35
+0157    TGETS    8   0  34  ; "dictionary"
+0158    TSETS    8   7  36  ; "text"
+0159    TGETS    8   0  37  ; "title_face"
+0160    TSETS    8   7  38  ; "face"
+0161    TGETS    8   0  19  ; "width"
+0162    SUBVV    8   8   4
+0163    TSETS    8   7  39  ; "max_width"
+0164    CALL     5   2   3
+0165    KNIL     6   9
+0166    TGETS   10   0  40  ; "is_wiki"
+0167    ISF         10
+0168    JMP     11 => 0205
+0169    UGET    10   5      ; CenterContainer
+0170    MOV     11  10
+0171    TGETS   10  10   2  ; "new"
+0172    TDUP    12  42
+0173    UGET    13   0      ; Geom
+0174    MOV     14  13
+0175    TGETS   13  13   2  ; "new"
+0176    TDUP    15  41
+0177    TGETS   16   0  19  ; "width"
+0178    TSETS   16  15  11  ; "w"
+0179    MOV     17   5
+0180    TGETS   16   5  31  ; "getSize"
+0181    CALL    16   2   2
+0182    TGETS   16  16  13  ; "h"
+0183    TSETS   16  15  13  ; "h"
+0184    CALL    13   2   3
+0185    TSETS   13  12   1  ; "dimen"
+0186    TSETB    5  12   1
+0187    CALL    10   2   3
+0188    MOV      9  10
+0189    KSHORT   6  18
+0190    TGETS    7   0  43  ; "wiki_word_padding"
+0191    TGETS    8   0  44  ; "wiki_word_margin"
+0192    TGETS   10   0  46  ; "wiki_languages"
+0193    ISF         10
+0194    JMP     11 => 0202
+0195    TNEW    10   3
+0196    GGET    11  47      ; "unpack"
+0197    TGETS   12   0  46  ; "wiki_languages"
+0198    CALL    11   0   2
+0199    TSETM   11   4      ; 1
+0200    IST         10
+0201    JMP     11 => 0203
+0202 => KPRI    10   0
+0203 => TSETS   10   0  45  ; "wiki_languages_copy"
+0204    JMP     10 => 0209
+0205 => MOV      9   5
+0206    KSHORT   6  22
+0207    TGETS    7   0  48  ; "word_padding"
+0208    TGETS    8   0  49  ; "word_margin"
+0209 => UGET    10   6      ; FrameContainer
+0210    MOV     11  10
+0211    TGETS   10  10   2  ; "new"
+0212    TDUP    12  52
+0213    TGETS   13   0  51  ; "title_padding"
+0214    TSETS   13  12  32  ; "padding"
+0215    TGETS   13   0  29  ; "title_margin"
+0216    TSETS   13  12  53  ; "margin"
+0217    TSETB    9  12   1
+0218    CALL    10   2   3
+0219    TSETS   10   0  50  ; "dict_title"
+0220    UGET    10   7      ; Button
+0221    MOV     11  10
+0222    TGETS   10  10   2  ; "new"
+0223    TDUP    12  54
+0224    TSETS    7  12  32  ; "padding"
+0225    TSETS    8  12  53  ; "margin"
+0226    TGETS   13   0  19  ; "width"
+0227    TSETS   13  12  39  ; "max_width"
+0228    TGETS   13   0  55  ; "displayword"
+0229    TSETS   13  12  36  ; "text"
+0230    TSETS    6  12  56  ; "text_font_size"
+0231    FNEW    13  57      ; dictquicklookup.lua:302
+0232    TSETS   13  12  58  ; "hold_callback"
+0233    CALL    10   2   3
+0234    KPRI    11   0
+0235    TGETS   12   0  59  ; "is_html"
+0236    ISF         12
+0237    JMP     13 => 0279
+0238    UGET    12   8      ; ScrollHtmlWidget
+0239    MOV     13  12
+0240    TGETS   12  12   2  ; "new"
+0241    TDUP    14  61
+0242    TGETS   15   0  60  ; "definition"
+0243    TSETS   15  14  62  ; "html_body"
+0244    MOV     16   0
+0245    TGETS   15   0  63  ; "getHtmlDictionaryCss"
+0246    CALL    15   2   2
+0247    TSETS   15  14  64  ; "css"
+0248    UGET    15   1      ; Screen
+0249    MOV     16  15
+0250    TGETS   15  15  20  ; "scaleBySize"
+0251    GGET    17  15      ; "G_reader_settings"
+0252    MOV     18  17
+0253    TGETS   17  17  65  ; "readSetting"
+0254    KSTR    19  66      ; "dict_font_size"
+0255    CALL    17   2   3
+0256    IST         17
+0257    JMP     18 => 0259
+0258    KSHORT  17  20
+0259 => CALL    15   2   3
+0260    TSETS   15  14  67  ; "default_font_size"
+0261    TGETS   15   0  19  ; "width"
+0262    TSETS   15  14  19  ; "width"
+0263    TGETS   15   0  14  ; "is_fullpage"
+0264    ISF         15
+0265    JMP     16 => 0270
+0266    TGETS   15   0  18  ; "height"
+0267    MULVN   15  15   5  ; 0.75
+0268    IST         15
+0269    JMP     16 => 0272
+0270 => TGETS   15   0  18  ; "height"
+0271    MULVN   15  15   2  ; 0.7
+0272 => TSETS   15  14  18  ; "height"
+0273    TSETS    0  14  68  ; "dialog"
+0274    FNEW    15  69      ; dictquicklookup.lua:315
+0275    TSETS   15  14  70  ; "html_link_tapped_callback"
+0276    CALL    12   2   3
+0277    MOV     11  12
+0278    JMP     12 => 0325
+0279 => UGET    12   9      ; ScrollTextWidget
+0280    MOV     13  12
+0281    TGETS   12  12   2  ; "new"
+0282    TDUP    14  71
+0283    TGETS   15   0  60  ; "definition"
+0284    TSETS   15  14  36  ; "text"
+0285    TGETS   15   0  72  ; "content_face"
+0286    TSETS   15  14  38  ; "face"
+0287    TGETS   15   0  19  ; "width"
+0288    TSETS   15  14  19  ; "width"
+0289    TGETS   15   0  14  ; "is_fullpage"
+0290    ISF         15
+0291    JMP     16 => 0296
+0292    TGETS   15   0  18  ; "height"
+0293    MULVN   15  15   5  ; 0.75
+0294    IST         15
+0295    JMP     16 => 0298
+0296 => TGETS   15   0  18  ; "height"
+0297    MULVN   15  15   2  ; 0.7
+0298 => TSETS   15  14  18  ; "height"
+0299    TSETS    0  14  68  ; "dialog"
+0300    GGET    15  15      ; "G_reader_settings"
+0301    MOV     16  15
+0302    TGETS   15  15  73  ; "nilOrTrue"
+0303    KSTR    17  74      ; "dict_justify"
+0304    CALL    15   2   3
+0305    TSETS   15  14  75  ; "justified"
+0306    TGETS   15   0  76  ; "lang"
+0307    ISF         15
+0308    JMP     16 => 0313
+0309    TGETS   15   0  76  ; "lang"
+0310    MOV     16  15
+0311    TGETS   15  15  77  ; "lower"
+0312    CALL    15   2   2
+0313 => TSETS   15  14  76  ; "lang"
+0314    TGETS   15   0  78  ; "rtl_lang"
+0315    TSETS   15  14  79  ; "para_direction_rtl"
+0316    TGETS   15   0  40  ; "is_wiki"
+0317    NOT     15  15
+0318    TSETS   15  14  80  ; "auto_para_direction"
+0319    TGETS   15   0  81  ; "image_alt_face"
+0320    TSETS   15  14  81  ; "image_alt_face"
+0321    TGETS   15   0  82  ; "images"
+0322    TSETS   15  14  82  ; "images"
+0323    CALL    12   2   3
+0324    MOV     11  12
+0325 => UGET    12   6      ; FrameContainer
+0326    MOV     13  12
+0327    TGETS   12  12   2  ; "new"
+0328    TDUP    14  85
+0329    TGETS   15   0  84  ; "definition_padding"
+0330    TSETS   15  14  32  ; "padding"
+0331    TGETS   15   0  86  ; "definition_margin"
+0332    TSETS   15  14  53  ; "margin"
+0333    TSETB   11  14   1
+0334    CALL    12   2   3
+0335    TSETS   12   0  83  ; "definition_widget"
+0336    KPRI    12   0
+0337    TGETS   13   0  14  ; "is_fullpage"
+0338    ISF         13
+0339    JMP     14 => 0361
+0340    TNEW    13   3
+0341    TNEW    14   3
+0342    TDUP    15  88
+0343    UGET    16  10      ; _
+0344    KSTR    17  87      ; "Save as EPUB"
+0345    CALL    16   2   2
+0346    TSETS   16  15  36  ; "text"
+0347    FNEW    16  89      ; dictquicklookup.lua:352
+0348    TSETS   16  15  90  ; "callback"
+0349    TSETB   15  14   1
+0350    TDUP    15  92
+0351    UGET    16  10      ; _
+0352    KSTR    17  91      ; "Close"
+0353    CALL    16   2   2
+0354    TSETS   16  15  36  ; "text"
+0355    FNEW    16  93      ; dictquicklookup.lua:420
+0356    TSETS   16  15  90  ; "callback"
+0357    TSETB   15  14   2
+0358    TSETB   14  13   1
+0359    MOV     12  13
+0360    JMP     13 => 0486
+0361 => KSTR    13  94      ; "◁◁"
+0362    KSTR    14  95      ; "▷▷"
+0363    UGET    15  14      ; BD
+0364    TGETS   15  15  96  ; "mirroredUILayout"
+0365    CALL    15   2   1
+0366    ISF         15
+0367    JMP     16 => 0371
+0368    MOV     15  14
+0369    MOV     14  13
+0370    MOV     13  15
+0371 => TNEW    15   3
+0372    TNEW    16   4
+0373    TDUP    17  97
+0374    TSETS   13  17  36  ; "text"
+0375    MOV     19   0
+0376    TGETS   18   0  98  ; "isPrevDictAvaiable"
+0377    CALL    18   2   2
+0378    TSETS   18  17  99  ; "enabled"
+0379    FNEW    18 100      ; dictquicklookup.lua:437
+0380    TSETS   18  17  90  ; "callback"
+0381    TSETB   17  16   1
+0382    TDUP    17 102
+0383    MOV     19   0
+0384    TGETS   18   0 101  ; "getHighlightText"
+0385    CALL    18   2   2
+0386    TSETS   18  17  36  ; "text"
+0387    TGETS   18   0 103  ; "highlight"
+0388    ISNEP   18   0
+0389    JMP     18 => 0392
+0390    KPRI    18   1
+0391    JMP     19 => 0393
+0392 => KPRI    18   2
+0393 => TSETS   18  17  99  ; "enabled"
+0394    FNEW    18 104      ; dictquicklookup.lua:444
+0395    TSETS   18  17  90  ; "callback"
+0396    TSETB   17  16   2
+0397    TDUP    17 105
+0398    TSETS   14  17  36  ; "text"
+0399    MOV     19   0
+0400    TGETS   18   0 106  ; "isNextDictAvaiable"
+0401    CALL    18   2   2
+0402    TSETS   18  17  99  ; "enabled"
+0403    FNEW    18 107      ; dictquicklookup.lua:456
+0404    TSETS   18  17  90  ; "callback"
+0405    TSETB   17  16   3
+0406    TSETB   16  15   1
+0407    TNEW    16   4
+0408    TDUP    17 109
+0409    FNEW    18 108      ; dictquicklookup.lua:465
+0410    TSETS   18  17 110  ; "text_func"
+0411    FNEW    18 111      ; dictquicklookup.lua:473
+0412    TSETS   18  17  90  ; "callback"
+0413    TSETB   17  16   1
+0414    TDUP    17 115
+0415    TGETS   18   0  40  ; "is_wiki"
+0416    ISF         18
+0417    JMP     19 => 0441
+0418    TGETS   18   0  46  ; "wiki_languages"
+0419    LEN     18  18
+0420    KSHORT  19   1
+0421    ISGE    19  18
+0422    JMP     18 => 0437
+0423    UGET    18  14      ; BD
+0424    TGETS   18  18 112  ; "wrap"
+0425    TGETS   19   0  46  ; "wiki_languages"
+0426    TGETB   19  19   1
+0427    CALL    18   2   2
+0428    KSTR    19 113      ; " > "
+0429    UGET    20  14      ; BD
+0430    TGETS   20  20 112  ; "wrap"
+0431    TGETS   21   0  46  ; "wiki_languages"
+0432    TGETB   21  21   2
+0433    CALL    20   2   2
+0434    CAT     18  18  20
+0435    IST         18
+0436    JMP     19 => 0444
+0437 => TGETS   18   0  46  ; "wiki_languages"
+0438    TGETB   18  18   1
+0439    IST         18
+0440    JMP     19 => 0444
+0441 => UGET    18  10      ; _
+0442    KSTR    19 114      ; "Follow Link"
+0443    CALL    18   2   2
+0444 => TSETS   18  17  36  ; "text"
+0445    TGETS   18   0  40  ; "is_wiki"
+0446    ISF         18
+0447    JMP     19 => 0453
+0448    TGETS   18   0  46  ; "wiki_languages"
+0449    LEN     18  18
+0450    KSHORT  19   1
+0451    ISLT    19  18
+0452    JMP     18 => 0458
+0453 => TGETS   18   0 116  ; "selected_link"
+0454    ISNEP   18   0
+0455    JMP     18 => 0458
+0456    KPRI    18   1
+0457    JMP     19 => 0459
+0458 => KPRI    18   2
+0459 => TSETS   18  17  99  ; "enabled"
+0460    FNEW    18 117      ; dictquicklookup.lua:489
+0461    TSETS   18  17  90  ; "callback"
+0462    TSETB   17  16   2
+0463    TDUP    17 120
+0464    TGETS   18   0  40  ; "is_wiki"
+0465    IST         18
+0466    JMP     19 => 0472
+0467    MOV     19   0
+0468    TGETS   18   0 118  ; "isDocless"
+0469    CALL    18   2   2
+0470    ISF         18
+0471    JMP     19 => 0477
+0472 => UGET    18  10      ; _
+0473    KSTR    19  91      ; "Close"
+0474    CALL    18   2   2
+0475    IST         18
+0476    JMP     19 => 0480
+0477 => UGET    18  10      ; _
+0478    KSTR    19 119      ; "Search"
+0479    CALL    18   2   2
+0480 => TSETS   18  17  36  ; "text"
+0481    FNEW    18 121      ; dictquicklookup.lua:503
+0482    TSETS   18  17  90  ; "callback"
+0483    TSETB   17  16   3
+0484    TSETB   16  15   2
+0485    MOV     12  15
+0486 => UGET    13  18      ; ButtonTable
+0487    MOV     14  13
+0488    TGETS   13  13   2  ; "new"
+0489    TDUP    15 123
+0490    GGET    16  25      ; "math"
+0491    TGETS   16  16 122  ; "max"
+0492    TGETS   17   0  19  ; "width"
+0493    TGETS   18   0  83  ; "definition_widget"
+0494    MOV     19  18
+0495    TGETS   18  18  31  ; "getSize"
+0496    CALL    18   2   2
+0497    TGETS   18  18  11  ; "w"
+0498    CALL    16   2   3
+0499    TSETS   16  15  19  ; "width"
+0500    TSETS   12  15 124  ; "buttons"
+0501    TSETS    0  15 125  ; "show_parent"
+0502    CALL    13   2   3
+0503    UGET    14  19      ; LineWidget
+0504    MOV     15  14
+0505    TGETS   14  14   2  ; "new"
+0506    TDUP    16 130
+0507    UGET    17   0      ; Geom
+0508    MOV     18  17
+0509    TGETS   17  17   2  ; "new"
+0510    TDUP    19 127
+0511    MOV     21  13
+0512    TGETS   20  13  31  ; "getSize"
+0513    CALL    20   2   2
+0514    TGETS   20  20  11  ; "w"
+0515    TGETS   21   0 126  ; "button_padding"
+0516    ADDVV   20  20  21
+0517    TSETS   20  19  11  ; "w"
+0518    UGET    20   3      ; Size
+0519    TGETS   20  20 128  ; "line"
+0520    TGETS   20  20 129  ; "thick"
+0521    TSETS   20  19  13  ; "h"
+0522    CALL    17   2   3
+0523    TSETS   17  16   1  ; "dimen"
+0524    CALL    14   2   3
+0525    UGET    15  20      ; OverlapGroup
+0526    MOV     16  15
+0527    TGETS   15  15   2  ; "new"
+0528    TDUP    17 133
+0529    TDUP    18 132
+0530    MOV     20  13
+0531    TGETS   19  13  31  ; "getSize"
+0532    CALL    19   2   2
+0533    TGETS   19  19  11  ; "w"
+0534    TGETS   20   0 126  ; "button_padding"
+0535    ADDVV   19  19  20
+0536    TSETS   19  18  11  ; "w"
+0537    TGETS   19   0  50  ; "dict_title"
+0538    MOV     20  19
+0539    TGETS   19  19  31  ; "getSize"
+0540    CALL    19   2   2
+0541    TGETS   19  19  13  ; "h"
+0542    TSETS   19  18  13  ; "h"
+0543    TSETS   18  17   1  ; "dimen"
+0544    TGETS   18   0  50  ; "dict_title"
+0545    TSETB   18  17   1
+0546    TSETB    3  17   2
+0547    CALL    15   2   3
+0548    TSETS   15   0 131  ; "dict_bar"
+0549    MOV     16   5
+0550    TGETS   15   5 134  ; "setMaxWidth"
+0551    TGETS   17   0 131  ; "dict_bar"
+0552    TGETS   17  17   1  ; "dimen"
+0553    TGETS   17  17  11  ; "w"
+0554    MOV     19   3
+0555    TGETS   18   3  31  ; "getSize"
+0556    CALL    18   2   2
+0557    TGETS   18  18  11  ; "w"
+0558    SUBVV   17  17  18
+0559    CALL    15   1   3
+0560    UGET    15   6      ; FrameContainer
+0561    MOV     16  15
+0562    TGETS   15  15   2  ; "new"
+0563    TDUP    17 136
+0564    UGET    18   3      ; Size
+0565    TGETS   18  18 135  ; "radius"
+0566    TGETS   18  18  28  ; "window"
+0567    TSETS   18  17 135  ; "radius"
+0568    UGET    18   3      ; Size
+0569    TGETS   18  18 137  ; "border"
+0570    TGETS   18  18  28  ; "window"
+0571    TSETS   18  17 138  ; "bordersize"
+0572    UGET    18  21      ; Blitbuffer
+0573    TGETS   18  18 139  ; "COLOR_WHITE"
+0574    TSETS   18  17 140  ; "background"
+0575    UGET    18  22      ; VerticalGroup
+0576    MOV     19  18
+0577    TGETS   18  18   2  ; "new"
+0578    TDUP    20 141
+0579    TGETS   21   0 131  ; "dict_bar"
+0580    TSETB   21  20   1
+0581    TSETB   14  20   2
+0582    UGET    21  23      ; LeftContainer
+0583    MOV     22  21
+0584    TGETS   21  21   2  ; "new"
+0585    TDUP    23 143
+0586    UGET    24   0      ; Geom
+0587    MOV     25  24
+0588    TGETS   24  24   2  ; "new"
+0589    TDUP    26 142
+0590    MOV     28  14
+0591    TGETS   27  14  31  ; "getSize"
+0592    CALL    27   2   2
+0593    TGETS   27  27  11  ; "w"
+0594    TSETS   27  26  11  ; "w"
+0595    MOV     28  10
+0596    TGETS   27  10  31  ; "getSize"
+0597    CALL    27   2   2
+0598    TGETS   27  27  13  ; "h"
+0599    TSETS   27  26  13  ; "h"
+0600    CALL    24   2   3
+0601    TSETS   24  23   1  ; "dimen"
+0602    TSETB   10  23   1
+0603    CALL    21   2   3
+0604    TSETB   21  20   3
+0605    UGET    21   5      ; CenterContainer
+0606    MOV     22  21
+0607    TGETS   21  21   2  ; "new"
+0608    TDUP    23 145
+0609    UGET    24   0      ; Geom
+0610    MOV     25  24
+0611    TGETS   24  24   2  ; "new"
+0612    TDUP    26 144
+0613    MOV     28  14
+0614    TGETS   27  14  31  ; "getSize"
+0615    CALL    27   2   2
+0616    TGETS   27  27  11  ; "w"
+0617    TSETS   27  26  11  ; "w"
+0618    TGETS   27   0  83  ; "definition_widget"
+0619    MOV     28  27
+0620    TGETS   27  27  31  ; "getSize"
+0621    CALL    27   2   2
+0622    TGETS   27  27  13  ; "h"
+0623    TSETS   27  26  13  ; "h"
+0624    CALL    24   2   3
+0625    TSETS   24  23   1  ; "dimen"
+0626    TGETS   24   0  83  ; "definition_widget"
+0627    TSETB   24  23   1
+0628    CALL    21   2   3
+0629    TSETB   21  20   4
+0630    UGET    21   5      ; CenterContainer
+0631    MOV     22  21
+0632    TGETS   21  21   2  ; "new"
+0633    TDUP    23 147
+0634    UGET    24   0      ; Geom
+0635    MOV     25  24
+0636    TGETS   24  24   2  ; "new"
+0637    TDUP    26 146
+0638    MOV     28  14
+0639    TGETS   27  14  31  ; "getSize"
+0640    CALL    27   2   2
+0641    TGETS   27  27  11  ; "w"
+0642    TSETS   27  26  11  ; "w"
+0643    MOV     28  13
+0644    TGETS   27  13  31  ; "getSize"
+0645    CALL    27   2   2
+0646    TGETS   27  27  13  ; "h"
+0647    TSETS   27  26  13  ; "h"
+0648    CALL    24   2   3
+0649    TSETS   24  23   1  ; "dimen"
+0650    TSETB   13  23   1
+0651    CALL    21   0   3
+0652    TSETM   21   6      ; 5
+0653    CALL    18   0   3
+0654    TSETM   18   4      ; 1
+0655    CALL    15   2   3
+0656    TSETS   15   0   0  ; "dict_frame"
+0657    UGET    15  24      ; MovableContainer
+0658    MOV     16  15
+0659    TGETS   15  15   2  ; "new"
+0660    TDUP    17 149
+0661    TDUP    18 148
+0662    TSETS   18  17 150  ; "ignore_events"
+0663    TGETS   18   0   0  ; "dict_frame"
+0664    TSETB   18  17   1
+0665    CALL    15   2   3
+0666    TSETS   15   0   3  ; "movable"
+0667    TGETS   15   0   3  ; "movable"
+0668    MOV     16  15
+0669    TGETS   15  15 151  ; "setMovedOffset"
+0670    MOV     17   2
+0671    CALL    15   1   3
+0672    UGET    15  25      ; WidgetContainer
+0673    MOV     16  15
+0674    TGETS   15  15   2  ; "new"
+0675    TDUP    17 152
+0676    TGETS   18   0   6  ; "align"
+0677    TSETS   18  17   6  ; "align"
+0678    TGETS   18   0   8  ; "region"
+0679    TSETS   18  17   1  ; "dimen"
+0680    TGETS   18   0   3  ; "movable"
+0681    TSETB   18  17   1
+0682    CALL    15   2   3
+0683    TSETB   15   0   1
+0684    UGET    15  12      ; UIManager
+0685    MOV     16  15
+0686    TGETS   15  15 153  ; "setDirty"
+0687    MOV     17   0
+0688    FNEW    18 154      ; dictquicklookup.lua:598
+0689    CALL    15   1   4
+0690    UCLO     0 => 0691
+0691 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:624-626
+0001    KSTR     0   0      ; "flashui"
+0002    KPRI     1   0
+0003    RET      0   3
+
+-- BYTECODE -- dictquicklookup.lua:605-628
+0001    TGETB    1   0   1
+0002    ISF          1
+0003    JMP      2 => 0008
+0004    TGETB    1   0   1
+0005    MOV      2   1
+0006    TGETS    1   1   0  ; "free"
+0007    CALL     1   1   2
+0008 => TGETS    1   0   1  ; "images_cleanup_needed"
+0009    ISF          1
+0010    JMP      2 => 0049
+0011    UGET     1   0      ; logger
+0012    TGETS    1   1   2  ; "dbg"
+0013    KSTR     2   3      ; "freeing lookup results images blitbuffer"~
+0014    CALL     1   1   2
+0015    GGET     1   4      ; "ipairs"
+0016    TGETS    2   0   5  ; "results"
+0017    CALL     1   4   2
+0018    JMP      4 => 0047
+0019 => TGETS    6   5   6  ; "images"
+0020    ISF          6
+0021    JMP      7 => 0047
+0022    TGETS    6   5   6  ; "images"
+0023    LEN      6   6
+0024    KSHORT   7   0
+0025    ISGE     7   6
+0026    JMP      6 => 0047
+0027    GGET     6   4      ; "ipairs"
+0028    TGETS    7   5   6  ; "images"
+0029    CALL     6   4   2
+0030    JMP      9 => 0045
+0031 => TGETS   11  10   7  ; "bb"
+0032    ISF         11
+0033    JMP     12 => 0038
+0034    TGETS   11  10   7  ; "bb"
+0035    MOV     12  11
+0036    TGETS   11  11   0  ; "free"
+0037    CALL    11   1   2
+0038 => TGETS   11  10   8  ; "hi_bb"
+0039    ISF         11
+0040    JMP     12 => 0045
+0041    TGETS   11  10   8  ; "hi_bb"
+0042    MOV     12  11
+0043    TGETS   11  11   0  ; "free"
+0044    CALL    11   1   2
+0045 => ITERC    9   3   3
+0046    ITERL    9 => 0031
+0047 => ITERC    4   3   3
+0048    ITERL    4 => 0019
+0049 => UGET     1   1      ; UIManager
+0050    MOV      2   1
+0051    TGETS    1   1   9  ; "setDirty"
+0052    KPRI     3   0
+0053    FNEW     4  10      ; dictquicklookup.lua:624
+0054    CALL     1   1   4
+0055    KPRI     1   2
+0056    UCLO     0 => 0057
+0057 => RET1     1   2
+
+-- BYTECODE -- dictquicklookup.lua:631-633
+0001    KSTR     0   0      ; "flashui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dict_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- dictquicklookup.lua:630-635
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    MOV      3   0
+0005    FNEW     4   1      ; dictquicklookup.lua:631
+0006    CALL     1   1   4
+0007    KPRI     1   2
+0008    UCLO     0 => 0009
+0009 => RET1     1   2
+
+-- BYTECODE -- dictquicklookup.lua:637-640
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "isDocless"
+0003    CALL     1   2   2
+0004    ISF          1
+0005    JMP      2 => 0007
+0006    RET0     0   1
+0007 => TGETS    1   0   1  ; "ui"
+0008    TGETS    1   1   2  ; "highlight"
+0009    MOV      2   1
+0010    TGETS    1   1   3  ; "getHighlightBookmarkItem"
+0011    CALLT    1   2
+
+-- BYTECODE -- dictquicklookup.lua:642-651
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "getHighlightedItem"
+0003    CALL     1   2   2
+0004    IST          1
+0005    JMP      2 => 0011
+0006    UGET     2   0      ; highlight_strings
+0007    TGETS    2   2   1  ; "highlight"
+0008    KPRI     3   1
+0009    RET      2   3
+0010    JMP      2 => 0028
+0011 => TGETS    2   0   2  ; "ui"
+0012    TGETS    2   2   3  ; "bookmark"
+0013    MOV      3   2
+0014    TGETS    2   2   4  ; "isBookmarkAdded"
+0015    MOV      4   1
+0016    CALL     2   2   3
+0017    ISF          2
+0018    JMP      3 => 0024
+0019    UGET     2   0      ; highlight_strings
+0020    TGETS    2   2   5  ; "unhighlight"
+0021    KPRI     3   1
+0022    RET      2   3
+0023    JMP      2 => 0028
+0024 => UGET     2   0      ; highlight_strings
+0025    TGETS    2   2   1  ; "highlight"
+0026    KPRI     3   2
+0027    RET      2   3
+0028 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:653-655
+0001    TGETS    1   0   0  ; "dict_index"
+0002    KSHORT   2   1
+0003    ISLT     2   1
+0004    JMP      1 => 0007
+0005    KPRI     1   1
+0006    JMP      2 => 0008
+0007 => KPRI     1   2
+0008 => RET1     1   2
+
+-- BYTECODE -- dictquicklookup.lua:657-659
+0001    TGETS    1   0   0  ; "dict_index"
+0002    TGETS    2   0   1  ; "results"
+0003    LEN      2   2
+0004    ISLT     1   2
+0005    JMP      1 => 0008
+0006    KPRI     1   1
+0007    JMP      2 => 0009
+0008 => KPRI     1   2
+0009 => RET1     1   2
+
+-- BYTECODE -- dictquicklookup.lua:661-667
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "isPrevDictAvaiable"
+0003    CALL     1   2   2
+0004    ISF          1
+0005    JMP      2 => 0012
+0006    MOV      2   0
+0007    TGETS    1   0   1  ; "changeDictionary"
+0008    TGETS    3   0   2  ; "dict_index"
+0009    SUBVN    3   3   0  ; 1
+0010    CALL     1   1   3
+0011    JMP      1 => 0022
+0012 => TGETS    1   0   3  ; "results"
+0013    LEN      1   1
+0014    KSHORT   2   1
+0015    ISGE     2   1
+0016    JMP      1 => 0022
+0017    MOV      2   0
+0018    TGETS    1   0   1  ; "changeDictionary"
+0019    TGETS    3   0   3  ; "results"
+0020    LEN      3   3
+0021    CALL     1   1   3
+0022 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:669-675
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "isNextDictAvaiable"
+0003    CALL     1   2   2
+0004    ISF          1
+0005    JMP      2 => 0012
+0006    MOV      2   0
+0007    TGETS    1   0   1  ; "changeDictionary"
+0008    TGETS    3   0   2  ; "dict_index"
+0009    ADDVN    3   3   0  ; 1
+0010    CALL     1   1   3
+0011    JMP      1 => 0021
+0012 => TGETS    1   0   3  ; "results"
+0013    LEN      1   1
+0014    KSHORT   2   1
+0015    ISGE     2   1
+0016    JMP      1 => 0021
+0017    MOV      2   0
+0018    TGETS    1   0   1  ; "changeDictionary"
+0019    KSHORT   3   1
+0020    CALL     1   1   3
+0021 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:677-714
+0001    TGETS    2   0   0  ; "results"
+0002    TGETV    2   2   1
+0003    IST          2
+0004    JMP      2 => 0006
+0005    RET0     0   1
+0006 => TSETS    1   0   1  ; "dict_index"
+0007    TGETS    2   0   0  ; "results"
+0008    TGETV    2   2   1
+0009    TGETS    2   2   3  ; "dict"
+0010    TSETS    2   0   2  ; "dictionary"
+0011    TGETS    2   0   0  ; "results"
+0012    TGETV    2   2   1
+0013    TGETS    2   2   5  ; "word"
+0014    TSETS    2   0   4  ; "lookupword"
+0015    TGETS    2   0   0  ; "results"
+0016    TGETV    2   2   1
+0017    TGETS    2   2   6  ; "definition"
+0018    TSETS    2   0   6  ; "definition"
+0019    TGETS    2   0   0  ; "results"
+0020    TGETV    2   2   1
+0021    TGETS    2   2   7  ; "is_fullpage"
+0022    TSETS    2   0   7  ; "is_fullpage"
+0023    TGETS    2   0   0  ; "results"
+0024    TGETV    2   2   1
+0025    TGETS    2   2   8  ; "is_html"
+0026    TSETS    2   0   8  ; "is_html"
+0027    TGETS    2   0   0  ; "results"
+0028    TGETV    2   2   1
+0029    TGETS    2   2   9  ; "css"
+0030    TSETS    2   0   9  ; "css"
+0031    TGETS    2   0   0  ; "results"
+0032    TGETV    2   2   1
+0033    TGETS    2   2  10  ; "lang"
+0034    TSETS    2   0  10  ; "lang"
+0035    TGETS    2   0   0  ; "results"
+0036    TGETV    2   2   1
+0037    TGETS    2   2  11  ; "rtl_lang"
+0038    TSETS    2   0  11  ; "rtl_lang"
+0039    TGETS    2   0   0  ; "results"
+0040    TGETV    2   2   1
+0041    TGETS    2   2  12  ; "images"
+0042    TSETS    2   0  12  ; "images"
+0043    TGETS    2   0  12  ; "images"
+0044    ISF          2
+0045    JMP      3 => 0053
+0046    TGETS    2   0  12  ; "images"
+0047    LEN      2   2
+0048    KSHORT   3   0
+0049    ISGE     3   2
+0050    JMP      2 => 0053
+0051    KPRI     2   2
+0052    TSETS    2   0  13  ; "images_cleanup_needed"
+0053 => TGETS    2   0   7  ; "is_fullpage"
+0054    ISF          2
+0055    JMP      3 => 0059
+0056    TGETS    2   0   4  ; "lookupword"
+0057    TSETS    2   0  14  ; "displayword"
+0058    JMP      2 => 0090
+0059 => TGETS    2   0   4  ; "lookupword"
+0060    KSTR     3  15      ; "   "
+0061    MOV      4   1
+0062    KSTR     5  16      ; " / "
+0063    TGETS    6   0   0  ; "results"
+0064    LEN      6   6
+0065    CAT      2   2   6
+0066    TSETS    2   0  14  ; "displayword"
+0067    ISNEN    1   0      ; 1
+0068    JMP      2 => 0090
+0069    TGETS    2   0   8  ; "is_html"
+0070    ISF          2
+0071    JMP      3 => 0077
+0072    TGETS    2   0   6  ; "definition"
+0073    KSTR     3  17      ; "<br/>_______<br/>"
+0074    CAT      2   2   3
+0075    TSETS    2   0   6  ; "definition"
+0076    JMP      2 => 0081
+0077 => TGETS    2   0   6  ; "definition"
+0078    KSTR     3  18      ; "\n_______\n"
+0079    CAT      2   2   3
+0080    TSETS    2   0   6  ; "definition"
+0081 => TGETS    2   0   6  ; "definition"
+0082    UGET     3   0      ; T
+0083    UGET     4   1      ; _
+0084    KSTR     5  19      ; "(query : %1)"
+0085    CALL     4   2   2
+0086    TGETS    5   0   5  ; "word"
+0087    CALL     3   2   3
+0088    CAT      2   2   3
+0089    TSETS    2   0   6  ; "definition"
+0090 => MOV      3   0
+0091    TGETS    2   0  20  ; "update"
+0092    CALL     2   1   2
+0093    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:716-743
+0001    TGETS    1   0   0  ; "dictionary"
+0002    ISF          1
+0003    JMP      2 => 0045
+0004    KPRI     1   0
+0005    TGETS    2   0   1  ; "results"
+0006    TGETB    2   2   1
+0007    TGETS    2   2   2  ; "word"
+0008    KSHORT   3   1
+0009    TGETS    4   0   1  ; "results"
+0010    LEN      4   4
+0011    KSHORT   5   1
+0012    FORI     3 => 0022
+0013 => TGETS    7   0   1  ; "results"
+0014    TGETV    7   7   6
+0015    TGETS    7   7   2  ; "word"
+0016    ISNEV    7   2
+0017    JMP      7 => 0022
+0018    MOV      1   6
+0019    JMP      7 => 0021
+0020    JMP      3 => 0022
+0021 => FORL     3 => 0013
+0022 => KSHORT   3   1
+0023    MOV      4   1
+0024    KSHORT   5   1
+0025    FORI     3 => 0044
+0026 => TGETS    7   0   1  ; "results"
+0027    TGETV    7   7   6
+0028    TGETS    7   7   3  ; "dict"
+0029    TGETS    8   0   0  ; "dictionary"
+0030    ISNEV    7   8
+0031    JMP      7 => 0037
+0032    MOV      8   0
+0033    TGETS    7   0   4  ; "changeDictionary"
+0034    MOV      9   6
+0035    CALL     7   1   3
+0036    JMP      3 => 0049
+0037 => ISNEV    6   1
+0038    JMP      7 => 0043
+0039    MOV      8   0
+0040    TGETS    7   0   4  ; "changeDictionary"
+0041    KSHORT   9   1
+0042    CALL     7   1   3
+0043 => FORL     3 => 0026
+0044 => JMP      1 => 0049
+0045 => MOV      2   0
+0046    TGETS    1   0   4  ; "changeDictionary"
+0047    KSHORT   3   1
+0048    CALL     1   1   3
+0049 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:745-749
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    KPRI     1   2
+0007    RET1     1   2
+
+-- BYTECODE -- dictquicklookup.lua:751-775
+0001    TGETS    3   2   0  ; "pos"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "notIntersectWith"
+0004    TGETS    5   0   2  ; "dict_frame"
+0005    TGETS    5   5   3  ; "dimen"
+0006    CALL     3   2   3
+0007    ISF          3
+0008    JMP      4 => 0015
+0009    MOV      4   0
+0010    TGETS    3   0   4  ; "onClose"
+0011    CALL     3   1   2
+0012    KPRI     3   2
+0013    RET1     3   2
+0014    JMP      3 => 0038
+0015 => TGETS    3   2   0  ; "pos"
+0016    MOV      4   3
+0017    TGETS    3   3   1  ; "notIntersectWith"
+0018    TGETS    5   0   5  ; "dict_title"
+0019    TGETS    5   5   3  ; "dimen"
+0020    CALL     3   2   3
+0021    IST          3
+0022    JMP      3 => 0038
+0023    TGETS    3   0   6  ; "is_wiki"
+0024    IST          3
+0025    JMP      3 => 0038
+0026    TGETS    3   0   7  ; "ui"
+0027    MOV      4   3
+0028    TGETS    3   3   8  ; "handleEvent"
+0029    UGET     5   0      ; Event
+0030    MOV      6   5
+0031    TGETS    5   5   9  ; "new"
+0032    KSTR     7  10      ; "UpdateDefaultDict"
+0033    TGETS    8   0  11  ; "dictionary"
+0034    CALL     5   0   4
+0035    CALLM    3   1   1
+0036    KPRI     3   2
+0037    RET1     3   2
+0038 => UGET     3   1      ; BD
+0039    TGETS    3   3  12  ; "flipIfMirroredUILayout"
+0040    TGETS    4   2   0  ; "pos"
+0041    TGETS    4   4  13  ; "x"
+0042    UGET     5   2      ; Screen
+0043    MOV      6   5
+0044    TGETS    5   5  14  ; "getWidth"
+0045    CALL     5   2   2
+0046    DIVVN    5   5   0  ; 2
+0047    ISLT     4   5
+0048    JMP      4 => 0051
+0049    KPRI     4   1
+0050    JMP      5 => 0052
+0051 => KPRI     4   2
+0052 => CALL     3   2   2
+0053    ISF          3
+0054    JMP      4 => 0069
+0055    TGETS    3   0  15  ; "dict_index"
+0056    MOV      5   0
+0057    TGETS    4   0  16  ; "changeToPrevDict"
+0058    CALL     4   1   2
+0059    TGETS    4   0  15  ; "dict_index"
+0060    ISEQV    4   3
+0061    JMP      4 => 0072
+0062    TGETS    4   0  17  ; "definition_widget"
+0063    TGETB    4   4   1
+0064    MOV      5   4
+0065    TGETS    4   4  18  ; "scrollToRatio"
+0066    KSHORT   6   1
+0067    CALL     4   1   3
+0068    JMP      3 => 0072
+0069 => MOV      4   0
+0070    TGETS    3   0  19  ; "changeToNextDict"
+0071    CALL     3   1   2
+0072 => KPRI     3   2
+0073    RET1     3   2
+
+-- BYTECODE -- dictquicklookup.lua:789-791
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "highlight"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "clear"
+0005    UGET     2   1      ; clear_id
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:777-794
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    TGETS    1   0   1  ; "window_list"
+0007    LEN      1   1
+0008    KSHORT   2   1
+0009    KSHORT   3  -1
+0010    FORI     1 => 0021
+0011 => TGETS    5   0   1  ; "window_list"
+0012    TGETV    5   5   4
+0013    ISNEV    5   0
+0014    JMP      6 => 0020
+0015    GGET     6   2      ; "table"
+0016    TGETS    6   6   3  ; "remove"
+0017    TGETS    7   0   1  ; "window_list"
+0018    MOV      8   4
+0019    CALL     6   1   3
+0020 => FORL     1 => 0011
+0021 => TGETS    1   0   4  ; "highlight"
+0022    ISF          1
+0023    JMP      2 => 0035
+0024    TGETS    1   0   4  ; "highlight"
+0025    MOV      2   1
+0026    TGETS    1   1   5  ; "getClearId"
+0027    CALL     1   2   2
+0028    UGET     2   0      ; UIManager
+0029    MOV      3   2
+0030    TGETS    2   2   6  ; "scheduleIn"
+0031    KNUM     4   0      ; 0.5
+0032    FNEW     5   7      ; dictquicklookup.lua:789
+0033    CALL     2   1   4
+0034    UCLO     1 => 0035
+0035 => KPRI     1   2
+0036    UCLO     0 => 0037
+0037 => RET1     1   2
+
+-- BYTECODE -- dictquicklookup.lua:803-805
+0001    UGET     0   0      ; window
+0002    TGETS    0   0   0  ; "highlight"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "clear"
+0005    UGET     2   1      ; clear_id
+0006    CALL     0   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:796-811
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "onClose"
+0003    CALL     2   1   2
+0004    TGETS    2   0   1  ; "window_list"
+0005    LEN      2   2
+0006    KSHORT   3   1
+0007    KSHORT   4  -1
+0008    FORI     2 => 0039
+0009 => TGETS    6   0   1  ; "window_list"
+0010    TGETV    6   6   5
+0011    TGETS    7   6   2  ; "highlight"
+0012    ISF          7
+0013    JMP      8 => 0027
+0014    IST          1
+0015    JMP      7 => 0027
+0016    TGETS    7   6   2  ; "highlight"
+0017    MOV      8   7
+0018    TGETS    7   7   3  ; "getClearId"
+0019    CALL     7   2   2
+0020    UGET     8   0      ; UIManager
+0021    MOV      9   8
+0022    TGETS    8   8   4  ; "scheduleIn"
+0023    KNUM    10   0      ; 0.5
+0024    FNEW    11   5      ; dictquicklookup.lua:803
+0025    CALL     8   1   4
+0026    UCLO     7 => 0027
+0027 => UGET     7   0      ; UIManager
+0028    MOV      8   7
+0029    TGETS    7   7   6  ; "close"
+0030    MOV      9   6
+0031    CALL     7   1   3
+0032    GGET     7   7      ; "table"
+0033    TGETS    7   7   8  ; "remove"
+0034    TGETS    8   0   1  ; "window_list"
+0035    MOV      9   5
+0036    CALL     7   1   3
+0037    UCLO     6 => 0038
+0038 => FORL     2 => 0009
+0039 => KPRI     2   2
+0040    UCLO     0 => 0041
+0041 => RET1     2   2
+
+-- BYTECODE -- dictquicklookup.lua:813-834
+0001    TGETS    3   2   0  ; "pos"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "intersectWith"
+0004    TGETS    5   0   2  ; "definition_widget"
+0005    TGETS    5   5   3  ; "dimen"
+0006    CALL     3   2   3
+0007    ISF          3
+0008    JMP      4 => 0040
+0009    UGET     3   0      ; BD
+0010    TGETS    3   3   4  ; "flipDirectionIfMirroredUILayout"
+0011    TGETS    4   2   5  ; "direction"
+0012    CALL     3   2   2
+0013    ISNES    3   6      ; "west"
+0014    JMP      4 => 0019
+0015    MOV      5   0
+0016    TGETS    4   0   7  ; "changeToNextDict"
+0017    CALL     4   1   2
+0018    JMP      4 => 0038
+0019 => ISNES    3   8      ; "east"
+0020    JMP      4 => 0025
+0021    MOV      5   0
+0022    TGETS    4   0   9  ; "changeToPrevDict"
+0023    CALL     4   1   2
+0024    JMP      4 => 0038
+0025 => TGETS    4   0  10  ; "refresh_callback"
+0026    ISF          4
+0027    JMP      5 => 0030
+0028    TGETS    4   0  10  ; "refresh_callback"
+0029    CALL     4   1   1
+0030 => UGET     4   1      ; UIManager
+0031    MOV      5   4
+0032    TGETS    4   4  11  ; "setDirty"
+0033    KPRI     6   0
+0034    KSTR     7  12      ; "full"
+0035    CALL     4   1   4
+0036    KPRI     4   1
+0037    RET1     4   2
+0038 => KPRI     4   2
+0039    RET1     4   2
+0040 => TGETS    3   0  13  ; "movable"
+0041    MOV      4   3
+0042    TGETS    3   3  14  ; "onMovableSwipe"
+0043    MOV      5   1
+0044    MOV      6   2
+0045    CALLT    3   4
+
+-- BYTECODE -- dictquicklookup.lua:836-840
+0001    TGETS    3   0   0  ; "movable"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "onMovableHold"
+0004    MOV      5   1
+0005    MOV      6   2
+0006    CALLT    3   4
+
+-- BYTECODE -- dictquicklookup.lua:842-849
+0001    TGETS    3   0   0  ; "movable"
+0002    TGETS    3   3   1  ; "_touch_pre_pan_was_inside"
+0003    ISF          3
+0004    JMP      4 => 0011
+0005    TGETS    3   0   0  ; "movable"
+0006    MOV      4   3
+0007    TGETS    3   3   2  ; "onMovableHoldPan"
+0008    GGET     5   3      ; "arg"
+0009    MOV      6   2
+0010    CALLT    3   4
+0011 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:851-855
+0001    TGETS    3   0   0  ; "movable"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "onMovableHoldRelease"
+0004    MOV      5   1
+0005    MOV      6   2
+0006    CALLT    3   4
+
+-- BYTECODE -- dictquicklookup.lua:861-870
+0001    TGETS    3   2   0  ; "pos"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "intersectWith"
+0004    TGETS    5   0   2  ; "definition_widget"
+0005    TGETS    5   5   3  ; "dimen"
+0006    CALL     3   2   3
+0007    IST          3
+0008    JMP      3 => 0016
+0009    TGETS    3   0   4  ; "movable"
+0010    MOV      4   3
+0011    TGETS    3   3   5  ; "onMovableTouch"
+0012    MOV      5   1
+0013    MOV      6   2
+0014    CALLT    3   4
+0015    JMP      3 => 0019
+0016 => TGETS    3   0   4  ; "movable"
+0017    KPRI     4   1
+0018    TSETS    4   3   6  ; "_touch_pre_pan_was_inside"
+0019 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:872-877
+0001    TGETS    3   0   0  ; "movable"
+0002    TGETS    3   3   1  ; "_touch_pre_pan_was_inside"
+0003    IST          3
+0004    JMP      4 => 0009
+0005    TGETS    3   0   0  ; "movable"
+0006    TGETS    3   3   2  ; "_moving"
+0007    ISF          3
+0008    JMP      4 => 0015
+0009 => TGETS    3   0   0  ; "movable"
+0010    MOV      4   3
+0011    TGETS    3   3   3  ; "onMovablePan"
+0012    MOV      5   1
+0013    MOV      6   2
+0014    CALLT    3   4
+0015 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:879-882
+0001    TGETS    3   0   0  ; "movable"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "onMovablePanRelease"
+0004    MOV      5   1
+0005    MOV      6   2
+0006    CALLT    3   4
+
+-- BYTECODE -- dictquicklookup.lua:895-897
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "closeInputDialog"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:902-905
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "closeInputDialog"
+0004    CALL     0   1   2
+0005    UGET     0   0      ; self
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "inputLookup"
+0008    CALL     0   1   2
+0009    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:884-912
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "onClose"
+0003    CALL     2   1   2
+0004    UGET     2   0      ; InputDialog
+0005    MOV      3   2
+0006    TGETS    2   2   2  ; "new"
+0007    TDUP     4   4
+0008    UGET     5   1      ; _
+0009    KSTR     6   3      ; "Input lookup word"
+0010    CALL     5   2   2
+0011    TSETS    5   4   5  ; "title"
+0012    TSETS    1   4   6  ; "input"
+0013    ISTC     5   1
+0014    JMP      5 => 0016
+0015    KSTR     5   7      ; ""
+0016 => TSETS    5   4   8  ; "input_hint"
+0017    TNEW     5   3
+0018    TNEW     6   3
+0019    TDUP     7  10
+0020    UGET     8   1      ; _
+0021    KSTR     9   9      ; "Cancel"
+0022    CALL     8   2   2
+0023    TSETS    8   7  11  ; "text"
+0024    FNEW     8  12      ; dictquicklookup.lua:895
+0025    TSETS    8   7  13  ; "callback"
+0026    TSETB    7   6   1
+0027    TDUP     7  15
+0028    UGET     8   1      ; _
+0029    KSTR     9  14      ; "Lookup"
+0030    CALL     8   2   2
+0031    TSETS    8   7  11  ; "text"
+0032    FNEW     8  16      ; dictquicklookup.lua:902
+0033    TSETS    8   7  13  ; "callback"
+0034    TSETB    7   6   2
+0035    TSETB    6   5   1
+0036    TSETS    5   4  17  ; "buttons"
+0037    CALL     2   2   3
+0038    TSETS    2   0   1  ; "input_dialog"
+0039    UGET     2   2      ; UIManager
+0040    MOV      3   2
+0041    TGETS    2   2  18  ; "show"
+0042    TGETS    4   0   1  ; "input_dialog"
+0043    CALL     2   1   3
+0044    TGETS    2   0   1  ; "input_dialog"
+0045    MOV      3   2
+0046    TGETS    2   2  19  ; "onShowKeyboard"
+0047    CALL     2   1   2
+0048    UCLO     0 => 0049
+0049 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:914-926
+0001    TGETS    1   0   0  ; "input_dialog"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "getInputText"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0029
+0007    ISEQS    1   2      ; ""
+0008    JMP      2 => 0029
+0009    KPRI     2   0
+0010    TGETS    3   0   3  ; "is_wiki"
+0011    ISF          3
+0012    JMP      4 => 0018
+0013    KSTR     2   4      ; "LookupWikipedia"
+0014    MOV      4   0
+0015    TGETS    3   0   5  ; "resyncWikiLanguages"
+0016    CALL     3   1   2
+0017    JMP      3 => 0019
+0018 => KSTR     2   6      ; "LookupWord"
+0019 => TGETS    3   0   7  ; "ui"
+0020    MOV      4   3
+0021    TGETS    3   3   8  ; "handleEvent"
+0022    UGET     5   0      ; Event
+0023    MOV      6   5
+0024    TGETS    5   5   9  ; "new"
+0025    MOV      7   2
+0026    MOV      8   1
+0027    CALL     5   0   4
+0028    CALLM    3   1   1
+0029 => RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:928-930
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    TGETS    3   0   1  ; "input_dialog"
+0005    CALL     1   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:932-949
+0001    TGETS    2   0   0  ; "wiki_languages_copy"
+0002    IST          2
+0003    JMP      2 => 0005
+0004    RET0     0   1
+0005 => ISF          1
+0006    JMP      2 => 0017
+0007    GGET     2   1      ; "table"
+0008    TGETS    2   2   2  ; "remove"
+0009    TGETS    3   0   0  ; "wiki_languages_copy"
+0010    KSHORT   4   1
+0011    CALL     2   2   3
+0012    GGET     3   1      ; "table"
+0013    TGETS    3   3   3  ; "insert"
+0014    TGETS    4   0   0  ; "wiki_languages_copy"
+0015    MOV      5   2
+0016    CALL     3   1   3
+0017 => GGET     2   4      ; "ipairs"
+0018    TGETS    3   0   0  ; "wiki_languages_copy"
+0019    CALL     2   4   2
+0020    JMP      5 => 0023
+0021 => TGETS    7   0   5  ; "wiki_languages"
+0022    TSETV    6   7   5
+0023 => ITERC    5   3   3
+0024    ITERL    5 => 0021
+0025    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:951-965
+0001    KPRI     2   0
+0002    ISF          1
+0003    JMP      3 => 0006
+0004    TGETS    2   0   0  ; "lookupword"
+0005    JMP      3 => 0007
+0006 => TGETS    2   0   1  ; "word"
+0007 => MOV      4   0
+0008    TGETS    3   0   2  ; "resyncWikiLanguages"
+0009    CALL     3   1   2
+0010    TGETS    3   0   3  ; "ui"
+0011    MOV      4   3
+0012    TGETS    3   3   4  ; "handleEvent"
+0013    UGET     5   0      ; Event
+0014    MOV      6   5
+0015    TGETS    5   5   5  ; "new"
+0016    KSTR     7   6      ; "LookupWikipedia"
+0017    MOV      8   2
+0018    TGETS    9   0   7  ; "word_box"
+0019    ISF          9
+0020    JMP     10 => 0024
+0021    TGETS    9   0   7  ; "word_box"
+0022    IST          9
+0023    JMP     10 => 0025
+0024 => KPRI     9   1
+0025 => MOV     10   1
+0026    CALL     5   0   6
+0027    CALLM    3   1   1
+0028    RET0     0   1
+
+-- BYTECODE -- dictquicklookup.lua:0-968
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/blitbuffer"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/widget/button"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/buttontable"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/container/centercontainer"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/closebutton"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "device"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/geometry"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/event"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/font"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/widget/container/framecontainer"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/gesturerange"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/widget/container/inputcontainer"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/widget/inputdialog"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/widget/container/leftcontainer"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/widget/linewidget"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "ui/widget/container/movablecontainer"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/widget/overlapgroup"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "ui/widget/scrollhtmlwidget"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "ui/widget/scrolltextwidget"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "ui/size"
+0063    CALL    20   2   2
+0064    GGET    21   0      ; "require"
+0065    KSTR    22  22      ; "ui/widget/textwidget"
+0066    CALL    21   2   2
+0067    GGET    22   0      ; "require"
+0068    KSTR    23  23      ; "ui/uimanager"
+0069    CALL    22   2   2
+0070    GGET    23   0      ; "require"
+0071    KSTR    24  24      ; "ui/widget/verticalgroup"
+0072    CALL    23   2   2
+0073    GGET    24   0      ; "require"
+0074    KSTR    25  25      ; "ui/widget/container/widgetcontainer"
+0075    CALL    24   2   2
+0076    GGET    25   0      ; "require"
+0077    KSTR    26  26      ; "logger"
+0078    CALL    25   2   2
+0079    GGET    26   0      ; "require"
+0080    KSTR    27  27      ; "util"
+0081    CALL    26   2   2
+0082    GGET    27   0      ; "require"
+0083    KSTR    28  28      ; "gettext"
+0084    CALL    27   2   2
+0085    TGETS   28  27  29  ; "pgettext"
+0086    TGETS   29   6  30  ; "screen"
+0087    GGET    30   0      ; "require"
+0088    KSTR    31  31      ; "ffi/util"
+0089    CALL    30   2   2
+0090    TGETS   30  30  32  ; "template"
+0091    MOV     32  12
+0092    TGETS   31  12  33  ; "new"
+0093    TDUP    33  34
+0094    MOV     35   9
+0095    TGETS   34   9  35  ; "getFace"
+0096    KSTR    36  36      ; "x_smalltfont"
+0097    CALL    34   2   3
+0098    TSETS   34  33  37  ; "title_face"
+0099    MOV     35   9
+0100    TGETS   34   9  35  ; "getFace"
+0101    KSTR    36  38      ; "cfont"
+0102    KSHORT  37  20
+0103    CALL    34   2   4
+0104    TSETS   34  33  39  ; "content_face"
+0105    MOV     35   9
+0106    TGETS   34   9  35  ; "getFace"
+0107    KSTR    36  38      ; "cfont"
+0108    KSHORT  37  16
+0109    CALL    34   2   4
+0110    TSETS   34  33  40  ; "image_alt_face"
+0111    TGETS   34  20  41  ; "padding"
+0112    TGETS   34  34  42  ; "default"
+0113    TSETS   34  33  43  ; "title_padding"
+0114    TGETS   34  20  44  ; "margin"
+0115    TGETS   34  34  45  ; "title"
+0116    TSETS   34  33  46  ; "title_margin"
+0117    TGETS   34  20  41  ; "padding"
+0118    TGETS   34  34  42  ; "default"
+0119    TSETS   34  33  47  ; "word_padding"
+0120    TGETS   34  20  44  ; "margin"
+0121    TGETS   34  34  42  ; "default"
+0122    TSETS   34  33  48  ; "word_margin"
+0123    MOV     35  29
+0124    TGETS   34  29  49  ; "scaleBySize"
+0125    KSHORT  36   7
+0126    CALL    34   2   3
+0127    TSETS   34  33  50  ; "wiki_word_padding"
+0128    MOV     35  29
+0129    TGETS   34  29  49  ; "scaleBySize"
+0130    KSHORT  36   3
+0131    CALL    34   2   3
+0132    TSETS   34  33  51  ; "wiki_word_margin"
+0133    MOV     35  29
+0134    TGETS   34  29  49  ; "scaleBySize"
+0135    KSHORT  36   2
+0136    CALL    34   2   3
+0137    TSETS   34  33  52  ; "definition_padding"
+0138    MOV     35  29
+0139    TGETS   34  29  49  ; "scaleBySize"
+0140    KSHORT  36   2
+0141    CALL    34   2   3
+0142    TSETS   34  33  53  ; "definition_margin"
+0143    MOV     35  29
+0144    TGETS   34  29  49  ; "scaleBySize"
+0145    KSHORT  36  14
+0146    CALL    34   2   3
+0147    TSETS   34  33  54  ; "button_padding"
+0148    CALL    31   2   3
+0149    TDUP    32  56
+0150    MOV     33  27
+0151    KSTR    34  55      ; "Highlight"
+0152    CALL    33   2   2
+0153    TSETS   33  32  57  ; "highlight"
+0154    MOV     33  27
+0155    KSTR    34  58      ; "Unhighlight"
+0156    CALL    33   2   2
+0157    TSETS   33  32  59  ; "unhighlight"
+0158    FNEW    33  61      ; dictquicklookup.lua:75
+0159    TSETS   33  31  60  ; "init"
+0160    FNEW    33  63      ; dictquicklookup.lua:173
+0161    TSETS   33  31  62  ; "isDocless"
+0162    FNEW    33  65      ; dictquicklookup.lua:177
+0163    TSETS   33  31  64  ; "getHtmlDictionaryCss"
+0164    FNEW    33  67      ; dictquicklookup.lua:214
+0165    TSETS   33  31  66  ; "update"
+0166    FNEW    33  69      ; dictquicklookup.lua:605
+0167    TSETS   33  31  68  ; "onCloseWidget"
+0168    FNEW    33  71      ; dictquicklookup.lua:630
+0169    TSETS   33  31  70  ; "onShow"
+0170    FNEW    33  73      ; dictquicklookup.lua:637
+0171    TSETS   33  31  72  ; "getHighlightedItem"
+0172    FNEW    33  75      ; dictquicklookup.lua:642
+0173    TSETS   33  31  74  ; "getHighlightText"
+0174    FNEW    33  77      ; dictquicklookup.lua:653
+0175    TSETS   33  31  76  ; "isPrevDictAvaiable"
+0176    FNEW    33  79      ; dictquicklookup.lua:657
+0177    TSETS   33  31  78  ; "isNextDictAvaiable"
+0178    FNEW    33  81      ; dictquicklookup.lua:661
+0179    TSETS   33  31  80  ; "changeToPrevDict"
+0180    FNEW    33  83      ; dictquicklookup.lua:669
+0181    TSETS   33  31  82  ; "changeToNextDict"
+0182    FNEW    33  85      ; dictquicklookup.lua:677
+0183    TSETS   33  31  84  ; "changeDictionary"
+0184    FNEW    33  87      ; dictquicklookup.lua:716
+0185    TSETS   33  31  86  ; "changeToDefaultDict"
+0186    FNEW    33  89      ; dictquicklookup.lua:745
+0187    TSETS   33  31  88  ; "onAnyKeyPressed"
+0188    FNEW    33  91      ; dictquicklookup.lua:751
+0189    TSETS   33  31  90  ; "onTapCloseDict"
+0190    FNEW    33  93      ; dictquicklookup.lua:777
+0191    TSETS   33  31  92  ; "onClose"
+0192    FNEW    33  95      ; dictquicklookup.lua:796
+0193    TSETS   33  31  94  ; "onHoldClose"
+0194    FNEW    33  97      ; dictquicklookup.lua:813
+0195    TSETS   33  31  96  ; "onSwipe"
+0196    FNEW    33  99      ; dictquicklookup.lua:836
+0197    TSETS   33  31  98  ; "onHoldStartText"
+0198    FNEW    33 101      ; dictquicklookup.lua:842
+0199    TSETS   33  31 100  ; "onHoldPanText"
+0200    FNEW    33 103      ; dictquicklookup.lua:851
+0201    TSETS   33  31 102  ; "onHoldReleaseText"
+0202    FNEW    33 105      ; dictquicklookup.lua:861
+0203    TSETS   33  31 104  ; "onForwardingTouch"
+0204    FNEW    33 107      ; dictquicklookup.lua:872
+0205    TSETS   33  31 106  ; "onForwardingPan"
+0206    FNEW    33 109      ; dictquicklookup.lua:879
+0207    TSETS   33  31 108  ; "onForwardingPanRelease"
+0208    FNEW    33 111      ; dictquicklookup.lua:884
+0209    TSETS   33  31 110  ; "lookupInputWord"
+0210    FNEW    33 113      ; dictquicklookup.lua:914
+0211    TSETS   33  31 112  ; "inputLookup"
+0212    FNEW    33 115      ; dictquicklookup.lua:928
+0213    TSETS   33  31 114  ; "closeInputDialog"
+0214    FNEW    33 117      ; dictquicklookup.lua:932
+0215    TSETS   33  31 116  ; "resyncWikiLanguages"
+0216    FNEW    33 119      ; dictquicklookup.lua:951
+0217    TSETS   33  31 118  ; "lookupWikipedia"
+0218    UCLO     0 => 0219
+0219 => RET1    31   2
+

@@ -1,0 +1,115 @@
+
+main <./plugins/coverbrowser.koplugin/xutil.lua:0,0> (32 instructions, 128 bytes at 0x7fdee64068f0)
+0+ params, 5 slots, 0 upvalues, 4 locals, 13 constants, 3 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "ffi"
+	3	[1]	CALL     	0 2 2
+	4	[5]	NEWTABLE 	1 0 0
+	5	[9]	GETTABLE 	2 0 -3	; "cdef"
+	6	[15]	LOADK    	3 -4	; "unsigned long compressBound(unsigned long sourceLen);\nint compress2(uint8_t *dest, unsigned long *destLen,\n              const uint8_t *source, unsigned long sourceLen, int level);\nint uncompress(uint8_t *dest, unsigned long *destLen,\n               const uint8_t *source, unsigned long sourceLen);\n"
+	7	[15]	CALL     	2 2 1
+	8	[16]	GETTABLE 	2 0 -5	; "load"
+	9	[16]	GETTABLE 	3 0 -6	; "os"
+	10	[16]	EQ       	0 3 -7	; - "Windows"
+	11	[16]	JMP      	3	; to 15
+	12	[16]	LOADK    	3 -8	; "zlib1"
+	13	[16]	TEST     	3 0 1
+	14	[16]	JMP      	1	; to 16
+	15	[16]	LOADK    	3 -9	; "z"
+	16	[16]	CALL     	2 2 2
+	17	[25]	CLOSURE  	3 0	; 0x7fdee6406ab0
+	18	[25]	MOVE     	0 2
+	19	[25]	MOVE     	0 0
+	20	[18]	SETTABLE 	1 -10 3	; "zlib_compress" -
+	21	[33]	CLOSURE  	3 1	; 0x7fdee64065c0
+	22	[33]	MOVE     	0 0
+	23	[33]	MOVE     	0 2
+	24	[27]	SETTABLE 	1 -11 3	; "zlib_uncompress" -
+	25	[42]	GETTABLE 	3 0 -5	; "load"
+	26	[42]	LOADK    	4 -12	; "sqlite3"
+	27	[42]	CALL     	3 2 2
+	28	[45]	CLOSURE  	4 2	; 0x7fdee6407250
+	29	[45]	MOVE     	0 3
+	30	[43]	SETTABLE 	1 -13 4	; "sqlite_set_timeout" -
+	31	[48]	RETURN   	1 2
+	32	[48]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/xutil.lua:18,25> (35 instructions, 140 bytes at 0x7fdee6406ab0)
+1 param, 10 slots, 2 upvalues, 5 locals, 9 constants, 0 functions
+	1	[19]	GETUPVAL 	1 0	; zlib
+	2	[19]	GETTABLE 	1 1 -1	; "compressBound"
+	3	[19]	LEN      	2 0
+	4	[19]	CALL     	1 2 2
+	5	[20]	GETUPVAL 	2 1	; ffi
+	6	[20]	GETTABLE 	2 2 -2	; "new"
+	7	[20]	LOADK    	3 -3	; "uint8_t[?]"
+	8	[20]	MOVE     	4 1
+	9	[20]	CALL     	2 3 2
+	10	[21]	GETUPVAL 	3 1	; ffi
+	11	[21]	GETTABLE 	3 3 -2	; "new"
+	12	[21]	LOADK    	4 -4	; "unsigned long[1]"
+	13	[21]	MOVE     	5 1
+	14	[21]	CALL     	3 3 2
+	15	[22]	GETUPVAL 	4 0	; zlib
+	16	[22]	GETTABLE 	4 4 -5	; "compress2"
+	17	[22]	MOVE     	5 2
+	18	[22]	MOVE     	6 3
+	19	[22]	MOVE     	7 0
+	20	[22]	LEN      	8 0
+	21	[22]	LOADK    	9 -6	; 9
+	22	[22]	CALL     	4 6 2
+	23	[23]	GETGLOBAL	5 -7	; assert
+	24	[23]	EQ       	1 4 -8	; - 0
+	25	[23]	JMP      	1	; to 27
+	26	[23]	LOADBOOL 	6 0 1
+	27	[23]	LOADBOOL 	6 1 0
+	28	[23]	CALL     	5 2 1
+	29	[24]	GETUPVAL 	5 1	; ffi
+	30	[24]	GETTABLE 	5 5 -9	; "string"
+	31	[24]	MOVE     	6 2
+	32	[24]	GETTABLE 	7 3 -8	; 0
+	33	[24]	TAILCALL 	5 3 0
+	34	[24]	RETURN   	5 0
+	35	[25]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/xutil.lua:27,33> (30 instructions, 120 bytes at 0x7fdee64065c0)
+2 params, 9 slots, 2 upvalues, 5 locals, 7 constants, 0 functions
+	1	[28]	GETUPVAL 	2 0	; ffi
+	2	[28]	GETTABLE 	2 2 -1	; "new"
+	3	[28]	LOADK    	3 -2	; "uint8_t[?]"
+	4	[28]	MOVE     	4 1
+	5	[28]	CALL     	2 3 2
+	6	[29]	GETUPVAL 	3 0	; ffi
+	7	[29]	GETTABLE 	3 3 -1	; "new"
+	8	[29]	LOADK    	4 -3	; "unsigned long[1]"
+	9	[29]	MOVE     	5 1
+	10	[29]	CALL     	3 3 2
+	11	[30]	GETUPVAL 	4 1	; zlib
+	12	[30]	GETTABLE 	4 4 -4	; "uncompress"
+	13	[30]	MOVE     	5 2
+	14	[30]	MOVE     	6 3
+	15	[30]	MOVE     	7 0
+	16	[30]	LEN      	8 0
+	17	[30]	CALL     	4 5 2
+	18	[31]	GETGLOBAL	5 -5	; assert
+	19	[31]	EQ       	1 4 -6	; - 0
+	20	[31]	JMP      	1	; to 22
+	21	[31]	LOADBOOL 	6 0 1
+	22	[31]	LOADBOOL 	6 1 0
+	23	[31]	CALL     	5 2 1
+	24	[32]	GETUPVAL 	5 0	; ffi
+	25	[32]	GETTABLE 	5 5 -7	; "string"
+	26	[32]	MOVE     	6 2
+	27	[32]	GETTABLE 	7 3 -6	; 0
+	28	[32]	TAILCALL 	5 3 0
+	29	[32]	RETURN   	5 0
+	30	[33]	RETURN   	0 1
+
+function <./plugins/coverbrowser.koplugin/xutil.lua:43,45> (6 instructions, 24 bytes at 0x7fdee6407250)
+2 params, 5 slots, 1 upvalue, 2 locals, 2 constants, 0 functions
+	1	[44]	GETUPVAL 	2 0	; sql
+	2	[44]	GETTABLE 	2 2 -1	; "sqlite3_busy_timeout"
+	3	[44]	GETTABLE 	3 0 -2	; "_ptr"
+	4	[44]	MOVE     	4 1
+	5	[44]	CALL     	2 3 1
+	6	[45]	RETURN   	0 1

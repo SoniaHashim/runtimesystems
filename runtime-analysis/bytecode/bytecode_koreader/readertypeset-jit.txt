@@ -1,0 +1,1597 @@
+-- BYTECODE -- readertypeset.lua:21-23
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "menu"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "registerToMainMenu"
+0005    MOV      3   0
+0006    CALL     1   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:25-127
+0001    MOV      3   1
+0002    TGETS    2   1   1  ; "readSetting"
+0003    KSTR     4   0      ; "css"
+0004    CALL     2   2   3
+0005    IST          2
+0006    JMP      3 => 0017
+0007    GGET     2   2      ; "G_reader_settings"
+0008    MOV      3   2
+0009    TGETS    2   2   1  ; "readSetting"
+0010    KSTR     4   3      ; "copt_css"
+0011    CALL     2   2   3
+0012    IST          2
+0013    JMP      3 => 0017
+0014    TGETS    2   0   4  ; "ui"
+0015    TGETS    2   2   5  ; "document"
+0016    TGETS    2   2   6  ; "default_css"
+0017 => TSETS    2   0   0  ; "css"
+0018    TGETS    2   0   4  ; "ui"
+0019    TGETS    2   2   7  ; "styletweak"
+0020    MOV      3   2
+0021    TGETS    2   2   8  ; "getCssText"
+0022    CALL     2   2   2
+0023    TGETS    3   0   4  ; "ui"
+0024    TGETS    3   3   5  ; "document"
+0025    MOV      4   3
+0026    TGETS    3   3   9  ; "setStyleSheet"
+0027    TGETS    5   0   0  ; "css"
+0028    MOV      6   2
+0029    CALL     3   1   4
+0030    MOV      4   1
+0031    TGETS    3   1   1  ; "readSetting"
+0032    KSTR     5  10      ; "embedded_fonts"
+0033    CALL     3   2   3
+0034    TSETS    3   0  10  ; "embedded_fonts"
+0035    TGETS    3   0  10  ; "embedded_fonts"
+0036    ISNEP    3   0
+0037    JMP      3 => 0051
+0038    GGET     3   2      ; "G_reader_settings"
+0039    MOV      4   3
+0040    TGETS    3   3   1  ; "readSetting"
+0041    KSTR     5  11      ; "copt_embedded_fonts"
+0042    CALL     3   2   3
+0043    ISEQP    3   0
+0044    JMP      4 => 0047
+0045    ISNEN    3   0      ; 1
+0046    JMP      4 => 0049
+0047 => KPRI     4   2
+0048    JMP      5 => 0050
+0049 => KPRI     4   1
+0050 => TSETS    4   0  10  ; "embedded_fonts"
+0051 => TGETS    3   0  10  ; "embedded_fonts"
+0052    IST          3
+0053    JMP      3 => 0060
+0054    TGETS    3   0   4  ; "ui"
+0055    TGETS    3   3   5  ; "document"
+0056    MOV      4   3
+0057    TGETS    3   3  12  ; "setEmbeddedFonts"
+0058    KSHORT   5   0
+0059    CALL     3   1   3
+0060 => MOV      4   1
+0061    TGETS    3   1   1  ; "readSetting"
+0062    KSTR     5  13      ; "embedded_css"
+0063    CALL     3   2   3
+0064    TSETS    3   0  13  ; "embedded_css"
+0065    TGETS    3   0  13  ; "embedded_css"
+0066    ISNEP    3   0
+0067    JMP      3 => 0081
+0068    GGET     3   2      ; "G_reader_settings"
+0069    MOV      4   3
+0070    TGETS    3   3   1  ; "readSetting"
+0071    KSTR     5  14      ; "copt_embedded_css"
+0072    CALL     3   2   3
+0073    ISEQP    3   0
+0074    JMP      4 => 0077
+0075    ISNEN    3   0      ; 1
+0076    JMP      4 => 0079
+0077 => KPRI     4   2
+0078    JMP      5 => 0080
+0079 => KPRI     4   1
+0080 => TSETS    4   0  13  ; "embedded_css"
+0081 => TGETS    3   0   4  ; "ui"
+0082    TGETS    3   3   5  ; "document"
+0083    MOV      4   3
+0084    TGETS    3   3  15  ; "setEmbeddedStyleSheet"
+0085    TGETS    5   0  13  ; "embedded_css"
+0086    ISF          5
+0087    JMP      6 => 0090
+0088    KSHORT   5   1
+0089    JMP      6 => 0091
+0090 => KSHORT   5   0
+0091 => CALL     3   1   3
+0092    KSHORT   3   3
+0093    MOV      5   1
+0094    TGETS    4   1   1  ; "readSetting"
+0095    KSTR     6  17      ; "copt_block_rendering_mode"
+0096    CALL     4   2   3
+0097    TSETS    4   0  16  ; "block_rendering_mode"
+0098    TGETS    4   0  16  ; "block_rendering_mode"
+0099    IST          4
+0100    JMP      4 => 0124
+0101    MOV      5   1
+0102    TGETS    4   1   1  ; "readSetting"
+0103    KSTR     6  18      ; "last_xpointer"
+0104    CALL     4   2   3
+0105    ISF          4
+0106    JMP      5 => 0110
+0107    KSHORT   4   0
+0108    TSETS    4   0  16  ; "block_rendering_mode"
+0109    JMP      4 => 0119
+0110 => GGET     4   2      ; "G_reader_settings"
+0111    MOV      5   4
+0112    TGETS    4   4   1  ; "readSetting"
+0113    KSTR     6  17      ; "copt_block_rendering_mode"
+0114    CALL     4   2   3
+0115    IST          4
+0116    JMP      5 => 0118
+0117    MOV      4   3
+0118 => TSETS    4   0  16  ; "block_rendering_mode"
+0119 => TGETS    4   0   4  ; "ui"
+0120    TGETS    4   4   5  ; "document"
+0121    TGETS    4   4  19  ; "configurable"
+0122    TGETS    5   0  16  ; "block_rendering_mode"
+0123    TSETS    5   4  16  ; "block_rendering_mode"
+0124 => MOV      5   0
+0125    TGETS    4   0  20  ; "setBlockRenderingMode"
+0126    TGETS    6   0  16  ; "block_rendering_mode"
+0127    CALL     4   1   3
+0128    MOV      5   1
+0129    TGETS    4   1   1  ; "readSetting"
+0130    KSTR     6  21      ; "render_dpi"
+0131    CALL     4   2   3
+0132    IST          4
+0133    JMP      5 => 0142
+0134    GGET     4   2      ; "G_reader_settings"
+0135    MOV      5   4
+0136    TGETS    4   4   1  ; "readSetting"
+0137    KSTR     6  22      ; "copt_render_dpi"
+0138    CALL     4   2   3
+0139    IST          4
+0140    JMP      5 => 0142
+0141    KSHORT   4  96
+0142 => TSETS    4   0  21  ; "render_dpi"
+0143    MOV      5   0
+0144    TGETS    4   0  23  ; "setRenderDPI"
+0145    TGETS    6   0  21  ; "render_dpi"
+0146    CALL     4   1   3
+0147    MOV      5   1
+0148    TGETS    4   1   1  ; "readSetting"
+0149    KSTR     6  24      ; "copt_h_page_margins"
+0150    CALL     4   2   3
+0151    IST          4
+0152    JMP      5 => 0161
+0153    GGET     4   2      ; "G_reader_settings"
+0154    MOV      5   4
+0155    TGETS    4   4   1  ; "readSetting"
+0156    KSTR     6  24      ; "copt_h_page_margins"
+0157    CALL     4   2   3
+0158    IST          4
+0159    JMP      5 => 0161
+0160    GGET     4  25      ; "DCREREADER_CONFIG_H_MARGIN_SIZES_MEDIUM"
+0161 => MOV      6   1
+0162    TGETS    5   1   1  ; "readSetting"
+0163    KSTR     7  26      ; "copt_t_page_margin"
+0164    CALL     5   2   3
+0165    IST          5
+0166    JMP      6 => 0175
+0167    GGET     5   2      ; "G_reader_settings"
+0168    MOV      6   5
+0169    TGETS    5   5   1  ; "readSetting"
+0170    KSTR     7  26      ; "copt_t_page_margin"
+0171    CALL     5   2   3
+0172    IST          5
+0173    JMP      6 => 0175
+0174    GGET     5  27      ; "DCREREADER_CONFIG_T_MARGIN_SIZES_LARGE"
+0175 => MOV      7   1
+0176    TGETS    6   1   1  ; "readSetting"
+0177    KSTR     8  28      ; "copt_b_page_margin"
+0178    CALL     6   2   3
+0179    IST          6
+0180    JMP      7 => 0189
+0181    GGET     6   2      ; "G_reader_settings"
+0182    MOV      7   6
+0183    TGETS    6   6   1  ; "readSetting"
+0184    KSTR     8  28      ; "copt_b_page_margin"
+0185    CALL     6   2   3
+0186    IST          6
+0187    JMP      7 => 0189
+0188    GGET     6  29      ; "DCREREADER_CONFIG_B_MARGIN_SIZES_LARGE"
+0189 => TNEW     7   5
+0190    TGETB    8   4   1
+0191    TSETB    8   7   1
+0192    TSETB    5   7   2
+0193    TGETB    8   4   2
+0194    TSETB    8   7   3
+0195    TSETB    6   7   4
+0196    TSETS    7   0  30  ; "unscaled_margins"
+0197    MOV      8   0
+0198    TGETS    7   0  31  ; "onSetPageMargins"
+0199    TGETS    9   0  30  ; "unscaled_margins"
+0200    CALL     7   1   3
+0201    MOV      8   1
+0202    TGETS    7   1   1  ; "readSetting"
+0203    KSTR     9  33      ; "copt_sync_t_b_page_margins"
+0204    CALL     7   2   3
+0205    IST          7
+0206    JMP      8 => 0215
+0207    GGET     7   2      ; "G_reader_settings"
+0208    MOV      8   7
+0209    TGETS    7   7   1  ; "readSetting"
+0210    KSTR     9  33      ; "copt_sync_t_b_page_margins"
+0211    CALL     7   2   3
+0212    IST          7
+0213    JMP      8 => 0215
+0214    KSHORT   7   0
+0215 => TSETS    7   0  32  ; "sync_t_b_page_margins"
+0216    TGETS    7   0  32  ; "sync_t_b_page_margins"
+0217    ISNEN    7   0      ; 1
+0218    JMP      7 => 0221
+0219    KPRI     7   2
+0220    JMP      8 => 0222
+0221 => KPRI     7   1
+0222 => TSETS    7   0  32  ; "sync_t_b_page_margins"
+0223    MOV      8   1
+0224    TGETS    7   1   1  ; "readSetting"
+0225    KSTR     9  34      ; "floating_punctuation"
+0226    CALL     7   2   3
+0227    IST          7
+0228    JMP      8 => 0237
+0229    GGET     7   2      ; "G_reader_settings"
+0230    MOV      8   7
+0231    TGETS    7   7   1  ; "readSetting"
+0232    KSTR     9  34      ; "floating_punctuation"
+0233    CALL     7   2   3
+0234    IST          7
+0235    JMP      8 => 0237
+0236    KSHORT   7   0
+0237 => TSETS    7   0  34  ; "floating_punctuation"
+0238    MOV      8   0
+0239    TGETS    7   0  35  ; "toggleFloatingPunctuation"
+0240    TGETS    9   0  34  ; "floating_punctuation"
+0241    CALL     7   1   3
+0242    MOV      8   1
+0243    TGETS    7   1   1  ; "readSetting"
+0244    KSTR     9  36      ; "txt_preformatted"
+0245    CALL     7   2   3
+0246    IST          7
+0247    JMP      8 => 0256
+0248    GGET     7   2      ; "G_reader_settings"
+0249    MOV      8   7
+0250    TGETS    7   7   1  ; "readSetting"
+0251    KSTR     9  36      ; "txt_preformatted"
+0252    CALL     7   2   3
+0253    IST          7
+0254    JMP      8 => 0256
+0255    KSHORT   7   1
+0256 => TSETS    7   0  36  ; "txt_preformatted"
+0257    MOV      8   0
+0258    TGETS    7   0  37  ; "toggleTxtPreFormatted"
+0259    TGETS    9   0  36  ; "txt_preformatted"
+0260    CALL     7   1   3
+0261    MOV      8   1
+0262    TGETS    7   1   1  ; "readSetting"
+0263    KSTR     9  38      ; "smooth_scaling"
+0264    CALL     7   2   3
+0265    TSETS    7   0  38  ; "smooth_scaling"
+0266    TGETS    7   0  38  ; "smooth_scaling"
+0267    ISNEP    7   0
+0268    JMP      7 => 0282
+0269    GGET     7   2      ; "G_reader_settings"
+0270    MOV      8   7
+0271    TGETS    7   7   1  ; "readSetting"
+0272    KSTR     9  39      ; "copt_smooth_scaling"
+0273    CALL     7   2   3
+0274    ISEQP    7   0
+0275    JMP      8 => 0278
+0276    ISNEN    7   1      ; 0
+0277    JMP      8 => 0280
+0278 => KSHORT   8   0
+0279    JMP      9 => 0281
+0280 => KSHORT   8   1
+0281 => TSETS    8   0  38  ; "smooth_scaling"
+0282 => MOV      8   0
+0283    TGETS    7   0  40  ; "toggleImageScaling"
+0284    TGETS    9   0  38  ; "smooth_scaling"
+0285    CALL     7   1   3
+0286    MOV      8   1
+0287    TGETS    7   1   1  ; "readSetting"
+0288    KSTR     9  41      ; "nightmode_images"
+0289    CALL     7   2   3
+0290    TSETS    7   0  41  ; "nightmode_images"
+0291    TGETS    7   0  41  ; "nightmode_images"
+0292    ISNEP    7   0
+0293    JMP      7 => 0307
+0294    GGET     7   2      ; "G_reader_settings"
+0295    MOV      8   7
+0296    TGETS    7   7   1  ; "readSetting"
+0297    KSTR     9  42      ; "copt_nightmode_images"
+0298    CALL     7   2   3
+0299    ISEQP    7   0
+0300    JMP      8 => 0303
+0301    ISNEN    7   0      ; 1
+0302    JMP      8 => 0305
+0303 => KSHORT   8   1
+0304    JMP      9 => 0306
+0305 => KSHORT   8   0
+0306 => TSETS    8   0  41  ; "nightmode_images"
+0307 => MOV      8   0
+0308    TGETS    7   0  43  ; "toggleNightmodeImages"
+0309    TGETS    9   0  41  ; "nightmode_images"
+0310    CALL     7   1   3
+0311    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:129-137
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "doc_settings"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "saveSetting"
+0005    KSTR     3   3      ; "css"
+0006    TGETS    4   0   3  ; "css"
+0007    CALL     1   1   4
+0008    TGETS    1   0   0  ; "ui"
+0009    TGETS    1   1   1  ; "doc_settings"
+0010    MOV      2   1
+0011    TGETS    1   1   2  ; "saveSetting"
+0012    KSTR     3   4      ; "embedded_css"
+0013    TGETS    4   0   4  ; "embedded_css"
+0014    CALL     1   1   4
+0015    TGETS    1   0   0  ; "ui"
+0016    TGETS    1   1   1  ; "doc_settings"
+0017    MOV      2   1
+0018    TGETS    1   1   2  ; "saveSetting"
+0019    KSTR     3   5      ; "floating_punctuation"
+0020    TGETS    4   0   5  ; "floating_punctuation"
+0021    CALL     1   1   4
+0022    TGETS    1   0   0  ; "ui"
+0023    TGETS    1   1   1  ; "doc_settings"
+0024    MOV      2   1
+0025    TGETS    1   1   2  ; "saveSetting"
+0026    KSTR     3   6      ; "embedded_fonts"
+0027    TGETS    4   0   6  ; "embedded_fonts"
+0028    CALL     1   1   4
+0029    TGETS    1   0   0  ; "ui"
+0030    TGETS    1   1   1  ; "doc_settings"
+0031    MOV      2   1
+0032    TGETS    1   1   2  ; "saveSetting"
+0033    KSTR     3   7      ; "render_dpi"
+0034    TGETS    4   0   7  ; "render_dpi"
+0035    CALL     1   1   4
+0036    TGETS    1   0   0  ; "ui"
+0037    TGETS    1   1   1  ; "doc_settings"
+0038    MOV      2   1
+0039    TGETS    1   1   2  ; "saveSetting"
+0040    KSTR     3   8      ; "smooth_scaling"
+0041    TGETS    4   0   8  ; "smooth_scaling"
+0042    CALL     1   1   4
+0043    TGETS    1   0   0  ; "ui"
+0044    TGETS    1   1   1  ; "doc_settings"
+0045    MOV      2   1
+0046    TGETS    1   1   2  ; "saveSetting"
+0047    KSTR     3   9      ; "nightmode_images"
+0048    TGETS    4   0   9  ; "nightmode_images"
+0049    CALL     1   1   4
+0050    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:139-142
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "toggleEmbeddedStyleSheet"
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    KPRI     2   2
+0006    RET1     2   2
+
+-- BYTECODE -- readertypeset.lua:144-147
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "toggleEmbeddedFonts"
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    KPRI     2   2
+0006    RET1     2   2
+
+-- BYTECODE -- readertypeset.lua:149-152
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "toggleImageScaling"
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    KPRI     2   2
+0006    RET1     2   2
+
+-- BYTECODE -- readertypeset.lua:154-157
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "toggleNightmodeImages"
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    KPRI     2   2
+0006    RET1     2   2
+
+-- BYTECODE -- readertypeset.lua:159-162
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "setBlockRenderingMode"
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    KPRI     2   2
+0006    RET1     2   2
+
+-- BYTECODE -- readertypeset.lua:180-183
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "setRenderDPI"
+0003    MOV      4   1
+0004    CALL     2   1   3
+0005    KPRI     2   2
+0006    RET1     2   2
+
+-- BYTECODE -- readertypeset.lua:188-190
+0001    UGET     0   0      ; text
+0002    UGET     1   1      ; css_file
+0003    GGET     2   0      ; "G_reader_settings"
+0004    MOV      3   2
+0005    TGETS    2   2   1  ; "readSetting"
+0006    KSTR     4   2      ; "copt_css"
+0007    CALL     2   2   3
+0008    ISNEV    1   2
+0009    JMP      1 => 0012
+0010    KSTR     1   3      ; "   ★"
+0011    JMP      2 => 0013
+0012 => KSTR     1   4      ; ""
+0013 => CAT      0   0   1
+0014    RET1     0   2
+
+-- BYTECODE -- readertypeset.lua:191-193
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "setStyleSheet"
+0004    UGET     2   1      ; css_file
+0005    IST          2
+0006    JMP      3 => 0011
+0007    UGET     2   0      ; self
+0008    TGETS    2   2   1  ; "ui"
+0009    TGETS    2   2   2  ; "document"
+0010    TGETS    2   2   3  ; "default_css"
+0011 => CALL     0   1   3
+0012    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:194-196
+0001    UGET     1   0      ; self
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "makeDefaultStyleSheet"
+0004    UGET     3   1      ; css_file
+0005    UGET     4   2      ; text
+0006    MOV      5   0
+0007    CALL     1   1   5
+0008    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:197-202
+0001    UGET     0   0      ; css_file
+0002    IST          0
+0003    JMP      0 => 0016
+0004    UGET     0   1      ; self
+0005    TGETS    0   0   0  ; "css"
+0006    UGET     1   1      ; self
+0007    TGETS    1   1   1  ; "ui"
+0008    TGETS    1   1   2  ; "document"
+0009    TGETS    1   1   3  ; "default_css"
+0010    ISEQV    0   1
+0011    JMP      0 => 0014
+0012    KPRI     0   1
+0013    JMP      1 => 0015
+0014 => KPRI     0   2
+0015 => RET1     0   2
+0016 => UGET     0   0      ; css_file
+0017    UGET     1   1      ; self
+0018    TGETS    1   1   0  ; "css"
+0019    ISEQV    0   1
+0020    JMP      0 => 0023
+0021    KPRI     0   1
+0022    JMP      1 => 0024
+0023 => KPRI     0   2
+0024 => RET1     0   2
+
+-- BYTECODE -- readertypeset.lua:186-205
+0001    TDUP     3   1
+0002    FNEW     4   0      ; readertypeset.lua:188
+0003    TSETS    4   3   2  ; "text_func"
+0004    FNEW     4   3      ; readertypeset.lua:191
+0005    TSETS    4   3   4  ; "callback"
+0006    FNEW     4   5      ; readertypeset.lua:194
+0007    TSETS    4   3   6  ; "hold_callback"
+0008    FNEW     4   7      ; readertypeset.lua:197
+0009    TSETS    4   3   8  ; "checked_func"
+0010    TSETS    2   3   9  ; "separator"
+0011    UCLO     0 => 0012
+0012 => RET1     3   2
+
+-- BYTECODE -- readertypeset.lua:253-262
+0001    UGET     0   0      ; _
+0002    KSTR     1   0      ; "Obsolete"
+0003    CALL     0   2   2
+0004    UGET     1   1      ; obsoleted_css
+0005    UGET     2   2      ; self
+0006    TGETS    2   2   1  ; "css"
+0007    TGETV    1   1   2
+0008    ISF          1
+0009    JMP      2 => 0023
+0010    UGET     1   3      ; T
+0011    UGET     2   0      ; _
+0012    KSTR     3   2      ; "Obsolete (%1)"
+0013    CALL     2   2   2
+0014    UGET     3   4      ; BD
+0015    TGETS    3   3   3  ; "filename"
+0016    UGET     4   1      ; obsoleted_css
+0017    UGET     5   2      ; self
+0018    TGETS    5   5   1  ; "css"
+0019    TGETV    4   4   5
+0020    CALL     3   0   2
+0021    CALLM    1   2   1
+0022    MOV      0   1
+0023 => UGET     1   1      ; obsoleted_css
+0024    GGET     2   4      ; "G_reader_settings"
+0025    MOV      3   2
+0026    TGETS    2   2   5  ; "readSetting"
+0027    KSTR     4   6      ; "copt_css"
+0028    CALL     2   2   3
+0029    TGETV    1   1   2
+0030    ISF          1
+0031    JMP      2 => 0035
+0032    MOV      1   0
+0033    KSTR     2   7      ; "   ★"
+0034    CAT      0   1   2
+0035 => RET1     0   2
+
+-- BYTECODE -- readertypeset.lua:264-266
+0001    UGET     0   0      ; obsoleted_css
+0002    UGET     1   1      ; self
+0003    TGETS    1   1   0  ; "css"
+0004    TGETV    0   0   1
+0005    ISNEP    0   0
+0006    JMP      0 => 0009
+0007    KPRI     0   1
+0008    JMP      1 => 0010
+0009 => KPRI     0   2
+0010 => RET1     0   2
+
+-- BYTECODE -- readertypeset.lua:185-269
+0001    FNEW     1   0      ; readertypeset.lua:186
+0002    TNEW     2   0
+0003    TNEW     3   0
+0004    GGET     4   1      ; "table"
+0005    TGETS    4   4   2  ; "insert"
+0006    MOV      5   2
+0007    MOV      6   1
+0008    UGET     7   0      ; _
+0009    KSTR     8   3      ; "None"
+0010    CALL     7   2   2
+0011    KSTR     8   4      ; ""
+0012    CALL     6   0   3
+0013    CALLM    4   1   1
+0014    GGET     4   1      ; "table"
+0015    TGETS    4   4   2  ; "insert"
+0016    MOV      5   2
+0017    MOV      6   1
+0018    UGET     7   0      ; _
+0019    KSTR     8   5      ; "Auto"
+0020    CALL     7   2   2
+0021    KPRI     8   0
+0022    KPRI     9   2
+0023    CALL     6   0   4
+0024    CALLM    4   1   1
+0025    TNEW     4   0
+0026    UGET     5   1      ; lfs
+0027    TGETS    5   5   6  ; "dir"
+0028    KSTR     6   7      ; "./data"
+0029    CALL     5   4   2
+0030    JMP      8 => 0051
+0031 => UGET     9   1      ; lfs
+0032    TGETS    9   9   8  ; "attributes"
+0033    KSTR    10   9      ; "./data/"
+0034    MOV     11   8
+0035    CAT     10  10  11
+0036    KSTR    11  10      ; "mode"
+0037    CALL     9   2   3
+0038    ISNES    9  11      ; "file"
+0039    JMP      9 => 0051
+0040    GGET     9  12      ; "string"
+0041    TGETS    9   9  13  ; "match"
+0042    MOV     10   8
+0043    KSTR    11  14      ; "%.css$"
+0044    CALL     9   2   3
+0045    ISF          9
+0046    JMP     10 => 0051
+0047    KSTR     9   9      ; "./data/"
+0048    MOV     10   8
+0049    CAT      9   9  10
+0050    TSETV    9   4   8
+0051 => ITERC    8   2   3
+0052    ITERL    8 => 0031
+0053    TGETS    5   4  15  ; "epub.css"
+0054    ISF          5
+0055    JMP      6 => 0068
+0056    GGET     5   1      ; "table"
+0057    TGETS    5   5   2  ; "insert"
+0058    MOV      6   2
+0059    MOV      7   1
+0060    UGET     8   0      ; _
+0061    KSTR     9  16      ; "HTML / EPUB (epub.css)"
+0062    CALL     8   2   2
+0063    TGETS    9   4  15  ; "epub.css"
+0064    CALL     7   0   3
+0065    CALLM    5   1   1
+0066    KPRI     5   0
+0067    TSETS    5   4  15  ; "epub.css"
+0068 => TGETS    5   4  17  ; "html5.css"
+0069    ISF          5
+0070    JMP      6 => 0083
+0071    GGET     5   1      ; "table"
+0072    TGETS    5   5   2  ; "insert"
+0073    MOV      6   2
+0074    MOV      7   1
+0075    UGET     8   0      ; _
+0076    KSTR     9  18      ; "HTML5 (html5.css)"
+0077    CALL     8   2   2
+0078    TGETS    9   4  17  ; "html5.css"
+0079    CALL     7   0   3
+0080    CALLM    5   1   1
+0081    KPRI     5   0
+0082    TSETS    5   4  17  ; "html5.css"
+0083 => TGETS    5   4  19  ; "fb2.css"
+0084    ISF          5
+0085    JMP      6 => 0099
+0086    GGET     5   1      ; "table"
+0087    TGETS    5   5   2  ; "insert"
+0088    MOV      6   2
+0089    MOV      7   1
+0090    UGET     8   0      ; _
+0091    KSTR     9  20      ; "FictionBook (fb2.css)"
+0092    CALL     8   2   2
+0093    TGETS    9   4  19  ; "fb2.css"
+0094    KPRI    10   2
+0095    CALL     7   0   4
+0096    CALLM    5   1   1
+0097    KPRI     5   0
+0098    TSETS    5   4  19  ; "fb2.css"
+0099 => TNEW     5   0
+0100    GGET     6  21      ; "ipairs"
+0101    UGET     7   2      ; OBSOLETED_CSS
+0102    CALL     6   4   2
+0103    JMP      9 => 0119
+0104 => TGETV   11   4  10
+0105    TSETV   10   5  11
+0106    TGETV   11   4  10
+0107    ISF         11
+0108    JMP     12 => 0119
+0109    GGET    11   1      ; "table"
+0110    TGETS   11  11   2  ; "insert"
+0111    MOV     12   3
+0112    MOV     13   1
+0113    MOV     14  10
+0114    TGETV   15   4  10
+0115    CALL    13   0   3
+0116    CALLM   11   1   1
+0117    KPRI    11   0
+0118    TSETV   11   4  10
+0119 => ITERC    9   3   3
+0120    ITERL    9 => 0104
+0121    TNEW     6   0
+0122    GGET     7  22      ; "pairs"
+0123    MOV      8   4
+0124    CALL     7   4   2
+0125    ISNEXT  10 => 0131
+0126 => GGET    12   1      ; "table"
+0127    TGETS   12  12   2  ; "insert"
+0128    MOV     13   6
+0129    MOV     14  10
+0130    CALL    12   1   3
+0131 => ITERN   10   3   3
+0132    ITERL   10 => 0126
+0133    GGET     7   1      ; "table"
+0134    TGETS    7   7  23  ; "sort"
+0135    MOV      8   6
+0136    CALL     7   1   2
+0137    GGET     7  21      ; "ipairs"
+0138    MOV      8   6
+0139    CALL     7   4   2
+0140    JMP     10 => 0149
+0141 => GGET    12   1      ; "table"
+0142    TGETS   12  12   2  ; "insert"
+0143    MOV     13   2
+0144    MOV     14   1
+0145    MOV     15  11
+0146    TGETV   16   4  11
+0147    CALL    14   0   3
+0148    CALLM   12   1   1
+0149 => ITERC   10   3   3
+0150    ITERL   10 => 0141
+0151    LEN      7   2
+0152    TGETV    7   2   7
+0153    KPRI     8   2
+0154    TSETS    8   7  24  ; "separator"
+0155    GGET     7   1      ; "table"
+0156    TGETS    7   7   2  ; "insert"
+0157    MOV      8   2
+0158    TDUP     9  26
+0159    FNEW    10  25      ; readertypeset.lua:253
+0160    TSETS   10   9  27  ; "text_func"
+0161    TSETS    3   9  28  ; "sub_item_table"
+0162    FNEW    10  29      ; readertypeset.lua:264
+0163    TSETS   10   9  30  ; "checked_func"
+0164    CALL     7   1   3
+0165    UCLO     0 => 0166
+0166 => RET1     2   2
+
+-- BYTECODE -- readertypeset.lua:271-276
+0001    TGETS    1   0   0  ; "ui"
+0002    TGETS    1   1   1  ; "styletweak"
+0003    MOV      2   1
+0004    TGETS    1   1   2  ; "getCssText"
+0005    CALL     1   2   2
+0006    TGETS    2   0   0  ; "ui"
+0007    TGETS    2   2   3  ; "document"
+0008    MOV      3   2
+0009    TGETS    2   2   4  ; "setStyleSheet"
+0010    TGETS    4   0   5  ; "css"
+0011    MOV      5   1
+0012    CALL     2   1   4
+0013    TGETS    2   0   0  ; "ui"
+0014    MOV      3   2
+0015    TGETS    2   2   6  ; "handleEvent"
+0016    UGET     4   0      ; Event
+0017    MOV      5   4
+0018    TGETS    4   4   7  ; "new"
+0019    KSTR     6   8      ; "UpdatePos"
+0020    CALL     4   0   3
+0021    CALLM    2   1   1
+0022    KPRI     2   2
+0023    RET1     2   2
+
+-- BYTECODE -- readertypeset.lua:278-285
+0001    TGETS    2   0   0  ; "css"
+0002    ISEQV    1   2
+0003    JMP      2 => 0026
+0004    TSETS    1   0   0  ; "css"
+0005    TGETS    2   0   1  ; "ui"
+0006    TGETS    2   2   2  ; "styletweak"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "getCssText"
+0009    CALL     2   2   2
+0010    TGETS    3   0   1  ; "ui"
+0011    TGETS    3   3   4  ; "document"
+0012    MOV      4   3
+0013    TGETS    3   3   5  ; "setStyleSheet"
+0014    MOV      5   1
+0015    MOV      6   2
+0016    CALL     3   1   4
+0017    TGETS    3   0   1  ; "ui"
+0018    MOV      4   3
+0019    TGETS    3   3   6  ; "handleEvent"
+0020    UGET     5   0      ; Event
+0021    MOV      6   5
+0022    TGETS    5   5   7  ; "new"
+0023    KSTR     7   8      ; "UpdatePos"
+0024    CALL     5   0   3
+0025    CALLM    3   1   1
+0026 => RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:287-295
+0001    TGETS    1   0   0  ; "css"
+0002    ISEQP    1   0
+0003    JMP      1 => 0027
+0004    TGETS    1   0   1  ; "ui"
+0005    TGETS    1   1   2  ; "document"
+0006    MOV      2   1
+0007    TGETS    1   1   3  ; "setStyleSheet"
+0008    KSTR     3   4      ; ""
+0009    CALL     1   1   3
+0010    TGETS    1   0   1  ; "ui"
+0011    TGETS    1   1   2  ; "document"
+0012    MOV      2   1
+0013    TGETS    1   1   5  ; "setEmbeddedStyleSheet"
+0014    KSHORT   3   1
+0015    CALL     1   1   3
+0016    KPRI     1   0
+0017    TSETS    1   0   0  ; "css"
+0018    TGETS    1   0   1  ; "ui"
+0019    MOV      2   1
+0020    TGETS    1   1   6  ; "handleEvent"
+0021    UGET     3   0      ; Event
+0022    MOV      4   3
+0023    TGETS    3   3   7  ; "new"
+0024    KSTR     5   8      ; "UpdatePos"
+0025    CALL     3   0   3
+0026    CALLM    1   1   1
+0027 => RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:297-308
+0001    IST          1
+0002    JMP      2 => 0018
+0003    KPRI     2   1
+0004    TSETS    2   0   0  ; "embedded_css"
+0005    MOV      3   0
+0006    TGETS    2   0   1  ; "setStyleSheet"
+0007    TGETS    4   0   2  ; "ui"
+0008    TGETS    4   4   3  ; "document"
+0009    TGETS    4   4   4  ; "default_css"
+0010    CALL     2   1   3
+0011    TGETS    2   0   2  ; "ui"
+0012    TGETS    2   2   3  ; "document"
+0013    MOV      3   2
+0014    TGETS    2   2   5  ; "setEmbeddedStyleSheet"
+0015    KSHORT   4   0
+0016    CALL     2   1   3
+0017    JMP      2 => 0026
+0018 => KPRI     2   2
+0019    TSETS    2   0   0  ; "embedded_css"
+0020    TGETS    2   0   2  ; "ui"
+0021    TGETS    2   2   3  ; "document"
+0022    MOV      3   2
+0023    TGETS    2   2   5  ; "setEmbeddedStyleSheet"
+0024    KSHORT   4   1
+0025    CALL     2   1   3
+0026 => TGETS    2   0   2  ; "ui"
+0027    MOV      3   2
+0028    TGETS    2   2   6  ; "handleEvent"
+0029    UGET     4   0      ; Event
+0030    MOV      5   4
+0031    TGETS    4   4   7  ; "new"
+0032    KSTR     6   8      ; "UpdatePos"
+0033    CALL     4   0   3
+0034    CALLM    2   1   1
+0035    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:310-319
+0001    IST          1
+0002    JMP      2 => 0012
+0003    KPRI     2   1
+0004    TSETS    2   0   0  ; "embedded_fonts"
+0005    TGETS    2   0   1  ; "ui"
+0006    TGETS    2   2   2  ; "document"
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "setEmbeddedFonts"
+0009    KSHORT   4   0
+0010    CALL     2   1   3
+0011    JMP      2 => 0020
+0012 => KPRI     2   2
+0013    TSETS    2   0   0  ; "embedded_fonts"
+0014    TGETS    2   0   1  ; "ui"
+0015    TGETS    2   2   2  ; "document"
+0016    MOV      3   2
+0017    TGETS    2   2   3  ; "setEmbeddedFonts"
+0018    KSHORT   4   1
+0019    CALL     2   1   3
+0020 => TGETS    2   0   1  ; "ui"
+0021    MOV      3   2
+0022    TGETS    2   2   4  ; "handleEvent"
+0023    UGET     4   0      ; Event
+0024    MOV      5   4
+0025    TGETS    4   4   5  ; "new"
+0026    KSTR     6   6      ; "UpdatePos"
+0027    CALL     4   0   3
+0028    CALLM    2   1   1
+0029    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:356-382
+0001    ADDVN    2   1   0  ; 1
+0002    UGET     3   0      ; BLOCK_RENDERING_FLAGS
+0003    LEN      3   3
+0004    ISGE     3   2
+0005    JMP      2 => 0009
+0006    UGET     2   0      ; BLOCK_RENDERING_FLAGS
+0007    LEN      2   2
+0008    SUBVN    1   2   0  ; 1
+0009 => UGET     2   0      ; BLOCK_RENDERING_FLAGS
+0010    ADDVN    3   1   0  ; 1
+0011    TGETV    2   2   3
+0012    IST          2
+0013    JMP      3 => 0015
+0014    RET0     0   1
+0015 => TSETS    1   0   0  ; "block_rendering_mode"
+0016    TGETS    3   0   1  ; "ensure_saner_block_rendering_flags"
+0017    ISF          3
+0018    JMP      4 => 0037
+0019    GGET     3   2      ; "bit"
+0020    TGETS    3   3   3  ; "band"
+0021    MOV      4   2
+0022    GGET     5   2      ; "bit"
+0023    TGETS    5   5   4  ; "bnot"
+0024    KNUM     6   1      ; 16777216
+0025    CALL     5   0   2
+0026    CALLM    3   2   1
+0027    MOV      2   3
+0028    GGET     3   2      ; "bit"
+0029    TGETS    3   3   3  ; "band"
+0030    MOV      4   2
+0031    GGET     5   2      ; "bit"
+0032    TGETS    5   5   4  ; "bnot"
+0033    KNUM     6   2      ; 33554432
+0034    CALL     5   0   2
+0035    CALLM    3   2   1
+0036    MOV      2   3
+0037 => TGETS    3   0   5  ; "ui"
+0038    TGETS    3   3   6  ; "document"
+0039    MOV      4   3
+0040    TGETS    3   3   7  ; "setBlockRenderingFlags"
+0041    MOV      5   2
+0042    CALL     3   1   3
+0043    TGETS    3   0   5  ; "ui"
+0044    MOV      4   3
+0045    TGETS    3   3   8  ; "handleEvent"
+0046    UGET     5   1      ; Event
+0047    MOV      6   5
+0048    TGETS    5   5   9  ; "new"
+0049    KSTR     7  10      ; "UpdatePos"
+0050    CALL     5   0   3
+0051    CALLM    3   1   1
+0052    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:384-390
+0001    KPRI     2   2
+0002    TSETS    2   0   0  ; "ensure_saner_block_rendering_flags"
+0003    MOV      3   0
+0004    TGETS    2   0   1  ; "setBlockRenderingMode"
+0005    TGETS    4   0   2  ; "block_rendering_mode"
+0006    CALL     2   1   3
+0007    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:392-401
+0001    ISF          1
+0002    JMP      2 => 0016
+0003    ISEQP    1   2
+0004    JMP      2 => 0007
+0005    ISNEN    1   0      ; 1
+0006    JMP      2 => 0016
+0007 => KPRI     2   2
+0008    TSETS    2   0   0  ; "smooth_scaling"
+0009    TGETS    2   0   1  ; "ui"
+0010    TGETS    2   2   2  ; "document"
+0011    MOV      3   2
+0012    TGETS    2   2   3  ; "setImageScaling"
+0013    KPRI     4   2
+0014    CALL     2   1   3
+0015    JMP      2 => 0024
+0016 => KPRI     2   1
+0017    TSETS    2   0   0  ; "smooth_scaling"
+0018    TGETS    2   0   1  ; "ui"
+0019    TGETS    2   2   2  ; "document"
+0020    MOV      3   2
+0021    TGETS    2   2   3  ; "setImageScaling"
+0022    KPRI     4   1
+0023    CALL     2   1   3
+0024 => TGETS    2   0   1  ; "ui"
+0025    MOV      3   2
+0026    TGETS    2   2   4  ; "handleEvent"
+0027    UGET     4   0      ; Event
+0028    MOV      5   4
+0029    TGETS    4   4   5  ; "new"
+0030    KSTR     6   6      ; "UpdatePos"
+0031    CALL     4   0   3
+0032    CALLM    2   1   1
+0033    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:403-412
+0001    ISF          1
+0002    JMP      2 => 0016
+0003    ISEQP    1   2
+0004    JMP      2 => 0007
+0005    ISNEN    1   0      ; 1
+0006    JMP      2 => 0016
+0007 => KPRI     2   2
+0008    TSETS    2   0   0  ; "nightmode_images"
+0009    TGETS    2   0   1  ; "ui"
+0010    TGETS    2   2   2  ; "document"
+0011    MOV      3   2
+0012    TGETS    2   2   3  ; "setNightmodeImages"
+0013    KPRI     4   2
+0014    CALL     2   1   3
+0015    JMP      2 => 0024
+0016 => KPRI     2   1
+0017    TSETS    2   0   0  ; "nightmode_images"
+0018    TGETS    2   0   1  ; "ui"
+0019    TGETS    2   2   2  ; "document"
+0020    MOV      3   2
+0021    TGETS    2   2   3  ; "setNightmodeImages"
+0022    KPRI     4   1
+0023    CALL     2   1   3
+0024 => TGETS    2   0   1  ; "ui"
+0025    MOV      3   2
+0026    TGETS    2   2   4  ; "handleEvent"
+0027    UGET     4   0      ; Event
+0028    MOV      5   4
+0029    TGETS    4   4   5  ; "new"
+0030    KSTR     6   6      ; "UpdatePos"
+0031    CALL     4   0   3
+0032    CALLM    2   1   1
+0033    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:414-424
+0001    ISNEP    1   2
+0002    JMP      2 => 0005
+0003    KSHORT   1   1
+0004    JMP      2 => 0008
+0005 => ISNEP    1   1
+0006    JMP      2 => 0008
+0007    KSHORT   1   0
+0008 => TGETS    2   0   0  ; "ui"
+0009    TGETS    2   2   1  ; "document"
+0010    MOV      3   2
+0011    TGETS    2   2   2  ; "setFloatingPunctuation"
+0012    MOV      4   1
+0013    CALL     2   1   3
+0014    TGETS    2   0   0  ; "ui"
+0015    MOV      3   2
+0016    TGETS    2   2   3  ; "handleEvent"
+0017    UGET     4   0      ; Event
+0018    MOV      5   4
+0019    TGETS    4   4   4  ; "new"
+0020    KSTR     6   5      ; "UpdatePos"
+0021    CALL     4   0   3
+0022    CALLM    2   1   1
+0023    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:426-429
+0001    TGETS    2   0   0  ; "ui"
+0002    TGETS    2   2   1  ; "document"
+0003    MOV      3   2
+0004    TGETS    2   2   2  ; "setTxtPreFormatted"
+0005    MOV      4   1
+0006    CALL     2   1   3
+0007    TGETS    2   0   0  ; "ui"
+0008    MOV      3   2
+0009    TGETS    2   2   3  ; "handleEvent"
+0010    UGET     4   0      ; Event
+0011    MOV      5   4
+0012    TGETS    4   4   4  ; "new"
+0013    KSTR     6   5      ; "UpdatePos"
+0014    CALL     4   0   3
+0015    CALLM    2   1   1
+0016    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:431-435
+0001    TSETS    1   0   0  ; "render_dpi"
+0002    TGETS    2   0   1  ; "ui"
+0003    TGETS    2   2   2  ; "document"
+0004    MOV      3   2
+0005    TGETS    2   2   3  ; "setRenderDPI"
+0006    MOV      4   1
+0007    CALL     2   1   3
+0008    TGETS    2   0   1  ; "ui"
+0009    MOV      3   2
+0010    TGETS    2   2   4  ; "handleEvent"
+0011    UGET     4   0      ; Event
+0012    MOV      5   4
+0013    TGETS    4   4   5  ; "new"
+0014    KSTR     6   6      ; "UpdatePos"
+0015    CALL     4   0   3
+0016    CALLM    2   1   1
+0017    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:446-446
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "floating_punctuation"
+0003    ISEQN    0   0      ; 1
+0004    JMP      0 => 0007
+0005    KPRI     0   1
+0006    JMP      1 => 0008
+0007 => KPRI     0   2
+0008 => RET1     0   2
+
+-- BYTECODE -- readertypeset.lua:447-450
+0001    UGET     0   0      ; self
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   0  ; "floating_punctuation"
+0004    ISNEN    1   0      ; 1
+0005    JMP      1 => 0008
+0006    KSHORT   1   0
+0007    JMP      2 => 0009
+0008 => KSHORT   1   1
+0009 => TSETS    1   0   0  ; "floating_punctuation"
+0010    UGET     0   0      ; self
+0011    MOV      1   0
+0012    TGETS    0   0   1  ; "toggleFloatingPunctuation"
+0013    UGET     2   0      ; self
+0014    TGETS    2   2   0  ; "floating_punctuation"
+0015    CALL     0   1   3
+0016    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:451-451
+0001    UGET     0   0      ; self
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "makeDefaultFloatingPunctuation"
+0004    CALL     0   1   2
+0005    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:437-453
+0001    TDUP     2   2
+0002    TGETS    3   0   1  ; "css_menu_title"
+0003    TSETS    3   2   3  ; "text"
+0004    MOV      4   0
+0005    TGETS    3   0   4  ; "genStyleSheetMenu"
+0006    CALL     3   2   2
+0007    TSETS    3   2   5  ; "sub_item_table"
+0008    TSETS    2   1   0  ; "set_render_style"
+0009    TDUP     2   8
+0010    UGET     3   0      ; _
+0011    KSTR     4   7      ; "Hanging punctuation"
+0012    CALL     3   2   2
+0013    TSETS    3   2   3  ; "text"
+0014    FNEW     3   9      ; readertypeset.lua:446
+0015    TSETS    3   2  10  ; "checked_func"
+0016    FNEW     3  11      ; readertypeset.lua:447
+0017    TSETS    3   2  12  ; "callback"
+0018    FNEW     3  13      ; readertypeset.lua:451
+0019    TSETS    3   2  14  ; "hold_callback"
+0020    TSETS    2   1   6  ; "floating_punctuation"
+0021    UCLO     0 => 0022
+0022 => RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:460-462
+0001    UGET     0   0      ; floating_punctuation
+0002    ISF          0
+0003    JMP      1 => 0009
+0004    UGET     0   1      ; _
+0005    KSTR     1   0      ; "Disable"
+0006    CALL     0   2   2
+0007    IST          0
+0008    JMP      1 => 0012
+0009 => UGET     0   1      ; _
+0010    KSTR     1   1      ; "Disable (★)"
+0011    CALL     0   2   2
+0012 => RET1     0   2
+
+-- BYTECODE -- readertypeset.lua:463-465
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "floating_punctuation"
+0005    KPRI     3   1
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:466-468
+0001    UGET     0   0      ; floating_punctuation
+0002    ISF          0
+0003    JMP      1 => 0009
+0004    UGET     0   1      ; _
+0005    KSTR     1   0      ; "Enable (★)"
+0006    CALL     0   2   2
+0007    IST          0
+0008    JMP      1 => 0012
+0009 => UGET     0   1      ; _
+0010    KSTR     1   1      ; "Enable"
+0011    CALL     0   2   2
+0012 => RET1     0   2
+
+-- BYTECODE -- readertypeset.lua:469-471
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "floating_punctuation"
+0005    KPRI     3   2
+0006    CALL     0   1   4
+0007    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:455-473
+0001    GGET     1   0      ; "G_reader_settings"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "isTrue"
+0004    KSTR     3   2      ; "floating_punctuation"
+0005    CALL     1   2   3
+0006    UGET     2   0      ; UIManager
+0007    MOV      3   2
+0008    TGETS    2   2   3  ; "show"
+0009    UGET     4   1      ; MultiConfirmBox
+0010    MOV      5   4
+0011    TGETS    4   4   4  ; "new"
+0012    TDUP     6   7
+0013    ISF          1
+0014    JMP      7 => 0020
+0015    UGET     7   2      ; _
+0016    KSTR     8   5      ; "Would you like to enable or disable hang"~
+0017    CALL     7   2   2
+0018    IST          7
+0019    JMP      8 => 0023
+0020 => UGET     7   2      ; _
+0021    KSTR     8   6      ; "Would you like to enable or disable hang"~
+0022    CALL     7   2   2
+0023 => TSETS    7   6   8  ; "text"
+0024    FNEW     7   9      ; readertypeset.lua:460
+0025    TSETS    7   6  10  ; "choice1_text_func"
+0026    FNEW     7  11      ; readertypeset.lua:463
+0027    TSETS    7   6  12  ; "choice1_callback"
+0028    FNEW     7  13      ; readertypeset.lua:466
+0029    TSETS    7   6  14  ; "choice2_text_func"
+0030    FNEW     7  15      ; readertypeset.lua:469
+0031    TSETS    7   6  16  ; "choice2_callback"
+0032    CALL     4   0   3
+0033    CALLM    2   1   1
+0034    UCLO     0 => 0035
+0035 => RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:478-481
+0001    GGET     0   0      ; "G_reader_settings"
+0002    MOV      1   0
+0003    TGETS    0   0   1  ; "saveSetting"
+0004    KSTR     2   2      ; "copt_css"
+0005    UGET     3   0      ; css
+0006    CALL     0   1   4
+0007    UGET     0   1      ; touchmenu_instance
+0008    ISF          0
+0009    JMP      1 => 0014
+0010    UGET     0   1      ; touchmenu_instance
+0011    MOV      1   0
+0012    TGETS    0   0   3  ; "updateItems"
+0013    CALL     0   1   2
+0014 => RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:475-483
+0001    UGET     4   0      ; UIManager
+0002    MOV      5   4
+0003    TGETS    4   4   0  ; "show"
+0004    UGET     6   1      ; ConfirmBox
+0005    MOV      7   6
+0006    TGETS    6   6   1  ; "new"
+0007    TDUP     8   4
+0008    UGET     9   2      ; T
+0009    UGET    10   3      ; _
+0010    KSTR    11   2      ; "Set default style to %1?"
+0011    CALL    10   2   2
+0012    UGET    11   4      ; BD
+0013    TGETS   11  11   3  ; "filename"
+0014    MOV     12   2
+0015    CALL    11   0   2
+0016    CALLM    9   2   1
+0017    TSETS    9   8   5  ; "text"
+0018    FNEW     9   6      ; readertypeset.lua:478
+0019    TSETS    9   8   7  ; "ok_callback"
+0020    CALL     6   0   3
+0021    CALLM    4   1   1
+0022    UCLO     0 => 0023
+0023 => RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:485-488
+0001    TNEW     3   5
+0002    TGETB    4   1   1
+0003    TSETB    4   3   1
+0004    TGETS    4   0   0  ; "unscaled_margins"
+0005    TGETB    4   4   2
+0006    TSETB    4   3   2
+0007    TGETB    4   1   2
+0008    TSETB    4   3   3
+0009    TGETS    4   0   0  ; "unscaled_margins"
+0010    TGETB    4   4   4
+0011    TSETB    4   3   4
+0012    TSETS    3   0   0  ; "unscaled_margins"
+0013    TGETS    3   0   1  ; "ui"
+0014    MOV      4   3
+0015    TGETS    3   3   2  ; "handleEvent"
+0016    UGET     5   0      ; Event
+0017    MOV      6   5
+0018    TGETS    5   5   3  ; "new"
+0019    KSTR     7   4      ; "SetPageMargins"
+0020    TGETS    8   0   0  ; "unscaled_margins"
+0021    MOV      9   2
+0022    CALL     5   0   5
+0023    CALLM    3   1   1
+0024    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:490-498
+0001    TNEW     3   5
+0002    TGETS    4   0   0  ; "unscaled_margins"
+0003    TGETB    4   4   1
+0004    TSETB    4   3   1
+0005    TSETB    1   3   2
+0006    TGETS    4   0   0  ; "unscaled_margins"
+0007    TGETB    4   4   3
+0008    TSETB    4   3   3
+0009    TGETS    4   0   0  ; "unscaled_margins"
+0010    TGETB    4   4   4
+0011    TSETB    4   3   4
+0012    TSETS    3   0   0  ; "unscaled_margins"
+0013    TGETS    3   0   1  ; "sync_t_b_page_margins"
+0014    ISF          3
+0015    JMP      4 => 0022
+0016    TGETS    3   0   0  ; "unscaled_margins"
+0017    TSETB    1   3   4
+0018    TGETS    3   0   2  ; "ui"
+0019    TGETS    3   3   3  ; "document"
+0020    TGETS    3   3   4  ; "configurable"
+0021    TSETS    1   3   5  ; "b_page_margin"
+0022 => TGETS    3   0   2  ; "ui"
+0023    MOV      4   3
+0024    TGETS    3   3   6  ; "handleEvent"
+0025    UGET     5   0      ; Event
+0026    MOV      6   5
+0027    TGETS    5   5   7  ; "new"
+0028    KSTR     7   8      ; "SetPageMargins"
+0029    TGETS    8   0   0  ; "unscaled_margins"
+0030    MOV      9   2
+0031    CALL     5   0   5
+0032    CALLM    3   1   1
+0033    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:500-508
+0001    TNEW     3   5
+0002    TGETS    4   0   0  ; "unscaled_margins"
+0003    TGETB    4   4   1
+0004    TSETB    4   3   1
+0005    TGETS    4   0   0  ; "unscaled_margins"
+0006    TGETB    4   4   2
+0007    TSETB    4   3   2
+0008    TGETS    4   0   0  ; "unscaled_margins"
+0009    TGETB    4   4   3
+0010    TSETB    4   3   3
+0011    TSETB    1   3   4
+0012    TSETS    3   0   0  ; "unscaled_margins"
+0013    TGETS    3   0   1  ; "sync_t_b_page_margins"
+0014    ISF          3
+0015    JMP      4 => 0022
+0016    TGETS    3   0   0  ; "unscaled_margins"
+0017    TSETB    1   3   2
+0018    TGETS    3   0   2  ; "ui"
+0019    TGETS    3   3   3  ; "document"
+0020    TGETS    3   3   4  ; "configurable"
+0021    TSETS    1   3   5  ; "t_page_margin"
+0022 => TGETS    3   0   2  ; "ui"
+0023    MOV      4   3
+0024    TGETS    3   3   6  ; "handleEvent"
+0025    UGET     5   0      ; Event
+0026    MOV      6   5
+0027    TGETS    5   5   7  ; "new"
+0028    KSTR     7   8      ; "SetPageMargins"
+0029    TGETS    8   0   0  ; "unscaled_margins"
+0030    MOV      9   2
+0031    CALL     5   0   5
+0032    CALLM    3   1   1
+0033    RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:510-532
+0001    TGETS    3   0   0  ; "sync_t_b_page_margins"
+0002    NOT      3   3
+0003    TSETS    3   0   0  ; "sync_t_b_page_margins"
+0004    TGETS    3   0   0  ; "sync_t_b_page_margins"
+0005    ISF          3
+0006    JMP      4 => 0052
+0007    TGETS    3   0   1  ; "unscaled_margins"
+0008    TGETB    3   3   2
+0009    TGETS    4   0   1  ; "unscaled_margins"
+0010    TGETB    4   4   4
+0011    ISEQV    3   4
+0012    JMP      3 => 0052
+0013    UGET     3   0      ; Math
+0014    TGETS    3   3   2  ; "round"
+0015    TGETS    4   0   1  ; "unscaled_margins"
+0016    TGETB    4   4   2
+0017    TGETS    5   0   1  ; "unscaled_margins"
+0018    TGETB    5   5   4
+0019    ADDVV    4   4   5
+0020    DIVVN    4   4   0  ; 2
+0021    CALL     3   2   2
+0022    TGETS    4   0   3  ; "ui"
+0023    TGETS    4   4   4  ; "document"
+0024    TGETS    4   4   5  ; "configurable"
+0025    TSETS    3   4   6  ; "t_page_margin"
+0026    TGETS    4   0   3  ; "ui"
+0027    TGETS    4   4   4  ; "document"
+0028    TGETS    4   4   5  ; "configurable"
+0029    TSETS    3   4   7  ; "b_page_margin"
+0030    TNEW     4   5
+0031    TGETS    5   0   1  ; "unscaled_margins"
+0032    TGETB    5   5   1
+0033    TSETB    5   4   1
+0034    TSETB    3   4   2
+0035    TGETS    5   0   1  ; "unscaled_margins"
+0036    TGETB    5   5   3
+0037    TSETB    5   4   3
+0038    TSETB    3   4   4
+0039    TSETS    4   0   1  ; "unscaled_margins"
+0040    TGETS    4   0   3  ; "ui"
+0041    MOV      5   4
+0042    TGETS    4   4   8  ; "handleEvent"
+0043    UGET     6   1      ; Event
+0044    MOV      7   6
+0045    TGETS    6   6   9  ; "new"
+0046    KSTR     8  10      ; "SetPageMargins"
+0047    TGETS    9   0   1  ; "unscaled_margins"
+0048    MOV     10   2
+0049    CALL     6   0   5
+0050    CALLM    4   1   1
+0051    KPRI     2   0
+0052 => ISF          2
+0053    JMP      3 => 0056
+0054    MOV      3   2
+0055    CALL     3   1   1
+0056 => RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:534-561
+0001    UGET     3   0      ; Screen
+0002    MOV      4   3
+0003    TGETS    3   3   0  ; "scaleBySize"
+0004    TGETB    5   1   1
+0005    CALL     3   2   3
+0006    UGET     4   0      ; Screen
+0007    MOV      5   4
+0008    TGETS    4   4   0  ; "scaleBySize"
+0009    TGETB    6   1   2
+0010    CALL     4   2   3
+0011    UGET     5   0      ; Screen
+0012    MOV      6   5
+0013    TGETS    5   5   0  ; "scaleBySize"
+0014    TGETB    7   1   3
+0015    CALL     5   2   3
+0016    KPRI     6   0
+0017    TGETS    7   0   1  ; "view"
+0018    TGETS    7   7   2  ; "footer"
+0019    TGETS    7   7   3  ; "reclaim_height"
+0020    ISF          7
+0021    JMP      8 => 0029
+0022    UGET     7   0      ; Screen
+0023    MOV      8   7
+0024    TGETS    7   7   0  ; "scaleBySize"
+0025    TGETB    9   1   4
+0026    CALL     7   2   3
+0027    MOV      6   7
+0028    JMP      7 => 0040
+0029 => UGET     7   0      ; Screen
+0030    MOV      8   7
+0031    TGETS    7   7   0  ; "scaleBySize"
+0032    TGETB    9   1   4
+0033    CALL     7   2   3
+0034    TGETS    8   0   1  ; "view"
+0035    TGETS    8   8   2  ; "footer"
+0036    MOV      9   8
+0037    TGETS    8   8   4  ; "getHeight"
+0038    CALL     8   2   2
+0039    ADDVV    6   7   8
+0040 => TGETS    7   0   5  ; "ui"
+0041    TGETS    7   7   6  ; "document"
+0042    MOV      8   7
+0043    TGETS    7   7   7  ; "setPageMargins"
+0044    MOV      9   3
+0045    MOV     10   4
+0046    MOV     11   5
+0047    MOV     12   6
+0048    CALL     7   1   6
+0049    TGETS    7   0   5  ; "ui"
+0050    MOV      8   7
+0051    TGETS    7   7   8  ; "handleEvent"
+0052    UGET     9   1      ; Event
+0053    MOV     10   9
+0054    TGETS    9   9   9  ; "new"
+0055    KSTR    11  10      ; "UpdatePos"
+0056    CALL     9   0   3
+0057    CALLM    7   1   1
+0058    ISF          2
+0059    JMP      7 => 0082
+0060    UGET     7   2      ; UIManager
+0061    MOV      8   7
+0062    TGETS    7   7  11  ; "show"
+0063    UGET     9   3      ; InfoMessage
+0064    MOV     10   9
+0065    TGETS    9   9   9  ; "new"
+0066    TDUP    11  13
+0067    UGET    12   4      ; T
+0068    UGET    13   5      ; _
+0069    KSTR    14  12      ; "Margins set to:\n\n  horizontal: %1 (%2p"~
+0070    CALL    13   2   2
+0071    TGETB   14   1   1
+0072    MOV     15   3
+0073    TGETB   16   1   2
+0074    MOV     17   4
+0075    TGETB   18   1   4
+0076    MOV     19   6
+0077    CALL    12   2   8
+0078    TSETS   12  11  14  ; "text"
+0079    TSETS    2  11  15  ; "dismiss_callback"
+0080    CALL     9   0   3
+0081    CALLM    7   1   1
+0082 => RET0     0   1
+
+-- BYTECODE -- readertypeset.lua:0-564
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/bidi"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/confirmbox"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/event"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/infomessage"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/container/inputcontainer"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/multiconfirmbox"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "ui/uimanager"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "optmath"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "libs/libkoreader-lfs"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "gettext"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "device"
+0033    CALL    10   2   2
+0034    TGETS   10  10  12  ; "screen"
+0035    GGET    11   0      ; "require"
+0036    KSTR    12  13      ; "ffi/util"
+0037    CALL    11   2   2
+0038    TGETS   11  11  14  ; "template"
+0039    MOV     13   4
+0040    TGETS   12   4  15  ; "new"
+0041    TDUP    14  17
+0042    MOV     15   9
+0043    KSTR    16  16      ; "Style"
+0044    CALL    15   2   2
+0045    TSETS   15  14  18  ; "css_menu_title"
+0046    CALL    12   2   3
+0047    FNEW    13  20      ; readertypeset.lua:21
+0048    TSETS   13  12  19  ; "init"
+0049    FNEW    13  22      ; readertypeset.lua:25
+0050    TSETS   13  12  21  ; "onReadSettings"
+0051    FNEW    13  24      ; readertypeset.lua:129
+0052    TSETS   13  12  23  ; "onSaveSettings"
+0053    FNEW    13  26      ; readertypeset.lua:139
+0054    TSETS   13  12  25  ; "onToggleEmbeddedStyleSheet"
+0055    FNEW    13  28      ; readertypeset.lua:144
+0056    TSETS   13  12  27  ; "onToggleEmbeddedFonts"
+0057    FNEW    13  30      ; readertypeset.lua:149
+0058    TSETS   13  12  29  ; "onToggleImageScaling"
+0059    FNEW    13  32      ; readertypeset.lua:154
+0060    TSETS   13  12  31  ; "onToggleNightmodeImages"
+0061    FNEW    13  34      ; readertypeset.lua:159
+0062    TSETS   13  12  33  ; "onSetBlockRenderingMode"
+0063    TDUP    13  35
+0064    FNEW    14  37      ; readertypeset.lua:180
+0065    TSETS   14  12  36  ; "onSetRenderDPI"
+0066    FNEW    14  39      ; readertypeset.lua:185
+0067    TSETS   14  12  38  ; "genStyleSheetMenu"
+0068    FNEW    14  41      ; readertypeset.lua:271
+0069    TSETS   14  12  40  ; "onApplyStyleSheet"
+0070    FNEW    14  43      ; readertypeset.lua:278
+0071    TSETS   14  12  42  ; "setStyleSheet"
+0072    FNEW    14  45      ; readertypeset.lua:287
+0073    TSETS   14  12  44  ; "setEmbededStyleSheetOnly"
+0074    FNEW    14  47      ; readertypeset.lua:297
+0075    TSETS   14  12  46  ; "toggleEmbeddedStyleSheet"
+0076    FNEW    14  49      ; readertypeset.lua:310
+0077    TSETS   14  12  48  ; "toggleEmbeddedFonts"
+0078    TDUP    14  50
+0079    FNEW    15  52      ; readertypeset.lua:356
+0080    TSETS   15  12  51  ; "setBlockRenderingMode"
+0081    FNEW    15  54      ; readertypeset.lua:384
+0082    TSETS   15  12  53  ; "ensureSanerBlockRenderingFlags"
+0083    FNEW    15  56      ; readertypeset.lua:392
+0084    TSETS   15  12  55  ; "toggleImageScaling"
+0085    FNEW    15  58      ; readertypeset.lua:403
+0086    TSETS   15  12  57  ; "toggleNightmodeImages"
+0087    FNEW    15  60      ; readertypeset.lua:414
+0088    TSETS   15  12  59  ; "toggleFloatingPunctuation"
+0089    FNEW    15  62      ; readertypeset.lua:426
+0090    TSETS   15  12  61  ; "toggleTxtPreFormatted"
+0091    FNEW    15  64      ; readertypeset.lua:431
+0092    TSETS   15  12  63  ; "setRenderDPI"
+0093    FNEW    15  66      ; readertypeset.lua:437
+0094    TSETS   15  12  65  ; "addToMainMenu"
+0095    FNEW    15  68      ; readertypeset.lua:455
+0096    TSETS   15  12  67  ; "makeDefaultFloatingPunctuation"
+0097    FNEW    15  70      ; readertypeset.lua:475
+0098    TSETS   15  12  69  ; "makeDefaultStyleSheet"
+0099    FNEW    15  72      ; readertypeset.lua:485
+0100    TSETS   15  12  71  ; "onSetPageHorizMargins"
+0101    FNEW    15  74      ; readertypeset.lua:490
+0102    TSETS   15  12  73  ; "onSetPageTopMargin"
+0103    FNEW    15  76      ; readertypeset.lua:500
+0104    TSETS   15  12  75  ; "onSetPageBottomMargin"
+0105    FNEW    15  78      ; readertypeset.lua:510
+0106    TSETS   15  12  77  ; "onSyncPageTopBottomMargins"
+0107    FNEW    15  80      ; readertypeset.lua:534
+0108    TSETS   15  12  79  ; "onSetPageMargins"
+0109    UCLO     0 => 0110
+0110 => RET1    12   2
+

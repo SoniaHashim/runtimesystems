@@ -1,0 +1,381 @@
+
+main <./frontend/ui/network/wpa_supplicant.lua:0,0> (55 instructions, 220 bytes at 0x7fa07fe050a0)
+0+ params, 10 slots, 0 upvalues, 9 locals, 14 constants, 6 functions
+	1	[5]	GETGLOBAL	0 -1	; require
+	2	[5]	LOADK    	1 -2	; "ui/widget/infomessage"
+	3	[5]	CALL     	0 2 2
+	4	[6]	GETGLOBAL	1 -1	; require
+	5	[6]	LOADK    	2 -3	; "lj-wpaclient/wpaclient"
+	6	[6]	CALL     	1 2 2
+	7	[7]	GETGLOBAL	2 -1	; require
+	8	[7]	LOADK    	3 -4	; "ui/uimanager"
+	9	[7]	CALL     	2 2 2
+	10	[8]	GETGLOBAL	3 -1	; require
+	11	[8]	LOADK    	4 -5	; "gettext"
+	12	[8]	CALL     	3 2 2
+	13	[9]	GETGLOBAL	4 -1	; require
+	14	[9]	LOADK    	5 -6	; "ffi/util"
+	15	[9]	CALL     	4 2 2
+	16	[9]	GETTABLE 	4 4 -7	; "template"
+	17	[10]	GETGLOBAL	5 -1	; require
+	18	[10]	LOADK    	6 -6	; "ffi/util"
+	19	[10]	CALL     	5 2 2
+	20	[10]	GETTABLE 	5 5 -8	; "sleep"
+	21	[12]	MOVE     	6 3
+	22	[12]	LOADK    	7 -9	; "Failed to initialize network control client: %1."
+	23	[12]	CALL     	6 2 2
+	24	[14]	NEWTABLE 	7 0 0
+	25	[45]	CLOSURE  	8 0	; 0x7fa07fe053b0
+	26	[45]	MOVE     	0 1
+	27	[45]	MOVE     	0 4
+	28	[45]	MOVE     	0 6
+	29	[17]	SETTABLE 	7 -10 8	; "getNetworkList" -
+	30	[57]	CLOSURE  	8 1	; 0x7fa07fe05450
+	31	[128]	CLOSURE  	9 2	; 0x7fa07fe06570
+	32	[128]	MOVE     	0 1
+	33	[128]	MOVE     	0 4
+	34	[128]	MOVE     	0 6
+	35	[128]	MOVE     	0 3
+	36	[128]	MOVE     	0 8
+	37	[128]	MOVE     	0 0
+	38	[128]	MOVE     	0 2
+	39	[128]	MOVE     	0 5
+	40	[60]	SETTABLE 	7 -11 9	; "authenticateNetwork" -
+	41	[138]	CLOSURE  	9 3	; 0x7fa07fe05860
+	42	[138]	MOVE     	0 1
+	43	[138]	MOVE     	0 4
+	44	[138]	MOVE     	0 6
+	45	[130]	SETTABLE 	7 -12 9	; "disconnectNetwork" -
+	46	[148]	CLOSURE  	9 4	; 0x7fa07fe07340
+	47	[148]	MOVE     	0 1
+	48	[148]	MOVE     	0 4
+	49	[148]	MOVE     	0 6
+	50	[140]	SETTABLE 	7 -13 9	; "getCurrentNetwork" -
+	51	[156]	CLOSURE  	9 5	; 0x7fa07fe07520
+	52	[156]	MOVE     	0 7
+	53	[150]	SETTABLE 	7 -14 9	; "init" -
+	54	[158]	RETURN   	7 2
+	55	[158]	RETURN   	0 1
+
+function <./frontend/ui/network/wpa_supplicant.lua:17,45> (50 instructions, 200 bytes at 0x7fa07fe053b0)
+1 param, 14 slots, 3 upvalues, 12 locals, 19 constants, 0 functions
+	1	[18]	GETUPVAL 	1 0	; WpaClient
+	2	[18]	GETTABLE 	1 1 -1	; "new"
+	3	[18]	GETTABLE 	2 0 -2	; "wpa_supplicant"
+	4	[18]	GETTABLE 	2 2 -3	; "ctrl_interface"
+	5	[18]	CALL     	1 2 3
+	6	[19]	EQ       	0 1 -4	; - nil
+	7	[19]	JMP      	6	; to 14
+	8	[20]	LOADNIL  	3 3
+	9	[20]	GETUPVAL 	4 1	; T
+	10	[20]	GETUPVAL 	5 2	; CLIENT_INIT_ERR_MSG
+	11	[20]	MOVE     	6 2
+	12	[20]	CALL     	4 3 0
+	13	[20]	RETURN   	3 0
+	14	[23]	SELF     	3 1 -5	; "scanThenGetResults"
+	15	[23]	CALL     	3 2 2
+	16	[24]	SELF     	4 1 -6	; "close"
+	17	[24]	CALL     	4 2 1
+	18	[26]	SELF     	4 0 -7	; "getAllSavedNetworks"
+	19	[26]	CALL     	4 2 2
+	20	[27]	SELF     	5 0 -8	; "getCurrentNetwork"
+	21	[27]	CALL     	5 2 2
+	22	[29]	GETGLOBAL	6 -9	; ipairs
+	23	[29]	MOVE     	7 3
+	24	[29]	CALL     	6 2 4
+	25	[29]	JMP      	21	; to 47
+	26	[30]	SELF     	11 10 -11	; "getSignalQuality"
+	27	[30]	CALL     	11 2 2
+	28	[30]	SETTABLE 	10 -10 11	; "signal_quality" -
+	29	[31]	SELF     	11 4 -12	; "readSetting"
+	30	[31]	GETTABLE 	13 10 -13	; "ssid"
+	31	[31]	CALL     	11 3 2
+	32	[32]	TEST     	11 0 0
+	33	[32]	JMP      	4	; to 38
+	34	[35]	GETTABLE 	12 11 -14	; "password"
+	35	[35]	SETTABLE 	10 -14 12	; "password" -
+	36	[36]	GETTABLE 	12 11 -15	; "psk"
+	37	[36]	SETTABLE 	10 -15 12	; "psk" -
+	38	[39]	TEST     	5 0 0
+	39	[39]	JMP      	7	; to 47
+	40	[39]	GETTABLE 	12 5 -13	; "ssid"
+	41	[39]	GETTABLE 	13 10 -13	; "ssid"
+	42	[39]	EQ       	0 12 13
+	43	[39]	JMP      	3	; to 47
+	44	[40]	SETTABLE 	10 -16 -17	; "connected" true
+	45	[41]	GETTABLE 	12 5 -19	; "id"
+	46	[41]	SETTABLE 	10 -18 12	; "wpa_supplicant_id" -
+	47	[29]	TFORLOOP 	6 2
+	48	[42]	JMP      	-23	; to 26
+	49	[44]	RETURN   	3 2
+	50	[45]	RETURN   	0 1
+
+function <./frontend/ui/network/wpa_supplicant.lua:47,57> (20 instructions, 80 bytes at 0x7fa07fe05450)
+2 params, 7 slots, 0 upvalues, 4 locals, 10 constants, 0 functions
+	1	[53]	GETGLOBAL	2 -1	; io
+	2	[53]	GETTABLE 	2 2 -2	; "popen"
+	3	[53]	LOADK    	3 -3	; "wpa_passphrase %q %q"
+	4	[53]	SELF     	3 3 -4	; "format"
+	5	[53]	MOVE     	5 0
+	6	[53]	MOVE     	6 1
+	7	[53]	CALL     	3 4 0
+	8	[53]	CALL     	2 0 2
+	9	[54]	SELF     	3 2 -5	; "read"
+	10	[54]	LOADK    	5 -6	; "*a"
+	11	[54]	CALL     	3 3 2
+	12	[55]	SELF     	4 2 -7	; "close"
+	13	[55]	CALL     	4 2 1
+	14	[56]	GETGLOBAL	4 -8	; string
+	15	[56]	GETTABLE 	4 4 -9	; "match"
+	16	[56]	MOVE     	5 3
+	17	[56]	LOADK    	6 -10	; "psk=([a-f0-9]+)"
+	18	[56]	TAILCALL 	4 3 0
+	19	[56]	RETURN   	4 0
+	20	[57]	RETURN   	0 1
+
+function <./frontend/ui/network/wpa_supplicant.lua:60,128> (176 instructions, 704 bytes at 0x7fa07fe06570)
+2 params, 16 slots, 8 upvalues, 12 locals, 37 constants, 0 functions
+	1	[63]	GETUPVAL 	5 0	; WpaClient
+	2	[63]	GETTABLE 	5 5 -1	; "new"
+	3	[63]	GETTABLE 	6 0 -2	; "wpa_supplicant"
+	4	[63]	GETTABLE 	6 6 -3	; "ctrl_interface"
+	5	[63]	CALL     	5 2 3
+	6	[63]	MOVE     	2 6
+	7	[63]	MOVE     	3 5
+	8	[64]	TEST     	3 0 1
+	9	[64]	JMP      	6	; to 16
+	10	[65]	LOADBOOL 	5 0 0
+	11	[65]	GETUPVAL 	6 1	; T
+	12	[65]	GETUPVAL 	7 2	; CLIENT_INIT_ERR_MSG
+	13	[65]	MOVE     	8 2
+	14	[65]	CALL     	6 3 0
+	15	[65]	RETURN   	5 0
+	16	[68]	SELF     	5 3 -4	; "addNetwork"
+	17	[68]	CALL     	5 2 3
+	18	[68]	MOVE     	2 6
+	19	[68]	MOVE     	4 5
+	20	[69]	TEST     	2 0 0
+	21	[69]	JMP      	3	; to 25
+	22	[69]	LOADBOOL 	5 0 0
+	23	[69]	MOVE     	6 2
+	24	[69]	RETURN   	5 3
+	25	[71]	SELF     	5 3 -5	; "setNetwork"
+	26	[71]	MOVE     	7 4
+	27	[71]	LOADK    	8 -6	; "ssid"
+	28	[71]	GETGLOBAL	9 -7	; string
+	29	[71]	GETTABLE 	9 9 -8	; "format"
+	30	[71]	LOADK    	10 -9	; "\"%s\""
+	31	[71]	GETTABLE 	11 1 -6	; "ssid"
+	32	[71]	CALL     	9 3 0
+	33	[71]	CALL     	5 0 2
+	34	[72]	EQ       	0 5 -10	; - "FAIL"
+	35	[72]	JMP      	8	; to 44
+	36	[73]	SELF     	6 3 -11	; "removeNetwork"
+	37	[73]	MOVE     	8 4
+	38	[73]	CALL     	6 3 1
+	39	[74]	LOADBOOL 	6 0 0
+	40	[74]	GETUPVAL 	7 3	; _
+	41	[74]	LOADK    	8 -12	; "An error occurred while selecting network."
+	42	[74]	CALL     	7 2 0
+	43	[74]	RETURN   	6 0
+	44	[76]	GETTABLE 	6 1 -13	; "psk"
+	45	[76]	TEST     	6 0 1
+	46	[76]	JMP      	8	; to 55
+	47	[77]	GETUPVAL 	6 4	; calculatePsk
+	48	[77]	GETTABLE 	7 1 -6	; "ssid"
+	49	[77]	GETTABLE 	8 1 -14	; "password"
+	50	[77]	CALL     	6 3 2
+	51	[77]	SETTABLE 	1 -13 6	; "psk" -
+	52	[78]	SELF     	6 0 -15	; "saveNetwork"
+	53	[78]	MOVE     	8 1
+	54	[78]	CALL     	6 3 1
+	55	[80]	SELF     	6 3 -5	; "setNetwork"
+	56	[80]	MOVE     	8 4
+	57	[80]	LOADK    	9 -13	; "psk"
+	58	[80]	GETTABLE 	10 1 -13	; "psk"
+	59	[80]	CALL     	6 5 2
+	60	[80]	MOVE     	5 6
+	61	[81]	EQ       	0 5 -10	; - "FAIL"
+	62	[81]	JMP      	8	; to 71
+	63	[82]	SELF     	6 3 -11	; "removeNetwork"
+	64	[82]	MOVE     	8 4
+	65	[82]	CALL     	6 3 1
+	66	[83]	LOADBOOL 	6 0 0
+	67	[83]	GETUPVAL 	7 3	; _
+	68	[83]	LOADK    	8 -16	; "An error occurred while setting password."
+	69	[83]	CALL     	7 2 0
+	70	[83]	RETURN   	6 0
+	71	[85]	SELF     	6 3 -17	; "enableNetworkByID"
+	72	[85]	MOVE     	8 4
+	73	[85]	CALL     	6 3 1
+	74	[87]	SELF     	6 3 -18	; "attach"
+	75	[87]	CALL     	6 2 1
+	76	[88]	LOADK    	6 -19	; 0
+	77	[89]	LOADK    	7 -19	; 0
+	78	[90]	LOADK    	8 -20	; 30
+	79	[91]	GETUPVAL 	9 5	; InfoMessage
+	80	[91]	SELF     	9 9 -1	; "new"
+	81	[91]	NEWTABLE 	11 0 1
+	82	[91]	GETUPVAL 	12 3	; _
+	83	[91]	LOADK    	13 -22	; "Authenticating\226\128\166"
+	84	[91]	CALL     	12 2 2
+	85	[91]	SETTABLE 	11 -21 12	; "text" -
+	86	[91]	CALL     	9 3 2
+	87	[92]	LOADNIL  	10 10
+	88	[93]	GETUPVAL 	11 6	; UIManager
+	89	[93]	SELF     	11 11 -23	; "show"
+	90	[93]	MOVE     	13 9
+	91	[93]	CALL     	11 3 1
+	92	[94]	GETUPVAL 	11 6	; UIManager
+	93	[94]	SELF     	11 11 -24	; "forceRePaint"
+	94	[94]	CALL     	11 2 1
+	95	[95]	LT       	0 6 8
+	96	[95]	JMP      	54	; to 151
+	97	[96]	SELF     	11 3 -25	; "readEvent"
+	98	[96]	CALL     	11 2 2
+	99	[97]	EQ       	1 11 -26	; - nil
+	100	[97]	JMP      	45	; to 146
+	101	[98]	SELF     	12 11 -27	; "isScanEvent"
+	102	[98]	CALL     	12 2 2
+	103	[98]	TEST     	12 0 1
+	104	[98]	JMP      	18	; to 123
+	105	[99]	GETUPVAL 	12 6	; UIManager
+	106	[99]	SELF     	12 12 -28	; "close"
+	107	[99]	MOVE     	14 9
+	108	[99]	CALL     	12 3 1
+	109	[100]	GETUPVAL 	12 5	; InfoMessage
+	110	[100]	SELF     	12 12 -1	; "new"
+	111	[100]	NEWTABLE 	14 0 1
+	112	[100]	GETTABLE 	15 11 -29	; "msg"
+	113	[100]	SETTABLE 	14 -21 15	; "text" -
+	114	[100]	CALL     	12 3 2
+	115	[100]	MOVE     	9 12
+	116	[101]	GETUPVAL 	12 6	; UIManager
+	117	[101]	SELF     	12 12 -23	; "show"
+	118	[101]	MOVE     	14 9
+	119	[101]	CALL     	12 3 1
+	120	[102]	GETUPVAL 	12 6	; UIManager
+	121	[102]	SELF     	12 12 -24	; "forceRePaint"
+	122	[102]	CALL     	12 2 1
+	123	[104]	SELF     	12 11 -30	; "isAuthSuccessful"
+	124	[104]	CALL     	12 2 2
+	125	[104]	TEST     	12 0 0
+	126	[104]	JMP      	4	; to 131
+	127	[105]	SETTABLE 	1 -31 4	; "wpa_supplicant_id" -
+	128	[106]	LOADBOOL 	5 1 0
+	129	[107]	JMP      	21	; to 151
+	130	[107]	JMP      	-36	; to 95
+	131	[108]	SELF     	12 11 -32	; "isAuthFailed"
+	132	[108]	CALL     	12 2 2
+	133	[108]	TEST     	12 0 0
+	134	[108]	JMP      	-40	; to 95
+	135	[109]	ADD      	7 7 -33	; - 1
+	136	[110]	LT       	0 -34 7	; 3 -
+	137	[110]	JMP      	-43	; to 95
+	138	[111]	LOADBOOL 	12 0 0
+	139	[111]	GETUPVAL 	13 3	; _
+	140	[111]	LOADK    	14 -35	; "Failed to authenticate"
+	141	[111]	CALL     	13 2 2
+	142	[111]	MOVE     	10 13
+	143	[111]	MOVE     	5 12
+	144	[112]	JMP      	6	; to 151
+	145	[114]	JMP      	-51	; to 95
+	146	[116]	GETUPVAL 	12 7	; sleep
+	147	[116]	LOADK    	13 -33	; 1
+	148	[116]	CALL     	12 2 1
+	149	[117]	ADD      	6 6 -33	; - 1
+	150	[118]	JMP      	-56	; to 95
+	151	[120]	EQ       	1 5 -36	; - true
+	152	[120]	JMP      	3	; to 156
+	153	[120]	SELF     	11 3 -11	; "removeNetwork"
+	154	[120]	MOVE     	13 4
+	155	[120]	CALL     	11 3 1
+	156	[121]	SELF     	11 3 -28	; "close"
+	157	[121]	CALL     	11 2 1
+	158	[122]	GETUPVAL 	11 6	; UIManager
+	159	[122]	SELF     	11 11 -28	; "close"
+	160	[122]	MOVE     	13 9
+	161	[122]	CALL     	11 3 1
+	162	[123]	GETUPVAL 	11 6	; UIManager
+	163	[123]	SELF     	11 11 -24	; "forceRePaint"
+	164	[123]	CALL     	11 2 1
+	165	[124]	LE       	0 8 6
+	166	[124]	JMP      	6	; to 173
+	167	[125]	LOADBOOL 	11 0 0
+	168	[125]	GETUPVAL 	12 3	; _
+	169	[125]	LOADK    	13 -37	; "Timed out"
+	170	[125]	CALL     	12 2 2
+	171	[125]	MOVE     	10 12
+	172	[125]	MOVE     	5 11
+	173	[127]	MOVE     	11 5
+	174	[127]	MOVE     	12 10
+	175	[127]	RETURN   	11 3
+	176	[128]	RETURN   	0 1
+
+function <./frontend/ui/network/wpa_supplicant.lua:130,138> (23 instructions, 92 bytes at 0x7fa07fe05860)
+2 params, 8 slots, 3 upvalues, 4 locals, 7 constants, 0 functions
+	1	[131]	GETTABLE 	2 1 -1	; "wpa_supplicant_id"
+	2	[131]	TEST     	2 0 1
+	3	[131]	JMP      	1	; to 5
+	4	[131]	RETURN   	0 1
+	5	[132]	GETUPVAL 	2 0	; WpaClient
+	6	[132]	GETTABLE 	2 2 -2	; "new"
+	7	[132]	GETTABLE 	3 0 -3	; "wpa_supplicant"
+	8	[132]	GETTABLE 	3 3 -4	; "ctrl_interface"
+	9	[132]	CALL     	2 2 3
+	10	[133]	EQ       	0 2 -5	; - nil
+	11	[133]	JMP      	6	; to 18
+	12	[134]	LOADNIL  	4 4
+	13	[134]	GETUPVAL 	5 1	; T
+	14	[134]	GETUPVAL 	6 2	; CLIENT_INIT_ERR_MSG
+	15	[134]	MOVE     	7 3
+	16	[134]	CALL     	5 3 0
+	17	[134]	RETURN   	4 0
+	18	[136]	SELF     	4 2 -6	; "removeNetwork"
+	19	[136]	GETTABLE 	6 1 -1	; "wpa_supplicant_id"
+	20	[136]	CALL     	4 3 1
+	21	[137]	SELF     	4 2 -7	; "close"
+	22	[137]	CALL     	4 2 1
+	23	[138]	RETURN   	0 1
+
+function <./frontend/ui/network/wpa_supplicant.lua:140,148> (19 instructions, 76 bytes at 0x7fa07fe07340)
+1 param, 7 slots, 3 upvalues, 4 locals, 6 constants, 0 functions
+	1	[141]	GETUPVAL 	1 0	; WpaClient
+	2	[141]	GETTABLE 	1 1 -1	; "new"
+	3	[141]	GETTABLE 	2 0 -2	; "wpa_supplicant"
+	4	[141]	GETTABLE 	2 2 -3	; "ctrl_interface"
+	5	[141]	CALL     	1 2 3
+	6	[142]	EQ       	0 1 -4	; - nil
+	7	[142]	JMP      	6	; to 14
+	8	[143]	LOADNIL  	3 3
+	9	[143]	GETUPVAL 	4 1	; T
+	10	[143]	GETUPVAL 	5 2	; CLIENT_INIT_ERR_MSG
+	11	[143]	MOVE     	6 2
+	12	[143]	CALL     	4 3 0
+	13	[143]	RETURN   	3 0
+	14	[145]	SELF     	3 1 -5	; "getCurrentNetwork"
+	15	[145]	CALL     	3 2 2
+	16	[146]	SELF     	4 1 -6	; "close"
+	17	[146]	CALL     	4 2 1
+	18	[147]	RETURN   	3 2
+	19	[148]	RETURN   	0 1
+
+function <./frontend/ui/network/wpa_supplicant.lua:150,156> (17 instructions, 68 bytes at 0x7fa07fe07520)
+2 params, 4 slots, 1 upvalue, 2 locals, 6 constants, 0 functions
+	1	[151]	NEWTABLE 	2 0 1
+	2	[151]	GETTABLE 	3 1 -2	; "ctrl_interface"
+	3	[151]	SETTABLE 	2 -2 3	; "ctrl_interface" -
+	4	[151]	SETTABLE 	0 -1 2	; "wpa_supplicant" -
+	5	[152]	GETUPVAL 	2 0	; WpaSupplicant
+	6	[152]	GETTABLE 	2 2 -3	; "getNetworkList"
+	7	[152]	SETTABLE 	0 -3 2	; "getNetworkList" -
+	8	[153]	GETUPVAL 	2 0	; WpaSupplicant
+	9	[153]	GETTABLE 	2 2 -4	; "getCurrentNetwork"
+	10	[153]	SETTABLE 	0 -4 2	; "getCurrentNetwork" -
+	11	[154]	GETUPVAL 	2 0	; WpaSupplicant
+	12	[154]	GETTABLE 	2 2 -5	; "authenticateNetwork"
+	13	[154]	SETTABLE 	0 -5 2	; "authenticateNetwork" -
+	14	[155]	GETUPVAL 	2 0	; WpaSupplicant
+	15	[155]	GETTABLE 	2 2 -6	; "disconnectNetwork"
+	16	[155]	SETTABLE 	0 -6 2	; "disconnectNetwork" -
+	17	[156]	RETURN   	0 1

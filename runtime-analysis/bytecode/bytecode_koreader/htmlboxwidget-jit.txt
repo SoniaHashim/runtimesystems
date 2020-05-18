@@ -1,0 +1,586 @@
+-- BYTECODE -- htmlboxwidget.lua:33-33
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "dimen"
+0003    RET1     0   2
+
+-- BYTECODE -- htmlboxwidget.lua:27-38
+0001    UGET     1   0      ; Device
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "isTouchDevice"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0019
+0007    TDUP     1   6
+0008    TNEW     2   3
+0009    UGET     3   1      ; GestureRange
+0010    MOV      4   3
+0011    TGETS    3   3   2  ; "new"
+0012    TDUP     5   3
+0013    FNEW     6   4      ; htmlboxwidget.lua:33
+0014    TSETS    6   5   5  ; "range"
+0015    CALL     3   0   3
+0016    TSETM    3   0      ; 1
+0017    TSETS    2   1   7  ; "TapText"
+0018    TSETS    1   0   1  ; "ges_events"
+0019 => UCLO     0 => 0020
+0020 => RET0     0   1
+
+-- BYTECODE -- htmlboxwidget.lua:40-76
+0001    KSTR     4   0      ; ""
+0002    ISF          2
+0003    JMP      5 => 0010
+0004    GGET     5   1      ; "string"
+0005    TGETS    5   5   2  ; "format"
+0006    KSTR     6   3      ; "<head><style>%s</style></head>"
+0007    MOV      7   2
+0008    CALL     5   2   3
+0009    MOV      4   5
+0010 => GGET     5   1      ; "string"
+0011    TGETS    5   5   2  ; "format"
+0012    KSTR     6   4      ; "<html>%s<body>%s</body></html>"
+0013    MOV      7   4
+0014    MOV      8   1
+0015    CALL     5   2   4
+0016    MOV      7   5
+0017    TGETS    6   5   5  ; "gsub"
+0018    KSTR     8   6      ; "%<br ?/?%>"
+0019    KSTR     9   7      ; "&nbsp;<div></div>"
+0020    CALL     6   2   4
+0021    MOV      5   6
+0022    KPRI     6   0
+0023    GGET     7   9      ; "pcall"
+0024    UGET     8   0      ; Mupdf
+0025    TGETS    8   8  10  ; "openDocumentFromText"
+0026    MOV      9   5
+0027    KSTR    10  11      ; "html"
+0028    CALL     7   3   4
+0029    TSETS    8   0   8  ; "document"
+0030    MOV      6   7
+0031    IST          6
+0032    JMP      7 => 0074
+0033    UGET     7   1      ; logger
+0034    TGETS    7   7  12  ; "warn"
+0035    KSTR     8  13      ; "HTML loading error:"
+0036    TGETS    9   0   8  ; "document"
+0037    CALL     7   1   3
+0038    UGET     7   2      ; util
+0039    TGETS    7   7  14  ; "htmlToPlainText"
+0040    MOV      8   1
+0041    CALL     7   2   2
+0042    MOV      1   7
+0043    UGET     7   2      ; util
+0044    TGETS    7   7  15  ; "htmlEscape"
+0045    MOV      8   1
+0046    CALL     7   2   2
+0047    MOV      1   7
+0048    MOV      8   1
+0049    TGETS    7   1   5  ; "gsub"
+0050    KSTR     9  16      ; "\n"
+0051    KSTR    10   7      ; "&nbsp;<div></div>"
+0052    CALL     7   2   4
+0053    MOV      1   7
+0054    GGET     7   1      ; "string"
+0055    TGETS    7   7   2  ; "format"
+0056    KSTR     8   4      ; "<html>%s<body>%s</body></html>"
+0057    MOV      9   4
+0058    MOV     10   1
+0059    CALL     7   2   4
+0060    MOV      5   7
+0061    GGET     7   9      ; "pcall"
+0062    UGET     8   0      ; Mupdf
+0063    TGETS    8   8  10  ; "openDocumentFromText"
+0064    MOV      9   5
+0065    KSTR    10  11      ; "html"
+0066    CALL     7   3   4
+0067    TSETS    8   0   8  ; "document"
+0068    MOV      6   7
+0069    IST          6
+0070    JMP      7 => 0074
+0071    GGET     7  17      ; "error"
+0072    TGETS    8   0   8  ; "document"
+0073    CALL     7   1   2
+0074 => TGETS    7   0   8  ; "document"
+0075    MOV      8   7
+0076    TGETS    7   7  18  ; "layoutDocument"
+0077    TGETS    9   0  19  ; "dimen"
+0078    TGETS    9   9  20  ; "w"
+0079    TGETS   10   0  19  ; "dimen"
+0080    TGETS   10  10  21  ; "h"
+0081    MOV     11   3
+0082    CALL     7   1   5
+0083    TGETS    7   0   8  ; "document"
+0084    MOV      8   7
+0085    TGETS    7   7  23  ; "getPages"
+0086    CALL     7   2   2
+0087    TSETS    7   0  22  ; "page_count"
+0088    RET0     0   1
+
+-- BYTECODE -- htmlboxwidget.lua:78-94
+0001    TGETS    1   0   0  ; "bb"
+0002    ISF          1
+0003    JMP      2 => 0005
+0004    RET0     0   1
+0005 => UGET     1   0      ; Mupdf
+0006    UGET     2   1      ; Screen
+0007    MOV      3   2
+0008    TGETS    2   2   2  ; "isColorEnabled"
+0009    CALL     2   2   2
+0010    TSETS    2   1   1  ; "color"
+0011    TGETS    1   0   3  ; "document"
+0012    MOV      2   1
+0013    TGETS    1   1   4  ; "openPage"
+0014    TGETS    3   0   5  ; "page_number"
+0015    CALL     1   2   3
+0016    UGET     2   2      ; DrawContext
+0017    TGETS    2   2   6  ; "new"
+0018    CALL     2   2   1
+0019    MOV      4   1
+0020    TGETS    3   1   7  ; "draw_new"
+0021    MOV      5   2
+0022    TGETS    6   0   8  ; "dimen"
+0023    TGETS    6   6   9  ; "w"
+0024    TGETS    7   0   8  ; "dimen"
+0025    TGETS    7   7  10  ; "h"
+0026    KSHORT   8   0
+0027    KSHORT   9   0
+0028    CALL     3   2   7
+0029    TSETS    3   0   0  ; "bb"
+0030    MOV      4   1
+0031    TGETS    3   1  11  ; "close"
+0032    CALL     3   1   2
+0033    UGET     3   0      ; Mupdf
+0034    KPRI     4   1
+0035    TSETS    4   3   1  ; "color"
+0036    RET0     0   1
+
+-- BYTECODE -- htmlboxwidget.lua:96-98
+0001    TGETS    1   0   0  ; "dimen"
+0002    RET1     1   2
+
+-- BYTECODE -- htmlboxwidget.lua:100-107
+0001    TGETS    1   0   0  ; "page_count"
+0002    ISNEN    1   0      ; 1
+0003    JMP      1 => 0019
+0004    TGETS    1   0   1  ; "document"
+0005    MOV      2   1
+0006    TGETS    1   1   2  ; "openPage"
+0007    KSHORT   3   1
+0008    CALL     1   2   3
+0009    MOV      3   1
+0010    TGETS    2   1   3  ; "getUsedBBox"
+0011    CALL     2   5   2
+0012    MOV      7   1
+0013    TGETS    6   1   4  ; "close"
+0014    CALL     6   1   2
+0015    GGET     6   5      ; "math"
+0016    TGETS    6   6   6  ; "ceil"
+0017    MOV      7   5
+0018    CALLT    6   2
+0019 => RET0     0   1
+
+-- BYTECODE -- htmlboxwidget.lua:109-118
+0001    TGETS    4   0   0  ; "dimen"
+0002    TSETS    2   4   1  ; "x"
+0003    TGETS    4   0   0  ; "dimen"
+0004    TSETS    3   4   2  ; "y"
+0005    MOV      5   0
+0006    TGETS    4   0   3  ; "_render"
+0007    CALL     4   1   2
+0008    MOV      5   0
+0009    TGETS    4   0   4  ; "getSize"
+0010    CALL     4   2   2
+0011    MOV      6   1
+0012    TGETS    5   1   5  ; "blitFrom"
+0013    TGETS    7   0   6  ; "bb"
+0014    MOV      8   2
+0015    MOV      9   3
+0016    KSHORT  10   0
+0017    KSHORT  11   0
+0018    TGETS   12   4   7  ; "w"
+0019    TGETS   13   4   8  ; "h"
+0020    CALL     5   1   9
+0021    RET0     0   1
+
+-- BYTECODE -- htmlboxwidget.lua:120-126
+0001    TGETS    1   0   0  ; "bb"
+0002    ISF          1
+0003    JMP      2 => 0012
+0004    TGETS    1   0   0  ; "bb"
+0005    TGETS    1   1   1  ; "free"
+0006    ISF          1
+0007    JMP      2 => 0012
+0008    TGETS    1   0   0  ; "bb"
+0009    MOV      2   1
+0010    TGETS    1   1   1  ; "free"
+0011    CALL     1   1   2
+0012 => KPRI     1   0
+0013    TSETS    1   0   0  ; "bb"
+0014    RET0     0   1
+
+-- BYTECODE -- htmlboxwidget.lua:132-139
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "freeBb"
+0003    CALL     1   1   2
+0004    TGETS    1   0   1  ; "document"
+0005    ISF          1
+0006    JMP      2 => 0013
+0007    TGETS    1   0   1  ; "document"
+0008    MOV      2   1
+0009    TGETS    1   1   2  ; "close"
+0010    CALL     1   1   2
+0011    KPRI     1   0
+0012    TSETS    1   0   1  ; "document"
+0013 => RET0     0   1
+
+-- BYTECODE -- htmlboxwidget.lua:141-144
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "free"
+0003    CALL     1   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- htmlboxwidget.lua:146-158
+0001    UGET     2   0      ; Geom
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "new"
+0004    TDUP     4   3
+0005    TGETS    5   1   1  ; "x"
+0006    TGETS    6   0   2  ; "dimen"
+0007    TGETS    6   6   1  ; "x"
+0008    SUBVV    5   5   6
+0009    TSETS    5   4   1  ; "x"
+0010    TGETS    5   1   4  ; "y"
+0011    TGETS    6   0   2  ; "dimen"
+0012    TGETS    6   6   4  ; "y"
+0013    SUBVV    5   5   6
+0014    TSETS    5   4   4  ; "y"
+0015    CALL     2   2   3
+0016    TGETS    3   2   1  ; "x"
+0017    KSHORT   4   0
+0018    ISLT     3   4
+0019    JMP      3 => 0034
+0020    TGETS    3   2   1  ; "x"
+0021    TGETS    4   0   2  ; "dimen"
+0022    TGETS    4   4   5  ; "w"
+0023    ISLE     4   3
+0024    JMP      3 => 0034
+0025    TGETS    3   2   4  ; "y"
+0026    KSHORT   4   0
+0027    ISLT     3   4
+0028    JMP      3 => 0034
+0029    TGETS    3   2   4  ; "y"
+0030    TGETS    4   0   2  ; "dimen"
+0031    TGETS    4   4   6  ; "h"
+0032    ISGT     4   3
+0033    JMP      3 => 0036
+0034 => KPRI     3   0
+0035    RET1     3   2
+0036 => RET1     2   2
+
+-- BYTECODE -- htmlboxwidget.lua:160-170
+0001    MOV      4   0
+0002    TGETS    3   0   1  ; "getPosFromAbsPos"
+0003    TGETS    5   2   2  ; "pos"
+0004    CALL     3   2   3
+0005    TSETS    3   0   0  ; "hold_start_pos"
+0006    TGETS    3   0   0  ; "hold_start_pos"
+0007    IST          3
+0008    JMP      3 => 0011
+0009    KPRI     3   1
+0010    RET1     3   2
+0011 => UGET     3   0      ; TimeVal
+0012    TGETS    3   3   4  ; "now"
+0013    CALL     3   2   1
+0014    TSETS    3   0   3  ; "hold_start_tv"
+0015    KPRI     3   2
+0016    RET1     3   2
+
+-- BYTECODE -- htmlboxwidget.lua:172-179
+0001    TGETS    3   0   0  ; "hold_start_pos"
+0002    IST          3
+0003    JMP      3 => 0006
+0004    KPRI     3   1
+0005    RET1     3   2
+0006 => KPRI     3   2
+0007    RET1     3   2
+
+-- BYTECODE -- htmlboxwidget.lua:181-211
+0001    KPRI     4   1
+0002    TNEW     5   0
+0003    GGET     6   0      ; "pairs"
+0004    MOV      7   1
+0005    CALL     6   4   2
+0006    ISNEXT   9 => 0082
+0007 => GGET    11   0      ; "pairs"
+0008    MOV     12  10
+0009    CALL    11   4   2
+0010    ISNEXT  14 => 0080
+0011 => GGET    16   1      ; "type"
+0012    MOV     17  15
+0013    CALL    16   2   2
+0014    ISNES   16   2      ; "table"
+0015    JMP     16 => 0080
+0016    IST          4
+0017    JMP     16 => 0056
+0018    TGETS   16   2   3  ; "x"
+0019    TGETS   17  15   4  ; "x0"
+0020    ISGT    17  16
+0021    JMP     16 => 0036
+0022    TGETS   16   2   3  ; "x"
+0023    TGETS   17  15   5  ; "x1"
+0024    ISGE    16  17
+0025    JMP     16 => 0036
+0026    TGETS   16   2   6  ; "y"
+0027    TGETS   17  15   7  ; "y0"
+0028    ISGT    17  16
+0029    JMP     16 => 0036
+0030    TGETS   16   2   6  ; "y"
+0031    TGETS   17  15   8  ; "y1"
+0032    ISGE    16  17
+0033    JMP     16 => 0036
+0034    KPRI     4   2
+0035    JMP     16 => 0056
+0036 => TGETS   16   3   3  ; "x"
+0037    TGETS   17  15   4  ; "x0"
+0038    ISGT    17  16
+0039    JMP     16 => 0056
+0040    TGETS   16   3   3  ; "x"
+0041    TGETS   17  15   5  ; "x1"
+0042    ISGE    16  17
+0043    JMP     16 => 0056
+0044    TGETS   16   3   6  ; "y"
+0045    TGETS   17  15   7  ; "y0"
+0046    ISGT    17  16
+0047    JMP     16 => 0056
+0048    TGETS   16   3   6  ; "y"
+0049    TGETS   17  15   8  ; "y1"
+0050    ISGE    16  17
+0051    JMP     16 => 0056
+0052    KPRI     4   2
+0053    MOV     16   3
+0054    MOV      3   2
+0055    MOV      2  16
+0056 => ISF          4
+0057    JMP     16 => 0080
+0058    GGET    16   2      ; "table"
+0059    TGETS   16  16   9  ; "insert"
+0060    MOV     17   5
+0061    TGETS   18  15  10  ; "word"
+0062    CALL    16   1   3
+0063    TGETS   16   3   3  ; "x"
+0064    TGETS   17  15   4  ; "x0"
+0065    ISGT    17  16
+0066    JMP     16 => 0080
+0067    TGETS   16   3   3  ; "x"
+0068    TGETS   17  15   5  ; "x1"
+0069    ISGE    16  17
+0070    JMP     16 => 0080
+0071    TGETS   16   3   6  ; "y"
+0072    TGETS   17  15   7  ; "y0"
+0073    ISGT    17  16
+0074    JMP     16 => 0080
+0075    TGETS   16   3   6  ; "y"
+0076    TGETS   17  15   8  ; "y1"
+0077    ISGE    16  17
+0078    JMP     16 => 0080
+0079    RET1     5   2
+0080 => ITERN   14   3   3
+0081    ITERL   14 => 0011
+0082 => ITERN    9   3   3
+0083    ITERL    9 => 0007
+0084    RET1     5   2
+
+-- BYTECODE -- htmlboxwidget.lua:213-243
+0001    IST          1
+0002    JMP      3 => 0005
+0003    KPRI     3   1
+0004    RET1     3   2
+0005 => TGETS    3   0   0  ; "hold_start_pos"
+0006    IST          3
+0007    JMP      3 => 0010
+0008    KPRI     3   1
+0009    RET1     3   2
+0010 => TGETS    3   0   0  ; "hold_start_pos"
+0011    KPRI     4   0
+0012    TSETS    4   0   0  ; "hold_start_pos"
+0013    MOV      5   0
+0014    TGETS    4   0   1  ; "getPosFromAbsPos"
+0015    TGETS    6   2   2  ; "pos"
+0016    CALL     4   2   3
+0017    IST          4
+0018    JMP      5 => 0021
+0019    KPRI     5   1
+0020    RET1     5   2
+0021 => UGET     5   0      ; TimeVal
+0022    TGETS    5   5   3  ; "now"
+0023    CALL     5   2   1
+0024    TGETS    6   0   4  ; "hold_start_tv"
+0025    SUBVV    5   5   6
+0026    TGETS    6   5   5  ; "sec"
+0027    TGETS    7   5   6  ; "usec"
+0028    DIVVN    7   7   0  ; 1000000
+0029    ADDVV    5   6   7
+0030    TGETS    6   0   7  ; "document"
+0031    MOV      7   6
+0032    TGETS    6   6   8  ; "openPage"
+0033    TGETS    8   0   9  ; "page_number"
+0034    CALL     6   2   3
+0035    MOV      8   6
+0036    TGETS    7   6  10  ; "getPageText"
+0037    CALL     7   2   2
+0038    MOV      9   6
+0039    TGETS    8   6  11  ; "close"
+0040    CALL     8   1   2
+0041    MOV      9   0
+0042    TGETS    8   0  12  ; "getSelectedText"
+0043    MOV     10   7
+0044    MOV     11   3
+0045    MOV     12   4
+0046    CALL     8   2   5
+0047    GGET     9  13      ; "table"
+0048    TGETS    9   9  14  ; "concat"
+0049    MOV     10   8
+0050    KSTR    11  15      ; " "
+0051    CALL     9   2   3
+0052    MOV     10   1
+0053    MOV     11   9
+0054    MOV     12   5
+0055    CALL    10   1   3
+0056    KPRI    10   2
+0057    RET1    10   2
+
+-- BYTECODE -- htmlboxwidget.lua:245-255
+0001    TGETS    2   0   0  ; "document"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "openPage"
+0004    TGETS    4   0   2  ; "page_number"
+0005    CALL     2   2   3
+0006    MOV      4   2
+0007    TGETS    3   2   3  ; "getPageLinks"
+0008    CALL     3   2   2
+0009    MOV      5   2
+0010    TGETS    4   2   4  ; "close"
+0011    CALL     4   1   2
+0012    GGET     4   5      ; "pairs"
+0013    MOV      5   3
+0014    CALL     4   4   2
+0015    ISNEXT   7 => 0033
+0016 => TGETS    9   1   6  ; "x"
+0017    TGETS   10   8   7  ; "x0"
+0018    ISGT    10   9
+0019    JMP      9 => 0033
+0020    TGETS    9   1   6  ; "x"
+0021    TGETS   10   8   8  ; "x1"
+0022    ISGE     9  10
+0023    JMP      9 => 0033
+0024    TGETS    9   1   9  ; "y"
+0025    TGETS   10   8  10  ; "y0"
+0026    ISGT    10   9
+0027    JMP      9 => 0033
+0028    TGETS    9   1   9  ; "y"
+0029    TGETS   10   8  11  ; "y1"
+0030    ISGE     9  10
+0031    JMP      9 => 0033
+0032    RET1     8   2
+0033 => ITERN    7   3   3
+0034    ITERL    7 => 0016
+0035    RET0     0   1
+
+-- BYTECODE -- htmlboxwidget.lua:257-272
+0001    GGET     3   0      ; "G_reader_settings"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "isFalse"
+0004    KSTR     5   2      ; "tap_to_follow_links"
+0005    CALL     3   2   3
+0006    ISF          3
+0007    JMP      4 => 0009
+0008    RET0     0   1
+0009 => TGETS    3   0   3  ; "html_link_tapped_callback"
+0010    ISF          3
+0011    JMP      4 => 0029
+0012    MOV      4   0
+0013    TGETS    3   0   4  ; "getPosFromAbsPos"
+0014    TGETS    5   2   5  ; "pos"
+0015    CALL     3   2   3
+0016    ISF          3
+0017    JMP      4 => 0029
+0018    MOV      5   0
+0019    TGETS    4   0   6  ; "getLinkByPosition"
+0020    MOV      6   3
+0021    CALL     4   2   3
+0022    ISF          4
+0023    JMP      5 => 0029
+0024    TGETS    5   0   3  ; "html_link_tapped_callback"
+0025    MOV      6   4
+0026    CALL     5   1   2
+0027    KPRI     5   2
+0028    RET1     5   2
+0029 => RET0     0   1
+
+-- BYTECODE -- htmlboxwidget.lua:0-275
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "device"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/drawcontext"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ui/geometry"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/gesturerange"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/container/inputcontainer"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ffi/mupdf"
+0018    CALL     5   2   2
+0019    TGETS    6   0   7  ; "screen"
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   8      ; "ui/timeval"
+0022    CALL     7   2   2
+0023    GGET     8   0      ; "require"
+0024    KSTR     9   9      ; "logger"
+0025    CALL     8   2   2
+0026    GGET     9   0      ; "require"
+0027    KSTR    10  10      ; "util"
+0028    CALL     9   2   2
+0029    MOV     11   4
+0030    TGETS   10   4  11  ; "new"
+0031    TDUP    12  12
+0032    CALL    10   2   3
+0033    FNEW    11  14      ; htmlboxwidget.lua:27
+0034    TSETS   11  10  13  ; "init"
+0035    FNEW    11  16      ; htmlboxwidget.lua:40
+0036    TSETS   11  10  15  ; "setContent"
+0037    FNEW    11  18      ; htmlboxwidget.lua:78
+0038    TSETS   11  10  17  ; "_render"
+0039    FNEW    11  20      ; htmlboxwidget.lua:96
+0040    TSETS   11  10  19  ; "getSize"
+0041    FNEW    11  22      ; htmlboxwidget.lua:100
+0042    TSETS   11  10  21  ; "getSinglePageHeight"
+0043    FNEW    11  24      ; htmlboxwidget.lua:109
+0044    TSETS   11  10  23  ; "paintTo"
+0045    FNEW    11  26      ; htmlboxwidget.lua:120
+0046    TSETS   11  10  25  ; "freeBb"
+0047    FNEW    11  28      ; htmlboxwidget.lua:132
+0048    TSETS   11  10  27  ; "free"
+0049    FNEW    11  30      ; htmlboxwidget.lua:141
+0050    TSETS   11  10  29  ; "onCloseWidget"
+0051    FNEW    11  32      ; htmlboxwidget.lua:146
+0052    TSETS   11  10  31  ; "getPosFromAbsPos"
+0053    FNEW    11  34      ; htmlboxwidget.lua:160
+0054    TSETS   11  10  33  ; "onHoldStartText"
+0055    FNEW    11  36      ; htmlboxwidget.lua:172
+0056    TSETS   11  10  35  ; "onHoldPan"
+0057    FNEW    11  38      ; htmlboxwidget.lua:181
+0058    TSETS   11  10  37  ; "getSelectedText"
+0059    FNEW    11  40      ; htmlboxwidget.lua:213
+0060    TSETS   11  10  39  ; "onHoldReleaseText"
+0061    FNEW    11  42      ; htmlboxwidget.lua:245
+0062    TSETS   11  10  41  ; "getLinkByPosition"
+0063    FNEW    11  44      ; htmlboxwidget.lua:257
+0064    TSETS   11  10  43  ; "onTapText"
+0065    UCLO     0 => 0066
+0066 => RET1    10   2
+

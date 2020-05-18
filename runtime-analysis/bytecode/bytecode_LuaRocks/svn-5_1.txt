@@ -1,0 +1,189 @@
+
+main <./fetch/svn.lua:0,0> (23 instructions, 92 bytes at 0x7fabe44068a0)
+0+ params, 6 slots, 0 upvalues, 5 locals, 7 constants, 1 function
+	1	[3]	NEWTABLE 	0 0 0
+	2	[5]	GETGLOBAL	1 -1	; unpack
+	3	[5]	TEST     	1 0 1
+	4	[5]	JMP      	2	; to 7
+	5	[5]	GETGLOBAL	1 -2	; table
+	6	[5]	GETTABLE 	1 1 -1	; "unpack"
+	7	[7]	GETGLOBAL	2 -3	; require
+	8	[7]	LOADK    	3 -4	; "luarocks.fs"
+	9	[7]	CALL     	2 2 2
+	10	[8]	GETGLOBAL	3 -3	; require
+	11	[8]	LOADK    	4 -5	; "luarocks.dir"
+	12	[8]	CALL     	3 2 2
+	13	[9]	GETGLOBAL	4 -3	; require
+	14	[9]	LOADK    	5 -6	; "luarocks.util"
+	15	[9]	CALL     	4 2 2
+	16	[61]	CLOSURE  	5 0	; 0x7fabe4406fa0
+	17	[61]	MOVE     	0 2
+	18	[61]	MOVE     	0 3
+	19	[61]	MOVE     	0 4
+	20	[61]	MOVE     	0 1
+	21	[18]	SETTABLE 	0 -7 5	; "get_sources" -
+	22	[64]	RETURN   	0 2
+	23	[64]	RETURN   	0 1
+
+function <./fetch/svn.lua:18,61> (160 instructions, 640 bytes at 0x7fabe4406fa0)
+3 params, 23 slots, 4 upvalues, 18 locals, 39 constants, 0 functions
+	1	[19]	GETGLOBAL	3 -1	; assert
+	2	[19]	SELF     	4 0 -2	; "type"
+	3	[19]	CALL     	4 2 2
+	4	[19]	EQ       	1 4 -3	; - "rockspec"
+	5	[19]	JMP      	1	; to 7
+	6	[19]	LOADBOOL 	4 0 1
+	7	[19]	LOADBOOL 	4 1 0
+	8	[19]	CALL     	3 2 1
+	9	[20]	GETGLOBAL	3 -1	; assert
+	10	[20]	GETGLOBAL	4 -2	; type
+	11	[20]	MOVE     	5 2
+	12	[20]	CALL     	4 2 2
+	13	[20]	EQ       	1 4 -4	; - "string"
+	14	[20]	JMP      	3	; to 18
+	15	[20]	NOT      	4 2
+	16	[20]	JMP      	2	; to 19
+	17	[20]	LOADBOOL 	4 0 1
+	18	[20]	LOADBOOL 	4 1 0
+	19	[20]	CALL     	3 2 1
+	20	[22]	GETTABLE 	3 0 -5	; "variables"
+	21	[22]	GETTABLE 	3 3 -6	; "SVN"
+	22	[23]	GETUPVAL 	4 0	; fs
+	23	[23]	GETTABLE 	4 4 -7	; "is_tool_available"
+	24	[23]	MOVE     	5 3
+	25	[23]	LOADK    	6 -8	; "--version"
+	26	[23]	LOADK    	7 -9	; "Subversion"
+	27	[23]	CALL     	4 4 3
+	28	[24]	TEST     	4 0 1
+	29	[24]	JMP      	3	; to 33
+	30	[25]	LOADNIL  	6 6
+	31	[25]	MOVE     	7 5
+	32	[25]	RETURN   	6 3
+	33	[28]	GETTABLE 	6 0 -10	; "name"
+	34	[28]	LOADK    	7 -11	; "-"
+	35	[28]	GETTABLE 	8 0 -12	; "version"
+	36	[28]	CONCAT   	6 6 8
+	37	[29]	GETTABLE 	7 0 -13	; "source"
+	38	[29]	GETTABLE 	7 7 -14	; "module"
+	39	[29]	TEST     	7 0 1
+	40	[29]	JMP      	5	; to 46
+	41	[29]	GETUPVAL 	7 1	; dir
+	42	[29]	GETTABLE 	7 7 -15	; "base_name"
+	43	[29]	GETTABLE 	8 0 -13	; "source"
+	44	[29]	GETTABLE 	8 8 -16	; "url"
+	45	[29]	CALL     	7 2 2
+	46	[30]	GETTABLE 	8 0 -13	; "source"
+	47	[30]	GETTABLE 	8 8 -16	; "url"
+	48	[30]	SELF     	8 8 -17	; "gsub"
+	49	[30]	LOADK    	10 -18	; "^svn://"
+	50	[30]	LOADK    	11 -19	; ""
+	51	[30]	CALL     	8 4 2
+	52	[31]	NEWTABLE 	9 4 0
+	53	[31]	MOVE     	10 3
+	54	[31]	LOADK    	11 -20	; "checkout"
+	55	[31]	MOVE     	12 8
+	56	[31]	MOVE     	13 7
+	57	[31]	SETLIST  	9 4 1	; 1
+	58	[32]	GETTABLE 	10 0 -13	; "source"
+	59	[32]	GETTABLE 	10 10 -21	; "tag"
+	60	[32]	TEST     	10 0 0
+	61	[32]	JMP      	13	; to 75
+	62	[33]	GETGLOBAL	10 -22	; table
+	63	[33]	GETTABLE 	10 10 -23	; "insert"
+	64	[33]	MOVE     	11 9
+	65	[33]	LOADK    	12 -24	; 5
+	66	[33]	LOADK    	13 -25	; "-r"
+	67	[33]	CALL     	10 4 1
+	68	[34]	GETGLOBAL	10 -22	; table
+	69	[34]	GETTABLE 	10 10 -23	; "insert"
+	70	[34]	MOVE     	11 9
+	71	[34]	LOADK    	12 -26	; 6
+	72	[34]	GETTABLE 	13 0 -13	; "source"
+	73	[34]	GETTABLE 	13 13 -21	; "tag"
+	74	[34]	CALL     	10 4 1
+	75	[36]	LOADNIL  	10 10
+	76	[37]	TEST     	2 0 1
+	77	[37]	JMP      	17	; to 95
+	78	[38]	GETUPVAL 	11 0	; fs
+	79	[38]	GETTABLE 	11 11 -27	; "make_temp_dir"
+	80	[38]	MOVE     	12 6
+	81	[38]	CALL     	11 2 2
+	82	[38]	MOVE     	10 11
+	83	[39]	TEST     	10 0 1
+	84	[39]	JMP      	3	; to 88
+	85	[40]	LOADNIL  	11 11
+	86	[40]	LOADK    	12 -28	; "Failed creating temporary directory."
+	87	[40]	RETURN   	11 3
+	88	[42]	GETUPVAL 	11 2	; util
+	89	[42]	GETTABLE 	11 11 -29	; "schedule_function"
+	90	[42]	GETUPVAL 	12 0	; fs
+	91	[42]	GETTABLE 	12 12 -30	; "delete"
+	92	[42]	MOVE     	13 10
+	93	[42]	CALL     	11 3 1
+	94	[42]	JMP      	1	; to 96
+	95	[44]	MOVE     	10 2
+	96	[46]	GETUPVAL 	11 0	; fs
+	97	[46]	GETTABLE 	11 11 -31	; "change_dir"
+	98	[46]	MOVE     	12 10
+	99	[46]	CALL     	11 2 3
+	100	[47]	TEST     	11 0 1
+	101	[47]	JMP      	3	; to 105
+	102	[47]	LOADNIL  	13 13
+	103	[47]	MOVE     	14 12
+	104	[47]	RETURN   	13 3
+	105	[48]	GETUPVAL 	13 0	; fs
+	106	[48]	GETTABLE 	13 13 -32	; "execute"
+	107	[48]	GETUPVAL 	14 3	; unpack
+	108	[48]	MOVE     	15 9
+	109	[48]	CALL     	14 2 0
+	110	[48]	CALL     	13 0 2
+	111	[48]	TEST     	13 0 1
+	112	[48]	JMP      	3	; to 116
+	113	[49]	LOADNIL  	13 13
+	114	[49]	LOADK    	14 -33	; "Failed fetching files from Subversion."
+	115	[49]	RETURN   	13 3
+	116	[51]	GETUPVAL 	13 0	; fs
+	117	[51]	GETTABLE 	13 13 -31	; "change_dir"
+	118	[51]	MOVE     	14 7
+	119	[51]	CALL     	13 2 3
+	120	[51]	MOVE     	12 14
+	121	[51]	MOVE     	11 13
+	122	[52]	TEST     	11 0 1
+	123	[52]	JMP      	3	; to 127
+	124	[52]	LOADNIL  	13 13
+	125	[52]	MOVE     	14 12
+	126	[52]	RETURN   	13 3
+	127	[53]	GETGLOBAL	13 -34	; ipairs
+	128	[53]	GETUPVAL 	14 0	; fs
+	129	[53]	GETTABLE 	14 14 -35	; "find"
+	130	[53]	LOADK    	15 -36	; "."
+	131	[53]	CALL     	14 2 0
+	132	[53]	CALL     	13 0 4
+	133	[53]	JMP      	15	; to 149
+	134	[54]	GETUPVAL 	18 1	; dir
+	135	[54]	GETTABLE 	18 18 -15	; "base_name"
+	136	[54]	MOVE     	19 17
+	137	[54]	CALL     	18 2 2
+	138	[54]	EQ       	0 18 -37	; - ".svn"
+	139	[54]	JMP      	9	; to 149
+	140	[55]	GETUPVAL 	18 0	; fs
+	141	[55]	GETTABLE 	18 18 -30	; "delete"
+	142	[55]	GETUPVAL 	19 1	; dir
+	143	[55]	GETTABLE 	19 19 -38	; "path"
+	144	[55]	MOVE     	20 10
+	145	[55]	MOVE     	21 7
+	146	[55]	MOVE     	22 17
+	147	[55]	CALL     	19 4 0
+	148	[55]	CALL     	18 0 1
+	149	[53]	TFORLOOP 	13 2
+	150	[56]	JMP      	-17	; to 134
+	151	[58]	GETUPVAL 	13 0	; fs
+	152	[58]	GETTABLE 	13 13 -39	; "pop_dir"
+	153	[58]	CALL     	13 1 1
+	154	[59]	GETUPVAL 	13 0	; fs
+	155	[59]	GETTABLE 	13 13 -39	; "pop_dir"
+	156	[59]	CALL     	13 1 1
+	157	[60]	MOVE     	13 7
+	158	[60]	MOVE     	14 10
+	159	[60]	RETURN   	13 3
+	160	[61]	RETURN   	0 1

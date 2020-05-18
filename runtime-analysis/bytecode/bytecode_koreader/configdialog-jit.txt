@@ -1,0 +1,4016 @@
+-- BYTECODE -- configdialog.lua:37-72
+0001    TGETB    1   0   1
+0002    UGET     2   0      ; UnderlineContainer
+0003    MOV      3   2
+0004    TGETS    2   2   1  ; "new"
+0005    TDUP     4   3
+0006    TSETB    1   4   1
+0007    TGETS    5   0   2  ; "underline_padding"
+0008    TSETS    5   4   4  ; "padding"
+0009    TGETS    5   0   5  ; "color"
+0010    TSETS    5   4   5  ; "color"
+0011    CALL     2   2   3
+0012    TSETS    2   0   0  ; "underline_container"
+0013    UGET     2   1      ; FrameContainer
+0014    MOV      3   2
+0015    TGETS    2   2   1  ; "new"
+0016    TDUP     4   6
+0017    TGETS    5   0   7  ; "padding_left"
+0018    TSETS    5   4   7  ; "padding_left"
+0019    TGETS    5   0   8  ; "padding_right"
+0020    TSETS    5   4   8  ; "padding_right"
+0021    TGETS    5   0   0  ; "underline_container"
+0022    TSETB    5   4   1
+0023    CALL     2   2   3
+0024    TSETB    2   0   1
+0025    TGETB    2   0   1
+0026    MOV      3   2
+0027    TGETS    2   2  10  ; "getSize"
+0028    CALL     2   2   2
+0029    TSETS    2   0   9  ; "dimen"
+0030    UGET     2   2      ; Device
+0031    MOV      3   2
+0032    TGETS    2   2  11  ; "isTouchDevice"
+0033    CALL     2   2   2
+0034    ISF          2
+0035    JMP      3 => 0058
+0036    TDUP     2  16
+0037    TDUP     3  15
+0038    UGET     4   3      ; GestureRange
+0039    MOV      5   4
+0040    TGETS    4   4   1  ; "new"
+0041    TDUP     6  13
+0042    TGETS    7   0   9  ; "dimen"
+0043    TSETS    7   6  14  ; "range"
+0044    CALL     4   2   3
+0045    TSETB    4   3   1
+0046    TSETS    3   2  17  ; "TapSelect"
+0047    TDUP     3  19
+0048    UGET     4   3      ; GestureRange
+0049    MOV      5   4
+0050    TGETS    4   4   1  ; "new"
+0051    TDUP     6  18
+0052    TGETS    7   0   9  ; "dimen"
+0053    TSETS    7   6  14  ; "range"
+0054    CALL     4   2   3
+0055    TSETB    4   3   1
+0056    TSETS    3   2  20  ; "HoldSelect"
+0057    TSETS    2   0  12  ; "ges_events"
+0058 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:74-76
+0001    TGETS    1   0   0  ; "underline_container"
+0002    UGET     2   0      ; Blitbuffer
+0003    TGETS    2   2   2  ; "COLOR_BLACK"
+0004    TSETS    2   1   1  ; "color"
+0005    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:78-80
+0001    TGETS    1   0   0  ; "underline_container"
+0002    UGET     2   0      ; Blitbuffer
+0003    TGETS    2   2   2  ; "COLOR_WHITE"
+0004    TSETS    2   1   1  ; "color"
+0005    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:91-93
+0001    KSTR     0   0      ; "fast"
+0002    UGET     1   0      ; self
+0003    TGETB    1   1   1
+0004    TGETS    1   1   1  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- configdialog.lua:82-95
+0001    TGETS    1   0   0  ; "enabled"
+0002    IST          1
+0003    JMP      1 => 0006
+0004    KPRI     1   2
+0005    UCLO     0 => 0039
+0006 => GGET     1   1      ; "pairs"
+0007    TGETS    2   0   2  ; "items"
+0008    CALL     1   4   2
+0009    ISNEXT   4 => 0014
+0010 => TGETS    6   5   3  ; "underline_container"
+0011    UGET     7   0      ; Blitbuffer
+0012    TGETS    7   7   5  ; "COLOR_WHITE"
+0013    TSETS    7   6   4  ; "color"
+0014 => ITERN    4   3   3
+0015    ITERL    4 => 0010
+0016    TGETS    1   0   3  ; "underline_container"
+0017    UGET     2   0      ; Blitbuffer
+0018    TGETS    2   2   6  ; "COLOR_BLACK"
+0019    TSETS    2   1   4  ; "color"
+0020    TGETS    1   0   7  ; "config"
+0021    MOV      2   1
+0022    TGETS    1   1   8  ; "onConfigChoose"
+0023    TGETS    3   0   9  ; "values"
+0024    TGETS    4   0  10  ; "name"
+0025    TGETS    5   0  11  ; "event"
+0026    TGETS    6   0  12  ; "args"
+0027    TGETS    7   0  13  ; "events"
+0028    TGETS    8   0  14  ; "current_item"
+0029    CALL     1   1   8
+0030    UGET     1   1      ; UIManager
+0031    MOV      2   1
+0032    TGETS    1   1  15  ; "setDirty"
+0033    TGETS    3   0   7  ; "config"
+0034    FNEW     4  16      ; configdialog.lua:91
+0035    CALL     1   1   4
+0036    KPRI     1   2
+0037    UCLO     0 => 0038
+0038 => RET1     1   2
+0039 => RET1     1   2
+
+-- BYTECODE -- configdialog.lua:97-103
+0001    TGETS    1   0   0  ; "config"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "onMakeDefault"
+0004    TGETS    3   0   2  ; "name"
+0005    TGETS    4   0   3  ; "name_text"
+0006    TGETS    5   0   4  ; "values"
+0007    IST          5
+0008    JMP      6 => 0010
+0009    TGETS    5   0   5  ; "args"
+0010 => TGETS    6   0   4  ; "values"
+0011    IST          6
+0012    JMP      7 => 0014
+0013    TGETS    6   0   6  ; "item_text"
+0014 => TGETS    7   0   7  ; "current_item"
+0015    CALL     1   1   7
+0016    KPRI     1   2
+0017    RET1     1   2
+
+-- BYTECODE -- configdialog.lua:107-141
+0001    UGET     1   0      ; UnderlineContainer
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "new"
+0004    TDUP     3   4
+0005    TGETS    4   0   2  ; "icon"
+0006    TSETB    4   3   1
+0007    TGETS    4   0   3  ; "underline_padding"
+0008    TSETS    4   3   5  ; "padding"
+0009    TGETS    4   0   6  ; "color"
+0010    TSETS    4   3   6  ; "color"
+0011    CALL     1   2   3
+0012    TSETS    1   0   0  ; "underline_container"
+0013    UGET     1   1      ; FrameContainer
+0014    MOV      2   1
+0015    TGETS    1   1   1  ; "new"
+0016    TDUP     3   7
+0017    TGETS    4   0   8  ; "padding_left"
+0018    TSETS    4   3   8  ; "padding_left"
+0019    TGETS    4   0   9  ; "padding_right"
+0020    TSETS    4   3   9  ; "padding_right"
+0021    TGETS    4   0   0  ; "underline_container"
+0022    TSETB    4   3   1
+0023    CALL     1   2   3
+0024    TSETB    1   0   1
+0025    TGETB    1   0   1
+0026    MOV      2   1
+0027    TGETS    1   1  11  ; "getSize"
+0028    CALL     1   2   2
+0029    TSETS    1   0  10  ; "dimen"
+0030    UGET     1   2      ; Device
+0031    MOV      2   1
+0032    TGETS    1   1  12  ; "isTouchDevice"
+0033    CALL     1   2   2
+0034    ISF          1
+0035    JMP      2 => 0058
+0036    TDUP     1  17
+0037    TDUP     2  16
+0038    UGET     3   3      ; GestureRange
+0039    MOV      4   3
+0040    TGETS    3   3   1  ; "new"
+0041    TDUP     5  14
+0042    TGETS    6   0  10  ; "dimen"
+0043    TSETS    6   5  15  ; "range"
+0044    CALL     3   2   3
+0045    TSETB    3   2   1
+0046    TSETS    2   1  18  ; "TapSelect"
+0047    TDUP     2  20
+0048    UGET     3   3      ; GestureRange
+0049    MOV      4   3
+0050    TGETS    3   3   1  ; "new"
+0051    TDUP     5  19
+0052    TGETS    6   0  10  ; "dimen"
+0053    TSETS    6   5  15  ; "range"
+0054    CALL     3   2   3
+0055    TSETB    3   2   1
+0056    TSETS    2   1  21  ; "HoldSelect"
+0057    TSETS    1   0  13  ; "ges_events"
+0058 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:143-145
+0001    TGETS    1   0   0  ; "icon"
+0002    KPRI     2   2
+0003    TSETS    2   1   1  ; "invert"
+0004    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:147-149
+0001    TGETS    1   0   0  ; "icon"
+0002    KPRI     2   1
+0003    TSETS    2   1   1  ; "invert"
+0004    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:162-164
+0001    KSTR     0   0      ; "fast"
+0002    UGET     1   0      ; self
+0003    TGETB    1   1   1
+0004    TGETS    1   1   1  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- configdialog.lua:151-166
+0001    TGETS    1   0   0  ; "enabled"
+0002    IST          1
+0003    JMP      1 => 0006
+0004    KPRI     1   2
+0005    UCLO     0 => 0039
+0006 => GGET     1   1      ; "pairs"
+0007    TGETS    2   0   2  ; "items"
+0008    CALL     1   4   2
+0009    ISNEXT   4 => 0014
+0010 => TGETS    6   5   3  ; "underline_container"
+0011    UGET     7   0      ; Blitbuffer
+0012    TGETS    7   7   5  ; "COLOR_WHITE"
+0013    TSETS    7   6   4  ; "color"
+0014 => ITERN    4   3   3
+0015    ITERL    4 => 0010
+0016    TGETS    1   0   3  ; "underline_container"
+0017    UGET     2   0      ; Blitbuffer
+0018    TGETS    2   2   6  ; "COLOR_BLACK"
+0019    TSETS    2   1   4  ; "color"
+0020    TGETS    1   0   7  ; "config"
+0021    MOV      2   1
+0022    TGETS    1   1   8  ; "onConfigChoose"
+0023    TGETS    3   0   9  ; "values"
+0024    TGETS    4   0  10  ; "name"
+0025    TGETS    5   0  11  ; "event"
+0026    TGETS    6   0  12  ; "args"
+0027    TGETS    7   0  13  ; "events"
+0028    TGETS    8   0  14  ; "current_item"
+0029    CALL     1   1   8
+0030    UGET     1   1      ; UIManager
+0031    MOV      2   1
+0032    TGETS    1   1  15  ; "setDirty"
+0033    TGETS    3   0   7  ; "config"
+0034    FNEW     4  16      ; configdialog.lua:162
+0035    CALL     1   1   4
+0036    KPRI     1   2
+0037    UCLO     0 => 0038
+0038 => RET1     1   2
+0039 => RET1     1   2
+
+-- BYTECODE -- configdialog.lua:168-172
+0001    TGETS    1   0   0  ; "config"
+0002    MOV      2   1
+0003    TGETS    1   1   1  ; "onMakeDefault"
+0004    TGETS    3   0   2  ; "name"
+0005    TGETS    4   0   3  ; "name_text"
+0006    TGETS    5   0   4  ; "values"
+0007    TGETS    6   0   4  ; "values"
+0008    TGETS    7   0   5  ; "current_item"
+0009    CALL     1   1   7
+0010    KPRI     1   2
+0011    RET1     1   2
+
+-- BYTECODE -- configdialog.lua:288-293
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "options"
+0003    UGET     1   1      ; c
+0004    TGETV    0   0   1
+0005    TGETS    0   0   1  ; "name_text_hold_callback"
+0006    ISF          0
+0007    JMP      1 => 0025
+0008    UGET     0   0      ; self
+0009    TGETS    0   0   0  ; "options"
+0010    UGET     1   1      ; c
+0011    TGETV    0   0   1
+0012    TGETS    0   0   1  ; "name_text_hold_callback"
+0013    UGET     1   0      ; self
+0014    TGETS    1   1   2  ; "config"
+0015    TGETS    1   1   3  ; "configurable"
+0016    UGET     2   0      ; self
+0017    TGETS    2   2   0  ; "options"
+0018    UGET     3   1      ; c
+0019    TGETV    2   2   3
+0020    UGET     3   0      ; self
+0021    TGETS    3   3   2  ; "config"
+0022    TGETS    3   3   4  ; "config_options"
+0023    TGETS    3   3   5  ; "prefix"
+0024    CALL     0   1   4
+0025 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:321-330
+0001    GGET     3   0      ; "type"
+0002    MOV      4   0
+0003    CALL     3   2   2
+0004    GGET     4   0      ; "type"
+0005    MOV      5   1
+0006    CALL     4   2   2
+0007    ISEQV    3   4
+0008    JMP      3 => 0013
+0009    UGET     3   0      ; logger
+0010    TGETS    3   3   1  ; "dbg"
+0011    KSTR     4   2      ; "different data types in option"
+0012    CALL     3   1   2
+0013 => GGET     3   0      ; "type"
+0014    MOV      4   0
+0015    CALL     3   2   2
+0016    ISNES    3   3      ; "number"
+0017    JMP      3 => 0023
+0018    GGET     3   4      ; "math"
+0019    TGETS    3   3   5  ; "abs"
+0020    SUBVV    4   0   1
+0021    CALLT    3   2
+0022    JMP      3 => 0034
+0023 => GGET     3   0      ; "type"
+0024    MOV      4   0
+0025    CALL     3   2   2
+0026    ISNES    3   6      ; "string"
+0027    JMP      3 => 0034
+0028    ISNEV    0   1
+0029    JMP      3 => 0032
+0030    KSHORT   3   0
+0031    JMP      4 => 0033
+0032 => KSHORT   3   1
+0033 => RET1     3   2
+0034 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:542-550
+0001    UGET     1   0      ; self
+0002    TGETS    1   1   0  ; "options"
+0003    UGET     2   1      ; c
+0004    TGETV    1   1   2
+0005    TGETS    1   1   1  ; "toggle"
+0006    TGETV    1   1   0
+0007    ISNES    1   2      ; "⋮"
+0008    JMP      1 => 0071
+0009    UGET     1   0      ; self
+0010    TGETS    1   1   0  ; "options"
+0011    UGET     2   1      ; c
+0012    TGETV    1   1   2
+0013    TGETS    1   1   3  ; "show_true_value_func"
+0014    ISF          1
+0015    JMP      2 => 0035
+0016    UGET     1   0      ; self
+0017    TGETS    1   1   0  ; "options"
+0018    UGET     2   1      ; c
+0019    TGETV    1   1   2
+0020    TGETS    1   1   4  ; "more_options_param"
+0021    TGETS    1   1   3  ; "show_true_value_func"
+0022    IST          1
+0023    JMP      1 => 0035
+0024    UGET     1   0      ; self
+0025    TGETS    1   1   0  ; "options"
+0026    UGET     2   1      ; c
+0027    TGETV    1   1   2
+0028    TGETS    1   1   4  ; "more_options_param"
+0029    UGET     2   0      ; self
+0030    TGETS    2   2   0  ; "options"
+0031    UGET     3   1      ; c
+0032    TGETV    2   2   3
+0033    TGETS    2   2   3  ; "show_true_value_func"
+0034    TSETS    2   1   3  ; "show_true_value_func"
+0035 => UGET     1   0      ; self
+0036    TGETS    1   1   5  ; "config"
+0037    MOV      2   1
+0038    TGETS    1   1   6  ; "onConfigMoreChoose"
+0039    UGET     3   0      ; self
+0040    TGETS    3   3   0  ; "options"
+0041    UGET     4   1      ; c
+0042    TGETV    3   3   4
+0043    TGETS    3   3   7  ; "values"
+0044    UGET     4   0      ; self
+0045    TGETS    4   4   0  ; "options"
+0046    UGET     5   1      ; c
+0047    TGETV    4   4   5
+0048    TGETS    4   4   8  ; "name"
+0049    UGET     5   0      ; self
+0050    TGETS    5   5   0  ; "options"
+0051    UGET     6   1      ; c
+0052    TGETV    5   5   6
+0053    TGETS    5   5   9  ; "event"
+0054    MOV      6   0
+0055    UGET     7   0      ; self
+0056    TGETS    7   7   0  ; "options"
+0057    UGET     8   1      ; c
+0058    TGETV    7   7   8
+0059    TGETS    7   7  10  ; "name_text"
+0060    UGET     8   0      ; self
+0061    TGETS    8   8   0  ; "options"
+0062    UGET     9   1      ; c
+0063    TGETV    8   8   9
+0064    TGETS    8   8  11  ; "delay_repaint"
+0065    UGET     9   0      ; self
+0066    TGETS    9   9   0  ; "options"
+0067    UGET    10   1      ; c
+0068    TGETV    9   9  10
+0069    TGETS    9   9   4  ; "more_options_param"
+0070    CALL     1   1   9
+0071 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:584-586
+0001    KSTR     0   0      ; "fast"
+0002    UGET     1   0      ; switch
+0003    TGETS    1   1   1  ; "dimen"
+0004    RET      0   3
+
+-- BYTECODE -- configdialog.lua:573-587
+0001    ISEQS    0   0      ; "-"
+0002    JMP      1 => 0005
+0003    ISNES    0   1      ; "+"
+0004    JMP      1 => 0042
+0005 => UGET     1   0      ; self
+0006    TGETS    1   1   2  ; "config"
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "onConfigFineTuneChoose"
+0009    UGET     3   0      ; self
+0010    TGETS    3   3   4  ; "options"
+0011    UGET     4   1      ; c
+0012    TGETV    3   3   4
+0013    TGETS    3   3   5  ; "values"
+0014    UGET     4   0      ; self
+0015    TGETS    4   4   4  ; "options"
+0016    UGET     5   1      ; c
+0017    TGETV    4   4   5
+0018    TGETS    4   4   6  ; "name"
+0019    UGET     5   0      ; self
+0020    TGETS    5   5   4  ; "options"
+0021    UGET     6   1      ; c
+0022    TGETV    5   5   6
+0023    TGETS    5   5   7  ; "event"
+0024    UGET     6   0      ; self
+0025    TGETS    6   6   4  ; "options"
+0026    UGET     7   1      ; c
+0027    TGETV    6   6   7
+0028    TGETS    6   6   8  ; "args"
+0029    UGET     7   0      ; self
+0030    TGETS    7   7   4  ; "options"
+0031    UGET     8   1      ; c
+0032    TGETV    7   7   8
+0033    TGETS    7   7   9  ; "events"
+0034    MOV      8   0
+0035    UGET     9   0      ; self
+0036    TGETS    9   9   4  ; "options"
+0037    UGET    10   1      ; c
+0038    TGETV    9   9  10
+0039    TGETS    9   9  10  ; "delay_repaint"
+0040    CALL     1   1   9
+0041    JMP      1 => 0117
+0042 => ISNES    0  11      ; "⋮"
+0043    JMP      1 => 0081
+0044    UGET     1   0      ; self
+0045    TGETS    1   1   2  ; "config"
+0046    MOV      2   1
+0047    TGETS    1   1  12  ; "onConfigMoreChoose"
+0048    UGET     3   0      ; self
+0049    TGETS    3   3   4  ; "options"
+0050    UGET     4   1      ; c
+0051    TGETV    3   3   4
+0052    TGETS    3   3   5  ; "values"
+0053    UGET     4   0      ; self
+0054    TGETS    4   4   4  ; "options"
+0055    UGET     5   1      ; c
+0056    TGETV    4   4   5
+0057    TGETS    4   4   6  ; "name"
+0058    UGET     5   0      ; self
+0059    TGETS    5   5   4  ; "options"
+0060    UGET     6   1      ; c
+0061    TGETV    5   5   6
+0062    TGETS    5   5   7  ; "event"
+0063    MOV      6   0
+0064    UGET     7   0      ; self
+0065    TGETS    7   7   4  ; "options"
+0066    UGET     8   1      ; c
+0067    TGETV    7   7   8
+0068    TGETS    7   7  13  ; "name_text"
+0069    UGET     8   0      ; self
+0070    TGETS    8   8   4  ; "options"
+0071    UGET     9   1      ; c
+0072    TGETV    8   8   9
+0073    TGETS    8   8  10  ; "delay_repaint"
+0074    UGET     9   0      ; self
+0075    TGETS    9   9   4  ; "options"
+0076    UGET    10   1      ; c
+0077    TGETV    9   9  10
+0078    TGETS    9   9  14  ; "more_options_param"
+0079    CALL     1   1   9
+0080    JMP      1 => 0117
+0081 => UGET     1   0      ; self
+0082    TGETS    1   1   2  ; "config"
+0083    MOV      2   1
+0084    TGETS    1   1  15  ; "onConfigChoose"
+0085    UGET     3   0      ; self
+0086    TGETS    3   3   4  ; "options"
+0087    UGET     4   1      ; c
+0088    TGETV    3   3   4
+0089    TGETS    3   3   5  ; "values"
+0090    UGET     4   0      ; self
+0091    TGETS    4   4   4  ; "options"
+0092    UGET     5   1      ; c
+0093    TGETV    4   4   5
+0094    TGETS    4   4   6  ; "name"
+0095    UGET     5   0      ; self
+0096    TGETS    5   5   4  ; "options"
+0097    UGET     6   1      ; c
+0098    TGETV    5   5   6
+0099    TGETS    5   5   7  ; "event"
+0100    UGET     6   0      ; self
+0101    TGETS    6   6   4  ; "options"
+0102    UGET     7   1      ; c
+0103    TGETV    6   6   7
+0104    TGETS    6   6   8  ; "args"
+0105    UGET     7   0      ; self
+0106    TGETS    7   7   4  ; "options"
+0107    UGET     8   1      ; c
+0108    TGETV    7   7   8
+0109    TGETS    7   7   9  ; "events"
+0110    MOV      8   0
+0111    UGET     9   0      ; self
+0112    TGETS    9   9   4  ; "options"
+0113    UGET    10   1      ; c
+0114    TGETV    9   9  10
+0115    TGETS    9   9  10  ; "delay_repaint"
+0116    CALL     1   1   9
+0117 => UGET     1   2      ; UIManager
+0118    MOV      2   1
+0119    TGETS    1   1  16  ; "setDirty"
+0120    UGET     3   0      ; self
+0121    TGETS    3   3   2  ; "config"
+0122    FNEW     4  17      ; configdialog.lua:584
+0123    CALL     1   1   4
+0124    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:588-596
+0001    ISEQS    0   0      ; "-"
+0002    JMP      1 => 0005
+0003    ISNES    0   1      ; "+"
+0004    JMP      1 => 0039
+0005 => UGET     1   0      ; self
+0006    TGETS    1   1   2  ; "config"
+0007    MOV      2   1
+0008    TGETS    1   1   3  ; "onMakeFineTuneDefault"
+0009    UGET     3   0      ; self
+0010    TGETS    3   3   4  ; "options"
+0011    UGET     4   1      ; c
+0012    TGETV    3   3   4
+0013    TGETS    3   3   5  ; "name"
+0014    UGET     4   0      ; self
+0015    TGETS    4   4   4  ; "options"
+0016    UGET     5   1      ; c
+0017    TGETV    4   4   5
+0018    TGETS    4   4   6  ; "name_text"
+0019    UGET     5   0      ; self
+0020    TGETS    5   5   4  ; "options"
+0021    UGET     6   1      ; c
+0022    TGETV    5   5   6
+0023    TGETS    5   5   7  ; "values"
+0024    UGET     6   0      ; self
+0025    TGETS    6   6   4  ; "options"
+0026    UGET     7   1      ; c
+0027    TGETV    6   6   7
+0028    TGETS    6   6   8  ; "labels"
+0029    IST          6
+0030    JMP      7 => 0036
+0031    UGET     6   0      ; self
+0032    TGETS    6   6   4  ; "options"
+0033    UGET     7   1      ; c
+0034    TGETV    6   6   7
+0035    TGETS    6   6   9  ; "args"
+0036 => MOV      7   0
+0037    CALL     1   1   7
+0038    JMP      1 => 0074
+0039 => ISEQS    0  10      ; "⋮"
+0040    JMP      1 => 0074
+0041    UGET     1   0      ; self
+0042    TGETS    1   1   2  ; "config"
+0043    MOV      2   1
+0044    TGETS    1   1  11  ; "onMakeDefault"
+0045    UGET     3   0      ; self
+0046    TGETS    3   3   4  ; "options"
+0047    UGET     4   1      ; c
+0048    TGETV    3   3   4
+0049    TGETS    3   3   5  ; "name"
+0050    UGET     4   0      ; self
+0051    TGETS    4   4   4  ; "options"
+0052    UGET     5   1      ; c
+0053    TGETV    4   4   5
+0054    TGETS    4   4   6  ; "name_text"
+0055    UGET     5   0      ; self
+0056    TGETS    5   5   4  ; "options"
+0057    UGET     6   1      ; c
+0058    TGETV    5   5   6
+0059    TGETS    5   5   7  ; "values"
+0060    UGET     6   0      ; self
+0061    TGETS    6   6   4  ; "options"
+0062    UGET     7   1      ; c
+0063    TGETV    6   6   7
+0064    TGETS    6   6   8  ; "labels"
+0065    IST          6
+0066    JMP      7 => 0072
+0067    UGET     6   0      ; self
+0068    TGETS    6   6   4  ; "options"
+0069    UGET     7   1      ; c
+0070    TGETV    6   6   7
+0071    TGETS    6   6   9  ; "args"
+0072 => MOV      7   0
+0073    CALL     1   1   7
+0074 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:176-619
+0001    KSHORT   1  20
+0002    KSHORT   2  16
+0003    KSHORT   3  40
+0004    KSHORT   4  50
+0005    UGET     5   0      ; Size
+0006    TGETS    5   5   0  ; "padding"
+0007    TGETS    5   5   1  ; "large"
+0008    UGET     6   0      ; Size
+0009    TGETS    6   6   0  ; "padding"
+0010    TGETS    6   6   2  ; "fullscreen"
+0011    UGET     7   0      ; Size
+0012    TGETS    7   7   0  ; "padding"
+0013    TGETS    7   7   3  ; "small"
+0014    UGET     8   0      ; Size
+0015    TGETS    8   8   0  ; "padding"
+0016    TGETS    8   8   4  ; "button"
+0017    KPRI     9   2
+0018    KSHORT  10   0
+0019    KSHORT  11   1
+0020    TGETS   12   0   5  ; "options"
+0021    LEN     12  12
+0022    KSHORT  13   1
+0023    FORI    11 => 0103
+0024 => TGETS   15   0   5  ; "options"
+0025    TGETV   15  15  14
+0026    TGETS   15  15   6  ; "advanced"
+0027    ISF         15
+0028    JMP     15 => 0033
+0029    MOV     15   9
+0030    JMP     16 => 0034
+0031    KPRI    15   1
+0032    JMP     16 => 0034
+0033 => KPRI    15   2
+0034 => TGETS   16   0   5  ; "options"
+0035    TGETV   16  16  14
+0036    TGETS   16  16   7  ; "show"
+0037    TGETS   17   0   5  ; "options"
+0038    TGETV   17  17  14
+0039    TGETS   17  17   8  ; "show_func"
+0040    ISF         17
+0041    JMP     18 => 0047
+0042    TGETS   17   0   5  ; "options"
+0043    TGETV   17  17  14
+0044    TGETS   17  17   8  ; "show_func"
+0045    CALL    17   2   1
+0046    MOV     16  17
+0047 => ISEQP   16   1
+0048    JMP     17 => 0102
+0049    ISF         15
+0050    JMP     17 => 0102
+0051    TGETS   17   0   5  ; "options"
+0052    TGETV   17  17  14
+0053    TGETS   17  17   9  ; "name_font_face"
+0054    ISF         17
+0055    JMP     18 => 0061
+0056    TGETS   17   0   5  ; "options"
+0057    TGETV   17  17  14
+0058    TGETS   17  17   9  ; "name_font_face"
+0059    IST         17
+0060    JMP     18 => 0062
+0061 => KSTR    17  10      ; "cfont"
+0062 => TGETS   18   0   5  ; "options"
+0063    TGETV   18  18  14
+0064    TGETS   18  18  11  ; "name_font_size"
+0065    ISF         18
+0066    JMP     19 => 0072
+0067    TGETS   18   0   5  ; "options"
+0068    TGETV   18  18  14
+0069    TGETS   18  18  11  ; "name_font_size"
+0070    IST         18
+0071    JMP     19 => 0073
+0072 => MOV     18   1
+0073 => TGETS   19   0   5  ; "options"
+0074    TGETV   19  19  14
+0075    TGETS   19  19  12  ; "name_text"
+0076    UGET    20   1      ; Font
+0077    MOV     21  20
+0078    TGETS   20  20  13  ; "getFace"
+0079    MOV     22  17
+0080    MOV     23  18
+0081    CALL    20   2   4
+0082    KSHORT  21   0
+0083    ISEQP   19   0
+0084    JMP     22 => 0096
+0085    UGET    22   2      ; TextWidget
+0086    MOV     23  22
+0087    TGETS   22  22  14  ; "new"
+0088    TDUP    24  15
+0089    TSETS   19  24  16  ; "text"
+0090    TSETS   20  24  17  ; "face"
+0091    CALL    22   2   3
+0092    MOV     24  22
+0093    TGETS   23  22  18  ; "getWidth"
+0094    CALL    23   2   2
+0095    MOV     21  23
+0096 => GGET    22  19      ; "math"
+0097    TGETS   22  22  20  ; "max"
+0098    MOV     23  10
+0099    MOV     24  21
+0100    CALL    22   2   3
+0101    MOV     10  22
+0102 => FORL    11 => 0024
+0103 => ADDVV   11  10   6
+0104    MULNV   12   7   0  ; 2
+0105    ADDVV   11  11  12
+0106    UGET    12   3      ; Screen
+0107    MOV     13  12
+0108    TGETS   12  12  18  ; "getWidth"
+0109    CALL    12   2   2
+0110    DIVVV   11  11  12
+0111    GGET    12  19      ; "math"
+0112    TGETS   12  12  20  ; "max"
+0113    MOV     13  11
+0114    KNUM    14   1      ; 0.25
+0115    CALL    12   2   3
+0116    MOV     11  12
+0117    GGET    12  19      ; "math"
+0118    TGETS   12  12  21  ; "min"
+0119    MOV     13  11
+0120    KNUM    14   2      ; 0.5
+0121    CALL    12   2   3
+0122    MOV     11  12
+0123    SUBNV   12  11   3  ; 1
+0124    UGET    13   4      ; VerticalGroup
+0125    MOV     14  13
+0126    TGETS   13  13  14  ; "new"
+0127    TNEW    15   0
+0128    CALL    13   2   3
+0129    GGET    14  22      ; "table"
+0130    TGETS   14  14  23  ; "insert"
+0131    MOV     15  13
+0132    UGET    16   5      ; VerticalSpan
+0133    MOV     17  16
+0134    TGETS   16  16  14  ; "new"
+0135    TDUP    18  24
+0136    TSETS    5  18  25  ; "width"
+0137    CALL    16   0   3
+0138    CALLM   14   1   1
+0139    KSHORT  14   1
+0140    TGETS   15   0   5  ; "options"
+0141    LEN     15  15
+0142    KSHORT  16   1
+0143    FORI    14 => 1248
+0144 => TGETS   18   0   5  ; "options"
+0145    TGETV   18  18  17
+0146    TGETS   18  18   6  ; "advanced"
+0147    ISF         18
+0148    JMP     18 => 0153
+0149    MOV     18   9
+0150    JMP     19 => 0154
+0151    KPRI    18   1
+0152    JMP     19 => 0154
+0153 => KPRI    18   2
+0154 => TGETS   19   0   5  ; "options"
+0155    TGETV   19  19  17
+0156    TGETS   19  19   7  ; "show"
+0157    TGETS   20   0   5  ; "options"
+0158    TGETV   20  20  17
+0159    TGETS   20  20   8  ; "show_func"
+0160    ISF         20
+0161    JMP     21 => 0167
+0162    TGETS   20   0   5  ; "options"
+0163    TGETV   20  20  17
+0164    TGETS   20  20   8  ; "show_func"
+0165    CALL    20   2   1
+0166    MOV     19  20
+0167 => ISEQP   19   1
+0168    JMP     20 => 1246
+0169    ISF         18
+0170    JMP     20 => 1246
+0171    TGETS   20   0   5  ; "options"
+0172    TGETV   20  20  17
+0173    TGETS   20  20  26  ; "name_align_right"
+0174    ISF         20
+0175    JMP     21 => 0181
+0176    TGETS   20   0   5  ; "options"
+0177    TGETV   20  20  17
+0178    TGETS   20  20  26  ; "name_align_right"
+0179    IST         20
+0180    JMP     21 => 0182
+0181 => MOV     20  11
+0182 => TGETS   21   0   5  ; "options"
+0183    TGETV   21  21  17
+0184    TGETS   21  21  27  ; "item_align_center"
+0185    ISF         21
+0186    JMP     22 => 0192
+0187    TGETS   21   0   5  ; "options"
+0188    TGETV   21  21  17
+0189    TGETS   21  21  27  ; "item_align_center"
+0190    IST         21
+0191    JMP     22 => 0193
+0192 => MOV     21  12
+0193 => TGETS   22   0   5  ; "options"
+0194    TGETV   22  22  17
+0195    TGETS   22  22   9  ; "name_font_face"
+0196    ISF         22
+0197    JMP     23 => 0203
+0198    TGETS   22   0   5  ; "options"
+0199    TGETV   22  22  17
+0200    TGETS   22  22   9  ; "name_font_face"
+0201    IST         22
+0202    JMP     23 => 0204
+0203 => KSTR    22  10      ; "cfont"
+0204 => TGETS   23   0   5  ; "options"
+0205    TGETV   23  23  17
+0206    TGETS   23  23  11  ; "name_font_size"
+0207    ISF         23
+0208    JMP     24 => 0214
+0209    TGETS   23   0   5  ; "options"
+0210    TGETV   23  23  17
+0211    TGETS   23  23  11  ; "name_font_size"
+0212    IST         23
+0213    JMP     24 => 0215
+0214 => MOV     23   1
+0215 => TGETS   24   0   5  ; "options"
+0216    TGETV   24  24  17
+0217    TGETS   24  24  28  ; "item_font_face"
+0218    ISF         24
+0219    JMP     25 => 0225
+0220    TGETS   24   0   5  ; "options"
+0221    TGETV   24  24  17
+0222    TGETS   24  24  28  ; "item_font_face"
+0223    IST         24
+0224    JMP     25 => 0226
+0225 => KSTR    24  10      ; "cfont"
+0226 => TGETS   25   0   5  ; "options"
+0227    TGETV   25  25  17
+0228    TGETS   25  25  29  ; "item_font_size"
+0229    ISF         25
+0230    JMP     26 => 0236
+0231    TGETS   25   0   5  ; "options"
+0232    TGETV   25  25  17
+0233    TGETS   25  25  29  ; "item_font_size"
+0234    IST         25
+0235    JMP     26 => 0237
+0236 => MOV     25   2
+0237 => UGET    26   3      ; Screen
+0238    MOV     27  26
+0239    TGETS   26  26  30  ; "scaleBySize"
+0240    TGETS   28   0   5  ; "options"
+0241    TGETV   28  28  17
+0242    TGETS   28  28  31  ; "height"
+0243    ISF         28
+0244    JMP     29 => 0250
+0245    TGETS   28   0   5  ; "options"
+0246    TGETV   28  28  17
+0247    TGETS   28  28  31  ; "height"
+0248    IST         28
+0249    JMP     29 => 0265
+0250 => TGETS   28   0   5  ; "options"
+0251    TGETV   28  28  17
+0252    TGETS   28  28  31  ; "height"
+0253    IST         28
+0254    JMP     29 => 0256
+0255    KSHORT  28  30
+0256 => TGETS   29   0   5  ; "options"
+0257    TGETV   29  29  17
+0258    TGETS   29  29  32  ; "row_count"
+0259    IST         29
+0260    JMP     30 => 0262
+0261    KSHORT  29   1
+0262 => SUBVN   29  29   3  ; 1
+0263    MULVV   28  28  29
+0264    ADDVV   28   4  28
+0265 => CALL    26   2   3
+0266    UGET    27   3      ; Screen
+0267    MOV     28  27
+0268    TGETS   27  27  30  ; "scaleBySize"
+0269    TGETS   29   0   5  ; "options"
+0270    TGETV   29  29  17
+0271    TGETS   29  29  33  ; "spacing"
+0272    ISF         29
+0273    JMP     30 => 0279
+0274    TGETS   29   0   5  ; "options"
+0275    TGETV   29  29  17
+0276    TGETS   29  29  33  ; "spacing"
+0277    IST         29
+0278    JMP     30 => 0280
+0279 => MOV     29   3
+0280 => CALL    27   2   3
+0281    KPRI    28   2
+0282    ISNEN   21   3      ; 1
+0283    JMP     29 => 0285
+0284    KSHORT  20   0
+0285 => ADDVV   29  20  21
+0286    KSHORT  30   1
+0287    ISGE    30  29
+0288    JMP     29 => 0291
+0289    KNUM    20   2      ; 0.5
+0290    KNUM    21   2      ; 0.5
+0291 => TGETS   29   0   5  ; "options"
+0292    TGETV   29  29  17
+0293    TGETS   29  29  34  ; "enabled_func"
+0294    ISF         29
+0295    JMP     30 => 0305
+0296    TGETS   29   0   5  ; "options"
+0297    TGETV   29  29  17
+0298    TGETS   29  29  34  ; "enabled_func"
+0299    TGETS   30   0  35  ; "config"
+0300    TGETS   30  30  36  ; "configurable"
+0301    TGETS   31   0  35  ; "config"
+0302    TGETS   31  31  37  ; "document"
+0303    CALL    29   2   3
+0304    MOV     28  29
+0305 => UGET    29   6      ; HorizontalGroup
+0306    MOV     30  29
+0307    TGETS   29  29  14  ; "new"
+0308    TNEW    31   0
+0309    CALL    29   2   3
+0310    TGETS   30   0   5  ; "options"
+0311    TGETV   30  30  17
+0312    TGETS   30  30  12  ; "name_text"
+0313    ISF         30
+0314    JMP     31 => 0380
+0315    GGET    30  19      ; "math"
+0316    TGETS   30  30  38  ; "floor"
+0317    UGET    31   3      ; Screen
+0318    MOV     32  31
+0319    TGETS   31  31  18  ; "getWidth"
+0320    CALL    31   2   2
+0321    MULVV   31  20  31
+0322    CALL    30   2   2
+0323    MULNV   31   7   0  ; 2
+0324    SUBVV   31  30  31
+0325    TGETS   32   0   5  ; "options"
+0326    TGETV   32  32  17
+0327    TGETS   32  32  12  ; "name_text"
+0328    UGET    33   1      ; Font
+0329    MOV     34  33
+0330    TGETS   33  33  13  ; "getFace"
+0331    MOV     35  22
+0332    MOV     36  23
+0333    CALL    33   2   4
+0334    UGET    34   7      ; RightContainer
+0335    MOV     35  34
+0336    TGETS   34  34  14  ; "new"
+0337    TDUP    36  42
+0338    UGET    37   8      ; Geom
+0339    MOV     38  37
+0340    TGETS   37  37  14  ; "new"
+0341    TDUP    39  39
+0342    TSETS   30  39  40  ; "w"
+0343    TSETS   26  39  41  ; "h"
+0344    CALL    37   2   3
+0345    TSETS   37  36  43  ; "dimen"
+0346    CALL    34   2   3
+0347    UGET    35   9      ; Button
+0348    MOV     36  35
+0349    TGETS   35  35  14  ; "new"
+0350    TDUP    37  44
+0351    TSETS   32  37  16  ; "text"
+0352    TSETS   31  37  45  ; "max_width"
+0353    TSETS   33  37  17  ; "face"
+0354    TSETS   28  37  46  ; "enabled"
+0355    TGETS   38   0   5  ; "options"
+0356    TGETV   38  38  17
+0357    TGETS   38  38  47  ; "name_text_hold_callback"
+0358    ISNEP   38   0
+0359    JMP     38 => 0362
+0360    KPRI    38   1
+0361    JMP     39 => 0363
+0362 => KPRI    38   2
+0363 => TSETS   38  37  48  ; "allow_hold_when_disabled"
+0364    TSETS    7  37   0  ; "padding"
+0365    TSETS   22  37  49  ; "text_font_face"
+0366    TSETS   23  37  50  ; "text_font_size"
+0367    FNEW    38  51      ; configdialog.lua:288
+0368    TSETS   38  37  52  ; "hold_callback"
+0369    CALL    35   2   3
+0370    GGET    36  22      ; "table"
+0371    TGETS   36  36  23  ; "insert"
+0372    MOV     37  34
+0373    MOV     38  35
+0374    CALL    36   1   3
+0375    GGET    36  22      ; "table"
+0376    TGETS   36  36  23  ; "insert"
+0377    MOV     37  29
+0378    MOV     38  34
+0379    CALL    36   1   3
+0380 => GGET    30  19      ; "math"
+0381    TGETS   30  30  38  ; "floor"
+0382    UGET    31   3      ; Screen
+0383    MOV     32  31
+0384    TGETS   31  31  18  ; "getWidth"
+0385    CALL    31   2   2
+0386    MULVV   31  21  31
+0387    CALL    30   2   2
+0388    MULNV   31   6   0  ; 2
+0389    SUBVV   31  30  31
+0390    UGET    32  10      ; CenterContainer
+0391    MOV     33  32
+0392    TGETS   32  32  14  ; "new"
+0393    TDUP    34  54
+0394    UGET    35   8      ; Geom
+0395    MOV     36  35
+0396    TGETS   35  35  14  ; "new"
+0397    TDUP    37  53
+0398    TSETS   30  37  40  ; "w"
+0399    TSETS   26  37  41  ; "h"
+0400    CALL    35   2   3
+0401    TSETS   35  34  43  ; "dimen"
+0402    CALL    32   2   3
+0403    UGET    33   6      ; HorizontalGroup
+0404    MOV     34  33
+0405    TGETS   33  33  14  ; "new"
+0406    TNEW    35   0
+0407    CALL    33   2   3
+0408    KPRI    34   1
+0409    TNEW    35   0
+0410    GGET    36  55      ; "type"
+0411    TGETS   37   0   5  ; "options"
+0412    TGETV   37  37  17
+0413    TGETS   37  37  29  ; "item_font_size"
+0414    CALL    36   2   2
+0415    ISNES   36  22      ; "table"
+0416    JMP     36 => 0420
+0417    KSTR    36  57      ; "bottom"
+0418    TSETS   36  33  56  ; "align"
+0419    KPRI    34   2
+0420 => KPRI    36   0
+0421    TGETS   37   0   5  ; "options"
+0422    TGETV   37  37  17
+0423    TGETS   37  37  58  ; "default_pos"
+0424    FNEW    38  59      ; configdialog.lua:321
+0425    TGETS   39   0   5  ; "options"
+0426    TGETV   39  39  17
+0427    TGETS   39  39  60  ; "name"
+0428    ISF         39
+0429    JMP     40 => 0622
+0430    TGETS   39   0   5  ; "options"
+0431    TGETV   39  39  17
+0432    TGETS   39  39  61  ; "values"
+0433    ISF         39
+0434    JMP     40 => 0510
+0435    TGETS   39   0   5  ; "options"
+0436    TGETV   39  39  17
+0437    TGETS   39  39  62  ; "current_func"
+0438    ISF         39
+0439    JMP     40 => 0446
+0440    TGETS   39   0   5  ; "options"
+0441    TGETV   39  39  17
+0442    TGETS   39  39  62  ; "current_func"
+0443    CALL    39   2   1
+0444    IST         39
+0445    JMP     40 => 0452
+0446 => TGETS   39   0  35  ; "config"
+0447    TGETS   39  39  36  ; "configurable"
+0448    TGETS   40   0   5  ; "options"
+0449    TGETV   40  40  17
+0450    TGETS   40  40  60  ; "name"
+0451    TGETV   39  39  40
+0452 => KPRI    40   0
+0453    GGET    41  55      ; "type"
+0454    MOV     42  39
+0455    CALL    41   2   2
+0456    ISNES   41  22      ; "table"
+0457    JMP     41 => 0468
+0458    MOV     41  38
+0459    TGETB   42  39   1
+0460    TGETS   43   0   5  ; "options"
+0461    TGETV   43  43  17
+0462    TGETS   43  43  61  ; "values"
+0463    TGETB   43  43   1
+0464    TGETB   43  43   1
+0465    CALL    41   2   3
+0466    MOV     40  41
+0467    JMP     41 => 0476
+0468 => MOV     41  38
+0469    MOV     42  39
+0470    TGETS   43   0   5  ; "options"
+0471    TGETV   43  43  17
+0472    TGETS   43  43  61  ; "values"
+0473    TGETB   43  43   1
+0474    CALL    41   2   3
+0475    MOV     40  41
+0476 => KPRI    41   0
+0477    GGET    42  63      ; "pairs"
+0478    TGETS   43   0   5  ; "options"
+0479    TGETV   43  43  17
+0480    TGETS   43  43  61  ; "values"
+0481    CALL    42   4   2
+0482    ISNEXT  45 => 0507
+0483 => GGET    47  55      ; "type"
+0484    MOV     48  39
+0485    CALL    47   2   2
+0486    ISNES   47  22      ; "table"
+0487    JMP     47 => 0494
+0488    MOV     47  38
+0489    TGETB   48  39   1
+0490    TGETB   49  46   1
+0491    CALL    47   2   3
+0492    MOV     41  47
+0493    JMP     47 => 0499
+0494 => MOV     47  38
+0495    MOV     48  39
+0496    MOV     49  46
+0497    CALL    47   2   3
+0498    MOV     41  47
+0499 => ISNEV   39  46
+0500    JMP     47 => 0503
+0501    MOV     36  45
+0502    JMP     42 => 0544
+0503 => ISGT    41  40
+0504    JMP     47 => 0507
+0505    MOV     40  41
+0506    MOV     36  45
+0507 => ITERN   45   3   3
+0508    ITERL   45 => 0483
+0509    JMP     39 => 0544
+0510 => TGETS   39   0   5  ; "options"
+0511    TGETV   39  39  17
+0512    TGETS   39  39  64  ; "args"
+0513    ISF         39
+0514    JMP     40 => 0544
+0515    TGETS   39   0   5  ; "options"
+0516    TGETV   39  39  17
+0517    TGETS   39  39  62  ; "current_func"
+0518    ISF         39
+0519    JMP     40 => 0526
+0520    TGETS   39   0   5  ; "options"
+0521    TGETV   39  39  17
+0522    TGETS   39  39  62  ; "current_func"
+0523    CALL    39   2   1
+0524    IST         39
+0525    JMP     40 => 0532
+0526 => TGETS   39   0  35  ; "config"
+0527    TGETS   39  39  36  ; "configurable"
+0528    TGETS   40   0   5  ; "options"
+0529    TGETV   40  40  17
+0530    TGETS   40  40  60  ; "name"
+0531    TGETV   39  39  40
+0532 => GGET    40  63      ; "pairs"
+0533    TGETS   41   0   5  ; "options"
+0534    TGETV   41  41  17
+0535    TGETS   41  41  64  ; "args"
+0536    CALL    40   4   2
+0537    ISNEXT  43 => 0542
+0538 => ISNEV   44  39
+0539    JMP     45 => 0542
+0540    MOV     36  43
+0541    JMP     40 => 0544
+0542 => ITERN   43   3   3
+0543    ITERL   43 => 0538
+0544 => TGETS   39   0  35  ; "config"
+0545    TGETS   39  39  65  ; "config_options"
+0546    TGETS   39  39  66  ; "prefix"
+0547    KSTR    40  67      ; "_"
+0548    TGETS   41   0   5  ; "options"
+0549    TGETV   41  41  17
+0550    TGETS   41  41  60  ; "name"
+0551    CAT     39  39  41
+0552    GGET    40  68      ; "G_reader_settings"
+0553    MOV     41  40
+0554    TGETS   40  40  69  ; "readSetting"
+0555    MOV     42  39
+0556    CALL    40   2   3
+0557    ISF         40
+0558    JMP     41 => 0622
+0559    TGETS   41   0   5  ; "options"
+0560    TGETV   41  41  17
+0561    TGETS   41  41  61  ; "values"
+0562    ISF         41
+0563    JMP     42 => 0622
+0564    MOV     41  40
+0565    KPRI    42   0
+0566    GGET    43  55      ; "type"
+0567    MOV     44  41
+0568    CALL    43   2   2
+0569    ISNES   43  22      ; "table"
+0570    JMP     43 => 0581
+0571    MOV     43  38
+0572    TGETB   44  41   1
+0573    TGETS   45   0   5  ; "options"
+0574    TGETV   45  45  17
+0575    TGETS   45  45  61  ; "values"
+0576    TGETB   45  45   1
+0577    TGETB   45  45   1
+0578    CALL    43   2   3
+0579    MOV     42  43
+0580    JMP     43 => 0589
+0581 => MOV     43  38
+0582    MOV     44  41
+0583    TGETS   45   0   5  ; "options"
+0584    TGETV   45  45  17
+0585    TGETS   45  45  61  ; "values"
+0586    TGETB   45  45   1
+0587    CALL    43   2   3
+0588    MOV     42  43
+0589 => KPRI    43   0
+0590    GGET    44  63      ; "pairs"
+0591    TGETS   45   0   5  ; "options"
+0592    TGETV   45  45  17
+0593    TGETS   45  45  61  ; "values"
+0594    CALL    44   4   2
+0595    ISNEXT  47 => 0620
+0596 => GGET    49  55      ; "type"
+0597    MOV     50  41
+0598    CALL    49   2   2
+0599    ISNES   49  22      ; "table"
+0600    JMP     49 => 0607
+0601    MOV     49  38
+0602    TGETB   50  41   1
+0603    TGETB   51  48   1
+0604    CALL    49   2   3
+0605    MOV     43  49
+0606    JMP     49 => 0612
+0607 => MOV     49  38
+0608    MOV     50  41
+0609    MOV     51  48
+0610    CALL    49   2   3
+0611    MOV     43  49
+0612 => ISNEV   41  48
+0613    JMP     49 => 0616
+0614    MOV     37  47
+0615    JMP     44 => 0622
+0616 => ISGT    43  42
+0617    JMP     49 => 0620
+0618    MOV     42  43
+0619    MOV     37  47
+0620 => ITERN   47   3   3
+0621    ITERL   47 => 0596
+0622 => TGETS   39   0   5  ; "options"
+0623    TGETV   39  39  17
+0624    TGETS   39  39  70  ; "item_text"
+0625    ISF         39
+0626    JMP     40 => 0880
+0627    TGETS   39   0   5  ; "options"
+0628    TGETV   39  39  17
+0629    TGETS   39  39  70  ; "item_text"
+0630    LEN     39  39
+0631    KSHORT  40   0
+0632    KSHORT  41   1
+0633    TGETS   42   0   5  ; "options"
+0634    TGETV   42  42  17
+0635    TGETS   42  42  70  ; "item_text"
+0636    LEN     42  42
+0637    KSHORT  43   1
+0638    FORI    41 => 0673
+0639 => UGET    45  12      ; OptionTextItem
+0640    MOV     46  45
+0641    TGETS   45  45  14  ; "new"
+0642    TNEW    47   3
+0643    UGET    48   2      ; TextWidget
+0644    MOV     49  48
+0645    TGETS   48  48  14  ; "new"
+0646    TDUP    50  71
+0647    TGETS   51   0   5  ; "options"
+0648    TGETV   51  51  17
+0649    TGETS   51  51  70  ; "item_text"
+0650    TGETV   51  51  44
+0651    TSETS   51  50  16  ; "text"
+0652    UGET    51   1      ; Font
+0653    MOV     52  51
+0654    TGETS   51  51  13  ; "getFace"
+0655    MOV     53  24
+0656    ISF         34
+0657    JMP     54 => 0661
+0658    TGETV   54  25  44
+0659    IST         54
+0660    JMP     55 => 0662
+0661 => MOV     54  25
+0662 => CALL    51   2   4
+0663    TSETS   51  50  17  ; "face"
+0664    CALL    48   0   3
+0665    TSETM   48   4      ; 1
+0666    CALL    45   2   3
+0667    MOV     47  45
+0668    TGETS   46  45  72  ; "getSize"
+0669    CALL    46   2   2
+0670    TGETS   46  46  40  ; "w"
+0671    ADDVV   40  40  46
+0672    FORL    41 => 0639
+0673 => SUBVV   41  31  40
+0674    DIVVV   41  41  39
+0675    GGET    42  19      ; "math"
+0676    TGETS   42  42  21  ; "min"
+0677    MOV     43  41
+0678    MOV     44  27
+0679    CALL    42   2   3
+0680    DIVVN   43  27   0  ; 2
+0681    ISGE    41  43
+0682    JMP     43 => 0684
+0683    DIVVN   42  27   0  ; 2
+0684 => DIVVN   43  42   0  ; 2
+0685    MULVV   44  39  42
+0686    SUBVV   44  31  44
+0687    DIVVV   44  44  39
+0688    KSHORT  45   1
+0689    TGETS   46   0   5  ; "options"
+0690    TGETV   46  46  17
+0691    TGETS   46  46  70  ; "item_text"
+0692    LEN     46  46
+0693    KSHORT  47   1
+0694    FORI    45 => 0880
+0695 => KPRI    49   0
+0696    ISF         34
+0697    JMP     50 => 0770
+0698    UGET    50  12      ; OptionTextItem
+0699    MOV     51  50
+0700    TGETS   50  50  14  ; "new"
+0701    TDUP    52  77
+0702    UGET    53  13      ; FixedTextWidget
+0703    MOV     54  53
+0704    TGETS   53  53  14  ; "new"
+0705    TDUP    55  73
+0706    TGETS   56   0   5  ; "options"
+0707    TGETV   56  56  17
+0708    TGETS   56  56  70  ; "item_text"
+0709    TGETV   56  56  48
+0710    TSETS   56  55  16  ; "text"
+0711    UGET    56   1      ; Font
+0712    MOV     57  56
+0713    TGETS   56  56  13  ; "getFace"
+0714    MOV     58  24
+0715    TGETV   59  25  48
+0716    CALL    56   2   4
+0717    TSETS   56  55  17  ; "face"
+0718    ISF         28
+0719    JMP     56 => 0724
+0720    UGET    56  14      ; Blitbuffer
+0721    TGETS   56  56  74  ; "COLOR_BLACK"
+0722    IST         56
+0723    JMP     57 => 0726
+0724 => UGET    56  14      ; Blitbuffer
+0725    TGETS   56  56  75  ; "COLOR_DARK_GRAY"
+0726 => TSETS   56  55  76  ; "fgcolor"
+0727    CALL    53   2   3
+0728    TSETB   53  52   1
+0729    TSETS    8  52  78  ; "underline_padding"
+0730    KSHORT  53   1
+0731    ISGE    53  48
+0732    JMP     53 => 0735
+0733    MOV     53  43
+0734    JMP     54 => 0738
+0735 => KPRI    53   1
+0736    JMP     54 => 0738
+0737    KPRI    53   2
+0738 => TSETS   53  52  79  ; "padding_left"
+0739    TGETS   53   0   5  ; "options"
+0740    TGETV   53  53  17
+0741    TGETS   53  53  70  ; "item_text"
+0742    LEN     53  53
+0743    ISGE    48  53
+0744    JMP     53 => 0747
+0745    MOV     53  43
+0746    JMP     54 => 0750
+0747 => KPRI    53   1
+0748    JMP     54 => 0750
+0749    KPRI    53   2
+0750 => TSETS   53  52  80  ; "padding_right"
+0751    ISNEV   48  36
+0752    JMP     53 => 0763
+0753    ISF         28
+0754    JMP     53 => 0759
+0755    UGET    53  14      ; Blitbuffer
+0756    TGETS   53  53  74  ; "COLOR_BLACK"
+0757    IST         53
+0758    JMP     54 => 0765
+0759 => UGET    53  14      ; Blitbuffer
+0760    TGETS   53  53  75  ; "COLOR_DARK_GRAY"
+0761    IST         53
+0762    JMP     54 => 0765
+0763 => UGET    53  14      ; Blitbuffer
+0764    TGETS   53  53  81  ; "COLOR_WHITE"
+0765 => TSETS   53  52  82  ; "color"
+0766    TSETS   28  52  46  ; "enabled"
+0767    CALL    50   2   3
+0768    MOV     49  50
+0769    JMP     50 => 0843
+0770 => TGETS   50   0   5  ; "options"
+0771    TGETV   50  50  17
+0772    TGETS   50  50  70  ; "item_text"
+0773    TGETV   50  50  48
+0774    UGET    51   1      ; Font
+0775    MOV     52  51
+0776    TGETS   51  51  13  ; "getFace"
+0777    MOV     53  24
+0778    MOV     54  25
+0779    CALL    51   2   4
+0780    UGET    52  12      ; OptionTextItem
+0781    MOV     53  52
+0782    TGETS   52  52  14  ; "new"
+0783    TDUP    54  84
+0784    UGET    55   2      ; TextWidget
+0785    MOV     56  55
+0786    TGETS   55  55  14  ; "new"
+0787    TDUP    57  83
+0788    TSETS   50  57  16  ; "text"
+0789    TSETS   44  57  45  ; "max_width"
+0790    TSETS   51  57  17  ; "face"
+0791    ISF         28
+0792    JMP     58 => 0797
+0793    UGET    58  14      ; Blitbuffer
+0794    TGETS   58  58  74  ; "COLOR_BLACK"
+0795    IST         58
+0796    JMP     59 => 0799
+0797 => UGET    58  14      ; Blitbuffer
+0798    TGETS   58  58  75  ; "COLOR_DARK_GRAY"
+0799 => TSETS   58  57  76  ; "fgcolor"
+0800    CALL    55   2   3
+0801    TSETB   55  54   1
+0802    UNM     55   8
+0803    TSETS   55  54  78  ; "underline_padding"
+0804    KSHORT  55   1
+0805    ISGE    55  48
+0806    JMP     55 => 0809
+0807    MOV     55  43
+0808    JMP     56 => 0812
+0809 => KPRI    55   1
+0810    JMP     56 => 0812
+0811    KPRI    55   2
+0812 => TSETS   55  54  79  ; "padding_left"
+0813    TGETS   55   0   5  ; "options"
+0814    TGETV   55  55  17
+0815    TGETS   55  55  70  ; "item_text"
+0816    LEN     55  55
+0817    ISGE    48  55
+0818    JMP     55 => 0821
+0819    MOV     55  43
+0820    JMP     56 => 0824
+0821 => KPRI    55   1
+0822    JMP     56 => 0824
+0823    KPRI    55   2
+0824 => TSETS   55  54  80  ; "padding_right"
+0825    ISNEV   48  36
+0826    JMP     55 => 0837
+0827    ISF         28
+0828    JMP     55 => 0833
+0829    UGET    55  14      ; Blitbuffer
+0830    TGETS   55  55  74  ; "COLOR_BLACK"
+0831    IST         55
+0832    JMP     56 => 0839
+0833 => UGET    55  14      ; Blitbuffer
+0834    TGETS   55  55  75  ; "COLOR_DARK_GRAY"
+0835    IST         55
+0836    JMP     56 => 0839
+0837 => UGET    55  14      ; Blitbuffer
+0838    TGETS   55  55  81  ; "COLOR_WHITE"
+0839 => TSETS   55  54  82  ; "color"
+0840    TSETS   28  54  46  ; "enabled"
+0841    CALL    52   2   3
+0842    MOV     49  52
+0843 => TSETV   49  35  48
+0844    TSETS   35  49  85  ; "items"
+0845    TGETS   50   0   5  ; "options"
+0846    TGETV   50  50  17
+0847    TGETS   50  50  60  ; "name"
+0848    TSETS   50  49  60  ; "name"
+0849    TGETS   50   0   5  ; "options"
+0850    TGETV   50  50  17
+0851    TGETS   50  50  12  ; "name_text"
+0852    TSETS   50  49  12  ; "name_text"
+0853    TGETS   50   0   5  ; "options"
+0854    TGETV   50  50  17
+0855    TGETS   50  50  70  ; "item_text"
+0856    TSETS   50  49  70  ; "item_text"
+0857    TGETS   50   0   5  ; "options"
+0858    TGETV   50  50  17
+0859    TGETS   50  50  61  ; "values"
+0860    TSETS   50  49  61  ; "values"
+0861    TGETS   50   0   5  ; "options"
+0862    TGETV   50  50  17
+0863    TGETS   50  50  64  ; "args"
+0864    TSETS   50  49  64  ; "args"
+0865    TGETS   50   0   5  ; "options"
+0866    TGETV   50  50  17
+0867    TGETS   50  50  86  ; "event"
+0868    TSETS   50  49  86  ; "event"
+0869    TSETS   48  49  87  ; "current_item"
+0870    TGETS   50   0  35  ; "config"
+0871    TSETS   50  49  35  ; "config"
+0872    TGETS   50   0  37  ; "document"
+0873    TSETS   50  49  37  ; "document"
+0874    GGET    50  22      ; "table"
+0875    TGETS   50  50  23  ; "insert"
+0876    MOV     51  33
+0877    MOV     52  49
+0878    CALL    50   1   3
+0879    FORL    45 => 0695
+0880 => TGETS   39   0   5  ; "options"
+0881    TGETV   39  39  17
+0882    TGETS   39  39  88  ; "item_icons"
+0883    ISF         39
+0884    JMP     40 => 1013
+0885    TGETS   39   0   5  ; "options"
+0886    TGETV   39  39  17
+0887    TGETS   39  39  88  ; "item_icons"
+0888    LEN     39  39
+0889    UGET    40  15      ; OptionIconItem
+0890    MOV     41  40
+0891    TGETS   40  40  14  ; "new"
+0892    TDUP    42  91
+0893    UGET    43  16      ; ImageWidget
+0894    MOV     44  43
+0895    TGETS   43  43  14  ; "new"
+0896    TDUP    45  89
+0897    TGETS   46   0   5  ; "options"
+0898    TGETV   46  46  17
+0899    TGETS   46  46  88  ; "item_icons"
+0900    TGETB   46  46   1
+0901    TSETS   46  45  90  ; "file"
+0902    CALL    43   2   3
+0903    TSETS   43  42  92  ; "icon"
+0904    CALL    40   2   3
+0905    MOV     42  40
+0906    TGETS   41  40  72  ; "getSize"
+0907    CALL    41   2   2
+0908    TGETS   41  41  40  ; "w"
+0909    MULVV   41  41  39
+0910    SUBVV   41  31  41
+0911    DIVVV   41  41  39
+0912    GGET    42  19      ; "math"
+0913    TGETS   42  42  21  ; "min"
+0914    MOV     43  41
+0915    MOV     44  27
+0916    CALL    42   2   3
+0917    DIVVN   42  42   0  ; 2
+0918    KSHORT  43   1
+0919    TGETS   44   0   5  ; "options"
+0920    TGETV   44  44  17
+0921    TGETS   44  44  88  ; "item_icons"
+0922    LEN     44  44
+0923    KSHORT  45   1
+0924    FORI    43 => 1013
+0925 => UGET    47  15      ; OptionIconItem
+0926    MOV     48  47
+0927    TGETS   47  47  14  ; "new"
+0928    TDUP    49  95
+0929    UGET    50  16      ; ImageWidget
+0930    MOV     51  50
+0931    TGETS   50  50  14  ; "new"
+0932    TDUP    52  93
+0933    TGETS   53   0   5  ; "options"
+0934    TGETV   53  53  17
+0935    TGETS   53  53  88  ; "item_icons"
+0936    TGETV   53  53  46
+0937    TSETS   53  52  90  ; "file"
+0938    NOT     53  28
+0939    TSETS   53  52  94  ; "dim"
+0940    CALL    50   2   3
+0941    TSETS   50  49  92  ; "icon"
+0942    UNM     50   8
+0943    TSETS   50  49  78  ; "underline_padding"
+0944    KSHORT  50   1
+0945    ISGE    50  46
+0946    JMP     50 => 0949
+0947    MOV     50  42
+0948    JMP     51 => 0952
+0949 => KPRI    50   1
+0950    JMP     51 => 0952
+0951    KPRI    50   2
+0952 => TSETS   50  49  79  ; "padding_left"
+0953    TGETS   50   0   5  ; "options"
+0954    TGETV   50  50  17
+0955    TGETS   50  50  88  ; "item_icons"
+0956    LEN     50  50
+0957    ISGE    46  50
+0958    JMP     50 => 0961
+0959    MOV     50  42
+0960    JMP     51 => 0964
+0961 => KPRI    50   1
+0962    JMP     51 => 0964
+0963    KPRI    50   2
+0964 => TSETS   50  49  80  ; "padding_right"
+0965    ISNEV   46  36
+0966    JMP     50 => 0977
+0967    ISF         28
+0968    JMP     50 => 0973
+0969    UGET    50  14      ; Blitbuffer
+0970    TGETS   50  50  74  ; "COLOR_BLACK"
+0971    IST         50
+0972    JMP     51 => 0979
+0973 => UGET    50  14      ; Blitbuffer
+0974    TGETS   50  50  75  ; "COLOR_DARK_GRAY"
+0975    IST         50
+0976    JMP     51 => 0979
+0977 => UGET    50  14      ; Blitbuffer
+0978    TGETS   50  50  81  ; "COLOR_WHITE"
+0979 => TSETS   50  49  82  ; "color"
+0980    TSETS   28  49  46  ; "enabled"
+0981    CALL    47   2   3
+0982    TSETV   47  35  46
+0983    TSETS   35  47  85  ; "items"
+0984    TGETS   48   0   5  ; "options"
+0985    TGETV   48  48  17
+0986    TGETS   48  48  60  ; "name"
+0987    TSETS   48  47  60  ; "name"
+0988    TGETS   48   0   5  ; "options"
+0989    TGETV   48  48  17
+0990    TGETS   48  48  12  ; "name_text"
+0991    TSETS   48  47  12  ; "name_text"
+0992    TGETS   48   0   5  ; "options"
+0993    TGETV   48  48  17
+0994    TGETS   48  48  61  ; "values"
+0995    TSETS   48  47  61  ; "values"
+0996    TGETS   48   0   5  ; "options"
+0997    TGETV   48  48  17
+0998    TGETS   48  48  64  ; "args"
+0999    TSETS   48  47  64  ; "args"
+1000    TGETS   48   0   5  ; "options"
+1001    TGETV   48  48  17
+1002    TGETS   48  48  86  ; "event"
+1003    TSETS   48  47  86  ; "event"
+1004    TSETS   46  47  87  ; "current_item"
+1005    TGETS   48   0  35  ; "config"
+1006    TSETS   48  47  35  ; "config"
+1007    GGET    48  22      ; "table"
+1008    TGETS   48  48  23  ; "insert"
+1009    MOV     49  33
+1010    MOV     50  47
+1011    CALL    48   1   3
+1012    FORL    43 => 0925
+1013 => TGETS   39   0   5  ; "options"
+1014    TGETV   39  39  17
+1015    TGETS   39  39  96  ; "toggle"
+1016    ISF         39
+1017    JMP     40 => 1139
+1018    MOV     39  31
+1019    TGETS   40   0   5  ; "options"
+1020    TGETV   40  40  17
+1021    TGETS   40  40  25  ; "width"
+1022    ISF         40
+1023    JMP     41 => 1033
+1024    UGET    40   3      ; Screen
+1025    MOV     41  40
+1026    TGETS   40  40  30  ; "scaleBySize"
+1027    TGETS   42   0   5  ; "options"
+1028    TGETV   42  42  17
+1029    TGETS   42  42  25  ; "width"
+1030    CALL    40   2   3
+1031    IST         40
+1032    JMP     41 => 1034
+1033 => MOV     40  39
+1034 => TGETS   41   0   5  ; "options"
+1035    TGETV   41  41  17
+1036    TGETS   41  41  32  ; "row_count"
+1037    IST         41
+1038    JMP     42 => 1040
+1039    KSHORT  41   1
+1040 => UGET    42   3      ; Screen
+1041    MOV     43  42
+1042    TGETS   42  42  30  ; "scaleBySize"
+1043    TGETS   44   0   5  ; "options"
+1044    TGETV   44  44  17
+1045    TGETS   44  44  31  ; "height"
+1046    IST         44
+1047    JMP     45 => 1049
+1048    MULNV   44  41   5  ; 30
+1049 => CALL    42   2   3
+1050    TGETS   43   0   5  ; "options"
+1051    TGETV   43  43  17
+1052    TGETS   43  43  97  ; "more_options"
+1053    ISF         43
+1054    JMP     44 => 1073
+1055    GGET    43  22      ; "table"
+1056    TGETS   43  43  23  ; "insert"
+1057    TGETS   44   0   5  ; "options"
+1058    TGETV   44  44  17
+1059    TGETS   44  44  96  ; "toggle"
+1060    KSTR    45  98      ; "⋮"
+1061    CALL    43   1   3
+1062    GGET    43  22      ; "table"
+1063    TGETS   43  43  23  ; "insert"
+1064    TGETS   44   0   5  ; "options"
+1065    TGETV   44  44  17
+1066    TGETS   44  44  64  ; "args"
+1067    KSTR    45  98      ; "⋮"
+1068    CALL    43   1   3
+1069    TGETS   43   0   5  ; "options"
+1070    TGETV   43  43  17
+1071    KPRI    44   1
+1072    TSETS   44  43  97  ; "more_options"
+1073 => UGET    43  17      ; ToggleSwitch
+1074    MOV     44  43
+1075    TGETS   43  43  14  ; "new"
+1076    TDUP    45  99
+1077    GGET    46  19      ; "math"
+1078    TGETS   46  46  21  ; "min"
+1079    MOV     47  39
+1080    MOV     48  40
+1081    CALL    46   2   3
+1082    TSETS   46  45  25  ; "width"
+1083    TSETS   42  45  31  ; "height"
+1084    TSETS   24  45 100  ; "font_face"
+1085    TSETS   25  45 101  ; "font_size"
+1086    TGETS   46   0   5  ; "options"
+1087    TGETV   46  46  17
+1088    TGETS   46  46  60  ; "name"
+1089    TSETS   46  45  60  ; "name"
+1090    TGETS   46   0   5  ; "options"
+1091    TGETV   46  46  17
+1092    TGETS   46  46  12  ; "name_text"
+1093    TSETS   46  45  12  ; "name_text"
+1094    TGETS   46   0   5  ; "options"
+1095    TGETV   46  46  17
+1096    TGETS   46  46  96  ; "toggle"
+1097    TSETS   46  45  96  ; "toggle"
+1098    TGETS   46   0   5  ; "options"
+1099    TGETV   46  46  17
+1100    TGETS   46  46 102  ; "alternate"
+1101    TSETS   46  45 102  ; "alternate"
+1102    TGETS   46   0   5  ; "options"
+1103    TGETV   46  46  17
+1104    TGETS   46  46  61  ; "values"
+1105    TSETS   46  45  61  ; "values"
+1106    TGETS   46   0   5  ; "options"
+1107    TGETV   46  46  17
+1108    TGETS   46  46  64  ; "args"
+1109    TSETS   46  45  64  ; "args"
+1110    TGETS   46   0   5  ; "options"
+1111    TGETV   46  46  17
+1112    TGETS   46  46  86  ; "event"
+1113    TSETS   46  45  86  ; "event"
+1114    TGETS   46   0   5  ; "options"
+1115    TGETV   46  46  17
+1116    TGETS   46  46 103  ; "events"
+1117    TSETS   46  45 103  ; "events"
+1118    TGETS   46   0   5  ; "options"
+1119    TGETV   46  46  17
+1120    TGETS   46  46 104  ; "delay_repaint"
+1121    TSETS   46  45 104  ; "delay_repaint"
+1122    TGETS   46   0  35  ; "config"
+1123    TSETS   46  45  35  ; "config"
+1124    TSETS   28  45  46  ; "enabled"
+1125    TSETS   41  45  32  ; "row_count"
+1126    FNEW    46 105      ; configdialog.lua:542
+1127    TSETS   46  45 106  ; "callback"
+1128    CALL    43   2   3
+1129    MOV     44  36
+1130    MOV     46  43
+1131    TGETS   45  43 107  ; "setPosition"
+1132    MOV     47  44
+1133    CALL    45   1   3
+1134    GGET    45  22      ; "table"
+1135    TGETS   45  45  23  ; "insert"
+1136    MOV     46  33
+1137    MOV     47  43
+1138    CALL    45   1   3
+1139 => TGETS   39   0   5  ; "options"
+1140    TGETV   39  39  17
+1141    TGETS   39  39 108  ; "buttonprogress"
+1142    ISF         39
+1143    JMP     40 => 1219
+1144    MOV     39  31
+1145    TGETS   40   0   5  ; "options"
+1146    TGETV   40  40  17
+1147    TGETS   40  40  25  ; "width"
+1148    ISF         40
+1149    JMP     41 => 1159
+1150    UGET    40   3      ; Screen
+1151    MOV     41  40
+1152    TGETS   40  40  30  ; "scaleBySize"
+1153    TGETS   42   0   5  ; "options"
+1154    TGETV   42  42  17
+1155    TGETS   42  42  25  ; "width"
+1156    CALL    40   2   3
+1157    IST         40
+1158    JMP     41 => 1160
+1159 => MOV     40  39
+1160 => KPRI    41   0
+1161    UGET    42  18      ; ButtonProgressWidget
+1162    MOV     43  42
+1163    TGETS   42  42  14  ; "new"
+1164    TDUP    44 109
+1165    GGET    45  19      ; "math"
+1166    TGETS   45  45  21  ; "min"
+1167    MOV     46  39
+1168    MOV     47  40
+1169    CALL    45   2   3
+1170    TSETS   45  44  25  ; "width"
+1171    TSETS   26  44  31  ; "height"
+1172    TSETS   24  44 100  ; "font_face"
+1173    TSETS   25  44 101  ; "font_size"
+1174    TGETS   45   0   5  ; "options"
+1175    TGETV   45  45  17
+1176    TGETS   45  45  60  ; "name"
+1177    TSETS   45  44  60  ; "name"
+1178    TGETS   45   0   5  ; "options"
+1179    TGETV   45  45  17
+1180    TGETS   45  45  61  ; "values"
+1181    LEN     45  45
+1182    TSETS   45  44 110  ; "num_buttons"
+1183    TGETS   45   0   5  ; "options"
+1184    TGETV   45  45  17
+1185    TGETS   45  45  58  ; "default_pos"
+1186    TSETS   45  44 111  ; "position"
+1187    FNEW    45 112      ; configdialog.lua:573
+1188    TSETS   45  44 106  ; "callback"
+1189    FNEW    45 113      ; configdialog.lua:588
+1190    TSETS   45  44  52  ; "hold_callback"
+1191    TGETS   45   0  35  ; "config"
+1192    TSETS   45  44 114  ; "show_parrent"
+1193    TSETS   28  44  46  ; "enabled"
+1194    TGETS   45   0   5  ; "options"
+1195    TGETV   45  45  17
+1196    TGETS   45  45 115  ; "fine_tune"
+1197    TSETS   45  44 115  ; "fine_tune"
+1198    TGETS   45   0   5  ; "options"
+1199    TGETV   45  45  17
+1200    TGETS   45  45  97  ; "more_options"
+1201    TSETS   45  44  97  ; "more_options"
+1202    TGETS   45   0   5  ; "options"
+1203    TGETV   45  45  17
+1204    TGETS   45  45 116  ; "more_options_param"
+1205    TSETS   45  44 116  ; "more_options_param"
+1206    CALL    42   2   3
+1207    MOV     41  42
+1208    MOV     43  41
+1209    TGETS   42  41 107  ; "setPosition"
+1210    MOV     44  36
+1211    MOV     45  37
+1212    CALL    42   1   4
+1213    GGET    42  22      ; "table"
+1214    TGETS   42  42  23  ; "insert"
+1215    MOV     43  33
+1216    MOV     44  41
+1217    CALL    42   1   3
+1218    UCLO    39 => 1219
+1219 => GGET    39  22      ; "table"
+1220    TGETS   39  39  23  ; "insert"
+1221    MOV     40  32
+1222    MOV     41  33
+1223    CALL    39   1   3
+1224    GGET    39  22      ; "table"
+1225    TGETS   39  39  23  ; "insert"
+1226    TGETS   40   0  35  ; "config"
+1227    TGETS   40  40 117  ; "layout"
+1228    TGETS   41   0  35  ; "config"
+1229    TGETS   41  41 117  ; "layout"
+1230    LEN     41  41
+1231    MOV     43   0
+1232    TGETS   42   0 118  ; "_itemGroupToLayoutLine"
+1233    MOV     44  33
+1234    CALL    42   0   3
+1235    CALLM   39   1   2
+1236    GGET    39  22      ; "table"
+1237    TGETS   39  39  23  ; "insert"
+1238    MOV     40  29
+1239    MOV     41  32
+1240    CALL    39   1   3
+1241    GGET    39  22      ; "table"
+1242    TGETS   39  39  23  ; "insert"
+1243    MOV     40  13
+1244    MOV     41  29
+1245    CALL    39   1   3
+1246 => UCLO    17 => 1247
+1247 => FORL    14 => 0144
+1248 => GGET    14  22      ; "table"
+1249    TGETS   14  14  23  ; "insert"
+1250    MOV     15  13
+1251    UGET    16   5      ; VerticalSpan
+1252    MOV     17  16
+1253    TGETS   16  16  14  ; "new"
+1254    TDUP    18 119
+1255    TSETS    5  18  25  ; "width"
+1256    CALL    16   0   3
+1257    CALLM   14   1   1
+1258    TSETB   13   0   1
+1259    MOV     15  13
+1260    TGETS   14  13  72  ; "getSize"
+1261    CALL    14   2   2
+1262    TSETS   14   0  43  ; "dimen"
+1263    UCLO     0 => 1264
+1264 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:621-634
+0001    TNEW     2   0
+0002    TGETS    3   0   0  ; "config"
+0003    TGETS    3   3   1  ; "panel_index"
+0004    GGET     4   2      ; "ipairs"
+0005    MOV      5   1
+0006    CALL     4   4   2
+0007    JMP      7 => 0013
+0008 => TGETS    9   8   3  ; "name"
+0009    ISF          9
+0010    JMP     10 => 0013
+0011    TSETV    8   2   3
+0012    ADDVN    3   3   0  ; 1
+0013 => ITERC    7   3   3
+0014    ITERL    7 => 0008
+0015    RET1     2   2
+
+-- BYTECODE -- configdialog.lua:641-652
+0001    TGETS    1   0   0  ; "config_dialog"
+0002    TGETS    1   1   1  ; "config_options"
+0003    TGETS    2   1   2  ; "default_options"
+0004    ISF          2
+0005    JMP      3 => 0009
+0006    TGETS    2   1   2  ; "default_options"
+0007    IST          2
+0008    JMP      3 => 0011
+0009 => TGETB    2   1   1
+0010    TGETS    2   2   3  ; "options"
+0011 => UGET     3   0      ; ConfigOption
+0012    MOV      4   3
+0013    TGETS    3   3   4  ; "new"
+0014    TDUP     5   6
+0015    TGETS    6   0   5  ; "index"
+0016    ISF          6
+0017    JMP      7 => 0023
+0018    TGETS    6   0   5  ; "index"
+0019    TGETV    6   1   6
+0020    TGETS    6   6   3  ; "options"
+0021    IST          6
+0022    JMP      7 => 0024
+0023 => MOV      6   2
+0024 => TSETS    6   5   3  ; "options"
+0025    TGETS    6   0   0  ; "config_dialog"
+0026    TSETS    6   5   7  ; "config"
+0027    TGETS    6   0   8  ; "document"
+0028    TSETS    6   5   8  ; "document"
+0029    CALL     3   2   3
+0030    MOV      5   3
+0031    TGETS    4   3  10  ; "getSize"
+0032    CALL     4   2   2
+0033    TSETS    4   0   9  ; "dimen"
+0034    GGET     4  11      ; "table"
+0035    TGETS    4   4  12  ; "insert"
+0036    MOV      5   0
+0037    MOV      6   3
+0038    CALL     4   1   3
+0039    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:675-677
+0001    UGET     0   0      ; self
+0002    TGETS    0   0   0  ; "config_dialog"
+0003    MOV      1   0
+0004    TGETS    0   0   1  ; "handleEvent"
+0005    UGET     2   1      ; Event
+0006    MOV      3   2
+0007    TGETS    2   2   2  ; "new"
+0008    KSTR     4   3      ; "ShowConfigPanel"
+0009    UGET     5   2      ; c
+0010    CALL     2   0   4
+0011    CALLM    0   1   1
+0012    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:659-768
+0001    UGET     1   0      ; Size
+0002    TGETS    1   1   0  ; "padding"
+0003    TGETS    1   1   1  ; "button"
+0004    UGET     2   0      ; Size
+0005    TGETS    2   2   2  ; "line"
+0006    TGETS    2   2   3  ; "thick"
+0007    TGETS    3   0   4  ; "config_dialog"
+0008    TGETS    3   3   5  ; "config_options"
+0009    TNEW     4   0
+0010    UGET     5   1      ; Screen
+0011    MOV      6   5
+0012    TGETS    5   5   6  ; "scaleBySize"
+0013    KSHORT   7  40
+0014    CALL     5   2   3
+0015    MOV      6   5
+0016    MULNV    7   1   0  ; 2
+0017    ADDVV    7   5   7
+0018    LEN      8   3
+0019    MULVV    7   7   8
+0020    MOV      8   6
+0021    KSHORT   9   1
+0022    LEN     10   3
+0023    KSHORT  11   1
+0024    FORI     9 => 0042
+0025 => UGET    13   2      ; IconButton
+0026    MOV     14  13
+0027    TGETS   13  13   7  ; "new"
+0028    TDUP    15   8
+0029    TGETS   16   0   4  ; "config_dialog"
+0030    TSETS   16  15   9  ; "show_parent"
+0031    TGETV   16   3  12
+0032    TGETS   16  16  10  ; "icon"
+0033    TSETS   16  15  11  ; "icon_file"
+0034    TSETS    5  15  12  ; "width"
+0035    TSETS    6  15  13  ; "height"
+0036    FNEW    16  14      ; configdialog.lua:675
+0037    TSETS   16  15  15  ; "callback"
+0038    CALL    13   2   3
+0039    TSETV   13   4  12
+0040    UCLO    12 => 0041
+0041 => FORL     9 => 0025
+0042 => GGET     9  16      ; "table"
+0043    TGETS    9   9  17  ; "insert"
+0044    TGETS   10   0   4  ; "config_dialog"
+0045    TGETS   10  10  18  ; "layout"
+0046    MOV     11   4
+0047    CALL     9   1   3
+0048    UGET     9   1      ; Screen
+0049    MOV     10   9
+0050    TGETS    9   9  19  ; "getWidth"
+0051    CALL     9   2   2
+0052    SUBVV    9   9   7
+0053    GGET    10  20      ; "math"
+0054    TGETS   10  10  21  ; "min"
+0055    GGET    11  20      ; "math"
+0056    TGETS   11  11  22  ; "floor"
+0057    LEN     12   4
+0058    DIVVV   12   9  12
+0059    DIVVN   12  12   0  ; 2
+0060    CALL    11   2   2
+0061    UGET    12   1      ; Screen
+0062    MOV     13  12
+0063    TGETS   12  12   6  ; "scaleBySize"
+0064    KSHORT  14  20
+0065    CALL    12   0   3
+0066    CALLM   10   2   1
+0067    KSHORT  11   0
+0068    ISGE    11  10
+0069    JMP     11 => 0087
+0070    KSHORT  11   1
+0071    LEN     12   4
+0072    KSHORT  13   1
+0073    FORI    11 => 0083
+0074 => TGETV   15   4  14
+0075    TSETS   10  15  23  ; "padding_left"
+0076    TGETV   15   4  14
+0077    TSETS   10  15  24  ; "padding_right"
+0078    TGETV   15   4  14
+0079    MOV     16  15
+0080    TGETS   15  15  25  ; "update"
+0081    CALL    15   1   2
+0082    FORL    11 => 0074
+0083 => MULNV   11  10   0  ; 2
+0084    LEN     12   4
+0085    MULVV   11  11  12
+0086    SUBVV    9   9  11
+0087 => GGET    11  20      ; "math"
+0088    TGETS   11  11  26  ; "ceil"
+0089    LEN     12   4
+0090    ADDVN   12  12   1  ; 1
+0091    DIVVV   12   9  12
+0092    CALL    11   2   2
+0093    UGET    12   4      ; LineWidget
+0094    MOV     13  12
+0095    TGETS   12  12   7  ; "new"
+0096    TDUP    14  28
+0097    UGET    15   5      ; Blitbuffer
+0098    TGETS   15  15  27  ; "COLOR_BLACK"
+0099    TSETS   15  14  29  ; "background"
+0100    UGET    15   6      ; Geom
+0101    MOV     16  15
+0102    TGETS   15  15   7  ; "new"
+0103    TDUP    17  30
+0104    TSETS    1  17  31  ; "w"
+0105    TSETS    8  17  32  ; "h"
+0106    CALL    15   2   3
+0107    TSETS   15  14  33  ; "dimen"
+0108    CALL    12   2   3
+0109    UGET    13   4      ; LineWidget
+0110    MOV     14  13
+0111    TGETS   13  13   7  ; "new"
+0112    TDUP    15  35
+0113    UGET    16   5      ; Blitbuffer
+0114    TGETS   16  16  34  ; "COLOR_WHITE"
+0115    TSETS   16  15  29  ; "background"
+0116    UGET    16   6      ; Geom
+0117    MOV     17  16
+0118    TGETS   16  16   7  ; "new"
+0119    TDUP    18  36
+0120    TSETS    1  18  31  ; "w"
+0121    TSETS    8  18  32  ; "h"
+0122    CALL    16   2   3
+0123    TSETS   16  15  33  ; "dimen"
+0124    CALL    13   2   3
+0125    UGET    14   7      ; HorizontalSpan
+0126    MOV     15  14
+0127    TGETS   14  14   7  ; "new"
+0128    TDUP    16  37
+0129    TSETS   11  16  12  ; "width"
+0130    CALL    14   2   3
+0131    UGET    15   4      ; LineWidget
+0132    MOV     16  15
+0133    TGETS   15  15   7  ; "new"
+0134    TDUP    17  39
+0135    UGET    18   6      ; Geom
+0136    MOV     19  18
+0137    TGETS   18  18   7  ; "new"
+0138    TDUP    20  38
+0139    TSETS   11  20  31  ; "w"
+0140    TSETS    2  20  32  ; "h"
+0141    CALL    18   2   3
+0142    TSETS   18  17  33  ; "dimen"
+0143    CALL    15   2   3
+0144    UGET    16   4      ; LineWidget
+0145    MOV     17  16
+0146    TGETS   16  16   7  ; "new"
+0147    TDUP    18  41
+0148    UGET    19   6      ; Geom
+0149    MOV     20  19
+0150    TGETS   19  19   7  ; "new"
+0151    TDUP    21  40
+0152    TSETS    1  21  31  ; "w"
+0153    TSETS    2  21  32  ; "h"
+0154    CALL    19   2   3
+0155    TSETS   19  18  33  ; "dimen"
+0156    CALL    16   2   3
+0157    UGET    17   8      ; HorizontalGroup
+0158    MOV     18  17
+0159    TGETS   17  17   7  ; "new"
+0160    TNEW    19   0
+0161    CALL    17   2   3
+0162    UGET    18   8      ; HorizontalGroup
+0163    MOV     19  18
+0164    TGETS   18  18   7  ; "new"
+0165    TNEW    20   0
+0166    CALL    18   2   3
+0167    KSHORT  19   1
+0168    LEN     20   4
+0169    KSHORT  21   1
+0170    FORI    19 => 0283
+0171 => GGET    23  16      ; "table"
+0172    TGETS   23  23  17  ; "insert"
+0173    MOV     24  17
+0174    MOV     25  14
+0175    CALL    23   1   3
+0176    GGET    23  16      ; "table"
+0177    TGETS   23  23  17  ; "insert"
+0178    MOV     24  18
+0179    MOV     25  15
+0180    CALL    23   1   3
+0181    TGETS   23   0  42  ; "panel_index"
+0182    ISNEV   22  23
+0183    JMP     23 => 0235
+0184    GGET    23  16      ; "table"
+0185    TGETS   23  23  17  ; "insert"
+0186    MOV     24  17
+0187    MOV     25  12
+0188    CALL    23   1   3
+0189    GGET    23  16      ; "table"
+0190    TGETS   23  23  17  ; "insert"
+0191    MOV     24  18
+0192    MOV     25  16
+0193    CALL    23   1   3
+0194    GGET    23  16      ; "table"
+0195    TGETS   23  23  17  ; "insert"
+0196    MOV     24  17
+0197    TGETV   25   4  22
+0198    CALL    23   1   3
+0199    GGET    23  16      ; "table"
+0200    TGETS   23  23  17  ; "insert"
+0201    MOV     24  18
+0202    UGET    25   4      ; LineWidget
+0203    MOV     26  25
+0204    TGETS   25  25   7  ; "new"
+0205    TDUP    27  43
+0206    UGET    28   5      ; Blitbuffer
+0207    TGETS   28  28  34  ; "COLOR_WHITE"
+0208    TSETS   28  27  29  ; "background"
+0209    UGET    28   6      ; Geom
+0210    MOV     29  28
+0211    TGETS   28  28   7  ; "new"
+0212    TDUP    30  45
+0213    TGETV   31   4  22
+0214    MOV     32  31
+0215    TGETS   31  31  44  ; "getSize"
+0216    CALL    31   2   2
+0217    TGETS   31  31  31  ; "w"
+0218    TSETS   31  30  31  ; "w"
+0219    TSETS    2  30  32  ; "h"
+0220    CALL    28   2   3
+0221    TSETS   28  27  33  ; "dimen"
+0222    CALL    25   0   3
+0223    CALLM   23   1   1
+0224    GGET    23  16      ; "table"
+0225    TGETS   23  23  17  ; "insert"
+0226    MOV     24  17
+0227    MOV     25  12
+0228    CALL    23   1   3
+0229    GGET    23  16      ; "table"
+0230    TGETS   23  23  17  ; "insert"
+0231    MOV     24  18
+0232    MOV     25  16
+0233    CALL    23   1   3
+0234    JMP     23 => 0282
+0235 => GGET    23  16      ; "table"
+0236    TGETS   23  23  17  ; "insert"
+0237    MOV     24  17
+0238    MOV     25  13
+0239    CALL    23   1   3
+0240    GGET    23  16      ; "table"
+0241    TGETS   23  23  17  ; "insert"
+0242    MOV     24  18
+0243    MOV     25  16
+0244    CALL    23   1   3
+0245    GGET    23  16      ; "table"
+0246    TGETS   23  23  17  ; "insert"
+0247    MOV     24  17
+0248    TGETV   25   4  22
+0249    CALL    23   1   3
+0250    GGET    23  16      ; "table"
+0251    TGETS   23  23  17  ; "insert"
+0252    MOV     24  18
+0253    UGET    25   4      ; LineWidget
+0254    MOV     26  25
+0255    TGETS   25  25   7  ; "new"
+0256    TDUP    27  47
+0257    UGET    28   6      ; Geom
+0258    MOV     29  28
+0259    TGETS   28  28   7  ; "new"
+0260    TDUP    30  46
+0261    TGETV   31   4  22
+0262    MOV     32  31
+0263    TGETS   31  31  44  ; "getSize"
+0264    CALL    31   2   2
+0265    TGETS   31  31  31  ; "w"
+0266    TSETS   31  30  31  ; "w"
+0267    TSETS    2  30  32  ; "h"
+0268    CALL    28   2   3
+0269    TSETS   28  27  33  ; "dimen"
+0270    CALL    25   0   3
+0271    CALLM   23   1   1
+0272    GGET    23  16      ; "table"
+0273    TGETS   23  23  17  ; "insert"
+0274    MOV     24  17
+0275    MOV     25  13
+0276    CALL    23   1   3
+0277    GGET    23  16      ; "table"
+0278    TGETS   23  23  17  ; "insert"
+0279    MOV     24  18
+0280    MOV     25  16
+0281    CALL    23   1   3
+0282 => FORL    19 => 0171
+0283 => GGET    19  16      ; "table"
+0284    TGETS   19  19  17  ; "insert"
+0285    MOV     20  17
+0286    MOV     21  14
+0287    CALL    19   1   3
+0288    GGET    19  16      ; "table"
+0289    TGETS   19  19  17  ; "insert"
+0290    MOV     20  18
+0291    MOV     21  15
+0292    CALL    19   1   3
+0293    UGET    19   6      ; Geom
+0294    MOV     20  19
+0295    TGETS   19  19   7  ; "new"
+0296    TDUP    21  48
+0297    UGET    22   1      ; Screen
+0298    MOV     23  22
+0299    TGETS   22  22  19  ; "getWidth"
+0300    CALL    22   2   2
+0301    TSETS   22  21  31  ; "w"
+0302    TSETS    8  21  32  ; "h"
+0303    CALL    19   2   3
+0304    TSETS   19   0  33  ; "dimen"
+0305    UGET    19   9      ; VerticalGroup
+0306    MOV     20  19
+0307    TGETS   19  19   7  ; "new"
+0308    TNEW    21   3
+0309    TSETB   18  21   1
+0310    TSETB   17  21   2
+0311    CALL    19   2   3
+0312    GGET    20  16      ; "table"
+0313    TGETS   20  20  17  ; "insert"
+0314    MOV     21   0
+0315    MOV     22  19
+0316    CALL    20   1   3
+0317    UCLO     0 => 0318
+0318 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:795-832
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "update"
+0003    CALL     1   1   2
+0004    UGET     1   0      ; Device
+0005    MOV      2   1
+0006    TGETS    1   1   1  ; "isTouchDevice"
+0007    CALL     1   2   2
+0008    ISF          1
+0009    JMP      2 => 0060
+0010    TGETS    1   0   2  ; "ges_events"
+0011    TNEW     2   3
+0012    UGET     3   1      ; GestureRange
+0013    MOV      4   3
+0014    TGETS    3   3   4  ; "new"
+0015    TDUP     5   5
+0016    UGET     6   2      ; Geom
+0017    MOV      7   6
+0018    TGETS    6   6   4  ; "new"
+0019    TDUP     8   6
+0020    UGET     9   3      ; Screen
+0021    MOV     10   9
+0022    TGETS    9   9   7  ; "getWidth"
+0023    CALL     9   2   2
+0024    TSETS    9   8   8  ; "w"
+0025    UGET     9   3      ; Screen
+0026    MOV     10   9
+0027    TGETS    9   9   9  ; "getHeight"
+0028    CALL     9   2   2
+0029    TSETS    9   8  10  ; "h"
+0030    CALL     6   2   3
+0031    TSETS    6   5  11  ; "range"
+0032    CALL     3   0   3
+0033    TSETM    3   0      ; 1
+0034    TSETS    2   1   3  ; "TapCloseMenu"
+0035    TGETS    1   0   2  ; "ges_events"
+0036    TNEW     2   3
+0037    UGET     3   1      ; GestureRange
+0038    MOV      4   3
+0039    TGETS    3   3   4  ; "new"
+0040    TDUP     5  13
+0041    UGET     6   2      ; Geom
+0042    MOV      7   6
+0043    TGETS    6   6   4  ; "new"
+0044    TDUP     8  14
+0045    UGET     9   3      ; Screen
+0046    MOV     10   9
+0047    TGETS    9   9   7  ; "getWidth"
+0048    CALL     9   2   2
+0049    TSETS    9   8   8  ; "w"
+0050    UGET     9   3      ; Screen
+0051    MOV     10   9
+0052    TGETS    9   9   9  ; "getHeight"
+0053    CALL     9   2   2
+0054    TSETS    9   8  10  ; "h"
+0055    CALL     6   2   3
+0056    TSETS    6   5  11  ; "range"
+0057    CALL     3   0   3
+0058    TSETM    3   0      ; 1
+0059    TSETS    2   1  12  ; "SwipeCloseMenu"
+0060 => UGET     1   0      ; Device
+0061    MOV      2   1
+0062    TGETS    1   1  15  ; "hasKeys"
+0063    CALL     1   2   2
+0064    ISF          1
+0065    JMP      2 => 0071
+0066    TGETS    1   0  16  ; "key_events"
+0067    TDUP     2  19
+0068    TDUP     3  18
+0069    TSETB    3   2   1
+0070    TSETS    2   1  17  ; "Close"
+0071 => UGET     1   0      ; Device
+0072    MOV      2   1
+0073    TGETS    1   1  20  ; "hasDPad"
+0074    CALL     1   2   2
+0075    ISF          1
+0076    JMP      2 => 0082
+0077    TGETS    1   0  16  ; "key_events"
+0078    TDUP     2  23
+0079    TDUP     3  22
+0080    TSETB    3   2   1
+0081    TSETS    2   1  21  ; "Select"
+0082 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:834-836
+0001    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:838-863
+0001    TNEW     1   0
+0002    TSETS    1   0   0  ; "layout"
+0003    UGET     1   0      ; MenuBar
+0004    MOV      2   1
+0005    TGETS    1   1   2  ; "new"
+0006    TDUP     3   3
+0007    TSETS    0   3   4  ; "config_dialog"
+0008    TGETS    4   0   5  ; "panel_index"
+0009    TSETS    4   3   5  ; "panel_index"
+0010    CALL     1   2   3
+0011    TSETS    1   0   1  ; "config_menubar"
+0012    UGET     1   1      ; ConfigPanel
+0013    MOV      2   1
+0014    TGETS    1   1   2  ; "new"
+0015    TDUP     3   7
+0016    TGETS    4   0   5  ; "panel_index"
+0017    TSETS    4   3   8  ; "index"
+0018    TSETS    0   3   4  ; "config_dialog"
+0019    CALL     1   2   3
+0020    TSETS    1   0   6  ; "config_panel"
+0021    UGET     1   2      ; FrameContainer
+0022    MOV      2   1
+0023    TGETS    1   1   2  ; "new"
+0024    TDUP     3  11
+0025    UGET     4   3      ; Blitbuffer
+0026    TGETS    4   4  10  ; "COLOR_WHITE"
+0027    TSETS    4   3  12  ; "background"
+0028    UGET     4   4      ; VerticalGroup
+0029    MOV      5   4
+0030    TGETS    4   4   2  ; "new"
+0031    TNEW     6   3
+0032    TGETS    7   0   6  ; "config_panel"
+0033    TSETB    7   6   1
+0034    TGETS    7   0   1  ; "config_menubar"
+0035    TSETB    7   6   2
+0036    CALL     4   0   3
+0037    TSETM    4   0      ; 1
+0038    CALL     1   2   3
+0039    TSETS    1   0   9  ; "dialog_frame"
+0040    TGETS    1   0  13  ; "selected"
+0041    TGETS    2   0   0  ; "layout"
+0042    LEN      2   2
+0043    TSETS    2   1  14  ; "y"
+0044    TGETS    1   0  13  ; "selected"
+0045    TGETS    2   0   5  ; "panel_index"
+0046    TSETS    2   1  15  ; "x"
+0047    UGET     1   5      ; BottomContainer
+0048    MOV      2   1
+0049    TGETS    1   1   2  ; "new"
+0050    TDUP     3  17
+0051    UGET     4   6      ; Screen
+0052    MOV      5   4
+0053    TGETS    4   4  16  ; "getSize"
+0054    CALL     4   2   2
+0055    TSETS    4   3  18  ; "dimen"
+0056    TGETS    4   0   9  ; "dialog_frame"
+0057    TSETB    4   3   1
+0058    CALL     1   2   3
+0059    TSETB    1   0   1
+0060    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:867-869
+0001    KSTR     0   0      ; "partial"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dialog_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- configdialog.lua:865-870
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "setDirty"
+0004    KPRI     3   0
+0005    FNEW     4   1      ; configdialog.lua:867
+0006    CALL     1   1   4
+0007    UCLO     0 => 0008
+0008 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:885-891
+0001    UGET     0   0      ; old_dimen
+0002    ISF          0
+0003    JMP      1 => 0013
+0004    UGET     0   0      ; old_dimen
+0005    MOV      1   0
+0006    TGETS    0   0   0  ; "combine"
+0007    UGET     2   1      ; self
+0008    TGETS    2   2   1  ; "dialog_frame"
+0009    TGETS    2   2   2  ; "dimen"
+0010    CALL     0   2   3
+0011    IST          0
+0012    JMP      1 => 0016
+0013 => UGET     0   1      ; self
+0014    TGETS    0   0   1  ; "dialog_frame"
+0015    TGETS    0   0   2  ; "dimen"
+0016 => UGET     1   1      ; self
+0017    KPRI     2   1
+0018    TSETS    2   1   3  ; "is_fresh"
+0019    KSTR     1   4      ; "ui"
+0020    MOV      2   0
+0021    RET      1   3
+
+-- BYTECODE -- configdialog.lua:872-893
+0001    TSETS    1   0   0  ; "panel_index"
+0002    TGETS    2   0   1  ; "dialog_frame"
+0003    TGETS    2   2   2  ; "dimen"
+0004    ISF          2
+0005    JMP      3 => 0011
+0006    TGETS    2   0   1  ; "dialog_frame"
+0007    TGETS    2   2   2  ; "dimen"
+0008    MOV      3   2
+0009    TGETS    2   2   3  ; "copy"
+0010    CALL     2   2   2
+0011 => TGETS    3   0   4  ; "layout"
+0012    ISF          3
+0013    JMP      4 => 0016
+0014    TGETS    3   0   4  ; "layout"
+0015    LEN      3   3
+0016 => MOV      5   0
+0017    TGETS    4   0   5  ; "update"
+0018    CALL     4   1   2
+0019    ISFC     4   3
+0020    JMP      4 => 0028
+0021    TGETS    4   0   4  ; "layout"
+0022    LEN      4   4
+0023    ISLT     3   4
+0024    JMP      4 => 0027
+0025    KPRI     4   1
+0026    JMP      5 => 0028
+0027 => KPRI     4   2
+0028 => UGET     5   0      ; UIManager
+0029    MOV      6   5
+0030    TGETS    5   5   6  ; "setDirty"
+0031    TGETS    7   0   7  ; "is_fresh"
+0032    IST          7
+0033    JMP      8 => 0036
+0034    ISF          4
+0035    JMP      7 => 0038
+0036 => ISTC     7   0
+0037    JMP      7 => 0039
+0038 => KSTR     7   8      ; "all"
+0039 => FNEW     8   9      ; configdialog.lua:885
+0040    CALL     5   1   4
+0041    KPRI     5   2
+0042    UCLO     0 => 0043
+0043 => RET1     5   2
+
+-- BYTECODE -- configdialog.lua:895-899
+0001    TGETS    3   0   0  ; "configurable"
+0002    TSETV    2   3   1
+0003    TGETS    3   0   1  ; "ui"
+0004    MOV      4   3
+0005    TGETS    3   3   2  ; "handleEvent"
+0006    UGET     5   0      ; Event
+0007    MOV      6   5
+0008    TGETS    5   5   3  ; "new"
+0009    KSTR     7   4      ; "StartActivityIndicator"
+0010    CALL     5   0   3
+0011    CALLM    3   1   1
+0012    KPRI     3   2
+0013    RET1     3   2
+
+-- BYTECODE -- configdialog.lua:901-904
+0001    TGETS    4   0   0  ; "ui"
+0002    MOV      5   4
+0003    TGETS    4   4   1  ; "handleEvent"
+0004    UGET     6   0      ; Event
+0005    MOV      7   6
+0006    TGETS    6   6   2  ; "new"
+0007    MOV      8   1
+0008    MOV      9   2
+0009    MOV     10   3
+0010    CALL     6   0   5
+0011    CALLM    4   1   1
+0012    KPRI     4   2
+0013    RET1     4   2
+
+-- BYTECODE -- configdialog.lua:906-912
+0001    KSHORT   3   1
+0002    LEN      4   1
+0003    KSHORT   5   1
+0004    FORI     3 => 0026
+0005 => TGETV    7   1   6
+0006    TGETV    8   1   6
+0007    TGETS    8   8   0  ; "args"
+0008    IST          8
+0009    JMP      9 => 0011
+0010    TNEW     8   0
+0011 => TSETS    8   7   0  ; "args"
+0012    TGETS    7   0   1  ; "ui"
+0013    MOV      8   7
+0014    TGETS    7   7   2  ; "handleEvent"
+0015    UGET     9   0      ; Event
+0016    MOV     10   9
+0017    TGETS    9   9   3  ; "new"
+0018    TGETV   11   1   6
+0019    TGETS   11  11   4  ; "event"
+0020    TGETV   12   1   6
+0021    TGETS   12  12   0  ; "args"
+0022    TGETV   12  12   2
+0023    CALL     9   0   4
+0024    CALLM    7   1   1
+0025    FORL     3 => 0005
+0026 => KPRI     3   2
+0027    RET1     3   2
+
+-- BYTECODE -- configdialog.lua:927-929
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dialog_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- configdialog.lua:917-931
+0001    UGET     0   0      ; self
+0002    KPRI     1   0
+0003    TSETS    1   0   0  ; "skip_paint"
+0004    UGET     0   0      ; self
+0005    TGETS    0   0   1  ; "config_options"
+0006    TGETS    0   0   2  ; "needs_redraw_on_change"
+0007    ISF          0
+0008    JMP      1 => 0016
+0009    UGET     0   1      ; UIManager
+0010    MOV      1   0
+0011    TGETS    0   0   3  ; "setDirty"
+0012    KSTR     2   4      ; "all"
+0013    KSTR     3   5      ; "partial"
+0014    CALL     0   1   4
+0015    JMP      0 => 0022
+0016 => UGET     0   1      ; UIManager
+0017    MOV      1   0
+0018    TGETS    0   0   3  ; "setDirty"
+0019    UGET     2   0      ; self
+0020    FNEW     3   6      ; configdialog.lua:927
+0021    CALL     0   1   4
+0022 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:915-961
+0001    FNEW     0   0      ; configdialog.lua:917
+0002    KPRI     1   0
+0003    GGET     2   1      ; "type"
+0004    UGET     3   2      ; delay_repaint
+0005    CALL     2   2   2
+0006    ISNES    2   2      ; "number"
+0007    JMP      2 => 0018
+0008    UGET     2   1      ; UIManager
+0009    MOV      3   2
+0010    TGETS    2   2   3  ; "scheduleIn"
+0011    UGET     4   2      ; delay_repaint
+0012    MOV      5   0
+0013    CALL     2   1   4
+0014    UGET     2   0      ; self
+0015    KPRI     3   2
+0016    TSETS    3   2   4  ; "skip_paint"
+0017    JMP      2 => 0025
+0018 => UGET     2   2      ; delay_repaint
+0019    ISF          2
+0020    JMP      3 => 0025
+0021    MOV      1   0
+0022    UGET     2   0      ; self
+0023    KPRI     3   2
+0024    TSETS    3   2   4  ; "skip_paint"
+0025 => UGET     2   3      ; values
+0026    ISF          2
+0027    JMP      3 => 0036
+0028    UGET     2   0      ; self
+0029    MOV      3   2
+0030    TGETS    2   2   5  ; "onConfigChoice"
+0031    UGET     4   4      ; name
+0032    UGET     5   3      ; values
+0033    UGET     6   5      ; position
+0034    TGETV    5   5   6
+0035    CALL     2   1   4
+0036 => UGET     2   6      ; event
+0037    ISF          2
+0038    JMP      3 => 0053
+0039    UGET     2   7      ; args
+0040    IST          2
+0041    JMP      3 => 0043
+0042    TNEW     2   0
+0043 => USETV    7   2      ; args
+0044    UGET     2   0      ; self
+0045    MOV      3   2
+0046    TGETS    2   2   6  ; "onConfigEvent"
+0047    UGET     4   6      ; event
+0048    UGET     5   7      ; args
+0049    UGET     6   5      ; position
+0050    TGETV    5   5   6
+0051    MOV      6   1
+0052    CALL     2   1   5
+0053 => UGET     2   8      ; events
+0054    ISF          2
+0055    JMP      3 => 0062
+0056    UGET     2   0      ; self
+0057    MOV      3   2
+0058    TGETS    2   2   7  ; "onConfigEvents"
+0059    UGET     4   8      ; events
+0060    UGET     5   5      ; position
+0061    CALL     2   1   4
+0062 => UGET     2   0      ; self
+0063    MOV      3   2
+0064    TGETS    2   2   8  ; "update"
+0065    CALL     2   1   2
+0066    UGET     2   2      ; delay_repaint
+0067    IST          2
+0068    JMP      2 => 0071
+0069    MOV      2   0
+0070    CALL     2   1   1
+0071 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:914-962
+0001    UGET     8   0      ; UIManager
+0002    MOV      9   8
+0003    TGETS    8   8   0  ; "tickAfterNext"
+0004    FNEW    10   1      ; configdialog.lua:915
+0005    CALL     8   1   3
+0006    UCLO     0 => 0007
+0007 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:978-980
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dialog_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- configdialog.lua:968-982
+0001    UGET     0   0      ; self
+0002    KPRI     1   0
+0003    TSETS    1   0   0  ; "skip_paint"
+0004    UGET     0   0      ; self
+0005    TGETS    0   0   1  ; "config_options"
+0006    TGETS    0   0   2  ; "needs_redraw_on_change"
+0007    ISF          0
+0008    JMP      1 => 0016
+0009    UGET     0   1      ; UIManager
+0010    MOV      1   0
+0011    TGETS    0   0   3  ; "setDirty"
+0012    KSTR     2   4      ; "all"
+0013    KSTR     3   5      ; "partial"
+0014    CALL     0   1   4
+0015    JMP      0 => 0022
+0016 => UGET     0   1      ; UIManager
+0017    MOV      1   0
+0018    TGETS    0   0   3  ; "setDirty"
+0019    UGET     2   0      ; self
+0020    FNEW     3   6      ; configdialog.lua:978
+0021    CALL     0   1   4
+0022 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:966-1053
+0001    FNEW     0   0      ; configdialog.lua:968
+0002    KPRI     1   0
+0003    GGET     2   1      ; "type"
+0004    UGET     3   2      ; delay_repaint
+0005    CALL     2   2   2
+0006    ISNES    2   2      ; "number"
+0007    JMP      2 => 0018
+0008    UGET     2   1      ; UIManager
+0009    MOV      3   2
+0010    TGETS    2   2   3  ; "scheduleIn"
+0011    UGET     4   2      ; delay_repaint
+0012    MOV      5   0
+0013    CALL     2   1   4
+0014    UGET     2   0      ; self
+0015    KPRI     3   2
+0016    TSETS    3   2   4  ; "skip_paint"
+0017    JMP      2 => 0025
+0018 => UGET     2   2      ; delay_repaint
+0019    ISF          2
+0020    JMP      3 => 0025
+0021    MOV      1   0
+0022    UGET     2   0      ; self
+0023    KPRI     3   2
+0024    TSETS    3   2   4  ; "skip_paint"
+0025 => UGET     2   3      ; values
+0026    ISF          2
+0027    JMP      3 => 0097
+0028    KPRI     2   0
+0029    UGET     3   4      ; direction
+0030    ISNES    3   5      ; "-"
+0031    JMP      3 => 0066
+0032    UGET     3   0      ; self
+0033    TGETS    3   3   6  ; "configurable"
+0034    UGET     4   5      ; name
+0035    TGETV    3   3   4
+0036    ISTC     2   3
+0037    JMP      4 => 0040
+0038    UGET     3   3      ; values
+0039    TGETB    2   3   1
+0040 => GGET     3   1      ; "type"
+0041    MOV      4   2
+0042    CALL     3   2   2
+0043    ISNES    3   7      ; "table"
+0044    JMP      3 => 0060
+0045    KSHORT   3   1
+0046    LEN      4   2
+0047    KSHORT   5   1
+0048    FORI     3 => 0059
+0049 => TGETV    7   2   6
+0050    SUBVN    7   7   0  ; 1
+0051    TSETV    7   2   6
+0052    TGETV    7   2   6
+0053    KSHORT   8   0
+0054    ISGE     7   8
+0055    JMP      7 => 0058
+0056    KSHORT   7   0
+0057    TSETV    7   2   6
+0058 => FORL     3 => 0049
+0059 => JMP      3 => 0091
+0060 => SUBVN    2   2   0  ; 1
+0061    KSHORT   3   0
+0062    ISGE     2   3
+0063    JMP      3 => 0091
+0064    KSHORT   2   0
+0065    JMP      3 => 0091
+0066 => UGET     3   0      ; self
+0067    TGETS    3   3   6  ; "configurable"
+0068    UGET     4   5      ; name
+0069    TGETV    3   3   4
+0070    ISTC     2   3
+0071    JMP      4 => 0076
+0072    UGET     3   3      ; values
+0073    UGET     4   3      ; values
+0074    LEN      4   4
+0075    TGETV    2   3   4
+0076 => GGET     3   1      ; "type"
+0077    MOV      4   2
+0078    CALL     3   2   2
+0079    ISNES    3   7      ; "table"
+0080    JMP      3 => 0090
+0081    KSHORT   3   1
+0082    LEN      4   2
+0083    KSHORT   5   1
+0084    FORI     3 => 0089
+0085 => TGETV    7   2   6
+0086    ADDVN    7   7   0  ; 1
+0087    TSETV    7   2   6
+0088    FORL     3 => 0085
+0089 => JMP      3 => 0091
+0090 => ADDVN    2   2   0  ; 1
+0091 => UGET     3   0      ; self
+0092    MOV      4   3
+0093    TGETS    3   3   8  ; "onConfigChoice"
+0094    UGET     5   5      ; name
+0095    MOV      6   2
+0096    CALL     3   1   4
+0097 => UGET     2   6      ; event
+0098    ISF          2
+0099    JMP      3 => 0147
+0100    UGET     2   7      ; args
+0101    IST          2
+0102    JMP      3 => 0104
+0103    TNEW     2   0
+0104 => USETV    7   2      ; args
+0105    KPRI     2   0
+0106    UGET     3   4      ; direction
+0107    ISNES    3   5      ; "-"
+0108    JMP      3 => 0126
+0109    UGET     3   0      ; self
+0110    TGETS    3   3   6  ; "configurable"
+0111    UGET     4   5      ; name
+0112    TGETV    3   3   4
+0113    ISTC     2   3
+0114    JMP      4 => 0117
+0115    UGET     3   7      ; args
+0116    TGETB    2   3   1
+0117 => UGET     3   3      ; values
+0118    IST          3
+0119    JMP      3 => 0140
+0120    SUBVN    2   2   0  ; 1
+0121    KSHORT   3   0
+0122    ISGE     2   3
+0123    JMP      3 => 0140
+0124    KSHORT   2   0
+0125    JMP      3 => 0140
+0126 => UGET     3   0      ; self
+0127    TGETS    3   3   6  ; "configurable"
+0128    UGET     4   5      ; name
+0129    TGETV    3   3   4
+0130    ISTC     2   3
+0131    JMP      4 => 0136
+0132    UGET     3   7      ; args
+0133    UGET     4   7      ; args
+0134    LEN      4   4
+0135    TGETV    2   3   4
+0136 => UGET     3   3      ; values
+0137    IST          3
+0138    JMP      3 => 0140
+0139    ADDVN    2   2   0  ; 1
+0140 => UGET     3   0      ; self
+0141    MOV      4   3
+0142    TGETS    3   3   9  ; "onConfigEvent"
+0143    UGET     5   6      ; event
+0144    MOV      6   2
+0145    MOV      7   1
+0146    CALL     3   1   5
+0147 => UGET     2   8      ; events
+0148    ISF          2
+0149    JMP      3 => 0156
+0150    UGET     2   0      ; self
+0151    MOV      3   2
+0152    TGETS    2   2  10  ; "onConfigEvents"
+0153    UGET     4   8      ; events
+0154    UGET     5   4      ; direction
+0155    CALL     2   1   4
+0156 => UGET     2   0      ; self
+0157    MOV      3   2
+0158    TGETS    2   2  11  ; "update"
+0159    CALL     2   1   2
+0160    UGET     2   2      ; delay_repaint
+0161    IST          2
+0162    JMP      2 => 0165
+0163    MOV      2   0
+0164    CALL     2   1   1
+0165 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:965-1054
+0001    UGET     8   0      ; UIManager
+0002    MOV      9   8
+0003    TGETS    8   8   0  ; "tickAfterNext"
+0004    FNEW    10   1      ; configdialog.lua:966
+0005    CALL     8   1   3
+0006    UCLO     0 => 0007
+0007 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1074-1076
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dialog_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- configdialog.lua:1064-1078
+0001    UGET     0   0      ; self
+0002    KPRI     1   0
+0003    TSETS    1   0   0  ; "skip_paint"
+0004    UGET     0   0      ; self
+0005    TGETS    0   0   1  ; "config_options"
+0006    TGETS    0   0   2  ; "needs_redraw_on_change"
+0007    ISF          0
+0008    JMP      1 => 0016
+0009    UGET     0   1      ; UIManager
+0010    MOV      1   0
+0011    TGETS    0   0   3  ; "setDirty"
+0012    KSTR     2   4      ; "all"
+0013    KSTR     3   5      ; "partial"
+0014    CALL     0   1   4
+0015    JMP      0 => 0022
+0016 => UGET     0   1      ; UIManager
+0017    MOV      1   0
+0018    TGETS    0   0   3  ; "setDirty"
+0019    UGET     2   0      ; self
+0020    FNEW     3   6      ; configdialog.lua:1074
+0021    CALL     0   1   4
+0022 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1122-1136
+0001    UGET     2   0      ; widget
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "hasMoved"
+0004    CALL     2   2   2
+0005    ISF          2
+0006    JMP      3 => 0018
+0007    UGET     2   1      ; self
+0008    TGETS    2   2   1  ; "_dialog_closed"
+0009    IST          2
+0010    JMP      2 => 0018
+0011    UGET     2   1      ; self
+0012    KPRI     3   2
+0013    TSETS    3   2   1  ; "_dialog_closed"
+0014    UGET     2   1      ; self
+0015    MOV      3   2
+0016    TGETS    2   2   2  ; "closeDialog"
+0017    CALL     2   1   2
+0018 => TNEW     2   3
+0019    TSETB    0   2   1
+0020    TSETB    1   2   2
+0021    UGET     3   1      ; self
+0022    MOV      4   3
+0023    TGETS    3   3   3  ; "onConfigChoice"
+0024    UGET     5   2      ; name
+0025    MOV      6   2
+0026    CALL     3   1   4
+0027    UGET     3   3      ; event
+0028    ISF          3
+0029    JMP      4 => 0046
+0030    UGET     3   4      ; args
+0031    IST          3
+0032    JMP      4 => 0034
+0033    TNEW     3   0
+0034 => USETV    4   3      ; args
+0035    UGET     3   1      ; self
+0036    MOV      4   3
+0037    TGETS    3   3   4  ; "onConfigEvent"
+0038    UGET     5   3      ; event
+0039    MOV      6   2
+0040    UGET     7   5      ; refresh_callback
+0041    CALL     3   1   5
+0042    UGET     3   1      ; self
+0043    MOV      4   3
+0044    TGETS    3   3   5  ; "update"
+0045    CALL     3   1   2
+0046 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1153-1155
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dialog_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- configdialog.lua:1149-1156
+0001    UGET     0   1      ; self
+0002    TGETS    0   0   0  ; "config_options"
+0003    TGETS    0   0   1  ; "prefix"
+0004    KSTR     1   2      ; "_"
+0005    UGET     2   0      ; name
+0006    CAT      0   0   2
+0007    USETV    0   0      ; name
+0008    GGET     0   3      ; "G_reader_settings"
+0009    MOV      1   0
+0010    TGETS    0   0   4  ; "saveSetting"
+0011    UGET     2   0      ; name
+0012    UGET     3   2      ; value_tables
+0013    CALL     0   1   4
+0014    UGET     0   1      ; self
+0015    MOV      1   0
+0016    TGETS    0   0   5  ; "update"
+0017    CALL     0   1   2
+0018    UGET     0   3      ; UIManager
+0019    MOV      1   0
+0020    TGETS    0   0   6  ; "setDirty"
+0021    UGET     2   1      ; self
+0022    FNEW     3   7      ; configdialog.lua:1153
+0023    CALL     0   1   4
+0024    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1138-1159
+0001    TNEW     2   3
+0002    TSETB    0   2   1
+0003    TSETB    1   2   2
+0004    KPRI     3   0
+0005    UGET     4   0      ; more_options_param
+0006    TGETS    4   4   0  ; "show_true_value_func"
+0007    ISF          4
+0008    JMP      5 => 0015
+0009    UGET     4   0      ; more_options_param
+0010    TGETS    4   4   0  ; "show_true_value_func"
+0011    MOV      5   2
+0012    CALL     4   2   2
+0013    MOV      3   4
+0014    JMP      4 => 0021
+0015 => UGET     4   1      ; T
+0016    KSTR     5   1      ; "%1, %2"
+0017    MOV      6   0
+0018    MOV      7   1
+0019    CALL     4   2   4
+0020    MOV      3   4
+0021 => UGET     4   2      ; UIManager
+0022    MOV      5   4
+0023    TGETS    4   4   2  ; "show"
+0024    UGET     6   3      ; ConfirmBox
+0025    MOV      7   6
+0026    TGETS    6   6   3  ; "new"
+0027    TDUP     8   6
+0028    UGET     9   1      ; T
+0029    UGET    10   4      ; _
+0030    KSTR    11   4      ; "Set default %1 to %2?"
+0031    CALL    10   2   2
+0032    UGET    11   5      ; name_text
+0033    IST         11
+0034    JMP     12 => 0036
+0035    KSTR    11   5      ; ""
+0036 => MOV     12   3
+0037    CALL     9   2   4
+0038    TSETS    9   8   7  ; "text"
+0039    UGET     9   1      ; T
+0040    UGET    10   4      ; _
+0041    KSTR    11   8      ; "Set as default"
+0042    CALL    10   0   2
+0043    CALLM    9   2   0
+0044    TSETS    9   8   9  ; "ok_text"
+0045    FNEW     9  10      ; configdialog.lua:1149
+0046    TSETS    9   8  11  ; "ok_callback"
+0047    CALL     6   0   3
+0048    CALLM    4   1   1
+0049    UCLO     0 => 0050
+0050 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1217-1219
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dialog_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- configdialog.lua:1205-1220
+0001    UGET     0   1      ; self
+0002    TGETS    0   0   0  ; "config_options"
+0003    TGETS    0   0   1  ; "prefix"
+0004    KSTR     1   2      ; "_"
+0005    UGET     2   0      ; name
+0006    CAT      0   0   2
+0007    USETV    0   0      ; name
+0008    UGET     0   2      ; more_options_param
+0009    TGETS    0   0   3  ; "value_table"
+0010    ISF          0
+0011    JMP      1 => 0035
+0012    UGET     0   2      ; more_options_param
+0013    TGETS    0   0   4  ; "args_table"
+0014    ISF          0
+0015    JMP      1 => 0027
+0016    GGET     0   5      ; "G_reader_settings"
+0017    MOV      1   0
+0018    TGETS    0   0   6  ; "saveSetting"
+0019    UGET     2   0      ; name
+0020    UGET     3   2      ; more_options_param
+0021    TGETS    3   3   4  ; "args_table"
+0022    UGET     4   3      ; spin
+0023    TGETS    4   4   7  ; "value_index"
+0024    TGETV    3   3   4
+0025    CALL     0   1   4
+0026    JMP      0 => 0042
+0027 => GGET     0   5      ; "G_reader_settings"
+0028    MOV      1   0
+0029    TGETS    0   0   6  ; "saveSetting"
+0030    UGET     2   0      ; name
+0031    UGET     3   3      ; spin
+0032    TGETS    3   3   7  ; "value_index"
+0033    CALL     0   1   4
+0034    JMP      0 => 0042
+0035 => GGET     0   5      ; "G_reader_settings"
+0036    MOV      1   0
+0037    TGETS    0   0   6  ; "saveSetting"
+0038    UGET     2   0      ; name
+0039    UGET     3   3      ; spin
+0040    TGETS    3   3   8  ; "value"
+0041    CALL     0   1   4
+0042 => UGET     0   1      ; self
+0043    MOV      1   0
+0044    TGETS    0   0   9  ; "update"
+0045    CALL     0   1   2
+0046    UGET     0   4      ; UIManager
+0047    MOV      1   0
+0048    TGETS    0   0  10  ; "setDirty"
+0049    UGET     2   1      ; self
+0050    FNEW     3  11      ; configdialog.lua:1217
+0051    CALL     0   1   4
+0052    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1195-1223
+0001    KPRI     1   0
+0002    UGET     2   0      ; more_options_param
+0003    TGETS    2   2   0  ; "show_true_value_func"
+0004    ISF          2
+0005    JMP      3 => 0012
+0006    UGET     2   0      ; more_options_param
+0007    TGETS    2   2   0  ; "show_true_value_func"
+0008    TGETS    3   0   1  ; "value"
+0009    CALL     2   2   2
+0010    MOV      1   2
+0011    JMP      2 => 0013
+0012 => TGETS    1   0   1  ; "value"
+0013 => UGET     2   1      ; UIManager
+0014    MOV      3   2
+0015    TGETS    2   2   2  ; "show"
+0016    UGET     4   2      ; ConfirmBox
+0017    MOV      5   4
+0018    TGETS    4   4   3  ; "new"
+0019    TDUP     6   6
+0020    UGET     7   3      ; T
+0021    UGET     8   4      ; _
+0022    KSTR     9   4      ; "Set default %1 to %2?"
+0023    CALL     8   2   2
+0024    UGET     9   5      ; name_text
+0025    IST          9
+0026    JMP     10 => 0028
+0027    KSTR     9   5      ; ""
+0028 => MOV     10   1
+0029    CALL     7   2   4
+0030    TSETS    7   6   7  ; "text"
+0031    UGET     7   3      ; T
+0032    UGET     8   4      ; _
+0033    KSTR     9   8      ; "Set as default"
+0034    CALL     8   0   2
+0035    CALLM    7   2   0
+0036    TSETS    7   6   9  ; "ok_text"
+0037    FNEW     7  10      ; configdialog.lua:1205
+0038    TSETS    7   6  11  ; "ok_callback"
+0039    CALL     4   0   3
+0040    CALLM    2   1   1
+0041    UCLO     0 => 0042
+0042 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1226-1255
+0001    UGET     1   0      ; widget
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "hasMoved"
+0004    CALL     1   2   2
+0005    ISF          1
+0006    JMP      2 => 0018
+0007    UGET     1   1      ; self
+0008    TGETS    1   1   1  ; "_dialog_closed"
+0009    IST          1
+0010    JMP      1 => 0018
+0011    UGET     1   1      ; self
+0012    KPRI     2   2
+0013    TSETS    2   1   1  ; "_dialog_closed"
+0014    UGET     1   1      ; self
+0015    MOV      2   1
+0016    TGETS    1   1   2  ; "closeDialog"
+0017    CALL     1   1   2
+0018 => UGET     1   2      ; more_options_param
+0019    TGETS    1   1   3  ; "value_table"
+0020    ISF          1
+0021    JMP      2 => 0043
+0022    UGET     1   2      ; more_options_param
+0023    TGETS    1   1   4  ; "args_table"
+0024    ISF          1
+0025    JMP      2 => 0036
+0026    UGET     1   1      ; self
+0027    MOV      2   1
+0028    TGETS    1   1   5  ; "onConfigChoice"
+0029    UGET     3   3      ; name
+0030    UGET     4   2      ; more_options_param
+0031    TGETS    4   4   4  ; "args_table"
+0032    TGETS    5   0   6  ; "value_index"
+0033    TGETV    4   4   5
+0034    CALL     1   1   4
+0035    JMP      1 => 0049
+0036 => UGET     1   1      ; self
+0037    MOV      2   1
+0038    TGETS    1   1   5  ; "onConfigChoice"
+0039    UGET     3   3      ; name
+0040    TGETS    4   0   6  ; "value_index"
+0041    CALL     1   1   4
+0042    JMP      1 => 0049
+0043 => UGET     1   1      ; self
+0044    MOV      2   1
+0045    TGETS    1   1   5  ; "onConfigChoice"
+0046    UGET     3   3      ; name
+0047    TGETS    4   0   7  ; "value"
+0048    CALL     1   1   4
+0049 => UGET     1   4      ; event
+0050    ISF          1
+0051    JMP      2 => 0095
+0052    UGET     1   5      ; args
+0053    IST          1
+0054    JMP      2 => 0056
+0055    TNEW     1   0
+0056 => USETV    5   1      ; args
+0057    UGET     1   2      ; more_options_param
+0058    TGETS    1   1   3  ; "value_table"
+0059    ISF          1
+0060    JMP      2 => 0084
+0061    UGET     1   2      ; more_options_param
+0062    TGETS    1   1   4  ; "args_table"
+0063    ISF          1
+0064    JMP      2 => 0076
+0065    UGET     1   1      ; self
+0066    MOV      2   1
+0067    TGETS    1   1   8  ; "onConfigEvent"
+0068    UGET     3   4      ; event
+0069    UGET     4   2      ; more_options_param
+0070    TGETS    4   4   4  ; "args_table"
+0071    TGETS    5   0   6  ; "value_index"
+0072    TGETV    4   4   5
+0073    UGET     5   6      ; refresh_callback
+0074    CALL     1   1   5
+0075    JMP      1 => 0091
+0076 => UGET     1   1      ; self
+0077    MOV      2   1
+0078    TGETS    1   1   8  ; "onConfigEvent"
+0079    UGET     3   4      ; event
+0080    TGETS    4   0   6  ; "value_index"
+0081    UGET     5   6      ; refresh_callback
+0082    CALL     1   1   5
+0083    JMP      1 => 0091
+0084 => UGET     1   1      ; self
+0085    MOV      2   1
+0086    TGETS    1   1   8  ; "onConfigEvent"
+0087    UGET     3   4      ; event
+0088    TGETS    4   0   7  ; "value"
+0089    UGET     5   6      ; refresh_callback
+0090    CALL     1   1   5
+0091 => UGET     1   1      ; self
+0092    MOV      2   1
+0093    TGETS    1   1   9  ; "update"
+0094    CALL     1   1   2
+0095 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1062-1263
+0001    FNEW     0   0      ; configdialog.lua:1064
+0002    KPRI     1   0
+0003    GGET     2   1      ; "type"
+0004    UGET     3   2      ; delay_repaint
+0005    CALL     2   2   2
+0006    ISNES    2   2      ; "number"
+0007    JMP      2 => 0018
+0008    UGET     2   1      ; UIManager
+0009    MOV      3   2
+0010    TGETS    2   2   3  ; "scheduleIn"
+0011    UGET     4   2      ; delay_repaint
+0012    MOV      5   0
+0013    CALL     2   1   4
+0014    UGET     2   0      ; self
+0015    KPRI     3   2
+0016    TSETS    3   2   4  ; "skip_paint"
+0017    JMP      2 => 0025
+0018 => UGET     2   2      ; delay_repaint
+0019    ISF          2
+0020    JMP      3 => 0025
+0021    MOV      1   0
+0022    UGET     2   0      ; self
+0023    KPRI     3   2
+0024    TSETS    3   2   4  ; "skip_paint"
+0025 => UGET     2   3      ; values
+0026    ISF          2
+0027    JMP      3 => 0247
+0028    UGET     2   4      ; event
+0029    ISF          2
+0030    JMP      3 => 0247
+0031    UGET     2   5      ; more_options_param
+0032    TGETS    2   2   5  ; "name"
+0033    ISF          2
+0034    JMP      3 => 0038
+0035    UGET     2   5      ; more_options_param
+0036    TGETS    2   2   5  ; "name"
+0037    USETV    6   2      ; name
+0038 => UGET     2   5      ; more_options_param
+0039    TGETS    2   2   6  ; "name_text"
+0040    ISF          2
+0041    JMP      3 => 0045
+0042    UGET     2   5      ; more_options_param
+0043    TGETS    2   2   6  ; "name_text"
+0044    USETV    7   2      ; name_text
+0045 => UGET     2   5      ; more_options_param
+0046    TGETS    2   2   7  ; "event"
+0047    ISF          2
+0048    JMP      3 => 0052
+0049    UGET     2   5      ; more_options_param
+0050    TGETS    2   2   7  ; "event"
+0051    USETV    4   2      ; event
+0052 => KPRI     2   0
+0053    UGET     3   5      ; more_options_param
+0054    TGETS    3   3   8  ; "left_min"
+0055    ISF          3
+0056    JMP      4 => 0128
+0057    GGET     3   9      ; "require"
+0058    KSTR     4  10      ; "ui/widget/doublespinwidget"
+0059    CALL     3   2   2
+0060    UGET     4   0      ; self
+0061    TGETS    4   4  11  ; "configurable"
+0062    UGET     5   6      ; name
+0063    TGETV    4   4   5
+0064    MOV      6   3
+0065    TGETS    5   3  12  ; "new"
+0066    TDUP     7  14
+0067    UGET     8   8      ; Screen
+0068    MOV      9   8
+0069    TGETS    8   8  13  ; "getWidth"
+0070    CALL     8   2   2
+0071    MULVN    8   8   0  ; 0.6
+0072    TSETS    8   7  15  ; "width"
+0073    UGET     8   5      ; more_options_param
+0074    TGETS    8   8  16  ; "left_text"
+0075    TSETS    8   7  16  ; "left_text"
+0076    UGET     8   5      ; more_options_param
+0077    TGETS    8   8  17  ; "right_text"
+0078    TSETS    8   7  17  ; "right_text"
+0079    TGETB    8   4   1
+0080    TSETS    8   7  18  ; "left_value"
+0081    UGET     8   5      ; more_options_param
+0082    TGETS    8   8   8  ; "left_min"
+0083    TSETS    8   7   8  ; "left_min"
+0084    UGET     8   5      ; more_options_param
+0085    TGETS    8   8  19  ; "left_max"
+0086    TSETS    8   7  19  ; "left_max"
+0087    UGET     8   5      ; more_options_param
+0088    TGETS    8   8  20  ; "left_step"
+0089    TSETS    8   7  20  ; "left_step"
+0090    UGET     8   5      ; more_options_param
+0091    TGETS    8   8  21  ; "left_hold_step"
+0092    TSETS    8   7  21  ; "left_hold_step"
+0093    TGETB    8   4   2
+0094    TSETS    8   7  22  ; "right_value"
+0095    UGET     8   5      ; more_options_param
+0096    TGETS    8   8  23  ; "right_min"
+0097    TSETS    8   7  23  ; "right_min"
+0098    UGET     8   5      ; more_options_param
+0099    TGETS    8   8  24  ; "right_max"
+0100    TSETS    8   7  24  ; "right_max"
+0101    UGET     8   5      ; more_options_param
+0102    TGETS    8   8  25  ; "right_step"
+0103    TSETS    8   7  25  ; "right_step"
+0104    UGET     8   5      ; more_options_param
+0105    TGETS    8   8  26  ; "right_hold_step"
+0106    TSETS    8   7  26  ; "right_hold_step"
+0107    UGET     8   7      ; name_text
+0108    IST          8
+0109    JMP      9 => 0113
+0110    UGET     8   9      ; _
+0111    KSTR     9  27      ; "Set values"
+0112    CALL     8   2   2
+0113 => TSETS    8   7  28  ; "title_text"
+0114    UGET     8   5      ; more_options_param
+0115    TGETS    8   8  29  ; "info_text"
+0116    TSETS    8   7  29  ; "info_text"
+0117    FNEW     8  30      ; configdialog.lua:1122
+0118    TSETS    8   7  31  ; "callback"
+0119    UGET     8   9      ; _
+0120    KSTR     9  32      ; "Set as default"
+0121    CALL     8   2   2
+0122    TSETS    8   7  33  ; "extra_text"
+0123    FNEW     8  34      ; configdialog.lua:1138
+0124    TSETS    8   7  35  ; "extra_callback"
+0125    CALL     5   2   3
+0126    MOV      2   5
+0127    JMP      3 => 0241
+0128 => GGET     3   9      ; "require"
+0129    KSTR     4  36      ; "ui/widget/spinwidget"
+0130    CALL     3   2   2
+0131    KSHORT   4   0
+0132    UGET     5   5      ; more_options_param
+0133    TGETS    5   5  37  ; "value_hold_step"
+0134    ISF          5
+0135    JMP      6 => 0139
+0136    UGET     5   5      ; more_options_param
+0137    TGETS    4   5  37  ; "value_hold_step"
+0138    JMP      5 => 0152
+0139 => UGET     5   3      ; values
+0140    ISF          5
+0141    JMP      6 => 0152
+0142    UGET     5   3      ; values
+0143    LEN      5   5
+0144    KSHORT   6   1
+0145    ISGE     6   5
+0146    JMP      5 => 0152
+0147    UGET     5   3      ; values
+0148    TGETB    5   5   2
+0149    UGET     6   3      ; values
+0150    TGETB    6   6   1
+0151    SUBVV    4   5   6
+0152 => UGET     5   0      ; self
+0153    TGETS    5   5  11  ; "configurable"
+0154    UGET     6   6      ; name
+0155    TGETV    5   5   6
+0156    KPRI     6   0
+0157    UGET     7   5      ; more_options_param
+0158    TGETS    7   7  38  ; "value_table"
+0159    ISF          7
+0160    JMP      8 => 0178
+0161    UGET     7   5      ; more_options_param
+0162    TGETS    7   7  39  ; "args_table"
+0163    ISF          7
+0164    JMP      8 => 0177
+0165    GGET     7  40      ; "pairs"
+0166    UGET     8   5      ; more_options_param
+0167    TGETS    8   8  39  ; "args_table"
+0168    CALL     7   4   2
+0169    ISNEXT  10 => 0174
+0170 => ISNEV   11   5
+0171    JMP     12 => 0174
+0172    MOV      6  10
+0173    JMP      7 => 0178
+0174 => ITERN   10   3   3
+0175    ITERL   10 => 0170
+0176    JMP      7 => 0178
+0177 => MOV      6   5
+0178 => MOV      8   3
+0179    TGETS    7   3  12  ; "new"
+0180    TDUP     9  41
+0181    UGET    10   8      ; Screen
+0182    MOV     11  10
+0183    TGETS   10  10  13  ; "getWidth"
+0184    CALL    10   2   2
+0185    MULVN   10  10   0  ; 0.6
+0186    TSETS   10   9  15  ; "width"
+0187    TSETS    5   9  42  ; "value"
+0188    TSETS    6   9  43  ; "value_index"
+0189    UGET    10   5      ; more_options_param
+0190    TGETS   10  10  38  ; "value_table"
+0191    TSETS   10   9  38  ; "value_table"
+0192    UGET    10   5      ; more_options_param
+0193    TGETS   10  10  44  ; "value_min"
+0194    IST         10
+0195    JMP     11 => 0198
+0196    UGET    10   3      ; values
+0197    TGETB   10  10   1
+0198 => TSETS   10   9  44  ; "value_min"
+0199    UGET    10   5      ; more_options_param
+0200    TGETS   10  10  45  ; "value_step"
+0201    IST         10
+0202    JMP     11 => 0204
+0203    KSHORT  10   1
+0204 => TSETS   10   9  45  ; "value_step"
+0205    TSETS    4   9  37  ; "value_hold_step"
+0206    UGET    10   5      ; more_options_param
+0207    TGETS   10  10  46  ; "value_max"
+0208    IST         10
+0209    JMP     11 => 0214
+0210    UGET    10   3      ; values
+0211    UGET    11   3      ; values
+0212    LEN     11  11
+0213    TGETV   10  10  11
+0214 => TSETS   10   9  46  ; "value_max"
+0215    UGET    10   5      ; more_options_param
+0216    TGETS   10  10  47  ; "precision"
+0217    IST         10
+0218    JMP     11 => 0220
+0219    KSTR    10  48      ; "%02d"
+0220 => TSETS   10   9  47  ; "precision"
+0221    UGET    10   9      ; _
+0222    KSTR    11  32      ; "Set as default"
+0223    CALL    10   2   2
+0224    TSETS   10   9  33  ; "extra_text"
+0225    FNEW    10  49      ; configdialog.lua:1195
+0226    TSETS   10   9  35  ; "extra_callback"
+0227    UGET    10   7      ; name_text
+0228    IST         10
+0229    JMP     11 => 0233
+0230    UGET    10   9      ; _
+0231    KSTR    11  50      ; "Set value"
+0232    CALL    10   2   2
+0233 => TSETS   10   9  28  ; "title_text"
+0234    UGET    10   5      ; more_options_param
+0235    TGETS   10  10  29  ; "info_text"
+0236    TSETS   10   9  29  ; "info_text"
+0237    FNEW    10  51      ; configdialog.lua:1226
+0238    TSETS   10   9  31  ; "callback"
+0239    CALL     7   2   3
+0240    MOV      2   7
+0241 => UGET     3   1      ; UIManager
+0242    MOV      4   3
+0243    TGETS    3   3  52  ; "show"
+0244    MOV      5   2
+0245    CALL     3   1   3
+0246    UCLO     2 => 0247
+0247 => UGET     2   2      ; delay_repaint
+0248    IST          2
+0249    JMP      2 => 0252
+0250    MOV      2   0
+0251    CALL     2   1   1
+0252 => UCLO     0 => 0253
+0253 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1058-1264
+0001    IST          7
+0002    JMP      8 => 0004
+0003    TNEW     7   0
+0004 => UGET     8   0      ; UIManager
+0005    MOV      9   8
+0006    TGETS    8   8   0  ; "tickAfterNext"
+0007    FNEW    10   1      ; configdialog.lua:1062
+0008    CALL     8   1   3
+0009    UCLO     0 => 0010
+0010 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1295-1297
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dialog_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- configdialog.lua:1291-1298
+0001    UGET     0   1      ; self
+0002    TGETS    0   0   0  ; "config_options"
+0003    TGETS    0   0   1  ; "prefix"
+0004    KSTR     1   2      ; "_"
+0005    UGET     2   0      ; name
+0006    CAT      0   0   2
+0007    USETV    0   0      ; name
+0008    GGET     0   3      ; "G_reader_settings"
+0009    MOV      1   0
+0010    TGETS    0   0   4  ; "saveSetting"
+0011    UGET     2   0      ; name
+0012    UGET     3   2      ; values
+0013    UGET     4   3      ; position
+0014    TGETV    3   3   4
+0015    CALL     0   1   4
+0016    UGET     0   1      ; self
+0017    MOV      1   0
+0018    TGETS    0   0   5  ; "update"
+0019    CALL     0   1   2
+0020    UGET     0   4      ; UIManager
+0021    MOV      1   0
+0022    TGETS    0   0   6  ; "setDirty"
+0023    UGET     2   1      ; self
+0024    FNEW     3   7      ; configdialog.lua:1295
+0025    CALL     0   1   4
+0026    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1266-1300
+0001    TGETV    6   4   5
+0002    ISNES    1   0      ; "font_fine_tune"
+0003    JMP      7 => 0006
+0004    UCLO     0 => 0054
+0005    JMP      7 => 0016
+0006 => ISNES    1   1      ; "h_page_margins"
+0007    JMP      7 => 0016
+0008    UGET     7   0      ; T
+0009    UGET     8   1      ; _
+0010    KSTR     9   2      ; "\n  left:  %1\n  right: %2\n"
+0011    CALL     8   2   2
+0012    TGETB    9   6   1
+0013    TGETB   10   6   2
+0014    CALL     7   2   4
+0015    MOV      6   7
+0016 => GGET     7   3      ; "type"
+0017    MOV      8   6
+0018    CALL     7   2   2
+0019    ISNES    7   4      ; "table"
+0020    JMP      7 => 0025
+0021    UGET     7   2      ; dump
+0022    MOV      8   6
+0023    CALL     7   2   2
+0024    MOV      6   7
+0025 => UGET     7   3      ; UIManager
+0026    MOV      8   7
+0027    TGETS    7   7   5  ; "show"
+0028    UGET     9   4      ; ConfirmBox
+0029    MOV     10   9
+0030    TGETS    9   9   6  ; "new"
+0031    TDUP    11   9
+0032    UGET    12   0      ; T
+0033    UGET    13   1      ; _
+0034    KSTR    14   7      ; "Set default %1 to %2?"
+0035    CALL    13   2   2
+0036    ISTC    14   2
+0037    JMP     14 => 0039
+0038    KSTR    14   8      ; ""
+0039 => MOV     15   6
+0040    CALL    12   2   4
+0041    TSETS   12  11  10  ; "text"
+0042    UGET    12   0      ; T
+0043    UGET    13   1      ; _
+0044    KSTR    14  11      ; "Set as default"
+0045    CALL    13   0   2
+0046    CALLM   12   2   0
+0047    TSETS   12  11  12  ; "ok_text"
+0048    FNEW    12  13      ; configdialog.lua:1291
+0049    TSETS   12  11  14  ; "ok_callback"
+0050    CALL     9   0   3
+0051    CALLM    7   1   1
+0052    UCLO     0 => 0053
+0053 => RET0     0   1
+0054 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1333-1335
+0001    KSTR     0   0      ; "ui"
+0002    UGET     1   0      ; self
+0003    TGETS    1   1   1  ; "dialog_frame"
+0004    TGETS    1   1   2  ; "dimen"
+0005    RET      0   3
+
+-- BYTECODE -- configdialog.lua:1329-1336
+0001    UGET     0   1      ; self
+0002    TGETS    0   0   0  ; "config_options"
+0003    TGETS    0   0   1  ; "prefix"
+0004    KSTR     1   2      ; "_"
+0005    UGET     2   0      ; name
+0006    CAT      0   0   2
+0007    USETV    0   0      ; name
+0008    GGET     0   3      ; "G_reader_settings"
+0009    MOV      1   0
+0010    TGETS    0   0   4  ; "saveSetting"
+0011    UGET     2   0      ; name
+0012    UGET     3   2      ; current_value
+0013    CALL     0   1   4
+0014    UGET     0   1      ; self
+0015    MOV      1   0
+0016    TGETS    0   0   5  ; "update"
+0017    CALL     0   1   2
+0018    UGET     0   3      ; UIManager
+0019    MOV      1   0
+0020    TGETS    0   0   6  ; "setDirty"
+0021    UGET     2   1      ; self
+0022    FNEW     3   7      ; configdialog.lua:1333
+0023    CALL     0   1   4
+0024    RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1304-1338
+0001    TGETS    6   0   0  ; "configurable"
+0002    TGETV    6   6   1
+0003    IST          6
+0004    JMP      7 => 0012
+0005    ISNES    5   1      ; "-"
+0006    JMP      6 => 0010
+0007    TGETB    6   4   1
+0008    IST          6
+0009    JMP      7 => 0012
+0010 => LEN      6   4
+0011    TGETV    6   4   6
+0012 => KPRI     7   0
+0013    ISNES    1   2      ; "h_page_margins"
+0014    JMP      8 => 0024
+0015    UGET     8   0      ; T
+0016    UGET     9   1      ; _
+0017    KSTR    10   3      ; "\n  left:  %1\n  right: %2\n"
+0018    CALL     9   2   2
+0019    TGETB   10   6   1
+0020    TGETB   11   6   2
+0021    CALL     8   2   4
+0022    MOV      7   8
+0023    JMP      8 => 0035
+0024 => GGET     8   4      ; "type"
+0025    MOV      9   6
+0026    CALL     8   2   2
+0027    ISNES    8   5      ; "table"
+0028    JMP      8 => 0034
+0029    UGET     8   2      ; dump
+0030    MOV      9   6
+0031    CALL     8   2   2
+0032    MOV      7   8
+0033    JMP      8 => 0035
+0034 => MOV      7   6
+0035 => UGET     8   3      ; UIManager
+0036    MOV      9   8
+0037    TGETS    8   8   6  ; "show"
+0038    UGET    10   4      ; ConfirmBox
+0039    MOV     11  10
+0040    TGETS   10  10   7  ; "new"
+0041    TDUP    12  10
+0042    UGET    13   0      ; T
+0043    UGET    14   1      ; _
+0044    KSTR    15   8      ; "Set default %1 to %2?"
+0045    CALL    14   2   2
+0046    ISTC    15   2
+0047    JMP     15 => 0049
+0048    KSTR    15   9      ; ""
+0049 => MOV     16   7
+0050    CALL    13   2   4
+0051    TSETS   13  12  11  ; "text"
+0052    UGET    13   0      ; T
+0053    UGET    14   1      ; _
+0054    KSTR    15  12      ; "Set as default"
+0055    CALL    14   0   2
+0056    CALLM   13   2   0
+0057    TSETS   13  12  13  ; "ok_text"
+0058    FNEW    13  14      ; configdialog.lua:1329
+0059    TSETS   13  12  15  ; "ok_callback"
+0060    CALL    10   0   3
+0061    CALLM    8   1   1
+0062    UCLO     0 => 0063
+0063 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1340-1346
+0001    UGET     1   0      ; UIManager
+0002    MOV      2   1
+0003    TGETS    1   1   0  ; "close"
+0004    MOV      3   0
+0005    CALL     1   1   3
+0006    TGETS    1   0   1  ; "close_callback"
+0007    ISF          1
+0008    JMP      2 => 0011
+0009    TGETS    1   0   1  ; "close_callback"
+0010    CALL     1   1   1
+0011 => KPRI     1   2
+0012    RET1     1   2
+
+-- BYTECODE -- configdialog.lua:1348-1353
+0001    TGETS    3   2   0  ; "pos"
+0002    MOV      4   3
+0003    TGETS    3   3   1  ; "notIntersectWith"
+0004    TGETS    5   0   2  ; "dialog_frame"
+0005    TGETS    5   5   3  ; "dimen"
+0006    CALL     3   2   3
+0007    ISF          3
+0008    JMP      4 => 0014
+0009    MOV      4   0
+0010    TGETS    3   0   4  ; "closeDialog"
+0011    CALL     3   1   2
+0012    KPRI     3   2
+0013    RET1     3   2
+0014 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1355-1367
+0001    TDUP     3   3
+0002    GGET     4   0      ; "DTAP_ZONE_CONFIG"
+0003    TGETS    4   4   1  ; "x"
+0004    UGET     5   0      ; Screen
+0005    MOV      6   5
+0006    TGETS    5   5   2  ; "getWidth"
+0007    CALL     5   2   2
+0008    MULVV    4   4   5
+0009    TSETS    4   3   1  ; "x"
+0010    GGET     4   0      ; "DTAP_ZONE_CONFIG"
+0011    TGETS    4   4   4  ; "y"
+0012    UGET     5   0      ; Screen
+0013    MOV      6   5
+0014    TGETS    5   5   5  ; "getHeight"
+0015    CALL     5   2   2
+0016    MULVV    4   4   5
+0017    TSETS    4   3   4  ; "y"
+0018    GGET     4   0      ; "DTAP_ZONE_CONFIG"
+0019    TGETS    4   4   6  ; "w"
+0020    UGET     5   0      ; Screen
+0021    MOV      6   5
+0022    TGETS    5   5   2  ; "getWidth"
+0023    CALL     5   2   2
+0024    MULVV    4   4   5
+0025    TSETS    4   3   6  ; "w"
+0026    GGET     4   0      ; "DTAP_ZONE_CONFIG"
+0027    TGETS    4   4   7  ; "h"
+0028    UGET     5   0      ; Screen
+0029    MOV      6   5
+0030    TGETS    5   5   5  ; "getHeight"
+0031    CALL     5   2   2
+0032    MULVV    4   4   5
+0033    TSETS    4   3   7  ; "h"
+0034    TGETS    4   2   8  ; "direction"
+0035    ISNES    4   9      ; "south"
+0036    JMP      4 => 0057
+0037    TGETS    4   2  10  ; "pos"
+0038    MOV      5   4
+0039    TGETS    4   4  11  ; "intersectWith"
+0040    TGETS    6   0  12  ; "dialog_frame"
+0041    TGETS    6   6  13  ; "dimen"
+0042    CALL     4   2   3
+0043    IST          4
+0044    JMP      5 => 0052
+0045    TGETS    4   2  10  ; "pos"
+0046    MOV      5   4
+0047    TGETS    4   4  11  ; "intersectWith"
+0048    MOV      6   3
+0049    CALL     4   2   3
+0050    ISF          4
+0051    JMP      5 => 0057
+0052 => MOV      5   0
+0053    TGETS    4   0  14  ; "closeDialog"
+0054    CALL     4   1   2
+0055    KPRI     4   2
+0056    RET1     4   2
+0057 => RET0     0   1
+
+-- BYTECODE -- configdialog.lua:1369-1372
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "closeDialog"
+0003    CALL     1   1   2
+0004    KPRI     1   2
+0005    RET1     1   2
+
+-- BYTECODE -- configdialog.lua:1374-1377
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "getFocusItem"
+0003    CALL     1   2   2
+0004    MOV      2   1
+0005    TGETS    1   1   1  ; "handleEvent"
+0006    UGET     3   0      ; Event
+0007    MOV      4   3
+0008    TGETS    3   3   2  ; "new"
+0009    KSTR     5   3      ; "TapSelect"
+0010    CALL     3   0   3
+0011    CALLM    1   1   1
+0012    KPRI     1   2
+0013    RET1     1   2
+
+-- BYTECODE -- configdialog.lua:0-1380
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "ui/widget/button"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ui/widget/buttonprogresswidget"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "ffi/blitbuffer"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ui/widget/container/bottomcontainer"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "ui/widget/container/centercontainer"
+0015    CALL     4   2   2
+0016    GGET     5   0      ; "require"
+0017    KSTR     6   6      ; "ui/widget/confirmbox"
+0018    CALL     5   2   2
+0019    GGET     6   0      ; "require"
+0020    KSTR     7   7      ; "device"
+0021    CALL     6   2   2
+0022    GGET     7   0      ; "require"
+0023    KSTR     8   8      ; "ui/event"
+0024    CALL     7   2   2
+0025    GGET     8   0      ; "require"
+0026    KSTR     9   9      ; "ui/widget/fixedtextwidget"
+0027    CALL     8   2   2
+0028    GGET     9   0      ; "require"
+0029    KSTR    10  10      ; "ui/widget/focusmanager"
+0030    CALL     9   2   2
+0031    GGET    10   0      ; "require"
+0032    KSTR    11  11      ; "ui/font"
+0033    CALL    10   2   2
+0034    GGET    11   0      ; "require"
+0035    KSTR    12  12      ; "ui/widget/container/framecontainer"
+0036    CALL    11   2   2
+0037    GGET    12   0      ; "require"
+0038    KSTR    13  13      ; "ui/geometry"
+0039    CALL    12   2   2
+0040    GGET    13   0      ; "require"
+0041    KSTR    14  14      ; "ui/gesturerange"
+0042    CALL    13   2   2
+0043    GGET    14   0      ; "require"
+0044    KSTR    15  15      ; "ui/widget/horizontalgroup"
+0045    CALL    14   2   2
+0046    GGET    15   0      ; "require"
+0047    KSTR    16  16      ; "ui/widget/horizontalspan"
+0048    CALL    15   2   2
+0049    GGET    16   0      ; "require"
+0050    KSTR    17  17      ; "ui/widget/iconbutton"
+0051    CALL    16   2   2
+0052    GGET    17   0      ; "require"
+0053    KSTR    18  18      ; "ui/widget/imagewidget"
+0054    CALL    17   2   2
+0055    GGET    18   0      ; "require"
+0056    KSTR    19  19      ; "ui/widget/container/inputcontainer"
+0057    CALL    18   2   2
+0058    GGET    19   0      ; "require"
+0059    KSTR    20  20      ; "ui/widget/linewidget"
+0060    CALL    19   2   2
+0061    GGET    20   0      ; "require"
+0062    KSTR    21  21      ; "ui/widget/container/rightcontainer"
+0063    CALL    20   2   2
+0064    GGET    21   0      ; "require"
+0065    KSTR    22  22      ; "ui/size"
+0066    CALL    21   2   2
+0067    GGET    22   0      ; "require"
+0068    KSTR    23  23      ; "ui/widget/textwidget"
+0069    CALL    22   2   2
+0070    GGET    23   0      ; "require"
+0071    KSTR    24  24      ; "ui/widget/toggleswitch"
+0072    CALL    23   2   2
+0073    GGET    24   0      ; "require"
+0074    KSTR    25  25      ; "ui/uimanager"
+0075    CALL    24   2   2
+0076    GGET    25   0      ; "require"
+0077    KSTR    26  26      ; "ui/widget/container/underlinecontainer"
+0078    CALL    25   2   2
+0079    GGET    26   0      ; "require"
+0080    KSTR    27  27      ; "ui/widget/verticalgroup"
+0081    CALL    26   2   2
+0082    GGET    27   0      ; "require"
+0083    KSTR    28  28      ; "ui/widget/verticalspan"
+0084    CALL    27   2   2
+0085    GGET    28   0      ; "require"
+0086    KSTR    29  29      ; "dump"
+0087    CALL    28   2   2
+0088    GGET    29   0      ; "require"
+0089    KSTR    30  30      ; "logger"
+0090    CALL    29   2   2
+0091    GGET    30   0      ; "require"
+0092    KSTR    31  31      ; "gettext"
+0093    CALL    30   2   2
+0094    TGETS   31   6  32  ; "screen"
+0095    GGET    32   0      ; "require"
+0096    KSTR    33  33      ; "ffi/util"
+0097    CALL    32   2   2
+0098    TGETS   32  32  34  ; "template"
+0099    MOV     34  18
+0100    TGETS   33  18  35  ; "new"
+0101    TNEW    35   0
+0102    CALL    33   2   3
+0103    FNEW    34  37      ; configdialog.lua:37
+0104    TSETS   34  33  36  ; "init"
+0105    FNEW    34  39      ; configdialog.lua:74
+0106    TSETS   34  33  38  ; "onFocus"
+0107    FNEW    34  41      ; configdialog.lua:78
+0108    TSETS   34  33  40  ; "onUnfocus"
+0109    FNEW    34  43      ; configdialog.lua:82
+0110    TSETS   34  33  42  ; "onTapSelect"
+0111    FNEW    34  45      ; configdialog.lua:97
+0112    TSETS   34  33  44  ; "onHoldSelect"
+0113    MOV     35  18
+0114    TGETS   34  18  35  ; "new"
+0115    TNEW    36   0
+0116    CALL    34   2   3
+0117    FNEW    35  46      ; configdialog.lua:107
+0118    TSETS   35  34  36  ; "init"
+0119    FNEW    35  47      ; configdialog.lua:143
+0120    TSETS   35  34  38  ; "onFocus"
+0121    FNEW    35  48      ; configdialog.lua:147
+0122    TSETS   35  34  40  ; "onUnfocus"
+0123    FNEW    35  49      ; configdialog.lua:151
+0124    TSETS   35  34  42  ; "onTapSelect"
+0125    FNEW    35  50      ; configdialog.lua:168
+0126    TSETS   35  34  44  ; "onHoldSelect"
+0127    MOV     36   4
+0128    TGETS   35   4  35  ; "new"
+0129    TNEW    37   0
+0130    CALL    35   2   3
+0131    FNEW    36  51      ; configdialog.lua:176
+0132    TSETS   36  35  36  ; "init"
+0133    FNEW    36  53      ; configdialog.lua:621
+0134    TSETS   36  35  52  ; "_itemGroupToLayoutLine"
+0135    MOV     37  11
+0136    TGETS   36  11  35  ; "new"
+0137    TDUP    38  55
+0138    TGETS   39   2  54  ; "COLOR_WHITE"
+0139    TSETS   39  38  56  ; "background"
+0140    CALL    36   2   3
+0141    FNEW    37  57      ; configdialog.lua:641
+0142    TSETS   37  36  36  ; "init"
+0143    MOV     38  11
+0144    TGETS   37  11  35  ; "new"
+0145    TDUP    39  58
+0146    TGETS   40   2  54  ; "COLOR_WHITE"
+0147    TSETS   40  39  56  ; "background"
+0148    CALL    37   2   3
+0149    FNEW    38  59      ; configdialog.lua:659
+0150    TSETS   38  37  36  ; "init"
+0151    MOV     39   9
+0152    TGETS   38   9  35  ; "new"
+0153    TDUP    40  60
+0154    CALL    38   2   3
+0155    FNEW    39  61      ; configdialog.lua:795
+0156    TSETS   39  38  36  ; "init"
+0157    FNEW    39  63      ; configdialog.lua:834
+0158    TSETS   39  38  62  ; "updateConfigPanel"
+0159    FNEW    39  65      ; configdialog.lua:838
+0160    TSETS   39  38  64  ; "update"
+0161    FNEW    39  67      ; configdialog.lua:865
+0162    TSETS   39  38  66  ; "onCloseWidget"
+0163    FNEW    39  69      ; configdialog.lua:872
+0164    TSETS   39  38  68  ; "onShowConfigPanel"
+0165    FNEW    39  71      ; configdialog.lua:895
+0166    TSETS   39  38  70  ; "onConfigChoice"
+0167    FNEW    39  73      ; configdialog.lua:901
+0168    TSETS   39  38  72  ; "onConfigEvent"
+0169    FNEW    39  75      ; configdialog.lua:906
+0170    TSETS   39  38  74  ; "onConfigEvents"
+0171    FNEW    39  77      ; configdialog.lua:914
+0172    TSETS   39  38  76  ; "onConfigChoose"
+0173    FNEW    39  79      ; configdialog.lua:965
+0174    TSETS   39  38  78  ; "onConfigFineTuneChoose"
+0175    FNEW    39  81      ; configdialog.lua:1058
+0176    TSETS   39  38  80  ; "onConfigMoreChoose"
+0177    FNEW    39  83      ; configdialog.lua:1266
+0178    TSETS   39  38  82  ; "onMakeDefault"
+0179    FNEW    39  85      ; configdialog.lua:1304
+0180    TSETS   39  38  84  ; "onMakeFineTuneDefault"
+0181    FNEW    39  87      ; configdialog.lua:1340
+0182    TSETS   39  38  86  ; "closeDialog"
+0183    FNEW    39  89      ; configdialog.lua:1348
+0184    TSETS   39  38  88  ; "onTapCloseMenu"
+0185    FNEW    39  91      ; configdialog.lua:1355
+0186    TSETS   39  38  90  ; "onSwipeCloseMenu"
+0187    FNEW    39  93      ; configdialog.lua:1369
+0188    TSETS   39  38  92  ; "onClose"
+0189    FNEW    39  95      ; configdialog.lua:1374
+0190    TSETS   39  38  94  ; "onSelect"
+0191    UCLO     0 => 0192
+0192 => RET1    38   2
+

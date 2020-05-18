@@ -1,0 +1,76 @@
+
+main <./admin/cmd/refresh_cache.lua:0,0> (19 instructions, 76 bytes at 0x7fe8c94068c0)
+0+ params, 5 slots, 0 upvalues, 4 locals, 6 constants, 2 functions
+	1	[3]	NEWTABLE 	0 0 0
+	2	[5]	GETGLOBAL	1 -1	; require
+	3	[5]	LOADK    	2 -2	; "luarocks.core.cfg"
+	4	[5]	CALL     	1 2 2
+	5	[6]	GETGLOBAL	2 -1	; require
+	6	[6]	LOADK    	3 -3	; "luarocks.util"
+	7	[6]	CALL     	2 2 2
+	8	[7]	GETGLOBAL	3 -1	; require
+	9	[7]	LOADK    	4 -4	; "luarocks.admin.cache"
+	10	[7]	CALL     	3 2 2
+	11	[15]	CLOSURE  	4 0	; 0x7fe8c9406f80
+	12	[15]	MOVE     	0 2
+	13	[9]	SETTABLE 	0 -5 4	; "add_to_parser" -
+	14	[28]	CLOSURE  	4 1	; 0x7fe8c94077c0
+	15	[28]	MOVE     	0 3
+	16	[28]	MOVE     	0 1
+	17	[17]	SETTABLE 	0 -6 4	; "command" -
+	18	[31]	RETURN   	0 2
+	19	[31]	RETURN   	0 1
+
+function <./admin/cmd/refresh_cache.lua:9,15> (17 instructions, 68 bytes at 0x7fe8c9406f80)
+1 param, 7 slots, 1 upvalue, 2 locals, 10 constants, 0 functions
+	1	[10]	SELF     	1 0 -1	; "command"
+	2	[10]	LOADK    	3 -2	; "refresh_cache"
+	3	[10]	LOADK    	4 -3	; "Refresh local cache of a remote rocks server."
+	4	[10]	GETUPVAL 	5 0	; util
+	5	[10]	GETTABLE 	5 5 -4	; "see_also"
+	6	[10]	CALL     	5 1 0
+	7	[10]	CALL     	1 0 2
+	8	[12]	SELF     	2 1 -5	; "option"
+	9	[12]	LOADK    	4 -6	; "--from"
+	10	[12]	LOADK    	5 -7	; "The server to use. If not given, the default server "
+	11	[13]	LOADK    	6 -8	; "set in the upload_server variable from the configuration file is used instead."
+	12	[13]	CONCAT   	5 5 6
+	13	[12]	CALL     	2 4 2
+	14	[14]	SELF     	2 2 -9	; "argname"
+	15	[14]	LOADK    	4 -10	; "<server>"
+	16	[14]	CALL     	2 3 1
+	17	[15]	RETURN   	0 1
+
+function <./admin/cmd/refresh_cache.lua:17,28> (31 instructions, 124 bytes at 0x7fe8c94077c0)
+1 param, 8 slots, 2 upvalues, 6 locals, 6 constants, 0 functions
+	1	[18]	GETUPVAL 	1 0	; cache
+	2	[18]	GETTABLE 	1 1 -1	; "get_upload_server"
+	3	[18]	GETTABLE 	2 0 -2	; "server"
+	4	[18]	CALL     	1 2 3
+	5	[19]	TEST     	1 0 1
+	6	[19]	JMP      	3	; to 10
+	7	[19]	LOADNIL  	3 3
+	8	[19]	MOVE     	4 2
+	9	[19]	RETURN   	3 3
+	10	[20]	GETUPVAL 	3 0	; cache
+	11	[20]	GETTABLE 	3 3 -3	; "get_server_urls"
+	12	[20]	MOVE     	4 1
+	13	[20]	MOVE     	5 2
+	14	[20]	CALL     	3 3 2
+	15	[22]	GETUPVAL 	4 0	; cache
+	16	[22]	GETTABLE 	4 4 -4	; "refresh_local_cache"
+	17	[22]	MOVE     	5 3
+	18	[22]	GETUPVAL 	6 1	; cfg
+	19	[22]	GETTABLE 	6 6 -5	; "upload_user"
+	20	[22]	GETUPVAL 	7 1	; cfg
+	21	[22]	GETTABLE 	7 7 -6	; "upload_password"
+	22	[22]	CALL     	4 4 3
+	23	[23]	TEST     	4 0 1
+	24	[23]	JMP      	4	; to 29
+	25	[24]	LOADNIL  	6 6
+	26	[24]	MOVE     	7 5
+	27	[24]	RETURN   	6 3
+	28	[24]	JMP      	2	; to 31
+	29	[26]	LOADBOOL 	6 1 0
+	30	[26]	RETURN   	6 2
+	31	[28]	RETURN   	0 1

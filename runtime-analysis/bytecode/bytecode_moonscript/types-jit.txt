@@ -1,0 +1,488 @@
+-- BYTECODE -- types.lua:27-36
+0001    GGET     1   0      ; "type"
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISNES    1   1      ; "nil"
+0005    JMP      2 => 0009
+0006    KSTR     2   1      ; "nil"
+0007    RET1     2   2
+0008    JMP      2 => 0016
+0009 => ISNES    1   2      ; "table"
+0010    JMP      2 => 0014
+0011    TGETB    2   0   1
+0012    RET1     2   2
+0013    JMP      2 => 0016
+0014 => KSTR     2   3      ; "value"
+0015    RET1     2   2
+0016 => RET0     0   1
+
+-- BYTECODE -- types.lua:40-46
+0001    GGET     1   0      ; "getmetatable"
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISF          1
+0005    JMP      2 => 0011
+0006    TGETS    2   1   1  ; "smart_node"
+0007    ISF          2
+0008    JMP      3 => 0011
+0009    KSTR     2   2      ; "table"
+0010    RET1     2   2
+0011 => UGET     2   0      ; moon_type
+0012    MOV      3   0
+0013    CALLT    2   2
+
+-- BYTECODE -- types.lua:49-54
+0001    UGET     1   0      ; ntype
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISEQS    1   0      ; "chain"
+0005    JMP      1 => 0008
+0006    KPRI     1   1
+0007    RET1     1   2
+0008 => UGET     1   0      ; ntype
+0009    LEN      2   0
+0010    TGETV    2   0   2
+0011    CALL     1   2   2
+0012    ISEQS    1   1      ; "call"
+0013    JMP      1 => 0016
+0014    KPRI     1   1
+0015    JMP      2 => 0017
+0016 => KPRI     1   2
+0017 => RET1     1   2
+
+-- BYTECODE -- types.lua:56-60
+0001    GGET     1   0      ; "require"
+0002    KSTR     2   1      ; "moonscript.compile"
+0003    CALL     1   2   2
+0004    GGET     2   0      ; "require"
+0005    KSTR     3   2      ; "moonscript.transform"
+0006    CALL     2   2   2
+0007    TGETS    3   1   3  ; "Block"
+0008    MOV      4   3
+0009    TGETS    3   3   4  ; "is_value"
+0010    MOV      5   0
+0011    CALL     3   2   3
+0012    IST          3
+0013    JMP      4 => 0019
+0014    TGETS    3   2   5  ; "Value"
+0015    MOV      4   3
+0016    TGETS    3   3   6  ; "can_transform"
+0017    MOV      5   0
+0018    CALL     3   2   3
+0019 => RET1     3   2
+
+-- BYTECODE -- types.lua:62-64
+0001    GGET     1   0      ; "type"
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISNES    1   1      ; "table"
+0005    JMP      1 => 0014
+0006    TGETB    1   0   1
+0007    ISNES    1   2      ; "exp"
+0008    JMP      1 => 0014
+0009    LEN      1   0
+0010    ISEQN    1   0      ; 2
+0011    JMP      1 => 0014
+0012    KPRI     1   1
+0013    JMP      2 => 0015
+0014 => KPRI     1   2
+0015 => RET1     1   2
+
+-- BYTECODE -- types.lua:66-68
+0001    UGET     1   0      ; ntype
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISNES    1   0      ; "chain"
+0005    JMP      1 => 0012
+0006    UGET     1   0      ; ntype
+0007    LEN      2   0
+0008    TGETV    2   0   2
+0009    CALL     1   2   2
+0010    ISEQS    1   1      ; "slice"
+0011    JMP      1 => 0014
+0012 => KPRI     1   1
+0013    JMP      2 => 0015
+0014 => KPRI     1   2
+0015 => RET1     1   2
+
+-- BYTECODE -- types.lua:163-174
+0001    TNEW     0   0
+0002    GGET     1   0      ; "pairs"
+0003    UGET     2   0      ; node_types
+0004    CALL     1   4   2
+0005    ISNEXT   4 => 0017
+0006 => TNEW     6   0
+0007    GGET     7   1      ; "ipairs"
+0008    MOV      8   5
+0009    CALL     7   4   2
+0010    JMP     10 => 0014
+0011 => TGETB   12  11   1
+0012    ADDVN   13  10   0  ; 1
+0013    TSETV   13   6  12
+0014 => ITERC   10   3   3
+0015    ITERL   10 => 0011
+0016    TSETV    6   0   4
+0017 => ITERN    4   3   3
+0018    ITERL    4 => 0006
+0019    RET1     0   2
+
+-- BYTECODE -- types.lua:182-203
+0001    ISNEP    0   0
+0002    JMP      1 => 0004
+0003    TNEW     0   0
+0004 => TNEW     1   3
+0005    UGET     2   0      ; name
+0006    TSETB    2   1   1
+0007    GGET     2   0      ; "ipairs"
+0008    UGET     3   1      ; spec
+0009    CALL     2   4   2
+0010    JMP      5 => 0027
+0011 => UGET     7   2      ; unpack
+0012    MOV      8   6
+0013    CALL     7   3   2
+0014    KPRI     9   0
+0015    TGETV   10   0   7
+0016    ISF         10
+0017    JMP     11 => 0020
+0018    TGETV    9   0   7
+0019    JMP     10 => 0021
+0020 => MOV      9   8
+0021 => UGET    10   3      ; t
+0022    ISNEV    9  10
+0023    JMP     10 => 0025
+0024    TNEW     9   0
+0025 => ADDVN   10   5   0  ; 1
+0026    TSETV    9   1  10
+0027 => ITERC    5   3   3
+0028    ITERL    5 => 0011
+0029    RET1     1   2
+
+-- BYTECODE -- types.lua:177-204
+0001    UGET     1   0      ; node_types
+0002    TGETV    1   1   0
+0003    IST          1
+0004    JMP      2 => 0010
+0005    GGET     2   0      ; "error"
+0006    KSTR     3   1      ; "don't know how to build node: "
+0007    MOV      4   0
+0008    CAT      3   3   4
+0009    CALL     2   1   2
+0010 => FNEW     2   2      ; types.lua:182
+0011    UCLO     0 => 0012
+0012 => RET1     2   2
+
+-- BYTECODE -- types.lua:207-215
+0001    ISNEP    0   0
+0002    JMP      1 => 0004
+0003    TNEW     0   0
+0004 => TDUP     1   0
+0005    TSETB    0   1   2
+0006    RET1     1   2
+
+-- BYTECODE -- types.lua:216-221
+0001    TDUP     1   0
+0002    TSETB    0   1   2
+0003    RET1     1   2
+
+-- BYTECODE -- types.lua:222-231
+0001    UGET     2   0      ; build
+0002    TGETS    2   2   0  ; "assign"
+0003    TDUP     3   1
+0004    TNEW     4   3
+0005    TSETB    0   4   1
+0006    TSETS    4   3   2  ; "names"
+0007    TNEW     4   3
+0008    TSETB    1   4   1
+0009    TSETS    4   3   3  ; "values"
+0010    CALLT    2   2
+
+-- BYTECODE -- types.lua:232-249
+0001    ISNEP    0   0
+0002    JMP      1 => 0004
+0003    TNEW     0   0
+0004 => KSHORT   1   1
+0005    LEN      2   0
+0006    KSHORT   3   1
+0007    FORI     1 => 0019
+0008 => TGETV    5   0   4
+0009    GGET     6   0      ; "type"
+0010    TGETB    7   5   1
+0011    CALL     6   2   2
+0012    ISNES    6   1      ; "string"
+0013    JMP      6 => 0018
+0014    TDUP     6   2
+0015    TGETB    7   5   1
+0016    TSETB    7   6   2
+0017    TSETB    6   5   1
+0018 => FORL     1 => 0008
+0019 => TDUP     1   3
+0020    TSETB    0   1   2
+0021    RET1     1   2
+
+-- BYTECODE -- types.lua:250-255
+0001    TDUP     1   0
+0002    TSETB    0   1   2
+0003    RET1     1   2
+
+-- BYTECODE -- types.lua:256-273
+0001    TGETS    1   0   0  ; "base"
+0002    IST          1
+0003    JMP      2 => 0007
+0004    GGET     1   1      ; "error"
+0005    KSTR     2   2      ; "expecting base property for chain"
+0006    CALL     1   2   2
+0007 => GGET     2   3      ; "type"
+0008    MOV      3   1
+0009    CALL     2   2   2
+0010    ISNES    2   4      ; "string"
+0011    JMP      2 => 0015
+0012    TDUP     2   5
+0013    TSETB    1   2   2
+0014    MOV      1   2
+0015 => TDUP     2   6
+0016    TSETB    1   2   2
+0017    KSHORT   3   1
+0018    LEN      4   0
+0019    KSHORT   5   1
+0020    FORI     3 => 0027
+0021 => TGETV    7   0   6
+0022    UGET     8   0      ; insert
+0023    MOV      9   2
+0024    MOV     10   7
+0025    CALL     8   1   3
+0026    FORL     3 => 0021
+0027 => RET1     2   2
+
+-- BYTECODE -- types.lua:275-278
+0001    UGET     2   0      ; make_builder
+0002    MOV      3   1
+0003    CALL     2   2   2
+0004    TSETV    2   0   1
+0005    GGET     2   0      ; "rawget"
+0006    MOV      3   0
+0007    MOV      4   1
+0008    CALLT    2   3
+
+-- BYTECODE -- types.lua:285-291
+0001    UGET     2   0      ; index
+0002    TGETV    2   2   1
+0003    ISF          2
+0004    JMP      3 => 0011
+0005    GGET     2   0      ; "rawget"
+0006    MOV      3   0
+0007    UGET     4   0      ; index
+0008    TGETV    4   4   1
+0009    CALLT    2   3
+0010    JMP      2 => 0026
+0011 => GGET     2   1      ; "type"
+0012    MOV      3   1
+0013    CALL     2   2   2
+0014    ISNES    2   2      ; "string"
+0015    JMP      2 => 0026
+0016    GGET     2   3      ; "error"
+0017    KSTR     3   4      ; "unknown key: `"
+0018    MOV      4   1
+0019    KSTR     5   5      ; "` on node type: `"
+0020    UGET     6   1      ; ntype
+0021    MOV      7   0
+0022    CALL     6   2   2
+0023    KSTR     7   6      ; "`"
+0024    CAT      3   3   7
+0025    CALLT    2   2
+0026 => RET0     0   1
+
+-- BYTECODE -- types.lua:292-297
+0001    UGET     3   0      ; index
+0002    TGETV    3   3   1
+0003    ISF          3
+0004    JMP      4 => 0007
+0005    UGET     3   0      ; index
+0006    TGETV    1   3   1
+0007 => GGET     3   0      ; "rawset"
+0008    MOV      4   0
+0009    MOV      5   1
+0010    MOV      6   2
+0011    CALLT    3   4
+
+-- BYTECODE -- types.lua:281-301
+0001    UGET     2   0      ; key_table
+0002    TGETV    2   2   1
+0003    TDUP     3   0
+0004    FNEW     4   1      ; types.lua:285
+0005    TSETS    4   3   2  ; "__index"
+0006    FNEW     4   3      ; types.lua:292
+0007    TSETS    4   3   4  ; "__newindex"
+0008    TSETV    3   0   1
+0009    UCLO     0 => 0010
+0010 => RET1     3   2
+
+-- BYTECODE -- types.lua:304-306
+0001    GGET     1   0      ; "setmetatable"
+0002    MOV      2   0
+0003    UGET     3   0      ; smart_node_mt
+0004    UGET     4   1      ; ntype
+0005    MOV      5   0
+0006    CALL     4   2   2
+0007    TGETV    3   3   4
+0008    CALLT    1   3
+
+-- BYTECODE -- types.lua:0-324
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "moonscript.util"
+0003    CALL     0   2   2
+0004    KPRI     1   0
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "moonscript.data"
+0007    CALL     2   2   2
+0008    TGETS    1   2   3  ; "Set"
+0009    KPRI     2   0
+0010    GGET     3   4      ; "table"
+0011    TGETS    2   3   5  ; "insert"
+0012    KPRI     3   0
+0013    TGETS    3   0   6  ; "unpack"
+0014    MOV      4   1
+0015    TDUP     5   7
+0016    CALL     4   2   2
+0017    MOV      5   1
+0018    TDUP     6   8
+0019    CALL     5   2   2
+0020    MOV      6   1
+0021    TDUP     7   9
+0022    CALL     6   2   2
+0023    KPRI     7   0
+0024    FNEW     7  10      ; types.lua:27
+0025    KPRI     8   0
+0026    TGETS    9   0  11  ; "moon"
+0027    TGETS    9   9  12  ; "type"
+0028    FNEW     8  13      ; types.lua:40
+0029    UCLO     9 => 0030
+0030 => KPRI     9   0
+0031    FNEW     9  14      ; types.lua:49
+0032    KPRI    10   0
+0033    FNEW    10  15      ; types.lua:56
+0034    KPRI    11   0
+0035    FNEW    11  16      ; types.lua:62
+0036    KPRI    12   0
+0037    FNEW    12  17      ; types.lua:66
+0038    TNEW    13   0
+0039    TDUP    14  20
+0040    TNEW    15   3
+0041    TDUP    16  18
+0042    TSETB   16  15   1
+0043    TDUP    16  19
+0044    TSETB   13  16   2
+0045    TSETB   16  15   2
+0046    TSETS   15  14  21  ; "class"
+0047    TNEW    15   5
+0048    TDUP    16  22
+0049    TSETB   13  16   2
+0050    TSETB   16  15   1
+0051    TDUP    16  23
+0052    TSETB   13  16   2
+0053    TSETB   16  15   2
+0054    TDUP    16  24
+0055    TSETB   16  15   3
+0056    TDUP    16  25
+0057    TSETB   13  16   2
+0058    TSETB   16  15   4
+0059    TSETS   15  14  26  ; "fndef"
+0060    TNEW    15   4
+0061    TDUP    16  27
+0062    TSETB   13  16   2
+0063    TSETB   16  15   1
+0064    TDUP    16  28
+0065    TSETB   16  15   2
+0066    TDUP    16  29
+0067    TSETB   13  16   2
+0068    TSETB   16  15   3
+0069    TSETS   15  14  30  ; "foreach"
+0070    TNEW    15   4
+0071    TDUP    16  31
+0072    TSETB   16  15   1
+0073    TDUP    16  32
+0074    TSETB   13  16   2
+0075    TSETB   16  15   2
+0076    TDUP    16  33
+0077    TSETB   13  16   2
+0078    TSETB   16  15   3
+0079    TSETS   15  14  34  ; "for"
+0080    TNEW    15   3
+0081    TDUP    16  35
+0082    TSETB   13  16   2
+0083    TSETB   16  15   1
+0084    TDUP    16  36
+0085    TSETB   13  16   2
+0086    TSETB   16  15   2
+0087    TSETS   15  14  37  ; "while"
+0088    TNEW    15   3
+0089    TDUP    16  38
+0090    TSETB   13  16   2
+0091    TSETB   16  15   1
+0092    TDUP    16  39
+0093    TSETB   13  16   2
+0094    TSETB   16  15   2
+0095    TSETS   15  14  40  ; "assign"
+0096    TNEW    15   3
+0097    TDUP    16  41
+0098    TSETB   13  16   2
+0099    TSETB   16  15   1
+0100    TSETS   15  14  42  ; "declare"
+0101    TNEW    15   3
+0102    TDUP    16  43
+0103    TSETB   13  16   2
+0104    TSETB   16  15   1
+0105    TDUP    16  44
+0106    TSETB   13  16   2
+0107    TSETB   16  15   2
+0108    TSETS   15  14  45  ; "if"
+0109    KPRI    15   0
+0110    FNEW    15  46      ; types.lua:163
+0111    MOV     16  15
+0112    CALL    16   2   1
+0113    KPRI    17   0
+0114    FNEW    17  47      ; types.lua:177
+0115    KPRI    18   0
+0116    GGET    19  48      ; "setmetatable"
+0117    TDUP    20  50
+0118    FNEW    21  49      ; types.lua:207
+0119    TSETS   21  20  51  ; "group"
+0120    FNEW    21  52      ; types.lua:216
+0121    TSETS   21  20  53  ; "do"
+0122    FNEW    21  54      ; types.lua:222
+0123    TSETS   21  20  55  ; "assign_one"
+0124    FNEW    21  56      ; types.lua:232
+0125    TSETS   21  20   4  ; "table"
+0126    FNEW    21  57      ; types.lua:250
+0127    TSETS   21  20  58  ; "block_exp"
+0128    FNEW    21  59      ; types.lua:256
+0129    TSETS   21  20  60  ; "chain"
+0130    TDUP    21  62
+0131    FNEW    22  61      ; types.lua:275
+0132    TSETS   22  21  63  ; "__index"
+0133    CALL    19   2   3
+0134    MOV     18  19
+0135    GGET    19  48      ; "setmetatable"
+0136    TNEW    20   0
+0137    TDUP    21  65
+0138    FNEW    22  64      ; types.lua:281
+0139    TSETS   22  21  63  ; "__index"
+0140    CALL    19   2   3
+0141    KPRI    20   0
+0142    FNEW    20  66      ; types.lua:304
+0143    TDUP    21  67
+0144    TDUP    22  68
+0145    TSETS    7  22  69  ; "ntype"
+0146    TSETS   20  22  70  ; "smart_node"
+0147    TSETS   18  22  71  ; "build"
+0148    TSETS   10  22  72  ; "is_value"
+0149    TSETS   12  22  73  ; "is_slice"
+0150    TSETS    4  22  74  ; "manual_return"
+0151    TSETS    5  22  75  ; "cascading"
+0152    TSETS   11  22  76  ; "value_is_singular"
+0153    TSETS    9  22  77  ; "value_can_be_statement"
+0154    TSETS    8  22  78  ; "mtype"
+0155    TSETS    6  22  79  ; "terminating"
+0156    TSETS   21  22  80  ; "NOOP"
+0157    UCLO     0 => 0158
+0158 => RET1    22   2
+

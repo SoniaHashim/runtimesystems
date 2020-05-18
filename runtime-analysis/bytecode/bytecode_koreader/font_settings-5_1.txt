@@ -1,0 +1,277 @@
+
+main <./frontend/ui/elements/font_settings.lua:0,0> (45 instructions, 180 bytes at 0x7ff45bc068f0)
+0+ params, 14 slots, 0 upvalues, 13 locals, 10 constants, 7 functions
+	1	[1]	GETGLOBAL	0 -1	; require
+	2	[1]	LOADK    	1 -2	; "device"
+	3	[1]	CALL     	0 2 2
+	4	[2]	GETGLOBAL	1 -1	; require
+	5	[2]	LOADK    	2 -3	; "logger"
+	6	[2]	CALL     	1 2 2
+	7	[3]	GETGLOBAL	2 -1	; require
+	8	[3]	LOADK    	3 -4	; "util"
+	9	[3]	CALL     	2 2 2
+	10	[4]	GETGLOBAL	3 -1	; require
+	11	[4]	LOADK    	4 -5	; "gettext"
+	12	[4]	CALL     	3 2 2
+	13	[8]	LOADK    	4 -6	; "/system/fonts"
+	14	[9]	LOADK    	5 -7	; "/usr/share/fonts"
+	15	[10]	LOADK    	6 -8	; "/.local/share/fonts"
+	16	[24]	CLOSURE  	7 0	; 0x7ff45bc07040
+	17	[36]	CLOSURE  	8 1	; 0x7ff45bc06bd0
+	18	[36]	MOVE     	0 0
+	19	[36]	MOVE     	0 6
+	20	[36]	MOVE     	0 7
+	21	[47]	CLOSURE  	9 2	; 0x7ff45bc078f0
+	22	[47]	MOVE     	0 0
+	23	[47]	MOVE     	0 2
+	24	[47]	MOVE     	0 5
+	25	[47]	MOVE     	0 4
+	26	[51]	CLOSURE  	10 3	; 0x7ff45bc07b50
+	27	[66]	CLOSURE  	11 4	; 0x7ff45bc07c60
+	28	[66]	MOVE     	0 0
+	29	[66]	MOVE     	0 8
+	30	[66]	MOVE     	0 2
+	31	[66]	MOVE     	0 1
+	32	[68]	NEWTABLE 	12 0 0
+	33	[78]	CLOSURE  	13 5	; 0x7ff45bc06d10
+	34	[78]	MOVE     	0 10
+	35	[78]	MOVE     	0 9
+	36	[78]	MOVE     	0 8
+	37	[70]	SETTABLE 	12 -9 13	; "getPath" -
+	38	[102]	CLOSURE  	13 6	; 0x7ff45bc086f0
+	39	[102]	MOVE     	0 3
+	40	[102]	MOVE     	0 10
+	41	[102]	MOVE     	0 0
+	42	[102]	MOVE     	0 11
+	43	[80]	SETTABLE 	12 -10 13	; "getSystemFontMenuItems" -
+	44	[104]	RETURN   	12 2
+	45	[104]	RETURN   	0 1
+
+function <./frontend/ui/elements/font_settings.lua:13,24> (16 instructions, 64 bytes at 0x7ff45bc07040)
+0 params, 4 slots, 0 upvalues, 3 locals, 6 constants, 0 functions
+	1	[14]	GETGLOBAL	0 -1	; pcall
+	2	[14]	GETGLOBAL	1 -2	; require
+	3	[14]	LOADK    	2 -3	; "android"
+	4	[14]	CALL     	0 3 3
+	5	[15]	TEST     	0 0 1
+	6	[15]	JMP      	1	; to 8
+	7	[15]	RETURN   	0 1
+	8	[16]	GETTABLE 	2 1 -4	; "getExternalStoragePath"
+	9	[16]	CALL     	2 1 2
+	10	[17]	EQ       	1 2 -5	; - "Unknown"
+	11	[17]	JMP      	2	; to 14
+	12	[19]	RETURN   	2 2
+	13	[19]	JMP      	2	; to 16
+	14	[22]	LOADK    	3 -6	; "/sdcard"
+	15	[22]	RETURN   	3 2
+	16	[24]	RETURN   	0 1
+
+function <./frontend/ui/elements/font_settings.lua:28,36> (35 instructions, 140 bytes at 0x7ff45bc06bd0)
+0 params, 5 slots, 3 upvalues, 2 locals, 8 constants, 0 functions
+	1	[29]	GETUPVAL 	0 0	; Device
+	2	[29]	SELF     	0 0 -1	; "isDesktop"
+	3	[29]	CALL     	0 2 2
+	4	[29]	TEST     	0 0 1
+	5	[29]	JMP      	5	; to 11
+	6	[29]	GETUPVAL 	0 0	; Device
+	7	[29]	SELF     	0 0 -2	; "isEmulator"
+	8	[29]	CALL     	0 2 2
+	9	[29]	TEST     	0 0 0
+	10	[29]	JMP      	11	; to 22
+	11	[30]	GETGLOBAL	0 -3	; os
+	12	[30]	GETTABLE 	0 0 -4	; "getenv"
+	13	[30]	LOADK    	1 -5	; "HOME"
+	14	[30]	CALL     	0 2 2
+	15	[31]	TEST     	0 0 0
+	16	[31]	JMP      	18	; to 35
+	17	[31]	MOVE     	1 0
+	18	[31]	GETUPVAL 	2 1	; DESKTOP_USER_FONT_DIR
+	19	[31]	CONCAT   	1 1 2
+	20	[31]	RETURN   	1 2
+	21	[31]	JMP      	13	; to 35
+	22	[32]	GETUPVAL 	0 0	; Device
+	23	[32]	SELF     	0 0 -6	; "isAndroid"
+	24	[32]	CALL     	0 2 2
+	25	[32]	TEST     	0 0 0
+	26	[32]	JMP      	8	; to 35
+	27	[33]	GETUPVAL 	0 2	; getAndroidPrimaryStorage
+	28	[33]	CALL     	0 1 2
+	29	[34]	MOVE     	1 0
+	30	[34]	LOADK    	2 -7	; "/koreader/fonts;"
+	31	[34]	MOVE     	3 0
+	32	[34]	LOADK    	4 -8	; "/fonts"
+	33	[34]	CONCAT   	1 1 4
+	34	[34]	RETURN   	1 2
+	35	[36]	RETURN   	0 1
+
+function <./frontend/ui/elements/font_settings.lua:39,47> (30 instructions, 120 bytes at 0x7ff45bc078f0)
+0 params, 2 slots, 4 upvalues, 0 locals, 4 constants, 0 functions
+	1	[40]	GETUPVAL 	0 0	; Device
+	2	[40]	SELF     	0 0 -1	; "isDesktop"
+	3	[40]	CALL     	0 2 2
+	4	[40]	TEST     	0 0 1
+	5	[40]	JMP      	5	; to 11
+	6	[40]	GETUPVAL 	0 0	; Device
+	7	[40]	SELF     	0 0 -2	; "isEmulator"
+	8	[40]	CALL     	0 2 2
+	9	[40]	TEST     	0 0 0
+	10	[40]	JMP      	12	; to 23
+	11	[41]	GETUPVAL 	0 1	; util
+	12	[41]	GETTABLE 	0 0 -3	; "pathExists"
+	13	[41]	GETUPVAL 	1 2	; LINUX_SYSTEM_FONT_DIR
+	14	[41]	CALL     	0 2 2
+	15	[41]	TEST     	0 0 0
+	16	[41]	JMP      	3	; to 20
+	17	[42]	GETUPVAL 	0 2	; LINUX_SYSTEM_FONT_DIR
+	18	[42]	RETURN   	0 2
+	19	[42]	JMP      	10	; to 30
+	20	[43]	LOADNIL  	0 0
+	21	[43]	RETURN   	0 2
+	22	[43]	JMP      	7	; to 30
+	23	[44]	GETUPVAL 	0 0	; Device
+	24	[44]	SELF     	0 0 -4	; "isAndroid"
+	25	[44]	CALL     	0 2 2
+	26	[44]	TEST     	0 0 0
+	27	[44]	JMP      	2	; to 30
+	28	[45]	GETUPVAL 	0 3	; ANDROID_SYSTEM_FONT_DIR
+	29	[45]	RETURN   	0 2
+	30	[47]	RETURN   	0 1
+
+function <./frontend/ui/elements/font_settings.lua:49,51> (6 instructions, 24 bytes at 0x7ff45bc07b50)
+0 params, 3 slots, 0 upvalues, 0 locals, 3 constants, 0 functions
+	1	[50]	GETGLOBAL	0 -1	; G_reader_settings
+	2	[50]	SELF     	0 0 -2	; "isTrue"
+	3	[50]	LOADK    	2 -3	; "system_fonts"
+	4	[50]	TAILCALL 	0 3 0
+	5	[50]	RETURN   	0 0
+	6	[51]	RETURN   	0 1
+
+function <./frontend/ui/elements/font_settings.lua:53,66> (39 instructions, 156 bytes at 0x7ff45bc07c60)
+0 params, 5 slots, 4 upvalues, 2 locals, 8 constants, 0 functions
+	1	[54]	GETUPVAL 	0 0	; Device
+	2	[54]	SELF     	0 0 -1	; "canOpenLink"
+	3	[54]	CALL     	0 2 2
+	4	[54]	TEST     	0 0 1
+	5	[54]	JMP      	1	; to 7
+	6	[54]	RETURN   	0 1
+	7	[55]	GETUPVAL 	0 1	; getUserDir
+	8	[55]	CALL     	0 1 2
+	9	[56]	GETUPVAL 	1 2	; util
+	10	[56]	GETTABLE 	1 1 -2	; "pathExists"
+	11	[56]	MOVE     	2 0
+	12	[56]	CALL     	1 2 2
+	13	[57]	TEST     	1 0 1
+	14	[57]	JMP      	12	; to 27
+	15	[57]	TEST     	0 0 0
+	16	[57]	JMP      	10	; to 27
+	17	[58]	GETUPVAL 	2 3	; logger
+	18	[58]	GETTABLE 	2 2 -3	; "info"
+	19	[58]	LOADK    	3 -4	; "Font path not found, making one in "
+	20	[58]	MOVE     	4 0
+	21	[58]	CALL     	2 3 1
+	22	[59]	GETUPVAL 	2 2	; util
+	23	[59]	GETTABLE 	2 2 -5	; "makePath"
+	24	[59]	MOVE     	3 0
+	25	[59]	CALL     	2 2 2
+	26	[59]	MOVE     	1 2
+	27	[61]	TEST     	1 0 1
+	28	[61]	JMP      	6	; to 35
+	29	[62]	GETUPVAL 	2 3	; logger
+	30	[62]	GETTABLE 	2 2 -6	; "warn"
+	31	[62]	LOADK    	3 -7	; "Unable to create the folder "
+	32	[62]	MOVE     	4 0
+	33	[62]	CALL     	2 3 1
+	34	[63]	RETURN   	0 1
+	35	[65]	GETUPVAL 	2 0	; Device
+	36	[65]	SELF     	2 2 -8	; "openLink"
+	37	[65]	MOVE     	4 0
+	38	[65]	CALL     	2 3 1
+	39	[66]	RETURN   	0 1
+
+function <./frontend/ui/elements/font_settings.lua:70,78> (18 instructions, 72 bytes at 0x7ff45bc06d10)
+1 param, 5 slots, 3 upvalues, 2 locals, 2 constants, 0 functions
+	1	[71]	GETUPVAL 	1 0	; usesSystemFonts
+	2	[71]	CALL     	1 1 2
+	3	[71]	TEST     	1 0 0
+	4	[71]	JMP      	10	; to 15
+	5	[72]	GETUPVAL 	1 1	; getSystemDir
+	6	[72]	CALL     	1 1 2
+	7	[73]	EQ       	1 1 -1	; - nil
+	8	[73]	JMP      	6	; to 15
+	9	[74]	GETUPVAL 	2 2	; getUserDir
+	10	[74]	CALL     	2 1 2
+	11	[74]	LOADK    	3 -2	; ";"
+	12	[74]	MOVE     	4 1
+	13	[74]	CONCAT   	2 2 4
+	14	[74]	RETURN   	2 2
+	15	[77]	GETUPVAL 	1 2	; getUserDir
+	16	[77]	TAILCALL 	1 1 0
+	17	[77]	RETURN   	1 0
+	18	[78]	RETURN   	0 1
+
+function <./frontend/ui/elements/font_settings.lua:80,102> (38 instructions, 152 bytes at 0x7ff45bc086f0)
+1 param, 8 slots, 4 upvalues, 2 locals, 12 constants, 1 function
+	1	[81]	NEWTABLE 	1 1 0
+	2	[81]	NEWTABLE 	2 0 3
+	3	[82]	GETUPVAL 	3 0	; _
+	4	[82]	LOADK    	4 -2	; "Enable system fonts"
+	5	[82]	CALL     	3 2 2
+	6	[82]	SETTABLE 	2 -1 3	; "text" -
+	7	[83]	GETUPVAL 	3 1	; usesSystemFonts
+	8	[83]	SETTABLE 	2 -3 3	; "checked_func" -
+	9	[91]	CLOSURE  	3 0	; 0x7ff45bc08b80
+	10	[91]	GETUPVAL 	0 1	; usesSystemFonts
+	11	[91]	GETUPVAL 	0 0	; _
+	12	[91]	SETTABLE 	2 -4 3	; "callback" -
+	13	[92]	SETLIST  	1 1 1	; 1
+	14	[94]	GETUPVAL 	2 2	; Device
+	15	[94]	SELF     	2 2 -5	; "isDesktop"
+	16	[94]	CALL     	2 2 2
+	17	[94]	TEST     	2 0 1
+	18	[94]	JMP      	5	; to 24
+	19	[94]	GETUPVAL 	2 2	; Device
+	20	[94]	SELF     	2 2 -6	; "isEmulator"
+	21	[94]	CALL     	2 2 2
+	22	[94]	TEST     	2 0 0
+	23	[94]	JMP      	13	; to 37
+	24	[94]	GETGLOBAL	2 -7	; table
+	25	[94]	GETTABLE 	2 2 -8	; "insert"
+	26	[94]	MOVE     	3 1
+	27	[94]	LOADK    	4 -9	; 2
+	28	[94]	NEWTABLE 	5 0 3
+	29	[95]	GETUPVAL 	6 0	; _
+	30	[95]	LOADK    	7 -10	; "Open fonts folder"
+	31	[95]	CALL     	6 2 2
+	32	[95]	SETTABLE 	5 -1 6	; "text" -
+	33	[96]	SETTABLE 	5 -11 -12	; "keep_menu_open" true
+	34	[97]	GETUPVAL 	6 3	; openFontDir
+	35	[97]	SETTABLE 	5 -4 6	; "callback" -
+	36	[94]	CALL     	2 4 1
+	37	[101]	RETURN   	1 2
+	38	[102]	RETURN   	0 1
+
+function <./frontend/ui/elements/font_settings.lua:84,91> (23 instructions, 92 bytes at 0x7ff45bc08b80)
+0 params, 9 slots, 2 upvalues, 2 locals, 10 constants, 0 functions
+	1	[85]	GETGLOBAL	0 -1	; G_reader_settings
+	2	[85]	SELF     	0 0 -2	; "saveSetting"
+	3	[85]	LOADK    	2 -3	; "system_fonts"
+	4	[85]	GETUPVAL 	3 0	; usesSystemFonts
+	5	[85]	CALL     	3 1 2
+	6	[85]	NOT      	3 3
+	7	[85]	CALL     	0 4 1
+	8	[86]	GETGLOBAL	0 -4	; require
+	9	[86]	LOADK    	1 -5	; "ui/uimanager"
+	10	[86]	CALL     	0 2 2
+	11	[87]	GETGLOBAL	1 -4	; require
+	12	[87]	LOADK    	2 -6	; "ui/widget/infomessage"
+	13	[87]	CALL     	1 2 2
+	14	[88]	SELF     	2 0 -7	; "show"
+	15	[88]	SELF     	4 1 -8	; "new"
+	16	[88]	NEWTABLE 	6 0 1
+	17	[89]	GETUPVAL 	7 1	; _
+	18	[89]	LOADK    	8 -10	; "This will take effect on next restart."
+	19	[89]	CALL     	7 2 2
+	20	[89]	SETTABLE 	6 -9 7	; "text" -
+	21	[88]	CALL     	4 3 0
+	22	[88]	CALL     	2 0 1
+	23	[91]	RETURN   	0 1

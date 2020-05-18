@@ -1,0 +1,141 @@
+
+main <./admin/cmd/make_manifest.lua:0,0> (36 instructions, 144 bytes at 0x7fedd6c068c0)
+0+ params, 9 slots, 0 upvalues, 8 locals, 10 constants, 2 functions
+	1	[4]	NEWTABLE 	0 0 0
+	2	[6]	GETGLOBAL	1 -1	; require
+	3	[6]	LOADK    	2 -2	; "luarocks.manif.writer"
+	4	[6]	CALL     	1 2 2
+	5	[7]	GETGLOBAL	2 -1	; require
+	6	[7]	LOADK    	3 -3	; "luarocks.admin.index"
+	7	[7]	CALL     	2 2 2
+	8	[8]	GETGLOBAL	3 -1	; require
+	9	[8]	LOADK    	4 -4	; "luarocks.core.cfg"
+	10	[8]	CALL     	3 2 2
+	11	[9]	GETGLOBAL	4 -1	; require
+	12	[9]	LOADK    	5 -5	; "luarocks.util"
+	13	[9]	CALL     	4 2 2
+	14	[10]	GETGLOBAL	5 -1	; require
+	15	[10]	LOADK    	6 -6	; "luarocks.deps"
+	16	[10]	CALL     	5 2 2
+	17	[11]	GETGLOBAL	6 -1	; require
+	18	[11]	LOADK    	7 -7	; "luarocks.fs"
+	19	[11]	CALL     	6 2 2
+	20	[12]	GETGLOBAL	7 -1	; require
+	21	[12]	LOADK    	8 -8	; "luarocks.dir"
+	22	[12]	CALL     	7 2 2
+	23	[23]	CLOSURE  	8 0	; 0x7fedd6c06f80
+	24	[23]	MOVE     	0 4
+	25	[14]	SETTABLE 	0 -9 8	; "add_to_parser" -
+	26	[48]	CLOSURE  	8 1	; 0x7fedd6c073e0
+	27	[48]	MOVE     	0 3
+	28	[48]	MOVE     	0 4
+	29	[48]	MOVE     	0 1
+	30	[48]	MOVE     	0 5
+	31	[48]	MOVE     	0 2
+	32	[48]	MOVE     	0 6
+	33	[48]	MOVE     	0 7
+	34	[28]	SETTABLE 	0 -10 8	; "command" -
+	35	[50]	RETURN   	0 2
+	36	[50]	RETURN   	0 1
+
+function <./admin/cmd/make_manifest.lua:14,23> (25 instructions, 100 bytes at 0x7fedd6c06f80)
+1 param, 7 slots, 1 upvalue, 2 locals, 14 constants, 0 functions
+	1	[15]	SELF     	1 0 -1	; "command"
+	2	[15]	LOADK    	3 -2	; "make_manifest"
+	3	[15]	LOADK    	4 -3	; "Compile a manifest file for a repository."
+	4	[15]	GETUPVAL 	5 0	; util
+	5	[15]	GETTABLE 	5 5 -4	; "see_also"
+	6	[15]	CALL     	5 1 0
+	7	[15]	CALL     	1 0 2
+	8	[17]	SELF     	2 1 -5	; "argument"
+	9	[17]	LOADK    	4 -6	; "repository"
+	10	[17]	LOADK    	5 -7	; "Local repository pathname."
+	11	[17]	CALL     	2 4 2
+	12	[18]	SELF     	2 2 -8	; "args"
+	13	[18]	LOADK    	4 -9	; "?"
+	14	[18]	CALL     	2 3 1
+	15	[20]	SELF     	2 1 -10	; "flag"
+	16	[20]	LOADK    	4 -11	; "--local-tree"
+	17	[20]	LOADK    	5 -12	; "If given, do not write versioned versions of the manifest file.\n"
+	18	[21]	LOADK    	6 -13	; "Use this when rebuilding the manifest of a local rocks tree."
+	19	[21]	CONCAT   	5 5 6
+	20	[20]	CALL     	2 4 1
+	21	[22]	GETUPVAL 	2 0	; util
+	22	[22]	GETTABLE 	2 2 -14	; "deps_mode_option"
+	23	[22]	MOVE     	3 1
+	24	[22]	CALL     	2 2 1
+	25	[23]	RETURN   	0 1
+
+function <./admin/cmd/make_manifest.lua:28,48> (71 instructions, 284 bytes at 0x7fedd6c073e0)
+1 param, 13 slots, 7 upvalues, 8 locals, 17 constants, 0 functions
+	1	[29]	GETTABLE 	1 0 -1	; "repository"
+	2	[29]	TEST     	1 0 1
+	3	[29]	JMP      	2	; to 6
+	4	[29]	GETUPVAL 	1 0	; cfg
+	5	[29]	GETTABLE 	1 1 -2	; "rocks_dir"
+	6	[31]	GETUPVAL 	2 1	; util
+	7	[31]	GETTABLE 	2 2 -3	; "printout"
+	8	[31]	LOADK    	3 -4	; "Making manifest for "
+	9	[31]	MOVE     	4 1
+	10	[31]	CONCAT   	3 3 4
+	11	[31]	CALL     	2 2 1
+	12	[33]	SELF     	2 1 -5	; "match"
+	13	[33]	LOADK    	4 -6	; "/lib/luarocks"
+	14	[33]	CALL     	2 3 2
+	15	[33]	TEST     	2 0 0
+	16	[33]	JMP      	7	; to 24
+	17	[33]	GETTABLE 	2 0 -7	; "local_tree"
+	18	[33]	TEST     	2 0 1
+	19	[33]	JMP      	4	; to 24
+	20	[34]	GETUPVAL 	2 1	; util
+	21	[34]	GETTABLE 	2 2 -8	; "warning"
+	22	[34]	LOADK    	3 -9	; "This looks like a local rocks tree, but you did not pass --local-tree."
+	23	[34]	CALL     	2 2 1
+	24	[37]	GETUPVAL 	2 2	; writer
+	25	[37]	GETTABLE 	2 2 -10	; "make_manifest"
+	26	[37]	MOVE     	3 1
+	27	[37]	GETUPVAL 	4 3	; deps
+	28	[37]	GETTABLE 	4 4 -11	; "get_deps_mode"
+	29	[37]	MOVE     	5 0
+	30	[37]	CALL     	4 2 2
+	31	[37]	GETTABLE 	5 0 -7	; "local_tree"
+	32	[37]	NOT      	5 5
+	33	[37]	CALL     	2 4 3
+	34	[38]	TEST     	2 0 0
+	35	[38]	JMP      	13	; to 49
+	36	[38]	GETTABLE 	4 0 -7	; "local_tree"
+	37	[38]	TEST     	4 0 1
+	38	[38]	JMP      	10	; to 49
+	39	[39]	GETUPVAL 	4 1	; util
+	40	[39]	GETTABLE 	4 4 -3	; "printout"
+	41	[39]	LOADK    	5 -12	; "Generating index.html for "
+	42	[39]	MOVE     	6 1
+	43	[39]	CONCAT   	5 5 6
+	44	[39]	CALL     	4 2 1
+	45	[40]	GETUPVAL 	4 4	; index
+	46	[40]	GETTABLE 	4 4 -13	; "make_index"
+	47	[40]	MOVE     	5 1
+	48	[40]	CALL     	4 2 1
+	49	[42]	GETTABLE 	4 0 -7	; "local_tree"
+	50	[42]	TEST     	4 0 0
+	51	[42]	JMP      	16	; to 68
+	52	[43]	GETUPVAL 	4 1	; util
+	53	[43]	GETTABLE 	4 4 -14	; "lua_versions"
+	54	[43]	CALL     	4 1 4
+	55	[43]	JMP      	10	; to 66
+	56	[44]	GETUPVAL 	8 5	; fs
+	57	[44]	GETTABLE 	8 8 -15	; "delete"
+	58	[44]	GETUPVAL 	9 6	; dir
+	59	[44]	GETTABLE 	9 9 -16	; "path"
+	60	[44]	MOVE     	10 1
+	61	[44]	LOADK    	11 -17	; "manifest-"
+	62	[44]	MOVE     	12 7
+	63	[44]	CONCAT   	11 11 12
+	64	[44]	CALL     	9 3 0
+	65	[44]	CALL     	8 0 1
+	66	[43]	TFORLOOP 	4 1
+	67	[44]	JMP      	-12	; to 56
+	68	[47]	MOVE     	4 2
+	69	[47]	MOVE     	5 3
+	70	[47]	RETURN   	4 3
+	71	[48]	RETURN   	0 1

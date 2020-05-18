@@ -1,0 +1,102 @@
+-- BYTECODE -- linux.lua:7-28
+0001    UGET     1   0      ; fs
+0002    TGETS    1   1   0  ; "absolute_name"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    MOV      0   1
+0006    UGET     1   1      ; dir
+0007    TGETS    1   1   1  ; "normalize"
+0008    MOV      2   0
+0009    CALL     1   2   2
+0010    KSTR     2   2      ; "/."
+0011    CAT      0   1   2
+0012    GGET     1   3      ; "io"
+0013    TGETS    1   1   4  ; "open"
+0014    MOV      2   0
+0015    KSTR     3   5      ; "r"
+0016    CALL     1   4   3
+0017    ISNEN    3   0      ; 2
+0018    JMP      4 => 0021
+0019    KPRI     4   1
+0020    RET1     4   2
+0021 => ISNEN    3   1      ; 20
+0022    JMP      4 => 0025
+0023    KPRI     4   1
+0024    RET1     4   2
+0025 => ISNEN    3   2      ; 13
+0026    JMP      4 => 0029
+0027    KPRI     4   2
+0028    RET1     4   2
+0029 => ISF          1
+0030    JMP      4 => 0042
+0031    MOV      5   1
+0032    TGETS    4   1   6  ; "read"
+0033    KSHORT   6   1
+0034    CALL     4   4   3
+0035    MOV      8   1
+0036    TGETS    7   1   7  ; "close"
+0037    CALL     7   1   2
+0038    ISNEN    6   3      ; 21
+0039    JMP      7 => 0042
+0040    KPRI     7   2
+0041    RET1     7   2
+0042 => KPRI     4   1
+0043    RET1     4   2
+
+-- BYTECODE -- linux.lua:30-48
+0001    UGET     1   0      ; fs
+0002    TGETS    1   1   0  ; "absolute_name"
+0003    MOV      2   0
+0004    CALL     1   2   2
+0005    MOV      0   1
+0006    UGET     1   0      ; fs
+0007    TGETS    1   1   1  ; "is_dir"
+0008    MOV      2   0
+0009    CALL     1   2   2
+0010    ISF          1
+0011    JMP      2 => 0014
+0012    KPRI     1   1
+0013    RET1     1   2
+0014 => UGET     1   1      ; dir
+0015    TGETS    1   1   2  ; "normalize"
+0016    MOV      2   0
+0017    CALL     1   2   2
+0018    MOV      0   1
+0019    GGET     1   3      ; "io"
+0020    TGETS    1   1   4  ; "open"
+0021    MOV      2   0
+0022    KSTR     3   5      ; "r"
+0023    CALL     1   4   3
+0024    ISNEN    3   0      ; 2
+0025    JMP      4 => 0028
+0026    KPRI     4   1
+0027    RET1     4   2
+0028 => ISNEN    3   1      ; 13
+0029    JMP      4 => 0032
+0030    KPRI     4   2
+0031    RET1     4   2
+0032 => ISF          1
+0033    JMP      4 => 0039
+0034    MOV      5   1
+0035    TGETS    4   1   6  ; "close"
+0036    CALL     4   1   2
+0037    KPRI     4   2
+0038    RET1     4   2
+0039 => KPRI     4   1
+0040    RET1     4   2
+
+-- BYTECODE -- linux.lua:0-51
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.fs"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.dir"
+0007    CALL     2   2   2
+0008    FNEW     3   4      ; linux.lua:7
+0009    TSETS    3   0   3  ; "is_dir"
+0010    FNEW     3   6      ; linux.lua:30
+0011    TSETS    3   0   5  ; "is_file"
+0012    UCLO     0 => 0013
+0013 => RET1     0   2
+

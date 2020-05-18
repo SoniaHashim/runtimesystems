@@ -1,0 +1,116 @@
+
+main <./frontend/ui/data/settings_migration.lua:0,0> (17 instructions, 68 bytes at 0x7faa57c068f0)
+0+ params, 5 slots, 0 upvalues, 4 locals, 5 constants, 1 function
+	1	[5]	GETGLOBAL	0 -1	; require
+	2	[5]	LOADK    	1 -2	; "docsettings"
+	3	[5]	CALL     	0 2 2
+	4	[6]	GETGLOBAL	1 -1	; require
+	5	[6]	LOADK    	2 -3	; "luasettings"
+	6	[6]	CALL     	1 2 2
+	7	[7]	GETGLOBAL	2 -1	; require
+	8	[7]	LOADK    	3 -4	; "logger"
+	9	[7]	CALL     	2 2 2
+	10	[9]	NEWTABLE 	3 0 0
+	11	[53]	CLOSURE  	4 0	; 0x7faa57c06cb0
+	12	[53]	MOVE     	0 0
+	13	[53]	MOVE     	0 1
+	14	[53]	MOVE     	0 2
+	15	[13]	SETTABLE 	3 -5 4	; "migrateSettings" -
+	16	[55]	RETURN   	3 2
+	17	[55]	RETURN   	0 1
+
+function <./frontend/ui/data/settings_migration.lua:13,53> (93 instructions, 372 bytes at 0x7faa57c06cb0)
+2 params, 16 slots, 3 upvalues, 6 locals, 28 constants, 0 functions
+	1	[15]	GETGLOBAL	2 -1	; getmetatable
+	2	[15]	MOVE     	3 1
+	3	[15]	CALL     	2 2 2
+	4	[15]	GETTABLE 	2 2 -2	; "__index"
+	5	[16]	LOADNIL  	3 3
+	6	[17]	GETUPVAL 	4 0	; DocSettings
+	7	[17]	EQ       	0 2 4
+	8	[17]	JMP      	2	; to 11
+	9	[18]	LOADK    	3 -3	; "book"
+	10	[18]	JMP      	10	; to 21
+	11	[19]	GETUPVAL 	4 1	; LuaSettings
+	12	[19]	EQ       	0 2 4
+	13	[19]	JMP      	2	; to 16
+	14	[20]	LOADK    	3 -4	; "global"
+	15	[20]	JMP      	5	; to 21
+	16	[23]	GETUPVAL 	4 2	; logger
+	17	[23]	GETTABLE 	4 4 -5	; "warn"
+	18	[23]	LOADK    	5 -6	; "Passed an unsupported object class to SettingsMigration!"
+	19	[23]	CALL     	4 2 1
+	20	[24]	RETURN   	0 1
+	21	[28]	SELF     	4 1 -7	; "readSetting"
+	22	[28]	LOADK    	6 -8	; "copt_page_margins"
+	23	[28]	CALL     	4 3 2
+	24	[29]	TEST     	4 0 0
+	25	[29]	JMP      	31	; to 57
+	26	[30]	GETUPVAL 	5 2	; logger
+	27	[30]	GETTABLE 	5 5 -9	; "info"
+	28	[30]	LOADK    	6 -10	; "Migrating old"
+	29	[30]	MOVE     	7 3
+	30	[30]	LOADK    	8 -11	; "CRe margin settings: L"
+	31	[30]	GETTABLE 	9 4 -12	; 1
+	32	[30]	LOADK    	10 -13	; "T"
+	33	[30]	GETTABLE 	11 4 -14	; 2
+	34	[30]	LOADK    	12 -15	; "R"
+	35	[30]	GETTABLE 	13 4 -16	; 3
+	36	[30]	LOADK    	14 -17	; "B"
+	37	[30]	GETTABLE 	15 4 -18	; 4
+	38	[30]	CALL     	5 11 1
+	39	[32]	SELF     	5 1 -19	; "saveSetting"
+	40	[32]	LOADK    	7 -20	; "copt_h_page_margins"
+	41	[32]	NEWTABLE 	8 2 0
+	42	[32]	GETTABLE 	9 4 -12	; 1
+	43	[32]	GETTABLE 	10 4 -16	; 3
+	44	[32]	SETLIST  	8 2 1	; 1
+	45	[32]	CALL     	5 4 1
+	46	[33]	SELF     	5 1 -19	; "saveSetting"
+	47	[33]	LOADK    	7 -21	; "copt_t_page_margin"
+	48	[33]	GETTABLE 	8 4 -14	; 2
+	49	[33]	CALL     	5 4 1
+	50	[34]	SELF     	5 1 -19	; "saveSetting"
+	51	[34]	LOADK    	7 -22	; "copt_b_page_margin"
+	52	[34]	GETTABLE 	8 4 -18	; 4
+	53	[34]	CALL     	5 4 1
+	54	[36]	SELF     	5 1 -23	; "delSetting"
+	55	[36]	LOADK    	7 -8	; "copt_page_margins"
+	56	[36]	CALL     	5 3 1
+	57	[42]	SELF     	5 1 -7	; "readSetting"
+	58	[42]	LOADK    	7 -24	; "copt_word_spacing"
+	59	[42]	CALL     	5 3 2
+	60	[42]	TEST     	5 0 1
+	61	[42]	JMP      	31	; to 93
+	62	[42]	SELF     	5 1 -7	; "readSetting"
+	63	[42]	LOADK    	7 -25	; "copt_space_condensing"
+	64	[42]	CALL     	5 3 2
+	65	[42]	TEST     	5 0 0
+	66	[42]	JMP      	26	; to 93
+	67	[43]	SELF     	5 1 -7	; "readSetting"
+	68	[43]	LOADK    	7 -25	; "copt_space_condensing"
+	69	[43]	CALL     	5 3 2
+	70	[44]	GETUPVAL 	6 2	; logger
+	71	[44]	GETTABLE 	6 6 -9	; "info"
+	72	[44]	LOADK    	7 -10	; "Migrating old"
+	73	[44]	MOVE     	8 3
+	74	[44]	LOADK    	9 -26	; "CRe space condensing:"
+	75	[44]	MOVE     	10 5
+	76	[44]	CALL     	6 5 1
+	77	[45]	SELF     	6 1 -19	; "saveSetting"
+	78	[45]	LOADK    	8 -24	; "copt_word_spacing"
+	79	[45]	NEWTABLE 	9 2 0
+	80	[45]	LOADK    	10 -27	; 100
+	81	[45]	MOVE     	11 5
+	82	[45]	SETLIST  	9 2 1	; 1
+	83	[45]	CALL     	6 4 1
+	84	[46]	EQ       	0 3 -3	; - "book"
+	85	[46]	JMP      	7	; to 93
+	86	[49]	SELF     	6 1 -19	; "saveSetting"
+	87	[49]	LOADK    	8 -28	; "word_spacing"
+	88	[49]	NEWTABLE 	9 2 0
+	89	[49]	LOADK    	10 -27	; 100
+	90	[49]	MOVE     	11 5
+	91	[49]	SETLIST  	9 2 1	; 1
+	92	[49]	CALL     	6 4 1
+	93	[53]	RETURN   	0 1

@@ -1,0 +1,229 @@
+-- BYTECODE -- statements.lua:10-12
+0001    TGETS    2   0   0  ; "fn"
+0002    MOV      3   1
+0003    CALLT    2   2
+
+-- BYTECODE -- statements.lua:16-19
+0001    TSETS    1   0   0  ; "fn"
+0002    KSTR     2   1      ; "run"
+0003    TSETB    2   0   1
+0004    RET0     0   1
+
+-- BYTECODE -- statements.lua:24-28
+0001    GGET     1   0      ; "setmetatable"
+0002    TNEW     2   0
+0003    UGET     3   0      ; _base_0
+0004    CALL     1   2   3
+0005    TGETS    2   0   1  ; "__init"
+0006    MOV      3   1
+0007    VARG     4   0   1
+0008    CALLM    2   1   1
+0009    RET1     1   2
+
+-- BYTECODE -- statements.lua:34-47
+0001    KSHORT   1   0
+0002    LEN      2   0
+0003    KSHORT   3   1
+0004    KSHORT   4  -1
+0005    FORI     2 => 0026
+0006 => TGETV    6   0   5
+0007    ISF          6
+0008    JMP      7 => 0025
+0009    UGET     7   0      ; mtype
+0010    MOV      8   6
+0011    CALL     7   2   2
+0012    UGET     8   1      ; Run
+0013    ISEQV    7   8
+0014    JMP      7 => 0025
+0015    UGET     7   2      ; ntype
+0016    MOV      8   6
+0017    CALL     7   2   2
+0018    ISNES    7   0      ; "group"
+0019    JMP      7 => 0023
+0020    UGET     7   3      ; last_stm
+0021    TGETB    8   6   2
+0022    CALLT    7   2
+0023 => MOV      1   5
+0024    JMP      2 => 0026
+0025 => FORL     2 => 0006
+0026 => TGETV    2   0   1
+0027    MOV      3   1
+0028    MOV      4   0
+0029    RET      2   4
+
+-- BYTECODE -- statements.lua:54-70
+0001    TNEW     0   0
+0002    KSHORT   1   1
+0003    GGET     2   0      ; "ipairs"
+0004    UGET     3   0      ; stms
+0005    CALL     2   4   2
+0006    JMP      5 => 0018
+0007 => UGET     7   1      ; last_idx
+0008    ISNEV    5   7
+0009    JMP      7 => 0016
+0010    TDUP     7   1
+0011    TSETB    6   7   2
+0012    UGET     8   2      ; fn
+0013    TSETB    8   7   3
+0014    TSETV    7   0   1
+0015    JMP      7 => 0017
+0016 => TSETV    6   0   1
+0017 => ADDVN    1   1   0  ; 1
+0018 => ITERC    5   3   3
+0019    ITERL    5 => 0007
+0020    RET1     0   2
+
+-- BYTECODE -- statements.lua:49-71
+0001    UGET     2   0      ; last_stm
+0002    MOV      3   0
+0003    CALL     2   4   2
+0004    ISEQV    4   0
+0005    JMP      5 => 0009
+0006    GGET     5   0      ; "error"
+0007    KSTR     6   1      ; "cannot transform last node in group"
+0008    CALL     5   1   2
+0009 => FNEW     5   2      ; statements.lua:54
+0010    UCLO     0 => 0011
+0011 => CALLT    5   1
+
+-- BYTECODE -- statements.lua:73-76
+0001    LEN      1   0
+0002    TGETV    1   0   1
+0003    ISFC     2   1
+0004    JMP      2 => 0013
+0005    UGET     2   0      ; ntype
+0006    MOV      3   1
+0007    CALL     2   2   2
+0008    ISEQS    2   0      ; "colon"
+0009    JMP      2 => 0012
+0010    KPRI     2   1
+0011    JMP      3 => 0013
+0012 => KPRI     2   2
+0013 => RET1     2   2
+
+-- BYTECODE -- statements.lua:81-106
+0001    UGET     1   0      ; ntype
+0002    MOV      2   0
+0003    CALL     1   2   2
+0004    ISNES    1   0      ; "decorated"
+0005    JMP      2 => 0016
+0006    UGET     2   1      ; scope
+0007    TGETS    2   2   1  ; "transform"
+0008    TGETS    2   2   2  ; "statement"
+0009    MOV      3   0
+0010    CALL     2   2   2
+0011    MOV      0   2
+0012    UGET     2   0      ; ntype
+0013    MOV      3   0
+0014    CALL     2   2   2
+0015    MOV      1   2
+0016 => UGET     2   2      ; types
+0017    TGETS    2   2   3  ; "cascading"
+0018    TGETV    2   2   1
+0019    ISF          2
+0020    JMP      3 => 0029
+0021    USETP    3   1      ; is_top
+0022    UGET     2   1      ; scope
+0023    TGETS    2   2   1  ; "transform"
+0024    TGETS    2   2   2  ; "statement"
+0025    MOV      3   0
+0026    UGET     4   4      ; fn
+0027    CALLT    2   3
+0028    JMP      2 => 0064
+0029 => UGET     2   2      ; types
+0030    TGETS    2   2   4  ; "manual_return"
+0031    TGETV    2   2   1
+0032    IST          2
+0033    JMP      3 => 0039
+0034    UGET     2   5      ; is_value
+0035    MOV      3   0
+0036    CALL     2   2   2
+0037    IST          2
+0038    JMP      2 => 0052
+0039 => UGET     2   3      ; is_top
+0040    ISF          2
+0041    JMP      3 => 0050
+0042    ISNES    1   5      ; "return"
+0043    JMP      2 => 0050
+0044    TGETB    2   0   2
+0045    ISNES    2   6      ; ""
+0046    JMP      2 => 0050
+0047    UGET     2   6      ; NOOP
+0048    RET1     2   2
+0049    JMP      2 => 0064
+0050 => RET1     0   2
+0051    JMP      2 => 0064
+0052 => ISNES    1   7      ; "comprehension"
+0053    JMP      2 => 0061
+0054    UGET     2   7      ; comprehension_has_value
+0055    MOV      3   0
+0056    CALL     2   2   2
+0057    IST          2
+0058    JMP      2 => 0061
+0059    RET1     0   2
+0060    JMP      2 => 0064
+0061 => TDUP     2   8
+0062    TSETB    0   2   2
+0063    RET1     2   2
+0064 => RET0     0   1
+
+-- BYTECODE -- statements.lua:78-108
+0001    KPRI     1   2
+0002    KPRI     2   0
+0003    FNEW     2   0      ; statements.lua:81
+0004    UCLO     0 => 0005
+0005 => RET1     2   2
+
+-- BYTECODE -- statements.lua:0-116
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "moonscript.types"
+0003    CALL     0   2   2
+0004    KNIL     1   4
+0005    TGETS    5   0   2  ; "ntype"
+0006    TGETS    6   0   3  ; "mtype"
+0007    TGETS    7   0   4  ; "is_value"
+0008    TGETS    4   0   5  ; "NOOP"
+0009    MOV      3   7
+0010    MOV      2   6
+0011    MOV      1   5
+0012    KPRI     5   0
+0013    GGET     6   0      ; "require"
+0014    KSTR     7   6      ; "moonscript.transform.comprehension"
+0015    CALL     6   2   2
+0016    TGETS    5   6   7  ; "comprehension_has_value"
+0017    KNIL     6   7
+0018    TDUP     8   9
+0019    FNEW     9   8      ; statements.lua:10
+0020    TSETS    9   8  10  ; "call"
+0021    TSETS    8   8  11  ; "__index"
+0022    GGET     9  12      ; "setmetatable"
+0023    TDUP    10  14
+0024    FNEW    11  13      ; statements.lua:16
+0025    TSETS   11  10  15  ; "__init"
+0026    TSETS    8  10  16  ; "__base"
+0027    TDUP    11  17
+0028    TSETS    8  11  11  ; "__index"
+0029    FNEW    12  18      ; statements.lua:24
+0030    TSETS   12  11  19  ; "__call"
+0031    CALL     9   2   3
+0032    MOV      7   9
+0033    TSETS    7   8  20  ; "__class"
+0034    MOV      6   7
+0035    UCLO     7 => 0036
+0036 => KPRI     7   0
+0037    FNEW     7  21      ; statements.lua:34
+0038    KPRI     8   0
+0039    FNEW     8  22      ; statements.lua:49
+0040    KPRI     9   0
+0041    FNEW     9  23      ; statements.lua:73
+0042    KPRI    10   0
+0043    FNEW    10  24      ; statements.lua:78
+0044    TDUP    11  25
+0045    TSETS    6  11  26  ; "Run"
+0046    TSETS    7  11  27  ; "last_stm"
+0047    TSETS    8  11  28  ; "transform_last_stm"
+0048    TSETS    9  11  29  ; "chain_is_stub"
+0049    TSETS   10  11  30  ; "implicitly_return"
+0050    UCLO     0 => 0051
+0051 => RET1    11   2
+

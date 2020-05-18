@@ -1,0 +1,497 @@
+-- BYTECODE -- luasettings.lua:12-17
+0001    IST          1
+0002    JMP      2 => 0004
+0003    TNEW     1   0
+0004 => GGET     2   0      ; "setmetatable"
+0005    MOV      3   1
+0006    MOV      4   0
+0007    CALL     2   1   3
+0008    TSETS    0   0   1  ; "__index"
+0009    RET1     1   2
+
+-- BYTECODE -- luasettings.lua:20-45
+0001    TDUP     2   0
+0002    TSETS    1   2   1  ; "file"
+0003    KNIL     3   4
+0004    UGET     5   0      ; lfs
+0005    TGETS    5   5   2  ; "attributes"
+0006    TGETS    6   2   1  ; "file"
+0007    KSTR     7   3      ; "mode"
+0008    CALL     5   2   3
+0009    ISEQS    5   1      ; "file"
+0010    JMP      5 => 0013
+0011    KPRI     5   1
+0012    JMP      6 => 0014
+0013 => KPRI     5   2
+0014 => GGET     6   4      ; "pcall"
+0015    GGET     7   5      ; "dofile"
+0016    TGETS    8   2   1  ; "file"
+0017    CALL     6   3   3
+0018    MOV      4   7
+0019    MOV      3   6
+0020    ISF          3
+0021    JMP      6 => 0026
+0022    ISF          4
+0023    JMP      6 => 0026
+0024    TSETS    4   2   6  ; "data"
+0025    JMP      6 => 0067
+0026 => ISF          5
+0027    JMP      6 => 0034
+0028    UGET     6   1      ; logger
+0029    TGETS    6   6   7  ; "warn"
+0030    KSTR     7   8      ; "Failed reading"
+0031    TGETS    8   2   1  ; "file"
+0032    KSTR     9   9      ; "(probably corrupted)."
+0033    CALL     6   1   4
+0034 => GGET     6   4      ; "pcall"
+0035    GGET     7   5      ; "dofile"
+0036    TGETS    8   2   1  ; "file"
+0037    KSTR     9  10      ; ".old"
+0038    CAT      8   8   9
+0039    CALL     6   3   3
+0040    MOV      4   7
+0041    MOV      3   6
+0042    ISF          3
+0043    JMP      6 => 0057
+0044    ISF          4
+0045    JMP      6 => 0057
+0046    ISF          5
+0047    JMP      6 => 0055
+0048    UGET     6   1      ; logger
+0049    TGETS    6   6   7  ; "warn"
+0050    KSTR     7  11      ; "read from backup file"
+0051    TGETS    8   2   1  ; "file"
+0052    KSTR     9  10      ; ".old"
+0053    CAT      8   8   9
+0054    CALL     6   1   3
+0055 => TSETS    4   2   6  ; "data"
+0056    JMP      6 => 0067
+0057 => ISF          5
+0058    JMP      6 => 0065
+0059    UGET     6   1      ; logger
+0060    TGETS    6   6   7  ; "warn"
+0061    KSTR     7  12      ; "no usable backup file for"
+0062    TGETS    8   2   1  ; "file"
+0063    KSTR     9  13      ; "to read from"
+0064    CALL     6   1   4
+0065 => TNEW     6   0
+0066    TSETS    6   2   6  ; "data"
+0067 => GGET     6  14      ; "setmetatable"
+0068    MOV      7   2
+0069    TDUP     8  15
+0070    UGET     9   2      ; LuaSettings
+0071    TSETS    9   8  16  ; "__index"
+0072    CALLT    6   3
+
+-- BYTECODE -- luasettings.lua:48-51
+0001    TDUP     2   2
+0002    GGET     3   0      ; "type"
+0003    MOV      4   1
+0004    CALL     3   2   2
+0005    ISNES    3   1      ; "table"
+0006    JMP      3 => 0009
+0007    ISTC     3   1
+0008    JMP      3 => 0010
+0009 => TNEW     3   0
+0010 => TSETS    3   2   3  ; "data"
+0011    GGET     3   4      ; "setmetatable"
+0012    MOV      4   2
+0013    TDUP     5   5
+0014    UGET     6   0      ; LuaSettings
+0015    TSETS    6   5   6  ; "__index"
+0016    CALLT    3   3
+
+-- BYTECODE -- luasettings.lua:68-70
+0001    UGET     2   0      ; LuaSettings
+0002    MOV      3   2
+0003    TGETS    2   2   0  ; "wrap"
+0004    MOV      5   0
+0005    TGETS    4   0   1  ; "readSetting"
+0006    MOV      6   1
+0007    CALL     4   0   3
+0008    CALLMT   2   1
+
+-- BYTECODE -- luasettings.lua:73-75
+0001    TGETS    2   0   0  ; "data"
+0002    TGETV    2   2   1
+0003    RET1     2   2
+
+-- BYTECODE -- luasettings.lua:78-81
+0001    TGETS    3   0   0  ; "data"
+0002    TSETV    2   3   1
+0003    RET1     0   2
+
+-- BYTECODE -- luasettings.lua:84-87
+0001    TGETS    2   0   0  ; "data"
+0002    KPRI     3   0
+0003    TSETV    3   2   1
+0004    RET1     0   2
+
+-- BYTECODE -- luasettings.lua:90-92
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "readSetting"
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISNEP    2   0
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => RET1     2   2
+
+-- BYTECODE -- luasettings.lua:95-97
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "readSetting"
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISEQP    2   0
+0006    JMP      2 => 0009
+0007    KPRI     2   1
+0008    JMP      3 => 0010
+0009 => KPRI     2   2
+0010 => RET1     2   2
+
+-- BYTECODE -- luasettings.lua:100-102
+0001    GGET     2   0      ; "string"
+0002    TGETS    2   2   1  ; "lower"
+0003    GGET     3   2      ; "tostring"
+0004    MOV      5   0
+0005    TGETS    4   0   3  ; "readSetting"
+0006    MOV      6   1
+0007    CALL     4   0   3
+0008    CALLM    3   0   0
+0009    CALLM    2   2   0
+0010    ISEQS    2   4      ; "true"
+0011    JMP      2 => 0014
+0012    KPRI     2   1
+0013    JMP      3 => 0015
+0014 => KPRI     2   2
+0015 => RET1     2   2
+
+-- BYTECODE -- luasettings.lua:105-107
+0001    GGET     2   0      ; "string"
+0002    TGETS    2   2   1  ; "lower"
+0003    GGET     3   2      ; "tostring"
+0004    MOV      5   0
+0005    TGETS    4   0   3  ; "readSetting"
+0006    MOV      6   1
+0007    CALL     4   0   3
+0008    CALLM    3   0   0
+0009    CALLM    2   2   0
+0010    ISEQS    2   4      ; "false"
+0011    JMP      2 => 0014
+0012    KPRI     2   1
+0013    JMP      3 => 0015
+0014 => KPRI     2   2
+0015 => RET1     2   2
+
+-- BYTECODE -- luasettings.lua:110-112
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "hasNot"
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    IST          2
+0006    JMP      3 => 0011
+0007    MOV      3   0
+0008    TGETS    2   0   1  ; "isTrue"
+0009    MOV      4   1
+0010    CALL     2   2   3
+0011 => RET1     2   2
+
+-- BYTECODE -- luasettings.lua:115-117
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "hasNot"
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    IST          2
+0006    JMP      3 => 0011
+0007    MOV      3   0
+0008    TGETS    2   0   1  ; "isFalse"
+0009    MOV      4   1
+0010    CALL     2   2   3
+0011 => RET1     2   2
+
+-- BYTECODE -- luasettings.lua:120-127
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "nilOrTrue"
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISF          2
+0006    JMP      3 => 0013
+0007    MOV      3   0
+0008    TGETS    2   0   1  ; "saveSetting"
+0009    MOV      4   1
+0010    KPRI     5   1
+0011    CALL     2   1   4
+0012    JMP      2 => 0017
+0013 => MOV      3   0
+0014    TGETS    2   0   2  ; "delSetting"
+0015    MOV      4   1
+0016    CALL     2   1   3
+0017 => RET1     0   2
+
+-- BYTECODE -- luasettings.lua:130-137
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "nilOrFalse"
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISF          2
+0006    JMP      3 => 0013
+0007    MOV      3   0
+0008    TGETS    2   0   1  ; "saveSetting"
+0009    MOV      4   1
+0010    KPRI     5   2
+0011    CALL     2   1   4
+0012    JMP      2 => 0017
+0013 => MOV      3   0
+0014    TGETS    2   0   2  ; "delSetting"
+0015    MOV      4   1
+0016    CALL     2   1   3
+0017 => RET1     0   2
+
+-- BYTECODE -- luasettings.lua:140-147
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "isTrue"
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISF          2
+0006    JMP      3 => 0012
+0007    MOV      3   0
+0008    TGETS    2   0   1  ; "delSetting"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    JMP      2 => 0017
+0012 => MOV      3   0
+0013    TGETS    2   0   2  ; "saveSetting"
+0014    MOV      4   1
+0015    KPRI     5   2
+0016    CALL     2   1   4
+0017 => RET1     0   2
+
+-- BYTECODE -- luasettings.lua:150-157
+0001    MOV      3   0
+0002    TGETS    2   0   0  ; "isFalse"
+0003    MOV      4   1
+0004    CALL     2   2   3
+0005    ISF          2
+0006    JMP      3 => 0012
+0007    MOV      3   0
+0008    TGETS    2   0   1  ; "delSetting"
+0009    MOV      4   1
+0010    CALL     2   1   3
+0011    JMP      2 => 0017
+0012 => MOV      3   0
+0013    TGETS    2   0   2  ; "saveSetting"
+0014    MOV      4   1
+0015    KPRI     5   1
+0016    CALL     2   1   4
+0017 => RET1     0   2
+
+-- BYTECODE -- luasettings.lua:160-165
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "has"
+0003    MOV      5   1
+0004    CALL     3   2   3
+0005    ISF          3
+0006    JMP      4 => 0013
+0007    MOV      4   0
+0008    TGETS    3   0   1  ; "readSetting"
+0009    MOV      5   1
+0010    CALL     3   2   3
+0011    IST          3
+0012    JMP      4 => 0014
+0013 => TNEW     3   0
+0014 => GGET     4   2      ; "table"
+0015    TGETS    4   4   3  ; "insert"
+0016    MOV      5   3
+0017    MOV      6   2
+0018    CALL     4   1   3
+0019    MOV      5   0
+0020    TGETS    4   0   4  ; "saveSetting"
+0021    MOV      6   1
+0022    MOV      7   3
+0023    CALL     4   1   4
+0024    RET1     0   2
+
+-- BYTECODE -- luasettings.lua:168-173
+0001    MOV      4   0
+0002    TGETS    3   0   0  ; "has"
+0003    MOV      5   1
+0004    CALL     3   2   3
+0005    ISF          3
+0006    JMP      4 => 0013
+0007    MOV      4   0
+0008    TGETS    3   0   1  ; "readSetting"
+0009    MOV      5   1
+0010    CALL     3   2   3
+0011    IST          3
+0012    JMP      4 => 0014
+0013 => TNEW     3   0
+0014 => GGET     4   2      ; "table"
+0015    TGETS    4   4   3  ; "remove"
+0016    MOV      5   3
+0017    MOV      6   2
+0018    CALL     4   1   3
+0019    MOV      5   0
+0020    TGETS    4   0   4  ; "saveSetting"
+0021    MOV      6   1
+0022    MOV      7   3
+0023    CALL     4   1   4
+0024    RET1     0   2
+
+-- BYTECODE -- luasettings.lua:176-179
+0001    TSETS    1   0   0  ; "data"
+0002    RET1     0   2
+
+-- BYTECODE -- luasettings.lua:182-211
+0001    TGETS    1   0   0  ; "file"
+0002    IST          1
+0003    JMP      1 => 0005
+0004    RET0     0   1
+0005 => KPRI     1   1
+0006    UGET     2   0      ; lfs
+0007    TGETS    2   2   1  ; "attributes"
+0008    TGETS    3   0   0  ; "file"
+0009    KSTR     4   2      ; "mode"
+0010    CALL     2   2   3
+0011    ISNES    2   0      ; "file"
+0012    JMP      2 => 0032
+0013    UGET     2   0      ; lfs
+0014    TGETS    2   2   1  ; "attributes"
+0015    TGETS    3   0   0  ; "file"
+0016    KSTR     4   3      ; "modification"
+0017    CALL     2   2   3
+0018    GGET     3   4      ; "os"
+0019    TGETS    3   3   5  ; "time"
+0020    CALL     3   2   1
+0021    SUBVN    3   3   0  ; 60
+0022    ISGE     2   3
+0023    JMP      3 => 0032
+0024    GGET     3   4      ; "os"
+0025    TGETS    3   3   6  ; "rename"
+0026    TGETS    4   0   0  ; "file"
+0027    TGETS    5   0   0  ; "file"
+0028    KSTR     6   7      ; ".old"
+0029    CAT      5   5   6
+0030    CALL     3   1   3
+0031    KPRI     1   2
+0032 => GGET     2   8      ; "io"
+0033    TGETS    2   2   9  ; "open"
+0034    TGETS    3   0   0  ; "file"
+0035    KSTR     4  10      ; "w"
+0036    CALL     2   2   3
+0037    ISEQP    2   0
+0038    JMP      3 => 0065
+0039    GGET     3   4      ; "os"
+0040    TGETS    3   3  11  ; "setlocale"
+0041    KSTR     4  12      ; "C"
+0042    KSTR     5  13      ; "numeric"
+0043    CALL     3   1   3
+0044    MOV      4   2
+0045    TGETS    3   2  14  ; "write"
+0046    KSTR     5  15      ; "-- we can read Lua syntax here!\nreturn "
+0047    CALL     3   1   3
+0048    MOV      4   2
+0049    TGETS    3   2  14  ; "write"
+0050    UGET     5   1      ; dump
+0051    TGETS    6   0  16  ; "data"
+0052    CALL     5   0   2
+0053    CALLM    3   1   1
+0054    MOV      4   2
+0055    TGETS    3   2  14  ; "write"
+0056    KSTR     5  17      ; "\n"
+0057    CALL     3   1   3
+0058    UGET     3   2      ; ffiutil
+0059    TGETS    3   3  18  ; "fsyncOpenedFile"
+0060    MOV      4   2
+0061    CALL     3   1   2
+0062    MOV      4   2
+0063    TGETS    3   2  19  ; "close"
+0064    CALL     3   1   2
+0065 => ISF          1
+0066    JMP      3 => 0071
+0067    UGET     3   2      ; ffiutil
+0068    TGETS    3   3  20  ; "fsyncDirectory"
+0069    TGETS    4   0   0  ; "file"
+0070    CALL     3   1   2
+0071 => RET1     0   2
+
+-- BYTECODE -- luasettings.lua:214-216
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "flush"
+0003    CALL     1   1   2
+0004    RET0     0   1
+
+-- BYTECODE -- luasettings.lua:219-224
+0001    TGETS    1   0   0  ; "file"
+0002    ISF          1
+0003    JMP      2 => 0008
+0004    GGET     1   1      ; "os"
+0005    TGETS    1   1   2  ; "remove"
+0006    TGETS    2   0   0  ; "file"
+0007    CALL     1   1   2
+0008 => RET1     0   2
+
+-- BYTECODE -- luasettings.lua:0-227
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "dump"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "ffi/util"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "libs/libkoreader-lfs"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "logger"
+0012    CALL     3   2   2
+0013    TNEW     4   0
+0014    FNEW     5   6      ; luasettings.lua:12
+0015    TSETS    5   4   5  ; "new"
+0016    FNEW     5   8      ; luasettings.lua:20
+0017    TSETS    5   4   7  ; "open"
+0018    FNEW     5  10      ; luasettings.lua:48
+0019    TSETS    5   4   9  ; "wrap"
+0020    FNEW     5  12      ; luasettings.lua:68
+0021    TSETS    5   4  11  ; "child"
+0022    FNEW     5  14      ; luasettings.lua:73
+0023    TSETS    5   4  13  ; "readSetting"
+0024    FNEW     5  16      ; luasettings.lua:78
+0025    TSETS    5   4  15  ; "saveSetting"
+0026    FNEW     5  18      ; luasettings.lua:84
+0027    TSETS    5   4  17  ; "delSetting"
+0028    FNEW     5  20      ; luasettings.lua:90
+0029    TSETS    5   4  19  ; "has"
+0030    FNEW     5  22      ; luasettings.lua:95
+0031    TSETS    5   4  21  ; "hasNot"
+0032    FNEW     5  24      ; luasettings.lua:100
+0033    TSETS    5   4  23  ; "isTrue"
+0034    FNEW     5  26      ; luasettings.lua:105
+0035    TSETS    5   4  25  ; "isFalse"
+0036    FNEW     5  28      ; luasettings.lua:110
+0037    TSETS    5   4  27  ; "nilOrTrue"
+0038    FNEW     5  30      ; luasettings.lua:115
+0039    TSETS    5   4  29  ; "nilOrFalse"
+0040    FNEW     5  32      ; luasettings.lua:120
+0041    TSETS    5   4  31  ; "flipNilOrTrue"
+0042    FNEW     5  34      ; luasettings.lua:130
+0043    TSETS    5   4  33  ; "flipNilOrFalse"
+0044    FNEW     5  36      ; luasettings.lua:140
+0045    TSETS    5   4  35  ; "flipTrue"
+0046    FNEW     5  38      ; luasettings.lua:150
+0047    TSETS    5   4  37  ; "flipFalse"
+0048    FNEW     5  40      ; luasettings.lua:160
+0049    TSETS    5   4  39  ; "addTableItem"
+0050    FNEW     5  42      ; luasettings.lua:168
+0051    TSETS    5   4  41  ; "removeTableItem"
+0052    FNEW     5  44      ; luasettings.lua:176
+0053    TSETS    5   4  43  ; "reset"
+0054    FNEW     5  46      ; luasettings.lua:182
+0055    TSETS    5   4  45  ; "flush"
+0056    FNEW     5  48      ; luasettings.lua:214
+0057    TSETS    5   4  47  ; "close"
+0058    FNEW     5  50      ; luasettings.lua:219
+0059    TSETS    5   4  49  ; "purge"
+0060    UCLO     0 => 0061
+0061 => RET1     4   2
+

@@ -1,0 +1,818 @@
+-- BYTECODE -- readhistory.lua:25-28
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "apps/reader/readerui"
+0003    CALL     0   2   2
+0004    MOV      2   0
+0005    TGETS    1   0   2  ; "showReader"
+0006    UGET     3   0      ; input_file
+0007    CALL     1   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- readhistory.lua:17-30
+0001    UGET     2   0      ; lfs
+0002    TGETS    2   2   0  ; "attributes"
+0003    MOV      3   1
+0004    KSTR     4   1      ; "mode"
+0005    CALL     2   2   3
+0006    ISEQS    2   2      ; "file"
+0007    JMP      2 => 0010
+0008    KPRI     2   1
+0009    JMP      3 => 0011
+0010 => KPRI     2   2
+0011 => TDUP     3   3
+0012    TSETS    0   3   4  ; "time"
+0013    MOV      5   1
+0014    TGETS    4   1   5  ; "gsub"
+0015    KSTR     6   6      ; ".*/"
+0016    KSTR     7   7      ; ""
+0017    CALL     4   2   4
+0018    TSETS    4   3   8  ; "text"
+0019    UGET     4   1      ; realpath
+0020    MOV      5   1
+0021    CALL     4   2   2
+0022    IST          4
+0023    JMP      5 => 0025
+0024    MOV      4   1
+0025 => TSETS    4   3   2  ; "file"
+0026    NOT      4   2
+0027    TSETS    4   3   9  ; "dim"
+0028    ISFC     4   2
+0029    JMP      4 => 0040
+0030    UGET     4   2      ; getFriendlySize
+0031    UGET     5   0      ; lfs
+0032    TGETS    5   5   0  ; "attributes"
+0033    MOV      6   1
+0034    KSTR     7  10      ; "size"
+0035    CALL     5   2   3
+0036    IST          5
+0037    JMP      6 => 0039
+0038    KSHORT   5   0
+0039 => CALL     4   2   2
+0040 => TSETS    4   3  11  ; "mandatory"
+0041    FNEW     4  12      ; readhistory.lua:25
+0042    TSETS    4   3  13  ; "callback"
+0043    UCLO     0 => 0044
+0044 => RET1     3   2
+
+-- BYTECODE -- readhistory.lua:32-38
+0001    TGETS    2   0   0  ; "file"
+0002    TGETS    3   1   0  ; "file"
+0003    ISNEV    2   3
+0004    JMP      2 => 0014
+0005    TGETS    2   0   1  ; "time"
+0006    TGETS    3   1   1  ; "time"
+0007    ISLT     3   2
+0008    JMP      2 => 0011
+0009    KPRI     2   1
+0010    JMP      3 => 0012
+0011 => KPRI     2   2
+0012 => RET1     2   2
+0013    JMP      2 => 0022
+0014 => TGETS    2   0   0  ; "file"
+0015    TGETS    3   1   0  ; "file"
+0016    ISLT     2   3
+0017    JMP      2 => 0020
+0018    KPRI     2   1
+0019    JMP      3 => 0021
+0020 => KPRI     2   2
+0021 => RET1     2   2
+0022 => RET0     0   1
+
+-- BYTECODE -- readhistory.lua:40-46
+0001    TGETS    2   0   0  ; "time"
+0002    TGETS    3   1   0  ; "time"
+0003    ISNEV    2   3
+0004    JMP      2 => 0014
+0005    TGETS    2   0   1  ; "file"
+0006    TGETS    3   1   1  ; "file"
+0007    ISLT     2   3
+0008    JMP      2 => 0011
+0009    KPRI     2   1
+0010    JMP      3 => 0012
+0011 => KPRI     2   2
+0012 => RET1     2   2
+0013    JMP      2 => 0022
+0014 => TGETS    2   0   0  ; "time"
+0015    TGETS    3   1   0  ; "time"
+0016    ISLT     3   2
+0017    JMP      2 => 0020
+0018    KPRI     2   1
+0019    JMP      3 => 0021
+0020 => KPRI     2   2
+0021 => RET1     2   2
+0022 => RET0     0   1
+
+-- BYTECODE -- readhistory.lua:48-54
+0001    GGET     2   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      3 => 0006
+0004    KPRI     3   1
+0005    JMP      4 => 0007
+0006 => KPRI     3   2
+0007 => CALL     2   1   2
+0008    MOV      2   1
+0009    TGETS    3   0   1  ; "hist"
+0010    LEN      3   3
+0011    KSHORT   4   1
+0012    FORI     2 => 0017
+0013 => TGETS    6   0   1  ; "hist"
+0014    TGETV    6   6   5
+0015    TSETS    5   6   2  ; "index"
+0016    FORL     2 => 0013
+0017 => RET0     0   1
+
+-- BYTECODE -- readhistory.lua:56-72
+0001    GGET     1   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      2 => 0006
+0004    KPRI     2   1
+0005    JMP      3 => 0007
+0006 => KPRI     2   2
+0007 => CALL     1   1   2
+0008    GGET     1   1      ; "G_reader_settings"
+0009    MOV      2   1
+0010    TGETS    1   1   2  ; "nilOrFalse"
+0011    KSTR     3   3      ; "autoremove_deleted_items_from_history"
+0012    CALL     1   2   3
+0013    NOT      1   1
+0014    ISF          1
+0015    JMP      2 => 0019
+0016    MOV      3   0
+0017    TGETS    2   0   4  ; "clearMissing"
+0018    CALL     2   1   2
+0019 => GGET     2   5      ; "table"
+0020    TGETS    2   2   6  ; "sort"
+0021    TGETS    3   0   7  ; "hist"
+0022    UGET     4   0      ; fileFirstOrdering
+0023    CALL     2   1   3
+0024    TGETS    2   0   7  ; "hist"
+0025    LEN      2   2
+0026    KSHORT   3   2
+0027    KSHORT   4  -1
+0028    FORI     2 => 0044
+0029 => TGETS    6   0   7  ; "hist"
+0030    TGETV    6   6   5
+0031    TGETS    6   6   8  ; "file"
+0032    TGETS    7   0   7  ; "hist"
+0033    SUBVN    8   5   0  ; 1
+0034    TGETV    7   7   8
+0035    TGETS    7   7   8  ; "file"
+0036    ISNEV    6   7
+0037    JMP      6 => 0043
+0038    GGET     6   5      ; "table"
+0039    TGETS    6   6   9  ; "remove"
+0040    TGETS    7   0   7  ; "hist"
+0041    MOV      8   5
+0042    CALL     6   1   3
+0043 => FORL     2 => 0029
+0044 => GGET     2   5      ; "table"
+0045    TGETS    2   2   6  ; "sort"
+0046    TGETS    3   0   7  ; "hist"
+0047    UGET     4   1      ; timeFirstOrdering
+0048    CALL     2   1   3
+0049    MOV      3   0
+0050    TGETS    2   0  10  ; "_indexing"
+0051    KSHORT   4   1
+0052    CALL     2   1   3
+0053    RET0     0   1
+
+-- BYTECODE -- readhistory.lua:76-81
+0001    GGET     1   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      2 => 0006
+0004    KPRI     2   1
+0005    JMP      3 => 0007
+0006 => KPRI     2   2
+0007 => CALL     1   1   2
+0008 => TGETS    1   0   1  ; "hist"
+0009    LEN      1   1
+0010    KSHORT   2 500
+0011    ISGE     2   1
+0012    JMP      1 => 0021
+0013    LOOP     1 => 0021
+0014    GGET     1   2      ; "table"
+0015    TGETS    1   1   3  ; "remove"
+0016    TGETS    2   0   1  ; "hist"
+0017    TGETS    3   0   1  ; "hist"
+0018    LEN      3   3
+0019    CALL     1   1   3
+0020    JMP      1 => 0008
+0021 => RET0     0   1
+
+-- BYTECODE -- readhistory.lua:84-97
+0001    GGET     1   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      2 => 0006
+0004    KPRI     2   1
+0005    JMP      3 => 0007
+0006 => KPRI     2   2
+0007 => CALL     1   1   2
+0008    TNEW     1   0
+0009    GGET     2   1      ; "pairs"
+0010    TGETS    3   0   2  ; "hist"
+0011    CALL     2   4   2
+0012    ISNEXT   5 => 0019
+0013 => TDUP     7   4
+0014    TGETS    8   6   3  ; "time"
+0015    TSETS    8   7   3  ; "time"
+0016    TGETS    8   6   5  ; "file"
+0017    TSETS    8   7   5  ; "file"
+0018    TSETV    7   1   5
+0019 => ITERN    5   3   3
+0020    ITERL    5 => 0013
+0021    GGET     2   6      ; "io"
+0022    TGETS    2   2   7  ; "open"
+0023    UGET     3   0      ; history_file
+0024    KSTR     4   8      ; "w"
+0025    CALL     2   2   3
+0026    MOV      4   2
+0027    TGETS    3   2   9  ; "write"
+0028    KSTR     5  10      ; "return "
+0029    UGET     6   1      ; dump
+0030    MOV      7   1
+0031    CALL     6   2   2
+0032    KSTR     7  11      ; "\n"
+0033    CAT      5   5   7
+0034    CALL     3   1   3
+0035    UGET     3   2      ; ffiutil
+0036    TGETS    3   3  12  ; "fsyncOpenedFile"
+0037    MOV      4   2
+0038    CALL     3   1   2
+0039    MOV      4   2
+0040    TGETS    3   2  13  ; "close"
+0041    CALL     3   1   2
+0042    RET0     0   1
+
+-- BYTECODE -- readhistory.lua:101-116
+0001    GGET     1   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      2 => 0006
+0004    KPRI     2   1
+0005    JMP      3 => 0007
+0006 => KPRI     2   2
+0007 => CALL     1   1   2
+0008    UGET     1   0      ; lfs
+0009    TGETS    1   1   1  ; "attributes"
+0010    UGET     2   1      ; history_file
+0011    KSTR     3   2      ; "modification"
+0012    CALL     1   2   3
+0013    ISEQP    1   0
+0014    JMP      2 => 0018
+0015    TGETS    2   0   3  ; "last_read_time"
+0016    ISGT     1   2
+0017    JMP      2 => 0020
+0018 => KPRI     2   1
+0019    RET1     2   2
+0020 => TSETS    1   0   3  ; "last_read_time"
+0021    GGET     2   4      ; "pcall"
+0022    GGET     3   5      ; "dofile"
+0023    UGET     4   1      ; history_file
+0024    CALL     2   3   3
+0025    ISF          2
+0026    JMP      4 => 0043
+0027    ISF          3
+0028    JMP      4 => 0043
+0029    GGET     4   6      ; "pairs"
+0030    MOV      5   3
+0031    CALL     4   4   2
+0032    ISNEXT   7 => 0041
+0033 => GGET     9   7      ; "table"
+0034    TGETS    9   9   8  ; "insert"
+0035    TGETS   10   0   9  ; "hist"
+0036    UGET    11   2      ; buildEntry
+0037    TGETS   12   8  10  ; "time"
+0038    TGETS   13   8  11  ; "file"
+0039    CALL    11   0   3
+0040    CALLM    9   1   1
+0041 => ITERN    7   3   3
+0042    ITERL    7 => 0033
+0043 => KPRI     4   2
+0044    RET1     4   2
+
+-- BYTECODE -- readhistory.lua:119-137
+0001    GGET     1   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      2 => 0006
+0004    KPRI     2   1
+0005    JMP      3 => 0007
+0006 => KPRI     2   2
+0007 => CALL     1   1   2
+0008    UGET     1   0      ; DataStorage
+0009    MOV      2   1
+0010    TGETS    1   1   1  ; "getHistoryDir"
+0011    CALL     1   2   2
+0012    UGET     2   1      ; lfs
+0013    TGETS    2   2   2  ; "dir"
+0014    MOV      3   1
+0015    CALL     2   4   2
+0016    JMP      5 => 0065
+0017 => UGET     6   2      ; joinPath
+0018    MOV      7   1
+0019    MOV      8   5
+0020    CALL     6   2   3
+0021    UGET     7   1      ; lfs
+0022    TGETS    7   7   3  ; "attributes"
+0023    MOV      8   6
+0024    KSTR     9   4      ; "mode"
+0025    CALL     7   2   3
+0026    ISNES    7   5      ; "file"
+0027    JMP      7 => 0065
+0028    UGET     7   3      ; DocSettings
+0029    MOV      8   7
+0030    TGETS    7   7   6  ; "getPathFromHistory"
+0031    MOV      9   5
+0032    CALL     7   2   3
+0033    MOV      6   7
+0034    ISEQP    6   0
+0035    JMP      7 => 0065
+0036    ISEQS    6   7      ; ""
+0037    JMP      7 => 0065
+0038    UGET     7   3      ; DocSettings
+0039    MOV      8   7
+0040    TGETS    7   7   8  ; "getNameFromHistory"
+0041    MOV      9   5
+0042    CALL     7   2   3
+0043    ISEQP    7   0
+0044    JMP      8 => 0065
+0045    ISEQS    7   7      ; ""
+0046    JMP      8 => 0065
+0047    GGET     8   9      ; "table"
+0048    TGETS    8   8  10  ; "insert"
+0049    TGETS    9   0  11  ; "hist"
+0050    UGET    10   4      ; buildEntry
+0051    UGET    11   1      ; lfs
+0052    TGETS   11  11   3  ; "attributes"
+0053    UGET    12   2      ; joinPath
+0054    MOV     13   1
+0055    MOV     14   5
+0056    CALL    12   2   3
+0057    KSTR    13  12      ; "modification"
+0058    CALL    11   2   3
+0059    UGET    12   2      ; joinPath
+0060    MOV     13   6
+0061    MOV     14   7
+0062    CALL    12   0   3
+0063    CALLM   10   0   1
+0064    CALLM    8   1   1
+0065 => ITERC    5   2   3
+0066    ITERL    5 => 0017
+0067    RET0     0   1
+
+-- BYTECODE -- readhistory.lua:139-142
+0001    GGET     1   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      2 => 0006
+0004    KPRI     2   1
+0005    JMP      3 => 0007
+0006 => KPRI     2   2
+0007 => CALL     1   1   2
+0008    MOV      2   0
+0009    TGETS    1   0   1  ; "reload"
+0010    CALL     1   1   2
+0011    RET0     0   1
+
+-- BYTECODE -- readhistory.lua:144-153
+0001    KPRI     1   0
+0002    KSHORT   2   1
+0003    TGETS    3   0   0  ; "hist"
+0004    LEN      3   3
+0005    KSHORT   4   1
+0006    FORI     2 => 0021
+0007 => UGET     6   0      ; lfs
+0008    TGETS    6   6   1  ; "attributes"
+0009    TGETS    7   0   0  ; "hist"
+0010    TGETV    7   7   5
+0011    TGETS    7   7   2  ; "file"
+0012    KSTR     8   3      ; "mode"
+0013    CALL     6   2   3
+0014    ISNES    6   2      ; "file"
+0015    JMP      6 => 0020
+0016    TGETS    6   0   0  ; "hist"
+0017    TGETV    6   6   5
+0018    TGETS    1   6   2  ; "file"
+0019    JMP      2 => 0021
+0020 => FORL     2 => 0007
+0021 => GGET     2   4      ; "G_reader_settings"
+0022    MOV      3   2
+0023    TGETS    2   2   5  ; "saveSetting"
+0024    KSTR     4   6      ; "lastfile"
+0025    MOV      5   1
+0026    CALL     2   1   4
+0027    RET0     0   1
+
+-- BYTECODE -- readhistory.lua:155-158
+0001    MOV      2   0
+0002    TGETS    1   0   0  ; "ensureLastFile"
+0003    CALL     1   1   2
+0004    GGET     1   1      ; "G_reader_settings"
+0005    MOV      2   1
+0006    TGETS    1   1   2  ; "readSetting"
+0007    KSTR     3   3      ; "lastfile"
+0008    CALLT    1   3
+
+-- BYTECODE -- readhistory.lua:160-174
+0001    IST          1
+0002    JMP      2 => 0009
+0003    GGET     2   0      ; "G_reader_settings"
+0004    MOV      3   2
+0005    TGETS    2   2   1  ; "readSetting"
+0006    KSTR     4   2      ; "lastfile"
+0007    CALL     2   2   3
+0008    MOV      1   2
+0009 => KSHORT   2   1
+0010    TGETS    3   0   3  ; "hist"
+0011    LEN      3   3
+0012    KSHORT   4   1
+0013    FORI     2 => 0028
+0014 => TGETS    6   0   3  ; "hist"
+0015    TGETV    6   6   5
+0016    TGETS    6   6   4  ; "file"
+0017    ISEQV    6   1
+0018    JMP      7 => 0027
+0019    UGET     7   0      ; lfs
+0020    TGETS    7   7   5  ; "attributes"
+0021    MOV      8   6
+0022    KSTR     9   6      ; "mode"
+0023    CALL     7   2   3
+0024    ISNES    7   4      ; "file"
+0025    JMP      7 => 0027
+0026    RET1     6   2
+0027 => FORL     2 => 0014
+0028 => RET0     0   1
+
+-- BYTECODE -- readhistory.lua:176-189
+0001    GGET     2   0      ; "G_reader_settings"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "readSetting"
+0004    KSTR     4   2      ; "autoremove_deleted_items_from_history"
+0005    CALL     2   2   3
+0006    ISF          2
+0007    JMP      3 => 0013
+0008    MOV      3   0
+0009    TGETS    2   0   3  ; "removeItemByPath"
+0010    MOV      4   1
+0011    CALL     2   1   3
+0012    JMP      2 => 0032
+0013 => KSHORT   2   1
+0014    TGETS    3   0   4  ; "hist"
+0015    LEN      3   3
+0016    KSHORT   4   1
+0017    FORI     2 => 0029
+0018 => TGETS    6   0   4  ; "hist"
+0019    TGETV    6   6   5
+0020    TGETS    6   6   5  ; "file"
+0021    ISNEV    6   1
+0022    JMP      6 => 0028
+0023    TGETS    6   0   4  ; "hist"
+0024    TGETV    6   6   5
+0025    KPRI     7   2
+0026    TSETS    7   6   6  ; "dim"
+0027    JMP      2 => 0029
+0028 => FORL     2 => 0018
+0029 => MOV      3   0
+0030    TGETS    2   0   7  ; "ensureLastFile"
+0031    CALL     2   1   2
+0032 => RET0     0   1
+
+-- BYTECODE -- readhistory.lua:191-196
+0001    GGET     2   0      ; "G_reader_settings"
+0002    MOV      3   2
+0003    TGETS    2   2   1  ; "readSetting"
+0004    KSTR     4   2      ; "autoremove_deleted_items_from_history"
+0005    CALL     2   2   3
+0006    ISF          2
+0007    JMP      3 => 0012
+0008    MOV      3   0
+0009    TGETS    2   0   3  ; "removeItemByPath"
+0010    MOV      4   1
+0011    CALL     2   1   3
+0012 => RET0     0   1
+
+-- BYTECODE -- readhistory.lua:198-206
+0001    GGET     1   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      2 => 0006
+0004    KPRI     2   1
+0005    JMP      3 => 0007
+0006 => KPRI     2   2
+0007 => CALL     1   1   2
+0008    TGETS    1   0   1  ; "hist"
+0009    LEN      1   1
+0010    KSHORT   2   1
+0011    KSHORT   3  -1
+0012    FORI     1 => 0033
+0013 => TGETS    5   0   1  ; "hist"
+0014    TGETV    5   5   4
+0015    TGETS    5   5   2  ; "file"
+0016    ISEQP    5   0
+0017    JMP      5 => 0027
+0018    UGET     5   0      ; lfs
+0019    TGETS    5   5   3  ; "attributes"
+0020    TGETS    6   0   1  ; "hist"
+0021    TGETV    6   6   4
+0022    TGETS    6   6   2  ; "file"
+0023    KSTR     7   4      ; "mode"
+0024    CALL     5   2   3
+0025    ISEQS    5   2      ; "file"
+0026    JMP      5 => 0032
+0027 => GGET     5   5      ; "table"
+0028    TGETS    5   5   6  ; "remove"
+0029    TGETS    6   0   1  ; "hist"
+0030    MOV      7   4
+0031    CALL     5   1   3
+0032 => FORL     1 => 0013
+0033 => MOV      2   0
+0034    TGETS    1   0   7  ; "ensureLastFile"
+0035    CALL     1   1   2
+0036    RET0     0   1
+
+-- BYTECODE -- readhistory.lua:208-217
+0001    GGET     2   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      3 => 0006
+0004    KPRI     3   1
+0005    JMP      4 => 0007
+0006 => KPRI     3   2
+0007 => CALL     2   1   2
+0008    TGETS    2   0   1  ; "hist"
+0009    LEN      2   2
+0010    KSHORT   3   1
+0011    KSHORT   4  -1
+0012    FORI     2 => 0025
+0013 => TGETS    6   0   1  ; "hist"
+0014    TGETV    6   6   5
+0015    TGETS    6   6   2  ; "file"
+0016    ISNEV    6   1
+0017    JMP      6 => 0024
+0018    MOV      7   0
+0019    TGETS    6   0   3  ; "removeItem"
+0020    TGETS    8   0   1  ; "hist"
+0021    TGETV    8   8   5
+0022    CALL     6   1   3
+0023    JMP      2 => 0025
+0024 => FORL     2 => 0013
+0025 => MOV      3   0
+0026    TGETS    2   0   4  ; "ensureLastFile"
+0027    CALL     2   1   2
+0028    RET0     0   1
+
+-- BYTECODE -- readhistory.lua:226-229
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "apps/reader/readerui"
+0003    CALL     0   2   2
+0004    MOV      2   0
+0005    TGETS    1   0   2  ; "showReader"
+0006    UGET     3   0      ; new_path
+0007    CALL     1   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- readhistory.lua:219-237
+0001    GGET     3   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      4 => 0006
+0004    KPRI     4   1
+0005    JMP      5 => 0007
+0006 => KPRI     4   2
+0007 => CALL     3   1   2
+0008    TGETS    3   0   1  ; "hist"
+0009    LEN      3   3
+0010    KSHORT   4   1
+0011    KSHORT   5  -1
+0012    FORI     3 => 0038
+0013 => TGETS    7   0   1  ; "hist"
+0014    TGETV    7   7   6
+0015    TGETS    7   7   2  ; "file"
+0016    ISNEV    7   1
+0017    JMP      7 => 0037
+0018    TGETS    7   0   1  ; "hist"
+0019    TGETV    7   7   6
+0020    TSETS    2   7   2  ; "file"
+0021    TGETS    7   0   1  ; "hist"
+0022    TGETV    7   7   6
+0023    MOV      9   2
+0024    TGETS    8   2   4  ; "gsub"
+0025    KSTR    10   5      ; ".*/"
+0026    KSTR    11   6      ; ""
+0027    CALL     8   2   4
+0028    TSETS    8   7   3  ; "text"
+0029    MOV      8   0
+0030    TGETS    7   0   7  ; "_flush"
+0031    CALL     7   1   2
+0032    TGETS    7   0   1  ; "hist"
+0033    TGETV    7   7   6
+0034    FNEW     8   9      ; readhistory.lua:226
+0035    TSETS    8   7   8  ; "callback"
+0036    JMP      3 => 0038
+0037 => FORL     3 => 0013
+0038 => GGET     3  10      ; "G_reader_settings"
+0039    MOV      4   3
+0040    TGETS    3   3  11  ; "readSetting"
+0041    KSTR     5  12      ; "lastfile"
+0042    CALL     3   2   3
+0043    ISNEV    3   1
+0044    JMP      3 => 0051
+0045    GGET     3  10      ; "G_reader_settings"
+0046    MOV      4   3
+0047    TGETS    3   3  13  ; "saveSetting"
+0048    KSTR     5  12      ; "lastfile"
+0049    MOV      6   2
+0050    CALL     3   1   4
+0051 => MOV      4   0
+0052    TGETS    3   0  14  ; "ensureLastFile"
+0053    CALL     3   1   2
+0054    UCLO     0 => 0055
+0055 => RET0     0   1
+
+-- BYTECODE -- readhistory.lua:239-246
+0001    GGET     2   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      3 => 0006
+0004    KPRI     3   1
+0005    JMP      4 => 0007
+0006 => KPRI     3   2
+0007 => CALL     2   1   2
+0008    GGET     2   1      ; "table"
+0009    TGETS    2   2   2  ; "remove"
+0010    TGETS    3   0   3  ; "hist"
+0011    TGETS    4   1   4  ; "index"
+0012    CALL     2   1   3
+0013    GGET     2   5      ; "os"
+0014    TGETS    2   2   2  ; "remove"
+0015    UGET     3   0      ; DocSettings
+0016    MOV      4   3
+0017    TGETS    3   3   6  ; "getHistoryPath"
+0018    TGETS    5   1   7  ; "file"
+0019    CALL     3   0   3
+0020    CALLM    2   1   0
+0021    MOV      3   0
+0022    TGETS    2   0   8  ; "_indexing"
+0023    TGETS    4   1   4  ; "index"
+0024    CALL     2   1   3
+0025    MOV      3   0
+0026    TGETS    2   0   9  ; "_flush"
+0027    CALL     2   1   2
+0028    MOV      3   0
+0029    TGETS    2   0  10  ; "ensureLastFile"
+0030    CALL     2   1   2
+0031    RET0     0   1
+
+-- BYTECODE -- readhistory.lua:248-265
+0001    GGET     2   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      3 => 0006
+0004    KPRI     3   1
+0005    JMP      4 => 0007
+0006 => KPRI     3   2
+0007 => CALL     2   1   2
+0008    ISEQP    1   0
+0009    JMP      2 => 0055
+0010    UGET     2   0      ; lfs
+0011    TGETS    2   2   1  ; "attributes"
+0012    MOV      3   1
+0013    KSTR     4   2      ; "mode"
+0014    CALL     2   2   3
+0015    ISNES    2   3      ; "file"
+0016    JMP      2 => 0055
+0017    GGET     2   4      ; "os"
+0018    TGETS    2   2   5  ; "time"
+0019    CALL     2   2   1
+0020    GGET     3   6      ; "table"
+0021    TGETS    3   3   7  ; "insert"
+0022    TGETS    4   0   8  ; "hist"
+0023    KSHORT   5   1
+0024    UGET     6   1      ; buildEntry
+0025    MOV      7   2
+0026    MOV      8   1
+0027    CALL     6   0   3
+0028    CALLM    3   1   2
+0029    UGET     3   0      ; lfs
+0030    TGETS    3   3   1  ; "attributes"
+0031    MOV      4   1
+0032    KSTR     5   9      ; "modification"
+0033    CALL     3   2   3
+0034    UGET     4   0      ; lfs
+0035    TGETS    4   4  10  ; "touch"
+0036    MOV      5   1
+0037    MOV      6   2
+0038    MOV      7   3
+0039    CALL     4   1   4
+0040    MOV      5   0
+0041    TGETS    4   0  11  ; "_sort"
+0042    CALL     4   1   2
+0043    MOV      5   0
+0044    TGETS    4   0  12  ; "_reduce"
+0045    CALL     4   1   2
+0046    MOV      5   0
+0047    TGETS    4   0  13  ; "_flush"
+0048    CALL     4   1   2
+0049    GGET     4  14      ; "G_reader_settings"
+0050    MOV      5   4
+0051    TGETS    4   4  15  ; "saveSetting"
+0052    KSTR     6  16      ; "lastfile"
+0053    MOV      7   1
+0054    CALL     4   1   4
+0055 => RET0     0   1
+
+-- BYTECODE -- readhistory.lua:269-279
+0001    GGET     1   0      ; "assert"
+0002    ISNEP    0   0
+0003    JMP      2 => 0006
+0004    KPRI     2   1
+0005    JMP      3 => 0007
+0006 => KPRI     2   2
+0007 => CALL     1   1   2
+0008    MOV      2   0
+0009    TGETS    1   0   1  ; "_read"
+0010    CALL     1   2   2
+0011    ISF          1
+0012    JMP      2 => 0024
+0013    MOV      2   0
+0014    TGETS    1   0   2  ; "_readLegacyHistory"
+0015    CALL     1   1   2
+0016    MOV      2   0
+0017    TGETS    1   0   3  ; "_sort"
+0018    CALL     1   1   2
+0019    MOV      2   0
+0020    TGETS    1   0   4  ; "_reduce"
+0021    CALL     1   1   2
+0022    KPRI     1   2
+0023    RET1     1   2
+0024 => KPRI     1   1
+0025    RET1     1   2
+
+-- BYTECODE -- readhistory.lua:0-284
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "datastorage"
+0003    CALL     0   2   2
+0004    GGET     1   0      ; "require"
+0005    KSTR     2   2      ; "docsettings"
+0006    CALL     1   2   2
+0007    GGET     2   0      ; "require"
+0008    KSTR     3   3      ; "dump"
+0009    CALL     2   2   2
+0010    GGET     3   0      ; "require"
+0011    KSTR     4   4      ; "ffi/util"
+0012    CALL     3   2   2
+0013    GGET     4   0      ; "require"
+0014    KSTR     5   5      ; "util"
+0015    CALL     4   2   2
+0016    TGETS    4   4   6  ; "getFriendlySize"
+0017    TGETS    5   3   7  ; "joinPath"
+0018    GGET     6   0      ; "require"
+0019    KSTR     7   8      ; "libs/libkoreader-lfs"
+0020    CALL     6   2   2
+0021    TGETS    7   3   9  ; "realpath"
+0022    MOV      8   5
+0023    MOV     10   0
+0024    TGETS    9   0  10  ; "getDataDir"
+0025    CALL     9   2   2
+0026    KSTR    10  11      ; "history.lua"
+0027    CALL     8   2   3
+0028    TDUP     9  12
+0029    TNEW    10   0
+0030    TSETS   10   9  13  ; "hist"
+0031    FNEW    10  14      ; readhistory.lua:17
+0032    FNEW    11  15      ; readhistory.lua:32
+0033    FNEW    12  16      ; readhistory.lua:40
+0034    FNEW    13  18      ; readhistory.lua:48
+0035    TSETS   13   9  17  ; "_indexing"
+0036    FNEW    13  20      ; readhistory.lua:56
+0037    TSETS   13   9  19  ; "_sort"
+0038    FNEW    13  22      ; readhistory.lua:76
+0039    TSETS   13   9  21  ; "_reduce"
+0040    FNEW    13  24      ; readhistory.lua:84
+0041    TSETS   13   9  23  ; "_flush"
+0042    FNEW    13  26      ; readhistory.lua:101
+0043    TSETS   13   9  25  ; "_read"
+0044    FNEW    13  28      ; readhistory.lua:119
+0045    TSETS   13   9  27  ; "_readLegacyHistory"
+0046    FNEW    13  30      ; readhistory.lua:139
+0047    TSETS   13   9  29  ; "_init"
+0048    FNEW    13  32      ; readhistory.lua:144
+0049    TSETS   13   9  31  ; "ensureLastFile"
+0050    FNEW    13  34      ; readhistory.lua:155
+0051    TSETS   13   9  33  ; "getLastFile"
+0052    FNEW    13  36      ; readhistory.lua:160
+0053    TSETS   13   9  35  ; "getPreviousFile"
+0054    FNEW    13  38      ; readhistory.lua:176
+0055    TSETS   13   9  37  ; "fileDeleted"
+0056    FNEW    13  40      ; readhistory.lua:191
+0057    TSETS   13   9  39  ; "fileSettingsPurged"
+0058    FNEW    13  42      ; readhistory.lua:198
+0059    TSETS   13   9  41  ; "clearMissing"
+0060    FNEW    13  44      ; readhistory.lua:208
+0061    TSETS   13   9  43  ; "removeItemByPath"
+0062    FNEW    13  46      ; readhistory.lua:219
+0063    TSETS   13   9  45  ; "updateItemByPath"
+0064    FNEW    13  48      ; readhistory.lua:239
+0065    TSETS   13   9  47  ; "removeItem"
+0066    FNEW    13  50      ; readhistory.lua:248
+0067    TSETS   13   9  49  ; "addItem"
+0068    FNEW    13  52      ; readhistory.lua:269
+0069    TSETS   13   9  51  ; "reload"
+0070    MOV     14   9
+0071    TGETS   13   9  29  ; "_init"
+0072    CALL    13   1   2
+0073    UCLO     0 => 0074
+0074 => RET1     9   2
+

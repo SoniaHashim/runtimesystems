@@ -1,0 +1,302 @@
+-- BYTECODE -- remove.lua:18-41
+0001    TNEW     3   0
+0002    TNEW     4   0
+0003    TNEW     5   0
+0004    TSETV    5   4   0
+0005    GGET     5   0      ; "pairs"
+0006    MOV      6   1
+0007    CALL     5   4   2
+0008    ISNEXT   8 => 0012
+0009 => TGETV   10   4   0
+0010    KPRI    11   2
+0011    TSETV   11  10   8
+0012 => ITERN    8   3   3
+0013    ITERL    8 => 0009
+0014    TNEW     5   0
+0015    UGET     6   0      ; queries
+0016    TGETS    6   6   1  ; "all"
+0017    CALL     6   2   1
+0018    UGET     7   1      ; search
+0019    TGETS    7   7   2  ; "local_manifest_search"
+0020    MOV      8   5
+0021    UGET     9   2      ; cfg
+0022    TGETS    9   9   3  ; "rocks_dir"
+0023    MOV     10   6
+0024    CALL     7   1   4
+0025    KPRI     7   0
+0026    TSETV    7   5   0
+0027    GGET     7   0      ; "pairs"
+0028    MOV      8   5
+0029    CALL     7   4   2
+0030    ISNEXT  10 => 0064
+0031 => GGET    12   0      ; "pairs"
+0032    MOV     13  11
+0033    CALL    12   4   2
+0034    ISNEXT  15 => 0062
+0035 => UGET    17   3      ; fetch
+0036    TGETS   17  17   4  ; "load_rockspec"
+0037    UGET    18   4      ; path
+0038    TGETS   18  18   5  ; "rockspec_file"
+0039    MOV     19  10
+0040    MOV     20  15
+0041    CALL    18   0   3
+0042    CALLM   17   3   0
+0043    ISF         17
+0044    JMP     19 => 0062
+0045    UGET    19   5      ; deps
+0046    TGETS   19  19   6  ; "match_deps"
+0047    TGETS   20  17   7  ; "dependencies"
+0048    TGETS   21  17   8  ; "rocks_provided"
+0049    MOV     22   4
+0050    MOV     23   2
+0051    CALL    19   3   5
+0052    TGETV   21  20   0
+0053    ISF         21
+0054    JMP     22 => 0062
+0055    GGET    21   9      ; "table"
+0056    TGETS   21  21  10  ; "insert"
+0057    MOV     22   3
+0058    TDUP    23  11
+0059    TSETS   10  23  12  ; "name"
+0060    TSETS   15  23  13  ; "version"
+0061    CALL    21   1   3
+0062 => ITERN   15   3   3
+0063    ITERL   15 => 0035
+0064 => ITERN   10   3   3
+0065    ITERL   10 => 0031
+0066    RET1     3   2
+
+-- BYTECODE -- remove.lua:50-59
+0001    GGET     3   0      ; "pairs"
+0002    MOV      4   1
+0003    CALL     3   4   2
+0004    ISNEXT   6 => 0025
+0005 => UGET     8   0      ; util
+0006    TGETS    8   8   1  ; "printout"
+0007    KSTR     9   2      ; "Removing "
+0008    MOV     10   0
+0009    KSTR    11   3      ; " "
+0010    MOV     12   6
+0011    KSTR    13   4      ; "..."
+0012    CAT      9   9  13
+0013    CALL     8   1   2
+0014    UGET     8   1      ; repos
+0015    TGETS    8   8   5  ; "delete_version"
+0016    MOV      9   0
+0017    MOV     10   6
+0018    MOV     11   2
+0019    CALL     8   3   4
+0020    IST          8
+0021    JMP     10 => 0025
+0022    KPRI    10   0
+0023    MOV     11   9
+0024    RET     10   3
+0025 => ITERN    6   3   3
+0026    ITERL    6 => 0005
+0027    KPRI     3   2
+0028    RET1     3   2
+
+-- BYTECODE -- remove.lua:61-104
+0001    TGETV    5   0   1
+0002    GGET     6   0      ; "next"
+0003    MOV      7   5
+0004    CALL     6   2   2
+0005    GGET     7   0      ; "next"
+0006    MOV      8   5
+0007    MOV      9   6
+0008    CALL     7   2   3
+0009    TNEW     8   0
+0010    IST          4
+0011    JMP      9 => 0040
+0012    UGET     9   0      ; util
+0013    TGETS    9   9   1  ; "printout"
+0014    KSTR    10   2      ; "Checking stability of dependencies in th"~
+0015    CALL     9   1   2
+0016    UGET     9   0      ; util
+0017    TGETS    9   9   1  ; "printout"
+0018    MOV     10   1
+0019    KSTR    11   3      ; " "
+0020    GGET    12   4      ; "table"
+0021    TGETS   12  12   5  ; "concat"
+0022    UGET    13   0      ; util
+0023    TGETS   13  13   6  ; "keys"
+0024    MOV     14   5
+0025    CALL    13   2   2
+0026    KSTR    14   7      ; ", "
+0027    CALL    12   2   3
+0028    KSTR    13   8      ; "..."
+0029    CAT     10  10  13
+0030    CALL     9   1   2
+0031    UGET     9   0      ; util
+0032    TGETS    9   9   1  ; "printout"
+0033    CALL     9   1   1
+0034    UGET     9   1      ; check_dependents
+0035    MOV     10   1
+0036    MOV     11   5
+0037    MOV     12   2
+0038    CALL     9   2   4
+0039    MOV      8   9
+0040 => LEN      9   8
+0041    KSHORT  10   0
+0042    ISGE    10   9
+0043    JMP      9 => 0119
+0044    IST          3
+0045    JMP      9 => 0048
+0046    ISF          4
+0047    JMP      9 => 0069
+0048 => UGET     9   0      ; util
+0049    TGETS    9   9   9  ; "printerr"
+0050    KSTR    10  10      ; "The following packages may be broken by "~
+0051    CALL     9   1   2
+0052    GGET     9  11      ; "ipairs"
+0053    MOV     10   8
+0054    CALL     9   4   2
+0055    JMP     12 => 0063
+0056 => UGET    14   0      ; util
+0057    TGETS   14  14   9  ; "printerr"
+0058    TGETS   15  13  12  ; "name"
+0059    KSTR    16   3      ; " "
+0060    TGETS   17  13  13  ; "version"
+0061    CAT     15  15  17
+0062    CALL    14   1   2
+0063 => ITERC   12   3   3
+0064    ITERL   12 => 0056
+0065    UGET     9   0      ; util
+0066    TGETS    9   9   9  ; "printerr"
+0067    CALL     9   1   1
+0068    JMP      9 => 0119
+0069 => IST          7
+0070    JMP      9 => 0085
+0071    UGET     9   0      ; util
+0072    TGETS    9   9   9  ; "printerr"
+0073    KSTR    10  14      ; "Will not remove "
+0074    MOV     11   1
+0075    KSTR    12   3      ; " "
+0076    MOV     13   6
+0077    KSTR    14  15      ; "."
+0078    CAT     10  10  14
+0079    CALL     9   1   2
+0080    UGET     9   0      ; util
+0081    TGETS    9   9   9  ; "printerr"
+0082    KSTR    10  16      ; "Removing it would break dependencies for"~
+0083    CALL     9   1   2
+0084    JMP      9 => 0096
+0085 => UGET     9   0      ; util
+0086    TGETS    9   9   9  ; "printerr"
+0087    KSTR    10  17      ; "Will not remove installed versions of "
+0088    MOV     11   1
+0089    KSTR    12  15      ; "."
+0090    CAT     10  10  12
+0091    CALL     9   1   2
+0092    UGET     9   0      ; util
+0093    TGETS    9   9   9  ; "printerr"
+0094    KSTR    10  18      ; "Removing them would break dependencies f"~
+0095    CALL     9   1   2
+0096 => GGET     9  11      ; "ipairs"
+0097    MOV     10   8
+0098    CALL     9   4   2
+0099    JMP     12 => 0107
+0100 => UGET    14   0      ; util
+0101    TGETS   14  14   9  ; "printerr"
+0102    TGETS   15  13  12  ; "name"
+0103    KSTR    16   3      ; " "
+0104    TGETS   17  13  13  ; "version"
+0105    CAT     15  15  17
+0106    CALL    14   1   2
+0107 => ITERC   12   3   3
+0108    ITERL   12 => 0100
+0109    UGET     9   0      ; util
+0110    TGETS    9   9   9  ; "printerr"
+0111    CALL     9   1   1
+0112    UGET     9   0      ; util
+0113    TGETS    9   9   9  ; "printerr"
+0114    KSTR    10  19      ; "Use --force to force removal (warning: t"~
+0115    CALL     9   1   2
+0116    KPRI     9   0
+0117    KSTR    10  20      ; "Failed removing."
+0118    RET      9   3
+0119 => UGET     9   2      ; delete_versions
+0120    MOV     10   1
+0121    MOV     11   5
+0122    MOV     12   2
+0123    CALL     9   3   4
+0124    IST          9
+0125    JMP     11 => 0129
+0126    KPRI    11   0
+0127    MOV     12  10
+0128    RET     11   3
+0129 => UGET    11   0      ; util
+0130    TGETS   11  11   1  ; "printout"
+0131    KSTR    12  21      ; "Removal successful."
+0132    CALL    11   1   2
+0133    KPRI    11   2
+0134    RET1    11   2
+
+-- BYTECODE -- remove.lua:106-114
+0001    TNEW     4   0
+0002    UGET     5   0      ; queries
+0003    TGETS    5   5   0  ; "new"
+0004    MOV      6   0
+0005    KPRI     7   0
+0006    MOV      8   1
+0007    KPRI     9   1
+0008    KPRI    10   0
+0009    KSTR    11   1      ; "~="
+0010    CALL     5   2   7
+0011    UGET     6   1      ; search
+0012    TGETS    6   6   2  ; "local_manifest_search"
+0013    MOV      7   4
+0014    UGET     8   2      ; cfg
+0015    TGETS    8   8   3  ; "rocks_dir"
+0016    MOV      9   5
+0017    CALL     6   1   4
+0018    TGETV    6   4   0
+0019    ISF          6
+0020    JMP      7 => 0030
+0021    UGET     6   3      ; remove
+0022    TGETS    6   6   4  ; "remove_search_results"
+0023    MOV      7   4
+0024    MOV      8   0
+0025    UGET     9   2      ; cfg
+0026    TGETS    9   9   5  ; "deps_mode"
+0027    MOV     10   2
+0028    MOV     11   3
+0029    CALLT    6   6
+0030 => KPRI     6   2
+0031    RET1     6   2
+
+-- BYTECODE -- remove.lua:0-117
+0001    TNEW     0   0
+0002    GGET     1   0      ; "require"
+0003    KSTR     2   1      ; "luarocks.search"
+0004    CALL     1   2   2
+0005    GGET     2   0      ; "require"
+0006    KSTR     3   2      ; "luarocks.deps"
+0007    CALL     2   2   2
+0008    GGET     3   0      ; "require"
+0009    KSTR     4   3      ; "luarocks.fetch"
+0010    CALL     3   2   2
+0011    GGET     4   0      ; "require"
+0012    KSTR     5   4      ; "luarocks.repos"
+0013    CALL     4   2   2
+0014    GGET     5   0      ; "require"
+0015    KSTR     6   5      ; "luarocks.path"
+0016    CALL     5   2   2
+0017    GGET     6   0      ; "require"
+0018    KSTR     7   6      ; "luarocks.util"
+0019    CALL     6   2   2
+0020    GGET     7   0      ; "require"
+0021    KSTR     8   7      ; "luarocks.core.cfg"
+0022    CALL     7   2   2
+0023    GGET     8   0      ; "require"
+0024    KSTR     9   8      ; "luarocks.queries"
+0025    CALL     8   2   2
+0026    FNEW     9   9      ; remove.lua:18
+0027    FNEW    10  10      ; remove.lua:50
+0028    FNEW    11  12      ; remove.lua:61
+0029    TSETS   11   0  11  ; "remove_search_results"
+0030    FNEW    11  14      ; remove.lua:106
+0031    TSETS   11   0  13  ; "remove_other_versions"
+0032    UCLO     0 => 0033
+0033 => RET1     0   2
+

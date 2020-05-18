@@ -1,0 +1,330 @@
+
+main <./spec/unit/spore_spec.lua:0,0> (12 instructions, 48 bytes at 0x7f990fc068c0)
+0+ params, 4 slots, 0 upvalues, 1 local, 4 constants, 2 functions
+	1	[32]	LOADK    	0 -1	; "{\n    \"base_url\" : \"http://httpbin.org\",\n    \"name\" : \"api\",\n    \"methods\" : {\n        \"get_info\" : {\n            \"path\" : \"/get\",\n            \"method\" : \"GET\",\n            \"required_params\" : [\n                \"user\"\n            ],\n            \"optional_params\" : [\n                \"age\"\n            ],\n        },\n        \"post_info\" : {\n            \"path\" : \"/post\",\n            \"method\" : \"POST\",\n            \"required_params\" : [\n                \"user\"\n            ],\n            \"optional_params\" : [\n                \"age\"\n            ],\n            \"payload\" : [\n                \"user\",\n                \"age\",\n            ],\n        },\n    }\n}\n"
+	2	[34]	GETGLOBAL	1 -2	; describe
+	3	[34]	LOADK    	2 -3	; "Lua Spore modules #notest #nocov"
+	4	[54]	CLOSURE  	3 0	; 0x7f990fc06b80
+	5	[54]	MOVE     	0 0
+	6	[34]	CALL     	1 3 1
+	7	[56]	GETGLOBAL	1 -2	; describe
+	8	[56]	LOADK    	2 -4	; "Lua Spore modules with async http request #notest #nocov"
+	9	[122]	CLOSURE  	3 1	; 0x7f990fc071c0
+	10	[122]	MOVE     	0 0
+	11	[56]	CALL     	1 3 1
+	12	[122]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:34,54> (17 instructions, 68 bytes at 0x7f990fc06b80)
+0 params, 5 slots, 1 upvalue, 2 locals, 4 constants, 3 functions
+	1	[36]	GETGLOBAL	2 -1	; setup
+	2	[41]	CLOSURE  	3 0	; 0x7f990fc07280
+	3	[41]	MOVE     	0 0
+	4	[41]	MOVE     	0 1
+	5	[41]	GETUPVAL 	0 0	; service
+	6	[36]	CALL     	2 2 1
+	7	[43]	GETGLOBAL	2 -2	; it
+	8	[43]	LOADK    	3 -3	; "should complete GET request"
+	9	[47]	CLOSURE  	4 1	; 0x7f990fc07530
+	10	[47]	MOVE     	0 1
+	11	[43]	CALL     	2 3 1
+	12	[49]	GETGLOBAL	2 -2	; it
+	13	[49]	LOADK    	3 -4	; "should complete POST request"
+	14	[53]	CLOSURE  	4 2	; 0x7f990fc066c0
+	15	[53]	MOVE     	0 1
+	16	[49]	CALL     	2 3 1
+	17	[54]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:36,41> (17 instructions, 68 bytes at 0x7f990fc07280)
+0 params, 3 slots, 3 upvalues, 0 locals, 6 constants, 0 functions
+	1	[37]	GETGLOBAL	0 -1	; require
+	2	[37]	LOADK    	1 -2	; "commonrequire"
+	3	[37]	CALL     	0 2 1
+	4	[38]	GETGLOBAL	0 -1	; require
+	5	[38]	LOADK    	1 -3	; "Spore"
+	6	[38]	CALL     	0 2 2
+	7	[38]	SETUPVAL 	0 0	; Spore
+	8	[39]	GETUPVAL 	0 0	; Spore
+	9	[39]	GETTABLE 	0 0 -4	; "new_from_string"
+	10	[39]	GETUPVAL 	1 2	; service
+	11	[39]	CALL     	0 2 2
+	12	[39]	SETUPVAL 	0 1	; client
+	13	[40]	GETUPVAL 	0 1	; client
+	14	[40]	SELF     	0 0 -5	; "enable"
+	15	[40]	LOADK    	2 -6	; "Format.JSON"
+	16	[40]	CALL     	0 3 1
+	17	[41]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:43,47> (15 instructions, 60 bytes at 0x7f990fc07530)
+0 params, 5 slots, 1 upvalue, 2 locals, 10 constants, 0 functions
+	1	[44]	NEWTABLE 	0 0 2
+	2	[44]	SETTABLE 	0 -1 -2	; "user" "john"
+	3	[44]	SETTABLE 	0 -3 -4	; "age" "25"
+	4	[45]	GETUPVAL 	1 0	; client
+	5	[45]	SELF     	1 1 -5	; "get_info"
+	6	[45]	MOVE     	3 0
+	7	[45]	CALL     	1 3 2
+	8	[46]	GETGLOBAL	2 -6	; assert
+	9	[46]	GETTABLE 	2 2 -7	; "are"
+	10	[46]	GETTABLE 	2 2 -8	; "same"
+	11	[46]	GETTABLE 	3 1 -9	; "body"
+	12	[46]	GETTABLE 	3 3 -10	; "args"
+	13	[46]	MOVE     	4 0
+	14	[46]	CALL     	2 3 1
+	15	[47]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:49,53> (15 instructions, 60 bytes at 0x7f990fc066c0)
+0 params, 5 slots, 1 upvalue, 2 locals, 10 constants, 0 functions
+	1	[50]	NEWTABLE 	0 0 2
+	2	[50]	SETTABLE 	0 -1 -2	; "user" "sam"
+	3	[50]	SETTABLE 	0 -3 -4	; "age" "26"
+	4	[51]	GETUPVAL 	1 0	; client
+	5	[51]	SELF     	1 1 -5	; "post_info"
+	6	[51]	MOVE     	3 0
+	7	[51]	CALL     	1 3 2
+	8	[52]	GETGLOBAL	2 -6	; assert
+	9	[52]	GETTABLE 	2 2 -7	; "are"
+	10	[52]	GETTABLE 	2 2 -8	; "same"
+	11	[52]	GETTABLE 	3 1 -9	; "body"
+	12	[52]	GETTABLE 	3 3 -10	; "json"
+	13	[52]	MOVE     	4 0
+	14	[52]	CALL     	2 3 1
+	15	[53]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:56,122> (19 instructions, 76 bytes at 0x7f990fc071c0)
+0 params, 5 slots, 1 upvalue, 2 locals, 4 constants, 3 functions
+	1	[59]	GETGLOBAL	2 -1	; setup
+	2	[91]	CLOSURE  	3 0	; 0x7f990fc08940
+	3	[91]	MOVE     	0 1
+	4	[91]	MOVE     	0 0
+	5	[91]	GETUPVAL 	0 0	; service
+	6	[59]	CALL     	2 2 1
+	7	[93]	GETGLOBAL	2 -2	; it
+	8	[93]	LOADK    	3 -3	; "should complete GET request"
+	9	[106]	CLOSURE  	4 1	; 0x7f990fc09180
+	10	[106]	MOVE     	0 1
+	11	[106]	MOVE     	0 0
+	12	[93]	CALL     	2 3 1
+	13	[108]	GETGLOBAL	2 -2	; it
+	14	[108]	LOADK    	3 -4	; "should complete POST request"
+	15	[121]	CLOSURE  	4 2	; 0x7f990fc07660
+	16	[121]	MOVE     	0 1
+	17	[121]	MOVE     	0 0
+	18	[108]	CALL     	2 3 1
+	19	[122]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:59,91> (31 instructions, 124 bytes at 0x7f990fc08940)
+0 params, 5 slots, 3 upvalues, 3 locals, 11 constants, 1 function
+	1	[60]	GETGLOBAL	0 -1	; require
+	2	[60]	LOADK    	1 -2	; "commonrequire"
+	3	[60]	CALL     	0 2 1
+	4	[61]	GETGLOBAL	0 -1	; require
+	5	[61]	LOADK    	1 -3	; "ui/uimanager"
+	6	[61]	CALL     	0 2 2
+	7	[61]	SETUPVAL 	0 0	; UIManager
+	8	[62]	GETGLOBAL	0 -1	; require
+	9	[62]	LOADK    	1 -4	; "httpclient"
+	10	[62]	CALL     	0 2 2
+	11	[63]	GETGLOBAL	1 -1	; require
+	12	[63]	LOADK    	2 -5	; "Spore"
+	13	[63]	CALL     	1 2 2
+	14	[64]	GETTABLE 	2 1 -6	; "new_from_string"
+	15	[64]	GETUPVAL 	3 2	; service
+	16	[64]	CALL     	2 2 2
+	17	[64]	SETUPVAL 	2 1	; client
+	18	[65]	SELF     	2 0 -7	; "new"
+	19	[65]	CALL     	2 2 2
+	20	[66]	GETGLOBAL	3 -8	; package
+	21	[66]	GETTABLE 	3 3 -9	; "loaded"
+	22	[66]	NEWTABLE 	4 0 0
+	23	[66]	SETTABLE 	3 -10 4	; "Spore.Middleware.AsyncHTTP" -
+	24	[67]	GETGLOBAL	3 -1	; require
+	25	[67]	LOADK    	4 -10	; "Spore.Middleware.AsyncHTTP"
+	26	[67]	CALL     	3 2 2
+	27	[90]	CLOSURE  	4 0	; 0x7f990fc08c40
+	28	[90]	MOVE     	0 2
+	29	[90]	GETUPVAL 	0 0	; UIManager
+	30	[90]	SETTABLE 	3 -11 4	; "call" -
+	31	[91]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:67,90> (29 instructions, 116 bytes at 0x7f990fc08c40)
+2 params, 7 slots, 2 upvalues, 3 locals, 11 constants, 3 functions
+	1	[68]	SELF     	2 1 -1	; "finalize"
+	2	[68]	CALL     	2 2 1
+	3	[69]	LOADNIL  	2 2
+	4	[70]	GETUPVAL 	3 0	; async_http_client
+	5	[70]	SELF     	3 3 -2	; "request"
+	6	[70]	NEWTABLE 	5 0 4
+	7	[71]	GETTABLE 	6 1 -3	; "url"
+	8	[71]	SETTABLE 	5 -3 6	; "url" -
+	9	[72]	GETTABLE 	6 1 -4	; "method"
+	10	[72]	SETTABLE 	5 -4 6	; "method" -
+	11	[73]	GETTABLE 	6 1 -6	; "env"
+	12	[73]	GETTABLE 	6 6 -7	; "spore"
+	13	[73]	GETTABLE 	6 6 -8	; "payload"
+	14	[73]	SETTABLE 	5 -5 6	; "body" -
+	15	[80]	CLOSURE  	6 0	; 0x7f990fc08eb0
+	16	[80]	MOVE     	0 1
+	17	[80]	SETTABLE 	5 -9 6	; "on_headers" -
+	18	[88]	CLOSURE  	6 1	; 0x7f990fc07d80
+	19	[88]	MOVE     	0 2
+	20	[88]	MOVE     	0 0
+	21	[88]	GETUPVAL 	0 1	; UIManager
+	22	[70]	CALL     	3 4 1
+	23	[89]	GETGLOBAL	3 -10	; coroutine
+	24	[89]	GETTABLE 	3 3 -11	; "create"
+	25	[89]	CLOSURE  	4 2	; 0x7f990fc08410
+	26	[89]	MOVE     	0 2
+	27	[89]	TAILCALL 	3 2 0
+	28	[89]	RETURN   	3 0
+	29	[90]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:74,80> (17 instructions, 68 bytes at 0x7f990fc08eb0)
+1 param, 10 slots, 1 upvalue, 6 locals, 5 constants, 0 functions
+	1	[75]	GETGLOBAL	1 -1	; pairs
+	2	[75]	GETUPVAL 	2 0	; req
+	3	[75]	GETTABLE 	2 2 -2	; "headers"
+	4	[75]	CALL     	1 2 4
+	5	[75]	JMP      	9	; to 15
+	6	[76]	GETGLOBAL	6 -3	; type
+	7	[76]	MOVE     	7 4
+	8	[76]	CALL     	6 2 2
+	9	[76]	EQ       	0 6 -4	; - "string"
+	10	[76]	JMP      	4	; to 15
+	11	[77]	SELF     	6 0 -5	; "add"
+	12	[77]	MOVE     	8 4
+	13	[77]	MOVE     	9 5
+	14	[77]	CALL     	6 4 1
+	15	[75]	TFORLOOP 	1 2
+	16	[78]	JMP      	-11	; to 6
+	17	[80]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:81,88> (12 instructions, 48 bytes at 0x7f990fc07d80)
+1 param, 3 slots, 3 upvalues, 1 local, 7 constants, 0 functions
+	1	[82]	SETUPVAL 	0 0	; result
+	2	[85]	GETUPVAL 	1 0	; result
+	3	[85]	GETTABLE 	2 0 -2	; "code"
+	4	[85]	SETTABLE 	1 -1 2	; "status" -
+	5	[86]	GETGLOBAL	1 -3	; coroutine
+	6	[86]	GETTABLE 	1 1 -4	; "resume"
+	7	[86]	GETUPVAL 	2 1	; args
+	8	[86]	GETTABLE 	2 2 -5	; "thread"
+	9	[86]	CALL     	1 2 1
+	10	[87]	GETUPVAL 	1 2	; UIManager
+	11	[87]	SETTABLE 	1 -6 -7	; "INPUT_TIMEOUT" 100
+	12	[88]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:89,89> (5 instructions, 20 bytes at 0x7f990fc08410)
+0 params, 2 slots, 1 upvalue, 0 locals, 2 constants, 0 functions
+	1	[89]	GETGLOBAL	0 -1	; coroutine
+	2	[89]	GETTABLE 	0 0 -2	; "yield"
+	3	[89]	GETUPVAL 	1 0	; result
+	4	[89]	CALL     	0 2 1
+	5	[89]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:93,106> (30 instructions, 120 bytes at 0x7f990fc09180)
+0 params, 5 slots, 2 upvalues, 1 local, 10 constants, 1 function
+	1	[94]	GETUPVAL 	0 0	; UIManager
+	2	[94]	SELF     	0 0 -1	; "quit"
+	3	[94]	CALL     	0 2 1
+	4	[95]	GETGLOBAL	0 -2	; coroutine
+	5	[95]	GETTABLE 	0 0 -3	; "create"
+	6	[100]	CLOSURE  	1 0	; 0x7f990fc09310
+	7	[100]	GETUPVAL 	0 1	; client
+	8	[100]	GETUPVAL 	0 0	; UIManager
+	9	[95]	CALL     	0 2 2
+	10	[101]	GETUPVAL 	1 1	; client
+	11	[101]	SELF     	1 1 -4	; "reset_middlewares"
+	12	[101]	CALL     	1 2 1
+	13	[102]	GETUPVAL 	1 1	; client
+	14	[102]	SELF     	1 1 -5	; "enable"
+	15	[102]	LOADK    	3 -6	; "Format.JSON"
+	16	[102]	CALL     	1 3 1
+	17	[103]	GETUPVAL 	1 1	; client
+	18	[103]	SELF     	1 1 -5	; "enable"
+	19	[103]	LOADK    	3 -7	; "AsyncHTTP"
+	20	[103]	NEWTABLE 	4 0 1
+	21	[103]	SETTABLE 	4 -8 0	; "thread" -
+	22	[103]	CALL     	1 4 1
+	23	[104]	GETGLOBAL	1 -2	; coroutine
+	24	[104]	GETTABLE 	1 1 -9	; "resume"
+	25	[104]	MOVE     	2 0
+	26	[104]	CALL     	1 2 1
+	27	[105]	GETUPVAL 	1 0	; UIManager
+	28	[105]	SELF     	1 1 -10	; "runForever"
+	29	[105]	CALL     	1 2 1
+	30	[106]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:95,100> (18 instructions, 72 bytes at 0x7f990fc09310)
+0 params, 5 slots, 2 upvalues, 2 locals, 11 constants, 0 functions
+	1	[96]	NEWTABLE 	0 0 2
+	2	[96]	SETTABLE 	0 -1 -2	; "user" "john"
+	3	[96]	SETTABLE 	0 -3 -4	; "age" "25"
+	4	[97]	GETUPVAL 	1 0	; client
+	5	[97]	SELF     	1 1 -5	; "get_info"
+	6	[97]	MOVE     	3 0
+	7	[97]	CALL     	1 3 2
+	8	[98]	GETUPVAL 	2 1	; UIManager
+	9	[98]	SELF     	2 2 -6	; "quit"
+	10	[98]	CALL     	2 2 1
+	11	[99]	GETGLOBAL	2 -7	; assert
+	12	[99]	GETTABLE 	2 2 -8	; "are"
+	13	[99]	GETTABLE 	2 2 -9	; "same"
+	14	[99]	GETTABLE 	3 1 -10	; "body"
+	15	[99]	GETTABLE 	3 3 -11	; "args"
+	16	[99]	MOVE     	4 0
+	17	[99]	CALL     	2 3 1
+	18	[100]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:108,121> (30 instructions, 120 bytes at 0x7f990fc07660)
+0 params, 5 slots, 2 upvalues, 1 local, 10 constants, 1 function
+	1	[109]	GETUPVAL 	0 0	; UIManager
+	2	[109]	SELF     	0 0 -1	; "quit"
+	3	[109]	CALL     	0 2 1
+	4	[110]	GETGLOBAL	0 -2	; coroutine
+	5	[110]	GETTABLE 	0 0 -3	; "create"
+	6	[115]	CLOSURE  	1 0	; 0x7f990fc09ad0
+	7	[115]	GETUPVAL 	0 1	; client
+	8	[115]	GETUPVAL 	0 0	; UIManager
+	9	[110]	CALL     	0 2 2
+	10	[116]	GETUPVAL 	1 1	; client
+	11	[116]	SELF     	1 1 -4	; "reset_middlewares"
+	12	[116]	CALL     	1 2 1
+	13	[117]	GETUPVAL 	1 1	; client
+	14	[117]	SELF     	1 1 -5	; "enable"
+	15	[117]	LOADK    	3 -6	; "Format.JSON"
+	16	[117]	CALL     	1 3 1
+	17	[118]	GETUPVAL 	1 1	; client
+	18	[118]	SELF     	1 1 -5	; "enable"
+	19	[118]	LOADK    	3 -7	; "AsyncHTTP"
+	20	[118]	NEWTABLE 	4 0 1
+	21	[118]	SETTABLE 	4 -8 0	; "thread" -
+	22	[118]	CALL     	1 4 1
+	23	[119]	GETGLOBAL	1 -2	; coroutine
+	24	[119]	GETTABLE 	1 1 -9	; "resume"
+	25	[119]	MOVE     	2 0
+	26	[119]	CALL     	1 2 1
+	27	[120]	GETUPVAL 	1 0	; UIManager
+	28	[120]	SELF     	1 1 -10	; "runForever"
+	29	[120]	CALL     	1 2 1
+	30	[121]	RETURN   	0 1
+
+function <./spec/unit/spore_spec.lua:110,115> (18 instructions, 72 bytes at 0x7f990fc09ad0)
+0 params, 5 slots, 2 upvalues, 2 locals, 11 constants, 0 functions
+	1	[111]	NEWTABLE 	0 0 2
+	2	[111]	SETTABLE 	0 -1 -2	; "user" "sam"
+	3	[111]	SETTABLE 	0 -3 -4	; "age" "26"
+	4	[112]	GETUPVAL 	1 0	; client
+	5	[112]	SELF     	1 1 -5	; "post_info"
+	6	[112]	MOVE     	3 0
+	7	[112]	CALL     	1 3 2
+	8	[113]	GETUPVAL 	2 1	; UIManager
+	9	[113]	SELF     	2 2 -6	; "quit"
+	10	[113]	CALL     	2 2 1
+	11	[114]	GETGLOBAL	2 -7	; assert
+	12	[114]	GETTABLE 	2 2 -8	; "are"
+	13	[114]	GETTABLE 	2 2 -9	; "same"
+	14	[114]	GETTABLE 	3 1 -10	; "body"
+	15	[114]	GETTABLE 	3 3 -11	; "json"
+	16	[114]	MOVE     	4 0
+	17	[114]	CALL     	2 3 1
+	18	[115]	RETURN   	0 1

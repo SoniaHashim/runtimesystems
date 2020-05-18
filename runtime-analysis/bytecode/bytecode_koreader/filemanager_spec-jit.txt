@@ -1,0 +1,391 @@
+-- BYTECODE -- filemanager_spec.lua:3-13
+0001    GGET     0   0      ; "require"
+0002    KSTR     1   1      ; "commonrequire"
+0003    CALL     0   1   2
+0004    GGET     0   2      ; "package"
+0005    TGETS    0   0   3  ; "unloadAll"
+0006    CALL     0   1   1
+0007    GGET     0   0      ; "require"
+0008    KSTR     1   4      ; "document/canvascontext"
+0009    CALL     0   2   2
+0010    MOV      1   0
+0011    TGETS    0   0   5  ; "init"
+0012    GGET     2   0      ; "require"
+0013    KSTR     3   6      ; "device"
+0014    CALL     2   0   2
+0015    CALLM    0   1   1
+0016    GGET     0   0      ; "require"
+0017    KSTR     1   7      ; "apps/filemanager/filemanager"
+0018    CALL     0   2   2
+0019    USETV    0   0      ; FileManager
+0020    GGET     0   0      ; "require"
+0021    KSTR     1   6      ; "device"
+0022    CALL     0   2   2
+0023    TGETS    0   0   8  ; "screen"
+0024    USETV    1   0      ; Screen
+0025    GGET     0   0      ; "require"
+0026    KSTR     1   9      ; "ui/uimanager"
+0027    CALL     0   2   2
+0028    USETV    2   0      ; UIManager
+0029    GGET     0   0      ; "require"
+0030    KSTR     1  10      ; "docsettings"
+0031    CALL     0   2   2
+0032    USETV    3   0      ; docsettings
+0033    GGET     0   0      ; "require"
+0034    KSTR     1  11      ; "libs/libkoreader-lfs"
+0035    CALL     0   2   2
+0036    USETV    4   0      ; lfs
+0037    GGET     0   0      ; "require"
+0038    KSTR     1  12      ; "ffi/util"
+0039    CALL     0   2   2
+0040    USETV    5   0      ; util
+0041    RET0     0   1
+
+-- BYTECODE -- filemanager_spec.lua:21-21
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "close"
+0004    UGET     2   1      ; filemanager
+0005    CALL     0   1   3
+0006    RET0     0   1
+
+-- BYTECODE -- filemanager_spec.lua:14-23
+0001    UGET     0   0      ; UIManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "quit"
+0004    CALL     0   1   2
+0005    UGET     0   1      ; FileManager
+0006    MOV      1   0
+0007    TGETS    0   0   1  ; "new"
+0008    TDUP     2   3
+0009    UGET     3   2      ; Screen
+0010    MOV      4   3
+0011    TGETS    3   3   2  ; "getSize"
+0012    CALL     3   2   2
+0013    TSETS    3   2   4  ; "dimen"
+0014    CALL     0   2   3
+0015    UGET     1   0      ; UIManager
+0016    MOV      2   1
+0017    TGETS    1   1   5  ; "show"
+0018    MOV      3   0
+0019    CALL     1   1   3
+0020    UGET     1   0      ; UIManager
+0021    MOV      2   1
+0022    TGETS    1   1   6  ; "scheduleIn"
+0023    KSHORT   3   1
+0024    FNEW     4   7      ; filemanager_spec.lua:21
+0025    CALL     1   1   4
+0026    UGET     1   0      ; UIManager
+0027    MOV      2   1
+0028    TGETS    1   1   8  ; "run"
+0029    CALL     1   1   2
+0030    UCLO     0 => 0031
+0031 => RET0     0   1
+
+-- BYTECODE -- filemanager_spec.lua:31-33
+0001    GGET     2   0      ; "assert"
+0002    TGETS    2   2   1  ; "Equals"
+0003    TGETS    3   1   2  ; "text"
+0004    KSTR     4   3      ; "File "
+0005    UGET     5   0      ; tmp_fn
+0006    KSTR     6   4      ; " not found"
+0007    CAT      4   4   6
+0008    CALL     2   1   3
+0009    RET0     0   1
+
+-- BYTECODE -- filemanager_spec.lua:24-37
+0001    UGET     0   0      ; FileManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "new"
+0004    TDUP     2   2
+0005    UGET     3   1      ; Screen
+0006    MOV      4   3
+0007    TGETS    3   3   1  ; "getSize"
+0008    CALL     3   2   2
+0009    TSETS    3   2   3  ; "dimen"
+0010    CALL     0   2   3
+0011    UGET     1   2      ; UIManager
+0012    TGETS    1   1   4  ; "show"
+0013    KSTR     2   5      ; "/abc/123/test/foo.bar.baz.tmp.epub.pdf"
+0014    UGET     3   2      ; UIManager
+0015    FNEW     4   6      ; filemanager_spec.lua:31
+0016    TSETS    4   3   4  ; "show"
+0017    GGET     3   7      ; "assert"
+0018    TGETS    3   3   8  ; "is_nil"
+0019    UGET     4   3      ; lfs
+0020    TGETS    4   4   9  ; "attributes"
+0021    MOV      5   2
+0022    CALL     4   0   2
+0023    CALLM    3   1   0
+0024    MOV      4   0
+0025    TGETS    3   0  10  ; "deleteFile"
+0026    MOV      5   2
+0027    CALL     3   1   3
+0028    UGET     3   2      ; UIManager
+0029    TSETS    1   3   4  ; "show"
+0030    UCLO     0 => 0031
+0031 => RET0     0   1
+
+-- BYTECODE -- filemanager_spec.lua:60-62
+0001    GGET     2   0      ; "assert"
+0002    TGETS    2   2   1  ; "Equals"
+0003    TGETS    3   1   2  ; "text"
+0004    KSTR     4   3      ; "Deleted "
+0005    UGET     5   0      ; tmp_fn
+0006    CAT      4   4   5
+0007    CALL     2   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- filemanager_spec.lua:38-72
+0001    UGET     0   0      ; FileManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "new"
+0004    TDUP     2   2
+0005    UGET     3   1      ; Screen
+0006    MOV      4   3
+0007    TGETS    3   3   1  ; "getSize"
+0008    CALL     3   2   2
+0009    TSETS    3   2   3  ; "dimen"
+0010    CALL     0   2   3
+0011    KSTR     1   4      ; "../../test/2col.test.tmp.foo"
+0012    UGET     2   2      ; util
+0013    TGETS    2   2   5  ; "copyFile"
+0014    KSTR     3   6      ; "../../test/2col.pdf"
+0015    MOV      4   1
+0016    CALL     2   1   3
+0017    UGET     2   3      ; docsettings
+0018    MOV      3   2
+0019    TGETS    2   2   7  ; "getSidecarDir"
+0020    UGET     4   2      ; util
+0021    TGETS    4   4   8  ; "realpath"
+0022    MOV      5   1
+0023    CALL     4   0   2
+0024    CALLM    2   2   1
+0025    UGET     3   4      ; lfs
+0026    TGETS    3   3   9  ; "mkdir"
+0027    MOV      4   2
+0028    CALL     3   1   2
+0029    UGET     3   3      ; docsettings
+0030    MOV      4   3
+0031    TGETS    3   3  10  ; "getHistoryPath"
+0032    MOV      5   1
+0033    CALL     3   2   3
+0034    GGET     4  11      ; "io"
+0035    TGETS    4   4  12  ; "open"
+0036    MOV      5   3
+0037    KSTR     6  13      ; "w"
+0038    CALL     4   2   3
+0039    MOV      6   4
+0040    TGETS    5   4  14  ; "write"
+0041    KSTR     7  15      ; "{}"
+0042    CALL     5   1   3
+0043    MOV      6   4
+0044    TGETS    5   4  16  ; "close"
+0045    CALL     5   1   2
+0046    UGET     5   5      ; UIManager
+0047    TGETS    5   5  17  ; "show"
+0048    GGET     6  18      ; "assert"
+0049    TGETS    6   6  19  ; "is_not_nil"
+0050    UGET     7   4      ; lfs
+0051    TGETS    7   7  20  ; "attributes"
+0052    MOV      8   1
+0053    CALL     7   0   2
+0054    CALLM    6   1   0
+0055    GGET     6  18      ; "assert"
+0056    TGETS    6   6  19  ; "is_not_nil"
+0057    UGET     7   4      ; lfs
+0058    TGETS    7   7  20  ; "attributes"
+0059    MOV      8   2
+0060    CALL     7   0   2
+0061    CALLM    6   1   0
+0062    GGET     6  18      ; "assert"
+0063    TGETS    6   6  19  ; "is_not_nil"
+0064    UGET     7   4      ; lfs
+0065    TGETS    7   7  20  ; "attributes"
+0066    MOV      8   3
+0067    CALL     7   0   2
+0068    CALLM    6   1   0
+0069    UGET     6   5      ; UIManager
+0070    FNEW     7  21      ; filemanager_spec.lua:60
+0071    TSETS    7   6  17  ; "show"
+0072    MOV      7   0
+0073    TGETS    6   0  22  ; "deleteFile"
+0074    MOV      8   1
+0075    CALL     6   1   3
+0076    UGET     6   5      ; UIManager
+0077    TSETS    5   6  17  ; "show"
+0078    GGET     6  18      ; "assert"
+0079    TGETS    6   6  23  ; "is_nil"
+0080    UGET     7   4      ; lfs
+0081    TGETS    7   7  20  ; "attributes"
+0082    MOV      8   1
+0083    CALL     7   0   2
+0084    CALLM    6   1   0
+0085    GGET     6  18      ; "assert"
+0086    TGETS    6   6  19  ; "is_not_nil"
+0087    UGET     7   4      ; lfs
+0088    TGETS    7   7  20  ; "attributes"
+0089    MOV      8   2
+0090    CALL     7   0   2
+0091    CALLM    6   1   0
+0092    GGET     6  18      ; "assert"
+0093    TGETS    6   6  19  ; "is_not_nil"
+0094    UGET     7   4      ; lfs
+0095    TGETS    7   7  20  ; "attributes"
+0096    MOV      8   3
+0097    CALL     7   0   2
+0098    CALLM    6   1   0
+0099    GGET     6  24      ; "os"
+0100    TGETS    6   6  25  ; "remove"
+0101    MOV      7   2
+0102    CALL     6   1   2
+0103    GGET     6  24      ; "os"
+0104    TGETS    6   6  25  ; "remove"
+0105    MOV      7   3
+0106    CALL     6   1   2
+0107    UCLO     0 => 0108
+0108 => RET0     0   1
+
+-- BYTECODE -- filemanager_spec.lua:95-97
+0001    GGET     2   0      ; "assert"
+0002    TGETS    2   2   1  ; "Equals"
+0003    TGETS    3   1   2  ; "text"
+0004    KSTR     4   3      ; "Deleted "
+0005    UGET     5   0      ; tmp_fn
+0006    CAT      4   4   5
+0007    CALL     2   1   3
+0008    RET0     0   1
+
+-- BYTECODE -- filemanager_spec.lua:73-104
+0001    UGET     0   0      ; FileManager
+0002    MOV      1   0
+0003    TGETS    0   0   0  ; "new"
+0004    TDUP     2   2
+0005    UGET     3   1      ; Screen
+0006    MOV      4   3
+0007    TGETS    3   3   1  ; "getSize"
+0008    CALL     3   2   2
+0009    TSETS    3   2   3  ; "dimen"
+0010    CALL     0   2   3
+0011    KSTR     1   4      ; "../../test/2col.test.tmp.pdf"
+0012    UGET     2   2      ; util
+0013    TGETS    2   2   5  ; "copyFile"
+0014    KSTR     3   6      ; "../../test/2col.pdf"
+0015    MOV      4   1
+0016    CALL     2   1   3
+0017    UGET     2   3      ; docsettings
+0018    MOV      3   2
+0019    TGETS    2   2   7  ; "getSidecarDir"
+0020    UGET     4   2      ; util
+0021    TGETS    4   4   8  ; "realpath"
+0022    MOV      5   1
+0023    CALL     4   0   2
+0024    CALLM    2   2   1
+0025    UGET     3   4      ; lfs
+0026    TGETS    3   3   9  ; "mkdir"
+0027    MOV      4   2
+0028    CALL     3   1   2
+0029    UGET     3   3      ; docsettings
+0030    MOV      4   3
+0031    TGETS    3   3  10  ; "getHistoryPath"
+0032    MOV      5   1
+0033    CALL     3   2   3
+0034    GGET     4  11      ; "io"
+0035    TGETS    4   4  12  ; "open"
+0036    MOV      5   3
+0037    KSTR     6  13      ; "w"
+0038    CALL     4   2   3
+0039    MOV      6   4
+0040    TGETS    5   4  14  ; "write"
+0041    KSTR     7  15      ; "{}"
+0042    CALL     5   1   3
+0043    MOV      6   4
+0044    TGETS    5   4  16  ; "close"
+0045    CALL     5   1   2
+0046    UGET     5   5      ; UIManager
+0047    TGETS    5   5  17  ; "show"
+0048    GGET     6  18      ; "assert"
+0049    TGETS    6   6  19  ; "is_not_nil"
+0050    UGET     7   4      ; lfs
+0051    TGETS    7   7  20  ; "attributes"
+0052    MOV      8   1
+0053    CALL     7   0   2
+0054    CALLM    6   1   0
+0055    GGET     6  18      ; "assert"
+0056    TGETS    6   6  19  ; "is_not_nil"
+0057    UGET     7   4      ; lfs
+0058    TGETS    7   7  20  ; "attributes"
+0059    MOV      8   2
+0060    CALL     7   0   2
+0061    CALLM    6   1   0
+0062    GGET     6  18      ; "assert"
+0063    TGETS    6   6  19  ; "is_not_nil"
+0064    UGET     7   4      ; lfs
+0065    TGETS    7   7  20  ; "attributes"
+0066    MOV      8   3
+0067    CALL     7   0   2
+0068    CALLM    6   1   0
+0069    UGET     6   5      ; UIManager
+0070    FNEW     7  21      ; filemanager_spec.lua:95
+0071    TSETS    7   6  17  ; "show"
+0072    MOV      7   0
+0073    TGETS    6   0  22  ; "deleteFile"
+0074    MOV      8   1
+0075    CALL     6   1   3
+0076    UGET     6   5      ; UIManager
+0077    TSETS    5   6  17  ; "show"
+0078    GGET     6  18      ; "assert"
+0079    TGETS    6   6  23  ; "is_nil"
+0080    UGET     7   4      ; lfs
+0081    TGETS    7   7  20  ; "attributes"
+0082    MOV      8   1
+0083    CALL     7   0   2
+0084    CALLM    6   1   0
+0085    GGET     6  18      ; "assert"
+0086    TGETS    6   6  23  ; "is_nil"
+0087    UGET     7   4      ; lfs
+0088    TGETS    7   7  20  ; "attributes"
+0089    MOV      8   2
+0090    CALL     7   0   2
+0091    CALLM    6   1   0
+0092    GGET     6  18      ; "assert"
+0093    TGETS    6   6  23  ; "is_nil"
+0094    UGET     7   4      ; lfs
+0095    TGETS    7   7  20  ; "attributes"
+0096    MOV      8   3
+0097    CALL     7   0   2
+0098    CALLM    6   1   0
+0099    UCLO     0 => 0100
+0100 => RET0     0   1
+
+-- BYTECODE -- filemanager_spec.lua:1-105
+0001    KNIL     0   5
+0002    GGET     6   0      ; "setup"
+0003    FNEW     7   1      ; filemanager_spec.lua:3
+0004    CALL     6   1   2
+0005    GGET     6   2      ; "it"
+0006    KSTR     7   3      ; "should show file manager"
+0007    FNEW     8   4      ; filemanager_spec.lua:14
+0008    CALL     6   1   3
+0009    GGET     6   2      ; "it"
+0010    KSTR     7   5      ; "should show error on non-existent file"
+0011    FNEW     8   6      ; filemanager_spec.lua:24
+0012    CALL     6   1   3
+0013    GGET     6   2      ; "it"
+0014    KSTR     7   7      ; "should not delete settings for non-docum"~
+0015    FNEW     8   8      ; filemanager_spec.lua:38
+0016    CALL     6   1   3
+0017    GGET     6   2      ; "it"
+0018    KSTR     7   9      ; "should delete document with its settings"
+0019    FNEW     8  10      ; filemanager_spec.lua:73
+0020    CALL     6   1   3
+0021    UCLO     0 => 0022
+0022 => RET0     0   1
+
+-- BYTECODE -- filemanager_spec.lua:0-106
+0001    GGET     0   0      ; "describe"
+0002    KSTR     1   1      ; "FileManager module"
+0003    FNEW     2   2      ; filemanager_spec.lua:1
+0004    CALL     0   1   3
+0005    RET0     0   1
+
