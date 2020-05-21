@@ -116,3 +116,33 @@ Projects to get source code to analyze from:
 [lunamark](https://github.com/jgm/lunamark) by jgm: Lua lib for conversion between markup formats.
 
 [anim8](https://github.com/kikito/anim8) by kikito: Animation library for LÖVE game engine.
+
+Notes on runtime analysis...
+
+- Script to generate bytecode in [gen_bytecode_readouts.sh](bytecode/gen_bytecode_readouts.sh)
+
+- Bytecode for lua 5.1 and luajit from the following:
+
+	- [LuaRocks](https://github.com/luarocks/luarocks) by luarocks: package manager for Lua modules -- 20838 lines of lua.
+
+	- [LuaMidi](https://github.com/PedroAlvesV/LuaMidi) by PedroAlvesV: pure Lua lib for reading / writing MIDI files -- 645 lines of lua.
+
+	- [koreader](https://github.com/koreader/koreader) by koreader: ebook reader application -- 112196 lines of lua.
+
+	- [luasocket](https://github.com/diegonehab/luasocket) by diegonehab: network support for lua -- 1576 lines of lua.
+
+	- [moonscript](https://github.com/leafo/moonscript) by leafo: object oriented language that compiles into lua -- 6331 lines of lua.
+
+
+- Static control flow analysis for helloworld.lua, tictactoe.lua, memory-puzzle.lua.
+
+	- Review from [lecture dynamic compilation](https://sites.cs.ucsb.edu/~ckrintz/classes/s20/cs263/lectures/dyncomp.pdf)
+		- Non-extended basic block leaders
+			- First instruction in a method
+			- Instruction that follows branch or jump
+			- Instruction that is a target of a branch or jump
+			- Instruction that follows call / invoke
+		- Extended basic block leaders
+			- First instruction in a method
+			- Instruction that follows a branch or jump
+			- Instruction that is a target of a branch or jump

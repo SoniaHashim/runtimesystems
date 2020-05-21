@@ -62,7 +62,7 @@ Proceedings of ACM HOPL III (2007) 2-1–2-26
 - VM stack based until Lua 4.0, register based since 5.0 to minimize time in instruction dispatch based on result in [this paper](https://dl.acm.org/doi/10.1145/858570.858575) that register format reduces the number of executed instructions (according to authors first widespread use of register-based virtual machine)
 
 
-5. *Passing a Language Through the Eye of a Needle
+5. *Passing a Language Through the Eye of a Needle*
 Roberto Ierusalimschy, Luiz Henrique de Figueiredo, and Waldemar Celes. 2011. Passing a Language through the Eye of a Needle. Queue 9, 5 (May 2011), 20–29. DOI:https://doi.org/10.1145/1978862.1983083
 [ACM DL](https://dl.acm.org/doi/10.1145/1978862.1983083)
 
@@ -75,6 +75,14 @@ LuaJIT is a tracing just-in-time compiler that combines an interpreter and the t
  *LuaJIT 2.0 intellectual property disclosure and research opportunities* (Note: includes overview of design decisions.)
 by Mike Pall
 [lua-users](http://lua-users.org/lists/lua-l/2009-11/msg00089.html)
+
+*Tracing in LuaJIT*
+by Mike Pall
+[form-comment](http://lambda-the-ultimate.org/node/3851#comment-57679)
+
+- LuaJIT traces tail-, up-, down- recursion.
+- Cross-trace register coalescing.
+- Nested loops run native -- one root trace for innermost loop, side trace for each outer loop.
 
 ## Terra
 
