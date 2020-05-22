@@ -162,7 +162,8 @@ function get_int(input_table, byte_table_pointer, int_size, endianness)
 	return tonumber(return_int, 16), byte_table_pointer + int_size
 end
 
-function get_string(input_table, byte_table_pointer, string_size)
+function get_string(input_table, byte_table_pointer, size_t, endianness)
+	string_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_t, endianness)
 	return_string = ""
 	for i = 1, string_size - 1 do -- last character is a 0 (ignore)
 		return_string = return_string .. string.char(tonumber(input_table[byte_table_pointer+i-1], 16))
@@ -209,8 +210,7 @@ end
 function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
 	print("----------------------------------------------------------------------------------------")
 	print("CHUNK INFORMATION")
-	source_name_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_t, endianness)
-	source_name, byte_table_pointer = get_string(bytes, byte_table_pointer, source_name_size)
+	source_name, byte_table_pointer = get_string(bytes, byte_table_pointer, size_t, endianness)
 	start_line, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 	end_line, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 	num_upvalues, byte_table_pointer = get_byte(bytes, byte_table_pointer)
@@ -265,8 +265,7 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 				constant_number_bits = convert_to_bits(decimal_constant_number, 64)
 				constant_data = get_double_from_bits(constant_number_bits)
 			elseif constant_type == "LUA_TSTRING" then
-				constant_string_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_t, endianness)
-				constant_data, byte_table_pointer = get_string(bytes, byte_table_pointer, constant_string_size)
+				constant_data, byte_table_pointer = get_string(bytes, byte_table_pointer, size_t, endianness)
 			else
 				constant_data = "" -- LUA_TNIL has nothing
 			end
@@ -297,8 +296,7 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 			print("Size of locals list: " .. sizelocvars)
 			if sizelocvars > 0 then
 				for i = 1, sizelocvars do
-					varname_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_t, endianness)
-					varname, byte_table_pointer = get_string(bytes, byte_table_pointer, varname_size)
+					varname, byte_table_pointer = get_string(bytes, byte_table_pointer, size_t, endianness)
 					startpc, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 					endpc, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 				end
@@ -310,9 +308,7 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 			print("Size of upvalues list: " .. sizeupvalues)
 			if sizeupvalues > 0 then
 				for i = 1, sizeupvalues do
-					upvalue_size, byte_table_pointer = get_int(bytes, byte_table_pointer, size_t, endianness)
-					upvalue, byte_table_pointer = get_string(bytes, byte_table_pointer, 3)
-					print(upvalue)
+					upvalue, byte_table_pointer = get_string(bytes, byte_table_pointer, size_t, endianness)
 				end
 			end
 		end
