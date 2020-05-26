@@ -66,6 +66,8 @@ Proceedings of ACM HOPL III (2007) 2-1–2-26
 Roberto Ierusalimschy, Luiz Henrique de Figueiredo, and Waldemar Celes. 2011. Passing a Language through the Eye of a Needle. Queue 9, 5 (May 2011), 20–29. DOI:https://doi.org/10.1145/1978862.1983083
 [ACM DL](https://dl.acm.org/doi/10.1145/1978862.1983083)
 
+- 
+
 ## LuaJIT
 
 LuaJIT is a tracing just-in-time compiler that combines an interpreter and the tracing JIT compiler. LuaJIT also exposes an foreign function interface (ffi) to directly call C functions. Note: the wiki has good documentation of the internals including the [bytecode](http://wiki.luajit.org/Bytecode-2.0), [intermediate representation](http://wiki.luajit.org/SSA-IR-2.0) (e.g. IR uses aux snapshots), and [optimizations](http://wiki.luajit.org/Optimizations). Also this guide [numerical computing performance guide](http://wiki.luajit.org/Numerical-Computing-Performance-Guide) provides information on how to write performant Lua when using LuaJIT and might be a good starting point for thinking about how to contribute to the runtime (e.g. unbiased / unpredictable branches are very costly).
@@ -74,15 +76,9 @@ LuaJIT is a tracing just-in-time compiler that combines an interpreter and the t
 
  *LuaJIT 2.0 intellectual property disclosure and research opportunities* (Note: includes overview of design decisions.)
 by Mike Pall
-[lua-users](http://lua-users.org/lists/lua-l/2009-11/msg00089.html)
+[lua-users](http://lua-users.org/lists/lua-l/2009-11/msg00089.html)]
 
-*Tracing in LuaJIT*
-by Mike Pall
-[form-comment](http://lambda-the-ultimate.org/node/3851#comment-57679)
-
-- LuaJIT traces tail-, up-, down- recursion.
-- Cross-trace register coalescing.
-- Nested loops run native -- one root trace for innermost loop, side trace for each outer loop.
+See [runtime_luajit.md](../weeks4&5/runtime_luajit.md) for notes.
 
 ## Terra
 
@@ -105,6 +101,8 @@ a novel low-level language, Terra. Users can implement optimizations in the high
 but, to ensure performance, Terra code can execute independently
 of Lua’s runtime. We evaluate our design by reimplementing existing multi-language systems entirely in Terra. Our Terra-based autotuner for BLAS routines performs within 20% of ATLAS, and our
 DSL for stencil computations runs 2.3x faster than hand-written C.
+
+-
 
 2. *The Design of Terra: harnessing the best features of high-level and low-level languages*
 by Z. DeVito, P. Hanrahan

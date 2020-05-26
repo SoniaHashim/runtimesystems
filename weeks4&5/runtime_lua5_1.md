@@ -22,7 +22,7 @@
 
 ```
 
-### Opcodes
+## Opcodes
 - The operands of an opcode can be one of the following:  
 	- R(x) = register
 	- Kst(x) = constant (in the constant table)
@@ -142,6 +142,22 @@ OP_VARARG/*     A B     R(A), R(A+1), ..., R(A+B-1) = vararg            */
 - Numeric loops require 4 registers on the stack. R(A) is the internal loop index, R(A+1) is the limit, R(A+2) is stepping val, R(A+3) is loop variable. Jump made back to start of loop body if the limit has not been reached (if empty, sBx value = -1). Note sBx (jump) is negative.
 - Forprep tests loop condition and conditional testing during loop, jumps unconditionally to forloop
 
+## Garbage Collection
+- Until 5.0 mark & sweep collector -- pauses in execution very long
+- Interleaves execution of collector with main program.
+- Tricolor collector
+	- Non-visited objects (white), visited but not traversed (gray), traversed objects (black)
+	- objects in root set gray or black
+	- gray objects define boundary white and black objects
+	- collection traverses gray objects and turns them black
+	- collection ends when there are no more gray objects
+- Mark phase ends with atomic step (traversing all gray objects again), clears weak tables
+- Alternates with the mutator with pace controlled by how much memory has to grow before starting new cycle and multiplier (translation of bytes to GC work)
+- Generational collector
+	- Minor collection, collector traverses and sweeps only young objects (since most objects die young)
+	- Touched object if black barrier detects old object pointing to a new one (goes back to normal after 2 cycles unless touched again)
+
+
 ### Sources
 
 [1] [Source (5.1) -- lopcodes.h, lopcodes.c](https://www.lua.org/source/5.1/)
@@ -149,3 +165,5 @@ OP_VARARG/*     A B     R(A), R(A+1), ..., R(A+B-1) = vararg            */
 [2] [A No-Frills Introduction to Lua 5.1 VM Instructions](http://luaforge.net/docman/83/98/ANoFrillsIntroToLua51VMInstructions.pdf)
 
 [3] [The Implementation of Lua 5.0](https://www.lua.org/doc/jucs05.pdf)
+
+[4] [Garbage Collection in Lua](https://www.lua.org/wshop18/Ierusalimschy.pdf)
