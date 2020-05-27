@@ -66,7 +66,25 @@ Proceedings of ACM HOPL III (2007) 2-1–2-26
 Roberto Ierusalimschy, Luiz Henrique de Figueiredo, and Waldemar Celes. 2011. Passing a Language through the Eye of a Needle. Queue 9, 5 (May 2011), 20–29. DOI:https://doi.org/10.1145/1978862.1983083
 [ACM DL](https://dl.acm.org/doi/10.1145/1978862.1983083)
 
-- 
+- Integration with system language = extending scripting language with and embedding scripting language in host
+- Foreign Function Interfaces (FFI) is sufficient for extending and more challenging for embedding
+- The article describes how embeddability shaped lua
+- C is commonly the host languages, APIs for most scripting language include functions / types / constants and this API dictates what is accessible within the scripting language
+- Scripts run by host calling `eval` function to execute but can be inefficient (parsing & interpreting chunks at interaction) and cumbersome (string manipulation)
+- Other considerations include calling functions within scripts, error-handling, data transfer
+- Reflection via writing library in host to export API back to scripting language (e.g. Lua function `type` returns type of a value implemented in C)
+- Other forms of exposed control include iterators, error handling (based on `longjump` in C), coroutines
+- 2 modes for calling Lua function: protected (`lua_pcall`) handles error through recovery point with `setjmp`, unprotected does not and longjumps to protected call
+- Coroutines are symmetric (goto like transfer) or asymmetric (`resume` transfers control and `yield` stops and and returns to the other coroutine) but C doesn't support manipulating call stack to make a transfer for symmetric coroutines (because of this limitation a C function cannot occur between a `resume` and `yield`)
+- Necessary to support efficient data transfer
+- Extending Lua with host functions through `lua_pushcfunction` takes pointer to C function that pushes Lua function on stack which in turn calls C function
+- Tables only data-structure, created and returned via env variables available to a process via `os_environ` and the process applies to any entity represented by a table (e.g. modules, objects)
+- Lua has a `load` function instead of an `eval` function that creates a Lua function to execute a given piece of code (maps text to value instead of an action, no execution or side effects). All Lua code contained within a function
+- A Lua table specifies an environment (global vars / unbound names are fields in table tied to the enclosing function)
+- On account of lexical scoping, host code cannot access local vars (this also means all local vars can be placed in registers in the register-based VM)
+- The API shaped the design of the language and vice versa
+
+
 
 ## LuaJIT
 
@@ -86,6 +104,8 @@ Terra is designed as a low level companion language to Lua and can be meta-progr
 
 [Project Page](http://terralang.org/)
 
+-
+
 1. *Terra: A Multi-Stage Language for High-Performance Computing*
 by Z. DeVito, J. Hegarty, A. Aiken, P. Hanrahan, J. Vitek
 PDLI '13
@@ -102,7 +122,23 @@ but, to ensure performance, Terra code can execute independently
 of Lua’s runtime. We evaluate our design by reimplementing existing multi-language systems entirely in Terra. Our Terra-based autotuner for BLAS routines performs within 20% of ATLAS, and our
 DSL for stencil computations runs 2.3x faster than hand-written C.
 
--
+- Motivation: "domain-specific languages (DSLs) can achieve the same goal for a range of similar applications through domain-specific optimizations"
+- DSL / auto-tuner includes (1) optimizer for domain specific transforms, (2) compiler for performant code, (3) runtime. They should be able to access each other
+- "all parts of the toolchain, compiler, generated code, and runtimes, should inter-operate amongst themselves" which requires working at a high and low level
+- Paradigm of multi-stage programming (Lua & Terra). Terra statically-typed with manual memory management. Lua can be used to generate / execute Terra code
+- Terra executes in separate runtime even though Lua and Terra share the same lexical environment and can run on a different thread. Terra also exposes hardware features
+- Lua's stack based API promotes inter-operability
+- Terra has type reflection (so it's simple but components e.g. class systems can be created)
+- Terra functions lexically-scoped, statically-typed, annotations on parameters & return types
+- Terra functions / types / vars / expressions are first class Lua values, values are Terra types (base types / arrays / pointers / structs). Structs may include methods as Terra functions stored in Lua table for each Terra type
+- A Lua function can create a Terra type at runtime (like C++ templates)
+- If a Terra function is called from Lua, it's JIT compiled or it can be linked to a C executable if saved as a .o file
+- Brackets [] = the escape operator so a value in Lua can be spliced into Terra
+- quote creates block of Terra that can be spliced into a different Terra expression
+- Design goals: easy prototyping domain-specific transforms, dynamically compile transform results into performant code, support with runtime libraries
+- LuaJIT's FFI used to translate values on function call boundaries & during specialization (Lua tables to structs, functions to Terra functions, types converted on entry / exit)
+- Terra expressions written as extension of Lua by adding functions to load and preprocess Lua-Terra programs building an AST for each Terra function that's then specialized, constructor includes parsed args and Lua closure for lexical environment (built on LuaJIT, LLVM used to compile Terra since IR is JIT-compiled to machine code, Clang for backwards compatibility with C) 
+
 
 2. *The Design of Terra: harnessing the best features of high-level and low-level languages*
 by Z. DeVito, P. Hanrahan
