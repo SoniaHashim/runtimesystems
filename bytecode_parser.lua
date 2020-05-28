@@ -25,16 +25,16 @@ opcode_names =
     "CLOSURE", "VARARG"}
 
 opcode_types =
-	{"ABC",  "ABx", "ABC",  "ABC",
-    "ABC",  "ABx", "ABC",  "ABx",
+	{"AB",  "ABx", "ABC",  "AB",
+    "AB",  "ABx", "ABC",  "ABx",
+    "AB",  "ABC", "ABC",  "ABC",
     "ABC",  "ABC", "ABC",  "ABC",
-    "ABC",  "ABC", "ABC",  "ABC",
-    "ABC",  "ABC", "ABC",  "ABC",
-    "ABC",  "ABC", "AsBx", "ABC",
-    "ABC",  "ABC", "ABC",  "ABC",
-    "ABC",  "ABC", "ABC",  "AsBx",
-    "AsBx", "ABC", "ABC", "ABC",
-    "ABx",  "ABC"}
+    "ABC",  "ABC", "AB",  "AB",
+    "AB",  "ABC", "sBx", "ABC",
+    "ABC",  "ABC", "AC",  "ABC",
+    "ABC",  "ABC", "AB",  "AsBx",
+    "AsBx", "AC", "ABC", "A",
+    "ABx",  "AB"}
 
 opcode_descriptions =
 	{"Copy a value between registers.",
@@ -233,18 +233,35 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 			-- opcodes are the least significant six bits
 			decimal_opcode = tonumber(binary_instruction:sub(27, 32), 2)
 			instruction_type = opcode_types[decimal_opcode + 1]
-			A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
 			if instruction_type == "ABC" then
-				C_register_index = tonumber(binary_instruction:sub(10, 18), 2)
+				A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
 				B_register_index = tonumber(binary_instruction:sub(1, 9), 2)
+				C_register_index = tonumber(binary_instruction:sub(10, 18), 2)
+			elseif  instruction_type == "AB" then
+				A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
+				B_register_index = tonumber(binary_instruction:sub(1, 9), 2)
+			elseif instruction_type == "AC" then
+				A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
+				C_register_index = tonumber(binary_instruction:sub(10, 18), 2)
 			elseif instruction_type == "ABx" then
+				A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
 				B_register_index = tonumber(binary_instruction:sub(1, 18), 2)
-			else
+			elseif instruction_type == "AsBx" then
+				A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
 				B_register_index = tonumber(binary_instruction:sub(1, 18), 2) - 131071
+			elseif instruction_type == "sBx" then
+				B_register_index = tonumber(binary_instruction:sub(1, 18), 2) - 131071
+			else
+				A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
 			end
-			instruction_operands = A_register_index .. " " .. B_register_index
-			if instruction_type == "ABC" then
-				instruction_operands = instruction_operands .. " " .. C_register_index
+			if (instruction_type == "AB") or (instruction_type == "ABx") or (instruction_type == "AsBx") then
+				instruction_operands = A_register_index .. " " .. B_register_index
+			elseif instruction_type == "ABC" then
+				instruction_operands = A_register_index .. " " .. B_register_index .. " " .. C_register_index
+			elseif instruction_type == "AC" then
+				instruction_operands = A_register_index .. " " .. C_register_index
+			else
+				instruction_operands = A_register_index
 			end
 			-- +1 for table lookup because instruction numbers start at zero
 			print(opcode_names[decimal_opcode + 1] .. " " .. instruction_operands .. " (" .. instruction_type .. "): \t" .. opcode_descriptions[decimal_opcode + 1]) 
