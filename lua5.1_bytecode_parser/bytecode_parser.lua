@@ -199,7 +199,6 @@ end
 
 function decode_header(bytes_table) -- nothing here is affected by endianness
 	print("HEADER INFORMATION")
-	print("The Lua version number is " .. bytes_table[5]:sub(1, 1) .. "." .. bytes_table[5]:sub(2, 2) .. ".")
 	-- big-endian: most significant bytes first
 	-- little-endian: most significant bytes last
 	endianness = tonumber(bytes_table[7], 16)
@@ -355,7 +354,12 @@ function read_bytecode(file)
 	if bytecode_content:sub(1, 4) ~= "\x1bLua" then
 		-- \xNN escape character: NN is a two-digit hex number
 		print("The file " .. file .. " is not a Lua bytecode file.")
+	elseif bytecode_content:sub(5, 5) ~= "\x51" then
+		print("This bytecode parser requires version 5.1 of the lua bytecode.")
+		print("You are currently using version " .. string.format("%02X", bytecode_content:sub(5, 5):byte(1)):sub(1, 1) 
+			.. "." .. string.format("%02X", bytecode_content:sub(5, 5):byte(1)):sub(2, 2) .. ". Aborting.")
 	else
+		print_initial_information()
 		bytes = get_bytecode_as_bytes(bytecode_content)
 		endianness, size_int, size_t, size_instruction, size_lua_number = decode_header(bytes)
 		decode_function(13, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)	
@@ -365,7 +369,6 @@ end
 if #arg ~= 1 then
 	print("Usage: " .. arg[0] .. " <bytecode_file.luac>")
 elseif file_exists(arg[1]) then
-	print_initial_information()
 	read_bytecode(arg[1])
 else
 	print("File " .. arg[1] .. " does not exist.")
