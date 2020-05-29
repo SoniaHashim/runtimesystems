@@ -306,7 +306,9 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 		num_prototypes, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 		print("Number of function prototypes: " .. num_prototypes)
 		if num_prototypes > 0 then
-			byte_table_pointer = decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
+			for i = 1, num_prototypes do
+				byte_table_pointer = decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
+			end
 		end
 		print("--------------------------------------------------")
 		-- moving on to the (optional) source line position list
