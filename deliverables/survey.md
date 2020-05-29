@@ -104,7 +104,6 @@ Terra is designed as a low level companion language to Lua and can be meta-progr
 
 [Project Page](http://terralang.org/)
 
--
 
 1. *Terra: A Multi-Stage Language for High-Performance Computing*
 by Z. DeVito, J. Hegarty, A. Aiken, P. Hanrahan, J. Vitek
@@ -137,7 +136,7 @@ DSL for stencil computations runs 2.3x faster than hand-written C.
 - quote creates block of Terra that can be spliced into a different Terra expression
 - Design goals: easy prototyping domain-specific transforms, dynamically compile transform results into performant code, support with runtime libraries
 - LuaJIT's FFI used to translate values on function call boundaries & during specialization (Lua tables to structs, functions to Terra functions, types converted on entry / exit)
-- Terra expressions written as extension of Lua by adding functions to load and preprocess Lua-Terra programs building an AST for each Terra function that's then specialized, constructor includes parsed args and Lua closure for lexical environment (built on LuaJIT, LLVM used to compile Terra since IR is JIT-compiled to machine code, Clang for backwards compatibility with C) 
+- Terra expressions written as extension of Lua by adding functions to load and preprocess Lua-Terra programs building an AST for each Terra function that's then specialized, constructor includes parsed args and Lua closure for lexical environment (built on LuaJIT, LLVM used to compile Terra since IR is JIT-compiled to machine code, Clang for backwards compatibility with C)
 
 
 2. *The Design of Terra: harnessing the best features of high-level and low-level languages*
@@ -170,7 +169,7 @@ runtimes, glue-free interoperation, and meta-programming
 - Nested type and function definitions provide functionality similar to C++ templates.
 - Design decisions guided by minimizing complexity while enabling multi-language programming and simplicity since that is one of Lua's primary design goals.
 - Each language has its own runtime (LuaJIT for Lua). Terra compiled to machine code. Optimized with LLVM. Memory managed in Terra with `malloc` and `free`.
-- Systems that augment high-level languages can be harder to debug, might result in a missed annotation, and improve performance rather than providing "near optimal performance that is possible when programming at a low level."
+- "Systems that augment high-level languages can be harder to debug, might result in a missed annotation, and improve performance rather than providing "near optimal performance that is possible when programming at a low level."
 - Terra is only 15k LOC (Lua is 20k)
 - Both languages use the same lexical environment ("one way to think of this design is that the Terra compiler is part of the Lua runtime"). E.g. mechanisms like namespaces are supported by using Lua tables to store Terra functions.
 - Meta-programming enables transformations like auto-tuned libraries or writing domain-specific languages in Lua that can be compiled to Terra

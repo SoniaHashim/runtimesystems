@@ -54,7 +54,7 @@ UNM		dst	var	Set A to -D (unary minus)
 LEN		dst	var	Set A to #D (object length)
 
 -- Binary Opcodes
-OP		A		B 		C		Description
+OP	A		B 		C		Description
 ADDVN	dst		var		num		A = B + C
 SUBVN	dst		var		num		A = B - C
 MULVN	dst		var		num		A = B * C
@@ -74,7 +74,7 @@ POW		dst		var		var		A = B ^ C
 CAT		dst		rbase	rbase	A = B .. ~ .. C
 
 -- Constant Opcodes
-OP		A		D		Description
+OP	A		D		Description
 KSTR	dst		str		Set A to string constant D
 KCDATA	dst		cdata	Set A to cdata constant D
 KSHORT	dst		lits	Set A to 16 bit signed integer D
@@ -83,7 +83,7 @@ KPRI	dst		pri		Set A to primitive D
 KNIL	base	base	Set slots A to D to nil
 
 -- Upvalue and Function Opcodes
-OP		A		D		Description
+OP	A		D		Description
 UGET	dst		uv		Set A to upvalue D
 USETV	uv		var		Set upvalue A to D
 USETS	uv		str		Set upvalue A to string constant D
@@ -93,7 +93,7 @@ UCLO	rbase	jump	Close upvalues for slots ≥ rbase and jump to target D
 FNEW	dst		func	Create new closure from prototype D and store it in A
 
 -- Table ops
-OP		A	B 	C	Description
+OP	A	B 	C	Description
 TNEW	dst		lit	Set A to new table with size D (see below)
 TDUP	dst		tab	Set A to duplicated template table D
 GGET	dst		str	A = _G[D]
@@ -107,7 +107,7 @@ TSETB	var	var	lit	B[C] = A
 TSETM	base	num*	(A-1)[D], (A-1)[D+1], ... = A, A+1, ...
 
 -- Calls and Vararg Handling
-OP		A		B	C/D	Description
+OP	A		B	C/D	Description
 CALLM	base	lit	lit	Call: A, ..., A+B-2 = A(A+1, ..., A+C+MULTRES)
 CALL	base	lit	lit	Call: A, ..., A+B-2 = A(A+1, ..., A+C-1)
 CALLMT	base		lit	Tailcall: return A(A+1, ..., A+D+MULTRES)
@@ -118,14 +118,14 @@ VARG	base	lit	lit	Vararg: A, ..., A+B-2 = ...
 ISNEXT	base		jump	Verify ITERN specialization and jump
 
 -- Returns
-OP		A		D	Description
+OP	A		D	Description
 RETM	base	lit	return A, ..., A+D+MULTRES-1
 RET		rbase	lit	return A, ..., A+D-2
 RET0	rbase	lit	return
 RET1	rbase	lit	return A
 
 -- Loops and branches
-OP		A		D		Description
+OP	A		D		Description
 FORI	base	jump	Numeric 'for' loop init
 JFORI	base	jump	Numeric 'for' loop init, JIT-compiled
 FORL	base	jump	Numeric 'for' loop
@@ -140,7 +140,7 @@ JLOOP	rbase	lit		Generic loop, JIT-compiled
 JMP		rbase	jump	Jump
 
 -- Function headers
-OP		A		D	Description
+OP	A		D	Description
 FUNCF	rbase		Fixed-arg Lua function
 IFUNCF	rbase		Fixed-arg Lua function, force interpreter
 JFUNCF	rbase	lit	Fixed-arg Lua function, JIT-compiled
@@ -213,7 +213,7 @@ FUNC*	rbase		Pseudo-header for fast functions
 - Generational GC used too
 - Block allocator switches between modes depending on fragmentation and feedback from GC phases (bump, segregated-fit allocator if fragmentation too high)
 - Marking is performed iteratively, gray stack of each arena processed separately
-- Sweep performed separately for each arena, accesses block and mark bitmaps for each 
+- Sweep performed separately for each arena, accesses block and mark bitmaps for each
 
 
 ## Tracing in LuaJIT
@@ -246,3 +246,5 @@ FUNC*	rbase		Pseudo-header for fast functions
 [6] [LuaJIT Optimizations](http://wiki.luajit.org/Optimizations)
 
 [7] [LuaJIT Numerical Computing Performance Guide](http://wiki.luajit.org/Numerical-Computing-Performance-Guide)
+
+[8] [LuaJIT Garbage Collection](http://wiki.luajit.org/New-Garbage-Collector)
