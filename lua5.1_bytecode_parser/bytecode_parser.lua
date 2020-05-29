@@ -59,14 +59,14 @@ opcode_descriptions =
     "Apply a boolean NOT to the value in register R(B).\n\t\t\tLoad the result into register R(A).",
     "Calculate the length of the object in register R(B).\n\t\t\tLoad the result into register R(A).",  
     "Concatenate the strings in the range of registers R(B) to R(C).\n\t\t\tLoad the result into register R(A).", 
-    "\tPerform an unconditional jump (increment the program counter by sBx).", 
-    "If the boolean result of RK(B) == RK(C) is not equal to A, then skip the next instruction.",
-    "If the boolean result of RK(B) < RK(C) is not equal to A, then skip the next instruction.",  
-    "If the boolean result of RK(B) <= RK(C) is not equal to A, then skip the next instruction.",  
+    "\tPerform an unconditional jump.\n\t\t\tIncrement the program counter by sBx.", 
+    "Test if the boolean result of RK(B) == RK(C) is equal to A.\n\t\t\tIf not, then skip the next instruction.",
+    "Test if the boolean result of RK(B) < RK(C) is equal to A.\n\t\t\tIf not, then skip the next instruction.",  
+    "Test if the boolean result of RK(B) <= RK(C) is equal to A.\n\t\t\tIf not, then skip the next instruction.",  
     "Coerce register R(B) into a boolean and compare to boolean C.\n\t\t\tIf they match, then skip the next instruction.\n\t\t\tIf not, then load R(B) into R(A).", 
     "Coerce register R(A) into a boolean and compare to boolean C.\n\t\t\tIf they match, then skip the next instruction.",
     "Perform a function call.\n\t\t\tRegister R(A) holds the reference to the function object.\n\t\t\tThere are B-1 parameters and C-1 return values.", 
-    "Perform a tail call (single function call in return statement). Register R(A) holds the reference to the function object with B-1 parameters. C is always zero.",
+    "Perform a tail call (single function call in return statement).\n\t\t\tRegister R(A) holds the reference to the function object.\n\t\t\tThe function takes B-1 parameters.\n\t\t\tC is always zero.",
     "Return to the calling function.\n\t\t\tLoad B-1 return values into consecutive registers from R(A) onwards.",  
     "Iterate a numeric for loop.\n\t\t\tFor each iteration, the program counter is incremented by sBx.",
     "Initialize a numeric for loop.\n\t\t\tRegister R(A) holds the initial variable.\n\t\t\tR(A+1) holds the limit.\n\t\t\tR(A+2) holds the stepping value.\n\t\t\tR(A+3) holds the external index.",
@@ -183,7 +183,7 @@ function get_bytecode_as_bytes(input)
 end
 
 function print_initial_information()
-	print("NOTATION USED")
+	print("EXPLANATION OF NOTATION USED")
 	print("R(A):\t\t\tRegister A (specified in instruction field A).")
 	print("R(B):\t\t\tRegister B (specified in instruction field B).")
 	print("R(C):\t\t\tRegister C (specified in instruction field C).")
@@ -211,12 +211,12 @@ function decode_header(bytes_table) -- nothing here is affected by endianness
 	size_instruction = tonumber(bytes_table[10], 16)
 	size_lua_number = tonumber(bytes_table[11], 16)
 	integral_flag = tonumber(bytes_table[12], 16)
-	print("Endianness: " .. endianness_string .. " endian.")
-	print("int: " .. size_int .. " bytes.")
-	print("size_t: " .. size_t .. " bytes.")
-	print("Instruction: " .. size_instruction .. " bytes.")
-	print("lua_Number: " .. size_lua_number .. " bytes.")
-	print("Integral flag: " .. integral_flag .. ".")
+	print("Endianness:\t\t" .. endianness_string .. " endian")
+	print("int:\t\t\t" .. size_int .. " bytes")
+	print("size_t:\t\t\t" .. size_t .. " bytes")
+	print("Instruction:\t\t" .. size_instruction .. " bytes")
+	print("lua_Number:\t\t" .. size_lua_number .. " bytes")
+	print("Integral flag:\t\t" .. integral_flag)
 	return endianness, size_int, size_t, size_instruction, size_lua_number
 end
 
@@ -231,13 +231,13 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 	is_vararg_flag, byte_table_pointer = get_byte(bytes, byte_table_pointer)
 	max_stack_size, byte_table_pointer = get_byte(bytes, byte_table_pointer)
 	num_instructions, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
-	print("Line defined: " .. start_line .. ".")
-	print("Last line defined: " .. end_line .. ".")
-	print("Number of upvalues: " .. num_upvalues .. ".")
-	print("Number of parameters: " .. num_parameters .. ".")
-	print("is_vararg_flag: " .. is_vararg_flag .. ".")
-	print("Maximum stack size: " .. max_stack_size .. ".")
-	print("Number of instructions: " .. num_instructions .. ".")
+	print("Line defined:\t\t" .. start_line)
+	print("Last line defined:\t" .. end_line)
+	print("Number of upvalues:\t" .. num_upvalues)
+	print("Number of parameters:\t" .. num_parameters)
+	print("is_vararg_flag:\t\t" .. is_vararg_flag)
+	print("Maximum stack size:\t" .. max_stack_size)
+	print("Number of instructions:\t" .. num_instructions)
 	print("--------------------------------------------------")
 	if num_instructions > 0 then
 		for i = 1, num_instructions do
@@ -282,7 +282,7 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 		print("--------------------------------------------------")
 		-- moving on to the constants
 		num_constants, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
-		print("Number of constants: " .. num_constants)
+		print("Number of constants:\t" .. num_constants)
 		for i = 1, num_constants do
 			constant_type_index, byte_table_pointer = get_byte(bytes, byte_table_pointer)
 			-- +1 for table lookup because constant numbers start at zero
@@ -299,7 +299,7 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 			else
 				constant_data = "" -- LUA_TNIL has nothing
 			end
-			print(constant_type .. " " .. constant_data)
+			print("Type " .. constant_type .. ":\t" .. constant_data)
 		end
 		print("--------------------------------------------------")
 		-- moving on to the function prototypes
