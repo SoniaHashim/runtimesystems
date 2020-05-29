@@ -1,5 +1,5 @@
 -- A bytecode parser for Lua 5.1
--- Usage: lua bytecode.luac
+-- Usage: lua $1 bytecode.luac
 
 --[[ 
 TODO:
@@ -25,57 +25,56 @@ opcode_names =
     "CLOSURE", "VARARG"}
 
 opcode_types =
-	{"ABC",  "ABx", "ABC",  "ABC",
-    "ABC",  "ABx", "ABC",  "ABx",
+	{"AB",  "ABx", "ABC",  "AB",
+    "AB",  "ABx", "ABC",  "ABx",
+    "AB",  "ABC", "ABC",  "ABC",
     "ABC",  "ABC", "ABC",  "ABC",
-    "ABC",  "ABC", "ABC",  "ABC",
-    "ABC",  "ABC", "ABC",  "ABC",
-    "ABC",  "ABC", "AsBx", "ABC",
-    "ABC",  "ABC", "ABC",  "ABC",
-    "ABC",  "ABC", "ABC",  "AsBx",
-    "AsBx", "ABC", "ABC", "ABC",
-    "ABx",  "ABC"}
+    "ABC",  "ABC", "AB",  "AB",
+    "AB",  "ABC", "sBx", "ABC",
+    "ABC",  "ABC", "AC",  "ABC",
+    "ABC",  "ABC", "AB",  "AsBx",
+    "AsBx", "AC", "ABC", "A",
+    "ABx",  "AB"}
 
 opcode_descriptions =
-	{"Copy a value between registers.",
-	"Load a constant into a register.", 
-	"Load a boolean into a register.",
-	"Load nil values into a range of registers.",
-    "Read an upvalue into a register.",  
-    "Read a global variable into a register.", 
-    "Read a table element into a register.",  
-    "Write a register value into a global variable.",
-    "Write a register value into an upvalue.",
-    "Write a register value into a table element.", 
-    "Create a new table.",  
-    "Prepare an object method for calling.",
-    "Perform an addition.",  
-    "Perform a subtraction.", 
-    "Perform a multiplication.",
-    "Perform a division.",
-    "Perform a remainder operation.",
-    "Perform an exponentiation.", 
-    "Perform a unary minus operation.",  
-    "Perform a logical NOT operation.",
-    "Calculate the length.",  
-    "Concatenate a range of registers.", 
-    "Unconditional jump.", 
-    "Equality test.",
-    "Less than test.",  
-    "Less than or equal to test.", 
-    "Boolean test with conditional jump.",  
-    "Boolean test with conditional jump and assignment.",
-    "Call a closure.",  
-    "Perform a tail call.", 
-    "Return from a function call.",  
-    "Iterate a numeric for loop.",
-    "Initialize a numeric for loop.",
-    "Iterate a generic for loop", 
-    "Set a list of array elements for a table.", 
-    "Close a range of locals being used as upvalues.", 
-    "Create a closure of a function prototype.",
-    "Assign vararg function arguments to registers.",
-	"ABC"}
+	{"\tCopy the value of register R(B) into register R(A).",
+	"Load the constant number Kst(Bx) into register R(A).", 
+	"Load the boolean value B into register R(A).\n\t\t\tIf C is nonzero, then skip the next instruction.",
+	"Load nil values into the range of registers R(A) to R(B).",
+    "Read the upvalue Up[B] into register R(A).",  
+    "Read the value of the global variable Gbl[Kst(Bx)] into register R(A).", 
+    "Read the table element R(B)[RK(C)] into register R(A).",  
+    "Write the register value R(A) into the global variable Gbl[Kst(Bx)].",
+    "Write the register value R(A) into the upvalue Up[B].",
+    "Write the register value R(C) into the table element R(A)[RK(B)].", 
+    "Create a new table at register R(A).\n\t\t\tB encodes the size of the array part and C the size of the hash part.",  
+    "Load a function reference from the table element R(B)[RK(C)] into register R(A).\n\t\t\tLoad the table reference R(B) into register R(A+1).",
+    "Load the sum of RK(B) and RK(C) into register R(A).",  
+    "Load the difference of RK(B) and RK(C) into register R(A).", 
+    "Load the product of RK(B) and RK(C) into register R(A).",
+    "Load the quotient of RK(B) and RK(C) into register R(A).",
+    "Load the result of RK(B) modulo RK(C) into register R(A).",
+    "Load the result of RK(B) to the power RK(C) into register R(A).", 
+    "Negate the value in register R(B) and load into register R(A).",  
+    "Apply a boolean NOT to the value in register R(B).\n\t\t\tLoad the result into register R(A).",
+    "Calculate the length of the object in register R(B).\n\t\t\tLoad the result into register R(A).",  
+    "Concatenate the strings in the range of registers R(B) to R(C).\n\t\t\tLoad the result into register R(A).", 
+    "\tPerform an unconditional jump.\n\t\t\tIncrement the program counter by sBx.", 
+    "Test if the boolean result of RK(B) == RK(C) is equal to A.\n\t\t\tIf not, then skip the next instruction.",
+    "Test if the boolean result of RK(B) < RK(C) is equal to A.\n\t\t\tIf not, then skip the next instruction.",  
+    "Test if the boolean result of RK(B) <= RK(C) is equal to A.\n\t\t\tIf not, then skip the next instruction.",  
+    "Coerce register R(B) into a boolean and compare to boolean C.\n\t\t\tIf they match, then skip the next instruction.\n\t\t\tIf not, then load R(B) into R(A).", 
+    "Coerce register R(A) into a boolean and compare to boolean C.\n\t\t\tIf they match, then skip the next instruction.",
+    "Perform a function call.\n\t\t\tRegister R(A) holds the reference to the function object.\n\t\t\tThere are B-1 parameters and C-1 return values.", 
+    "Perform a tail call (single function call in return statement).\n\t\t\tRegister R(A) holds the reference to the function object.\n\t\t\tThe function takes B-1 parameters.\n\t\t\tC is always zero.",
+    "Return to the calling function.\n\t\t\tLoad B-1 return values into consecutive registers from R(A) onwards.",  
+    "Iterate a numeric for loop.\n\t\t\tFor each iteration, the program counter is incremented by sBx.",
+    "Initialize a numeric for loop.\n\t\t\tRegister R(A) holds the initial variable.\n\t\t\tR(A+1) holds the limit.\n\t\t\tR(A+2) holds the stepping value.\n\t\t\tR(A+3) holds the external index.",
+    "Iterate a generic for loop.\n\t\t\tR(A) holds the iterator function (called once per loop).\n\t\t\tR(A+1) holds the state.\n\t\t\tR(A+2) holds the enumeration index.", 
+    "Set the values for B array elements in a table referenced by R(A) starting at index C.", 
+    "Close all local variables used as upvalues in the stack from register R(A) onwards.", 
+    "Create a closure (instance) of a function prototype indexed by Bx.\n\t\t\tLoad the reference into register R(A).",
+    "Load B-1 vararg function arguments into consecutive registers from R(A) onwards."}
 
 constant_types = {"LUA_TNIL", "LUA_TBOOLEAN", "", "LUA_TNUMBER", "LUA_TSTRING"}
 -- add a blank string that should never be reached (idiotic naming convention)
@@ -183,9 +182,23 @@ function get_bytecode_as_bytes(input)
 	return bytes
 end
 
+function print_initial_information()
+	print("EXPLANATION OF NOTATION USED")
+	print("R(A):\t\t\tRegister A (specified in instruction field A).")
+	print("R(B):\t\t\tRegister B (specified in instruction field B).")
+	print("R(C):\t\t\tRegister C (specified in instruction field C).")
+	print("RK(B):\t\t\tRegister B or an index into the list of constants.")
+	print("RK(C):\t\t\tRegister C or an index into the list of constants.")
+	print("sBx:\t\t\tSigned number (specified in instruction field sBx).")
+	print("Bx:\t\t\tUnsigned number (specified in instruction field Bx).")
+	print("Kst(n):\t\t\tElement n in the list of constants.")
+	print("Gbl[n]:\t\t\tGlobal variable with symbolic index n.")
+	print("Up[n]:\t\t\tName of the upvalue with index n.")
+	print("----------------------------------------------------------------------------------------")
+end
+
 function decode_header(bytes_table) -- nothing here is affected by endianness
 	print("HEADER INFORMATION")
-	print("The Lua version number is " .. bytes_table[5]:sub(1, 1) .. "." .. bytes_table[5]:sub(2, 2) .. ".")
 	-- big-endian: most significant bytes first
 	-- little-endian: most significant bytes last
 	endianness = tonumber(bytes_table[7], 16)
@@ -198,12 +211,12 @@ function decode_header(bytes_table) -- nothing here is affected by endianness
 	size_instruction = tonumber(bytes_table[10], 16)
 	size_lua_number = tonumber(bytes_table[11], 16)
 	integral_flag = tonumber(bytes_table[12], 16)
-	print("Endianness: " .. endianness_string .. " endian.")
-	print("int: " .. size_int .. " bytes.")
-	print("size_t: " .. size_t .. " bytes.")
-	print("Instruction: " .. size_instruction .. " bytes.")
-	print("lua_Number: " .. size_lua_number .. " bytes.")
-	print("Integral flag: " .. integral_flag .. ".")
+	print("Endianness:\t\t" .. endianness_string .. " endian")
+	print("int:\t\t\t" .. size_int .. " bytes")
+	print("size_t:\t\t\t" .. size_t .. " bytes")
+	print("Instruction:\t\t" .. size_instruction .. " bytes")
+	print("lua_Number:\t\t" .. size_lua_number .. " bytes")
+	print("Integral flag:\t\t" .. integral_flag)
 	return endianness, size_int, size_t, size_instruction, size_lua_number
 end
 
@@ -218,13 +231,13 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 	is_vararg_flag, byte_table_pointer = get_byte(bytes, byte_table_pointer)
 	max_stack_size, byte_table_pointer = get_byte(bytes, byte_table_pointer)
 	num_instructions, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
-	print("Line defined: " .. start_line .. ".")
-	print("Last line defined: " .. end_line .. ".")
-	print("Number of upvalues: " .. num_upvalues .. ".")
-	print("Number of parameters: " .. num_parameters .. ".")
-	print("is_vararg_flag: " .. is_vararg_flag .. ".")
-	print("Maximum stack size: " .. max_stack_size .. ".")
-	print("Number of instructions: " .. num_instructions .. ".")
+	print("Line defined:\t\t" .. start_line)
+	print("Last line defined:\t" .. end_line)
+	print("Number of upvalues:\t" .. num_upvalues)
+	print("Number of parameters:\t" .. num_parameters)
+	print("is_vararg_flag:\t\t" .. is_vararg_flag)
+	print("Maximum stack size:\t" .. max_stack_size)
+	print("Number of instructions:\t" .. num_instructions)
 	print("--------------------------------------------------")
 	if num_instructions > 0 then
 		for i = 1, num_instructions do
@@ -233,18 +246,35 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 			-- opcodes are the least significant six bits
 			decimal_opcode = tonumber(binary_instruction:sub(27, 32), 2)
 			instruction_type = opcode_types[decimal_opcode + 1]
-			A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
 			if instruction_type == "ABC" then
-				C_register_index = tonumber(binary_instruction:sub(10, 18), 2)
+				A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
 				B_register_index = tonumber(binary_instruction:sub(1, 9), 2)
+				C_register_index = tonumber(binary_instruction:sub(10, 18), 2)
+			elseif  instruction_type == "AB" then
+				A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
+				B_register_index = tonumber(binary_instruction:sub(1, 9), 2)
+			elseif instruction_type == "AC" then
+				A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
+				C_register_index = tonumber(binary_instruction:sub(10, 18), 2)
 			elseif instruction_type == "ABx" then
+				A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
 				B_register_index = tonumber(binary_instruction:sub(1, 18), 2)
-			else
+			elseif instruction_type == "AsBx" then
+				A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
 				B_register_index = tonumber(binary_instruction:sub(1, 18), 2) - 131071
+			elseif instruction_type == "sBx" then
+				B_register_index = tonumber(binary_instruction:sub(1, 18), 2) - 131071
+			else
+				A_register_index = tonumber(binary_instruction:sub(19, 26), 2)
 			end
-			instruction_operands = A_register_index .. " " .. B_register_index
-			if instruction_type == "ABC" then
-				instruction_operands = instruction_operands .. " " .. C_register_index
+			if (instruction_type == "AB") or (instruction_type == "ABx") or (instruction_type == "AsBx") then
+				instruction_operands = A_register_index .. " " .. B_register_index
+			elseif instruction_type == "ABC" then
+				instruction_operands = A_register_index .. " " .. B_register_index .. " " .. C_register_index
+			elseif instruction_type == "AC" then
+				instruction_operands = A_register_index .. " " .. C_register_index
+			else
+				instruction_operands = A_register_index
 			end
 			-- +1 for table lookup because instruction numbers start at zero
 			print(opcode_names[decimal_opcode + 1] .. " " .. instruction_operands .. " (" .. instruction_type .. "): \t" .. opcode_descriptions[decimal_opcode + 1]) 
@@ -252,7 +282,7 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 		print("--------------------------------------------------")
 		-- moving on to the constants
 		num_constants, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
-		print("Number of constants: " .. num_constants)
+		print("Number of constants:\t" .. num_constants)
 		for i = 1, num_constants do
 			constant_type_index, byte_table_pointer = get_byte(bytes, byte_table_pointer)
 			-- +1 for table lookup because constant numbers start at zero
@@ -269,14 +299,16 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 			else
 				constant_data = "" -- LUA_TNIL has nothing
 			end
-			print(constant_type .. " " .. constant_data)
+			print("Type " .. constant_type .. ":\t" .. constant_data)
 		end
 		print("--------------------------------------------------")
 		-- moving on to the function prototypes
 		num_prototypes, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 		print("Number of function prototypes: " .. num_prototypes)
 		if num_prototypes > 0 then
-			byte_table_pointer = decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
+			for i = 1, num_prototypes do
+				byte_table_pointer = decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
+			end
 		end
 		print("--------------------------------------------------")
 		-- moving on to the (optional) source line position list
@@ -324,7 +356,12 @@ function read_bytecode(file)
 	if bytecode_content:sub(1, 4) ~= "\x1bLua" then
 		-- \xNN escape character: NN is a two-digit hex number
 		print("The file " .. file .. " is not a Lua bytecode file.")
+	elseif bytecode_content:sub(5, 5) ~= "\x51" then
+		print("This bytecode parser requires version 5.1 of the lua bytecode.")
+		print("You are currently using version " .. string.format("%02X", bytecode_content:sub(5, 5):byte(1)):sub(1, 1) 
+			.. "." .. string.format("%02X", bytecode_content:sub(5, 5):byte(1)):sub(2, 2) .. ". Aborting.")
 	else
+		print_initial_information()
 		bytes = get_bytecode_as_bytes(bytecode_content)
 		endianness, size_int, size_t, size_instruction, size_lua_number = decode_header(bytes)
 		decode_function(13, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)	
