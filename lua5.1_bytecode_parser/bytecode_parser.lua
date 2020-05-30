@@ -199,28 +199,31 @@ end
 
 function decode_header(bytes_table) -- nothing here is affected by endianness
 	print("HEADER INFORMATION")
-	-- big-endian: most significant bytes first
-	-- little-endian: most significant bytes last
 	endianness = tonumber(bytes_table[7], 16)
-	endianness_string = "big" -- 0 represents big-endian
+	endianness_string = "Big endian: the most significant bytes are read first."
 	if endianness == 1 then
-		endianness_string = "little" -- 1 represents little-endian
+		endianness_string = "Little endian: the most significant bytes are read last."
 	end
 	size_int = tonumber(bytes_table[8], 16)
 	size_t = tonumber(bytes_table[9], 16)
 	size_instruction = tonumber(bytes_table[10], 16)
 	size_lua_number = tonumber(bytes_table[11], 16)
 	integral_flag = tonumber(bytes_table[12], 16)
-	print("Endianness:\t\t" .. endianness_string .. " endian")
-	print("int:\t\t\t" .. size_int .. " bytes")
-	print("size_t:\t\t\t" .. size_t .. " bytes")
-	print("Instruction:\t\t" .. size_instruction .. " bytes")
-	print("lua_Number:\t\t" .. size_lua_number .. " bytes")
-	print("Integral flag:\t\t" .. integral_flag)
-	return endianness, size_int, size_t, size_instruction, size_lua_number
+	if integral_flag == 0 then
+		number_type = "double"
+	else
+		number_type = "integer"
+	end
+	print("Endianness:\t\t" .. endianness_string)
+	print("int:\t\t\t" .. "The size of an integer is " .. size_int .. " bytes.")
+	print("size_t:\t\t\t" .. "The string data size parameter is " .. size_t .. " bytes.")
+	print("Instruction:\t\t" .. "The size of a bytecode instruction is " .. size_instruction .. " bytes.")
+	print("lua_Number:\t\t" .. "The size of a Lua number is " .. size_lua_number .. " bytes.")
+	print("Integral flag:\t\t" .. "The Lua number type is " .. number_type .. ".")
+	return endianness, integral_flag, size_int, size_t, size_instruction, size_lua_number
 end
 
-function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
+function decode_function(byte_table_pointer, bytes, endianness, integral_flag, size_int, size_t, size_instruction, size_lua_number)
 	print("----------------------------------------------------------------------------------------")
 	print("CHUNK INFORMATION")
 	source_name, byte_table_pointer = get_string(bytes, byte_table_pointer, size_t, endianness)
@@ -229,6 +232,15 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 	num_upvalues, byte_table_pointer = get_byte(bytes, byte_table_pointer)
 	num_parameters, byte_table_pointer = get_byte(bytes, byte_table_pointer)
 	is_vararg_flag, byte_table_pointer = get_byte(bytes, byte_table_pointer)
+	if is_vararg_flag == 7 then
+		is_vararg_output = "\t\t\tFor vararg functions that do not use \"...\" in the body.\n\t\t\tCould instead be using the \"arg\" table."
+	elseif is_vararg_flag == 3 then
+		is_vararg_output = "\t\t\tFor vararg functions that use \"...\" in the body."
+	elseif is_vararg_flag == 2 then
+		is_vararg_output = "\t\t\tNot a vararg function (fixed number of arguments). Main method."
+	elseif is_vararg_flag == 0 then
+		is_vararg_output = "\t\t\tNot a vararg function (fixed number of arguments)."
+	end
 	max_stack_size, byte_table_pointer = get_byte(bytes, byte_table_pointer)
 	num_instructions, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 	print("Line defined:\t\t" .. start_line)
@@ -236,6 +248,9 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 	print("Number of upvalues:\t" .. num_upvalues)
 	print("Number of parameters:\t" .. num_parameters)
 	print("is_vararg_flag:\t\t" .. is_vararg_flag)
+	if is_vararg_output then
+		print(is_vararg_output)
+	end
 	print("Maximum stack size:\t" .. max_stack_size)
 	print("Number of instructions:\t" .. num_instructions)
 	print("--------------------------------------------------")
@@ -291,9 +306,14 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 			if constant_type == "LUA_TBOOLEAN" then
 				constant_data, byte_table_pointer = get_byte(bytes, byte_table_pointer)
 			elseif constant_type  == "LUA_TNUMBER" then
-				decimal_constant_number, byte_table_pointer = get_int(bytes, byte_table_pointer, size_lua_number, endianness)
-				constant_number_bits = convert_to_bits(decimal_constant_number, 64)
-				constant_data = get_double_from_bits(constant_number_bits)
+				if integral_flag == 0 then
+					decimal_constant_number, byte_table_pointer = get_int(bytes, byte_table_pointer, size_lua_number, endianness)
+					constant_number_bits = convert_to_bits(decimal_constant_number, 64)
+					constant_data = get_double_from_bits(constant_number_bits)
+				else
+					constant_data = "Cannot read Lua number for this architecture."
+					byte_table_pointer = byte_table_pointer + size_lua_number
+				end
 			elseif constant_type == "LUA_TSTRING" then
 				constant_data, byte_table_pointer = get_string(bytes, byte_table_pointer, size_t, endianness)
 			else
@@ -307,7 +327,7 @@ function decode_function(byte_table_pointer, bytes, endianness, size_int, size_t
 		print("Number of function prototypes: " .. num_prototypes)
 		if num_prototypes > 0 then
 			for i = 1, num_prototypes do
-				byte_table_pointer = decode_function(byte_table_pointer, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)
+				byte_table_pointer = decode_function(byte_table_pointer, bytes, endianness, integral_flag, size_int, size_t, size_instruction, size_lua_number)
 			end
 		end
 		print("--------------------------------------------------")
@@ -363,8 +383,8 @@ function read_bytecode(file)
 	else
 		print_initial_information()
 		bytes = get_bytecode_as_bytes(bytecode_content)
-		endianness, size_int, size_t, size_instruction, size_lua_number = decode_header(bytes)
-		decode_function(13, bytes, endianness, size_int, size_t, size_instruction, size_lua_number)	
+		endianness, integral_flag, size_int, size_t, size_instruction, size_lua_number = decode_header(bytes)
+		decode_function(13, bytes, endianness, integral_flag, size_int, size_t, size_instruction, size_lua_number)	
 	end
 end
 
