@@ -17,4 +17,5 @@ Provides a human-readable interpretation of bytecode instructions.
   - [`test_code_2.luac`](test_bytecode/test_code_2.luac) (demonstrates if-else statements).
   - [`test_code_3.luac`](test_bytecode/test_code_3.luac) (demonstrates table creation).
   - [`test_code_4.luac`](test_bytecode/test_code_4.luac) (demonstrates vararg functions).
-- Corresponding source code is included. The bytecode was compiled from source on an x86 architecture (note that Lua bytecode is architecture dependent).
+  - [`test_code_5.luac`](test_bytecode/test_code_5.luac) (demonstrates upvalues and global variables).
+- Corresponding source code is included. The bytecode was compiled from source on an x86 architecture (note that Lua bytecode is architecture-dependent).
