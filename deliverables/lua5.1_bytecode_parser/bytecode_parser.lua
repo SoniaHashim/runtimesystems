@@ -316,12 +316,12 @@ function decode_function(byte_table_pointer, bytes, endianness, integral_flag, s
 				byte_table_pointer = decode_function(byte_table_pointer, bytes, endianness, integral_flag, size_int, size_t, size_instruction, size_lua_number)
 			end
 		end
-		print("--------------------------------------------------")
+		-- print("--------------------------------------------------")
 		-- moving on to the (optional) source line position list
-		print("Optional parts of chunk:")
+		-- print("Optional parts of chunk:")
 		sizelineinfo, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 		if sizelineinfo then
-			print("Size of source line positions list: " .. sizelineinfo)
+			-- print("Size of source line positions list: " .. sizelineinfo)
 			if sizelineinfo > 0 then
 				for i = 1, sizelineinfo do
 					source_line_position, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
@@ -331,7 +331,7 @@ function decode_function(byte_table_pointer, bytes, endianness, integral_flag, s
 		-- moving on to the (optional) local variable list
 		sizelocvars, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 		if sizelocvars then
-			print("Size of locals list: " .. sizelocvars)
+			-- print("Size of locals list: " .. sizelocvars)
 			if sizelocvars > 0 then
 				for i = 1, sizelocvars do
 					varname, byte_table_pointer = get_string(bytes, byte_table_pointer, size_t, endianness)
@@ -343,14 +343,14 @@ function decode_function(byte_table_pointer, bytes, endianness, integral_flag, s
 		-- moving on to the (optional) upvalues list
 		sizeupvalues, byte_table_pointer = get_int(bytes, byte_table_pointer, size_int, endianness)
 		if sizeupvalues then
-			print("Size of upvalues list: " .. sizeupvalues)
+			-- print("Size of upvalues list: " .. sizeupvalues)
 			if sizeupvalues > 0 then
 				for i = 1, sizeupvalues do
 					upvalue, byte_table_pointer = get_string(bytes, byte_table_pointer, size_t, endianness)
 				end
 			end
 		end
-		print("----------------------------------------------------------------------------------------")
+		--print("----------------------------------------------------------------------------------------")
 	end
 	return byte_table_pointer
 end
