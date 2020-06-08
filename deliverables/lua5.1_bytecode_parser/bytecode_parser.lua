@@ -1,17 +1,3 @@
--- A bytecode parser for Lua 5.1
--- Usage: lua $1 bytecode.luac
-
---[[ 
-TODO:
-Test extensively and compare output to other bytecode parsers.
-Test on an architecture that uses big endian.
-Should be able to invoke Lua 5.1 bytecode compiler if the user inputs a source file.
-Would be nice to have an interactive mode for parsing code that the user writes on the command line.
-Attempt a rewrite for Lua 5.2.
-Attempt to document Lua 5.3 bytecode and rewrite.
-Probably hard: actually produce the source code that the bytecode was constructed from.
---]] 
-
 opcode_names =
 	{"MOVE", "LOADK", "LOADBOOL", "LOADNIL",
     "GETUPVAL", "GETGLOBAL", "GETTABLE", "SETGLOBAL",

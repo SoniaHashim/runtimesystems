@@ -1,5 +1,3 @@
--- To generate bytecode: luac5.1 -o test_code_2.luac -s $1
-
 function square(input)
 	return input*input
 end

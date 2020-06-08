@@ -1,5 +1,3 @@
--- To generate bytecode: luac5.1 -o test_code_4.luac -s $1
-
 function vararg_function_1(...)
 	print("Testing the first vararg function with input: " .. ... .. ".")
 end

@@ -1,5 +1,3 @@
--- To generate bytecode: luac5.1 -o test_code_3.luac -s $1
-
 function make_table(input_1, input_2, input_3)
 	local test_local_var = "local is cool"
 	my_new_table = {}
